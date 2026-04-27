@@ -1,0 +1,41 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Prose overrides — match aift-web table style */
+.prose table {
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+}
+
+.prose thead th {
+  background-color: rgb(250 250 250);
+  font-weight: 500;
+  color: rgb(9 9 11);
+}
+
+.prose :where(th, td) {
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+}
+
+/* Code blocks from rehype-pretty-code */
+.prose pre {
+  background-color: rgb(250 250 250) !important;
+  border: 1px solid rgb(228 228 231);
+  border-radius: 0.5rem;
+}
+
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+}
