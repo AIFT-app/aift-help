@@ -1,81 +1,177 @@
 # AI Finance Team — Roles & Permissions
 
-AI Finance Team has two distinct types of users: **accountants** and **clients**. They see different parts of the product and have different responsibilities.
+This guide describes how access works in AI Finance Team today. It covers what users can do based on their role and how membership is granted.
 
----
+## How the Platform Is Organized
 
-## Accountants
+AI Finance Team supports collaboration between accounting firms and their clients. The structure is:
 
-Accountants work at an accounting firm. They manage all the workspaces (client engagements) within their organization and are the primary day-to-day users of the product.
+- **Accounting organizations** are firms or practices that prepare financial records for their clients.
+- **Client organizations** are the businesses whose books are being kept.
+- A **workspace** represents one client engagement. The accounting firm manages the workspace; the client uses it. Accountants typically work across multiple workspaces; client users see only their own.
 
-### What accountants can do
+A user's permissions are determined by their role within a workspace, not by which organization they belong to.
 
-- Access the cross-workspace **dashboard** — a mission control view showing all client workspaces, sorted by how much attention each one needs
-- Open any workspace their organization manages
-- Review and **approve** AI-suggested transaction categorizations
-- **Override** categorizations when the AI gets it wrong (this also trains the system for future transactions)
-- Review extracted invoice data and correct errors
-- **Match** invoices to bank transactions, or approve AI-suggested matches
-- View and annotate **missing documents** — transactions that have no corresponding invoice
-- Export clean data to accounting software at month-end
+## The Four Workspace Roles
 
-### What accountants cannot do
+Every member of a workspace has one of these four roles. This determines what they can see and do in that workspace.
 
-- Connect bank accounts on behalf of a client — bank authorization must happen in the client's own session (this is a deliberate trust boundary)
-- Access workspaces outside their organization
-
-### Accountant roles
-
-There is one permission level within the accountant side: **Accountant Admin**. All accountants currently have the same capabilities. Finer-grained permissions (read-only accountant, limited access) are not yet built.
-
----
-
-## Clients
-
-Clients are the accountant's end customers — business owners or their office staff. Each client is invited to one workspace (their company's engagement).
-
-### What clients can do
-
-- **Upload invoices** — drag and drop PDF or image files, or use the upload button on the dashboard or invoices page
-- View their invoices and the AI-extracted data (counterparty, amounts, dates)
-- See the categorization that accountants have applied — read-only
-- Connect their company's bank accounts via GoCardless (open banking)
-- View a simplified financial overview of their own company
-
-### What clients cannot do
-
-- See other clients' data
-- Override categorizations or approve matches — that is the accountant's responsibility
-- Access the cross-workspace dashboard
-
-### Client roles
-
-There is one permission level on the client side: **Client Owner**. A client owner is the primary contact for their workspace. Multi-user client access (e.g., an accountant at the client company plus a director) is not yet built.
-
----
-
-## Workspace membership
-
-Every user is a member of one or more **workspaces**. A workspace represents one client engagement — one company (or group of related companies) being managed.
-
-| | Accountant Admin | Client Owner |
+| Role | Side | Typical user |
 |---|---|---|
-| Cross-workspace dashboard | Yes | No |
-| Invite new members | Yes | Yes (to their own workspace) |
-| Upload invoices | Yes | Yes |
-| View invoices | Yes | Yes |
-| Categorize / correct | Yes | No |
-| Approve matches | Yes | No |
-| Connect bank accounts | No | Yes |
-| Export to accounting software | Yes | No |
+| Accountant admin | Firm | Lead accountant on the engagement |
+| Accountant | Firm | Supporting accountant or staff |
+| Client owner | Client | Founder, CEO, or senior decision-maker at the client |
+| Client member | Client | Bookkeeper, controller, or assistant at the client |
+
+### Accountant Admin
+
+The lead accountant on the client engagement.
+
+Can do:
+
+- Everything an accountant can do
+- Invite new members to the workspace (other accountants or client users)
+- Revoke pending invitations
+- See the workspace's full member list
+- See the firm's full team in addition to the workspace members (the "Your team at [Firm Name]" section in workspace settings)
+
+### Accountant
+
+A supporting accountant from the firm.
+
+Can do:
+
+- View the workspace dashboard, invoices, bank transactions, closing, and reports
+- Upload invoices on behalf of the client
+- Edit invoice headers (direction, entity, counterparty)
+- Edit invoice line item categories
+- Approve or override AI-generated categorizations
+- Match invoices to bank transactions
+- Add internal notes on transactions (visible only to accountants)
+- Access bank transaction details
+
+Cannot:
+
+- Invite or remove workspace members
+- See the firm's full team list (only sees members of this specific workspace)
+
+### Client Owner
+
+The senior person at the client company.
+
+Can do:
+
+- See the workspace dashboard and invoices
+- Upload invoices and receipts
+- View the workspace member list
+- Invite other client users to join the workspace as client members
+
+Cannot:
+
+- Edit invoice headers or line item categories
+- Access bank transactions
+- See accountant-only notes
+- Access closing or reports
+- Invite accountants
+
+### Client Member
+
+Other users at the client company who interact with the platform.
+
+Can do:
+
+- See the workspace dashboard and invoices
+- Upload invoices and receipts
+- View the workspace member list
+
+Cannot:
+
+- Edit invoice headers or line item categories
+- Access bank transactions
+- See accountant-only notes
+- Access closing or reports
+- Invite anyone
+
+## What Each Role Sees
+
+### Sidebar Navigation
+
+| Section | Accountant admin | Accountant | Client owner | Client member |
+|---|---|---|---|---|
+| Home | ✓ | ✓ | ✓ | ✓ |
+| Invoices | ✓ | ✓ | ✓ | ✓ |
+| Bank transactions | ✓ | ✓ | — | — |
+| Closing | ✓ | ✓ | — | — |
+| Reports | ✓ | ✓ | — | — |
+| Settings | ✓ | ✓ | ✓ | ✓ |
+
+### Settings → Team Section
+
+| Component | Accountant admin | Accountant | Client owner | Client member |
+|---|---|---|---|---|
+| Workspace members list | ✓ | ✓ | ✓ | ✓ |
+| "Your team at [Firm Name]" section | ✓ | — | — | — |
+| Invite new member form | ✓ | — | ✓ (client roles only) | — |
+| Pending invitations list | ✓ | — | ✓ | — |
+| Revoke pending invitation | ✓ | — | ✓ (own invites) | — |
+
+The client owner's invite form is restricted: they can invite other client members, but cannot invite accountants or other client owners.
+
+### Invoices
+
+| Action | Accountant admin | Accountant | Client owner | Client member |
+|---|---|---|---|---|
+| Upload an invoice | ✓ | ✓ | ✓ | ✓ |
+| View invoice details | ✓ | ✓ | ✓ | ✓ |
+| Edit header (direction, entity, counterparty) | ✓ | ✓ | — | — |
+| Edit line item categories | ✓ | ✓ | — | — |
+
+Clients submit raw documents; accountants do the categorization and verification.
+
+## How Membership Works
+
+### Inviting Someone to a Workspace
+
+An accountant admin or a client owner can send an invitation. The form takes:
+
+- An email address
+- A role to assign on acceptance
+
+The system creates an invitation record and shows the inviter a URL. The inviter shares this URL with the recipient through their own channels (email, chat, etc.). Automated invitation emails are not yet sent by the platform.
+
+The invitation:
+
+- Expires seven days after creation
+- Can be revoked by the inviter at any time before acceptance
+- Is bound to the specific email address provided
+
+### Accepting an Invitation
+
+When the recipient clicks the URL:
+
+- If they're not signed in, they're directed to log in or sign up. The invitation token is preserved through the auth flow.
+- If they sign up, an account is created with the email they enter.
+- If they sign in with a different email than the invitation was sent to, acceptance is blocked with a clear error message.
+- On successful acceptance, they're added to the workspace with the assigned role and redirected to the workspace.
+
+### After Acceptance
+
+A new member sees the workspace immediately. Their role determines what's visible according to the tables above. Their account exists at the platform level, so if they later leave the workspace (or are added to another), their account persists.
+
+## What's Not Yet Built
+
+A few capabilities the data model supports but the user interface doesn't yet expose:
+
+- **Removing existing members from a workspace.** Today, only pending invitations can be revoked. Once someone accepts, removing them requires a database operation by an administrator.
+- **Bank connection management UI.** Bank account data exists but the UI for clients to connect, disconnect, or manage their bank link is not yet built.
+- **Organization-level administration.** Firms can't currently manage their full team from a single page (the "Your team at [Firm Name]" view shows the team but doesn't include add/remove actions yet).
+- **Export to accounting software.** The export feature is not yet built.
+- **Automated invitation emails.** Inviters currently copy and share the accept URL manually.
+- **Approval workflows.** Such as requiring senior approval before an invoice is finalized.
+- **Audit trail.** Visibility into who did what and when.
+
+These are planned but not part of the current release.
 
 ---
 
-## What's not yet built
-
-The following are planned but not yet available:
-
-- **Automated invitation emails** — invitations are generated and the link must be shared manually today
-- **Read-only accountant role** — for trainee accountants or auditors who should view but not edit
-- **Multi-user client access** — currently one client owner per workspace
-- **Granular per-feature permissions** — all accountants in an organization currently have identical access
+This represents the platform as it exists today. As features ship, this document gets updated to reflect new capabilities.
