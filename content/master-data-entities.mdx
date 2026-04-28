@@ -1,0 +1,105 @@
+# Managing Entities
+
+Entities are the companies, individuals, and organisations that appear on your invoices and bank statements — suppliers, customers, and your own legal entities. Keeping them accurate in AI Finance Team means the AI can recognise counterparties correctly, categorise documents faster, and reduce the number of exceptions that need manual review.
+
+## What Is an Entity?
+
+An entity is a record that represents one real-world party. Each entity in your workspace holds:
+
+- **Legal name** — the official registered name used on documents
+- **Country** — the country of registration
+- **Tax ID** — the domestic tax identifier (e.g. Hungarian adószám, German Steuernummer)
+- **EU VAT number** — the EU-issued VAT number in the standard format (e.g. HU12345678)
+- **Registration number** — the company registry number
+- **Alternative names** — other names the same party uses on invoices or bank statements (trade names, abbreviations, former names)
+- **Bank accounts** — IBAN and/or domestic account numbers used for payments
+- **Contact details** — address, website, email domain
+- **Matching context** — a free-text note that guides the AI when it encounters ambiguous documents
+
+## Getting to Master Data
+
+From the workspace sidebar, click **Master data**, then **Entities**. This page lists all active entities in your workspace. Archived entities are shown in a separate section below the active list.
+
+## Adding an Entity
+
+1. Click **Add entity** in the top-right corner.
+2. Fill in the **Legal name** (required), **Country** (required), and **Tax ID** (optional).
+3. Click **Create entity**.
+
+You are taken directly to the entity detail page, where you can add all remaining fields: EU VAT number, registration number, alternative names, bank accounts, contact details, and matching context. There is no need to enter everything at once — fill in what you have now and return later as you learn more.
+
+> **Note:** Tax IDs must be unique within a workspace. If you enter a Tax ID that is already in use by another active entity, you will see an error message and the entity will not be created.
+
+## Editing an Entity
+
+Open the entity by clicking its name in the list. Each section of the detail page can be edited and saved independently.
+
+### Identity
+
+Change the legal name, country, Tax ID, EU VAT number, or registration number. Click **Save** when done. If the new Tax ID conflicts with another active entity in the workspace, the save is blocked with an error message.
+
+### Alternative Names
+
+Add any other names this party uses — for example, a trading name that appears on their invoices, an abbreviation used in bank references, or a former company name after a rebrand.
+
+To add a name, type it into the field and click **Add** (or press Enter). To remove one, click the × next to it.
+
+These names are used during document matching: when the AI encounters a name it doesn't recognise, it checks it against the alternative names of all entities in your workspace.
+
+### Bank Accounts
+
+Add the IBAN and/or domestic account numbers associated with this entity. For Hungarian entities, you can store both the international IBAN and the domestic account number (the three-segment format).
+
+To add an account, fill in the fields and click **Add account**. To remove one, click the × next to it.
+
+Bank accounts are used during transaction matching: incoming or outgoing payments are linked to the entity whose account number appears in the bank statement reference.
+
+### Contact Details
+
+Store the entity's address, website, and email domain. The email domain is particularly useful for entities whose invoices arrive by email — when the AI sees a message from `@acmesolutions.com`, it can associate it with the correct entity.
+
+### Matching Context
+
+This is a short free-text note for the AI — not customer-facing, not displayed on any document. Use it to resolve cases where automatic matching is ambiguous:
+
+- Distinguish two entities with similar names ("WKA Studio is the agency; WKA Holding is the parent company — keep separate")
+- Note a known quirk in how this party labels their invoices ("always uses 'WKA Creative' on invoice headers despite legal name being WKA Studio Kft.")
+- Flag a party that issues invoices in a different language than expected
+
+The note is used as additional context during AI categorisation. A few sentences are usually enough.
+
+### Representatives
+
+Assign workspace members as the primary contact for this entity. Representatives appear on the entity detail page and are used in internal workflows to route questions or exceptions to the right person.
+
+To assign a representative, click **+ Add** and select a workspace member. To remove one, click the × next to their name.
+
+## Archiving and Restoring an Entity
+
+If an entity is no longer active — a supplier relationship has ended, a client has been wound down, or a duplicate was created by mistake — you can archive it rather than delete it.
+
+Archived entities:
+- Are hidden from the active entity list and from the entity picker when categorising documents
+- Are preserved in the database, so historical documents linked to them remain intact
+- Can be fully restored at any time
+
+To archive, open the entity, scroll to the **Danger zone** section, and click **Archive entity**.
+
+To restore, scroll down to the **Archived entities** section on the entities list page and click **Restore**.
+
+## Permanently Deleting an Entity
+
+Permanent deletion removes the entity record and is irreversible. It is only available for entities that have no linked documents (invoices, transactions). If there are linked documents, you will need to archive instead.
+
+To delete, open an archived entity, scroll to the **Danger zone**, and click **Delete permanently**.
+
+## Why Entity Data Quality Matters
+
+The AI categorisation engine uses entity data as one of its strongest signals. When an entity record is complete:
+
+- Counterparty identification is faster and more accurate
+- Alternative names catch document variants that would otherwise generate unmatched exceptions
+- Bank accounts enable automatic payment matching
+- Matching context resolves edge cases without manual intervention
+
+Incomplete entity records are one of the most common reasons AI confidence scores stay low. If you notice the AI repeatedly misidentifying a counterparty, the first thing to check is whether that party exists as an entity and whether its alternative names are up to date.
