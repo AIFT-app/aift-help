@@ -7,4 +7,5 @@ export const navigation: NavItem[] = [
   { title: 'Home', slug: '' },
   { title: 'Roles & Permissions', slug: 'roles-and-permissions' },
   { title: 'Managing Entities', slug: 'master-data-entities' },
+  { title: 'Connecting Bank Accounts', slug: 'bank-accounts' },
 ]
