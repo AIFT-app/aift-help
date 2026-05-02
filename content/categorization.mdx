@@ -1,0 +1,88 @@
+# Categorising Invoices and Bank Transactions
+
+AI Finance Team automatically assigns categories to your invoices and bank transactions. The AI handles the bulk of the work — your accountant steps in only when it needs a second opinion.
+
+## How Categories Work
+
+There are two separate sets of categories in every workspace:
+
+- **Invoice categories** — applied to individual line items on invoices (e.g. Software licence, Office rent, Professional services)
+- **Cash categories** — applied to bank transactions (e.g. Bank fees, Payroll, Client payment)
+
+Categories are set up and managed by your accountant. If you feel a category is missing or named incorrectly, ask your accountant to add or adjust it.
+
+---
+
+## Invoice Categorisation
+
+### What the AI does
+
+When an invoice arrives — whether uploaded manually, sent by email, or pulled from an invoice provider — the AI reads each line item and assigns it the most appropriate category from your workspace's invoice category list.
+
+It also gives each assignment a confidence score. If the AI is confident in its choice, the category is applied immediately. If it is less sure, the item is flagged for your accountant to review.
+
+### What your accountant sees
+
+Your accountant reviews flagged items from the **Invoices** page. Items that need attention are marked with a **Review** badge.
+
+When reviewing, your accountant can:
+
+- Accept the AI's suggestion as-is
+- Choose a different category from the list
+- Leave a note explaining the choice
+
+Once a category is confirmed, the invoice moves to **Categorised** status.
+
+### How the AI gets smarter over time
+
+Every time your accountant corrects a category, AI Finance Team records that decision as a correction. The next time a similar line item appears — from the same supplier, with similar wording — the AI uses that past correction as a strong signal.
+
+This means categorisation accuracy tends to improve over the first few months as the AI learns the patterns specific to your business.
+
+---
+
+## Cash Transaction Categorisation
+
+### What the AI does
+
+Each bank transaction is matched against your workspace's cash category list. As with invoices, the AI assigns a category and a confidence score.
+
+- **High confidence** — category applied automatically, status shows **Categorised**
+- **Lower confidence** — a suggested category is noted but the transaction is flagged for review
+- **Very low confidence** — the transaction is marked **Pending** and waits for accountant input
+
+### What your accountant sees
+
+On the **Transactions** page, each row shows:
+
+- **Status** — Pending, Processing, Categorised, or Failed
+- **Category** — the assigned category name, with a confidence percentage badge
+- An **Edited** label if the category was set manually
+
+Accountants can override any transaction's category inline by clicking the pencil icon next to the category name and selecting from the list. Only transactions that match the direction of the transaction (income or expense) are shown as options.
+
+### When categories are added or changed
+
+If your accountant adds a new cash category or modifies an existing one, AI Finance Team automatically queues any uncategorised transactions for re-processing. You will see a notification confirming that categorisation has been scheduled.
+
+---
+
+## Statuses at a Glance
+
+| Status | Meaning |
+|--------|---------|
+| **Pending** | Waiting to be processed by the AI |
+| **Processing** | The AI is working on it right now |
+| **Categorised** | A category has been assigned |
+| **Review** | The AI assigned a category but is not confident — accountant should check |
+| **Failed** | Processing encountered an error — your accountant will be notified |
+
+---
+
+## Tips
+
+**Keep your category list focused.** A long list of rarely-used categories makes it harder for the AI to choose correctly. Aim for categories that map to real lines in your chart of accounts.
+
+**Add descriptions to categories.** Your accountant can add a short description to each category explaining what it covers. The AI uses these descriptions to make better decisions in ambiguous cases.
+
+**Correct confidently.** When your accountant overrides a category, that correction is remembered. One clear correction is worth more than leaving ambiguous items unreviewed.
