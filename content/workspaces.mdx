@@ -1,0 +1,101 @@
+# Workspaces
+
+A workspace represents one client engagement. Each workspace belongs to your accounting firm and is shared with one client company. Accountants typically work across many workspaces; client users see only their own.
+
+---
+
+## Creating a New Workspace
+
+Only org **owners** and **admins** can create workspaces. Regular accountants work inside workspaces they have been added to — they cannot create new ones. If you need workspace creation access, ask your firm's owner or admin to promote you from the **Org settings** page (see [Roles & Permissions](/roles-and-permissions/)).
+
+### Starting the wizard
+
+On the **All Workspaces** dashboard, scroll to the bottom of your workspace list and click **New workspace**. This opens a three-step wizard.
+
+---
+
+### Step 1 — Workspace details
+
+Fill in the basic information for the new client engagement:
+
+| Field | Notes |
+|---|---|
+| Client name | The client's trading name; becomes the workspace name |
+| Country | Drives currency and timezone defaults |
+| Base currency | Pre-filled based on country; editable |
+| Timezone | Pre-filled based on country; editable |
+
+Selecting a country automatically fills in the most common currency and timezone for that country. You can change either field independently before continuing.
+
+Click **Next** to proceed to Step 2.
+
+---
+
+### Step 2 — Primary entity
+
+A workspace needs at least one entity — the legal company that owns the client's bank accounts and appears on their invoices. AI Finance Team uses the entity to determine invoice direction (income vs. expense), so this step cannot be skipped.
+
+| Field | Notes |
+|---|---|
+| Entity name | Legal company name — required |
+| Tax ID | Strongly recommended; can be added later in master data |
+| Country | Defaults to the workspace country |
+
+Additional entities (for multi-company clients) can be added later from the workspace's master data section.
+
+Click **Next** to proceed to Step 3, or **Back** to return to Step 1 without losing your entries.
+
+---
+
+### Step 3 — Invite client (optional)
+
+This step prompts you to invite the client owner so they can connect bank accounts and upload invoices. It is optional — you can skip it and send the invitation later from workspace settings.
+
+If you choose to invite now:
+
+1. Enter the client's email address.
+2. Click **Send invitation**.
+3. The wizard displays a **copyable invite link** — copy it and share it with your client directly (email, chat, etc.).
+
+> Automated invitation emails are not yet delivered by the platform. You share the link manually.
+
+The invitation is assigned the **client owner** role. The client owner can then invite their colleagues as client members from within the workspace.
+
+Click **Skip** to finish without inviting, or complete the invite step to get the link.
+
+---
+
+### After the wizard
+
+Once the wizard completes, you are redirected to the new workspace's overview page. The workspace appears immediately in your **All Workspaces** dashboard. You are automatically set as an **accountant admin** of the new workspace.
+
+If you did not provide a tax ID for the primary entity, the workspace overview shows a prompt to add it from master data. You can dismiss this prompt and return to it later.
+
+---
+
+## Joining an Existing Workspace
+
+Org owners and admins can see **all workspaces** belonging to their firm on the All Workspaces dashboard, including workspaces they have not personally joined. These non-member workspaces show a **Join** button.
+
+Clicking **Join** adds you to the workspace immediately as an **accountant admin** and takes you directly to that workspace.
+
+Regular accountants (non-admin org members) do not see the Join button and cannot self-add to workspaces. They must be invited by an accountant admin already in the workspace.
+
+---
+
+## Inviting Team Members
+
+Once a workspace exists, an **accountant admin** can invite additional members from workspace **Settings → Team**:
+
+- Other accountants from your firm (as accountant or accountant admin)
+- Client users at the client company (as client owner or client member)
+
+See [Roles & Permissions](/roles-and-permissions/) for the full breakdown of what each role can see and do.
+
+---
+
+## What's Not Yet Built
+
+- **Bank connection management UI** — bank account data exists but the interface for clients to connect, disconnect, or manage their bank link is not yet available.
+- **Removing a workspace member** — only pending invitations can currently be revoked. Removing someone who has already accepted requires a support request.
+- **Workspace settings** — the settings page is a stub; configuration like auto-categorization and missing document alerts are set at workspace creation but cannot yet be changed via the UI.

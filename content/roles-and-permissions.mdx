@@ -1,6 +1,6 @@
 # AI Finance Team — Roles & Permissions
 
-This guide describes how access works in AI Finance Team today. It covers what users can do based on their role and how membership is granted.
+This guide describes how access works in AI Finance Team. It covers what users can do based on their role and how membership is granted.
 
 ## How the Platform Is Organized
 
@@ -10,11 +10,47 @@ AI Finance Team supports collaboration between accounting firms and their client
 - **Client organizations** are the businesses whose books are being kept.
 - A **workspace** represents one client engagement. The accounting firm manages the workspace; the client uses it. Accountants typically work across multiple workspaces; client users see only their own.
 
-A user's permissions are determined by their role within a workspace, not by which organization they belong to.
+Users have two kinds of roles: an **org-level role** within their organization and a **workspace role** within each workspace they belong to.
 
-## The Four Workspace Roles
+---
 
-Every member of a workspace has one of these four roles. This determines what they can see and do in that workspace.
+## Org-Level Roles (Accounting Firm Members)
+
+Every member of an accounting firm has an org-level role. This determines what they can do across the whole firm, independent of any specific workspace.
+
+| Org role | Typical user | Key capabilities |
+|---|---|---|
+| Owner | Founding partner or practice owner | Full access; cannot be removed; role cannot be changed via the UI |
+| Admin | Senior accountant or manager | Can create workspaces, manage the team, join any workspace |
+| Member | Accountant or staff | Works inside workspaces they have been added to |
+
+Org owners and admins can do everything a member can do, plus:
+
+- Create new client workspaces (see [Workspaces](/workspaces))
+- See all workspaces that belong to the firm on the dashboard, including ones they haven't personally joined
+- Join any firm workspace with one click (they are added as accountant admin)
+- Manage the firm's team from the **Org settings** page: invite new members, change member roles, remove members, and revoke pending invitations
+
+Org members (non-admin accountants) work only in workspaces they have been explicitly added to. They do not see the Org settings page or the Join button on the dashboard.
+
+Client-side users (client owner, client member) have no org role on the accounting firm side. They exist entirely within the workspaces they've been invited to.
+
+### Org Settings
+
+The **Org settings** page is accessible from the bottom of the sidebar for org owners and admins. It provides:
+
+- A list of all current team members with their roles and email addresses
+- Controls for promoting a member to admin or demoting an admin to member
+- A form to invite a new team member by email (generates a copyable invite link)
+- A list of pending org invitations with the ability to copy the link again or revoke
+
+Plain org members (non-admin accountants) can view the member list but cannot take any actions.
+
+---
+
+## Workspace Roles
+
+Every member of a workspace has one of four roles. This determines what they can see and do within that specific workspace.
 
 | Role | Side | Typical user |
 |---|---|---|
@@ -31,7 +67,7 @@ Can do:
 
 - Everything an accountant can do
 - Invite new members to the workspace (other accountants or client users)
-- Revoke pending invitations
+- Revoke pending workspace invitations
 - See the workspace's full member list
 - See the firm's full team in addition to the workspace members (the "Your team at [Firm Name]" section in workspace settings)
 
@@ -92,6 +128,8 @@ Cannot:
 - Access closing or reports
 - Invite anyone
 
+---
+
 ## What Each Role Sees
 
 ### Sidebar Navigation
@@ -104,6 +142,7 @@ Cannot:
 | Closing | ✓ | ✓ | — | — |
 | Reports | ✓ | ✓ | — | — |
 | Settings | ✓ | ✓ | ✓ | ✓ |
+| Org settings | org admin/owner only | — | — | — |
 
 ### Settings → Team Section
 
@@ -128,11 +167,13 @@ The client owner's invite form is restricted: they can invite other client membe
 
 Clients submit raw documents; accountants do the categorization and verification.
 
+---
+
 ## How Membership Works
 
 ### Inviting Someone to a Workspace
 
-An accountant admin or a client owner can send an invitation. The form takes:
+An accountant admin or a client owner can send an invitation from workspace settings. The form takes:
 
 - An email address
 - A role to assign on acceptance
@@ -141,30 +182,39 @@ The system creates an invitation record and shows the inviter a URL. The inviter
 
 The invitation:
 
-- Expires seven days after creation
+- Expires 14 days after creation
 - Can be revoked by the inviter at any time before acceptance
 - Is bound to the specific email address provided
 
+### Inviting Someone to Your Firm (Org Invitation)
+
+Org owners and admins can invite new accountants to join the firm from the **Org settings** page. This creates an org-level invitation — the recipient is added to the firm as a team member, not to any specific workspace.
+
+The invitation works the same way: a copyable link is generated, which the inviter shares manually. The invited person can accept regardless of whether they already have an account. On acceptance they are added to the firm as a member (or admin, if that was the role chosen when sending).
+
 ### Accepting an Invitation
 
-When the recipient clicks the URL:
+When the recipient clicks the invite URL:
 
 - If they're not signed in, they're directed to log in or sign up. The invitation token is preserved through the auth flow.
 - If they sign up, an account is created with the email they enter.
 - If they sign in with a different email than the invitation was sent to, acceptance is blocked with a clear error message.
-- On successful acceptance, they're added to the workspace with the assigned role and redirected to the workspace.
+- On successful acceptance:
+  - **Workspace invitation** → they are added to the workspace and redirected to it.
+  - **Org invitation** → they are added to the firm's team and redirected to the workspace dashboard.
 
 ### After Acceptance
 
 A new member sees the workspace immediately. Their role determines what's visible according to the tables above. Their account exists at the platform level, so if they later leave the workspace (or are added to another), their account persists.
 
+---
+
 ## What's Not Yet Built
 
 A few capabilities the data model supports but the user interface doesn't yet expose:
 
-- **Removing existing members from a workspace.** Today, only pending invitations can be revoked. Once someone accepts, removing them requires a database operation by an administrator.
+- **Removing a member from a workspace.** Today, only pending workspace invitations can be revoked. Once someone accepts a workspace invitation, removing them requires a support request. (Removing org members is available from Org settings.)
 - **Bank connection management UI.** Bank account data exists but the UI for clients to connect, disconnect, or manage their bank link is not yet built.
-- **Organization-level administration.** Firms can't currently manage their full team from a single page (the "Your team at [Firm Name]" view shows the team but doesn't include add/remove actions yet).
 - **Export to accounting software.** The export feature is not yet built.
 - **Automated invitation emails.** Inviters currently copy and share the accept URL manually.
 - **Approval workflows.** Such as requiring senior approval before an invoice is finalized.
