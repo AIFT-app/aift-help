@@ -4,13 +4,54 @@ A workspace represents one client engagement. Each workspace belongs to your acc
 
 ---
 
+## The Workspaces Dashboard
+
+When you sign in, you land on the **Workspaces** dashboard — your morning overview of where things stand across all clients.
+
+### Status dots
+
+Each workspace tile shows a coloured dot that tells you at a glance whether the workspace needs attention:
+
+| Dot | Meaning |
+|-----|---------|
+| 🟢 Green | Everything is under control — no open issues, fewer than five items in each bucket |
+| 🟡 Amber | Something needs checking — a bucket has reached five items, or there is at least one open issue |
+| 🔴 Red | Needs attention today — a bucket has fifteen or more items, three or more issues, or work has been sitting unreviewed for more than five days with no recent client uploads |
+
+### The three stat cards
+
+Each tile shows three counts:
+
+- **To review** — bank transactions flagged for human review (AI was uncertain about categorisation)
+- **Unmatched** — invoices that have not yet been matched to a bank transaction
+- **Issues** — extraction failures and very-low-confidence categorisations
+
+### Sections
+
+Tiles are grouped into two sections:
+
+- **Needs attention** — any workspace with an amber or red dot
+- **All caught up** — workspaces where everything is green
+
+The count after each section title updates as you search.
+
+### Searching
+
+Type in the search box at the top right to filter by workspace name. The section structure stays in place as you type — you'll see, for example, "Needs attention (1)" if only one matching workspace is in that bucket. To clear the filter, click **Clear search** or delete the search text.
+
+### Overview banner
+
+Below the page header, a single line summarises your full client book: how many documents need review, how many transactions are unmatched, how many issues are open, and how many workspaces are flagged. This is the one-glance check before you decide which workspace to open first.
+
+---
+
 ## Creating a New Workspace
 
 Only org **owners** and **admins** can create workspaces. Regular accountants work inside workspaces they have been added to — they cannot create new ones. If you need workspace creation access, ask your firm's owner or admin to promote you from the **Org settings** page (see [Roles & Permissions](/roles-and-permissions/)).
 
 ### Starting the wizard
 
-On the **All Workspaces** dashboard, scroll to the bottom of your workspace list and click **New workspace**. This opens a three-step wizard.
+On the Workspaces dashboard, click **New workspace** in the top-right action bar. This opens a three-step wizard.
 
 ---
 
@@ -67,7 +108,7 @@ Click **Skip** to finish without inviting, or complete the invite step to get th
 
 ### After the wizard
 
-Once the wizard completes, you are redirected to the new workspace's overview page. The workspace appears immediately in your **All Workspaces** dashboard. You are automatically set as an **accountant admin** of the new workspace.
+Once the wizard completes, you are redirected to the new workspace's overview page. The workspace appears immediately in your Workspaces dashboard. You are automatically set as an **accountant admin** of the new workspace.
 
 If you did not provide a tax ID for the primary entity, the workspace overview shows a prompt to add it from master data. You can dismiss this prompt and return to it later.
 
@@ -75,7 +116,7 @@ If you did not provide a tax ID for the primary entity, the workspace overview s
 
 ## Joining an Existing Workspace
 
-Org owners and admins can see **all workspaces** belonging to their firm on the All Workspaces dashboard, including workspaces they have not personally joined. These non-member workspaces show a **Join** button.
+Org owners and admins can see **all workspaces** belonging to their firm on the dashboard, including workspaces they have not personally joined. These non-member workspaces show a **Join** button.
 
 Clicking **Join** adds you to the workspace immediately as an **accountant admin** and takes you directly to that workspace.
 
@@ -94,8 +135,15 @@ See [Roles & Permissions](/roles-and-permissions/) for the full breakdown of wha
 
 ---
 
+## Org Settings
+
+The **Org settings** link in the top-right of the dashboard is visible to org owners and admins. It takes you to your firm's organisation settings, where you can manage team members and their roles across the whole firm.
+
+---
+
 ## What's Not Yet Built
 
 - **Bank connection management UI** — bank account data exists but the interface for clients to connect, disconnect, or manage their bank link is not yet available.
 - **Removing a workspace member** — only pending invitations can currently be revoked. Removing someone who has already accepted requires a support request.
-- **Workspace settings** — the settings page is a stub; configuration like auto-categorization and missing document alerts are set at workspace creation but cannot yet be changed via the UI.
+- **Workspace settings** — the settings page is a stub; configuration like auto-categorisation and missing document alerts are set at workspace creation but cannot yet be changed via the UI.
+- **Per-workspace closing cadence** — the closing period shown in each tile footer is currently the current calendar month. Support for quarterly VAT cycles and other reporting cadences is planned.
