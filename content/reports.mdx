@@ -1,0 +1,91 @@
+# Reports
+
+Reports let you summarise invoice or bank transaction data by category across any date range. You can build a custom P&L, a cash-flow summary, or any other view that makes sense for a client — and drill into the numbers all the way down to individual documents.
+
+## Opening Reports
+
+In the workspace sidebar, click **Reports**. You will see a list of all reports created for this workspace. Each card shows the report name, its type (Invoice or Cash), and when it was last updated.
+
+Click **Open** on any card to view the report.
+
+## Report Types
+
+| Type | What it aggregates |
+|------|--------------------|
+| **Invoice** | Invoice line items, grouped by invoice category |
+| **Cash** | Bank transactions, grouped by transaction category |
+
+Choose **Invoice** for a P&L-style view. Choose **Cash** for a cash-flow view. The two types use separate category sets — see [Categorising Invoices & Transactions](/categorization) for how categories are set up.
+
+## Running a Report
+
+When you open a report, it runs automatically for the current calendar year. To change the date range, use the **From** and **To** date pickers in the toolbar and click **Run**.
+
+The report re-runs whenever you change the dates.
+
+## Reading the Results
+
+Results appear as a table. Each row is a **reporting line** — a named line in the report structure:
+
+- **Regular lines** (indented) show the total for one or more categories over the selected period.
+- **Calculated lines** (shown with a Σ symbol, slightly bolder) are totals computed from other lines — for example, Gross Profit = Revenue − Cost of Sales.
+
+Negative amounts appear in red.
+
+## Drilling Down
+
+Click any row to open a detail panel on the right. The panel shows what is behind that number:
+
+1. **Categories** — the categories that contribute to the line, with their totals and item counts. Click a category to expand it.
+2. **Items** — the individual invoices or transactions inside each category. Each item shows the date, counterparty, reference or invoice number, and amount. Click **PDF** to view the original document, or **→** to open the full invoice detail page.
+
+Click the same row again to close the panel.
+
+## Searching
+
+Use the search bar in the toolbar to filter the report. The search matches:
+
+- **Reporting line names** — rows whose name contains your query
+- **Category names** — rows that have a matching category assigned
+- **Items in the detail panel** — counterparty names, invoice numbers, references, and descriptions are all searchable once a line is expanded
+
+Matching text is highlighted in yellow throughout.
+
+## Creating a Report
+
+Accountants can create new reports. Click **New report**, enter a name, and choose the type. The report is created with no lines — use **Edit** to build the structure.
+
+## Editing a Report
+
+Click the **Edit** button in the toolbar (accountants only). The editor opens with two panels:
+
+**Left panel — Lines**
+
+This is the list of reporting lines. You can:
+
+- **Add a reporting line** — aggregates one or more categories. Click **+ Reporting line**.
+- **Add a calculated line** — sums or subtracts other lines. Click **+ Calculated line**.
+- **Rename a line** — click the name and type. The change saves when you click away.
+- **Reorder lines** — drag the handle (≡) on the left of any row to move it up or down.
+- **Delete a line** — click the trash icon on the right.
+
+**Right panel — Categories**
+
+When a reporting line is selected, the right panel shows which categories are assigned to it. Categories are divided into three groups:
+
+- **Assigned to this line** — click × to remove one.
+- **Used in another line** — click to add it to this line as well.
+- **Not yet assigned** — shown with a warning icon. Click to assign.
+
+Categories not assigned to any line are excluded from all reports.
+
+For calculated lines, the right panel shows the expression builder instead. Add operands (other lines) and set the operator (+, −, ×, ÷) between them.
+
+Click **Done** when you are finished editing. The report runs immediately with the updated structure.
+
+## Tips
+
+- **Start with categories.** A reporting line is only as useful as the categories behind it. Make sure your invoice and transaction categories are well-defined before building report structure — see [Categorising Invoices & Transactions](/categorization).
+- **Use calculated lines for totals.** Build sub-totals (e.g. Total Revenue, Total Costs) as calculated lines, then combine them into a final total (e.g. Net Profit). This makes the drill-down more meaningful.
+- **Search while drilling down.** Type a supplier name or invoice number in the search bar while the detail panel is open — matching items stay visible and are highlighted.
+- **The date range does not affect the structure.** You can change dates freely without losing your line setup. Run the same report for different periods to compare.

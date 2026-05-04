@@ -12,4 +12,5 @@ export const navigation: NavItem[] = [
   { title: 'Managing Entities', slug: 'master-data-entities' },
   { title: 'Connecting Bank Accounts', slug: 'bank-accounts' },
   { title: 'Categorising Invoices & Transactions', slug: 'categorization' },
+  { title: 'Reports', slug: 'reports' },
 ]
