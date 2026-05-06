@@ -11,6 +11,7 @@ export const navigation: NavItem[] = [
   { title: 'Multi-Currency & Exchange Rates', slug: 'currency-exchange' },
   { title: 'Managing Entities', slug: 'master-data-entities' },
   { title: 'Connecting Bank Accounts', slug: 'bank-accounts' },
+  { title: 'Uploading Bank Statements', slug: 'bank-statement-upload' },
   { title: 'Categorising Invoices & Transactions', slug: 'categorization' },
   { title: 'Reports', slug: 'reports' },
 ]
