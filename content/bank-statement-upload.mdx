@@ -4,7 +4,7 @@ If your bank account is not connected via open banking, you can import transacti
 
 ## Who Can Upload Statements
 
-Any workspace member can upload a bank statement. The upload button is on the **Transactions** page, in the **Statements** tab.
+Any workspace member can upload a bank statement. The upload button is on the **Transactions** page.
 
 ## Supported Formats
 
@@ -15,36 +15,48 @@ One file per statement. If a statement spans multiple PDFs, upload each file sep
 ## How to Upload a Statement
 
 1. Go to **Transactions** in the workspace sidebar.
-2. Click the **Statements** tab.
-3. Click **Upload statement**.
-4. Select your PDF file from your computer.
-5. The dialog reads the first page of the statement and tries to identify the bank account automatically (see [Automatic Account Matching](#automatic-account-matching) below).
-6. Review the detected account and date range, then click **Start extraction**.
+2. Click **Upload statement** in the top-right corner.
+3. Select your PDF file, or drag and drop it onto the dialog.
+4. Click **Upload**.
 
-The dialog closes and a progress card appears in the Statements tab. Extraction runs page by page in the background — you can navigate away and come back. The card updates as each page is processed.
+The dialog closes immediately after the file is uploaded — you do not need to wait. Extraction runs in the background page by page. Open the **Statements** tab to track progress.
 
 When extraction completes, the transactions appear in the **Transactions** tab under the matched bank account.
 
 ## Automatic Account Matching
 
-After reading the first page of the statement, AI Finance Team looks up the account number in your workspace to find the matching bank account.
+AI Finance Team reads the first page of the statement and looks up the account number in your workspace.
 
-- If a matching account is found, it is shown in the upload dialog before you confirm.
-- If no match is found, you will be asked to select the bank account manually from a list of accounts in the workspace.
+- If a matching account is found, extraction starts automatically and the statement appears in the **Statements** tab as **Extracting**.
+- If no match is found, the statement appears in the **Statements** tab as **Pending**. An accountant can assign the correct bank account from there to start extraction.
 
 Matching works with both IBAN format (`HU12 3456 7890 1234 5678 0000 0000`) and domestic account number format (`34567890-12345678`). Spaces and hyphens are ignored during comparison.
 
 If the bank account does not exist yet in your workspace but the account is listed under one of your entities in **Master Data → Entities**, the account is created automatically and linked to that entity.
 
+## Statements Tab
+
+The **Statements** tab shows every uploaded statement and its current status.
+
+| Status | Meaning |
+|--------|---------|
+| Pending | Uploaded but not yet assigned to a bank account. |
+| Extracting | Extraction is running — shows page progress. |
+| Completed | All transactions extracted successfully. |
+| Errors | Extraction finished but some pages had issues. |
+| Failed | Extraction could not complete. |
+
+Click any completed statement row to open the statement detail page.
+
+For **Pending** statements, the row shows action buttons:
+
+- **Extract** — start extraction without assigning an account (transactions will be linked later).
+- **Assign account** *(accountants only)* — pick a bank account from a dropdown and start extraction in one step.
+- **Dismiss** — hide the statement without extracting it.
+
 ## Extraction Progress
 
-Each uploaded statement gets a progress card in the Statements tab showing:
-
-- **File name and upload date**
-- **Pages processed** out of total pages
-- **Transactions found** so far
-
-Once all pages are processed the card shows **Completed** and the transaction count. If a page fails to extract, the card shows **Failed** — click **Re-extract** to try again from scratch.
+While a statement is extracting you can see page-by-page progress in the Statements tab. You can navigate away — extraction continues in the background. Come back to the Statements tab to check the final count.
 
 ## What Happens After Extraction
 
@@ -56,35 +68,31 @@ Once extraction completes:
 
 Duplicates are detected automatically. If a transaction already exists in the system (imported via open banking or a previous statement upload), it will not be inserted again.
 
-## Reviewing Extracted Transactions
+## Statement Detail Page
 
-Extracted transactions appear in the **Transactions** tab filtered by the bank account. Review them the same way as any other transaction:
+Click any completed statement row in the Statements tab to open the detail page. This shows the PDF on the left and the extracted transaction list on the right.
 
-- Click a row to open the detail slide-over on the right.
-- Change a category by clicking the category badge and selecting a different one.
-- Add a note using the note field in the slide-over.
+- **Click a transaction row** to jump to the corresponding page in the PDF viewer.
+- **Search and filter** transactions by counterparty, description, or direction (income / expenses).
+- The **category column** shows how each transaction was categorised after extraction.
+- Rows with a **yellow or red dot** were extracted with lower confidence — review those manually.
+- Rows marked **Dup** are duplicates that were not inserted into the transaction list.
 
-See [Transactions](/transactions) for the full guide.
+The summary footer shows the total transaction count, duplicate count, and net amount.
 
-## Viewing Statement Details
+## Deleting a Statement
 
-Click any row in the **Statements** tab to open the statement detail page. This shows:
+Accountants can delete a statement from the statement detail page. Click **Delete statement** in the footer and confirm.
 
-- The statement header (account number, account holder, period covered)
-- Every extracted row — the raw text the AI read from the PDF alongside the structured data it produced
-- The status of each page
-
-Use the detail page to investigate extraction errors or verify that the AI read a specific transaction correctly.
+Deleting a statement removes all transactions that came exclusively from that file. Transactions that were also imported from another source (for example via open banking) are kept.
 
 ## Re-extracting a Statement
 
-If extraction failed or produced incorrect results, open the statement detail page and click **Re-extract**. This resets the statement to pending and starts extraction from the beginning. Existing transactions from this statement are removed before re-extraction.
-
-Re-extraction does not remove transactions that were also imported from another source (for example via open banking).
+If extraction failed or produced incorrect results, contact your accountant. Accountants can delete the statement and upload it again to start fresh.
 
 ## Tips
 
-- **Match accounts before uploading.** If you add bank account details under **Master Data → Entities** before uploading, the statement will match automatically and skip the manual selection step.
+- **Match accounts before uploading.** If you add bank account details under **Master Data → Entities** before uploading, the statement will match automatically — no manual assignment needed.
 - **Upload one period at a time.** Overlapping statements from the same account will be deduplicated, but keeping periods clean makes reconciliation easier.
-- **Check the Statements tab for status.** If you uploaded a file and see no new transactions, check the Statements tab — the card will show whether extraction is still running or encountered an error.
+- **Check the Statements tab for status.** If you uploaded a file and see no new transactions, check the Statements tab — the row shows whether extraction is still running or needs attention.
 - **Large statements take longer.** A 20-page statement processes page by page; expect a few minutes for completion.
