@@ -47,7 +47,7 @@ Below the page header, a single line summarises your full client book: how many 
 
 ## Creating a New Workspace
 
-Only org **owners** and **admins** can create workspaces. Regular accountants work inside workspaces they have been added to — they cannot create new ones. If you need workspace creation access, ask your firm's owner or admin to promote you from the **Org settings** page (see [Roles & Permissions](/roles-and-permissions/)).
+Only org **admins** can create workspaces. Regular accountants (org members) work inside workspaces they have been added to — they cannot create new ones. If you need workspace creation access, ask an existing admin to promote you from the **Org settings** page (see [Roles & Permissions](/roles-and-permissions/)).
 
 ### Starting the wizard
 
@@ -94,15 +94,15 @@ This step prompts you to invite the client owner so they can connect bank accoun
 
 If you choose to invite now:
 
-1. Enter the client's email address.
-2. Click **Send invitation**.
-3. The wizard displays a **copyable invite link** — copy it and share it with your client directly (email, chat, etc.).
+1. Enter the client's email address. Optionally fill in their name — it'll greet them by name in the email and pre-fill the signup form when they accept.
+2. Optionally add a personal message — a few sentences explaining why you're inviting them. The same message goes to every recipient in the batch.
+3. Click **Send invite**.
 
-> Automated invitation emails are not yet delivered by the platform. You share the link manually.
+AI Finance Team sends the invitation email automatically. The wizard also shows the invite link as a fallback in case email delivery fails.
 
 The invitation is assigned the **client owner** role. The client owner can then invite their colleagues as client members from within the workspace.
 
-Click **Skip** to finish without inviting, or complete the invite step to get the link.
+Click **Skip** to finish without inviting, or complete the invite step to send the invitation.
 
 ---
 
@@ -116,11 +116,11 @@ If you did not provide a tax ID for the primary entity, the workspace overview s
 
 ## Joining an Existing Workspace
 
-Org owners and admins can see **all workspaces** belonging to their firm on the dashboard, including workspaces they have not personally joined. These non-member workspaces show a **Join** button.
+How you join depends on your org role:
 
-Clicking **Join** adds you to the workspace immediately as an **accountant admin** and takes you directly to that workspace.
+**Org admins** see **all workspaces** belonging to their firm on the dashboard, including workspaces they have not personally joined. These non-member workspaces show a **Join** button — one click adds you as accountant admin and opens the workspace.
 
-Regular accountants (non-admin org members) do not see the Join button and cannot self-add to workspaces. They must be invited by an accountant admin already in the workspace.
+**Org members** (non-admin accountants) see a separate **Browse firm workspaces** view listing workspaces they don't yet belong to. Each row has a **Request to join** button. Clicking it notifies the firm's admins by email; they approve or reject from their Org settings inbox. You get an email when the decision is made.
 
 ---
 
@@ -131,19 +131,24 @@ Once a workspace exists, an **accountant admin** can invite additional members f
 - Other accountants from your firm (as accountant or accountant admin)
 - Client users at the client company (as client owner or client member)
 
-See [Roles & Permissions](/roles-and-permissions/) for the full breakdown of what each role can see and do.
+The invite panel takes up to **10 recipients in one batch**, each with an optional name pre-fill, plus an optional personal message that goes to the whole batch. AI Finance Team emails each invitee automatically.
+
+See [Roles & Permissions](/roles-and-permissions/) for the full breakdown of what each role can see and do, and the details of the invitation flow.
 
 ---
 
 ## Org Settings
 
-The **Org settings** link in the top-right of the dashboard is visible to org owners and admins. It takes you to your firm's organisation settings, where you can manage team members and their roles across the whole firm.
+The **Org settings** link in the sidebar is visible to org admins. It takes you to your firm's organisation settings, where you can:
+
+- Manage team members and their roles across the whole firm
+- Send bulk invitations to new team members
+- Review pending workspace **join requests** submitted by org members
 
 ---
 
 ## What's Not Yet Built
 
 - **Bank connection management UI** — bank account data exists but the interface for clients to connect, disconnect, or manage their bank link is not yet available.
-- **Removing a workspace member** — only pending invitations can currently be revoked. Removing someone who has already accepted requires a support request.
 - **Workspace settings** — the settings page is a stub; configuration like auto-categorisation and missing document alerts are set at workspace creation but cannot yet be changed via the UI.
 - **Per-workspace closing cadence** — the closing period shown in each tile footer is currently the current calendar month. Support for quarterly VAT cycles and other reporting cadences is planned.
