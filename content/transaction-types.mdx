@@ -27,7 +27,7 @@ Every new workspace comes with six pre-seeded transaction types to get you start
 | VAT / Tax Payment | Direct tax authority payments |
 | Payroll | Salary and payroll runs |
 
-These types already include common patterns for Hungarian-language bank descriptions (such as `FORGALMI KÜLÖNDÍJ` and `JUTALÉK` for bank fees). You can edit, extend, or deactivate any of them.
+These types already include common patterns based on typical bank descriptions (such as `BANK FEE` and `COMMISSION` for bank fees). You can edit, extend, or deactivate any of them.
 
 ### Creating a new type
 
@@ -69,7 +69,7 @@ Combined with a match mode:
 | **Starts with** | The field begins with the value |
 | **Exact** | The field matches the value exactly |
 
-**Example:** A pattern with Field = *Description*, Mode = *Contains*, Value = `JUTALÉK` will match any transaction whose description contains the word "JUTALÉK", regardless of what comes before or after it.
+**Example:** A pattern with Field = *Description*, Mode = *Contains*, Value = `BANK FEE` will match any transaction whose description contains the words "BANK FEE", regardless of what comes before or after it.
 
 ### Live match preview
 
