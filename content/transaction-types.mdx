@@ -1,0 +1,111 @@
+# Transaction Types & No Invoice Needed
+
+Some bank transactions will never have a matching invoice — bank fees, interest charges, payroll runs, VAT payments, and similar recurring items. **Transaction types** let you define rules for these transactions so they are automatically recognised and excluded from the Missing Documents list, keeping your inbox focused on genuinely unmatched items.
+
+## How it works
+
+When new transactions arrive (via bank statement upload or bank feed), AI Finance Team runs your transaction type rules against every unmatched transaction. Any transaction whose description, counterparty name, or reference matches a rule is immediately marked **No invoice needed** with that transaction type attached. No manual review required.
+
+For transactions that don't match a rule exactly, the AI can also suggest a type based on the content of the transaction — you will see the confidence level in the transaction detail.
+
+---
+
+## Setting up transaction types
+
+Transaction types are managed under **Master data → Transaction Types**. This page is only visible to users with the **Accountant** or **Accountant admin** role.
+
+### Default types
+
+Every new workspace comes with six pre-seeded transaction types to get you started:
+
+| Type | Purpose |
+|------|---------|
+| Bank Fee | Monthly account maintenance charges, transfer fees |
+| Interest | Interest credited or debited by the bank |
+| Internal Bank Adjustment | Bank-initiated corrections and adjustments |
+| Card Reserve / Authorization | Pre-authorisation holds on cards |
+| VAT / Tax Payment | Direct tax authority payments |
+| Payroll | Salary and payroll runs |
+
+These types already include common patterns for Hungarian-language bank descriptions (such as `FORGALMI KÜLÖNDÍJ` and `JUTALÉK` for bank fees). You can edit, extend, or deactivate any of them.
+
+### Creating a new type
+
+1. Click **+ New Type** in the top-right corner.
+2. Enter a **Name** — this is what accountants and the AI will see.
+3. Optionally add a **Description** for internal reference.
+4. Add one or more **patterns** (see below).
+5. Click **Save**.
+
+### Editing a type
+
+Click the **Edit** button on any row in the table. The same form opens with the current settings pre-filled. Saving replaces all patterns for that type.
+
+### Activating and deactivating types
+
+Click **Deactivate** (or **Activate**) on any row. Inactive types are greyed out and their patterns are not applied during matching. Use this to temporarily disable a type without losing its configuration.
+
+---
+
+## Patterns
+
+Each transaction type can have one or more **patterns**. A transaction matches the type if **any** of its patterns match (case-insensitive OR logic).
+
+### Pattern structure
+
+Every pattern is a combination of three fields:
+
+| Field | What it checks |
+|-------|---------------|
+| **Description** | The transaction's free-text description from the bank |
+| **Counterparty name** | The name of the other party on the transaction |
+| **Reference** | The payment reference / communication field |
+
+Combined with a match mode:
+
+| Mode | Behaviour |
+|------|-----------|
+| **Contains** | The field contains the value anywhere (most flexible) |
+| **Starts with** | The field begins with the value |
+| **Exact** | The field matches the value exactly |
+
+**Example:** A pattern with Field = *Description*, Mode = *Contains*, Value = `JUTALÉK` will match any transaction whose description contains the word "JUTALÉK", regardless of what comes before or after it.
+
+### Live match preview
+
+As you type a pattern value, AI Finance Team shows you a count of how many **existing** transactions in the workspace would match that pattern. Use this to check whether a pattern is too broad or too narrow before saving.
+
+---
+
+## Labels on the transaction list
+
+Each transaction row in the **Transactions** page can show one or more labels:
+
+| Label | Meaning |
+|-------|---------|
+| **No invoice** | Matched by a transaction type rule or manually marked by an accountant |
+| **Duplicate** | This transaction was detected as a duplicate of another |
+| **Bank feed** | Imported via a live GoCardless bank feed connection |
+| **Statement** | Imported from an uploaded PDF bank statement |
+
+A transaction can carry multiple labels at once — for example, a statement import that is also a duplicate will show both **Statement** and **Duplicate**.
+
+### Filtering by label
+
+Below the main filter bar on the Transactions page, there is a row of toggleable pill filters. Click any pill to activate it; click again to deactivate. Multiple pills can be active at the same time — the results show transactions matching **any** of the active pills in each group.
+
+Available filter pills: **Bank feed**, **Statement**, **Duplicate**, **Unmatched**, **Matched**, **No invoice needed**.
+
+---
+
+## Manually marking a transaction
+
+Even without a matching pattern, an accountant can mark any unmatched transaction as no invoice needed directly from the transaction detail panel:
+
+1. Click on the transaction row to open the detail panel.
+2. In the **Match** section, choose a transaction type from the dropdown — or select **No specific type** if none applies.
+3. The transaction is immediately marked as **No invoice needed**.
+
+To undo this, click **Undo — mark as unmatched** in the **No invoice needed** section. The transaction returns to unmatched and will reappear in the Missing Documents list.
+
+> Only **Accountant** and **Accountant admin** users can mark or unmark transactions. Clients can see the label but cannot change it.
