@@ -10,42 +10,42 @@ AI Finance Team supports collaboration between accounting firms and their client
 - **Client organizations** are the businesses whose books are being kept.
 - A **workspace** represents one client engagement. The accounting firm manages the workspace; the client uses it. Accountants typically work across multiple workspaces; client users see only their own.
 
-Users have two kinds of roles: an **org-level role** within their organization and a **workspace role** within each workspace they belong to.
+Users have two kinds of roles: an **organization-level role** within their organization and a **workspace role** within each workspace they belong to.
 
 ---
 
-## Org-Level Roles (Accounting Firm Members)
+## Organization-Level Roles (Accounting Firm Members)
 
-Every member of an accounting firm has an org-level role. This determines what they can do across the whole firm, independent of any specific workspace.
+Every member of an accounting firm has an organization-level role. This determines what they can do across the whole firm, independent of any specific workspace.
 
-| Org role | Typical user | Key capabilities |
+| Organization role | Typical user | Key capabilities |
 |---|---|---|
 | Admin | Founder, partner, or senior accountant | Create workspaces, manage the team, join any workspace, approve join requests |
 | Member | Accountant or staff | Works inside workspaces they have been added to; can request to join others |
 
-Org admins can do everything a member can do, plus:
+Organization admins can do everything a member can do, plus:
 
 - Create new client workspaces (see [Workspaces](/workspaces))
 - See all workspaces that belong to the firm on the dashboard, including ones they haven't personally joined
 - Join any firm workspace with one click (they are added as accountant admin)
-- Approve or reject join requests submitted by org members (see [Joining a Workspace](#joining-a-workspace) below)
-- Manage the firm's team from the **Org settings** page: invite new members, promote/demote, remove members, and revoke pending invitations
+- Approve or reject join requests submitted by organization members (see [Joining a Workspace](#joining-a-workspace) below)
+- Manage the firm's team from the **Organization settings** page: invite new members, promote/demote, remove members, and revoke pending invitations
 
-Org members (non-admin accountants) work only in workspaces they have been explicitly added to or have requested to join. They do not see the Org settings page or the Join button on the dashboard, but they can request access to any workspace in the firm.
+Organization members (non-admin accountants) work only in workspaces they have been explicitly added to or have requested to join. They do not see the Organization settings page or the Join button on the dashboard, but they can request access to any workspace in the firm.
 
-Client-side users (client owner, client member) have no org role on the accounting firm side. They exist entirely within the workspaces they've been invited to.
+Client-side users (client owner, client member) have no organization role on the accounting firm side. They exist entirely within the workspaces they've been invited to.
 
-### Org Settings
+### Organization Settings
 
-The **Org settings** page is accessible from the bottom of the sidebar for org admins. It provides:
+The **Organization settings** page is accessible from the bottom of the sidebar for organization admins. It provides:
 
 - A list of all current team members with their roles and email addresses
 - Controls for promoting a member to admin or demoting an admin to member
 - A bulk invite form — add up to 10 rows in one go, each with an optional name pre-fill and a chosen role, plus an optional personal message shared with the whole batch (see [Inviting People](#inviting-people) below)
-- A list of pending org invitations with the ability to copy the link again or revoke
-- An inbox of pending workspace join requests submitted by org members
+- A list of pending organization invitations with the ability to copy the link again or revoke
+- An inbox of pending workspace join requests submitted by organization members
 
-Plain org members (non-admin accountants) can view the member list but cannot take any actions.
+Plain organization members (non-admin accountants) can view the member list but cannot take any actions.
 
 ---
 
@@ -145,7 +145,7 @@ Cannot:
 | Closing | ✓ | ✓ | — | — |
 | Reports | ✓ | ✓ | ✓ | ✓ |
 | Settings | ✓ | ✓ | ✓ | ✓ |
-| Org settings | org admin/owner only | — | — | — |
+| Organization settings | organization admin only | — | — | — |
 
 ### Settings → Team Section
 
@@ -185,11 +185,11 @@ Clients submit raw documents; accountants do the categorization and verification
 
 ### Inviting People
 
-Both **workspace settings** (for an accountant admin or a client owner) and **Org settings** (for an org admin) expose the same invite panel. The flow is the same in both places.
+Both **workspace settings** (for an accountant admin or a client owner) and **Organization settings** (for an organization admin) expose the same invite panel. The flow is the same in both places.
 
 The panel lets you queue up to **10 invites in one batch**:
 
-- One row per recipient — fill in the email address and pick a role. The role dropdown is restricted based on where you are (e.g. a client owner can only invite client members; an org admin can only invite at org level).
+- One row per recipient — fill in the email address and pick a role. The role dropdown is restricted based on where you are (e.g. a client owner can only invite client members; an organization admin can only invite at organization level).
 - An optional **Name** field per row. If you fill it in, the recipient's invitation email opens with "Hi {Name}," instead of "Hi there," and the signup form pre-fills their full name when they accept.
 - An optional **Message** textarea (max 500 characters) that the whole batch shares. URLs in the message become clickable links in the email.
 - Click **Send invite** (or **Send N invites** when the batch has more than one row). Each successful row drops out of the form; rows that failed to send (e.g. duplicate email) stay with an inline error so you can fix them and retry.
@@ -211,17 +211,17 @@ When the recipient clicks the invite URL:
 - If they sign up, an account is created with the email the invitation was sent to.
 - On successful acceptance:
   - **Workspace invitation** → they are added to the workspace and redirected to it.
-  - **Org invitation** → they are added to the firm's team and redirected to the workspace dashboard. A guest-admin banner appears at the top of any workspaces they're not yet a member of, with a one-click Join button.
+  - **Organization invitation** → they are added to the firm's team and redirected to the workspace dashboard. A guest-admin banner appears at the top of any workspaces they're not yet a member of, with a one-click Join button.
 
 ### Joining a Workspace
 
 There are three ways to end up in a workspace:
 
 1. **You accept an invitation.** Standard path — see above.
-2. **You're an org admin.** All workspaces in the firm are visible to you on the dashboard. Workspaces you haven't joined show a **Join** button — click it and you're added as accountant admin immediately.
-3. **You're an org member and you request to join.** Org members see a "Browse firm workspaces" view listing workspaces they don't belong to. Clicking **Request to join** sends a request to all org admins of the firm. They review the request in their **Org settings** inbox and either approve (you're added as accountant) or reject (you get a notification email explaining why).
+2. **You're an organization admin.** All workspaces in the firm are visible to you on the dashboard. Workspaces you haven't joined show a **Join** button — click it and you're added as accountant admin immediately.
+3. **You're an organization member and you request to join.** Organization members see a "Browse firm workspaces" view listing workspaces they don't belong to. Clicking **Request to join** sends a request to all organization admins of the firm. They review the request in their **Organization settings** inbox and either approve (you're added as accountant) or reject (you get a notification email explaining why).
 
-The third path is new — it replaces the older flow where org members had to ask an admin to add them manually.
+The third path is new — it replaces the older flow where organization members had to ask an admin to add them manually.
 
 ### After Acceptance
 
@@ -232,7 +232,7 @@ A new member sees the workspace immediately. Their role determines what's visibl
 Admins can remove a member who has already accepted:
 
 - **Workspace member** — an accountant admin can remove anyone from the workspace (except themselves if they're the only admin). The action lives in the workspace's Team page next to each member name.
-- **Org member** — an org admin can remove anyone from the firm. This also removes them from every workspace they were in. The action lives on the Org settings page.
+- **Organization member** — an organization admin can remove anyone from the firm. This also removes them from every workspace they were in. The action lives on the Organization settings page.
 
 Removed users keep their account at the platform level — they just lose access to that workspace or firm.
 
