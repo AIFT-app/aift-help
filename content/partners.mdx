@@ -1,0 +1,104 @@
+# Managing Partners
+
+Partners are the verified, canonical records for the companies and individuals your workspace does business with — suppliers, customers, platforms, and service providers. Keeping partners up to date means the AI can recognise counterparties on every new invoice or bank transaction automatically, without requiring manual review each time.
+
+## Partners vs Counterparties
+
+When AI Finance Team extracts an invoice or imports a bank transaction, it records the other party as a **counterparty** — essentially the name as it appeared on the document. The same real-world business can appear under different legal names across documents (for example, "OpenAI OpCo, LLC" on one invoice and "OpenAI, L.L.C." on another).
+
+A **partner** is the single verified record that ties all those name variants together. Once you create a partner and link the counterparty names to it, the AI uses your partner record as the source of truth going forward.
+
+### The ⚠ Unverified badge
+
+Any invoice or bank transaction whose counterparty has not yet been linked to a verified partner shows an amber **⚠ Unverified** badge next to the counterparty name. This badge is a prompt to review and link, not an error — the document is fully processed, it just lacks a verified counterparty connection.
+
+## Getting to Partners
+
+From the workspace sidebar, click **Master data**, then **Partners**. The page has two sections:
+
+- **Verified partners** — your curated list of known counterparties, with the number of linked counterparty names shown for each.
+- **Unverified counterparties** — names that have appeared on documents but have not yet been matched to a partner. Sorted by transaction count so the most active ones appear first.
+
+> The Partners page is only visible to workspace members with the **Accountant** or **Accountant admin** role.
+
+## Adding a Partner
+
+### From an unverified counterparty (recommended)
+
+1. In the **Unverified counterparties** table, find the name you want to verify and click **Add as partner**.
+2. The form pre-fills with the name and any tax ID extracted from documents. Review and adjust as needed.
+3. Click **Create partner**.
+
+The counterparty is immediately linked to the new partner, and the ⚠ badge disappears from all invoices and transactions that referenced it.
+
+### From scratch
+
+Click **New partner** in the top-right corner. Fill in the required **Name** and any optional fields (Partner ID, Tax ID, country, address, bank accounts), then click **Save**.
+
+## The Partner Detail Page
+
+Click any partner name to open its detail page. It is divided into four sections:
+
+### Identity
+
+The partner's canonical name, partner ID, Tax ID, country, and address. Click **Edit** to change these details.
+
+### Aliases
+
+Other names this partner appears under on invoices and bank statements — trade names, abbreviated names, former names, or different legal entity designations (for example, "LLC" vs "L.L.C.").
+
+**Why aliases matter:** When a new invoice arrives, AI Finance Team checks the extracted counterparty name against every partner's canonical name and all its aliases. An exact match (normalised for punctuation and legal-suffix variants) automatically links the counterparty to the partner — no manual action needed.
+
+To add an alias:
+
+1. Type the name in the input field at the bottom of the Aliases section.
+2. Press **Enter** or click **Add**.
+
+To remove an alias, click the × next to it.
+
+### Linked counterparties
+
+All the counterparty name variants currently linked to this partner. Each entry shows whether it was linked manually (grey label) or auto-merged by the system (⚡ amber label).
+
+**Linking another counterparty manually:**
+
+1. Click **+ Link another counterparty**.
+2. Search for the counterparty name in the dialog.
+3. Click **Link**.
+
+**Separating an auto-merged counterparty:**
+
+Auto-merged entries have a **Separate →** button. Clicking it unlinks the counterparty from this partner so you can link it elsewhere or leave it unverified.
+
+### Contact & banking
+
+Address and bank account details for the partner.
+
+## How Automatic Matching Works
+
+Every time an invoice or bank statement is processed, AI Finance Team runs through these steps to identify the counterparty:
+
+1. **Tax ID match** — if the extracted tax ID matches a counterparty already in the workspace, that record is reused.
+2. **Name match** — if the extracted name (normalised) matches an existing counterparty name, that record is reused.
+3. **Alias match** — if the extracted name matches a verified partner's canonical name or any of its aliases, a new counterparty record is created and automatically linked to that partner.
+4. **New counterparty** — if no match is found, a new unverified counterparty is created and the ⚠ badge appears.
+
+The key insight: once you have added the right alias for a partner, every future document from that party is verified automatically.
+
+## Verifying an Invoice Counterparty Inline
+
+If you spot the ⚠ Unverified badge while reviewing an invoice, you can resolve it without leaving the invoice:
+
+1. Open the invoice detail page.
+2. In the **Counterparty** dropdown, select the verified partner you want to assign.
+3. The dropdown saves automatically.
+
+When you reassign from an unverified counterparty to a verified partner, AI Finance Team automatically adds the original counterparty name as an alias on the partner. This means the next invoice from that same name will be verified without any action from you.
+
+Alternatively, click **Verify now →** (shown beneath the dropdown when the counterparty is unverified) to go directly to the Partners page, where you can create a new partner or link the name to an existing one.
+
+## Merging Duplicate Partners
+
+If you find that two partner records represent the same real-world entity, open the one you want to keep, go to **Linked counterparties**, and click **+ Link another counterparty** to attach any counterparties currently assigned to the duplicate. Then delete the duplicate using the **Delete partner** button on its detail page.
+
+> Deleting a partner unlinks its counterparties — it does not delete the invoices or transactions associated with them.
