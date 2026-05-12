@@ -1,0 +1,100 @@
+# Uploading Files
+
+You can upload invoices and bank statements one at a time, in bulk, or as a ZIP archive. All uploads run in the background — you can keep working while they process.
+
+The upload flow is the same on the **Invoices** and **Transactions** pages. The differences (what extraction does next, how duplicates and bank accounts are handled) are specific to each kind — see [Working with Invoices](/invoices) and [Uploading Bank Statements](/bank-statement-upload).
+
+## Starting an upload
+
+Three ways to start, all equivalent:
+
+1. **Click the upload button** in the top-right corner of the **Invoices** or **Transactions** page.
+2. **Drag files from your file manager** onto the page. A full-page drop zone appears the moment you drag in; drop anywhere on the page to release.
+3. **Drag a ZIP archive** onto the page — the browser unpacks it for you (see [ZIP archives](#zip-archives) below).
+
+The OS file picker supports multiple selections — hold Ctrl/Cmd while clicking, or Shift+click to select a range. You can pick or drop a whole folder of receipts and they all queue up together.
+
+## The upload panel
+
+The moment you start an upload, a panel appears in the **bottom-right corner** of the screen. Every file in flight gets its own row. The panel is persistent — it stays put while you navigate within the workspace, and it survives a page refresh.
+
+### Row states
+
+| Label | Meaning |
+|---|---|
+| **Queued** | Waiting in the upload queue. |
+| **Uploading…** | File is being copied to storage. |
+| **Extracting…** | AI is reading the file. |
+| **Extracting page X / Y** | Bank statement is being read one page at a time. |
+| **Categorizing…** | Bank statement transactions are being assigned categories (brief). |
+| **Extracted** | Invoice extraction is finished. |
+| **Done · N transactions (M merged)** | Bank statement extraction is finished. |
+| **Already exists** | Invoice file is a duplicate of an existing one — click the row to open the original. |
+| **Failed: …** | Something went wrong. A **Retry** button appears on the right. |
+
+### Auto-collapse and dismiss
+
+Once every row reaches a terminal state (Extracted, Done, Already exists, or Failed), the panel collapses to a small pill at the bottom-right after a few seconds. Click the pill to expand the list again, or click the **×** in the header to dismiss it entirely.
+
+### Refreshing or switching workspaces
+
+- **Refreshing the page** is safe — the panel re-hydrates from any in-progress uploads. You won't lose visibility into anything that was already running.
+- **Switching to a different workspace** clears the panel; it then re-hydrates from in-progress uploads in the new workspace.
+- **Opening the app in a second tab** is also safe — both tabs see the same in-progress rows.
+
+## Retrying a failed upload
+
+If extraction fails for a specific file (most often when a PDF is unusually large or has a complex layout), the panel row turns red with a **Retry** button. Click it to re-run the extraction.
+
+If the same file fails repeatedly, the file itself probably needs attention:
+
+- **Try a smaller version.** Open the PDF in Preview → File → Export and reduce the file size, or run it through a compressor. Often shrinks a 7 MB PDF to under 1 MB without losing legibility.
+- **Convert the format.** If you uploaded an image, try saving it as PDF (or the other way around).
+- **Enter it manually.** As a last resort, an accountant can create the invoice manually from **Master Data**.
+
+## File type limits
+
+| Surface | Accepted types | Max size per file |
+|---|---|---|
+| **Invoices** | PDF, JPEG, PNG, WebP, HEIC | 50 MB |
+| **Bank statements** | PDF only | 50 MB |
+
+Anything outside these types becomes a red row in the panel with **Wrong file type**.
+
+## ZIP archives
+
+If you have a folder of receipts archived as a `.zip`, drop the archive directly onto the upload surface — the browser unpacks it in your computer's memory and feeds each file into the panel as a separate row.
+
+### Step-by-step
+
+1. Drag the `.zip` file onto the **Invoices** or **Transactions** page (or click the upload button and select the zip).
+2. A row with an **Extracting…** label briefly appears for the archive while the browser unpacks it.
+3. Each valid file inside the zip becomes its own row.
+4. The ZIP itself is never uploaded — only the extracted files end up in your workspace.
+
+### What's accepted inside a ZIP
+
+The same per-file rules apply as for loose uploads. On the **Invoices** page the zip should contain invoices (PDFs or images); on the **Transactions** page it should contain bank-statement PDFs. Anything else becomes a red row with **Wrong file type**.
+
+### Restrictions
+
+| Limit | Value |
+|---|---|
+| Maximum ZIP size | 200 MB |
+| Maximum file size inside a ZIP | 50 MB |
+| Encrypted / password-protected ZIPs | Not supported — you'll see **Encrypted ZIPs aren't supported** |
+| Nested ZIPs (a `.zip` inside the archive) | Not supported — the inner zip becomes a Wrong-file-type row, but the rest of the archive is processed normally |
+| macOS metadata (`__MACOSX/`, `.DS_Store`) | Silently ignored — they don't appear in the panel as failures |
+| Folder structure inside the archive | Flattened — only the file name is kept; folder names are not preserved |
+
+### Tips
+
+- **You can mix loose files and ZIPs in one drop.** Drag two loose PDFs and a ZIP archive onto the page together. All of them flow into the same panel.
+- **Drop on the correct page.** A ZIP picked on the Invoices page is treated as containing invoices; on the Transactions page, as containing statements. There's no mixed mode — re-upload the wrong-kind files from the other page.
+- **Compress before zipping a heavy batch.** If your zip starts approaching 200 MB, compress the largest receipts first; the zip cap is the main constraint, not the file count.
+
+## Tips for big batches
+
+- **Use the picker for known folders, drag-drop for files already open** — both end up in the same panel.
+- **Don't wait at the panel.** Uploads run in the background; you can keep categorising yesterday's transactions while today's invoices process.
+- **Check the panel before you leave.** When you're done for the day, glance at the panel — any red rows want a Retry or a smaller re-export before you go.
