@@ -8,6 +8,7 @@ export const navigation: NavItem[] = [
   { title: 'Roles & Permissions', slug: 'roles-and-permissions' },
   { title: 'Workspaces', slug: 'workspaces' },
   { title: 'Working with Invoices', slug: 'invoices' },
+  { title: 'Uploading Files', slug: 'uploading-files' },
   { title: 'Multi-Currency & Exchange Rates', slug: 'currency-exchange' },
   { title: 'Managing Entities', slug: 'master-data-entities' },
   { title: 'Managing Partners', slug: 'partners' },

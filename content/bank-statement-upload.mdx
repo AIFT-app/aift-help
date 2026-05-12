@@ -8,18 +8,19 @@ Any workspace member can upload a bank statement. The upload button is on the **
 
 ## Supported Formats
 
-Upload PDF bank statements. Scanned PDFs work as long as the text is legible — very low-quality scans may produce incomplete results.
+PDF bank statements only. Scanned PDFs work as long as the text is legible — very low-quality scans may produce incomplete results.
 
-One file per statement. If a statement spans multiple PDFs, upload each file separately.
+If a statement spans multiple PDFs, upload each file separately. You can also bundle several statement PDFs into a `.zip` and drop the archive — the browser unpacks it and queues each file individually.
 
 ## How to Upload a Statement
 
 1. Go to **Transactions** in the workspace sidebar.
-2. Click **Upload statement** in the top-right corner.
-3. Select your PDF file, or drag and drop it onto the dialog.
-4. Click **Upload**.
+2. Click **Upload statement** in the top-right corner — or simply drag one or more PDFs (or a `.zip` of them) onto the page.
+3. Select your PDF file(s) in the picker if you used the button.
 
-The dialog closes immediately after the file is uploaded — you do not need to wait. Extraction runs in the background page by page. Open the **Statements** tab to track progress.
+A progress panel appears in the bottom-right corner showing each statement as it uploads and extracts. You can keep working — the panel stays in view while you navigate, and refreshing the page won't interrupt anything in flight. Open the **Statements** tab if you want a tabular view of every upload with extra detail.
+
+For the full upload mechanics — multi-file picker, drag-and-drop, ZIP archives, retrying failed extractions — see [Uploading Files](/uploading-files).
 
 When extraction completes, the transactions appear in the **Transactions** tab under the matched bank account.
 

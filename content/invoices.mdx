@@ -2,6 +2,20 @@
 
 AI Finance Team processes invoices automatically — extracting key data, identifying counterparties, and suggesting categories. This article explains how to view, review, edit, and export invoice data.
 
+## Uploading invoices
+
+Click **Upload invoices** in the top-right corner of the Invoices page, or drag one or more files (PDFs, JPEGs, PNGs, WebP, or HEIC) directly onto the page. You can upload one invoice at a time, many at once, or a `.zip` archive of invoices — the browser unpacks the archive and queues each file individually.
+
+A progress panel appears in the bottom-right corner showing each file as it uploads and extracts. You can keep working — the panel stays in view while you navigate, and refreshing the page won't interrupt anything in flight.
+
+For the full upload mechanics — drag-and-drop, multi-file selection, ZIP archives, retrying failed extractions — see [Uploading Files](/uploading-files).
+
+### Duplicate detection
+
+When you upload a file whose contents match an invoice that's already in the workspace, AI Finance Team detects this automatically (via the file's SHA-256 hash) and links the new upload to the existing record instead of re-extracting. The row in the upload panel shows **Already exists** in blue — click it to jump straight to the original invoice.
+
+If you want to keep both as distinct invoices (rare, but happens when a vendor reuses a PDF for two different bills), an accountant can clear the duplicate flag from the invoice detail page.
+
 ## The Invoice List
 
 From the workspace sidebar, click **Invoices** to see all invoices in the workspace. Each row shows:
