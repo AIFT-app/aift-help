@@ -1,0 +1,108 @@
+# Invoice Matching
+
+AI Finance Team automatically links bank transactions to their corresponding invoices — a process called **invoice matching**. This removes the need to manually reconcile payments at month-end.
+
+## How matching works
+
+Matching runs in two steps:
+
+1. **Structural pre-filter** — The system narrows down candidate pairs using fast rules: matching currency, compatible direction (income invoice ↔ credit transaction; expense invoice ↔ debit transaction), amount within range, and invoice date within 180 days of the transaction.
+
+2. **AI semantic scoring** — Claude reviews each candidate pair and assigns a confidence score (0–100) based on invoice number in the transaction reference, counterparty name, amount proximity, and date.
+
+**What happens at each score level:**
+
+| Score | Result |
+|-------|--------|
+| 85–100 | Auto-matched immediately — no accountant action needed |
+| 60–84 | Added to the **Matching** page as a suggestion for review |
+| Below 60 | Discarded — not surfaced |
+
+Only invoices with status **Open** or **Partially paid** are considered. Invoices that are void, manually marked as cash, or already fully matched are skipped.
+
+## The Matching page
+
+Go to **Matching** in the workspace sidebar. The page has two sections:
+
+- **Pending suggestions** — AI-scored pairs awaiting your decision
+- **Recent matches** — confirmed matches from the last 30 days
+
+### Reviewing a suggestion
+
+Each suggestion row shows:
+
+- The transaction (date, counterparty, amount)
+- The candidate invoice (number, counterparty, amount)
+- A **confidence score** badge (green ≥ 85, amber 60–84)
+- The AI's one-line reason
+
+Click **Confirm** to accept the match, or **Reject** to dismiss it.
+
+### Confirming all high-confidence suggestions at once
+
+Click **Confirm all high-confidence** to confirm every pending suggestion with a score of 80 or above in one action. A summary toast shows how many matches were confirmed.
+
+### Running matching manually
+
+Matching runs automatically when new invoices or transactions arrive. To trigger it on demand — for example, after uploading a batch of older invoices — click **Run Matching** and choose a date range:
+
+| Option | Covers |
+|--------|--------|
+| Last 3 months | Rolling 90 days |
+| Last 6 months | Rolling 180 days |
+| This year | 1 January to today |
+| Last year | The previous calendar year |
+| All time | All unmatched transactions and open invoices |
+
+Narrower ranges run faster. Use **All time** only when you have historical data to process.
+
+After matching completes, the button shows a summary: *"Matched 3 automatically · 2 suggestions added"*.
+
+## Matching from the transaction slide-over
+
+Open any transaction by clicking its row in the **Transactions** list. The **Invoice match** section at the bottom of the slide-over shows:
+
+- **Confirmed matches** — linked invoices with matched amount and match type
+- **AI suggestions** — pending suggestions with confidence score; click **Confirm** or **Reject** inline
+- **Find Invoice** — a search panel to manually link any open invoice
+
+### Removing a match
+
+In the slide-over, click the **×** next to a confirmed match to remove it. The invoice returns to **Open** status and the transaction reverts to **Unmatched**.
+
+## Matching from the invoice detail page
+
+The invoice detail page shows a **Matched transactions** section listing all linked payments. You can also mark an invoice as settled without a bank transaction:
+
+- **Cash payment** — the invoice was paid in cash; it is marked settled and excluded from future matching
+- **Void** — the invoice is cancelled; it is excluded from all matching
+
+To revert to **Open**, select **Open** from the same dropdown.
+
+## Manual matching
+
+If the AI did not suggest a match, you can link any transaction to any open invoice manually:
+
+1. Open the transaction slide-over.
+2. In the **Invoice match** section, click **Find Invoice**.
+3. Search by invoice number, counterparty name, or amount.
+4. Select the invoice and click **Confirm match**.
+
+Manual matches are marked with a **Manual** badge on both the transaction and the invoice.
+
+## Match statuses
+
+| Transaction status | Meaning |
+|-------------------|---------|
+| Unmatched | No linked invoice yet |
+| Suggested | At least one pending AI suggestion |
+| Auto-matched | Matched automatically by AI (score ≥ 85) |
+| Matched | Confirmed by an accountant |
+| No invoice needed | Marked as internal, fee, or other non-invoice transaction |
+
+## Tips
+
+- **High-quality transaction data improves matching.** When possible, include the invoice number in the payment reference field when making bank transfers. Matching will pick this up as a strong signal.
+- **Partial payments are supported.** If a client pays part of an invoice, the match is recorded with the partial amount and the invoice moves to **Partially paid**.
+- **One invoice, multiple transactions.** A single invoice can be matched to several transactions (instalment payments). Each match records its own partial amount.
+- **One transaction, one invoice.** Each bank transaction can be matched to at most one invoice. Use manual matching if a payment covers multiple invoices — match the closest one and note the discrepancy.

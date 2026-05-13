@@ -14,6 +14,7 @@ export const navigation: NavItem[] = [
   { title: 'Connecting Bank Accounts', slug: 'bank-accounts' },
   { title: 'Uploading Bank Statements', slug: 'bank-statement-upload' },
   { title: 'Transaction Types & No Invoice Needed', slug: 'transaction-types' },
+  { title: 'Invoice Matching', slug: 'invoice-matching' },
   { title: 'Categorising Invoices & Transactions', slug: 'categorization' },
   { title: 'Reports', slug: 'reports' },
 ]
