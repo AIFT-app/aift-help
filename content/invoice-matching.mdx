@@ -12,11 +12,11 @@ Matching runs in two steps:
 
 **What happens at each score level:**
 
-| Score | Result |
-|-------|--------|
-| 85–100 | Auto-matched immediately — no accountant action needed |
-| 60–84 | Added to the **Matching** page as a suggestion for review |
-| Below 60 | Discarded — not surfaced |
+| Score | Confidence | Result |
+|-------|-----------|--------|
+| 85–100 | **High** | Auto-matched immediately — no accountant action needed |
+| 60–84 | **Medium / Low** | Added to the **Matching** page as a suggestion for review |
+| Below 60 | — | Discarded — not surfaced |
 
 Only invoices with status **Open** or **Partially paid** are considered. Invoices that are void, manually marked as cash, or already fully matched are skipped.
 
@@ -25,7 +25,12 @@ Only invoices with status **Open** or **Partially paid** are considered. Invoice
 Go to **Matching** in the workspace sidebar. The page has two sections:
 
 - **Pending suggestions** — AI-scored pairs awaiting your decision
-- **Recent matches** — confirmed matches from the last 30 days
+- **All matches** — every confirmed match in the workspace, with filters and pagination
+
+The page header has two action buttons:
+
+- **History** — opens a panel showing recent matching runs (see [Matching history](#matching-history))
+- **Run Matching** — triggers a manual matching pass (see [Running matching manually](#running-matching-manually))
 
 ### Reviewing a suggestion
 
@@ -42,9 +47,58 @@ Click **Confirm** to accept the match, or **Reject** to dismiss it.
 
 Click **Confirm all high-confidence** to confirm every pending suggestion with a score of 80 or above in one action. A summary toast shows how many matches were confirmed.
 
+## All matches
+
+The **All matches** section lists every confirmed match in the workspace. It replaces the old "Recent matches" list and adds filtering and pagination.
+
+### Filtering
+
+Two filters are available above the table:
+
+- **Date range** — pick a From and To date based on the transaction's booking date. Defaults to the current month.
+- **Confidence** — toggle the **High**, **Medium**, and **Low** pills to include or exclude each level. All three are selected by default.
+
+Filters are reflected in the URL (`?from=2026-04-01&to=2026-04-30&confidence=high,medium`), so you can bookmark a filtered view or share it with a colleague.
+
+### Pagination
+
+Results are paginated 50 rows at a time. Use the **Next** and **Previous** buttons at the bottom of the table to navigate.
+
+### Match ID
+
+Each match gets a stable, human-readable identifier of the form **`{WORKSPACE-PREFIX}-MAT-{YEAR}-{NNNN}`**, for example `LOG-MAT-2026-0047`. The workspace prefix is the same one used for invoice and statement numbering, configured under **Master Data → Numbering**. Numbers reset annually per workspace.
+
+Use this ID when filing support requests, in exports, or in audit logs.
+
+### Match detail page
+
+Click any row in the All matches table to open the match detail page at `/workspaces/.../matching/<match-id>`. The detail page shows:
+
+- **Header** — the match number, confidence badge, and matched-on date. A **Back to Matching** link in the top-left returns to the list.
+- **Bank Transaction card** (left) — date, amount, counterparty, account, reference, category, transaction ID. The **Open →** link jumps to the full transaction page.
+- **Invoice card** (right) — invoice number, issue date, due date, amount, direction (Income/Expense), counterparty, invoice ID. The **Open →** link jumps to the full invoice detail page.
+- **Match Analysis** — confidence badge with the numeric score, a score-breakdown table showing which signals contributed (amount, counterparty, reference, date proximity), and a plain-text reason summary.
+- **Unmatch** button (top-right, accountant admins only) — removes the match after confirmation; the transaction returns to **Unmatched** and the invoice returns to **Open**.
+
+If the match was created before score-breakdown tracking was enabled, the detail page shows "Score not available for this match." in place of the breakdown table — the rest of the page works normally.
+
+## Matching history
+
+Click **History** on the Matching page header to open the matching history panel. The panel lists the most recent matching runs (newest first) with:
+
+- **Timestamp** of when the run started
+- **Trigger type** — `Auto` (scheduled run after a bank statement is processed) or `Manual` (accountant clicked Run Matching)
+- **Counts** — `N matched, M reviewed, K skipped`
+  - **Matched** — auto-matched at score ≥ 85
+  - **Reviewed** — added as a pending suggestion for review (score 60–84)
+  - **Skipped** — evaluated but scored below 60 (the AI didn't find a strong enough link)
+- **Status badge** — `Completed`, `In progress`, or `Failed` (with the error message if available)
+
+History is retained for 90 days, after which old rows are automatically purged.
+
 ### When matching runs automatically
 
-Matching runs automatically after every bank statement upload. Once the statement is processed and transactions are categorised, the system immediately scores them against all open invoices and creates suggestions or auto-matches without any manual action.
+Matching runs automatically after every bank statement upload. Once the statement is processed and transactions are categorised, the system immediately scores them against all open invoices and creates suggestions or auto-matches without any manual action. Each automatic run appears in the History panel marked as `Auto`.
 
 ### Running matching manually
 
@@ -60,7 +114,15 @@ To trigger matching on demand — for example, after uploading a batch of older 
 
 Narrower ranges run faster. Use **All time** only when you have historical data to process.
 
-After matching completes, the button shows a summary: *"Matched 3 automatically · 2 suggestions added"*.
+#### Progress feedback
+
+Progress appears in the **upload queue panel** at the bottom-right of the screen — the same panel that tracks invoice and bank-statement processing. The row reads:
+
+- *Matching — {workspace name}*: In progress…
+- After completion: *Matching — {workspace name}*: Completed: N matches created
+- On failure: *Matching — {workspace name}*: Failed (with a Retry affordance)
+
+The row disappears from the panel automatically once it has been completed for a minute. To inspect older runs, open the History panel.
 
 ## Matching from the transaction slide-over
 
@@ -73,6 +135,8 @@ Open any transaction by clicking its row in the **Transactions** list. The **Inv
 ### Removing a match
 
 In the slide-over, click the **×** next to a confirmed match to remove it. The invoice returns to **Open** status and the transaction reverts to **Unmatched**.
+
+Alternatively, open the match detail page (from the All matches table) and click **Unmatch** in the top-right.
 
 ## Matching from the invoice detail page
 
@@ -96,13 +160,15 @@ Manual matches are marked with a **Manual** badge on both the transaction and th
 
 ## Match statuses
 
-| Transaction status | Meaning |
-|-------------------|---------|
-| Unmatched | No linked invoice yet |
-| Suggested | At least one pending AI suggestion |
-| Auto-matched | Matched automatically by AI (score ≥ 85) |
-| Matched | Confirmed by an accountant |
-| No invoice needed | Marked as internal, fee, or other non-invoice transaction |
+Every transaction row in the **Transactions** list shows a status pill in the Labels column:
+
+| Status pill | Colour | Meaning |
+|-------------|--------|---------|
+| **Matched** | green | Linked to one or more invoices (auto or manual) |
+| **Unmatched** | red | No linked invoice yet |
+| **No invoice needed** | zinc | Marked as internal, fee, or other non-invoice transaction |
+
+Source pills (**Bank feed**, **Statement**, **Duplicate**) render alongside the status pill when applicable. You can also filter the transaction list by any of these pills using the toggles above the table.
 
 ## Tips
 
@@ -110,3 +176,4 @@ Manual matches are marked with a **Manual** badge on both the transaction and th
 - **Partial payments are supported.** If a client pays part of an invoice, the match is recorded with the partial amount and the invoice moves to **Partially paid**.
 - **One invoice, multiple transactions.** A single invoice can be matched to several transactions (instalment payments). Each match records its own partial amount.
 - **One transaction, one invoice.** Each bank transaction can be matched to at most one invoice. Use manual matching if a payment covers multiple invoices — match the closest one and note the discrepancy.
+- **Use the match number in support.** When asking for help with a specific match, quote the match number (e.g. `LOG-MAT-2026-0047`) — it pins down the exact record across screens and exports.
