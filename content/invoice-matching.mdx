@@ -6,9 +6,9 @@ AI Finance Team automatically links bank transactions to their corresponding inv
 
 Matching runs in two steps:
 
-1. **Structural pre-filter** — The system narrows down candidate pairs using fast rules: matching currency, compatible direction (income invoice ↔ credit transaction; expense invoice ↔ debit transaction), amount within range, and invoice date within 180 days of the transaction.
+1. **Structural pre-filter** — The system narrows down candidate pairs using fast rules: matching currency (or original-currency match for foreign card payments — see [Cross-currency matching](#cross-currency-matching) below), compatible direction (income invoice ↔ credit transaction; expense invoice ↔ debit transaction), amount within range, and invoice date within 180 days of the transaction. Duplicate transactions are excluded automatically.
 
-2. **AI semantic scoring** — Claude reviews each candidate pair and assigns a confidence score (0–100) based on invoice number in the transaction reference, counterparty name, amount proximity, and date.
+2. **AI semantic scoring** — Claude reviews each candidate pair and assigns a confidence score (0–100) based on invoice number in the transaction reference, counterparty name, amount proximity, and date. When the system has already verified that both sides point to the same counterparty (same ID, same verified partner, or the same legal name after stripping suffixes), that signal is locked in — so a clean structural match doesn't drift in the score band between runs.
 
 **What happens at each score level:**
 
@@ -170,10 +170,30 @@ Every transaction row in the **Transactions** list shows a status pill in the La
 
 Source pills (**Bank feed**, **Statement**, **Duplicate**) render alongside the status pill when applicable. You can also filter the transaction list by any of these pills using the toggles above the table.
 
+## Cross-currency matching
+
+Card payments often appear on the bank statement in the **account's currency** (e.g. HUF) while the underlying purchase was charged in a **foreign currency** (e.g. EUR). The original-currency amount is captured by the system from the statement row or the bank-feed exchange-rate block.
+
+The matcher checks both:
+
+- The booked amount in the account's currency, against an invoice in the same currency, *or*
+- The original amount in the foreign currency, against an invoice in that foreign currency.
+
+A Google Cloud invoice for **€19.59** can therefore be auto-matched against a Hungarian bank transaction booked as **-7,573 HUF** when the statement shows the original amount as `19,59EUR`.
+
+The original-currency amount is shown:
+
+- In the transaction's **Amount** field on the [match detail page](#match-detail-page) (in parentheses next to the booked amount)
+- In the **Amount** row on the transaction detail page (with the exchange rate when available)
+- In the transaction slide-over on the **Transactions** list
+
+If no foreign-currency information was captured for a transaction (e.g. a domestic payment), only the booked amount is shown and only same-currency invoices are considered.
+
 ## Tips
 
 - **High-quality transaction data improves matching.** When possible, include the invoice number in the payment reference field when making bank transfers. Matching will pick this up as a strong signal.
 - **Partial payments are supported.** If a client pays part of an invoice, the match is recorded with the partial amount and the invoice moves to **Partially paid**.
 - **One invoice, multiple transactions.** A single invoice can be matched to several transactions (instalment payments). Each match records its own partial amount.
 - **One transaction, one invoice.** Each bank transaction can be matched to at most one invoice. Use manual matching if a payment covers multiple invoices — match the closest one and note the discrepancy.
+- **Foreign-currency invoices match foreign-currency card payments.** You don't need to convert anything by hand — see [Cross-currency matching](#cross-currency-matching).
 - **Use the match number in support.** When asking for help with a specific match, quote the match number (e.g. `LOG-MAT-2026-0047`) — it pins down the exact record across screens and exports.
