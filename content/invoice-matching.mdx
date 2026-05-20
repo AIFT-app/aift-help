@@ -6,9 +6,11 @@ AI Finance Team automatically links bank transactions to their corresponding inv
 
 Matching runs in two steps:
 
-1. **Structural pre-filter** — The system narrows down candidate pairs using fast rules: matching currency (or original-currency match for foreign card payments — see [Cross-currency matching](#cross-currency-matching) below), compatible direction (income invoice ↔ credit transaction; expense invoice ↔ debit transaction), amount within range, and invoice date within 180 days of the transaction. Duplicate transactions are excluded automatically.
+1. **Structural pre-filter** — The system narrows down candidate pairs using fast rules: matching currency (or original-currency match for foreign card payments — see [Cross-currency matching](#cross-currency-matching) below), compatible direction (income invoice ↔ credit transaction; expense invoice ↔ debit transaction), amount within range, and invoice date within 180 days of the transaction. Duplicate transactions are excluded automatically. **Statement extraction also mines invoice-number-shaped tokens out of the row's free text** (descriptions, terminal lines, etc.) and copies them into the structured reference field, so the AI scoring step sees the invoice number even when the bank stuffed it into a description blob instead of a dedicated reference column.
 
 2. **AI semantic scoring** — Claude reviews each candidate pair and assigns a confidence score (0–100) based on invoice number in the transaction reference, counterparty name, amount proximity, and date. When the system has already verified that both sides point to the same counterparty (same ID, same verified partner, or the same legal name after stripping suffixes), that signal is locked in — so a clean structural match doesn't drift in the score band between runs.
+
+   **Targeted threshold relaxation:** when every structural signal lines up (same counterparty by id, exact amount on the chosen currency path, transaction within 30 days of the invoice's due date, no anomalous mention of your own entity in the bank text), the AI's score is floored at 85 even without the invoice-number signal. So a payment that obviously corresponds to a single open invoice will auto-match instead of landing in the medium-confidence band for manual review. The relaxation is strict: name-only counterparty matches, partial amounts, and pairs farther than 30 days apart do not qualify.
 
 **What happens at each score level:**
 
@@ -81,6 +83,8 @@ Click any row in the All matches table to open the match detail page at `/worksp
 - **Unmatch** button (top-right, accountant admins only) — removes the match after confirmation; the transaction returns to **Unmatched** and the invoice returns to **Open**.
 
 If the match was created before score-breakdown tracking was enabled, the detail page shows "Score not available for this match." in place of the breakdown table — the rest of the page works normally.
+
+Confirmed suggestions (matches that started as medium-confidence suggestions and were accepted by an accountant) now also carry the AI score and breakdown through to the match detail page, so the same explanation is available for both auto- and manually-confirmed matches.
 
 ## Matching history
 
