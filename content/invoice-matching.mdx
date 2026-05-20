@@ -193,6 +193,20 @@ The original-currency amount is shown:
 
 If no foreign-currency information was captured for a transaction (e.g. a domestic payment), only the booked amount is shown and only same-currency invoices are considered.
 
+## Payment channels and matching confidence
+
+How the bank reports a transaction has a big effect on how confidently matching can resolve it.
+
+**SEPA / wire transfers** are the high-confidence channel. The bank carries the payment reference through verbatim — so if the payer (or you, when paying a vendor) put the invoice number in the reference field, the matcher sees it directly and the +35 invoice-number signal fires. These transactions auto-match consistently.
+
+**Card payments** are inherently lower-confidence. Bank statements describe card transactions with the merchant's internal acquirer string (e.g. `PADDLE.NET* TLWNDPLUS`, `Google Workspace_financia`, `SIMPLEP*PARKL.NET`) and a card terminal ID — not the invoice number. The matcher still works through other signals (counterparty similarity to the invoice vendor, exact amount, date proximity, original currency for foreign card payments), but it can rarely reach the auto-match threshold from those alone. Card-payment matches typically land in the **medium-confidence suggestion** band for accountant review.
+
+**What you can do:**
+
+- For your own outgoing payments, **always include the invoice number in the SEPA reference field**. This is the single highest-impact thing you can do for matching quality.
+- When you receive a vendor invoice for a card payment you've already made, expect the match to surface as a suggestion rather than auto-match. The amount + counterparty + date will line up; you just need to confirm.
+- If you regularly pay the same vendor by card, ask the vendor to keep the merchant-name string they send to acquirers stable, or merge the alias on the Partners page once it shows up there.
+
 ## Tips
 
 - **High-quality transaction data improves matching.** When possible, include the invoice number in the payment reference field when making bank transfers. Matching will pick this up as a strong signal.
