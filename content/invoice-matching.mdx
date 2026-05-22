@@ -24,47 +24,59 @@ Only invoices with status **Open** or **Partially paid** are considered. Invoice
 
 ## The Matching page
 
-Go to **Matching** in the workspace sidebar. The page has two sections:
+Go to **Matching** in the workspace sidebar. The page shows a **single unified list** of every match in the workspace — both pending AI suggestions and already-confirmed matches — newest first. (There are no longer separate "Pending suggestions" and "All matches" sections; everything lives in one list.)
 
-- **Pending suggestions** — AI-scored pairs awaiting your decision
-- **All matches** — every confirmed match in the workspace, with filters and pagination
+Each row has up to four columns:
 
-The page header has two action buttons:
+- **Score / Confidence** — pending rows show the numeric AI score as a badge (green ≥ 85, amber 60–84, red below); confirmed rows show a **High / Medium / Low** confidence pill.
+- **Invoice** — number, counterparty, and amount.
+- **Transaction** — counterparty, date, and amount.
+- **Actions** — **Approve** / **Reject** for pending rows, or **View** for confirmed rows. This column is shown to accountants only (see [Who can approve and reject](#who-can-approve-and-reject)).
+
+The page header has two action buttons (accountants only):
 
 - **History** — opens a panel showing recent matching runs (see [Matching history](#matching-history))
 - **Run Matching** — triggers a manual matching pass (see [Running matching manually](#running-matching-manually))
 
-### Reviewing a suggestion
+### Searching
 
-Each suggestion row shows:
-
-- The transaction (date, counterparty, amount)
-- The candidate invoice (number, counterparty, amount)
-- A **confidence score** badge (green ≥ 85, amber 60–84)
-- The AI's one-line reason
-
-Click **Confirm** to accept the match, or **Reject** to dismiss it.
-
-### Confirming all high-confidence suggestions at once
-
-Click **Confirm all high-confidence** to confirm every pending suggestion with a score of 80 or above in one action. A summary toast shows how many matches were confirmed.
-
-## All matches
-
-The **All matches** section lists every confirmed match in the workspace. It replaces the old "Recent matches" list and adds filtering and pagination.
+The search box filters the list by **invoice number**, **counterparty name**, or **payment reference**. It searches as you type. The raw bank-description free text is *not* searched — use the structured reference instead. Your search is reflected in the URL (`?search=INV-2026-014`) so you can bookmark or share it.
 
 ### Filtering
 
-Two filters are available above the table:
+Two filters sit below the search box:
 
-- **Date range** — pick a From and To date based on the transaction's booking date. Defaults to the current month.
-- **Confidence** — toggle the **High**, **Medium**, and **Low** pills to include or exclude each level. All three are selected by default.
+- **Date range** — pick a **From** and **To** date based on the transaction's booking date. **There is no default range** — the list starts unfiltered so nothing is hidden until you choose dates. You can type the dates directly with the keyboard or use the date picker; the filter is applied when you leave the field.
+- **Confidence** — toggle the **High**, **Medium**, and **Low** pills to include or exclude each level. All three are on by default. For pending rows the confidence band is derived from the AI score (High ≥ 85, Medium ≥ 60, Low below 60).
 
 Filters are reflected in the URL (`?from=2026-04-01&to=2026-04-30&confidence=high,medium`), so you can bookmark a filtered view or share it with a colleague.
 
-### Pagination
+### Pagination and page size
 
-Results are paginated 50 rows at a time. Use the **Next** and **Previous** buttons at the bottom of the table to navigate.
+Choose how many rows to show per page with the **Per page** selector (**10**, **50**, or **100**; default 50). Your choice is remembered across visits. Use **Previous** / **Next** to move between pages. The pagination controls only appear when there is more than one page of results.
+
+### Merged multi-part matches
+
+When several transactions pay off a **single invoice** (for example instalment payments), they are grouped into **one row** rather than appearing separately. The row summarises the group — for example `2 transactions · 264,000 HUF · 1 invoice · 264,000 HUF` — and carries one score badge per transaction. Open the row to see and act on each transaction individually (see [The suggestion detail page](#the-suggestion-detail-page)).
+
+### Approving and rejecting from the list
+
+For a pending row, click **Approve** to confirm the match or **Reject** to dismiss the suggestion. Rejection is permanent — a rejected suggestion is deleted, not archived; matching can re-suggest the pair on a future run if the signals still line up. For a multi-transaction group, Approve confirms every transaction in the group at once and Reject dismisses the whole group. To act on the transactions individually, open the [suggestion detail page](#the-suggestion-detail-page) instead.
+
+### Who can approve and reject
+
+Approving and rejecting matches is restricted to **accountants** and **accountant admins**. Client users can open the Matching page and view every row (including the detail pages), but the Approve / Reject controls are hidden for them and the actions are blocked on the server.
+
+## The suggestion detail page
+
+Click any **pending** row to open its detail page at `/workspaces/.../matching/suggestions/<id>`. This is the suggestion-side counterpart to the [match detail page](#match-detail-page), and it is especially useful for multi-transaction groups.
+
+The page shows:
+
+- **Header** — a *Pending* badge plus a score badge for each transaction in the group, and a **Back to Matching** link.
+- **Invoice** — number, counterparty, issue and due dates, amount (with the base-currency amount in parentheses where it differs), payment status, and direction (Income/Expense).
+- **Transactions** — each candidate transaction as its own card, showing the reference, counterparty, booking date, **Credit / Debit** direction, amount, description, and category. For a multi-transaction group the cards are labelled *Transaction 1 of N*, and each card has a **Remove from match** link that releases just that transaction back for re-matching while leaving the others untouched.
+- **Approve** / **Reject** buttons at the bottom act on the whole group atomically. These are shown to accountants only.
 
 ### Match ID
 
@@ -74,11 +86,11 @@ Use this ID when filing support requests, in exports, or in audit logs.
 
 ### Match detail page
 
-Click any row in the All matches table to open the match detail page at `/workspaces/.../matching/<match-id>`. The detail page shows:
+Click any confirmed row in the list to open the match detail page at `/workspaces/.../matching/<match-id>`. The detail page shows:
 
 - **Header** — the match number, confidence badge, and matched-on date. A **Back to Matching** link in the top-left returns to the list.
-- **Bank Transaction card** (left) — date, amount, counterparty, account, reference, category, transaction ID. The **Open →** link jumps to the full transaction page.
-- **Invoice card** (right) — invoice number, issue date, due date, amount, direction (Income/Expense), counterparty, invoice ID. The **Open →** link jumps to the full invoice detail page.
+- **Bank Transaction card** (left) — reference, counterparty, booking date, a **Credit / Debit** direction badge, amount (with the original foreign-currency amount in parentheses where applicable), description, and category. The **Open →** link jumps to the full transaction page.
+- **Invoice card** (right) — invoice number, counterparty, issue date, due date, amount (with base currency where it differs), a **payment-status** badge, and direction (Income/Expense). The **Open →** link jumps to the full invoice detail page.
 - **Match Analysis** — confidence badge with the numeric score, a score-breakdown table showing which signals contributed (amount, counterparty, reference, date proximity), and a plain-text reason summary.
 - **Unmatch** button (top-right, accountant admins only) — removes the match after confirmation; the transaction returns to **Unmatched** and the invoice returns to **Open**.
 
@@ -122,9 +134,9 @@ Narrower ranges run faster. Use **All time** only when you have historical data 
 
 Progress appears in the **upload queue panel** at the bottom-right of the screen — the same panel that tracks invoice and bank-statement processing. The row reads:
 
-- *Matching — {workspace name}*: In progress…
-- After completion: *Matching — {workspace name}*: Completed: N matches created
-- On failure: *Matching — {workspace name}*: Failed (with a Retry affordance)
+- `Matching — <workspace>`: In progress…
+- After completion: `Matching — <workspace>`: Completed: N matches created
+- On failure: `Matching — <workspace>`: Failed (with a Retry affordance)
 
 The row disappears from the panel automatically once it has been completed for a minute. To inspect older runs, open the History panel.
 
@@ -140,7 +152,7 @@ Open any transaction by clicking its row in the **Transactions** list. The **Inv
 
 In the slide-over, click the **×** next to a confirmed match to remove it. The invoice returns to **Open** status and the transaction reverts to **Unmatched**.
 
-Alternatively, open the match detail page (from the All matches table) and click **Unmatch** in the top-right.
+Alternatively, open the match detail page (from the matching list) and click **Unmatch** in the top-right.
 
 ## Matching from the invoice detail page
 
