@@ -88,18 +88,26 @@ jobs:
           # capping locally first avoids paying for a giant HTTP body that gets sliced
           # server-side. Anything above the cap → diff_truncated=true, and the prompt
           # falls back to title + body + file list.
+          #
+          # We route through a temp file rather than `echo "$DIFF_FULL" | head -c …`
+          # to avoid the pipefail-broken-pipe trap: when head closes the pipe early,
+          # echo's still-pending write fails, pipefail propagates the failure, and
+          # set -e kills the script (observed on the post-promote merge with a
+          # ~50 KB diff, exit code 1 from "echo: write error: Broken pipe").
           DIFF_MAX_BYTES=30000
-          DIFF_FULL=$(git diff "$MERGE_SHA~1" "$MERGE_SHA")
-          DIFF_BYTES=$(echo -n "$DIFF_FULL" | wc -c | tr -d ' ')
+          DIFF_FILE="$(mktemp)"
+          git diff "$MERGE_SHA~1" "$MERGE_SHA" > "$DIFF_FILE"
+          DIFF_BYTES=$(wc -c < "$DIFF_FILE" | tr -d ' ')
           if [ "$DIFF_BYTES" -gt "$DIFF_MAX_BYTES" ]; then
-            DIFF_HEAD=$(echo "$DIFF_FULL" | head -c "$DIFF_MAX_BYTES")
+            DIFF_HEAD=$(head -c "$DIFF_MAX_BYTES" "$DIFF_FILE")
             FILES_LIST=$(git diff --name-status "$MERGE_SHA~1" "$MERGE_SHA")
             DIFF_EXCERPT=$(printf '%s\n\n[diff truncated at %s bytes -- files in this merge:]\n%s' "$DIFF_HEAD" "$DIFF_MAX_BYTES" "$FILES_LIST")
             DIFF_TRUNCATED=true
           else
-            DIFF_EXCERPT="$DIFF_FULL"
+            DIFF_EXCERPT=$(cat "$DIFF_FILE")
             DIFF_TRUNCATED=false
           fi
+          rm -f "$DIFF_FILE"
 
           MERGED_AT=$(git log -1 --pretty=%cI "$MERGE_SHA")
 
