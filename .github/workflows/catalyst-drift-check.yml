@@ -1,0 +1,79 @@
+# Catalyst drift check
+#
+# aift-web is the source of truth for Catalyst UI components. aift-help mirrors
+# a copy in src/components/catalyst/. This workflow enforces that they never
+# diverge — any PR that introduces drift fails until the operator runs
+# `aift-ops/scripts/sync-catalyst-to-help.sh` and re-pushes.
+#
+# Required repo secret: AIFT_WEB_READ_TOKEN
+#   - Fine-grained PAT with "Contents: Read" access to AIFT-app/aift-web
+#   - Without it, the workflow fails closed (intentional — silent skip would
+#     defeat the gate)
+#
+# PRD: aift-ops/specs/adopt-catalyst-in-aift-help.md
+
+name: catalyst-drift-check
+
+on:
+  pull_request:
+    branches: [staging, main]
+    paths:
+      - 'src/components/catalyst/**'
+      - '.github/workflows/catalyst-drift-check.yml'
+  push:
+    branches: [staging, main]
+    paths:
+      - 'src/components/catalyst/**'
+
+permissions:
+  contents: read
+
+jobs:
+  drift-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout aift-help
+        uses: actions/checkout@v4
+        with:
+          path: aift-help
+
+      - name: Checkout aift-web (catalyst source of truth)
+        uses: actions/checkout@v4
+        with:
+          repository: AIFT-app/aift-web
+          ref: main
+          token: ${{ secrets.AIFT_WEB_READ_TOKEN }}
+          path: aift-web
+          sparse-checkout: |
+            src/components/catalyst
+          sparse-checkout-cone-mode: false
+
+      - name: Compare catalyst directories
+        run: |
+          set -e
+          SRC="aift-web/src/components/catalyst"
+          DST="aift-help/src/components/catalyst"
+
+          if [ ! -d "$SRC" ]; then
+            echo "::error::aift-web checkout missing $SRC — token may lack access or repo layout changed"
+            exit 1
+          fi
+          if [ ! -d "$DST" ]; then
+            echo "::error::aift-help is missing $DST — Catalyst was never synced"
+            exit 1
+          fi
+
+          if diff -rq "$SRC" "$DST" > /tmp/catalyst-diff.txt; then
+            echo "✓ Catalyst matches aift-web@main"
+          else
+            echo "::error::Catalyst drift detected vs aift-web@main"
+            echo "::group::diff"
+            cat /tmp/catalyst-diff.txt
+            echo "::endgroup::"
+            echo ""
+            echo "Fix:"
+            echo "  1. cd into your local AIFT-app workspace"
+            echo "  2. Run: ./aift-ops/scripts/sync-catalyst-to-help.sh"
+            echo "  3. Commit the result in aift-help and re-push"
+            exit 1
+          fi
