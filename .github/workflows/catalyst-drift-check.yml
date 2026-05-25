@@ -19,11 +19,13 @@ on:
     branches: [staging, main]
     paths:
       - 'src/components/catalyst/**'
+      - 'src/hooks/useSidebarState.ts'
       - '.github/workflows/catalyst-drift-check.yml'
   push:
     branches: [staging, main]
     paths:
       - 'src/components/catalyst/**'
+      - 'src/hooks/useSidebarState.ts'
 
 permissions:
   contents: read
@@ -46,30 +48,54 @@ jobs:
           path: aift-web
           sparse-checkout: |
             src/components/catalyst
+            src/hooks/useSidebarState.ts
           sparse-checkout-cone-mode: false
 
-      - name: Compare catalyst directories
+      - name: Compare catalyst + hook deps
         run: |
           set -e
-          SRC="aift-web/src/components/catalyst"
-          DST="aift-help/src/components/catalyst"
+          SRC_CAT="aift-web/src/components/catalyst"
+          DST_CAT="aift-help/src/components/catalyst"
+          SRC_HOOK="aift-web/src/hooks/useSidebarState.ts"
+          DST_HOOK="aift-help/src/hooks/useSidebarState.ts"
 
-          if [ ! -d "$SRC" ]; then
-            echo "::error::aift-web checkout missing $SRC — token may lack access or repo layout changed"
+          if [ ! -d "$SRC_CAT" ]; then
+            echo "::error::aift-web checkout missing $SRC_CAT — token may lack access or repo layout changed"
             exit 1
           fi
-          if [ ! -d "$DST" ]; then
-            echo "::error::aift-help is missing $DST — Catalyst was never synced"
+          if [ ! -d "$DST_CAT" ]; then
+            echo "::error::aift-help is missing $DST_CAT — Catalyst was never synced"
+            exit 1
+          fi
+          if [ ! -f "$SRC_HOOK" ]; then
+            echo "::error::aift-web checkout missing $SRC_HOOK (sparse checkout may have changed)"
+            exit 1
+          fi
+          if [ ! -f "$DST_HOOK" ]; then
+            echo "::error::aift-help is missing $DST_HOOK — sync-catalyst-to-help.sh hasn't been run with the hook-deps extension"
             exit 1
           fi
 
-          if diff -rq "$SRC" "$DST" > /tmp/catalyst-diff.txt; then
-            echo "✓ Catalyst matches aift-web@main"
-          else
-            echo "::error::Catalyst drift detected vs aift-web@main"
-            echo "::group::diff"
+          FAIL=0
+          if ! diff -rq "$SRC_CAT" "$DST_CAT" > /tmp/catalyst-diff.txt; then
+            echo "::error::Catalyst component drift detected vs aift-web@main"
+            echo "::group::component diff"
             cat /tmp/catalyst-diff.txt
             echo "::endgroup::"
+            FAIL=1
+          fi
+          if ! diff -q "$SRC_HOOK" "$DST_HOOK" > /tmp/hook-diff.txt; then
+            echo "::error::Catalyst hook dep drift detected vs aift-web@main"
+            echo "::group::hook diff"
+            cat /tmp/hook-diff.txt
+            diff "$SRC_HOOK" "$DST_HOOK" || true
+            echo "::endgroup::"
+            FAIL=1
+          fi
+
+          if [ "$FAIL" -eq 0 ]; then
+            echo "✓ Catalyst components + hook deps match aift-web@main"
+          else
             echo ""
             echo "Fix:"
             echo "  1. cd into your local AIFT-app workspace"
