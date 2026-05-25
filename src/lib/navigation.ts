@@ -16,4 +16,5 @@ export const navigation: NavItem[] = [
   { title: 'Uploading Bank Statements', slug: 'bank-statement-upload' },
   { title: 'Categorising Invoices & Transactions', slug: 'categorization' },
   { title: 'Reports', slug: 'reports' },
+  { title: 'AI Assistants (MCP)', slug: 'mcp' },
 ]
