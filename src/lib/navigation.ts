@@ -18,4 +18,5 @@ export const navigation: NavItem[] = [
   { title: 'Invoice Matching', slug: 'invoice-matching' },
   { title: 'Categorising Invoices & Transactions', slug: 'categorization' },
   { title: 'Reports', slug: 'reports' },
+  { title: 'AI Assistants (MCP)', slug: 'mcp' },
 ]
