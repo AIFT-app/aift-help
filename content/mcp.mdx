@@ -2,7 +2,7 @@
 
 AI Finance Team has a built-in **MCP server** — a standard interface that lets AI assistants like Claude, Mistral Le Chat, or ChatGPT query and (optionally) edit your bookkeeping data on your behalf. It's the same product, accessed conversationally.
 
-Once connected, you can ask your assistant questions in plain language ("What invoices in TechBridge need my attention?") and it will pull live data from your AIFT workspace. With the optional write scope, it can also categorise transactions, accept matches, and edit invoice fields for you.
+Once connected, you can ask your assistant questions in plain language ("What invoices in Pannónia Bistro need my attention?") and it will pull live data from your AIFT workspace. With the optional write scope, it can also categorise transactions, accept matches, and edit invoice fields for you.
 
 This guide is for accountants. Clients don't currently have MCP access.
 
@@ -16,13 +16,13 @@ The MCP connection sits on top of the same data and permissions you already have
 
 > "List my client workspaces and tell me which need the most attention."
 
-> "In TechBridge, what bank transactions in May don't have a matching invoice yet?"
+> "In Csavar Csárda, what bank transactions in May don't have a matching invoice yet?"
 
-> "Show me Q1 results for TechBridge — both the P&L and cash-flow reports."
+> "Show me Q1 results for Pannónia Bistro — both the P&L and cash-flow reports."
 
-> "Which Agrocsoport invoices have uncategorised line items, sorted by amount?"
+> "Which Logikum Kft. invoices have uncategorised line items, sorted by amount?"
 
-> "Find every Telekom bank transaction in MVP Kft. from March."
+> "Find every Telekom bank transaction in Zöld Saláta Kft. from March."
 
 > "What's been done in this workspace through MCP today?"
 
@@ -136,7 +136,7 @@ If you suspect anything went wrong — wrong category applied, an invoice update
 
 ## Tips for productive conversations
 
-- **Be specific about the workspace.** "Show me Agrocsoport's…" is much better than "Show me my client's…". The assistant has access to all your workspaces and will sometimes guess.
+- **Be specific about the workspace.** "Show me Pannónia Bistro's…" is much better than "Show me my client's…". The assistant has access to all your workspaces and will sometimes guess.
 - **Use friendly IDs.** Invoice numbers like `AH-INV-2026-0042` and transaction numbers like `AH-TXN-2026-0157` are stable references the assistant can resolve directly. They're shown throughout the AIFT UI.
 - **Ask for an audit trail when in doubt.** "What did you change?" usually pulls the before/after diff from the audit log.
 - **Click the links the assistant gives you.** Every record reference is returned with a `deep_link` — a direct URL into the AIFT UI for that row. Use those links rather than navigating from the sidebar; they jump you straight to the right record.
