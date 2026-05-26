@@ -12,6 +12,17 @@
 # Sync changes by editing this template, then running:
 #   aift-ops/scripts/sync-shiplog-workflow.sh
 #
+# v2.1 behaviour:
+#
+# - Staging push: one ingest call per push (the squash-merge commit at HEAD
+#   carries the PR title with [PRD: <slug>]).
+#
+# - Main push (promote): walks the individual non-merge commits between
+#   github.event.before and github.sha. Each commit is one of the staging
+#   squash-merge commits being promoted — its title carries the original
+#   PRD slug. Without this walk, the v2 digest would see a single
+#   slug-less promote merge title and fragment cross-env clusters.
+#
 # Per-repo prerequisites (set once when shiplog goes live):
 #   - vars.SHIPLOG_INGEST_URL  — the shiplog-ingest Edge Function URL
 #                                (e.g. https://<project-ref>.supabase.co/functions/v1/shiplog-ingest)
@@ -27,6 +38,7 @@
 # (see the `if:` gate on the job). Safe to merge in advance.
 #
 # PRD: aift-ops/specs/shiplog-internal-digest.md §6, §10
+# PRD: aift-ops/specs/shiplog-digest-v2.md (v2.1 promote-walk fix)
 # =============================================================================
 
 name: Shiplog ingest
@@ -37,7 +49,7 @@ on:
 
 jobs:
   ingest:
-    name: Post merge to shiplog
+    name: Post merge(s) to shiplog
     runs-on: ubuntu-latest
     # Inert until SHIPLOG_INGEST_URL is configured as a repo variable.
     if: ${{ vars.SHIPLOG_INGEST_URL != '' }}
@@ -45,145 +57,188 @@ jobs:
       contents: read
       pull-requests: read
     steps:
-      - name: Checkout merge commit
+      - name: Checkout (full history for promote walks)
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          # 0 = full history. Needed on `main` pushes because a promote
+          # merge can carry an arbitrary number of staging commits, and
+          # we walk `BEFORE..AFTER` to ingest each one individually.
+          fetch-depth: 0
 
-      - name: Collect PR metadata + bounded diff
-        id: collect
+      - name: Walk commits and POST each to shiplog-ingest
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO_NAME: ${{ github.event.repository.name }}
-          MERGE_SHA: ${{ github.sha }}
           BRANCH_REF: ${{ github.ref_name }}
-        run: |
-          set -euo pipefail
-
-          # The PR that produced this merge commit on the target branch.
-          # Falls back to empty fields for direct pushes (rare on AIFT).
-          PR_JSON=$(gh pr list --search "$MERGE_SHA" --state merged --json number,title,body,url,author --jq '.[0] // {}')
-
-          PR_NUMBER=$(echo "$PR_JSON" | jq -r '.number // empty')
-          PR_TITLE=$(echo "$PR_JSON" | jq -r '.title // empty')
-          PR_BODY=$(echo "$PR_JSON" | jq -r '.body // empty')
-          PR_URL=$(echo "$PR_JSON" | jq -r '.url // empty')
-          AUTHOR=$(echo "$PR_JSON" | jq -r '.author.login // empty')
-
-          # Direct-push fallback for title/author so the ingest still records something useful.
-          if [ -z "$PR_TITLE" ]; then
-            PR_TITLE=$(git log -1 --pretty=%s)
-          fi
-          if [ -z "$AUTHOR" ]; then
-            AUTHOR=$(git log -1 --pretty=%an)
-          fi
-
-          # Diff stats: --shortstat gives us files/additions/deletions in one line.
-          SHORTSTAT=$(git diff --shortstat "$MERGE_SHA~1" "$MERGE_SHA" || true)
-          FILES_CHANGED=$(echo "$SHORTSTAT" | grep -oE '[0-9]+ file' | grep -oE '[0-9]+' || echo "0")
-          ADDITIONS=$(echo "$SHORTSTAT" | grep -oE '[0-9]+ insertion' | grep -oE '[0-9]+' || echo "0")
-          DELETIONS=$(echo "$SHORTSTAT" | grep -oE '[0-9]+ deletion' | grep -oE '[0-9]+' || echo "0")
-
-          # Full diff (capped). The shiplog-ingest function further caps at 30 KB, but
-          # capping locally first avoids paying for a giant HTTP body that gets sliced
-          # server-side. Anything above the cap → diff_truncated=true, and the prompt
-          # falls back to title + body + file list.
-          #
-          # We route through a temp file rather than `echo "$DIFF_FULL" | head -c …`
-          # to avoid the pipefail-broken-pipe trap: when head closes the pipe early,
-          # echo's still-pending write fails, pipefail propagates the failure, and
-          # set -e kills the script (observed on the post-promote merge with a
-          # ~50 KB diff, exit code 1 from "echo: write error: Broken pipe").
-          DIFF_MAX_BYTES=30000
-          DIFF_FILE="$(mktemp)"
-          git diff "$MERGE_SHA~1" "$MERGE_SHA" > "$DIFF_FILE"
-          DIFF_BYTES=$(wc -c < "$DIFF_FILE" | tr -d ' ')
-          if [ "$DIFF_BYTES" -gt "$DIFF_MAX_BYTES" ]; then
-            DIFF_HEAD=$(head -c "$DIFF_MAX_BYTES" "$DIFF_FILE")
-            FILES_LIST=$(git diff --name-status "$MERGE_SHA~1" "$MERGE_SHA")
-            DIFF_EXCERPT=$(printf '%s\n\n[diff truncated at %s bytes -- files in this merge:]\n%s' "$DIFF_HEAD" "$DIFF_MAX_BYTES" "$FILES_LIST")
-            DIFF_TRUNCATED=true
-          else
-            DIFF_EXCERPT=$(cat "$DIFF_FILE")
-            DIFF_TRUNCATED=false
-          fi
-          rm -f "$DIFF_FILE"
-
-          MERGED_AT=$(git log -1 --pretty=%cI "$MERGE_SHA")
-
-          # Compose the JSON payload via jq to handle escaping safely.
-          PAYLOAD=$(jq -n \
-            --arg repo "$REPO_NAME" \
-            --arg branch "$BRANCH_REF" \
-            --arg sha "$MERGE_SHA" \
-            --arg pr_number "$PR_NUMBER" \
-            --arg pr_title "$PR_TITLE" \
-            --arg pr_body "$PR_BODY" \
-            --arg pr_url "$PR_URL" \
-            --arg author "$AUTHOR" \
-            --arg files_changed "$FILES_CHANGED" \
-            --arg additions "$ADDITIONS" \
-            --arg deletions "$DELETIONS" \
-            --arg diff_excerpt "$DIFF_EXCERPT" \
-            --arg diff_truncated "$DIFF_TRUNCATED" \
-            --arg merged_at "$MERGED_AT" \
-            '{
-              repo: $repo,
-              branch: $branch,
-              merge_commit_sha: $sha,
-              pr_number: ($pr_number | if . == "" then null else (try (tonumber) catch null) end),
-              pr_title: $pr_title,
-              pr_body: ($pr_body | if . == "" then null else . end),
-              pr_url: ($pr_url | if . == "" then null else . end),
-              author_login: ($author | if . == "" then null else . end),
-              files_changed: ($files_changed | tonumber? // 0),
-              additions: ($additions | tonumber? // 0),
-              deletions: ($deletions | tonumber? // 0),
-              diff_excerpt: $diff_excerpt,
-              diff_truncated: ($diff_truncated == "true"),
-              merged_at: $merged_at
-            }')
-
-          # Persist the payload to a file (avoids env-var size limits and quoting hell).
-          echo "$PAYLOAD" > shiplog-payload.json
-
-          echo "payload_path=shiplog-payload.json" >> "$GITHUB_OUTPUT"
-          echo "Payload size: $(wc -c < shiplog-payload.json) bytes"
-
-      - name: Sign and POST to shiplog-ingest
-        env:
+          BEFORE_SHA: ${{ github.event.before }}
+          AFTER_SHA: ${{ github.sha }}
           SHIPLOG_INGEST_URL: ${{ vars.SHIPLOG_INGEST_URL }}
           SHIPLOG_INGEST_HMAC: ${{ secrets.SHIPLOG_INGEST_HMAC }}
           SHIPLOG_ANON_KEY: ${{ secrets.SHIPLOG_SUPABASE_ANON_KEY }}
         run: |
-          set -euo pipefail
+          # Note: NOT using `set -e` because we want to continue on
+          # per-commit ingest failures and only fail the job at the end.
+          set -uo pipefail
 
-          if [ -z "$SHIPLOG_INGEST_HMAC" ]; then
+          if [ -z "${SHIPLOG_INGEST_HMAC:-}" ]; then
             echo "::warning::SHIPLOG_INGEST_HMAC secret not set — skipping post (workflow remains inert)."
             exit 0
           fi
-          if [ -z "$SHIPLOG_ANON_KEY" ]; then
+          if [ -z "${SHIPLOG_ANON_KEY:-}" ]; then
             echo "::warning::SHIPLOG_SUPABASE_ANON_KEY secret not set — skipping post (workflow remains inert)."
             exit 0
           fi
 
-          # HMAC-SHA256 of the raw payload bytes. Must match the verification
-          # inside shiplog-ingest. Header value format: 'sha256=<hex>'.
-          SIGNATURE=$(openssl dgst -sha256 -hmac "$SHIPLOG_INGEST_HMAC" -hex < shiplog-payload.json | awk '{print $2}')
+          # ─────────────────────────────────────────────────────────────────────
+          # Determine the commits to ingest.
+          # ─────────────────────────────────────────────────────────────────────
+          # On `main`: walk non-merge commits between BEFORE and AFTER. Each
+          #   is a squash-merge commit originally from staging; its title
+          #   carries the [PRD: <slug>] trailer.
+          # On `staging`: just the new HEAD (a single squash-merge per push).
+          # ─────────────────────────────────────────────────────────────────────
+          ZEROS="0000000000000000000000000000000000000000"
+          if [ "$BRANCH_REF" = "main" ]; then
+            if [ -z "${BEFORE_SHA:-}" ] || [ "$BEFORE_SHA" = "$ZEROS" ]; then
+              # Initial main push — no prior HEAD. Just process AFTER itself.
+              COMMITS=$(git rev-list --no-merges -n 1 "$AFTER_SHA")
+            else
+              COMMITS=$(git rev-list --no-merges --reverse "$BEFORE_SHA..$AFTER_SHA")
+            fi
+          else
+            COMMITS="$AFTER_SHA"
+          fi
 
-          HTTP_CODE=$(curl -sS -o response.json -w "%{http_code}" \
-            -X POST "$SHIPLOG_INGEST_URL" \
-            -H "Content-Type: application/json" \
-            -H "Authorization: Bearer $SHIPLOG_ANON_KEY" \
-            -H "X-Shiplog-Signature: sha256=$SIGNATURE" \
-            --data-binary @shiplog-payload.json)
+          if [ -z "${COMMITS:-}" ]; then
+            echo "No commits to ingest in $BRANCH_REF range $BEFORE_SHA..$AFTER_SHA"
+            exit 0
+          fi
 
-          echo "shiplog-ingest HTTP $HTTP_CODE"
-          cat response.json || true
+          COMMIT_COUNT=$(echo "$COMMITS" | wc -l | tr -d ' ')
+          echo "Ingesting $COMMIT_COUNT commit(s) on $BRANCH_REF:"
+          echo "$COMMITS" | sed 's/^/  /'
           echo
 
-          # 2xx — accepted or deduped. 4xx/5xx — fail the job so the operator notices.
-          if [ "$HTTP_CODE" -ge 400 ]; then
-            echo "::error::shiplog-ingest returned $HTTP_CODE"
+          FAILURES=0
+          SUCCESSES=0
+          DEDUPED=0
+
+          for SHA in $COMMITS; do
+            echo "────────── $SHA ──────────"
+
+            # PR metadata. Each squash-merge SHA points to the original PR
+            # it was created from — its title carries [PRD: <slug>].
+            PR_JSON=$(gh pr list --search "$SHA" --state merged \
+              --json number,title,body,url,author \
+              --jq '.[0] // {}' 2>/dev/null || echo '{}')
+
+            PR_NUMBER=$(echo "$PR_JSON" | jq -r '.number // empty')
+            PR_TITLE=$(echo "$PR_JSON" | jq -r '.title // empty')
+            PR_BODY=$(echo "$PR_JSON" | jq -r '.body // empty')
+            PR_URL=$(echo "$PR_JSON" | jq -r '.url // empty')
+            AUTHOR=$(echo "$PR_JSON" | jq -r '.author.login // empty')
+
+            # Fall back to commit-level metadata when no merged PR matches
+            # (direct pushes; rare on AIFT but harmless).
+            if [ -z "$PR_TITLE" ]; then PR_TITLE=$(git log -1 --pretty=%s "$SHA"); fi
+            if [ -z "$AUTHOR" ];   then AUTHOR=$(git log -1 --pretty=%an "$SHA"); fi
+
+            # Skip the promote PR itself — its title is "promote: staging → main"
+            # and carries no slug. The constituent commits we're walking are
+            # what we want; the wrapper PR is noise.
+            if echo "$PR_TITLE" | grep -Eq '^promote: staging'; then
+              echo "  → skipping promote wrapper PR title (carries no slug)"
+              continue
+            fi
+
+            # Diff against the commit's first parent. For squash-merge commits
+            # this is the diff of the original PR.
+            SHORTSTAT=$(git diff --shortstat "${SHA}~1" "$SHA" 2>/dev/null || true)
+            FILES_CHANGED=$(echo "$SHORTSTAT" | grep -oE '[0-9]+ file' | grep -oE '[0-9]+' || echo "0")
+            ADDITIONS=$(echo "$SHORTSTAT" | grep -oE '[0-9]+ insertion' | grep -oE '[0-9]+' || echo "0")
+            DELETIONS=$(echo "$SHORTSTAT" | grep -oE '[0-9]+ deletion' | grep -oE '[0-9]+' || echo "0")
+
+            # Bounded diff via a temp file — avoids the pipefail-broken-pipe
+            # trap that `echo "$DIFF_FULL" | head -c …` would produce on a
+            # ~50 KB diff.
+            DIFF_MAX_BYTES=30000
+            DIFF_FILE="$(mktemp)"
+            git diff "${SHA}~1" "$SHA" > "$DIFF_FILE" 2>/dev/null || true
+            DIFF_BYTES=$(wc -c < "$DIFF_FILE" | tr -d ' ')
+            if [ "$DIFF_BYTES" -gt "$DIFF_MAX_BYTES" ]; then
+              DIFF_HEAD=$(head -c "$DIFF_MAX_BYTES" "$DIFF_FILE")
+              FILES_LIST=$(git diff --name-status "${SHA}~1" "$SHA" 2>/dev/null || true)
+              DIFF_EXCERPT=$(printf '%s\n\n[diff truncated at %s bytes -- files in this commit:]\n%s' "$DIFF_HEAD" "$DIFF_MAX_BYTES" "$FILES_LIST")
+              DIFF_TRUNCATED=true
+            else
+              DIFF_EXCERPT=$(cat "$DIFF_FILE")
+              DIFF_TRUNCATED=false
+            fi
+            rm -f "$DIFF_FILE"
+
+            MERGED_AT=$(git log -1 --pretty=%cI "$SHA")
+
+            PAYLOAD=$(jq -n \
+              --arg repo "$REPO_NAME" \
+              --arg branch "$BRANCH_REF" \
+              --arg sha "$SHA" \
+              --arg pr_number "$PR_NUMBER" \
+              --arg pr_title "$PR_TITLE" \
+              --arg pr_body "$PR_BODY" \
+              --arg pr_url "$PR_URL" \
+              --arg author "$AUTHOR" \
+              --arg files_changed "$FILES_CHANGED" \
+              --arg additions "$ADDITIONS" \
+              --arg deletions "$DELETIONS" \
+              --arg diff_excerpt "$DIFF_EXCERPT" \
+              --arg diff_truncated "$DIFF_TRUNCATED" \
+              --arg merged_at "$MERGED_AT" \
+              '{
+                repo: $repo,
+                branch: $branch,
+                merge_commit_sha: $sha,
+                pr_number: ($pr_number | if . == "" then null else (try (tonumber) catch null) end),
+                pr_title: $pr_title,
+                pr_body: ($pr_body | if . == "" then null else . end),
+                pr_url: ($pr_url | if . == "" then null else . end),
+                author_login: ($author | if . == "" then null else . end),
+                files_changed: ($files_changed | tonumber? // 0),
+                additions: ($additions | tonumber? // 0),
+                deletions: ($deletions | tonumber? // 0),
+                diff_excerpt: $diff_excerpt,
+                diff_truncated: ($diff_truncated == "true"),
+                merged_at: $merged_at
+              }')
+
+            PAYLOAD_FILE="$(mktemp)"
+            echo "$PAYLOAD" > "$PAYLOAD_FILE"
+
+            SIGNATURE=$(openssl dgst -sha256 -hmac "$SHIPLOG_INGEST_HMAC" -hex < "$PAYLOAD_FILE" | awk '{print $2}')
+
+            HTTP_CODE=$(curl -sS -o /tmp/shiplog-response.json -w "%{http_code}" \
+              -X POST "$SHIPLOG_INGEST_URL" \
+              -H "Content-Type: application/json" \
+              -H "Authorization: Bearer $SHIPLOG_ANON_KEY" \
+              -H "X-Shiplog-Signature: sha256=$SIGNATURE" \
+              --data-binary @"$PAYLOAD_FILE")
+
+            RESPONSE_BODY=$(cat /tmp/shiplog-response.json 2>/dev/null || echo "")
+            echo "  HTTP $HTTP_CODE: ${RESPONSE_BODY:0:200}"
+            rm -f "$PAYLOAD_FILE"
+
+            if [ "$HTTP_CODE" -ge 400 ]; then
+              FAILURES=$((FAILURES + 1))
+            elif echo "$RESPONSE_BODY" | grep -q '"status":"deduped"'; then
+              DEDUPED=$((DEDUPED + 1))
+            else
+              SUCCESSES=$((SUCCESSES + 1))
+            fi
+          done
+
+          echo
+          echo "Summary: $SUCCESSES accepted · $DEDUPED deduped · $FAILURES failed"
+
+          if [ "$FAILURES" -gt 0 ]; then
+            echo "::error::$FAILURES commit(s) failed to ingest"
             exit 1
           fi
