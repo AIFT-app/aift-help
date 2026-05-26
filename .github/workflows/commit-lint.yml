@@ -1,0 +1,178 @@
+# =============================================================================
+# Commit-message lint (soft / advisory).
+#
+# Scans every commit on a PR branch and posts ONE summary comment if any
+# commits are missing the `[PRD: <slug>]` trailer. The check is intentionally
+# **never blocking** — hotfixes and emergencies always ship. The job exits 0
+# regardless of findings; only the PR comment carries the signal.
+#
+# Canonical source: aift-ops/templates/commit-lint.yml
+# Sync to other repos via:
+#   aift-ops/scripts/sync-commit-lint-workflow.sh
+#
+# PRD: aift-ops/specs/shiplog-digest-v2.md §10
+# Convention doc: aift-ops/docs/commit-conventions.md
+# =============================================================================
+
+name: Commit-message lint (advisory)
+
+on:
+  pull_request:
+    branches: [staging, main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  prd-slug-advisory:
+    name: PRD-slug advisory comment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Scan commits for missing [PRD: <slug>]
+        id: scan
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -uo pipefail
+
+          # Collect commits unique to the PR head (not on base).
+          mapfile -t COMMITS < <(git log --pretty='%H%x09%s' "$BASE_SHA..$HEAD_SHA")
+
+          MISSING_FILE="$(mktemp)"
+          : > "$MISSING_FILE"
+
+          # Regex (POSIX-extended): match a [PRD: <slug>] trailer anywhere on
+          # the subject line. The slug character class matches the digest's
+          # cluster-extraction regex in shiplog-digest.
+          SLUG_RE='\[PRD:[[:space:]]*[[:alnum:]_-]+[[:space:]]*\]'
+
+          # Subjects we deliberately skip — these are mechanically-generated
+          # or otherwise legitimately slug-free.
+          SKIP_RE='^(promote|chore\(deps\)|Revert |Merge (branch|pull request))'
+
+          for entry in "${COMMITS[@]}"; do
+            sha="${entry%%$'\t'*}"
+            subj="${entry#*$'\t'}"
+
+            # Skip merge commits — only their constituent commits matter.
+            parents=$(git rev-list --parents -n 1 "$sha" | wc -w)
+            if [ "$parents" -gt 2 ]; then
+              continue
+            fi
+
+            # Skip mechanically-generated subjects.
+            if echo "$subj" | grep -Eq "$SKIP_RE"; then
+              continue
+            fi
+
+            # Skip if subject carries the slug.
+            if echo "$subj" | grep -Eq "$SLUG_RE"; then
+              continue
+            fi
+
+            # Record as missing.
+            echo "- \`${sha:0:7}\` ${subj}" >> "$MISSING_FILE"
+          done
+
+          missing_count=$(wc -l < "$MISSING_FILE" | tr -d ' ')
+          echo "missing_count=${missing_count}" >> "$GITHUB_OUTPUT"
+          echo "missing_file=${MISSING_FILE}" >> "$GITHUB_OUTPUT"
+
+          # Always succeed.
+          exit 0
+
+      - name: Find existing advisory comment
+        if: steps.scan.outputs.missing_count != '0'
+        id: find_comment
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -uo pipefail
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          REPO="${{ github.repository }}"
+
+          # Match our marker so re-runs update one comment instead of
+          # spamming new ones.
+          COMMENT_ID=$(gh api "repos/$REPO/issues/$PR_NUMBER/comments" \
+            --jq '.[] | select(.body | contains("<!-- shiplog-commit-lint -->")) | .id' \
+            | head -n1)
+
+          echo "comment_id=${COMMENT_ID:-}" >> "$GITHUB_OUTPUT"
+
+      - name: Compose advisory body
+        if: steps.scan.outputs.missing_count != '0'
+        id: compose
+        run: |
+          MISSING_FILE="${{ steps.scan.outputs.missing_file }}"
+          BODY_FILE="$(mktemp)"
+
+          cat > "$BODY_FILE" <<'HEAD'
+          <!-- shiplog-commit-lint -->
+          ### Commit-message advisory · `[PRD: <slug>]` missing
+
+          The following commits on this PR don't carry a `[PRD: <slug>]` trailer:
+
+          HEAD
+
+          cat "$MISSING_FILE" >> "$BODY_FILE"
+
+          cat >> "$BODY_FILE" <<'TAIL'
+
+          **Why this matters:** shiplog-digest v2 clusters merges by PRD slug. Slug-less commits surface as stand-alone bullets (if `feature`/`fix`) or in the "+N small changes" tail (if `internal`/`chore`/`infra`) — not grouped with sibling-repo PRs.
+
+          **What to do:**
+          - PRD-worthy change → add `[PRD: <slug>]` to the commit subject (slug = the PRD filename in `aift-ops/specs/` without `.md`).
+          - Hotfix or pure-mechanical change → no action required. Leave a note in the PR description for the reviewer if it isn't obvious.
+
+          Full convention: [`aift-ops/docs/commit-conventions.md`](https://github.com/AIFT-app/aift-ops/blob/main/docs/commit-conventions.md).
+
+          *This check is advisory only and never blocks merges.*
+          TAIL
+
+          echo "body_file=${BODY_FILE}" >> "$GITHUB_OUTPUT"
+
+      - name: Post or update advisory comment
+        if: steps.scan.outputs.missing_count != '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          REPO="${{ github.repository }}"
+          BODY_FILE="${{ steps.compose.outputs.body_file }}"
+          COMMENT_ID="${{ steps.find_comment.outputs.comment_id }}"
+
+          if [ -n "$COMMENT_ID" ]; then
+            gh api -X PATCH "repos/$REPO/issues/comments/$COMMENT_ID" \
+              -F body=@"$BODY_FILE" > /dev/null
+            echo "Updated existing advisory comment #$COMMENT_ID"
+          else
+            gh api "repos/$REPO/issues/$PR_NUMBER/comments" \
+              -F body=@"$BODY_FILE" > /dev/null
+            echo "Posted new advisory comment"
+          fi
+
+      - name: Clean up existing comment when all commits OK
+        if: steps.scan.outputs.missing_count == '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          REPO="${{ github.repository }}"
+
+          COMMENT_ID=$(gh api "repos/$REPO/issues/$PR_NUMBER/comments" \
+            --jq '.[] | select(.body | contains("<!-- shiplog-commit-lint -->")) | .id' \
+            | head -n1)
+
+          if [ -n "$COMMENT_ID" ]; then
+            gh api -X DELETE "repos/$REPO/issues/comments/$COMMENT_ID" > /dev/null
+            echo "Removed stale advisory comment #$COMMENT_ID (all commits now have slugs)"
+          fi
