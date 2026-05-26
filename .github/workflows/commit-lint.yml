@@ -36,7 +36,7 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.event.pull_request.head.sha }}
 
-      - name: Scan commits for missing [PRD: <slug>]
+      - name: "Scan commits for missing [PRD: <slug>]"
         id: scan
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
