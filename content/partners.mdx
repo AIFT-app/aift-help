@@ -12,6 +12,16 @@ A **partner** is the single verified record that ties all those name variants to
 
 Any invoice or bank transaction whose counterparty has not yet been linked to a verified partner shows an amber **⚠ Unverified** badge next to the counterparty name. This badge is a prompt to review and link, not an error — the document is fully processed, it just lacks a verified counterparty connection.
 
+### Where you'll see counterparties
+
+Counterparties appear in three places:
+
+- **On an invoice** — the **Counterparty** field on the invoice detail page
+- **On a bank transaction** — the **Counterparty** row in the transaction detail panel (click any row on the Transactions page)
+- **In the bank statement editor** — the **Counterparty** column when editing an uploaded PDF statement
+
+Each surface uses the same partner picker, with the same verified/unverified pill and the same "+ New partner" affordance.
+
 ## Getting to Partners
 
 From the workspace sidebar, click **Master data**, then **Partners**. The page has two sections:
@@ -20,6 +30,16 @@ From the workspace sidebar, click **Master data**, then **Partners**. The page h
 - **Unverified counterparties** — names that have appeared on documents but have not yet been matched to a partner. Sorted by transaction count so the most active ones appear first.
 
 > The Partners page is only visible to workspace members with the **Accountant** or **Accountant admin** role.
+
+### Filter by where the counterparty first appeared
+
+The Unverified counterparties table has three filter chips above it: **All · Invoices · Transactions**. Each unverified counterparty also shows a **Source** badge:
+
+- **Invoice** — first seen on an uploaded or extracted invoice
+- **Transaction** — first seen on a synced bank transaction
+- **Statement PDF** — first seen on an uploaded bank statement
+
+Use the filter to focus on, say, only the bank-transaction-side names when curating after a fresh statement upload.
 
 ## Adding a Partner
 
@@ -85,17 +105,46 @@ Every time an invoice or bank statement is processed, AI Finance Team runs throu
 
 The key insight: once you have added the right alias for a partner, every future document from that party is verified automatically.
 
-## Verifying an Invoice Counterparty Inline
+### Extra steps for bank transactions
 
-If you spot the ⚠ Unverified badge while reviewing an invoice, you can resolve it without leaving the invoice:
+When a bank transaction is processed (via open banking or after a statement upload), two additional auto-link checks run before the alias step:
+
+1. **Own-account IBAN check** — if the counterparty IBAN on the transaction matches one of your own entity bank accounts, the transaction is treated as an internal transfer between your own accounts and no counterparty is auto-created.
+2. **Verified-partner IBAN match** — if the counterparty IBAN matches one stored on a verified partner record (the **Contact & banking** section of the partner's detail page), the counterparty is auto-linked to that partner with no further action needed.
+
+Adding partner bank IBANs is therefore as valuable as adding aliases: a single saved IBAN means every future incoming or outgoing transfer from that partner is verified automatically.
+
+## Verifying a Counterparty Inline
+
+If you spot the ⚠ Unverified badge while reviewing a document, you can resolve it without leaving the document.
+
+### From an invoice
 
 1. Open the invoice detail page.
 2. In the **Counterparty** dropdown, select the verified partner you want to assign.
 3. The dropdown saves automatically.
 
-When you reassign from an unverified counterparty to a verified partner, AI Finance Team automatically adds the original counterparty name as an alias on the partner. This means the next invoice from that same name will be verified without any action from you.
+### From a bank transaction
 
-Alternatively, click **Verify now →** (shown beneath the dropdown when the counterparty is unverified) to go directly to the Partners page, where you can create a new partner or link the name to an existing one.
+1. On the Transactions page, click any row to open the detail panel.
+2. In the **Counterparty** picker at the top of the panel, search and select the verified partner.
+3. The picker saves automatically and the verified pill appears immediately.
+
+The raw bank name (the text the bank actually sent) is preserved in the picker dropdown header as "Raw bank name: …" so you can see what was originally extracted.
+
+### From the bank statement editor
+
+When editing an uploaded statement (Statements tab → click a statement → **Edit rows**), the **Counterparty** column on each row has the same partner picker. All edits are saved together when you click **Save**.
+
+### For transactions that genuinely have no partner
+
+Bank fees, interest, and own-account transfers don't belong to a partner. The picker has a dedicated **— No counterparty (e.g. bank fee) —** option at the top — selecting it clears any existing link cleanly.
+
+### Reusing the verified link next time
+
+When you reassign from an unverified counterparty to a verified partner, AI Finance Team automatically adds the original counterparty name as an alias on the partner. The next invoice or transaction from that same name will be verified without any action from you.
+
+Alternatively, click **Verify now →** (shown beneath any unverified picker) to go directly to the Partners page, where you can create a new partner or link the name to an existing one.
 
 ## Merging Duplicate Partners
 
