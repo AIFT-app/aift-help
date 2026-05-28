@@ -4,7 +4,7 @@ Some bank transactions will never have a matching invoice — bank fees, interes
 
 ## How it works
 
-When new transactions arrive (via bank statement upload or bank feed), AI Finance Team runs your transaction type rules against every unmatched transaction. Any transaction whose description, counterparty name, or reference matches a rule is immediately marked **No invoice needed** with that transaction type attached. No manual review required.
+When new transactions arrive (via bank statement upload or bank feed), AI Finance Team runs your transaction type rules against every unmatched transaction. Any transaction whose description, partner name, or reference matches a rule is immediately marked **No invoice needed** with that transaction type attached. No manual review required.
 
 For transactions that don't match a rule exactly, the AI can also suggest a type based on the content of the transaction — you will see the confidence level in the transaction detail.
 
@@ -58,7 +58,7 @@ Every pattern is a combination of three fields:
 | Field | What it checks |
 |-------|---------------|
 | **Description** | The transaction's free-text description from the bank |
-| **Counterparty name** | The name of the other party on the transaction |
+| **Partner name** | The name of the other party on the transaction |
 | **Reference** | The payment reference / communication field |
 
 Combined with a match mode:

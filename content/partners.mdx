@@ -1,24 +1,24 @@
 # Managing Partners
 
-Partners are the verified, canonical records for the companies and individuals your workspace does business with — suppliers, customers, platforms, and service providers. Keeping partners up to date means the AI can recognise counterparties on every new invoice or bank transaction automatically, without requiring manual review each time.
+Partners are the verified, canonical records for the companies and individuals your workspace does business with — suppliers, customers, platforms, and service providers. Keeping partners up to date means the AI can recognise the other party on every new invoice or bank transaction automatically, without requiring manual review each time.
 
-## Partners vs Counterparties
+## Verified vs unverified partners
 
-When AI Finance Team extracts an invoice or imports a bank transaction, it records the other party as a **counterparty** — essentially the name as it appeared on the document. The same real-world business can appear under different legal names across documents (for example, "OpenAI OpCo, LLC" on one invoice and "OpenAI, L.L.C." on another).
+When AI Finance Team extracts an invoice or imports a bank transaction, it records the other party as a partner — using the name exactly as it appeared on the document. The same real-world business can appear under several names (for example, "OpenAI OpCo, LLC" on one invoice and "OpenAI, L.L.C." on another).
 
-A **partner** is the single verified record that ties all those name variants together. Once you create a partner and link the counterparty names to it, the AI uses your partner record as the source of truth going forward.
+A **verified partner** is the single canonical record that ties all those name variants together. An **unverified partner** is a raw extracted name that hasn't been curated yet.
 
 ### The ⚠ Unverified badge
 
-Any invoice or bank transaction whose counterparty has not yet been linked to a verified partner shows an amber **⚠ Unverified** badge next to the counterparty name. This badge is a prompt to review and link, not an error — the document is fully processed, it just lacks a verified counterparty connection.
+Any invoice or bank transaction whose partner has not yet been linked to a verified partner shows an amber **⚠ Unverified** badge next to the partner name. This badge is a prompt to review and link, not an error — the document is fully processed, it just lacks a verified partner connection.
 
-### Where you'll see counterparties
+### Where you'll see partners
 
-Counterparties appear in three places:
+Partners appear in three places:
 
-- **On an invoice** — the **Counterparty** field on the invoice detail page
-- **On a bank transaction** — the **Counterparty** row in the transaction detail panel (click any row on the Transactions page)
-- **In the bank statement editor** — the **Counterparty** column when editing an uploaded PDF statement
+- **On an invoice** — the **Partner** field on the invoice detail page
+- **On a bank transaction** — the **Partner** row in the transaction detail panel (click any row on the Transactions page)
+- **In the bank statement editor** — the **Partner** column when editing an uploaded PDF statement
 
 Each surface uses the same partner picker, with the same verified/unverified pill and the same "+ New partner" affordance.
 
@@ -26,14 +26,14 @@ Each surface uses the same partner picker, with the same verified/unverified pil
 
 From the workspace sidebar, click **Master data**, then **Partners**. The page has two sections:
 
-- **Verified partners** — your curated list of known counterparties, with the number of linked counterparty names shown for each.
-- **Unverified counterparties** — names that have appeared on documents but have not yet been matched to a partner. Sorted by transaction count so the most active ones appear first.
+- **Verified partners** — your curated list of known partners. Each row shows the count of **Alternative names** (other forms this partner has been seen under) for that partner.
+- **Unverified partners** — raw partner names that have appeared on documents but have not yet been matched to a verified partner. Sorted by transaction count so the most active ones appear first.
 
 > The Partners page is only visible to workspace members with the **Accountant** or **Accountant admin** role.
 
-### Filter by where the counterparty first appeared
+### Filter by where the partner first appeared
 
-The Unverified counterparties table has three filter chips above it: **All · Invoices · Transactions**. Each unverified counterparty also shows a **Source** badge:
+The Unverified partners table has three filter chips above it: **All · Invoices · Transactions**. Each unverified partner also shows a **Source** badge:
 
 - **Invoice** — first seen on an uploaded or extracted invoice
 - **Transaction** — first seen on a synced bank transaction
@@ -41,15 +41,24 @@ The Unverified counterparties table has three filter chips above it: **All · In
 
 Use the filter to focus on, say, only the bank-transaction-side names when curating after a fresh statement upload.
 
+### The Tax ID collision banner
+
+When two verified partners share the same tax ID, an amber **Possible duplicate partners** banner appears at the top of the Partners page. Click **Review** to expand the panel — each pair has two actions:
+
+- **Merge** — opens the merge dialog with the first partner pre-selected as the one to merge
+- **Not a duplicate** — dismisses the suggestion so the banner stops surfacing it
+
+The banner is visible to accountants only.
+
 ## Adding a Partner
 
-### From an unverified counterparty (recommended)
+### From an unverified partner (recommended)
 
-1. In the **Unverified counterparties** table, find the name you want to verify and click **Add as partner**.
+1. In the **Unverified partners** table, find the name you want to verify and click **Add as partner**.
 2. The form pre-fills with the name and any tax ID extracted from documents. Review and adjust as needed.
 3. Click **Create partner**.
 
-The counterparty is immediately linked to the new partner, and the ⚠ badge disappears from all invoices and transactions that referenced it.
+The unverified partner is immediately linked to the new verified partner, and the ⚠ badge disappears from all invoices and transactions that referenced it.
 
 ### From scratch
 
@@ -57,38 +66,27 @@ Click **New partner** in the top-right corner. Fill in the required **Name** and
 
 ## The Partner Detail Page
 
-Click any partner name to open its detail page. It is divided into four sections:
+Click any partner name to open its detail page. It is divided into these sections:
 
 ### Identity
 
 The partner's canonical name, partner ID, Tax ID, country, and address. Click **Edit** to change these details.
 
-### Aliases
+### Alternative names
 
-Other names this partner appears under on invoices and bank statements — trade names, abbreviated names, former names, or different legal entity designations (for example, "LLC" vs "L.L.C.").
+A single consolidated list of every other name this partner is known under — both:
 
-**Why aliases matter:** When a new invoice arrives, AI Finance Team checks the extracted counterparty name against every partner's canonical name and all its aliases. An exact match (normalised for punctuation and legal-suffix variants) automatically links the counterparty to the partner — no manual action needed.
+- **Auto** entries — names from unverified partners that have been linked to this verified partner (blue badge)
+- **Manual** entries — names you have added by hand (grey badge)
 
-To add an alias:
+**Why alternative names matter:** When a new invoice or bank transaction arrives, AI Finance Team checks the extracted partner name against every verified partner's canonical name and all its alternative names. An exact match (normalised for punctuation and legal-suffix variants) automatically links the new record to the partner — no manual action needed.
 
-1. Type the name in the input field at the bottom of the Aliases section.
+**To add an alternative name:**
+
+1. Type the name in the input field at the bottom of the Alternative names section.
 2. Press **Enter** or click **Add**.
 
-To remove an alias, click the × next to it.
-
-### Linked counterparties
-
-All the counterparty name variants currently linked to this partner. Each entry shows whether it was linked manually (grey label) or auto-merged by the system (⚡ amber label).
-
-**Linking another counterparty manually:**
-
-1. Click **+ Link another counterparty**.
-2. Search for the counterparty name in the dialog.
-3. Click **Link**.
-
-**Separating an auto-merged counterparty:**
-
-Auto-merged entries have a **Separate →** button. Clicking it unlinks the counterparty from this partner so you can link it elsewhere or leave it unverified.
+**To remove an alternative name**, click the × next to it, then click **Remove** to confirm. Removing an auto entry unlinks the underlying unverified partner so it can be linked elsewhere or left unverified.
 
 ### Contact & banking
 
@@ -96,58 +94,77 @@ Address and bank account details for the partner.
 
 ## How Automatic Matching Works
 
-Every time an invoice or bank statement is processed, AI Finance Team runs through these steps to identify the counterparty:
+Every time an invoice or bank statement is processed, AI Finance Team runs through these steps to identify the partner:
 
-1. **Tax ID match** — if the extracted tax ID matches a counterparty already in the workspace, that record is reused.
-2. **Name match** — if the extracted name (normalised) matches an existing counterparty name, that record is reused.
-3. **Alias match** — if the extracted name matches a verified partner's canonical name or any of its aliases, a new counterparty record is created and automatically linked to that partner.
-4. **New counterparty** — if no match is found, a new unverified counterparty is created and the ⚠ badge appears.
+1. **Tax ID match** — if the extracted tax ID matches a partner already in the workspace, that record is reused.
+2. **Name match** — if the extracted name (normalised) matches an existing partner name, that record is reused.
+3. **Alternative-name match** — if the extracted name matches a verified partner's canonical name or any of its alternative names, a new unverified-partner record is created and automatically linked to that verified partner.
+4. **New partner** — if no match is found, a new unverified partner is created and the ⚠ badge appears.
 
-The key insight: once you have added the right alias for a partner, every future document from that party is verified automatically.
+The key insight: once you have added the right alternative name for a partner, every future document from that party is verified automatically.
 
 ### Extra steps for bank transactions
 
-When a bank transaction is processed (via open banking or after a statement upload), two additional auto-link checks run before the alias step:
+When a bank transaction is processed (via open banking or after a statement upload), two additional auto-link checks run before the alternative-name step:
 
-1. **Own-account IBAN check** — if the counterparty IBAN on the transaction matches one of your own entity bank accounts, the transaction is treated as an internal transfer between your own accounts and no counterparty is auto-created.
-2. **Verified-partner IBAN match** — if the counterparty IBAN matches one stored on a verified partner record (the **Contact & banking** section of the partner's detail page), the counterparty is auto-linked to that partner with no further action needed.
+1. **Own-account IBAN check** — if the IBAN on the transaction matches one of your own entity bank accounts, the transaction is treated as an internal transfer between your own accounts and no partner is auto-created.
+2. **Verified-partner IBAN match** — if the IBAN matches one stored on a verified partner record (the **Contact & banking** section of the partner's detail page), the transaction is auto-linked to that partner with no further action needed.
 
-Adding partner bank IBANs is therefore as valuable as adding aliases: a single saved IBAN means every future incoming or outgoing transfer from that partner is verified automatically.
+Adding partner bank IBANs is therefore as valuable as adding alternative names: a single saved IBAN means every future incoming or outgoing transfer from that partner is verified automatically.
 
-## Verifying a Counterparty Inline
+## Verifying a Partner Inline
 
 If you spot the ⚠ Unverified badge while reviewing a document, you can resolve it without leaving the document.
 
 ### From an invoice
 
 1. Open the invoice detail page.
-2. In the **Counterparty** dropdown, select the verified partner you want to assign.
+2. In the **Partner** dropdown, select the verified partner you want to assign.
 3. The dropdown saves automatically.
 
 ### From a bank transaction
 
 1. On the Transactions page, click any row to open the detail panel.
-2. In the **Counterparty** picker at the top of the panel, search and select the verified partner.
+2. In the **Partner** picker at the top of the panel, search and select the verified partner.
 3. The picker saves automatically and the verified pill appears immediately.
 
 The raw bank name (the text the bank actually sent) is preserved in the picker dropdown header as "Raw bank name: …" so you can see what was originally extracted.
 
 ### From the bank statement editor
 
-When editing an uploaded statement (Statements tab → click a statement → **Edit rows**), the **Counterparty** column on each row has the same partner picker. All edits are saved together when you click **Save**.
+When editing an uploaded statement (Statements tab → click a statement → **Edit rows**), the **Partner** column on each row has the same partner picker. All edits are saved together when you click **Save**.
 
 ### For transactions that genuinely have no partner
 
-Bank fees, interest, and own-account transfers don't belong to a partner. The picker has a dedicated **— No counterparty (e.g. bank fee) —** option at the top — selecting it clears any existing link cleanly.
+Bank fees, interest, and own-account transfers don't belong to a partner. The picker has a dedicated **— No partner (e.g. bank fee) —** option at the top — selecting it clears any existing link cleanly.
 
 ### Reusing the verified link next time
 
-When you reassign from an unverified counterparty to a verified partner, AI Finance Team automatically adds the original counterparty name as an alias on the partner. The next invoice or transaction from that same name will be verified without any action from you.
+When you reassign from an unverified partner to a verified partner, AI Finance Team automatically adds the original unverified name as an alternative name on the verified partner. The next invoice or transaction from that same name will be verified without any action from you.
 
 Alternatively, click **Verify now →** (shown beneath any unverified picker) to go directly to the Partners page, where you can create a new partner or link the name to an existing one.
 
 ## Merging Duplicate Partners
 
-If you find that two partner records represent the same real-world entity, open the one you want to keep, go to **Linked counterparties**, and click **+ Link another counterparty** to attach any counterparties currently assigned to the duplicate. Then delete the duplicate using the **Delete partner** button on its detail page.
+If two verified partners represent the same real-world entity, you can merge them — either from the **Tax ID collision banner** on the Partners page or from the partner detail page directly.
 
-> Deleting a partner unlinks its counterparties — it does not delete the invoices or transactions associated with them.
+### From the partner detail page
+
+1. Open the partner you want to merge **away** (the duplicate you want to retire).
+2. Click **Merge into…** in the page header.
+3. In the dialog, search for the partner you want to keep — by name or tax ID. Click the match in the results.
+4. A confirmation screen summarises what will happen. Click **Merge** to confirm, or **Back** to choose a different target.
+
+### What happens during a merge
+
+When you merge partner A into partner B:
+
+- **All linked partner records** that were attached to A are re-attached to B.
+- **A's name** is preserved as an **alternative name** on B (with a "manual" badge), so future invoices and transactions that mention A's name are still matched automatically.
+- **A's tax ID, IBANs, and other identity fields** are not copied — B's values are kept as-is. Review B's Contact & banking section afterwards if A had information B did not.
+- **A is archived** with a permanent reference back to B (so audit-log links to A still work).
+- **Any pending tax-ID collision suggestions** involving A are automatically dismissed.
+
+The merge is one-way and cannot be undone — verify you have the right source and target before confirming.
+
+> Merging requires the **Accountant** or **Accountant admin** role.
