@@ -11,6 +11,7 @@ export const navigation: NavItem[] = [
   { title: 'Uploading Files', slug: 'uploading-files' },
   { title: 'Multi-Currency & Exchange Rates', slug: 'currency-exchange' },
   { title: 'Managing Entities', slug: 'master-data-entities' },
+  { title: 'NAV Online Számla (Hungary)', slug: 'nav-online-szamla' },
   { title: 'Managing Partners', slug: 'partners' },
   { title: 'Connecting Bank Accounts', slug: 'bank-accounts' },
   { title: 'Uploading Bank Statements', slug: 'bank-statement-upload' },
