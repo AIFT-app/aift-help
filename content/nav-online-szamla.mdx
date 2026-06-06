@@ -1,0 +1,58 @@
+# Connecting NAV Online Számla (Hungary)
+
+For Hungarian companies, AI Finance Team can import invoice data directly from the Hungarian Tax Authority's **NAV Online Számla** system. Because suppliers report their outgoing invoices to NAV, your cost (supplier) invoices often appear in AI Finance Team **before** you upload the PDF — and your own sales invoices are pulled automatically too.
+
+This connection is **read-only**. AI Finance Team only *reads* invoice data from NAV. It never issues, reports, modifies, or annuls invoices on your behalf.
+
+## Before You Start
+
+- This feature is available only for entities whose country is **Hungary (HU)**. Non-Hungarian entities will not see the NAV section.
+- You must have the **client owner** role in the workspace. Accountant-role users can see the connection *status* but never the credentials, and cannot connect or change them.
+- You need a **NAV technical user** ("technikai felhasználó"), which you create inside your own NAV account. Specifically, AI Finance Team needs:
+  - the entity's **tax number** (the 8-digit core),
+  - the technical user's **login**,
+  - the technical user's **password**,
+  - the technical user's **XML signing key** ("aláírókulcs").
+
+> You do **not** need the XML exchange key ("cserekulcs") — that is only used for issuing invoices, which AI Finance Team never does.
+
+Your credentials are stored encrypted in a secure vault. **Your accountant can never see them** — only the sync status.
+
+## Creating a NAV Technical User
+
+1. Log in to the [NAV Online Számla portal](https://onlineszamla.nav.gov.hu/) with your company's primary user.
+2. Go to **User management → Create technical user**.
+3. Assign the technical user the **invoice query** permission ("Számla lekérdezése").
+4. Save and note the **login** and **password**, then generate and copy the **signing key**.
+
+## Connecting in AI Finance Team
+
+1. From the workspace sidebar, open **Master data → Entities** and select your Hungarian entity.
+2. Scroll to the **NAV Online Számla** section.
+3. Enter the tax number, technical-user login, password, and signing key.
+4. Click **Save & connect**.
+5. Click **Test connection**. AI Finance Team runs a small query against NAV to validate the credentials, then begins syncing.
+
+Once active, AI Finance Team polls NAV regularly and imports both your **outbound** (sales) and **inbound** (supplier) invoices.
+
+## What Happens to the Imported Data
+
+- **NAV-only invoices become real ledger entries** even before any PDF exists. These show as *document-less* until a matching PDF is uploaded.
+- When you (or your supplier's document) later upload the **PDF** for an invoice already pulled from NAV, the two are **merged into a single invoice** — no duplicate. The PDF becomes the viewable document; NAV's government-validated amounts remain authoritative.
+- **Income vs. expense is set from NAV's direction**: invoices NAV reports as *outbound* for your entity are income; *inbound* are expenses.
+- If NAV's figures disagree with an uploaded document beyond a small tolerance, the invoice is flagged as an **exception** for your accountant to review — nothing is silently overwritten.
+
+## Pausing or Disconnecting
+
+- **Pause sync** stops polling but keeps your credentials and imported data.
+- **Disconnect** permanently deletes your stored NAV credentials from the vault. Imported invoice data stays in your ledger.
+
+## Notes & Limitations
+
+- NAV shows a buyer only the inbound invoices that suppliers actually reported, and only the fields they reported. Most compliant B2B invoices since mid-2020 are covered, but "every cost invoice appears automatically" is not guaranteed. Invoices flagged as *partial* carry a small marker.
+- A modification or cancellation (storno) invoice is imported as its own entry, linked to the original — it is never merged into the original invoice.
+
+## Troubleshooting
+
+- **"Last sync error"** in the status panel usually means the credentials were rejected by NAV. Re-check the login, password, and signing key, then **Update credentials** and **Test connection** again. (NAV technical-user passwords expire periodically and must be rotated.)
+- If no invoices appear after connecting, confirm the technical user has the **invoice query** permission in NAV and that the entity's tax number is correct.
