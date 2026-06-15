@@ -1,12 +1,18 @@
 'use client'
 
 import { useState } from 'react'
+import { usePathname } from 'next/navigation'
 import { Bars3Icon, XMarkIcon, ArrowTopRightOnSquareIcon } from '@heroicons/react/20/solid'
 import * as Headless from '@headlessui/react'
 import { DocsSidebar } from './DocsSidebar'
+import { LanguageSwitcher } from './LanguageSwitcher'
+import { splitLocale, localizeHref, ui } from '@/lib/i18n'
 
 export function DocsHeader() {
   const [mobileOpen, setMobileOpen] = useState(false)
+  const pathname = usePathname()
+  const { locale } = splitLocale(pathname)
+  const t = ui[locale]
 
   return (
     <>
@@ -17,23 +23,26 @@ export function DocsHeader() {
               type="button"
               onClick={() => setMobileOpen(true)}
               className="-m-2 rounded-md p-2 text-zinc-500 hover:text-zinc-950 lg:hidden"
-              aria-label="Open navigation"
+              aria-label={t.openNav}
             >
               <Bars3Icon className="size-5" />
             </button>
-            <a href="/" className="flex items-center gap-2.5">
+            <a href={localizeHref('/', locale)} className="flex items-center gap-2.5">
               <span className="text-sm font-semibold text-zinc-950">AI Finance Team</span>
               <span className="text-zinc-200">|</span>
-              <span className="text-sm text-zinc-500">Help</span>
+              <span className="text-sm text-zinc-500">{t.helpSuffix}</span>
             </a>
           </div>
-          <a
-            href="https://aift.aifinance.team"
-            className="flex items-center gap-1.5 text-sm text-zinc-500 transition-colors hover:text-zinc-950"
-          >
-            Back to app
-            <ArrowTopRightOnSquareIcon className="size-3.5" />
-          </a>
+          <div className="flex items-center gap-1 sm:gap-3">
+            <LanguageSwitcher />
+            <a
+              href="https://aift.aifinance.team"
+              className="flex items-center gap-1.5 text-sm text-zinc-500 transition-colors hover:text-zinc-950"
+            >
+              <span className="hidden sm:inline">{t.backToApp}</span>
+              <ArrowTopRightOnSquareIcon className="size-3.5" />
+            </a>
+          </div>
         </nav>
       </header>
 
@@ -48,12 +57,12 @@ export function DocsHeader() {
           className="fixed inset-y-0 left-0 z-50 w-72 bg-white shadow-xl transition duration-300 ease-in-out data-closed:-translate-x-full"
         >
           <div className="flex h-14 items-center justify-between border-b border-zinc-950/5 px-4">
-            <span className="text-sm font-semibold text-zinc-950">Navigation</span>
+            <span className="text-sm font-semibold text-zinc-950">{t.navigation}</span>
             <button
               type="button"
               onClick={() => setMobileOpen(false)}
               className="-m-2 rounded-md p-2 text-zinc-500 hover:text-zinc-950"
-              aria-label="Close navigation"
+              aria-label={t.closeNav}
             >
               <XMarkIcon className="size-5" />
             </button>
