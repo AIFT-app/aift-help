@@ -1,0 +1,102 @@
+# Dateien hochladen
+
+Sie können Rechnungen und Kontoauszüge einzeln, in großen Mengen oder als ZIP-Archiv hochladen. Alle Uploads laufen im Hintergrund — Sie können weiterarbeiten, während sie verarbeitet werden.
+
+Der Upload-Ablauf ist auf den Seiten **Rechnungen** und **Transaktionen** identisch. Die Unterschiede (was die Extraktion als Nächstes tut, wie Duplikate und Bankkonten behandelt werden) sind je nach Art spezifisch — siehe [Arbeiten mit Rechnungen](/invoices) und [Kontoauszüge hochladen](/bank-statement-upload).
+
+Möchten Sie den Upload-Schritt ganz überspringen? Sie können auch [Dokumente per E-Mail an Ihren Arbeitsbereich weiterleiten](/email-forwarding), und sie werden automatisch erfasst.
+
+## Einen Upload starten
+
+Drei Wege, um zu beginnen, alle gleichwertig:
+
+1. **Klicken Sie auf die Upload-Schaltfläche** oben rechts auf der Seite **Rechnungen** oder **Transaktionen**.
+2. **Ziehen Sie Dateien aus Ihrem Dateimanager** auf die Seite. In dem Moment, in dem Sie etwas hineinziehen, erscheint eine seitenfüllende Ablagezone; lassen Sie an einer beliebigen Stelle der Seite los.
+3. **Ziehen Sie ein ZIP-Archiv** auf die Seite — der Browser entpackt es für Sie (siehe [ZIP-Archive](#zip-archives) unten).
+
+Die Dateiauswahl des Betriebssystems unterstützt Mehrfachauswahl — halten Sie Strg/Cmd beim Klicken gedrückt, oder klicken Sie mit gedrückter Umschalttaste, um einen Bereich auszuwählen. Sie können einen ganzen Ordner mit Belegen auswählen oder ablegen, und sie reihen sich alle gemeinsam in die Warteschlange ein.
+
+## Das Upload-Fenster
+
+In dem Moment, in dem Sie einen Upload starten, erscheint ein Fenster in der **unteren rechten Ecke** des Bildschirms. Jede in Bearbeitung befindliche Datei erhält ihre eigene Zeile. Das Fenster ist beständig — es bleibt bestehen, während Sie sich im Arbeitsbereich bewegen, und es übersteht ein Aktualisieren der Seite.
+
+### Zeilenstatus
+
+| Bezeichnung | Bedeutung |
+|---|---|
+| **In Warteschlange** | Wartet in der Upload-Warteschlange. |
+| **Hochladen…** | Die Datei wird in den Speicher kopiert. |
+| **Extrahieren…** | Die KI liest die Datei. |
+| **Seite X / Y wird extrahiert** | Der Kontoauszug wird Seite für Seite gelesen. |
+| **Kategorisieren…** | Den Kontoauszug-Transaktionen werden Kategorien zugewiesen (kurz). |
+| **Extrahiert** | Die Rechnungsextraktion ist abgeschlossen. |
+| **Fertig · N Transaktionen (M zusammengeführt)** | Die Kontoauszug-Extraktion ist abgeschlossen. |
+| **Bereits vorhanden** | Die Rechnungsdatei ist ein Duplikat einer bestehenden — klicken Sie auf die Zeile, um das Original zu öffnen. |
+| **Fehlgeschlagen: …** | Etwas ist schiefgelaufen. Rechts erscheint eine Schaltfläche **Erneut versuchen**. |
+
+### Automatisches Einklappen und Schließen
+
+Sobald jede Zeile einen Endzustand erreicht hat (Extrahiert, Fertig, Bereits vorhanden oder Fehlgeschlagen), klappt das Fenster nach einigen Sekunden zu einer kleinen Pille unten rechts zusammen. Klicken Sie auf die Pille, um die Liste wieder aufzuklappen, oder klicken Sie auf das **×** in der Kopfzeile, um es ganz zu schließen.
+
+### Aktualisieren oder Arbeitsbereich wechseln
+
+- **Das Aktualisieren der Seite** ist sicher — das Fenster lädt alle laufenden Uploads neu. Sie verlieren keinen Überblick über bereits laufende Vorgänge.
+- **Der Wechsel zu einem anderen Arbeitsbereich** leert das Fenster; es lädt dann die laufenden Uploads des neuen Arbeitsbereichs neu.
+- **Das Öffnen der App in einem zweiten Tab** ist ebenfalls sicher — beide Tabs sehen dieselben laufenden Zeilen.
+
+## Einen fehlgeschlagenen Upload erneut versuchen
+
+Wenn die Extraktion für eine bestimmte Datei fehlschlägt (meist, wenn ein PDF ungewöhnlich groß ist oder ein komplexes Layout hat), wird die Zeile im Fenster rot und zeigt eine Schaltfläche **Erneut versuchen**. Klicken Sie darauf, um die Extraktion erneut auszuführen.
+
+Wenn dieselbe Datei wiederholt fehlschlägt, benötigt vermutlich die Datei selbst Aufmerksamkeit:
+
+- **Versuchen Sie eine kleinere Version.** Öffnen Sie das PDF in der Vorschau → Datei → Exportieren und reduzieren Sie die Dateigröße, oder lassen Sie es durch ein Komprimierungsprogramm laufen. Oft lässt sich ein 7-MB-PDF auf unter 1 MB verkleinern, ohne dass die Lesbarkeit leidet.
+- **Konvertieren Sie das Format.** Wenn Sie ein Bild hochgeladen haben, versuchen Sie, es als PDF zu speichern (oder umgekehrt).
+- **Erfassen Sie sie manuell.** Als letzten Ausweg kann ein Buchhalter die Rechnung manuell über die **Stammdaten** anlegen.
+
+## Beschränkungen für Dateitypen
+
+| Bereich | Akzeptierte Typen | Maximale Größe pro Datei |
+|---|---|---|
+| **Rechnungen** | PDF, JPEG, PNG, WebP, HEIC | 50 MB |
+| **Kontoauszüge** | nur PDF | 50 MB |
+
+Alles außerhalb dieser Typen wird zu einer roten Zeile im Fenster mit **Falscher Dateityp**.
+
+## ZIP-Archive
+
+Wenn Sie einen Ordner mit Belegen als `.zip` archiviert haben, legen Sie das Archiv direkt auf der Upload-Fläche ab — der Browser entpackt es im Arbeitsspeicher Ihres Computers und speist jede Datei als separate Zeile in das Fenster ein.
+
+### Schritt für Schritt
+
+1. Ziehen Sie die `.zip`-Datei auf die Seite **Rechnungen** oder **Transaktionen** (oder klicken Sie auf die Upload-Schaltfläche und wählen Sie die ZIP-Datei aus).
+2. Während der Browser sie entpackt, erscheint für das Archiv kurz eine Zeile mit der Bezeichnung **Extrahieren…**.
+3. Jede gültige Datei in der ZIP-Datei wird zu einer eigenen Zeile.
+4. Die ZIP-Datei selbst wird nie hochgeladen — nur die extrahierten Dateien landen in Ihrem Arbeitsbereich.
+
+### Was innerhalb einer ZIP-Datei akzeptiert wird
+
+Es gelten dieselben Regeln pro Datei wie für lose Uploads. Auf der Seite **Rechnungen** sollte die ZIP-Datei Rechnungen (PDFs oder Bilder) enthalten; auf der Seite **Transaktionen** sollte sie Kontoauszug-PDFs enthalten. Alles andere wird zu einer roten Zeile mit **Falscher Dateityp**.
+
+### Einschränkungen
+
+| Beschränkung | Wert |
+|---|---|
+| Maximale ZIP-Größe | 200 MB |
+| Maximale Dateigröße innerhalb einer ZIP-Datei | 50 MB |
+| Verschlüsselte / passwortgeschützte ZIP-Dateien | Nicht unterstützt — Sie sehen **Verschlüsselte ZIP-Dateien werden nicht unterstützt** |
+| Verschachtelte ZIP-Dateien (eine `.zip` innerhalb des Archivs) | Nicht unterstützt — die innere ZIP-Datei wird zu einer Zeile „Falscher Dateityp", der Rest des Archivs wird jedoch normal verarbeitet |
+| macOS-Metadaten (`__MACOSX/`, `.DS_Store`) | Werden stillschweigend ignoriert — sie erscheinen nicht als Fehler im Fenster |
+| Ordnerstruktur innerhalb des Archivs | Wird abgeflacht — nur der Dateiname bleibt erhalten; Ordnernamen werden nicht beibehalten |
+
+### Tipps
+
+- **Sie können lose Dateien und ZIP-Dateien in einem Vorgang mischen.** Ziehen Sie zwei lose PDFs und ein ZIP-Archiv gemeinsam auf die Seite. Sie alle fließen in dasselbe Fenster.
+- **Legen Sie auf der richtigen Seite ab.** Eine auf der Seite Rechnungen ausgewählte ZIP-Datei wird so behandelt, als enthielte sie Rechnungen; auf der Seite Transaktionen, als enthielte sie Kontoauszüge. Es gibt keinen gemischten Modus — laden Sie die Dateien der falschen Art von der jeweils anderen Seite erneut hoch.
+- **Komprimieren Sie vor dem Zippen eines großen Stapels.** Wenn sich Ihre ZIP-Datei den 200 MB nähert, komprimieren Sie zuerst die größten Belege; die ZIP-Obergrenze ist die maßgebliche Beschränkung, nicht die Anzahl der Dateien.
+
+## Tipps für große Stapel
+
+- **Verwenden Sie die Dateiauswahl für bekannte Ordner und Drag-and-drop für bereits geöffnete Dateien** — beide landen im selben Fenster.
+- **Warten Sie nicht am Fenster.** Uploads laufen im Hintergrund; Sie können die gestrigen Transaktionen weiter kategorisieren, während die heutigen Rechnungen verarbeitet werden.
+- **Prüfen Sie das Fenster, bevor Sie gehen.** Wenn Sie mit der Arbeit für heute fertig sind, werfen Sie einen Blick auf das Fenster — bei roten Zeilen lohnt sich vor dem Feierabend ein Erneut versuchen oder ein kleinerer erneuter Export.

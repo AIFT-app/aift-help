@@ -1,0 +1,170 @@
+# Partner verwalten
+
+Partner sind die verifizierten, kanonischen Datensätze für die Unternehmen und Personen, mit denen Ihr Arbeitsbereich Geschäfte macht — Lieferanten, Kunden, Plattformen und Dienstleister. Wenn Sie Partner aktuell halten, kann die KI die andere Partei auf jeder neuen Rechnung oder Banktransaktion automatisch erkennen, ohne dass jedes Mal eine manuelle Prüfung nötig ist.
+
+## Verifizierte vs. nicht verifizierte Partner
+
+Wenn AI Finance Team eine Rechnung extrahiert oder eine Banktransaktion importiert, erfasst es die andere Partei als Partner — und zwar mit dem Namen genau so, wie er auf dem Dokument erschien. Dasselbe reale Unternehmen kann unter mehreren Namen auftauchen (zum Beispiel „OpenAI OpCo, LLC" auf einer Rechnung und „OpenAI, L.L.C." auf einer anderen).
+
+Ein **verifizierter Partner** ist der einzelne kanonische Datensatz, der all diese Namensvarianten zusammenführt. Ein **nicht verifizierter Partner** ist ein roher extrahierter Name, der noch nicht aufbereitet wurde.
+
+### Das Badge ⚠ Nicht verifiziert
+
+Jede Rechnung oder Banktransaktion, deren Partner noch nicht mit einem verifizierten Partner verknüpft wurde, zeigt neben dem Partnernamen ein gelbes Badge **⚠ Nicht verifiziert**. Dieses Badge ist eine Aufforderung zum Prüfen und Verknüpfen, kein Fehler — das Dokument ist vollständig verarbeitet, es fehlt lediglich die Verbindung zu einem verifizierten Partner.
+
+### Wo Sie Partner sehen
+
+Partner erscheinen an drei Stellen:
+
+- **Auf einer Rechnung** — das Feld **Partner** auf der Rechnungsdetailseite
+- **Auf einer Banktransaktion** — die Zeile **Partner** im Detailfenster der Transaktion (klicken Sie auf eine beliebige Zeile auf der Seite Transaktionen)
+- **Im Kontoauszug-Editor** — die Spalte **Partner** beim Bearbeiten eines hochgeladenen PDF-Kontoauszugs
+
+Jeder Bereich verwendet dieselbe Partnerauswahl, mit derselben Pille verifiziert/nicht verifiziert und derselben Funktion „+ Neuer Partner".
+
+## So gelangen Sie zu den Partnern
+
+Klicken Sie in der Seitenleiste des Arbeitsbereichs auf **Stammdaten** und dann auf **Partner**. Die Seite hat zwei Abschnitte:
+
+- **Verifizierte Partner** — Ihre aufbereitete Liste bekannter Partner. Jede Zeile zeigt die Anzahl der **Alternativen Namen** (andere Formen, unter denen dieser Partner gesehen wurde) für diesen Partner.
+- **Nicht verifizierte Partner** — rohe Partnernamen, die auf Dokumenten erschienen sind, aber noch keinem verifizierten Partner zugeordnet wurden. Nach Transaktionsanzahl sortiert, sodass die aktivsten zuerst erscheinen.
+
+> Die Seite Partner ist nur für Mitglieder des Arbeitsbereichs mit der Rolle **Buchhalter** oder **Buchhalter-Admin** sichtbar.
+
+### Filtern danach, wo der Partner zuerst aufgetaucht ist
+
+Die Tabelle der nicht verifizierten Partner hat darüber drei Filter-Chips: **Alle · Rechnungen · Transaktionen**. Jeder nicht verifizierte Partner zeigt außerdem ein **Quelle**-Badge:
+
+- **Rechnung** — zuerst auf einer hochgeladenen oder extrahierten Rechnung gesehen
+- **Transaktion** — zuerst auf einer synchronisierten Banktransaktion gesehen
+- **Kontoauszug PDF** — zuerst auf einem hochgeladenen Kontoauszug gesehen
+
+Verwenden Sie den Filter, um sich beispielsweise nach einem frischen Kontoauszug-Upload nur auf die Namen aus den Banktransaktionen zu konzentrieren.
+
+### Das Banner zur Steuernummer-Kollision
+
+Wenn zwei verifizierte Partner dieselbe Steuernummer teilen, erscheint oben auf der Seite Partner ein gelbes Banner **Mögliche doppelte Partner erkannt**. Klicken Sie auf **Prüfen**, um das Panel aufzuklappen — jedes Paar hat zwei Aktionen:
+
+- **Zusammenführen** — öffnet den Zusammenführen-Dialog, wobei der erste Partner als der zusammenzuführende vorausgewählt ist
+- **Kein Duplikat** — verwirft den Vorschlag, sodass das Banner ihn nicht mehr anzeigt
+
+Das Banner ist nur für Buchhalter sichtbar.
+
+## Einen Partner hinzufügen
+
+### Aus einem nicht verifizierten Partner (empfohlen)
+
+1. Suchen Sie in der Tabelle **Nicht verifizierte Partner** den Namen, den Sie verifizieren möchten, und klicken Sie auf **Partner erstellen**.
+2. Das Formular wird mit dem Namen und einer eventuell aus Dokumenten extrahierten Steuernummer vorausgefüllt. Prüfen und passen Sie nach Bedarf an.
+3. Klicken Sie auf **Partner erstellen**.
+
+Der nicht verifizierte Partner wird sofort mit dem neuen verifizierten Partner verknüpft, und das Badge ⚠ verschwindet von allen Rechnungen und Transaktionen, die auf ihn verwiesen haben.
+
+### Von Grund auf
+
+Klicken Sie oben rechts auf **Neuer Partner**. Füllen Sie das erforderliche Feld **Name** und beliebige optionale Felder aus (Partner-ID, Steuernummer, Land, Adresse, Bankkonten) und klicken Sie dann auf **Speichern**.
+
+## Die Partnerdetailseite
+
+Klicken Sie auf einen beliebigen Partnernamen, um dessen Detailseite zu öffnen. Sie ist in folgende Abschnitte unterteilt:
+
+### Identität
+
+Der kanonische Name des Partners, die Partner-ID, die Steuernummer, das Land und die Adresse. Klicken Sie auf **Bearbeiten**, um diese Angaben zu ändern.
+
+### Alternative Namen
+
+Eine einzige konsolidierte Liste aller weiteren Namen, unter denen dieser Partner bekannt ist — sowohl:
+
+- **Auto**-Einträge — Namen von nicht verifizierten Partnern, die mit diesem verifizierten Partner verknüpft wurden (blaues Badge)
+- **Manuell**-Einträge — Namen, die Sie von Hand hinzugefügt haben (graues Badge)
+
+**Warum alternative Namen wichtig sind:** Wenn eine neue Rechnung oder Banktransaktion eintrifft, gleicht AI Finance Team den extrahierten Partnernamen mit dem kanonischen Namen jedes verifizierten Partners und all seinen alternativen Namen ab. Eine exakte Übereinstimmung (normalisiert für Zeichensetzung und Varianten von Rechtsformzusätzen) verknüpft den neuen Datensatz automatisch mit dem Partner — kein manuelles Eingreifen nötig.
+
+**So fügen Sie einen alternativen Namen hinzu:**
+
+1. Geben Sie den Namen in das Eingabefeld am unteren Rand des Abschnitts Alternative Namen ein.
+2. Drücken Sie **Enter** oder klicken Sie auf **Hinzufügen**.
+
+**Um einen alternativen Namen zu entfernen**, klicken Sie auf das × daneben und dann zur Bestätigung auf **Entfernen**. Das Entfernen eines Auto-Eintrags hebt die Verknüpfung des zugrunde liegenden nicht verifizierten Partners auf, sodass er anderswo verknüpft oder unverifiziert gelassen werden kann.
+
+### Kontakt & Bankverbindung
+
+Adresse und Bankkontodaten des Partners.
+
+## Wie der automatische Abgleich funktioniert
+
+Jedes Mal, wenn eine Rechnung oder ein Kontoauszug verarbeitet wird, durchläuft AI Finance Team diese Schritte, um den Partner zu identifizieren:
+
+1. **Abgleich der Steuernummer** — wenn die extrahierte Steuernummer mit einem bereits im Arbeitsbereich vorhandenen Partner übereinstimmt, wird dieser Datensatz wiederverwendet.
+2. **Namensabgleich** — wenn der extrahierte Name (normalisiert) mit einem vorhandenen Partnernamen übereinstimmt, wird dieser Datensatz wiederverwendet.
+3. **Abgleich über alternative Namen** — wenn der extrahierte Name mit dem kanonischen Namen eines verifizierten Partners oder einem seiner alternativen Namen übereinstimmt, wird ein neuer nicht verifizierter Partner-Datensatz erstellt und automatisch mit diesem verifizierten Partner verknüpft.
+4. **Neuer Partner** — wenn keine Übereinstimmung gefunden wird, wird ein neuer nicht verifizierter Partner erstellt und das Badge ⚠ erscheint.
+
+Die zentrale Erkenntnis: Sobald Sie den richtigen alternativen Namen für einen Partner hinzugefügt haben, wird jedes künftige Dokument von dieser Partei automatisch verifiziert.
+
+### Zusätzliche Schritte bei Banktransaktionen
+
+Wenn eine Banktransaktion verarbeitet wird (über Open Banking oder nach einem Kontoauszug-Upload), laufen vor dem Schritt mit den alternativen Namen zwei zusätzliche automatische Verknüpfungsprüfungen:
+
+1. **IBAN-Prüfung auf eigenes Konto** — wenn die IBAN der Transaktion mit einem Ihrer eigenen Unternehmens-Bankkonten übereinstimmt, wird die Transaktion als interne Überweisung zwischen Ihren eigenen Konten behandelt, und es wird kein Partner automatisch erstellt.
+2. **IBAN-Abgleich mit verifiziertem Partner** — wenn die IBAN mit einer auf einem verifizierten Partner-Datensatz gespeicherten IBAN übereinstimmt (Abschnitt **Kontakt & Bankverbindung** auf der Detailseite des Partners), wird die Transaktion ohne weiteres Zutun automatisch mit diesem Partner verknüpft.
+
+Das Hinzufügen von Partner-IBANs ist daher genauso wertvoll wie das Hinzufügen alternativer Namen: Eine einzige gespeicherte IBAN bedeutet, dass jede künftige ein- oder ausgehende Überweisung dieses Partners automatisch verifiziert wird.
+
+## Einen Partner direkt verifizieren
+
+Wenn Ihnen das Badge ⚠ Nicht verifiziert beim Prüfen eines Dokuments auffällt, können Sie es beheben, ohne das Dokument zu verlassen.
+
+### Aus einer Rechnung
+
+1. Öffnen Sie die Rechnungsdetailseite.
+2. Wählen Sie im Dropdown **Partner** den verifizierten Partner aus, den Sie zuweisen möchten.
+3. Das Dropdown speichert automatisch.
+
+### Aus einer Banktransaktion
+
+1. Klicken Sie auf der Seite Transaktionen auf eine beliebige Zeile, um das Detailfenster zu öffnen.
+2. Suchen und wählen Sie in der Partnerauswahl **Partner** oben im Fenster den verifizierten Partner.
+3. Die Auswahl speichert automatisch, und die Pille verifiziert erscheint sofort.
+
+Der rohe Bankname (der Text, den die Bank tatsächlich gesendet hat) bleibt in der Kopfzeile des Auswahl-Dropdowns als „Roher Bankname: …" erhalten, sodass Sie sehen können, was ursprünglich extrahiert wurde.
+
+### Aus dem Kontoauszug-Editor
+
+Beim Bearbeiten eines hochgeladenen Kontoauszugs (Reiter Kontoauszüge → auf einen Kontoauszug klicken → **Zeilen bearbeiten**) hat die Spalte **Partner** in jeder Zeile dieselbe Partnerauswahl. Alle Änderungen werden gemeinsam gespeichert, wenn Sie auf **Speichern** klicken.
+
+### Für Transaktionen, die tatsächlich keinen Partner haben
+
+Bankgebühren, Zinsen und Überweisungen zwischen eigenen Konten gehören zu keinem Partner. Die Auswahl hat oben eine eigene Option **— Keine Partner (z. B. Bankgebühr) —** — wenn Sie sie auswählen, wird eine bestehende Verknüpfung sauber aufgehoben.
+
+### Die verifizierte Verknüpfung beim nächsten Mal wiederverwenden
+
+Wenn Sie von einem nicht verifizierten Partner zu einem verifizierten Partner umzuweisen, fügt AI Finance Team den ursprünglichen nicht verifizierten Namen automatisch als alternativen Namen beim verifizierten Partner hinzu. Die nächste Rechnung oder Transaktion mit genau diesem Namen wird ohne Ihr Zutun verifiziert.
+
+Alternativ klicken Sie auf **Jetzt verifizieren →** (unter jeder nicht verifizierten Auswahl angezeigt), um direkt zur Seite Partner zu gelangen, wo Sie einen neuen Partner erstellen oder den Namen mit einem bestehenden verknüpfen können.
+
+## Doppelte Partner zusammenführen
+
+Wenn zwei verifizierte Partner dasselbe reale Unternehmen darstellen, können Sie sie zusammenführen — entweder über das **Banner zur Steuernummer-Kollision** auf der Seite Partner oder direkt von der Partnerdetailseite.
+
+### Von der Partnerdetailseite
+
+1. Öffnen Sie den Partner, den Sie **wegführen** möchten (das Duplikat, das Sie ausmustern wollen).
+2. Klicken Sie in der Kopfzeile der Seite auf **Zusammenführen mit…**.
+3. Suchen Sie im Dialog nach dem Partner, den Sie behalten möchten — nach Name oder Steuernummer. Klicken Sie auf die Übereinstimmung in den Ergebnissen.
+4. Ein Bestätigungsbildschirm fasst zusammen, was passieren wird. Klicken Sie auf **Zusammenführen**, um zu bestätigen, oder auf **Zurück**, um ein anderes Ziel zu wählen.
+
+### Was während einer Zusammenführung geschieht
+
+Wenn Sie Partner A mit Partner B zusammenführen:
+
+- **Alle verknüpften Partner-Datensätze**, die an A angehängt waren, werden an B angehängt.
+- **Der Name von A** bleibt als **alternativer Name** bei B erhalten (mit einem „manuell"-Badge), sodass künftige Rechnungen und Transaktionen, die den Namen von A nennen, weiterhin automatisch zugeordnet werden.
+- **Die Steuernummer, IBANs und sonstigen Identitätsfelder von A** werden nicht kopiert — die Werte von B bleiben unverändert. Prüfen Sie anschließend den Abschnitt Kontakt & Bankverbindung von B, falls A Informationen hatte, die B nicht hatte.
+- **A wird archiviert** mit einem dauerhaften Verweis zurück auf B (sodass Verknüpfungen aus dem Prüfprotokoll zu A weiterhin funktionieren).
+- **Alle ausstehenden Vorschläge zur Steuernummer-Kollision**, die A betreffen, werden automatisch verworfen.
+
+Die Zusammenführung erfolgt in eine Richtung und kann nicht rückgängig gemacht werden — vergewissern Sie sich vor dem Bestätigen, dass Sie die richtige Quelle und das richtige Ziel haben.
+
+> Das Zusammenführen erfordert die Rolle **Buchhalter** oder **Buchhalter-Admin**.

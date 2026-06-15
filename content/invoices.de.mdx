@@ -1,0 +1,137 @@
+# Arbeiten mit Rechnungen
+
+AI Finance Team verarbeitet Rechnungen automatisch — es extrahiert die wichtigsten Daten, identifiziert Partner und schlägt Kategorien vor. Dieser Artikel erklärt, wie Sie Rechnungsdaten anzeigen, prüfen, bearbeiten und exportieren.
+
+## Rechnungen hochladen
+
+Klicken Sie oben rechts auf der Seite Rechnungen auf **Rechnungen hochladen**, oder ziehen Sie eine oder mehrere Dateien (PDFs, JPEGs, PNGs, WebP oder HEIC) direkt auf die Seite. Sie können eine Rechnung nach der anderen hochladen, viele auf einmal oder ein `.zip`-Archiv mit Rechnungen — der Browser entpackt das Archiv und reiht jede Datei einzeln in die Warteschlange ein.
+
+Unten rechts erscheint ein Fortschrittsfenster, das jede Datei beim Hochladen und Extrahieren anzeigt. Sie können weiterarbeiten — das Fenster bleibt sichtbar, während Sie navigieren, und ein Aktualisieren der Seite unterbricht keinen laufenden Vorgang.
+
+Die vollständige Upload-Mechanik — Drag-and-drop, Mehrfachauswahl, ZIP-Archive, das erneute Versuchen fehlgeschlagener Extraktionen — finden Sie unter [Dateien hochladen](/uploading-files).
+
+### Duplikaterkennung
+
+Wenn Sie eine Datei hochladen, deren Inhalt mit einer bereits im Arbeitsbereich vorhandenen Rechnung übereinstimmt, erkennt AI Finance Team dies automatisch (anhand des SHA-256-Hashes der Datei) und verknüpft den neuen Upload mit dem bestehenden Datensatz, anstatt erneut zu extrahieren. Die Zeile im Upload-Fenster zeigt in Blau **Bereits vorhanden** an — klicken Sie darauf, um direkt zur Originalrechnung zu springen.
+
+Wenn Sie beide als eigenständige Rechnungen behalten möchten (selten, kommt aber vor, wenn ein Lieferant dasselbe PDF für zwei verschiedene Belege wiederverwendet), kann ein Buchhalter die Duplikatmarkierung auf der Rechnungsdetailseite entfernen.
+
+## Die Rechnungsliste
+
+Klicken Sie in der Seitenleiste des Arbeitsbereichs auf **Rechnungen**, um alle Rechnungen im Arbeitsbereich zu sehen. Jede Zeile zeigt:
+
+- **Rechnungsnummer** — die aus dem Dokument extrahierte Nummer
+- **Datum** — das Ausstellungsdatum
+- **Partner** — die andere Partei auf der Rechnung (Lieferant oder Kunde)
+- **Richtung** — ob es sich um Einnahmen (Sie sind der Verkäufer) oder eine Ausgabe (Sie sind der Käufer) handelt
+- **Betrag** — der Bruttobetrag in der Rechnungswährung; falls eine Umrechnung in die Basiswährung vorliegt, erscheint der umgerechnete Betrag darunter in kleinerer Schrift. Einzelheiten zu FX-Status-Badges und zur Herkunft der Kurse finden Sie unter [Mehrwährungsfähigkeit & Wechselkurse](/currency-exchange).
+- **Status** — der Extraktionsstatus (Ausstehend, In Bearbeitung, Abgeschlossen oder Fehlgeschlagen)
+- **Kat.** — ein kleines Symbol, falls die Positionen eine Kategorisierungsprüfung benötigen oder die Kategorisierung fehlgeschlagen ist
+
+Als **Duplikat** oder **Prüfen** markierte Rechnungen tragen ein Badge neben der Rechnungsnummer. Rechnungen ohne zugewiesenes Unternehmen tragen ein **Unternehmen erforderlich**-Badge.
+
+### Vorschau einer Rechnung
+
+Klicken Sie am Ende einer beliebigen Zeile auf das Augensymbol, um auf der rechten Bildschirmseite eine Vorschau-Schublade zu öffnen. Die Schublade zeigt das ursprüngliche PDF-Dokument, ohne dass Sie die Listenseite verlassen müssen.
+
+**Tastenkürzel in der Vorschau-Schublade:**
+
+| Taste | Aktion |
+|-----|--------|
+| `←` `→` | Zur vorherigen oder nächsten Rechnung in der Liste navigieren |
+| `E` | Den vollständigen Rechnungseditor öffnen |
+| `Esc` | Die Schublade schließen |
+
+Sie können auch die Schaltflächen **←** und **→** in der Kopfzeile der Schublade verwenden oder auf **Editor öffnen →** klicken, um direkt zur Rechnungsdetailseite zu gelangen.
+
+Um die Vorschau ohne Maus zu öffnen, fokussieren Sie eine Zeile mit der Tastatur und drücken Sie die `Leertaste`.
+
+## Die Rechnungsdetailseite
+
+Klicken Sie auf eine beliebige Rechnungsnummer, um deren Detailseite zu öffnen. Diese Seite zeigt alle extrahierten Daten in einer strukturierten, schreibgeschützten Ansicht neben dem ursprünglichen PDF.
+
+Die Seite ist in Abschnitte unterteilt:
+
+- **Kopfzeile** — Rechnungsnummer, Ausstellungsdatum, Fälligkeitsdatum, Lieferdatum, Währung und Richtung
+- **Parteien** — Name und Steuernummer des Verkäufers, Name und Steuernummer des Käufers
+- **Beträge** — Nettosumme, USt-Summe und Bruttosumme
+- **Positionen** — eine Tabelle mit jeder Position: Beschreibung, Menge, Einzelpreis, Nettobetrag, USt-Satz, Bruttobetrag und zugewiesene Kategorie
+- **Prüfprotokoll** — eine Aufzeichnung jeder manuellen Änderung an dieser Rechnung, mit dem geänderten Feld, dem alten Wert, dem neuen Wert und der Person, die die Änderung vorgenommen hat
+
+## Eine Rechnung bearbeiten
+
+Um extrahierte Daten zu korrigieren, klicken Sie oben rechts auf der Rechnungsdetailseite auf **Bearbeiten**. Dadurch wird das Vollbild-Bearbeitungsoverlay geöffnet.
+
+Der Editor zeigt links das ursprüngliche PDF und rechts ein bearbeitbares Formular. Jedes Feld im Formular ist anklickbar:
+
+- **Kopfzeilenfelder** (Rechnungsnummer, Datumsangaben, Währung, Richtung) — klicken Sie auf den Wert, um ihn direkt zu bearbeiten. Drücken Sie `Enter` oder klicken Sie woanders hin, um zu speichern. Änderungen werden einzeln und sofort gespeichert — es gibt keine Speichern-Schaltfläche für das gesamte Formular.
+- **Parteienfelder** (Name und Steuernummer von Verkäufer/Käufer) — gleiches Verhalten zum Bearbeiten per Klick.
+- **Betragsfelder** (Netto, USt, Brutto) — gleiches Verhalten zum Bearbeiten per Klick.
+
+### Bei Mauszeiger hervorheben
+
+Wenn Sie im Editor mit dem Mauszeiger über ein Feld fahren, wird der entsprechende Wert links im PDF hervorgehoben. So lassen sich extrahierte Daten leicht mit dem Quelldokument abgleichen, besonders wenn ein Wert verdächtig aussieht.
+
+Fahren Sie mit dem Mauszeiger über eine Positionsbeschreibung, um diesen Text im PDF hervorzuheben. Die Hervorhebung verwendet eine gelbe Überlagerung direkt auf der Textebene des PDFs — sie verändert das Dokument nicht.
+
+### Positionen bearbeiten
+
+Die Positionstabelle im Editor ist vollständig bearbeitbar. Für jede Position:
+
+- Klicken Sie auf eine beliebige Zelle (Beschreibung, Menge, Einzelpreis, USt-Satz oder Kategorie), um sie zu bearbeiten
+- Änderungen werden gespeichert, sobald Sie woanders hin klicken
+- Die Spalten **Nettobetrag** und **Bruttobetrag** werden automatisch berechnet — sie sind schreibgeschützt
+
+Um eine Position hinzuzufügen, klicken Sie unter der Tabelle auf **Position hinzufügen**. Um eine zu entfernen, klicken Sie am Ende der Zeile auf das **×**.
+
+### Ein Feld zurücksetzen
+
+Wenn Sie ein Feld bearbeitet haben und den ursprünglich aus dem Dokument extrahierten Wert wiederherstellen möchten, klicken Sie auf das Zurücksetzen-Symbol **↩**, das während der Bearbeitung neben dem Feld erscheint. Dadurch wird der von der KI extrahierte Wert wiederhergestellt.
+
+### Den Editor schließen
+
+Drücken Sie `Esc` oder klicken Sie oben rechts auf die Schaltfläche **×**, um den Editor zu schließen und zur schreibgeschützten Detailansicht zurückzukehren.
+
+Sie können den Editor auch mit dem Tastenkürzel `E` öffnen, wenn Sie sich auf der Detailseite befinden und kein Eingabefeld fokussiert ist.
+
+## Eine Rechnung herunterladen
+
+Verwenden Sie die Schaltfläche **Herunterladen** auf der Rechnungsdetailseite, um die Rechnung zu exportieren. Klicken Sie auf die Schaltfläche, um das ursprüngliche PDF sofort herunterzuladen, oder klicken Sie auf den Pfeil **▾**, um ein Format zu wählen:
+
+| Format | Inhalt |
+|--------|----------|
+| **PDF** | Das ursprünglich hochgeladene Dokument |
+| **XLSX** | Arbeitsmappe mit zwei Blättern: ein Übersichtsblatt „Invoice" und ein Blatt „Line Items" mit allen Positionsdaten |
+| **CSV** | Eine flache Datei mit der Rechnungskopfzeile in den ersten Zeilen und den Positionen darunter |
+| **JSON** | Strukturiertes JSON mit allen Rechnungsfeldern und einem `line_items`-Array |
+
+Alle Downloads sind nach der Rechnungsnummer benannt (oder beim PDF nach dem ursprünglichen Dateinamen). XLSX, CSV und JSON verwenden die strukturierten Daten der Plattform — sie spiegeln alle manuellen Korrekturen wider, die Sie vorgenommen haben.
+
+## Das Prüfprotokoll
+
+Jede manuelle Änderung wird im Prüfprotokoll am unteren Rand der Rechnungsdetailseite festgehalten. Jeder Eintrag zeigt:
+
+- Das geänderte Feld
+- Den vorherigen Wert
+- Den neuen Wert
+- Wer die Änderung wann vorgenommen hat
+
+Das Prüfprotokoll ist schreibgeschützt. Es kann weder gelöscht noch bearbeitet werden.
+
+## Den Extraktionsstatus verstehen
+
+| Status | Bedeutung |
+|--------|---------|
+| **Ausstehend** | Das Dokument ist eingegangen und steht in der Warteschlange zur Verarbeitung |
+| **In Bearbeitung** | Die KI extrahiert gerade Daten aus dem Dokument |
+| **Abgeschlossen** | Die Extraktion ist beendet; die Daten stehen zur Prüfung bereit |
+| **Fehlgeschlagen** | Die Extraktion konnte nicht abgeschlossen werden; das Dokument muss möglicherweise erneut hochgeladen oder manuell erfasst werden |
+
+Der Status **Abgeschlossen** bedeutet nicht, dass die Daten korrekt sind — er bedeutet, dass die KI ein Ergebnis erzeugt hat. Prüfen Sie stets Rechnungen mit einem **Prüfen**-Badge, da dies Fälle sind, in denen die KI-Konfidenz unter dem Schwellenwert lag.
+
+## Tipps
+
+- **Halten Sie die Unternehmensdatensätze aktuell.** Die KI verwendet Unternehmensnamen, Steuernummern und alternative Namen, um Partner zu identifizieren. Wenn ein Lieferant als unbekannt erscheint, fügen Sie ihn unter Stammdaten → Unternehmen mit korrektem Namen und korrekter Steuernummer hinzu.
+- **Nutzen Sie die Vorschau-Schublade**, um Dokumente schnell zu prüfen, ohne die Liste zu verlassen. Navigieren Sie mit ← und → durch die gesamte Liste, um einen Stapel Rechnungen effizient zu sichten.
+- **Laden Sie als XLSX herunter**, wenn Sie strukturierte Rechnungsdaten mit einer Kollegin oder einem Kollegen teilen müssen, die bzw. der mit Excel arbeitet — das Format mit zwei Blättern hält Übersicht und Positionen getrennt.
+- **Laden Sie als JSON herunter** für Integrationen — die strukturierte Ausgabe entspricht den intern verwendeten Feldern und kann von den meisten Buchhaltungskonnektoren direkt verarbeitet werden.

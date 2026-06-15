@@ -1,0 +1,58 @@
+# NAV Online Számla verbinden (Ungarn)
+
+Für ungarische Unternehmen kann AI Finance Team Rechnungsdaten direkt aus dem System **NAV Online Számla** der ungarischen Steuerbehörde importieren. Da Lieferanten ihre Ausgangsrechnungen an die NAV melden, erscheinen Ihre Eingangsrechnungen (von Lieferanten) in AI Finance Team oft **bevor** Sie das PDF hochladen — und Ihre eigenen Ausgangsrechnungen werden ebenfalls automatisch abgerufen.
+
+Diese Verbindung ist **schreibgeschützt**. AI Finance Team *liest* ausschließlich Rechnungsdaten aus der NAV. Es stellt, meldet, ändert oder storniert niemals Rechnungen in Ihrem Namen.
+
+## Bevor Sie beginnen
+
+- Diese Funktion ist nur für Unternehmen verfügbar, deren Land **Ungarn (HU)** ist. Nicht-ungarische Unternehmen sehen den NAV-Abschnitt nicht.
+- Sie müssen die Rolle **Mandant (Inhaber)** im Arbeitsbereich haben. Nutzer mit der Rolle Buchhalter sehen den *Status* der Verbindung, aber niemals die Zugangsdaten, und können sie weder verbinden noch ändern.
+- Sie benötigen einen **technischen NAV-Benutzer** („technikai felhasználó"), den Sie in Ihrem eigenen NAV-Konto erstellen. Konkret benötigt AI Finance Team:
+  - die **Steuernummer** des Unternehmens (den 8-stelligen Kern),
+  - den **Login** des technischen Benutzers,
+  - das **Passwort** des technischen Benutzers,
+  - den **XML-Signaturschlüssel** des technischen Benutzers („aláírókulcs").
+
+> Sie benötigen **nicht** den XML-Austauschschlüssel („cserekulcs") — dieser wird nur zum Ausstellen von Rechnungen verwendet, was AI Finance Team niemals tut.
+
+Ihre Zugangsdaten werden verschlüsselt in einem sicheren Tresor gespeichert. **Ihr Buchhalter kann sie niemals sehen** — nur den Synchronisierungsstatus.
+
+## Einen technischen NAV-Benutzer erstellen
+
+1. Melden Sie sich mit dem primären Benutzer Ihres Unternehmens im [Portal NAV Online Számla](https://onlineszamla.nav.gov.hu/) an.
+2. Gehen Sie zu **Benutzerverwaltung → Technischen Benutzer erstellen**.
+3. Weisen Sie dem technischen Benutzer die Berechtigung **Rechnungsabfrage** zu („Számla lekérdezése").
+4. Speichern Sie und notieren Sie sich **Login** und **Passwort**, generieren und kopieren Sie dann den **Signaturschlüssel**.
+
+## In AI Finance Team verbinden
+
+1. Öffnen Sie in der Seitenleiste des Arbeitsbereichs **Stammdaten → Unternehmen** und wählen Sie Ihr ungarisches Unternehmen aus.
+2. Scrollen Sie zum Abschnitt **NAV Online Számla**.
+3. Geben Sie die Steuernummer, den Login des technischen Benutzers, das Passwort und den Signaturschlüssel ein.
+4. Klicken Sie auf **Speichern & verbinden**.
+5. Klicken Sie auf **Verbindung testen**. AI Finance Team führt eine kleine Abfrage an die NAV aus, um die Zugangsdaten zu validieren, und beginnt dann mit der Synchronisierung.
+
+Sobald die Verbindung aktiv ist, fragt AI Finance Team die NAV regelmäßig ab und importiert sowohl Ihre **ausgehenden** (Ausgangs-) als auch Ihre **eingehenden** (Eingangs-)Rechnungen.
+
+## Was mit den importierten Daten geschieht
+
+- **Reine NAV-Rechnungen werden zu echten Hauptbucheinträgen**, noch bevor ein PDF existiert. Diese werden als *belegslos* angezeigt, bis ein passendes PDF hochgeladen wird.
+- Wenn Sie (oder das Dokument Ihres Lieferanten) später das **PDF** für eine bereits aus der NAV abgerufene Rechnung hochladen, werden die beiden zu **einer einzigen Rechnung zusammengeführt** — kein Duplikat. Das PDF wird zum anzeigbaren Dokument; die behördlich validierten Beträge der NAV bleiben maßgeblich.
+- **Einnahme vs. Ausgabe wird aus der Richtung der NAV bestimmt**: Rechnungen, die die NAV für Ihr Unternehmen als *ausgehend* meldet, sind Einnahmen; *eingehende* sind Ausgaben.
+- Wenn die Zahlen der NAV über eine kleine Toleranz hinaus von einem hochgeladenen Dokument abweichen, wird die Rechnung als **Ausnahme** zur Prüfung durch Ihren Buchhalter markiert — es wird nichts stillschweigend überschrieben.
+
+## Pausieren oder Trennen
+
+- **Synchronisierung pausieren** stoppt die Abfrage, behält aber Ihre Zugangsdaten und die importierten Daten.
+- **Trennen** löscht Ihre gespeicherten NAV-Zugangsdaten dauerhaft aus dem Tresor. Die importierten Rechnungsdaten bleiben in Ihrem Hauptbuch.
+
+## Hinweise & Einschränkungen
+
+- Die NAV zeigt einem Käufer nur die eingehenden Rechnungen an, die Lieferanten tatsächlich gemeldet haben, und nur die Felder, die sie gemeldet haben. Die meisten konformen B2B-Rechnungen seit Mitte 2020 sind abgedeckt, aber „jede Eingangsrechnung erscheint automatisch" ist nicht garantiert. Als *unvollständig* markierte Rechnungen tragen einen kleinen Marker.
+- Eine Korrektur- oder Stornorechnung wird als eigener Eintrag importiert, verknüpft mit dem Original — sie wird niemals in die Originalrechnung zusammengeführt.
+
+## Fehlerbehebung
+
+- **„Letzter Synchronisierungsfehler"** im Statusfenster bedeutet meist, dass die Zugangsdaten von der NAV abgelehnt wurden. Prüfen Sie Login, Passwort und Signaturschlüssel erneut, dann **Zugangsdaten aktualisieren** und erneut **Verbindung testen**. (Die Passwörter technischer NAV-Benutzer laufen regelmäßig ab und müssen erneuert werden.)
+- Wenn nach dem Verbinden keine Rechnungen erscheinen, vergewissern Sie sich, dass der technische Benutzer die Berechtigung **Rechnungsabfrage** in der NAV hat und dass die Steuernummer des Unternehmens korrekt ist.
