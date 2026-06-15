@@ -1,0 +1,58 @@
+# A NAV Online Számla csatlakoztatása (Magyarország)
+
+Magyar cégek esetében az AI Finance Team közvetlenül a Nemzeti Adó- és Vámhivatal **NAV Online Számla** rendszeréből tudja importálni a számlaadatokat. Mivel a beszállítók jelentik a kimenő számláikat a NAV felé, a költség- (beszállítói) számlái gyakran **azelőtt** megjelennek az AI Finance Teamben, hogy feltöltené a PDF-et — és a saját kimenő számlái is automatikusan beérkeznek.
+
+Ez a kapcsolat **csak olvasható**. Az AI Finance Team kizárólag *olvassa* a számlaadatokat a NAV-tól. Soha nem állít ki, jelent, módosít vagy érvénytelenít számlákat az Ön nevében.
+
+## Mielőtt belekezdene
+
+- Ez a funkció csak olyan cégek számára érhető el, amelyek országa **Magyarország (HU)**. A nem magyar cégek nem fogják látni a NAV szakaszt.
+- A munkaterületen **ügyfél tulajdonos** szerepkörrel kell rendelkeznie. A könyvelő szerepkörű felhasználók látják a kapcsolat *állapotát*, de a belépési adatokat soha, és nem tudják csatlakoztatni vagy módosítani azokat.
+- Szüksége van egy **NAV technikai felhasználóra** („technikai felhasználó"), amelyet a saját NAV-fiókjában hoz létre. Konkrétan az AI Finance Teamnek a következőkre van szüksége:
+  - a cég **adószáma** (a 8 jegyű törzsszám),
+  - a technikai felhasználó **neve**,
+  - a technikai felhasználó **jelszava**,
+  - a technikai felhasználó **XML aláírókulcsa** („aláírókulcs").
+
+> **Nincs** szüksége az XML cserekulcsra („cserekulcs") — azt csak számlák kiállításához használják, amit az AI Finance Team soha nem tesz.
+
+A belépési adatait titkosítva, biztonságos páncélteremben tároljuk. **A könyvelője soha nem láthatja őket** — csak a szinkron állapotát.
+
+## NAV technikai felhasználó létrehozása
+
+1. Jelentkezzen be a [NAV Online Számla portálra](https://onlineszamla.nav.gov.hu/) a cége elsődleges felhasználójával.
+2. Lépjen a **Felhasználók kezelése → Technikai felhasználó létrehozása** menüpontba.
+3. Rendelje a technikai felhasználóhoz a **számla lekérdezése** jogosultságot („Számla lekérdezése").
+4. Mentse el, és jegyezze fel a **felhasználónevet** és a **jelszót**, majd generálja és másolja ki az **aláírókulcsot**.
+
+## Csatlakozás az AI Finance Teamben
+
+1. A munkaterület oldalsávjában nyissa meg a **Törzsadatok → Cégek** menüpontot, és válassza ki a magyar cégét.
+2. Görgessen le a **NAV Online Számla** szakaszhoz.
+3. Adja meg az adószámot, a technikai felhasználó nevét, jelszavát és az aláírókulcsot.
+4. Kattintson a **Mentés és csatlakozás** gombra.
+5. Kattintson a **Kapcsolat tesztelése** gombra. Az AI Finance Team egy kis lekérdezést futtat a NAV felé a belépési adatok ellenőrzésére, majd megkezdi a szinkronizálást.
+
+Aktiválás után az AI Finance Team rendszeresen lekérdezi a NAV-ot, és importálja mind a **kimenő** (értékesítési), mind a **bejövő** (beszállítói) számláit.
+
+## Mi történik az importált adatokkal
+
+- **A csak NAV-os számlák valódi főkönyvi tételekké válnak** még azelőtt, hogy bármilyen PDF létezne. Ezek *dokumentum nélküliként* jelennek meg, amíg egy megfelelő PDF-et fel nem töltenek.
+- Amikor Ön (vagy a beszállítója dokumentuma) később feltölti a **PDF-et** egy már NAV-ról beérkezett számlához, a kettő **egyetlen számlává egyesül** — nincs duplikáció. A PDF lesz a megtekinthető dokumentum; a NAV hatóságilag validált összegei maradnak a mértékadók.
+- **A bevétel és kiadás a NAV iránya alapján kerül beállításra**: azok a számlák, amelyeket a NAV az Ön cégénél *kimenőként* jelent, bevételek; a *bejövők* kiadások.
+- Ha a NAV számai egy kis tűréshatáron túl eltérnek egy feltöltött dokumentumtól, a számla **kivételként** kerül megjelölésre a könyvelője általi áttekintésre — semmit nem írunk felül csendben.
+
+## Szüneteltetés vagy lecsatlakozás
+
+- A **Szinkron szüneteltetése** leállítja a lekérdezést, de megtartja a belépési adatait és az importált adatokat.
+- A **Lecsatlakozás** véglegesen törli a tárolt NAV belépési adatait a páncélteremből. Az importált számlaadatok a főkönyvében maradnak.
+
+## Megjegyzések és korlátozások
+
+- A NAV egy vevőnek csak azokat a bejövő számlákat mutatja, amelyeket a beszállítók ténylegesen jelentettek, és csak azokat a mezőket, amelyeket jelentettek. A legtöbb szabályos B2B számla 2020 közepe óta lefedett, de az, hogy „minden költségszámla automatikusan megjelenik", nem garantált. A *részlegesként* megjelölt számlák egy kis jelölést viselnek.
+- Egy módosító vagy érvénytelenítő (storno) számla saját bejegyzésként importálódik, az eredetihez kapcsolva — soha nem egyesül az eredeti számlába.
+
+## Hibaelhárítás
+
+- **Az „Utolsó szinkronhiba"** az állapotpanelben általában azt jelenti, hogy a NAV elutasította a belépési adatokat. Ellenőrizze újra a felhasználónevet, jelszót és aláírókulcsot, majd **Adatok frissítése** és ismét **Kapcsolat tesztelése**. (A NAV technikai felhasználói jelszavak időszakosan lejárnak, és cserélni kell őket.)
+- Ha a csatlakozás után nem jelennek meg számlák, ellenőrizze, hogy a technikai felhasználó rendelkezik-e a **számla lekérdezése** jogosultsággal a NAV-ban, és hogy a cég adószáma helyes-e.

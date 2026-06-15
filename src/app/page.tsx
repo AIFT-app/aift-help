@@ -1,32 +1,20 @@
 import type { Metadata } from 'next'
 import { MDXRemote } from 'next-mdx-remote/rsc'
-import remarkGfm from 'remark-gfm'
-import rehypeSlug from 'rehype-slug'
-import rehypePrettyCode from 'rehype-pretty-code'
 import { getArticle, extractHeadings } from '@/lib/content'
 import { ArticleLayout } from '@/components/ArticleLayout'
+import { mdxOptions, mdxComponents } from '@/lib/mdx'
 
 export const metadata: Metadata = {
   title: 'Home',
 }
 
-const mdxOptions = {
-  mdxOptions: {
-    remarkPlugins: [remarkGfm],
-    rehypePlugins: [
-      rehypeSlug,
-      [rehypePrettyCode, { theme: 'github-light' }],
-    ] as never,
-  },
-}
-
 export default async function HomePage() {
-  const { content } = await getArticle('')
+  const { content } = await getArticle('', 'en')
   const toc = extractHeadings(content)
 
   return (
-    <ArticleLayout toc={toc}>
-      <MDXRemote source={content} options={mdxOptions} />
+    <ArticleLayout toc={toc} locale="en">
+      <MDXRemote source={content} options={mdxOptions} components={mdxComponents('en')} />
     </ArticleLayout>
   )
 }

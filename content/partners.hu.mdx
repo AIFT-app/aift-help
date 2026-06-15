@@ -1,0 +1,170 @@
+# Partnerek kezelése
+
+A partnerek a hitelesített, kanonikus rekordjai azoknak a cégeknek és magánszemélyeknek, akikkel a munkaterülete üzletet köt — beszállítók, vevők, platformok és szolgáltatók. A partnerek naprakészen tartása azt jelenti, hogy az AI minden új számlán vagy banki tranzakción automatikusan fel tudja ismerni a másik felet, anélkül hogy minden alkalommal kézi ellenőrzésre lenne szükség.
+
+## Hitelesített és nem hitelesített partnerek
+
+Amikor az AI Finance Team kinyer egy számlát vagy importál egy banki tranzakciót, a másik felet partnerként rögzíti — pontosan azzal a névvel, ahogyan az a dokumentumon megjelent. Ugyanaz a valós vállalkozás több néven is megjelenhet (például „OpenAI OpCo, LLC" az egyik számlán és „OpenAI, L.L.C." egy másikon).
+
+A **hitelesített partner** az az egyetlen kanonikus rekord, amely az összes névváltozatot összeköti. A **nem hitelesített partner** egy nyers, kinyert név, amelyet még nem gondoztak.
+
+### A ⚠ Nem hitelesített jelzés
+
+Minden olyan számla vagy banki tranzakció, amelynek partnere még nincs hitelesített partnerhez kapcsolva, borostyánsárga **⚠ Nem hitelesített** jelzést mutat a partnernév mellett. Ez a jelzés ellenőrzésre és kapcsolásra ösztönöz, nem hiba — a dokumentum teljesen fel van dolgozva, csak hiányzik a hitelesített partnerkapcsolat.
+
+### Hol látja a partnereket
+
+A partnerek három helyen jelennek meg:
+
+- **Egy számlán** — a **Partner** mező a számla részletoldalán
+- **Egy banki tranzakción** — a **Partner** sor a tranzakció részletpaneljén (kattintson bármelyik sorra a Tranzakciók oldalon)
+- **A bankszámlakivonat-szerkesztőben** — a **Partner** oszlop egy feltöltött PDF-kivonat szerkesztésekor
+
+Minden felület ugyanazt a partnerválasztót használja, ugyanazzal a hitelesített/nem hitelesített pirulával és ugyanazzal a „+ Új partner" lehetőséggel.
+
+## A Partnerekhez navigálás
+
+A munkaterület oldalsávjában kattintson a **Törzsadatok**, majd a **Partnerek** menüpontra. Az oldalnak két szakasza van:
+
+- **Hitelesített partnerek** — a gondozott listája az ismert partnereknek. Minden sor mutatja az **Alternatív nevek** számát (más formák, amelyek alatt ezt a partnert látták) az adott partnerhez.
+- **Nem hitelesített partnerek** — nyers partnernevek, amelyek megjelentek a dokumentumokon, de még nincsenek hitelesített partnerhez párosítva. Tranzakciószám szerint rendezve, így a legaktívabbak jelennek meg elsőként.
+
+> A Partnerek oldal csak a **Könyvelő** vagy **Könyvelő admin** szerepkörrel rendelkező munkaterület-tagok számára látható.
+
+### Szűrés aszerint, hol jelent meg először a partner
+
+A Nem hitelesített partnerek táblázat felett három szűrőcsip található: **Összes · Számlák · Tranzakciók**. Minden nem hitelesített partner egy **Forrás** jelzést is mutat:
+
+- **Számla** — először egy feltöltött vagy kinyert számlán látták
+- **Tranzakció** — először egy szinkronizált banki tranzakción látták
+- **Kivonat-PDF** — először egy feltöltött bankszámlakivonaton látták
+
+Használja a szűrőt, hogy például csak a bank-tranzakció oldali nevekre összpontosítson egy friss kivonatfeltöltés utáni gondozáskor.
+
+### Az adószám-ütközés sáv
+
+Amikor két hitelesített partner ugyanazt az adószámot osztja, egy borostyánsárga **Lehetséges ismétlődő partnerek** sáv jelenik meg a Partnerek oldal tetején. Kattintson az **Áttekintés** gombra a panel kibontásához — minden párhoz két művelet tartozik:
+
+- **Összevonás** — megnyitja az összevonási párbeszédet az első partnerrel előre kiválasztva, mint az összevonandóval
+- **Nem duplikáció** — elveti a javaslatot, így a sáv nem mutatja tovább
+
+A sáv csak a könyvelők számára látható.
+
+## Partner hozzáadása
+
+### Nem hitelesített partnerből (ajánlott)
+
+1. A **Nem hitelesített partnerek** táblázatban keresse meg a hitelesíteni kívánt nevet, és kattintson a **Partner létrehozása** gombra.
+2. Az űrlap előre kitöltődik a névvel és a dokumentumokból kinyert adószámmal. Ellenőrizze és igazítsa szükség szerint.
+3. Kattintson a **Partner létrehozása** gombra.
+
+A nem hitelesített partner azonnal az új hitelesített partnerhez kapcsolódik, és a ⚠ jelzés eltűnik minden olyan számláról és tranzakcióról, amely hivatkozott rá.
+
+### A semmiből
+
+Kattintson az **Új partner** gombra a jobb felső sarokban. Töltse ki a kötelező **Név** mezőt és bármely választható mezőt (Partner azonosító, Adószám, ország, cím, bankszámlák), majd kattintson a **Mentés** gombra.
+
+## A partner részletoldala
+
+Kattintson bármelyik partnernévre a részletoldal megnyitásához. A következő szakaszokra tagolódik:
+
+### Azonosítás
+
+A partner kanonikus neve, partner azonosítója, adószáma, országa és címe. Kattintson a **Szerkesztés** gombra ezen adatok módosításához.
+
+### Alternatív nevek
+
+Egyetlen összevont listája minden más névnek, amely alatt ezt a partnert ismerik — mindkettő:
+
+- **auto** bejegyzések — nem hitelesített partnerektől származó nevek, amelyek ehhez a hitelesített partnerhez lettek kapcsolva (kék jelzés)
+- **manuális** bejegyzések — kézzel hozzáadott nevek (szürke jelzés)
+
+**Miért fontosak az alternatív nevek:** Amikor egy új számla vagy banki tranzakció érkezik, az AI Finance Team összeveti a kinyert partnernevet minden hitelesített partner kanonikus nevével és összes alternatív nevével. A pontos egyezés (központozásra és cégformai változatokra normalizálva) automatikusan a partnerhez kapcsolja az új rekordot — nincs szükség kézi műveletre.
+
+**Alternatív név hozzáadásához:**
+
+1. Gépelje be a nevet az Alternatív nevek szakasz alján lévő beviteli mezőbe.
+2. Nyomja meg az **Enter** billentyűt, vagy kattintson a **Hozzáadás** gombra.
+
+**Alternatív név eltávolításához** kattintson a mellette lévő × gombra, majd a megerősítéshez az **Eltávolítás** gombra. Egy auto bejegyzés eltávolítása lekapcsolja a mögöttes nem hitelesített partnert, így az máshová kapcsolható, vagy nem hitelesítettként hagyható.
+
+### Elérhetőség és bankadatok
+
+A partner címe és bankszámla-adatai.
+
+## Hogyan működik az automatikus párosítás
+
+Minden alkalommal, amikor egy számla vagy bankszámlakivonat feldolgozásra kerül, az AI Finance Team a következő lépéseken halad végig a partner azonosításához:
+
+1. **Adószám-egyezés** — ha a kinyert adószám megegyezik egy a munkaterületen már meglévő partnerrel, az a rekord újrahasznosul.
+2. **Név-egyezés** — ha a kinyert név (normalizálva) megegyezik egy meglévő partnernévvel, az a rekord újrahasznosul.
+3. **Alternatívnév-egyezés** — ha a kinyert név megegyezik egy hitelesített partner kanonikus nevével vagy bármely alternatív nevével, egy új nem-hitelesített-partner rekord jön létre, és automatikusan ahhoz a hitelesített partnerhez kapcsolódik.
+4. **Új partner** — ha nincs találat, új nem hitelesített partner jön létre, és megjelenik a ⚠ jelzés.
+
+A lényegi felismerés: ha egyszer hozzáadta a megfelelő alternatív nevet egy partnerhez, attól a féltől minden jövőbeli dokumentum automatikusan hitelesítve lesz.
+
+### Extra lépések banki tranzakcióknál
+
+Amikor egy banki tranzakció feldolgozásra kerül (nyílt banki kapcsolaton keresztül vagy kivonatfeltöltés után), két további automatikus kapcsolási ellenőrzés fut az alternatívnév-lépés előtt:
+
+1. **Saját-számlás IBAN-ellenőrzés** — ha a tranzakción lévő IBAN megegyezik az Ön egyik saját cég-bankszámlájával, a tranzakció a saját számlái közötti belső átutalásként kezelődik, és nem jön létre partner.
+2. **Hitelesített-partner IBAN-egyezés** — ha az IBAN megegyezik egy hitelesített partner rekordján tárolttal (a partner részletoldalának **Elérhetőség és bankadatok** szakasza), a tranzakció automatikusan ahhoz a partnerhez kapcsolódik, további művelet nélkül.
+
+A partner banki IBAN-jainak hozzáadása tehát ugyanolyan értékes, mint az alternatív nevek hozzáadása: egyetlen elmentett IBAN azt jelenti, hogy attól a partnertől minden jövőbeli bejövő vagy kimenő átutalás automatikusan hitelesítve lesz.
+
+## Partner hitelesítése helyben
+
+Ha a ⚠ Nem hitelesített jelzést egy dokumentum áttekintése közben veszi észre, megoldhatja anélkül, hogy elhagyná a dokumentumot.
+
+### Számláról
+
+1. Nyissa meg a számla részletoldalát.
+2. A **Partner** legördülő menüben válassza ki a hozzárendelni kívánt hitelesített partnert.
+3. A legördülő menü automatikusan ment.
+
+### Banki tranzakcióról
+
+1. A Tranzakciók oldalon kattintson bármelyik sorra a részletpanel megnyitásához.
+2. A panel tetején lévő **Partner** választóban keressen rá és válassza ki a hitelesített partnert.
+3. A választó automatikusan ment, és a hitelesített pirula azonnal megjelenik.
+
+A nyers banki név (a szöveg, amelyet a bank ténylegesen küldött) megőrződik a választó legördülő menüjének fejlécében „Eredeti név: …" formában, így láthatja, mit nyertek ki eredetileg.
+
+### A bankszámlakivonat-szerkesztőből
+
+Egy feltöltött kivonat szerkesztésekor (Kivonatok fül → kattintson egy kivonatra → **Sorok szerkesztése**) minden sor **Partner** oszlopa ugyanazt a partnerválasztót használja. Minden szerkesztés együtt mentődik, amikor a **Mentés** gombra kattint.
+
+### Olyan tranzakciókhoz, amelyeknek valóban nincs partnere
+
+A banki díjak, kamatok és saját számlák közötti átutalások nem tartoznak partnerhez. A választó tetején van egy dedikált **— Nincs partner (pl. banki költség) —** lehetőség — ennek kiválasztása tisztán törli a meglévő kapcsolatot.
+
+### A hitelesített kapcsolat újrahasznosítása legközelebb
+
+Amikor egy nem hitelesített partnerről egy hitelesített partnerre rendel át, az AI Finance Team automatikusan hozzáadja az eredeti nem hitelesített nevet alternatív névként a hitelesített partnerhez. Az ugyanazon névről érkező következő számla vagy tranzakció hitelesítve lesz az Ön bármilyen művelete nélkül.
+
+Alternatívaként kattintson a **Hitelesítés most →** gombra (bármelyik nem hitelesített választó alatt látható), hogy közvetlenül a Partnerek oldalra lépjen, ahol létrehozhat egy új partnert, vagy a nevet egy meglévőhöz kapcsolhatja.
+
+## Duplikált partnerek összevonása
+
+Ha két hitelesített partner ugyanazt a valós céget képviseli, összevonhatja őket — vagy a Partnerek oldalon lévő **adószám-ütközés sávból**, vagy közvetlenül a partner részletoldaláról.
+
+### A partner részletoldaláról
+
+1. Nyissa meg azt a partnert, amelyet **el** szeretne vonni (a duplikátumot, amelyet meg szeretne szüntetni).
+2. Kattintson az **Összevonás másikkal…** gombra az oldal fejlécében.
+3. A párbeszédben keressen rá a megtartani kívánt partnerre — név vagy adószám szerint. Kattintson a találatra az eredmények között.
+4. Egy megerősítő képernyő összefoglalja, mi fog történni. Kattintson az **Összevonás** gombra a megerősítéshez, vagy a **Vissza** gombra egy másik cél kiválasztásához.
+
+### Mi történik az összevonás során
+
+Amikor az A partnert a B partnerbe vonja össze:
+
+- **Az A-hoz csatolt összes kapcsolódó partnerrekord** újra a B-hez csatolódik.
+- **Az A neve** alternatív névként őrződik meg a B-n (egy „manuális" jelzéssel), így az A nevét említő jövőbeli számlák és tranzakciók továbbra is automatikusan párosulnak.
+- **Az A adószáma, IBAN-jai és egyéb azonosító mezői** nem másolódnak át — a B értékei maradnak változatlanul. Utólag tekintse át a B Elérhetőség és bankadatok szakaszát, ha az A-nak volt olyan információja, amely a B-nek nem.
+- **Az A archiválódik** egy állandó visszahivatkozással a B-re (így az előzmények naplóban az A-ra mutató hivatkozások továbbra is működnek).
+- **Az A-t érintő minden függőben lévő adószám-ütközési javaslat** automatikusan elvetésre kerül.
+
+Az összevonás egyirányú, és nem vonható vissza — ellenőrizze, hogy a megfelelő forrás és cél van-e megadva, mielőtt megerősíti.
+
+> Az összevonáshoz **Könyvelő** vagy **Könyvelő admin** szerepkör szükséges.

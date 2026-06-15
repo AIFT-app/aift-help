@@ -1,12 +1,15 @@
 import { TableOfContents } from './TableOfContents'
 import type { Heading } from '@/lib/content'
+import { ui, type Locale } from '@/lib/i18n'
 
 export function ArticleLayout({
   children,
   toc,
+  locale,
 }: {
   children: React.ReactNode
   toc: Heading[]
+  locale: Locale
 }) {
   return (
     <div className="flex min-w-0 flex-1">
@@ -15,7 +18,7 @@ export function ArticleLayout({
           {children}
         </article>
       </div>
-      <TableOfContents items={toc} />
+      <TableOfContents items={toc} label={ui[locale].onThisPage} />
     </div>
   )
 }

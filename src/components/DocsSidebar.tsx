@@ -3,18 +3,21 @@
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import clsx from 'clsx'
-import { navigation } from '@/lib/navigation'
+import { navigation, navTitle } from '@/lib/navigation'
+import { splitLocale, localizeHref } from '@/lib/i18n'
 
 export function DocsSidebar({ onNavigate }: { onNavigate?: () => void }) {
   const pathname = usePathname()
+  const { locale, rest } = splitLocale(pathname)
 
   return (
     <nav className="flex flex-col gap-0.5 overflow-y-auto px-3 py-6">
       {navigation.map((item) => {
-        const href = item.slug ? `/${item.slug}/` : '/'
+        const base = item.slug ? `/${item.slug}` : '/'
+        const href = localizeHref(base, locale)
         const isCurrent = item.slug
-          ? pathname === `/${item.slug}` || pathname === `/${item.slug}/`
-          : pathname === '/'
+          ? rest === `/${item.slug}` || rest === `/${item.slug}/`
+          : rest === '/'
 
         return (
           <span key={item.slug} className="relative">
@@ -31,7 +34,7 @@ export function DocsSidebar({ onNavigate }: { onNavigate?: () => void }) {
                   : 'text-zinc-600 hover:bg-zinc-950/5 hover:text-zinc-950'
               )}
             >
-              {item.title}
+              {navTitle(item, locale)}
             </Link>
           </span>
         )

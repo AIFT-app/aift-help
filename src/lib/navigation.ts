@@ -1,27 +1,57 @@
+import { defaultLocale, type Locale } from './i18n'
+
 export type NavItem = {
-  title: string
+  title: Record<Locale, string>
   slug: string
 }
 
 export const navigation: NavItem[] = [
-  { title: 'Home', slug: '' },
-  { title: 'Roles & Permissions', slug: 'roles-and-permissions' },
-  { title: 'Workspaces', slug: 'workspaces' },
-  { title: 'Working with Invoices', slug: 'invoices' },
-  { title: 'Uploading Files', slug: 'uploading-files' },
-  { title: 'Forwarding Documents by Email', slug: 'email-forwarding' },
-  { title: 'Multi-Currency & Exchange Rates', slug: 'currency-exchange' },
-  { title: 'Managing Entities', slug: 'master-data-entities' },
-  { title: 'NAV Online Számla (Hungary)', slug: 'nav-online-szamla' },
-  { title: 'Managing Partners', slug: 'partners' },
-  { title: 'Connecting Bank Accounts', slug: 'bank-accounts' },
-  { title: 'Uploading Bank Statements', slug: 'bank-statement-upload' },
-  { title: 'Transaction Types & No Invoice Needed', slug: 'transaction-types' },
-  { title: 'Invoice Matching', slug: 'invoice-matching' },
-  { title: 'Categorising Invoices & Transactions', slug: 'categorization' },
-  { title: 'Reports', slug: 'reports' },
-  { title: 'Ledger Explorer', slug: 'ledger' },
-  { title: 'Messages', slug: 'messages' },
-  { title: 'AI Assistants (MCP)', slug: 'mcp' },
-  { title: 'Changing Your Language', slug: 'language' },
+  { slug: '', title: { en: 'Home', hu: 'Kezdőlap', de: 'Startseite' } },
+  {
+    slug: 'roles-and-permissions',
+    title: { en: 'Roles & Permissions', hu: 'Szerepek és jogosultságok', de: 'Rollen & Berechtigungen' },
+  },
+  { slug: 'workspaces', title: { en: 'Workspaces', hu: 'Munkaterületek', de: 'Arbeitsbereiche' } },
+  { slug: 'invoices', title: { en: 'Working with Invoices', hu: 'Számlák kezelése', de: 'Arbeiten mit Rechnungen' } },
+  { slug: 'uploading-files', title: { en: 'Uploading Files', hu: 'Fájlok feltöltése', de: 'Dateien hochladen' } },
+  {
+    slug: 'email-forwarding',
+    title: { en: 'Forwarding Documents by Email', hu: 'Dokumentumok továbbítása e-mailben', de: 'Dokumente per E-Mail weiterleiten' },
+  },
+  {
+    slug: 'currency-exchange',
+    title: { en: 'Multi-Currency & Exchange Rates', hu: 'Több pénznem és árfolyamok', de: 'Mehrwährung & Wechselkurse' },
+  },
+  { slug: 'master-data-entities', title: { en: 'Managing Entities', hu: 'Cégek kezelése', de: 'Unternehmen verwalten' } },
+  {
+    slug: 'nav-online-szamla',
+    title: { en: 'NAV Online Számla (Hungary)', hu: 'NAV Online Számla (Magyarország)', de: 'NAV Online Számla (Ungarn)' },
+  },
+  { slug: 'partners', title: { en: 'Managing Partners', hu: 'Partnerek kezelése', de: 'Partner verwalten' } },
+  {
+    slug: 'bank-accounts',
+    title: { en: 'Connecting Bank Accounts', hu: 'Bankszámlák csatlakoztatása', de: 'Bankkonten verbinden' },
+  },
+  {
+    slug: 'bank-statement-upload',
+    title: { en: 'Uploading Bank Statements', hu: 'Bankszámlakivonatok feltöltése', de: 'Kontoauszüge hochladen' },
+  },
+  {
+    slug: 'transaction-types',
+    title: { en: 'Transaction Types & No Invoice Needed', hu: 'Tranzakciótípusok és „nem kell számla”', de: 'Transaktionstypen & „Keine Rechnung nötig“' },
+  },
+  { slug: 'invoice-matching', title: { en: 'Invoice Matching', hu: 'Számlák párosítása', de: 'Rechnungsabgleich' } },
+  {
+    slug: 'categorization',
+    title: { en: 'Categorising Invoices & Transactions', hu: 'Számlák és tranzakciók kategorizálása', de: 'Rechnungen & Transaktionen kategorisieren' },
+  },
+  { slug: 'reports', title: { en: 'Reports', hu: 'Riportok', de: 'Berichte' } },
+  { slug: 'ledger', title: { en: 'Ledger Explorer', hu: 'Főkönyvi kivonat', de: 'Hauptbuch-Explorer' } },
+  { slug: 'messages', title: { en: 'Messages', hu: 'Üzenetek', de: 'Nachrichten' } },
+  { slug: 'mcp', title: { en: 'AI Assistants (MCP)', hu: 'AI-asszisztensek (MCP)', de: 'KI-Assistenten (MCP)' } },
+  { slug: 'language', title: { en: 'Changing Your Language', hu: 'Nyelv módosítása', de: 'Sprache ändern' } },
 ]
+
+export function navTitle(item: NavItem, locale: Locale): string {
+  return item.title[locale] ?? item.title[defaultLocale]
+}

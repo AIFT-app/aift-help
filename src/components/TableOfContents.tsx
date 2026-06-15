@@ -4,7 +4,13 @@ import { useEffect, useState } from 'react'
 import clsx from 'clsx'
 import type { Heading } from '@/lib/content'
 
-export function TableOfContents({ items }: { items: Heading[] }) {
+export function TableOfContents({
+  items,
+  label = 'On this page',
+}: {
+  items: Heading[]
+  label?: string
+}) {
   const [activeId, setActiveId] = useState('')
 
   useEffect(() => {
@@ -34,7 +40,7 @@ export function TableOfContents({ items }: { items: Heading[] }) {
   return (
     <aside className="sticky top-20 hidden w-52 shrink-0 py-10 pl-4 xl:block">
       <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-zinc-950">
-        On this page
+        {label}
       </p>
       <ul className="space-y-1.5">
         {items.map((item) => (
