@@ -1,0 +1,61 @@
+# Ledger Explorer
+
+The Ledger is where you go to **answer a question with your data** — "show me all EUR expenses last quarter," "which Erste Bank transactions happened in March," "every invoice from this supplier this year." It browses across all your processed invoices and bank transactions at once, filters them however you like, and exports the result to Excel.
+
+It's an accountant tool — you'll find it under **Exports → Ledger** in the workspace sidebar. (Clients don't see it.)
+
+## The three views
+
+The Ledger shows your data three ways, switched with the tabs at the top:
+
+| Tab | One row per | Use it for |
+|---|---|---|
+| **Invoice Headers** | invoice | totals, dates, partner, status — the invoice-level summary |
+| **Invoice Lines** | line item | category and VAT detail down to each line |
+| **Bank Transactions** | bank movement | what actually hit the account, with match status |
+
+A filter you set applies across the views, so you can answer the same question from the invoice side and the bank side without re-typing it.
+
+## Filtering
+
+Two ways to narrow things down — use whichever feels faster.
+
+### Ask the Ledger (plain language)
+
+There's a search box labelled **Ask the Ledger**. Type what you want in ordinary words and the app turns it into filters for you:
+
+- *"Eurofins invoices last quarter"*
+- *"expenses in EUR"*
+- *"transactions from Erste Bank, March 2026"*
+
+It shows you how it read your request — **"Understood as: …"** — with an **Undo** if it got something wrong. If the language understanding is ever unavailable, it'll say so and you can fall back to the filter controls below.
+
+### Filter controls
+
+Click **Show filters** for the full set: date range (with presets and a custom range), direction (money in / money out), partner, entity, bank account and currency, invoice categories, transaction types, and more under **More filters**. Everything you've applied appears as removable chips under **Active filters** — click the **×** on a chip to drop just that one, or **Clear** to reset.
+
+If a view comes back empty, the Ledger will often point you at a better tab — *"Try Bank Transactions — 12 matches."*
+
+## Exporting to Excel
+
+When the view shows what you want, click **Export**. You get an `.xlsx` file with two choices:
+
+- **Export all three sheets** — Invoice Headers, Invoice Lines, and Bank Transactions, each on its own sheet, all reflecting your current filters.
+- **Export this view only** — just the tab you're looking at.
+
+A couple of guardrails:
+
+- For a very large result the app asks you to confirm first (*"This export will produce ~N rows. Continue?"*).
+- There's a hard ceiling — if the result is enormous, you'll be asked to **refine the filters** before exporting. Tighten the date range or add a filter and try again.
+
+## Tips
+
+- **Start broad, then narrow.** Set the date range first, then add partner or category filters — the row counts update as you go.
+- **Use Ask the Ledger for the first cut, filters for the fine-tuning.** Natural language is great for "get me in the right ballpark"; the chips are precise.
+- **Exporting for the office?** "All three sheets" gives the fullest picture in one file.
+
+## Related
+
+- [Reports](/reports) — saved, category-based summaries (vs. the Ledger's ad-hoc browsing)
+- [Working with Invoices](/invoices)
+- [Invoice Matching](/invoice-matching)
