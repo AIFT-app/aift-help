@@ -9,6 +9,7 @@ export const navigation: NavItem[] = [
   { title: 'Workspaces', slug: 'workspaces' },
   { title: 'Working with Invoices', slug: 'invoices' },
   { title: 'Uploading Files', slug: 'uploading-files' },
+  { title: 'Forwarding Documents by Email', slug: 'email-forwarding' },
   { title: 'Multi-Currency & Exchange Rates', slug: 'currency-exchange' },
   { title: 'Managing Entities', slug: 'master-data-entities' },
   { title: 'NAV Online Számla (Hungary)', slug: 'nav-online-szamla' },
@@ -19,5 +20,6 @@ export const navigation: NavItem[] = [
   { title: 'Invoice Matching', slug: 'invoice-matching' },
   { title: 'Categorising Invoices & Transactions', slug: 'categorization' },
   { title: 'Reports', slug: 'reports' },
+  { title: 'Messages', slug: 'messages' },
   { title: 'AI Assistants (MCP)', slug: 'mcp' },
 ]

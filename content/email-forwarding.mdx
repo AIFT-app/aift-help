@@ -1,0 +1,73 @@
+# Forwarding Documents by Email
+
+Every workspace has its own email address. Forward an invoice, bank statement, or receipt to that address and it shows up in the workspace within about a minute, with its attachments read and classified automatically — no logging in, no manual upload. It's the easiest way to capture the SaaS receipts and supplier invoices that already arrive in your inbox.
+
+Forwarded documents land in **Intake**, the log of everything received at your workspace addresses. From there, invoices flow into the normal extraction pipeline and anything that needs a human decision is flagged for review.
+
+## Finding your address
+
+Open **Settings → Email ingestion** (you can also get there from **Manage addresses →** at the top of the Intake page). The **Primary address** is shown there as a copyable block — something like:
+
+```
+yourworkspace@in.aifinance.team
+```
+
+The local part (the bit before the `@`) is unique to your workspace. Copy it, add it to your contacts, and forward away. The page also shows how many emails you've received in the last 30 days and when the last one arrived.
+
+> The address is **per workspace**, not per entity or per person. Anything sent to it lands in that one workspace's Intake.
+
+### Custom aliases
+
+If a billing settings page needs a tidier address than the auto-generated one, you can claim up to **five custom aliases** per workspace (for example `acme@in.aifinance.team`). Under **Custom aliases**, type the name you want, click **Claim**, and use it anywhere the primary address would work. You can **Retire** an alias when it's no longer needed.
+
+Managing aliases (claiming or retiring) is limited to **accountant admins** and **client owners**. Everyone else sees the addresses read-only — which is all you need to forward.
+
+## What happens to a forwarded email
+
+1. The email arrives at your workspace address and a row appears in **Intake**.
+2. Each attachment is **triaged** — the app works out whether it's an invoice, a bank statement, a receipt, or something else.
+3. Invoices and receipts flow into extraction and show up on the **Invoices** page like any other upload; bank statements go to the statement pipeline.
+4. Anything the app can't confidently classify is set aside under **Needs review** for a person to sort out.
+
+The original email itself is never billed to you as a document — only the useful attachments inside it end up in your workspace.
+
+## The Intake page
+
+Intake is visible to both accountants and clients. It has two tabs:
+
+- **All mail** — every email received, newest first. Each row shows when it arrived, who sent it, the subject, the address it was sent to, a status, and how many attachments it carried.
+- **Needs review** — the subset that needs a human decision. It carries an amber count badge so you can see at a glance whether anything is waiting.
+
+### Status labels
+
+| Label | Meaning |
+|---|---|
+| **Completed** | The email was processed and its attachments handled. |
+| **Processing** | Still being read. |
+| **Received** | Arrived, not yet processed. |
+| **Failed** | Something went wrong handling the email. |
+| **Unknown address** / **Retired address** | Sent to an address that doesn't exist or was retired. |
+| **Auth failed** | The sender couldn't be verified. |
+| **Too large** / **Rate limited** | Rejected for size, or too many emails too fast. |
+| **Multi-document** | A single PDF held several documents (see below). |
+| **No attachments** | Nothing to ingest. |
+
+## When something needs attention
+
+Open an email's row to see its attachments, the email body, and (if needed) the raw headers.
+
+- **An attachment couldn't be saved.** The attachment count turns amber and the email shows a banner: *"1 attachment couldn't be saved."* The usual cause is an odd filename — **ask the sender to rename the file and re-forward it**, or upload it manually from the Invoices page.
+- **A PDF held several documents.** If someone forwards one PDF that's actually several invoices scanned together, it's flagged **Multi-document**: *"Please split the PDF into one document per invoice/statement and re-upload."* Split it into one document per invoice and forward the pieces.
+- **The app wasn't sure what a file was.** It lands under **Needs review** with its best guess and a confidence score. Open it and use the reclassify control to set the correct type.
+
+## Tips
+
+- **Forward, don't screenshot.** Forwarding the original PDF or image gives the cleanest extraction. A photo of a screen works, but the original is always better.
+- **One invoice per email is ideal**, but several separate attachments on one email are fine — each becomes its own document.
+- **Use a custom alias for noisy senders.** If a particular vendor's billing page only takes one address, claim a custom alias for it so it's easy to recognise in Intake.
+
+## Related
+
+- [Uploading Files](/uploading-files) — the drag-and-drop and bulk-upload alternative
+- [Working with Invoices](/invoices) — what happens after extraction
+- [Messages](/messages) — asking the other side about a specific document
