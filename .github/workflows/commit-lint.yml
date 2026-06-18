@@ -57,7 +57,7 @@ jobs:
 
           # Subjects we deliberately skip — these are mechanically-generated
           # or otherwise legitimately slug-free.
-          SKIP_RE='^(promote|chore\(deps\)|Revert |Merge (branch|pull request))'
+          SKIP_RE='^(promote|chore\(deps\)|chore: sync database types|Revert |Merge (branch|pull request))'
 
           for entry in "${COMMITS[@]}"; do
             sha="${entry%%$'\t'*}"
