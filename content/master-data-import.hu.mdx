@@ -1,0 +1,68 @@
+# Törzsadatok importálása
+
+Ahelyett, hogy a partnereket és kategóriákat egyesével gépelné be, **táblázatból, tömegesen is importálhatja** őket. Töltsön fel egy `.xlsx`, `.xls` vagy `.csv` fájlt, és az AI Finance Team felismeri az oszlopokat, megmutatja, pontosan mi jön létre, majd hozzáadja az új rekordokat — a már létezőket érintetlenül hagyva.
+
+Ez különösen hasznos új ügyfél bevezetésekor: exportálja a partner- vagy kategórialistát a korábbi rendszerből (vagy egy könyvelési táblázatból), és néhány kattintással behozhatja.
+
+## Mit importálhat
+
+Az importáló három **Törzsadatok** oldalon érhető el, mindegyik egy-egy rekordtípust importál:
+
+- **Partnerek** — a hitelesített partnerlistája (Törzsadatok → **Partnerek**)
+- **Számla kategóriák** — a számlatételek kódolásához használt kategóriák (Törzsadatok → **Számla kategóriák**)
+- **Pénzforgalmi kategóriák** — a banki tranzakciók kódolásához használt kategóriák (Törzsadatok → **Pénzforgalmi kategóriák**)
+
+Mindegyik oldalon a jobb felső sarokban talál egy **Importálás** gombot, az „Új…" gomb mellett. Egy importálás egyszerre egy célt kezel — az határozza meg, mit importál, hogy melyik oldalról indítja.
+
+> Az **Importálás** gomb — mint minden törzsadat-szerkesztés — csak a **Könyvelő** vagy **Könyvelő admin** szerepkörrel rendelkező tagok számára érhető el.
+
+## Mielőtt elkezdi
+
+- Legyen az adat egyetlen táblázatban: **.xlsx**, **.xls** vagy **.csv**. Az első sor legyen az oszlopfejléc (például `Név`, `Adószám`, `Ország`).
+- Soronként egy rekord — minden sorból egy partner vagy egy kategória lesz.
+- A fájl beolvasása **a böngészőjében** történik; nem töltődik fel és nem tárolódik. Az ékezetes magyar karaktereket (á, é, ő, ű…) automatikusan kezeli.
+
+## Táblázat importálása
+
+1. Nyissa meg a megfelelő oldalt (Törzsadatok → **Partnerek**, **Számla kategóriák** vagy **Pénzforgalmi kategóriák**), és kattintson az **Importálás** gombra.
+2. **Feltöltés** — kattintson a **Válasszon táblázatfájlt** lehetőségre, és válassza ki a fájlt. Az AI Finance Team beolvassa és felismeri az oszlopokat.
+3. **Oszlopok hozzárendelése** — minden mező (Név, Adószám, Ország, Cím, …) hozzá lesz rendelve a fájl egy oszlopához. Tekintse át a javaslatokat, és javítsa a hibásakat. A kötelező mezőket csillag (`*`) jelöli, és a folytatáshoz meg kell adni őket. Kattintson a **Tovább** gombra.
+4. **Áttekintés** — az összegzés megmutatja, mi történik az egyes sorokkal: hány jön létre, hány létezik már, és hány többértelmű vagy hibás. Nyissa le a soronkénti eredményhez.
+5. Kattintson a **Létrehozás** gombra (a darabszámot is mutatja, például „42 létrehozása"). Amikor elkészül, megjelenik a „42 rekord létrehozva." üzenet — kattintson a **Bezárás** gombra.
+
+Bármikor visszaléphet a **Vissza** gombbal, vagy a **Mégse** gombbal elvetheti az egész importálást.
+
+## Hogyan ismeri fel az oszlopokat
+
+Az AI Finance Team mesterséges intelligenciával párosítja a táblázat fejléceit a megfelelő mezőkhöz, így a `Partnernév`, `Vendor` vagy `Supplier name` oszlopot egyaránt **Név**-ként értelmezi. A végső szó mindig Öné:
+
+- Nyissa le bármelyik mező legördülő listáját egy másik oszlop választásához, vagy válassza a **— ne importáld —** lehetőséget, hogy a mező üresen maradjon.
+- A kötelező mezőket (például **Név**) meg kell adni; a varázsló addig nem enged tovább.
+
+Ha az AI nem tud magabiztosan párosítani, egy beépített, több nyelvű, gyakori fejlécneveket tartalmazó lista a tartalék, így a felismerés akkor is működik.
+
+## Mi jön létre és mi marad ki
+
+Az importáló **kizárólag új rekordokat hoz létre — soha nem írja felül és nem módosítja a meglévőket.** Az **Áttekintés** lépésben minden sor négy kimenetel egyikébe kerül:
+
+- **Létrehozás** — valóban új rekord; hozzá lesz adva.
+- **Létezik** — már van egyező rekord a munkaterületen, így a sor **kimarad** (a meglévő rekord pontosan úgy marad, ahogy van).
+- **Többértelmű** — a sor egynél több meglévő rekordra illeszkedik, ezért biztonságból kimarad. Ezeket utólag, kézzel rendezze.
+- **Hiba** — a sor nem importálható (például hiányzó név, vagy az ország nem 2 betűs kód). Javítsa a fájlban, és importálja újra.
+
+Hogyan dől el, mi „létezik már":
+
+- A **partnereket** először **adószám** alapján párosítja (a formázási eltéréseket, például szóközöket vagy kötőjeleket figyelmen kívül hagyva), majd **név** alapján.
+- A **kategóriákat** **név** alapján párosítja, az éppen importált típuson belül (számla vs. pénzforgalmi).
+
+Mivel a meglévő rekordok kimaradnak, nem pedig módosulnak, ugyanazt a fájlt nyugodtan újra lefuttathatja — a második futás egyszerűen mindent **Létezik**-ként jelez.
+
+## Több oszlopra bontott címek
+
+Az irodai exportok gyakran több oszlopra bontják a címet — irányítószám, város, utca, házszám. Az **Oszlopok hozzárendelése** lépésben a **Cím** mezőt több oszlophoz is hozzárendelheti: kattintson a **+ oszlop hozzáadása** lehetőségre, és válassza ki az egyes részeket. A részek sorrendben, egyetlen címmé fűződnek össze (például `1051`, `Budapest`, `Váci utca`, `1` ebből „1051, Budapest, Váci utca, 1" lesz). Az **Áttekintés** lépés mutatja az összeállított eredményt.
+
+## Megjegyzések és korlátok
+
+- Az importáló rekordokat ad hozzá; a meglévőket nem frissíti. Egy már létező partner vagy kategória módosításához szerkessze közvetlenül a saját oldalán.
+- Azt, hogy a kategóriák **számla-** vagy **pénzforgalmi** kategóriaként kerülnek be, az indító oldal dönti el, nem a fájl tartalma.
+- Partnereknél csak a **Név** kötelező. Az adószám, ország és cím nem kötelező, de kitöltésük később sokkal megbízhatóbbá teszi az automatikus párosítást — lásd: [Partnerek kezelése](/partners).

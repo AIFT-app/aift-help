@@ -29,6 +29,10 @@ export const navigation: NavItem[] = [
   },
   { slug: 'partners', title: { en: 'Managing Partners', hu: 'Partnerek kezelése', de: 'Partner verwalten' } },
   {
+    slug: 'master-data-import',
+    title: { en: 'Importing Master Data', hu: 'Törzsadatok importálása', de: 'Stammdaten importieren' },
+  },
+  {
     slug: 'bank-accounts',
     title: { en: 'Connecting Bank Accounts', hu: 'Bankszámlák csatlakoztatása', de: 'Bankkonten verbinden' },
   },
