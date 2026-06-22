@@ -1,0 +1,68 @@
+# Stammdaten importieren
+
+Statt Partner und Kategorien einzeln einzutippen, können Sie sie **per Tabelle in großen Mengen importieren**. Laden Sie eine `.xlsx`-, `.xls`- oder `.csv`-Datei hoch, und AI Finance Team erkennt die Spalten, zeigt Ihnen genau, was erstellt wird, und fügt die neuen Datensätze hinzu — bereits vorhandene bleiben unangetastet.
+
+Das ist ideal beim Onboarding eines neuen Mandanten: Exportieren Sie die Partner- oder Kategorienliste aus dem bisherigen System (oder einer Buchhaltungstabelle) und bringen Sie sie mit wenigen Klicks ein.
+
+## Was Sie importieren können
+
+Der Import befindet sich auf drei **Stammdaten**-Seiten, die jeweils eine Art von Datensatz importieren:
+
+- **Partner** — Ihre verifizierte Partnerliste (Stammdaten → **Partner**)
+- **Rechnungskategorien** — die Kategorien zur Kodierung von Rechnungspositionen (Stammdaten → **Rechnungskategorien**)
+- **Cashflow-Kategorien** — die Kategorien zur Kodierung von Banktransaktionen (Stammdaten → **Cashflow-Kategorien**)
+
+Auf jeder dieser Seiten finden Sie oben rechts eine Schaltfläche **Importieren**, neben der Schaltfläche „Neu…". Ein Import verarbeitet jeweils ein Ziel — die Seite, von der aus Sie starten, bestimmt, was Sie importieren.
+
+> Die Schaltfläche **Importieren** ist — wie jede Stammdaten-Bearbeitung — nur für Mitglieder mit der Rolle **Buchhalter** oder **Buchhalter-Admin** verfügbar.
+
+## Bevor Sie beginnen
+
+- Halten Sie Ihre Daten in einer einzigen Tabelle bereit: **.xlsx**, **.xls** oder **.csv**. Die erste Zeile sollte die Spaltenüberschriften enthalten (zum Beispiel `Name`, `Steuernummer`, `Land`).
+- Ein Datensatz pro Zeile — aus jeder Zeile wird ein Partner oder eine Kategorie.
+- Die Datei wird **in Ihrem Browser** gelesen; sie wird nicht hochgeladen oder gespeichert. Sonderzeichen werden automatisch verarbeitet.
+
+## Eine Tabelle importieren
+
+1. Öffnen Sie die entsprechende Seite (Stammdaten → **Partner**, **Rechnungskategorien** oder **Cashflow-Kategorien**) und klicken Sie auf **Importieren**.
+2. **Hochladen** — klicken Sie auf **Tabellendatei auswählen** und wählen Sie Ihre Datei. AI Finance Team liest sie und erkennt die Spalten.
+3. **Spalten zuordnen** — jedes Feld (Name, Steuernummer, Land, Adresse, …) wird einer Spalte aus Ihrer Datei zugeordnet. Prüfen Sie die Vorschläge und korrigieren Sie falsche Zuordnungen. Pflichtfelder sind mit einem Sternchen (`*`) markiert und müssen zugeordnet werden, bevor Sie fortfahren können. Klicken Sie auf **Weiter**.
+4. **Prüfen** — eine Zusammenfassung zeigt, was mit jeder Zeile geschieht: wie viele erstellt werden, wie viele bereits vorhanden sind und welche mehrdeutig oder fehlerhaft sind. Klappen Sie sie auf, um das zeilenweise Ergebnis zu sehen.
+5. Klicken Sie auf **Erstellen** (mit Anzahl, z. B. „42 erstellen"), um den Import auszuführen. Nach Abschluss erscheint „42 Datensätze erstellt." — klicken Sie auf **Schließen**.
+
+Sie können mit **Zurück** zu einem früheren Schritt zurückkehren oder mit **Abbrechen** den gesamten Import verwerfen.
+
+## Wie Spalten erkannt werden
+
+AI Finance Team nutzt KI, um die Überschriften Ihrer Tabelle den richtigen Feldern zuzuordnen, sodass eine Spalte namens `Partnernév`, `Vendor` oder `Lieferantenname` gleichermaßen als **Name** verstanden wird. Die endgültige Entscheidung treffen immer Sie:
+
+- Öffnen Sie das Dropdown eines Feldes, um eine andere Spalte zu wählen, oder wählen Sie **— nicht importieren —**, um das Feld leer zu lassen.
+- Pflichtfelder (wie **Name**) müssen zugeordnet werden; der Assistent lässt Sie sonst nicht fortfahren.
+
+Wenn die KI keine sichere Zuordnung findet, dient eine integrierte Liste gängiger Überschriftennamen (in mehreren Sprachen) als Rückfall, sodass die Erkennung trotzdem funktioniert.
+
+## Was erstellt und was übersprungen wird
+
+Der Import **erstellt ausschließlich neue Datensätze — er überschreibt oder bearbeitet niemals vorhandene.** Im Schritt **Prüfen** wird jede Zeile einem von vier Ergebnissen zugeordnet:
+
+- **Erstellen** — ein wirklich neuer Datensatz; er wird hinzugefügt.
+- **Vorhanden** — ein passender Datensatz ist bereits im Arbeitsbereich, daher wird die Zeile **übersprungen** (der vorhandene Datensatz bleibt genau so, wie er ist).
+- **Mehrdeutig** — die Zeile passt zu mehr als einem vorhandenen Datensatz und wird sicherheitshalber übersprungen. Lösen Sie diese anschließend von Hand auf.
+- **Fehler** — die Zeile kann nicht importiert werden (zum Beispiel ein fehlender Name oder ein Land, das kein 2-Buchstaben-Code ist). Korrigieren Sie sie in der Datei und importieren Sie erneut.
+
+Wie „bereits vorhanden" bestimmt wird:
+
+- **Partner** werden zuerst anhand der **Steuernummer** abgeglichen (Formatierungsunterschiede wie Leerzeichen oder Bindestriche werden ignoriert), dann anhand des **Namens**.
+- **Kategorien** werden anhand des **Namens** abgeglichen, innerhalb der gerade importierten Art (Rechnung vs. Cashflow).
+
+Da vorhandene Datensätze übersprungen und nicht geändert werden, können Sie dieselbe Datei gefahrlos erneut ausführen — der zweite Durchlauf meldet einfach alles als **Vorhanden**.
+
+## Über mehrere Spalten verteilte Adressen
+
+Büro-Exporte teilen eine Adresse oft auf mehrere Spalten auf — Postleitzahl, Ort, Straße, Hausnummer. Im Schritt **Spalten zuordnen** können Sie **Adresse** mehreren Spalten zuordnen: klicken Sie auf **+ Spalte hinzufügen** und wählen Sie jeden Teil. Die Teile werden der Reihe nach zu einer einzigen Adresse zusammengefügt (zum Beispiel wird aus `1051`, `Budapest`, `Váci utca`, `1` „1051, Budapest, Váci utca, 1"). Der Schritt **Prüfen** zeigt das zusammengesetzte Ergebnis.
+
+## Hinweise & Einschränkungen
+
+- Der Import fügt Datensätze hinzu; er aktualisiert vorhandene nicht. Um einen bereits vorhandenen Partner oder eine Kategorie zu ändern, bearbeiten Sie ihn direkt auf seiner Seite.
+- Ob Kategorien als **Rechnungs-** oder **Cashflow-Kategorien** importiert werden, entscheidet die Seite, von der aus Sie starten, nicht der Inhalt der Datei.
+- Bei Partnern ist nur der **Name** erforderlich. Steuernummer, Land und Adresse sind optional, aber ihr Ausfüllen macht den automatischen Abgleich später deutlich zuverlässiger — siehe [Partner verwalten](/partners).
