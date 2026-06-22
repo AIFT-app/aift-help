@@ -1,0 +1,68 @@
+# Importing Master Data
+
+Instead of typing partners and categories in one at a time, you can **import them in bulk from a spreadsheet**. Upload an `.xlsx`, `.xls`, or `.csv` file, and AI Finance Team recognises the columns, shows you exactly what will be created, and adds the new records — leaving anything that already exists untouched.
+
+This is ideal when onboarding a new client: export the partner or category list from the previous system (or a bookkeeping spreadsheet) and bring it in with a few clicks.
+
+## What You Can Import
+
+The importer lives on three **Master data** pages, each importing one kind of record:
+
+- **Partners** — your verified partner list (Master data → **Partners**)
+- **Invoice Categories** — the categories used to code invoice line items (Master data → **Invoice Categories**)
+- **Cash Categories** — the categories used to code bank transactions (Master data → **Cash Categories**)
+
+On each of these pages you'll find an **Import** button in the top-right corner, next to the "New…" / "Add…" button. Each import handles one target at a time — the page you start from decides what you're importing.
+
+> The **Import** button — like all master-data editing — is available only to members with the **Accountant** or **Accountant admin** role.
+
+## Before You Start
+
+- Have your data in a single spreadsheet: **.xlsx**, **.xls**, or **.csv**. The first row should be the column headers (for example `Name`, `Tax number`, `Country`).
+- One record per row — each row becomes one partner or one category.
+- The file is read **in your browser**; it is not uploaded or stored. Accented Hungarian characters (á, é, ő, ű…) are handled automatically.
+
+## Importing a Spreadsheet
+
+1. Open the relevant page (Master data → **Partners**, **Invoice Categories**, or **Cash Categories**) and click **Import**.
+2. **Upload** — click **Choose a spreadsheet file** and select your file. AI Finance Team reads it and recognises the columns.
+3. **Map the columns** — each field (Name, Tax number, Country, Address, …) is matched to a column from your file. Review the suggestions and fix any that are wrong. Required fields are marked with an asterisk (`*`) and must be mapped before you continue. Click **Next**.
+4. **Review** — a summary shows what will happen to each row: how many will be created, how many already exist, and any that are ambiguous or have errors. Expand it to see the row-by-row outcome.
+5. Click **Create** (it shows the count, e.g. "Create 42") to run the import. When it finishes you'll see "Created 42 records." — click **Close**.
+
+You can click **Back** to revisit an earlier step, or **Cancel** to discard the whole import.
+
+## How Columns Are Recognised
+
+AI Finance Team uses AI to match your spreadsheet's headers to the right fields, so a column called `Partnernév`, `Vendor`, or `Supplier name` is all understood as **Name**. You always have the final say:
+
+- Open any field's dropdown to choose a different column, or pick **— don't import —** to leave that field empty.
+- Required fields (such as **Name**) must be mapped; the wizard won't let you continue until they are.
+
+If the AI can't reach a confident match, a built-in list of common header names (in several languages) is used as a fallback, so recognition still works.
+
+## What Gets Created vs Skipped
+
+The importer **only ever creates new records — it never overwrites or edits existing ones.** On the **Review** step every row is sorted into one of four outcomes:
+
+- **Create** — a genuinely new record; it will be added.
+- **Exists** — a matching record is already in the workspace, so the row is **skipped** (the existing record is left exactly as it is).
+- **Ambiguous** — the row matches more than one existing record, so it is skipped for safety. Resolve those by hand afterwards.
+- **Error** — the row can't be imported (for example a missing name, or a country that isn't a 2-letter code). Fix it in the file and import again.
+
+How "already exists" is decided:
+
+- **Partners** are matched first by **tax number** (ignoring formatting differences such as spaces or hyphens), then by **name**.
+- **Categories** are matched by **name**, within the kind you're importing (invoice vs cash).
+
+Because existing records are skipped rather than changed, you can safely re-run the same file — the second run simply reports everything as **Exists**.
+
+## Addresses Split Across Columns
+
+Office exports often split an address across several columns — postal code, city, street, house number. On the **Map the columns** step you can map **Address** to more than one column: click **+ add a column** and choose each part. The pieces are joined, in order, into a single address (for example `1051`, `Budapest`, `Váci utca`, `1` becomes "1051, Budapest, Váci utca, 1"). The **Review** step shows the assembled result.
+
+## Notes & Limitations
+
+- The importer adds records; it does not update existing ones. To change a partner or category that already exists, edit it directly on its page.
+- Whether categories are imported as **invoice** or **cash** categories is decided by the page you start from, not by anything in the file.
+- For partners, only **Name** is required. Tax number, country, and address are optional, but filling them in makes automatic matching far more reliable later — see [Managing Partners](/partners).
