@@ -1,0 +1,56 @@
+# How AIFT Learns Your Categorization Preferences
+
+AI Finance Team gets better at categorising each client's invoices and bank transactions the more you use it. Behind that is a simple idea: **a correction you make today becomes an example the AI follows tomorrow.** The **Categorization Examples** page lets you see, edit, and add to what AIFT has learned — per client, never shared across clients.
+
+## The feedback loop, in plain language
+
+Every time an accountant changes the category the AI picked — on an invoice line or a bank transaction — AIFT quietly records that as an example: "for this partner, or this wording, the correct category is X." The next time something similar comes in, the AI treats that example as a strong signal.
+
+You don't have to do anything to build this up. It happens automatically as you review and correct. Over the first few months, accuracy tends to climb as the examples accumulate.
+
+What's new is that this learned knowledge is no longer invisible. You can now open it, read it, fix a bad entry, or pre-load examples for a brand-new client.
+
+## Where to find it
+
+Examples live next to the categories they belong to, under **Master Data**:
+
+- **Invoice categories** → open the **Examples** tab for invoice line-item examples.
+- **Cash categories** → open the **Examples** tab for bank-transaction examples.
+
+Each page has two tabs at the top: **Categories** (the list you already know) and **Examples**.
+
+> Examples are visible to accountants only, because they show where the AI was corrected.
+
+## What each example shows
+
+| Column | Meaning |
+|--------|---------|
+| **Partner** | The partner the example matches on (optional) |
+| **Description** | Text the invoice line or transaction should contain (optional) |
+| **Category** | The category AIFT should apply |
+| **Source** | **Auto-learned** (from a real correction) or **Manual** (you added it) |
+| **Times seen** | How often this pattern has come up |
+| **Last updated** | When the example last changed |
+
+You can search by partner or description, filter by category, and filter by source (auto-learned vs. manual).
+
+## Adding an example by hand
+
+Use **+ Add example** to teach AIFT something before it has seen it organically — ideal when onboarding a new client. For instance, you can tell it up front that invoices from *Company Ltd.* are always *Building Maintenance*, instead of waiting for a few corrections to happen naturally.
+
+An example needs a partner **or** a description to match on, plus the category to apply.
+
+## Editing and removing examples
+
+- **Edit** fixes a bad or outdated example.
+- **Delete** permanently removes an example — handy when the list has grown and you want to clean it up. The AI stops using it on the next categorisation run. This can't be undone, but if the same item is corrected again later a fresh example is created automatically.
+
+**Changes apply going forward.** Editing, adding, or deleting an example affects future categorisation runs — it does not re-categorise items that were already processed.
+
+## How many examples the AI uses
+
+Workspace admins can set **Examples used per AI request** (between 10 and 100, default 30) in the Examples tab header. More examples can improve accuracy but increase the AI cost of each categorisation request, and very large lists give diminishing returns — so the default of 30 is a sensible starting point for most clients.
+
+## Related
+
+- [Categorising Invoices & Transactions](/categorization) — how the AI assigns categories in the first place.
