@@ -49,6 +49,10 @@ export const navigation: NavItem[] = [
     slug: 'categorization',
     title: { en: 'Categorising Invoices & Transactions', hu: 'Számlák és tranzakciók kategorizálása', de: 'Rechnungen & Transaktionen kategorisieren' },
   },
+  {
+    slug: 'categorization-examples',
+    title: { en: 'How AIFT Learns Your Categories', hu: 'Hogyan tanulja meg az AIFT a kategóriáidat', de: 'Wie AIFT Ihre Kategorien lernt' },
+  },
   { slug: 'reports', title: { en: 'Reports', hu: 'Riportok', de: 'Berichte' } },
   { slug: 'ledger', title: { en: 'Ledger Explorer', hu: 'Főkönyvi kivonat', de: 'Hauptbuch-Explorer' } },
   { slug: 'messages', title: { en: 'Messages', hu: 'Üzenetek', de: 'Nachrichten' } },
