@@ -1,0 +1,32 @@
+# USt in Exporten
+
+Sobald Ihre USt-Einrichtung steht und die Rechnungen ihre USt-Codes tragen, enthalten die Ledger-Explorer-Exporte (Exporte → **Hauptbuch**) alles, was ein Buchhaltungssystem braucht, um die USt korrekt zu verbuchen. Dieser Artikel behandelt die USt-Spalten, die Modi zur Behandlung der Nichtabziehbarkeit und das Export-Gate.
+
+## Was die Exporte enthalten
+
+- **Rechnungsköpfe** — die USt-Gruppe des Partners und die USt-Zusammenfassung auf Kopfebene neben den bestehenden Spalten.
+- **Rechnungszeilen** — die vollständige Zerlegung in fünf Elemente pro Zeile (Partnergruppe, Produkt-/Leistungsgruppe, Satz, Richtung, Berechnungsmethode), der aufgelöste **USt-Code** (sowohl Buchhaltungscode als auch AIFT-Code), Netto-/USt-/Bruttobeträge, die Aufteilung des nicht abziehbaren Anteils, die Fremdwährungs-USt-Felder und ein `vat_consistent`-Flag, das anzeigt, ob die Zeile manuell übersteuert wurde.
+- **Partner** — die USt-Gruppe jedes Partners, damit der Partnerstamm des Zielsystems synchron bleibt.
+- **Unternehmen** — die USt-relevanten Attribute Ihrer eigenen Firmen (USt-Meldewährung, Steuernummern), exportiert aus einem eigenen Blatt.
+
+Codes erscheinen exakt so, wie Sie sie in Ihren [USt-Stammdaten](/vat-master-data) angelegt haben — AI Finance Team erfindet oder formatiert sie nie um.
+
+## Behandlung der Nichtabziehbarkeit — drei Modi
+
+Manche USt ist nicht (vollständig) abziehbar — 50% bei Pkw-Kosten, 100% bei Repräsentation und so weiter. Buchhaltungssysteme unterscheiden sich darin, wie sie das ausgedrückt haben wollen; deshalb wählt jeder Arbeitsbereich einen von drei Modi (Arbeitsbereichseinstellungen → **USt**):
+
+- **Nativ — Zielsystem behandelt alle Nichtabziehbarkeit** — der Export trägt den nicht abziehbaren Prozentsatz auf jeder Zeile und überlässt die Aufteilung dem Zielsystem. Für Systeme, die teilweise Abziehbarkeit selbst behandeln.
+- **Nativ nur für 100%** *(Standard)* — vollständig nicht abziehbare Zeilen werden nativ durchgereicht; teilweise abziehbare Zeilen werden vorab in einen abziehbaren und einen nicht abziehbaren Teil aufgeteilt. Funktioniert für die gängigen ungarischen Zielsysteme.
+- **Immer einrechnen** — AI Finance Team teilt die Beträge immer auf; das Zielsystem erhält buchungsfertige abziehbare und nicht abziehbare Werte.
+
+Wenn Sie unsicher sind, welchen Modus Ihre Buchhaltungssoftware braucht, beginnen Sie mit dem Standard und prüfen Sie den ersten Import mit dem USt-Bericht Ihrer Software.
+
+## Das Export-Gate — „USt-Codes unvollständig"
+
+Eine Rechnung, deren Zeilen USt-Codes fehlen, würde in Ihrem Buchhaltungssystem als unverbuchbares Fragment landen. Exporte **schließen Rechnungen mit unvollständigen USt-Codes** deshalb aus und informieren Sie darüber: Nach dem Export sehen Sie, wie viele Rechnungen exportiert und wie viele ausgeschlossen wurden — mit einem Ein-Klick-Link **Ausgeschlossene prüfen**, der die Liste exakt auf die betroffenen Rechnungen filtert.
+
+Um eine ausgeschlossene Rechnung zu beheben, öffnen Sie sie und lösen Sie die Zeilen mit fehlendem Code auf — siehe [USt-Codes auf Rechnungen](/vat-codes-on-invoices). Meist genügt es, eine fehlende Kombination in Ihre USt-Codetabelle aufzunehmen; danach erneut exportieren.
+
+## Universelles AIFT-Format
+
+Die Exportspalten bilden ein stabiles, dokumentiertes Format — dieselben Spalten in derselben Reihenfolge bei jedem Export —, sodass ein einmal in Ihrer Buchhaltungssoftware eingerichtetes Import-Mapping weiter funktioniert. Neue Spalten kommen ans Ende des Blatts, nie in die Mitte.

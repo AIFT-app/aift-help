@@ -1,0 +1,32 @@
+# VAT in Exports
+
+Once your VAT setup is in place and invoices carry their VAT codes, the Ledger Explorer exports (Exports → **Ledger**) include everything an accounting system needs to book VAT correctly. This article covers the VAT columns, the non-deductibility handling modes, and the export gate.
+
+## What the Exports Contain
+
+- **Invoice headers** — the partner's VAT group and the header-level VAT summary alongside the existing columns.
+- **Invoice lines** — the full five-element decomposition per line (partner group, product/service group, rate, direction, calculation method), the resolved **VAT code** (both the accounting code and the AIFT code), net / VAT / gross amounts, the non-deductible split, the foreign-currency VAT fields, and a `vat_consistent` flag showing whether the line was manually overridden.
+- **Partners** — each partner's VAT group, so the target system's partner master stays aligned.
+- **Entities** — your own companies' VAT-relevant attributes (VAT-reporting currency, tax IDs), exported from their own tab.
+
+Codes appear exactly as authored in your [VAT master data](/vat-master-data) — AI Finance Team never invents or reformats them.
+
+## Non-Deductibility Handling — Three Modes
+
+Some VAT is not (fully) deductible — 50% on passenger-car costs, 100% on representation, and so on. Accounting systems differ in how they want this expressed, so each workspace picks one of three modes (Workspace settings → **VAT**):
+
+- **Native, full** — the export carries the non-deductible percentage on every line and leaves the split to the target system. For systems that handle partial deductibility themselves.
+- **Native, 100% only** *(default)* — fully non-deductible lines are passed through natively; partially deductible lines are pre-split into a deductible and a non-deductible part. Works for the common Hungarian targets.
+- **Pre-rolled, always** — AI Finance Team always splits the amounts; the target system receives ready-to-book deductible and non-deductible figures.
+
+If you're unsure which mode your accounting software needs, start with the default and check the first import with your software's VAT report.
+
+## The Export Gate — "VAT Codes Incomplete"
+
+An invoice whose lines are missing VAT codes would import into your accounting system as an unbookable fragment. Exports therefore **exclude invoices with incomplete VAT codes** and tell you about it: after the export you'll see how many invoices were exported and how many were excluded, with a one-click **Review excluded** link that filters the list to exactly the offending invoices.
+
+To fix an excluded invoice, open it and resolve the missing-code lines — see [VAT codes on invoices](/vat-codes-on-invoices). Usually the cure is adding one missing combination to your VAT code table; re-export afterwards.
+
+## Universal AIFT Format
+
+The export columns form a stable, documented format — the same columns in the same order on every export — so an import mapping you build once in your accounting software keeps working. Column additions land at the end of the sheet, never in the middle.

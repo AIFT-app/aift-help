@@ -1,0 +1,47 @@
+# VAT Master Data
+
+AI Finance Team resolves the correct **VAT code** for every invoice line automatically. To make that possible, each workspace carries its own VAT master data: five small tables that describe, in your accounting system's terms, how VAT works for that client. You'll find them under **Master data → VAT**, organised as five tabs.
+
+## How a VAT Code Is Composed
+
+A VAT code is not picked from a flat list — it is **resolved from five elements**:
+
+1. **Partner VAT Group** — who the trading partner is, VAT-wise: domestic, EU, third country, a cash-method partner, or a small-business-exempt supplier.
+2. **Product / Service VAT Group** — what is being supplied: products, services, fixed assets, prepayments. Groups can carry a default **non-deductible %** (for example 50% for passenger-car costs).
+3. **VAT Rate** — the percentage, with its validity period (27%, 18%, 5%, zero…).
+4. **Direction** — income (you are the seller) or expense (you are the buyer).
+5. **Calculation Method** — how the entry is constructed: normal, reverse charge, or VAT only.
+
+The **VAT Codes** tab combines these five elements into the codes your accounting system expects. When an invoice line's five elements match a VAT code's combination (and the invoice date falls in the code's validity period), that code is assigned automatically. There is deliberately no turnkey country code list — the code table is yours to author, because every accounting firm and every target system names codes differently.
+
+## Two Code Columns — and the Uniqueness Setting
+
+Each VAT code row has two identifiers:
+
+- **Accounting code** — the code exactly as your accounting system expects it on import. Always required.
+- **AIFT code** — an optional internal code, useful when several AIFT-side distinctions map to a single accounting-system code.
+
+A workspace-level setting (Workspace settings → **VAT**) decides which of the two must be unique among active codes. Most workspaces leave it on accounting-system codes; switch it to AIFT codes when you deliberately want several AIFT codes pointing at one accounting code.
+
+## Validity Periods
+
+Rates and codes change over time — a VAT rate change doesn't rewrite history. Every row carries an optional **Effective from / Effective to** range. When a rate or rule changes, don't edit the old row: **add a new row** with the new validity period. Resolution always picks the row that was in force on the invoice's VAT date.
+
+## Default Rows
+
+New workspaces are seeded with a sensible scaffold: universal partner groups and product/service groups, the country's current VAT rates, and the three calculation methods. The VAT Codes tab starts **empty** — the code table is authored per workspace.
+
+Seeded rows behave like other system defaults in AI Finance Team:
+
+- Their names display in the **workspace's language** (a Hungarian workspace shows "Belföldi", a German one "Inland") regardless of your own interface language.
+- If you **rename** a default row, it becomes a custom row: the name you typed is shown verbatim from then on. Editing its description, dates, or archiving it does *not* detach it.
+
+## Who Sees What
+
+All workspace members — including client roles — can **view** the five VAT tables. Creating, editing, archiving, importing and copying are restricted to members with the **Accountant** or **Accountant admin** role.
+
+## Related Articles
+
+- [VAT codes on invoices](/vat-codes-on-invoices) — how the five elements are filled automatically during extraction and how to correct them.
+- [VAT in exports](/vat-in-exports) — how VAT data flows into the export files for your accounting system.
+- [Importing, exporting, and copying your VAT setup](/vat-setup-import-export) — bulk-author the whole setup in Excel or copy it between workspaces.

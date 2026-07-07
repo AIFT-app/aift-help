@@ -1,0 +1,38 @@
+# USt-Codes auf Rechnungen
+
+Jede Rechnungszeile in AI Finance Team trägt fünf USt-Felder: **Partner-USt-Gruppe** (im Rechnungskopf), **Produkt-/Leistungs-USt-Gruppe**, **USt-Satz**, **Berechnungsmethode** und den aufgelösten **USt-Code**. Dieser Artikel erklärt, wie sie automatisch befüllt werden, was die Indikatoren bedeuten und wie Korrekturen funktionieren.
+
+Die fünf Tabellen hinter diesen Feldern sind in [USt-Stammdaten](/vat-master-data) beschrieben.
+
+## Automatische Zuweisung bei der Extraktion
+
+Wenn eine Rechnung extrahiert wird (Upload, E-Mail oder NAV Online), klassifiziert AI Finance Team die USt-Elemente jeder Zeile zusammen mit ihrer Kategorie:
+
+- Die **Partner-USt-Gruppe** wird vom Partner übernommen, wenn dieser bereits mit einer Gruppe versehen ist; andernfalls wird sie aus dem Land des Partners abgeleitet (Inland / EU / Drittland).
+- **Produkt-/Leistungs-USt-Gruppe**, **USt-Satz** und **Berechnungsmethode** werden pro Zeile aus dem Dokument klassifiziert — der Satz aus dem aufgedruckten USt-Prozentsatz, Reverse Charge aus dem Wortlaut der Rechnung und so weiter.
+- Sind alle fünf Elemente vorhanden, wird der passende **USt-Code** aus der Codetabelle Ihres Arbeitsbereichs automatisch für das USt-Datum der Rechnung zugewiesen.
+
+Ungarische Rechnungen, die über **NAV Online** eintreffen, haben maschinenlesbare USt-Daten, die deterministisch zugeordnet werden — ganz ohne Raten.
+
+## Die zwei Indikatoren
+
+- **Fehlender USt-Code** — die Elemente der Zeile passen zu keinem Code in Ihrer Tabelle (oder ein Element konnte nicht bestimmt werden). Rechnungen mit solchen Zeilen zeigen in Listen den Status **„USt-Codes unvollständig"** und auf der Rechnung ein Banner („Fehlende USt-Codes in N Zeilen"). Fügen Sie den fehlenden Code Ihrer Tabelle hinzu — am schnellsten über die direkt dort angebotene Abkürzung **Fehlende USt-Codes hinzufügen** — oder korrigieren Sie die Elemente der Zeile.
+- **Abweichung** — die Zeile hat einen Code zugewiesen, aber ihre aktuellen Elemente stimmen nicht mehr mit der Kombination dieses Codes überein (typischerweise nach einer manuellen Übersteuerung). Das ist eine sanfte Warnung, kein Fehler: Der zugewiesene Code gilt, und das Symbol zeigt lediglich, dass die Zeile übersteuert wurde.
+
+## USt-Felder korrigieren
+
+Buchhalter können jedes der fünf Felder auf der Rechnung korrigieren:
+
+- **Ein Element ändern** (Gruppe, Satz, Methode) — der USt-Code wird aus der neuen Kombination automatisch neu aufgelöst.
+- **Einen USt-Code direkt wählen** — die Elemente der Zeile werden aus der Kombination des gewählten Codes rückbefüllt und die Zeile wird als konsistent markiert.
+- **Die Partner-USt-Gruppe im Rechnungskopf oder das USt-Datum ändern** — jede Zeile der Rechnung wird neu aufgelöst.
+
+Korrekturen werden pro Arbeitsbereich gemerkt: Wird dasselbe Dokument jemals neu extrahiert, bleiben Ihre manuellen USt-Korrekturen erhalten und werden von der KI nicht überschrieben.
+
+## Partner-USt-Gruppe am Partner
+
+Das dauerhafte Zuhause der Partner-USt-Gruppe ist der **Partner**, nicht die Rechnung. Setzen Sie beim Anlegen oder Verifizieren eines Partners (Stammdaten → **Partner**) seine USt-Gruppe einmal — jede künftige Rechnung dieses Partners startet mit der richtigen Gruppe. Eine Übersteuerung auf Rechnungsebene bleibt für Einzelfälle verfügbar (zum Beispiel ein normalerweise inländischer Partner, der aus dem Ausland fakturiert).
+
+## USt in Fremdwährung
+
+Bei Rechnungen in einer anderen Währung als der USt-Meldewährung des Unternehmens tragen die Zeilen einen **USt-Wechselkurs** und einen **USt-Betrag in Meldewährung**. Das Bearbeiten des einen berechnet das andere neu, und beide stehen in Exporten zur Verfügung.

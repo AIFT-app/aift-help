@@ -1,0 +1,47 @@
+# ÁFA-törzsadatok
+
+Az AI Finance Team minden számlasorhoz automatikusan feloldja a megfelelő **ÁFA-kódot**. Ehhez minden munkaterület saját ÁFA-törzsadatokat hordoz: öt kis táblát, amelyek a könyvelőprogramod fogalmaival írják le, hogyan működik az ÁFA az adott ügyfélnél. A **Törzsadatok → ÁFA** alatt találod őket, öt fülre rendezve.
+
+## Hogyan épül fel egy ÁFA-kód
+
+Az ÁFA-kód nem egy sima listából választódik ki — **öt elemből oldódik fel**:
+
+1. **Partner ÁFA-csoport** — ki a partner ÁFA-szempontból: belföldi, EU-s, harmadik országbeli, pénzforgalmi elszámolású partner vagy alanyi adómentes szállító.
+2. **Termék / Szolgáltatás ÁFA-csoport** — mi a teljesítés tárgya: termék, szolgáltatás, tárgyi eszköz, előleg. A csoportok alapértelmezett **le nem vonható %-ot** is hordozhatnak (például 50%-ot a személygépkocsi-költségeknél).
+3. **ÁFA-kulcs** — a százalék, érvényességi időszakkal (27%, 18%, 5%, nulla…).
+4. **Irány** — bevétel (te vagy az eladó) vagy kiadás (te vagy a vevő).
+5. **Számítási mód** — hogyan épül fel a tétel: normál, fordított adózás vagy csak ÁFA.
+
+Az **ÁFA-kódok** fül ezt az öt elemet kombinálja azokká a kódokká, amelyeket a könyvelőprogramod vár. Amikor egy számlasor öt eleme egyezik egy ÁFA-kód kombinációjával (és a számla dátuma a kód érvényességi időszakába esik), a kód automatikusan hozzárendelődik. Szándékosan nincs kulcsrakész, országonkénti kódlista — a kódtáblát te magad írod meg, mert minden könyvelőiroda és minden célrendszer másképp nevezi el a kódjait.
+
+## Két kódoszlop — és az egyediségi beállítás
+
+Minden ÁFA-kód sornak két azonosítója van:
+
+- **Könyvelési kód** — a kód pontosan úgy, ahogy a könyvelőprogramod importáláskor várja. Mindig kötelező.
+- **AIFT-kód** — opcionális belső kód; akkor hasznos, ha több AIFT-oldali megkülönböztetés egyetlen könyvelőprogram-kódra képeződik le.
+
+Egy munkaterület-szintű beállítás (Munkaterület-beállítások → **ÁFA**) dönti el, hogy a kettő közül melyiknek kell egyedinek lennie az aktív kódok között. A legtöbb munkaterület a könyvelési kódoknál hagyja; akkor kapcsold át AIFT-kódra, ha szándékosan több AIFT-kódot szeretnél egyetlen könyvelési kódra irányítani.
+
+## Érvényességi időszakok
+
+A kulcsok és a kódok idővel változnak — egy ÁFA-kulcsváltozás nem írja át a múltat. Minden sor opcionális **Érvényesség kezdete / Érvényesség vége** tartományt hordoz. Amikor egy kulcs vagy szabály megváltozik, ne a régi sort szerkeszd: **vegyél fel új sort** az új érvényességi időszakkal. A feloldás mindig azt a sort választja, amely a számla ÁFA-teljesítési dátumán érvényben volt.
+
+## Alapértelmezett sorok
+
+Az új munkaterületek észszerű alapkészlettel indulnak: univerzális partnercsoportokkal és termék-/szolgáltatáscsoportokkal, az ország aktuális ÁFA-kulcsaival és a három számítási móddal. Az **ÁFA-kódok** fül **üresen** indul — a kódtábla munkaterületenként készül.
+
+Az előre feltöltött sorok ugyanúgy viselkednek, mint az AI Finance Team többi rendszer-alapértelmezése:
+
+- A nevük a **munkaterület nyelvén** jelenik meg (egy magyar munkaterület „Belföldi”-t mutat, egy német „Inland”-ot), a saját felületi nyelvedtől függetlenül.
+- Ha **átnevezel** egy alapértelmezett sort, egyedi sorrá válik: onnantól pontosan a beírt név jelenik meg. A leírás vagy a dátumok szerkesztése, illetve az archiválás *nem* választja le az alapértelmezésről.
+
+## Ki mit lát
+
+Minden munkaterület-tag — az ügyfélszerepkörök is — **megtekintheti** az öt ÁFA-táblát. A létrehozás, szerkesztés, archiválás, importálás és másolás a **Könyvelő** vagy **Könyvelő admin** szerepkörű tagoknak van fenntartva.
+
+## Kapcsolódó cikkek
+
+- [ÁFA-kódok a számlákon](/vat-codes-on-invoices) — hogyan töltődik ki az öt elem automatikusan a kinyerés során, és hogyan javíthatod őket.
+- [ÁFA az exportokban](/vat-in-exports) — hogyan kerülnek az ÁFA-adatok a könyvelőprogramodnak készülő exportfájlokba.
+- [ÁFA-beállítás importálása, exportálása és másolása](/vat-setup-import-export) — a teljes beállítás tömeges megírása Excelben vagy másolása munkaterületek között.
