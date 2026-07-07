@@ -1,0 +1,38 @@
+# ÁFA-kódok a számlákon
+
+Az AI Finance Teamben minden számlasor öt ÁFA-mezőt hordoz: **Partner ÁFA-csoport** (a számla fejlécén), **Termék / Szolgáltatás ÁFA-csoport**, **ÁFA-kulcs**, **Számítási mód**, valamint a feloldott **ÁFA-kód**. Ez a cikk azt mutatja be, hogyan töltődnek ki automatikusan, mit jelentenek a jelzések, és hogyan működnek a javítások.
+
+A mezők mögött álló öt táblát az [ÁFA-törzsadatok](/vat-master-data) cikk írja le.
+
+## Automatikus hozzárendelés a kinyerés során
+
+Amikor egy számla kinyerése megtörténik (feltöltés, e-mail vagy NAV Online), az AI Finance Team a kategória mellett minden sor ÁFA-elemeit is besorolja:
+
+- A **Partner ÁFA-csoport** a partnertől érkezik, ha a partnerhez már tartozik ilyen; egyébként a partner országa alapján következtetjük ki (belföldi / EU / harmadik ország).
+- A **Termék / Szolgáltatás ÁFA-csoportot**, az **ÁFA-kulcsot** és a **Számítási módot** soronként, a dokumentum alapján soroljuk be — a kulcsot a feltüntetett ÁFA-százalékból, a fordított adózást a számla szövegezéséből, és így tovább.
+- Ha mind az öt elem megvan, a munkaterület kódtáblájából automatikusan hozzárendelődik a számla ÁFA-teljesítési dátumára illeszkedő **ÁFA-kód**.
+
+A **NAV Online**-on érkező magyar számlák géppel olvasható ÁFA-adatokat hordoznak, amelyek determinisztikusan képeződnek le — találgatás nélkül.
+
+## A két jelzés
+
+- **Hiányzó ÁFA-kód** — a sor elemei egyetlen kódra sem illeszkednek a tábládban (vagy valamelyik elemet nem sikerült meghatározni). Az ilyen sorokat tartalmazó számlák a listákban **„Hiányos ÁFA-kódok”** státusszal jelennek meg, a számlán pedig figyelmeztető sáv látszik („Hiányzó ÁFA-kód N soron”). Vedd fel a hiányzó kódot a tábládba — a leggyorsabb az ott helyben felkínált **Hiányzó ÁFA-kódok hozzáadása** gyorsművelet —, vagy javítsd a sor elemeit.
+- **Eltérés** — a sorhoz tartozik kód, de az aktuális elemei már nem egyeznek a kód kombinációjával (jellemzően kézi felülírás után). Ez puha figyelmeztetés, nem hiba: a hozzárendelt kód érvényesül, az ikon csak azt jelzi, hogy a sort felülírták.
+
+## Az ÁFA-mezők javítása
+
+A könyvelők a számlán mind az öt mezőt javíthatják:
+
+- **Elem módosítása** (csoport, kulcs, mód) — az ÁFA-kód automatikusan újra feloldódik az új kombinációból.
+- **ÁFA-kód közvetlen kiválasztása** — a sor elemei a választott kód kombinációjából töltődnek vissza, és a sor konzisztensként jelölődik meg.
+- **A fejléc Partner ÁFA-csoportjának vagy az ÁFA-teljesítési dátumnak a módosítása** — a számla minden sora újra feloldódik.
+
+A javításokat munkaterületenként megjegyezzük: ha ugyanazt a dokumentumot valaha újra kinyerjük, a kézi ÁFA-javításaid megmaradnak, az AI nem írja felül őket.
+
+## Partner ÁFA-csoport a partnereken
+
+A Partner ÁFA-csoport tartós helye a **partner**, nem a számla. A partner létrehozásakor vagy ellenőrzésekor (Törzsadatok → **Partnerek**) állítsd be egyszer az ÁFA-csoportját — a partnertől érkező minden későbbi számla eleve a helyes csoporttal indul. Egyedi esetekre továbbra is elérhető a számlaszintű felülírás (például ha egy egyébként belföldi partner külföldről számláz).
+
+## Devizás ÁFA
+
+Ha a számla pénzneme eltér a cég ÁFA-bevallási pénznemétől, a sorok **ÁFA-árfolyamot** és **bevallási pénznemben kifejezett ÁFA-összeget** hordoznak. Bármelyik szerkesztése újraszámolja a másikat, és mindkettő elérhető az exportokban.

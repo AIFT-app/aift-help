@@ -1,0 +1,32 @@
+# ÁFA az exportokban
+
+Ha az ÁFA-beállításod a helyén van, és a számlák hordozzák az ÁFA-kódjaikat, a főkönyvi exportok (Exportok → **Főkönyv**) mindent tartalmaznak, ami a könyvelőprogramnak az ÁFA helyes könyveléséhez kell. Ez a cikk az ÁFA-oszlopokat, a le nem vonhatóság kezelési módjait és az exportkaput mutatja be.
+
+## Mit tartalmaznak az exportok
+
+- **Számlafejlécek** — a partner ÁFA-csoportja és a fejléc szintű ÁFA-összesítés a meglévő oszlopok mellett.
+- **Számlasorok** — a teljes ötelemes felbontás soronként (partnercsoport, termék-/szolgáltatáscsoport, kulcs, irány, számítási mód), a feloldott **ÁFA-kód** (a könyvelési kód és az AIFT-kód is), a nettó / ÁFA / bruttó összegek, a le nem vonható megbontás, a devizás ÁFA-mezők, valamint egy `vat_consistent` jelző, amely mutatja, ha a sort kézzel felülírták.
+- **Partnerek** — minden partner ÁFA-csoportja, hogy a célrendszer partnertörzse szinkronban maradjon.
+- **Cégek** — a saját cégeid ÁFA-releváns attribútumai (ÁFA-bevallási pénznem, adószámok), saját külön lapról exportálva.
+
+A kódok pontosan úgy jelennek meg, ahogy az [ÁFA-törzsadatokban](/vat-master-data) megírtad őket — az AI Finance Team soha nem talál ki és nem formáz át kódokat.
+
+## A le nem vonhatóság kezelése — három mód
+
+Egyes ÁFA-tételek nem (teljesen) vonhatók le — 50% a személygépkocsi-költségeknél, 100% a reprezentációnál, és így tovább. A könyvelőprogramok eltérően várják ennek kifejezését, ezért minden munkaterület a három mód egyikét választja (Munkaterület-beállítások → **ÁFA**):
+
+- **Natív — a célrendszer kezeli az összes le nem vonhatóságot** — az export minden soron a le nem vonható százalékot viszi, a megbontást a célrendszerre hagyja. Olyan rendszereknek való, amelyek maguk kezelik a részleges levonhatóságot.
+- **Natív csak 100%-ra** *(alapértelmezett)* — a teljesen le nem vonható sorok natívan mennek át; a részben levonható sorokat előre megbontjuk levonható és le nem vonható részre. A gyakori magyar célrendszerekkel működik.
+- **Mindig beforgatás** — az AI Finance Team mindig megbontja az összegeket; a célrendszer kész, könyvelhető levonható és le nem vonható értékeket kap.
+
+Ha nem vagy biztos benne, melyik módra van szüksége a könyvelőprogramodnak, indulj az alapértelmezettel, és ellenőrizd az első importot a programod ÁFA-kimutatásával.
+
+## Az exportkapu — „Hiányos ÁFA-kódok”
+
+Az a számla, amelynek sorairól hiányzik az ÁFA-kód, könyvelhetetlen töredékként érkezne meg a könyvelőprogramodba. Az exportok ezért **kihagyják a hiányos ÁFA-kódú számlákat**, és jelzik is ezt: az export után látod, hány számla exportálódott és hány maradt ki, egy egykattintásos **Kihagyottak megtekintése** hivatkozással, amely pontosan az érintett számlákra szűri a listát.
+
+Egy kihagyott számla javításához nyisd meg, és oldd meg a hiányzó kódú sorokat — lásd az [ÁFA-kódok a számlákon](/vat-codes-on-invoices) cikket. A megoldás többnyire egyetlen hiányzó kombináció felvétele az ÁFA-kódtáblába; utána exportálj újra.
+
+## Univerzális AIFT-formátum
+
+Az exportoszlopok stabil, dokumentált formátumot alkotnak — minden exportban ugyanazok az oszlopok, ugyanabban a sorrendben —, így a könyvelőprogramodban egyszer felépített importleképezés a továbbiakban is működik. Az új oszlopok mindig a lap végére kerülnek, sosem a közepére.

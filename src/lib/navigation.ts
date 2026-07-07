@@ -53,6 +53,26 @@ export const navigation: NavItem[] = [
     slug: 'categorization-examples',
     title: { en: 'How AIFT Learns Your Categories', hu: 'Hogyan tanulja meg az AIFT a kategóriáidat', de: 'Wie AIFT Ihre Kategorien lernt' },
   },
+  {
+    slug: 'vat-master-data',
+    title: { en: 'VAT Master Data', hu: 'ÁFA-törzsadatok', de: 'USt-Stammdaten' },
+  },
+  {
+    slug: 'vat-codes-on-invoices',
+    title: { en: 'VAT Codes on Invoices', hu: 'ÁFA-kódok a számlákon', de: 'USt-Codes auf Rechnungen' },
+  },
+  {
+    slug: 'vat-in-exports',
+    title: { en: 'VAT in Exports', hu: 'ÁFA az exportokban', de: 'USt in Exporten' },
+  },
+  {
+    slug: 'vat-setup-import-export',
+    title: {
+      en: 'Importing, Exporting & Copying Your VAT Setup',
+      hu: 'ÁFA-beállítás importálása, exportálása és másolása',
+      de: 'USt-Einrichtung importieren, exportieren & kopieren',
+    },
+  },
   { slug: 'reports', title: { en: 'Reports', hu: 'Riportok', de: 'Berichte' } },
   { slug: 'ledger', title: { en: 'Ledger Explorer', hu: 'Főkönyvi kivonat', de: 'Hauptbuch-Explorer' } },
   { slug: 'messages', title: { en: 'Messages', hu: 'Üzenetek', de: 'Nachrichten' } },

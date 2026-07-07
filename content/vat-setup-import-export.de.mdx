@@ -1,0 +1,53 @@
+# USt-Einrichtung importieren, exportieren & kopieren
+
+Eine vollständige USt-Codetabelle Zeile für Zeile zu erstellen ist mühsam — ein realistischer ungarischer Arbeitsbereich braucht Dutzende Codes plus die Dimensionszeilen dahinter. AI Finance Team behandelt die gesamte USt-Einrichtung deshalb als **eine portable Einheit**: Exportieren Sie sie in eine einzige Excel-Arbeitsmappe, bearbeiten oder erstellen Sie sie in Excel und importieren Sie sie zurück — oder kopieren Sie eine bewährte Einrichtung mit zwei Klicks von einem Arbeitsbereich in einen anderen.
+
+Die fünf beteiligten Tabellen sind in [USt-Stammdaten](/vat-master-data) beschrieben.
+
+## Die Arbeitsmappe mit fünf Blättern
+
+**USt-Einrichtung exportieren** (auf jedem der fünf Tabs unter Stammdaten → USt) lädt eine `.xlsx`-Datei mit fünf Blättern herunter — `Partner VAT Groups`, `Product-Service VAT Groups`, `VAT Rates`, `Calculation Methods` und `VAT Codes`. Die Datei ist ein vollständiger Schnappschuss: Archivierte Zeilen sind enthalten (markiert mit `Archived = yes`), und USt-Code-Zeilen referenzieren die Dimensionsblätter **per Code**, nie über interne Kennungen.
+
+Ein frisch angelegter Arbeitsbereich exportiert eine kleine, aber gültige Arbeitsmappe — diese Datei dient zugleich als leere Vorlage für die manuelle Erstellung. Einen separaten Vorlagen-Download gibt es nicht.
+
+Nützliche Konventionen in der Datei:
+
+- Daten haben das Format `YYYY-MM-DD`. Prozentsätze sind reine Zahlen (`27`, nicht `27%`). Ja/Nein-Spalten akzeptieren `yes`/`no` (sowie die ungarischen und deutschen Entsprechungen).
+- Die exportierte Datei hat **zwei Kopfzeilen**: Englisch oben, die Sprache Ihres Arbeitsbereichs darunter. Beim Import funktioniert das Vokabular jeder der beiden Zeilen — eine Datei mit nur ungarischen oder nur deutschen Kopfzeilen wird problemlos importiert. Mischen Sie nur keine Sprachen innerhalb eines Blatts.
+- Die **Blattnamen** bleiben englisch — der Importer erkennt Blätter an diesen festen Namen.
+
+## Importieren
+
+**USt-Einrichtung importieren** akzeptiert dieselbe Arbeitsmappen-Form zurück. Der Import ist ein strikter Ablauf in zwei Schritten:
+
+1. **Prüfen & Vorschau.** Die Datei wird vollständig geprüft, **ohne dass etwas geändert wird**. Sie sehen pro Blatt, wie viele Zeilen *neu*, *aktualisiert* und *unverändert* sind und wie viele *Fehler* haben — mit einer ausklappbaren Liste, die für jeden Fehler Blatt, Zeile und Spalte benennt.
+2. **Bestätigen & anwenden.** Erst nach Ihrer Bestätigung werden die Änderungen angewendet — alle atomar. Schlägt etwas fehl, wird nichts übernommen.
+
+**Jeder Fehler blockiert den gesamten Import.** Die Vorschau macht das Korrigieren der Datei günstig: Beheben Sie die benannten Zeilen und laden Sie erneut hoch.
+
+Was der Import tut — und bewusst nicht tut:
+
+- Zeilen werden über ihren **Code** zugeordnet (bei USt-Codes: der Buchhaltungscode oder der AIFT-Code, je nach Eindeutigkeitseinstellung Ihres Arbeitsbereichs). Zugeordnete Zeilen werden aktualisiert; nicht zugeordnete Zeilen werden angelegt.
+- **Es wird nie etwas gelöscht.** Eine Zeile, die in AI Finance Team existiert, aber nicht in Ihrer Datei, bleibt unangetastet. Um per Datei zu archivieren, setzen Sie ihre `Archived`-Spalte explizit auf `yes`.
+- In der Datei fehlende Blätter werden übersprungen — eine Datei, die nur das Blatt `VAT Rates` enthält, ist ein gültiger Einzeltabellen-Import.
+- Ein Upload darf eine neue Dimensionszeile *und* einen USt-Code, der sie verwendet, gleichzeitig einführen: Die Blätter werden in Abhängigkeitsreihenfolge verarbeitet.
+- Das Umbenennen einer Standardzeile per Import löst sie von den Systemstandards — genau wie beim Umbenennen im Editor. (Siehe [USt-Stammdaten](/vat-master-data) zu Standardzeilen.)
+
+Grenzen: Dateien bis 5 MB, bis zu 2.000 Zeilen pro Blatt.
+
+## Aus einem anderen Arbeitsbereich kopieren
+
+Um eine bewährte Einrichtung über die Mandanten-Arbeitsbereiche einer Kanzlei auszurollen, braucht es gar keine Datei. **Aus Arbeitsbereich kopieren…** (neben dem Import-Button) listet die Arbeitsbereiche Ihrer Organisation auf, in denen Sie eine Buchhalterrolle haben; wählen Sie die Quelle und Sie erhalten **dieselbe Vorschau** — neu / aktualisiert / unverändert pro Blatt —, bevor irgendetwas geschrieben wird. Mit der Bestätigung wird die vollständige aktuelle Einrichtung der Quelle (archivierte Zeilen eingeschlossen) angewendet — mit exakt den Regeln des Imports: Zuordnung per Code, aktualisieren oder anlegen, nie löschen.
+
+## Wer darf was
+
+- **Exportieren** — jedes Mitglied des Arbeitsbereichs, Mandantenrollen eingeschlossen (die USt-Tabellen sind für sie ohnehin lesend sichtbar).
+- **Importieren und Kopieren** — nur Buchhalterrollen.
+
+Jeder bestätigte Import oder Kopiervorgang wird protokolliert; die Zeile **Letzter Import** neben den Buttons zeigt, wann und von wem die Einrichtung zuletzt im Ganzen geändert wurde.
+
+## Tipps
+
+- Um die USt-Einrichtung eines Mandanten zu prüfen oder zu besprechen, exportieren Sie sie und teilen Sie die Datei — sie liest sich in Excel ganz natürlich.
+- Das erneute Importieren eines unveränderten Exports ist ein No-op (alles wird als *unverändert* gemeldet) — gefahrlos als Round-Trip-Check nutzbar.
+- Um eine Tabelle im Ganzen zu bearbeiten: exportieren, dieses eine Blatt bearbeiten, die anderen vier Blätter löschen und importieren.
