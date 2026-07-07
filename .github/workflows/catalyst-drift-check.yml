@@ -59,6 +59,15 @@ jobs:
           SRC_HOOK="aift-web/src/hooks/useSidebarState.ts"
           DST_HOOK="aift-help/src/hooks/useSidebarState.ts"
 
+          # App-coupled Catalyst files are NOT mirrored into aift-help — they
+          # import main-app-only modules (LanguagePicker, next-intl) and broke
+          # the help build when synced (PR #42). Source of truth for this list:
+          # aift-ops/scripts/sync-catalyst-to-help.sh (CATALYST_APP_COUPLED) —
+          # update both together.
+          APP_COUPLED="auth-layout.tsx edit-drawer.tsx"
+          DIFF_EXCLUDES=""
+          for f in $APP_COUPLED; do DIFF_EXCLUDES="$DIFF_EXCLUDES -x $f"; done
+
           if [ ! -d "$SRC_CAT" ]; then
             echo "::error::aift-web checkout missing $SRC_CAT — token may lack access or repo layout changed"
             exit 1
@@ -77,7 +86,13 @@ jobs:
           fi
 
           FAIL=0
-          if ! diff -rq "$SRC_CAT" "$DST_CAT" > /tmp/catalyst-diff.txt; then
+          for f in $APP_COUPLED; do
+            if [ -f "$DST_CAT/$f" ]; then
+              echo "::error::$f is app-coupled and must not exist in aift-help — re-run sync-catalyst-to-help.sh"
+              FAIL=1
+            fi
+          done
+          if ! diff -rq $DIFF_EXCLUDES "$SRC_CAT" "$DST_CAT" > /tmp/catalyst-diff.txt; then
             echo "::error::Catalyst component drift detected vs aift-web@main"
             echo "::group::component diff"
             cat /tmp/catalyst-diff.txt
