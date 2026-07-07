@@ -1,0 +1,38 @@
+# VAT Codes on Invoices
+
+Every invoice line in AI Finance Team carries five VAT fields: **Partner VAT Group** (on the invoice header), **Product / Service VAT Group**, **VAT Rate**, **Calculation Method**, and the resolved **VAT code**. This article explains how they are filled automatically, what the indicators mean, and how corrections work.
+
+The five tables behind these fields are described in [VAT master data](/vat-master-data).
+
+## Automatic Assignment During Extraction
+
+When an invoice is extracted (upload, e-mail, or NAV Online), AI Finance Team classifies each line's VAT elements alongside its category:
+
+- The **Partner VAT Group** is taken from the partner when the partner is already tagged with one; otherwise it is inferred from the partner's country (domestic / EU / third country).
+- **Product / Service VAT Group**, **VAT Rate**, and **Calculation Method** are classified per line from the document — the rate from the printed VAT percentage, reverse charge from the invoice's wording, and so on.
+- With all five elements in place, the matching **VAT code** from your workspace's code table is assigned automatically for the invoice's VAT date.
+
+Hungarian invoices arriving via **NAV Online** have machine-readable VAT data, which maps deterministically — no guessing involved.
+
+## The Two Indicators
+
+- **Missing VAT code** — the line's elements don't match any code in your table (or an element couldn't be determined). Invoices with such lines show a **"VAT codes incomplete"** status in lists and a banner on the invoice ("Missing VAT codes on N lines"). Add the missing code to your table — the fastest way is the **add VAT code** shortcut offered right there — or correct the line's elements.
+- **Mismatch** — the line has a code assigned, but its current elements no longer agree with that code's combination (typically after a manual override). This is a soft warning, not an error: the assigned code wins, and the icon just tells you the line was overridden.
+
+## Correcting VAT Fields
+
+Accountants can correct any of the five fields on the invoice:
+
+- **Change an element** (group, rate, method) — the VAT code re-resolves automatically from the new combination.
+- **Pick a VAT code directly** — the line's elements are back-filled from the chosen code's combination and the line is marked consistent.
+- **Change the header's Partner VAT Group or the VAT date** — every line on the invoice re-resolves.
+
+Corrections are remembered per workspace: if the same document is ever re-extracted, your manual VAT corrections survive and are not overwritten by the AI.
+
+## Partner VAT Group on Partners
+
+The durable home of the Partner VAT Group is the **partner**, not the invoice. When creating or verifying a partner (Master data → **Partners**), set its VAT group once — every future invoice from that partner starts with the right group. An invoice-level override remains available for one-off cases (a normally-domestic partner invoicing from abroad, for example).
+
+## Foreign-Currency VAT
+
+For invoices in a currency other than the entity's VAT-reporting currency, lines carry a **VAT exchange rate** and a **VAT amount in reporting currency**. Editing either recalculates the other, and both are available in exports.

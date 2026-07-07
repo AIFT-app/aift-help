@@ -1,0 +1,53 @@
+# Importing, Exporting, and Copying Your VAT Setup
+
+Authoring a complete VAT code table row by row is tedious — a realistic Hungarian workspace needs dozens of codes plus the dimension rows behind them. AI Finance Team therefore treats the whole VAT setup as **one portable unit**: export it to a single Excel workbook, edit or author it in Excel and import it back, or copy a proven setup from one workspace to another in two clicks.
+
+The five tables involved are described in [VAT master data](/vat-master-data).
+
+## The Five-Sheet Workbook
+
+**Export VAT Setup** (on any of the five Master data → VAT tabs) downloads one `.xlsx` file with five sheets — `Partner VAT Groups`, `Product-Service VAT Groups`, `VAT Rates`, `Calculation Methods`, and `VAT Codes`. The file is a complete snapshot: archived rows are included (marked `Archived = yes`), and VAT code rows reference the dimension sheets **by code**, never by internal identifiers.
+
+A freshly created workspace exports a small but valid workbook — that file doubles as your empty template for hand-authoring. There is no separate template download.
+
+Useful conventions inside the file:
+
+- Dates are `YYYY-MM-DD`. Percentages are plain numbers (`27`, not `27%`). Yes/no columns accept `yes`/`no` (and their Hungarian and German equivalents).
+- The exported file has **two header rows**: English on top, your workspace's language underneath. When importing, either row's vocabulary works — a file with only Hungarian or only German headers imports fine. Just don't mix languages within one sheet.
+- Sheet **names** stay English — the importer recognises sheets by these fixed names.
+
+## Importing
+
+**Import VAT Setup** accepts the same workbook shape back. The import is a strict two-step flow:
+
+1. **Validate & preview.** The file is checked completely with **no changes made**. You see, per sheet, how many rows are *new*, *updated*, *unchanged*, and how many have *errors* — with an expandable list naming each error's sheet, row, and column.
+2. **Confirm & apply.** Only after you confirm are the changes applied — all of them atomically. If anything fails, nothing is committed.
+
+**Any error blocks the entire import.** The preview makes fixing the file cheap: correct the named rows and upload again.
+
+What the import does — and deliberately doesn't do:
+
+- Rows are matched by their **code** (for VAT codes: the accounting code or the AIFT code, per your workspace's uniqueness setting). Matched rows are updated; unmatched rows are created.
+- **Nothing is ever deleted.** A row that exists in AI Finance Team but not in your file is left untouched. To archive via file, set its `Archived` column to `yes` explicitly.
+- Sheets missing from the file are skipped — a file containing only the `VAT Rates` sheet is a valid single-table import.
+- One upload may introduce a new dimension row *and* a VAT code using it: sheets process in dependency order.
+- Renaming a default row via import detaches it from the system defaults, exactly like renaming it in the editor. (See [VAT master data](/vat-master-data) on default rows.)
+
+Guardrails: files up to 5 MB, up to 2,000 rows per sheet.
+
+## Copying From Another Workspace
+
+Rolling one proven setup out across a firm's client workspaces doesn't need a file at all. **Copy from workspace…** (next to the Import button) lists the workspaces of your organisation where you hold an accountant role; pick the source and you get **the same preview** — new / updated / unchanged per sheet — before anything is written. Confirming applies the source's complete current setup (archived rows included) with exactly the import's rules: match by code, update or create, never delete.
+
+## Who Can Do What
+
+- **Export** — every workspace member, client roles included (the VAT tables are visible to them read-only anyway).
+- **Import and Copy** — accountant roles only.
+
+Each confirmed import or copy is logged; the **Last import** line near the buttons shows when and by whom the setup was last bulk-changed.
+
+## Tips
+
+- To review or discuss a client's VAT setup, export it and share the file — it reads naturally in Excel.
+- Re-importing an unmodified export is a no-op (everything reports *unchanged*) — safe to use as a round-trip check.
+- To bulk-edit one table, export, edit that one sheet, delete the other four sheets, and import.

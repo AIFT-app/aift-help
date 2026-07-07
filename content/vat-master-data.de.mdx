@@ -1,0 +1,47 @@
+# USt-Stammdaten
+
+AI Finance Team ermittelt für jede Rechnungszeile automatisch den richtigen **USt-Code**. Damit das möglich ist, führt jeder Arbeitsbereich eigene USt-Stammdaten: fünf kleine Tabellen, die — in den Begriffen Ihres Buchhaltungssystems — beschreiben, wie die USt für diesen Mandanten funktioniert. Sie finden sie unter **Stammdaten → USt**, gegliedert in fünf Tabs.
+
+## Wie ein USt-Code aufgebaut ist
+
+Ein USt-Code wird nicht aus einer flachen Liste ausgewählt — er wird **aus fünf Elementen aufgelöst**:
+
+1. **Partner-USt-Gruppe** — wer der Geschäftspartner umsatzsteuerlich ist: Inland, EU, Drittland, ein Partner mit Ist-Besteuerung oder ein kleinunternehmerbefreiter Lieferant.
+2. **Produkt-/Leistungs-USt-Gruppe** — was geliefert wird: Produkte, Dienstleistungen, Anlagegüter, Anzahlungen. Gruppen können einen standardmäßigen **nicht abziehbaren Prozentsatz** tragen (zum Beispiel 50% bei Pkw-Kosten).
+3. **USt-Satz** — der Prozentsatz mit seinem Gültigkeitszeitraum (27%, 18%, 5%, null…).
+4. **Richtung** — Einnahme (Sie sind der Verkäufer) oder Ausgabe (Sie sind der Käufer).
+5. **Berechnungsmethode** — wie der Eintrag aufgebaut wird: normal, Reverse Charge oder nur USt.
+
+Der Tab **USt-Codes** kombiniert diese fünf Elemente zu den Codes, die Ihr Buchhaltungssystem erwartet. Wenn die fünf Elemente einer Rechnungszeile mit der Kombination eines USt-Codes übereinstimmen (und das Rechnungsdatum in den Gültigkeitszeitraum des Codes fällt), wird dieser Code automatisch zugewiesen. Es gibt bewusst keine schlüsselfertige Ländercodeliste — die Codetabelle gehört Ihnen, denn jede Buchhaltungskanzlei und jedes Zielsystem benennt Codes anders.
+
+## Zwei Code-Spalten — und die Eindeutigkeitseinstellung
+
+Jede USt-Code-Zeile hat zwei Kennungen:
+
+- **Buchhaltungscode** — der Code exakt so, wie ihn Ihr Buchhaltungssystem beim Import erwartet. Immer erforderlich.
+- **AIFT-Code** — ein optionaler interner Code, nützlich, wenn mehrere AIFT-seitige Unterscheidungen auf einen einzigen Code des Buchhaltungssystems abgebildet werden.
+
+Eine Einstellung auf Arbeitsbereichsebene (Arbeitsbereichseinstellungen → **USt**) legt fest, welcher der beiden unter den aktiven Codes eindeutig sein muss. Die meisten Arbeitsbereiche belassen es bei den Codes des Buchhaltungssystems; stellen Sie auf AIFT-Codes um, wenn Sie bewusst mehrere AIFT-Codes auf einen Buchhaltungscode zeigen lassen wollen.
+
+## Gültigkeitszeiträume
+
+Sätze und Codes ändern sich im Laufe der Zeit — eine USt-Satzänderung schreibt die Vergangenheit nicht um. Jede Zeile trägt einen optionalen Zeitraum **Gültig ab / Gültig bis**. Wenn sich ein Satz oder eine Regel ändert, bearbeiten Sie nicht die alte Zeile: **Legen Sie eine neue Zeile** mit dem neuen Gültigkeitszeitraum an. Die Auflösung wählt immer die Zeile, die am USt-Datum der Rechnung in Kraft war.
+
+## Standardzeilen
+
+Neue Arbeitsbereiche werden mit einem sinnvollen Grundgerüst befüllt: universelle Partnergruppen und Produkt-/Leistungsgruppen, die aktuellen USt-Sätze des Landes und die drei Berechnungsmethoden. Der Tab **USt-Codes** startet **leer** — die Codetabelle wird pro Arbeitsbereich selbst erstellt.
+
+Vorbefüllte Zeilen verhalten sich wie andere Systemstandards in AI Finance Team:
+
+- Ihre Namen werden in der **Sprache des Arbeitsbereichs** angezeigt (ein ungarischer Arbeitsbereich zeigt „Belföldi", ein deutscher „Inland") — unabhängig von Ihrer eigenen Oberflächensprache.
+- Wenn Sie eine Standardzeile **umbenennen**, wird sie zu einer benutzerdefinierten Zeile: Der von Ihnen eingegebene Name wird von da an unverändert angezeigt. Das Bearbeiten ihrer Beschreibung oder Daten sowie das Archivieren löst sie *nicht* vom Standard.
+
+## Wer sieht was
+
+Alle Mitglieder des Arbeitsbereichs — auch Mandantenrollen — können die fünf USt-Tabellen **einsehen**. Anlegen, Bearbeiten, Archivieren, Importieren und Kopieren sind Mitgliedern mit der Rolle **Buchhalter** oder **Buchhalter-Admin** vorbehalten.
+
+## Verwandte Artikel
+
+- [USt-Codes auf Rechnungen](/vat-codes-on-invoices) — wie die fünf Elemente bei der Extraktion automatisch befüllt werden und wie Korrekturen funktionieren.
+- [USt in Exporten](/vat-in-exports) — wie USt-Daten in die Exportdateien für Ihr Buchhaltungssystem fließen.
+- [USt-Einrichtung importieren, exportieren und kopieren](/vat-setup-import-export) — die gesamte Einrichtung in Excel im Ganzen erstellen oder zwischen Arbeitsbereichen kopieren.
