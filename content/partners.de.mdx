@@ -109,10 +109,21 @@ Die zentrale Erkenntnis: Sobald Sie den richtigen alternativen Namen für einen 
 
 Wenn eine Banktransaktion verarbeitet wird (über Open Banking oder nach einem Kontoauszug-Upload), laufen vor dem Schritt mit den alternativen Namen zwei zusätzliche automatische Verknüpfungsprüfungen:
 
-1. **IBAN-Prüfung auf eigenes Konto** — wenn die IBAN der Transaktion mit einem Ihrer eigenen Unternehmens-Bankkonten übereinstimmt, wird die Transaktion als interne Überweisung zwischen Ihren eigenen Konten behandelt, und es wird kein Partner automatisch erstellt.
+1. **IBAN-Prüfung auf eigenes Konto** — wenn die IBAN oder Kontonummer der Transaktion mit einem Ihrer eigenen Unternehmens-Bankkonten übereinstimmt, ist die Transaktion eine interne Überweisung zwischen Ihren eigenen Konten: Sie wird mit einem speziellen **Eigene Gesellschaft**-Partner verknüpft, erhält den Typ **Interne Überweisung** und wird automatisch als **Keine Rechnung nötig** markiert (siehe unten den Abschnitt *Interne Überweisungen zwischen Ihren eigenen Konten*).
 2. **IBAN-Abgleich mit verifiziertem Partner** — wenn die IBAN mit einer auf einem verifizierten Partner-Datensatz gespeicherten IBAN übereinstimmt (Abschnitt **Kontakt & Bankverbindung** auf der Detailseite des Partners), wird die Transaktion ohne weiteres Zutun automatisch mit diesem Partner verknüpft.
 
 Das Hinzufügen von Partner-IBANs ist daher genauso wertvoll wie das Hinzufügen alternativer Namen: Eine einzige gespeicherte IBAN bedeutet, dass jede künftige ein- oder ausgehende Überweisung dieses Partners automatisch verifiziert wird.
+
+## Interne Überweisungen zwischen Ihren eigenen Konten
+
+Wenn Sie Geld zwischen zwei Ihrer eigenen Bankkonten bewegen, ist die „Gegenpartei" der Transaktion Ihr eigenes Unternehmen — kein echter Lieferant oder Kunde. AI Finance Team behandelt dies mit einem speziellen **Eigene-Gesellschaft-Partner**: ein im Hintergrund geführter Datensatz, der eine Ihrer [Gesellschaften](/master-data-entities) darstellt, sodass die Überweisung mit etwas Echtem verknüpft werden kann, statt einen überflüssigen Partner anzulegen.
+
+- **Die Erkennung ist automatisch und identitätsbasiert.** Wenn das Gegenkonto einer Transaktion (per IBAN oder Kontonummer) mit einem auf einer Ihrer Gesellschaften gespeicherten Bankkonto übereinstimmt, wird sie mit dem Eigene-Gesellschaft-Partner dieser Gesellschaft verknüpft, erhält den Typ **Interne Überweisung** und wird als **Keine Rechnung nötig** markiert. Halten Sie dafür die Bankkonten jeder Gesellschaft unter **Stammdaten → Gesellschaften** aktuell.
+- **Das Badge „Eigene Gesellschaft".** Wo der Partner erscheint — auf der Transaktionsdetailseite, im Partner-Auswahlfeld —, zeigt er statt des üblichen Verifiziert-Badges ein blaues **Eigene Gesellschaft**-Badge.
+- **Sie stören nicht.** Eigene-Gesellschaft-Partner erscheinen **nicht** unter **Stammdaten → Partner** (sie sind keine echten Geschäftspartner) und werden **aus dem Kontokorrent ausgeschlossen** (ein laufender Saldo gegen sich selbst ist sinnlos). Im Auswahlfeld stehen sie oben in einer angehefteten Gruppe **Eigene Gesellschaften**, sodass Sie eine Überweisung mit einem Klick jeder Ihrer Gesellschaften zuordnen können.
+- **Manuelles Markieren.** Wenn eine Transaktion fälschlich als gewöhnlicher Partner erfasst wurde, der eigentlich Ihr eigenes Unternehmen ist, öffnen Sie die Detailseite dieses Partners und wählen Sie im Abschnitt **Eigene Gesellschaft** die dargestellte Gesellschaft aus. Von da an verhält er sich wie ein Eigene-Gesellschaft-Partner, und künftige Überweisungen auf diesem Konto werden automatisch erkannt.
+
+> Dies gilt prospektiv: für künftige Transaktionen. Bestehende Zeilen werden nicht automatisch neu verarbeitet — ordnen Sie sie bei Bedarf über das Partner-Auswahlfeld der Transaktion zu.
 
 ## Einen Partner direkt verifizieren
 
@@ -138,7 +149,7 @@ Beim Bearbeiten eines hochgeladenen Kontoauszugs (Reiter Kontoauszüge → auf e
 
 ### Für Transaktionen, die tatsächlich keinen Partner haben
 
-Bankgebühren, Zinsen und Überweisungen zwischen eigenen Konten gehören zu keinem Partner. Die Auswahl hat oben eine eigene Option **— Keine Partner (z. B. Bankgebühr) —** — wenn Sie sie auswählen, wird eine bestehende Verknüpfung sauber aufgehoben.
+Bankgebühren und Zinsen gehören zu keinem Partner. Die Auswahl hat oben eine eigene Option **— Keine Partner (z. B. Bankgebühr) —** — wenn Sie sie auswählen, wird eine bestehende Verknüpfung sauber aufgehoben. (Überweisungen zwischen Ihren eigenen Konten sind anders — sie werden mit einem Eigene-Gesellschaft-Partner verknüpft, nicht mit „kein Partner".)
 
 ### Die verifizierte Verknüpfung beim nächsten Mal wiederverwenden
 
