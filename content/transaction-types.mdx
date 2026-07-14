@@ -16,7 +16,7 @@ Transaction types are managed under **Master data → Transaction Types**. This 
 
 ### Default types
 
-Every new workspace comes with six pre-seeded transaction types to get you started:
+Every new workspace comes with eight pre-seeded transaction types to get you started:
 
 | Type | Purpose |
 |------|---------|
@@ -26,8 +26,22 @@ Every new workspace comes with six pre-seeded transaction types to get you start
 | Card Reserve / Authorization | Pre-authorisation holds on cards |
 | VAT / Tax Payment | Direct tax authority payments |
 | Payroll | Salary and payroll runs |
+| Cash withdrawal | ATM / cash withdrawals from the account |
+| Internal transfer | Moving money between your own bank accounts (see below) |
 
 These types already include common patterns based on typical bank descriptions (such as `BANK FEE` and `COMMISSION` for bank fees). You can edit, extend, or deactivate any of them.
+
+### Internal transfers between your own accounts
+
+When you move money between two of your own bank accounts — most commonly converting EUR to HUF, or topping up one account from another — there is no invoice, because both sides are the same company.
+
+AI Finance Team recognises these automatically and **does not** rely on the description wording alone. When the other account on a transaction is one of your own entity's bank accounts (matched by IBAN or account number against your [entities'](/master-data-entities) bank accounts), the transaction is:
+
+- given the **Internal transfer** type,
+- marked **No invoice needed**, and
+- linked to a special **Own entity** partner rather than a junk supplier record (see [Managing Partners](/partners#internal-transfers-between-your-own-accounts)).
+
+Because this is based on your saved account numbers — not forgeable text — keep each entity's bank accounts up to date under **Master data → Entities** so transfers are caught reliably. A transaction whose description merely mentions a transfer word (e.g. "átvezetés") but whose other account you don't own is still flagged **No invoice needed** with the Internal transfer type, but it is **not** linked to an own entity.
 
 ### Creating a new type
 

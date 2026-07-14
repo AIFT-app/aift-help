@@ -111,10 +111,21 @@ The key insight: once you have added the right alternative name for a partner, e
 
 When a bank transaction is processed (via open banking or after a statement upload), two additional auto-link checks run before the alternative-name step:
 
-1. **Own-account IBAN check** — if the IBAN on the transaction matches one of your own entity bank accounts, the transaction is treated as an internal transfer between your own accounts and no partner is auto-created.
+1. **Own-account IBAN check** — if the IBAN or account number on the transaction matches one of your own entity bank accounts, the transaction is an internal transfer between your own accounts: it is linked to a special **Own entity** partner, given the **Internal transfer** type, and marked **No invoice needed** automatically (see [Internal transfers between your own accounts](#internal-transfers-between-your-own-accounts) below).
 2. **Verified-partner IBAN match** — if the IBAN matches one stored on a verified partner record (the **Contact & banking** section of the partner's detail page), the transaction is auto-linked to that partner with no further action needed.
 
 Adding partner bank IBANs is therefore as valuable as adding alternative names: a single saved IBAN means every future incoming or outgoing transfer from that partner is verified automatically.
+
+## Internal transfers between your own accounts
+
+When you move money between two of your own bank accounts, the "other party" on the transaction is your own company — not a real supplier or customer. AI Finance Team handles this with a special **own-entity partner**: a behind-the-scenes record that represents one of your [entities](/master-data-entities), so the transfer can be linked to something real instead of creating a junk partner.
+
+- **Detection is automatic and identity-based.** When a transaction's other account (by IBAN or account number) matches a bank account saved on one of your entities, it is linked to that entity's own-entity partner, given the **Internal transfer** type, and marked **No invoice needed**. Keep each entity's bank accounts current under **Master data → Entities** so this works reliably.
+- **The "Own entity" badge.** Wherever the partner appears — the transaction detail, the partner picker — it shows a blue **Own entity** badge instead of the usual verified pill.
+- **They stay out of the way.** Own-entity partners are **not** listed under **Master data → Partners** (they aren't real trading partners), and they are **excluded from the Partner Ledger** (a running balance against yourself is meaningless). In the partner picker they sit in a pinned **Own entities** group at the top, so you can assign a transfer to any of your entities in one click.
+- **Marking one by hand.** If a transaction was mis-recorded as an ordinary partner that is really your own company, open that partner's detail page and, in the **Own entity** section, pick the entity it represents. From then on it behaves as an own-entity partner and future transfers on that account are caught automatically.
+
+> This is prospective: it applies to transactions going forward. Existing rows are not re-processed automatically — assign them from the transaction's partner picker if needed.
 
 ## Verifying a Partner Inline
 
@@ -140,7 +151,7 @@ When editing an uploaded statement (Statements tab → click a statement → **E
 
 ### For transactions that genuinely have no partner
 
-Bank fees, interest, and own-account transfers don't belong to a partner. The picker has a dedicated **— No partner (e.g. bank fee) —** option at the top — selecting it clears any existing link cleanly.
+Bank fees and interest don't belong to a partner. The picker has a dedicated **— No partner (e.g. bank fee) —** option at the top — selecting it clears any existing link cleanly. (Transfers between your own accounts are different — they link to an [own-entity partner](#internal-transfers-between-your-own-accounts) rather than "no partner".)
 
 ### Reusing the verified link next time
 
