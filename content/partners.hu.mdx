@@ -109,10 +109,21 @@ A lényegi felismerés: ha egyszer hozzáadta a megfelelő alternatív nevet egy
 
 Amikor egy banki tranzakció feldolgozásra kerül (nyílt banki kapcsolaton keresztül vagy kivonatfeltöltés után), két további automatikus kapcsolási ellenőrzés fut az alternatívnév-lépés előtt:
 
-1. **Saját-számlás IBAN-ellenőrzés** — ha a tranzakción lévő IBAN megegyezik az Ön egyik saját cég-bankszámlájával, a tranzakció a saját számlái közötti belső átutalásként kezelődik, és nem jön létre partner.
+1. **Saját-számlás IBAN-ellenőrzés** — ha a tranzakción lévő IBAN vagy számlaszám megegyezik az Ön egyik saját cég-bankszámlájával, a tranzakció a saját számlái közötti belső átutalás: egy speciális **Saját entitás** partnerhez kapcsolódik, megkapja a **Belső átvezetés** típust, és automatikusan **Nincs számla szükséges** jelölést kap (lásd lentebb a *Belső átvezetések a saját számlái között* szakaszt).
 2. **Hitelesített-partner IBAN-egyezés** — ha az IBAN megegyezik egy hitelesített partner rekordján tárolttal (a partner részletoldalának **Elérhetőség és bankadatok** szakasza), a tranzakció automatikusan ahhoz a partnerhez kapcsolódik, további művelet nélkül.
 
 A partner banki IBAN-jainak hozzáadása tehát ugyanolyan értékes, mint az alternatív nevek hozzáadása: egyetlen elmentett IBAN azt jelenti, hogy attól a partnertől minden jövőbeli bejövő vagy kimenő átutalás automatikusan hitelesítve lesz.
+
+## Belső átvezetések a saját számlái között
+
+Amikor két saját bankszámlája között mozgat pénzt, a tranzakció „másik fele" a saját cége — nem valódi szállító vagy vevő. Az AI Finance Team ezt egy speciális **saját entitás partnerrel** kezeli: ez egy háttérben tárolt rekord, amely az Ön egyik [entitását](/master-data-entities) képviseli, így az átutalás valós rekordhoz kapcsolódhat felesleges partner létrehozása nélkül.
+
+- **A felismerés automatikus és azonosító-alapú.** Ha a tranzakció másik számlája (IBAN vagy számlaszám alapján) megegyezik az egyik entitásán tárolt bankszámlával, a tranzakció ahhoz az entitáshoz tartozó saját entitás partnerhez kapcsolódik, megkapja a **Belső átvezetés** típust, és **Nincs számla szükséges** jelölést kap. Ehhez tartsa naprakészen az entitások bankszámláit a **Törzsadatok → Entitások** alatt.
+- **A „Saját entitás" jelzés.** Ahol a partner megjelenik — a tranzakció részletoldalán, a partnerválasztóban —, a szokásos hitelesített jelzés helyett kék **Saját entitás** jelzést mutat.
+- **Nem lógnak ki.** A saját entitás partnerek **nem** jelennek meg a **Törzsadatok → Partnerek** alatt (nem valódi üzleti partnerek), és **kimaradnak a partner folyószámlából** (az önmagával szembeni egyenleg értelmetlen). A partnerválasztóban a lista tetején egy rögzített **Saját entitások** csoportban vannak, így egy kattintással bármelyik entitásához hozzárendelhet egy átutalást.
+- **Kézi megjelölés.** Ha egy tranzakció tévesen közönséges partnerként rögzült, pedig valójában a saját cége, nyissa meg az adott partner részletoldalát, és a **Saját entitás** szakaszban válassza ki a képviselt entitást. Ettől kezdve saját entitás partnerként viselkedik, és az adott számlán a jövőbeli átutalások automatikusan felismerődnek.
+
+> Ez előretekintő: a jövőbeli tranzakciókra vonatkozik. A meglévő sorok nem dolgozódnak fel újra automatikusan — szükség esetén rendelje hozzá őket a tranzakció partnerválasztójából.
 
 ## Partner hitelesítése helyben
 
@@ -138,7 +149,7 @@ Egy feltöltött kivonat szerkesztésekor (Kivonatok fül → kattintson egy kiv
 
 ### Olyan tranzakciókhoz, amelyeknek valóban nincs partnere
 
-A banki díjak, kamatok és saját számlák közötti átutalások nem tartoznak partnerhez. A választó tetején van egy dedikált **— Nincs partner (pl. banki költség) —** lehetőség — ennek kiválasztása tisztán törli a meglévő kapcsolatot.
+A banki díjak és kamatok nem tartoznak partnerhez. A választó tetején van egy dedikált **— Nincs partner (pl. banki költség) —** lehetőség — ennek kiválasztása tisztán törli a meglévő kapcsolatot. (A saját számlák közötti átutalások mások — ezek egy saját entitás partnerhez kapcsolódnak, nem a „nincs partner" opcióhoz.)
 
 ### A hitelesített kapcsolat újrahasznosítása legközelebb
 
