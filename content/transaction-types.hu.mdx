@@ -1,0 +1,150 @@
+# Tranzakciótípusok és a „Nincs szükség számlára”
+
+Néhány banki tranzakcióhoz soha nem tartozik számla — banki díjak, kamatok, bérfizetések, adóutalások és hasonló, ismétlődő tételek. A **tranzakciótípusok** segítségével szabályokat adhatsz meg ezekre, így automatikusan felismerhetők, és kikerülnek a Hiányzó dokumentumok listájáról — a beérkező tételek között csak a valóban párosítatlanok maradnak.
+
+## Hogyan működik
+
+Amikor új tranzakciók érkeznek (bankkivonat feltöltésével vagy banki adatkapcsolaton keresztül), az AI Finance Team minden párosítatlan tranzakcióra lefuttatja a tranzakciótípus-szabályokat. Minden olyan tranzakció, amelynek leírása, partnerneve vagy közleménye illeszkedik egy szabályra, azonnal **Nincs szükség számlára** jelölést kap a hozzárendelt típussal együtt. Kézi átnézés nem szükséges.
+
+Azoknál a tranzakcióknál, amelyek nem illeszkednek pontosan egy szabályra, az AI a tartalom alapján is javasolhat típust — a megbízhatósági szintet a tranzakció részleteinél láthatod.
+
+---
+
+## Tranzakciótípusok beállítása
+
+A tranzakciótípusokat a **Törzsadatok → Tranzakciótípusok** menüpontban kezelheted. Ez az oldal csak a **Könyvelő** vagy **Könyvelő admin** szerepkörrel rendelkező felhasználók számára látható.
+
+### Alapértelmezett típusok
+
+Minden új munkaterület előre beállított tranzakciótípusokkal indul, hogy legyen mivel kezdeni:
+
+| Típus | Cél |
+|------|---------|
+| Banki díj | Havi számlavezetési díjak, utalási díjak |
+| Kamat | A bank által jóváírt vagy terhelt kamat |
+| Banki korrekció | A bank által kezdeményezett helyesbítések |
+| Kártyafedezet / Zárolás | Előzetes kártyazárolások |
+| ÁFA / Adófizetés | Közvetlen adóhatósági utalások |
+| Bérfizetés | Munkabér és bérszámfejtés |
+| Készpénzfelvétel | ATM / készpénzfelvétel a számláról |
+| Átvezetés | Pénzmozgás a saját bankszámláid között (lásd lentebb) |
+
+Ezek a típusok már tartalmaznak gyakori mintákat a tipikus banki leírások alapján. Bármelyiket szerkesztheted, bővítheted vagy kikapcsolhatod.
+
+### Átvezetés a saját számláid között
+
+Amikor a saját két bankszámlád között mozgatsz pénzt — legtöbbször EUR-t HUF-ra váltva, vagy egyik számlát a másikról feltöltve —, nincs számla, mert mindkét oldal ugyanaz a cég.
+
+Az AI Finance Team ezt automatikusan felismeri, és **nem** kizárólag a leírás szövegére támaszkodik. Ha a tranzakció másik számlája az egyik saját [entitásod](/master-data-entities) bankszámlája (IBAN vagy számlaszám alapján egyeztetve), a tranzakció:
+
+- megkapja az **Átvezetés** típust,
+- **Nincs szükség számlára** jelölést kap, és
+- egy speciális **Saját entitás** partnerhez kapcsolódik, nem pedig egy fölösleges szállítói rekordhoz (lásd [Partnerek kezelése](/partners#internal-transfers-between-your-own-accounts)).
+
+Mivel ez a mentett számlaszámokon alapul — nem hamisítható szövegen —, tartsd naprakészen az egyes entitások bankszámláit a **Törzsadatok → Entitások** alatt.
+
+### Új típus létrehozása
+
+1. Kattints a jobb felső sarokban a **+ Új típus** gombra.
+2. Adj meg egy **Nevet** — ezt látják a könyvelők és az AI.
+3. Igény szerint adj hozzá **Leírást** belső használatra.
+4. Adj hozzá egy vagy több **mintát** (lásd lentebb).
+5. Kattints a **Mentés** gombra.
+
+### Típus szerkesztése
+
+Kattints a **Szerkesztés** gombra a táblázat bármely sorában. Ugyanaz az űrlap nyílik meg az aktuális beállításokkal. A mentés az adott típus összes mintáját felülírja.
+
+### Típusok aktiválása és kikapcsolása
+
+Kattints a **Kikapcsolás** (vagy **Aktiválás**) gombra bármely sorban. A kikapcsolt típusok kiszürkülnek, és mintáik nem érvényesülnek a párosítás során.
+
+---
+
+## Partnerkötés — kivel van a tranzakció
+
+A banki díjaknak, kamatoknak, adóutalásoknak és a kártyaelfogadói elszámolásoknak nemcsak a **Nincs szükség számlára** jelölés kell — van **valódi félük** is: a számlát vezető bank, az adóhatóság vagy a fizetési szolgáltató. Egy tranzakciótípus automatikusan feloldhatja ezt a felet, így ezek a mozgások valódi féllel kerülnek a főkönyvbe és az exportokba, nem pedig a kivonat szövegéből kikapart, fölösleges rekorddal.
+
+A típus szerkesztőjében kapcsold be az **A partnert a típus állítsa be** kapcsolót, majd válassz a két mód közül:
+
+| Mód | A fél… | Mikor használd |
+|------|-----------------|-----------|
+| **Bank** | A számlát vezető bank (magáról a számláról) | Banki díjak, kamat, készpénzfelvétel, kártyafedezet — számlánként eltér, de mindig „az adott számla bankja” |
+| **Konkrét partner** | Egy általad választott hitelesített partner | Egy adóhatóság (pl. NAV ÁFA) vagy egy kártyaelfogadó, például a Teya — mindig ugyanaz a fél |
+
+Ha a kapcsoló **ki** van kapcsolva, a típus nem állít be felet — a partner magából a tranzakcióból jön, mint máskor.
+
+A **Konkrét partner** típusnál **Rögzített kategóriát** is beállíthatsz: a tranzakció automatikusan erre könyvelődik (csak ha még nincs kategóriája). Ha a partner még nem létezik, használd a **+ Partner létrehozása** gombot közvetlenül a szerkesztőben.
+
+### Bank: add meg minden számla bankját
+
+A **Bank** típus a felet magáról a számláról veszi — a bank nem külön partner. (A banki díjak miatt nincs folyószámla-egyenleged a bankkal; a bankkal szembeni egyenleged magának a számlának a pénzegyenlege.) A bankot a **Törzsadatok → Bankszámlák** alatt add meg: nyisd meg a bankszámlát a **Szerkesztés** gombbal (vagy új hozzáadásakor), és töltsd ki a **Bank** és **Bank adószáma** mezőket az IBAN és a pénznem mellett, hogy a banki díjak mindig féllel kerüljenek exportba.
+
+### Konkrét partner: az azonosságra fut, nem a hasonló szövegre
+
+A **Konkrét partner** típus csak akkor érvényesül, ha a tranzakció partnere ténylegesen a kiválasztott partnerre oldódik fel — soha nem pusztán azért, mert a szöveg hasonlónak tűnik. Például egy *Teya*-hoz kötött típus a Teya kártyaelszámolásait osztályozza, de egy hasonló megjelenésű *Wolt* elszámolást érintetlenül hagy, mert a Wolt más fél (és lehet, hogy számlát igényel). Te döntöd el, mely partnerek kapnak egyáltalán szabályt.
+
+> **Ide került át:** a korábban a **Partner** adatlapon lévő tranzakciós szabályok mostantól itt, **Konkrét partner** típusként élnek. Partnerenként hozz létre egy típust — például egyet a *NAV ÁFA*, és egy külön a *NAV SZJA* számára —, mert az adó-alszámlák soha nem ugyanaz a fél.
+
+---
+
+## Minták
+
+Minden tranzakciótípushoz egy vagy több **minta** tartozhat. Egy tranzakció akkor illeszkedik a típusra, ha **bármelyik** mintája illeszkedik (kis- és nagybetűre nem érzékeny VAGY-logika).
+
+### A minta felépítése
+
+Minden minta három mező kombinációja:
+
+| Mező | Mit vizsgál |
+|-------|---------------|
+| **Leírás** | A tranzakció bank által adott, szabad szöveges leírása |
+| **Partnernév** | A tranzakció másik felének neve |
+| **Közlemény** | A fizetési közlemény mezője |
+
+Egy illeszkedési móddal kombinálva:
+
+| Mód | Viselkedés |
+|------|-----------|
+| **Tartalmazza** | A mező bárhol tartalmazza az értéket (leginkább rugalmas) |
+| **Ezzel kezdődik** | A mező az értékkel kezdődik |
+| **Pontos** | A mező pontosan megegyezik az értékkel |
+
+**Példa:** Egy minta, ahol Mező = *Leírás*, Mód = *Tartalmazza*, Érték = `BANK FEE`, minden olyan tranzakcióra illeszkedik, amelynek leírása tartalmazza a „BANK FEE” szöveget.
+
+### Élő találati előnézet
+
+Ahogy beírsz egy mintaértéket, az AI Finance Team megmutatja, hány **meglévő** tranzakció illeszkedne rá a munkaterületen. Így mentés előtt ellenőrizheted, hogy a minta nem túl tág vagy túl szűk-e.
+
+---
+
+## Címkék a tranzakciólistán
+
+A **Tranzakciók** oldalon minden sor egy vagy több címkét mutathat:
+
+| Címke | Jelentés |
+|-------|---------|
+| **Nincs számla** | Tranzakciótípus-szabály illesztette, vagy könyvelő jelölte meg kézzel |
+| **Duplikátum** | A rendszer egy másik tranzakció duplikátumaként észlelte |
+| **Banki adatkapcsolat** | Élő GoCardless kapcsolaton keresztül importálva |
+| **Kivonat** | Feltöltött PDF bankkivonatból importálva |
+
+Egy tranzakció egyszerre több címkét is viselhet.
+
+### Szűrés címke szerint
+
+A fő szűrősor alatt kapcsolható pill-szűrők sora található. Kattints bármelyikre az aktiváláshoz; kattints újra a kikapcsoláshoz. Egyszerre több is aktív lehet.
+
+---
+
+## Tranzakció kézi megjelölése
+
+Illeszkedő minta nélkül is megjelölhet egy könyvelő bármely párosítatlan tranzakciót a tranzakció részletei panelen:
+
+1. Kattints a tranzakció sorára a részletek megnyitásához.
+2. A **Párosítás** szakaszban válassz egy tranzakciótípust a legördülőből — vagy válaszd a **Nincs konkrét típus** lehetőséget.
+3. A tranzakció azonnal **Nincs szükség számlára** jelölést kap.
+
+A visszavonáshoz kattints a **Visszavonás — jelölés párosítatlanként** gombra. A tranzakció visszakerül párosítatlan állapotba.
+
+> Csak a **Könyvelő** és **Könyvelő admin** felhasználók jelölhetik meg vagy vonhatják vissza a tranzakciókat. Az ügyfelek látják a címkét, de nem módosíthatják.
