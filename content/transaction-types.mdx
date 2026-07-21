@@ -61,6 +61,33 @@ Click **Deactivate** (or **Activate**) on any row. Inactive types are greyed out
 
 ---
 
+## Partner binding — who the transaction is with
+
+Bank fees, interest, tax payments and card-acquirer settlements don't just need *No invoice needed* — they also have a **real party**: the bank that runs the account, the tax authority, or the payment provider. A transaction type can resolve that party automatically, so these movements carry a proper party into the ledger and exports instead of a junk record scraped from the statement text.
+
+In a type's editor, turn on **Set the partner from this type** and pick one of two modes:
+
+| Mode | The party is… | Use it for |
+|------|---------------|-----------|
+| **Bank** | The bank that runs the account (taken from the account itself) | Bank fees, interest, cash withdrawals, card reserves — it differs per account, but is always "that account's bank" |
+| **Specific partner** | One verified partner you pick | A tax authority (e.g. NAV VAT), or a card acquirer like Teya — always the same party |
+
+Leaving the toggle **off** means the type doesn't set a party — the partner comes from the transaction itself, as usual.
+
+For a **Specific partner** type you can also set a **Fixed category**: the transaction is booked to it automatically (only when it doesn't already have one). If the partner doesn't exist yet, use **+ Create partner** right in the editor — no need to leave the page first.
+
+### Bank: set each account's bank
+
+A **Bank** type takes its party from the account itself — the bank is not a separate partner. (You have no running balance / folyószámla with your bank for fees; the balance you hold with the bank is the account's own cash balance.) Set it under **Master data → Bank accounts**: open a bank account with **Edit** (or when adding one) and fill in the **Bank** and **Bank tax ID** fields, next to the account's IBAN and currency, so bank charges always export with a party.
+
+### Specific partner: fires on identity, never look-alikes
+
+A **Specific partner** type only applies when the transaction's partner actually resolves to the partner you picked — never because the text merely looks similar. For example, a type fixed to *Teya* classifies Teya's card settlements but leaves a look-alike *Wolt* settlement untouched, because Wolt is a different party (and may well need an invoice). You decide which partners get a rule at all.
+
+> **Moved here:** transaction rules that used to live on the **Partner** detail page now live here as **Specific partner** types. Create one type per partner — for example one for *NAV VAT* and a separate one for *NAV Personal income tax*, because tax sub-accounts are never the same party.
+
+---
+
 ## Patterns
 
 Each transaction type can have one or more **patterns**. A transaction matches the type if **any** of its patterns match (case-insensitive OR logic).
