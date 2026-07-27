@@ -7,7 +7,7 @@ This connection is **read-only**. AI Finance Team only *reads* invoice data from
 ## Before You Start
 
 - This feature is available only for entities whose country is **Hungary (HU)**. Non-Hungarian entities will not see the NAV section.
-- You must have the **client owner** role in the workspace. Accountant-role users can see the connection *status* but never the credentials, and cannot connect or change them.
+- The connection can be set up by a **client owner** or an **accountant admin**. (In practice accounting offices usually create the NAV technical user themselves, so they can start the connection too.) Other roles can see the connection *status* but never the credentials.
 - You need a **NAV technical user** ("technikai felhasználó"), which you create inside your own NAV account. Specifically, AI Finance Team needs:
   - the entity's **tax number** (the 8-digit core),
   - the technical user's **login**,
@@ -16,7 +16,7 @@ This connection is **read-only**. AI Finance Team only *reads* invoice data from
 
 > You do **not** need the XML exchange key ("cserekulcs") — that is only used for issuing invoices, which AI Finance Team never does.
 
-Your credentials are stored encrypted in a secure vault. **Your accountant can never see them** — only the sync status.
+Your credentials are stored encrypted in a secure vault. **Once saved, nobody can read them back** — not you, not your accountant, not even whoever entered them. That is why editing the connection requires re-entering all four values.
 
 ## Creating a NAV Technical User
 
@@ -30,10 +30,15 @@ Your credentials are stored encrypted in a secure vault. **Your accountant can n
 1. From the workspace sidebar, open **Master data → Entities** and select your Hungarian entity.
 2. Scroll to the **NAV Online Számla** section.
 3. Enter the tax number, technical-user login, password, and signing key.
-4. Click **Save & connect**.
-5. Click **Test connection**. AI Finance Team runs a small query against NAV to validate the credentials, then begins syncing.
+4. Click **Save & verify**. AI Finance Team immediately checks the credentials against NAV and pulls your most recent invoices, so you can see straight away whether the connection works — or exactly what NAV rejected.
+5. Choose the **start date**: how far back to pull history. The default is 3 months and the maximum is 12. The end date is always today.
+6. Review the **estimated invoice count** for that period, then click **Start sync**.
 
-Once active, AI Finance Team polls NAV regularly and imports both your **outbound** (sales) and **inbound** (supplier) invoices.
+Syncing only begins **after you start it** — a large history download never starts on its own. From then on, AI Finance Team polls NAV regularly and imports both your **outbound** (sales) and **inbound** (supplier) invoices.
+
+> **Why the "~" before the count?** NAV does not return an exact number, only pagination information, so we can only show an estimate. The period counts by the date NAV received the invoice, not the invoice date.
+
+> **A longer period means more processing.** Every invoice downloaded goes through categorization and matching, which costs money. If you only need the current period, choose a shorter range.
 
 ## What Happens to the Imported Data
 
