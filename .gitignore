@@ -4,3 +4,10 @@ out/
 node_modules/
 .DS_Store
 reference/
+
+# env files — local secrets, never committed. No slash in the pattern, so it
+# matches at any depth (unlike an anchored one like `supabase/.temp/`).
+# The negation keeps a future committed template working: `.env*` would
+# otherwise silently swallow `git add .env.example`.
+.env*
+!.env.example
