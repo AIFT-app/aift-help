@@ -7,7 +7,7 @@ Ez a kapcsolat **csak olvasható**. Az AI Finance Team kizárólag *olvassa* a s
 ## Mielőtt belekezdene
 
 - Ez a funkció csak olyan cégek számára érhető el, amelyek országa **Magyarország (HU)**. A nem magyar cégek nem fogják látni a NAV szakaszt.
-- A munkaterületen **ügyfél tulajdonos** szerepkörrel kell rendelkeznie. A könyvelő szerepkörű felhasználók látják a kapcsolat *állapotát*, de a belépési adatokat soha, és nem tudják csatlakoztatni vagy módosítani azokat.
+- A kapcsolatot **ügyfél tulajdonos** vagy **könyvelő admin** szerepkörrel lehet létrehozni. (A könyvelőirodák a gyakorlatban általában maguk hozzák létre a NAV technikai felhasználót, ezért ők is elindíthatják a csatlakozást.) A többi szerepkör látja a kapcsolat *állapotát*, de a belépési adatokat soha.
 - Szüksége van egy **NAV technikai felhasználóra** („technikai felhasználó"), amelyet a saját NAV-fiókjában hoz létre. Konkrétan az AI Finance Teamnek a következőkre van szüksége:
   - a cég **adószáma** (a 8 jegyű törzsszám),
   - a technikai felhasználó **neve**,
@@ -16,7 +16,7 @@ Ez a kapcsolat **csak olvasható**. Az AI Finance Team kizárólag *olvassa* a s
 
 > **Nincs** szüksége az XML cserekulcsra („cserekulcs") — azt csak számlák kiállításához használják, amit az AI Finance Team soha nem tesz.
 
-A belépési adatait titkosítva, biztonságos páncélteremben tároljuk. **A könyvelője soha nem láthatja őket** — csak a szinkron állapotát.
+A belépési adatait titkosítva, biztonságos páncélteremben tároljuk. **Mentés után senki nem tudja visszaolvasni őket** — sem Ön, sem a könyvelője, sem az, aki beírta. Ezért a kapcsolat szerkesztésekor mind a négy adatot újra meg kell adni.
 
 ## NAV technikai felhasználó létrehozása
 
@@ -30,10 +30,15 @@ A belépési adatait titkosítva, biztonságos páncélteremben tároljuk. **A k
 1. A munkaterület oldalsávjában nyissa meg a **Törzsadatok → Cégek** menüpontot, és válassza ki a magyar cégét.
 2. Görgessen le a **NAV Online Számla** szakaszhoz.
 3. Adja meg az adószámot, a technikai felhasználó nevét, jelszavát és az aláírókulcsot.
-4. Kattintson a **Mentés és csatlakozás** gombra.
-5. Kattintson a **Kapcsolat tesztelése** gombra. Az AI Finance Team egy kis lekérdezést futtat a NAV felé a belépési adatok ellenőrzésére, majd megkezdi a szinkronizálást.
+4. Kattintson a **Mentés és ellenőrzés** gombra. Az AI Finance Team rögtön ellenőrzi a belépési adatokat a NAV-nál, és le is tölti az utolsó néhány számlát — így azonnal látja, hogy működik-e a kapcsolat, vagy mi a NAV hibaüzenete.
+5. Válassza ki a **kezdő dátumot**: meddig menjünk vissza az előzményekben. Alapértelmezés 3 hónap, legfeljebb 12 hónap. A záró dátum mindig a mai nap.
+6. Nézze meg a **becsült számlaszámot** az adott időszakra, majd kattintson a **Szinkron indítása** gombra.
 
-Aktiválás után az AI Finance Team rendszeresen lekérdezi a NAV-ot, és importálja mind a **kimenő** (értékesítési), mind a **bejövő** (beszállítói) számláit.
+A szinkron **csak az indítás után** kezdődik el — a nagyobb előzmény-letöltés soha nem indul el magától. Utána az AI Finance Team rendszeresen lekérdezi a NAV-ot, és importálja mind a **kimenő** (értékesítési), mind a **bejövő** (beszállítói) számláit.
+
+> **Miért „~" a számlaszám előtt?** A NAV nem ad meg pontos darabszámot, csak lapozási információt, ezért becsült értéket tudunk mutatni. Az időszak a NAV-hoz beérkezés dátuma szerint számít, nem a számla kelte szerint.
+
+> **Hosszabb időszak = több feldolgozás.** Minden letöltött számla kategorizáláson és párosításon megy át, ami költséggel jár. Ha csak a folyó időszakra van szüksége, válasszon rövidebb intervallumot.
 
 ## Mi történik az importált adatokkal
 
@@ -54,5 +59,5 @@ Aktiválás után az AI Finance Team rendszeresen lekérdezi a NAV-ot, és impor
 
 ## Hibaelhárítás
 
-- **Az „Utolsó szinkronhiba"** az állapotpanelben általában azt jelenti, hogy a NAV elutasította a belépési adatokat. Ellenőrizze újra a felhasználónevet, jelszót és aláírókulcsot, majd **Adatok frissítése** és ismét **Kapcsolat tesztelése**. (A NAV technikai felhasználói jelszavak időszakosan lejárnak, és cserélni kell őket.)
+- **Az „Utolsó szinkronhiba"** az állapotpanelben általában azt jelenti, hogy a NAV elutasította a belépési adatokat. Kattintson a **Kapcsolat szerkesztése** gombra, adja meg újra mind a négy adatot, majd **Mentés és ellenőrzés**. (A korábbi adatokat nem tudjuk visszaolvasni, ezért mindegyiket újra kell írni. A csere nem indítja újra az előzmények letöltését.) (A NAV technikai felhasználói jelszavak időszakosan lejárnak, és cserélni kell őket.)
 - Ha a csatlakozás után nem jelennek meg számlák, ellenőrizze, hogy a technikai felhasználó rendelkezik-e a **számla lekérdezése** jogosultsággal a NAV-ban, és hogy a cég adószáma helyes-e.
