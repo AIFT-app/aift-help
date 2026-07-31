@@ -1,6 +1,6 @@
 # ÁFA-törzsadatok
 
-Az AI Finance Team minden számlasorhoz automatikusan feloldja a megfelelő **ÁFA-kódot**. Ehhez minden munkaterület saját ÁFA-törzsadatokat hordoz: öt kis táblát, amelyek a könyvelőprogramod fogalmaival írják le, hogyan működik az ÁFA az adott ügyfélnél. A **Törzsadatok → ÁFA** alatt találod őket, öt fülre rendezve.
+Az AI Finance Team minden számlasorhoz automatikusan feloldja a megfelelő **ÁFA-kódot**. Ehhez minden munkaterület saját ÁFA-törzsadatokat hordoz: öt kis táblát, amelyek a könyvelőprogramja fogalmaival írják le, hogyan működik az ÁFA az adott ügyfélnél. A **Törzsadatok → ÁFA** alatt találja őket, öt fülre rendezve.
 
 ## Hogyan épül fel egy ÁFA-kód
 
@@ -12,20 +12,20 @@ Az ÁFA-kód nem egy sima listából választódik ki — **öt elemből oldódi
 4. **Irány** — bevétel (te vagy az eladó) vagy kiadás (te vagy a vevő).
 5. **Számítási mód** — hogyan épül fel a tétel: normál, fordított adózás vagy csak ÁFA.
 
-Az **ÁFA-kódok** fül ezt az öt elemet kombinálja azokká a kódokká, amelyeket a könyvelőprogramod vár. Amikor egy számlasor öt eleme egyezik egy ÁFA-kód kombinációjával (és a számla dátuma a kód érvényességi időszakába esik), a kód automatikusan hozzárendelődik. Szándékosan nincs kulcsrakész, országonkénti kódlista — a kódtáblát te magad írod meg, mert minden könyvelőiroda és minden célrendszer másképp nevezi el a kódjait.
+Az **ÁFA-kódok** fül ezt az öt elemet kombinálja azokká a kódokká, amelyeket a könyvelőprogramja vár. Amikor egy számlasor öt eleme egyezik egy ÁFA-kód kombinációjával (és a számla dátuma a kód érvényességi időszakába esik), a kód automatikusan hozzárendelődik. Szándékosan nincs kulcsrakész, országonkénti kódlista — a kódtáblát Ön maga írja meg, mert minden könyvelőiroda és minden célrendszer másképp nevezi el a kódjait.
 
 ## Két kódoszlop — és az egyediségi beállítás
 
 Minden ÁFA-kód sornak két azonosítója van:
 
-- **Könyvelési kód** — a kód pontosan úgy, ahogy a könyvelőprogramod importáláskor várja. Mindig kötelező.
+- **Könyvelési kód** — a kód pontosan úgy, ahogy a könyvelőprogramja importáláskor várja. Mindig kötelező.
 - **AIFT-kód** — opcionális belső kód; akkor hasznos, ha több AIFT-oldali megkülönböztetés egyetlen könyvelőprogram-kódra képeződik le.
 
-Egy munkaterület-szintű beállítás (Munkaterület-beállítások → **ÁFA**) dönti el, hogy a kettő közül melyiknek kell egyedinek lennie az aktív kódok között. A legtöbb munkaterület a könyvelési kódoknál hagyja; akkor kapcsold át AIFT-kódra, ha szándékosan több AIFT-kódot szeretnél egyetlen könyvelési kódra irányítani.
+Egy munkaterület-szintű beállítás (Munkaterület-beállítások → **ÁFA**) dönti el, hogy a kettő közül melyiknek kell egyedinek lennie az aktív kódok között. A legtöbb munkaterület a könyvelési kódoknál hagyja; akkor kapcsolja át AIFT-kódra, ha szándékosan több AIFT-kódot szeretne egyetlen könyvelési kódra irányítani.
 
 ## Érvényességi időszakok
 
-A kulcsok és a kódok idővel változnak — egy ÁFA-kulcsváltozás nem írja át a múltat. Minden sor opcionális **Érvényesség kezdete / Érvényesség vége** tartományt hordoz. Amikor egy kulcs vagy szabály megváltozik, ne a régi sort szerkeszd: **vegyél fel új sort** az új érvényességi időszakkal. A feloldás mindig azt a sort választja, amely a számla ÁFA-teljesítési dátumán érvényben volt.
+A kulcsok és a kódok idővel változnak — egy ÁFA-kulcsváltozás nem írja át a múltat. Minden sor opcionális **Érvényesség kezdete / Érvényesség vége** tartományt hordoz. Amikor egy kulcs vagy szabály megváltozik, ne a régi sort szerkessze: **vegyen fel új sort** az új érvényességi időszakkal. A feloldás mindig azt a sort választja, amely a számla ÁFA-teljesítési dátumán érvényben volt.
 
 ## Alapértelmezett sorok
 
@@ -42,6 +42,6 @@ Minden munkaterület-tag — az ügyfélszerepkörök is — **megtekintheti** a
 
 ## Kapcsolódó cikkek
 
-- [ÁFA-kódok a számlákon](/vat-codes-on-invoices) — hogyan töltődik ki az öt elem automatikusan a kinyerés során, és hogyan javíthatod őket.
+- [ÁFA-kódok a számlákon](/vat-codes-on-invoices) — hogyan töltődik ki az öt elem automatikusan a kinyerés során, és hogyan javíthatja őket.
 - [ÁFA az exportokban](/vat-in-exports) — hogyan kerülnek az ÁFA-adatok a könyvelőprogramodnak készülő exportfájlokba.
 - [ÁFA-beállítás importálása, exportálása és másolása](/vat-setup-import-export) — a teljes beállítás tömeges megírása Excelben vagy másolása munkaterületek között.

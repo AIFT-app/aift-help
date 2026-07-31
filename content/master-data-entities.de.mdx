@@ -1,0 +1,115 @@
+# Unternehmen verwalten
+
+Unternehmen sind die Firmen, Personen und Organisationen, die auf Ihren Rechnungen und Kontoauszügen erscheinen — Lieferanten, Kunden und Ihre eigenen juristischen Personen. Sie in AI Finance Team gepflegt zu halten bedeutet, dass die KI Partner korrekt erkennt, Belege schneller kategorisiert und weniger Ausnahmen manuell geprüft werden müssen.
+
+## Was ist ein Unternehmen?
+
+Ein Unternehmen ist ein Datensatz, der eine reale Partei abbildet. Jedes Unternehmen in Ihrem Arbeitsbereich enthält:
+
+- **Firmenname** — der offizielle, eingetragene Name, der auf Belegen verwendet wird
+- **Land** — das Land der Eintragung
+- **Steuernummer** — die nationale Steueridentifikation (z. B. die ungarische adószám, die deutsche Steuernummer)
+- **USt-IdNr.** — die von der EU vergebene Umsatzsteuer-Identifikationsnummer im Standardformat (z. B. HU12345678)
+- **Firmenbuchnummer** — die Nummer im Handelsregister
+- **Alternative Namen** — andere Namen, die dieselbe Partei auf Rechnungen oder Kontoauszügen verwendet (Handelsnamen, Abkürzungen, frühere Namen)
+- **Bankkonten** — IBAN und/oder nationale Kontonummern, die für Zahlungen genutzt werden
+- **Kontaktdaten** — Adresse, Website, E-Mail-Domain
+- **Zuordnungskontext** — eine Freitextnotiz, die der KI bei mehrdeutigen Belegen hilft
+
+## Zu den Stammdaten gelangen
+
+Klicken Sie in der Seitenleiste des Arbeitsbereichs auf **Stammdaten** und dann auf **Unternehmen**. Diese Seite listet alle aktiven Unternehmen Ihres Arbeitsbereichs auf. Archivierte Unternehmen erscheinen in einem eigenen Abschnitt unter der aktiven Liste.
+
+## Ein Unternehmen anlegen
+
+1. Klicken Sie oben rechts auf **Unternehmen hinzufügen**.
+2. Füllen Sie **Firmenname** (erforderlich), **Land** (erforderlich) und **Steuernummer** (optional) aus.
+3. Klicken Sie auf **Unternehmen erstellen**.
+
+Sie gelangen direkt zur Detailseite des Unternehmens, wo Sie alle übrigen Felder ergänzen können: USt-IdNr., Firmenbuchnummer, alternative Namen, Bankkonten, Kontaktdaten und Zuordnungskontext. Sie müssen nicht alles auf einmal eingeben — tragen Sie ein, was Sie jetzt haben, und kommen Sie später darauf zurück.
+
+> **Hinweis:** Steuernummern müssen innerhalb eines Arbeitsbereichs eindeutig sein. Geben Sie eine Steuernummer ein, die bereits von einem anderen aktiven Unternehmen verwendet wird, erscheint eine Fehlermeldung, und das Unternehmen wird nicht angelegt.
+
+## Ein Unternehmen bearbeiten
+
+Öffnen Sie das Unternehmen mit einem Klick auf seinen Namen in der Liste. Jeder Abschnitt der Detailseite lässt sich unabhängig bearbeiten und speichern.
+
+### Identität
+
+Ändern Sie Firmenname, Land, Steuernummer, USt-IdNr. oder Firmenbuchnummer. Klicken Sie anschließend auf **Speichern**. Kollidiert die neue Steuernummer mit einem anderen aktiven Unternehmen im Arbeitsbereich, wird das Speichern mit einer Fehlermeldung blockiert.
+
+#### Wie Steuernummer und USt-IdNr. zusammenhängen
+
+Ein Unternehmen kann zwei Steueridentifikatoren führen: eine **nationale Steuernummer** (die lokale Steuernummer — z. B. die ungarische adószám oder die deutsche Steuernummer) und eine **USt-IdNr.** (die grenzüberschreitende Umsatzsteuer-Identifikation — z. B. `HU12345678`, `DE123456789`). Wie AI Finance Team dieses Paar behandelt, hängt vom Land ab:
+
+- **Länder, in denen beide dieselbe Nummer sind** — Ungarn, Polen, Rumänien, Spanien, Portugal und die meisten übrigen EU-Mitglieder. Hier ist die USt-IdNr. nur die nationale Nummer mit Länderpräfix, deshalb gleicht AI Finance Team beide ab: Sind beide vorhanden und stimmig, sehen Sie ein kleines ✓; passen sie nicht zusammen, erscheint eine dezente bernsteinfarbene Warnung zum Nachprüfen. Die Warnung blockiert das Speichern nie.
+- **Länder, in denen es zwei getrennte Nummern sind** — Deutschland, Österreich, die Niederlande, Frankreich und einige weitere. Steuernummer / UID und USt-IdNr. sind eigenständige Identifikatoren, die sich nicht auseinander ableiten lassen; AI Finance Team prüft daher jede für sich und vergleicht sie **nicht**. Bei einem korrekten deutschen oder österreichischen Paar sehen Sie **keine** Warnung, dass die Nummern nicht übereinstimmen — ein kurzer Hinweis unter dem Feld USt-IdNr. erinnert daran, dass beide getrennt geprüft werden.
+- **Unternehmen außerhalb der EU** — z. B. Schweiz, Vereinigtes Königreich, Vereinigte Staaten. Hier gilt nur die nationale Steuernummer, deshalb wird das Feld USt-IdNr. ausgeblendet.
+
+Beide Identifikatoren helfen, das Unternehmen auf eingehenden Belegen zu erkennen: Eine Rechnung, auf der **entweder** die nationale Steuernummer **oder** die USt-IdNr. steht, ordnet das Unternehmen weiterhin korrekt zu — und bucht den Beleg bei Ihren eigenen Unternehmen in der richtigen Richtung als Einnahme oder Ausgabe.
+
+### Alternative Namen
+
+Erfassen Sie alle weiteren Namen, die diese Partei verwendet — zum Beispiel einen Handelsnamen auf ihren Rechnungen, eine in Bankreferenzen genutzte Abkürzung oder einen früheren Firmennamen nach einem Rebranding.
+
+Zum Hinzufügen tippen Sie den Namen in das Feld und klicken auf **Hinzufügen** (oder drücken Enter). Zum Entfernen klicken Sie auf das × daneben.
+
+Diese Namen werden bei der Belegzuordnung verwendet: Trifft die KI auf einen Namen, den sie nicht kennt, gleicht sie ihn mit den alternativen Namen aller Unternehmen in Ihrem Arbeitsbereich ab.
+
+### Bankkonten
+
+Erfassen Sie die IBAN und/oder die nationalen Kontonummern dieses Unternehmens. Bei ungarischen Unternehmen können Sie sowohl die internationale IBAN als auch die nationale Kontonummer (das dreiteilige Format) hinterlegen.
+
+Zum Hinzufügen füllen Sie die Felder aus und klicken auf **Konto hinzufügen**. Zum Entfernen klicken Sie auf das × daneben.
+
+Bankkonten werden beim Transaktionsabgleich verwendet: Ein- und ausgehende Zahlungen werden dem Unternehmen zugeordnet, dessen Kontonummer in der Referenz des Kontoauszugs erscheint.
+
+### Kontaktdaten
+
+Hinterlegen Sie Adresse, Website und E-Mail-Domain des Unternehmens. Die E-Mail-Domain ist besonders nützlich bei Unternehmen, deren Rechnungen per E-Mail eintreffen — sieht die KI eine Nachricht von `@acmesolutions.com`, kann sie diese dem richtigen Unternehmen zuordnen.
+
+### Zuordnungskontext
+
+Das ist eine kurze Freitextnotiz für die KI — nicht für Mandanten bestimmt und auf keinem Beleg sichtbar. Nutzen Sie sie, um Fälle aufzulösen, in denen die automatische Zuordnung mehrdeutig ist:
+
+- Zwei Unternehmen mit ähnlichen Namen unterscheiden („WKA Studio ist die Agentur; WKA Holding ist die Muttergesellschaft — getrennt halten“)
+- Eine bekannte Eigenheit festhalten, wie diese Partei ihre Rechnungen beschriftet („verwendet in Rechnungsköpfen immer ‚WKA Creative‘, obwohl der Firmenname WKA Studio Kft. lautet“)
+- Eine Partei kennzeichnen, die ihre Rechnungen in einer anderen Sprache als erwartet ausstellt
+
+Die Notiz dient bei der KI-Kategorisierung als zusätzlicher Kontext. Ein paar Sätze reichen in der Regel.
+
+### Vertreter
+
+Weisen Sie Mitglieder des Arbeitsbereichs als primäre Ansprechpartner für dieses Unternehmen zu. Vertreter erscheinen auf der Detailseite des Unternehmens und sorgen in internen Abläufen dafür, dass Fragen oder Ausnahmen bei der richtigen Person landen.
+
+Zum Zuweisen klicken Sie auf **+ Hinzufügen** und wählen ein Mitglied des Arbeitsbereichs. Zum Entfernen klicken Sie auf das × neben dem Namen.
+
+## Ein Unternehmen archivieren und wiederherstellen
+
+Ist ein Unternehmen nicht mehr aktiv — eine Lieferantenbeziehung ist beendet, ein Mandant abgewickelt, oder es wurde versehentlich ein Duplikat angelegt —, können Sie es archivieren, statt es zu löschen.
+
+Archivierte Unternehmen:
+- werden in der Liste aktiver Unternehmen und in der Unternehmensauswahl beim Kategorisieren ausgeblendet
+- bleiben in der Datenbank erhalten, sodass historische Belege mit Bezug zu ihnen intakt bleiben
+- lassen sich jederzeit vollständig wiederherstellen
+
+Zum Archivieren öffnen Sie das Unternehmen, scrollen zum Abschnitt **Gefahrenbereich** und klicken auf **Unternehmen archivieren**.
+
+Zum Wiederherstellen scrollen Sie auf der Unternehmensliste zum Abschnitt **Archivierte Unternehmen** und klicken auf **Wiederherstellen**.
+
+## Ein Unternehmen endgültig löschen
+
+Das endgültige Löschen entfernt den Datensatz und ist unumkehrbar. Es ist nur für Unternehmen möglich, zu denen keine Belege (Rechnungen, Transaktionen) verknüpft sind. Gibt es verknüpfte Belege, müssen Sie stattdessen archivieren.
+
+Zum Löschen öffnen Sie ein archiviertes Unternehmen, scrollen zum **Gefahrenbereich** und klicken auf **Endgültig löschen**.
+
+## Warum die Datenqualität der Unternehmen zählt
+
+Die KI-Kategorisierung nutzt Unternehmensdaten als eines ihrer stärksten Signale. Ist ein Unternehmensdatensatz vollständig:
+
+- geht die Partneridentifikation schneller und genauer
+- fangen alternative Namen Belegvarianten ab, die sonst als nicht zugeordnete Ausnahmen auflaufen würden
+- ermöglichen Bankkonten den automatischen Zahlungsabgleich
+- löst der Zuordnungskontext Grenzfälle ohne manuelles Eingreifen
+
+Unvollständige Unternehmensdatensätze sind einer der häufigsten Gründe dafür, dass KI-Konfidenzwerte niedrig bleiben. Wenn Ihnen auffällt, dass die KI einen Partner wiederholt falsch zuordnet, prüfen Sie zuerst, ob diese Partei als Unternehmen existiert und ob ihre alternativen Namen aktuell sind.

@@ -1,0 +1,56 @@
+# Hogyan tanulja meg az AIFT a kategorizálási szokásait
+
+Az AI Finance Team annál jobban kategorizálja az egyes ügyfelek számláit és banki tranzakcióit, minél többet használja. Egyszerű gondolat áll mögötte: **a ma elvégzett javításból holnapra példa lesz, amelyet az AI követ.** A **Kategorizálási példák** oldalon megnézheti, szerkesztheti és bővítheti azt, amit az AIFT megtanult — ügyfelenként külön, sosem ügyfelek között megosztva.
+
+## A visszacsatolási kör, közérthetően
+
+Valahányszor egy könyvelő módosítja az AI által választott kategóriát — akár egy számlatételen, akár egy banki tranzakción —, az AIFT csendben rögzíti példaként: „ennél a partnernél, vagy ennél a szövegezésnél a helyes kategória X”. Amikor legközelebb valami hasonló érkezik, az AI erős jelzésként veszi figyelembe ezt a példát.
+
+Ehhez nem kell tennie semmit. Automatikusan felépül, miközben átnézi és javítja a tételeket. Az első hónapokban a pontosság jellemzően emelkedik, ahogy a példák gyűlnek.
+
+Ami újdonság: ez a megtanult tudás többé nem láthatatlan. Megnyithatja, elolvashatja, javíthat egy rossz bejegyzést, vagy előre feltöltheti a példákat egy vadonatúj ügyfélhez.
+
+## Hol találja
+
+A példák a hozzájuk tartozó kategóriák mellett élnek, a **Törzsadatok** alatt:
+
+- **Számla kategóriák** → nyissa meg a **Példák** fület a számlatétel-példákhoz.
+- **Pénzforgalmi kategóriák** → nyissa meg a **Példák** fület a banki tranzakciós példákhoz.
+
+Mindkét oldal tetején két fül található: **Kategóriák** (a már ismert lista) és **Példák**.
+
+> A példákat csak könyvelők látják, mert azt mutatják, hol javították az AI-t.
+
+## Mit mutat egy példa
+
+| Oszlop | Jelentése |
+|--------|-----------|
+| **Partner** | A partner, amelyre a példa illeszkedik (opcionális) |
+| **Leírás** | Szöveg, amelyet a számlatételnek vagy tranzakciónak tartalmaznia kell (opcionális) |
+| **Kategória** | A kategória, amelyet az AIFT alkalmazzon |
+| **Forrás** | **Automatikusan tanult** (valódi javításból) vagy **Kézi** (Ön vette fel) |
+| **Előfordulások** | Hányszor fordult elő ez a minta |
+| **Módosítva** | Mikor változott utoljára a példa |
+
+Kereshet partner vagy leírás szerint, és szűrhet kategóriára, valamint forrásra (automatikusan tanult vagy kézi).
+
+## Példa felvétele kézzel
+
+A **+ Példa hozzáadása** gombbal még azelőtt taníthatja az AIFT-et, hogy az magától találkozott volna az esettel — ideális új ügyfél bevezetésekor. Például előre megadhatja, hogy a *Company Ltd.* számlái mindig *Épületkarbantartás* kategóriába tartoznak, ahelyett hogy megvárná a természetes úton bekövetkező javításokat.
+
+Egy példához partner **vagy** leírás kell az illesztéshez, plusz az alkalmazandó kategória.
+
+## Példák szerkesztése és törlése
+
+- A **Szerkesztés** javít egy rossz vagy elavult példát.
+- A **Törlés** véglegesen eltávolít egy példát — hasznos, ha a lista megnőtt, és rendet szeretne tenni. Az AI a következő kategorizálási futástól kezdve nem használja. Ez nem vonható vissza, de ha ugyanazt a tételt később újra javítják, automatikusan új példa keletkezik.
+
+**A változások előremutatóan érvényesek.** Egy példa szerkesztése, hozzáadása vagy törlése a jövőbeli kategorizálási futásokra hat — a már feldolgozott tételeket nem kategorizálja újra.
+
+## Hány példát használ az AI
+
+A munkaterület-adminisztrátorok a Példák fül fejlécében beállíthatják az **AI-kérésenként felhasznált példák** számát (10 és 100 között, alapértelmezés 30). Több példa javíthatja a pontosságot, de növeli minden egyes kategorizálási kérés AI-költségét, a nagyon nagy listák pedig egyre kevesebb többletet adnak — így a 30-as alapérték a legtöbb ügyfélnél észszerű kiindulópont.
+
+## Kapcsolódó cikkek
+
+- [Számlák és tranzakciók kategorizálása](/categorization) — hogyan rendel az AI egyáltalán kategóriát.

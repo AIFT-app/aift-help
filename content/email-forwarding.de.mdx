@@ -1,0 +1,73 @@
+# Dokumente per E-Mail weiterleiten
+
+Jeder Arbeitsbereich hat seine eigene E-Mail-Adresse. Leiten Sie eine Rechnung, einen Kontoauszug oder einen Beleg an diese Adresse weiter, und er erscheint innerhalb etwa einer Minute im Arbeitsbereich — mit automatisch gelesenen und klassifizierten Anhängen, ohne Anmeldung und ohne manuellen Upload. Das ist der einfachste Weg, die SaaS-Belege und Lieferantenrechnungen einzusammeln, die ohnehin in Ihrem Postfach landen.
+
+Weitergeleitete Dokumente kommen in die **Sammelstelle**, das Protokoll von allem, was an den Adressen Ihres Arbeitsbereichs eingeht. Von dort fließen Rechnungen in die normale Extraktionsstrecke, und alles, was eine menschliche Entscheidung braucht, wird zur Prüfung markiert.
+
+## Ihre Adresse finden
+
+Öffnen Sie **Einstellungen → E-Mail-Eingang** (Sie gelangen auch über **Adressen verwalten →** oben auf der Seite Sammelstelle dorthin). Die **Primäre Adresse** wird dort als kopierbarer Block angezeigt — etwa so:
+
+```
+ihrarbeitsbereich@in.aifinance.team
+```
+
+Der lokale Teil (das Stück vor dem `@`) ist für Ihren Arbeitsbereich eindeutig. Kopieren Sie ihn, legen Sie ihn in Ihren Kontakten ab, und leiten Sie los. Die Seite zeigt außerdem, wie viele E-Mails Sie in den letzten 30 Tagen erhalten haben und wann die letzte eintraf.
+
+> Die Adresse gilt **je Arbeitsbereich**, nicht je Unternehmen oder Person. Alles, was dorthin gesendet wird, landet in der Sammelstelle genau dieses einen Arbeitsbereichs.
+
+### Benutzerdefinierte Aliase
+
+Wenn eine Rechnungseinstellungsseite eine aufgeräumtere Adresse braucht als die automatisch erzeugte, können Sie bis zu **fünf benutzerdefinierte Aliase** je Arbeitsbereich reservieren (zum Beispiel `acme@in.aifinance.team`). Geben Sie unter **Benutzerdefinierte Aliase** den gewünschten Namen ein, klicken Sie auf **Reservieren**, und verwenden Sie ihn überall dort, wo auch die primäre Adresse funktionieren würde. Einen nicht mehr benötigten Alias können Sie **Stilllegen**.
+
+Das Verwalten von Aliassen (Reservieren oder Stilllegen) ist auf **Buchhalter-Administratoren** und **Mandanteninhaber** beschränkt. Alle anderen sehen die Adressen nur lesend — mehr braucht es zum Weiterleiten nicht.
+
+## Was mit einer weitergeleiteten E-Mail passiert
+
+1. Die E-Mail trifft an der Adresse Ihres Arbeitsbereichs ein, und in der **Sammelstelle** erscheint eine Zeile.
+2. Jeder Anhang wird **triagiert** — die App ermittelt, ob es sich um eine Rechnung, einen Kontoauszug, einen Beleg oder etwas anderes handelt.
+3. Rechnungen und Belege fließen in die Extraktion und erscheinen auf der Seite **Rechnungen** wie jeder andere Upload; Kontoauszüge gehen in die Auszugsverarbeitung.
+4. Alles, was die App nicht sicher klassifizieren kann, wird unter **Prüfung erforderlich** beiseitegelegt, damit ein Mensch es sortiert.
+
+Die ursprüngliche E-Mail selbst wird Ihnen nie als Dokument berechnet — nur die nützlichen Anhänge darin landen in Ihrem Arbeitsbereich.
+
+## Die Seite Sammelstelle
+
+Die Sammelstelle sehen sowohl Buchhalter als auch Mandanten. Sie hat zwei Reiter:
+
+- **Alle E-Mails** — jede eingegangene E-Mail, die neueste zuerst. Jede Zeile zeigt Eingangszeitpunkt, Absender, Betreff, die Empfängeradresse, einen Status und die Anzahl der Anhänge.
+- **Prüfung erforderlich** — die Teilmenge, die eine menschliche Entscheidung braucht. Sie trägt ein bernsteinfarbenes Zähler-Abzeichen, damit Sie auf einen Blick sehen, ob etwas wartet.
+
+### Statusbezeichnungen
+
+| Bezeichnung | Bedeutung |
+|---|---|
+| **Abgeschlossen** | Die E-Mail wurde verarbeitet und ihre Anhänge bearbeitet. |
+| **Wird verarbeitet** | Wird noch gelesen. |
+| **Empfangen** | Eingetroffen, noch nicht verarbeitet. |
+| **Fehlgeschlagen** | Bei der Bearbeitung der E-Mail ging etwas schief. |
+| **Unbekannte Adresse** / **Stillgelegte Adresse** | An eine nicht existierende oder stillgelegte Adresse gesendet. |
+| **Auth fehlgeschlagen** | Der Absender konnte nicht verifiziert werden. |
+| **Zu groß** / **Rate-Limit erreicht** | Wegen der Größe abgelehnt, oder zu viele E-Mails zu schnell. |
+| **Mehrere Dokumente** | Ein einzelnes PDF enthielt mehrere Dokumente (siehe unten). |
+| **Keine Anhänge** | Nichts zu übernehmen. |
+
+## Wenn etwas Aufmerksamkeit braucht
+
+Öffnen Sie die Zeile einer E-Mail, um ihre Anhänge, den E-Mail-Text und (falls nötig) die Roh-Header zu sehen.
+
+- **Ein Anhang konnte nicht gespeichert werden.** Die Anhangszahl färbt sich bernsteinfarben, und die E-Mail zeigt ein Banner: *„1 Anhang konnte nicht gespeichert werden.“* Die übliche Ursache ist ein ungewöhnlicher Dateiname — **bitten Sie den Absender, die Datei umzubenennen und erneut weiterzuleiten**, oder laden Sie sie manuell über die Seite Rechnungen hoch.
+- **Ein PDF enthielt mehrere Dokumente.** Leitet jemand ein PDF weiter, das eigentlich mehrere zusammen eingescannte Rechnungen ist, wird es als **Mehrere Dokumente** markiert: *„Bitte teilen Sie das PDF in ein Dokument pro Rechnung/Kontoauszug auf und laden Sie es erneut über diese Adresse oder den manuellen Upload-Vorgang hoch.“* Teilen Sie es in ein Dokument pro Rechnung und leiten Sie die Teile weiter.
+- **Die App war sich bei einer Datei nicht sicher.** Sie landet unter **Prüfung erforderlich** mit der besten Vermutung und einem Konfidenzwert. Öffnen Sie sie und setzen Sie über die Neuklassifizierung den richtigen Typ.
+
+## Tipps
+
+- **Weiterleiten statt Screenshot.** Das Weiterleiten des Original-PDFs oder -Bildes liefert die sauberste Extraktion. Ein Foto vom Bildschirm funktioniert, aber das Original ist immer besser.
+- **Eine Rechnung pro E-Mail ist ideal**, mehrere getrennte Anhänge an einer E-Mail sind aber ebenfalls in Ordnung — aus jedem wird ein eigenes Dokument.
+- **Nutzen Sie für vielsendende Absender einen eigenen Alias.** Wenn die Rechnungsseite eines bestimmten Anbieters nur eine Adresse akzeptiert, reservieren Sie dafür einen benutzerdefinierten Alias, damit er in der Sammelstelle leicht zu erkennen ist.
+
+## Verwandte Artikel
+
+- [Dateien hochladen](/uploading-files) — die Alternative per Drag-and-drop und Massen-Upload
+- [Arbeiten mit Rechnungen](/invoices) — was nach der Extraktion passiert
+- [Nachrichten](/messages) — die andere Seite zu einem bestimmten Dokument fragen
