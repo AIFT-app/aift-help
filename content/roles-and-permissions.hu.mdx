@@ -1,0 +1,254 @@
+# AI Finance Team — Szerepek és jogosultságok
+
+Ez az útmutató azt írja le, hogyan működik a hozzáférés az AI Finance Teamben. Bemutatja, mit tehetnek a felhasználók a szerepkörük alapján, és hogyan jön létre a tagság.
+
+## Hogyan épül fel a platform
+
+Az AI Finance Team a könyvelőirodák és ügyfeleik együttműködését támogatja. A felépítés a következő:
+
+- A **könyvelőszervezetek** azok az irodák vagy praxisok, amelyek ügyfeleik pénzügyi nyilvántartásait készítik.
+- Az **ügyfélszervezetek** azok a vállalkozások, amelyek könyvelése folyik.
+- Egy **munkaterület** egy ügyfélmegbízást képvisel. A könyvelőiroda kezeli a munkaterületet; az ügyfél használja. A könyvelők jellemzően több munkaterületen dolgoznak; az ügyfélfelhasználók csak a sajátjukat látják.
+
+A felhasználóknak kétféle szerepkörük van: **szervezeti szintű szerepkör** a saját szervezetükön belül, és **munkaterület-szerepkör** minden egyes munkaterületen, amelyhez tartoznak.
+
+---
+
+## Szervezeti szintű szerepkörök (könyvelőiroda-tagok)
+
+Egy könyvelőiroda minden tagjának van szervezeti szintű szerepköre. Ez határozza meg, mit tehet az egész irodán belül, függetlenül bármely konkrét munkaterülettől.
+
+| Szervezeti szerepkör | Jellemző felhasználó | Fő képességek |
+|---|---|---|
+| Admin | Alapító, partner vagy vezető könyvelő | Munkaterületek létrehozása, a csapat kezelése, csatlakozás bármely munkaterülethez, csatlakozási kérelmek jóváhagyása |
+| Tag | Könyvelő vagy munkatárs | Azokon a munkaterületeken dolgozik, amelyekhez hozzáadták; másokhoz csatlakozást kérhet |
+
+A szervezeti adminisztrátorok mindent megtehetnek, amit egy tag, továbbá:
+
+- Új ügyfél-munkaterületeket hozhatnak létre (lásd: [Munkaterületek](/workspaces))
+- Az áttekintőben látják az iroda összes munkaterületét, azokat is, amelyekhez személyesen nem csatlakoztak
+- Egy kattintással csatlakozhatnak az iroda bármely munkaterületéhez (könyvelő adminként kerülnek hozzáadásra)
+- Jóváhagyhatják vagy elutasíthatják a szervezeti tagok által beadott csatlakozási kérelmeket (lásd alább: [Csatlakozás munkaterülethez](#csatlakozás-munkaterülethez))
+- Kezelhetik az iroda csapatát a **Szervezeti beállítások** oldalon: új tagokat hívhatnak meg, előléptethetnek és visszaminősíthetnek, tagokat távolíthatnak el, és visszavonhatják a függőben lévő meghívókat
+
+A szervezeti tagok (nem adminisztrátor könyvelők) csak azokon a munkaterületeken dolgoznak, amelyekhez kifejezetten hozzáadták őket, vagy amelyekhez csatlakozást kértek. Nem látják a Szervezeti beállítások oldalt, sem a Csatlakozás gombot az áttekintőben, de az iroda bármely munkaterületéhez kérhetnek hozzáférést.
+
+Az ügyféloldali felhasználóknak (ügyfél tulajdonos, ügyfél tag) nincs szervezeti szerepkörük a könyvelőiroda oldalán. Kizárólag azokon a munkaterületeken léteznek, amelyekre meghívták őket.
+
+### Szervezeti beállítások
+
+A **Szervezeti beállítások** oldal az oldalsáv aljáról érhető el a szervezeti adminisztrátorok számára. A következőket nyújtja:
+
+- Az összes jelenlegi csapattag listája, szerepkörükkel és e-mail-címükkel
+- Vezérlők egy tag adminná léptetéséhez vagy egy admin taggá visszaminősítéséhez
+- Tömeges meghívó űrlap — egyszerre akár 10 sor, mindegyiknél opcionális név-előkitöltéssel és választott szerepkörrel, plusz egy opcionális személyes üzenettel, amely az egész kötegre vonatkozik (lásd alább: [Emberek meghívása](#emberek-meghívása))
+- A függőben lévő szervezeti meghívók listája, a hivatkozás újbóli másolásának vagy a visszavonásnak a lehetőségével
+- A szervezeti tagok által beadott, függőben lévő munkaterület-csatlakozási kérelmek postaládája
+
+Az egyszerű szervezeti tagok (nem adminisztrátor könyvelők) megtekinthetik a taglistát, de semmilyen műveletet nem végezhetnek.
+
+---
+
+## Munkaterület-szerepkörök
+
+Egy munkaterület minden tagjának négy szerepkör egyike van. Ez határozza meg, mit láthat és tehet az adott munkaterületen belül.
+
+| Szerepkör | Oldal | Jellemző felhasználó |
+|---|---|---|
+| Könyvelő admin | Iroda | A megbízás vezető könyvelője |
+| Könyvelő | Iroda | Támogató könyvelő vagy munkatárs |
+| Ügyfél tulajdonos | Ügyfél | Alapító, ügyvezető vagy vezető döntéshozó az ügyfélnél |
+| Ügyfél tag | Ügyfél | Könyvelő, kontroller vagy asszisztens az ügyfélnél |
+
+### Könyvelő admin
+
+Az ügyfélmegbízás vezető könyvelője.
+
+Megteheti:
+
+- Mindent, amit egy könyvelő megtehet
+- Új tagokat hívhat meg a munkaterületre (más könyvelőket vagy ügyfélfelhasználókat)
+- Visszavonhatja a függőben lévő munkaterület-meghívókat
+- Láthatja a munkaterület teljes taglistáját
+- A munkaterület tagjain túl láthatja az iroda teljes csapatát (a munkaterület-beállításokban a „Csapatod a [Cégnév]-nél” szakasz)
+
+### Könyvelő
+
+Az iroda támogató könyvelője.
+
+Megteheti:
+
+- Megtekintheti a munkaterület áttekintőjét, a számlákat, a banki tranzakciókat, a zárást és a riportokat
+- Számlákat tölthet fel az ügyfél nevében
+- Szerkesztheti a számlafejléceket (irány, cég, partner)
+- Szerkesztheti a számlatételek kategóriáit
+- Jóváhagyhatja vagy felülírhatja az AI által generált kategorizálásokat
+- Párosíthatja a számlákat banki tranzakciókkal
+- Belső megjegyzéseket fűzhet a tranzakciókhoz (csak könyvelők látják)
+- Hozzáférhet a banki tranzakciók részleteihez
+
+Nem teheti meg:
+
+- Munkaterület-tagok meghívása vagy eltávolítása
+- Az iroda teljes csapatlistájának megtekintése (csak az adott munkaterület tagjait látja)
+
+### Ügyfél tulajdonos
+
+Az ügyfélcég vezető beosztású munkatársa.
+
+Megteheti:
+
+- Láthatja a munkaterület áttekintőjét és a számlákat
+- Számlákat és nyugtákat tölthet fel
+- Megtekintheti a munkaterület taglistáját
+- Más ügyfélfelhasználókat hívhat meg a munkaterületre ügyfél tagként
+- Megtekintheti, létrehozhatja és szerkesztheti a riportokat (lásd: [Riportok](/reports))
+
+Nem teheti meg:
+
+- Számlafejlécek vagy tételkategóriák szerkesztése
+- Banki tranzakciók elérése
+- Csak könyvelőknek szóló megjegyzések megtekintése
+- A zárás elérése
+- Könyvelők meghívása
+
+### Ügyfél tag
+
+Az ügyfélcég további felhasználói, akik a platformot használják.
+
+Megteheti:
+
+- Láthatja a munkaterület áttekintőjét és a számlákat
+- Számlákat és nyugtákat tölthet fel
+- Megtekintheti a munkaterület taglistáját
+- Megtekintheti, létrehozhatja és szerkesztheti a riportokat (lásd: [Riportok](/reports))
+
+Nem teheti meg:
+
+- Számlafejlécek vagy tételkategóriák szerkesztése
+- Banki tranzakciók elérése
+- Csak könyvelőknek szóló megjegyzések megtekintése
+- A zárás elérése
+- Bárki meghívása
+
+---
+
+## Mit lát az egyes szerepkörök
+
+### Oldalsávi navigáció
+
+| Szakasz | Könyvelő admin | Könyvelő | Ügyfél tulajdonos | Ügyfél tag |
+|---|---|---|---|---|
+| Áttekintés | ✓ | ✓ | ✓ | ✓ |
+| Számlák | ✓ | ✓ | ✓ | ✓ |
+| Banki tranzakciók | ✓ | ✓ | — | — |
+| Zárás | ✓ | ✓ | — | — |
+| Jelentések | ✓ | ✓ | ✓ | ✓ |
+| Beállítások | ✓ | ✓ | ✓ | ✓ |
+| Szervezeti beállítások | csak szervezeti admin | — | — | — |
+
+### Beállítások → Csapat szakasz
+
+| Elem | Könyvelő admin | Könyvelő | Ügyfél tulajdonos | Ügyfél tag |
+|---|---|---|---|---|
+| Munkaterület-tagok listája | ✓ | ✓ | ✓ | ✓ |
+| „Csapatod a [Cégnév]-nél” szakasz | ✓ | — | — | — |
+| Új tag meghívása űrlap | ✓ | — | ✓ (csak ügyfélszerepkörök) | — |
+| Függőben lévő meghívók listája | ✓ | — | ✓ | — |
+| Függőben lévő meghívó visszavonása | ✓ | — | ✓ (saját meghívók) | — |
+
+Az ügyfél tulajdonos meghívó űrlapja korlátozott: meghívhat további ügyfél tagokat, de könyvelőket vagy más ügyfél tulajdonosokat nem.
+
+### Számlák
+
+| Művelet | Könyvelő admin | Könyvelő | Ügyfél tulajdonos | Ügyfél tag |
+|---|---|---|---|---|
+| Számla feltöltése | ✓ | ✓ | ✓ | ✓ |
+| Számlarészletek megtekintése | ✓ | ✓ | ✓ | ✓ |
+| Fejléc szerkesztése (irány, cég, partner) | ✓ | ✓ | — | — |
+| Tételkategóriák szerkesztése | ✓ | ✓ | — | — |
+
+Az ügyfelek nyers dokumentumokat adnak be; a kategorizálást és az ellenőrzést a könyvelők végzik.
+
+### Riportok
+
+| Művelet | Könyvelő admin | Könyvelő | Ügyfél tulajdonos | Ügyfél tag |
+|---|---|---|---|---|
+| Riportok megtekintése és lefúrás | ✓ | ✓ | ✓ | ✓ |
+| Új riport létrehozása | ✓ | ✓ | ✓ | ✓ |
+| Riportszerkezet szerkesztése (sorok, kategóriák, kifejezések) | ✓ | ✓ | ✓ | ✓ |
+| Riport átnevezése vagy törlése | ✓ | ✓ | ✓ | ✓ |
+
+---
+
+## Hogyan működik a tagság
+
+### Emberek meghívása
+
+Mind a **munkaterület-beállítások** (könyvelő adminnak vagy ügyfél tulajdonosnak), mind a **Szervezeti beállítások** (szervezeti adminnak) ugyanazt a meghívópanelt jeleníti meg. A folyamat mindkét helyen azonos.
+
+A panelen egy kötegben legfeljebb **10 meghívót** állíthat sorba:
+
+- Címzettenként egy sor — töltse ki az e-mail-címet, és válasszon szerepkört. A szerepkör legördülő listája attól függően korlátozott, hol jár (például egy ügyfél tulajdonos csak ügyfél tagokat hívhat meg; egy szervezeti admin csak szervezeti szinten hívhat meg).
+- Soronként egy opcionális **Név** mező. Ha kitölti, a címzett meghívó e-mailje a nevével nyit (például „Szia Anna,”) a „Szia,” helyett, és elfogadáskor a regisztrációs űrlap előre kitölti a teljes nevét.
+- Egy opcionális **Üzenet** szövegdoboz (legfeljebb 500 karakter), amely az egész kötegre vonatkozik. Az üzenetben szereplő URL-ek kattintható hivatkozásokká válnak az e-mailben.
+- Kattintson a **Meghívó küldése** gombra (vagy az **N meghívó küldése** gombra, ha a köteg egynél több sort tartalmaz). Minden sikeres sor kikerül az űrlapról; azok a sorok, amelyek küldése meghiúsult (például duplikált e-mail-cím), soron belüli hibaüzenettel maradnak, hogy javíthassa és újrapróbálhassa őket.
+
+Küldés után az AI Finance Team **automatikusan e-mailt küld minden címzettnek** a meghívó hivatkozásával és az Ön egyedi üzenetével. Nem kell többé kézzel másolnia és megosztania az URL-t — bár a meghívó továbbra is látja a hivatkozást tartalékként, arra az esetre, ha az e-mail kézbesítése meghiúsulna.
+
+Minden meghívó:
+
+- A létrehozás után 14 nappal lejár
+- Az elfogadás előtt bármikor visszavonható a meghívó által
+- A megadott konkrét e-mail-címhez kötött
+
+### Meghívó elfogadása
+
+Amikor a címzett a meghívó URL-jére kattint:
+
+- Ha nincs bejelentkezve, bejelentkezésre vagy regisztrációra irányítja a rendszer. A meghívótoken végig megmarad a hitelesítési folyamat során. A teljes neve előre ki lesz töltve a regisztrációs űrlapon, ha a meghívó megadta.
+- Ha a meghívótól eltérő e-mail-címmel jelentkezik be, az oldal „Rossz fiók? Kijelentkezés” hivatkozást jelenít meg, hogy a meghívó elvesztése nélkül válthasson személyazonosságot.
+- Ha regisztrál, azzal az e-mail-címmel jön létre fiók, amelyre a meghívót küldték.
+- Sikeres elfogadáskor:
+  - **Munkaterület-meghívó** → hozzáadásra kerül a munkaterülethez, és a rendszer oda irányítja.
+  - **Szervezeti meghívó** → hozzáadásra kerül az iroda csapatához, és a rendszer a munkaterület-áttekintőre irányítja. Azoknak a munkaterületeknek a tetején, amelyeknek még nem tagja, vendég-admin szalagcím jelenik meg, egykattintásos Csatlakozás gombbal.
+
+### Csatlakozás munkaterülethez
+
+Háromféleképpen kerülhet be egy munkaterületre:
+
+1. **Elfogad egy meghívót.** A szokásos út — lásd fent.
+2. **Szervezeti admin.** Az iroda összes munkaterülete látható az áttekintőben. Azoknál, amelyekhez még nem csatlakozott, **Csatlakozás** gomb jelenik meg — kattintson rá, és azonnal hozzáadásra kerül könyvelő adminként.
+3. **Szervezeti tag, és csatlakozást kér.** A szervezeti tagok külön nézetben böngészhetik az iroda azon munkaterületeit, amelyekhez nem tartoznak. A **Csatlakozás kérése** gombra kattintva kérelem megy az iroda összes szervezeti adminisztrátorának. Ők a **Szervezeti beállítások** postaládájában bírálják el, és vagy jóváhagyják (könyvelőként hozzáadásra kerül), vagy elutasítják (értesítő e-mailt kap az indoklással).
+
+A harmadik út új — azt a korábbi folyamatot váltja fel, amelyben a szervezeti tagoknak kézzel kellett kérniük egy adminisztrátort a hozzáadásukhoz.
+
+### Elfogadás után
+
+Az új tag azonnal látja a munkaterületet. A szerepköre határozza meg, mi látható a fenti táblázatok szerint. A fiókja platformszinten létezik, így ha később elhagyja a munkaterületet (vagy egy másikhoz adják hozzá), a fiókja megmarad.
+
+### Tag eltávolítása
+
+Az adminisztrátorok eltávolíthatnak egy már elfogadott tagot:
+
+- **Munkaterület-tag** — egy könyvelő admin bárkit eltávolíthat a munkaterületről (kivéve önmagát, ha ő az egyetlen admin). A művelet a munkaterület Csapat oldalán található, az egyes tagnevek mellett.
+- **Szervezeti tag** — egy szervezeti admin bárkit eltávolíthat az irodából. Ez egyben minden munkaterületről eltávolítja, ahol tag volt. A művelet a Szervezeti beállítások oldalon található.
+
+Az eltávolított felhasználók megtartják a platformszintű fiókjukat — csupán az adott munkaterülethez vagy irodához való hozzáférésüket veszítik el.
+
+---
+
+## Ami még nem készült el
+
+Néhány képesség, amelyet az adatmodell támogat, de a felhasználói felület még nem tesz elérhetővé:
+
+- **Bankkapcsolat-kezelő felület.** A bankszámlaadatok léteznek, de az a felület, amelyen az ügyfelek csatlakoztathatják, lecsatlakoztathatják vagy kezelhetik a bankkapcsolatukat, még nem készült el.
+- **Export könyvelőprogramba.** Az exportfunkció még nem készült el.
+- **Jóváhagyási folyamatok.** Például vezetői jóváhagyás megkövetelése egy számla véglegesítése előtt.
+- **Audit-nyomvonal.** Betekintés abba, ki mit és mikor tett.
+
+Ezek tervben vannak, de a jelenlegi kiadásnak nem részei.
+
+---
+
+Ez a platform mai állapotát tükrözi. Ahogy újabb funkciók jelennek meg, ez a dokumentum frissül az új képességekkel.

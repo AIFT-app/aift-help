@@ -6,6 +6,7 @@ import { Bars3Icon, XMarkIcon, ArrowTopRightOnSquareIcon } from '@heroicons/reac
 import * as Headless from '@headlessui/react'
 import { DocsSidebar } from './DocsSidebar'
 import { LanguageSwitcher } from './LanguageSwitcher'
+import { Search } from './Search'
 import { splitLocale, localizeHref, ui } from '@/lib/i18n'
 
 export function DocsHeader() {
@@ -34,6 +35,7 @@ export function DocsHeader() {
             </a>
           </div>
           <div className="flex items-center gap-1 sm:gap-3">
+            <Search />
             <LanguageSwitcher />
             <a
               href="https://aift.aifinance.team"

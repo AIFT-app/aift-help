@@ -1,0 +1,254 @@
+# AI Finance Team — Rollen & Berechtigungen
+
+Diese Anleitung beschreibt, wie Zugriff in AI Finance Team funktioniert. Sie behandelt, was Nutzer abhängig von ihrer Rolle tun können und wie Mitgliedschaften entstehen.
+
+## Wie die Plattform aufgebaut ist
+
+AI Finance Team unterstützt die Zusammenarbeit zwischen Kanzleien und ihren Mandanten. Der Aufbau:
+
+- **Buchhaltungsorganisationen** sind Kanzleien oder Praxen, die die Finanzunterlagen ihrer Mandanten erstellen.
+- **Mandantenorganisationen** sind die Unternehmen, deren Bücher geführt werden.
+- Ein **Arbeitsbereich** steht für ein Mandantenverhältnis. Die Kanzlei verwaltet den Arbeitsbereich; der Mandant nutzt ihn. Buchhalter arbeiten typischerweise über mehrere Arbeitsbereiche hinweg; Mandantennutzer sehen nur ihren eigenen.
+
+Nutzer haben zwei Arten von Rollen: eine **Rolle auf Organisationsebene** innerhalb ihrer Organisation und eine **Arbeitsbereichsrolle** in jedem Arbeitsbereich, dem sie angehören.
+
+---
+
+## Rollen auf Organisationsebene (Kanzleimitglieder)
+
+Jedes Mitglied einer Kanzlei hat eine Rolle auf Organisationsebene. Sie bestimmt, was die Person kanzleiweit tun darf, unabhängig von einem konkreten Arbeitsbereich.
+
+| Organisationsrolle | Typischer Nutzer | Wichtigste Befugnisse |
+|---|---|---|
+| Admin | Gründer, Partner oder leitende Buchhaltung | Arbeitsbereiche anlegen, Team verwalten, jedem Arbeitsbereich beitreten, Beitrittsanträge genehmigen |
+| Mitglied | Buchhalter oder Mitarbeiter | Arbeitet in Arbeitsbereichen, zu denen die Person hinzugefügt wurde; kann Beitritt zu weiteren beantragen |
+
+Organisationsadministratoren können alles, was ein Mitglied kann, und zusätzlich:
+
+- Neue Mandanten-Arbeitsbereiche anlegen (siehe [Arbeitsbereiche](/workspaces))
+- Im Dashboard alle Arbeitsbereiche der Kanzlei sehen, auch solche, denen sie persönlich nicht beigetreten sind
+- Jedem Arbeitsbereich der Kanzlei mit einem Klick beitreten (sie werden als Buchhalter-Administrator hinzugefügt)
+- Beitrittsanträge von Organisationsmitgliedern genehmigen oder ablehnen (siehe unten [Einem Arbeitsbereich beitreten](#einem-arbeitsbereich-beitreten))
+- Das Team der Kanzlei auf der Seite **Organisationseinstellungen** verwalten: neue Mitglieder einladen, hoch- und herabstufen, Mitglieder entfernen und offene Einladungen widerrufen
+
+Organisationsmitglieder (Buchhalter ohne Administratorrechte) arbeiten nur in Arbeitsbereichen, zu denen sie ausdrücklich hinzugefügt wurden oder deren Beitritt sie beantragt haben. Sie sehen weder die Seite Organisationseinstellungen noch die Beitreten-Schaltfläche im Dashboard, können aber Zugriff auf jeden Arbeitsbereich der Kanzlei beantragen.
+
+Nutzer auf Mandantenseite (Mandanteninhaber, Mandantenmitglied) haben keine Organisationsrolle auf Kanzleiseite. Sie existieren ausschließlich innerhalb der Arbeitsbereiche, zu denen sie eingeladen wurden.
+
+### Organisationseinstellungen
+
+Die Seite **Organisationseinstellungen** ist für Organisationsadministratoren am unteren Rand der Seitenleiste erreichbar. Sie bietet:
+
+- Eine Liste aller aktuellen Teammitglieder mit Rollen und E-Mail-Adressen
+- Bedienelemente, um ein Mitglied zum Administrator hochzustufen oder einen Administrator herabzustufen
+- Ein Formular für Sammeleinladungen — bis zu 10 Zeilen auf einmal, jeweils mit optionaler Namensvorbelegung und gewählter Rolle, dazu eine optionale persönliche Nachricht für den gesamten Stapel (siehe unten [Personen einladen](#personen-einladen))
+- Eine Liste offener Organisationseinladungen mit der Möglichkeit, den Link erneut zu kopieren oder die Einladung zu widerrufen
+- Einen Posteingang mit offenen Beitrittsanträgen von Organisationsmitgliedern
+
+Einfache Organisationsmitglieder (Buchhalter ohne Administratorrechte) können die Mitgliederliste einsehen, aber keine Aktionen ausführen.
+
+---
+
+## Arbeitsbereichsrollen
+
+Jedes Mitglied eines Arbeitsbereichs hat eine von vier Rollen. Sie bestimmt, was die Person in diesem konkreten Arbeitsbereich sehen und tun darf.
+
+| Rolle | Seite | Typischer Nutzer |
+|---|---|---|
+| Buchhalter-Admin | Kanzlei | Federführende Buchhaltung des Mandats |
+| Buchhalter | Kanzlei | Unterstützende Buchhaltung oder Mitarbeiter |
+| Mandant (Inhaber) | Mandant | Gründer, Geschäftsführung oder leitende Entscheidungsträger beim Mandanten |
+| Mandant (Mitarbeiter) | Mandant | Buchhaltung, Controlling oder Assistenz beim Mandanten |
+
+### Buchhalter-Admin
+
+Die federführende Buchhaltung des Mandantenverhältnisses.
+
+Darf:
+
+- Alles, was ein Buchhalter darf
+- Neue Mitglieder in den Arbeitsbereich einladen (andere Buchhalter oder Mandantennutzer)
+- Offene Einladungen zum Arbeitsbereich widerrufen
+- Die vollständige Mitgliederliste des Arbeitsbereichs sehen
+- Zusätzlich zu den Mitgliedern des Arbeitsbereichs das gesamte Kanzleiteam sehen (Abschnitt „Ihr Team bei [Kanzleiname]“ in den Arbeitsbereichseinstellungen)
+
+### Buchhalter
+
+Eine unterstützende Buchhaltung aus der Kanzlei.
+
+Darf:
+
+- Dashboard, Rechnungen, Banktransaktionen, Abschluss und Berichte des Arbeitsbereichs ansehen
+- Rechnungen im Auftrag des Mandanten hochladen
+- Rechnungsköpfe bearbeiten (Richtung, Unternehmen, Partner)
+- Kategorien von Rechnungspositionen bearbeiten
+- KI-generierte Kategorisierungen bestätigen oder überschreiben
+- Rechnungen Banktransaktionen zuordnen
+- Interne Notizen zu Transaktionen hinzufügen (nur für Buchhalter sichtbar)
+- Auf Details von Banktransaktionen zugreifen
+
+Darf nicht:
+
+- Mitglieder des Arbeitsbereichs einladen oder entfernen
+- Die vollständige Teamliste der Kanzlei sehen (sieht nur die Mitglieder dieses Arbeitsbereichs)
+
+### Mandant (Inhaber)
+
+Die leitende Person beim Mandantenunternehmen.
+
+Darf:
+
+- Dashboard und Rechnungen des Arbeitsbereichs sehen
+- Rechnungen und Belege hochladen
+- Die Mitgliederliste des Arbeitsbereichs ansehen
+- Andere Mandantennutzer als Mandantenmitglieder in den Arbeitsbereich einladen
+- Berichte ansehen, erstellen und bearbeiten (siehe [Berichte](/reports))
+
+Darf nicht:
+
+- Rechnungsköpfe oder Positionskategorien bearbeiten
+- Auf Banktransaktionen zugreifen
+- Nur für Buchhalter bestimmte Notizen sehen
+- Auf den Abschluss zugreifen
+- Buchhalter einladen
+
+### Mandant (Mitarbeiter)
+
+Weitere Nutzer beim Mandantenunternehmen, die mit der Plattform arbeiten.
+
+Darf:
+
+- Dashboard und Rechnungen des Arbeitsbereichs sehen
+- Rechnungen und Belege hochladen
+- Die Mitgliederliste des Arbeitsbereichs ansehen
+- Berichte ansehen, erstellen und bearbeiten (siehe [Berichte](/reports))
+
+Darf nicht:
+
+- Rechnungsköpfe oder Positionskategorien bearbeiten
+- Auf Banktransaktionen zugreifen
+- Nur für Buchhalter bestimmte Notizen sehen
+- Auf den Abschluss zugreifen
+- Irgendjemanden einladen
+
+---
+
+## Was jede Rolle sieht
+
+### Navigation in der Seitenleiste
+
+| Bereich | Buchhalter-Admin | Buchhalter | Mandant (Inhaber) | Mandant (Mitarbeiter) |
+|---|---|---|---|---|
+| Startseite | ✓ | ✓ | ✓ | ✓ |
+| Rechnungen | ✓ | ✓ | ✓ | ✓ |
+| Banktransaktionen | ✓ | ✓ | — | — |
+| Abschluss | ✓ | ✓ | — | — |
+| Berichte | ✓ | ✓ | ✓ | ✓ |
+| Einstellungen | ✓ | ✓ | ✓ | ✓ |
+| Organisationseinstellungen | nur Organisationsadmin | — | — | — |
+
+### Einstellungen → Bereich Team
+
+| Element | Buchhalter-Admin | Buchhalter | Mandant (Inhaber) | Mandant (Mitarbeiter) |
+|---|---|---|---|---|
+| Mitgliederliste des Arbeitsbereichs | ✓ | ✓ | ✓ | ✓ |
+| Abschnitt „Ihr Team bei [Kanzleiname]“ | ✓ | — | — | — |
+| Formular zum Einladen neuer Mitglieder | ✓ | — | ✓ (nur Mandantenrollen) | — |
+| Liste offener Einladungen | ✓ | — | ✓ | — |
+| Offene Einladung widerrufen | ✓ | — | ✓ (eigene Einladungen) | — |
+
+Das Einladungsformular des Mandanteninhabers ist eingeschränkt: Er kann weitere Mandantenmitglieder einladen, aber keine Buchhalter und keine weiteren Mandanteninhaber.
+
+### Rechnungen
+
+| Aktion | Buchhalter-Admin | Buchhalter | Mandant (Inhaber) | Mandant (Mitarbeiter) |
+|---|---|---|---|---|
+| Rechnung hochladen | ✓ | ✓ | ✓ | ✓ |
+| Rechnungsdetails ansehen | ✓ | ✓ | ✓ | ✓ |
+| Kopf bearbeiten (Richtung, Unternehmen, Partner) | ✓ | ✓ | — | — |
+| Positionskategorien bearbeiten | ✓ | ✓ | — | — |
+
+Mandanten reichen Rohbelege ein; Kategorisierung und Prüfung übernehmen die Buchhalter.
+
+### Berichte
+
+| Aktion | Buchhalter-Admin | Buchhalter | Mandant (Inhaber) | Mandant (Mitarbeiter) |
+|---|---|---|---|---|
+| Berichte ansehen und ins Detail gehen | ✓ | ✓ | ✓ | ✓ |
+| Neuen Bericht erstellen | ✓ | ✓ | ✓ | ✓ |
+| Berichtsstruktur bearbeiten (Zeilen, Kategorien, Formeln) | ✓ | ✓ | ✓ | ✓ |
+| Bericht umbenennen oder löschen | ✓ | ✓ | ✓ | ✓ |
+
+---
+
+## Wie Mitgliedschaft funktioniert
+
+### Personen einladen
+
+Sowohl die **Arbeitsbereichseinstellungen** (für einen Buchhalter-Administrator oder einen Mandanteninhaber) als auch die **Organisationseinstellungen** (für einen Organisationsadministrator) zeigen dasselbe Einladungsfenster. Der Ablauf ist an beiden Stellen gleich.
+
+Das Fenster nimmt bis zu **10 Einladungen in einem Stapel** auf:
+
+- Eine Zeile je Empfänger — E-Mail-Adresse eintragen und Rolle wählen. Die Rollenauswahl ist je nach Ort eingeschränkt (ein Mandanteninhaber kann etwa nur Mandantenmitglieder einladen; ein Organisationsadministrator nur auf Organisationsebene).
+- Ein optionales Feld **Name** je Zeile. Wenn Sie es ausfüllen, beginnt die Einladungs-E-Mail mit dem Namen („Hallo Anna,“) statt mit „Hallo,“, und das Registrierungsformular füllt bei der Annahme den vollständigen Namen vor.
+- Ein optionales Textfeld **Nachricht** (max. 500 Zeichen), das für den gesamten Stapel gilt. URLs in der Nachricht werden in der E-Mail zu anklickbaren Links.
+- Klicken Sie auf **Einladung senden** (oder **N Einladungen senden**, wenn der Stapel mehr als eine Zeile hat). Jede erfolgreiche Zeile verschwindet aus dem Formular; Zeilen, deren Versand fehlschlug (etwa wegen doppelter E-Mail-Adresse), bleiben mit einer Inline-Fehlermeldung stehen, damit Sie sie korrigieren und erneut versuchen können.
+
+Nach dem Senden schreibt AI Finance Team **jedem Empfänger automatisch eine E-Mail** mit dem Einladungslink und Ihrer persönlichen Nachricht. Sie müssen die URL nicht mehr von Hand kopieren und weitergeben — die einladende Person sieht den Link aber weiterhin als Rückfalloption, falls die Zustellung fehlschlägt.
+
+Jede Einladung:
+
+- läuft 14 Tage nach der Erstellung ab
+- kann von der einladenden Person jederzeit vor der Annahme widerrufen werden
+- ist an die angegebene E-Mail-Adresse gebunden
+
+### Eine Einladung annehmen
+
+Wenn der Empfänger auf die Einladungs-URL klickt:
+
+- Ist er nicht angemeldet, wird er zur Anmeldung oder Registrierung geführt. Das Einladungs-Token bleibt über den gesamten Authentifizierungsvorgang erhalten. Sein vollständiger Name ist im Registrierungsformular vorbelegt, sofern die einladende Person ihn angegeben hat.
+- Meldet er sich mit einer anderen E-Mail-Adresse an als der, an die die Einladung ging, zeigt die Seite einen Link „Falsches Konto? Abmelden“, damit er die Identität wechseln kann, ohne die Einladung zu verlieren.
+- Registriert er sich, wird ein Konto mit der E-Mail-Adresse angelegt, an die die Einladung gesendet wurde.
+- Bei erfolgreicher Annahme:
+  - **Einladung zu einem Arbeitsbereich** → die Person wird dem Arbeitsbereich hinzugefügt und dorthin weitergeleitet.
+  - **Einladung zu einer Organisation** → die Person wird dem Kanzleiteam hinzugefügt und zum Arbeitsbereiche-Dashboard weitergeleitet. Über Arbeitsbereichen, denen sie noch nicht angehört, erscheint ein Gast-Admin-Banner mit einer Beitreten-Schaltfläche für einen Klick.
+
+### Einem Arbeitsbereich beitreten
+
+Es gibt drei Wege in einen Arbeitsbereich:
+
+1. **Sie nehmen eine Einladung an.** Der Standardweg — siehe oben.
+2. **Sie sind Organisationsadministrator.** Alle Arbeitsbereiche der Kanzlei sind Ihnen im Dashboard sichtbar. Arbeitsbereiche, denen Sie nicht angehören, zeigen eine Schaltfläche **Beitreten** — ein Klick fügt Sie sofort als Buchhalter-Administrator hinzu.
+3. **Sie sind Organisationsmitglied und beantragen den Beitritt.** Organisationsmitglieder sehen eine Ansicht mit den Arbeitsbereichen der Kanzlei, denen sie nicht angehören. Ein Klick auf **Beitritt beantragen** sendet einen Antrag an alle Organisationsadministratoren der Kanzlei. Sie prüfen ihn im Posteingang ihrer **Organisationseinstellungen** und genehmigen ihn (Sie werden als Buchhalter hinzugefügt) oder lehnen ihn ab (Sie erhalten eine Benachrichtigungs-E-Mail mit der Begründung).
+
+Der dritte Weg ist neu — er ersetzt den früheren Ablauf, bei dem Organisationsmitglieder einen Administrator bitten mussten, sie manuell hinzuzufügen.
+
+### Nach der Annahme
+
+Ein neues Mitglied sieht den Arbeitsbereich sofort. Die Rolle bestimmt gemäß den obigen Tabellen, was sichtbar ist. Das Konto existiert auf Plattformebene: Verlässt die Person später den Arbeitsbereich (oder kommt zu einem weiteren hinzu), bleibt ihr Konto bestehen.
+
+### Ein Mitglied entfernen
+
+Administratoren können ein Mitglied entfernen, das die Einladung bereits angenommen hat:
+
+- **Mitglied eines Arbeitsbereichs** — ein Buchhalter-Administrator kann jede Person aus dem Arbeitsbereich entfernen (außer sich selbst, wenn er der einzige Administrator ist). Die Aktion befindet sich auf der Team-Seite des Arbeitsbereichs neben jedem Mitgliedsnamen.
+- **Organisationsmitglied** — ein Organisationsadministrator kann jede Person aus der Kanzlei entfernen. Damit wird sie zugleich aus allen Arbeitsbereichen entfernt, denen sie angehörte. Die Aktion befindet sich auf der Seite Organisationseinstellungen.
+
+Entfernte Nutzer behalten ihr Konto auf Plattformebene — sie verlieren lediglich den Zugriff auf diesen Arbeitsbereich oder diese Kanzlei.
+
+---
+
+## Was noch nicht gebaut ist
+
+Einige Fähigkeiten, die das Datenmodell unterstützt, die Oberfläche aber noch nicht zugänglich macht:
+
+- **Oberfläche zur Verwaltung von Bankverbindungen.** Die Bankkontodaten existieren, aber die Oberfläche, über die Mandanten ihre Bankverbindung herstellen, trennen oder verwalten, ist noch nicht gebaut.
+- **Export in Buchhaltungssoftware.** Die Exportfunktion ist noch nicht gebaut.
+- **Freigabeprozesse.** Etwa eine erforderliche Freigabe durch die Leitung, bevor eine Rechnung finalisiert wird.
+- **Prüfpfad.** Einblick, wer wann was getan hat.
+
+Das ist geplant, aber nicht Teil der aktuellen Version.
+
+---
+
+Dies gibt die Plattform in ihrem heutigen Stand wieder. Mit jeder ausgelieferten Funktion wird dieses Dokument um die neuen Fähigkeiten ergänzt.

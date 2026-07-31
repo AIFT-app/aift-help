@@ -5,6 +5,11 @@ node_modules/
 .DS_Store
 reference/
 
+# Generated from content/ by the `prebuild` script (and by `predev`), so it is
+# always in step with the articles. Committing it would just be a merge-conflict
+# magnet on every content change.
+public/search/
+
 # env files — local secrets, never committed. No slash in the pattern, so it
 # matches at any depth (unlike an anchored one like `supabase/.temp/`).
 # The negation keeps a future committed template working: `.env*` would

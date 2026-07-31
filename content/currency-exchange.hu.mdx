@@ -1,0 +1,81 @@
+# Több pénznemű számlák és árfolyamok
+
+Az AI Finance Team minden olyan pénznemben támogatja a számlákat, amelyet az Európai Központi Bank közzétesz. Ha egy számla a munkaterület alap pénznemétől eltérő pénznemben van, a platform automatikusan lekéri az árfolyamot, és egymás mellett mutatja az eredeti összeget és az átváltott megfelelőjét.
+
+## A munkaterület alap pénzneme
+
+Minden munkaterületnek egyetlen alap pénzneme van, amelyet a munkaterület létrehozásakor állítanak be. A platformon mindenütt megjelenő átváltott összegek — számla-végösszegek, tételsorok, havi összesítők — ebben a pénznemben szerepelnek.
+
+Az alap pénznem munkaterületenként rögzített, és a létrehozás után nem módosítható.
+
+## Honnan származnak az árfolyamok
+
+Az árfolyamok az **Európai Központi Bank (EKB)** referenciaárfolyam-forrásából származnak, amely pénznemenként és munkanaponként egy hivatalos árfolyamot tesz közzé.
+
+**Melyik dátumot használja a rendszer?**
+
+A számláknál az árfolyam dátuma a számla **teljesítés dátuma** — az a nap, amikor a termék vagy szolgáltatás teljesítése megtörtént. Ha a számlán nincs teljesítési dátum, a rendszer tartalékként a kiállítás dátumát használja.
+
+Ez az uniós áfaszabályokat követi: a beszámolási célú árfolyam a teljesítés napján érvényes árfolyam, nem a számla kelte és nem a fizetés napja.
+
+**Hétvégék és munkaszüneti napok**
+
+Az EKB hétvégén és munkaszüneti napokon nem tesz közzé árfolyamot. Ha egy számla árfolyamdátuma nem kereskedési napra esik, a platform a megelőző munkanapok legutóbbi elérhető árfolyamát használja (legfeljebb 5 napra visszatekintve).
+
+A számla részletező oldalán az **Árfolyam** felirat pontosan megmutatja, melyik dátumról származik az árfolyam, így ellenőrizheti, hogy egyezik-e azzal, amit a könyvelőprogramja vár.
+
+## A számlalista
+
+A számlalistában az **Összeg** oszlop az eredeti számlapénznem végösszegét mutatja. Ha létezik alap pénznemű megfelelő, az közvetlenül alatta jelenik meg kisebb, halványabb szöveggel.
+
+Ha az átváltás még nem érhető el, az átváltott összeg helyett státuszjelvény jelenik meg:
+
+| Jelvény | Szín | Jelentése |
+|-------|--------|---------|
+| **Árfolyam függő** | Sárga | Az árfolyam lekérése megtörtént, néhány percen belül automatikusan kitöltésre kerül |
+| **Árfolyam nem támogatott** | Borostyánsárga | A számla pénznemét az EKB nem teszi közzé; az átváltás nem lehetséges |
+| **Árfolyam sikertelen** | Piros | Az árfolyam lekérése meghiúsult, a rendszer újrapróbálja; ha tartósan fennáll, keresse az ügyfélszolgálatot |
+
+Az **Árfolyam függő** vagy **Árfolyam sikertelen** jelölésű számlák továbbra is teljes értékűen használhatók — a kinyerés befejeződött, és minden más mező elérhető átnézésre és szerkesztésre.
+
+## A számla részletező oldala
+
+A számla részletező oldalán az **Összegek és dátumok** szakasz kéthasábos táblázatot jelenít meg, ha a számla pénzneme eltér az alap pénznemtől:
+
+- A bal oszlop a **számla pénznemében** mutatja az összegeket (nettó, ÁFA, bruttó)
+- A jobb oszlop az **alap pénznemben** mutatja az összegeket, a pénznemkóddal megjelölve
+
+A táblázat alatt egy árfolyamfelirat mutatja a pontosan használt árfolyamot:
+
+> Árfolyam: 0,002500 EUR/HUF · 2026-04-17
+
+Ha az árfolyamot keresztárfolyamként számolta a rendszer (sem a számla pénzneme, sem az alap pénznem nem euró), a felirat kiegészítő megjegyzést is tartalmaz:
+
+> Árfolyam: 370,370000 HUF/USD · 2026-04-17 · keresztárfolyam EUR-on át
+
+A **keresztárfolyamok** ugyanazon naptári nap két EKB-referenciaárfolyamából számítódnak — EUR/forrás és EUR/cél —, így mindkét láb mindig ugyanazt a kereskedési napot tükrözi.
+
+### Átváltás ÁFA-kulcsonként
+
+Több ÁFA-kulcsot tartalmazó számláknál (például egy magyar számlánál 27%-os, 18%-os, 5%-os és 0%-os sorokkal) az átváltás nem a végösszegre, hanem ÁFA-csoport szintjén történik. Ez elkerüli a halmozódó kerekítési hibát: először az egyes csoportok bruttó összege kerül átváltásra, majd a nettó és az ÁFA arányosan visszaszámolódik.
+
+A tételsorok táblázata minden egyes sorhoz megmutatja az átváltott összegeket.
+
+## Mi váltja ki az árfolyam újbóli lekérését
+
+A platform automatikusan újra lekéri az árfolyamot, valahányszor a számlán módosul a **teljesítés dátuma** vagy a **kiállítás dátuma**. A számla rövid ideig **Árfolyam függő** jelölést mutat, amíg az új árfolyam megérkezik.
+
+Az összegek (nettó, ÁFA, bruttó) vagy a tételsorok értékeinek szerkesztése **nem** vált ki új árfolyam-lekérést. Ehelyett az alap pénznemű összegek azonnal újraszámolódnak a már eltárolt árfolyammal — külső hívás nem történik.
+
+## Nem támogatott pénznemek
+
+Az EKB nagyjából 30 pénznemre tesz közzé árfolyamot, amely lefedi az EU legfontosabb kereskedelmi pénznemeit. Ha olyan pénznemben tölt fel számlát, amely nem szerepel az EKB listáján (például kazah tenge), a számla **Árfolyam nem támogatott** jelvényt kap, és ellenőrzésre lesz megjelölve.
+
+Ilyenkor kézzel javíthatja az alap pénznemű összegeket és az árfolyamot a számlaszerkesztőben, ha más forrásból rendelkezik a helyes árfolyammal. A nem támogatott jelvény eltűnik, amint az alap összegek kitöltésre kerülnek.
+
+## Tippek
+
+- **Az árfolyamot a teljesítés dátuma vezérli.** Ha egy számlán váratlan árfolyam jelenik meg, ellenőrizze, helyes-e a teljesítés dátuma — az árfolyam kikeresésénél elsőbbséget élvez a kiállítás dátumával szemben.
+- **A függő állapot magától megszűnik.** Az **Árfolyam függő** jelölésű számlák a háttérben feldolgozásra kerülnek. Nem kell kézzel elindítani semmit; az árfolyam perceken belül megjelenik.
+- **Az árfolyamfelirat az audit-nyomvonala.** Az árfolyamfeliratban látható dátum az EKB forrásdátuma, amelyet összevethet a könyvelőprogramja árfolyamtáblájával.
+- **A keresztárfolyamos számlákhoz mindkét láb kell.** Egy HUF-munkaterületen lévő USD-számlához a platformnak ugyanarra a dátumra EKB-adat kell az EUR/USD és az EUR/HUF árfolyamról is. Ha bármelyik láb hiányzik, a számla függőben marad, amíg mindkettő elérhetővé nem válik.
