@@ -1,0 +1,78 @@
+# Bankszámlák csatlakoztatása
+
+Ha csatlakoztatja a céges bankszámláit, az AI Finance Team automatikusan importálja a tranzakciókat. A csatlakoztatás után az új tranzakciók naponta megjelennek, kézi exportálás vagy feltöltés nélkül.
+
+## Mielőtt nekikezd
+
+- **Ügyfél** szerepkörrel kell rendelkeznie a munkaterületen (ügyfél-tulajdonos vagy ügyféltag). A könyvelő szerepkörű felhasználók látják a csatlakoztatott számlákat, de újat nem tudnak csatlakoztatni.
+- Közvetlenül a bankjánál kell azonosítania magát, a bank biztonságos netbank-felületén keresztül. Az AI Finance Team sosem látja a banki belépési adatait.
+- A bankkapcsolatokat a GoCardless Bank Account Data szolgáltatja, amely az EU és az Egyesült Királyság bankjait támogatja.
+
+## Bank csatlakoztatása
+
+1. A munkaterület oldalsávjában kattintson a **Törzsadatok**, majd a **Bankszámlák** menüpontra.
+2. Kattintson a **Bank összekapcsolása** gombra.
+3. Válassza ki az országot, és keressen rá a bankjára név szerint.
+4. Kattintson a **Tovább** gombra. A rendszer átirányítja a bank biztonságos hozzájárulási oldalára.
+5. Jelentkezzen be a bankjába, és engedélyezze a számlái olvasási hozzáférését. Ez az AI Finance Teamnek kizárólag olvasási jogot ad — fizetést nem tud indítani.
+6. Az engedélyezés után a böngésző automatikusan visszatér az AI Finance Teambe.
+
+### Annak kiválasztása, mely számlákat kövesse
+
+A bankból visszatérve egy párbeszédablak mutatja a hozzájárulás alá tartozó elérhető számlákat:
+
+- **Jelölje be a jelölőnégyzetet** minden olyan számla mellett, amelyhez tranzakciókat szeretne importálni. A feleslegeseket vegye ki.
+- **Rendeljen céget** minden bevont számlához a legördülő listából. Ez a megfelelő jogi személyhez köti a számlát a munkaterületen, hogy a tranzakciók helyesen legyenek besorolva.
+- Kattintson a **Megerősítés és importálás indítása** gombra.
+
+Az AI Finance Team azonnal megkezdi a tranzakciós előzmények importálását. A kezdeti importálás jellemzően néhány percet vesz igénybe, attól függően, hány tranzakciót ad vissza a bank.
+
+> **Megjegyzés:** Ha nem látja a várt számlákat, vagy helykitöltő számlaneveket lát, ez a bank API-jának átmeneti korlátja miatt lehet. Ettől még csatlakoztathat — rendeljen cégeket, és erősítse meg. A számlákat utólag átnevezheti a bankszámlák oldalon.
+
+## Mi történik a csatlakoztatás után
+
+Ha egy számla csatlakoztatva és aktív:
+
+- **A tranzakciók naponta szinkronizálódnak** — az új tranzakciók automatikusan beérkeznek, jellemzően néhány órával azután, hogy megjelentek a bankban.
+- **Az AI minden tranzakciót kategorizál** — tranzakciókategóriát rendel hozzá, és megpróbálja minden tranzakciót számlához vagy partnerhez párosítani a munkaterületen.
+- **A kivételek ellenőrzésre kerülnek** — azok a tranzakciók, amelyeket az AI nem tud nagy megbízhatósággal kategorizálni, a kivételsorban jelennek meg kézi átnézésre.
+
+## A kapcsolat lejárata
+
+A nyílt bankolással engedélyezett bankkapcsolatok 90 nap után lejárnak. Ez jogszabályi követelmény — a bankjának időről időre újra meg kell erősítenie a hozzájárulását.
+
+Amikor egy kapcsolat lejárathoz közeledik, figyelmeztetés jelenik meg a bankszámlák oldalon. Az újbóli engedélyezéshez ismét végig kell mennie a hozzájárulási folyamaton. A meglévő tranzakciók és azok kategorizálása megmarad.
+
+## Kézi szinkronizálás
+
+Ha azonnal látni szeretné a tranzakciókat — például egy éppen beérkezett fizetés rögzítése után —, kézi szinkronizálást is indíthat:
+
+1. A **Bankszámlák** oldalon keresse meg a számla kártyáját.
+2. Kattintson a **Szinkronizálás most** gombra.
+
+A kézi szinkronizálás számlánként **napi 2 alkalomra** korlátozott. A gomb a korlát elérésekor letiltásra kerül, és megmutatja, mikor áll vissza.
+
+## Számla lecsatlakoztatása
+
+Ha le szeretné állítani egy számla tranzakcióinak importálását:
+
+1. A **Bankszámlák** oldalon keresse meg a számla kártyáját.
+2. Kattintson a **Lecsatlakoztatás** gombra.
+
+A lecsatlakoztatott számlák szinkronizálása leáll. A meglévő tranzakciók a munkaterületen maradnak, nem törlődnek. A számlát bármikor újracsatlakoztathatja, ha ismét végigmegy a csatlakoztatási folyamaton.
+
+Miután egy kapcsolat összes számláját lecsatlakoztatta, a kapcsolat kártyája eltávolítható az oldalról az **Eltávolítás a nézetből** gombbal.
+
+## Hibaelhárítás
+
+**Ezt látom: „A bankja nem tudta befejezni a csatlakozást.”**
+Ez azt jelenti, hogy a bank hibát adott vissza a hozzájárulási folyamat során. Általában átmeneti probléma a bank oldalán. Várjon néhány percet, és próbálja újra. Ha tartósan fennáll, ellenőrizze, hogy a bank netbankja közvetlenül elérhető-e.
+
+**Csatlakoztattam a bankomat, de nem jelennek meg tranzakciók.**
+A kezdeti importálás néhány percig tarthat. Frissítse a tranzakciók oldalt 5 perc után. Ha a tranzakciók továbbra sem jelennek meg, nézze meg a számla kártyáján a szinkronizálási hiba jelzését, és próbáljon kézi szinkronizálást.
+
+**A számla helykitöltő néven jelenik meg, például „Account (…ab1234)”.**
+Ez azt jelenti, hogy az AI Finance Team a csatlakoztatáskor nem tudta lekérni a számla adatait a banktól, jellemzően átmeneti API-korlát miatt. A számla ettől még csatlakoztatva van, és a tranzakciók rendben szinkronizálódnak. A név frissítéséhez kattintson a számla nevére a bankszámlák oldalon, és szerkessze.
+
+**Nem látom a „Bank összekapcsolása” gombot.**
+Ez a gomb csak az ügyfél szerepkörű felhasználóknak jelenik meg. Ha könyvelőként kezel egy ügyfél-munkaterületet, kérje meg az ügyfelet, hogy csatlakoztassa a számláit, vagy egyeztessen a munkaterület adminisztrátorával a szerepköréről.

@@ -73,7 +73,8 @@ export const navigation: NavItem[] = [
       de: 'USt-Einrichtung importieren, exportieren & kopieren',
     },
   },
-  { slug: 'reports', title: { en: 'Reports', hu: 'Riportok', de: 'Berichte' } },
+  // "Jelentések" is the app's own Hungarian label for this page (nav.workspace.reports).
+  { slug: 'reports', title: { en: 'Reports', hu: 'Jelentések', de: 'Berichte' } },
   { slug: 'ledger', title: { en: 'Ledger Explorer', hu: 'Főkönyvi kivonat', de: 'Hauptbuch-Explorer' } },
   { slug: 'messages', title: { en: 'Messages', hu: 'Üzenetek', de: 'Nachrichten' } },
   { slug: 'mcp', title: { en: 'AI Assistants (MCP)', hu: 'AI-asszisztensek (MCP)', de: 'KI-Assistenten (MCP)' } },

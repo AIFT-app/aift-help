@@ -1,0 +1,61 @@
+# Hauptbuch-Explorer
+
+Im Hauptbuch **beantworten Sie eine Frage mit Ihren Daten** — „zeig mir alle EUR-Ausgaben im letzten Quartal“, „welche Erste-Bank-Transaktionen gab es im März“, „jede Rechnung dieses Lieferanten in diesem Jahr“. Es durchsucht alle verarbeiteten Rechnungen und Banktransaktionen auf einmal, filtert sie nach Belieben und exportiert das Ergebnis nach Excel.
+
+Es ist ein Werkzeug für Buchhalter — Sie finden es in der Seitenleiste des Arbeitsbereichs unter **Exporte → Hauptbuch**. (Mandanten sehen es nicht.)
+
+## Die drei Ansichten
+
+Das Hauptbuch zeigt Ihre Daten auf drei Arten, umschaltbar über die Reiter oben:
+
+| Reiter | Eine Zeile je | Wofür |
+|---|---|---|
+| **Rechnungsköpfe** | Rechnung | Summen, Daten, Partner, Status — die Übersicht auf Rechnungsebene |
+| **Rechnungspositionen** | Position | Kategorie- und USt-Details bis auf jede einzelne Zeile |
+| **Banktransaktionen** | Bankbewegung | was tatsächlich auf dem Konto ankam, mit Abgleichstatus |
+
+Ein gesetzter Filter gilt über alle Ansichten hinweg, sodass Sie dieselbe Frage von der Rechnungs- und der Bankseite beantworten können, ohne sie neu einzugeben.
+
+## Filtern
+
+Zwei Wege zum Eingrenzen — nehmen Sie den, der Ihnen schneller erscheint.
+
+### Frag das Hauptbuch (natürliche Sprache)
+
+Es gibt ein Suchfeld mit der Beschriftung **Frag das Hauptbuch**. Schreiben Sie in gewöhnlichen Worten, was Sie suchen, und die App übersetzt es in Filter:
+
+- *„Eurofins-Rechnungen im letzten Quartal“*
+- *„Ausgaben in EUR“*
+- *„Transaktionen der Erste Bank, März 2026“*
+
+Sie zeigt Ihnen, wie sie Ihre Anfrage gelesen hat — **„Verstanden als: …“** — mit einem **Rückgängig**, falls etwas falsch verstanden wurde. Sollte das Sprachverständnis einmal nicht verfügbar sein, weist die App darauf hin, und Sie können auf die Filtersteuerung unten ausweichen.
+
+### Filtersteuerung
+
+Klicken Sie auf **Filter anzeigen**, um den vollen Satz zu sehen: Zeitraum (mit Voreinstellungen und eigenem Bereich), Richtung (Geldeingang / Geldausgang), Partner, Unternehmen, Bankkonto und Währung, Rechnungskategorien, Transaktionstypen und weitere unter **Weitere Filter**. Alles, was Sie angewendet haben, erscheint als entfernbarer Chip unter **Aktive Filter** — das **×** auf einem Chip entfernt nur diesen einen, **Zurücksetzen** setzt alles zurück.
+
+Kommt eine Ansicht leer zurück, verweist das Hauptbuch oft auf einen passenderen Reiter — *„Versuchen Sie Banktransaktionen — 12 Treffer.“*
+
+## Export nach Excel
+
+Wenn die Ansicht zeigt, was Sie brauchen, klicken Sie auf **Exportieren**. Sie erhalten eine `.xlsx`-Datei mit zwei Möglichkeiten:
+
+- **Alle drei Blätter exportieren** — Rechnungsköpfe, Rechnungspositionen und Banktransaktionen, jeweils auf einem eigenen Blatt, alle nach Ihren aktuellen Filtern.
+- **Nur diese Ansicht exportieren** — nur der Reiter, den Sie gerade ansehen.
+
+Ein paar Schutzmechanismen:
+
+- Bei einem sehr großen Ergebnis fragt die App zuerst nach (*„Dieser Export erzeugt ca. N Zeilen. Fortfahren?“*).
+- Es gibt eine harte Obergrenze — ist das Ergebnis riesig, werden Sie gebeten, die **Filter zu verfeinern**, bevor Sie exportieren. Grenzen Sie den Zeitraum ein oder fügen Sie einen Filter hinzu und versuchen Sie es erneut.
+
+## Tipps
+
+- **Breit anfangen, dann eingrenzen.** Setzen Sie zuerst den Zeitraum, dann Partner- oder Kategoriefilter — die Zeilenzahlen aktualisieren sich dabei laufend.
+- **Frag das Hauptbuch für den ersten Schnitt, Filter für die Feinabstimmung.** Natürliche Sprache bringt Sie schnell in die richtige Größenordnung; die Chips sind präzise.
+- **Export fürs Büro?** „Alle drei Blätter“ gibt das vollständigste Bild in einer Datei.
+
+## Verwandte Artikel
+
+- [Berichte](/reports) — gespeicherte, kategoriebasierte Auswertungen (im Gegensatz zum spontanen Stöbern im Hauptbuch)
+- [Arbeiten mit Rechnungen](/invoices)
+- [Rechnungsabgleich](/invoice-matching)

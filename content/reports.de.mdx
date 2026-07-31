@@ -1,0 +1,91 @@
+# Berichte
+
+Mit Berichten fassen Sie Rechnungs- oder Banktransaktionsdaten nach Kategorie über einen beliebigen Zeitraum zusammen. Sie können eine eigene GuV, eine Cashflow-Übersicht oder jede andere Ansicht bauen, die für einen Mandanten sinnvoll ist — und in die Zahlen hineinzoomen, bis hinunter zu einzelnen Belegen.
+
+## Berichte öffnen
+
+Klicken Sie in der Seitenleiste des Arbeitsbereichs auf **Berichte**. Sie sehen eine Liste aller für diesen Arbeitsbereich erstellten Berichte. Jede Karte zeigt den Namen des Berichts, seinen Typ (Rechnung oder Cashflow) und wann er zuletzt aktualisiert wurde.
+
+Klicken Sie auf einer beliebigen Karte auf **Öffnen**, um den Bericht anzusehen.
+
+## Berichtstypen
+
+| Typ | Was aggregiert wird |
+|------|--------------------|
+| **Rechnung** | Rechnungspositionen, gruppiert nach Rechnungskategorie |
+| **Cashflow** | Banktransaktionen, gruppiert nach Transaktionskategorie |
+
+Wählen Sie **Rechnung** für eine GuV-artige Ansicht. Wählen Sie **Cashflow** für eine Cashflow-Ansicht. Die beiden Typen verwenden getrennte Kategoriensätze — wie Kategorien eingerichtet werden, steht unter [Rechnungen & Transaktionen kategorisieren](/categorization).
+
+## Einen Bericht ausführen
+
+Wenn Sie einen Bericht öffnen, läuft er automatisch für das laufende Kalenderjahr. Um den Zeitraum zu ändern, nutzen Sie die Datumsfelder **Von** und **Bis** in der Werkzeugleiste und klicken Sie auf **Ausführen**.
+
+Der Bericht läuft bei jeder Datumsänderung erneut.
+
+## Die Ergebnisse lesen
+
+Die Ergebnisse erscheinen als Tabelle. Jede Zeile ist eine **Berichtszeile** — eine benannte Zeile in der Berichtsstruktur:
+
+- **Normale Zeilen** (eingerückt) zeigen die Summe einer oder mehrerer Kategorien über den gewählten Zeitraum.
+- **Berechnete Zeilen** (mit einem Σ-Symbol, etwas fetter) sind Summen, die aus anderen Zeilen berechnet werden — zum Beispiel Rohertrag = Umsatz − Wareneinsatz.
+
+Negative Beträge erscheinen in Rot.
+
+## Ins Detail gehen
+
+Klicken Sie auf eine beliebige Zeile, um rechts ein Detailfenster zu öffnen. Es zeigt, was hinter der Zahl steckt:
+
+1. **Kategorien** — die Kategorien, die zur Zeile beitragen, mit ihren Summen und Postenzahlen. Klicken Sie auf eine Kategorie, um sie aufzuklappen.
+2. **Posten** — die einzelnen Rechnungen oder Transaktionen innerhalb jeder Kategorie. Jeder Posten zeigt Datum, Partner, Referenz oder Rechnungsnummer und Betrag. Klicken Sie auf **PDF**, um den Originalbeleg anzusehen, oder auf **→**, um die vollständige Rechnungsdetailseite zu öffnen.
+
+Ein erneuter Klick auf dieselbe Zeile schließt das Fenster.
+
+## Suchen
+
+Mit dem Suchfeld in der Werkzeugleiste filtern Sie den Bericht. Die Suche greift auf:
+
+- **Namen von Berichtszeilen** — Zeilen, deren Name Ihre Suchanfrage enthält
+- **Kategorienamen** — Zeilen, denen eine passende Kategorie zugewiesen ist
+- **Posten im Detailfenster** — Partnernamen, Rechnungsnummern, Referenzen und Beschreibungen sind alle durchsuchbar, sobald eine Zeile aufgeklappt ist
+
+Übereinstimmender Text wird überall gelb hervorgehoben.
+
+## Einen Bericht erstellen
+
+Jedes Mitglied des Arbeitsbereichs kann einen neuen Bericht erstellen. Klicken Sie auf **Neuer Bericht**, geben Sie einen Namen ein und wählen Sie den Typ. Der Bericht wird ohne Zeilen angelegt — nutzen Sie **Bearbeiten**, um die Struktur aufzubauen.
+
+## Einen Bericht bearbeiten
+
+Klicken Sie in der Werkzeugleiste auf **Bearbeiten**. Der Editor öffnet sich mit zwei Bereichen:
+
+**Linker Bereich — Zeilen**
+
+Das ist die Liste der Berichtszeilen. Sie können:
+
+- **Eine Berichtszeile hinzufügen** — aggregiert eine oder mehrere Kategorien. Klicken Sie auf **+ Berichtszeile**.
+- **Eine berechnete Zeile hinzufügen** — addiert oder subtrahiert andere Zeilen. Klicken Sie auf **+ Berechnete Zeile**.
+- **Eine Zeile umbenennen** — auf den Namen klicken und tippen. Die Änderung wird gespeichert, sobald Sie daneben klicken.
+- **Zeilen umsortieren** — ziehen Sie den Griff (≡) links an einer Zeile nach oben oder unten.
+- **Eine Zeile löschen** — klicken Sie rechts auf das Papierkorbsymbol.
+
+**Rechter Bereich — Kategorien**
+
+Ist eine Berichtszeile ausgewählt, zeigt der rechte Bereich, welche Kategorien ihr zugewiesen sind. Die Kategorien sind in drei Gruppen unterteilt:
+
+- **Dieser Zeile zugewiesen** — mit × entfernen Sie eine.
+- **In einer anderen Zeile verwendet** — anklicken, um sie auch dieser Zeile hinzuzufügen.
+- **Noch nicht zugewiesen** — mit einem Warnsymbol gekennzeichnet. Anklicken, um sie zuzuweisen.
+
+Kategorien, die keiner Zeile zugewiesen sind, bleiben in allen Berichten unberücksichtigt.
+
+Bei berechneten Zeilen zeigt der rechte Bereich stattdessen den Formel-Editor. Fügen Sie Operanden (andere Zeilen) hinzu und setzen Sie den Operator (+, −, ×, ÷) dazwischen.
+
+Klicken Sie auf **Fertig**, wenn Sie mit dem Bearbeiten fertig sind. Der Bericht läuft sofort mit der aktualisierten Struktur.
+
+## Tipps
+
+- **Beginnen Sie mit den Kategorien.** Eine Berichtszeile ist nur so nützlich wie die Kategorien dahinter. Sorgen Sie dafür, dass Ihre Rechnungs- und Transaktionskategorien sauber definiert sind, bevor Sie eine Berichtsstruktur bauen — siehe [Rechnungen & Transaktionen kategorisieren](/categorization).
+- **Nutzen Sie berechnete Zeilen für Summen.** Bauen Sie Zwischensummen (z. B. Gesamtumsatz, Gesamtkosten) als berechnete Zeilen und fassen Sie diese dann zu einer Endsumme zusammen (z. B. Jahresüberschuss). Das macht die Detailansicht aussagekräftiger.
+- **Suchen Sie beim Hineinzoomen.** Tippen Sie einen Lieferantennamen oder eine Rechnungsnummer ins Suchfeld, während das Detailfenster offen ist — passende Posten bleiben sichtbar und werden hervorgehoben.
+- **Der Zeitraum verändert die Struktur nicht.** Sie können die Daten frei ändern, ohne Ihre Zeilenkonfiguration zu verlieren. Führen Sie denselben Bericht für verschiedene Perioden aus, um zu vergleichen.

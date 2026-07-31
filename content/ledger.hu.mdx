@@ -1,0 +1,61 @@
+# Főkönyvi kivonat
+
+A Főkönyv az a hely, ahol **az adataival válaszolhat meg egy kérdést** — „mutasd az összes EUR-kiadást az előző negyedévben”, „mely Erste Bank-tranzakciók történtek márciusban”, „minden számla ettől a szállítótól idén”. Egyszerre böngészi az összes feldolgozott számlát és banki tranzakciót, tetszés szerint szűri őket, majd Excelbe exportálja az eredményt.
+
+Könyvelői eszköz — a munkaterület oldalsávjában az **Exportok → Főkönyv** menüpont alatt találja. (Az ügyfelek nem látják.)
+
+## A három nézet
+
+A Főkönyv háromféleképpen mutatja az adatait; a felül lévő fülekkel válthat közöttük:
+
+| Fül | Soronként | Mire jó |
+|---|---|---|
+| **Számla fejlécek** | egy számla | végösszegek, dátumok, partner, státusz — a számlaszintű összesítés |
+| **Számlatételek** | egy tétel | kategória és ÁFA részletei tételszinten |
+| **Banki tranzakciók** | egy banki mozgás | ami ténylegesen a számlára érkezett, párosítási státusszal |
+
+A beállított szűrő mindhárom nézetre érvényes, így ugyanazt a kérdést a számlák és a bank felől is megválaszolhatja anélkül, hogy újra be kellene gépelnie.
+
+## Szűrés
+
+Kétféleképpen szűkíthet — használja azt, amelyik gyorsabbnak tűnik.
+
+### Kérdezd a Főkönyvet (természetes nyelven)
+
+Van egy **Kérdezd a Főkönyvet** feliratú keresőmező. Írja be hétköznapi szavakkal, mit szeretne, az alkalmazás pedig szűrőkké alakítja:
+
+- *„Eurofins számlák az előző negyedévben”*
+- *„kiadások EUR-ban”*
+- *„Erste Bank tranzakciói, 2026 március”*
+
+Megmutatja, hogyan értelmezte a kérését — **„Értelmezve: …”** —, és **Visszavonás** gombbal javíthatja, ha valamit félreértett. Ha a nyelvi értelmezés éppen nem érhető el, jelzi, és visszatérhet az alábbi szűrővezérlőkhöz.
+
+### Szűrővezérlők
+
+Kattintson a **Szűrők megjelenítése** gombra a teljes készletért: dátumtartomány (előre beállított és egyedi tartománnyal), irány (bejövő / kimenő pénz), partner, cég, bankszámla és pénznem, számlakategóriák, tranzakciótípusok, továbbiak pedig a **További szűrők** alatt. Minden alkalmazott szűrő eltávolítható chipként jelenik meg az **Aktív szűrők** alatt — a chipen lévő **×** csak azt az egyet törli, a **Törlés** pedig mindent visszaállít.
+
+Ha egy nézet üresen tér vissza, a Főkönyv gyakran egy jobb fülre irányítja — *„Próbálja a Banki tranzakciókat — 12 találat.”*
+
+## Exportálás Excelbe
+
+Ha a nézet azt mutatja, amit szeretne, kattintson az **Export** gombra. Egy `.xlsx` fájlt kap, két lehetőséggel:
+
+- **Mind a három munkalap exportálása** — Számla fejlécek, Számlatételek és Banki tranzakciók, mindegyik külön munkalapon, mind az aktuális szűrők szerint.
+- **Csak ez a nézet** — kizárólag az éppen megnyitott fül.
+
+Néhány védőkorlát:
+
+- Nagyon nagy eredménynél az alkalmazás előbb megerősítést kér (*„Ez az export kb. N sort állít elő. Folytatja?”*).
+- Van egy felső határ is — ha az eredmény túl nagy, a rendszer a **szűrők szűkítését** kéri az export előtt. Szűkítse a dátumtartományt, vagy adjon hozzá egy szűrőt, és próbálja újra.
+
+## Tippek
+
+- **Induljon tágan, majd szűkítsen.** Először a dátumtartományt állítsa be, utána adjon hozzá partner- vagy kategóriaszűrőt — a sorszámok menet közben frissülnek.
+- **Az első vágáshoz a Kérdezd a Főkönyvet, a finomhangoláshoz a szűrők valók.** A természetes nyelv arra kiváló, hogy „nagyjából a jó helyre” jusson; a chipek pontosak.
+- **Az irodának exportál?** A „mind a három munkalap” adja a legteljesebb képet egyetlen fájlban.
+
+## Kapcsolódó cikkek
+
+- [Riportok](/reports) — mentett, kategóriaalapú összesítések (szemben a Főkönyv eseti böngészésével)
+- [Számlák kezelése](/invoices)
+- [Számlák párosítása](/invoice-matching)

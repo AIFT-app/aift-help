@@ -1,0 +1,90 @@
+# Számlák és banki tranzakciók kategorizálása
+
+Az AI Finance Team automatikusan kategóriát rendel a számláihoz és a banki tranzakcióihoz. A munka javát az AI végzi — a könyvelő csak akkor lép be, amikor második véleményre van szükség.
+
+## Hogyan működnek a kategóriák
+
+Minden munkaterületen két külön kategóriakészlet létezik:
+
+- **Számla kategóriák** — a számlák egyes tételeire vonatkoznak (például Szoftverlicenc, Irodabérlet, Szakértői szolgáltatás)
+- **Pénzforgalmi kategóriák** — a banki tranzakciókra vonatkoznak (például Bankköltség, Bérszámfejtés, Ügyfélbefizetés)
+
+A kategóriákat a könyvelő állítja be és kezeli. Ha úgy érzi, hogy hiányzik egy kategória, vagy rosszul van elnevezve, kérje a könyvelőjét, hogy vegye fel vagy módosítsa.
+
+---
+
+## Számlák kategorizálása
+
+### Mit csinál az AI
+
+Amikor egy számla megérkezik — akár kézi feltöltéssel, akár e-mailben, akár számlaszolgáltatóból behúzva —, az AI elolvassa az egyes tételsorokat, és mindegyikhez hozzárendeli a legmegfelelőbb kategóriát a munkaterület számlakategória-listájából.
+
+Minden hozzárendeléshez megbízhatósági pontszámot is ad. Ha az AI biztos a választásában, a kategória azonnal alkalmazásra kerül. Ha kevésbé biztos, a tétel megjelölésre kerül, hogy a könyvelő átnézze.
+
+### Mit lát a könyvelő
+
+A könyvelő a **Számlák** oldalon nézi át a megjelölt tételeket. A figyelmet igénylő tételeket **Ellenőrzés** jelvény jelöli.
+
+Átnézéskor a könyvelő a következőket teheti:
+
+- Elfogadja az AI javaslatát változtatás nélkül
+- Másik kategóriát választ a listából
+- Megjegyzést hagy a döntés indoklásához
+
+Miután egy kategória megerősítést nyer, a számla **Kategorizálva** státuszba kerül.
+
+### Hogyan lesz az AI egyre okosabb
+
+Valahányszor a könyvelő javít egy kategóriát, az AI Finance Team rögzíti ezt a döntést javításként. Amikor legközelebb hasonló tételsor bukkan fel — ugyanattól a szállítótól, hasonló szövegezéssel —, az AI erős jelzésként használja ezt a korábbi javítást.
+
+Ez azt jelenti, hogy a kategorizálás pontossága az első hónapokban jellemzően javul, ahogy az AI megtanulja a vállalkozására jellemző mintázatokat.
+
+A könyvelők a számla- és pénzforgalmi kategóriaoldalak **Példák** fülén megnézhetik, szerkeszthetik és előre feltölthetik, amit az AI megtanult — lásd: [Hogyan tanulja meg az AIFT a kategóriáidat](/categorization-examples).
+
+---
+
+## Banki tranzakciók kategorizálása
+
+### Mit csinál az AI
+
+Minden banki tranzakció összevetésre kerül a munkaterület pénzforgalmi kategóriáinak listájával. A számlákhoz hasonlóan az AI itt is kategóriát és megbízhatósági pontszámot rendel hozzá.
+
+- **Magas megbízhatóság** — a kategória automatikusan alkalmazásra kerül, a státusz **Kategorizálva** lesz
+- **Alacsonyabb megbízhatóság** — a javasolt kategória rögzítésre kerül, de a tranzakció ellenőrzésre lesz megjelölve
+- **Nagyon alacsony megbízhatóság** — a tranzakció **Függőben** jelölést kap, és a könyvelő beavatkozására vár
+
+### Mit lát a könyvelő
+
+A **Tranzakciók** oldalon minden sor a következőket mutatja:
+
+- **Státusz** — Függőben, Feldolgozás alatt, Kategorizálva vagy Sikertelen
+- **Kategória** — a hozzárendelt kategória neve, megbízhatósági százalékot jelző jelvénnyel
+- **Szerkesztve** címke, ha a kategóriát kézzel állították be
+
+A könyvelők bármely tranzakció kategóriáját felülírhatják közvetlenül a listában: kattintsanak a kategórianév melletti ceruzaikonra, és válasszanak a listából. Csak azok a kategóriák jelennek meg lehetőségként, amelyek illeszkednek a tranzakció irányához (bevétel vagy kiadás).
+
+### Amikor kategóriák kerülnek felvételre vagy módosításra
+
+Ha a könyvelő új pénzforgalmi kategóriát vesz fel, vagy módosít egy meglévőt, az AI Finance Team automatikusan újrafeldolgozásra sorolja a még nem kategorizált tranzakciókat. Értesítés jelenik meg, amely megerősíti, hogy a kategorizálás ütemezésre került.
+
+---
+
+## Státuszok egy pillantásra
+
+| Státusz | Jelentése |
+|--------|-----------|
+| **Függőben** | Az AI feldolgozására vár |
+| **Feldolgozás alatt** | Az AI éppen dolgozik rajta |
+| **Kategorizálva** | Kategória hozzárendelve |
+| **Ellenőrzés** | Az AI rendelt hozzá kategóriát, de nem biztos benne — a könyvelőnek ellenőriznie kell |
+| **Sikertelen** | A feldolgozás hibába ütközött — a könyvelő értesítést kap |
+
+---
+
+## Tippek
+
+**Tartsa fókuszáltan a kategórialistát.** A ritkán használt kategóriák hosszú listája megnehezíti az AI helyes választását. Olyan kategóriákra törekedjen, amelyek a számlatükör valódi soraira képeződnek le.
+
+**Adjon leírást a kategóriákhoz.** A könyvelő minden kategóriához rövid leírást fűzhet arról, hogy mit fed le. Az AI ezeket a leírásokat használja, hogy kétes esetekben jobb döntést hozzon.
+
+**Javítson magabiztosan.** Amikor a könyvelő felülír egy kategóriát, a rendszer megjegyzi ezt a javítást. Egyetlen egyértelmű javítás többet ér, mint a kétes tételek ellenőrizetlenül hagyása.
