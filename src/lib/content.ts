@@ -2,6 +2,7 @@ import { readFile, readdir } from 'fs/promises'
 import path from 'path'
 import matter from 'gray-matter'
 import { defaultLocale, type Locale } from './i18n'
+import { createSlugger } from './slug.mjs'
 
 const contentDir = path.join(process.cwd(), 'content')
 
@@ -47,18 +48,23 @@ export async function getArticleSlugs(): Promise<string[]> {
     .map((f) => f.replace('.mdx', ''))
 }
 
+/** Blank out fenced code blocks so `# comment` lines never look like headings. */
+export function stripCodeFences(content: string): string {
+  return content.replace(/^```[\s\S]*?^```/gm, '')
+}
+
 export function extractHeadings(content: string): Heading[] {
-  const headingRegex = /^(#{2,3})\s+(.+)$/gm
+  // The slugger must see every heading in document order, including the h1 it
+  // doesn't emit, because rehype-slug counts duplicates across the whole page.
+  const slugger = createSlugger()
+  const headingRegex = /^(#{1,3})\s+(.+)$/gm
   const headings: Heading[] = []
   let match
-  while ((match = headingRegex.exec(content)) !== null) {
+  while ((match = headingRegex.exec(stripCodeFences(content))) !== null) {
     const text = match[2].trim()
-    const id = text
-      .toLowerCase()
-      .replace(/[^a-z0-9\s-]/g, '')
-      .trim()
-      .replace(/\s+/g, '-')
-    headings.push({ level: match[1].length, text, id })
+    const id = slugger.slug(text)
+    const level = match[1].length
+    if (level > 1) headings.push({ level, text, id })
   }
   return headings
 }
