@@ -1,0 +1,99 @@
+# Bankszámlakivonatok feltöltése
+
+Ha a bankszámlája nincs nyílt bankoláson keresztül csatlakoztatva, PDF bankszámlakivonat feltöltésével is importálhatja a tranzakciókat. Az AI Finance Team beolvassa a kivonatot, kinyeri az egyes tranzakciókat, és automatikusan a megfelelő bankszámlához köti őket.
+
+## Ki tölthet fel kivonatot
+
+A munkaterület bármely tagja feltölthet bankszámlakivonatot. A feltöltés gomb a **Tranzakciók** oldalon található.
+
+## Támogatott formátumok
+
+Kizárólag PDF bankszámlakivonatok. A szkennelt PDF-ek is működnek, amíg a szöveg olvasható — a nagyon rossz minőségű szkennek hiányos eredményt adhatnak.
+
+Ha egy kivonat több PDF-re oszlik, töltse fel a fájlokat külön-külön. Több kivonat-PDF-et `.zip` állományba is csomagolhat, és az archívumot ejtheti be — a böngésző kicsomagolja, és minden fájlt külön sorba állít.
+
+## Hogyan töltsön fel kivonatot
+
+1. Lépjen a munkaterület oldalsávjában a **Tranzakciók** menüpontra.
+2. Kattintson a jobb felső sarokban a **Bankkivonat feltöltése** gombra — vagy egyszerűen húzzon egy vagy több PDF-et (vagy egy `.zip`-et) az oldalra.
+3. Ha a gombot használta, válassza ki a PDF-fájlokat a fájlválasztóban.
+
+A jobb alsó sarokban folyamatpanel jelenik meg, amely feltöltés és kinyerés közben mutatja az egyes kivonatokat. Közben tovább dolgozhat — a panel navigálás közben is látható marad, és az oldal frissítése sem szakítja meg a folyamatban lévő munkát. Ha táblázatos nézetet szeretne minden feltöltésről, további részletekkel, nyissa meg a **Bankkivonatok** fület.
+
+A feltöltés teljes működéséről — többfájlos választó, fogd és vidd, ZIP-archívumok, sikertelen kinyerések újrapróbálása — lásd: [Fájlok feltöltése](/uploading-files).
+
+Amikor a kinyerés befejeződik, a tranzakciók megjelennek a **Tranzakciók** fülön, a párosított bankszámla alatt.
+
+## Automatikus számlapárosítás
+
+Az AI Finance Team beolvassa a kivonat első oldalát, és megkeresi a számlaszámot a munkaterületén.
+
+- Ha talál egyező számlát, a kinyerés automatikusan elindul, és a kivonat **Kinyerés** állapotban jelenik meg a **Bankkivonatok** fülön.
+- Ha nincs találat, a kivonat **Függőben** állapotban jelenik meg a **Bankkivonatok** fülön. Innen egy könyvelő hozzárendelheti a megfelelő bankszámlát a kinyerés elindításához.
+
+A párosítás IBAN formátummal (`HU12 3456 7890 1234 5678 0000 0000`) és belföldi számlaszám-formátummal (`34567890-12345678`) egyaránt működik. Az összehasonlításkor a szóközök és kötőjelek figyelmen kívül maradnak.
+
+Ha a bankszámla még nem létezik a munkaterületen, de szerepel valamelyik cégénél a **Törzsadatok → Cégek** alatt, a rendszer automatikusan létrehozza, és ahhoz a céghez köti.
+
+## Bankkivonatok fül
+
+A **Bankkivonatok** fül minden feltöltött kivonatot és annak aktuális állapotát mutatja.
+
+| Állapot | Jelentése |
+|--------|-----------|
+| Függőben | Feltöltve, de még nincs bankszámlához rendelve. |
+| Kinyerés | A kinyerés fut — oldalankénti előrehaladást mutat. |
+| Kész | Minden tranzakció sikeresen kinyerve. |
+| Hibák | A kinyerés befejeződött, de néhány oldallal gond volt. |
+| Sikertelen | A kinyerés nem tudott befejeződni. |
+
+Bármely befejezett kivonat sorára kattintva megnyílik a kivonat részletező oldala.
+
+A **Függőben** állapotú kivonatoknál a sor műveleti gombokat mutat:
+
+- **Kinyerés** — a kinyerés elindítása számla hozzárendelése nélkül (a tranzakciók később kerülnek összekötésre).
+- **Számla hozzárendelése** *(csak könyvelőknek)* — válasszon bankszámlát a legördülő listából, és egy lépésben indítsa el a kinyerést.
+- **Bezárás** — a kivonat elrejtése kinyerés nélkül.
+
+## A kinyerés előrehaladása
+
+Amíg egy kivonat kinyerése folyik, a Bankkivonatok fülön oldalról oldalra követheti az előrehaladást. Elnavigálhat — a kinyerés a háttérben folytatódik. A végső darabszámot a Bankkivonatok fülre visszatérve nézheti meg.
+
+## Mi történik a kinyerés után
+
+Amint a kinyerés befejeződik:
+
+1. Az összes kinyert tranzakció a párosított bankszámlára íródik.
+2. Automatikusan lefut a kategorizálás és a partnerfeloldás — ugyanaz az AI-folyamat, amely a nyílt bankolásból érkező tranzakciókat is kezeli.
+3. A tranzakciók megjelennek a **Tranzakciók** fülön, átnézésre készen.
+
+A duplikátumokat a rendszer automatikusan felismeri. Ha egy tranzakció már létezik a rendszerben (nyílt bankoláson vagy korábbi kivonatfeltöltésen keresztül érkezett), nem kerül be újra.
+
+## A kivonat részletező oldala
+
+A Bankkivonatok fülön bármely befejezett kivonat sorára kattintva megnyílik a részletező oldal. Bal oldalon a PDF látható, jobb oldalon a kinyert tranzakciók listája. Az oldal teljes képernyőn nyílik meg — az oldalsáv elrejtőzik, hogy több hely maradjon. Elnavigáláskor újra megjelenik.
+
+- **Kattintson egy tranzakció sorára**, hogy a PDF megfelelő oldalára ugorjon, és a rendszer sárgán kiemelje az egyező dátumot. Ugyanarra a sorra újra kattintva megszűnik a kijelölés.
+- **Kereshet és szűrhet** a tranzakciók között partner, leírás vagy irány (bevétel / kiadás) szerint.
+- A **kategóriaoszlop** mutatja, hogyan lett az egyes tranzakciók a kinyerés után kategorizálva.
+- A **sárga vagy piros ponttal** jelölt sorok alacsonyabb megbízhatósággal kerültek kinyerésre — ezeket nézze át kézzel.
+- A **Dup** jelölésű sorok duplikátumok, amelyek nem kerültek be a tranzakciólistába.
+
+Az összegző lábléc mutatja a tranzakciók számát, a duplikátumok számát és a nettó összeget.
+
+## Kivonat törlése
+
+A könyvelők a kivonat részletező oldaláról törölhetnek egy kivonatot. Kattintson a láblécben a **Bankkivonat törlése** gombra, és erősítse meg.
+
+Egy kivonat törlése eltávolítja mindazokat a tranzakciókat, amelyek kizárólag abból a fájlból származtak. Azok a tranzakciók, amelyek más forrásból is bekerültek (például nyílt bankoláson keresztül), megmaradnak.
+
+## Kivonat újbóli kinyerése
+
+Ha a kinyerés sikertelen volt, vagy hibás eredményt adott, forduljon a könyvelőjéhez. A könyvelők törölhetik a kivonatot, és újra feltölthetik, hogy tiszta lappal induljanak.
+
+## Tippek
+
+- **Párosítsa a számlákat feltöltés előtt.** Ha feltöltés előtt felviszi a bankszámla adatait a **Törzsadatok → Cégek** alá, a kivonat automatikusan párosul — nem kell kézzel hozzárendelni.
+- **Egyszerre egy időszakot töltsön fel.** Az ugyanarról a számláról származó, átfedő kivonatokat a rendszer duplikátumszűri, de a tiszta időszakhatárok megkönnyítik az egyeztetést.
+- **Az állapotot a Bankkivonatok fülön nézze.** Ha feltöltött egy fájlt, és nem lát új tranzakciókat, ellenőrizze a Bankkivonatok fület — a sor megmutatja, hogy a kinyerés még fut, vagy figyelmet igényel.
+- **A nagy kivonatok tovább tartanak.** Egy 20 oldalas kivonat oldalanként dolgozódik fel; számítson néhány percre.

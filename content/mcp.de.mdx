@@ -1,0 +1,168 @@
+# Einen KI-Assistenten über MCP verbinden
+
+AI Finance Team bringt einen eingebauten **MCP-Server** mit — eine Standardschnittstelle, über die KI-Assistenten wie Claude, Mistral Le Chat oder ChatGPT Ihre Buchhaltungsdaten in Ihrem Namen abfragen und (optional) bearbeiten können. Es ist dasselbe Produkt, nur im Gespräch bedient.
+
+Nach dem Verbinden stellen Sie Ihrem Assistenten Fragen in normaler Sprache („Welche Rechnungen im Pannónia Bistro brauchen meine Aufmerksamkeit?“), und er holt Live-Daten aus Ihrem AIFT-Arbeitsbereich. Mit dem optionalen Schreibbereich kann er außerdem Transaktionen kategorisieren, Zuordnungen bestätigen und Rechnungsfelder für Sie bearbeiten.
+
+Diese Anleitung richtet sich an Buchhalter. Mandanten haben derzeit keinen MCP-Zugang.
+
+---
+
+## Was er kann
+
+Die MCP-Verbindung setzt auf denselben Daten und Berechtigungen auf, die Sie innerhalb von AIFT ohnehin haben. Sie sieht nichts, was Sie nicht sehen können, und darf — wenn der Bereich **Änderungen vornehmen** erteilt wurde — nur das tun, was eine Buchhalterin oder ein Buchhalter auch über die Oberfläche tun kann. Jede Aktion ist prüfbar.
+
+### Was Sie fragen können (ohne Änderungen)
+
+> „Liste meine Mandanten-Arbeitsbereiche auf und sag mir, welcher am meisten Aufmerksamkeit braucht.“
+
+> „Welche Banktransaktionen im Mai haben im Csavar Csárda noch keine passende Rechnung?“
+
+> „Zeig mir die Q1-Ergebnisse für das Pannónia Bistro — sowohl GuV als auch Cashflow-Bericht.“
+
+> „Welche Rechnungen der Logikum Kft. haben nicht kategorisierte Positionen, sortiert nach Betrag?“
+
+> „Finde jede Telekom-Banktransaktion in der Zöld Saláta Kft. aus dem März.“
+
+> „Was wurde heute in diesem Arbeitsbereich über MCP gemacht?“
+
+### Worum Sie den Assistenten bitten können (Schreibbereich erforderlich)
+
+> „Markiere alle Bankgebühren-Transaktionen im Mai als ‚keine Rechnung nötig‘.“
+
+> „Kategorisiere diese Adobe-Rechnungsposition als ‚Softwarelizenz‘.“
+
+> „Bestätige die vorgeschlagene Zuordnung zwischen INV-0314 und TXN-0892.“
+
+> „Der Partner dieser Rechnung ist falsch — setze ihn auf den verifizierten Partner ‚Magyar Telekom‘.“
+
+> „AcmeCorp ist tatsächlich ein neuer Lieferant — stufe ihn zum verifizierten Partner hoch.“
+
+> „Mach die Kategorisierung bei AH-TXN-2026-0042 rückgängig.“
+
+Jede Schreibaktion hält im Prüfprotokoll eine Momentaufnahme **vorher** und **nachher** fest, sodass sich jede Änderung nachvollziehen (und rückgängig machen) lässt.
+
+---
+
+## Was er ausdrücklich nicht kann
+
+- **Geld bewegen.** Keine Überweisungen, keine Zahlungen, kein Zugriff auf Bankzugangsdaten. Die Verbindung berührt ausschließlich Buchhaltungsdaten.
+- **Zugangsdaten ändern.** Einstellungen zur Bankverbindung, Nutzerpasswörter, OAuth-Tokens — alles tabu.
+- **Rechnungen an Finanzbehörden übermitteln.** Der Export in Ihr Buchhaltungssystem ist ein separater, manueller Schritt.
+- **Andere Arbeitsbereiche anfassen.** Der Assistent sieht nur Arbeitsbereiche, in denen Sie Mitglied sind; die Prüfungen je Werkzeug weisen alles außerhalb dieses Rahmens zurück.
+
+Das wird serverseitig durchgesetzt; nichts, was der Assistent versucht — selbst auf Aufforderung —, kann diese Grenzen umgehen.
+
+---
+
+## Die Verbindung einrichten
+
+Die genauen Schritte hängen vom verwendeten Assistenten ab. Die URL für den Konnektor ist immer dieselbe:
+
+```
+https://aift.aifinance.team/api/mcp
+```
+
+### Claude (Desktop oder Web)
+
+Verfügbar in den Tarifen Pro, Max, Team und Enterprise.
+
+1. Öffnen Sie **Einstellungen → Konnektoren → Eigenen Konnektor hinzufügen**.
+2. Fügen Sie die obige URL ein.
+3. Klicken Sie auf **Hinzufügen**. Claude öffnet einen AIFT-Anmeldetab.
+4. Melden Sie sich mit Ihrem gewohnten AIFT-Konto an.
+5. Setzen Sie auf dem Zustimmungsbildschirm einen Haken bei **Daten lesen**, um den Lesebereich zu erteilen. Setzen Sie zusätzlich einen Haken bei **Änderungen vornehmen**, wenn der Assistent kategorisieren, zuordnen, Rechnungen bearbeiten usw. können soll.
+6. Klicken Sie auf **Zulassen**. Sie sind zurück in Claude, die Werkzeuge sind geladen.
+
+Zum Trennen: Einstellungen → Konnektoren → AIFT → **Entfernen**.
+
+### Mistral Le Chat
+
+Verfügbar in Free und Pro.
+
+1. **Einstellungen → MCP-Konnektoren → Konnektor hinzufügen**.
+2. Fügen Sie die obige URL ein. Die Authentifizierung wird automatisch erkannt.
+3. Durchlaufen Sie denselben Anmelde- und Zustimmungsvorgang.
+
+Mistral ist derzeit der bequemste Weg — keine Tarifhürde, schnellste Einrichtung.
+
+### ChatGPT
+
+Verfügbar in Plus und Pro (über den Entwicklermodus) oder organisationsweit veröffentlicht in Business / Enterprise.
+
+1. Aktivieren Sie den **Entwicklermodus** in den Einstellungen.
+2. **Eigenen Konnektor hinzufügen** mit der obigen URL.
+3. Durchlaufen Sie denselben Anmelde- und Zustimmungsvorgang.
+
+Bei Business-/Enterprise-Konten kann Ihre IT-Administration AIFT als organisationsweiten Konnektor veröffentlichen, sodass einzelne Nutzer den Entwicklermodus nicht aktivieren müssen.
+
+### Microsoft Copilot / Gemini Enterprise
+
+Möglich über Copilot Studio (Power-Platform-Konnektor) oder Gemini Enterprise (Google-Cloud-Datenspeicher) — beides erfordert, dass Ihr IT-Team es einrichtet. Wenden Sie sich an den Support von AI Finance Team, wenn Sie dabei Hilfe möchten.
+
+---
+
+## Lesen gegenüber Änderungen vornehmen
+
+Der Zustimmungsbildschirm zeigt zwei Kontrollkästchen. Sie entscheiden, was Sie erteilen.
+
+| Bereich | Was er erlaubt |
+|---|---|
+| **Daten lesen** | Alle Lesewerkzeuge: Arbeitsbereiche auflisten, im Hauptbuch suchen, Rechnungen und Transaktionen ansehen, Partner und Unternehmen auflisten, Berichte ausführen usw. Keine Änderungen. |
+| **Änderungen vornehmen** | Rechnungen und Banktransaktionen kategorisieren, Zuordnungen bestätigen und rückgängig machen, Rechnungsrichtung / Partner / Unternehmen bearbeiten, Partner verknüpfen oder verifizieren, Transaktionen als „keine Rechnung nötig“ markieren. Jede Aktion wird mit Vorher-/Nachher-Werten festgehalten. |
+
+Sie können nur Lesen, nur Ändern oder beides erteilen. Sie können jederzeit trennen und neu verbinden, um die erteilten Bereiche zu ändern.
+
+---
+
+## Prüfprotokoll und Sicherheit
+
+Jeder MCP-Werkzeugaufruf schreibt eine Zeile in das Prüfprotokoll von AIFT:
+
+- **Wer** — der AIFT-Nutzer hinter der Verbindung
+- **Was** — das aufgerufene Werkzeug mit seinen Argumenten (Freitext-Suchbegriffe werden entfernt)
+- **Welcher Datensatz** — bei Schreibaktionen die geänderte Zeile
+- **Vorher- und Nachher-Werte** — bei Schreibaktionen vollständige Momentaufnahmen, sodass sich jede Änderung rückwärts abspielen lässt
+
+Sie können das direkt im Assistenten einsehen:
+
+> „Zeig mir alles, was ich in der letzten Stunde über MCP gemacht habe.“
+
+Oder direkt in AIFT — Ihre Administration kann das vollständige Protokoll aus der Tabelle `mcp_access_log` ziehen.
+
+Falls Sie vermuten, dass etwas schiefging — eine falsche Kategorie gesetzt, eine Rechnung mit der falschen Richtung aktualisiert —, ist das Feld **before_values** des Prüfprotokolls die verlässliche Quelle für die Wiederherstellung des vorherigen Zustands.
+
+---
+
+## Tipps für produktive Gespräche
+
+- **Nennen Sie den Arbeitsbereich konkret.** „Zeig mir vom Pannónia Bistro …“ ist deutlich besser als „Zeig mir von meinem Mandanten …“. Der Assistent hat Zugriff auf alle Ihre Arbeitsbereiche und rät sonst gelegentlich.
+- **Nutzen Sie sprechende IDs.** Rechnungsnummern wie `AH-INV-2026-0042` und Transaktionsnummern wie `AH-TXN-2026-0157` sind stabile Referenzen, die der Assistent direkt auflösen kann. Sie werden in der gesamten AIFT-Oberfläche angezeigt.
+- **Fragen Sie im Zweifel nach dem Prüfpfad.** „Was hast du geändert?“ holt in der Regel die Vorher-/Nachher-Differenz aus dem Prüfprotokoll.
+- **Klicken Sie die Links, die der Assistent liefert.** Jede Datensatzreferenz kommt mit einem `deep_link` zurück — einer direkten URL in die AIFT-Oberfläche für genau diese Zeile. Nutzen Sie diese Links statt der Navigation über die Seitenleiste; sie führen Sie direkt zum richtigen Datensatz.
+- **Der Assistent kann keine Dateien hochladen.** PDFs und Kontoauszüge laufen weiterhin über die AIFT-Oberfläche oder den E-Mail-Alias Ihres Arbeitsbereichs. Der Assistent kann das System bitten, eine bereits hochgeladene Rechnung oder einen Auszug **erneut zu extrahieren**, aber er kann im Chat keine Anhänge entgegennehmen.
+
+---
+
+## Häufige Fragen
+
+**Speichert der KI-Assistent meine Daten?**
+Der MCP-Server gibt die Daten pro Anfrage an den Assistenten zurück. Ob der Assistent danach etwas *behält*, richtet sich nach der Richtlinie seines Anbieters (Claude, Mistral und ChatGPT haben jeweils eigene Einstellungen zur Datennutzung). Auf AIFT-Seite wird protokolliert, welche Aufrufe erfolgt sind — nicht, welche Daten der Assistent gesehen hat.
+
+**Kann ich meine Verbindung mit Kollegen teilen?**
+Nein — die Verbindung ist an Ihren AIFT-Nutzer gebunden. Jede Buchhalterin und jeder Buchhalter in einem Arbeitsbereich sollte einen eigenen Konnektor einrichten. Über RLS sehen alle dieselben Daten, Aktionen werden aber der ausführenden Person zugeordnet.
+
+**Was, wenn der Assistent etwas falsch ändert?**
+Jede Schreibaktion speichert Vorher-/Nachher-Werte. Sagen Sie dem Assistenten: „Mach deine letzte Änderung an AH-INV-2026-0042 rückgängig“ — er liest die `before_values` aus dem Prüfprotokoll und wendet sie an. Speziell bei der Kategorisierung genügt es, sie mit dem ursprünglichen Wert erneut aufzurufen.
+
+**Der Assistent hat mir eine URL gegeben, die einen 404 liefert.**
+Verwenden Sie immer den `deep_link` aus der Antwort des Assistenten — nur er ist verbindlich. Der Assistent ist angewiesen, AIFT-URLs nicht aus Mustern zusammenzubauen; sehen Sie dennoch eine defekte, bitten Sie ihn, „genau den deep_link zu verwenden, den du vom Werkzeug zurückbekommen hast“.
+
+**Kann der Assistent meine Bücher in mein Buchhaltungssystem exportieren?**
+Noch nicht — Exporte in Buchhaltungssysteme (Kulcs-Soft, Novitax, DATEV, BMD) laufen über den eigenen Exportvorgang von AIFT. MCP dient nur zum Lesen und Bearbeiten.
+
+---
+
+## Brauchen Sie Hilfe?
+
+Schildern Sie das Problem Ihrem AIFT-Ansprechpartner oder schreiben Sie an den Support. Geben Sie den Namen des Arbeitsbereichs, den verwendeten Assistenten (Claude / Mistral / ChatGPT) und die Tageszeit an — das genügt meist, um den Eintrag im Prüfprotokoll zu finden und nachzuvollziehen, was passiert ist.

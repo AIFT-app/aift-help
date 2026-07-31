@@ -1,0 +1,154 @@
+# Munkaterületek
+
+Egy munkaterület egy ügyfélmegbízást képvisel. Minden munkaterület a könyvelőirodájához tartozik, és egyetlen ügyfélcéggel van megosztva. A könyvelők jellemzően sok munkaterületen dolgoznak; az ügyfélfelhasználók csak a sajátjukat látják.
+
+---
+
+## A Munkaterületek áttekintő
+
+Bejelentkezéskor a **Munkaterületek** áttekintőre érkezik — ez a reggeli összkép arról, hol tart a munka az összes ügyfélnél.
+
+### Állapotpöttyök
+
+Minden munkaterület-csempén színes pötty jelzi, hogy a munkaterület igényel-e figyelmet:
+
+| Pötty | Jelentése |
+|-----|---------|
+| 🟢 Zöld | Minden kézben van — nincs nyitott probléma, és minden gyűjtőben ötnél kevesebb tétel van |
+| 🟡 Borostyánsárga | Valamit ellenőrizni kell — egy gyűjtő elérte az öt tételt, vagy van legalább egy nyitott probléma |
+| 🔴 Piros | Ma figyelmet igényel — egy gyűjtőben tizenöt vagy több tétel van, három vagy több probléma van, vagy a munka öt napnál régebben áll ellenőrizetlenül, friss ügyfélfeltöltés nélkül |
+
+### A három statisztikai kártya
+
+Minden csempe három darabszámot mutat:
+
+- **Áttekintendő** — emberi ellenőrzésre megjelölt banki tranzakciók (az AI bizonytalan volt a kategorizálásban)
+- **Nem párosított** — olyan számlák, amelyek még nincsenek banki tranzakcióhoz párosítva
+- **Problémák** — kinyerési hibák és nagyon alacsony megbízhatóságú kategorizálások
+
+### Szakaszok
+
+A csempék két szakaszba rendeződnek:
+
+- **Figyelmet igényel** — minden borostyánsárga vagy piros pöttyel jelölt munkaterület
+- **Minden rendben** — azok a munkaterületek, ahol minden zöld
+
+A szakaszcímek utáni darabszám keresés közben frissül.
+
+### Keresés
+
+A jobb felső sarokban lévő keresőmezőbe gépelve szűrhet munkaterületnév szerint. A szakaszszerkezet gépelés közben megmarad — például „Figyelmet igényel (1)” jelenik meg, ha csak egy találat esik abba a gyűjtőbe. A szűrő törléséhez kattintson a **Keresés törlése** gombra, vagy törölje a keresőszöveget.
+
+### Áttekintő szalagcím
+
+Az oldal fejléce alatt egyetlen sor foglalja össze a teljes ügyfélkörét: hány dokumentum vár ellenőrzésre, hány tranzakció párosítatlan, hány probléma nyitott, és hány munkaterület van megjelölve. Ez az egy pillantásos ellenőrzés, mielőtt eldönti, melyik munkaterületet nyissa meg először.
+
+---
+
+## Új munkaterület létrehozása
+
+Munkaterületet csak a **szervezeti adminisztrátorok** hozhatnak létre. A rendes könyvelők (szervezeti tagok) azokon a munkaterületeken dolgoznak, amelyekhez hozzáadták őket — újat nem tudnak létrehozni. Ha munkaterület-létrehozási jogra van szüksége, kérjen egy meglévő adminisztrátort, hogy léptesse elő a **Szervezeti beállítások** oldalon (lásd: [Szerepek és jogosultságok](/roles-and-permissions/)).
+
+### A varázsló indítása
+
+A Munkaterületek áttekintőn kattintson a jobb felső műveletsávban az **Új munkaterület** gombra. Ez egy háromlépéses varázslót nyit meg.
+
+---
+
+### 1. lépés — Munkaterület adatai
+
+Töltse ki az új ügyfélmegbízás alapadatait:
+
+| Mező | Megjegyzés |
+|---|---|
+| Ügyfél neve | Az ügyfél kereskedelmi neve; ez lesz a munkaterület neve |
+| Ország | Ez határozza meg a pénznem és az időzóna alapértékét |
+| Alap pénznem | Az ország alapján előre kitöltve; szerkeszthető |
+| Időzóna | Az ország alapján előre kitöltve; szerkeszthető |
+
+Ország kiválasztásakor a rendszer automatikusan kitölti az adott országban legelterjedtebb pénznemet és időzónát. Továbblépés előtt bármelyik mezőt egymástól függetlenül módosíthatja.
+
+Kattintson a **Tovább** gombra a 2. lépéshez.
+
+---
+
+### 2. lépés — Elsődleges cég
+
+Egy munkaterülethez legalább egy cég kell — az a jogi személy, amely az ügyfél bankszámláit birtokolja, és a számláin szerepel. Az AI Finance Team a cég alapján határozza meg a számla irányát (bevétel vagy kiadás), ezért ez a lépés nem hagyható ki.
+
+| Mező | Megjegyzés |
+|---|---|
+| Cég neve | A cégjogi név — kötelező |
+| Adószám | Erősen ajánlott; később is felvehető a törzsadatokban |
+| Ország | Alapértelmezés szerint a munkaterület országa |
+
+További cégek (több céggel rendelkező ügyfeleknél) később vehetők fel a munkaterület törzsadatok szakaszában.
+
+Kattintson a **Tovább** gombra a 3. lépéshez, vagy a **Vissza** gombra az 1. lépéshez való visszatéréshez — a bevitt adatok megmaradnak.
+
+---
+
+### 3. lépés — Ügyfél meghívása (opcionális)
+
+Ez a lépés arra kéri, hogy hívja meg az ügyfél-tulajdonost, hogy bankszámlákat csatlakoztathasson és számlákat tölthessen fel. Opcionális — kihagyhatja, és a meghívót később is elküldheti a munkaterület beállításaiból.
+
+Ha most szeretne meghívni:
+
+1. Adja meg az ügyfél e-mail-címét. Opcionálisan töltse ki a nevét is — így az e-mail név szerint köszönti, és elfogadáskor előre kitölti a regisztrációs űrlapot.
+2. Opcionálisan írjon személyes üzenetet — néhány mondatot arról, miért hívja meg. Ugyanaz az üzenet megy a köteg minden címzettjének.
+3. Kattintson a **Meghívó küldése** gombra.
+
+Az AI Finance Team automatikusan elküldi a meghívó e-mailt. A varázsló a meghívó hivatkozását is megmutatja tartalékként, arra az esetre, ha az e-mail kézbesítése meghiúsulna.
+
+A meghívó az **ügyfél-tulajdonos** szerepkört kapja. Az ügyfél-tulajdonos ezután a munkaterületen belül meghívhatja a kollégáit ügyféltagként.
+
+A meghívás nélküli befejezéshez kattintson a **Kihagyás** gombra, vagy fejezze be a meghívási lépést a meghívó elküldéséhez.
+
+---
+
+### A varázsló után
+
+Amint a varázsló befejeződik, a rendszer átirányítja az új munkaterület áttekintő oldalára. A munkaterület azonnal megjelenik a Munkaterületek áttekintőben. Ön automatikusan az új munkaterület **könyvelő adminisztrátora** lesz.
+
+Ha nem adott meg adószámot az elsődleges céghez, a munkaterület áttekintője felszólítást mutat annak felvitelére a törzsadatokból. Ezt a felszólítást elvetheti, és később visszatérhet rá.
+
+---
+
+## Csatlakozás meglévő munkaterülethez
+
+A csatlakozás módja a szervezeti szerepkörétől függ:
+
+A **szervezeti adminisztrátorok** az áttekintőben az iroda **összes munkaterületét** látják, azokat is, amelyekhez személyesen nem csatlakoztak. Ezeknél a nem tagsági munkaterületeknél **Csatlakozás munkaterülethez** gomb jelenik meg — egy kattintás könyvelő adminisztrátorként hozzáadja Önt, és megnyitja a munkaterületet.
+
+A **szervezeti tagok** (nem adminisztrátor könyvelők) külön nézetben böngészhetik az iroda munkaterületeit, amelyekhez még nem tartoznak. Minden sorban van egy **Csatlakozás kérése** gomb. Erre kattintva a rendszer e-mailben értesíti az iroda adminisztrátorait; ők a Szervezeti beállítások postaládájából hagyják jóvá vagy utasítják el. A döntésről e-mailt kap.
+
+---
+
+## Csapattagok meghívása
+
+Ha egy munkaterület már létezik, a **könyvelő adminisztrátor** további tagokat hívhat meg a munkaterület **Beállítások → Csapat** menüpontjából:
+
+- Az irodája más könyvelőit (könyvelőként vagy könyvelő adminisztrátorként)
+- Az ügyfélcég felhasználóit (ügyfél-tulajdonosként vagy ügyféltagként)
+
+A meghívópanel egy kötegben legfeljebb **10 címzettet** fogad, mindegyiknél opcionális név-előkitöltéssel, valamint egy opcionális személyes üzenettel, amely az egész kötegre vonatkozik. Az AI Finance Team minden meghívottnak automatikusan e-mailt küld.
+
+Arról, hogy az egyes szerepkörök mit láthatnak és tehetnek, valamint a meghívási folyamat részleteiről lásd: [Szerepek és jogosultságok](/roles-and-permissions/).
+
+---
+
+## Szervezeti beállítások
+
+Az oldalsávban lévő **Szervezeti beállítások** hivatkozás a szervezeti adminisztrátorok számára látható. Az iroda szervezeti beállításaihoz vezet, ahol a következőket teheti:
+
+- Csapattagok és szerepköreik kezelése az egész irodában
+- Tömeges meghívók küldése új csapattagoknak
+- A szervezeti tagok által beadott, függőben lévő **csatlakozási kérelmek** elbírálása
+
+---
+
+## Ami még nem készült el
+
+- **Bankkapcsolat-kezelő felület** — a bankszámlaadatok léteznek, de az a felület, amelyen az ügyfelek csatlakoztathatják, lecsatlakoztathatják vagy kezelhetik a bankkapcsolatukat, még nem érhető el.
+- **Munkaterület-beállítások** — a beállítások oldal még csonk; az olyan konfigurációk, mint az automatikus kategorizálás és a hiányzó dokumentumokra figyelmeztető riasztások, a munkaterület létrehozásakor kerülnek beállításra, de a felületen még nem módosíthatók.
+- **Munkaterületenkénti zárási ciklus** — a csempék láblécében megjelenő zárási időszak jelenleg az aktuális naptári hónap. A negyedéves ÁFA-ciklusok és más beszámolási ciklusok támogatása tervben van.
