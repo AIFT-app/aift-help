@@ -1,18 +1,18 @@
 # Tranzakciótípusok és a „Nincs szükség számlára”
 
-Néhány banki tranzakcióhoz soha nem tartozik számla — banki díjak, kamatok, bérfizetések, adóutalások és hasonló, ismétlődő tételek. A **tranzakciótípusok** segítségével szabályokat adhatsz meg ezekre, így automatikusan felismerhetők, és kikerülnek a Hiányzó dokumentumok listájáról — a beérkező tételek között csak a valóban párosítatlanok maradnak.
+Néhány banki tranzakcióhoz soha nem tartozik számla — banki díjak, kamatok, bérfizetések, adóutalások és hasonló, ismétlődő tételek. A **tranzakciótípusok** segítségével szabályokat adhat meg ezekre, így automatikusan felismerhetők, és kikerülnek a Hiányzó dokumentumok listájáról — a beérkező tételek között csak a valóban párosítatlanok maradnak.
 
 ## Hogyan működik
 
 Amikor új tranzakciók érkeznek (bankkivonat feltöltésével vagy banki adatkapcsolaton keresztül), az AI Finance Team minden párosítatlan tranzakcióra lefuttatja a tranzakciótípus-szabályokat. Minden olyan tranzakció, amelynek leírása, partnerneve vagy közleménye illeszkedik egy szabályra, azonnal **Nincs szükség számlára** jelölést kap a hozzárendelt típussal együtt. Kézi átnézés nem szükséges.
 
-Azoknál a tranzakcióknál, amelyek nem illeszkednek pontosan egy szabályra, az AI a tartalom alapján is javasolhat típust — a megbízhatósági szintet a tranzakció részleteinél láthatod.
+Azoknál a tranzakcióknál, amelyek nem illeszkednek pontosan egy szabályra, az AI a tartalom alapján is javasolhat típust — a megbízhatósági szintet a tranzakció részleteinél láthatja.
 
 ---
 
 ## Tranzakciótípusok beállítása
 
-A tranzakciótípusokat a **Törzsadatok → Tranzakciótípusok** menüpontban kezelheted. Ez az oldal csak a **Könyvelő** vagy **Könyvelő admin** szerepkörrel rendelkező felhasználók számára látható.
+A tranzakciótípusokat a **Törzsadatok → Tranzakciótípusok** menüpontban kezelheti. Ez az oldal csak a **Könyvelő** vagy **Könyvelő admin** szerepkörrel rendelkező felhasználók számára látható.
 
 ### Alapértelmezett típusok
 
@@ -27,37 +27,37 @@ Minden új munkaterület előre beállított tranzakciótípusokkal indul, hogy 
 | ÁFA / Adófizetés | Közvetlen adóhatósági utalások |
 | Bérfizetés | Munkabér és bérszámfejtés |
 | Készpénzfelvétel | ATM / készpénzfelvétel a számláról |
-| Átvezetés | Pénzmozgás a saját bankszámláid között (lásd lentebb) |
+| Átvezetés | Pénzmozgás a saját bankszámlái között (lásd lentebb) |
 
-Ezek a típusok már tartalmaznak gyakori mintákat a tipikus banki leírások alapján. Bármelyiket szerkesztheted, bővítheted vagy kikapcsolhatod.
+Ezek a típusok már tartalmaznak gyakori mintákat a tipikus banki leírások alapján. Bármelyiket szerkesztheti, bővítheti vagy kikapcsolhatja.
 
-### Átvezetés a saját számláid között
+### Átvezetés a saját számlái között
 
-Amikor a saját két bankszámlád között mozgatsz pénzt — legtöbbször EUR-t HUF-ra váltva, vagy egyik számlát a másikról feltöltve —, nincs számla, mert mindkét oldal ugyanaz a cég.
+Amikor a saját két bankszámlája között mozgat pénzt — legtöbbször EUR-t HUF-ra váltva, vagy egyik számlát a másikról feltöltve —, nincs számla, mert mindkét oldal ugyanaz a cég.
 
-Az AI Finance Team ezt automatikusan felismeri, és **nem** kizárólag a leírás szövegére támaszkodik. Ha a tranzakció másik számlája az egyik saját [entitásod](/master-data-entities) bankszámlája (IBAN vagy számlaszám alapján egyeztetve), a tranzakció:
+Az AI Finance Team ezt automatikusan felismeri, és **nem** kizárólag a leírás szövegére támaszkodik. Ha a tranzakció másik számlája az egyik saját [entitása](/master-data-entities) bankszámlája (IBAN vagy számlaszám alapján egyeztetve), a tranzakció:
 
 - megkapja az **Átvezetés** típust,
 - **Nincs szükség számlára** jelölést kap, és
-- egy speciális **Saját entitás** partnerhez kapcsolódik, nem pedig egy fölösleges szállítói rekordhoz (lásd [Partnerek kezelése](/partners#internal-transfers-between-your-own-accounts)).
+- egy speciális **Saját entitás** partnerhez kapcsolódik, nem pedig egy fölösleges szállítói rekordhoz (lásd [Partnerek kezelése](/partners#belső-átvezetések-a-saját-számlái-között)).
 
-Mivel ez a mentett számlaszámokon alapul — nem hamisítható szövegen —, tartsd naprakészen az egyes entitások bankszámláit a **Törzsadatok → Entitások** alatt.
+Mivel ez a mentett számlaszámokon alapul — nem hamisítható szövegen —, tartsa naprakészen az egyes entitások bankszámláit a **Törzsadatok → Entitások** alatt.
 
 ### Új típus létrehozása
 
-1. Kattints a jobb felső sarokban a **+ Új típus** gombra.
-2. Adj meg egy **Nevet** — ezt látják a könyvelők és az AI.
-3. Igény szerint adj hozzá **Leírást** belső használatra.
-4. Adj hozzá egy vagy több **mintát** (lásd lentebb).
-5. Kattints a **Mentés** gombra.
+1. Kattintson a jobb felső sarokban a **+ Új típus** gombra.
+2. Adjon meg egy **Nevet** — ezt látják a könyvelők és az AI.
+3. Igény szerint adjon hozzá **Leírást** belső használatra.
+4. Adjon hozzá egy vagy több **mintát** (lásd lentebb).
+5. Kattintson a **Mentés** gombra.
 
 ### Típus szerkesztése
 
-Kattints a **Szerkesztés** gombra a táblázat bármely sorában. Ugyanaz az űrlap nyílik meg az aktuális beállításokkal. A mentés az adott típus összes mintáját felülírja.
+Kattintson a **Szerkesztés** gombra a táblázat bármely sorában. Ugyanaz az űrlap nyílik meg az aktuális beállításokkal. A mentés az adott típus összes mintáját felülírja.
 
 ### Típusok aktiválása és kikapcsolása
 
-Kattints a **Kikapcsolás** (vagy **Aktiválás**) gombra bármely sorban. A kikapcsolt típusok kiszürkülnek, és mintáik nem érvényesülnek a párosítás során.
+Kattintson a **Kikapcsolás** (vagy **Aktiválás**) gombra bármely sorban. A kikapcsolt típusok kiszürkülnek, és mintáik nem érvényesülnek a párosítás során.
 
 ---
 
@@ -65,26 +65,26 @@ Kattints a **Kikapcsolás** (vagy **Aktiválás**) gombra bármely sorban. A kik
 
 A banki díjaknak, kamatoknak, adóutalásoknak és a kártyaelfogadói elszámolásoknak nemcsak a **Nincs szükség számlára** jelölés kell — van **valódi félük** is: a számlát vezető bank, az adóhatóság vagy a fizetési szolgáltató. Egy tranzakciótípus automatikusan feloldhatja ezt a felet, így ezek a mozgások valódi féllel kerülnek a főkönyvbe és az exportokba, nem pedig a kivonat szövegéből kikapart, fölösleges rekorddal.
 
-A típus szerkesztőjében kapcsold be az **A partnert a típus állítsa be** kapcsolót, majd válassz a két mód közül:
+A típus szerkesztőjében kapcsolja be az **A partnert a típus állítsa be** kapcsolót, majd válasszon a két mód közül:
 
-| Mód | A fél… | Mikor használd |
+| Mód | A fél… | Mikor használja |
 |------|-----------------|-----------|
 | **Bank** | A számlát vezető bank (magáról a számláról) | Banki díjak, kamat, készpénzfelvétel, kártyafedezet — számlánként eltér, de mindig „az adott számla bankja” |
-| **Konkrét partner** | Egy általad választott hitelesített partner | Egy adóhatóság (pl. NAV ÁFA) vagy egy kártyaelfogadó, például a Teya — mindig ugyanaz a fél |
+| **Konkrét partner** | Egy Ön által választott hitelesített partner | Egy adóhatóság (pl. NAV ÁFA) vagy egy kártyaelfogadó, például a Teya — mindig ugyanaz a fél |
 
 Ha a kapcsoló **ki** van kapcsolva, a típus nem állít be felet — a partner magából a tranzakcióból jön, mint máskor.
 
-A **Konkrét partner** típusnál **Rögzített kategóriát** is beállíthatsz: a tranzakció automatikusan erre könyvelődik (csak ha még nincs kategóriája). Ha a partner még nem létezik, használd a **+ Partner létrehozása** gombot közvetlenül a szerkesztőben.
+A **Konkrét partner** típusnál **Rögzített kategóriát** is beállíthat: a tranzakció automatikusan erre könyvelődik (csak ha még nincs kategóriája). Ha a partner még nem létezik, használja a **+ Partner létrehozása** gombot közvetlenül a szerkesztőben.
 
-### Bank: add meg minden számla bankját
+### Bank: adja meg minden számla bankját
 
-A **Bank** típus a felet magáról a számláról veszi — a bank nem külön partner. (A banki díjak miatt nincs folyószámla-egyenleged a bankkal; a bankkal szembeni egyenleged magának a számlának a pénzegyenlege.) A bankot a **Törzsadatok → Bankszámlák** alatt add meg: nyisd meg a bankszámlát a **Szerkesztés** gombbal (vagy új hozzáadásakor), és töltsd ki a **Bank** és **Bank adószáma** mezőket az IBAN és a pénznem mellett, hogy a banki díjak mindig féllel kerüljenek exportba.
+A **Bank** típus a felet magáról a számláról veszi — a bank nem külön partner. (A banki díjak miatt nincs folyószámla-egyenlege a bankkal; a bankkal szembeni egyenlege magának a számlának a pénzegyenlege.) A bankot a **Törzsadatok → Bankszámlák** alatt adja meg: nyissa meg a bankszámlát a **Szerkesztés** gombbal (vagy új hozzáadásakor), és töltse ki a **Bank** és **Bank adószáma** mezőket az IBAN és a pénznem mellett, hogy a banki díjak mindig féllel kerüljenek exportba.
 
 ### Konkrét partner: az azonosságra fut, nem a hasonló szövegre
 
-A **Konkrét partner** típus csak akkor érvényesül, ha a tranzakció partnere ténylegesen a kiválasztott partnerre oldódik fel — soha nem pusztán azért, mert a szöveg hasonlónak tűnik. Például egy *Teya*-hoz kötött típus a Teya kártyaelszámolásait osztályozza, de egy hasonló megjelenésű *Wolt* elszámolást érintetlenül hagy, mert a Wolt más fél (és lehet, hogy számlát igényel). Te döntöd el, mely partnerek kapnak egyáltalán szabályt.
+A **Konkrét partner** típus csak akkor érvényesül, ha a tranzakció partnere ténylegesen a kiválasztott partnerre oldódik fel — soha nem pusztán azért, mert a szöveg hasonlónak tűnik. Például egy *Teya*-hoz kötött típus a Teya kártyaelszámolásait osztályozza, de egy hasonló megjelenésű *Wolt* elszámolást érintetlenül hagy, mert a Wolt más fél (és lehet, hogy számlát igényel). Ön dönti el, mely partnerek kapnak egyáltalán szabályt.
 
-> **Ide került át:** a korábban a **Partner** adatlapon lévő tranzakciós szabályok mostantól itt, **Konkrét partner** típusként élnek. Partnerenként hozz létre egy típust — például egyet a *NAV ÁFA*, és egy külön a *NAV SZJA* számára —, mert az adó-alszámlák soha nem ugyanaz a fél.
+> **Ide került át:** a korábban a **Partner** adatlapon lévő tranzakciós szabályok mostantól itt, **Konkrét partner** típusként élnek. Partnerenként hozzon létre egy típust — például egyet a *NAV ÁFA*, és egy külön a *NAV SZJA* számára —, mert az adó-alszámlák soha nem ugyanaz a fél.
 
 ---
 
@@ -114,7 +114,7 @@ Egy illeszkedési móddal kombinálva:
 
 ### Élő találati előnézet
 
-Ahogy beírsz egy mintaértéket, az AI Finance Team megmutatja, hány **meglévő** tranzakció illeszkedne rá a munkaterületen. Így mentés előtt ellenőrizheted, hogy a minta nem túl tág vagy túl szűk-e.
+Ahogy beír egy mintaértéket, az AI Finance Team megmutatja, hány **meglévő** tranzakció illeszkedne rá a munkaterületen. Így mentés előtt ellenőrizheti, hogy a minta nem túl tág vagy túl szűk-e.
 
 ---
 
@@ -133,7 +133,7 @@ Egy tranzakció egyszerre több címkét is viselhet.
 
 ### Szűrés címke szerint
 
-A fő szűrősor alatt kapcsolható pill-szűrők sora található. Kattints bármelyikre az aktiváláshoz; kattints újra a kikapcsoláshoz. Egyszerre több is aktív lehet.
+A fő szűrősor alatt kapcsolható pill-szűrők sora található. Kattintson bármelyikre az aktiváláshoz; kattintson újra a kikapcsoláshoz. Egyszerre több is aktív lehet.
 
 ---
 
@@ -141,10 +141,10 @@ A fő szűrősor alatt kapcsolható pill-szűrők sora található. Kattints bá
 
 Illeszkedő minta nélkül is megjelölhet egy könyvelő bármely párosítatlan tranzakciót a tranzakció részletei panelen:
 
-1. Kattints a tranzakció sorára a részletek megnyitásához.
-2. A **Párosítás** szakaszban válassz egy tranzakciótípust a legördülőből — vagy válaszd a **Nincs konkrét típus** lehetőséget.
+1. Kattintson a tranzakció sorára a részletek megnyitásához.
+2. A **Párosítás** szakaszban válasszon egy tranzakciótípust a legördülőből — vagy válassza a **Nincs konkrét típus** lehetőséget.
 3. A tranzakció azonnal **Nincs szükség számlára** jelölést kap.
 
-A visszavonáshoz kattints a **Visszavonás — jelölés párosítatlanként** gombra. A tranzakció visszakerül párosítatlan állapotba.
+A visszavonáshoz kattintson a **Visszavonás — jelölés párosítatlanként** gombra. A tranzakció visszakerül párosítatlan állapotba.
 
 > Csak a **Könyvelő** és **Könyvelő admin** felhasználók jelölhetik meg vagy vonhatják vissza a tranzakciókat. Az ügyfelek látják a címkét, de nem módosíthatják.

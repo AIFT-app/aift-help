@@ -1,0 +1,236 @@
+# Számlák párosítása
+
+Az AI Finance Team automatikusan összeköti a banki tranzakciókat a hozzájuk tartozó számlákkal — ezt a folyamatot hívjuk **számlapárosításnak**. Így nem kell a hónap végén kézzel egyeztetni a fizetéseket.
+
+## Hogyan működik a párosítás
+
+A párosítás két lépésben fut:
+
+1. **Szerkezeti előszűrés** — A rendszer gyors szabályokkal szűkíti a jelölt párokat: egyező pénznem (vagy eredeti pénznemű egyezés a devizás kártyás fizetéseknél — lásd alább: [Keresztdevizás párosítás](#keresztdevizás-párosítás)), összeegyeztethető irány (bevételi számla ↔ jóváírás; kiadási számla ↔ terhelés), tartományon belüli összeg, és a tranzakciótól számított 180 napon belüli számladátum. A duplikált tranzakciók automatikusan kimaradnak. **A kivonatkinyerés emellett számlaszám alakú tokeneket bányász ki a sor szabad szövegéből** (leírások, terminálsorok stb.), és átmásolja őket a strukturált hivatkozásmezőbe, így az AI-pontozási lépés akkor is látja a számlaszámot, ha a bank egy leírásmezőbe zsúfolta be egy dedikált hivatkozásoszlop helyett.
+
+2. **AI szemantikus pontozás** — A Claude átnézi az egyes jelölt párokat, és megbízhatósági pontszámot (0–100) ad a tranzakció hivatkozásában szereplő számlaszám, a partnernév, az összeg közelsége és a dátum alapján. Ha a rendszer már ellenőrizte, hogy mindkét oldal ugyanarra a partnerre mutat (azonos azonosító, azonos ellenőrzött partner, vagy azonos cégnév a toldatok levágása után), az a jelzés rögzül — így egy tiszta szerkezeti egyezés nem sodródik el a pontsávban a futások között.
+
+   **Ellenőrzött partner esetén garantált automatikus párosítás:** ha mindkét oldal *ugyanaz* a partner — azonosító vagy **ellenőrzött partner**-kapcsolat alapján — *és* az összeg pontosan fedezi a számla egyenlegét, a tranzakció a számla fizetési határidejétől számított 30 napon belül van, és a saját cégneve nem szerepel a banki szövegben, a pár **az AI-pontszámtól függetlenül** automatikusan párosításra kerül. Ez menti meg azokat a nyilvánvaló egyezéseket, amelyeket az AI egyébként a közepes sávban hagyna — leggyakrabban a **kártyás fizetéseket**, amelyek banki sorai ritkán hordozzák a számlaszámot (a legerősebb egyetlen pontozási jelzést), így az AI 70 körül megrekedhet akkor is, ha a partner, az összeg és a dátum tökéletesen illeszkedik.
+
+   Egy lazább **küszöbenyhítés** is érvényes azokra a partnerekre, amelyek csak név alapján egyeznek (a cégjogi toldatok levágása után): ha ugyanazok a szerkezeti jelzések illeszkednek, az AI pontszáma 85-re emelkedik — de csak akkor, ha az AI eleve legalább 75-öt adott. Mindenesetre a csak név alapján egyező párok, a részleges összegek és a 30 napnál távolabbi párok önmagukban sosem párosulnak automatikusan.
+
+**Mi történik az egyes pontszintekhez:**
+
+| Pontszám | Megbízhatóság | Eredmény |
+|-------|-----------|--------|
+| 85–100 | **Magas** | Azonnali automatikus párosítás — nem kell könyvelői beavatkozás |
+| 60–84 | **Közepes / Alacsony** | Bekerül a **Párosítás** oldalra javaslatként, átnézésre |
+| 60 alatt | — | Elvetve — nem jelenik meg |
+
+Csak a **Nyitott** vagy **Részben fizetve** státuszú számlák jönnek szóba. Az érvénytelenített, kézzel készpénzesként megjelölt vagy már teljesen párosított számlák kimaradnak.
+
+## A Párosítás oldal
+
+Lépjen a munkaterület oldalsávjában a **Párosítás** menüpontra. Az oldalnak két szakasza van:
+
+- **Függőben lévő** — az AI javaslatai, amelyek az Ön döntésére várnak. Mindig teljes egészében megjelenik, **megbízhatósági pontszám szerint, a legmagasabbal kezdve**, hogy a legbiztosabb javaslatok kerüljenek a sor elejére. Ez a szakasz sosem szűrődik és nem lapozódik.
+- **Jóváhagyott** — a megerősített párosítások (automatikusan párosítottak vagy könyvelő által elfogadottak), a legújabbal kezdve. Az alább leírt keresőmező, szűrők és lapozás **kizárólag erre a szakaszra** vonatkoznak — a Függőben lévő szakaszból sosem rejtenek el semmit.
+
+Mindkét szakasz sorai legfeljebb négy oszlopon osztoznak:
+
+- **Pontszám / Megbízhatóság** — a függőben lévő sorok jelvényként mutatják a számszerű AI-pontszámot (zöld ≥ 85, borostyánsárga 60–84, piros ez alatt); a megerősített sorok **Magas / Közepes / Alacsony** megbízhatósági pirulát mutatnak.
+- **Számla** — szám, partner és összeg.
+- **Tranzakció** — partner, dátum és összeg.
+- **Műveletek** — **Megerősítés** / **Elutasítás** a függőben lévő soroknál, illetve **Megtekintés** a megerősítetteknél. Ez az oszlop csak a könyvelőknek jelenik meg (lásd: [Ki hagyhat jóvá és utasíthat el](#ki-hagyhat-jóvá-és-utasíthat-el)).
+
+Az oldal fejlécében két műveleti gomb található (csak könyvelőknek):
+
+- **Előzmények** — panelt nyit a legutóbbi párosítási futásokkal (lásd: [Párosítási előzmények](#párosítási-előzmények))
+- **Párosítás futtatása** — kézi párosítási kört indít (lásd: [Párosítás kézi indítása](#párosítás-kézi-indítása))
+
+### Keresés
+
+A keresőmező (a **Jóváhagyott** szakasz felett) **számlaszám**, **partnernév** vagy **fizetési hivatkozás** szerint szűri a jóváhagyott párosításokat. Gépelés közben keres. A nyers banki leírás szabad szövegében *nem* keres — használja helyette a strukturált hivatkozást. A keresés csak a Jóváhagyott szakaszra vonatkozik; a Függőben lévő sor mindig teljes egészében látszik. A keresés megjelenik az URL-ben (`?search=INV-2026-014`), így könyvjelzőzheti vagy megoszthatja.
+
+### Szűrés
+
+A keresőmező alatt két szűrő található, amelyek a kereséshez hasonlóan csak a **Jóváhagyott** szakaszt szűkítik:
+
+- **Dátumtartomány** — válasszon **Tól** és **Ig** dátumot a tranzakció könyvelési dátuma alapján. **Nincs alapértelmezett tartomány** — a lista szűretlenül indul, így semmi nem rejtőzik el, amíg nem választ dátumot. A dátumokat begépelheti a billentyűzettel, vagy használhatja a dátumválasztót; a szűrő a mezőből kilépve lép érvénybe.
+- **Megbízhatóság** — kapcsolgassa a **Magas**, **Közepes** és **Alacsony** pirulákat az egyes szintek be- vagy kizárásához. Alapértelmezés szerint mindhárom be van kapcsolva.
+
+A szűrők megjelennek az URL-ben (`?from=2026-04-01&to=2026-04-30&confidence=high,medium`), így könyvjelzőzhet egy szűrt nézetet, vagy megoszthatja egy kollégával.
+
+### Lapozás és oldalméret
+
+A **Jóváhagyott** szakasz lapozott. Az **Oldalanként** választóval állíthatja be, hány sor jelenjen meg egy oldalon (**10**, **50** vagy **100**; alapértelmezés 50). A választását a rendszer megjegyzi a következő látogatásokra. Az **Előző** / **Következő** gombokkal léphet az oldalak között. A lapozóvezérlők csak akkor jelennek meg, ha egy oldalnál több jóváhagyott párosítás van. (A Függőben lévő sor sosem lapozódik.)
+
+### Összevont, több részből álló párosítások
+
+Amikor több tranzakció fizet ki **egyetlen számlát** (például részletfizetésnél), ezek **egyetlen sorba** csoportosulnak, nem külön jelennek meg. A sor összefoglalja a csoportot — például `2 tranzakció · 264 000 HUF · 1 számla · 264 000 HUF` —, és tranzakciónként egy-egy pontszámjelvényt hordoz. Nyissa meg a sort, hogy külön-külön lássa és kezelje az egyes tranzakciókat (lásd: [A javaslat részletező oldala](#a-javaslat-részletező-oldala)).
+
+### Jóváhagyás és elutasítás a listából
+
+Egy függőben lévő sornál kattintson a **Megerősítés** gombra a párosítás megerősítéséhez, vagy az **Elutasítás** gombra a javaslat elvetéséhez. Az elutasítás végleges — az elutasított javaslat törlődik, nem archiválódik; a párosítás egy későbbi futáskor újra javasolhatja a párt, ha a jelzések továbbra is illeszkednek. Több tranzakciót tartalmazó csoportnál a Megerősítés egyszerre erősíti meg a csoport minden tranzakcióját, az Elutasítás pedig az egész csoportot elveti. Ha a tranzakciókat egyesével szeretné kezelni, nyissa meg helyette [a javaslat részletező oldalát](#a-javaslat-részletező-oldala).
+
+### Ki hagyhat jóvá és utasíthat el
+
+A párosítások jóváhagyása és elutasítása a **könyvelőkre** és a **könyvelő adminokra** korlátozott. Az ügyfélfelhasználók megnyithatják a Párosítás oldalt, és minden sort megtekinthetnek (a részletező oldalakat is), de a Megerősítés / Elutasítás vezérlők rejtve maradnak számukra, és a műveleteket a kiszolgáló is blokkolja.
+
+## A javaslat részletező oldala
+
+Bármely **függőben lévő** sorra kattintva megnyílik a részletező oldala a `/workspaces/.../matching/suggestions/<id>` címen. Ez a [párosítás részletező oldalá](#párosítás-részletező-oldala)nak javaslatoldali párja, és különösen hasznos több tranzakciót tartalmazó csoportoknál.
+
+Az oldal a következőket mutatja:
+
+- **Fejléc** — *Függőben* jelvény, a csoport minden tranzakciójához egy pontszámjelvény, és egy **Vissza a Párosításhoz** hivatkozás.
+- **Számla** — szám, partner, kiállítási és fizetési határidő, összeg (zárójelben az alap pénznemű összeggel, ha eltér), fizetési státusz és irány (Bevétel/Kiadás).
+- **Tranzakciók** — minden jelölt tranzakció saját kártyán, a hivatkozással, partnerrel, könyvelési dátummal, **Bevétel / Kiadás** iránnyal, összeggel, leírással és kategóriával. Több tranzakciót tartalmazó csoportnál a kártyák *N-ből az X. tranzakció* felirattal jelennek meg, és minden kártyán van egy **Eltávolítás a párosításból** hivatkozás, amely csak az adott tranzakciót engedi vissza újbóli párosításra, a többit érintetlenül hagyva.
+- Az oldal alján lévő **Megerősítés** / **Elutasítás** gombok az egész csoportra hatnak, atomi módon. Ezek csak a könyvelőknek jelennek meg.
+
+### Párosítási azonosító
+
+Minden párosítás stabil, ember által olvasható azonosítót kap a **`{MUNKATERÜLET-ELŐTAG}-MAT-{ÉV}-{NNNN}`** formában, például `LOG-MAT-2026-0047`. A munkaterület-előtag ugyanaz, amelyet a számla- és kivonatszámozás használ, és a **Törzsadatok → Számozás** alatt állítható be. A számok munkaterületenként évente újraindulnak.
+
+Használja ezt az azonosítót ügyfélszolgálati megkeresésekben, exportokban vagy auditnaplókban.
+
+### Párosítás részletező oldala
+
+A listában bármely megerősített sorra kattintva megnyílik a párosítás részletező oldala a `/workspaces/.../matching/<match-id>` címen. A részletező oldal a következőket mutatja:
+
+- **Fejléc** — a párosítás száma, a megbízhatósági jelvény és a párosítás dátuma. A bal felső **Vissza a Párosításhoz** hivatkozás visszavisz a listához.
+- **Banki tranzakció kártya** (bal) — hivatkozás, partner, könyvelési dátum, **Bevétel / Kiadás** irányjelvény, összeg (zárójelben az eredeti devizaösszeggel, ahol értelmezhető), leírás és kategória. Az **Megnyitás →** hivatkozás a teljes tranzakcióoldalra ugrik.
+- **Számla kártya** (jobb) — számlaszám, partner, kiállítás dátuma, fizetési határidő, összeg (alap pénznemmel, ha eltér), **fizetési státusz** jelvény és irány (Bevétel/Kiadás). Az **Megnyitás →** hivatkozás a teljes számlarészletező oldalra ugrik.
+- **Párosítási elemzés** — megbízhatósági jelvény a számszerű pontszámmal, pontszámbontó táblázat arról, mely jelzések járultak hozzá (összeg, partner, hivatkozás, dátumközelség), és egy egyszerű szöveges indoklás.
+- **Párosítás megszüntetése** gomb (jobb felül, csak könyvelő adminoknak) — megerősítés után eltávolítja a párosítást; a tranzakció **Nem párosított**, a számla pedig **Nyitott** állapotba kerül vissza.
+
+Ha a párosítás azelőtt jött létre, hogy a pontszámbontás követése bekapcsolt volna, a részletező oldal a bontótáblázat helyén a „Ehhez a párosításhoz nem érhető el pontszám.” szöveget mutatja — az oldal többi része rendesen működik.
+
+A megerősített javaslatok (azok a párosítások, amelyek közepes megbízhatóságú javaslatként indultak, és egy könyvelő fogadta el őket) mostantól szintén továbbviszik az AI-pontszámot és a bontást a párosítás részletező oldalára, így ugyanaz a magyarázat elérhető az automatikusan és a kézzel megerősített párosításokhoz is.
+
+## Párosítási előzmények
+
+A Párosítás oldal fejlécében az **Előzmények** gombra kattintva megnyílik a párosítási előzmények panel. A panel a legutóbbi párosítási futásokat sorolja fel (a legújabbal kezdve), a következőkkel:
+
+- **Időbélyeg** arról, mikor indult a futás
+- **Indítás típusa** — `Automatikus` (ütemezett futás egy bankszámlakivonat feldolgozása után) vagy `Kézi` (a könyvelő a Párosítás futtatása gombra kattintott)
+- **Darabszámok** — `N párosítva, M átnézendő, K kihagyva`
+  - **Párosítva** — automatikusan párosítva 85 vagy magasabb pontszámon
+  - **Átnézendő** — függőben lévő javaslatként hozzáadva átnézésre (60–84 pont)
+  - **Kihagyva** — kiértékelve, de 60 alatti pontszámmal (az AI nem talált elég erős kapcsolatot)
+- **Státuszjelvény** — `Kész`, `Folyamatban` vagy `Sikertelen` (ha elérhető, a hibaüzenettel)
+
+Az előzmények 90 napig őrződnek meg, ezután a régi sorok automatikusan törlődnek.
+
+### Mikor fut a párosítás automatikusan
+
+A párosítás minden bankszámlakivonat-feltöltés után automatikusan lefut. Amint a kivonat feldolgozásra kerül és a tranzakciók kategorizálódnak, a rendszer azonnal minden nyitott számlához pontozza őket, és kézi beavatkozás nélkül javaslatokat hoz létre vagy automatikusan párosít. Minden automatikus futás `Automatikus` jelöléssel jelenik meg az Előzmények panelen.
+
+### Párosítás kézi indítása
+
+A párosítás igény szerinti indításához — például miután feltöltött egy köteg régebbi számlát — kattintson a **Párosítás futtatása** gombra, és válasszon dátumtartományt:
+
+| Lehetőség | Mit fed le |
+|--------|-----------|
+| Utolsó 3 hónap | Gördülő 90 nap |
+| Utolsó 6 hónap | Gördülő 180 nap |
+| Idén | Január 1-től a mai napig |
+| Tavaly | Az előző naptári év |
+| Teljes időszak | Minden párosítatlan tranzakció és nyitott számla |
+
+A szűkebb tartományok gyorsabban futnak. A **Teljes időszak** lehetőséget csak akkor használja, ha van feldolgozandó történeti adata.
+
+#### Előrehaladás visszajelzése
+
+Az előrehaladás a képernyő jobb alsó sarkában lévő **feltöltési sor panelen** jelenik meg — ugyanazon a panelen, amely a számla- és bankszámlakivonat-feldolgozást is követi. A sor a következőt írja:
+
+- `Párosítás — <munkaterület>`: Folyamatban…
+- Befejezés után: `Párosítás — <munkaterület>`: Kész: N párosítás létrehozva
+- Hiba esetén: `Párosítás — <munkaterület>`: Sikertelen (Újrapróbálás lehetőséggel)
+
+A sor egy perccel a befejezés után automatikusan eltűnik a panelről. A régebbi futások megtekintéséhez nyissa meg az Előzmények panelt.
+
+## Párosítás a tranzakció oldalpaneljéről
+
+Nyisson meg bármely tranzakciót a sorára kattintva a **Tranzakciók** listában. Az oldalpanel alján lévő **Számlapárosítás** szakasz a következőket mutatja:
+
+- **Megerősített párosítások** — összekötött számlák a párosított összeggel és a párosítás típusával
+- **AI-javaslatok** — függőben lévő javaslatok megbízhatósági pontszámmal; kattintson a **Megerősítés** vagy **Elutasítás** gombra közvetlenül a listában
+- **Számla keresése** — keresőpanel bármely nyitott számla kézi összekötéséhez
+
+### Párosítás eltávolítása
+
+Az oldalpanelen kattintson a megerősített párosítás melletti **×** jelre az eltávolításához. A számla **Nyitott** státuszba kerül vissza, a tranzakció pedig **Nem párosított** állapotba.
+
+Másik lehetőségként nyissa meg a párosítás részletező oldalát (a párosítási listából), és kattintson jobb felül a **Párosítás megszüntetése** gombra.
+
+## Párosítás a számla részletező oldaláról
+
+A számla részletező oldalán a **Párosított tranzakciók** szakasz felsorolja az összes összekötött fizetést. Egy számlát banki tranzakció nélkül is megjelölhet rendezettként:
+
+- **Készpénzes fizetés** — a számla készpénzben lett kifizetve; rendezettként jelölődik, és kimarad a jövőbeli párosításokból
+- **Érvénytelen** — a számla érvénytelenítve; minden párosításból kimarad
+
+A **Nyitott** állapotba való visszaállításhoz válassza a **Nyitott** lehetőséget ugyanabból a legördülő listából.
+
+## Kézi párosítás
+
+Ha az AI nem javasolt párosítást, bármely tranzakciót kézzel összeköthet bármely nyitott számlával:
+
+1. Nyissa meg a tranzakció oldalpaneljét.
+2. A **Számlapárosítás** szakaszban kattintson a **Számla keresése** gombra.
+3. Keressen számlaszám, partnernév vagy összeg szerint.
+4. Válassza ki a számlát, és kattintson a **Párosítás megerősítése** gombra.
+
+A kézi párosításokat **Kézi** jelvény jelöli mind a tranzakción, mind a számlán.
+
+## Párosítási státuszok
+
+A **Tranzakciók** lista minden tranzakciósora státuszpirulát mutat a Címkék oszlopban:
+
+| Státuszpirula | Szín | Jelentése |
+|-------------|--------|---------|
+| **Összepárosítva** | zöld | Egy vagy több számlához kötve (automatikusan vagy kézzel) |
+| **Nem párosított** | piros | Még nincs összekötött számla |
+| **Nem kell számla** | cink | Belső, díj- vagy egyéb, számlát nem igénylő tranzakcióként megjelölve |
+
+Ahol értelmezhető, a státuszpirula mellett forráspirulák (**Bankcsatorna**, **Kivonat**, **Duplikátum**) is megjelennek. A táblázat feletti kapcsolókkal bármelyik pirula szerint szűrheti a tranzakciólistát.
+
+## Keresztdevizás párosítás
+
+A kártyás fizetések gyakran a **számla pénznemében** (például HUF) jelennek meg a bankszámlakivonaton, miközben a mögöttes vásárlás **devizában** (például EUR) került terhelésre. Az eredeti devizaösszeget a rendszer a kivonat sorából vagy a bankcsatorna árfolyamblokkjából olvassa ki.
+
+A párosító mindkettőt ellenőrzi:
+
+- A számla pénznemében könyvelt összeget, egy ugyanolyan pénznemű számlához mérve, *vagy*
+- A devizában megadott eredeti összeget, egy abban a devizában kiállított számlához mérve.
+
+Egy **19,59 €**-s Google Cloud-számla így automatikusan párosítható egy **−7 573 HUF**-ként könyvelt magyar banki tranzakcióval, ha a kivonat `19,59EUR`-ként mutatja az eredeti összeget.
+
+Az eredeti devizaösszeg a következő helyeken jelenik meg:
+
+- A tranzakció **Összeg** mezőjében a [párosítás részletező oldalán](#párosítás-részletező-oldala) (zárójelben a könyvelt összeg mellett)
+- A tranzakció részletező oldalán az **Összeg** sorban (az árfolyammal, ha elérhető)
+- A tranzakció oldalpaneljében a **Tranzakciók** listában
+
+Ha egy tranzakcióhoz nem került rögzítésre devizainformáció (például belföldi fizetésnél), csak a könyvelt összeg jelenik meg, és csak azonos pénznemű számlák jönnek szóba.
+
+## Fizetési csatornák és a párosítás megbízhatósága
+
+Az, ahogyan a bank jelenti a tranzakciót, nagyban befolyásolja, milyen magabiztosan tudja a párosítás feloldani.
+
+A **SEPA-átutalások és a banki átutalások** a nagy megbízhatóságú csatorna. A bank szó szerint továbbviszi a fizetési hivatkozást — így ha a fizető (vagy Ön, amikor szállítót fizet) beírta a számlaszámot a hivatkozásmezőbe, a párosító közvetlenül látja, és elsül a +35 pontos számlaszám-jelzés. Ezek a tranzakciók következetesen automatikusan párosulnak.
+
+A **kártyás fizetések** természetüknél fogva alacsonyabb megbízhatóságúak. A bankszámlakivonatok a kereskedő belső elfogadói szövegével (például `PADDLE.NET* TLWNDPLUS`, `Google Workspace_financia`, `SIMPLEP*PARKL.NET`) és egy kártyaterminál-azonosítóval írják le a kártyás tranzakciókat — nem a számlaszámmal. A párosító ilyenkor is dolgozik a többi jelzésből (a partner hasonlósága a számla szállítójához, a pontos összeg, a dátumközelség, devizás kártyás fizetéseknél az eredeti pénznem).
+
+Van egy fontos kivétel: ha a kereskedő **ellenőrzött partner** (vagy egyébként azonosító alapján ugyanaz a partner), és az összeg és a dátum illeszkedik, a kártyás fizetés az [ellenőrzött partner esetén garantált automatikus párosítás](#hogyan-működik-a-párosítás) révén **így is automatikusan párosul**, még számlaszám nélkül is. A visszatérő kártyás szállítóknál tehát az a leghatékonyabb lépés, ha a kereskedői aliasukat ellenőrzött partnerhez köti a [Partnerek](/partners) oldalon — ezután a fizetéseik nem kerülnek többé ellenőrzésre. A még nem összekötött szállítóknak történő kártyás fizetések jellemzően továbbra is a **közepes megbízhatóságú javaslatok** sávjába kerülnek könyvelői átnézésre.
+
+**Mit tehet Ön:**
+
+- A saját kimenő fizetéseinél **mindig szerepeltesse a számlaszámot a SEPA-hivatkozásmezőben**. Ez az egyetlen legnagyobb hatású dolog, amit a párosítás minőségéért tehet.
+- Ha rendszeresen ugyanazt a szállítót fizeti kártyával, **kösse a kereskedői aliasukat ellenőrzött partnerhez** a [Partnerek](/partners) oldalon. Az összekötés után az adott szállítónak történő kártyás fizetések automatikusan párosulnak, valahányszor az összeg és a dátum illeszkedik — nem kell átnézni őket.
+- Egy még nem összekötött kártyás szállítónál számítson arra, hogy a párosítás javaslatként jelenik meg, nem automatikus párosításként. Az összeg, a partner és a dátum illeszkedni fog; csak meg kell erősítenie (vagy összekötni a partnert, hogy a jövőbeliek automatikusan párosuljanak).
+
+## Tippek
+
+- **A jó minőségű tranzakciós adat javítja a párosítást.** Amikor lehet, banki átutalásnál írja be a számlaszámot a fizetési hivatkozásmezőbe. A párosítás ezt erős jelzésként veszi fel.
+- **A részfizetések támogatottak.** Ha egy ügyfél egy számla egy részét fizeti ki, a párosítás a részösszeggel rögzül, és a számla **Részben fizetve** állapotba kerül.
+- **Egy számla, több tranzakció.** Egyetlen számla több tranzakcióhoz is párosítható (részletfizetés). Minden párosítás a saját részösszegét rögzíti.
+- **Egy tranzakció, egy számla.** Minden banki tranzakció legfeljebb egy számlához párosítható. Ha egy fizetés több számlát fedez, használjon kézi párosítást — párosítsa a legközelebbit, és jegyezze fel az eltérést.
+- **A devizás számlák devizás kártyás fizetésekkel párosulnak.** Semmit sem kell kézzel átváltania — lásd: [Keresztdevizás párosítás](#keresztdevizás-párosítás).
+- **Használja a párosítás számát az ügyfélszolgálatnál.** Amikor egy konkrét párosításhoz kér segítséget, adja meg a párosítás számát (például `LOG-MAT-2026-0047`) — ez pontosan azonosítja a rekordot a képernyőkön és az exportokban.

@@ -1,0 +1,99 @@
+# Kontoauszüge hochladen
+
+Ist Ihr Bankkonto nicht über Open Banking verbunden, können Sie Transaktionen importieren, indem Sie einen Kontoauszug als PDF hochladen. AI Finance Team liest den Auszug, extrahiert jede Transaktion und ordnet sie automatisch dem richtigen Bankkonto zu.
+
+## Wer Kontoauszüge hochladen kann
+
+Jedes Mitglied des Arbeitsbereichs kann einen Kontoauszug hochladen. Die Upload-Schaltfläche befindet sich auf der Seite **Transaktionen**.
+
+## Unterstützte Formate
+
+Ausschließlich PDF-Kontoauszüge. Gescannte PDFs funktionieren, solange der Text lesbar ist — sehr schlechte Scans können unvollständige Ergebnisse liefern.
+
+Erstreckt sich ein Auszug über mehrere PDFs, laden Sie jede Datei einzeln hoch. Sie können mehrere Auszugs-PDFs auch in einer `.zip` bündeln und das Archiv ablegen — der Browser entpackt es und stellt jede Datei einzeln in die Warteschlange.
+
+## So laden Sie einen Auszug hoch
+
+1. Gehen Sie in der Seitenleiste des Arbeitsbereichs zu **Transaktionen**.
+2. Klicken Sie oben rechts auf **Kontoauszug hochladen** — oder ziehen Sie einfach ein oder mehrere PDFs (oder eine `.zip` davon) auf die Seite.
+3. Wählen Sie Ihre PDF-Dateien im Dateidialog aus, falls Sie die Schaltfläche verwendet haben.
+
+Unten rechts erscheint ein Fortschrittsfenster, das jeden Auszug beim Hochladen und Extrahieren zeigt. Sie können weiterarbeiten — das Fenster bleibt beim Navigieren sichtbar, und ein Neuladen der Seite unterbricht nichts, was gerade läuft. Öffnen Sie den Reiter **Kontoauszüge**, wenn Sie eine tabellarische Ansicht aller Uploads mit weiteren Details möchten.
+
+Zur vollständigen Upload-Mechanik — Mehrfachauswahl, Drag-and-drop, ZIP-Archive, Wiederholen fehlgeschlagener Extraktionen — siehe [Dateien hochladen](/uploading-files).
+
+Ist die Extraktion abgeschlossen, erscheinen die Transaktionen im Reiter **Transaktionen** unter dem zugeordneten Bankkonto.
+
+## Automatische Kontozuordnung
+
+AI Finance Team liest die erste Seite des Auszugs und sucht die Kontonummer in Ihrem Arbeitsbereich.
+
+- Wird ein passendes Konto gefunden, startet die Extraktion automatisch, und der Auszug erscheint im Reiter **Kontoauszüge** als **Extrahieren**.
+- Wird keines gefunden, erscheint der Auszug im Reiter **Kontoauszüge** als **Ausstehend**. Von dort kann eine Buchhalterin oder ein Buchhalter das richtige Bankkonto zuweisen, um die Extraktion zu starten.
+
+Die Zuordnung funktioniert sowohl mit dem IBAN-Format (`HU12 3456 7890 1234 5678 0000 0000`) als auch mit dem nationalen Kontonummernformat (`34567890-12345678`). Leerzeichen und Bindestriche werden beim Vergleich ignoriert.
+
+Existiert das Bankkonto in Ihrem Arbeitsbereich noch nicht, ist es aber unter einem Ihrer Unternehmen in **Stammdaten → Unternehmen** hinterlegt, wird das Konto automatisch angelegt und mit diesem Unternehmen verknüpft.
+
+## Der Reiter Kontoauszüge
+
+Der Reiter **Kontoauszüge** zeigt jeden hochgeladenen Auszug und seinen aktuellen Status.
+
+| Status | Bedeutung |
+|--------|-----------|
+| Ausstehend | Hochgeladen, aber noch keinem Bankkonto zugewiesen. |
+| Extrahieren | Die Extraktion läuft — zeigt den Seitenfortschritt. |
+| Abgeschlossen | Alle Transaktionen erfolgreich extrahiert. |
+| Fehler | Die Extraktion ist beendet, aber einige Seiten hatten Probleme. |
+| Fehlgeschlagen | Die Extraktion konnte nicht abgeschlossen werden. |
+
+Ein Klick auf die Zeile eines abgeschlossenen Auszugs öffnet dessen Detailseite.
+
+Bei Auszügen im Status **Ausstehend** zeigt die Zeile Aktionsschaltflächen:
+
+- **Extrahieren** — die Extraktion ohne Kontozuweisung starten (die Transaktionen werden später verknüpft).
+- **Konto zuweisen** *(nur Buchhalter)* — ein Bankkonto aus einem Auswahlmenü wählen und die Extraktion in einem Schritt starten.
+- **Schließen** — den Auszug ausblenden, ohne ihn zu extrahieren.
+
+## Fortschritt der Extraktion
+
+Während ein Auszug extrahiert wird, sehen Sie im Reiter Kontoauszüge den Fortschritt Seite für Seite. Sie können wegnavigieren — die Extraktion läuft im Hintergrund weiter. Kehren Sie zum Reiter Kontoauszüge zurück, um die endgültige Anzahl zu prüfen.
+
+## Was nach der Extraktion passiert
+
+Sobald die Extraktion abgeschlossen ist:
+
+1. Alle extrahierten Transaktionen werden auf das zugeordnete Bankkonto geschrieben.
+2. Kategorisierung und Partnerauflösung laufen automatisch — dieselbe KI-Strecke wie bei Open-Banking-Transaktionen.
+3. Die Transaktionen erscheinen im Reiter **Transaktionen**, bereit zur Prüfung.
+
+Duplikate werden automatisch erkannt. Existiert eine Transaktion bereits im System (über Open Banking oder einen früheren Auszugs-Upload importiert), wird sie nicht erneut eingefügt.
+
+## Die Detailseite des Auszugs
+
+Ein Klick auf die Zeile eines abgeschlossenen Auszugs im Reiter Kontoauszüge öffnet die Detailseite. Links sehen Sie das PDF, rechts die Liste der extrahierten Transaktionen. Die Seite öffnet sich im Vollbild — die Seitenleiste wird ausgeblendet, um mehr Platz zu schaffen. Sie erscheint wieder, sobald Sie wegnavigieren.
+
+- **Klicken Sie auf eine Transaktionszeile**, um zur passenden Seite im PDF zu springen; das übereinstimmende Datum wird gelb hervorgehoben. Ein erneuter Klick auf dieselbe Zeile hebt die Auswahl auf.
+- **Suchen und filtern** Sie Transaktionen nach Partner, Beschreibung oder Richtung (Einnahmen / Ausgaben).
+- Die **Kategoriespalte** zeigt, wie jede Transaktion nach der Extraktion kategorisiert wurde.
+- Zeilen mit einem **gelben oder roten Punkt** wurden mit geringerer Konfidenz extrahiert — prüfen Sie diese manuell.
+- Zeilen mit der Markierung **Dup** sind Duplikate, die nicht in die Transaktionsliste aufgenommen wurden.
+
+Die Fußzeile fasst die Gesamtzahl der Transaktionen, die Zahl der Duplikate und den Nettobetrag zusammen.
+
+## Einen Auszug löschen
+
+Buchhalter können einen Auszug auf dessen Detailseite löschen. Klicken Sie in der Fußzeile auf **Kontoauszug löschen** und bestätigen Sie.
+
+Das Löschen eines Auszugs entfernt alle Transaktionen, die ausschließlich aus dieser Datei stammen. Transaktionen, die auch aus einer anderen Quelle importiert wurden (zum Beispiel über Open Banking), bleiben erhalten.
+
+## Einen Auszug erneut extrahieren
+
+Ist die Extraktion fehlgeschlagen oder hat sie falsche Ergebnisse geliefert, wenden Sie sich an Ihre Buchhaltung. Buchhalter können den Auszug löschen und erneut hochladen, um von vorn zu beginnen.
+
+## Tipps
+
+- **Konten vor dem Upload zuordnen.** Wenn Sie die Bankkontodaten vor dem Hochladen unter **Stammdaten → Unternehmen** hinterlegen, wird der Auszug automatisch zugeordnet — eine manuelle Zuweisung entfällt.
+- **Laden Sie eine Periode nach der anderen hoch.** Überlappende Auszüge desselben Kontos werden zwar entdoppelt, saubere Perioden erleichtern aber die Abstimmung.
+- **Den Status im Reiter Kontoauszüge prüfen.** Wenn Sie eine Datei hochgeladen haben und keine neuen Transaktionen sehen, sehen Sie im Reiter Kontoauszüge nach — die Zeile zeigt, ob die Extraktion noch läuft oder Aufmerksamkeit braucht.
+- **Große Auszüge dauern länger.** Ein 20-seitiger Auszug wird Seite für Seite verarbeitet; rechnen Sie mit einigen Minuten.

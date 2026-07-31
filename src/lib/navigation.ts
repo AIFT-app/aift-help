@@ -73,6 +73,9 @@ export const navigation: NavItem[] = [
       de: 'USt-Einrichtung importieren, exportieren & kopieren',
     },
   },
+  // "Riportok" is the help centre's term. The app's own sidebar says "Jelentések"
+  // (nav.workspace.reports) — the article quotes that label verbatim where it
+  // tells the reader which menu item to click.
   { slug: 'reports', title: { en: 'Reports', hu: 'Riportok', de: 'Berichte' } },
   { slug: 'ledger', title: { en: 'Ledger Explorer', hu: 'Főkönyvi kivonat', de: 'Hauptbuch-Explorer' } },
   { slug: 'messages', title: { en: 'Messages', hu: 'Üzenetek', de: 'Nachrichten' } },

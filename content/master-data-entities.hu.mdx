@@ -1,0 +1,115 @@
+# Cégek kezelése
+
+A cégek azok a vállalatok, magánszemélyek és szervezetek, amelyek megjelennek a számláin és bankszámlakivonatain — szállítók, vevők és a saját jogi személyei. Ha ezeket pontosan tartja az AI Finance Teamben, az AI helyesen ismeri fel a partnereket, gyorsabban kategorizálja a dokumentumokat, és kevesebb kivétel igényel kézi átnézést.
+
+## Mi az a cég?
+
+A cég egy rekord, amely egy valós felet képvisel. A munkaterületén minden cég a következőket tartalmazza:
+
+- **Cégnév** — a dokumentumokon használt hivatalos, bejegyzett név
+- **Ország** — a bejegyzés országa
+- **Adószám** — a belföldi adóazonosító (például a magyar adószám vagy a német Steuernummer)
+- **EU adószám** — az EU által kiadott adószám a szabványos formátumban (például HU12345678)
+- **Cégjegyzékszám** — a cégnyilvántartási szám
+- **Alternatív nevek** — más nevek, amelyeket ugyanaz a fél használ a számlákon vagy a bankszámlakivonatokon (kereskedelmi nevek, rövidítések, korábbi nevek)
+- **Bankszámlák** — a fizetésekhez használt IBAN- és/vagy belföldi számlaszámok
+- **Elérhetőségek** — cím, weboldal, e-mail-domain
+- **Párosítási környezet** — szabad szöveges megjegyzés, amely eligazítja az AI-t a kétes dokumentumoknál
+
+## Eljutás a törzsadatokhoz
+
+A munkaterület oldalsávjában kattintson a **Törzsadatok**, majd a **Cégek** menüpontra. Ez az oldal a munkaterület összes aktív cégét felsorolja. Az archivált cégek külön szakaszban jelennek meg az aktív lista alatt.
+
+## Cég felvétele
+
+1. Kattintson a jobb felső sarokban a **Cég hozzáadása** gombra.
+2. Töltse ki a **Cégnév** (kötelező), az **Ország** (kötelező) és az **Adószám** (opcionális) mezőt.
+3. Kattintson a **Cég létrehozása** gombra.
+
+A rendszer közvetlenül a cég részletező oldalára viszi, ahol felveheti az összes további mezőt: EU adószám, cégjegyzékszám, alternatív nevek, bankszámlák, elérhetőségek és párosítási környezet. Nem kell mindent egyszerre megadni — töltse ki azt, ami most megvan, és térjen vissza később, ahogy többet megtud.
+
+> **Megjegyzés:** Az adószámoknak egyedinek kell lenniük a munkaterületen belül. Ha olyan adószámot ad meg, amelyet már használ egy másik aktív cég, hibaüzenetet kap, és a cég nem jön létre.
+
+## Cég szerkesztése
+
+Nyissa meg a céget a nevére kattintva a listában. A részletező oldal minden szakasza egymástól függetlenül szerkeszthető és menthető.
+
+### Azonosítás
+
+Módosíthatja a cégnevet, az országot, az adószámot, az EU adószámot vagy a cégjegyzékszámot. Ha végzett, kattintson a **Mentés** gombra. Ha az új adószám ütközik a munkaterület egy másik aktív cégével, a mentés hibaüzenettel elakad.
+
+#### Hogyan függ össze az adószám és az EU adószám
+
+Egy cég két adóazonosítót viselhet: **belföldi adószámot** (a helyi adószám — például a magyar adószám vagy a német Steuernummer) és **EU adószámot** (a határon átnyúló ÁFA-azonosító — például `HU12345678`, `DE123456789`). Az, hogy az AI Finance Team hogyan kezeli a párost, országfüggő:
+
+- **Országok, ahol a kettő ugyanaz a szám** — Magyarország, Lengyelország, Románia, Spanyolország, Portugália és a legtöbb további EU-tagállam. Itt az EU adószám csupán a belföldi szám országelőtaggal, ezért az AI Finance Team összeveti őket: ha mindkettő megvan és összhangban van, kis ✓ jelenik meg, ha pedig nem illenek össze, halvány borostyánsárga figyelmeztetés hívja fel rá a figyelmet. A figyelmeztetés sosem akadályozza a mentést.
+- **Országok, ahol a kettő külön szám** — Németország, Ausztria, Hollandia, Franciaország és néhány további. A Steuernummer / UID és az EU adószám független azonosítók, amelyek nem vezethetők le egymásból, ezért az AI Finance Team mindegyiket önmagában ellenőrzi, és **nem** hasonlítja össze őket. Helyes német vagy osztrák párosnál **nem** fog „nem ugyanaz a szám” figyelmeztetést látni — az EU adószám mező alatti rövid megjegyzés emlékeztet rá, hogy a kettő ellenőrzése külön történik.
+- **EU-n kívüli cégek** — például Svájc, az Egyesült Királyság, az Egyesült Államok. Csak a belföldi adószám értelmezhető, ezért az EU adószám mező rejtve marad.
+
+Mindkét azonosító segít felismerni a céget a beérkező dokumentumokon: az a számla, amelyen **akár** a belföldi adószám, **akár** az EU adószám szerepel, továbbra is helyesen azonosítja a céget — a saját cégeinél pedig a megfelelő irányban, bevételként vagy kiadásként könyveli a dokumentumot.
+
+### Alternatív nevek
+
+Vegye fel mindazokat a további neveket, amelyeket ez a fél használ — például a számláin megjelenő kereskedelmi nevet, a banki hivatkozásokban használt rövidítést vagy egy arculatváltás utáni korábbi cégnevet.
+
+Név felvételéhez írja be a mezőbe, és kattintson a **Hozzáadás** gombra (vagy nyomjon Entert). Eltávolításhoz kattintson a mellette lévő × jelre.
+
+Ezeket a neveket a dokumentumpárosítás használja: amikor az AI olyan névvel találkozik, amelyet nem ismer fel, összeveti a munkaterület összes cégének alternatív neveivel.
+
+### Bankszámlák
+
+Vegye fel az ehhez a céghez tartozó IBAN- és/vagy belföldi számlaszámokat. Magyar cégeknél a nemzetközi IBAN és a belföldi számlaszám (a háromtagú formátum) egyaránt tárolható.
+
+Számla felvételéhez töltse ki a mezőket, és kattintson a **Számla hozzáadása** gombra. Eltávolításhoz kattintson a mellette lévő × jelre.
+
+A bankszámlákat a tranzakciópárosítás használja: a bejövő és kimenő fizetések ahhoz a céghez kötődnek, amelynek számlaszáma megjelenik a bankszámlakivonat hivatkozásában.
+
+### Elérhetőségek
+
+Tárolja a cég címét, weboldalát és e-mail-domainjét. Az e-mail-domain különösen hasznos azoknál a cégeknél, amelyek számlái e-mailben érkeznek — amikor az AI `@acmesolutions.com` címről lát üzenetet, a megfelelő céghez tudja kötni.
+
+### Párosítási környezet
+
+Ez egy rövid, szabad szöveges megjegyzés az AI számára — nem ügyfélnek szól, és egyetlen dokumentumon sem jelenik meg. Használja azoknak az eseteknek a feloldására, ahol az automatikus párosítás kétes:
+
+- Két hasonló nevű cég megkülönböztetése („A WKA Studio az ügynökség; a WKA Holding az anyacég — tartsuk külön”)
+- Egy ismert furcsaság rögzítése abban, ahogyan ez a fél a számláit felcímkézi („mindig »WKA Creative« szerepel a számlafejlécen, noha a cégnév WKA Studio Kft.”)
+- Olyan fél megjelölése, amely a vártnál eltérő nyelven állítja ki a számláit
+
+A megjegyzés kiegészítő környezetként szolgál az AI-kategorizálás során. Néhány mondat általában elég.
+
+### Képviselők
+
+Rendeljen munkaterület-tagokat a céghez elsődleges kapcsolattartóként. A képviselők megjelennek a cég részletező oldalán, és a belső folyamatokban arra szolgálnak, hogy a kérdések vagy kivételek a megfelelő személyhez kerüljenek.
+
+Képviselő hozzárendeléséhez kattintson a **+ Hozzáadás** gombra, és válasszon egy munkaterület-tagot. Eltávolításhoz kattintson a neve melletti × jelre.
+
+## Cég archiválása és visszaállítása
+
+Ha egy cég már nem aktív — véget ért egy szállítói kapcsolat, egy ügyfél megszűnt, vagy tévedésből duplikátum jött létre —, archiválhatja ahelyett, hogy törölné.
+
+Az archivált cégek:
+- Nem jelennek meg az aktív céglistában, sem a cégválasztóban dokumentumok kategorizálásakor
+- Megmaradnak az adatbázisban, így a hozzájuk kötött korábbi dokumentumok érintetlenek maradnak
+- Bármikor teljes körűen visszaállíthatók
+
+Az archiváláshoz nyissa meg a céget, görgessen a **Veszélyes zóna** szakaszhoz, és kattintson a **Cég archiválása** gombra.
+
+A visszaállításhoz görgessen le a céglista oldalon az **Archivált cégek** szakaszhoz, és kattintson a **Visszaállítás** gombra.
+
+## Cég végleges törlése
+
+A végleges törlés eltávolítja a cég rekordját, és nem vonható vissza. Csak olyan cégeknél érhető el, amelyekhez nem kapcsolódik dokumentum (számla, tranzakció). Ha vannak kapcsolódó dokumentumok, archiválnia kell helyette.
+
+A törléshez nyisson meg egy archivált céget, görgessen a **Veszélyes zóna** szakaszhoz, és kattintson a **Végleges törlés** gombra.
+
+## Miért számít a cégadatok minősége
+
+Az AI-kategorizáló motor a cégadatokat használja az egyik legerősebb jelzésként. Ha egy cégrekord teljes:
+
+- A partner azonosítása gyorsabb és pontosabb
+- Az alternatív nevek elkapják azokat a dokumentumváltozatokat, amelyek egyébként párosítatlan kivételeket generálnának
+- A bankszámlák lehetővé teszik az automatikus fizetéspárosítást
+- A párosítási környezet kézi beavatkozás nélkül old fel határeseteket
+
+A hiányos cégrekordok az egyik leggyakoribb oka annak, hogy az AI megbízhatósági pontszámai alacsonyak maradnak. Ha azt látja, hogy az AI ismételten félreazonosít egy partnert, először azt ellenőrizze, létezik-e az a fél cégként, és naprakészek-e az alternatív nevei.

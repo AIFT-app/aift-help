@@ -1,0 +1,236 @@
+# Rechnungsabgleich
+
+AI Finance Team verknüpft Banktransaktionen automatisch mit den zugehörigen Rechnungen — dieser Vorgang heißt **Rechnungsabgleich**. Damit entfällt das manuelle Abstimmen von Zahlungen zum Monatsende.
+
+## Wie der Abgleich funktioniert
+
+Der Abgleich läuft in zwei Schritten:
+
+1. **Strukturelle Vorfilterung** — Das System grenzt Kandidatenpaare über schnelle Regeln ein: übereinstimmende Währung (oder Übereinstimmung in der Originalwährung bei Fremdwährungs-Kartenzahlungen — siehe unten [Währungsübergreifender Abgleich](#währungsübergreifender-abgleich)), kompatible Richtung (Einnahmenrechnung ↔ Gutschrift; Ausgabenrechnung ↔ Lastschrift), Betrag innerhalb einer Spanne und ein Rechnungsdatum innerhalb von 180 Tagen um die Transaktion. Doppelte Transaktionen werden automatisch ausgeschlossen. **Die Auszugsextraktion holt außerdem rechnungsnummernartige Zeichenfolgen aus dem Freitext der Zeile** (Beschreibungen, Terminalzeilen usw.) und kopiert sie in das strukturierte Referenzfeld, sodass die KI-Bewertung die Rechnungsnummer auch dann sieht, wenn die Bank sie statt in eine eigene Referenzspalte in einen Beschreibungstext gepackt hat.
+
+2. **Semantische KI-Bewertung** — Claude prüft jedes Kandidatenpaar und vergibt einen Konfidenzwert (0–100) anhand der Rechnungsnummer in der Transaktionsreferenz, des Partnernamens, der Betragsnähe und des Datums. Hat das System bereits verifiziert, dass beide Seiten auf denselben Partner zeigen (gleiche ID, gleicher verifizierter Partner oder gleicher Firmenname nach Entfernen der Rechtsformzusätze), wird dieses Signal fixiert — so driftet ein sauberer struktureller Treffer zwischen Läufen nicht im Punktband.
+
+   **Garantierter Auto-Abgleich bei verifiziertem Partner:** Sind beide Seiten *derselbe* Partner — per ID oder über eine Verknüpfung als **verifizierter Partner** — *und* deckt der Betrag den Rechnungssaldo exakt, liegt die Transaktion innerhalb von 30 Tagen um das Fälligkeitsdatum der Rechnung und taucht Ihr eigener Unternehmensname nicht im Banktext auf, wird das Paar **unabhängig vom KI-Wert** automatisch abgeglichen. Das rettet offensichtliche Treffer, die die KI sonst im mittleren Band liegen ließe — am häufigsten **Kartenzahlungen**, deren Bankzeilen selten die Rechnungsnummer tragen (das mit Abstand stärkste Einzelsignal), sodass die KI bei etwa 70 deckelt, selbst wenn Partner, Betrag und Datum perfekt passen.
+
+   Eine weichere **Schwellenlockerung** gilt zusätzlich für Partner, die nur über den Namen übereinstimmen (nach Entfernen der Rechtsformzusätze): Passen dieselben strukturellen Signale, wird der KI-Wert auf 85 angehoben — aber nur, wenn die KI bereits 75 oder mehr vergeben hat. In jedem Fall werden reine Namenstreffer, Teilbeträge und Paare mit mehr als 30 Tagen Abstand nie von allein automatisch abgeglichen.
+
+**Was auf jeder Punktstufe passiert:**
+
+| Punkte | Konfidenz | Ergebnis |
+|-------|-----------|--------|
+| 85–100 | **Hoch** | Sofort automatisch abgeglichen — keine Aktion der Buchhaltung nötig |
+| 60–84 | **Mittel / Niedrig** | Wird der Seite **Zuordnung** als Vorschlag zur Prüfung hinzugefügt |
+| Unter 60 | — | Verworfen — wird nicht angezeigt |
+
+Berücksichtigt werden nur Rechnungen mit dem Status **Offen** oder **Teilweise bezahlt**. Stornierte, manuell als Barzahlung markierte oder bereits vollständig abgeglichene Rechnungen werden übersprungen.
+
+## Die Seite Zuordnung
+
+Gehen Sie in der Seitenleiste des Arbeitsbereichs zu **Zuordnung**. Die Seite hat zwei Abschnitte:
+
+- **Ausstehend** — die Vorschläge der KI, die auf Ihre Entscheidung warten. Immer vollständig angezeigt und nach **Konfidenzwert sortiert, höchster zuerst**, damit die sichersten Vorschläge oben in der Warteschlange stehen. Dieser Abschnitt wird nie gefiltert oder paginiert.
+- **Bestätigt** — Zuordnungen, die bestätigt wurden (automatisch abgeglichen oder von der Buchhaltung angenommen), neueste zuerst. Suchfeld, Filter und Seitennavigation, die unten beschrieben werden, gelten **ausschließlich für diesen Abschnitt** — sie blenden im Bereich Ausstehend nie etwas aus.
+
+Die Zeilen beider Abschnitte teilen sich bis zu vier Spalten:
+
+- **Punkte / Konfidenz** — ausstehende Zeilen zeigen den numerischen KI-Wert als Abzeichen (grün ≥ 85, bernstein 60–84, rot darunter); bestätigte Zeilen zeigen eine Konfidenz-Pille **Hoch / Mittel / Niedrig**.
+- **Rechnung** — Nummer, Partner und Betrag.
+- **Transaktion** — Partner, Datum und Betrag.
+- **Aktionen** — **Bestätigen** / **Ablehnen** bei ausstehenden Zeilen bzw. **Ansehen** bei bestätigten. Diese Spalte sehen nur Buchhalter (siehe [Wer bestätigen und ablehnen darf](#wer-bestätigen-und-ablehnen-darf)).
+
+Die Kopfzeile der Seite hat zwei Aktionsschaltflächen (nur für Buchhalter):
+
+- **Verlauf** — öffnet ein Fenster mit den jüngsten Abgleichläufen (siehe [Abgleichverlauf](#abgleichverlauf))
+- **Zuordnung starten** — stößt einen manuellen Abgleichlauf an (siehe [Abgleich manuell starten](#abgleich-manuell-starten))
+
+### Suchen
+
+Das Suchfeld (über dem Abschnitt **Bestätigt**) filtert bestätigte Zuordnungen nach **Rechnungsnummer**, **Partnername** oder **Verwendungszweck**. Es sucht beim Tippen. Der rohe Freitext der Bankbeschreibung wird *nicht* durchsucht — nutzen Sie stattdessen die strukturierte Referenz. Die Suche gilt nur für den Abschnitt Bestätigt; die Warteschlange Ausstehend wird immer vollständig gezeigt. Ihre Suche spiegelt sich in der URL (`?search=INV-2026-014`), sodass Sie sie als Lesezeichen speichern oder teilen können.
+
+### Filtern
+
+Unter dem Suchfeld sitzen zwei Filter, die wie die Suche nur den Abschnitt **Bestätigt** eingrenzen:
+
+- **Zeitraum** — wählen Sie ein Datum **Von** und **Bis** auf Basis des Buchungsdatums der Transaktion. **Es gibt keinen Standardzeitraum** — die Liste startet ungefiltert, sodass nichts verborgen bleibt, bis Sie Daten wählen. Sie können die Daten direkt über die Tastatur eingeben oder die Datumsauswahl nutzen; der Filter greift, sobald Sie das Feld verlassen.
+- **Konfidenz** — schalten Sie die Pillen **Hoch**, **Mittel** und **Niedrig** um, um jede Stufe ein- oder auszuschließen. Standardmäßig sind alle drei aktiv.
+
+Die Filter spiegeln sich in der URL (`?from=2026-04-01&to=2026-04-30&confidence=high,medium`), sodass Sie eine gefilterte Ansicht als Lesezeichen speichern oder mit Kollegen teilen können.
+
+### Seitennavigation und Seitengröße
+
+Der Abschnitt **Bestätigt** ist paginiert. Mit der Auswahl **Pro Seite** legen Sie fest, wie viele Zeilen je Seite erscheinen (**10**, **50** oder **100**; Standard 50). Ihre Wahl wird über Besuche hinweg gemerkt. Mit **Zurück** / **Weiter** wechseln Sie zwischen den Seiten. Die Navigationselemente erscheinen nur, wenn es mehr als eine Seite bestätigter Zuordnungen gibt. (Die Warteschlange Ausstehend wird nie paginiert.)
+
+### Zusammengefasste mehrteilige Zuordnungen
+
+Zahlen mehrere Transaktionen **eine einzelne Rechnung** ab (etwa bei Ratenzahlungen), werden sie zu **einer Zeile** gruppiert, statt einzeln zu erscheinen. Die Zeile fasst die Gruppe zusammen — zum Beispiel `2 Transaktionen · 264.000 HUF · 1 Rechnung · 264.000 HUF` — und trägt je Transaktion ein Punkte-Abzeichen. Öffnen Sie die Zeile, um jede Transaktion einzeln zu sehen und zu bearbeiten (siehe [Die Detailseite des Vorschlags](#die-detailseite-des-vorschlags)).
+
+### Bestätigen und Ablehnen aus der Liste
+
+Klicken Sie bei einer ausstehenden Zeile auf **Bestätigen**, um die Zuordnung zu bestätigen, oder auf **Ablehnen**, um den Vorschlag zu verwerfen. Das Ablehnen ist endgültig — ein abgelehnter Vorschlag wird gelöscht, nicht archiviert; der Abgleich kann das Paar in einem späteren Lauf erneut vorschlagen, wenn die Signale weiterhin passen. Bei einer Gruppe mit mehreren Transaktionen bestätigt Bestätigen alle Transaktionen der Gruppe auf einmal, und Ablehnen verwirft die gesamte Gruppe. Um die Transaktionen einzeln zu bearbeiten, öffnen Sie stattdessen [die Detailseite des Vorschlags](#die-detailseite-des-vorschlags).
+
+### Wer bestätigen und ablehnen darf
+
+Das Bestätigen und Ablehnen von Zuordnungen ist **Buchhaltern** und **Buchhalter-Administratoren** vorbehalten. Mandantennutzer können die Seite Zuordnung öffnen und jede Zeile ansehen (auch die Detailseiten), aber die Schaltflächen Bestätigen / Ablehnen bleiben für sie verborgen, und die Aktionen werden serverseitig blockiert.
+
+## Die Detailseite des Vorschlags
+
+Ein Klick auf eine **ausstehende** Zeile öffnet deren Detailseite unter `/workspaces/.../matching/suggestions/<id>`. Sie ist das Gegenstück zur [Detailseite der Zuordnung](#detailseite-der-zuordnung) auf Vorschlagsseite und besonders nützlich bei Gruppen mit mehreren Transaktionen.
+
+Die Seite zeigt:
+
+- **Kopfbereich** — ein Abzeichen *Ausstehend* plus ein Punkte-Abzeichen je Transaktion der Gruppe und einen Link **Zurück zur Zuordnung**.
+- **Rechnung** — Nummer, Partner, Rechnungs- und Fälligkeitsdatum, Betrag (mit dem Betrag in Basiswährung in Klammern, wo er abweicht), Zahlungsstatus und Richtung (Einnahme/Ausgabe).
+- **Transaktionen** — jede Kandidatentransaktion auf einer eigenen Karte, mit Referenz, Partner, Buchungsdatum, Richtung **Eingang / Ausgang**, Betrag, Beschreibung und Kategorie. Bei einer Gruppe mit mehreren Transaktionen sind die Karten mit *Transaktion X von N* beschriftet, und jede Karte hat einen Link **Aus der Zuordnung entfernen**, der nur diese eine Transaktion für einen erneuten Abgleich freigibt und die übrigen unberührt lässt.
+- Die Schaltflächen **Bestätigen** / **Ablehnen** am Seitenende wirken atomar auf die gesamte Gruppe. Sie werden nur Buchhaltern angezeigt.
+
+### Zuordnungs-ID
+
+Jede Zuordnung erhält eine stabile, gut lesbare Kennung der Form **`{ARBEITSBEREICHS-PRÄFIX}-MAT-{JAHR}-{NNNN}`**, zum Beispiel `LOG-MAT-2026-0047`. Das Präfix des Arbeitsbereichs ist dasselbe wie bei der Rechnungs- und Auszugsnummerierung und wird unter **Stammdaten → Nummerierung** konfiguriert. Die Nummern beginnen je Arbeitsbereich jährlich neu.
+
+Verwenden Sie diese ID bei Supportanfragen, in Exporten oder in Prüfprotokollen.
+
+### Detailseite der Zuordnung
+
+Ein Klick auf eine bestätigte Zeile in der Liste öffnet die Detailseite der Zuordnung unter `/workspaces/.../matching/<match-id>`. Die Detailseite zeigt:
+
+- **Kopfbereich** — die Zuordnungsnummer, das Konfidenz-Abzeichen und das Datum der Zuordnung. Ein Link **Zurück zur Zuordnung** oben links führt zur Liste zurück.
+- **Karte Banktransaktion** (links) — Referenz, Partner, Buchungsdatum, ein Richtungs-Abzeichen **Eingang / Ausgang**, Betrag (mit dem ursprünglichen Fremdwährungsbetrag in Klammern, wo zutreffend), Beschreibung und Kategorie. Der Link **Öffnen →** springt zur vollständigen Transaktionsseite.
+- **Karte Rechnung** (rechts) — Rechnungsnummer, Partner, Rechnungsdatum, Fälligkeitsdatum, Betrag (mit Basiswährung, wo abweichend), ein **Zahlungsstatus**-Abzeichen und Richtung (Einnahme/Ausgabe). Der Link **Öffnen →** springt zur vollständigen Rechnungsdetailseite.
+- **Zuordnungsanalyse** — Konfidenz-Abzeichen mit dem numerischen Wert, eine Aufschlüsselungstabelle, welche Signale beigetragen haben (Betrag, Partner, Referenz, Datumsnähe), und eine Begründung im Klartext.
+- Schaltfläche **Zuordnung aufheben** (oben rechts, nur Buchhalter-Administratoren) — entfernt die Zuordnung nach einer Bestätigung; die Transaktion kehrt zu **Nicht zugeordnet** zurück und die Rechnung zu **Offen**.
+
+Wurde die Zuordnung erstellt, bevor die Nachverfolgung der Punkte-Aufschlüsselung aktiv war, zeigt die Detailseite statt der Tabelle „Für diese Zuordnung ist kein Wert verfügbar.“ — der Rest der Seite funktioniert normal.
+
+Bestätigte Vorschläge (Zuordnungen, die als Vorschlag mittlerer Konfidenz begannen und von der Buchhaltung angenommen wurden) führen den KI-Wert und die Aufschlüsselung inzwischen ebenfalls bis zur Detailseite mit, sodass dieselbe Erklärung für automatisch wie für manuell bestätigte Zuordnungen verfügbar ist.
+
+## Abgleichverlauf
+
+Ein Klick auf **Verlauf** in der Kopfzeile der Seite Zuordnung öffnet das Verlaufsfenster. Es listet die jüngsten Abgleichläufe (neueste zuerst) mit:
+
+- **Zeitstempel** des Laufbeginns
+- **Auslöserart** — `Automatisch` (geplanter Lauf nach der Verarbeitung eines Kontoauszugs) oder `Manuell` (die Buchhaltung hat Zuordnung starten geklickt)
+- **Zählwerte** — `N zugeordnet, M geprüft, K übersprungen`
+  - **Zugeordnet** — automatisch abgeglichen bei einem Wert ≥ 85
+  - **Geprüft** — als ausstehender Vorschlag zur Prüfung hinzugefügt (Wert 60–84)
+  - **Übersprungen** — bewertet, aber unter 60 (die KI fand keine ausreichend starke Verbindung)
+- **Status-Abzeichen** — `Abgeschlossen`, `Läuft` oder `Fehlgeschlagen` (mit Fehlermeldung, sofern verfügbar)
+
+Der Verlauf wird 90 Tage aufbewahrt, danach werden alte Zeilen automatisch entfernt.
+
+### Wann der Abgleich automatisch läuft
+
+Der Abgleich läuft nach jedem Kontoauszugs-Upload automatisch. Sobald der Auszug verarbeitet und die Transaktionen kategorisiert sind, bewertet das System sie unmittelbar gegen alle offenen Rechnungen und erzeugt ohne manuelles Zutun Vorschläge oder automatische Zuordnungen. Jeder automatische Lauf erscheint im Verlaufsfenster mit der Kennzeichnung `Automatisch`.
+
+### Abgleich manuell starten
+
+Um den Abgleich bei Bedarf anzustoßen — etwa nach dem Hochladen eines Stapels älterer Rechnungen — klicken Sie auf **Zuordnung starten** und wählen einen Zeitraum:
+
+| Option | Deckt ab |
+|--------|-----------|
+| Letzte 3 Monate | Rollierende 90 Tage |
+| Letzte 6 Monate | Rollierende 180 Tage |
+| Dieses Jahr | 1. Januar bis heute |
+| Letztes Jahr | Das vorangegangene Kalenderjahr |
+| Gesamter Zeitraum | Alle nicht zugeordneten Transaktionen und offenen Rechnungen |
+
+Engere Zeiträume laufen schneller. Nutzen Sie **Gesamter Zeitraum** nur, wenn Sie historische Daten zu verarbeiten haben.
+
+#### Fortschrittsanzeige
+
+Der Fortschritt erscheint im **Upload-Warteschlangenfenster** unten rechts — demselben Fenster, das auch die Rechnungs- und Kontoauszugsverarbeitung verfolgt. Die Zeile lautet:
+
+- `Zuordnung — <Arbeitsbereich>`: Läuft…
+- Nach Abschluss: `Zuordnung — <Arbeitsbereich>`: Abgeschlossen: N Zuordnungen erstellt
+- Bei Fehlern: `Zuordnung — <Arbeitsbereich>`: Fehlgeschlagen (mit einer Möglichkeit zur Wiederholung)
+
+Die Zeile verschwindet eine Minute nach Abschluss automatisch aus dem Fenster. Ältere Läufe sehen Sie im Verlaufsfenster.
+
+## Zuordnen aus dem Transaktionsfenster
+
+Öffnen Sie eine beliebige Transaktion mit einem Klick auf ihre Zeile in der Liste **Transaktionen**. Der Abschnitt **Rechnungszuordnung** am unteren Rand des Fensters zeigt:
+
+- **Bestätigte Zuordnungen** — verknüpfte Rechnungen mit zugeordnetem Betrag und Zuordnungsart
+- **KI-Vorschläge** — ausstehende Vorschläge mit Konfidenzwert; klicken Sie direkt auf **Bestätigen** oder **Ablehnen**
+- **Rechnung suchen** — ein Suchfenster, um manuell eine beliebige offene Rechnung zu verknüpfen
+
+### Eine Zuordnung entfernen
+
+Klicken Sie im Fenster auf das **×** neben einer bestätigten Zuordnung, um sie zu entfernen. Die Rechnung kehrt in den Status **Offen** zurück und die Transaktion zu **Nicht zugeordnet**.
+
+Alternativ öffnen Sie die Detailseite der Zuordnung (aus der Zuordnungsliste) und klicken oben rechts auf **Zuordnung aufheben**.
+
+## Zuordnen von der Rechnungsdetailseite
+
+Die Rechnungsdetailseite zeigt einen Abschnitt **Zugeordnete Transaktionen** mit allen verknüpften Zahlungen. Sie können eine Rechnung auch ohne Banktransaktion als beglichen markieren:
+
+- **Barzahlung** — die Rechnung wurde bar bezahlt; sie gilt als beglichen und bleibt bei künftigen Abgleichen außen vor
+- **Storniert** — die Rechnung ist annulliert; sie bleibt von jedem Abgleich ausgeschlossen
+
+Um zu **Offen** zurückzukehren, wählen Sie **Offen** aus demselben Auswahlmenü.
+
+## Manuelle Zuordnung
+
+Hat die KI keine Zuordnung vorgeschlagen, können Sie jede Transaktion manuell mit jeder offenen Rechnung verknüpfen:
+
+1. Öffnen Sie das Transaktionsfenster.
+2. Klicken Sie im Abschnitt **Rechnungszuordnung** auf **Rechnung suchen**.
+3. Suchen Sie nach Rechnungsnummer, Partnername oder Betrag.
+4. Wählen Sie die Rechnung und klicken Sie auf **Zuordnung bestätigen**.
+
+Manuelle Zuordnungen tragen sowohl auf der Transaktion als auch auf der Rechnung ein Abzeichen **Manuell**.
+
+## Zuordnungsstatus
+
+Jede Transaktionszeile in der Liste **Transaktionen** zeigt in der Spalte Labels eine Statuspille:
+
+| Statuspille | Farbe | Bedeutung |
+|-------------|--------|---------|
+| **Abgeglichen** | grün | Mit einer oder mehreren Rechnungen verknüpft (automatisch oder manuell) |
+| **Nicht zugeordnet** | rot | Noch keine verknüpfte Rechnung |
+| **Keine Rechnung erforderlich** | zink | Als interne, Gebühren- oder sonstige Transaktion ohne Rechnung markiert |
+
+Wo zutreffend, erscheinen neben der Statuspille Quellpillen (**Bankabruf**, **Kontoauszug**, **Duplikat**). Über die Umschalter oberhalb der Tabelle können Sie die Transaktionsliste nach jeder dieser Pillen filtern.
+
+## Währungsübergreifender Abgleich
+
+Kartenzahlungen erscheinen auf dem Kontoauszug oft in der **Kontowährung** (z. B. HUF), während der zugrunde liegende Einkauf in einer **Fremdwährung** (z. B. EUR) belastet wurde. Den Betrag in der Originalwährung entnimmt das System der Auszugszeile oder dem Wechselkursblock des Bankabrufs.
+
+Der Abgleich prüft beides:
+
+- den gebuchten Betrag in der Kontowährung gegen eine Rechnung in derselben Währung, *oder*
+- den Originalbetrag in der Fremdwährung gegen eine Rechnung in eben dieser Fremdwährung.
+
+Eine Google-Cloud-Rechnung über **19,59 €** kann daher automatisch einer ungarischen Banktransaktion zugeordnet werden, die als **−7.573 HUF** gebucht ist, wenn der Auszug den Originalbetrag als `19,59EUR` ausweist.
+
+Der Betrag in der Originalwährung wird angezeigt:
+
+- im Feld **Betrag** der Transaktion auf der [Detailseite der Zuordnung](#detailseite-der-zuordnung) (in Klammern neben dem gebuchten Betrag)
+- in der Zeile **Betrag** auf der Transaktionsdetailseite (mit dem Wechselkurs, sofern verfügbar)
+- im Transaktionsfenster in der Liste **Transaktionen**
+
+Wurden für eine Transaktion keine Fremdwährungsangaben erfasst (etwa bei einer Inlandszahlung), erscheint nur der gebuchte Betrag, und es kommen ausschließlich Rechnungen derselben Währung in Betracht.
+
+## Zahlungswege und Zuordnungskonfidenz
+
+Wie die Bank eine Transaktion meldet, hat großen Einfluss darauf, wie sicher der Abgleich sie auflösen kann.
+
+**SEPA- und sonstige Überweisungen** sind der Weg mit hoher Konfidenz. Die Bank reicht den Verwendungszweck wörtlich durch — steht dort die Rechnungsnummer (weil der Zahler sie eingetragen hat oder Sie beim Bezahlen eines Lieferanten), sieht der Abgleich sie direkt, und das +35-Signal für die Rechnungsnummer greift. Diese Transaktionen werden zuverlässig automatisch zugeordnet.
+
+**Kartenzahlungen** haben naturgemäß eine geringere Konfidenz. Kontoauszüge beschreiben Kartentransaktionen mit der internen Acquirer-Zeichenfolge des Händlers (z. B. `PADDLE.NET* TLWNDPLUS`, `Google Workspace_financia`, `SIMPLEP*PARKL.NET`) und einer Terminal-ID — nicht mit der Rechnungsnummer. Der Abgleich arbeitet dann über die übrigen Signale (Ähnlichkeit des Partners zum Rechnungslieferanten, exakter Betrag, Datumsnähe, Originalwährung bei Fremdwährungs-Kartenzahlungen).
+
+Es gibt eine wichtige Ausnahme: Ist der Händler ein **verifizierter Partner** (oder anderweitig per ID derselbe Partner) und passen Betrag und Datum, wird die Kartenzahlung über den [garantierten Auto-Abgleich bei verifiziertem Partner](#wie-der-abgleich-funktioniert) **trotzdem automatisch zugeordnet**, auch ohne Rechnungsnummer. Das Wirksamste, was Sie für wiederkehrende Kartenlieferanten tun können, ist daher, deren Händler-Alias auf der Seite [Partner](/partners) mit einem verifizierten Partner zu verknüpfen — danach landen ihre Zahlungen nicht mehr in der Prüfung. Kartenzahlungen an noch nicht verknüpfte Lieferanten landen weiterhin typischerweise im Band der **Vorschläge mittlerer Konfidenz** zur Prüfung durch die Buchhaltung.
+
+**Was Sie tun können:**
+
+- Geben Sie bei Ihren eigenen ausgehenden Zahlungen **immer die Rechnungsnummer im SEPA-Verwendungszweck an**. Das ist die wirkungsvollste Einzelmaßnahme für die Zuordnungsqualität.
+- Wenn Sie denselben Lieferanten regelmäßig per Karte bezahlen, **verknüpfen Sie dessen Händler-Alias mit einem verifizierten Partner** auf der Seite [Partner](/partners). Danach werden Kartenzahlungen an diesen Lieferanten automatisch zugeordnet, sobald Betrag und Datum passen — ohne Prüfung.
+- Bei einem noch nicht verknüpften Kartenlieferanten erwarten Sie, dass die Zuordnung als Vorschlag statt als Auto-Abgleich erscheint. Betrag, Partner und Datum werden passen; Sie müssen nur bestätigen (oder den Partner verknüpfen, damit künftige Zahlungen automatisch zugeordnet werden).
+
+## Tipps
+
+- **Gute Transaktionsdaten verbessern den Abgleich.** Geben Sie bei Banküberweisungen nach Möglichkeit die Rechnungsnummer im Verwendungszweck an. Der Abgleich nimmt das als starkes Signal auf.
+- **Teilzahlungen werden unterstützt.** Zahlt ein Mandant nur einen Teil einer Rechnung, wird die Zuordnung mit dem Teilbetrag erfasst, und die Rechnung wechselt zu **Teilweise bezahlt**.
+- **Eine Rechnung, mehrere Transaktionen.** Eine einzelne Rechnung kann mehreren Transaktionen zugeordnet werden (Ratenzahlungen). Jede Zuordnung erfasst ihren eigenen Teilbetrag.
+- **Eine Transaktion, eine Rechnung.** Jede Banktransaktion kann höchstens einer Rechnung zugeordnet werden. Deckt eine Zahlung mehrere Rechnungen ab, nutzen Sie die manuelle Zuordnung — ordnen Sie die naheliegendste zu und vermerken Sie die Differenz.
+- **Fremdwährungsrechnungen passen zu Fremdwährungs-Kartenzahlungen.** Sie müssen nichts von Hand umrechnen — siehe [Währungsübergreifender Abgleich](#währungsübergreifender-abgleich).
+- **Nutzen Sie die Zuordnungsnummer im Support.** Wenn Sie zu einer bestimmten Zuordnung Hilfe brauchen, nennen Sie deren Nummer (z. B. `LOG-MAT-2026-0047`) — sie identifiziert den Datensatz über Bildschirme und Exporte hinweg eindeutig.
