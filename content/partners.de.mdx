@@ -94,6 +94,46 @@ Eine einzige konsolidierte Liste aller weiteren Namen, unter denen dieser Partne
 
 Adresse und Bankkontodaten des Partners.
 
+### Feste Kategorien
+
+Meistens wählt die KI je Rechnungsposition und je Banktransaktion eine Buchungskategorie. Bei einem Partner, dessen Buchungen sich nie ändern — ein Vermieter, ein Versicherer, ein Kartenakzeptanzdienstleister —, können Sie diese Entscheidung ganz überspringen und dem Partner eine Kategorie fest zuordnen. Hier leben zwei unabhängige Regeln, eine je Taxonomie.
+
+#### Feste Rechnungskategorie
+
+Jede Position einer Rechnung dieses Partners wird dieser Kategorie zugeordnet und **überschreibt den Vorschlag der KI**. Die KI läuft weiterhin und ihre Einschätzung bleibt dokumentiert, aber die wirksame Kategorie ist Ihre.
+
+Die Kategorie muss eine aktive Rechnungskategorie sein, deren Richtung zur Rechnung passt — eine Erlöskategorie wird auf Ausgangsrechnungen angewendet, eine Aufwandskategorie auf Eingangsrechnungen. Ist ein Partner zugleich Kunde und Lieferant und passt die eine feste Kategorie nur zu einer Richtung, bleibt die Regel in der anderen Richtung stillschweigend wirkungslos. Archivieren Sie die Kategorie, wird die Regel inaktiv, und auf dem Abschnitt erscheint eine gelbe Warnung, bis Sie eine andere wählen.
+
+#### Feste Transaktionskategorie
+
+Jede Banktransaktion dieses Partners wird dieser Kategorie zugeordnet, **wenn sie noch keine hat**. Anders als die Rechnungsregel überschreibt diese keine bereits vorhandene Kategorie.
+
+Das ist reine Kategorisierung. Sie berührt den Abgleich nicht und markiert nichts als **Keine Rechnung nötig** — das sind eigene Entscheidungen, die Sie unter [Transaktionstypen](/transaction-types) treffen.
+
+#### Ihre eigenen Änderungen haben immer Vorrang
+
+Keine der beiden Regeln überschreibt jemals eine von Hand gesetzte Kategorie. Eine Rechnungsposition, die Sie selbst kategorisiert haben, behält Ihre Kategorie; eine Transaktion, die Sie selbst kategorisiert haben, bleibt unberührt. Das gilt für die automatische Regel ebenso wie für den rückwirkenden Lauf unten.
+
+### Eine Regel auf bereits vorhandene Datensätze anwenden
+
+Beide Regeln wirken **in die Zukunft**: Sie buchen, was nach dem Speichern eintrifft. Wenn Sie bei einem Partner, den Sie seit zwei Jahren buchen, eine feste Kategorie setzen, ändert das an diesen zwei Jahren nichts.
+
+**Auf vorhandene Datensätze anwenden** schließt diese Lücke. Die Schaltfläche steht in beiden Abschnitten neben **Speichern** und wendet die **gespeicherte** Regel auf bereits vorhandene Datensätze an.
+
+1. Wählen Sie die Kategorie und klicken Sie auf **Speichern**. Die Schaltfläche arbeitet mit der gespeicherten Regel, eine nicht gespeicherte Auswahl wird also nicht verwendet — sie bleibt deaktiviert, solange keine Regel gespeichert ist.
+2. Klicken Sie auf **Auf vorhandene Datensätze anwenden**.
+3. Lassen Sie **Alle Datensätze** eingeschaltet, um alles von diesem Partner zu prüfen, oder schalten Sie es aus und wählen Sie einen Zeitraum — einen Monat, ein Quartal, ein Jahr oder einen freien Bereich.
+4. Lesen Sie die Vorschau. Sie nennt genau, wie viele Datensätze sich ändern werden, *bevor* etwas geschieht, und wie viele unberührt bleiben, weil jemand sie von Hand kategorisiert hat.
+5. Klicken Sie auf **Neu buchen**. Eine Zusammenfassung meldet, wie viele Datensätze geändert wurden.
+
+Einiges, das Sie wissen sollten:
+
+- **Die Vorschau ist verbindlich.** Sie wird genauso gezählt, wie der Lauf arbeitet, die angezeigte Zahl ist also die Zahl, die sich ändert. Zweimal auszuführen ist unbedenklich — der zweite Lauf meldet nichts mehr zu buchen, weil bereits alles der Regel entspricht.
+- **Der rückwirkende Lauf überschreibt sehr wohl eine vorhandene Kategorie einer Transaktion.** Das ist die eine Stelle, an der er entschiedener vorgeht als die automatische Regel, die nur eine leere Kategorie füllt. Das muss so sein: Wenn Sie eine feste Kategorie setzen, hat die KI die Vergangenheit meist längst kategorisiert — und genau das zu korrigieren ist der Zweck. Von Hand gesetzte Kategorien bleiben weiterhin unangetastet.
+- **Welches Datum über den Zeitraum entscheidet.** Rechnungen werden anhand des Datums zugeordnet, das die Einstellung **Standard-Datumsbezug** Ihres Arbeitsbereichs benennt (Leistungsdatum, sofern Sie es nicht geändert haben — unter **Einstellungen → Hauptbuch**); fehlt es auf einer Rechnung, tritt das Rechnungsdatum an seine Stelle, damit nichts unbemerkt aus dem Lauf fällt. Banktransaktionen verwenden immer ihr Buchungsdatum.
+- **Bereits an die Kanzlei übermittelte Rechnungen.** Ist im Zeitraum eine Rechnung enthalten, die bereits in einem RLB-Export war, weist der Dialog darauf hin. Sie werden trotzdem neu gebucht — die Warnung steht dort, weil eine geänderte Sachkontonummer von dem abweichen kann, was Ihre Kanzlei bereits gebucht hat. Stimmen Sie sich ab, bevor Sie einen abgeschlossenen Zeitraum neu buchen.
+- **Ein Rückgängig gibt es nicht.** Der Lauf ist auf 2000 Datensätze begrenzt; darüber grenzen Sie den Zeitraum ein und führen ihn erneut aus.
+
 ## Wie der automatische Abgleich funktioniert
 
 Jedes Mal, wenn eine Rechnung oder ein Kontoauszug verarbeitet wird, durchläuft AI Finance Team diese Schritte, um den Partner zu identifizieren:

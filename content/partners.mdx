@@ -96,6 +96,46 @@ A single consolidated list of every other name this partner is known under — b
 
 Address and bank account details for the partner.
 
+### Fixed categories
+
+Most of the time the AI picks an accounting category per invoice line and per bank transaction. For a partner whose bookings never vary — a landlord, an insurer, a card acquirer — you can skip that judgement entirely and pin one category to the partner. Two independent rules live here, one per taxonomy.
+
+#### Fixed invoice category
+
+Every line of an invoice from this partner is set to this category, **overriding the AI's suggestion**. The AI still runs and its opinion is kept on record, but the effective category is yours.
+
+The category must be an active invoice category whose direction is compatible with the invoice — a revenue category is applied to income invoices, a cost category to expenses. If a partner is both customer and supplier and the single fixed category only fits one direction, the rule quietly does nothing on the other. Archive the category and the rule goes inactive, with an amber warning on the section until you pick another.
+
+#### Fixed transaction category
+
+Every bank transaction from this partner is booked to this category **when it has none**. Unlike the invoice rule, this one does not overrule a category that is already there.
+
+This is pure categorisation. It does not touch matching, and it does not mark anything **No invoice needed** — those are separate decisions, made under [Transaction types](/transaction-types).
+
+#### Your own edits always win
+
+Neither rule ever overwrites a category a person set by hand. An invoice line you categorised yourself keeps your category; a transaction you categorised yourself is left alone. This holds for the automatic rule and for the retroactive run below.
+
+### Applying a rule to records you already have
+
+Both rules are **prospective**: they book what arrives after you save them. Setting a fixed category on a partner you have been booking for two years does nothing to those two years.
+
+**Run on existing records** closes that gap. It sits beside **Save** in each of the two sections and applies the **saved** rule to records that already exist.
+
+1. Pick the category and click **Save**. The button acts on the saved rule, so an unsaved selection is not used — it stays disabled until a rule is saved.
+2. Click **Run on existing records**.
+3. Leave **All records** on to check everything from this partner, or switch it off and choose a period — a month, a quarter, a year, or a custom range.
+4. Read the preview. It tells you exactly how many records will change *before* anything happens, and how many are left alone because someone categorised them by hand.
+5. Click **Re-book**. A summary reports how many records were changed.
+
+A few things worth knowing:
+
+- **The preview is the truth.** It is counted the same way the run is, so the number you see is the number that changes. Running twice is safe — the second run reports nothing to re-book, because everything already matches the rule.
+- **The retroactive run does overwrite a transaction's existing category.** This is the one place it is more assertive than the automatic rule, which only fills an empty one. It has to be: by the time you set a fixed category, the AI has usually already categorised the history — and correcting that history is the whole point. Hand-set categories are still never touched.
+- **Which date decides the period.** Invoices are matched on whichever date your workspace's **Default date basis** setting names (fulfillment date unless you changed it, under **Settings → Ledger**), falling back to the issue date when an invoice lacks it, so nothing slips out of the run unnoticed. Bank transactions always use their booking date.
+- **Invoices already sent to the office.** If any invoice in range has already been included in an RLB export, the dialog says so. They are still re-booked — the warning is there because a changed ledger code may disagree with what your office has already posted. Check with them before re-booking a closed period.
+- **There is no undo.** The run is capped at 2000 records; above that, narrow the period and run it again.
+
 ## How Automatic Matching Works
 
 Every time an invoice or bank statement is processed, AI Finance Team runs through these steps to identify the partner:
