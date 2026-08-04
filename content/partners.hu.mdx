@@ -94,6 +94,46 @@ Egyetlen összevont listája minden más névnek, amely alatt ezt a partnert ism
 
 A partner címe és bankszámla-adatai.
 
+### Rögzített kategóriák
+
+A legtöbb esetben az AI választ könyvelési kategóriát számlasoronként és banki tranzakciónként. Olyan partnernél, amelynél a könyvelés soha nem változik — bérbeadó, biztosító, kártyaelfogadó —, ezt a döntést teljesen ki lehet hagyni, és egyetlen kategóriát lehet a partnerhez rögzíteni. Két független szabály él itt, taxonómiánként egy.
+
+#### Rögzített számlakategória
+
+A partner számláinak minden sora ebbe a kategóriába kerül, **felülírva az AI javaslatát**. Az AI továbbra is lefut, és a véleménye megmarad a nyilvántartásban, de az érvényes kategória az Öné.
+
+A kategóriának aktív számlakategóriának kell lennie, amelynek iránya összeegyeztethető a számlával — bevételi kategória a bevételi számlákra, költségkategória a kiadásokra kerül. Ha egy partner vevő és szállító is, és az egyetlen rögzített kategória csak az egyik irányhoz illik, a szabály a másik irányban csendben nem tesz semmit. Ha archiválja a kategóriát, a szabály inaktívvá válik, és a szakaszon sárga figyelmeztetés jelenik meg, amíg másikat nem választ.
+
+#### Rögzített tranzakciókategória
+
+A partner minden banki tranzakciója ebbe a kategóriába kerül, **ha még nincs kategóriája**. A számlaszabállyal ellentétben ez nem írja felül a már meglévő kategóriát.
+
+Ez tisztán kategorizálás. Nem érinti a párosítást, és semmit nem jelöl meg **Nem szükséges számla** állapottal — ezek külön döntések, amelyeket a [Tranzakciótípusok](/transaction-types) alatt hozhat meg.
+
+#### A saját szerkesztései mindig elsőbbséget élveznek
+
+Egyik szabály sem írja felül azt a kategóriát, amelyet egy személy kézzel állított be. Az Ön által besorolt számlasor megtartja az Ön kategóriáját; az Ön által besorolt tranzakció érintetlen marad. Ez érvényes az automatikus szabályra és az alábbi visszamenőleges futtatásra is.
+
+### Szabály alkalmazása a már meglévő tételekre
+
+Mindkét szabály **előretekintő**: azt könyveli, ami a mentés után érkezik. Ha rögzített kategóriát állít be egy partnernél, akit két éve könyvel, az a két év változatlan marad.
+
+A **Futtatás a meglévő tételeken** ezt a hiányt zárja be. A **Mentés** gomb mellett található mindkét szakaszban, és a **mentett** szabályt alkalmazza a már meglévő tételekre.
+
+1. Válassza ki a kategóriát, és kattintson a **Mentés** gombra. A gomb a mentett szabállyal dolgozik, ezért a nem mentett kiválasztást nem használja — addig letiltva marad, amíg nincs mentett szabály.
+2. Kattintson a **Futtatás a meglévő tételeken** gombra.
+3. Hagyja bekapcsolva az **Összes tétel** kapcsolót a partner minden tételének ellenőrzéséhez, vagy kapcsolja ki, és válasszon időszakot — hónapot, negyedévet, évet vagy egyedi tartományt.
+4. Olvassa el az előnézetet. Megmutatja, pontosan hány tétel fog változni, *mielőtt* bármi történne, és hányat hagy érintetlenül azért, mert valaki kézzel sorolta be.
+5. Kattintson az **Újrakönyvelés** gombra. Az összegzés jelenti, hány tétel változott.
+
+Néhány dolog, amit érdemes tudni:
+
+- **Az előnézet a valóság.** Ugyanúgy számolódik, ahogy a futtatás dolgozik, így a látott szám az, ami változni fog. A kétszeri futtatás biztonságos — a második alkalommal nincs mit újrakönyvelni, mert minden már megfelel a szabálynak.
+- **A visszamenőleges futtatás felülírja a tranzakció meglévő kategóriáját.** Ez az egyetlen pont, ahol határozottabb az automatikus szabálynál, amely csak az üres kategóriát tölti ki. Így is kell lennie: mire rögzített kategóriát állít be, az AI a múltat többnyire már besorolta — és éppen ennek a helyesbítése a cél. A kézzel beállított kategóriák továbbra sem sérülnek.
+- **Melyik dátum dönt az időszakról.** A számlák aszerint a dátum szerint kerülnek az időszakba, amelyet a munkaterület **Alapértelmezett dátumalap** beállítása megnevez (teljesítési dátum, ha nem módosította — a **Beállítások → Főkönyv** alatt); ha a számlán ez hiányzik, a számla kelte lép a helyébe, így semmi nem esik ki észrevétlenül a futtatásból. A banki tranzakciók mindig a könyvelési dátumukat használják.
+- **A könyvelőirodának már elküldött számlák.** Ha az időszakban van olyan számla, amely már szerepelt RLB exportban, a párbeszédablak jelzi. Ezek is újrakönyvelésre kerülnek — a figyelmeztetés azért van ott, mert a megváltozott főkönyvi szám eltérhet attól, amit az irodája már lekönyvelt. Egyeztessen velük, mielőtt lezárt időszakot könyvelne újra.
+- **Visszavonás nincs.** A futtatás 2000 tételre van korlátozva; efölött szűkítse az időszakot, és futtassa újra.
+
 ## Hogyan működik az automatikus párosítás
 
 Minden alkalommal, amikor egy számla vagy bankszámlakivonat feldolgozásra kerül, az AI Finance Team a következő lépéseken halad végig a partner azonosításához:
