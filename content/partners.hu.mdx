@@ -165,6 +165,22 @@ Amikor két saját bankszámlája között mozgat pénzt, a tranzakció „mási
 
 > Ez előretekintő: a jövőbeli tranzakciókra vonatkozik. A meglévő sorok nem dolgozódnak fel újra automatikusan — szükség esetén rendelje hozzá őket a tranzakció partnerválasztójából.
 
+## Magánszemélynek kiállított számlák
+
+Amikor magánszemélynek állít ki számlát, a NAV **egyáltalán nem közöl vevőt** — sem nevet, sem adószámot. A jogszabály nem engedi a személyes adatok jelentését, így a NAV mindössze annyit közöl, hogy a vevő magánszemély. Ezek a számlák korábban partner nélkül érkeztek, ezért üres Partner oszloppal kerültek az RLB- és Hessyn-exportba, és nem jelentek meg a partner folyószámlán.
+
+Ezt egyszer kell beállítania: kijelöl egy partnert, amelyre mindegyik könyvelődjön.
+
+- **A beállítás.** Hozzon létre (vagy válasszon) egy partnert — a legtöbb iroda *Magánszemély* néven tartja —, nyissa meg a részletoldalát, és a **Különleges szerep** szakaszban válassza a **Magánszemély** lehetőséget. Munkaterületenként egy partner töltheti be a szerepet.
+- **Mi változik.** Ettől kezdve minden olyan NAV-os bevételi számla, amelyet a NAV magánszemélynek kiállítottként jelent, erre a partnerre könyvelődik. Névvel jelenik meg az RLB- és Hessyn-exportban, és látszik a partner folyószámlán, így a magánszemélyekkel szembeni követelések nem tűnnek el.
+- **A felismerés a NAV adatából történik, nem üres mezőből.** A számla csak akkor kerül ide, ha a NAV kifejezetten magánszemélyként jelenti a vevőt. A pusztán hiányosan érkező számlákat soha nem sodorja be.
+- **Ezen a partneren fizetés párosítása soha nem történik.** Sok különböző személyt képvisel, ezért az ide sorolt számlák nem tartoznak össze. Az AI Finance Team nem javasol és nem hoz létre automatikusan párosítást pusztán a közös partner alapján.
+- **Nem tanul a párosításból.** Ha kézzel párosít egy magánszemélytől érkező fizetést az ilyen számlák egyikéhez, semmi nem rögzül — sem banki név, sem számlaszám. Ez szándékos: a partner közös, így bármi, amit rátanulnánk, az összes többi ide könyvelt tételre is átragadna.
+
+> **Ha tudja, ki a vevő, használjon valódi partnert.** Nagyobb értékű, eseti értékesítésnél — gépjármű, eszköz — hozzon létre rendes partnert, és arra állítsa a számlát. Így valódi folyószámlasort kap egy valódi követeléshez. A magánszemély partner azokra való, akiket soha nem fog egyenként azonosítani, például a mindennapi online rendelésekre.
+
+> Ez előretekintő: a beállítás pillanatától érkező számlákra vonatkozik. A rendszerben már meglévő számlák nem kerülnek át.
+
 ## Partner hitelesítése helyben
 
 Ha a ⚠ Nem hitelesített jelzést egy dokumentum áttekintése közben veszi észre, megoldhatja anélkül, hogy elhagyná a dokumentumot.
