@@ -165,6 +165,22 @@ Wenn Sie Geld zwischen zwei Ihrer eigenen Bankkonten bewegen, ist die „Gegenpa
 
 > Dies gilt prospektiv: für künftige Transaktionen. Bestehende Zeilen werden nicht automatisch neu verarbeitet — ordnen Sie sie bei Bedarf über das Partner-Auswahlfeld der Transaktion zu.
 
+## Rechnungen an Privatpersonen
+
+Wenn Sie einer Privatperson eine Rechnung stellen, meldet NAV **überhaupt keinen Käufer** — weder Name noch Steuernummer. Die ungarische Rechtslage lässt die Meldung personenbezogener Daten nicht zu; NAV teilt lediglich mit, dass der Käufer eine Privatperson *ist*. Solche Rechnungen kamen bisher ohne Partner an, standen deshalb mit leerer Partnerspalte im RLB- und Hessyn-Export und tauchten im Partnerkonto nie auf.
+
+Das stellen Sie einmalig ein, indem Sie einen Partner benennen, auf den sie alle gebucht werden.
+
+- **Einrichtung.** Legen Sie einen Partner an (oder wählen Sie einen aus) — in den meisten Kanzleien heißt er *Magánszemély* —, öffnen Sie seine Detailseite und wählen Sie im Abschnitt **Sonderrolle** die Option **Privatperson**. Pro Arbeitsbereich kann nur ein Partner die Rolle tragen.
+- **Was sich ändert.** Ab dann wird jede NAV-Ausgangsrechnung, die NAV als an eine Privatperson gestellt meldet, auf diesen Partner gebucht. Sie erscheint mit Namen im RLB- und Hessyn-Export und im Partnerkonto, sodass Forderungen gegenüber Privatpersonen nicht länger unsichtbar sind.
+- **Erkannt wird aus der NAV-Meldung, nicht aus einem leeren Feld.** Die Rechnung landet nur hier, wenn NAV den Käufer ausdrücklich als Privatperson meldet. Eine lediglich unvollständig eingegangene Rechnung wird nie mit erfasst.
+- **Auf diesem Partner werden Zahlungen nie zugeordnet.** Er steht für viele verschiedene Personen, daher gelten Rechnungen, die ihn teilen, nicht als zusammengehörig. AI Finance Team schlägt allein aufgrund des gemeinsamen Partners keine Zuordnung vor und erstellt auch keine.
+- **Er lernt nie aus einer Zuordnung.** Wenn Sie die Zahlung einer Privatperson manuell einer dieser Rechnungen zuordnen, wird nichts gemerkt — kein Bankname, keine Kontonummer. Das ist beabsichtigt: Der Partner ist gemeinsam genutzt, alles darauf Gespeicherte würde auch allen anderen dort gebuchten Vorgängen zugeschrieben.
+
+> **Wenn Sie wissen, wer der Käufer ist, nehmen Sie einen echten Partner.** Bei einem einmaligen Verkauf von echtem Wert — Fahrzeug, Ausrüstung — legen Sie einen normalen Partner an und richten die Rechnung darauf aus. So erhalten Sie eine echte Partnerkontozeile für eine echte Forderung. Der Privatpersonen-Partner ist für Käufer gedacht, die Sie nie einzeln identifizieren werden, etwa alltägliche Online-Bestellungen.
+
+> Dies gilt vorausschauend: ab dem Moment der Einstellung eingehende Rechnungen. Bereits im System vorhandene Rechnungen werden nicht verschoben.
+
 ## Einen Partner direkt verifizieren
 
 Wenn Ihnen das Badge ⚠ Nicht verifiziert beim Prüfen eines Dokuments auffällt, können Sie es beheben, ohne das Dokument zu verlassen.
