@@ -167,6 +167,22 @@ When you move money between two of your own bank accounts, the "other party" on 
 
 > This is prospective: it applies to transactions going forward. Existing rows are not re-processed automatically — assign them from the transaction's partner picker if needed.
 
+## Invoices to private individuals
+
+When you invoice a private individual, NAV reports **no buyer at all** — no name, no tax number. Hungarian law does not allow personal data to be reported, so all NAV tells us is that the buyer *is* a private individual. Those invoices used to arrive with no partner, which meant they had an empty Partner column in the RLB and Hessyn exports and never appeared in the Partner Ledger.
+
+You fix this once, by nominating a partner they should all be booked to.
+
+- **Set it up.** Create (or pick) a partner — most offices call it *Magánszemély* — open its detail page, and in the **Special role** section choose **Private person**. Only one partner per workspace can hold the role.
+- **What changes.** From then on, every NAV income invoice reported as issued to a private individual is booked to that partner. It carries a name in the RLB and Hessyn exports and appears in the Partner Ledger, so private-individual receivables stop being invisible.
+- **It is recognised from NAV, not from a blank field.** The invoice is only booked here when NAV explicitly reports the buyer as a private individual. An invoice that simply arrives incomplete is never swept in.
+- **Payments are never matched on this partner.** It stands for many different people, so two invoices sharing it are not treated as related. AI Finance Team will not propose or auto-create matches on the strength of that shared partner.
+- **It never learns from a match.** If you manually match a private individual's payment to one of these invoices, nothing is remembered — no bank name, no account number. That is deliberate: the partner is shared, so anything captured on it would be attributed to everyone else booked there too.
+
+> **If you know who the buyer is, use a real partner.** For a one-off sale of real value — a vehicle, equipment — create a normal partner and point the invoice at them. You get a genuine Partner Ledger line for a genuine receivable. The private-person partner is for buyers you will never identify individually, such as everyday online orders.
+
+> This is prospective: it applies to invoices arriving from the moment you set it. Invoices already in the system are not moved.
+
 ## Verifying a Partner Inline
 
 If you spot the ⚠ Unverified badge while reviewing a document, you can resolve it without leaving the document.
