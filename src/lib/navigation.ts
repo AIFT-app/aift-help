@@ -19,6 +19,10 @@ export const navigation: NavItem[] = [
     title: { en: 'Forwarding Documents by Email', hu: 'Dokumentumok továbbítása e-mailben', de: 'Dokumente per E-Mail weiterleiten' },
   },
   {
+    slug: 'documents-needed',
+    title: { en: 'Documents Needed', hu: 'Hiányzó dokumentumok', de: 'Fehlende Belege' },
+  },
+  {
     slug: 'currency-exchange',
     title: { en: 'Multi-Currency & Exchange Rates', hu: 'Több pénznem és árfolyamok', de: 'Mehrwährung & Wechselkurse' },
   },
