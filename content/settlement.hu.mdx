@@ -1,0 +1,72 @@
+# Folyószámla kiegyenlítése
+
+Egyes partnerek soha nem számlánként fizetnek, hanem **folyószámlát rendeznek**: egy utalás több számlát fedez, a jóváíró számlák csökkentik a tartozást, időnként pedig egy kerek összeg érkezik előlegként. Az automatikus párosítás itt nem segít — az olyan kifizetést keres, amely egy adott számlának felel meg, ezeknél a partnereknél viszont ilyen pár nem létezik.
+
+A **Kiegyenlítés** az a felület, ahol Ön osztja fel a partner kifizetéseit a számlái között, az AI javaslatából kiindulva.
+
+## Mikor használja
+
+Akkor nyúljon a Kiegyenlítéshez, ha egy partnernél hosszú, soha ki nem ürülő nyitott tételsor áll, és a kifizetések egyetlen számlára sem illenek rá. Jellemzően:
+
+- olyan szállító, akinek **hetente vagy havonta egy utalással** fizet több szállítmányt
+- olyan partner, akinek a **jóváíró számláit** (visszáru, javítás) nem visszautalják, hanem a következő fizetésből vonják le
+- **kerek összegű, előlegjellegű utalások** — vagy egyszerűen egy vevő, aki „rátesz valamennyit” a folyószámlára
+- olyan platform, amely **egyszerre fizet ki több partnerre kiállított értékesítést**
+
+Ha egy kifizetés egyetlen számlához tartozik, nincs szüksége a Kiegyenlítésre: azt a [számlák párosítása](/invoice-matching) automatikusan elvégzi.
+
+## Kiegyenlítés megnyitása
+
+Lépjen a **Párosítás** → **Kiegyenlítés** menüpontra, majd válassza ki:
+
+- **a partnert**, akinek a folyószámláját rendezi. **Több partnert is** megjelölhet — akkor tegye ezt, ha a bizonylataik együtt rendeződnek. A tipikus eset a platformon keresztüli értékesítés: a számlák részben a platformra, részben magánszemély partnerre szólnak, de egyetlen kifizetés fedezi mindet, így önmagában egyik partner sem magyarázza az összeget.
+- **a pénznemet.** Egy kiegyenlítés egy pénznemben történik.
+
+Nyomja meg a **Kiegyenlítés megnyitása** gombot. A munkafelület bal oldalán a partner kifizetései, jobb oldalán a számlái jelennek meg.
+
+Mindkét oldalnak saját dátumszűrője van, és ez szándékosan van így: egy júliusi utalás rendszerint júniusi számlát egyenlít ki, tehát ha mindkettőt ugyanarra a hónapra szűrné, épp a szükséges bizonylatokat rejtené el.
+
+## Az AI javaslata
+
+A **Kiegyenlítés javaslása** gombbal az AI kidolgozza, melyik kifizetés melyik számlákat rendezi. Minden csoportot egy mondatban meg is indokol — pontos számlaszám a közleményben, pontosan kijövő nettósított összeg, vagy a legrégebbi számlák előre, ha semmi más nem különbözteti meg őket.
+
+Ilyenkor még semmi nem kerül rögzítésre. Minden javaslat csak javaslat, amelyet átnézhet, módosíthat vagy elvethet.
+
+Ha nem állított be dátumszűrőt, az AIFT előbb megerősítést kér. Szűrő nélkül ugyanis a partner **teljes előzményét** nézi át, és a javasolt kiegyenlítés felülírhat már meglévő párosításokat is. Szinte mindig érdemes előbb időszakot választani valamelyik oldalon.
+
+## Kiegyenlítés összeállítása kézzel
+
+Jelölje meg az összetartozó kifizetéseket és számlákat. A felső sávban folyamatosan látja az összesítést:
+
+| | |
+|---|---|
+| **Kijelölt kifizetések** | a megjelölt kifizetések összege |
+| **Kijelölt számlák** | a megjelölt számlák összege |
+| **Különbözet** | ami fennmarad |
+
+A **jóváíró számla** negatív előjellel számít, hiszen csökkenti azt, amit a kifizetésnek fedeznie kell. Ezért tud egy 238 118 forintos utalás pontosan kiegyenlíteni egy 251 771 forintos számlát egy 13 653 forintos jóváírással együtt.
+
+Amikor a különbözet nullára fut, a sávban a **Kiegyenlítve** felirat jelenik meg. A **Kijelöltek csoportosítása** gombbal a kijelölésből javasolt kiegyenlítés lesz.
+
+Nem kötelező nullára kifutni. Ha egy kifizetés csak részben fedezi a nyitott tételeket, rendezze azt, amit fedez, a többit pedig hagyja nyitva — lásd alább.
+
+## Rögzítés
+
+Minden javasolt kiegyenlítésnek saját **Rögzítés** gombja van. A rögzítés a szokásos párosításokat hozza létre, pontosan úgy, mintha kézzel párosította volna össze a számlákat a kifizetéssel: a számlák kiegyenlítetté válnak, a folyószámla frissül, a tételek pedig a megszokott módon kerülnek be az exportokba.
+
+Ha a kiegyenlítés már meglévő párosításokat cserélne le, az AIFT ezt jelzi a csoporton (**N meglévő párosítást bont**), és — ha valamelyiket ember hagyta jóvá — megerősítést kér, felsorolva, mi fog törlődni, mielőtt bármi történne.
+
+Az **Elvetés** a javasolt csoportot szünteti meg anélkül, hogy bármihez hozzányúlna.
+
+## Rendezetlenül hagyott összeg
+
+Egy kifizetést nem kötelező teljesen felosztani. Ha a vevő kerek 250 000 forintot utal 180 000 forintnyi számlára, rendezze a 180 000-et, a maradékot pedig hagyja úgy. A tétel ekkor **részben rendezett** lesz, a fel nem osztott 70 000 forint pedig a folyószámlán olyan pénzként jelenik meg, amely megérkezett, de még nincs hozzárendelve — ami pontosan meg is felel a valóságnak.
+
+Soha ne találjon ki felosztást csak azért, hogy a kifizetés kijöjjön. Egy őszinte maradvány többet ér, mint egy rendezettnek látszó, de téves kiegyenlítés.
+
+## Amit érdemes tudni
+
+- **A kiegyenlítési munkamenet lefoglalja a tételeket.** Amíg a munkamenet nyitva van, a benne lévő számlákat és kifizetéseket a rendszer félreteszi Önnek: az automatikus párosítás nem nyúl hozzájuk, és az alkalmazás más felületein **Kiegyenlítés alatt** jelzéssel szerepelnek, amely visszavezet a munkamenetre. Ha végzett, nyomja meg a **Munkamenet lezárása** gombot, hogy visszakerüljenek a szokásos feldolgozásba.
+- **A már párosított számlák is megjelennek**, **Már párosítva** jelöléssel. Ez szándékos: ha egy kifizetés rossz számlához került, épp azt a számlát kell látnia ahhoz, hogy át tudja sorolni.
+- **A Kiegyenlítés könyvelői felület.** Az ügyfelek nem látják a fület.
+- **A tételek neve link.** A számlaszámra vagy a kifizetésre kattintva új lapon nyílik meg a bizonylat, így úgy nézheti meg a részleteket, hogy közben nem veszíti el a összeállított kiegyenlítést.
