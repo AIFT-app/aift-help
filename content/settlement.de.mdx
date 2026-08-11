@@ -1,0 +1,72 @@
+# Partnersalden ausgleichen
+
+Manche Partner zahlen nie Rechnung für Rechnung. Sie begleichen einen **Saldo**: eine Überweisung deckt mehrere Rechnungen ab, Gutschriften mindern die Schuld, und hin und wieder kommt ein runder Betrag auf Konto. Der automatische Abgleich hilft hier nicht — er sucht eine Zahlung, die zu einer Rechnung passt, und bei diesen Partnern gibt es ein solches Paar schlicht nicht.
+
+Im **Ausgleich** ordnen Sie die Zahlungen eines Partners selbst seinen Rechnungen zu, ausgehend von einem Vorschlag der KI.
+
+## Wann Sie ihn brauchen
+
+Greifen Sie zum Ausgleich, wenn bei einem Partner eine lange Liste offener Posten steht, die sich nie leert, und die Zahlungen zu keiner einzelnen Rechnung passen. Typischerweise:
+
+- ein Lieferant, den Sie **wöchentlich oder monatlich mit einer Überweisung** für mehrere Lieferungen bezahlen
+- ein Partner, dessen **Gutschriften** (Retouren, Korrekturen) nicht erstattet, sondern von der nächsten Zahlung abgezogen werden
+- **runde Zahlungen auf Konto** — eine Anzahlung, oder ein Kunde, der einfach „etwas auf den Saldo“ zahlt
+- eine Plattform, die **einmal für Verkäufe an mehrere Partner** auszahlt
+
+Passt eine Zahlung zu einer Rechnung, brauchen Sie den Ausgleich nicht — das erledigt der [Rechnungsabgleich](/invoice-matching) bereits automatisch.
+
+## Einen Ausgleich öffnen
+
+Gehen Sie zu **Abgleich** → **Ausgleich** und wählen Sie:
+
+- **den Partner**, dessen Saldo Sie ausgleichen. Sie können **mehrere** wählen — tun Sie das, wenn ihre Belege gemeinsam ausgeglichen werden. Der übliche Fall sind Plattformverkäufe: die Rechnungen gehen teils an die Plattform, teils an einen Privatperson-Partner, bezahlt werden sie aber mit einer einzigen Auszahlung, sodass kein Partner allein den Betrag erklärt.
+- **die Währung.** Ein Ausgleich umfasst eine Währung.
+
+Klicken Sie auf **Ausgleich öffnen**. Die Arbeitsfläche zeigt links die Zahlungen des Partners, rechts seine Rechnungen.
+
+Jede Seite hat ihren eigenen Datumsfilter, und das ist Absicht: eine Juli-Zahlung gleicht regelmäßig eine Juni-Rechnung aus — filterten Sie beide auf denselben Monat, verbärgen Sie genau die Belege, die Sie brauchen.
+
+## Die KI vorschlagen lassen
+
+**Ausgleich vorschlagen** lässt die KI ermitteln, welche Zahlung welche Rechnungen begleicht. Jede Gruppe wird in einem Satz begründet — eine exakte Rechnungsnummer im Verwendungszweck, ein exakt aufgehender saldierter Betrag, oder älteste Rechnungen zuerst, wenn nichts anderes sie unterscheidet.
+
+Zu diesem Zeitpunkt wird nichts gebucht. Jeder Vorschlag ist ein Vorschlag, den Sie prüfen, ändern oder verwerfen.
+
+Haben Sie keinen Datumsfilter gesetzt, fragt AIFT zuerst nach. Ohne Filter wird die **gesamte Historie** des Partners bewertet, und ein vorgeschlagener Ausgleich kann bestehende Zuordnungen ersetzen. Vorher einen Zeitraum zu setzen ist fast immer das, was Sie wollen.
+
+## Einen Ausgleich selbst bauen
+
+Haken Sie die Zahlungen und Rechnungen an, die zusammengehören. Die Leiste oben führt laufend mit:
+
+| | |
+|---|---|
+| **Ausgewählte Zahlungen** | Summe der angehakten Zahlungen |
+| **Ausgewählte Rechnungen** | Summe der angehakten Rechnungen |
+| **Differenz** | was übrig bleibt |
+
+Eine **Gutschrift** zählt negativ, denn sie mindert das, was die Zahlung abdecken muss. Deshalb kann eine Überweisung von 238.118 zusammen eine Rechnung über 251.771 und eine Gutschrift über 13.653 exakt ausgleichen.
+
+Erreicht die Differenz null, zeigt die Leiste **Geht auf null auf**. Mit **Auswahl gruppieren** wird aus der Auswahl ein vorgeschlagener Ausgleich.
+
+Sie müssen nicht auf null kommen. Deckt eine Zahlung nur einen Teil der offenen Posten, ordnen Sie diesen Teil zu und lassen den Rest offen — siehe unten.
+
+## Buchen
+
+Jeder vorgeschlagene Ausgleich hat sein eigenes **Buchen**. Das Buchen erzeugt gewöhnliche Zuordnungen, genau so, als hätten Sie jede Rechnung von Hand ihrer Zahlung zugeordnet: die Rechnungen gelten als bezahlt, das Partnerkonto wird aktualisiert, und die Belege fließen wie gewohnt in die Exporte.
+
+Würde ein Ausgleich bestehende Zuordnungen ersetzen, weist AIFT an der Gruppe darauf hin (**Löst N bestehende**) und fragt — falls eine davon von einem Menschen bestätigt wurde — vorher nach, mit einer Liste dessen, was entfernt wird.
+
+**Verwerfen** entfernt eine vorgeschlagene Gruppe, ohne irgendetwas anzurühren.
+
+## Nicht zugeordnetes Geld
+
+Eine Zahlung muss nicht vollständig zugeordnet werden. Zahlt ein Kunde runde 250.000 auf Rechnungen über 180.000, ordnen Sie die 180.000 zu und lassen den Rest stehen. Die Transaktion gilt dann als **teilweise zugeordnet**, und die offenen 70.000 erscheinen auf dem Partnerkonto als Geld, das eingegangen, aber noch nicht zugeordnet ist — genau das ist es ja auch.
+
+Erfinden Sie nie eine Zuordnung, damit eine Zahlung aufgeht. Ein ehrlicher Rest ist nützlicher als ein ordentlich aussehender, aber falscher Ausgleich.
+
+## Gut zu wissen
+
+- **Eine Ausgleichssitzung hält ihre Belege fest.** Solange eine Sitzung offen ist, sind die enthaltenen Rechnungen und Zahlungen für Sie reserviert: der automatische Abgleich rührt sie nicht an, und sie tragen anderswo in der App den Hinweis **In Ausgleichsprüfung**, der zurück zur Sitzung führt. Klicken Sie am Ende auf **Sitzung schließen**, damit sie wieder normal verarbeitet werden.
+- **Bereits zugeordnete Rechnungen erscheinen ebenfalls**, gekennzeichnet mit **Bereits zugeordnet**. Das ist Absicht: wurde eine Zahlung der falschen Rechnung zugeordnet, müssen Sie genau diese Rechnung sehen, um sie neu zuzuordnen.
+- **Der Ausgleich ist für Buchhalter.** Mandanten sehen den Reiter nicht.
+- **Belegnamen sind Links.** Ein Klick auf eine Rechnungsnummer oder eine Zahlung öffnet den Beleg in einem neuen Tab, sodass Sie Details prüfen können, ohne den begonnenen Ausgleich zu verlieren.
