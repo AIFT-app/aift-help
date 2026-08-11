@@ -1,0 +1,72 @@
+# Settling Partner Balances
+
+Some partners never pay invoice by invoice. They pay a **balance**: one transfer covers several invoices at once, credit notes reduce what is owed, and every so often a round sum arrives on account. Automatic matching cannot help here — it looks for a payment that corresponds to an invoice, and for these partners no such pair exists.
+
+**Settlement** is where you allocate a partner's payments against its invoices yourself, with the AI proposing a starting point.
+
+## When to use it
+
+Reach for Settlement when a partner shows a long list of open items that never clears, and the payments do not look like any single invoice. Typically:
+
+- a supplier you pay **weekly or monthly in one transfer** covering several deliveries
+- a partner whose **credit notes** (returns, corrections) are deducted from the next payment rather than refunded
+- **round, on-account payments** — an advance, or a customer simply paying "something towards the balance"
+- a platform that pays out **once for sales invoiced to more than one partner**
+
+If a payment matches one invoice, you do not need Settlement. Ordinary [invoice matching](/invoice-matching) already handles that, and handles it automatically.
+
+## Opening a settlement
+
+Go to **Matching** → **Settlement**, then pick:
+
+- **the partner** whose balance you are settling. You can select **more than one** — do this when their documents settle together. The usual case is platform sales: the invoices are issued partly to the platform and partly to a private-person partner, but a single payout pays for all of them, so neither partner alone explains the money.
+- **the currency.** One settlement covers one currency.
+
+Press **Open settlement**. The workbench opens with the partner's payments on the left and its invoices on the right.
+
+Each side has its own date filter, and they are deliberately independent: a July payment routinely settles a June invoice, so filtering both to the same month would hide exactly the documents you need.
+
+## Letting the AI propose
+
+**Propose settlement** asks the AI to work out which payments settle which invoices. It explains each group in a sentence — an exact invoice number found in a bank reference, an exact netted amount, or oldest-invoices-first when nothing else distinguishes them.
+
+Nothing is written at this point. Every proposal is a suggestion you review, change, or discard.
+
+If you have not set a date filter, AIFT asks you to confirm first. Without one, it assesses the partner's **entire history**, and a settlement it proposes may replace pairings you already have. Setting a period on either side first is almost always what you want.
+
+## Building one yourself
+
+Tick the payments and the invoices that belong together. The strip along the top keeps a running total:
+
+| | |
+|---|---|
+| **Selected payments** | what the ticked payments come to |
+| **Selected invoices** | what the ticked invoices come to |
+| **Difference** | what is left over |
+
+A **credit note** counts as a negative amount, because it reduces what the payment has to cover. This is why a 238,118 transfer can exactly settle a 251,771 invoice together with a 13,653 credit note.
+
+When the difference reaches zero the strip shows **Nets to zero**. Press **Group selection** to turn the selection into a proposed settlement.
+
+You do not have to reach zero. If a payment covers only part of what is open, allocate what it covers and leave the rest — see below.
+
+## Committing
+
+Each proposed settlement has its own **Commit**. Committing writes ordinary matches, exactly as if you had matched each invoice to its payment by hand, so the invoices become paid, the partner ledger updates, and the records flow into the exports as usual.
+
+If a settlement would replace pairings that already exist, AIFT says so on the group (**Breaks N existing**) and — when one of them was approved by a person — asks you to confirm, listing what will be removed, before anything happens.
+
+**Discard** removes a proposed group without touching anything.
+
+## Leaving money unapplied
+
+A payment does not have to be fully allocated. If a customer pays a round 250,000 against 180,000 of invoices, allocate the 180,000 and leave the remainder alone. The transaction is then **partly allocated**, and the unapplied 70,000 shows on the partner ledger as money received but not yet assigned — which is exactly what it is.
+
+Never invent an allocation to make a payment balance. An honest remainder is more useful than a tidy but wrong settlement.
+
+## Things worth knowing
+
+- **A settlement session holds its records.** While a session is open, the invoices and payments in it are set aside for you: automatic matching leaves them alone, and they show an **In settlement review** note elsewhere in the app that links back to the session. Press **Close session** when you are finished, so they return to normal handling.
+- **Invoices already matched still appear**, marked **Already matched**. That is deliberate — if a payment was matched to the wrong invoice, you need to see that invoice in order to re-allocate it.
+- **Settlement is for accountants.** Clients do not see the tab.
+- **Record names are links.** Clicking an invoice number or a payment opens it in a new tab, so you can check the details without losing the settlement you are building.
