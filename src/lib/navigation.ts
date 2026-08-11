@@ -46,6 +46,14 @@ export const navigation: NavItem[] = [
   },
   { slug: 'invoice-matching', title: { en: 'Invoice Matching', hu: 'Számlák párosítása', de: 'Rechnungsabgleich' } },
   {
+    slug: 'settlement',
+    title: {
+      en: 'Settling Partner Balances',
+      hu: 'Folyószámla kiegyenlítése',
+      de: 'Partnersalden ausgleichen',
+    },
+  },
+  {
     slug: 'categorization',
     title: { en: 'Categorising Invoices & Transactions', hu: 'Számlák és tranzakciók kategorizálása', de: 'Rechnungen & Transaktionen kategorisieren' },
   },
