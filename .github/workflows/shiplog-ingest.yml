@@ -23,6 +23,16 @@
 #   PRD slug. Without this walk, the v2 digest would see a single
 #   slug-less promote merge title and fragment cross-env clusters.
 #
+# v2.2 behaviour:
+#
+# - A promoted commit's slug comes from its COMMIT SUBJECT, never from the
+#   promote wrapper PR. `gh pr list --search <sha>` resolves a cherry-picked
+#   SHA to the wrapper (the only PR containing it), and taking the wrapper's
+#   title filed the production row under the PROMOTE's slug. The digest
+#   clusters by slug, so the row never met its staging sibling and the
+#   cluster reported `furthest_env: staging` for work already on production.
+#   PRD: aift-ops/specs/shiplog-promote-attribution.md
+#
 # Per-repo prerequisites (set once when shiplog goes live):
 #   - vars.SHIPLOG_INGEST_URL  — the shiplog-ingest Edge Function URL
 #                                (e.g. https://<project-ref>.supabase.co/functions/v1/shiplog-ingest)
@@ -126,10 +136,11 @@ jobs:
           for SHA in $COMMITS; do
             echo "────────── $SHA ──────────"
 
-            # PR metadata. Each squash-merge SHA points to the original PR
-            # it was created from — its title carries [PRD: <slug>].
+            # PR metadata. On `staging` the searched SHA is the squash-merge
+            # commit of the feature PR, so the search resolves to that PR and
+            # its title carries [PRD: <slug>].
             PR_JSON=$(gh pr list --search "$SHA" --state merged \
-              --json number,title,body,url,author \
+              --json number,title,body,url,author,headRefName \
               --jq '.[0] // {}' 2>/dev/null || echo '{}')
 
             PR_NUMBER=$(echo "$PR_JSON" | jq -r '.number // empty')
@@ -137,19 +148,46 @@ jobs:
             PR_BODY=$(echo "$PR_JSON" | jq -r '.body // empty')
             PR_URL=$(echo "$PR_JSON" | jq -r '.url // empty')
             AUTHOR=$(echo "$PR_JSON" | jq -r '.author.login // empty')
+            PR_HEAD=$(echo "$PR_JSON" | jq -r '.headRefName // empty')
 
-            # Fall back to commit-level metadata when no merged PR matches
-            # (direct pushes; rare on AIFT but harmless).
+            # ── v2.2: a promote wrapper must never lend its title to a commit ──
+            # promote.sh runs in two modes, and they resolve differently here:
+            #
+            #   whole-queue (merge)  — commits keep their staging SHAs, so the
+            #                          search finds the ORIGINAL feature PR. Good.
+            #   slug mode (cherry-pick) — the commit is re-minted with a NEW SHA
+            #                          that exists only inside the promote PR, so
+            #                          the search finds the WRAPPER. Its title is
+            #                          `promote(<slugs>): staging picks → main …`
+            #                          and carries the wrapper's own [PRD:] trailer.
+            #
+            # Taking that title filed every cherry-picked production row under the
+            # promote's slug instead of the change's own. The digest clusters by
+            # slug, so the production row never joined its staging sibling and the
+            # cluster reported `furthest_env: staging` — work already on prod read
+            # as unshipped, while phantom production clusters appeared under
+            # whatever slug the wrapper happened to name.
+            #
+            # The commit SUBJECT survives the cherry-pick verbatim and carries the
+            # original trailer, so it is the reliable source. Keep the wrapper's
+            # number/url — that PR genuinely is what shipped the commit to prod.
+            #
+            # The old guard `^promote: staging` never fired: real wrapper titles
+            # start with `promote(<slug>):`, and skipping was the wrong remedy
+            # anyway — it would have dropped the production row entirely.
+            case "$PR_HEAD" in
+              promote/*)
+                PR_TITLE=""
+                PR_BODY=""
+                AUTHOR=""
+                echo "  → promote wrapper (#${PR_NUMBER:-?} on $PR_HEAD); using the commit's own subject"
+                ;;
+            esac
+
+            # Fall back to commit-level metadata when no usable PR title exists
+            # (promote wrapper above; also direct pushes, rare but harmless).
             if [ -z "$PR_TITLE" ]; then PR_TITLE=$(git log -1 --pretty=%s "$SHA"); fi
             if [ -z "$AUTHOR" ];   then AUTHOR=$(git log -1 --pretty=%an "$SHA"); fi
-
-            # Skip the promote PR itself — its title is "promote: staging → main"
-            # and carries no slug. The constituent commits we're walking are
-            # what we want; the wrapper PR is noise.
-            if echo "$PR_TITLE" | grep -Eq '^promote: staging'; then
-              echo "  → skipping promote wrapper PR title (carries no slug)"
-              continue
-            fi
 
             # Diff against the commit's first parent. For squash-merge commits
             # this is the diff of the original PR.
