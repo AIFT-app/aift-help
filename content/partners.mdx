@@ -112,6 +112,10 @@ Every bank transaction from this partner is booked to this category **when it ha
 
 This is pure categorisation. It does not touch matching, and it does not mark anything **No invoice needed** — those are separate decisions, made under [Transaction types](/transaction-types).
 
+#### Fixed payment method
+
+A third rule sits beside these two, for partners whose invoices state the wrong payment method — most often a card payment reported as cash, which closes the invoice and keeps it out of matching. It is set the same way, but unlike the categories it is **forward-only** and has no retroactive run. See [Fixing a Partner's Payment Method](/fixed-payment-method).
+
 #### Your own edits always win
 
 Neither rule ever overwrites a category a person set by hand. An invoice line you categorised yourself keeps your category; a transaction you categorised yourself is left alone. This holds for the automatic rule and for the retroactive run below.

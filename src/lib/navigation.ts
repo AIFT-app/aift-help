@@ -33,6 +33,14 @@ export const navigation: NavItem[] = [
   },
   { slug: 'partners', title: { en: 'Managing Partners', hu: 'Partnerek kezelése', de: 'Partner verwalten' } },
   {
+    slug: 'fixed-payment-method',
+    title: {
+      en: "Fixing a Partner's Payment Method",
+      hu: 'A partner fizetési módjának rögzítése',
+      de: 'Die Zahlungsart eines Partners festlegen',
+    },
+  },
+  {
     slug: 'master-data-import',
     title: { en: 'Importing Master Data', hu: 'Törzsadatok importálása', de: 'Stammdaten importieren' },
   },
