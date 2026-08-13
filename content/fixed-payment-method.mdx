@@ -1,0 +1,83 @@
+# Fixing a Partner's Payment Method
+
+Some suppliers report the wrong payment method on their invoices. The most common case in Hungary: a purchase you paid **by card** is reported to NAV as **cash**. AI Finance Team believes the invoice, closes it as settled, and the real card debit on your bank statement is then left with nothing to match against — for as long as you keep buying from that supplier.
+
+**Fixed payment method** lets you tell the system the truth about one partner, once. From then on, their invoices use the method you set instead of the one on the document.
+
+## Why this matters
+
+The payment method on an invoice is not just a label. AI Finance Team reads **cash** as *already settled*: the invoice is closed, and closed invoices are deliberately kept out of matching, because there is no bank payment to find.
+
+That is correct for a genuine cash purchase. When the method is wrong, three things go wrong together:
+
+- the invoice is marked **Cash** and disappears from the matching queue,
+- the matching bank transaction stays unmatched forever, and
+- the partner's balance never clears, because as far as the ledger is concerned the invoice was paid in cash and the card debit is a separate, unexplained payment.
+
+Setting the real method fixes all three at once. There is no separate "send it to matching" switch — an invoice whose method is not cash simply stays open and goes through matching like any other.
+
+## When to use it
+
+Use it when the mislabel is **consistent for that partner** — every invoice from them says cash, and every payment to them is on the bank statement. That is the pattern this feature is for, and it is usually a quirk of the supplier's till or invoicing software rather than a mistake anyone made.
+
+Do **not** use it for a one-off. If a partner you normally pay by transfer paid cash once (or the reverse), correct that single invoice's payment status instead — see [Fixing invoices you already have](#fixing-invoices-you-already-have) below.
+
+> **It works in the other direction too.** If a partner's invoices say *transfer* but you always pay them from the till, set the method to **Cash** and their invoices are closed on arrival instead of waiting for a bank payment that will never come.
+
+---
+
+## Setting the method
+
+The setting lives on the partner, next to the two fixed-category rules.
+
+1. Go to **Master data → Partners** and open the partner.
+2. Scroll to **Fixed payment method**.
+3. Choose the method you actually use with this partner — Bank transfer, Bank card, Cash, Voucher, or Other.
+4. Click **Save**.
+
+Only users with the **Accountant** or **Accountant admin** role can set it. Leaving it on **None** means no rule: the invoice's own payment method is used, exactly as before.
+
+## It only affects invoices that arrive later
+
+This is the most important thing to know about the rule, and it is deliberate.
+
+**Saving a fixed payment method changes nothing that is already in the system.** It applies only to invoices that arrive *after* the moment you save. There is no "run on existing records" button here, unlike the fixed-category rules.
+
+The reason is that a payment method is a statement about something that already happened. Re-writing it across months of history would silently change invoices your accountant has already reviewed — and possibly already sent to the office. So the rule looks forward only, and the invoices you already have stay exactly as they are until a person decides otherwise.
+
+Changing the method later re-starts the clock: invoices that arrived between the two saves keep whatever they were given at the time. Clearing it back to **None** stops the rule for future invoices and, again, leaves everything existing untouched.
+
+### Fixing invoices you already have
+
+For the invoices that are already stuck as **Cash**, correct them one at a time:
+
+1. Open the invoice.
+2. On the **Payments** tab, change the payment status from **Cash** to **Open**.
+
+That is all. Re-opening an invoice puts it straight back into matching, and if the bank transaction is already in the system the two are usually paired up within a minute or so, with no need to run matching by hand.
+
+If a partner has more than a handful of stuck invoices, set the fixed payment method first — that stops the list growing — and then work through the existing ones.
+
+---
+
+## What you will see afterwards
+
+On an invoice where the rule applied, the **Payments** tab shows the method you set, with a small **partner rule** note beside it. That note is there so the method does not look like a bug: on a NAV invoice you may well see **Bank card** on the Payments tab while the document itself says cash.
+
+Nothing is hidden. The **NAV view** of the invoice still renders the supplier's original report exactly as it was filed, payment method included, so you can always see what was actually reported and compare it against what you decided.
+
+## Your own decisions always win
+
+The rule never overrules a person.
+
+If you have set an invoice's payment status by hand — re-opening a cash invoice, or marking one paid — that decision is permanent. Nothing in the automatic pipeline will change it back, not the partner rule and not a later refresh of the invoice from NAV.
+
+> **This also fixes an older annoyance.** Before this feature, re-opening a NAV cash invoice could be silently undone the next time that invoice was refreshed from NAV, and it would quietly close itself again. Your override now sticks.
+
+---
+
+## Related
+
+- [Managing Partners](/partners) — the rest of the partner detail page, including the two fixed-category rules that sit beside this one.
+- [Invoice Matching](/invoice-matching) — what happens once an invoice is open and looking for its payment.
+- [NAV Online Számla](/nav-online-szamla) — where invoice data comes from for Hungarian workspaces, and what NAV does and does not report.

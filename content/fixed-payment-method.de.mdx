@@ -1,0 +1,83 @@
+# Die Zahlungsart eines Partners festlegen
+
+Manche Lieferanten geben auf ihren Rechnungen die falsche Zahlungsart an. Der häufigste Fall in Ungarn: Ein **per Karte** bezahlter Einkauf wird NAV als **Barzahlung** gemeldet. AI Finance Team glaubt der Rechnung, schließt sie als beglichen ab — und die tatsächliche Kartenbelastung auf Ihrem Kontoauszug findet nichts mehr, womit sie sich abgleichen ließe. Und das bei jedem weiteren Einkauf bei diesem Lieferanten.
+
+Mit der **festen Zahlungsart** teilen Sie dem System einmalig die Wahrheit über einen Partner mit. Ab dann verwenden dessen Rechnungen die von Ihnen gesetzte Zahlungsart statt der auf dem Beleg angegebenen.
+
+## Warum das wichtig ist
+
+Die Zahlungsart auf einer Rechnung ist nicht bloß ein Etikett. AI Finance Team liest **Bar** als *bereits beglichen*: Die Rechnung wird geschlossen, und geschlossene Rechnungen bleiben bewusst vom Abgleich ausgenommen — es gibt ja keine Bankzahlung zu suchen.
+
+Bei einem echten Bareinkauf ist das richtig. Ist die Zahlungsart falsch, geht dreierlei zugleich schief:
+
+- die Rechnung wird als **Bar** markiert und verschwindet aus der Abgleich-Warteschlange,
+- die zugehörige Banktransaktion bleibt für immer offen,
+- der Partnersaldo gleicht sich nie aus, denn buchhalterisch gilt die Rechnung als bar bezahlt und die Kartenbelastung als separate, ungeklärte Zahlung.
+
+Die richtige Zahlungsart behebt alle drei auf einmal. Es gibt keinen zusätzlichen Schalter „in den Abgleich geben“ — eine Rechnung, deren Zahlungsart nicht Bar ist, bleibt einfach offen und durchläuft den Abgleich wie jede andere.
+
+## Wann Sie sie verwenden sollten
+
+Verwenden Sie sie, wenn die Falschangabe **bei diesem Partner durchgängig** ist — jede Rechnung nennt Barzahlung, und jede Zahlung an ihn steht auf dem Kontoauszug. Für dieses Muster ist die Funktion gedacht, und es ist meist eine Eigenheit der Kasse oder Rechnungssoftware des Lieferanten, nicht der Fehler einer Person.
+
+Für einen Einzelfall **nicht** verwenden. Hat ein sonst per Überweisung bezahlter Partner einmal Bargeld erhalten (oder umgekehrt), korrigieren Sie stattdessen den Zahlungsstatus dieser einen Rechnung — siehe [Bereits vorhandene Rechnungen korrigieren](#bereits-vorhandene-rechnungen-korrigieren) weiter unten.
+
+> **Es funktioniert auch in die andere Richtung.** Nennen die Rechnungen eines Partners *Überweisung*, Sie zahlen ihn aber immer aus der Kasse, setzen Sie die Zahlungsart auf **Bar** — dann werden seine Rechnungen bei Eingang geschlossen, statt auf eine Bankzahlung zu warten, die nie kommt.
+
+---
+
+## Die Zahlungsart setzen
+
+Die Einstellung sitzt beim Partner, neben den beiden festen Kategorieregeln.
+
+1. Öffnen Sie **Stammdaten → Partner** und darin den Partner.
+2. Scrollen Sie zu **Feste Zahlungsart**.
+3. Wählen Sie die Zahlungsart, die Sie mit diesem Partner tatsächlich verwenden: Überweisung, Bankkarte, Bar, Gutschein oder Sonstige.
+4. Klicken Sie auf **Speichern**.
+
+Nur Benutzer mit der Rolle **Buchhalter** oder **Buchhalter-Admin** können sie setzen. **Keine** bedeutet: keine Regel — es gilt die Zahlungsart der Rechnung selbst, genau wie bisher.
+
+## Sie wirkt nur auf später eingehende Rechnungen
+
+Das ist das Wichtigste an dieser Regel, und es ist Absicht.
+
+**Das Speichern einer festen Zahlungsart ändert nichts an dem, was bereits im System ist.** Sie gilt ausschließlich für Rechnungen, die *nach* dem Speichern eingehen. Anders als bei den festen Kategorieregeln gibt es hier keine Schaltfläche „Auf vorhandene Datensätze anwenden“.
+
+Der Grund: Eine Zahlungsart ist eine Aussage über etwas bereits Geschehenes. Sie rückwirkend über Monate hinweg umzuschreiben, würde unbemerkt Rechnungen verändern, die Ihre Buchhaltung bereits geprüft — und womöglich schon an das Büro übermittelt — hat. Deshalb wirkt die Regel nur nach vorn, und Ihre vorhandenen Rechnungen bleiben genau so, wie sie sind, bis ein Mensch anders entscheidet.
+
+Ändern Sie die Zahlungsart später, beginnt die Frist neu: Rechnungen, die zwischen den beiden Speichervorgängen eingingen, behalten, was sie damals bekommen haben. Setzen Sie sie zurück auf **Keine**, endet die Regel für künftige Rechnungen — und lässt wiederum alles Vorhandene unberührt.
+
+### Bereits vorhandene Rechnungen korrigieren
+
+Die Rechnungen, die als **Bar** feststecken, korrigieren Sie einzeln:
+
+1. Öffnen Sie die Rechnung.
+2. Ändern Sie im Reiter **Zuordnung & Zahlung** den Zahlungsstatus von **Bar** auf **Offen**.
+
+Das ist alles. Eine wieder geöffnete Rechnung geht sofort zurück in den Abgleich, und liegt die Banktransaktion bereits im System, finden die beiden in der Regel innerhalb einer Minute zueinander — einen Abgleich von Hand zu starten ist nicht nötig.
+
+Hat ein Partner mehr als eine Handvoll feststeckender Rechnungen, setzen Sie zuerst die feste Zahlungsart — das stoppt das Anwachsen der Liste — und arbeiten Sie danach die vorhandenen ab.
+
+---
+
+## Was Sie danach sehen
+
+Auf einer Rechnung, bei der die Regel gegriffen hat, zeigt der Reiter **Zuordnung & Zahlung** die von Ihnen gesetzte Zahlungsart, daneben den kleinen Hinweis *gemäß fester Zahlungsart des Partners*. Dieser Hinweis steht dort, damit die Zahlungsart nicht wie ein Fehler wirkt: Bei einer NAV-Rechnung kann durchaus **Bankkarte** im Reiter stehen, während der Beleg selbst Barzahlung nennt.
+
+Nichts wird verborgen. Die **NAV-Ansicht** der Rechnung gibt die ursprüngliche Meldung des Lieferanten weiterhin exakt so wieder, wie sie eingereicht wurde — Zahlungsart inklusive. So können Sie jederzeit nachsehen, was tatsächlich gemeldet wurde, und es mit Ihrer Entscheidung vergleichen.
+
+## Ihre eigenen Entscheidungen gewinnen immer
+
+Die Regel überstimmt niemals einen Menschen.
+
+Haben Sie den Zahlungsstatus einer Rechnung von Hand gesetzt — eine Bar-Rechnung wieder geöffnet oder eine als bezahlt markiert —, ist diese Entscheidung endgültig. Nichts in der automatischen Verarbeitung setzt sie zurück: weder die Partnerregel noch eine spätere Aktualisierung der Rechnung aus NAV.
+
+> **Damit ist auch ein altes Ärgernis erledigt.** Bisher konnte das Wiederöffnen einer NAV-Bar-Rechnung bei der nächsten Aktualisierung aus NAV unbemerkt rückgängig gemacht werden, und die Rechnung schloss sich stillschweigend erneut. Ihre Änderung bleibt jetzt bestehen.
+
+---
+
+## Verwandte Themen
+
+- [Partner verwalten](/partners) — der Rest der Partnerdetailseite, einschließlich der beiden festen Kategorieregeln daneben.
+- [Rechnungsabgleich](/invoice-matching) — was passiert, sobald eine Rechnung offen ist und ihre Zahlung sucht.
+- [NAV Online Számla](/nav-online-szamla) — woher die Rechnungsdaten in ungarischen Arbeitsbereichen stammen und was NAV meldet und was nicht.

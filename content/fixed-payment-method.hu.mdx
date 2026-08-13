@@ -1,0 +1,83 @@
+# A partner fizetési módjának rögzítése
+
+Egyes szállítók rossz fizetési módot tüntetnek fel a számláikon. Magyarországon a leggyakoribb eset: a **bankkártyával** kifizetett vásárlást **készpénzesként** jelentik a NAV felé. Az AI Finance Team hisz a számlának, lezárja kiegyenlítettként, és a bankszámlakivonaton szereplő valódi kártyaterhelésnek nem marad mihez párosodnia — mindaddig, amíg az adott szállítótól vásárol.
+
+A **rögzített fizetési móddal** egyszer megmondhatja a rendszernek az igazságot egy partnerről. Ettől kezdve a partner számlái a beállított fizetési módot használják a dokumentumon szereplő helyett.
+
+## Miért fontos ez
+
+A számlán szereplő fizetési mód nem pusztán címke. Az AI Finance Team a **készpénzt** úgy értelmezi, hogy a számla *már ki van egyenlítve*: lezárja, a lezárt számlák pedig szándékosan kimaradnak a párosításból, hiszen nincs is hozzájuk keresendő banki tétel.
+
+Valódi készpénzes vásárlásnál ez helyes. Ha azonban a fizetési mód hibás, egyszerre három dolog romlik el:
+
+- a számla **Készpénzes** jelölést kap, és eltűnik a párosítási sorból,
+- a hozzá tartozó banki tranzakció örökre párosítatlan marad,
+- a partner folyószámlája sosem rendeződik, mert a könyvelés szerint a számlát készpénzzel fizették, a kártyaterhelés pedig egy külön, megmagyarázatlan kifizetés.
+
+A valódi fizetési mód beállítása mindhármat egyszerre orvosolja. Nincs külön „küldd párosításra” kapcsoló — az a számla, amelynek fizetési módja nem készpénz, egyszerűen nyitva marad, és ugyanúgy végigmegy a párosításon, mint bármelyik másik.
+
+## Mikor érdemes használni
+
+Akkor használja, ha a téves jelölés **következetes az adott partnernél** — a partner minden számlája készpénzt ír, és minden neki teljesített fizetés ott van a bankszámlakivonaton. A funkció erre a mintázatra való, és ez jellemzően a szállító pénztárgépének vagy számlázóprogramjának a sajátossága, nem pedig valakinek a hibája.
+
+Egyszeri esetre **ne** használja. Ha egy egyébként átutalással fizetett partnernél egyetlen alkalommal készpénzzel fizetett (vagy fordítva), inkább az adott számla fizetési állapotát javítsa — lásd [A már meglévő számlák javítása](#a-már-meglévő-számlák-javítása) alább.
+
+> **Fordított irányban is működik.** Ha egy partner számlái *átutalást* írnak, de Ön mindig a házipénztárból fizet, állítsa a fizetési módot **Készpénz** értékre — így a számlái beérkezéskor lezárulnak ahelyett, hogy hiába várnának egy soha meg nem érkező banki tételre.
+
+---
+
+## A fizetési mód beállítása
+
+A beállítás a partnernél található, a két rögzített kategória szabály mellett.
+
+1. Nyissa meg a **Törzsadatok → Partnerek** menüpontot, majd a partnert.
+2. Görgessen a **Rögzített fizetési mód** szakaszhoz.
+3. Válassza ki azt a fizetési módot, amelyet ténylegesen használ ennél a partnernél: Átutalás, Bankkártya, Készpénz, Utalvány vagy Egyéb.
+4. Kattintson a **Mentés** gombra.
+
+A beállítást csak **Könyvelő** vagy **Könyvelő admin** szerepkörű felhasználók végezhetik el. A **Nincs** érték azt jelenti, hogy nincs szabály: a számla saját fizetési módja érvényesül, pontosan úgy, mint eddig.
+
+## Csak a később érkező számlákra vonatkozik
+
+Ez a legfontosabb tudnivaló a szabályról, és szándékosan van így.
+
+**A rögzített fizetési mód mentése semmit nem változtat azon, ami már a rendszerben van.** Kizárólag azokra a számlákra vonatkozik, amelyek a mentés pillanata *után* érkeznek. Itt nincs „Futtatás a meglévő tételeken” gomb, ellentétben a rögzített kategória szabályokkal.
+
+Ennek az az oka, hogy a fizetési mód egy már megtörtént dologról szóló állítás. Ha visszamenőleg átírnánk hónapok anyagán, azzal észrevétlenül módosítanánk olyan számlákat, amelyeket a könyvelő már átnézett — és akár már el is küldött az irodának. Ezért a szabály csak előre hat, a meglévő számlái pedig pontosan úgy maradnak, ahogy vannak, amíg valaki másképp nem dönt.
+
+A fizetési mód későbbi módosítása újraindítja az órát: a két mentés között érkezett számlák megtartják azt, amit annak idején kaptak. Ha visszaállítja **Nincs** értékre, a szabály a jövőbeli számlákra nézve megszűnik, a meglévőket pedig szintén érintetlenül hagyja.
+
+### A már meglévő számlák javítása
+
+A **Készpénzes** állapotban ragadt számlákat egyesével javítsa:
+
+1. Nyissa meg a számlát.
+2. A **Párosítás & fizetés** fülön állítsa át a fizetési állapotot **Készpénzes** értékről **Nyitott** értékre.
+
+Ennyi. Az újranyitott számla azonnal visszakerül a párosításba, és ha a banki tranzakció már a rendszerben van, a kettő jellemzően egy percen belül összeáll — kézzel nem kell párosítást indítania.
+
+Ha egy partnernél néhánynál több ragadt számla van, először a rögzített fizetési módot állítsa be — ez megállítja a lista növekedését —, és utána vegye végig a meglévőket.
+
+---
+
+## Mit fog látni utána
+
+Azon a számlán, ahol a szabály érvényesült, a **Párosítás & fizetés** fülön a beállított fizetési mód jelenik meg, mellette pedig egy apró *a partner rögzített fizetési módja alapján* megjegyzés. Ez azért van ott, hogy a fizetési mód ne tűnjön hibának: egy NAV-os számlánál könnyen előfordulhat, hogy a fülön **Bankkártya** szerepel, miközben maga a dokumentum készpénzt ír.
+
+Semmi nem tűnik el. A számla **NAV nézete** továbbra is pontosan úgy jeleníti meg a szállító eredeti adatszolgáltatását — a fizetési móddal együtt —, ahogyan az beérkezett, így bármikor összevetheti a ténylegesen jelentett adatot a saját döntésével.
+
+## Az Ön döntése mindig erősebb
+
+A szabály soha nem írja felül az embert.
+
+Ha egy számla fizetési állapotát kézzel állította be — újranyitott egy készpénzes számlát, vagy kiegyenlítettre jelölt egyet —, az a döntés végleges. Az automatikus feldolgozásban semmi nem állítja vissza: sem a partnerszabály, sem a számla későbbi NAV-frissítése.
+
+> **Ez egy régi bosszúságot is megszüntet.** Korábban egy NAV-os készpénzes számla újranyitását észrevétlenül visszavonhatta a számla következő NAV-frissítése, és a számla csendben újra lezárta magát. Mostantól az Ön beállítása megmarad.
+
+---
+
+## Kapcsolódó
+
+- [Partnerek kezelése](/partners) — a partner részletoldalának többi része, benne a két rögzített kategória szabállyal, amelyek e mellett találhatók.
+- [Számlák párosítása](/invoice-matching) — mi történik azután, hogy egy számla nyitottá válik és keresi a kifizetését.
+- [NAV Online Számla](/nav-online-szamla) — honnan érkeznek a számlaadatok a magyar munkaterületeken, és mit jelent, illetve mit nem jelent a NAV.
