@@ -118,6 +118,56 @@ Während Sie einen Musterwert eingeben, zeigt AI Finance Team, wie viele **beste
 
 ---
 
+## AIFT beibringen, welche Transaktionen eine Rechnung brauchen
+
+Muster sind nicht der einzige Weg, auf dem AIFT lernt. Jedes Mal, wenn Sie eine Transaktion als **Keine Rechnung nötig** markieren — oder die Markierung aufheben —, merkt sich AIFT die Entscheidung als **Beispiel** und zeigt sie der KI, sobald etwas Ähnliches eintrifft. Sie müssen dafür nichts tun; es sammelt sich beim Arbeiten von selbst an.
+
+Beispiele finden Sie unter **Stammdaten → Transaktionstypen → Beispiele**.
+
+### Beispiele sind keine Regeln
+
+Das ist der entscheidende Unterschied, und er sollte klar sein, bevor Sie zu einem von beiden greifen:
+
+| | **Muster** | **Beispiele** |
+|---|---|---|
+| Woher sie kommen | Sie schreiben sie | Automatisch aus Ihren eigenen Markierungen und Rücknahmen |
+| Was sie tun | Harte Regel — ein Treffer wird sofort zugeordnet, ohne KI | Ein Hinweis, den die KI neben allem anderen abwägt |
+| Wenn einer falsch ist | Transaktionen werden still falsch zugeordnet | Die KI kann sich dagegen entscheiden |
+| Kann „hierfür **braucht** es eine Rechnung“ ausdrücken | Nein | **Ja** |
+
+Nutzen Sie ein **Muster**, wenn Sie den genauen Wortlaut der Bank kennen und eine deterministische Behandlung wollen — und prüfen Sie vor dem Speichern die Live-Trefferschau, denn ein weites Muster fängt auch Unbeabsichtigtes ein. Für alles andere sind **Beispiele** da: Ihre täglichen Korrekturen bauen sie von allein auf.
+
+### Das Gegenteil beibringen: „hierfür braucht es eine Rechnung“
+
+Wenn Sie eine Markierung **Keine Rechnung nötig** zurücknehmen, hält AIFT das als Beispiel **Rechnung erforderlich** fest — als Veto. Die KI lässt ähnliche Transaktionen dann in Ruhe, selbst wenn der Wortlaut rechnungsfrei aussieht.
+
+Das löst die Beinahe-Treffer. Ungarische Bankentexte sind voll davon: eine Regel für *fizetés* (Lohnzahlung) liest auch *kifizetés* (eine Auszahlung), und *adó* steckt in etlichen ganz gewöhnlichen Firmennamen. Statt jedes dieser Wörter in einem Muster zu umschiffen, nehmen Sie die falsche Markierung einmal zurück — AIFT lernt die Ausnahme.
+
+### Was ein Beispiel zeigt
+
+| Spalte | Bedeutung |
+|--------|-----------|
+| **Partner** | Der Partner, auf den das Beispiel passt |
+| **Beschreibung** | Text, den die Transaktion enthalten soll |
+| **Entscheidung** | **Keine Rechnung nötig** (mit dem Typ darunter) oder **Rechnung erforderlich** |
+| **Transaktionstyp** | Der anzuwendende Typ — bei *Rechnung erforderlich* leer |
+| **Quelle** | **Automatisch gelernt** (aus Ihrer Markierung) oder **Manuell** (von Ihnen angelegt) |
+| **Vorkommen** | Wie viele Transaktionen Sie so entschieden haben |
+
+Wiederholte Entscheidungen zum selben Partner fallen in ein Beispiel mit steigendem **Vorkommen**-Zähler zusammen, statt einer Zeile pro Transaktion — so bleibt die Liste auch nach ein paar hundert Bankgebühren lesbar.
+
+### Ein Beispiel von Hand anlegen
+
+Mit **+ Beispiel hinzufügen** bringen Sie AIFT etwas bei, bevor es ihm organisch begegnet ist — praktisch beim Onboarding eines Mandanten, dessen wiederkehrende Posten Sie bereits kennen. Wählen Sie **Keine Rechnung nötig** mit einem Typ, oder **Rechnung erforderlich** für ein Veto.
+
+**Ihre jüngste Entscheidung gilt.** Markieren Sie ein Muster als rechnungsfrei und nehmen das später zurück, kippt das Beispiel — es behält nicht beide Antworten.
+
+**Änderungen wirken nach vorn.** Ein neues oder geändertes Beispiel greift beim nächsten Klassifizierungslauf; bereits verarbeitete Transaktionen werden nicht neu bewertet.
+
+> Beispiele gelten je Mandant, werden nie zwischen Mandanten geteilt und sind nur für Buchhalter sichtbar.
+
+---
+
 ## Kennzeichnungen in der Transaktionsliste
 
 Auf der Seite **Transaktionen** kann jede Zeile ein oder mehrere Labels zeigen:
@@ -146,5 +196,7 @@ Auch ohne passendes Muster kann ein Buchhalter jede offene Transaktion direkt im
 3. Die Transaktion wird sofort als **Keine Rechnung nötig** markiert.
 
 Zum Rückgängigmachen klicken Sie auf **Rückgängig — als offen markieren**. Die Transaktion kehrt in den offenen Zustand zurück.
+
+Sowohl die Markierung als auch die Rücknahme werden gemerkt — siehe oben [AIFT beibringen, welche Transaktionen eine Rechnung brauchen](#aift-beibringen-welche-transaktionen-eine-rechnung-brauchen). Nach ein paar gleichartigen Markierungen erledigt AIFT den Rest meist von selbst.
 
 > Nur **Buchhalter** und **Buchhalter-Admin** können Transaktionen markieren oder die Markierung aufheben. Mandanten sehen das Label, können es aber nicht ändern.

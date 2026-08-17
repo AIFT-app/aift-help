@@ -1,4 +1,4 @@
-# How AIFT Learns Your Categorization Preferences
+# How AIFT Learns From Your Corrections
 
 AI Finance Team gets better at categorising each client's invoices and bank transactions the more you use it. Behind that is a simple idea: **a correction you make today becomes an example the AI follows tomorrow.** The **Categorization Examples** page lets you see, edit, and add to what AIFT has learned — per client, never shared across clients.
 
@@ -16,8 +16,9 @@ Examples live next to the categories they belong to, under **Master Data**:
 
 - **Invoice categories** → open the **Examples** tab for invoice line-item examples.
 - **Cash categories** → open the **Examples** tab for bank-transaction examples.
+- **Transaction types** → open the **Examples** tab for what AIFT has learned about which transactions need no invoice at all. See [Transaction Types & No Invoice Needed](/transaction-types) for that one.
 
-Each page has two tabs at the top: **Categories** (the list you already know) and **Examples**.
+Each page has two tabs at the top: the list you already know, and **Examples**.
 
 > Examples are visible to accountants only, because they show where the AI was corrected.
 
@@ -28,6 +29,7 @@ Each page has two tabs at the top: **Categories** (the list you already know) an
 | **Partner** | The partner the example matches on (optional) |
 | **Description** | Text the invoice line or transaction should contain (optional) |
 | **Category** | The category AIFT should apply |
+| **Verdict** | Transaction-type examples only: **No invoice needed** or **Needs an invoice** |
 | **Source** | **Auto-learned** (from a real correction) or **Manual** (you added it) |
 | **Times seen** | How often this pattern has come up |
 | **Last updated** | When the example last changed |
@@ -51,6 +53,9 @@ An example needs a partner **or** a description to match on, plus the category t
 
 Workspace admins can set **Examples used per AI request** (between 10 and 100, default 30) in the Examples tab header. More examples can improve accuracy but increase the AI cost of each categorisation request, and very large lists give diminishing returns — so the default of 30 is a sensible starting point for most clients.
 
+This is **one setting covering all three kinds of example** — invoice categories, cash categories, and transaction types. Turning it down to control categorisation cost also gives the AI fewer transaction-type examples to work from. Setting it to **0** switches learning off entirely for the client.
+
 ## Related
 
 - [Categorising Invoices & Transactions](/categorization) — how the AI assigns categories in the first place.
+- [Transaction Types & No Invoice Needed](/transaction-types) — the same learning loop, applied to which transactions need a document at all.
