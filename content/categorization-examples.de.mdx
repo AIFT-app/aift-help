@@ -1,4 +1,4 @@
-# Wie AIFT Ihre Kategorisierungsvorlieben lernt
+# Wie AIFT aus Ihren Korrekturen lernt
 
 AI Finance Team kategorisiert die Rechnungen und Banktransaktionen jedes Mandanten umso besser, je mehr Sie es nutzen. Dahinter steckt eine einfache Idee: **Eine Korrektur, die Sie heute vornehmen, wird morgen zu einem Beispiel, dem die KI folgt.** Auf der Seite **Kategorisierungsbeispiele** können Sie ansehen, bearbeiten und ergänzen, was AIFT gelernt hat — je Mandant, niemals mandantenübergreifend geteilt.
 
@@ -16,8 +16,9 @@ Die Beispiele liegen direkt bei den Kategorien, zu denen sie gehören, unter **S
 
 - **Rechnungskategorien** → öffnen Sie den Reiter **Beispiele** für Beispiele zu Rechnungspositionen.
 - **Cashflow-Kategorien** → öffnen Sie den Reiter **Beispiele** für Beispiele zu Banktransaktionen.
+- **Transaktionstypen** → öffnen Sie den Reiter **Beispiele** für das, was AIFT darüber gelernt hat, welche Transaktionen gar keine Rechnung brauchen. Mehr dazu unter [Transaktionstypen und „Keine Rechnung nötig“](/transaction-types).
 
-Jede Seite hat oben zwei Reiter: **Kategorien** (die Liste, die Sie bereits kennen) und **Beispiele**.
+Jede Seite hat oben zwei Reiter: die Liste, die Sie bereits kennen, und **Beispiele**.
 
 > Beispiele sind nur für Buchhalter sichtbar, weil sie zeigen, wo die KI korrigiert wurde.
 
@@ -28,6 +29,7 @@ Jede Seite hat oben zwei Reiter: **Kategorien** (die Liste, die Sie bereits kenn
 | **Partner** | Der Partner, auf den das Beispiel zutrifft (optional) |
 | **Beschreibung** | Text, den die Rechnungsposition oder Transaktion enthalten soll (optional) |
 | **Kategorie** | Die Kategorie, die AIFT anwenden soll |
+| **Entscheidung** | Nur bei Transaktionstyp-Beispielen: **Keine Rechnung nötig** oder **Rechnung erforderlich** |
 | **Quelle** | **Automatisch gelernt** (aus einer echten Korrektur) oder **Manuell** (von Ihnen angelegt) |
 | **Vorkommen** | Wie oft dieses Muster aufgetreten ist |
 | **Aktualisiert** | Wann sich das Beispiel zuletzt geändert hat |
@@ -51,6 +53,9 @@ Ein Beispiel braucht einen Partner **oder** eine Beschreibung zum Abgleichen, da
 
 Administratoren des Arbeitsbereichs können in der Kopfzeile des Reiters Beispiele die **je KI-Anfrage verwendeten Beispiele** einstellen (zwischen 10 und 100, Standard 30). Mehr Beispiele können die Genauigkeit verbessern, erhöhen aber die KI-Kosten jeder Kategorisierungsanfrage, und sehr große Listen bringen immer weniger Zusatznutzen — der Standardwert 30 ist daher für die meisten Mandanten ein sinnvoller Ausgangspunkt.
 
+Es handelt sich um **eine Einstellung für alle drei Beispielarten** — Rechnungskategorien, Cashflow-Kategorien und Transaktionstypen. Wer sie wegen der Kategorisierungskosten senkt, gibt der KI auch weniger Transaktionstyp-Beispiele an die Hand. Bei **0** ist das Lernen für diesen Mandanten ganz abgeschaltet.
+
 ## Verwandte Artikel
 
 - [Rechnungen & Transaktionen kategorisieren](/categorization) — wie die KI überhaupt Kategorien vergibt.
+- [Transaktionstypen und „Keine Rechnung nötig“](/transaction-types) — dieselbe Lernschleife, angewendet auf die Frage, welche Transaktionen überhaupt einen Beleg brauchen.
