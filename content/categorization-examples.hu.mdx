@@ -1,4 +1,4 @@
-# Hogyan tanulja meg az AIFT a kategorizálási szokásait
+# Hogyan tanul az AIFT a javításaiból
 
 Az AI Finance Team annál jobban kategorizálja az egyes ügyfelek számláit és banki tranzakcióit, minél többet használja. Egyszerű gondolat áll mögötte: **a ma elvégzett javításból holnapra példa lesz, amelyet az AI követ.** A **Kategorizálási példák** oldalon megnézheti, szerkesztheti és bővítheti azt, amit az AIFT megtanult — ügyfelenként külön, sosem ügyfelek között megosztva.
 
@@ -16,8 +16,9 @@ A példák a hozzájuk tartozó kategóriák mellett élnek, a **Törzsadatok** 
 
 - **Számla kategóriák** → nyissa meg a **Példák** fület a számlatétel-példákhoz.
 - **Pénzforgalmi kategóriák** → nyissa meg a **Példák** fület a banki tranzakciós példákhoz.
+- **Tranzakciótípusok** → nyissa meg a **Példák** fület ahhoz, amit az AIFT arról tanult, hogy mely tranzakciókhoz nem kell számla. Erről bővebben: [Tranzakciótípusok és a „Nincs szükség számlára”](/transaction-types).
 
-Mindkét oldal tetején két fül található: **Kategóriák** (a már ismert lista) és **Példák**.
+Minden oldal tetején két fül található: a már ismert lista és a **Példák**.
 
 > A példákat csak könyvelők látják, mert azt mutatják, hol javították az AI-t.
 
@@ -28,6 +29,7 @@ Mindkét oldal tetején két fül található: **Kategóriák** (a már ismert l
 | **Partner** | A partner, amelyre a példa illeszkedik (opcionális) |
 | **Leírás** | Szöveg, amelyet a számlatételnek vagy tranzakciónak tartalmaznia kell (opcionális) |
 | **Kategória** | A kategória, amelyet az AIFT alkalmazzon |
+| **Döntés** | Csak tranzakciótípus-példáknál: **Nincs szükség számlára** vagy **Számla szükséges** |
 | **Forrás** | **Automatikusan tanult** (valódi javításból) vagy **Kézi** (Ön vette fel) |
 | **Előfordulások** | Hányszor fordult elő ez a minta |
 | **Módosítva** | Mikor változott utoljára a példa |
@@ -51,6 +53,9 @@ Egy példához partner **vagy** leírás kell az illesztéshez, plusz az alkalma
 
 A munkaterület-adminisztrátorok a Példák fül fejlécében beállíthatják az **AI-kérésenként felhasznált példák** számát (10 és 100 között, alapértelmezés 30). Több példa javíthatja a pontosságot, de növeli minden egyes kategorizálási kérés AI-költségét, a nagyon nagy listák pedig egyre kevesebb többletet adnak — így a 30-as alapérték a legtöbb ügyfélnél észszerű kiindulópont.
 
+Ez **egyetlen beállítás, amely mindhárom példatípusra vonatkozik**: a számla kategóriákra, a pénzforgalmi kategóriákra és a tranzakciótípusokra. Ha a kategorizálási költség miatt csökkenti, azzal az AI tranzakciótípus-példáit is megritkítja. **0** értéken a tanulás teljesen kikapcsol az adott ügyfélnél.
+
 ## Kapcsolódó cikkek
 
 - [Számlák és tranzakciók kategorizálása](/categorization) — hogyan rendel az AI egyáltalán kategóriát.
+- [Tranzakciótípusok és a „Nincs szükség számlára”](/transaction-types) — ugyanez a tanulási kör arra alkalmazva, hogy mely tranzakciókhoz kell egyáltalán bizonylat.
