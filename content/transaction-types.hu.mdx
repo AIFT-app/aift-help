@@ -118,6 +118,56 @@ Ahogy beír egy mintaértéket, az AI Finance Team megmutatja, hány **meglévő
 
 ---
 
+## Hogyan tanítja meg az AIFT-nek, hogy mely tranzakciókhoz kell számla
+
+Nem a minták az egyetlen módja annak, hogy az AIFT tanuljon. Valahányszor megjelöl egy tranzakciót **Nincs szükség számlára** jelöléssel — vagy visszavonja azt —, a rendszer **példaként** megjegyzi a döntést, és legközelebb megmutatja az AI-nak, amikor hasonló tétel érkezik. Ehhez nem kell külön tennie semmit: munka közben magától gyűlik.
+
+A példákat a **Törzsadatok → Tranzakciótípusok → Példák** menüpontban találja.
+
+### A példák nem szabályok
+
+Ez a lényegi különbség, és érdemes tisztázni, mielőtt bármelyikhez nyúlna:
+
+| | **Minták** | **Példák** |
+|---|---|---|
+| Honnan származnak | Ön írja meg őket | A saját megjelöléseiből és visszavonásaiból, automatikusan |
+| Mit csinálnak | Kemény szabály — a találat azonnal besorolódik, AI nélkül | Támpont, amelyet az AI a tranzakció többi jellemzőjével együtt mérlegel |
+| Ha téves | A tranzakciók csendben rosszul sorolódnak be | Az AI dönthet ellene |
+| Kimondható vele, hogy „ehhez **kell** számla” | Nem | **Igen** |
+
+**Mintát** akkor használjon, ha ismeri a pontos banki szöveget, és determinisztikus kezelést szeretne — mentés előtt nézze meg az élő találati előnézetet, mert egy túl tág minta olyat is elkap, amit nem szeretne. Minden másra a **példák** valók: ezeket a napi javításai maguktól építik fel.
+
+### Az ellenkezőjének tanítása: „ehhez kell számla”
+
+Amikor visszavonja egy **Nincs szükség számlára** jelölést, az AIFT ezt **Számla szükséges** példaként rögzíti — vagyis vétóként. Az AI ezután akkor sem nyúl a hasonló tranzakciókhoz, ha a szöveg egyébként számlamentesnek látszik.
+
+Ez a megoldás a hasonló szavak okozta tévesztésekre. A magyar banki szövegek tele vannak ilyenekkel: a *fizetés* szóra írt szabály a *kifizetés* szót is elkapja, az *adó* pedig rengeteg hétköznapi cégnévben előfordul. Ahelyett, hogy minden ilyen esetre külön mintát fogalmazna, egyszer vonja vissza a téves jelölést — az AIFT megtanulja a kivételt.
+
+### Mit mutat egy példa
+
+| Oszlop | Jelentés |
+|--------|----------|
+| **Partner** | A partner, amelyre a példa illeszkedik |
+| **Leírás** | A szöveg, amelyet a tranzakciónak tartalmaznia kell |
+| **Döntés** | **Nincs szükség számlára** (az alábbi típussal) vagy **Számla szükséges** |
+| **Tranzakciótípus** | Az alkalmazandó típus — *Számla szükséges* példánál üres |
+| **Forrás** | **Automatikus** (a jelöléséből) vagy **Kézi** (Ön vette fel) |
+| **Előfordulások** | Hány tranzakciót bírált el így |
+
+Az ugyanarra a partnerre vonatkozó ismételt döntések egyetlen példába olvadnak össze, növekvő **Előfordulások** számmal — nem tranzakciónként egy sor —, így a lista néhány száz banki díj után is áttekinthető marad.
+
+### Példa felvétele kézzel
+
+A **+ Példa hozzáadása** gombbal még azelőtt megtaníthat valamit az AIFT-nek, hogy az magától találkozott volna vele — hasznos egy új ügyfél indításakor, ha már ismeri a visszatérő tételeit. Válassza a **Nincs szükség számlára** lehetőséget egy típussal, vagy a **Számla szükséges** lehetőséget vétóhoz.
+
+**A legutóbbi döntése az érvényes.** Ha egy mintát előbb számlamentesnek jelöl, majd később visszavonja, a példa átfordul — nem őrzi meg mindkét választ.
+
+**A változások előremutatóan érvényesek.** Az új vagy módosított példa a következő besorolási futásra hat; a már feldolgozott tranzakciókat nem bírálja felül.
+
+> A példák ügyfelenként külön élnek, sosem oszlanak meg az ügyfelek között, és csak könyvelők látják őket.
+
+---
+
 ## Címkék a tranzakciólistán
 
 A **Tranzakciók** oldalon minden sor egy vagy több címkét mutathat:
@@ -146,5 +196,7 @@ Illeszkedő minta nélkül is megjelölhet egy könyvelő bármely párosítatla
 3. A tranzakció azonnal **Nincs szükség számlára** jelölést kap.
 
 A visszavonáshoz kattintson a **Visszavonás — jelölés párosítatlanként** gombra. A tranzakció visszakerül párosítatlan állapotba.
+
+A jelölést és a visszavonást is megjegyzi a rendszer — lásd fentebb: [Hogyan tanítja meg az AIFT-nek, hogy mely tranzakciókhoz kell számla](#hogyan-tanítja-meg-az-aift-nek-hogy-mely-tranzakciókhoz-kell-számla). Néhány hasonló tétel megjelölése után az AIFT általában magától kezeli a többit.
 
 > Csak a **Könyvelő** és **Könyvelő admin** felhasználók jelölhetik meg vagy vonhatják vissza a tranzakciókat. Az ügyfelek látják a címkét, de nem módosíthatják.

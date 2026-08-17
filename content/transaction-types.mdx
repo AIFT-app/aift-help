@@ -118,6 +118,56 @@ As you type a pattern value, AI Finance Team shows you a count of how many **exi
 
 ---
 
+## Teaching AIFT which transactions need an invoice
+
+Patterns are not the only way AIFT learns. Every time you mark a transaction **No invoice needed** — or undo that mark — it remembers the decision as an **example**, and shows it to the AI the next time something similar arrives. You don't have to do anything to build this up; it accumulates as you work.
+
+Examples live under **Master data → Transaction types → Examples**.
+
+### Examples are not rules
+
+This is the important distinction, and it is worth getting right before you reach for either one:
+
+| | **Patterns** | **Examples** |
+|---|---|---|
+| Where they come from | You write them | Captured automatically from your own marks and undos |
+| What they do | A hard rule — a match is filed immediately, no AI involved | A hint the AI weighs alongside everything else about the transaction |
+| If one is wrong | Transactions are silently filed wrong | The AI can still decide against it |
+| Can say "this **does** need an invoice" | No | **Yes** |
+
+Use a **pattern** when you know the exact bank wording and want it handled deterministically — and check the live match preview before saving, because a broad pattern will catch things you didn't intend. Use **examples** for everything else: they are what your day-to-day corrections build up on their own.
+
+### Teaching the opposite: "this needs an invoice"
+
+When you undo a **No invoice needed** mark, AIFT records that as a **Needs an invoice** example — a veto. The AI will then leave similar transactions alone even when the wording looks invoice-free.
+
+This is the fix for the near-miss cases. Hungarian bank text is full of them: a rule written for *fizetés* (payroll) also reads *kifizetés* (a payout), and *adó* appears inside plenty of ordinary company names. Rather than trying to word a pattern around every one of those, undo the wrong mark once and AIFT learns the exception.
+
+### What each example shows
+
+| Column | Meaning |
+|--------|---------|
+| **Partner** | The partner the example matches on |
+| **Description** | Text the transaction should contain |
+| **Verdict** | **No invoice needed** (with the type below) or **Needs an invoice** |
+| **Transaction type** | The type to apply — blank for a *Needs an invoice* example |
+| **Source** | **Auto-learned** (from your mark) or **Manual** (you added it) |
+| **Times seen** | How many transactions you've ruled on this way |
+
+Repeated decisions about the same partner collapse into one example with a rising **Times seen** count, rather than one row per transaction — so the list stays readable even after a few hundred bank fees.
+
+### Adding an example by hand
+
+Use **+ Add example** to teach AIFT something before it has seen it organically — useful when onboarding a client whose recurring items you already know. Pick **No invoice needed** and a type, or **Needs an invoice** for a veto.
+
+**Your most recent decision wins.** If you mark a pattern invoice-free and later undo it, the example flips — it doesn't keep both answers.
+
+**Changes apply going forward.** A new or edited example affects the next classification run; it does not revisit transactions AIFT has already processed.
+
+> Examples are per client, never shared between clients, and are visible to accountants only.
+
+---
+
 ## Labels on the transaction list
 
 Each transaction row in the **Transactions** page can show one or more labels:
@@ -148,5 +198,7 @@ Even without a matching pattern, an accountant can mark any unmatched transactio
 3. The transaction is immediately marked as **No invoice needed**.
 
 To undo this, click **Undo — mark as unmatched** in the **No invoice needed** section. The transaction returns to unmatched and will reappear in the Missing Documents list.
+
+Both the mark and the undo are remembered — see [Teaching AIFT which transactions need an invoice](#teaching-aift-which-transactions-need-an-invoice) above. Marking a few of the same kind is usually enough for AIFT to handle the rest on its own.
 
 > Only **Accountant** and **Accountant admin** users can mark or unmark transactions. Clients can see the label but cannot change it.
