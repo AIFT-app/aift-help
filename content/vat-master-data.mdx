@@ -23,6 +23,27 @@ Each VAT code row has two identifiers:
 
 A workspace-level setting (Workspace settings → **VAT**) decides which of the two must be unique among active codes. Most workspaces leave it on accounting-system codes; switch it to AIFT codes when you deliberately want several AIFT codes pointing at one accounting code.
 
+## What Your Client Does Changes the Answer
+
+Some VAT questions cannot be settled from the invoice text at all. A bottle of whisky bought by a bar is **stock** — the VAT on it is deductible, because the bar resells it. The same bottle bought by a consultancy is **representation**, and its VAT is not deductible at all. The invoice line reads the same either way.
+
+So AI Finance Team asks you, once per company: open **Master data → Entities**, pick the entity, and fill in **Business activity**. Both fields are optional:
+
+- an **activity code** (TEÁOR, NACE or your local equivalent), and
+- **one or two sentences** describing what the business actually does.
+
+The sentence is the part that does the work. Mention anything the company buys in order to resell, serve or build into what it sells — *"Restaurant and bar. Buys food and drink to prepare and serve to guests."* is enough to stop every beverage invoice being read as entertainment.
+
+Leave both blank and nothing changes: classification behaves exactly as it did before.
+
+## When a Supplier Always Sells the Same Thing
+
+For a supplier whose invoices are always the same kind of thing — a drinks wholesaler, a stationery supplier — you can skip the guessing entirely. On the partner's page, **Always sells** sets the product/service VAT group applied to every line from that supplier.
+
+It deliberately sets **only** that one field. The VAT rate and the calculation method — including reverse charge on EU purchases — still come from the invoice itself, because a supplier's identity does not determine them: the same wholesaler can invoice a 27% spirit and a 5% item on one document.
+
+If you pick a group that is wholly or partly non-deductible, AI Finance Team warns you before saving, because every line from that supplier will inherit it.
+
 ## Validity Periods
 
 Rates and codes change over time — a VAT rate change doesn't rewrite history. Every row carries an optional **Effective from / Effective to** range. When a rate or rule changes, don't edit the old row: **add a new row** with the new validity period. Resolution always picks the row that was in force on the invoice's VAT date.
