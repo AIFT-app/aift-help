@@ -23,6 +23,27 @@ Jede USt-Code-Zeile hat zwei Kennungen:
 
 Eine Einstellung auf Arbeitsbereichsebene (Arbeitsbereichseinstellungen → **USt**) legt fest, welcher der beiden unter den aktiven Codes eindeutig sein muss. Die meisten Arbeitsbereiche belassen es bei den Codes des Buchhaltungssystems; stellen Sie auf AIFT-Codes um, wenn Sie bewusst mehrere AIFT-Codes auf einen Buchhaltungscode zeigen lassen wollen.
 
+## Was Ihr Mandant tut, entscheidet die Frage
+
+Manche USt-Fragen lassen sich aus dem Rechnungstext gar nicht klären. Eine Flasche Whisky, die eine Bar einkauft, ist **Warenbestand** — die USt darauf ist abzugsfähig, weil die Bar sie weiterverkauft. Dieselbe Flasche bei einer Beratung ist **Repräsentation**, und ihre USt ist überhaupt nicht abzugsfähig. Die Rechnungszeile liest sich in beiden Fällen gleich.
+
+Deshalb fragt AI Finance Team einmal pro Unternehmen nach: Öffnen Sie **Stammdaten → Entitäten**, wählen Sie die Entität und füllen Sie **Geschäftstätigkeit** aus. Beide Felder sind optional:
+
+- ein **Tätigkeitsschlüssel** (NACE, TEÁOR oder lokales Äquivalent) und
+- **ein bis zwei Sätze** dazu, was das Unternehmen tatsächlich macht.
+
+Die eigentliche Arbeit leistet der Satz. Nennen Sie alles, was das Unternehmen einkauft, um es weiterzuverkaufen, zu servieren oder in das eigene Produkt einzubauen — *„Restaurant und Bar. Kauft Speisen und Getränke ein, um sie Gästen zuzubereiten und zu servieren."* genügt, damit Getränkerechnungen nicht länger als Bewirtung gelesen werden.
+
+Lassen Sie beide Felder leer, ändert sich nichts: Die Einstufung verhält sich genau wie zuvor.
+
+## Wenn ein Lieferant immer dasselbe verkauft
+
+Bei einem Lieferanten, dessen Rechnungen immer dieselbe Art von Leistung betreffen — ein Getränkegroßhandel, ein Bürobedarfslieferant —, können Sie das Raten ganz überspringen. Auf der Partnerseite legt **Verkauft immer** die Produkt-/Leistungs-USt-Gruppe fest, die auf jede Zeile dieses Lieferanten angewendet wird.
+
+Sie setzt bewusst **nur** dieses eine Feld. Steuersatz und Berechnungsmethode — einschließlich Reverse Charge bei EU-Einkäufen — kommen weiterhin aus der Rechnung selbst, denn die Identität des Lieferanten bestimmt sie nicht: Derselbe Großhändler kann auf einem Beleg eine Spirituose mit 27% und einen Artikel mit 5% berechnen.
+
+Wählen Sie eine Gruppe, die ganz oder teilweise nicht abzugsfähig ist, warnt AI Finance Team vor dem Speichern, denn jede Zeile dieses Lieferanten erbt das.
+
 ## Gültigkeitszeiträume
 
 Sätze und Codes ändern sich im Laufe der Zeit — eine USt-Satzänderung schreibt die Vergangenheit nicht um. Jede Zeile trägt einen optionalen Zeitraum **Gültig ab / Gültig bis**. Wenn sich ein Satz oder eine Regel ändert, bearbeiten Sie nicht die alte Zeile: **Legen Sie eine neue Zeile** mit dem neuen Gültigkeitszeitraum an. Die Auflösung wählt immer die Zeile, die am USt-Datum der Rechnung in Kraft war.
