@@ -100,6 +100,10 @@ export const navigation: NavItem[] = [
   { slug: 'ledger', title: { en: 'Ledger Explorer', hu: 'Főkönyvi kivonat', de: 'Hauptbuch-Explorer' } },
   { slug: 'messages', title: { en: 'Messages', hu: 'Üzenetek', de: 'Nachrichten' } },
   { slug: 'mcp', title: { en: 'AI Assistants (MCP)', hu: 'AI-asszisztensek (MCP)', de: 'KI-Assistenten (MCP)' } },
+  {
+    slug: 'ai-and-data',
+    title: { en: 'Where Your Data Goes', hu: 'Hová kerülnek az adatai', de: 'Wohin Ihre Daten gehen' },
+  },
   { slug: 'language', title: { en: 'Changing Your Language', hu: 'Nyelv módosítása', de: 'Sprache ändern' } },
 ]
 
