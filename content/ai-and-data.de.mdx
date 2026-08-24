@@ -1,0 +1,94 @@
+# Wohin Ihre Daten gehen
+
+Mandanten fragen ihre Kanzlei danach, und Kanzleien fragen uns. Diese Seite beantwortet es klar: Was AI Finance Team mit den Dokumenten macht, die Sie hineingeben, auf welchen Rechnern das geschieht und wie lange etwas aufbewahrt wird.
+
+Dies ist die Erklärung, nicht der Vertrag. Verbindlich sind die [Datenschutzerklärung](https://aift.aifinance.team/legal/privacy?lang=de) und das [Verzeichnis der Unterauftragsverarbeiter](https://aift.aifinance.team/legal/subprocessors?lang=de).
+
+---
+
+## Die kurze Antwort
+
+Ihre Rechnungen, Bankumsätze, Berichte und Partnerdaten liegen auf Servern in **Frankfurt am Main** und bleiben dort. Auch die KI, die Ihre Dokumente liest, läuft standardmäßig in der EU. Nichts, was Sie hochladen, wird zum Training eines KI-Modells verwendet.
+
+---
+
+## Was mit einem Dokument tatsächlich passiert
+
+Wenn eine Rechnung eintrifft, ob hochgeladen, per E-Mail eingesandt oder aus NAV geholt:
+
+1. **Sie wird gespeichert**, in Datenbank und Dateispeicher von AI Finance Team. Beide stehen in Frankfurt.
+2. **Ein KI-Modell liest sie**, um Lieferant, Beträge, Daten und Positionen zu entnehmen. Das Dokument geht für diese eine Anfrage an das Modell und kommt als strukturierter Datensatz zurück.
+3. **Das Modell vergisst es.** Der Verarbeitungsdienst behält keine Kopie, und das Unternehmen hinter dem Modell erhält es nie.
+4. **Wir protokollieren die Anfrage**, um eine fehlerhafte Extraktion nachvollziehen und Kosten zuordnen zu können. Dieses Protokoll liegt in Frankfurt und wird automatisch gelöscht (siehe unten).
+
+Dasselbe gilt für Kategorisierung, Rechnungs-Zahlungs-Zuordnung und die einzeiligen Zusammenfassungen.
+
+---
+
+## Welche KI, und wo sie läuft
+
+Jeder Arbeitsbereich hat unter **Einstellungen ▸ KI & Daten** eine Einstellung dafür, wo die KI-Verarbeitung stattfindet.
+
+| Option | Wo sie läuft | Wer die Anfrage sehen kann |
+|---|---|---|
+| **Europäische Union** (Standard) | AWS Bedrock, Region Frankfurt | Niemand. Bedrock speichert weder Eingaben noch Ausgaben und gibt nichts an den Modellanbieter weiter. |
+| **Vereinigte Staaten** | Anthropics eigene API | Anthropic erhält die Anfrage und darf sie bis zu 30 Tage zur Missbrauchserkennung aufbewahren. Für Training wird sie nie genutzt. |
+
+Neue Arbeitsbereiche starten mit der Option Europäische Union. Ein **Kanzlei-Administrator** kann sie ändern; alle anderen im Arbeitsbereich, auch Mandantennutzer, sehen, welche gilt.
+
+Der Wechsel greift innerhalb etwa einer Minute und ändert nichts daran, wo Dokumente gespeichert werden. Der Speicherort ist bei beiden Optionen Frankfurt.
+
+### Eines liegt immer außerhalb der EU
+
+Die semantische Suche, die Datensätze nach Bedeutung statt nach Stichwort findet, nutzt einen Embedding-Anbieter in den **Vereinigten Staaten**. Er erhält ausschließlich eine kurze, von der KI verfasste Zusammenfassung oder Ihren Suchbegriff, niemals ein Dokument. Der Anbieter speichert nichts und trainiert auf nichts. Das gilt bei beiden Optionen und ist im Verzeichnis offengelegt.
+
+---
+
+## Wie lange etwas aufbewahrt wird
+
+| Was | Aufbewahrung |
+|---|---|
+| Ihre Rechnungen, Umsätze, Dokumente und Berichte | Solange Ihre Kanzlei Kundin ist, danach gemäß Vertrag |
+| Prompt- und Antwortprotokolle der KI-Anfragen | 90 Tage, dann automatische Löschung |
+| Dieselben Protokolle für die Zuordnungsbewertung | 14 Tage |
+| Aggregierte Kosten- und Nutzungszahlen, ohne Dokumentinhalte | Länger, für die Abrechnung |
+
+Die Löschung erfolgt automatisch und muss nicht beantragt werden.
+
+---
+
+## Training
+
+Nichts, was Sie oder Ihre Mandanten hochladen, wird zum Training eines KI-Modells verwendet. Das ist mit jedem beteiligten Anbieter vertraglich geregelt und keine Einstellung, die jemand umlegen könnte. Es gilt für beide Verarbeitungsregionen.
+
+Das System lernt durchaus, aber nur innerhalb Ihres eigenen Arbeitsbereichs: Korrigiert eine Kanzlei eine Kategorie, wird diese Korrektur zur Kategorisierung künftiger Dokumente **nur für diesen Mandanten** genutzt. Sie wechselt nie in einen anderen Arbeitsbereich und verlässt die Datenbank nicht.
+
+---
+
+## Was Sie einem fragenden Mandanten sagen
+
+Die meisten Mandantenfragen sind eine dieser:
+
+**„Verlassen meine Daten das Land?"**
+Sie liegen in Frankfurt, innerhalb der EU. Hat Ihre Kanzlei den Arbeitsbereich auf die US-Option gestellt, findet das KI-Lesen in den USA statt, während die Speicherung in Frankfurt bleibt; welche Option gilt, steht auf der Seite KI & Daten.
+
+**„Liest ein Mensch meine Rechnungen?"**
+Nein. Die Extraktion ist automatisiert. Ihre Kanzlei sieht die Daten, weil sie Ihre Kanzlei ist; AIFT-Mitarbeitende brauchen eine zeitlich begrenzte Zugriffsfreigabe, die Ihre Kanzlei erteilt und jederzeit widerrufen kann.
+
+**„Landet das im Training von ChatGPT?"**
+Nein. Nichts Hochgeladenes wird zum Training irgendeines Modells verwendet.
+
+**„Kann ich meine Daten herausbekommen oder löschen lassen?"**
+Ja. Exporte sind Teil des Produkts, die Löschung läuft über Ihre Kanzlei, die für Ihre Buchhaltungsdaten verantwortlich ist. Die [Datenschutzerklärung](https://aift.aifinance.team/legal/privacy?lang=de) beschreibt die Rechte und ihre Ausübung.
+
+---
+
+## Die Rechtsdokumente
+
+- [Datenschutzerklärung](https://aift.aifinance.team/legal/privacy?lang=de) — welche personenbezogenen Daten wir verarbeiten, auf welcher Grundlage, und Ihre Rechte
+- [Verzeichnis der Unterauftragsverarbeiter](https://aift.aifinance.team/legal/subprocessors?lang=de) — jeder beteiligte Anbieter, wo er läuft, unter welcher Garantie
+- [Auftragsverarbeitungsvertrag](https://aift.aifinance.team/legal/dpa?lang=de) — die Vereinbarung nach Art. 28 DSGVO über die Daten Ihrer Mandanten
+- [Cookie- und Website-Hinweis](https://aift.aifinance.team/legal/cookies?lang=de) — Cookies und Analyse auf unserer öffentlichen Website
+- [Nutzungsbedingungen](https://aift.aifinance.team/legal/terms?lang=de) · [Impressum](https://aift.aifinance.team/legal/imprint?lang=de)
+
+Wenn etwas hier nicht zu dem passt, was Sie im Produkt sehen, gelten die Rechtsseiten und wir haben einen Fehler. Sagen Sie uns Bescheid unter [support@aifinance.team](mailto:support@aifinance.team).
