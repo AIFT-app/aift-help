@@ -71,7 +71,7 @@ export const navigation: NavItem[] = [
   },
   {
     slug: 'categorization-examples',
-    title: { en: 'How AIFT Learns Your Categories', hu: 'Hogyan tanulja meg az AIFT a kategóriáidat', de: 'Wie AIFT Ihre Kategorien lernt' },
+    title: { en: 'How AIFT Learns Your Categories', hu: 'Hogyan tanulja meg az AIFT a kategóriáit', de: 'Wie AIFT Ihre Kategorien lernt' },
   },
   {
     slug: 'vat-master-data',
