@@ -1,0 +1,94 @@
+# Hová kerülnek az adatai
+
+Az ügyfelek ezt kérdezik a könyvelőjüktől, a könyvelők pedig tőlünk. Ez az oldal érthetően megválaszolja: mit csinál az AI Finance Team a feltöltött dokumentumokkal, milyen gépeken történik mindez, és meddig őrzünk meg bármit.
+
+Ez a magyarázat, nem a szerződés. A kötelező érvényű változatok az [Adatkezelési tájékoztató](https://aift.aifinance.team/legal/privacy?lang=hu) és az [Adatfeldolgozói nyilvántartás](https://aift.aifinance.team/legal/subprocessors?lang=hu).
+
+---
+
+## Röviden
+
+A számlái, banki tranzakciói, riportjai és partneradatai **frankfurti (németországi) szervereken** vannak, és ott is maradnak. A dokumentumokat olvasó AI szintén alapértelmezés szerint az EU-ban fut. A feltöltött adatokat semmilyen AI-modell tanítására nem használjuk.
+
+---
+
+## Mi történik egy dokumentummal
+
+Amikor egy számla megérkezik, akár feltöltéssel, akár e-mailben, akár a NAV-ból:
+
+1. **Eltároljuk** az AI Finance Team adatbázisában és fájltárolójában. Mindkettő Frankfurtban van.
+2. **Egy AI-modell elolvassa**, és kinyeri belőle a szállítót, az összegeket, a dátumokat és a tételsorokat. A dokumentum ehhez az egy kéréshez jut el a modellhez, és strukturált adatként tér vissza.
+3. **A modell elfelejti.** A feldolgozó szolgáltatás nem tart meg másolatot, a modellt készítő cég pedig egyáltalán nem kapja meg.
+4. **A kérésről naplót vezetünk**, hogy egy hibás kinyerést ki tudjunk vizsgálni, és a költséggel el tudjunk számolni. Ez a napló Frankfurtban van, és automatikusan törlődik (lásd lent).
+
+Ugyanez a felépítés vonatkozik a kategorizálásra, a számla–kiegyenlítés párosításra és az egysoros összefoglalókra.
+
+---
+
+## Melyik AI, és hol fut
+
+Minden munkaterületen van egy beállítás a **Beállítások ▸ AI és adatok** oldalon, amely eldönti, hol történik az AI-feldolgozás.
+
+| Lehetőség | Hol fut | Ki láthatja a kérést |
+|---|---|---|
+| **Európai Unió** (alapértelmezett) | AWS Bedrock, frankfurti régió | Senki. A Bedrock nem tárol bemenetet vagy kimenetet, és semmit nem ad tovább a modell szolgáltatójának. |
+| **Egyesült Államok** | Az Anthropic saját API-ja | Az Anthropic megkapja a kérést, és visszaélés-figyelés céljából legfeljebb 30 napig megőrizheti. Tanításra soha nem használják. |
+
+Az új munkaterületek az Európai Unió lehetőséggel indulnak. Az **irodai adminisztrátor** módosíthatja; a munkaterület minden más tagja, az ügyfélfelhasználókat is beleértve, láthatja, melyik van érvényben.
+
+A váltás körülbelül egy percen belül életbe lép, és semmit nem változtat azon, hol tároljuk a dokumentumokat. A tárolás mindkét beállításnál Frankfurt.
+
+### Egy dolog, ami mindig az EU-n kívül van
+
+A jelentés alapú keresés, amely nem kulcsszó, hanem értelem szerint talál meg rekordokat, egy **egyesült államokbeli** beágyazás-szolgáltatót használ. Ez kizárólag egy rövid, AI által írt összefoglalót vagy az Ön keresőkifejezését kapja meg, dokumentumot soha. A szolgáltató semmit nem őriz meg és semmin nem tanul. Ez mindkét beállítás mellett igaz, és szerepel a nyilvántartásban.
+
+---
+
+## Meddig őrzünk meg dolgokat
+
+| Mi | Meddig |
+|---|---|
+| Számlák, tranzakciók, dokumentumok és riportok | Amíg az iroda ügyfelünk, azt követően a szerződés szerint |
+| Az AI-kérések prompt- és válasznaplói | 90 nap, utána automatikus törlés |
+| Ugyanezek a naplók a számlapárosító pontozónál | 14 nap |
+| Összesített költség- és használati adatok, dokumentumtartalom nélkül | Hosszabb ideig, a számlázás miatt |
+
+A törlés automatikus, nem kell külön kérni.
+
+---
+
+## Tanítás
+
+Semmit, amit Ön vagy az ügyfelei feltöltenek, nem használunk AI-modell tanítására. Ez minden érintett szolgáltatóval szerződéses kérdés, nem egy beállítás, amit valaki átkapcsolhatna. Mindkét feldolgozási régióra vonatkozik.
+
+A rendszer tanul, de kizárólag a saját munkaterületén belül: amikor egy könyvelő javít egy kategórián, azt a javítást a rendszer a jövőbeli dokumentumok kategorizálásához **csak annál az ügyfélnél** használja fel. Soha nem kerül át másik munkaterületre, és nem hagyja el az adatbázist.
+
+---
+
+## Mit mondjon egy kérdező ügyfélnek
+
+A legtöbb ügyfélkérdés ezek valamelyike:
+
+**„Kikerülnek az adataim az országból?”**
+Frankfurtban vannak, az EU-n belül. Ha az iroda az adott munkaterületet az USA lehetőségre állította, az AI-olvasás az Egyesült Államokban történik, a tárolás viszont Frankfurtban marad; hogy melyik van érvényben, az AI és adatok oldalon ellenőrizhető.
+
+**„Ember olvassa a számláimat?”**
+Nem. A kinyerés automatikus. A könyvelője azért látja az adatokat, mert ő a könyvelője, az AIFT munkatársainak pedig időben korlátozott hozzáférési engedély kell, amelyet az iroda hagy jóvá és bármikor visszavonhat.
+
+**„Ebből fogják tanítani a ChatGPT-t?”**
+Nem. A feltöltött adatokat semmilyen modell tanítására nem használjuk.
+
+**„Kikérhetem vagy töröltethetem az adataimat?”**
+Igen. Az exportálás a termék része, a törlés pedig a könyvelőirodán keresztül történik, mivel a könyvelési adatok tekintetében ő az adatkezelő. A jogokat és gyakorlásuk módját az [Adatkezelési tájékoztató](https://aift.aifinance.team/legal/privacy?lang=hu) tartalmazza.
+
+---
+
+## A jogi dokumentumok
+
+- [Adatkezelési tájékoztató](https://aift.aifinance.team/legal/privacy?lang=hu) — milyen személyes adatot kezelünk, milyen jogalapon, és milyen jogai vannak
+- [Adatfeldolgozói nyilvántartás](https://aift.aifinance.team/legal/subprocessors?lang=hu) — minden érintett szolgáltató, hol fut, és milyen garancia mellett
+- [Adatfeldolgozási megállapodás](https://aift.aifinance.team/legal/dpa?lang=hu) — a GDPR 28. cikke szerinti megállapodás az ügyfelek adatairól
+- [Süti- és weboldal-tájékoztató](https://aift.aifinance.team/legal/cookies?lang=hu) — sütik és analitika a nyilvános weboldalunkon
+- [Általános szerződési feltételek](https://aift.aifinance.team/legal/terms?lang=hu) · [Impresszum](https://aift.aifinance.team/legal/imprint?lang=hu)
+
+Ha valami itt leírt nem egyezik azzal, amit a termékben lát, a jogi oldalak az irányadók, nálunk pedig hiba van. Jelezze a [support@aifinance.team](mailto:support@aifinance.team) címen.
