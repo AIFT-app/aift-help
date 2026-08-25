@@ -1,16 +1,40 @@
-# Catalyst drift check
+# Catalyst drift check — aift-help side
 #
 # aift-web is the source of truth for Catalyst UI components. aift-help mirrors
-# a copy in src/components/catalyst/. This workflow enforces that they never
-# diverge — any PR that introduces drift fails until the operator runs
-# `aift-ops/scripts/sync-catalyst-to-help.sh` and re-pushes.
+# a copy in src/components/catalyst/ plus one shared hook. This job enforces
+# that the mirror has not been edited locally.
 #
-# Required repo secret: AIFT_WEB_READ_TOKEN
-#   - Fine-grained PAT with "Contents: Read" access to AIFT-app/aift-web
-#   - Without it, the workflow fails closed (intentional — silent skip would
-#     defeat the gate)
+# ─────────────────────────────────────────────────────────────────────────────
+# NO SECRET IS REQUIRED, AND THAT IS THE POINT.
 #
-# PRD: aift-ops/specs/adopt-catalyst-in-aift-help.md
+# This workflow used to check out the PRIVATE AIFT-app/aift-web using a
+# fine-grained PAT held as `AIFT_WEB_READ_TOKEN` — a secret configured on THIS
+# PUBLIC REPOSITORY. GitHub's own guidance is explicit that anyone with write
+# access to a repository can obtain its secrets by modifying workflow
+# behaviour, so a documentation contributor, or a compromised third-party
+# action, was one edit away from reading private production source.
+#
+# It now verifies against a committed manifest of sha256 hashes
+# (src/components/catalyst/.catalyst-manifest.json, written by
+# aift-ops/scripts/sync-catalyst-to-help.sh). No private checkout, no token.
+#
+# The other direction — drift introduced in aift-web — is covered by
+# aift-web/.github/workflows/catalyst-source-check.yml, which checks out THIS
+# repo (public, no credential) and verifies its own source against the same
+# manifest. Neither side can pass alone by tampering: editing a component here
+# and updating the manifest to match makes the aift-web side fail, because the
+# manifest then no longer describes aift-web.
+#
+# ⚠️ `AIFT_WEB_READ_TOKEN` should be DELETED from this repository's secrets and
+#    revoked at GitHub once this has run green. Nothing reads it any more, but
+#    an unused credential on a public repo is still a credential on a public
+#    repo. That is an operator step — see specs/help-ci-trust-boundary.md §5.
+#
+# Actions are pinned to full commit SHAs, not tags: a tag is mutable and can be
+# repointed at new code by whoever controls the action repo.
+#
+# PRD: aift-ops/specs/help-ci-trust-boundary.md
+# ─────────────────────────────────────────────────────────────────────────────
 
 name: catalyst-drift-check
 
@@ -20,12 +44,14 @@ on:
     paths:
       - 'src/components/catalyst/**'
       - 'src/hooks/useSidebarState.ts'
+      - 'scripts/verify-catalyst-manifest.mjs'
       - '.github/workflows/catalyst-drift-check.yml'
   push:
     branches: [staging, main]
     paths:
       - 'src/components/catalyst/**'
       - 'src/hooks/useSidebarState.ts'
+      - 'scripts/verify-catalyst-manifest.mjs'
 
 permissions:
   contents: read
@@ -35,86 +61,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout aift-help
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
-          path: aift-help
+          persist-credentials: false
 
-      - name: Checkout aift-web (catalyst source of truth)
-        uses: actions/checkout@v4
-        with:
-          repository: AIFT-app/aift-web
-          ref: main
-          token: ${{ secrets.AIFT_WEB_READ_TOKEN }}
-          path: aift-web
-          sparse-checkout: |
-            src/components/catalyst
-            src/hooks/useSidebarState.ts
-          sparse-checkout-cone-mode: false
-
-      - name: Compare catalyst + hook deps
-        run: |
-          set -e
-          SRC_CAT="aift-web/src/components/catalyst"
-          DST_CAT="aift-help/src/components/catalyst"
-          SRC_HOOK="aift-web/src/hooks/useSidebarState.ts"
-          DST_HOOK="aift-help/src/hooks/useSidebarState.ts"
-
-          # App-coupled Catalyst files are NOT mirrored into aift-help — they
-          # import main-app-only modules (LanguagePicker, next-intl) and broke
-          # the help build when synced (PR #42). Source of truth for this list:
-          # aift-ops/scripts/sync-catalyst-to-help.sh (CATALYST_APP_COUPLED) —
-          # update both together.
-          APP_COUPLED="auth-layout.tsx edit-drawer.tsx"
-          DIFF_EXCLUDES=""
-          for f in $APP_COUPLED; do DIFF_EXCLUDES="$DIFF_EXCLUDES -x $f"; done
-
-          if [ ! -d "$SRC_CAT" ]; then
-            echo "::error::aift-web checkout missing $SRC_CAT — token may lack access or repo layout changed"
-            exit 1
-          fi
-          if [ ! -d "$DST_CAT" ]; then
-            echo "::error::aift-help is missing $DST_CAT — Catalyst was never synced"
-            exit 1
-          fi
-          if [ ! -f "$SRC_HOOK" ]; then
-            echo "::error::aift-web checkout missing $SRC_HOOK (sparse checkout may have changed)"
-            exit 1
-          fi
-          if [ ! -f "$DST_HOOK" ]; then
-            echo "::error::aift-help is missing $DST_HOOK — sync-catalyst-to-help.sh hasn't been run with the hook-deps extension"
-            exit 1
-          fi
-
-          FAIL=0
-          for f in $APP_COUPLED; do
-            if [ -f "$DST_CAT/$f" ]; then
-              echo "::error::$f is app-coupled and must not exist in aift-help — re-run sync-catalyst-to-help.sh"
-              FAIL=1
-            fi
-          done
-          if ! diff -rq $DIFF_EXCLUDES "$SRC_CAT" "$DST_CAT" > /tmp/catalyst-diff.txt; then
-            echo "::error::Catalyst component drift detected vs aift-web@main"
-            echo "::group::component diff"
-            cat /tmp/catalyst-diff.txt
-            echo "::endgroup::"
-            FAIL=1
-          fi
-          if ! diff -q "$SRC_HOOK" "$DST_HOOK" > /tmp/hook-diff.txt; then
-            echo "::error::Catalyst hook dep drift detected vs aift-web@main"
-            echo "::group::hook diff"
-            cat /tmp/hook-diff.txt
-            diff "$SRC_HOOK" "$DST_HOOK" || true
-            echo "::endgroup::"
-            FAIL=1
-          fi
-
-          if [ "$FAIL" -eq 0 ]; then
-            echo "✓ Catalyst components + hook deps match aift-web@main"
-          else
-            echo ""
-            echo "Fix:"
-            echo "  1. cd into your local AIFT-app workspace"
-            echo "  2. Run: ./aift-ops/scripts/sync-catalyst-to-help.sh"
-            echo "  3. Commit the result in aift-help and re-push"
-            exit 1
-          fi
+      # Deliberately NOT using actions/setup-node. The runner ships a modern
+      # node, the verifier is dependency-free, and every third-party action in
+      # a workflow is another party who could read whatever it can reach. This
+      # workflow is the one that used to hold a private-repo token; keeping its
+      # action surface to a single pinned checkout is part of the fix.
+      - name: Verify the mirror against the manifest
+        run: node scripts/verify-catalyst-manifest.mjs --root . --side help
