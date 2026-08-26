@@ -36,9 +36,20 @@
 # Per-repo prerequisites (set once when shiplog goes live):
 #   - vars.SHIPLOG_INGEST_URL  — the shiplog-ingest Edge Function URL
 #                                (e.g. https://<project-ref>.supabase.co/functions/v1/shiplog-ingest)
-#   - secrets.SHIPLOG_INGEST_HMAC  — shared HMAC-SHA256 secret; must match
-#                                    the `shiplog_ingest_hmac_secret` Vault
-#                                    entry in the host Supabase project.
+#   - secrets.SHIPLOG_INGEST_HMAC  — this repo's HMAC-SHA256 signing key.
+#       It must match the `shiplog_ingest_hmac_<repo>` Vault entry in the
+#       host Supabase project (hyphens as underscores, e.g.
+#       `shiplog_ingest_hmac_aift_web`) — NOT the legacy shared
+#       `shiplog_ingest_hmac_secret`, which was one key across all five
+#       repos and therefore forgeable from the PUBLIC aift-help.
+#       PRD: aift-ops/specs/shiplog-per-repo-ingest-credentials.md
+#
+#       A repo with no per-repo Vault entry still verifies against the
+#       shared one, so this is safe to leave un-rotated — but once a repo
+#       HAS its own key the shared one is refused for it, which is what
+#       makes each rotation close something. Two symptoms worth knowing:
+#         401 + log `key:"per_repo"` → Vault and this secret DISAGREE
+#         503 `hmac_secret_unavailable` → neither key is readable
 #   - secrets.SHIPLOG_SUPABASE_ANON_KEY  — the host project's anon JWT, used
 #                                          for the function's Authorization
 #                                          header (the function does its own
