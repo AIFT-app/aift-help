@@ -14,7 +14,9 @@ npm run build  # static export (output: `out/`)
 - **Add an article:** create `content/<slug>.mdx` (English, the source of truth) and register it in `src/lib/navigation.ts` with its per-locale `title`.
 - This repo is usually independent of the schema flow — most changes need no coordination with aift-db/api/web.
 - Only requires coordination when a PRD explicitly ships a coupled help article.
-- aift-help deploys from `main`; keep `staging` in sync (fast-forward) so the staging-first flow keeps working.
+- **aift-help deploys from `main`** — the only AIFT repo that does. After every wholesale `staging -> main` merge, fast-forward `staging` back as the last step: `git push origin origin/main:refs/heads/staging` (non-force, so it fails loudly if it isn't a clean fast-forward). Nothing automates this.
+- **Keep aift-help out of slug promotes.** `promote.sh <slug>` cherry-picks, which rewrites the sha, so the change lands on `main` twice — once from the cherry-pick, once when the next wholesale merge carries the original along. Shiplog counts both. Use `AIFT_PROMOTE_REPOS` to drop aift-help, and merge `staging -> main` for it separately.
+- A behind-by-N `staging` here is almost always drifted **history, not content** — the trees usually match exactly. Diff them (`git diff origin/staging origin/main`) before treating it as missing work. Full mechanism and evidence: `aift-ops/docs/aift-help-branch-model.md`.
 
 ## Localization (en / hu / de)
 
