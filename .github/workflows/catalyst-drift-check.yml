@@ -25,10 +25,17 @@
 # and updating the manifest to match makes the aift-web side fail, because the
 # manifest then no longer describes aift-web.
 #
-# ⚠️ `AIFT_WEB_READ_TOKEN` should be DELETED from this repository's secrets and
-#    revoked at GitHub once this has run green. Nothing reads it any more, but
-#    an unused credential on a public repo is still a credential on a public
-#    repo. That is an operator step — see specs/help-ci-trust-boundary.md §5.
+# ✅ `AIFT_WEB_READ_TOKEN` was deleted from this repository's secrets and the
+#    PAT revoked at GitHub on 2026-08-25. This workflow was then re-run on
+#    `main` in that end state and passed — so the tokenless path is verified
+#    against the credential being genuinely dead, not merely unreferenced.
+#
+#    ⚠️ Still on this PUBLIC repo: `SHIPLOG_INGEST_HMAC` and
+#    `SHIPLOG_SUPABASE_ANON_KEY`. The anon key is public by design and cannot
+#    INSERT, but the HMAC was shared across all five repos — so push access
+#    here could forge shiplog ingest everywhere. That is being closed by
+#    per-repo keys (PRD: shiplog-per-repo-ingest-credentials); this repo is
+#    the one to rotate first.
 #
 # Actions are pinned to full commit SHAs, not tags: a tag is mutable and can be
 # repointed at new code by whoever controls the action repo.
