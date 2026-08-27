@@ -1,0 +1,103 @@
+# =============================================================================
+# Fast-forward `staging` to `main`.
+#
+# aift-help is the only AIFT repo that DEPLOYS FROM `main`, and its branch
+# model requires `staging` to be kept fast-forwarded to it. That invariant was
+# documented from the start and performed essentially never: on 2026-08-27
+# `staging` was found 41 commits (19 non-merge) behind `main` with 0 unique
+# commits, and `main` had accumulated 24 duplicate patch-id pairs as a result.
+#
+# Prose did not fix it — the invariant predates every one of those pairs. This
+# does it automatically instead.
+#
+# Full mechanism and evidence: aift-ops/docs/aift-help-branch-model.md
+#
+# ── Why this does not double-count in shiplog ────────────────────────────────
+# `shiplog-ingest.yml` fires on pushes to BOTH `staging` and `main`, so an
+# automatic push to `staging` looks like it should register every production
+# ship a second time as a staging ship. Two independent things prevent that:
+#
+#   1. GitHub does not trigger workflows from pushes made with GITHUB_TOKEN
+#      (loop prevention). shiplog-ingest simply does not run for this push.
+#   2. shiplog-ingest additionally skips any `staging` push whose HEAD is
+#      already contained in `origin/main` — a re-sync, not a ship.
+#
+# (2) exists because (1) is implicit: swap this for a PAT or an app token and
+# the loop prevention silently stops applying. Belt and braces, deliberately.
+#
+# ── Failure behaviour ────────────────────────────────────────────────────────
+# A non-fast-forward is NOT an error here. It means `staging` holds commits
+# `main` does not — the state a slug promote leaves behind — and the fix is a
+# `staging -> main` merge, not a force-push. We warn and exit 0 rather than
+# turning `main` red over a record-keeping issue. `promote.sh` already warns at
+# the point of decision, which is the better place to catch it.
+#
+# This never force-pushes. There is no code path here that can lose a commit.
+# =============================================================================
+
+name: Fast-forward staging
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+# Serialise, and never cancel: a half-run FF is not a state worth racing into.
+concurrency:
+  group: ff-staging
+  cancel-in-progress: false
+
+jobs:
+  fast-forward:
+    name: Fast-forward staging to main
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (full history for ancestry checks)
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+
+      - name: Fast-forward staging to main
+        run: |
+          set -uo pipefail
+
+          git fetch --quiet origin main staging || true
+
+          MAIN_SHA=$(git rev-parse origin/main)
+
+          if ! git show-ref --verify --quiet refs/remotes/origin/staging; then
+            echo "::warning::No origin/staging branch — nothing to fast-forward."
+            exit 0
+          fi
+          STAGING_SHA=$(git rev-parse origin/staging)
+
+          echo "main    = $MAIN_SHA"
+          echo "staging = $STAGING_SHA"
+
+          if [ "$MAIN_SHA" = "$STAGING_SHA" ]; then
+            echo "Already in sync — nothing to do."
+            exit 0
+          fi
+
+          # Only fast-forward when staging is a strict ANCESTOR of main.
+          # Anything else means staging has unique commits, and the correct
+          # move is a staging -> main merge by a human, never a force-push.
+          if ! git merge-base --is-ancestor "$STAGING_SHA" "$MAIN_SHA"; then
+            AHEAD=$(git rev-list --count "$MAIN_SHA..$STAGING_SHA")
+            echo "::warning title=staging not fast-forwardable::staging has \
+          $AHEAD commit(s) that main does not. This is the state a slug promote \
+          leaves behind. Open a staging -> main PR; do NOT force-push. See \
+          aift-ops/docs/aift-help-branch-model.md"
+            exit 0
+          fi
+
+          BEHIND=$(git rev-list --count "$STAGING_SHA..$MAIN_SHA")
+          echo "staging is $BEHIND commit(s) behind and is a strict ancestor — fast-forwarding."
+
+          # Deliberately NOT --force. If this is somehow rejected, the guard
+          # above was wrong and we want to hear about it rather than overwrite.
+          git push origin "$MAIN_SHA:refs/heads/staging"
+
+          echo "staging fast-forwarded to $MAIN_SHA"
