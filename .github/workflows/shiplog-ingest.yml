@@ -127,6 +127,30 @@ jobs:
               COMMITS=$(git rev-list --no-merges --reverse "$BEFORE_SHA..$AFTER_SHA")
             fi
           else
+            # ── A `staging` push that is really a RE-SYNC, not a ship ────────
+            # aift-help deploys from `main` and fast-forwards `staging` back to
+            # it (aift-help/.github/workflows/ff-staging.yml). That push lands a
+            # sha on `staging` which was ALREADY ingested when it hit `main`.
+            # Dedup is on (repo, sha, environment), so the two rows differ by
+            # environment and both survive — one production ship reported as a
+            # staging ship too.
+            #
+            # Cheap, exact test: if staging's new HEAD is already contained in
+            # `origin/main`, no new work arrived here.
+            #
+            # In practice GitHub's loop prevention means a GITHUB_TOKEN push
+            # never triggers this workflow at all, so this rarely fires. It is
+            # here because that protection is implicit — swap the token for a
+            # PAT or an app token and it silently stops applying.
+            #
+            # Fails OPEN: if `origin/main` is unreachable we ingest anyway.
+            # A duplicate row is a nuisance; a DROPPED ship is a lie.
+            if git rev-parse --verify --quiet origin/main >/dev/null 2>&1 \
+               && git merge-base --is-ancestor "$AFTER_SHA" origin/main 2>/dev/null; then
+              echo "staging HEAD $AFTER_SHA is already on main — fast-forward re-sync, not a ship."
+              echo "Nothing to ingest."
+              exit 0
+            fi
             COMMITS="$AFTER_SHA"
           fi
 
