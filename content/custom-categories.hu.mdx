@@ -1,0 +1,32 @@
+# Egyéni kategóriák
+
+A beépített számla- és készpénzkategóriákon túl minden munkaterület saját **egyéni kategórialistákat** is definiálhat; a számlák és banki tételek további címkézési szempontjait, például költséghelyeket, céges autókat vagy finanszírozási forrást. Az AI ezeket külön menetben, automatikusan alkalmazza, és amit egy kötelező listán nem tud eldönteni, azt kézi ellenőrzésre jelöli meg.
+
+A listákat a **Törzsadatok → Egyéni kategóriák** alatt találja: listánként egy csempe, és minden csempe a lista saját oldalát nyitja meg.
+
+## Lista létrehozása
+
+Egy lista a következőkből áll:
+
+- **Cím**: ezt látják a könyvelők mindenhol („Költséghelyek").
+- **Leírás**: közérthető útmutató, amelyet az AI szó szerint elolvas kategorizáláskor. Úgy érdemes megírni, mintha egy kezdő kollégának magyarázná: mit jelent a lista, hogyan kell választani, és melyik kategória a gyűjtő.
+- **Alkalmazás**: számlákra, banki tételekre vagy mindkettőre.
+- **Kötelező**: ha az AI nem tud elég magabiztosan kategóriát választani, a tétel ellenőrzésre kerül, ugyanúgy, mint a többi probléma.
+- **Aktív**: az inaktív listák nem kerülnek alkalmazásra az új tételekre, és az AI sem kapja meg őket.
+
+## Kategóriák
+
+Minden lista kategóriákat tartalmaz: opcionális **kóddal** (saját azonosító, pl. `CC-100`), **névvel** és opcionális **leírással**, amely az AI szókincsének része lesz. Felveheti őket egyenként, vagy importálhatja Excelből ugyanazzal a rugalmas importtal, amelyet a beépített kategóriáknál is használ: fájl feltöltése, oszlopok megfeleltetése, előnézet; és meglévő adat soha nem íródik felül.
+
+## Hogyan alkalmazza az AI
+
+Miután egy számla vagy tétel végzett a normál kategorizálással, egy külön AI-menet elolvassa a listáit, és listánként egy kategóriát rendel hozzá. A magabiztos hozzárendelések automatikusan megtörténnek, AI-jelvénnyel és megbízhatósági értékkel; a bizonytalanok üresen maradnak. **Kötelező** listán az üres hozzárendelés megjelöli a tételt:
+
+- a számláknál borostyán teendőcímke jelenik meg, és a tétel beleszámít a havi zárási ellenőrzésekbe;
+- a banki tételeknél a címke a részletoldalon látszik, a tranzakciólistában pedig van egy **Hiányzó egyéni kategória** szűrő.
+
+A kézzel választott kategória mindig erősebb; az AI soha nem ír felül meglévő hozzárendelést, akár Öntől származik, akár egy korábbi futtatásból.
+
+## Meglévő tételek lefedése
+
+Az új lista csak az utána érkező tételekre vonatkozik. A korábbiakhoz nyissa meg a listát, és használja az **Alkalmazás meglévő tételekre** gombot: az AI futtatásonként legfeljebb 2000 régebbi számlát és tételt dolgoz fel, és a maradékhoz újra futtatható.

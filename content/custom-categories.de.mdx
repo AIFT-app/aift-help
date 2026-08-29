@@ -1,0 +1,32 @@
+# Eigene Kategorien
+
+Über die eingebauten Rechnungs- und Geldkategorien hinaus kann jeder Arbeitsbereich eigene **Kategorielisten** definieren; zusätzliche Dimensionen zum Kennzeichnen von Rechnungen und Banktransaktionen, etwa Kostenstellen, Firmenwagen oder Finanzierungsquellen. Die KI wendet sie in einem separaten Lauf automatisch an; was sie auf einer Pflichtliste nicht entscheiden kann, wird zur manuellen Prüfung markiert.
+
+Sie finden die Listen unter **Stammdaten → Eigene Kategorien**: eine Kachel pro Liste, und jede Kachel öffnet die eigene Seite der Liste.
+
+## Eine Liste anlegen
+
+Eine Liste besteht aus:
+
+- **Titel**: das sehen die Buchhalterinnen und Buchhalter überall („Kostenstellen").
+- **Beschreibung**: eine verständliche Anleitung, die die KI beim Kategorisieren wortwörtlich liest. Formulieren Sie sie so, als würden Sie eine neue Kollegin einarbeiten: was die Liste bedeutet, wie gewählt wird und welche Kategorie der Sammelposten ist.
+- **Gilt für**: Rechnungen, Banktransaktionen oder beides.
+- **Pflicht**: kann die KI keine Kategorie sicher zuordnen, wird der Beleg zur Prüfung markiert, genau wie andere Probleme.
+- **Aktiv**: inaktive Listen werden nicht auf neue Belege angewendet und nicht an die KI übergeben.
+
+## Kategorien
+
+Jede Liste enthält Kategorien mit optionalem **Code** (Ihre eigene Kennung, z. B. `CC-100`), einem **Namen** und einer optionalen **Beschreibung**, die Teil des KI-Vokabulars wird. Sie können sie einzeln anlegen oder mit demselben flexiblen Import wie bei den eingebauten Kategorien aus Excel importieren: Datei hochladen, Spaltenzuordnung bestätigen, Vorschau prüfen; bestehende Daten werden nie überschrieben.
+
+## Wie die KI sie anwendet
+
+Sobald eine Rechnung oder Transaktion ihre normale Kategorisierung abgeschlossen hat, liest ein separater KI-Lauf Ihre Listen und ordnet pro anwendbarer Liste eine Kategorie zu. Sichere Zuordnungen werden automatisch übernommen und mit KI-Kennzeichen und Konfidenz angezeigt; unsichere bleiben leer. Auf einer **Pflichtliste** markiert eine leere Zuordnung den Beleg:
+
+- Rechnungen zeigen einen bernsteinfarbenen Aufgaben-Chip und zählen in die Monatsabschluss-Prüfungen;
+- Banktransaktionen zeigen den Chip auf ihrer Detailseite, und die Transaktionsliste hat den Filter **Eigene Kategorie fehlt**.
+
+Eine von Hand gewählte Kategorie gewinnt immer; die KI überschreibt nie eine bestehende Zuordnung, egal ob sie von Ihnen oder aus einem früheren Lauf stammt.
+
+## Bestehende Belege abdecken
+
+Eine neue Liste gilt nur für Belege, die nach ihr eintreffen. Für die Historie öffnen Sie die Liste und nutzen **Auf bestehende Belege anwenden**: Die KI verarbeitet bis zu 2000 ältere Rechnungen und Transaktionen pro Lauf; für den Rest führen Sie den Lauf erneut aus.
