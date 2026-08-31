@@ -74,6 +74,10 @@ export const navigation: NavItem[] = [
     title: { en: 'How AIFT Learns Your Categories', hu: 'Hogyan tanulja meg az AIFT a kategóriáit', de: 'Wie AIFT Ihre Kategorien lernt' },
   },
   {
+    slug: 'custom-categories',
+    title: { en: 'Custom Categories', hu: 'Egyéni kategóriák', de: 'Eigene Kategorien' },
+  },
+  {
     slug: 'vat-master-data',
     title: { en: 'VAT Master Data', hu: 'ÁFA-törzsadatok', de: 'USt-Stammdaten' },
   },

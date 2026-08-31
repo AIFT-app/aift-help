@@ -1,0 +1,32 @@
+# Custom Categories
+
+Beyond the built-in Invoice and Cash categories, every workspace can define its own **custom category lists**: extra ways of labelling invoices and bank transactions, such as cost centers, company cars, or funding sources. The AI applies them automatically in a separate pass, and anything it cannot decide on a mandatory list is flagged for manual review.
+
+You'll find them under **Master data → Custom Categories**: one tile per list, and each tile opens the list's own page.
+
+## Creating a List
+
+A list has:
+
+- **Title**: what accountants see everywhere ("Cost centers").
+- **Description**: plain-language guidance the AI reads word for word when it categorizes. Write it the way you would brief a junior colleague: what the list means, how to choose, and which category is the catch-all.
+- **Applies to**: invoices, bank transactions, or both.
+- **Mandatory**: when the AI cannot assign a category with enough confidence, the item is flagged for review, just like other problems.
+- **Active**: inactive lists are not applied to new items and are not sent to the AI.
+
+## Categories
+
+Each list holds categories with an optional **Code** (your own identifier, e.g. `CC-100`), a **Name**, and an optional **Description** that becomes part of the AI's vocabulary. You can add them one by one or import them from Excel with the same flexible import used for the built-in categories: upload a file, confirm the column mapping, review what would be created, and nothing existing is ever overwritten.
+
+## How the AI Applies Them
+
+After an invoice or transaction finishes its normal categorization, a separate AI pass reads your lists and assigns one category per applicable list. Confident assignments are applied automatically and shown with an AI badge and confidence; uncertain ones are left empty. On a **mandatory** list, an empty assignment flags the item:
+
+- invoices show an amber to-do chip and count into the monthly closing checks;
+- bank transactions show the chip on their detail page, and the transaction list has a **Custom category missing** filter.
+
+A category you pick by hand always wins; the AI never overwrites an existing assignment, whether it came from you or from an earlier run.
+
+## Covering Existing Items
+
+A new list only applies to items that arrive after it. To cover history, open the list and use **Apply to existing items**: the AI processes up to 2,000 older invoices and transactions per run, and you can run it again for the rest.
