@@ -18,6 +18,25 @@ Egy lista a következőkből áll:
 
 Minden lista kategóriákat tartalmaz: opcionális **kóddal** (saját azonosító, pl. `CC-100`), **névvel** és opcionális **leírással**, amely az AI szókincsének része lesz. Felveheti őket egyenként, vagy importálhatja Excelből ugyanazzal a rugalmas importtal, amelyet a beépített kategóriáknál is használ: fájl feltöltése, oszlopok megfeleltetése, előnézet; és meglévő adat soha nem íródik felül.
 
+## Lista készítése dokumentumból
+
+Ha a kategóriák már szerepelnek egy dokumentumban, nem kell begépelnie őket. Nyissa meg a dokumentumot a **Dokumentumok** alatt, kattintson a **Kategórialista készítése** gombra, és az AI elolvassa, majd javaslatot tesz egy listára: címet, útmutató szöveget, valamint a kategóriákat kóddal és leírással.
+
+Bármelyik feltöltött dokumentumon működik, legfeljebb húsz oldalig: költséghely-szabályzat, számlatükör, szervezeti lista, pályázati költségvetés. Magától semmi nem indul el; az AI csak akkor olvassa el a dokumentumot, ha Ön megkéri rá.
+
+Amit visszakap, az **javaslat**, és Ön dönt róla:
+
+- Minden mező szerkeszthető, mielőtt bármi létrejönne, a lista címe és az útmutató szöveg is.
+- Az egyes kategóriák a **Kihagy** gombbal kihagyhatók.
+- Azt a kategóriát, amelyet a dokumentum lezártként jelöl, a rendszer inaktívként hozza létre, és ezt előre jelzi is.
+- A kategóriák mehetnek **új listába**, vagy hozzáadhatók egy **meglévő listához**; utóbbi esetben csak a hiányzók kerülnek be, a már meglévőkhöz semmi nem nyúl.
+
+Az utolsó lépés pontosan megmutatja, mi fog történni: hány kategória jön létre, hány van már meg, és hány sor nem használható. Amíg nem kattint a **Létrehozás** gombra, semmi nem íródik ki.
+
+Ha a dokumentumban nincs kategóriarendszer, a képernyő ezt őszintén megírja, ahelyett hogy üres listát kínálna. A legtöbb dokumentumnál ez a szokásos válasz.
+
+Az így készült lista megjegyzi, honnan származik, a dokumentum pedig mutatja, mely listák születtek belőle, így később sem lesz rejtély egy kódkészlet eredete.
+
 ## Hogyan alkalmazza az AI
 
 Miután egy számla vagy tétel végzett a normál kategorizálással, egy külön AI-menet elolvassa a listáit, és listánként egy kategóriát rendel hozzá. A magabiztos hozzárendelések automatikusan megtörténnek, AI-jelvénnyel és megbízhatósági értékkel; a bizonytalanok üresen maradnak. **Kötelező** listán az üres hozzárendelés megjelöli a tételt:
@@ -30,3 +49,9 @@ A kézzel választott kategória mindig erősebb; az AI soha nem ír felül megl
 ## Meglévő tételek lefedése
 
 Az új lista csak az utána érkező tételekre vonatkozik. A korábbiakhoz nyissa meg a listát, és használja az **Alkalmazás meglévő tételekre** gombot: az AI futtatásonként legfeljebb 2000 régebbi számlát és tételt dolgoz fel, és a maradékhoz újra futtatható.
+
+## A lista használata riportokban
+
+A lista nem csak címke. Bármelyik riportban kiválaszthatja a **Bontás** vezérlőnél, és ekkor minden jelentéssor kategóriánként egy oszlopra bomlik, így egyetlen eredménykimutatás azt is megmutatja, hogyan oszlanak meg a számok a költséghelyek, üzletágak vagy projektek között.
+
+Csak a riporthoz illő listák jelennek meg: a Számla típusú riport a számlákra vonatkozókat kínálja, a Pénzforgalom típusú a banki tételekre vonatkozókat. A riport azt is mutatja, mi nem kapott még kategóriát, és az időszak mekkora része van lefedve, így a megoszlás soha nem tűnik magabiztosabbnak, mint amilyen a mögötte lévő adat. Az értelmezéséről lásd: [Riportok](/reports).

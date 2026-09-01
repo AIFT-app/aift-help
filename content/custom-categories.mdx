@@ -18,6 +18,25 @@ A list has:
 
 Each list holds categories with an optional **Code** (your own identifier, e.g. `CC-100`), a **Name**, and an optional **Description** that becomes part of the AI's vocabulary. You can add them one by one or import them from Excel with the same flexible import used for the built-in categories: upload a file, confirm the column mapping, review what would be created, and nothing existing is ever overwritten.
 
+## Building a List from a Document
+
+If the categories already exist in a document, you do not have to type them in. Open the document under **Documents**, click **Create category list**, and the AI reads it and proposes a list: a title, the guidance text, and the categories with their codes and descriptions.
+
+It works on any document you have uploaded, up to twenty pages: a costing manual, a chart of accounts, a department list, a grant budget. Nothing happens on its own; the AI reads a document only when you ask it to.
+
+What comes back is a **proposal**, and you are the one who decides:
+
+- Every field is editable before anything is created, including the list title and the guidance text.
+- Individual categories can be excluded with **Exclude**.
+- A category the document marks as closed or retired is created as inactive, and says so before you commit.
+- You can send the categories into a **new list**, or add them to an **existing list**, in which case only what is missing is added and nothing already there is touched.
+
+The last step shows exactly what will happen: how many categories will be created, how many are already there, and how many rows could not be used. Nothing is written until you click **Create**.
+
+If the document holds no categorisation scheme, the screen says so plainly rather than offering an empty list. That is a normal answer for most documents.
+
+A list built this way remembers where it came from, and the document shows which lists it produced, so the origin of a set of codes is never a mystery later.
+
 ## How the AI Applies Them
 
 After an invoice or transaction finishes its normal categorization, a separate AI pass reads your lists and assigns one category per applicable list. Confident assignments are applied automatically and shown with an AI badge and confidence; uncertain ones are left empty. On a **mandatory** list, an empty assignment flags the item:
@@ -30,3 +49,9 @@ A category you pick by hand always wins; the AI never overwrites an existing ass
 ## Covering Existing Items
 
 A new list only applies to items that arrive after it. To cover history, open the list and use **Apply to existing items**: the AI processes up to 2,000 older invoices and transactions per run, and you can run it again for the rest.
+
+## Using a List in Reports
+
+A list is not only a label. On any report you can pick it under **Break down by**, and every reporting line splits into one column per category, so a single P&L also shows how the numbers divide across cost centres, business lines or projects.
+
+Only lists that match the report are offered: an Invoice report offers lists that apply to invoices, a Cash report those that apply to bank transactions. The report also shows what carries no category yet, and what share of the period is covered, so a split is never more confident than the underlying data. See [Reports](/reports) for how to read it.

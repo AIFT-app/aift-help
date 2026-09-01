@@ -1,6 +1,6 @@
 # Riportok
 
-A riportokkal tetszőleges dátumtartományban összesítheti a számla- vagy banki tranzakciós adatokat kategóriánként. Összeállíthat egyedi eredménykimutatást, pénzforgalmi összesítést vagy bármilyen más nézetet, amely az adott ügyfélnél értelmes — és a számok mögé is lefúrhat, egészen az egyes dokumentumokig.
+A riportokkal tetszőleges dátumtartományban összesítheti a számla- vagy banki tranzakciós adatokat kategóriánként. Összeállíthat egyedi eredménykimutatást, pénzforgalmi összesítést vagy bármilyen más nézetet, amely az adott ügyfélnél értelmes, felbonthatja a saját kategórialistái szerint, és lefúrhat a számok mögé, egészen az egyes dokumentumokig.
 
 ## A riportok megnyitása
 
@@ -15,67 +15,97 @@ Bármelyik kártyán kattintson a **Megnyitás** gombra a riport megtekintéséh
 | **Számla** | Számlatételeket, számlakategória szerint csoportosítva |
 | **Pénzforgalom** | Banki tranzakciókat, tranzakciókategória szerint csoportosítva |
 
-Eredménykimutatás-jellegű nézethez válassza a **Számla** típust. Pénzforgalmi nézethez a **Pénzforgalom** típust. A két típus külön kategóriakészletet használ — a kategóriák beállításáról lásd: [Számlák és tranzakciók kategorizálása](/categorization).
+Eredménykimutatás-jellegű nézethez válassza a **Számla** típust. Pénzforgalmi nézethez a **Pénzforgalom** típust. A két típus külön kategóriakészletet használ; a kategóriák beállításáról lásd: [Számlák és tranzakciók kategorizálása](/categorization).
 
-## Riport futtatása
+## Az időszak kiválasztása
 
-Amikor megnyit egy riportot, az automatikusan lefut az aktuális naptári évre. A dátumtartomány módosításához használja az eszköztár **Tól** és **Ig** dátumválasztóit, majd kattintson a **Futtatás** gombra.
-
-A riport minden dátummódosításkor újrafut.
+Amikor megnyit egy riportot, az automatikusan lefut az aktuális évre. Az időszakot az eszköztár bal szélén lévő dátumvezérlővel módosíthatja: választhat kész beállítást (például ez a hónap vagy előző negyedév), vagy megadhat pontos tartományt. A riport azonnal újrafut, az időszak pedig bekerül az oldal címébe, így ha elküldi a linket egy kollégájának, ugyanazt az időszakot fogja látni, amit Ön.
 
 ## Az eredmények értelmezése
 
-Az eredmények táblázatként jelennek meg. Minden sor egy **jelentéssor** — a riport szerkezetének egy megnevezett sora:
+Az eredmények táblázatként jelennek meg. Minden sor egy **jelentéssor**, a riport szerkezetének egy megnevezett sora:
 
 - A **normál sorok** (behúzva) egy vagy több kategória összegét mutatják a kiválasztott időszakra.
-- A **számított sorok** (Σ jellel, kissé vastagabban) más sorokból számított összegek — például Bruttó eredmény = Árbevétel − Eladott áruk beszerzési értéke.
+- A **számított sorok** (Σ jellel, kissé vastagabban) más sorokból számított összegek, például Bruttó eredmény = Árbevétel − Eladott áruk beszerzési értéke.
 
 A negatív összegek pirosan jelennek meg.
+
+## Bontás egyéni kategórialista szerint
+
+A riport oszlopokra bontható a saját kategórialistái egyike szerint, így egyetlen eredménykimutatás arra a kérdésre is válaszol, hogy „és ez hogyan oszlik meg a költséghelyek között?”, anélkül hogy egy második riportot kellene felépítenie.
+
+Használja az eszköztár **Bontás** vezérlőjét, és válasszon listát. Csak a riporthoz illő listák jelennek meg: a Számla típusú riport a számlákra vonatkozó listákat kínálja, a Pénzforgalom típusú a banki tételekre vonatkozókat. Ha egy lista sem jelenik meg, a munkaterületnek még nincs megfelelő listája. A létrehozásról lásd: [Egyéni kategóriák](/custom-categories).
+
+Ezután minden jelentéssor kategóriánként egy oszlopot mutat, plusz még kettőt:
+
+- A **Nincs hozzárendelve** oszlop gyűjti az időszak minden olyan tételét, amely az adott listáról nem kapott kategóriát. Ez az őszinte maradék, nem hiba.
+- Az **Egyéb (n)** oszlop akkor jelenik meg, ha a listán több forgalmas kategória van, mint amennyi elfér. A riport a tizenkét legnagyobbat tartja meg, a többit pedig ebbe az egy oszlopba vonja össze; az `n` mutatja, hányat. Az összevonás szándékos, szemben az elhagyással: az oszlopok minden soron továbbra is kiadják az Összesen értéket.
+
+A táblázat alatt látja, hogy az időszak mekkora része kapott értéket ezen a listán, például **62% hozzárendelve**, alatta pedig a hozzá nem rendelt összeggel. Egy új listánál az alacsony arány természetes. Ahogy az AI feldolgozza az érkező tételeket, folyamatosan nő, a múltat pedig a lista saját oldaláról fedheti le.
+
+Két dolgot érdemes tudni, amíg a bontás be van kapcsolva:
+
+- **A sorra kattintva nem nyílik meg a részletező panel.** A lefúrás a bontás nélküli riporton működik. Ha egy szám mögé szeretne nézni, kapcsolja ki a bontást.
+- **Minden oszlopfejlécen van egy „csak ez” hivatkozás.** Erre kattintva a teljes riport arra az egy kategóriára szűkül. Ez egyben a bontást is megszünteti, ami éppen az, amire szüksége van, ha egyetlen költséghely riportját nyomtatja vagy exportálja.
+
+## Szűrés
+
+Az eszköztár **Szűrés** gombjával a riportot egy adott kategóriát viselő tételekre szűkítheti. Válasszon értéket, és a riport újrafut; a választás címkeként jelenik meg a gomb mellett, a gombon pedig látszik, hány szűrő aktív. Egy szűrőt a címke × jelével vagy a menü **Mind** sorával távolíthat el.
+
+A szűrők és a bontás együtt működnek, és éppen ez a hasznos kombináció: bontson költséghely szerint, miközben egyetlen üzletágra szűr, és megkapja annak az üzletágnak a költséghely szerinti megoszlását. A különböző listákra vonatkozó szűrők egymást szűkítik, tehát egy újabb szűrő mindig kevesebbet mutat, soha nem többet.
+
+Az a lista, amely szerint éppen bont, nem szerepel a szűrőmenüben, és a menü ezt meg is írja. A kategóriái már az oszlopok, így ha egyikükre szűrne, egyetlen oszlop maradna, ami megegyezne az Összesen értékkel. Használja helyette az oszlopfejléc **csak ez** hivatkozását. Ha egy munkaterületnek egyetlen listája van, és éppen az szerint bont, nem marad mire szűrni, ezért a gomb meg sem jelenik.
+
+## Megjelenítés más pénznemben
+
+A **Megjelenítési pénznem** a teljes riportot átszámítja, megjelenítési céllal. Az átváltás az időszak végére vonatkozó egyetlen ECB-árfolyammal történik, az árfolyam és a dátuma pedig ki van írva a táblázat alá, így egy átszámított riport mindig megmondja, milyen árfolyamon készült. Az arányszámok és a részletező panel a bázis pénznemben maradnak, mert az aránynak nincs pénzneme, a részletezésnek pedig egyeznie kell a mögöttes dokumentumokkal.
+
+Ha a célpénznemhez nincs elérhető árfolyam, a riport ezt megírja, és a bázis pénznemnél marad, ahelyett hogy olyan számot mutatna, amelyet nem tud vállalni.
 
 ## Lefúrás
 
 Kattintson bármelyik sorra a jobb oldali részletező panel megnyitásához. A panel megmutatja, mi áll a szám mögött:
 
-1. **Kategóriák** — a sorhoz hozzájáruló kategóriák, összegükkel és tételszámukkal. Kattintson egy kategóriára a kibontásához.
-2. **Tételek** — az egyes kategóriákon belüli számlák vagy tranzakciók. Minden tétel mutatja a dátumot, a partnert, a hivatkozást vagy számlaszámot és az összeget. Kattintson a **PDF** gombra az eredeti dokumentum megtekintéséhez, vagy a **→** jelre a teljes számlarészletező oldal megnyitásához.
+1. **Kategóriák**: a sorhoz hozzájáruló kategóriák, összegükkel és tételszámukkal. Kattintson egy kategóriára a kibontásához.
+2. **Tételek**: az egyes kategóriákon belüli számlák vagy tranzakciók. Minden tétel mutatja a dátumot, a partnert, a hivatkozást vagy számlaszámot és az összeget. Kattintson a **PDF** gombra az eredeti dokumentum megtekintéséhez, vagy a **→** jelre a teljes számlarészletező oldal megnyitásához.
 
-Ugyanarra a sorra újra kattintva a panel bezárul.
+Ugyanarra a sorra újra kattintva a panel bezárul. Az aktív szűrő a panelre is vonatkozik, tehát amit ott lát, az valóban az a szám, amire kattintott.
 
 ## Keresés
 
 Az eszköztár keresőmezőjével szűrheti a riportot. A keresés a következőkre illeszkedik:
 
-- **Jelentéssor-nevek** — azok a sorok, amelyek neve tartalmazza a keresett kifejezést
-- **Kategórianevek** — azok a sorok, amelyekhez illeszkedő kategória van rendelve
-- **A részletező panel tételei** — a partnernevek, számlaszámok, hivatkozások és leírások mind kereshetők, miután kibontott egy sort
+- **Jelentéssor-nevek**: azok a sorok, amelyek neve tartalmazza a keresett kifejezést
+- **Kategórianevek**: azok a sorok, amelyekhez illeszkedő kategória van rendelve
+- **A részletező panel tételei**: a partnernevek, számlaszámok, hivatkozások és leírások mind kereshetők, miután kibontott egy sort
 
 Az illeszkedő szövegrészek mindenütt sárgán kiemelve jelennek meg.
 
 ## Riport létrehozása
 
-A munkaterület bármely tagja létrehozhat új riportot. Kattintson az **Új jelentés** gombra, adjon meg egy nevet, és válassza ki a típust. A riport sorok nélkül jön létre — a szerkezet felépítéséhez használja a **Szerkesztés** gombot.
+A munkaterület bármely tagja létrehozhat új riportot. Kattintson az **Új jelentés** gombra, adjon meg egy nevet, és válassza ki a típust. A riport sorok nélkül jön létre; a szerkezet felépítéséhez használja a **Szerkesztés** gombot.
 
 ## Riport szerkesztése
 
 Kattintson az eszköztár **Szerkesztés** gombjára. A szerkesztő két panellel nyílik meg:
 
-**Bal panel — Sorok**
+**Bal panel: Sorok**
 
 Ez a jelentéssorok listája. Itt a következőket teheti:
 
-- **Jelentéssor hozzáadása** — egy vagy több kategóriát összesít. Kattintson a **+ Jelentéssor** gombra.
-- **Számított sor hozzáadása** — más sorokat ad össze vagy von ki. Kattintson a **+ Számított sor** gombra.
-- **Sor átnevezése** — kattintson a névre, és gépeljen. A módosítás akkor mentődik, amikor máshová kattint.
-- **Sorok átrendezése** — húzza a sor bal oldalán lévő fogantyút (≡) felfelé vagy lefelé.
-- **Sor törlése** — kattintson a jobb oldali kuka ikonra.
+- **Jelentéssor hozzáadása**, amely egy vagy több kategóriát összesít. Kattintson a **+ Jelentéssor** gombra.
+- **Számított sor hozzáadása**, amely más sorokat ad össze vagy von ki. Kattintson a **+ Számított sor** gombra.
+- **Sor átnevezése**: kattintson a névre, és gépeljen. A módosítás akkor mentődik, amikor máshová kattint.
+- **Sorok átrendezése**: húzza a sor bal oldalán lévő fogantyút (≡) felfelé vagy lefelé.
+- **Sor törlése**: kattintson a jobb oldali kuka ikonra.
 
-**Jobb panel — Kategóriák**
+**Jobb panel: Kategóriák**
 
 Ha ki van választva egy jelentéssor, a jobb panel mutatja, mely kategóriák vannak hozzárendelve. A kategóriák három csoportra oszlanak:
 
-- **Ehhez a sorhoz rendelve** — a × jelre kattintva eltávolíthatja.
-- **Másik sorban használt** — rákattintva ehhez a sorhoz is hozzáadhatja.
-- **Még nincs hozzárendelve** — figyelmeztető ikonnal jelölve. Kattintson a hozzárendeléshez.
+- **Ehhez a sorhoz rendelve**: a × jelre kattintva eltávolíthatja.
+- **Másik sorban használt**: rákattintva ehhez a sorhoz is hozzáadhatja.
+- **Még nincs hozzárendelve**: figyelmeztető ikonnal jelölve. Kattintson a hozzárendeléshez.
 
 Azok a kategóriák, amelyek egyetlen sorhoz sincsenek hozzárendelve, minden riportból kimaradnak.
 
@@ -85,7 +115,8 @@ Ha végzett a szerkesztéssel, kattintson a **Kész** gombra. A riport azonnal l
 
 ## Tippek
 
-- **Kezdje a kategóriákkal.** Egy jelentéssor csak annyira hasznos, amennyire a mögötte álló kategóriák. Győződjön meg róla, hogy a számla- és tranzakciókategóriái jól definiáltak, mielőtt riportszerkezetet épít — lásd: [Számlák és tranzakciók kategorizálása](/categorization).
-- **Az összegekhez használjon számított sorokat.** Az részösszegeket (például Összes bevétel, Összes költség) számított sorként építse fel, majd vonja össze őket egy végösszegbe (például Nettó eredmény). Így a lefúrás sokkal beszédesebb lesz.
-- **Keressen lefúrás közben.** Gépeljen be egy szállítónevet vagy számlaszámot a keresőmezőbe, miközben a részletező panel nyitva van — az illeszkedő tételek láthatók maradnak és kiemelésre kerülnek.
+- **Kezdje a kategóriákkal.** Egy jelentéssor csak annyira hasznos, amennyire a mögötte álló kategóriák. Győződjön meg róla, hogy a számla- és tranzakciókategóriái jól definiáltak, mielőtt riportszerkezetet épít. Lásd: [Számlák és tranzakciók kategorizálása](/categorization).
+- **Az összegekhez használjon számított sorokat.** A részösszegeket (például Összes bevétel, Összes költség) számított sorként építse fel, majd vonja össze őket egy végösszegbe (például Nettó eredmény). Így a lefúrás sokkal beszédesebb lesz.
+- **Olvassa el a hozzárendelési arányt, mielőtt egy bontásra támaszkodik.** A költséghelyek közötti megoszlás mást jelent 90%-os és mást 20%-os hozzárendelésnél, és a riport megmondja, melyiket látja éppen.
+- **Keressen lefúrás közben.** Gépeljen be egy szállítónevet vagy számlaszámot a keresőmezőbe, miközben a részletező panel nyitva van; az illeszkedő tételek láthatók maradnak és kiemelésre kerülnek.
 - **A dátumtartomány nem érinti a szerkezetet.** Szabadon módosíthatja a dátumokat anélkül, hogy elveszítené a sorbeállításait. Futtassa ugyanazt a riportot különböző időszakokra az összehasonlításhoz.
