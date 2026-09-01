@@ -18,6 +18,25 @@ Eine Liste besteht aus:
 
 Jede Liste enthält Kategorien mit optionalem **Code** (Ihre eigene Kennung, z. B. `CC-100`), einem **Namen** und einer optionalen **Beschreibung**, die Teil des KI-Vokabulars wird. Sie können sie einzeln anlegen oder mit demselben flexiblen Import wie bei den eingebauten Kategorien aus Excel importieren: Datei hochladen, Spaltenzuordnung bestätigen, Vorschau prüfen; bestehende Daten werden nie überschrieben.
 
+## Eine Liste aus einem Dokument erstellen
+
+Stehen die Kategorien schon in einem Dokument, müssen Sie sie nicht abtippen. Öffnen Sie das Dokument unter **Dokumente**, klicken Sie auf **Kategorieliste erstellen**, und die KI liest es und schlägt eine Liste vor: einen Titel, den Hinweistext und die Kategorien mit Codes und Beschreibungen.
+
+Das funktioniert mit jedem hochgeladenen Dokument, bis zu zwanzig Seiten: eine Kostenstellenrichtlinie, ein Kontenrahmen, eine Abteilungsliste, ein Förderbudget. Von allein passiert nichts; die KI liest ein Dokument nur, wenn Sie es verlangen.
+
+Was zurückkommt, ist ein **Vorschlag**, und Sie entscheiden darüber:
+
+- Jedes Feld ist bearbeitbar, bevor etwas angelegt wird, auch Titel und Hinweistext.
+- Einzelne Kategorien lassen sich mit **Auslassen** herausnehmen.
+- Eine Kategorie, die das Dokument als geschlossen kennzeichnet, wird als inaktiv angelegt und sagt das vorher an.
+- Die Kategorien können in eine **neue Liste** gehen oder einer **bestehenden Liste** hinzugefügt werden; dann kommt nur hinzu, was fehlt, und Vorhandenes bleibt unberührt.
+
+Der letzte Schritt zeigt genau, was passieren wird: wie viele Kategorien angelegt werden, wie viele schon da sind und wie viele Zeilen nicht verwendbar waren. Geschrieben wird erst, wenn Sie auf **Anlegen** klicken.
+
+Enthält das Dokument kein Kategorisierungsschema, sagt der Bildschirm das offen, statt eine leere Liste anzubieten. Bei den meisten Dokumenten ist das die normale Antwort.
+
+Eine so gebaute Liste merkt sich ihre Herkunft, und das Dokument zeigt, welche Listen daraus entstanden sind. Woher ein Satz Codes stammt, bleibt also später kein Rätsel.
+
 ## Wie die KI sie anwendet
 
 Sobald eine Rechnung oder Transaktion ihre normale Kategorisierung abgeschlossen hat, liest ein separater KI-Lauf Ihre Listen und ordnet pro anwendbarer Liste eine Kategorie zu. Sichere Zuordnungen werden automatisch übernommen und mit KI-Kennzeichen und Konfidenz angezeigt; unsichere bleiben leer. Auf einer **Pflichtliste** markiert eine leere Zuordnung den Beleg:
@@ -30,3 +49,9 @@ Eine von Hand gewählte Kategorie gewinnt immer; die KI überschreibt nie eine b
 ## Bestehende Belege abdecken
 
 Eine neue Liste gilt nur für Belege, die nach ihr eintreffen. Für die Historie öffnen Sie die Liste und nutzen **Auf bestehende Belege anwenden**: Die KI verarbeitet bis zu 2000 ältere Rechnungen und Transaktionen pro Lauf; für den Rest führen Sie den Lauf erneut aus.
+
+## Eine Liste in Berichten nutzen
+
+Eine Liste ist nicht nur ein Etikett. In jedem Bericht können Sie sie unter **Aufschlüsseln nach** wählen, und jede Berichtszeile teilt sich in eine Spalte pro Kategorie. So zeigt eine einzige GuV zugleich, wie sich die Zahlen auf Kostenstellen, Geschäftsbereiche oder Projekte verteilen.
+
+Angeboten werden nur Listen, die zum Bericht passen: Ein Rechnungsbericht bietet Listen für Rechnungen an, ein Cashflow-Bericht solche für Banktransaktionen. Der Bericht zeigt außerdem, was noch keine Kategorie trägt und welcher Anteil des Zeitraums abgedeckt ist, eine Verteilung wirkt also nie sicherer als die Daten dahinter. Wie Sie das lesen, steht unter [Berichte](/reports).

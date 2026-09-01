@@ -18,9 +18,12 @@ export const navigation: NavItem[] = [
     slug: 'email-forwarding',
     title: { en: 'Forwarding Documents by Email', hu: 'Dokumentumok továbbítása e-mailben', de: 'Dokumente per E-Mail weiterleiten' },
   },
+  { slug: 'documents', title: { en: 'Documents', hu: 'Dokumentumok', de: 'Dokumente' } },
+  // The sidebar entry lagged the article and the app: both already say Missing
+  // receipts / Hiányzó bizonylatok (nav.workspace.documents_needed).
   {
     slug: 'documents-needed',
-    title: { en: 'Documents Needed', hu: 'Hiányzó dokumentumok', de: 'Fehlende Belege' },
+    title: { en: 'Missing Receipts', hu: 'Hiányzó bizonylatok', de: 'Fehlende Belege' },
   },
   {
     slug: 'currency-exchange',
