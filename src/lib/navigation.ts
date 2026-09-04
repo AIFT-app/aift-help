@@ -108,6 +108,14 @@ export const navigation: NavItem[] = [
   { slug: 'messages', title: { en: 'Messages', hu: 'Üzenetek', de: 'Nachrichten' } },
   { slug: 'mcp', title: { en: 'AI Assistants (MCP)', hu: 'AI-asszisztensek (MCP)', de: 'KI-Assistenten (MCP)' } },
   {
+    slug: 'business-central',
+    title: {
+      en: 'Connecting Business Central',
+      hu: 'A Business Central összekötése',
+      de: 'Business Central verbinden',
+    },
+  },
+  {
     slug: 'ai-and-data',
     title: { en: 'Where Your Data Goes', hu: 'Hová kerülnek az adatai', de: 'Wohin Ihre Daten gehen' },
   },
