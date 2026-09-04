@@ -1,0 +1,81 @@
+# Connecting Business Central
+
+AI Finance Team can read the companies in your Microsoft Dynamics 365 Business Central. This page explains what has to be approved, and by whom.
+
+Setting it up needs **two separate approvals**, and they are usually given by two different people. Granting one does not grant the other. That is the single thing most worth understanding before you start.
+
+---
+
+## The two approvals
+
+**1. Microsoft approval.** Someone with **Global Administrator** rights in your Microsoft 365 approves AI Finance Team once. This is usually your IT administrator or your IT provider. It takes about a minute and happens on a Microsoft page, not ours.
+
+**2. Business Central registration.** Someone with **SUPER** rights inside Business Central adds our application there and gives it a permission set. This is often the accountant rather than the IT administrator.
+
+There is no way to automate the second one. Business Central has no interface for it, so a person has to do it by hand. Approval alone leaves the connection refusing every request, which is why AI Finance Team tells the two states apart instead of showing one generic "not connected".
+
+---
+
+## Step 1: send the approval link
+
+In AI Finance Team, open **Settings → Business Central** and choose **Create the approval link**.
+
+You will get a link and a ready-written message. Send both to whoever administers your Microsoft 365. The link expires after 7 days, and you can create a new one at any time. Creating a new one stops the previous one working.
+
+Two things to expect:
+
+- Microsoft will warn that **the publisher is not verified**. That is normal for this application, and it does not stop an administrator from approving. It stops ordinary users from approving, which is not what happens here.
+- The administrator sees a page confirming the approval landed. It does not mention your company by name, because anyone holding that link can open it.
+
+The permission granted is read and write on the Business Central API. It does not allow creating or deleting environments.
+
+---
+
+## Step 2: register the application in Business Central
+
+Once Microsoft approval lands, AI Finance Team shows an **Application ID** and these steps. Send them to whoever holds SUPER rights in Business Central.
+
+1. In Business Central, press **Alt+Q** and search for **Microsoft Entra Applications**.
+2. Choose **New** and paste in the Application ID.
+3. Set the description to **AI Finance Team integration**.
+4. Set **State** to **Enabled**.
+5. Add the permission set **D365 BUS FULL ACCESS**.
+6. Leave the **Company** field on that line **empty**.
+
+Three things go wrong here more often than anything else:
+
+- **Naming a company on that line** silently limits AI Finance Team to that one company. Everything appears to work, and the other companies simply never show up. Leave it empty.
+- **Using D365 AUTOMATION** instead. The connection succeeds and then returns nothing useful, because that permission set covers administrative APIs rather than business data.
+- **Using SUPER.** It works and grants far more than the integration needs. Do not.
+
+The registration is **per environment**. Doing it in Production does not cover a Sandbox; each environment needs its own.
+
+---
+
+## What the statuses mean
+
+| Status | What it means | Who acts next |
+|---|---|---|
+| Not connected | No approval link has been created yet. | You. |
+| Waiting for Microsoft approval | The link exists but nobody has approved it. | Your Microsoft administrator. |
+| Waiting for Business Central registration | Microsoft approved us and our sign-in works. Business Central is still refusing, so step 2 is not done. | Your Business Central administrator. |
+| Connected | We can read your companies. | Nobody. |
+| Error | Something specific went wrong. The page shows the code. | Depends on the code. |
+
+If the status says the environment could not be found, check the environment name in your own Business Central address. It is **Production** for most customers.
+
+---
+
+## What AI Finance Team reads
+
+At this stage, only the **list of companies**: their names and identifiers. Nothing is written back to Business Central, and no invoice, transaction or balance is read yet.
+
+Connecting company data to the entities in AI Finance Team is a separate step, and you choose which companies to connect. Companies you do not connect are simply left alone.
+
+---
+
+## Who can set this up
+
+A workspace administrator or the client owner can connect and disconnect. Everyone else in the workspace can see the status but cannot change it.
+
+You can disconnect at any time from the same page. Your Microsoft administrator can also revoke the approval in your own Microsoft 365 without asking us.

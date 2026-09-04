@@ -1,0 +1,81 @@
+# Business Central verbinden
+
+AI Finance Team kann die Unternehmen in Ihrem Microsoft Dynamics 365 Business Central lesen. Diese Seite erklärt, was genehmigt werden muss und von wem.
+
+Die Einrichtung erfordert **zwei getrennte Genehmigungen**, und sie werden meist von zwei verschiedenen Personen erteilt. Die eine erteilt nicht die andere. Das ist der wichtigste Punkt, bevor Sie beginnen.
+
+---
+
+## Die zwei Genehmigungen
+
+**1. Microsoft-Genehmigung.** Eine Person mit **globalen Administratorrechten** in Ihrem Microsoft 365 genehmigt AI Finance Team einmalig. Das ist in der Regel Ihre IT-Administration oder Ihr IT-Dienstleister. Es dauert etwa eine Minute und geschieht auf einer Microsoft-Seite, nicht auf unserer.
+
+**2. Business-Central-Registrierung.** Eine Person mit **SUPER**-Rechten in Business Central fügt unsere Anwendung dort hinzu und weist ihr einen Berechtigungssatz zu. Das ist oft die Buchhaltung, nicht die IT.
+
+Der zweite Schritt lässt sich nicht automatisieren. Business Central bietet keine Schnittstelle dafür, eine Person muss ihn also manuell ausführen. Die Genehmigung allein führt zu einer Verbindung, die jede Anfrage ablehnt. Deshalb unterscheidet AI Finance Team die beiden Zustände, statt ein allgemeines „Nicht verbunden" anzuzeigen.
+
+---
+
+## Schritt 1: Genehmigungslink senden
+
+Öffnen Sie in AI Finance Team **Einstellungen → Business Central** und wählen Sie **Genehmigungslink erstellen**.
+
+Sie erhalten einen Link und eine vorformulierte Nachricht. Senden Sie beides an die Person, die Ihr Microsoft 365 verwaltet. Der Link läuft nach 7 Tagen ab, und Sie können jederzeit einen neuen erstellen. Sobald ein neuer erstellt ist, funktioniert der vorherige nicht mehr.
+
+Zwei Hinweise:
+
+- Microsoft warnt, dass **der Herausgeber nicht verifiziert** ist. Das ist bei dieser Anwendung normal und hindert eine Administratorin nicht an der Genehmigung. Es verhindert die Genehmigung durch gewöhnliche Benutzer, und darum geht es hier nicht.
+- Die Administration sieht eine Seite, die den Eingang der Genehmigung bestätigt. Ihr Unternehmen wird darauf nicht genannt, denn wer den Link besitzt, kann sie öffnen.
+
+Die erteilte Berechtigung ist Lesen und Schreiben auf der Business-Central-API. Sie erlaubt kein Erstellen oder Löschen von Umgebungen.
+
+---
+
+## Schritt 2: Anwendung in Business Central registrieren
+
+Sobald die Microsoft-Genehmigung vorliegt, zeigt AI Finance Team eine **Application ID** und diese Schritte an. Senden Sie sie an die Person mit SUPER-Rechten in Business Central.
+
+1. Drücken Sie in Business Central **Alt+Q** und suchen Sie nach **Microsoft Entra Applications**.
+2. Wählen Sie **Neu** und fügen Sie die Application ID ein.
+3. Setzen Sie die Beschreibung auf **AI Finance Team integration**.
+4. Setzen Sie **State** auf **Enabled**.
+5. Fügen Sie den Berechtigungssatz **D365 BUS FULL ACCESS** hinzu.
+6. Lassen Sie das Feld **Company** in dieser Zeile **leer**.
+
+Drei Dinge gehen hier häufiger schief als alles andere:
+
+- **Wird in dieser Zeile ein Unternehmen eingetragen**, beschränkt sich AI Finance Team unbemerkt auf dieses eine Unternehmen. Alles scheint zu funktionieren, die übrigen Unternehmen tauchen schlicht nie auf. Lassen Sie das Feld leer.
+- **D365 AUTOMATION statt dessen zu verwenden.** Die Verbindung gelingt und liefert dann nichts Brauchbares, denn dieser Berechtigungssatz deckt Verwaltungs-APIs ab, keine Geschäftsdaten.
+- **SUPER zu verwenden.** Es funktioniert und gewährt weit mehr, als die Integration benötigt. Tun Sie es nicht.
+
+Die Registrierung gilt **pro Umgebung**. Eine Registrierung in Production deckt keine Sandbox ab; jede Umgebung benötigt eine eigene.
+
+---
+
+## Was die Status bedeuten
+
+| Status | Bedeutung | Wer ist am Zug |
+|---|---|---|
+| Nicht verbunden | Es wurde noch kein Genehmigungslink erstellt. | Sie. |
+| Wartet auf Microsoft-Genehmigung | Der Link besteht, wurde aber nicht genehmigt. | Ihre Microsoft-Administration. |
+| Wartet auf Business-Central-Registrierung | Microsoft hat uns genehmigt und unsere Anmeldung funktioniert. Business Central verweigert weiterhin, Schritt 2 fehlt also. | Ihre Business-Central-Administration. |
+| Verbunden | Wir können Ihre Unternehmen lesen. | Niemand. |
+| Fehler | Es ist ein konkreter Fehler aufgetreten. Die Seite zeigt den Code. | Hängt vom Code ab. |
+
+Meldet der Status, dass die Umgebung nicht gefunden wurde, prüfen Sie den Umgebungsnamen in Ihrer eigenen Business-Central-Adresse. Bei den meisten Kunden lautet er **Production**.
+
+---
+
+## Was AI Finance Team liest
+
+In dieser Phase nur die **Liste der Unternehmen**: Namen und Kennungen. Nach Business Central wird nichts zurückgeschrieben, und Rechnungen, Transaktionen oder Salden werden noch nicht gelesen.
+
+Die Unternehmensdaten mit den Einheiten in AI Finance Team zu verbinden ist ein eigener Schritt, und Sie wählen aus, welche Unternehmen verbunden werden. Nicht verbundene Unternehmen bleiben unberührt.
+
+---
+
+## Wer die Einrichtung vornehmen kann
+
+Eine Arbeitsbereichsadministratorin oder der Mandanteninhaber kann verbinden und trennen. Alle übrigen Mitglieder des Arbeitsbereichs sehen den Status, können ihn aber nicht ändern.
+
+Sie können die Verbindung jederzeit auf derselben Seite trennen. Ihre Microsoft-Administration kann die Genehmigung außerdem in Ihrem eigenen Microsoft 365 widerrufen, ohne uns zu fragen.

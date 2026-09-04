@@ -1,0 +1,81 @@
+# A Business Central összekötése
+
+Az AI Finance Team ki tudja olvasni a Microsoft Dynamics 365 Business Centralban lévő cégeket. Ez az oldal elmagyarázza, mit kell jóváhagyni, és kinek.
+
+A beállításhoz **két külön jóváhagyás** kell, és ezeket általában két különböző ember adja meg. Az egyik megadása nem jelenti a másikat. Indulás előtt ezt érdemes a legjobban megérteni.
+
+---
+
+## A két jóváhagyás
+
+**1. Microsoft-jóváhagyás.** Valaki, akinek **Globális rendszergazda** joga van az Önök Microsoft 365-jében, egyszer jóváhagyja az AI Finance Teamet. Ez általában az informatikus vagy az informatikai szolgáltató. Nagyjából egy percet vesz igénybe, és a Microsoft oldalán történik, nem a miénken.
+
+**2. Business Central-regisztráció.** Valaki, akinek **SUPER** joga van a Business Centralon belül, felveszi ott az alkalmazásunkat, és jogosultságkészletet ad neki. Ez sokszor a könyvelő, nem az informatikus.
+
+A másodikat nem lehet automatizálni. A Business Central nem kínál hozzá felületet, tehát egy embernek kézzel kell elvégeznie. A jóváhagyás önmagában olyan kapcsolatot hagy hátra, amely minden kérést elutasít; az AI Finance Team ezért különbözteti meg a két állapotot ahelyett, hogy egyetlen általános „nincs összekötve” üzenetet mutatna.
+
+---
+
+## 1. lépés: küldje el a jóváhagyó linket
+
+Az AI Finance Teamben nyissa meg a **Beállítások → Business Central** oldalt, és válassza a **Jóváhagyó link létrehozása** lehetőséget.
+
+Kap egy linket és egy előre megírt üzenetet. Küldje el mindkettőt annak, aki a Microsoft 365-öt adminisztrálja. A link 7 nap után lejár, és bármikor létrehozhat újat. Az új link létrehozása után a korábbi már nem működik.
+
+Két dologra érdemes számítani:
+
+- A Microsoft jelezni fogja, hogy **a közzétevő nem ellenőrzött**. Ez ennél az alkalmazásnál normális, és nem akadályozza meg a rendszergazdát a jóváhagyásban. A hétköznapi felhasználók jóváhagyását akadályozza meg, de itt nem arról van szó.
+- A rendszergazda egy oldalt lát, amely megerősíti a jóváhagyást. Ez nem nevezi meg az Önök cégét, mert a linket bárki megnyithatja, akinek a kezébe kerül.
+
+A megadott jogosultság olvasás és írás a Business Central API-n. Környezetek létrehozását vagy törlését nem teszi lehetővé.
+
+---
+
+## 2. lépés: vegye fel az alkalmazást a Business Centralban
+
+Amint a Microsoft-jóváhagyás megérkezik, az AI Finance Team megmutat egy **Application ID**-t és az alábbi lépéseket. Küldje el ezeket annak, akinek SUPER joga van a Business Centralban.
+
+1. A Business Centralban nyomjon **Alt+Q**-t, és keressen rá: **Microsoft Entra Applications**.
+2. Válassza az **Új** lehetőséget, és illessze be az Application ID-t.
+3. A leírás legyen: **AI Finance Team integration**.
+4. A **State** értéke legyen **Enabled**.
+5. Adja hozzá a **D365 BUS FULL ACCESS** jogosultságkészletet.
+6. A **Company** mezőt azon a soron hagyja **üresen**.
+
+Itt három dolog megy félre a leggyakrabban:
+
+- **Ha megnevez egy céget azon a soron**, azzal az AI Finance Team csendben csak arra az egy cégre korlátozódik. Minden működni látszik, a többi cég viszont egyszerűen nem jelenik meg. Hagyja üresen.
+- **Ha a D365 AUTOMATION-t használja** helyette. A kapcsolat létrejön, de semmi hasznosat nem ad vissza, mert az a jogosultságkészlet az adminisztrációs API-kat fedi le, nem az üzleti adatokat.
+- **Ha a SUPER-t használja.** Működik, de sokkal többet ad, mint amennyire az integrációnak szüksége van. Ne tegye.
+
+A regisztráció **környezetenként** külön kell. Ha Productionben elvégzik, az nem vonatkozik egy Sandboxra; minden környezetnek sajátra van szüksége.
+
+---
+
+## Mit jelentenek az állapotok
+
+| Állapot | Mit jelent | Ki következik |
+|---|---|---|
+| Nincs összekötve | Még nem készült jóváhagyó link. | Ön. |
+| Microsoft-jóváhagyásra vár | A link létezik, de még senki nem hagyta jóvá. | A Microsoft-rendszergazdájuk. |
+| Business Central-regisztrációra vár | A Microsoft jóváhagyott minket, és a bejelentkezésünk működik. A Business Central még elutasít, tehát a 2. lépés nincs kész. | A Business Central-rendszergazdájuk. |
+| Összekötve | Olvassuk a cégeiket. | Senki. |
+| Hiba | Valami konkrét hiba történt. Az oldal megmutatja a kódot. | A kódtól függ. |
+
+Ha az állapot szerint a környezet nem található, ellenőrizze a környezet nevét a saját Business Central webcímükben. A legtöbb ügyfélnél ez a **Production**.
+
+---
+
+## Mit olvas az AI Finance Team
+
+Ebben a szakaszban csak a **cégek listáját**: a nevüket és az azonosítójukat. A Business Centralba semmit nem írunk vissza, és számlát, tranzakciót vagy egyenleget még nem olvasunk.
+
+A cégadatok összekötése az AI Finance Team-beli entitásokkal külön lépés, és Ön választja ki, melyik cégeket köti össze. Az össze nem kötött cégeket egyszerűen békén hagyjuk.
+
+---
+
+## Ki állíthatja be
+
+Munkaterület-adminisztrátor vagy az ügyfél tulajdonosa köthet össze és bonthat kapcsolatot. A munkaterület többi tagja látja az állapotot, de nem tudja módosítani.
+
+A kapcsolatot bármikor bonthatja ugyanezen az oldalon. A Microsoft-rendszergazdájuk a saját Microsoft 365-jükben is visszavonhatja a jóváhagyást, anélkül hogy minket megkérdezne.
