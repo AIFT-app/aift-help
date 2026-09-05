@@ -74,6 +74,38 @@ Die Unternehmensdaten mit den Einheiten in AI Finance Team zu verbinden ist ein 
 
 ---
 
+## Unternehmen und Einheiten einander zuordnen
+
+Sobald die Verbindung funktioniert, listet die Business-Central-Seite alle Unternehmen aus Ihrem Business Central auf. Jedes Unternehmen lässt sich einer Einheit in AI Finance Team zuordnen und jede Einheit einem Unternehmen.
+
+Es gibt zwei Wege:
+
+- **Aus einem Unternehmen eine neue Einheit anlegen.** AI Finance Team übernimmt Name, Steuernummer, Land und Adresse aus Business Central. Sie können mehrere Unternehmen auswählen und in einem Zug anlegen.
+- **Einer vorhandenen Einheit zuordnen.** Nutzen Sie das, wenn die Einheit in AI Finance Team bereits existiert.
+
+AI Finance Team schlägt eine Zuordnung vor, wo es das kann. Ein Vorschlag auf Basis der **Steuernummer** ist verlässlich. Ein Vorschlag auf Basis des **Namens** ist nur ein Vorschlag, prüfen Sie ihn vor der Übernahme.
+
+### Was geschrieben wird und was nicht
+
+Bei der Zuordnung zu einer vorhandenen Einheit können Sie Adresse und Steuernummer aus Business Central übernehmen. **Nur leere Felder können gefüllt werden.** Ein Wert, den AI Finance Team bereits hat, wird nie überschrieben, unabhängig davon, was Sie ankreuzen. Um einen vorhandenen Wert zu ändern, bearbeiten Sie die Einheit selbst.
+
+Nach Business Central wird nichts zurückgeschrieben.
+
+### Unternehmen, die sich nicht zuordnen lassen
+
+Ein Unternehmen, dessen Steuernummer eine **Gruppenkennung** ist, also eine umsatzsteuerliche Organschaft und kein Unternehmen, kann keine Einheit werden. AI Finance Team weist in der Zeile darauf hin. Lassen Sie es ohne Zuordnung. Es ist eine Melderegelung, kein Betrieb.
+
+### Hinweise, die Ihnen begegnen können
+
+- **Abweichende Währung.** Business Central führt die Bücher dieses Unternehmens in einer anderen Währung als der Basiswährung Ihres Arbeitsbereichs. Das ist nur ein Hinweis und verhindert die Zuordnung nie.
+- **Abweichende Steuernummern.** Unternehmen und zugeordnete Einheit nennen unterschiedliche Steuernummern. Prüfen Sie vor der Übernahme, welche richtig ist.
+
+### Eine Zuordnung aufheben
+
+Heben Sie die Zuordnung auf derselben Seite oder auf der Seite der Einheit auf. Dabei wird nur die Verbindung entfernt. Die Einheit bleibt unverändert, und in Business Central ändert sich nichts.
+
+---
+
 ## Wer die Einrichtung vornehmen kann
 
 Eine Arbeitsbereichsadministratorin oder der Mandanteninhaber kann verbinden und trennen. Alle übrigen Mitglieder des Arbeitsbereichs sehen den Status, können ihn aber nicht ändern.

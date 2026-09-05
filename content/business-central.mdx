@@ -74,6 +74,38 @@ Connecting company data to the entities in AI Finance Team is a separate step, a
 
 ---
 
+## Pairing companies with entities
+
+Once the connection works, the Business Central page lists every company in your Business Central. Each company can be paired with one entity in AI Finance Team, and each entity with one company.
+
+There are two ways to pair:
+
+- **Create a new entity from a company.** AI Finance Team takes the name, the tax number, the country and the address from Business Central. You can tick several companies and create them all in one go.
+- **Pair with an entity you already have.** Use this when the entity is already in AI Finance Team.
+
+AI Finance Team suggests a match where it can. A suggestion based on the **tax number** is reliable. A suggestion based on the **name** is only a suggestion, so check it before you accept it.
+
+### What gets written, and what does not
+
+When you pair with an existing entity, you can copy the address and the tax number across from Business Central. **Only empty fields can be filled.** A value that is already in AI Finance Team is never overwritten, whatever you tick. To change a value you already have, edit the entity itself.
+
+Nothing is ever written back to Business Central.
+
+### Companies you cannot pair
+
+A company whose tax number is a **VAT group identifier**, that is a group registration rather than a company, cannot become an entity. AI Finance Team says so on the row. Leave it unpaired. It is a filing arrangement, not a business.
+
+### Warnings you may see
+
+- **Different currency.** Business Central keeps that company's books in a currency other than your workspace's base currency. This is a warning only. It never stops you pairing.
+- **Different tax numbers.** The company and the entity you are pairing it with state different tax numbers. Check which one is right before you accept.
+
+### Undoing a pair
+
+Unpair from the same page, or from the entity's own page. Unpairing removes the connection and nothing else. The entity stays exactly as it is, and nothing changes in Business Central.
+
+---
+
 ## Who can set this up
 
 A workspace administrator or the client owner can connect and disconnect. Everyone else in the workspace can see the status but cannot change it.
