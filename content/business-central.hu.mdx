@@ -74,6 +74,38 @@ A cégadatok összekötése az AI Finance Team-beli entitásokkal külön lépé
 
 ---
 
+## Cégek és entitások összepárosítása
+
+Ha a kapcsolat működik, a Business Central oldal felsorolja a Business Centralban lévő összes céget. Minden cég egy AI Finance Team-beli entitáshoz párosítható, és minden entitás egy céghez.
+
+Két módon lehet párosítani:
+
+- **Új entitás létrehozása a cégből.** Az AI Finance Team a nevet, az adószámot, az országot és a címet a Business Centralból veszi át. Több céget is kijelölhet, és egyszerre hozhatja létre őket.
+- **Párosítás meglévő entitással.** Akkor használja, ha az entitás már megvan az AI Finance Teamben.
+
+Az AI Finance Team javaslatot tesz, ahol tud. Az **adószám** alapján tett javaslat megbízható. A **név** alapján tett javaslat csak javaslat, ezért elfogadás előtt ellenőrizze.
+
+### Mit írunk be, és mit nem
+
+Meglévő entitáshoz párosításkor a címet és az adószámot át tudja venni a Business Centralból. **Csak az üres mezőket tudjuk kitölteni.** Az AI Finance Teamben már meglévő értéket soha nem írjuk felül, bármit is pipál ki. Ha meglévő értéket szeretne módosítani, az entitást szerkessze.
+
+A Business Centralba semmit nem írunk vissza.
+
+### Cégek, amelyeket nem lehet párosítani
+
+Az a cég, amelynek az adószáma **csoportazonosító**, vagyis csoportos áfaalanyiság, nem lehet entitás. Az AI Finance Team ezt kiírja a sorban. Hagyja párosítatlanul: ez bevallási megoldás, nem működő cég.
+
+### Figyelmeztetések, amelyeket láthat
+
+- **Eltérő pénznem.** A Business Central annak a cégnek a könyveit a munkaterület alapdevizájától eltérő pénznemben vezeti. Ez csak figyelmeztetés, a párosítást soha nem akadályozza meg.
+- **Eltérő adószám.** A cég és a hozzá párosítani kívánt entitás más adószámot mond. Elfogadás előtt nézze meg, melyik a helyes.
+
+### A párosítás visszavonása
+
+A párosítást ugyanezen az oldalon vagy az entitás saját oldalán bonthatja. A bontás csak a kapcsolatot szünteti meg. Az entitás pontosan úgy marad, ahogy volt, és a Business Centralban sem változik semmi.
+
+---
+
 ## Ki állíthatja be
 
 Munkaterület-adminisztrátor vagy az ügyfél tulajdonosa köthet össze és bonthat kapcsolatot. A munkaterület többi tagja látja az állapotot, de nem tudja módosítani.
