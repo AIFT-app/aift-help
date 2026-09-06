@@ -1,0 +1,51 @@
+# Setting Up Payment Approvals
+
+Payment approvals let a client company decide, invoice by invoice, whether a supplier invoice may be paid. This article is for the person who runs the process: the finance admin at the client, or the accountant admin who sets it up for them.
+
+## Switching it on
+
+Open the client workspace, go to **Settings**, then **Approvals**, and switch **Payment approvals are switched on**. From that moment every open supplier invoice enters the flow once it is booked, and approvers see their queue under **Approvals** in the sidebar. Invoices that were already paid before you switched it on are left alone.
+
+Switching it off stops new invoices from entering. Decisions already made stay on the invoices.
+
+## Who does what
+
+Two permissions drive the feature:
+
+- **Approve invoices for payment**: sees the queue and can approve or decline. Needs "View invoices and bank transactions" as well.
+- **Manage approvals**: sees the whole flow on the Overview board, assigns invoices, reopens decisions and edits the rules and the policy.
+
+By default the client owner and the accountant admin hold both. For anyone else, create a role under **Settings**, then **Team**, for example "Finance admin" holding both keys, or "Approver only" holding just the first one, and assign it. See [Roles and Permissions](/roles-and-permissions).
+
+## The policy
+
+- **Everything needs approval unless a rule says otherwise**: the safe default. An invoice can only skip approval because of a rule you wrote, never because the AI decided so on its own.
+- **Queue window**: approvers see invoices due within this many days. Later ones wait until they come closer.
+- **Invoices flagged "needs review"**: held by the accountant until the extraction is checked, or shown to approvers with a warning.
+- **Fallback approver**: the person who receives every invoice no rule places. Without one, such invoices wait in the Unrouted column of the board for you to assign.
+- **Bulk approval**: whether approvers may approve several invoices with one confirmation. Declining is always one at a time.
+- **Unassigned invoices are visible to every approver**: when off, only people with "Manage approvals" see and decide unrouted invoices.
+
+## Rules
+
+Rules are sentences, checked in order. The first rule that matches an invoice wins.
+
+A rule matches on any combination of partner, invoice category, entity and an amount band in the workspace's base currency. It either sends the invoice to an approver or says no approval is needed. Examples:
+
+- Invoices from Bau-Trans Kft. go to Péter.
+- Invoices in Subcontracted work above 500 000 Ft go to Péter.
+- Every invoice under 20 000 Ft needs no approval.
+
+Use the arrows to reorder. A rule whose approver lost the permission is skipped and the invoice lands unrouted, so a rule can never leave an invoice with someone who cannot act.
+
+Rule proposals from past decisions and the AI's own routing arrive in a later release. Until then, rules and your own assignments are the whole routing.
+
+## The Overview board
+
+The **Overview** tab under Approvals shows four columns: **Unrouted** (no rule placed them), **Awaiting** by approver, **Declined** with the approver's note, and **Approved, unpaid**. Overdue invoices carry an amber rail. From a card you can assign an approver, reopen a declined invoice or mark it as not needing approval. The tiles above count what is waiting, what is overdue, and the median time to a decision over the last 30 days.
+
+## What the accountant sees
+
+Every invoice shows its approval state: a pill in the invoice list, a filter value, a "Payment approval" card on the invoice, and each decision on the invoice's history. Approval never blocks exporting or closing a month. It is a cash decision by the client, not a bookkeeping check.
+
+If an accountant rejects an invoice, any pending approval is cancelled and recorded. If the amount or the supplier of an approved invoice changes, the approval is reset and the invoice goes back to its approver.
