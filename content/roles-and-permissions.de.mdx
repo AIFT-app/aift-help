@@ -1,4 +1,4 @@
-# AI Finance Team — Rollen & Berechtigungen
+# AI Finance Team. Rollen & Berechtigungen
 
 Diese Anleitung beschreibt, wie Zugriff in AI Finance Team funktioniert. Sie behandelt, was Nutzer abhängig von ihrer Rolle tun können und wie Mitgliedschaften entstehen.
 
@@ -41,7 +41,7 @@ Die Seite **Organisationseinstellungen** ist für Organisationsadministratoren a
 
 - Eine Liste aller aktuellen Teammitglieder mit Rollen und E-Mail-Adressen
 - Bedienelemente, um ein Mitglied zum Administrator hochzustufen oder einen Administrator herabzustufen
-- Ein Formular für Sammeleinladungen — bis zu 10 Zeilen auf einmal, jeweils mit optionaler Namensvorbelegung und gewählter Rolle, dazu eine optionale persönliche Nachricht für den gesamten Stapel (siehe unten [Personen einladen](#personen-einladen))
+- Ein Formular für Sammeleinladungen. Bis zu 10 Zeilen auf einmal, jeweils mit optionaler Namensvorbelegung und gewählter Rolle, dazu eine optionale persönliche Nachricht für den gesamten Stapel (siehe unten [Personen einladen](#personen-einladen))
 - Eine Liste offener Organisationseinladungen mit der Möglichkeit, den Link erneut zu kopieren oder die Einladung zu widerrufen
 - Einen Posteingang mit offenen Beitrittsanträgen von Organisationsmitgliedern
 
@@ -49,91 +49,81 @@ Einfache Organisationsmitglieder (Buchhalter ohne Administratorrechte) können d
 
 ---
 
-## Arbeitsbereichsrollen
+## Arbeitsbereichsrollen und Berechtigungen
 
-Jedes Mitglied eines Arbeitsbereichs hat eine von vier Rollen. Sie bestimmt, was die Person in diesem konkreten Arbeitsbereich sehen und tun darf.
+Jedes Mitglied eines Arbeitsbereichs hat eine **Rolle**, und eine Rolle ist ein benannter Satz von **Berechtigungen**. Es gibt vier **Systemrollen**, die jeder Arbeitsbereich hat, und es kann **eigene Rollen** geben, die die Verwalter eines Arbeitsbereichs nur für diesen Arbeitsbereich anlegen.
 
-| Rolle | Seite | Typischer Nutzer |
+### Die zwei Seiten
+
+Jedes Mitglied steht auf der **Kanzleiseite** (es arbeitet für die Kanzlei) oder auf der **Mandantenseite** (es arbeitet für das Mandantenunternehmen). Die Seite ergibt sich daraus, wie die Person beigetreten ist; sie ist eine Eigenschaft der Mitgliedschaft, keine Berechtigung, und keine Rolle kann sie ändern. Einige Berechtigungen gibt es nur für die Kanzleiseite: sie lassen sich auf keine mandantenseitige Rolle legen.
+
+### Die Berechtigungen
+
+| Berechtigung | Seite | Buchhalter-Admin | Buchhalter | Mandant (Inhaber) | Mandant (Mitarbeiter) |
+|---|---|---|---|---|---|
+| Rechnungen und Banktransaktionen ansehen | beide | ✓ | ✓ | ✓ | ✓ |
+| Belege hochladen | beide | ✓ | ✓ | ✓ | ✓ |
+| Rechnungen bearbeiten | Kanzlei | ✓ | ✓ | — | — |
+| Banktransaktionen bearbeiten | Kanzlei | ✓ | ✓ | — | — |
+| Abgleich verwalten | Kanzlei | ✓ | ✓ | — | — |
+| Buchhaltungsexporte ausführen | Kanzlei | ✓ | ✓ | — | — |
+| Perioden abschließen | Kanzlei | ✓ | ✓ | — | — |
+| Berichte verwalten | beide | ✓ | ✓ | — | — |
+| Stammdaten bearbeiten | Kanzlei | ✓ | ✓ | — | — |
+| Arbeitsbereich-Einstellungen bearbeiten | Kanzlei | ✓ | — | — | — |
+| Mitglieder einladen | beide | ✓ | — | ✓ | — |
+| Mitglieder und Rollen verwalten | beide | ✓ | — | ✓ | — |
+| Verbindungen verwalten | beide | ✓ | — | ✓ | — |
+
+Die Häkchen sind die **Voreinstellungen der vier Systemrollen**. Eine eigene Rolle wählt ihren eigenen Satz; eine Ausnahme (siehe unten) ändert ein einzelnes Mitglied.
+
+Zwei Dinge sind durch Regel festgelegt und nie Teil einer Rolle:
+
+- **Bankkonten verbinden und trennen** gehört allein dem Mandanten (Inhaber). Bankzugangsdaten bleiben auf der Mandantenseite.
+- **NAV-Online-Számla-Zugangsdaten** können der Mandant (Inhaber), ein Buchhalter-Admin oder ein Buchhalter einrichten. Auslesen kann sie niemand.
+
+„Stammdaten bearbeiten“ umfasst Partner, Kategorien, Transaktionstypen, die USt-Einrichtung, eigene Kategorielisten, die Standard-Datumsbasis und ob Mandanten Transaktionskategorien sehen. „Arbeitsbereich-Einstellungen bearbeiten“ umfasst Nummerierung, Währung, KI- und Dateneinstellungen. „Verbindungen verwalten“ umfasst die E-Mail-Eingangsadresse des Arbeitsbereichs und die Business-Central-Verbindung.
+
+### Systemrollen
+
+| Rolle | Seite | Typische Nutzer |
 |---|---|---|
-| Buchhalter-Admin | Kanzlei | Federführende Buchhaltung des Mandats |
-| Buchhalter | Kanzlei | Unterstützende Buchhaltung oder Mitarbeiter |
-| Mandant (Inhaber) | Mandant | Gründer, Geschäftsführung oder leitende Entscheidungsträger beim Mandanten |
-| Mandant (Mitarbeiter) | Mandant | Buchhaltung, Controlling oder Assistenz beim Mandanten |
+| Buchhalter-Admin | Kanzlei | Federführende Buchhaltung des Mandats: alles, plus Team und Einstellungen |
+| Buchhalter | Kanzlei | Unterstützende Buchhaltung: alle Buchhaltungsarbeit, ohne Team und Einstellungen |
+| Mandant (Inhaber) | Mandant | Leitende Person beim Mandanten: lädt hoch, lädt Mandantennutzer ein, verwaltet das Mandantenteam und die Verbindungen, hält die Bankzustimmung |
+| Mandant (Mitarbeiter) | Mandant | Weitere Personen beim Mandanten: hochladen und ansehen |
 
-### Buchhalter-Admin
+Systemrollen lassen sich nicht bearbeiten. Um einer Buchhaltung oder einem Mandantennutzer einen anderen Satz zu geben, legen Sie eine eigene Rolle an oder fügen Sie eine Ausnahme hinzu.
 
-Die federführende Buchhaltung des Mandantenverhältnisses.
+### Eigene Rollen
 
-Darf:
+Öffnen Sie im Arbeitsbereich **Einstellungen → Team → Rollen**. Wer „Mitglieder und Rollen verwalten“ hält, sieht die Seite; kanzleiseitige Verwalter sehen jede Rolle, mandantenseitige Verwalter die mandantenseitigen.
 
-- Alles, was ein Buchhalter darf
-- Neue Mitglieder in den Arbeitsbereich einladen (andere Buchhalter oder Mandantennutzer)
-- Offene Einladungen zum Arbeitsbereich widerrufen
-- Die vollständige Mitgliederliste des Arbeitsbereichs sehen
-- Zusätzlich zu den Mitgliedern des Arbeitsbereichs das gesamte Kanzleiteam sehen (Abschnitt „Ihr Team bei [Kanzleiname]“ in den Arbeitsbereichseinstellungen)
+- Eine eigene Rolle **basiert auf** einer Systemrolle derselben Seite und startet mit deren Berechtigungen. Haken Sie Berechtigungen an oder ab; eine reine Kanzleiberechtigung wird für eine mandantenseitige Rolle nicht angeboten.
+- Sie können nur Berechtigungen vergeben, die Sie selbst halten.
+- Weisen Sie die Rolle unter **Team → Mitglieder → [Mitglied]** zu, oder wählen Sie sie beim Einladen.
+- Eine Rolle, die noch Mitglieder halten, lässt sich nicht archivieren; verschieben Sie sie zuerst.
+- Eigene Rollen gehören zu dem Arbeitsbereich, in dem sie angelegt wurden.
 
-### Buchhalter
+### Ausnahmen für ein Mitglied
 
-Eine unterstützende Buchhaltung aus der Kanzlei.
+Unter **Team → Mitglieder → [Mitglied]** kann ein Verwalter dieser einen Person zusätzlich zur Rolle eine einzelne Berechtigung gewähren oder verweigern. Zwei Regeln: Sie können nur gewähren, was Sie selbst halten, und Ihren eigenen Zugriff können Sie nicht bearbeiten. Die Seite zeigt außerdem die tatsächlichen Berechtigungen des Mitglieds und woher jede stammt (Rolle, Ausnahme oder Regel).
 
-Darf:
+Wird „Rechnungen und Banktransaktionen ansehen“ verweigert, wird das Mitglied zu einem reinen Hochlade-Nutzer: es öffnet den Arbeitsbereich, sieht die Mitgliederliste und seine eigene Zugriffsseite, kann Belege hochladen, aber jede Datensatzliste ist leer, und oben auf jeder Seite steht das.
 
-- Dashboard, Rechnungen, Banktransaktionen, Abschluss und Berichte des Arbeitsbereichs ansehen
-- Rechnungen im Auftrag des Mandanten hochladen
-- Rechnungsköpfe bearbeiten (Richtung, Unternehmen, Partner)
-- Kategorien von Rechnungspositionen bearbeiten
-- KI-generierte Kategorisierungen bestätigen oder überschreiben
-- Rechnungen Banktransaktionen zuordnen
-- Interne Notizen zu Transaktionen hinzufügen (nur für Buchhalter sichtbar)
-- Auf Details von Banktransaktionen zugreifen
+### Mitglieder und Rollen verwalten
 
-Darf nicht:
+Diese Berechtigung macht jemanden zum Verwalter des Teams. Sie erlaubt, die Rolle eines Mitglieds zu ändern, Ausnahmen zu setzen, Mitglieder zu entfernen und, auf der Kanzleiseite, Beitrittsanfragen zu entscheiden und das Kanzleiteam zu sehen. Ein mandantenseitiger Verwalter (voreingestellt der Mandant (Inhaber)) verwaltet nur mandantenseitige Mitglieder. Der letzte Buchhalter-Admin und der letzte Mandant (Inhaber) eines Arbeitsbereichs lassen sich nicht entfernen.
 
-- Mitglieder des Arbeitsbereichs einladen oder entfernen
-- Die vollständige Teamliste der Kanzlei sehen (sieht nur die Mitglieder dieses Arbeitsbereichs)
+### Was ein Mitglied sieht
 
-### Mandant (Inhaber)
-
-Die leitende Person beim Mandantenunternehmen.
-
-Darf:
-
-- Dashboard und Rechnungen des Arbeitsbereichs sehen
-- Rechnungen und Belege hochladen
-- Die Mitgliederliste des Arbeitsbereichs ansehen
-- Andere Mandantennutzer als Mandantenmitglieder in den Arbeitsbereich einladen
-- Berichte ansehen, erstellen und bearbeiten (siehe [Berichte](/reports))
-
-Darf nicht:
-
-- Rechnungsköpfe oder Positionskategorien bearbeiten
-- Auf Banktransaktionen zugreifen
-- Nur für Buchhalter bestimmte Notizen sehen
-- Auf den Abschluss zugreifen
-- Buchhalter einladen
-
-### Mandant (Mitarbeiter)
-
-Weitere Nutzer beim Mandantenunternehmen, die mit der Plattform arbeiten.
-
-Darf:
-
-- Dashboard und Rechnungen des Arbeitsbereichs sehen
-- Rechnungen und Belege hochladen
-- Die Mitgliederliste des Arbeitsbereichs ansehen
-- Berichte ansehen, erstellen und bearbeiten (siehe [Berichte](/reports))
-
-Darf nicht:
-
-- Rechnungsköpfe oder Positionskategorien bearbeiten
-- Auf Banktransaktionen zugreifen
-- Nur für Buchhalter bestimmte Notizen sehen
-- Auf den Abschluss zugreifen
-- Irgendjemanden einladen
+Die Seitenleiste folgt der Seite des Mitglieds: kanzleiseitige Mitglieder sehen die Buchhaltungsbildschirme, mandantenseitige die Mandantenbildschirme. Einen Menüpunkt auszublenden ist keine Zugriffskontrolle; was ein Mitglied tatsächlich lesen oder ändern kann, entscheiden seine Berechtigungen in der Datenbank, sodass eine eigene Rolle ohne „Perioden abschließen“ vom Abschluss zurückgeschickt wird, wie auch immer sie dorthin gekommen ist.
 
 ---
 
 ## Was jede Rolle sieht
+
+Die folgenden Tabellen zeigen die **Voreinstellungen** der vier Systemrollen. Eine eigene Rolle oder eine Ausnahme ändert sie für diese Rolle oder dieses Mitglied.
 
 ### Navigation in der Seitenleiste
 
@@ -158,15 +148,17 @@ Darf nicht:
 
 ### Einstellungen → Bereich Team
 
-| Element | Buchhalter-Admin | Buchhalter | Mandant (Inhaber) | Mandant (Mitarbeiter) |
+| Reiter oder Element | Buchhalter-Admin | Buchhalter | Mandant (Inhaber) | Mandant (Mitarbeiter) |
 |---|---|---|---|---|
-| Mitgliederliste des Arbeitsbereichs | ✓ | ✓ | ✓ | ✓ |
+| Mitgliederliste | ✓ | ✓ | ✓ | ✓ |
+| Zugriff eines Mitglieds bearbeiten (Rolle, Ausnahmen) | ✓ | — | ✓ (mandantenseitige Mitglieder) | — |
 | Abschnitt „Ihr Team bei [Kanzleiname]“ | ✓ | — | — | — |
-| Formular zum Einladen neuer Mitglieder | ✓ | — | ✓ (nur Mandantenrollen) | — |
-| Liste offener Einladungen | ✓ | — | ✓ | — |
-| Offene Einladung widerrufen | ✓ | — | ✓ (eigene Einladungen) | — |
+| Reiter Einladen | ✓ | — | ✓ (nur Mandantenrollen) | — |
+| Reiter Offene Einladungen, Widerruf | ✓ | — | ✓ (mandantenseitige Einladungen) | — |
+| Reiter Anfragen (Beitrittsanfragen) | ✓ | — | — | — |
+| Reiter Rollen (eigene Rollen) | ✓ | — | ✓ | — |
 
-Das Einladungsformular des Mandanteninhabers ist eingeschränkt: Er kann weitere Mandantenmitglieder einladen, aber keine Buchhalter und keine weiteren Mandanteninhaber.
+Jedes Mitglied kann seine eigene Zugriffsseite öffnen. Das Einladungsformular eines mandantenseitigen Einladenden ist auf Mandanten-Mitarbeiter beschränkt; ein kanzleiseitiger Einladender kann jede Rolle einladen.
 
 ### Rechnungen
 
@@ -198,12 +190,12 @@ Sowohl die **Arbeitsbereichseinstellungen** (für einen Buchhalter-Administrator
 
 Das Fenster nimmt bis zu **10 Einladungen in einem Stapel** auf:
 
-- Eine Zeile je Empfänger — E-Mail-Adresse eintragen und Rolle wählen. Die Rollenauswahl ist je nach Ort eingeschränkt (ein Mandanteninhaber kann etwa nur Mandantenmitglieder einladen; ein Organisationsadministrator nur auf Organisationsebene).
+- Eine Zeile je Empfänger. E-Mail-Adresse eintragen und Rolle wählen. Die Rollenauswahl ist je nach Ort eingeschränkt (ein Mandanteninhaber kann etwa nur Mandantenmitglieder einladen; ein Organisationsadministrator nur auf Organisationsebene).
 - Ein optionales Feld **Name** je Zeile. Wenn Sie es ausfüllen, beginnt die Einladungs-E-Mail mit dem Namen („Hallo Anna,“) statt mit „Hallo,“, und das Registrierungsformular füllt bei der Annahme den vollständigen Namen vor.
 - Ein optionales Textfeld **Nachricht** (max. 500 Zeichen), das für den gesamten Stapel gilt. URLs in der Nachricht werden in der E-Mail zu anklickbaren Links.
 - Klicken Sie auf **Einladung senden** (oder **N Einladungen senden**, wenn der Stapel mehr als eine Zeile hat). Jede erfolgreiche Zeile verschwindet aus dem Formular; Zeilen, deren Versand fehlschlug (etwa wegen doppelter E-Mail-Adresse), bleiben mit einer Inline-Fehlermeldung stehen, damit Sie sie korrigieren und erneut versuchen können.
 
-Nach dem Senden schreibt AI Finance Team **jedem Empfänger automatisch eine E-Mail** mit dem Einladungslink und Ihrer persönlichen Nachricht. Sie müssen die URL nicht mehr von Hand kopieren und weitergeben — die einladende Person sieht den Link aber weiterhin als Rückfalloption, falls die Zustellung fehlschlägt.
+Nach dem Senden schreibt AI Finance Team **jedem Empfänger automatisch eine E-Mail** mit dem Einladungslink und Ihrer persönlichen Nachricht. Sie müssen die URL nicht mehr von Hand kopieren und weitergeben. Die einladende Person sieht den Link aber weiterhin als Rückfalloption, falls die Zustellung fehlschlägt.
 
 Jede Einladung:
 
@@ -226,11 +218,11 @@ Wenn der Empfänger auf die Einladungs-URL klickt:
 
 Es gibt drei Wege in einen Arbeitsbereich:
 
-1. **Sie nehmen eine Einladung an.** Der Standardweg — siehe oben.
-2. **Sie sind Organisationsadministrator.** Alle Arbeitsbereiche der Kanzlei sind Ihnen im Dashboard sichtbar. Arbeitsbereiche, denen Sie nicht angehören, zeigen eine Schaltfläche **Beitreten** — ein Klick fügt Sie sofort als Buchhalter-Administrator hinzu.
+1. **Sie nehmen eine Einladung an.** Der Standardweg. Siehe oben.
+2. **Sie sind Organisationsadministrator.** Alle Arbeitsbereiche der Kanzlei sind Ihnen im Dashboard sichtbar. Arbeitsbereiche, denen Sie nicht angehören, zeigen eine Schaltfläche **Beitreten**. Ein Klick fügt Sie sofort als Buchhalter-Administrator hinzu.
 3. **Sie sind Organisationsmitglied und beantragen den Beitritt.** Organisationsmitglieder sehen eine Ansicht mit den Arbeitsbereichen der Kanzlei, denen sie nicht angehören. Ein Klick auf **Beitritt beantragen** sendet einen Antrag an alle Organisationsadministratoren der Kanzlei. Sie prüfen ihn im Posteingang ihrer **Organisationseinstellungen** und genehmigen ihn (Sie werden als Buchhalter hinzugefügt) oder lehnen ihn ab (Sie erhalten eine Benachrichtigungs-E-Mail mit der Begründung).
 
-Der dritte Weg ist neu — er ersetzt den früheren Ablauf, bei dem Organisationsmitglieder einen Administrator bitten mussten, sie manuell hinzuzufügen.
+Der dritte Weg ist neu. Er ersetzt den früheren Ablauf, bei dem Organisationsmitglieder einen Administrator bitten mussten, sie manuell hinzuzufügen.
 
 ### Nach der Annahme
 
@@ -238,12 +230,11 @@ Ein neues Mitglied sieht den Arbeitsbereich sofort. Die Rolle bestimmt gemäß d
 
 ### Ein Mitglied entfernen
 
-Administratoren können ein Mitglied entfernen, das die Einladung bereits angenommen hat:
+Wer „Mitglieder und Rollen verwalten“ hält, kann ein bereits angenommenes Mitglied auf der eigenen Seite entfernen: voreingestellt entfernt der Buchhalter-Admin kanzleiseitige Mitglieder und der Mandant (Inhaber) mandantenseitige. Die Aktion liegt auf der Team-Seite des Arbeitsbereichs neben jedem Mitgliedsnamen. Der letzte Buchhalter-Admin und der letzte Mandant (Inhaber) eines Arbeitsbereichs lassen sich nicht entfernen. Jedes Mitglied kann einen Arbeitsbereich selbst verlassen.
 
-- **Mitglied eines Arbeitsbereichs** — ein Buchhalter-Administrator kann jede Person aus dem Arbeitsbereich entfernen (außer sich selbst, wenn er der einzige Administrator ist). Die Aktion befindet sich auf der Team-Seite des Arbeitsbereichs neben jedem Mitgliedsnamen.
-- **Organisationsmitglied** — ein Organisationsadministrator kann jede Person aus der Kanzlei entfernen. Damit wird sie zugleich aus allen Arbeitsbereichen entfernt, denen sie angehörte. Die Aktion befindet sich auf der Seite Organisationseinstellungen.
+- **Organisationsmitglied**. Ein Organisationsadmin kann jeden aus der Kanzlei entfernen. Das entfernt die Person auch aus jedem Arbeitsbereich, in dem sie war. Die Aktion liegt auf der Seite Organisationseinstellungen.
 
-Entfernte Nutzer behalten ihr Konto auf Plattformebene — sie verlieren lediglich den Zugriff auf diesen Arbeitsbereich oder diese Kanzlei.
+Entfernte Nutzer behalten ihr Konto auf Plattformebene. Sie verlieren nur den Zugriff auf diesen Arbeitsbereich oder diese Kanzlei.
 
 ---
 
