@@ -67,3 +67,7 @@ The **Overview** tab under Approvals shows four columns: **Unrouted** (no rule p
 Every invoice shows its approval state: a pill in the invoice list, a filter value, a "Payment approval" card on the invoice, and each decision on the invoice's history. Approval never blocks exporting or closing a month. It is a cash decision by the client, not a bookkeeping check.
 
 If an accountant rejects an invoice, any pending approval is cancelled and recorded. If the amount or the supplier of an approved invoice changes, the approval is reset and the invoice goes back to its approver.
+
+## Emails
+
+Approvers receive four emails: new invoices to approve (at the earliest 30 minutes after the first one, at most 2 a day), a morning list on working days at 08:00, a due-soon reminder on working days at 15:00 for invoices due within 2 days, and, for finance admins, a declined notice with the approver's note. Each has its own switch on the person's Notifications page. The Friday digest to the accountants gains a line per company with approvals on: waiting, overdue, declined, approved and unpaid. Nothing is sent for a company where approvals are switched off.
