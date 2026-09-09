@@ -1,0 +1,57 @@
+# Zahlungsfreigaben einrichten
+
+Mit Zahlungsfreigaben entscheidet ein Kundenunternehmen Rechnung für Rechnung, ob eine Lieferantenrechnung bezahlt werden darf. Dieser Artikel richtet sich an die Person, die den Prozess betreibt: den Finanzadmin beim Kunden, oder den Buchhaltungsadmin, der ihn für den Kunden einrichtet.
+
+## Einschalten
+
+Öffnen Sie den Kundenarbeitsbereich, gehen Sie zu **Einstellungen**, dann **Freigaben**, und schalten Sie **Die Zahlungsfreigabe ist eingeschaltet** ein.
+
+Was löst eine Freigabe aus? Eine Lieferantenrechnung kommt in den Prozess, sobald sie gebucht ist: Extraktion und KI-Kategorisierung sind abgeschlossen, sie ist eine Ausgabe, unbezahlt und weder Duplikat noch abgelehnt. Das System prüft jede Minute, eine neue Rechnung erreicht ihren Freigeber also innerhalb einer Minute, und Freigeber sehen ihre Liste unter **Freigaben** in der Seitenleiste. Rechnungen, die vor dem Einschalten bereits bezahlt waren, bleiben unberührt.
+
+Ausschalten stoppt den Eingang neuer Rechnungen. Bereits getroffene Entscheidungen bleiben auf den Rechnungen.
+
+## Wer macht was
+
+Zwei Berechtigungen steuern die Funktion:
+
+- **Rechnungen zur Zahlung freigeben**: sieht die Liste und kann freigeben oder ablehnen. Benötigt zusätzlich "Rechnungen und Bankumsätze ansehen".
+- **Freigaben verwalten**: sieht den gesamten Prozess auf der Übersichtstafel, weist Rechnungen zu, öffnet Entscheidungen erneut und bearbeitet Regeln und Richtlinie.
+
+Standardmäßig halten der Kundeninhaber und der Buchhaltungsadmin beide. Für alle anderen legen Sie unter **Einstellungen**, dann **Team** eine Rolle an, etwa "Finanzadmin" mit beiden Rechten oder "Nur Freigeber" mit nur dem ersten, und weisen sie zu. Siehe [Rollen und Berechtigungen](/roles-and-permissions).
+
+## Die Richtlinie
+
+- **Alles braucht eine Freigabe, außer eine Regel sagt etwas anderes**: die sichere Voreinstellung. Eine Rechnung kann die Freigabe nur wegen einer von Ihnen geschriebenen Regel überspringen, nie weil die KI das allein entschieden hat.
+- **Zeitfenster der Liste**: eine frei eingegebene Anzahl Tage. Grundlage ist das Fälligkeitsdatum der Rechnung: Freigeber sehen Rechnungen, die innerhalb so vieler Tage fällig sind, spätere warten, bis sie näher rücken. Eine Rechnung ohne Fälligkeitsdatum erscheint immer. Leer lassen, um jede offene Rechnung zu zeigen.
+- **Als "prüfen" markierte Rechnungen**: von der Buchhaltung zurückgehalten, bis die Extraktion geprüft ist, oder den Freigebern mit Warnung gezeigt.
+- **Standard-Freigeber**: die Person, die jede Rechnung erhält, die keine Regel zuordnet. Ohne ihn warten diese Rechnungen in der Spalte Nicht zugewiesen der Tafel auf Ihre Zuweisung.
+- **Sammelfreigabe**: ob Freigeber mehrere Rechnungen mit einer Bestätigung freigeben dürfen. Ablehnen geht immer einzeln.
+- **Nicht zugewiesene Rechnungen sehen alle Freigeber**: ausgeschaltet sehen und entscheiden nur Personen mit "Freigaben verwalten" nicht zugewiesene Rechnungen; für alle anderen erscheinen sie in keiner Liste.
+
+## Regeln
+
+Regeln sind Sätze und werden der Reihe nach geprüft. Die erste Regel, die auf eine Rechnung zutrifft, gewinnt.
+
+Eine Regel trifft auf jede Kombination aus Partner, Rechnungskategorie, Einheit und einem Betragsband in der Basiswährung des Arbeitsbereichs zu. Sie schickt die Rechnung entweder an einen Freigeber oder sagt, dass keine Freigabe nötig ist. Beispiele:
+
+- Rechnungen von Bau-Trans Kft. gehen an Péter.
+- Rechnungen in Subunternehmerleistungen über 500 000 Ft gehen an Péter.
+- Jede Rechnung unter 20 000 Ft braucht keine Freigabe.
+
+Mit den Pfeilen ändern Sie die Reihenfolge. Eine Regel, deren Freigeber die Berechtigung verloren hat, wird übersprungen und die Rechnung landet nicht zugewiesen, sodass eine Regel nie eine Rechnung bei jemandem lässt, der nicht handeln kann.
+
+Regelvorschläge aus früheren Entscheidungen und die eigene Zuordnung der KI kommen mit einer späteren Version. Bis dahin bilden Regeln und Ihre eigenen Zuweisungen die gesamte Zuordnung.
+
+## Regeln auf bereits wartende Rechnungen anwenden
+
+Eine neue Regel ordnet nur Rechnungen zu, die nach ihr eintreffen. Was bereits bei einem Freigeber wartet, bleibt dort. Damit eine neue oder geänderte Regel auch die bereits wartenden Rechnungen erreicht, klicken Sie unter den Regeln auf **Regeln auf wartende Rechnungen anwenden**. Das System führt die Regeln erneut über jede noch wartende Rechnung aus und sagt Ihnen, wie viele es umgeleitet hat, wie viele keine Freigabe mehr brauchen und wie viele unverändert blieben. Manuell zugewiesene Rechnungen bleiben unberührt.
+
+## Die Übersichtstafel
+
+Der Reiter **Übersicht** unter Freigaben zeigt vier Spalten: **Nicht zugewiesen** (keine Regel hat sie zugeordnet), **Ausstehend** je Freigeber, **Abgelehnt** mit der Notiz des Freigebers und **Freigegeben, unbezahlt**. Überfällige Rechnungen tragen eine bernsteinfarbene Leiste. Von einer Karte aus können Sie einen Freigeber zuweisen, eine abgelehnte Rechnung erneut öffnen oder sie als nicht freigabepflichtig markieren. Die Kacheln darüber zählen, was wartet, was überfällig ist, und die mittlere Zeit bis zur Entscheidung der letzten 30 Tage.
+
+## Was die Buchhaltung sieht
+
+Jede Rechnung zeigt ihren Freigabestatus: ein Kennzeichen in der Rechnungsliste, einen Filterwert, eine Karte "Zahlungsfreigabe" auf der Rechnung und jede Entscheidung im Verlauf der Rechnung. Die Freigabe blockiert nie einen Export oder einen Monatsabschluss. Sie ist eine Zahlungsentscheidung des Kunden, keine buchhalterische Prüfung.
+
+Lehnt die Buchhaltung eine Rechnung ab, wird eine ausstehende Freigabe aufgehoben und festgehalten. Ändert sich Betrag oder Lieferant einer freigegebenen Rechnung, wird die Freigabe zurückgesetzt und die Rechnung geht zurück an ihren Freigeber.

@@ -35,6 +35,17 @@ export const navigation: NavItem[] = [
     title: { en: 'NAV Online Számla (Hungary)', hu: 'NAV Online Számla (Magyarország)', de: 'NAV Online Számla (Ungarn)' },
   },
   { slug: 'partners', title: { en: 'Managing Partners', hu: 'Partnerek kezelése', de: 'Partner verwalten' } },
+  // Payment approvals (invoice-payment-approval): the approver's article, then
+  // the firm-side setup article. The app's sidebar item is "Approvals" /
+  // "Jóváhagyások" / "Freigaben" (nav.workspace.approvals).
+  {
+    slug: 'approving-invoices',
+    title: { en: 'Approving Invoices for Payment', hu: 'Számlák jóváhagyása kifizetésre', de: 'Rechnungen zur Zahlung freigeben' },
+  },
+  {
+    slug: 'setting-up-approvals',
+    title: { en: 'Setting Up Payment Approvals', hu: 'A kifizetések jóváhagyásának beállítása', de: 'Zahlungsfreigaben einrichten' },
+  },
   {
     slug: 'fixed-payment-method',
     title: {
