@@ -44,7 +44,7 @@ export const navigation: NavItem[] = [
   },
   {
     slug: 'setting-up-approvals',
-    title: { en: 'Setting Up Payment Approvals', hu: 'A kifizetés-jóváhagyás beállítása', de: 'Zahlungsfreigaben einrichten' },
+    title: { en: 'Setting Up Payment Approvals', hu: 'A kifizetések jóváhagyásának beállítása', de: 'Zahlungsfreigaben einrichten' },
   },
   {
     slug: 'fixed-payment-method',

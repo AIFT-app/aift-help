@@ -1,10 +1,12 @@
-# A kifizetés-jóváhagyás beállítása
+# A kifizetések jóváhagyásának beállítása
 
-A kifizetés-jóváhagyással az ügyfélcég számlánként dönti el, kifizethető-e egy szállítói számla. Ez a cikk annak szól, aki a folyamatot működteti: az ügyfél pénzügyi adminjának, vagy a könyvelő adminnak, aki beállítja neki.
+A kifizetések jóváhagyásával az ügyfélcég számlánként dönti el, kifizethető-e egy szállítói számla. Ez a cikk annak szól, aki a folyamatot működteti: az ügyfél pénzügyi adminjának, vagy a könyvelő adminnak, aki beállítja neki.
 
 ## Bekapcsolás
 
-Nyissa meg az ügyfél munkaterületét, menjen a **Beállítások**, majd a **Jóváhagyások** menüpontra, és kapcsolja be **A kifizetés jóváhagyása be van kapcsolva** kapcsolót. Ettől a pillanattól minden nyitott szállítói számla a könyvelés után bekerül a folyamatba, és a jóváhagyók az oldalsáv **Jóváhagyások** pontja alatt látják a listájukat. A bekapcsolás előtt már kifizetett számlákhoz a rendszer nem nyúl.
+Nyissa meg az ügyfél munkaterületét, menjen a **Beállítások**, majd a **Jóváhagyások** menüpontra, és kapcsolja be **A kifizetések jóváhagyása be van kapcsolva** kapcsolót.
+
+Mi indítja el egy számla jóváhagyását? Egy szállítói számla akkor kerül a folyamatba, amint le van könyvelve: a kinyerés és az AI-kategorizálás lezárult, költségszámla, nincs kifizetve, és nem duplikátum vagy elutasított. A rendszer percenként ellenőriz, így egy új számla egy percen belül a jóváhagyójához ér, és a jóváhagyók az oldalsáv **Jóváhagyások** pontja alatt látják a listájukat. A bekapcsolás előtt már kifizetett számlákhoz a rendszer nem nyúl.
 
 A kikapcsolás megállítja az új számlák bekerülését. A már meghozott döntések a számlákon maradnak.
 
@@ -20,11 +22,11 @@ Alapértelmezés szerint az ügyfél tulajdonosa és a könyvelő admin mindkett
 ## A szabályzat
 
 - **Mindenhez kell jóváhagyás, hacsak egy szabály mást nem mond**: a biztonságos alapbeállítás. Egy számla csak egy Ön által írt szabály miatt kerülheti el a jóváhagyást, sosem azért, mert az AI magától úgy döntött.
-- **Lista időablaka**: a jóváhagyók az ennyi napon belül esedékes számlákat látják. A későbbiek várnak, amíg közelebb nem érnek.
+- **Lista időablaka**: napok száma, szabadon beírható. Az alap a számla fizetési határideje: a jóváhagyók az ennyi napon belül esedékes számlákat látják, a későbbiek várnak, amíg közelebb nem érnek. Ha egy számlának nincs határideje, mindig megjelenik. Üresen hagyva minden nyitott számla látszik.
 - **"Ellenőrizendő" jelölésű számlák**: a könyvelő visszatartja őket a kinyerés ellenőrzéséig, vagy figyelmeztetéssel jelennek meg a jóváhagyóknál.
 - **Alapértelmezett jóváhagyó**: az a személy, aki minden olyan számlát megkap, amelyet egyik szabály sem helyez el. Nélküle ezek a számlák a tábla Kiosztatlan oszlopában várják, hogy Ön kiossza őket.
 - **Csoportos jóváhagyás**: a jóváhagyók egy megerősítéssel több számlát hagyhatnak-e jóvá. Az elutasítás mindig egyesével történik.
-- **A kiosztatlan számlákat minden jóváhagyó látja**: kikapcsolva csak a "Jóváhagyások kezelése" joggal rendelkezők látják és döntik el a kiosztatlan számlákat.
+- **A kiosztatlan számlákat minden jóváhagyó látja**: kikapcsolva csak a "Jóváhagyások kezelése" joggal rendelkezők látják és döntik el a kiosztatlan számlákat, egyik listában sem jelennek meg másnak.
 
 ## Szabályok
 
@@ -39,6 +41,10 @@ Egy szabály partner, számlakategória, entitás és a munkaterület alappénzn
 A nyilakkal rendezheti át a sorrendet. Az a szabály, amelynek jóváhagyója elvesztette a jogot, kimarad, és a számla kiosztatlanul landol, így egy szabály sosem hagyhat számlát olyannál, aki nem tud dönteni.
 
 A korábbi döntésekből származó szabályjavaslatok és az AI saját irányítása egy későbbi kiadással érkeznek. Addig a szabályok és a saját kiosztásai adják a teljes irányítást.
+
+## Szabályok utólagos alkalmazása
+
+Egy új szabály csak az utána érkező számlákat irányítja. Ami már egy jóváhagyónál várakozik, ott marad. Ha azt szeretné, hogy egy új vagy módosított szabály a már várakozó számlákra is vonatkozzon, kattintson a szabályok alatt a **Szabályok alkalmazása a várakozó számlákra** gombra. A rendszer újrafuttatja a szabályokat minden még várakozó számlán, és megmondja, hány számlát irányított át, hány számlánál szűnt meg a jóváhagyás, és hány maradt változatlan. A kézzel kiosztott számlákhoz nem nyúl.
 
 ## Az Áttekintés tábla
 
