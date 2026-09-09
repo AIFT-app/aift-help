@@ -46,6 +46,18 @@ Regelvorschläge aus früheren Entscheidungen und die eigene Zuordnung der KI ko
 
 Eine neue Regel ordnet nur Rechnungen zu, die nach ihr eintreffen. Was bereits bei einem Freigeber wartet, bleibt dort. Damit eine neue oder geänderte Regel auch die bereits wartenden Rechnungen erreicht, klicken Sie unter den Regeln auf **Regeln auf wartende Rechnungen anwenden**. Das System führt die Regeln erneut über jede noch wartende Rechnung aus und sagt Ihnen, wie viele es umgeleitet hat, wie viele keine Freigabe mehr brauchen und wie viele unverändert blieben. Manuell zugewiesene Rechnungen bleiben unberührt.
 
+## Was die Zuordnung lernt
+
+Jede Entscheidung lehrt die Zuordnung. Wenn Sie eine Rechnung von Hand jemandem zuweisen, wenn ein Freigeber sie freigibt oder wenn Sie sie als "keine Freigabe nötig" markieren, merkt sich die Zuordnung den Partner und das Ergebnis. Sobald die letzten 3 Entscheidungen zu einem Partner übereinstimmen, folgt die nächste Rechnung dieses Partners ihnen ohne Regel: der Freigeber sieht "Gelernt: die letzten 3 Rechnungen von Hetzner gingen an Sie". Ein Klick auf "Nicht meins" vergisst diese Rechnung. Ablehnungen lehren nichts, denn eine Ablehnung betrifft die Rechnung, nicht die Frage, wer entscheiden soll.
+
+## Von der KI vorgeschlagen
+
+Im selben Moment schlägt die Zuordnung unter der Regelliste eine Regel vor, in denselben Worten: "Rechnungen von Hetzner gehen an Péter · 3 von 3 bisherigen Entscheidungen stimmen überein". Annehmen fügt sie als letzte Regel hinzu, sodass von Hand geschriebene Regeln Vorrang behalten. Verwerfen entfernt sie, und derselbe Vorschlag kommt nicht wieder, solange sich die Entscheidungen nicht ändern. Eine Regel entsteht nur, wenn eine Person sie annimmt. Die KI schaltet die Freigabe nie von sich aus ab.
+
+## Beschreibungen der Freigeber
+
+Schreiben Sie unter Freigeber ein bis zwei Sätze pro Person darüber, worüber sie entscheidet: "Geschäftsführer, unterschreibt Subunternehmer und alles über 500 000 Ft". Diese Beschreibungen werden der KI wörtlich übergeben, wenn eine Rechnung zu keiner Regel und keiner früheren Entscheidung passt. Die KI wählt die Person, deren Beschreibung die Rechnung abdeckt, oder niemanden, wenn sie unsicher ist; dann wartet die Rechnung in der Spalte Nicht zugewiesen mit einem Hinweis wie "KI 0.58, unter der Schwelle". Beschreiben Sie, worüber die Person entscheidet, keine Anweisungen. Die KI läuft nur, wenn mindestens ein Freigeber eine Beschreibung hat, und gibt nie etwas für einen Kunden aus, bei dem die Freigabe ausgeschaltet ist.
+
 ## Die Übersichtstafel
 
 Der Reiter **Übersicht** unter Freigaben zeigt vier Spalten: **Nicht zugewiesen** (keine Regel hat sie zugeordnet), **Ausstehend** je Freigeber, **Abgelehnt** mit der Notiz des Freigebers und **Freigegeben, unbezahlt**. Überfällige Rechnungen tragen eine bernsteinfarbene Leiste. Von einer Karte aus können Sie einen Freigeber zuweisen, eine abgelehnte Rechnung erneut öffnen oder sie als nicht freigabepflichtig markieren. Die Kacheln darüber zählen, was wartet, was überfällig ist, und die mittlere Zeit bis zur Entscheidung der letzten 30 Tage.
@@ -55,3 +67,7 @@ Der Reiter **Übersicht** unter Freigaben zeigt vier Spalten: **Nicht zugewiesen
 Jede Rechnung zeigt ihren Freigabestatus: ein Kennzeichen in der Rechnungsliste, einen Filterwert, eine Karte "Zahlungsfreigabe" auf der Rechnung und jede Entscheidung im Verlauf der Rechnung. Die Freigabe blockiert nie einen Export oder einen Monatsabschluss. Sie ist eine Zahlungsentscheidung des Kunden, keine buchhalterische Prüfung.
 
 Lehnt die Buchhaltung eine Rechnung ab, wird eine ausstehende Freigabe aufgehoben und festgehalten. Ändert sich Betrag oder Lieferant einer freigegebenen Rechnung, wird die Freigabe zurückgesetzt und die Rechnung geht zurück an ihren Freigeber.
+
+## E-Mails
+
+Freigeber erhalten vier E-Mails: neue Rechnungen zur Freigabe (frühestens 30 Minuten nach der ersten, höchstens 2 am Tag), eine Morgenliste an Arbeitstagen um 8:00, eine Fälligkeitserinnerung an Arbeitstagen um 15:00 für Rechnungen, die in 2 Tagen fällig sind, und für Finanzadmins eine Ablehnungsmeldung mit der Begründung des Freigebers. Jede hat einen eigenen Schalter auf der Benachrichtigungsseite der Person. Die Freitagszusammenfassung an die Buchhaltung erhält eine Zeile pro Unternehmen mit eingeschalteter Freigabe: wartend, überfällig, abgelehnt, freigegeben und unbezahlt. Für ein Unternehmen mit ausgeschalteter Freigabe wird nichts gesendet.

@@ -46,6 +46,18 @@ A korábbi döntésekből származó szabályjavaslatok és az AI saját irány�
 
 Egy új szabály csak az utána érkező számlákat irányítja. Ami már egy jóváhagyónál várakozik, ott marad. Ha azt szeretné, hogy egy új vagy módosított szabály a már várakozó számlákra is vonatkozzon, kattintson a szabályok alatt a **Szabályok alkalmazása a várakozó számlákra** gombra. A rendszer újrafuttatja a szabályokat minden még várakozó számlán, és megmondja, hány számlát irányított át, hány számlánál szűnt meg a jóváhagyás, és hány maradt változatlan. A kézzel kiosztott számlákhoz nem nyúl.
 
+## Mit tanul az irányító
+
+Minden döntés tanítja az irányítót. Ha kézzel oszt ki egy számlát valakinek, ha egy jóváhagyó jóváhagyja, vagy ha megjelöli, hogy nem kell hozzá jóváhagyás, az irányító megjegyzi a partnert és a kimenetet. Amint egy partner utolsó 3 döntése egyezik, a partner következő számlája szabály nélkül is ugyanoda kerül: a jóváhagyó ezt látja: "Tanult: a Hetzner utolsó 3 számlája hozzád került". A "Nem az enyém" gomb elfelejti azt a számlát. Az elutasítás nem tanít semmit, mert az a számláról szól, nem arról, hogy ki döntsön.
+
+## AI javaslatok
+
+Ugyanekkor az irányító szabályt javasol a szabálylista alatt, ugyanazokkal a szavakkal: "A Hetzner számlái ide kerülnek: Péter · 3 korábbi döntésből 3 egyezik". Az Elfogadom az utolsó szabályként veszi fel, így a kézzel írt szabályok elsőbbsége megmarad. Az Elvetem eltünteti, és ugyanaz a javaslat nem jön elő újra, amíg a döntések nem változnak. Szabály csak abból lesz, amit egy személy elfogad. Az AI magától soha nem kapcsolja ki a jóváhagyást.
+
+## A jóváhagyók leírása
+
+A Jóváhagyók alatt írjon egy-két mondatot minden személyről arról, miről dönt: "Ügyvezető, az alvállalkozókat és minden 500 000 Ft feletti számlát ő írja alá". Ezek a leírások szó szerint az AI-hoz kerülnek, amikor egy számlára nincs szabály és nincs korábbi döntés. Az AI azt a személyt választja, akinek a leírása lefedi a számlát, vagy senkit, ha bizonytalan; ilyenkor a számla a Kiosztatlan oszlopban vár egy ilyen megjegyzéssel: "AI 0.58, a küszöb alatt". Azt írja le, miről dönt a személy, ne utasításokat. Az AI csak akkor fut, ha legalább egy jóváhagyónak van leírása, és soha nem költ olyan cégnél, ahol a jóváhagyás ki van kapcsolva.
+
 ## Az Áttekintés tábla
 
 A Jóváhagyások alatti **Áttekintés** fül négy oszlopot mutat: **Kiosztatlan** (egyik szabály sem helyezte el őket), **Várakozik** jóváhagyónként, **Elutasítva** a jóváhagyó megjegyzésével, és **Jóváhagyva, kifizetetlen**. A lejárt számlák borostyán csíkot kapnak. Egy kártyáról kioszthat jóváhagyót, újranyithat egy elutasított számlát, vagy megjelölheti, hogy nem kell jóváhagyás. A felső csempék számolják, mi vár, mi járt le, és mennyi volt a döntési idő mediánja az elmúlt 30 napban.
@@ -55,3 +67,7 @@ A Jóváhagyások alatti **Áttekintés** fül négy oszlopot mutat: **Kiosztatl
 Minden számlán látszik a jóváhagyási állapot: címke a számlalistában, szűrőérték, "Kifizetés jóváhagyása" kártya a számlán, és minden döntés a számla előzményeiben. A jóváhagyás soha nem akadályozza az exportot vagy a hónap zárását. Az ügyfél pénzügyi döntése, nem könyvelési ellenőrzés.
 
 Ha a könyvelő elutasít egy számlát, a függő jóváhagyás megszűnik, és ez rögzítésre kerül. Ha egy jóváhagyott számla összege vagy szállítója változik, a jóváhagyás visszaáll, és a számla visszakerül a jóváhagyójához.
+
+## E-mailek
+
+A jóváhagyók négy e-mailt kapnak: új jóváhagyandó számlák (legkorábban 30 perccel az első után, naponta legfeljebb 2), reggeli lista munkanapokon 8:00-kor, határidő-emlékeztető munkanapokon 15:00-kor a két napon belül esedékes számlákról, és a pénzügyi adminoknak elutasítási értesítő a jóváhagyó indoklásával. Mindegyiknek külön kapcsolója van a személy Értesítések oldalán. A könyvelőknek szóló pénteki összefoglaló cégenként egy sorral bővül, ahol a jóváhagyás be van kapcsolva: vár, lejárt, elutasítva, jóváhagyva és kifizetetlen. Olyan cégnél, ahol a jóváhagyás ki van kapcsolva, semmi nem megy ki.
