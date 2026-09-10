@@ -21,7 +21,7 @@ Alapértelmezés szerint az ügyfél tulajdonosa és a könyvelő admin mindkett
 
 ## A szabályzat
 
-- **Mindenhez kell jóváhagyás, hacsak egy szabály mást nem mond**: a biztonságos alapbeállítás. Egy számla csak egy Ön által írt szabály miatt kerülheti el a jóváhagyást, sosem azért, mert az AI magától úgy döntött.
+- **Mindenhez kell jóváhagyás, hacsak egy szabály mást nem mond**: a biztonságos alapbeállítás. Egy számla két okból kerülheti el a jóváhagyást: mert egy Ön által írt szabály mondja ki, vagy mert a partner utolsó 3 számlájánál Ön döntött úgy, hogy nem kell hozzájuk jóváhagyás. Az AI erről soha nem dönt magától.
 - **Lista időablaka**: napok száma, szabadon beírható. Az alap a számla fizetési határideje: a jóváhagyók az ennyi napon belül esedékes számlákat látják, a későbbiek várnak, amíg közelebb nem érnek. Ha egy számlának nincs határideje, mindig megjelenik. Üresen hagyva minden nyitott számla látszik.
 - **"Ellenőrizendő" jelölésű számlák**: a könyvelő visszatartja őket a kinyerés ellenőrzéséig, vagy figyelmeztetéssel jelennek meg a jóváhagyóknál.
 - **Alapértelmezett jóváhagyó**: az a személy, aki minden olyan számlát megkap, amelyet egyik szabály sem helyez el. Nélküle ezek a számlák a tábla Kiosztatlan oszlopában várják, hogy Ön kiossza őket.
@@ -40,7 +40,7 @@ Egy szabály partner, számlakategória, entitás és a munkaterület alappénzn
 
 A nyilakkal rendezheti át a sorrendet. Az a szabály, amelynek jóváhagyója elvesztette a jogot, kimarad, és a számla kiosztatlanul landol, így egy szabály sosem hagyhat számlát olyannál, aki nem tud dönteni.
 
-A korábbi döntésekből származó szabályjavaslatok és az AI saját irányítása egy későbbi kiadással érkeznek. Addig a szabályok és a saját kiosztásai adják a teljes irányítást.
+Ha egyik szabály sem illik, az irányítás nem áll meg. Az irányító először a partnernél hozott korábbi döntéseit követi, majd az alapértelmezett jóváhagyóhoz teszi a számlát, ha van ilyen, és csak utolsó lépésként kéri az AI-t, hogy a leírások alapján javasoljon jóváhagyót. A szabály mindig erősebb mindháromnál, és az AI választhat személyt, de jóváhagyást nem engedhet el. A lenti szakaszok írják le, mit tanul az irányító, milyen szabályokat javasol, és milyen leírásokból dolgozik az AI.
 
 ## Szabályok utólagos alkalmazása
 
@@ -56,7 +56,7 @@ Ugyanekkor az irányító szabályt javasol a szabálylista alatt, ugyanazokkal 
 
 ## A jóváhagyók leírása
 
-A Jóváhagyók alatt írjon egy-két mondatot minden személyről arról, miről dönt: "Ügyvezető, az alvállalkozókat és minden 500 000 Ft feletti számlát ő írja alá". Ezek a leírások szó szerint az AI-hoz kerülnek, amikor egy számlára nincs szabály és nincs korábbi döntés. Az AI azt a személyt választja, akinek a leírása lefedi a számlát, vagy senkit, ha bizonytalan; ilyenkor a számla a Kiosztatlan oszlopban vár egy ilyen megjegyzéssel: "AI 0.58, a küszöb alatt". Azt írja le, miről dönt a személy, ne utasításokat. Az AI csak akkor fut, ha legalább egy jóváhagyónak van leírása, és soha nem költ olyan cégnél, ahol a jóváhagyás ki van kapcsolva.
+A Jóváhagyók alatt írjon egy-két mondatot minden személyről arról, miről dönt: "Ügyvezető, az alvállalkozókat és minden 500 000 Ft feletti számlát ő írja alá". Ezek a leírások szó szerint az AI-hoz kerülnek, amikor a számlát semmi más nem helyezte el: nem illett rá szabály, nem volt korábbi döntés, és nincs beállítva alapértelmezett jóváhagyó. Az AI azt a személyt választja, akinek a leírása lefedi a számlát, vagy senkit, ha egyik leírás sem illik. Csak akkor lép, ha legalább 70%-ban biztos; különben a számla a Kiosztatlan oszlopban vár egy ilyen megjegyzéssel: "AI 0.58, a küszöb alatt". Az AI számlánként egyszer próbálkozik; ha módosít egy leírást, minden még kiosztatlan számlát újra megnéz. Azt írja le, miről dönt a személy, ne utasításokat. Az AI csak akkor fut, ha legalább egy jóváhagyónak van leírása, és soha nem költ olyan cégnél, ahol a jóváhagyás ki van kapcsolva.
 
 ## Az Áttekintés tábla
 

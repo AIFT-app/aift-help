@@ -21,7 +21,7 @@ By default the client owner and the accountant admin hold both. For anyone else,
 
 ## The policy
 
-- **Everything needs approval unless a rule says otherwise**: the safe default. An invoice can only skip approval because of a rule you wrote, never because the AI decided so on its own.
+- **Everything needs approval unless a rule says otherwise**: the safe default. An invoice can skip approval for two reasons: a rule you wrote says so, or you marked the last 3 invoices from that partner as not needing one. The AI never decides that on its own.
 - **Queue window**: a number of days, typed freely. The basis is the invoice due date: approvers see invoices due within this many days, later ones wait until they come closer. An invoice with no due date always appears. Leave it empty to show every open invoice.
 - **Invoices flagged "needs review"**: held by the accountant until the extraction is checked, or shown to approvers with a warning.
 - **Fallback approver**: the person who receives every invoice no rule places. Without one, such invoices wait in the Unrouted column of the board for you to assign.
@@ -40,7 +40,7 @@ A rule matches on any combination of partner, invoice category, entity and an am
 
 Use the arrows to reorder. A rule whose approver lost the permission is skipped and the invoice lands unrouted, so a rule can never leave an invoice with someone who cannot act.
 
-Rule proposals from past decisions and the AI's own routing arrive in a later release. Until then, rules and your own assignments are the whole routing.
+When no rule matches, routing does not stop. The router first follows your earlier decisions for the partner, then hands the invoice to the fallback approver if you set one, and only as a last step asks the AI to propose an approver from your descriptions. A rule always outranks all three, and the AI can pick a person but never waive approval. The sections below describe what the router learns, the rules it proposes, and the descriptions the AI works from.
 
 ## Applying rules to invoices already waiting
 
@@ -56,7 +56,7 @@ At the same moment the router proposes a rule under the rules list, in the same 
 
 ## Approver descriptions
 
-Under Approvers, write one or two sentences per person about what they decide: "CEO, signs subcontractors and anything above 500 000 Ft". These descriptions are sent to the AI word for word when an invoice matches no rule and no past decision. The AI picks the person whose description covers the invoice, or nobody when it is not sure; in that case the invoice waits in the Unrouted column with a note like "AI 0.58, below the threshold". Describe what the person decides, not instructions. The AI runs only when at least one approver has a description, and never spends anything for a company where approvals are switched off.
+Under Approvers, write one or two sentences per person about what they decide: "CEO, signs subcontractors and anything above 500 000 Ft". These descriptions are sent to the AI word for word when nothing else placed the invoice: no rule matched, no past decision applied, and no fallback approver is set. The AI picks the person whose description covers the invoice, or nobody when no description fits. It acts only when it is at least 70% sure; otherwise the invoice waits in the Unrouted column with a note like "AI 0.58, below the threshold". The AI gets one attempt per invoice; editing a description makes it look again at everything still unrouted. Describe what the person decides, not instructions. The AI runs only when at least one approver has a description, and never spends anything for a company where approvals are switched off.
 
 ## The Overview board
 
