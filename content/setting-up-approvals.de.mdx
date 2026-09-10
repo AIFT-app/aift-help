@@ -21,7 +21,7 @@ Standardmäßig halten der Kundeninhaber und der Buchhaltungsadmin beide. Für a
 
 ## Die Richtlinie
 
-- **Alles braucht eine Freigabe, außer eine Regel sagt etwas anderes**: die sichere Voreinstellung. Eine Rechnung kann die Freigabe nur wegen einer von Ihnen geschriebenen Regel überspringen, nie weil die KI das allein entschieden hat.
+- **Alles braucht eine Freigabe, außer eine Regel sagt etwas anderes**: die sichere Voreinstellung. Eine Rechnung kann die Freigabe aus zwei Gründen überspringen: weil eine von Ihnen geschriebene Regel es sagt, oder weil Sie die letzten 3 Rechnungen dieses Partners als "keine Freigabe nötig" markiert haben. Die KI entscheidet das nie von sich aus.
 - **Zeitfenster der Liste**: eine frei eingegebene Anzahl Tage. Grundlage ist das Fälligkeitsdatum der Rechnung: Freigeber sehen Rechnungen, die innerhalb so vieler Tage fällig sind, spätere warten, bis sie näher rücken. Eine Rechnung ohne Fälligkeitsdatum erscheint immer. Leer lassen, um jede offene Rechnung zu zeigen.
 - **Als "prüfen" markierte Rechnungen**: von der Buchhaltung zurückgehalten, bis die Extraktion geprüft ist, oder den Freigebern mit Warnung gezeigt.
 - **Standard-Freigeber**: die Person, die jede Rechnung erhält, die keine Regel zuordnet. Ohne ihn warten diese Rechnungen in der Spalte Nicht zugewiesen der Tafel auf Ihre Zuweisung.
@@ -40,7 +40,7 @@ Eine Regel trifft auf jede Kombination aus Partner, Rechnungskategorie, Einheit 
 
 Mit den Pfeilen ändern Sie die Reihenfolge. Eine Regel, deren Freigeber die Berechtigung verloren hat, wird übersprungen und die Rechnung landet nicht zugewiesen, sodass eine Regel nie eine Rechnung bei jemandem lässt, der nicht handeln kann.
 
-Regelvorschläge aus früheren Entscheidungen und die eigene Zuordnung der KI kommen mit einer späteren Version. Bis dahin bilden Regeln und Ihre eigenen Zuweisungen die gesamte Zuordnung.
+Trifft keine Regel zu, endet die Zuordnung nicht. Die Zuordnung folgt zuerst Ihren früheren Entscheidungen zu dem Partner, gibt die Rechnung dann an den Standard-Freigeber, falls einer gesetzt ist, und bittet erst als letzten Schritt die KI, anhand Ihrer Beschreibungen einen Freigeber vorzuschlagen. Eine Regel hat immer Vorrang vor allen dreien, und die KI kann eine Person wählen, aber nie eine Freigabe erlassen. Die Abschnitte unten beschreiben, was die Zuordnung lernt, welche Regeln sie vorschlägt und mit welchen Beschreibungen die KI arbeitet.
 
 ## Regeln auf bereits wartende Rechnungen anwenden
 
@@ -56,7 +56,7 @@ Im selben Moment schlägt die Zuordnung unter der Regelliste eine Regel vor, in 
 
 ## Beschreibungen der Freigeber
 
-Schreiben Sie unter Freigeber ein bis zwei Sätze pro Person darüber, worüber sie entscheidet: "Geschäftsführer, unterschreibt Subunternehmer und alles über 500 000 Ft". Diese Beschreibungen werden der KI wörtlich übergeben, wenn eine Rechnung zu keiner Regel und keiner früheren Entscheidung passt. Die KI wählt die Person, deren Beschreibung die Rechnung abdeckt, oder niemanden, wenn sie unsicher ist; dann wartet die Rechnung in der Spalte Nicht zugewiesen mit einem Hinweis wie "KI 0.58, unter der Schwelle". Beschreiben Sie, worüber die Person entscheidet, keine Anweisungen. Die KI läuft nur, wenn mindestens ein Freigeber eine Beschreibung hat, und gibt nie etwas für einen Kunden aus, bei dem die Freigabe ausgeschaltet ist.
+Schreiben Sie unter Freigeber ein bis zwei Sätze pro Person darüber, worüber sie entscheidet: "Geschäftsführer, unterschreibt Subunternehmer und alles über 500 000 Ft". Diese Beschreibungen werden der KI wörtlich übergeben, wenn nichts anderes die Rechnung platziert hat: keine Regel traf zu, keine frühere Entscheidung galt, und kein Standard-Freigeber ist gesetzt. Die KI wählt die Person, deren Beschreibung die Rechnung abdeckt, oder niemanden, wenn keine Beschreibung passt. Sie handelt nur, wenn sie sich mindestens zu 70% sicher ist; sonst wartet die Rechnung in der Spalte Nicht zugewiesen mit einem Hinweis wie "KI 0.58, unter der Schwelle". Die KI hat einen Versuch pro Rechnung; ändern Sie eine Beschreibung, sieht sie sich alle noch nicht zugewiesenen Rechnungen erneut an. Beschreiben Sie, worüber die Person entscheidet, keine Anweisungen. Die KI läuft nur, wenn mindestens ein Freigeber eine Beschreibung hat, und gibt nie etwas für einen Kunden aus, bei dem die Freigabe ausgeschaltet ist.
 
 ## Die Übersichtstafel
 
