@@ -38,9 +38,12 @@ Blocked lines sit in their own group, "Cannot be included yet", with a link to t
 
 1. Tick the lines to pay in a group, or use **Select all in this group**.
 2. If the entity has several accounts in that currency, choose the paying account.
-3. Click **Download list (XLSX)**.
+3. Pick the format. **Spreadsheet (XLSX)** works with every bank. **Bank file (pain.001 XML)** is offered when the paying account's bank documents a pain.001 import; the line above the group says how far that import is verified.
+4. Click **Download list (XLSX)** or **Download bank file (pain.001)**.
 
-AI Finance Team records a numbered payment file, marks each invoice "In payment file #N", and downloads a spreadsheet with the payee, the account, the amount, the execution date and the invoice number on each row. You can key these into any netbank, or use your bank's own import if it accepts a spreadsheet.
+AI Finance Team records a numbered payment file, marks each invoice "In payment file #N", and downloads the file. The spreadsheet has the payee, the account, the amount, the execution date and the invoice number on each row. You can key these into any netbank, or use your bank's own import if it accepts a spreadsheet. The bank file is pain.001.001.03 XML in the Hungarian HCT profile: import it in the netbank's file upload, check the lines and sign there. Every line carries the invoice number as the remittance text.
+
+The execution date is the due date, or the next banking day when the due date falls on a weekend, a public holiday, a rest day set by decree or in the past. Both formats use the same dates.
 
 The list of files you generated is shown under the groups. **Download again** hands you the same file once more.
 
@@ -48,14 +51,17 @@ The list of files you generated is shown under the groups. **Download again** ha
 
 At the moment the spreadsheet is the only format, and it works with every bank because a person keys it in. Direct bank import files are planned; each bank will be listed here only after a real test import on a client's account.
 
-| Bank | Spreadsheet list | Bank import file | Source of the claim |
+| Bank | Spreadsheet list | Bank import file | How far it is verified |
 |---|---|---|---|
 | OTP business netbank | Yes | No file import exists in the netbank (checked on 2026-09-13) | verified in the product |
-| K&H e-bank | Yes | Planned (Electra file) | bank documentation |
-| MBH Vállalati Netbank | Yes | Planned (pain.001 or Electra file) | bank documentation |
-| Erste Vállalati NetBank | Yes | Planned (pain.001 or Electra file) | bank documentation |
-| CIB Business Online | Yes | Planned (pain.001 HCT) | bank documentation |
-| Raiffeisen, UniCredit, Gránit | Yes | Planned (pain.001) | bank documentation, not yet tested |
+| K&H e-bank | Yes | pain.001 XML (save it as .HCT for HUF, .SCT for EUR); Electra file planned | bank documentation, not yet tested with a real file |
+| MBH Vállalati Netbank | Yes | pain.001 XML | bank documentation, not yet tested with a real file |
+| Erste Vállalati NetBank | Yes | pain.001 XML | bank documentation, not yet tested with a real file |
+| CIB Business Online | Yes | pain.001 XML (GIRO-HCT) | bank documentation, not yet tested with a real file |
+| Raiffeisen | Yes | pain.001 XML (MultiCash HCT) | bank documentation, not yet tested with a real file |
+| UniCredit | Yes | pain.001 XML | vendor documentation, not yet tested with a real file |
+| Gránit | Yes | pain.001 XML | not verified |
+| Any other bank | Yes | pain.001 XML, offered as not verified | none |
 | MagNet, Revolut, Wise | Yes | Not planned for the first releases | bank documentation |
 
 "Bank documentation" means the bank publishes the format; "verified in the product" means we tried it. No bank is listed as supported for a file import without one real, unsigned test import on a client's channel.
