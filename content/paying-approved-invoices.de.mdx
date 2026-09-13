@@ -38,9 +38,12 @@ Gesperrte Positionen stehen in einer eigenen Gruppe, „Noch nicht aufnehmbar", 
 
 1. Haken Sie die zu zahlenden Positionen einer Gruppe an oder nutzen Sie **Alle in dieser Gruppe auswählen**.
 2. Hat das Unternehmen mehrere Konten in dieser Währung, wählen Sie das zahlende Konto.
-3. Klicken Sie auf **Liste herunterladen (XLSX)**.
+3. Wählen Sie das Format. Die **Tabelle (XLSX)** funktioniert mit jeder Bank. Die **Bankdatei (pain.001 XML)** wird angeboten, wenn die Bank des zahlenden Kontos einen pain.001-Import dokumentiert; die Zeile über der Gruppe zeigt, wie weit dieser Import verifiziert ist.
+4. Klicken Sie auf **Liste herunterladen (XLSX)** oder **Bankdatei herunterladen (pain.001)**.
 
-AI Finance Team legt eine nummerierte Zahlungsdatei an, markiert jede Rechnung mit „In Zahlungsdatei #N" und lädt eine Tabelle herunter, die je Zeile Empfänger, Konto, Betrag, Ausführungsdatum und Rechnungsnummer enthält. Diese können Sie in jedes Onlinebanking eintippen oder den Import Ihrer Bank nutzen, wenn dieser eine Tabelle akzeptiert.
+AI Finance Team legt eine nummerierte Zahlungsdatei an, markiert jede Rechnung mit „In Zahlungsdatei #N" und lädt die Datei herunter. Die Tabelle enthält je Zeile Empfänger, Konto, Betrag, Ausführungsdatum und Rechnungsnummer. Diese können Sie in jedes Onlinebanking eintippen oder den Import Ihrer Bank nutzen, wenn dieser eine Tabelle akzeptiert. Die Bankdatei ist pain.001.001.03 XML im ungarischen HCT-Profil: Laden Sie sie im Dateiimport des Onlinebankings hoch, prüfen Sie die Positionen und unterschreiben Sie dort. Jede Position trägt die Rechnungsnummer als Verwendungszweck.
+
+Das Ausführungsdatum ist das Fälligkeitsdatum oder der nächste Bankarbeitstag, wenn die Fälligkeit auf ein Wochenende, einen Feiertag, einen per Verordnung festgelegten Ruhetag oder in die Vergangenheit fällt. Beide Formate verwenden dieselben Daten.
 
 Die Liste der erzeugten Dateien steht unter den Gruppen. **Erneut herunterladen** liefert dieselbe Datei noch einmal.
 
@@ -48,14 +51,17 @@ Die Liste der erzeugten Dateien steht unter den Gruppen. **Erneut herunterladen*
 
 Derzeit ist die Tabelle das einzige Format, und sie funktioniert mit jeder Bank, weil eine Person sie eintippt. Direkte Bankimportdateien sind geplant; jede Bank wird hier erst nach einem echten Testimport auf dem Konto eines Kunden aufgeführt.
 
-| Bank | Tabellenliste | Bankimportdatei | Quelle der Aussage |
+| Bank | Tabellenliste | Bankimportdatei | Wie weit verifiziert |
 |---|---|---|---|
 | OTP Firmen-Onlinebanking | Ja | Kein Dateiimport im Onlinebanking vorhanden (geprüft am 13.09.2026) | im Produkt verifiziert |
-| K&H e-bank | Ja | Geplant (Electra-Datei) | Bankdokumentation |
-| MBH Vállalati Netbank | Ja | Geplant (pain.001 oder Electra-Datei) | Bankdokumentation |
-| Erste Vállalati NetBank | Ja | Geplant (pain.001 oder Electra-Datei) | Bankdokumentation |
-| CIB Business Online | Ja | Geplant (pain.001 HCT) | Bankdokumentation |
-| Raiffeisen, UniCredit, Gránit | Ja | Geplant (pain.001) | Bankdokumentation, noch nicht getestet |
+| K&H e-bank | Ja | pain.001 XML (als .HCT für HUF, .SCT für EUR speichern); Electra-Datei geplant | Bankdokumentation, noch nicht mit einer echten Datei getestet |
+| MBH Vállalati Netbank | Ja | pain.001 XML | Bankdokumentation, noch nicht mit einer echten Datei getestet |
+| Erste Vállalati NetBank | Ja | pain.001 XML | Bankdokumentation, noch nicht mit einer echten Datei getestet |
+| CIB Business Online | Ja | pain.001 XML (GIRO-HCT) | Bankdokumentation, noch nicht mit einer echten Datei getestet |
+| Raiffeisen | Ja | pain.001 XML (MultiCash HCT) | Bankdokumentation, noch nicht mit einer echten Datei getestet |
+| UniCredit | Ja | pain.001 XML | Anbieterdokumentation, noch nicht mit einer echten Datei getestet |
+| Gránit | Ja | pain.001 XML | nicht verifiziert |
+| Jede andere Bank | Ja | pain.001 XML, als nicht verifiziert angeboten | keine |
 | MagNet, Revolut, Wise | Ja | Für die ersten Versionen nicht geplant | Bankdokumentation |
 
 „Bankdokumentation" bedeutet, dass die Bank das Format veröffentlicht; „im Produkt verifiziert", dass wir es ausprobiert haben. Keine Bank wird als für den Dateiimport unterstützt aufgeführt ohne einen echten, unsignierten Testimport über den Kanal eines Kunden.
