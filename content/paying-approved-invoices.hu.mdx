@@ -1,0 +1,69 @@
+# Jóváhagyott számlák kifizetése
+
+Amint a szállítói számlák jóvá vannak hagyva, a pénzügyi adminisztrátornak ki kell fizetnie őket. Az AI Finance Team a jóváhagyott, még kifizetetlen számlákból utalási listát készít, amelyet letölthet és elvihet a bankjába. Ez a cikk annak szól, aki fizet: a pénzügyi adminisztrátornak vagy a tulajdonosnak.
+
+## Az AI Finance Teamen keresztül nem mozog pénz
+
+Az utalási fájl javaslat. Ön a saját netbankjába importálja, ott ellenőrzi és ott írja alá, pontosan úgy, mint egy kézzel rögzített átutalást. Importálás után minden magyar bank megköveteli ezt az aláírást. Az AI Finance Team soha nem tárolja az Ön banki belépését, és soha nem indít átutalást.
+
+Egy számla akkor számít kifizetettnek, amikor a banki tranzakció megérkezik és párosítjuk hozzá, ugyanúgy, mint eddig. Az, hogy egy számla utalási fájlban van, nem jelöli kifizetettnek.
+
+## Hol található
+
+Nyissa meg az oldalsávban a **Jóváhagyások** menüpontot, és válassza az **Utalási fájl** fület. Ehhez az "Utalási fájl exportálása" jogosultság kell; alapértelmezés szerint az ügyfél tulajdonosa és a könyvelő adminisztrátor rendelkezik vele. A munkaterület adminisztrátora szerepkörön vagy tagonkénti kivételen keresztül bárkinek megadhatja. Lásd: [Szerepek és jogosultságok](/roles-and-permissions).
+
+## Mit lát
+
+A fül minden jóváhagyott és még kifizetetlen szállítói számlát felsorol, a fizető bankszámla szerint csoportosítva (egy csoport fizető cégenként és pénznemenként). Minden sorban ez látszik:
+
+- **Kedvezményezett** és a számlaszám, hivatkozással a számlára.
+- **Kedvezményezett számlája**: a számlaszám, ahová a pénz megy, és az ellenőrzés állapota.
+- **Határidő** és **Terhelés**: a számlán szereplő fizetési határidő, és az a nap, amelyre az átutalást kérjük. A már lejárt határidő helyébe a mai nap lép.
+- **Összeg**: ami még fizetendő. Részben kifizetett számlánál a fennmaradó egyenleg.
+
+A már fájlba írt sorok rejtve vannak. Kapcsolja be a **Már fájlban lévő tételek mutatása** opciót, hogy lássa őket, a fájl számával megjelölve.
+
+## A számlaszám ellenőrzése
+
+A leggyakoribb számlacsalás a rossz számlaszámra utalás, ezért minden kedvezményezetti számlaszámot egy személynek meg kell erősítenie, mielőtt fájlba kerülhet.
+
+- **Megerősítve**: a "Jóváhagyások kezelése" joggal rendelkező személy megerősítette ezt a számlaszámot a partner oldalán. A sor kifizethető.
+- **Először látott**: ennek a szállítónak a számlaszáma még nincs megerősítve. Nyissa meg a partnert, és erősítse meg, miután egyeztetett a szállítóval.
+- **Számlaszám változott**: az ezen a számlán szereplő számlaszám eltér a korábban megerősítettől. A sor addig blokkolva marad, amíg valaki meg nem erősíti az újat. Előtte hívja fel a szállítót egy már ismert telefonszámon.
+- **Nincs számlaszám**, **Érvénytelen számlaszám**, **Nincs ellenőrzött partner**: a sor még nem fizethető; az ok és a következő lépés a sor alatt látható.
+
+A blokkolt sorok külön csoportban, a "Még nem kerülhet be" alatt jelennek meg, hivatkozással a partner oldalára.
+
+## A lista letöltése
+
+1. Jelölje be a csoportban a fizetendő sorokat, vagy használja az **Összes kijelölése ebben a csoportban** opciót.
+2. Ha a cégnek több számlája van ebben a pénznemben, válassza ki a fizető számlát.
+3. Kattintson a **Lista letöltése (XLSX)** gombra.
+
+Az AI Finance Team sorszámozott utalási fájlt rögzít, minden számlát megjelöl "A(z) #N utalási fájlban" jelöléssel, és letölt egy táblázatot, amelynek minden sorában szerepel a kedvezményezett, a számlaszám, az összeg, a terhelés napja és a számlaszám. Ezeket bármelyik netbankba begépelheti, vagy használhatja a bank saját importját, ha az elfogad táblázatot.
+
+A létrehozott fájlok listája a csoportok alatt látható. A **Letöltés újra** ugyanazt a fájlt adja még egyszer.
+
+## Melyik fájl melyik bankkal működik
+
+Jelenleg a táblázat az egyetlen formátum, és minden bankkal működik, mert egy személy gépeli be. A közvetlen banki importfájlok tervben vannak; minden bank csak azután kerül ide, hogy egy ügyfél számláján valódi tesztimport történt.
+
+| Bank | Táblázatos lista | Banki importfájl | Az állítás forrása |
+|---|---|---|---|
+| OTP vállalati netbank | Igen | A netbankban nincs fájlimport (ellenőrizve: 2026-09-13) | a termékben ellenőrizve |
+| K&H e-bank | Igen | Tervezett (Electra fájl) | banki dokumentáció |
+| MBH Vállalati Netbank | Igen | Tervezett (pain.001 vagy Electra fájl) | banki dokumentáció |
+| Erste Vállalati NetBank | Igen | Tervezett (pain.001 vagy Electra fájl) | banki dokumentáció |
+| CIB Business Online | Igen | Tervezett (pain.001 HCT) | banki dokumentáció |
+| Raiffeisen, UniCredit, Gránit | Igen | Tervezett (pain.001) | banki dokumentáció, még nem tesztelt |
+| MagNet, Revolut, Wise | Igen | Az első kiadásokban nem tervezett | banki dokumentáció |
+
+A "banki dokumentáció" azt jelenti, hogy a bank közzéteszi a formátumot; "a termékben ellenőrizve" azt, hogy kipróbáltuk. Egyetlen bankot sem sorolunk fel támogatottként fájlimporthoz anélkül, hogy egy ügyfél csatornáján valódi, aláírás nélküli tesztimport történt volna.
+
+## Gyakori kérdések
+
+**Kifizethetek egy nem jóváhagyott számlát?** Nem. A lista csak jóváhagyott számlákat tartalmaz. Előbb hagyja jóvá, vagy kérje meg a pénzügyi adminisztrátort, hogy jelölje jóváhagyást nem igénylőnek.
+
+**Tévedésből készítettem fájlt.** A bankban nem történt semmi. Egyszerűen ne importálja. A számlák jóváhagyottak és kifizetetlenek maradnak; a következő fájlba újra bekerülhetnek, ha bekapcsolja a "Már fájlban lévő tételek mutatása" opciót.
+
+**Az összeg nem egyezik a számlán szereplővel.** A lista azt mutatja, ami még fizetendő. Részben kifizetett számlánál a fennmaradó egyenleget, a forint összegek pedig egész forintok.

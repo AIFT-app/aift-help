@@ -46,6 +46,12 @@ export const navigation: NavItem[] = [
     slug: 'setting-up-approvals',
     title: { en: 'Setting Up Payment Approvals', hu: 'A kifizetések jóváhagyásának beállítása', de: 'Zahlungsfreigaben einrichten' },
   },
+  // Payment file (payment-file-list): the finance admin's article. The app's
+  // tab is "Payment file" / "Utalási fájl" / "Zahlungsdatei" (approvals.tabs.payments).
+  {
+    slug: 'paying-approved-invoices',
+    title: { en: 'Paying Approved Invoices', hu: 'Jóváhagyott számlák kifizetése', de: 'Freigegebene Rechnungen bezahlen' },
+  },
   {
     slug: 'fixed-payment-method',
     title: {
