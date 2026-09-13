@@ -38,10 +38,10 @@ A blokkolt sorok külön csoportban, a "Még nem kerülhet be" alatt jelennek me
 
 1. Jelölje be a csoportban a fizetendő sorokat, vagy használja az **Összes kijelölése ebben a csoportban** opciót.
 2. Ha a cégnek több számlája van ebben a pénznemben, válassza ki a fizető számlát.
-3. Válassza ki a formátumot. A **Táblázat (XLSX)** minden bankkal működik. A **Banki fájl (pain.001 XML)** akkor jelenik meg, ha a fizető számla bankja dokumentálja a pain.001 importot; a csoport feletti sor mutatja, mennyire ellenőrzött ez az import.
-4. Kattintson a **Lista letöltése (XLSX)** vagy a **Banki fájl letöltése (pain.001)** gombra.
+3. Válassza ki a formátumot. A **Táblázat (XLSX)** minden bankkal működik. A **Banki fájl (pain.001 XML)** akkor jelenik meg, ha a fizető számla bankja dokumentálja a pain.001 importot. Az **Electra fájl (.HUF)** a forintos csoportoknál jelenik meg azoknál a bankoknál, amelyek Electra-alapú netbankot futtatnak (K&H, Erste, MBH, Gránit). A csoport feletti sor mutatja, mennyire ellenőrzött ez az import.
+4. Kattintson a **Lista letöltése (XLSX)**, a **Banki fájl letöltése (pain.001)** vagy az **Electra fájl letöltése (.HUF)** gombra.
 
-Az AI Finance Team sorszámozott utalási fájlt rögzít, minden számlát megjelöl "A(z) #N utalási fájlban" jelöléssel, és letölti a fájlt. A táblázat minden sorában szerepel a kedvezményezett, a számlaszám, az összeg, a terhelés napja és a számla sorszáma. Ezeket bármelyik netbankba begépelheti, vagy használhatja a bank saját importját, ha az elfogad táblázatot. A banki fájl pain.001.001.03 XML a magyar HCT profil szerint: töltse fel a netbank fájlimportjában, ellenőrizze a tételeket, és ott írja alá. Minden tétel közleményében a számla sorszáma szerepel.
+Az AI Finance Team sorszámozott utalási fájlt rögzít, minden számlát megjelöl "A(z) #N utalási fájlban" jelöléssel, és letölti a fájlt. A táblázat minden sorában szerepel a kedvezményezett, a számlaszám, az összeg, a terhelés napja és a számla sorszáma. Ezeket bármelyik netbankba begépelheti, vagy használhatja a bank saját importját, ha az elfogad táblázatot. A banki fájl pain.001.001.03 XML a magyar HCT profil szerint: töltse fel a netbank fájlimportjában, ellenőrizze a tételeket, és ott írja alá. Minden tétel közleményében a számla sorszáma szerepel. Az Electra fájl a rögzített szélességű "Forint átutalási megbízás" rekord; a K&H e-bank fájlonként legfeljebb 40 tételt fogad, nagyobb kijelölést az oldal nem enged.
 
 A terhelés napja az esedékesség napja, vagy a következő banki munkanap, ha az esedékesség hétvégére, munkaszüneti napra, rendeletben kijelölt pihenőnapra vagy a múltba esik. Mindkét formátum ugyanazokat a dátumokat használja.
 
@@ -54,13 +54,13 @@ Jelenleg a táblázat az egyetlen formátum, és minden bankkal működik, mert 
 | Bank | Táblázatos lista | Banki importfájl | Mennyire ellenőrzött |
 |---|---|---|---|
 | OTP vállalati netbank | Igen | A netbankban nincs fájlimport (ellenőrizve: 2026-09-13) | a termékben ellenőrizve |
-| K&H e-bank | Igen | pain.001 XML (HUF esetén .HCT, EUR esetén .SCT kiterjesztéssel mentve); Electra fájl tervezett | banki dokumentáció, valódi fájllal még nem tesztelt |
-| MBH Vállalati Netbank | Igen | pain.001 XML | banki dokumentáció, valódi fájllal még nem tesztelt |
-| Erste Vállalati NetBank | Igen | pain.001 XML | banki dokumentáció, valódi fájllal még nem tesztelt |
+| K&H e-bank | Igen | pain.001 XML (HUF esetén .HCT, EUR esetén .SCT kiterjesztéssel mentve); Electra fájl (.HUF, fájlonként legfeljebb 40 tétel) | banki dokumentáció, valódi fájllal még nem tesztelt |
+| MBH Vállalati Netbank | Igen | pain.001 XML; Electra fájl (.HUF) | banki dokumentáció, valódi fájllal még nem tesztelt |
+| Erste Vállalati NetBank | Igen | pain.001 XML; Electra fájl (.HUF) | banki dokumentáció, valódi fájllal még nem tesztelt |
 | CIB Business Online | Igen | pain.001 XML (GIRO-HCT) | banki dokumentáció, valódi fájllal még nem tesztelt |
 | Raiffeisen | Igen | pain.001 XML (MultiCash HCT) | banki dokumentáció, valódi fájllal még nem tesztelt |
 | UniCredit | Igen | pain.001 XML | szállítói dokumentáció, valódi fájllal még nem tesztelt |
-| Gránit | Igen | pain.001 XML | nem ellenőrzött |
+| Gránit | Igen | pain.001 XML (nem ellenőrzött); Electra fájl (.HUF) | Electra fájl: 2012-es banki dokumentáció, valódi fájllal még nem tesztelt |
 | Bármely más bank | Igen | pain.001 XML, nem ellenőrzöttként felkínálva | nincs |
 | MagNet, Revolut, Wise | Igen | Az első kiadásokban nem tervezett | banki dokumentáció |
 

@@ -38,10 +38,10 @@ Gesperrte Positionen stehen in einer eigenen Gruppe, „Noch nicht aufnehmbar", 
 
 1. Haken Sie die zu zahlenden Positionen einer Gruppe an oder nutzen Sie **Alle in dieser Gruppe auswählen**.
 2. Hat das Unternehmen mehrere Konten in dieser Währung, wählen Sie das zahlende Konto.
-3. Wählen Sie das Format. Die **Tabelle (XLSX)** funktioniert mit jeder Bank. Die **Bankdatei (pain.001 XML)** wird angeboten, wenn die Bank des zahlenden Kontos einen pain.001-Import dokumentiert; die Zeile über der Gruppe zeigt, wie weit dieser Import verifiziert ist.
-4. Klicken Sie auf **Liste herunterladen (XLSX)** oder **Bankdatei herunterladen (pain.001)**.
+3. Wählen Sie das Format. Die **Tabelle (XLSX)** funktioniert mit jeder Bank. Die **Bankdatei (pain.001 XML)** wird angeboten, wenn die Bank des zahlenden Kontos einen pain.001-Import dokumentiert. Die **Electra-Datei (.HUF)** wird bei HUF-Gruppen an den Banken angeboten, die ein Electra-basiertes Onlinebanking betreiben (K&H, Erste, MBH, Gránit). Die Zeile über der Gruppe zeigt, wie weit dieser Import verifiziert ist.
+4. Klicken Sie auf **Liste herunterladen (XLSX)**, **Bankdatei herunterladen (pain.001)** oder **Electra-Datei herunterladen (.HUF)**.
 
-AI Finance Team legt eine nummerierte Zahlungsdatei an, markiert jede Rechnung mit „In Zahlungsdatei #N" und lädt die Datei herunter. Die Tabelle enthält je Zeile Empfänger, Konto, Betrag, Ausführungsdatum und Rechnungsnummer. Diese können Sie in jedes Onlinebanking eintippen oder den Import Ihrer Bank nutzen, wenn dieser eine Tabelle akzeptiert. Die Bankdatei ist pain.001.001.03 XML im ungarischen HCT-Profil: Laden Sie sie im Dateiimport des Onlinebankings hoch, prüfen Sie die Positionen und unterschreiben Sie dort. Jede Position trägt die Rechnungsnummer als Verwendungszweck.
+AI Finance Team legt eine nummerierte Zahlungsdatei an, markiert jede Rechnung mit „In Zahlungsdatei #N" und lädt die Datei herunter. Die Tabelle enthält je Zeile Empfänger, Konto, Betrag, Ausführungsdatum und Rechnungsnummer. Diese können Sie in jedes Onlinebanking eintippen oder den Import Ihrer Bank nutzen, wenn dieser eine Tabelle akzeptiert. Die Bankdatei ist pain.001.001.03 XML im ungarischen HCT-Profil: Laden Sie sie im Dateiimport des Onlinebankings hoch, prüfen Sie die Positionen und unterschreiben Sie dort. Jede Position trägt die Rechnungsnummer als Verwendungszweck. Die Electra-Datei ist der Festbreitensatz „Forint átutalási megbízás"; K&H e-bank akzeptiert höchstens 40 Positionen je Datei, eine größere Auswahl lehnt die Seite ab.
 
 Das Ausführungsdatum ist das Fälligkeitsdatum oder der nächste Bankarbeitstag, wenn die Fälligkeit auf ein Wochenende, einen Feiertag, einen per Verordnung festgelegten Ruhetag oder in die Vergangenheit fällt. Beide Formate verwenden dieselben Daten.
 
@@ -54,13 +54,13 @@ Derzeit ist die Tabelle das einzige Format, und sie funktioniert mit jeder Bank,
 | Bank | Tabellenliste | Bankimportdatei | Wie weit verifiziert |
 |---|---|---|---|
 | OTP Firmen-Onlinebanking | Ja | Kein Dateiimport im Onlinebanking vorhanden (geprüft am 13.09.2026) | im Produkt verifiziert |
-| K&H e-bank | Ja | pain.001 XML (als .HCT für HUF, .SCT für EUR speichern); Electra-Datei geplant | Bankdokumentation, noch nicht mit einer echten Datei getestet |
-| MBH Vállalati Netbank | Ja | pain.001 XML | Bankdokumentation, noch nicht mit einer echten Datei getestet |
-| Erste Vállalati NetBank | Ja | pain.001 XML | Bankdokumentation, noch nicht mit einer echten Datei getestet |
+| K&H e-bank | Ja | pain.001 XML (als .HCT für HUF, .SCT für EUR speichern); Electra-Datei (.HUF, höchstens 40 Positionen je Datei) | Bankdokumentation, noch nicht mit einer echten Datei getestet |
+| MBH Vállalati Netbank | Ja | pain.001 XML; Electra-Datei (.HUF) | Bankdokumentation, noch nicht mit einer echten Datei getestet |
+| Erste Vállalati NetBank | Ja | pain.001 XML; Electra-Datei (.HUF) | Bankdokumentation, noch nicht mit einer echten Datei getestet |
 | CIB Business Online | Ja | pain.001 XML (GIRO-HCT) | Bankdokumentation, noch nicht mit einer echten Datei getestet |
 | Raiffeisen | Ja | pain.001 XML (MultiCash HCT) | Bankdokumentation, noch nicht mit einer echten Datei getestet |
 | UniCredit | Ja | pain.001 XML | Anbieterdokumentation, noch nicht mit einer echten Datei getestet |
-| Gránit | Ja | pain.001 XML | nicht verifiziert |
+| Gránit | Ja | pain.001 XML (nicht verifiziert); Electra-Datei (.HUF) | Electra-Datei: Bankdokumentation von 2012, noch nicht mit einer echten Datei getestet |
 | Jede andere Bank | Ja | pain.001 XML, als nicht verifiziert angeboten | keine |
 | MagNet, Revolut, Wise | Ja | Für die ersten Versionen nicht geplant | Bankdokumentation |
 
