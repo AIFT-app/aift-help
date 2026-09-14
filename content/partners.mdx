@@ -1,24 +1,24 @@
 # Managing Partners
 
-Partners are the verified, canonical records for the companies and individuals your workspace does business with — suppliers, customers, platforms, and service providers. Keeping partners up to date means the AI can recognise the other party on every new invoice or bank transaction automatically, without requiring manual review each time.
+Partners are the verified, canonical records for the companies and individuals your workspace does business with - suppliers, customers, platforms, and service providers. Keeping partners up to date means the AI can recognise the other party on every new invoice or bank transaction automatically, without requiring manual review each time.
 
 ## Verified vs unverified partners
 
-When AI Finance Team extracts an invoice or imports a bank transaction, it records the other party as a partner — using the name exactly as it appeared on the document. The same real-world business can appear under several names (for example, "OpenAI OpCo, LLC" on one invoice and "OpenAI, L.L.C." on another).
+When AI Finance Team extracts an invoice or imports a bank transaction, it records the other party as a partner - using the name exactly as it appeared on the document. The same real-world business can appear under several names (for example, "OpenAI OpCo, LLC" on one invoice and "OpenAI, L.L.C." on another).
 
 A **verified partner** is the single canonical record that ties all those name variants together. An **unverified partner** is a raw extracted name that hasn't been curated yet.
 
 ### The ⚠ Unverified badge
 
-Any invoice or bank transaction whose partner has not yet been linked to a verified partner shows an amber **⚠ Unverified** badge next to the partner name. This badge is a prompt to review and link, not an error — the document is fully processed, it just lacks a verified partner connection.
+Any invoice or bank transaction whose partner has not yet been linked to a verified partner shows an amber **⚠ Unverified** badge next to the partner name. This badge is a prompt to review and link, not an error - the document is fully processed, it just lacks a verified partner connection.
 
 ### Where you'll see partners
 
 Partners appear in three places:
 
-- **On an invoice** — the **Partner** field on the invoice detail page
-- **On a bank transaction** — the **Partner** row in the transaction detail panel (click any row on the Transactions page)
-- **In the bank statement editor** — the **Partner** column when editing an uploaded PDF statement
+- **On an invoice** - the **Partner** field on the invoice detail page
+- **On a bank transaction** - the **Partner** row in the transaction detail panel (click any row on the Transactions page)
+- **In the bank statement editor** - the **Partner** column when editing an uploaded PDF statement
 
 Each surface uses the same partner picker, with the same verified/unverified pill and the same "+ New partner" affordance.
 
@@ -26,8 +26,8 @@ Each surface uses the same partner picker, with the same verified/unverified pil
 
 From the workspace sidebar, click **Master data**, then **Partners**. The page has two sections:
 
-- **Verified partners** — your curated list of known partners. Each row shows the count of **Alternative names** (other forms this partner has been seen under) for that partner.
-- **Unverified partners** — raw partner names that have appeared on documents but have not yet been matched to a verified partner. Sorted by transaction count so the most active ones appear first.
+- **Verified partners** - your curated list of known partners. Each row shows the count of **Alternative names** (other forms this partner has been seen under) for that partner.
+- **Unverified partners** - raw partner names that have appeared on documents but have not yet been matched to a verified partner. Sorted by transaction count so the most active ones appear first.
 
 > The Partners page is only visible to workspace members with the **Accountant** or **Accountant admin** role.
 
@@ -35,18 +35,18 @@ From the workspace sidebar, click **Master data**, then **Partners**. The page h
 
 The Unverified partners table has three filter chips above it: **All · Invoices · Transactions**. Each unverified partner also shows a **Source** badge:
 
-- **Invoice** — first seen on an uploaded or extracted invoice
-- **Transaction** — first seen on a synced bank transaction
-- **Statement PDF** — first seen on an uploaded bank statement
+- **Invoice** - first seen on an uploaded or extracted invoice
+- **Transaction** - first seen on a synced bank transaction
+- **Statement PDF** - first seen on an uploaded bank statement
 
 Use the filter to focus on, say, only the bank-transaction-side names when curating after a fresh statement upload.
 
 ### The Tax ID collision banner
 
-When two verified partners share the same tax ID, an amber **Possible duplicate partners** banner appears at the top of the Partners page. Click **Review** to expand the panel — each pair has two actions:
+When two verified partners share the same tax ID, an amber **Possible duplicate partners** banner appears at the top of the Partners page. Click **Review** to expand the panel - each pair has two actions:
 
-- **Merge** — opens the merge dialog with the first partner pre-selected as the one to merge
-- **Not a duplicate** — dismisses the suggestion so the banner stops surfacing it
+- **Merge** - opens the merge dialog with the first partner pre-selected as the one to merge
+- **Not a duplicate** - dismisses the suggestion so the banner stops surfacing it
 
 The banner is visible to accountants only.
 
@@ -64,7 +64,7 @@ The unverified partner is immediately linked to the new verified partner, and th
 
 Click **New partner** in the top-right corner. Fill in the required **Name** and any optional fields (Partner ID, Tax ID, country, address, bank accounts), then click **Save**.
 
-> **Adding many at once?** To bring in a whole list of partners from a spreadsheet, use the **Import** button on this page — see [Importing Master Data](/master-data-import).
+> **Adding many at once?** To bring in a whole list of partners from a spreadsheet, use the **Import** button on this page - see [Importing Master Data](/master-data-import).
 
 ## The Partner Detail Page
 
@@ -74,16 +74,16 @@ Click any partner name to open its detail page. It is divided into these section
 
 The partner's canonical name, partner ID, Tax ID, country, and address. Click **Edit** to change these details.
 
-The **Tax ID** field accepts a domestic tax number, an EU VAT number, or both — paste whatever appears on the document and AI Finance Team structures it (use **Edit local & EU separately** to enter the two explicitly). The pair is validated the same country-aware way as for entities: cross-checked where the country builds the EU VAT number from the domestic one (e.g. Hungary), treated as independent where it doesn't (e.g. Germany, Austria — no false "don't match" warning), and EU-VAT-free for non-EU partners. See [Managing Entities](/master-data-entities#how-the-tax-id-and-eu-vat-number-relate) for the full explanation.
+The **Tax ID** field accepts a domestic tax number, an EU VAT number, or both - paste whatever appears on the document and AI Finance Team structures it (use **Edit local & EU separately** to enter the two explicitly). The pair is validated the same country-aware way as for entities: cross-checked where the country builds the EU VAT number from the domestic one (e.g. Hungary), treated as independent where it doesn't (e.g. Germany, Austria - no false "don't match" warning), and EU-VAT-free for non-EU partners. See [Managing Entities](/master-data-entities#how-the-tax-id-and-eu-vat-number-relate) for the full explanation.
 
 ### Alternative names
 
-A single consolidated list of every other name this partner is known under — both:
+A single consolidated list of every other name this partner is known under - both:
 
-- **Auto** entries — names from unverified partners that have been linked to this verified partner (blue badge)
-- **Manual** entries — names you have added by hand (grey badge)
+- **Auto** entries - names from unverified partners that have been linked to this verified partner (blue badge)
+- **Manual** entries - names you have added by hand (grey badge)
 
-**Why alternative names matter:** When a new invoice or bank transaction arrives, AI Finance Team checks the extracted partner name against every verified partner's canonical name and all its alternative names. An exact match (normalised for punctuation and legal-suffix variants) automatically links the new record to the partner — no manual action needed.
+**Why alternative names matter:** When a new invoice or bank transaction arrives, AI Finance Team checks the extracted partner name against every verified partner's canonical name and all its alternative names. An exact match (normalised for punctuation and legal-suffix variants) automatically links the new record to the partner - no manual action needed.
 
 **To add an alternative name:**
 
@@ -98,23 +98,23 @@ Address and bank account details for the partner.
 
 ### Fixed categories
 
-Most of the time the AI picks an accounting category per invoice line and per bank transaction. For a partner whose bookings never vary — a landlord, an insurer, a card acquirer — you can skip that judgement entirely and pin one category to the partner. Two independent rules live here, one per taxonomy.
+Most of the time the AI picks an accounting category per invoice line and per bank transaction. For a partner whose bookings never vary - a landlord, an insurer, a card acquirer - you can skip that judgement entirely and pin one category to the partner. Two independent rules live here, one per taxonomy.
 
 #### Fixed invoice category
 
 Every line of an invoice from this partner is set to this category, **overriding the AI's suggestion**. The AI still runs and its opinion is kept on record, but the effective category is yours.
 
-The category must be an active invoice category whose direction is compatible with the invoice — a revenue category is applied to income invoices, a cost category to expenses. If a partner is both customer and supplier and the single fixed category only fits one direction, the rule quietly does nothing on the other. Archive the category and the rule goes inactive, with an amber warning on the section until you pick another.
+The category must be an active invoice category whose direction is compatible with the invoice - a revenue category is applied to income invoices, a cost category to expenses. If a partner is both customer and supplier and the single fixed category only fits one direction, the rule quietly does nothing on the other. Archive the category and the rule goes inactive, with an amber warning on the section until you pick another.
 
 #### Fixed transaction category
 
 Every bank transaction from this partner is booked to this category **when it has none**. Unlike the invoice rule, this one does not overrule a category that is already there.
 
-This is pure categorisation. It does not touch matching, and it does not mark anything **No invoice needed** — those are separate decisions, made under [Transaction types](/transaction-types).
+This is pure categorisation. It does not touch matching, and it does not mark anything **No invoice needed** - those are separate decisions, made under [Transaction types](/transaction-types).
 
 #### Fixed payment method
 
-A third rule sits beside these two, for partners whose invoices state the wrong payment method — most often a card payment reported as cash, which closes the invoice and keeps it out of matching. It is set the same way, but unlike the categories it is **forward-only** and has no retroactive run. See [Fixing a Partner's Payment Method](/fixed-payment-method).
+A third rule sits beside these two, for partners whose invoices state the wrong payment method - most often a card payment reported as cash, which closes the invoice and keeps it out of matching. It is set the same way, but unlike the categories it is **forward-only** and has no retroactive run. See [Fixing a Partner's Payment Method](/fixed-payment-method).
 
 #### Your own edits always win
 
@@ -126,28 +126,28 @@ Both rules are **prospective**: they book what arrives after you save them. Sett
 
 **Run on existing records** closes that gap. It sits beside **Save** in each of the two sections and applies the **saved** rule to records that already exist.
 
-1. Pick the category and click **Save**. The button acts on the saved rule, so an unsaved selection is not used — it stays disabled until a rule is saved.
+1. Pick the category and click **Save**. The button acts on the saved rule, so an unsaved selection is not used - it stays disabled until a rule is saved.
 2. Click **Run on existing records**.
-3. Leave **All records** on to check everything from this partner, or switch it off and choose a period — a month, a quarter, a year, or a custom range.
+3. Leave **All records** on to check everything from this partner, or switch it off and choose a period - a month, a quarter, a year, or a custom range.
 4. Read the preview. It tells you exactly how many records will change *before* anything happens, and how many are left alone because someone categorised them by hand.
 5. Click **Re-book**. A summary reports how many records were changed.
 
 A few things worth knowing:
 
-- **The preview is the truth.** It is counted the same way the run is, so the number you see is the number that changes. Running twice is safe — the second run reports nothing to re-book, because everything already matches the rule.
-- **The retroactive run does overwrite a transaction's existing category.** This is the one place it is more assertive than the automatic rule, which only fills an empty one. It has to be: by the time you set a fixed category, the AI has usually already categorised the history — and correcting that history is the whole point. Hand-set categories are still never touched.
+- **The preview is the truth.** It is counted the same way the run is, so the number you see is the number that changes. Running twice is safe - the second run reports nothing to re-book, because everything already matches the rule.
+- **The retroactive run does overwrite a transaction's existing category.** This is the one place it is more assertive than the automatic rule, which only fills an empty one. It has to be: by the time you set a fixed category, the AI has usually already categorised the history - and correcting that history is the whole point. Hand-set categories are still never touched.
 - **Which date decides the period.** Invoices are matched on whichever date your workspace's **Default date basis** setting names (fulfillment date unless you changed it, under **Settings → Ledger**), falling back to the issue date when an invoice lacks it, so nothing slips out of the run unnoticed. Bank transactions always use their booking date.
-- **Invoices already sent to the office.** If any invoice in range has already been included in an RLB export, the dialog says so. They are still re-booked — the warning is there because a changed ledger code may disagree with what your office has already posted. Check with them before re-booking a closed period.
+- **Invoices already sent to the office.** If any invoice in range has already been included in an RLB export, the dialog says so. They are still re-booked - the warning is there because a changed ledger code may disagree with what your office has already posted. Check with them before re-booking a closed period.
 - **There is no undo.** The run is capped at 2000 records; above that, narrow the period and run it again.
 
 ## How Automatic Matching Works
 
 Every time an invoice or bank statement is processed, AI Finance Team runs through these steps to identify the partner:
 
-1. **Tax ID match** — if the extracted tax ID matches a partner already in the workspace, that record is reused.
-2. **Name match** — if the extracted name (normalised) matches an existing partner name, that record is reused.
-3. **Alternative-name match** — if the extracted name matches a verified partner's canonical name or any of its alternative names, a new unverified-partner record is created and automatically linked to that verified partner.
-4. **New partner** — if no match is found, a new unverified partner is created and the ⚠ badge appears.
+1. **Tax ID match** - if the extracted tax ID matches a partner already in the workspace, that record is reused.
+2. **Name match** - if the extracted name (normalised) matches an existing partner name, that record is reused.
+3. **Alternative-name match** - if the extracted name matches a verified partner's canonical name or any of its alternative names, a new unverified-partner record is created and automatically linked to that verified partner.
+4. **New partner** - if no match is found, a new unverified partner is created and the ⚠ badge appears.
 
 The key insight: once you have added the right alternative name for a partner, every future document from that party is verified automatically.
 
@@ -155,35 +155,35 @@ The key insight: once you have added the right alternative name for a partner, e
 
 When a bank transaction is processed (via open banking or after a statement upload), two additional auto-link checks run before the alternative-name step:
 
-1. **Own-account IBAN check** — if the IBAN or account number on the transaction matches one of your own entity bank accounts, the transaction is an internal transfer between your own accounts: it is linked to a special **Own entity** partner, given the **Internal transfer** type, and marked **No invoice needed** automatically (see [Internal transfers between your own accounts](#internal-transfers-between-your-own-accounts) below).
-2. **Verified-partner IBAN match** — if the IBAN matches one stored on a verified partner record (the **Contact & banking** section of the partner's detail page), the transaction is auto-linked to that partner with no further action needed.
+1. **Own-account IBAN check** - if the IBAN or account number on the transaction matches one of your own entity bank accounts, the transaction is an internal transfer between your own accounts: it is linked to a special **Own entity** partner, given the **Internal transfer** type, and marked **No invoice needed** automatically (see [Internal transfers between your own accounts](#internal-transfers-between-your-own-accounts) below).
+2. **Verified-partner IBAN match** - if the IBAN matches one stored on a verified partner record (the **Contact & banking** section of the partner's detail page), the transaction is auto-linked to that partner with no further action needed.
 
 Adding partner bank IBANs is therefore as valuable as adding alternative names: a single saved IBAN means every future incoming or outgoing transfer from that partner is verified automatically.
 
 ## Internal transfers between your own accounts
 
-When you move money between two of your own bank accounts, the "other party" on the transaction is your own company — not a real supplier or customer. AI Finance Team handles this with a special **own-entity partner**: a behind-the-scenes record that represents one of your [entities](/master-data-entities), so the transfer can be linked to something real instead of creating a junk partner.
+When you move money between two of your own bank accounts, the "other party" on the transaction is your own company - not a real supplier or customer. AI Finance Team handles this with a special **own-entity partner**: a behind-the-scenes record that represents one of your [entities](/master-data-entities), so the transfer can be linked to something real instead of creating a junk partner.
 
 - **Detection is automatic and identity-based.** When a transaction's other account (by IBAN or account number) matches a bank account saved on one of your entities, it is linked to that entity's own-entity partner, given the **Internal transfer** type, and marked **No invoice needed**. Keep each entity's bank accounts current under **Master data → Entities** so this works reliably.
-- **The "Own entity" badge.** Wherever the partner appears — the transaction detail, the partner picker — it shows a blue **Own entity** badge instead of the usual verified pill.
+- **The "Own entity" badge.** Wherever the partner appears - the transaction detail, the partner picker - it shows a blue **Own entity** badge instead of the usual verified pill.
 - **They stay out of the way.** Own-entity partners are **not** listed under **Master data → Partners** (they aren't real trading partners), and they are **excluded from the Partner Ledger** (a running balance against yourself is meaningless). In the partner picker they sit in a pinned **Own entities** group at the top, so you can assign a transfer to any of your entities in one click.
 - **Marking one by hand.** If a transaction was mis-recorded as an ordinary partner that is really your own company, open that partner's detail page and, in the **Own entity** section, pick the entity it represents. From then on it behaves as an own-entity partner and future transfers on that account are caught automatically.
 
-> This is prospective: it applies to transactions going forward. Existing rows are not re-processed automatically — assign them from the transaction's partner picker if needed.
+> This is prospective: it applies to transactions going forward. Existing rows are not re-processed automatically - assign them from the transaction's partner picker if needed.
 
 ## Invoices to private individuals
 
-When you invoice a private individual, NAV reports **no buyer at all** — no name, no tax number. Hungarian law does not allow personal data to be reported, so all NAV tells us is that the buyer *is* a private individual. Those invoices used to arrive with no partner, which meant they had an empty Partner column in the RLB and Hessyn exports and never appeared in the Partner Ledger.
+When you invoice a private individual, NAV reports **no buyer at all** - no name, no tax number. Hungarian law does not allow personal data to be reported, so all NAV tells us is that the buyer *is* a private individual. Those invoices used to arrive with no partner, which meant they had an empty Partner column in the RLB and Hessyn exports and never appeared in the Partner Ledger.
 
 You fix this once, by nominating a partner they should all be booked to.
 
-- **Set it up.** Create (or pick) a partner — most offices call it *Magánszemély* — open its detail page, and in the **Special role** section choose **Private person**. Only one partner per workspace can hold the role.
+- **Set it up.** Create (or pick) a partner - most offices call it *Magánszemély* - open its detail page, and in the **Special role** section choose **Private person**. Only one partner per workspace can hold the role.
 - **What changes.** From then on, every NAV income invoice reported as issued to a private individual is booked to that partner. It carries a name in the RLB and Hessyn exports and appears in the Partner Ledger, so private-individual receivables stop being invisible.
 - **It is recognised from NAV, not from a blank field.** The invoice is only booked here when NAV explicitly reports the buyer as a private individual. An invoice that simply arrives incomplete is never swept in.
 - **Payments are never matched on this partner.** It stands for many different people, so two invoices sharing it are not treated as related. AI Finance Team will not propose or auto-create matches on the strength of that shared partner.
-- **It never learns from a match.** If you manually match a private individual's payment to one of these invoices, nothing is remembered — no bank name, no account number. That is deliberate: the partner is shared, so anything captured on it would be attributed to everyone else booked there too.
+- **It never learns from a match.** If you manually match a private individual's payment to one of these invoices, nothing is remembered - no bank name, no account number. That is deliberate: the partner is shared, so anything captured on it would be attributed to everyone else booked there too.
 
-> **If you know who the buyer is, use a real partner.** For a one-off sale of real value — a vehicle, equipment — create a normal partner and point the invoice at them. You get a genuine Partner Ledger line for a genuine receivable. The private-person partner is for buyers you will never identify individually, such as everyday online orders.
+> **If you know who the buyer is, use a real partner.** For a one-off sale of real value - a vehicle, equipment - create a normal partner and point the invoice at them. You get a genuine Partner Ledger line for a genuine receivable. The private-person partner is for buyers you will never identify individually, such as everyday online orders.
 
 > This is prospective: it applies to invoices arriving from the moment you set it. Invoices already in the system are not moved.
 
@@ -211,7 +211,7 @@ When editing an uploaded statement (Statements tab → click a statement → **E
 
 ### For transactions that genuinely have no partner
 
-Bank fees and interest don't belong to a partner. The picker has a dedicated **— No partner (e.g. bank fee) —** option at the top — selecting it clears any existing link cleanly. (Transfers between your own accounts are different — they link to an [own-entity partner](#internal-transfers-between-your-own-accounts) rather than "no partner".)
+Bank fees and interest don't belong to a partner. The picker has a dedicated **- No partner (e.g. bank fee) -** option at the top - selecting it clears any existing link cleanly. (Transfers between your own accounts are different - they link to an [own-entity partner](#internal-transfers-between-your-own-accounts) rather than "no partner".)
 
 ### Reusing the verified link next time
 
@@ -221,13 +221,13 @@ Alternatively, click **Verify now →** (shown beneath any unverified picker) to
 
 ## Merging Duplicate Partners
 
-If two verified partners represent the same real-world entity, you can merge them — either from the **Tax ID collision banner** on the Partners page or from the partner detail page directly.
+If two verified partners represent the same real-world entity, you can merge them - either from the **Tax ID collision banner** on the Partners page or from the partner detail page directly.
 
 ### From the partner detail page
 
 1. Open the partner you want to merge **away** (the duplicate you want to retire).
 2. Click **Merge into…** in the page header.
-3. In the dialog, search for the partner you want to keep — by name or tax ID. Click the match in the results.
+3. In the dialog, search for the partner you want to keep - by name or tax ID. Click the match in the results.
 4. A confirmation screen summarises what will happen. Click **Merge** to confirm, or **Back** to choose a different target.
 
 ### What happens during a merge
@@ -236,10 +236,10 @@ When you merge partner A into partner B:
 
 - **All linked partner records** that were attached to A are re-attached to B.
 - **A's name** is preserved as an **alternative name** on B (with a "manual" badge), so future invoices and transactions that mention A's name are still matched automatically.
-- **A's tax ID, IBANs, and other identity fields** are not copied — B's values are kept as-is. Review B's Contact & banking section afterwards if A had information B did not.
+- **A's tax ID, IBANs, and other identity fields** are not copied - B's values are kept as-is. Review B's Contact & banking section afterwards if A had information B did not.
 - **A is archived** with a permanent reference back to B (so audit-log links to A still work).
 - **Any pending tax-ID collision suggestions** involving A are automatically dismissed.
 
-The merge is one-way and cannot be undone — verify you have the right source and target before confirming.
+The merge is one-way and cannot be undone - verify you have the right source and target before confirming.
 
 > Merging requires the **Accountant** or **Accountant admin** role.
