@@ -1,6 +1,6 @@
 # AI-asszisztens csatlakoztatása MCP-n keresztül
 
-Az AI Finance Teamnek beépített **MCP-kiszolgálója** van — ez egy szabványos felület, amelyen keresztül az olyan AI-asszisztensek, mint a Claude, a Mistral Le Chat vagy a ChatGPT, lekérdezhetik és (opcionálisan) szerkeszthetik a könyvelési adatait az Ön nevében. Ugyanaz a termék, csak beszélgetve elérve.
+Az AI Finance Teamnek beépített **MCP-kiszolgálója** van - ez egy szabványos felület, amelyen keresztül az olyan AI-asszisztensek, mint a Claude, a Mistral Le Chat vagy a ChatGPT, lekérdezhetik és (opcionálisan) szerkeszthetik a könyvelési adatait az Ön nevében. Ugyanaz a termék, csak beszélgetve elérve.
 
 A csatlakoztatás után hétköznapi nyelven kérdezhet az asszisztenstől („Mely számlák igénylik a figyelmemet a Pannónia Bistróban?”), az pedig élő adatot húz le az AIFT-munkaterületéről. Az opcionális írási hatókörrel tranzakciókat is kategorizálhat, párosításokat fogadhat el és számlamezőket szerkeszthet Ön helyett.
 
@@ -10,7 +10,7 @@ Ez az útmutató könyvelőknek szól. Az ügyfelek jelenleg nem férnek hozzá 
 
 ## Mit tud
 
-Az MCP-kapcsolat ugyanazokra az adatokra és jogosultságokra épül, amelyekkel az AIFT-en belül már rendelkezik. Nem lát semmit, amit Ön nem láthat, és — ha a **Módosítások végrehajtása** hatókört megadta — csak olyan dolgokat tehet, amelyeket egy könyvelő a felületen keresztül is megtehet. Minden művelet auditálható.
+Az MCP-kapcsolat ugyanazokra az adatokra és jogosultságokra épül, amelyekkel az AIFT-en belül már rendelkezik. Nem lát semmit, amit Ön nem láthat, és - ha a **Módosítások végrehajtása** hatókört megadta - csak olyan dolgokat tehet, amelyeket egy könyvelő a felületen keresztül is megtehet. Minden művelet auditálható.
 
 ### Amit kérdezhet (módosítás nélkül)
 
@@ -18,7 +18,7 @@ Az MCP-kapcsolat ugyanazokra az adatokra és jogosultságokra épül, amelyekkel
 
 > „A Csavar Csárdában mely májusi banki tranzakcióknak nincs még párosított számlájuk?”
 
-> „Mutasd az első negyedéves eredményeket a Pannónia Bistróra — az eredménykimutatást és a pénzforgalmi riportot is.”
+> „Mutasd az első negyedéves eredményeket a Pannónia Bistróra - az eredménykimutatást és a pénzforgalmi riportot is.”
 
 > „Mely Logikum Kft.-számláknak vannak kategorizálatlan tételsoraik, összeg szerint rendezve?”
 
@@ -34,9 +34,9 @@ Az MCP-kapcsolat ugyanazokra az adatokra és jogosultságokra épül, amelyekkel
 
 > „Erősítsd meg a javasolt párosítást az INV-0314 és a TXN-0892 között.”
 
-> „Ennek a számlának rossz a partnere — állítsd be a »Magyar Telekom« ellenőrzött partnerre.”
+> „Ennek a számlának rossz a partnere - állítsd be a »Magyar Telekom« ellenőrzött partnerre.”
 
-> „Az AcmeCorp valójában új szállító — léptesd elő ellenőrzött partnerré.”
+> „Az AcmeCorp valójában új szállító - léptesd elő ellenőrzött partnerré.”
 
 > „Vond vissza a kategorizálást az AH-TXN-2026-0042 tételen.”
 
@@ -51,7 +51,7 @@ Minden írási művelet **előtte** és **utána** pillanatképet rögzít az au
 - **Számlákat beküldeni az adóhatóságnak.** A könyvelőprogramba történő export külön, kézi lépés.
 - **Más munkaterületekhez nyúlni.** Az asszisztens csak azokat a munkaterületeket látja, amelyeknek Ön tagja, és az eszközönkénti ellenőrzések elutasítanak mindent, ami ezen kívül esik.
 
-Ezeket a kiszolgáló oldalán tartatja be a rendszer; semmi, amit az asszisztens megpróbál — még ha meg is kérik rá —, nem tudja megkerülni őket.
+Ezeket a kiszolgáló oldalán tartatja be a rendszer; semmi, amit az asszisztens megpróbál - még ha meg is kérik rá -, nem tudja megkerülni őket.
 
 ---
 
@@ -84,7 +84,7 @@ Free és Pro csomagon érhető el.
 2. Illessze be a fenti URL-t. A hitelesítést a rendszer automatikusan felismeri.
 3. Kövesse ugyanazt a bejelentkezési és hozzájárulási folyamatot.
 
-Jelenleg a Mistral a legbarátságosabb út — nincs csomagkorlát, és ez a leggyorsabb beállítás.
+Jelenleg a Mistral a legbarátságosabb út - nincs csomagkorlát, és ez a leggyorsabb beállítás.
 
 ### ChatGPT
 
@@ -98,7 +98,7 @@ Business / Enterprise fiókoknál az informatikai adminisztrátor szervezeti szi
 
 ### Microsoft Copilot / Gemini Enterprise
 
-Lehetséges a Copilot Studión (Power Platform-konnektor) vagy a Gemini Enterprise-on (Google Cloud adattár) keresztül — mindkettőhöz az informatikai csapat közreműködése kell. Ha bármelyikhez segítséget szeretne, forduljon az AI Finance Team ügyfélszolgálatához.
+Lehetséges a Copilot Studión (Power Platform-konnektor) vagy a Gemini Enterprise-on (Google Cloud adattár) keresztül - mindkettőhöz az informatikai csapat közreműködése kell. Ha bármelyikhez segítséget szeretne, forduljon az AI Finance Team ügyfélszolgálatához.
 
 ---
 
@@ -119,18 +119,18 @@ Megadhat csak olvasási, csak módosítási vagy mindkét hatókört. Bármikor 
 
 Minden MCP-eszközhívás egy sort ír az AIFT auditnaplójába:
 
-- **Ki** — a kapcsolat mögött álló AIFT-felhasználó
-- **Mit** — a meghívott eszköz, az argumentumaival (a szabad szöveges keresőkifejezések eltávolításra kerülnek)
-- **Melyik rekordot** — írási műveleteknél a módosított sor
-- **Előtte és utána értékek** — írási műveleteknél teljes pillanatképek, hogy bármely változás visszafelé lejátszható legyen
+- **Ki** - a kapcsolat mögött álló AIFT-felhasználó
+- **Mit** - a meghívott eszköz, az argumentumaival (a szabad szöveges keresőkifejezések eltávolításra kerülnek)
+- **Melyik rekordot** - írási műveleteknél a módosított sor
+- **Előtte és utána értékek** - írási műveleteknél teljes pillanatképek, hogy bármely változás visszafelé lejátszható legyen
 
 Ezt közvetlenül az asszisztensen belül is átnézheti:
 
 > „Mutasd meg mindent, amit az elmúlt órában MCP-n keresztül csináltam.”
 
-Vagy közvetlenül az AIFT-ben — az adminisztrátora lekérheti a teljes naplót az `mcp_access_log` táblából.
+Vagy közvetlenül az AIFT-ben - az adminisztrátora lekérheti a teljes naplót az `mcp_access_log` táblából.
 
-Ha azt gyanítja, hogy valami félresiklott — rossz kategória került alkalmazásra, vagy egy számla rossz iránnyal frissült —, az auditnapló **before_values** mezője a hiteles forrás a korábbi állapot visszaállításához.
+Ha azt gyanítja, hogy valami félresiklott - rossz kategória került alkalmazásra, vagy egy számla rossz iránnyal frissült -, az auditnapló **before_values** mezője a hiteles forrás a korábbi állapot visszaállításához.
 
 ---
 
@@ -139,7 +139,7 @@ Ha azt gyanítja, hogy valami félresiklott — rossz kategória került alkalma
 - **Legyen konkrét a munkaterülettel kapcsolatban.** A „Mutasd a Pannónia Bistro…” sokkal jobb, mint a „Mutasd az ügyfelem…”. Az asszisztens az összes munkaterületéhez hozzáfér, és néha tippelni fog.
 - **Használjon beszédes azonosítókat.** Az olyan számlaszámok, mint az `AH-INV-2026-0042`, és az olyan tranzakciószámok, mint az `AH-TXN-2026-0157`, stabil hivatkozások, amelyeket az asszisztens közvetlenül fel tud oldani. Az AIFT felületén mindenütt megjelennek.
 - **Kétség esetén kérjen audit-nyomvonalat.** A „Mit változtattál?” kérdés általában lehívja az előtte/utána különbséget az auditnaplóból.
-- **Kattintson az asszisztens által adott hivatkozásokra.** Minden rekordhivatkozás `deep_link` mezővel érkezik vissza — ez egy közvetlen URL az AIFT felületén az adott sorhoz. Ezeket a hivatkozásokat használja az oldalsávból való navigálás helyett; egyenesen a megfelelő rekordhoz viszik.
+- **Kattintson az asszisztens által adott hivatkozásokra.** Minden rekordhivatkozás `deep_link` mezővel érkezik vissza - ez egy közvetlen URL az AIFT felületén az adott sorhoz. Ezeket a hivatkozásokat használja az oldalsávból való navigálás helyett; egyenesen a megfelelő rekordhoz viszik.
 - **Az asszisztens nem tud fájlt feltölteni.** A PDF-ek és bankszámlakivonatok továbbra is az AIFT felületén vagy a munkaterület e-mail-beolvasási aliasán keresztül jutnak be. Az asszisztens kérheti a rendszertől egy már feltöltött számla vagy kivonat **újbóli kinyerését**, de a csevegésen keresztül nem tud mellékletet fogadni.
 
 ---
@@ -150,19 +150,19 @@ Ha azt gyanítja, hogy valami félresiklott — rossz kategória került alkalma
 Az MCP-kiszolgáló kérésenként adja vissza az adatokat az asszisztensnek. Az, hogy az asszisztens *megőriz-e* bármit utána, a szolgáltatója szabályzatától függ (a Claude, a Mistral és a ChatGPT mind saját adatkezelési beállításokkal rendelkezik). Az AIFT oldala azt naplózza, milyen hívások történtek, nem pedig azt, milyen adatot látott az asszisztens.
 
 **Megoszthatom a kapcsolatomat egy kollégával?**
-Nem — a kapcsolat az Ön AIFT-felhasználójához kötődik. Egy munkaterületen minden könyvelőnek saját konnektort kell beállítania. Ugyanazokat az adatokat látják az RLS révén, de a műveletek ahhoz a személyhez rendelődnek, aki végrehajtotta őket.
+Nem - a kapcsolat az Ön AIFT-felhasználójához kötődik. Egy munkaterületen minden könyvelőnek saját konnektort kell beállítania. Ugyanazokat az adatokat látják az RLS révén, de a műveletek ahhoz a személyhez rendelődnek, aki végrehajtotta őket.
 
 **Mi van, ha az asszisztens rosszul módosít valamit?**
-Minden írási művelet eltárolja az előtte/utána értékeket. Mondja az asszisztensnek: „Vond vissza az utolsó változtatásodat az AH-INV-2026-0042 tételen” — kiolvassa az auditnapló `before_values` mezőjét, és alkalmazza. Kifejezetten a kategorizálásnál elég újra meghívni a kategorizálást az eredeti értékkel.
+Minden írási művelet eltárolja az előtte/utána értékeket. Mondja az asszisztensnek: „Vond vissza az utolsó változtatásodat az AH-INV-2026-0042 tételen” - kiolvassa az auditnapló `before_values` mezőjét, és alkalmazza. Kifejezetten a kategorizálásnál elég újra meghívni a kategorizálást az eredeti értékkel.
 
 **Az asszisztens olyan URL-t adott, amely 404-et ad.**
-Mindig az asszisztens válaszában lévő `deep_link` mezőt használja — csak az a hiteles URL. Az asszisztens utasítást kapott arra, hogy ne állítson össze AIFT-URL-eket mintázatokból, de ha hibásat lát, kérje meg, hogy „használd pontosan azt a deep_link értéket, amelyet az eszköztől kaptál”.
+Mindig az asszisztens válaszában lévő `deep_link` mezőt használja - csak az a hiteles URL. Az asszisztens utasítást kapott arra, hogy ne állítson össze AIFT-URL-eket mintázatokból, de ha hibásat lát, kérje meg, hogy „használd pontosan azt a deep_link értéket, amelyet az eszköztől kaptál”.
 
 **Ki tudja exportálni az asszisztens a könyvelésemet a könyvelőprogramomba?**
-Még nem — a könyvelőprogramokba történő exportok (Kulcs-Soft, Novitax, DATEV, BMD) az AIFT saját exportfolyamatán mennek keresztül. Az MCP csak olvasásra és szerkesztésre szolgál.
+Még nem - a könyvelőprogramokba történő exportok (Kulcs-Soft, Novitax, DATEV, BMD) az AIFT saját exportfolyamatán mennek keresztül. Az MCP csak olvasásra és szerkesztésre szolgál.
 
 ---
 
 ## Segítségre van szüksége?
 
-Jelezze a problémát az AIFT-kapcsolattartójának, vagy írjon az ügyfélszolgálatnak. Adja meg a munkaterület nevét, a használt asszisztenst (Claude / Mistral / ChatGPT) és a napszakot — ennyi általában elég ahhoz, hogy megtaláljuk az auditnapló-bejegyzést, és kiderítsük, mi történt.
+Jelezze a problémát az AIFT-kapcsolattartójának, vagy írjon az ügyfélszolgálatnak. Adja meg a munkaterület nevét, a használt asszisztenst (Claude / Mistral / ChatGPT) és a napszakot - ennyi általában elég ahhoz, hogy megtaláljuk az auditnapló-bejegyzést, és kiderítsük, mi történt.

@@ -1,26 +1,26 @@
 # Invoice Matching
 
-AI Finance Team automatically links bank transactions to their corresponding invoices — a process called **invoice matching**. This removes the need to manually reconcile payments at month-end.
+AI Finance Team automatically links bank transactions to their corresponding invoices - a process called **invoice matching**. This removes the need to manually reconcile payments at month-end.
 
 ## How matching works
 
 Matching runs in two steps:
 
-1. **Structural pre-filter** — The system narrows down candidate pairs using fast rules: matching currency (or original-currency match for foreign card payments — see [Cross-currency matching](#cross-currency-matching) below), compatible direction (income invoice ↔ credit transaction; expense invoice ↔ debit transaction), amount within range, and invoice date within 180 days of the transaction. Duplicate transactions are excluded automatically. **Statement extraction also mines invoice-number-shaped tokens out of the row's free text** (descriptions, terminal lines, etc.) and copies them into the structured reference field, so the AI scoring step sees the invoice number even when the bank stuffed it into a description blob instead of a dedicated reference column.
+1. **Structural pre-filter** - The system narrows down candidate pairs using fast rules: matching currency (or original-currency match for foreign card payments - see [Cross-currency matching](#cross-currency-matching) below), compatible direction (income invoice ↔ credit transaction; expense invoice ↔ debit transaction), amount within range, and invoice date within 180 days of the transaction. Duplicate transactions are excluded automatically. **Statement extraction also mines invoice-number-shaped tokens out of the row's free text** (descriptions, terminal lines, etc.) and copies them into the structured reference field, so the AI scoring step sees the invoice number even when the bank stuffed it into a description blob instead of a dedicated reference column.
 
-2. **AI semantic scoring** — Claude reviews each candidate pair and assigns a confidence score (0–100) based on invoice number in the transaction reference, partner name, amount proximity, and date. When the system has already verified that both sides point to the same partner (same ID, same verified partner, or the same legal name after stripping suffixes), that signal is locked in — so a clean structural match doesn't drift in the score band between runs.
+2. **AI semantic scoring** - Claude reviews each candidate pair and assigns a confidence score (0–100) based on invoice number in the transaction reference, partner name, amount proximity, and date. When the system has already verified that both sides point to the same partner (same ID, same verified partner, or the same legal name after stripping suffixes), that signal is locked in - so a clean structural match doesn't drift in the score band between runs.
 
-   **Verified-partner guaranteed auto-match:** when both sides are the *same* partner — by ID or by a **verified partner** link — *and* the amount covers the invoice balance exactly, the transaction is within 30 days of the invoice's due date, and your own entity name doesn't appear in the bank text, the pair is auto-matched **regardless of the AI score**. This rescues obvious matches the AI would otherwise leave in the medium band — most often **card payments**, whose bank lines rarely carry the invoice number (the single strongest scoring signal), so the AI can cap out around 70 even when partner, amount, and date all line up perfectly.
+   **Verified-partner guaranteed auto-match:** when both sides are the *same* partner - by ID or by a **verified partner** link - *and* the amount covers the invoice balance exactly, the transaction is within 30 days of the invoice's due date, and your own entity name doesn't appear in the bank text, the pair is auto-matched **regardless of the AI score**. This rescues obvious matches the AI would otherwise leave in the medium band - most often **card payments**, whose bank lines rarely carry the invoice number (the single strongest scoring signal), so the AI can cap out around 70 even when partner, amount, and date all line up perfectly.
 
-   A looser **threshold relaxation** also applies to partners matched only by name (after stripping legal suffixes): when the same structural signals line up, the AI's score is floored at 85 — but only if the AI already scored 75 or higher. Either way, name-only matches, partial amounts, and pairs more than 30 days apart never auto-match on their own.
+   A looser **threshold relaxation** also applies to partners matched only by name (after stripping legal suffixes): when the same structural signals line up, the AI's score is floored at 85 - but only if the AI already scored 75 or higher. Either way, name-only matches, partial amounts, and pairs more than 30 days apart never auto-match on their own.
 
 **What happens at each score level:**
 
 | Score | Confidence | Result |
 |-------|-----------|--------|
-| 85–100 | **High** | Auto-matched immediately — no accountant action needed |
+| 85–100 | **High** | Auto-matched immediately - no accountant action needed |
 | 60–84 | **Medium / Low** | Added to the **Matching** page as a suggestion for review |
-| Below 60 | — | Discarded — not surfaced |
+| Below 60 | — | Discarded - not surfaced |
 
 Only invoices with status **Open** or **Partially paid** are considered. Invoices that are void, manually marked as cash, or already fully matched are skipped.
 
@@ -28,31 +28,31 @@ Only invoices with status **Open** or **Partially paid** are considered. Invoice
 
 Go to **Matching** in the workspace sidebar. The page has two sections:
 
-- **Pending** — the AI's suggestions awaiting your decision. Always shown in full and sorted by **confidence score, highest first**, so the most certain suggestions sit at the top of the queue. This section is never filtered or paginated.
-- **Approved** — matches that have been confirmed (auto-matched, or accepted by an accountant), newest first. The search box, filters, and pagination described below apply to **this section only** — they never hide anything in Pending.
+- **Pending** - the AI's suggestions awaiting your decision. Always shown in full and sorted by **confidence score, highest first**, so the most certain suggestions sit at the top of the queue. This section is never filtered or paginated.
+- **Approved** - matches that have been confirmed (auto-matched, or accepted by an accountant), newest first. The search box, filters, and pagination described below apply to **this section only** - they never hide anything in Pending.
 
 Rows in both sections share up to four columns:
 
-- **Score / Confidence** — pending rows show the numeric AI score as a badge (green ≥ 85, amber 60–84, red below); confirmed rows show a **High / Medium / Low** confidence pill.
-- **Invoice** — number, partner, and amount.
-- **Transaction** — partner, date, and amount.
-- **Actions** — **Approve** / **Reject** for pending rows, or **View** for confirmed rows. This column is shown to accountants only (see [Who can approve and reject](#who-can-approve-and-reject)).
+- **Score / Confidence** - pending rows show the numeric AI score as a badge (green ≥ 85, amber 60–84, red below); confirmed rows show a **High / Medium / Low** confidence pill.
+- **Invoice** - number, partner, and amount.
+- **Transaction** - partner, date, and amount.
+- **Actions** - **Approve** / **Reject** for pending rows, or **View** for confirmed rows. This column is shown to accountants only (see [Who can approve and reject](#who-can-approve-and-reject)).
 
 The page header has two action buttons (accountants only):
 
-- **History** — opens a panel showing recent matching runs (see [Matching history](#matching-history))
-- **Run Matching** — triggers a manual matching pass (see [Running matching manually](#running-matching-manually))
+- **History** - opens a panel showing recent matching runs (see [Matching history](#matching-history))
+- **Run Matching** - triggers a manual matching pass (see [Running matching manually](#running-matching-manually))
 
 ### Searching
 
-The search box (above the **Approved** section) filters approved matches by **invoice number**, **partner name**, or **payment reference**. It searches as you type. The raw bank-description free text is *not* searched — use the structured reference instead. Search applies to the Approved section only; the Pending queue is always shown in full. Your search is reflected in the URL (`?search=INV-2026-014`) so you can bookmark or share it.
+The search box (above the **Approved** section) filters approved matches by **invoice number**, **partner name**, or **payment reference**. It searches as you type. The raw bank-description free text is *not* searched - use the structured reference instead. Search applies to the Approved section only; the Pending queue is always shown in full. Your search is reflected in the URL (`?search=INV-2026-014`) so you can bookmark or share it.
 
 ### Filtering
 
 Two filters sit below the search box and, like search, narrow the **Approved** section only:
 
-- **Date range** — pick a **From** and **To** date based on the transaction's booking date. **There is no default range** — the list starts unfiltered so nothing is hidden until you choose dates. You can type the dates directly with the keyboard or use the date picker; the filter is applied when you leave the field.
-- **Confidence** — toggle the **High**, **Medium**, and **Low** pills to include or exclude each level. All three are on by default.
+- **Date range** - pick a **From** and **To** date based on the transaction's booking date. **There is no default range** - the list starts unfiltered so nothing is hidden until you choose dates. You can type the dates directly with the keyboard or use the date picker; the filter is applied when you leave the field.
+- **Confidence** - toggle the **High**, **Medium**, and **Low** pills to include or exclude each level. All three are on by default.
 
 Filters are reflected in the URL (`?from=2026-04-01&to=2026-04-30&confidence=high,medium`), so you can bookmark a filtered view or share it with a colleague.
 
@@ -62,11 +62,11 @@ The **Approved** section is paginated. Choose how many rows to show per page wit
 
 ### Merged multi-part matches
 
-When several transactions pay off a **single invoice** (for example instalment payments), they are grouped into **one row** rather than appearing separately. The row summarises the group — for example `2 transactions · 264,000 HUF · 1 invoice · 264,000 HUF` — and carries one score badge per transaction. Open the row to see and act on each transaction individually (see [The suggestion detail page](#the-suggestion-detail-page)).
+When several transactions pay off a **single invoice** (for example instalment payments), they are grouped into **one row** rather than appearing separately. The row summarises the group - for example `2 transactions · 264,000 HUF · 1 invoice · 264,000 HUF` - and carries one score badge per transaction. Open the row to see and act on each transaction individually (see [The suggestion detail page](#the-suggestion-detail-page)).
 
 ### Approving and rejecting from the list
 
-For a pending row, click **Approve** to confirm the match or **Reject** to dismiss the suggestion. Rejection is permanent — a rejected suggestion is deleted, not archived; matching can re-suggest the pair on a future run if the signals still line up. For a multi-transaction group, Approve confirms every transaction in the group at once and Reject dismisses the whole group. To act on the transactions individually, open the [suggestion detail page](#the-suggestion-detail-page) instead.
+For a pending row, click **Approve** to confirm the match or **Reject** to dismiss the suggestion. Rejection is permanent - a rejected suggestion is deleted, not archived; matching can re-suggest the pair on a future run if the signals still line up. For a multi-transaction group, Approve confirms every transaction in the group at once and Reject dismisses the whole group. To act on the transactions individually, open the [suggestion detail page](#the-suggestion-detail-page) instead.
 
 ### Who can approve and reject
 
@@ -78,9 +78,9 @@ Click any **pending** row to open its detail page at `/workspaces/.../matching/s
 
 The page shows:
 
-- **Header** — a *Pending* badge plus a score badge for each transaction in the group, and a **Back to Matching** link.
-- **Invoice** — number, partner, issue and due dates, amount (with the base-currency amount in parentheses where it differs), payment status, and direction (Income/Expense).
-- **Transactions** — each candidate transaction as its own card, showing the reference, partner, booking date, **Credit / Debit** direction, amount, description, and category. For a multi-transaction group the cards are labelled *Transaction 1 of N*, and each card has a **Remove from match** link that releases just that transaction back for re-matching while leaving the others untouched.
+- **Header** - a *Pending* badge plus a score badge for each transaction in the group, and a **Back to Matching** link.
+- **Invoice** - number, partner, issue and due dates, amount (with the base-currency amount in parentheses where it differs), payment status, and direction (Income/Expense).
+- **Transactions** - each candidate transaction as its own card, showing the reference, partner, booking date, **Credit / Debit** direction, amount, description, and category. For a multi-transaction group the cards are labelled *Transaction 1 of N*, and each card has a **Remove from match** link that releases just that transaction back for re-matching while leaving the others untouched.
 - **Approve** / **Reject** buttons at the bottom act on the whole group atomically. These are shown to accountants only.
 
 ### Match ID
@@ -93,13 +93,13 @@ Use this ID when filing support requests, in exports, or in audit logs.
 
 Click any confirmed row in the list to open the match detail page at `/workspaces/.../matching/<match-id>`. The detail page shows:
 
-- **Header** — the match number, confidence badge, and matched-on date. A **Back to Matching** link in the top-left returns to the list.
-- **Bank Transaction card** (left) — reference, partner, booking date, a **Credit / Debit** direction badge, amount (with the original foreign-currency amount in parentheses where applicable), description, and category. The **Open →** link jumps to the full transaction page.
-- **Invoice card** (right) — invoice number, partner, issue date, due date, amount (with base currency where it differs), a **payment-status** badge, and direction (Income/Expense). The **Open →** link jumps to the full invoice detail page.
-- **Match Analysis** — confidence badge with the numeric score, a score-breakdown table showing which signals contributed (amount, partner, reference, date proximity), and a plain-text reason summary.
-- **Unmatch** button (top-right, accountant admins only) — removes the match after confirmation; the transaction returns to **Unmatched** and the invoice returns to **Open**.
+- **Header** - the match number, confidence badge, and matched-on date. A **Back to Matching** link in the top-left returns to the list.
+- **Bank Transaction card** (left) - reference, partner, booking date, a **Credit / Debit** direction badge, amount (with the original foreign-currency amount in parentheses where applicable), description, and category. The **Open →** link jumps to the full transaction page.
+- **Invoice card** (right) - invoice number, partner, issue date, due date, amount (with base currency where it differs), a **payment-status** badge, and direction (Income/Expense). The **Open →** link jumps to the full invoice detail page.
+- **Match Analysis** - confidence badge with the numeric score, a score-breakdown table showing which signals contributed (amount, partner, reference, date proximity), and a plain-text reason summary.
+- **Unmatch** button (top-right, accountant admins only) - removes the match after confirmation; the transaction returns to **Unmatched** and the invoice returns to **Open**.
 
-If the match was created before score-breakdown tracking was enabled, the detail page shows "Score not available for this match." in place of the breakdown table — the rest of the page works normally.
+If the match was created before score-breakdown tracking was enabled, the detail page shows "Score not available for this match." in place of the breakdown table - the rest of the page works normally.
 
 Confirmed suggestions (matches that started as medium-confidence suggestions and were accepted by an accountant) now also carry the AI score and breakdown through to the match detail page, so the same explanation is available for both auto- and manually-confirmed matches.
 
@@ -108,12 +108,12 @@ Confirmed suggestions (matches that started as medium-confidence suggestions and
 Click **History** on the Matching page header to open the matching history panel. The panel lists the most recent matching runs (newest first) with:
 
 - **Timestamp** of when the run started
-- **Trigger type** — `Auto` (scheduled run after a bank statement is processed) or `Manual` (accountant clicked Run Matching)
-- **Counts** — `N matched, M reviewed, K skipped`
-  - **Matched** — auto-matched at score ≥ 85
-  - **Reviewed** — added as a pending suggestion for review (score 60–84)
-  - **Skipped** — evaluated but scored below 60 (the AI didn't find a strong enough link)
-- **Status badge** — `Completed`, `In progress`, or `Failed` (with the error message if available)
+- **Trigger type** - `Auto` (scheduled run after a bank statement is processed) or `Manual` (accountant clicked Run Matching)
+- **Counts** - `N matched, M reviewed, K skipped`
+  - **Matched** - auto-matched at score ≥ 85
+  - **Reviewed** - added as a pending suggestion for review (score 60–84)
+  - **Skipped** - evaluated but scored below 60 (the AI didn't find a strong enough link)
+- **Status badge** - `Completed`, `In progress`, or `Failed` (with the error message if available)
 
 History is retained for 90 days, after which old rows are automatically purged.
 
@@ -123,7 +123,7 @@ Matching runs automatically after every bank statement upload. Once the statemen
 
 ### Running matching manually
 
-To trigger matching on demand — for example, after uploading a batch of older invoices — click **Run Matching** and choose a date range:
+To trigger matching on demand - for example, after uploading a batch of older invoices - click **Run Matching** and choose a date range:
 
 | Option | Covers |
 |--------|--------|
@@ -137,7 +137,7 @@ Narrower ranges run faster. Use **All time** only when you have historical data 
 
 #### Progress feedback
 
-Progress appears in the **upload queue panel** at the bottom-right of the screen — the same panel that tracks invoice and bank-statement processing. The row reads:
+Progress appears in the **upload queue panel** at the bottom-right of the screen - the same panel that tracks invoice and bank-statement processing. The row reads:
 
 - `Matching — <workspace>`: In progress…
 - After completion: `Matching — <workspace>`: Completed: N matches created
@@ -149,9 +149,9 @@ The row disappears from the panel automatically once it has been completed for a
 
 Open any transaction by clicking its row in the **Transactions** list. The **Invoice match** section at the bottom of the slide-over shows:
 
-- **Confirmed matches** — linked invoices with matched amount and match type
-- **AI suggestions** — pending suggestions with confidence score; click **Confirm** or **Reject** inline
-- **Find Invoice** — a search panel to manually link any open invoice
+- **Confirmed matches** - linked invoices with matched amount and match type
+- **AI suggestions** - pending suggestions with confidence score; click **Confirm** or **Reject** inline
+- **Find Invoice** - a search panel to manually link any open invoice
 
 ### Removing a match
 
@@ -163,8 +163,8 @@ Alternatively, open the match detail page (from the matching list) and click **U
 
 The invoice detail page shows a **Matched transactions** section listing all linked payments. You can also mark an invoice as settled without a bank transaction:
 
-- **Cash payment** — the invoice was paid in cash; it is marked settled and excluded from future matching
-- **Void** — the invoice is cancelled; it is excluded from all matching
+- **Cash payment** - the invoice was paid in cash; it is marked settled and excluded from future matching
+- **Void** - the invoice is cancelled; it is excluded from all matching
 
 To revert to **Open**, select **Open** from the same dropdown.
 
@@ -214,16 +214,16 @@ If no foreign-currency information was captured for a transaction (e.g. a domest
 
 How the bank reports a transaction has a big effect on how confidently matching can resolve it.
 
-**SEPA / wire transfers** are the high-confidence channel. The bank carries the payment reference through verbatim — so if the payer (or you, when paying a vendor) put the invoice number in the reference field, the matcher sees it directly and the +35 invoice-number signal fires. These transactions auto-match consistently.
+**SEPA / wire transfers** are the high-confidence channel. The bank carries the payment reference through verbatim - so if the payer (or you, when paying a vendor) put the invoice number in the reference field, the matcher sees it directly and the +35 invoice-number signal fires. These transactions auto-match consistently.
 
-**Card payments** are inherently lower-confidence. Bank statements describe card transactions with the merchant's internal acquirer string (e.g. `PADDLE.NET* TLWNDPLUS`, `Google Workspace_financia`, `SIMPLEP*PARKL.NET`) and a card terminal ID — not the invoice number. The matcher still works through other signals (partner similarity to the invoice vendor, exact amount, date proximity, original currency for foreign card payments).
+**Card payments** are inherently lower-confidence. Bank statements describe card transactions with the merchant's internal acquirer string (e.g. `PADDLE.NET* TLWNDPLUS`, `Google Workspace_financia`, `SIMPLEP*PARKL.NET`) and a card terminal ID - not the invoice number. The matcher still works through other signals (partner similarity to the invoice vendor, exact amount, date proximity, original currency for foreign card payments).
 
-There is one important exception: if the merchant is a **verified partner** (or otherwise the same partner by ID) and the amount and date line up, the card payment **auto-matches anyway** via the [verified-partner guaranteed auto-match](#how-matching-works), even without the invoice number. So the highest-leverage thing you can do for recurring card vendors is to link their merchant alias to a verified partner on the [Partners](/partners) page — after that, their payments stop landing in review. Card payments to vendors that aren't linked yet still typically land in the **medium-confidence suggestion** band for accountant review.
+There is one important exception: if the merchant is a **verified partner** (or otherwise the same partner by ID) and the amount and date line up, the card payment **auto-matches anyway** via the [verified-partner guaranteed auto-match](#how-matching-works), even without the invoice number. So the highest-leverage thing you can do for recurring card vendors is to link their merchant alias to a verified partner on the [Partners](/partners) page - after that, their payments stop landing in review. Card payments to vendors that aren't linked yet still typically land in the **medium-confidence suggestion** band for accountant review.
 
 **What you can do:**
 
 - For your own outgoing payments, **always include the invoice number in the SEPA reference field**. This is the single highest-impact thing you can do for matching quality.
-- If you regularly pay the same vendor by card, **link their merchant alias to a verified partner** on the [Partners](/partners) page. Once linked, card payments to that vendor auto-match whenever the amount and date line up — no review needed.
+- If you regularly pay the same vendor by card, **link their merchant alias to a verified partner** on the [Partners](/partners) page. Once linked, card payments to that vendor auto-match whenever the amount and date line up - no review needed.
 - For a card-payment vendor that isn't linked yet, expect the match to surface as a suggestion rather than auto-match. The amount + partner + date will line up; you just need to confirm (or link the partner so future ones auto-match).
 
 ## Tips
@@ -231,6 +231,6 @@ There is one important exception: if the merchant is a **verified partner** (or 
 - **High-quality transaction data improves matching.** When possible, include the invoice number in the payment reference field when making bank transfers. Matching will pick this up as a strong signal.
 - **Partial payments are supported.** If a client pays part of an invoice, the match is recorded with the partial amount and the invoice moves to **Partially paid**.
 - **One invoice, multiple transactions.** A single invoice can be matched to several transactions (instalment payments). Each match records its own partial amount.
-- **One transaction, one invoice.** Each bank transaction can be matched to at most one invoice. Use manual matching if a payment covers multiple invoices — match the closest one and note the discrepancy.
-- **Foreign-currency invoices match foreign-currency card payments.** You don't need to convert anything by hand — see [Cross-currency matching](#cross-currency-matching).
-- **Use the match number in support.** When asking for help with a specific match, quote the match number (e.g. `LOG-MAT-2026-0047`) — it pins down the exact record across screens and exports.
+- **One transaction, one invoice.** Each bank transaction can be matched to at most one invoice. Use manual matching if a payment covers multiple invoices - match the closest one and note the discrepancy.
+- **Foreign-currency invoices match foreign-currency card payments.** You don't need to convert anything by hand - see [Cross-currency matching](#cross-currency-matching).
+- **Use the match number in support.** When asking for help with a specific match, quote the match number (e.g. `LOG-MAT-2026-0047`) - it pins down the exact record across screens and exports.

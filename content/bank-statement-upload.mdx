@@ -8,19 +8,19 @@ Any workspace member can upload a bank statement. The upload button is on the **
 
 ## Supported Formats
 
-PDF bank statements only. Scanned PDFs work as long as the text is legible — very low-quality scans may produce incomplete results.
+PDF bank statements only. Scanned PDFs work as long as the text is legible - very low-quality scans may produce incomplete results.
 
-If a statement spans multiple PDFs, upload each file separately. You can also bundle several statement PDFs into a `.zip` and drop the archive — the browser unpacks it and queues each file individually.
+If a statement spans multiple PDFs, upload each file separately. You can also bundle several statement PDFs into a `.zip` and drop the archive - the browser unpacks it and queues each file individually.
 
 ## How to Upload a Statement
 
 1. Go to **Transactions** in the workspace sidebar.
-2. Click **Upload statement** in the top-right corner — or simply drag one or more PDFs (or a `.zip` of them) onto the page.
+2. Click **Upload statement** in the top-right corner - or simply drag one or more PDFs (or a `.zip` of them) onto the page.
 3. Select your PDF file(s) in the picker if you used the button.
 
-A progress panel appears in the bottom-right corner showing each statement as it uploads and extracts. You can keep working — the panel stays in view while you navigate, and refreshing the page won't interrupt anything in flight. Open the **Statements** tab if you want a tabular view of every upload with extra detail.
+A progress panel appears in the bottom-right corner showing each statement as it uploads and extracts. You can keep working - the panel stays in view while you navigate, and refreshing the page won't interrupt anything in flight. Open the **Statements** tab if you want a tabular view of every upload with extra detail.
 
-For the full upload mechanics — multi-file picker, drag-and-drop, ZIP archives, retrying failed extractions — see [Uploading Files](/uploading-files).
+For the full upload mechanics - multi-file picker, drag-and-drop, ZIP archives, retrying failed extractions - see [Uploading Files](/uploading-files).
 
 When extraction completes, the transactions appear in the **Transactions** tab under the matched bank account.
 
@@ -42,7 +42,7 @@ The **Statements** tab shows every uploaded statement and its current status.
 | Status | Meaning |
 |--------|---------|
 | Pending | Uploaded but not yet assigned to a bank account. |
-| Extracting | Extraction is running — shows page progress. |
+| Extracting | Extraction is running - shows page progress. |
 | Completed | All transactions extracted successfully. |
 | Errors | Extraction finished but some pages had issues. |
 | Failed | Extraction could not complete. |
@@ -51,32 +51,32 @@ Click any completed statement row to open the statement detail page.
 
 For **Pending** statements, the row shows action buttons:
 
-- **Extract** — start extraction without assigning an account (transactions will be linked later).
-- **Assign account** *(accountants only)* — pick a bank account from a dropdown and start extraction in one step.
-- **Dismiss** — hide the statement without extracting it.
+- **Extract** - start extraction without assigning an account (transactions will be linked later).
+- **Assign account** *(accountants only)* - pick a bank account from a dropdown and start extraction in one step.
+- **Dismiss** - hide the statement without extracting it.
 
 ## Extraction Progress
 
-While a statement is extracting you can see page-by-page progress in the Statements tab. You can navigate away — extraction continues in the background. Come back to the Statements tab to check the final count.
+While a statement is extracting you can see page-by-page progress in the Statements tab. You can navigate away - extraction continues in the background. Come back to the Statements tab to check the final count.
 
 ## What Happens After Extraction
 
 Once extraction completes:
 
 1. All extracted transactions are written to the matched bank account.
-2. Categorisation and partner resolution run automatically — the same AI pipeline used for open banking transactions.
+2. Categorisation and partner resolution run automatically - the same AI pipeline used for open banking transactions.
 3. Transactions appear in the **Transactions** tab, ready for review.
 
 Duplicates are detected automatically. If a transaction already exists in the system (imported via open banking or a previous statement upload), it will not be inserted again.
 
 ## Statement Detail Page
 
-Click any completed statement row in the Statements tab to open the detail page. This shows the PDF on the left and the extracted transaction list on the right. The page opens in full-screen — the sidebar is hidden to give you more space. It reappears when you navigate away.
+Click any completed statement row in the Statements tab to open the detail page. This shows the PDF on the left and the extracted transaction list on the right. The page opens in full-screen - the sidebar is hidden to give you more space. It reappears when you navigate away.
 
 - **Click a transaction row** to jump to the correct page in the PDF and highlight the matching date in yellow. Click the same row again to deselect.
 - **Search and filter** transactions by partner, description, or direction (income / expenses).
 - The **category column** shows how each transaction was categorised after extraction.
-- Rows with a **yellow or red dot** were extracted with lower confidence — review those manually.
+- Rows with a **yellow or red dot** were extracted with lower confidence - review those manually.
 - Rows marked **Dup** are duplicates that were not inserted into the transaction list.
 
 The summary footer shows the total transaction count, duplicate count, and net amount.
@@ -93,7 +93,7 @@ If extraction failed or produced incorrect results, contact your accountant. Acc
 
 ## Tips
 
-- **Match accounts before uploading.** If you add bank account details under **Master Data → Entities** before uploading, the statement will match automatically — no manual assignment needed.
+- **Match accounts before uploading.** If you add bank account details under **Master Data → Entities** before uploading, the statement will match automatically - no manual assignment needed.
 - **Upload one period at a time.** Overlapping statements from the same account will be deduplicated, but keeping periods clean makes reconciliation easier.
-- **Check the Statements tab for status.** If you uploaded a file and see no new transactions, check the Statements tab — the row shows whether extraction is still running or needs attention.
+- **Check the Statements tab for status.** If you uploaded a file and see no new transactions, check the Statements tab - the row shows whether extraction is still running or needs attention.
 - **Large statements take longer.** A 20-page statement processes page by page; expect a few minutes for completion.

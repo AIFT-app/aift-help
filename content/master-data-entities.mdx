@@ -1,20 +1,20 @@
 # Managing Entities
 
-Entities are the companies, individuals, and organisations that appear on your invoices and bank statements — suppliers, customers, and your own legal entities. Keeping them accurate in AI Finance Team means the AI can recognise partners correctly, categorise documents faster, and reduce the number of exceptions that need manual review.
+Entities are the companies, individuals, and organisations that appear on your invoices and bank statements - suppliers, customers, and your own legal entities. Keeping them accurate in AI Finance Team means the AI can recognise partners correctly, categorise documents faster, and reduce the number of exceptions that need manual review.
 
 ## What Is an Entity?
 
 An entity is a record that represents one real-world party. Each entity in your workspace holds:
 
-- **Legal name** — the official registered name used on documents
-- **Country** — the country of registration
-- **Tax ID** — the domestic tax identifier (e.g. Hungarian adószám, German Steuernummer)
-- **EU VAT number** — the EU-issued VAT number in the standard format (e.g. HU12345678)
-- **Registration number** — the company registry number
-- **Alternative names** — other names the same party uses on invoices or bank statements (trade names, abbreviations, former names)
-- **Bank accounts** — IBAN and/or domestic account numbers used for payments
-- **Contact details** — address, website, email domain
-- **Matching context** — a free-text note that guides the AI when it encounters ambiguous documents
+- **Legal name** - the official registered name used on documents
+- **Country** - the country of registration
+- **Tax ID** - the domestic tax identifier (e.g. Hungarian adószám, German Steuernummer)
+- **EU VAT number** - the EU-issued VAT number in the standard format (e.g. HU12345678)
+- **Registration number** - the company registry number
+- **Alternative names** - other names the same party uses on invoices or bank statements (trade names, abbreviations, former names)
+- **Bank accounts** - IBAN and/or domestic account numbers used for payments
+- **Contact details** - address, website, email domain
+- **Matching context** - a free-text note that guides the AI when it encounters ambiguous documents
 
 ## Getting to Master Data
 
@@ -26,7 +26,7 @@ From the workspace sidebar, click **Master data**, then **Entities**. This page 
 2. Fill in the **Legal name** (required), **Country** (required), and **Tax ID** (optional).
 3. Click **Create entity**.
 
-You are taken directly to the entity detail page, where you can add all remaining fields: EU VAT number, registration number, alternative names, bank accounts, contact details, and matching context. There is no need to enter everything at once — fill in what you have now and return later as you learn more.
+You are taken directly to the entity detail page, where you can add all remaining fields: EU VAT number, registration number, alternative names, bank accounts, contact details, and matching context. There is no need to enter everything at once - fill in what you have now and return later as you learn more.
 
 > **Note:** Tax IDs must be unique within a workspace. If you enter a Tax ID that is already in use by another active entity, you will see an error message and the entity will not be created.
 
@@ -40,17 +40,17 @@ Change the legal name, country, Tax ID, EU VAT number, or registration number. C
 
 #### How the Tax ID and EU VAT number relate
 
-A company can hold two tax identifiers: a **domestic Tax ID** (the local tax number — e.g. the Hungarian adószám or the German Steuernummer) and an **EU VAT number** (the cross-border VAT identifier — e.g. `HU12345678`, `DE123456789`). How AI Finance Team treats the pair depends on the country:
+A company can hold two tax identifiers: a **domestic Tax ID** (the local tax number - e.g. the Hungarian adószám or the German Steuernummer) and an **EU VAT number** (the cross-border VAT identifier - e.g. `HU12345678`, `DE123456789`). How AI Finance Team treats the pair depends on the country:
 
-- **Countries where the two share the same number** — Hungary, Poland, Romania, Spain, Portugal, and most other EU members. Here the EU VAT number is just the domestic number with a country prefix, so AI Finance Team cross-checks them: when both are present and consistent you see a small ✓, and if they don't line up a soft amber warning appears so you can double-check. The warning never blocks saving.
-- **Countries where the two are separate numbers** — Germany, Austria, the Netherlands, France, and a few others. The Steuernummer / UID and the EU VAT number are independent identifiers that cannot be derived from one another, so AI Finance Team validates each on its own and does **not** compare them. You will **not** see a "they don't share the same number" warning for a correct German or Austrian pair — a short note under the EU VAT field reminds you the two are checked separately.
-- **Non-EU companies** — e.g. Switzerland, the United Kingdom, the United States. Only the domestic Tax ID applies, so the EU VAT number field is hidden.
+- **Countries where the two share the same number** - Hungary, Poland, Romania, Spain, Portugal, and most other EU members. Here the EU VAT number is just the domestic number with a country prefix, so AI Finance Team cross-checks them: when both are present and consistent you see a small ✓, and if they don't line up a soft amber warning appears so you can double-check. The warning never blocks saving.
+- **Countries where the two are separate numbers** - Germany, Austria, the Netherlands, France, and a few others. The Steuernummer / UID and the EU VAT number are independent identifiers that cannot be derived from one another, so AI Finance Team validates each on its own and does **not** compare them. You will **not** see a "they don't share the same number" warning for a correct German or Austrian pair - a short note under the EU VAT field reminds you the two are checked separately.
+- **Non-EU companies** - e.g. Switzerland, the United Kingdom, the United States. Only the domestic Tax ID applies, so the EU VAT number field is hidden.
 
-Both identifiers help recognise the company on incoming documents: an invoice that shows **either** the domestic Tax ID or the EU VAT number will still identify the entity correctly — and for your own entities, book the document as income or expense in the right direction.
+Both identifiers help recognise the company on incoming documents: an invoice that shows **either** the domestic Tax ID or the EU VAT number will still identify the entity correctly - and for your own entities, book the document as income or expense in the right direction.
 
 ### Alternative Names
 
-Add any other names this party uses — for example, a trading name that appears on their invoices, an abbreviation used in bank references, or a former company name after a rebrand.
+Add any other names this party uses - for example, a trading name that appears on their invoices, an abbreviation used in bank references, or a former company name after a rebrand.
 
 To add a name, type it into the field and click **Add** (or press Enter). To remove one, click the × next to it.
 
@@ -66,13 +66,13 @@ Bank accounts are used during transaction matching: incoming or outgoing payment
 
 ### Contact Details
 
-Store the entity's address, website, and email domain. The email domain is particularly useful for entities whose invoices arrive by email — when the AI sees a message from `@acmesolutions.com`, it can associate it with the correct entity.
+Store the entity's address, website, and email domain. The email domain is particularly useful for entities whose invoices arrive by email - when the AI sees a message from `@acmesolutions.com`, it can associate it with the correct entity.
 
 ### Matching Context
 
-This is a short free-text note for the AI — not customer-facing, not displayed on any document. Use it to resolve cases where automatic matching is ambiguous:
+This is a short free-text note for the AI - not customer-facing, not displayed on any document. Use it to resolve cases where automatic matching is ambiguous:
 
-- Distinguish two entities with similar names ("WKA Studio is the agency; WKA Holding is the parent company — keep separate")
+- Distinguish two entities with similar names ("WKA Studio is the agency; WKA Holding is the parent company - keep separate")
 - Note a known quirk in how this party labels their invoices ("always uses 'WKA Creative' on invoice headers despite legal name being WKA Studio Kft.")
 - Flag a party that issues invoices in a different language than expected
 
@@ -86,7 +86,7 @@ To assign a representative, click **+ Add** and select a workspace member. To re
 
 ## Archiving and Restoring an Entity
 
-If an entity is no longer active — a supplier relationship has ended, a client has been wound down, or a duplicate was created by mistake — you can archive it rather than delete it.
+If an entity is no longer active - a supplier relationship has ended, a client has been wound down, or a duplicate was created by mistake - you can archive it rather than delete it.
 
 Archived entities:
 - Are hidden from the active entity list and from the entity picker when categorising documents
