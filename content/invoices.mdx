@@ -1,18 +1,18 @@
 # Working with Invoices
 
-AI Finance Team processes invoices automatically — extracting key data, identifying partners, and suggesting categories. This article explains how to view, review, edit, and export invoice data.
+AI Finance Team processes invoices automatically - extracting key data, identifying partners, and suggesting categories. This article explains how to view, review, edit, and export invoice data.
 
 ## Uploading invoices
 
-Click **Upload invoices** in the top-right corner of the Invoices page, or drag one or more files (PDFs, JPEGs, PNGs, WebP, or HEIC) directly onto the page. You can upload one invoice at a time, many at once, or a `.zip` archive of invoices — the browser unpacks the archive and queues each file individually.
+Click **Upload invoices** in the top-right corner of the Invoices page, or drag one or more files (PDFs, JPEGs, PNGs, WebP, or HEIC) directly onto the page. You can upload one invoice at a time, many at once, or a `.zip` archive of invoices - the browser unpacks the archive and queues each file individually.
 
-A progress panel appears in the bottom-right corner showing each file as it uploads and extracts. You can keep working — the panel stays in view while you navigate, and refreshing the page won't interrupt anything in flight.
+A progress panel appears in the bottom-right corner showing each file as it uploads and extracts. You can keep working - the panel stays in view while you navigate, and refreshing the page won't interrupt anything in flight.
 
-For the full upload mechanics — drag-and-drop, multi-file selection, ZIP archives, retrying failed extractions — see [Uploading Files](/uploading-files).
+For the full upload mechanics - drag-and-drop, multi-file selection, ZIP archives, retrying failed extractions - see [Uploading Files](/uploading-files).
 
 ### Duplicate detection
 
-When you upload a file whose contents match an invoice that's already in the workspace, AI Finance Team detects this automatically (via the file's SHA-256 hash) and links the new upload to the existing record instead of re-extracting. The row in the upload panel shows **Already exists** in blue — click it to jump straight to the original invoice.
+When you upload a file whose contents match an invoice that's already in the workspace, AI Finance Team detects this automatically (via the file's SHA-256 hash) and links the new upload to the existing record instead of re-extracting. The row in the upload panel shows **Already exists** in blue - click it to jump straight to the original invoice.
 
 If you want to keep both as distinct invoices (rare, but happens when a vendor reuses a PDF for two different bills), an accountant can clear the duplicate flag from the invoice detail page.
 
@@ -20,13 +20,13 @@ If you want to keep both as distinct invoices (rare, but happens when a vendor r
 
 From the workspace sidebar, click **Invoices** to see all invoices in the workspace. Each row shows:
 
-- **Invoice number** — the number extracted from the document
-- **Date** — the issue date
-- **Partner** — the other party on the invoice (supplier or customer)
-- **Direction** — whether it is income (you are the seller) or an expense (you are the buyer)
-- **Amount** — the gross total in the invoice currency; if a base-currency conversion exists, the converted amount appears below in smaller text. See [Multi-Currency & Exchange Rates](/currency-exchange) for details on FX status badges and how rates are sourced.
-- **Status** — the extraction status (Pending, Processing, Completed, or Failed)
-- **Cat.** — a small icon if the line items need categorisation review or if categorisation failed
+- **Invoice number** - the number extracted from the document
+- **Date** - the issue date
+- **Partner** - the other party on the invoice (supplier or customer)
+- **Direction** - whether it is income (you are the seller) or an expense (you are the buyer)
+- **Amount** - the gross total in the invoice currency; if a base-currency conversion exists, the converted amount appears below in smaller text. See [Multi-Currency & Exchange Rates](/currency-exchange) for details on FX status badges and how rates are sourced.
+- **Status** - the extraction status (Pending, Processing, Completed, or Failed)
+- **Cat.** - a small icon if the line items need categorisation review or if categorisation failed
 
 Invoices flagged as **Duplicate** or **Review** carry a badge next to the invoice number. Invoices without an assigned entity carry an **Entity needed** badge.
 
@@ -52,11 +52,11 @@ Click any invoice number to open its detail page. This page shows all extracted 
 
 The page is divided into sections:
 
-- **Header** — invoice number, issue date, due date, delivery date, currency, and direction
-- **Parties** — seller name and tax ID, buyer name and tax ID
-- **Amounts** — net total, VAT total, and gross total
-- **Line items** — a table with each line: description, quantity, unit price, net amount, VAT rate, gross amount, and assigned category
-- **Audit log** — a record of every manual change made to this invoice, with the field changed, the old value, the new value, and who made the change
+- **Header** - invoice number, issue date, due date, delivery date, currency, and direction
+- **Parties** - seller name and tax ID, buyer name and tax ID
+- **Amounts** - net total, VAT total, and gross total
+- **Line items** - a table with each line: description, quantity, unit price, net amount, VAT rate, gross amount, and assigned category
+- **Audit log** - a record of every manual change made to this invoice, with the field changed, the old value, the new value, and who made the change
 
 ## Editing an Invoice
 
@@ -64,15 +64,15 @@ To correct extracted data, click **Edit** in the top-right corner of the invoice
 
 The editor shows the original PDF on the left and an editable form on the right. Every field in the form is clickable:
 
-- **Header fields** (invoice number, dates, currency, direction) — click the value to edit it in place. Press `Enter` or click away to save. Changes are saved individually and immediately — there is no Save button for the whole form.
-- **Party fields** (seller/buyer name and tax ID) — same click-to-edit behaviour.
-- **Amount fields** (net, VAT, gross) — same click-to-edit behaviour.
+- **Header fields** (invoice number, dates, currency, direction) - click the value to edit it in place. Press `Enter` or click away to save. Changes are saved individually and immediately - there is no Save button for the whole form.
+- **Party fields** (seller/buyer name and tax ID) - same click-to-edit behaviour.
+- **Amount fields** (net, VAT, gross) - same click-to-edit behaviour.
 
 ### Hover to Highlight
 
 When you hover over a field in the editor, the corresponding value is highlighted in the PDF on the left. This makes it easy to verify extracted data against the source document, especially when a value looks suspicious.
 
-Hover over a line item description to highlight that text in the PDF. The highlight uses a yellow overlay directly on the PDF text layer — it does not modify the document.
+Hover over a line item description to highlight that text in the PDF. The highlight uses a yellow overlay directly on the PDF text layer - it does not modify the document.
 
 ### Editing Line Items
 
@@ -80,7 +80,7 @@ The line items table in the editor is fully editable. For each line:
 
 - Click any cell (description, quantity, unit price, VAT rate, or category) to edit it
 - Changes save as soon as you click away
-- The **net amount** and **gross amount** columns are calculated automatically — they are read-only
+- The **net amount** and **gross amount** columns are calculated automatically - they are read-only
 
 To add a line item, click **Add line** below the table. To remove one, click the **×** at the end of the row.
 
@@ -105,7 +105,7 @@ Use the **Download** button on the invoice detail page to export the invoice. Cl
 | **CSV** | A flat file with the invoice header on the first rows and line items below |
 | **JSON** | Structured JSON with all invoice fields and a `line_items` array |
 
-All downloads are named after the invoice number (or the original file name for PDF). XLSX, CSV, and JSON use the structured data from the platform — they reflect any manual corrections you have made.
+All downloads are named after the invoice number (or the original file name for PDF). XLSX, CSV, and JSON use the structured data from the platform - they reflect any manual corrections you have made.
 
 ## The Audit Log
 
@@ -127,11 +127,11 @@ The audit log is read-only. It cannot be cleared or edited.
 | **Completed** | Extraction finished; data is available for review |
 | **Failed** | Extraction could not complete; the document may need to be re-uploaded or manually entered |
 
-A **Completed** status does not mean the data is correct — it means the AI produced a result. Always review invoices with a **Review** badge, as these are cases where the AI confidence was below the threshold.
+A **Completed** status does not mean the data is correct - it means the AI produced a result. Always review invoices with a **Review** badge, as these are cases where the AI confidence was below the threshold.
 
 ## Tips
 
 - **Keep entity records up to date.** The AI uses entity names, tax IDs, and alternative names to identify partners. If a supplier appears as unknown, add them to Master Data → Entities with their correct name and tax ID.
 - **Use the preview drawer** to check documents quickly without navigating away from the list. Navigate the full list with ← and → to triage a batch of invoices efficiently.
-- **Download as XLSX** if you need to share structured invoice data with a colleague who works in Excel — the two-sheet format keeps summary and line items separate.
-- **Download as JSON** for integrations — the structured output matches the fields used internally and can be consumed directly by most accounting connectors.
+- **Download as XLSX** if you need to share structured invoice data with a colleague who works in Excel - the two-sheet format keeps summary and line items separate.
+- **Download as JSON** for integrations - the structured output matches the fields used internally and can be consumed directly by most accounting connectors.
