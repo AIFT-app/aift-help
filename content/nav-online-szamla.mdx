@@ -1,6 +1,6 @@
 # Connecting NAV Online Számla (Hungary)
 
-For Hungarian companies, AI Finance Team can import invoice data directly from the Hungarian Tax Authority's **NAV Online Számla** system. Because suppliers report their outgoing invoices to NAV, your cost (supplier) invoices often appear in AI Finance Team **before** you upload the PDF — and your own sales invoices are pulled automatically too.
+For Hungarian companies, AI Finance Team can import invoice data directly from the Hungarian Tax Authority's **NAV Online Számla** system. Because suppliers report their outgoing invoices to NAV, your cost (supplier) invoices often appear in AI Finance Team **before** you upload the PDF - and your own sales invoices are pulled automatically too.
 
 This connection is **read-only**. AI Finance Team only *reads* invoice data from NAV. It never issues, reports, modifies, or annuls invoices on your behalf.
 
@@ -14,9 +14,9 @@ This connection is **read-only**. AI Finance Team only *reads* invoice data from
   - the technical user's **password**,
   - the technical user's **XML signing key** ("aláírókulcs").
 
-> You do **not** need the XML exchange key ("cserekulcs") — that is only used for issuing invoices, which AI Finance Team never does.
+> You do **not** need the XML exchange key ("cserekulcs") - that is only used for issuing invoices, which AI Finance Team never does.
 
-Your credentials are stored encrypted in a secure vault. **Once saved, nobody can read them back** — not you, not your accountant, not even whoever entered them. That is why editing the connection requires re-entering all four values.
+Your credentials are stored encrypted in a secure vault. **Once saved, nobody can read them back** - not you, not your accountant, not even whoever entered them. That is why editing the connection requires re-entering all four values.
 
 ## Creating a NAV Technical User
 
@@ -30,11 +30,11 @@ Your credentials are stored encrypted in a secure vault. **Once saved, nobody ca
 1. From the workspace sidebar, open **Master data → Entities** and select your Hungarian entity.
 2. Scroll to the **NAV Online Számla** section.
 3. Enter the tax number, technical-user login, password, and signing key.
-4. Click **Save & verify**. AI Finance Team immediately checks the credentials against NAV and pulls your most recent invoices, so you can see straight away whether the connection works — or exactly what NAV rejected.
+4. Click **Save & verify**. AI Finance Team immediately checks the credentials against NAV and pulls your most recent invoices, so you can see straight away whether the connection works - or exactly what NAV rejected.
 5. Choose the **start date**: how far back to pull history. The default is 3 months and the maximum is 12. The end date is always today.
 6. Review the **estimated invoice count** for that period, then click **Start sync**.
 
-Syncing only begins **after you start it** — a large history download never starts on its own. From then on, AI Finance Team polls NAV regularly and imports both your **outbound** (sales) and **inbound** (supplier) invoices.
+Syncing only begins **after you start it** - a large history download never starts on its own. From then on, AI Finance Team polls NAV regularly and imports both your **outbound** (sales) and **inbound** (supplier) invoices.
 
 > **Why the "~" before the count?** NAV does not return an exact number, only pagination information, so we can only show an estimate. The period counts by the date NAV received the invoice, not the invoice date.
 
@@ -43,11 +43,11 @@ Syncing only begins **after you start it** — a large history download never st
 ## What Happens to the Imported Data
 
 - **NAV-only invoices become real ledger entries** even before any PDF exists. These show as *document-less* until a matching PDF is uploaded.
-- When you (or your supplier's document) later upload the **PDF** for an invoice already pulled from NAV, the two are **merged into a single invoice** — no duplicate. The PDF becomes the viewable document; NAV's government-validated amounts remain authoritative.
+- When you (or your supplier's document) later upload the **PDF** for an invoice already pulled from NAV, the two are **merged into a single invoice** - no duplicate. The PDF becomes the viewable document; NAV's government-validated amounts remain authoritative.
 - **Income vs. expense is set from NAV's direction**: invoices NAV reports as *outbound* for your entity are income; *inbound* are expenses.
-- If NAV's figures disagree with an uploaded document beyond a small tolerance, the invoice is flagged as an **exception** for your accountant to review — nothing is silently overwritten.
+- If NAV's figures disagree with an uploaded document beyond a small tolerance, the invoice is flagged as an **exception** for your accountant to review - nothing is silently overwritten.
 
-- **Invoices to private individuals arrive with no buyer at all.** NAV is not permitted to report personal data, so it states only that the buyer is a private individual. Nominate one partner to book them to and they stop landing without a partner — see [Managing Partners](/partners).
+- **Invoices to private individuals arrive with no buyer at all.** NAV is not permitted to report personal data, so it states only that the buyer is a private individual. Nominate one partner to book them to and they stop landing without a partner - see [Managing Partners](/partners).
 
 ## Pausing or Disconnecting
 
@@ -57,7 +57,7 @@ Syncing only begins **after you start it** — a large history download never st
 ## Notes & Limitations
 
 - NAV shows a buyer only the inbound invoices that suppliers actually reported, and only the fields they reported. Most compliant B2B invoices since mid-2020 are covered, but "every cost invoice appears automatically" is not guaranteed. Invoices flagged as *partial* carry a small marker.
-- A modification or cancellation (storno) invoice is imported as its own entry, linked to the original — it is never merged into the original invoice.
+- A modification or cancellation (storno) invoice is imported as its own entry, linked to the original - it is never merged into the original invoice.
 
 ## Troubleshooting
 
