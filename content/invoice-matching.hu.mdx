@@ -137,13 +137,17 @@ A szűkebb tartományok gyorsabban futnak. A **Teljes időszak** lehetőséget c
 
 #### Előrehaladás visszajelzése
 
-Az előrehaladás a képernyő jobb alsó sarkában lévő **feltöltési sor panelen** jelenik meg - ugyanazon a panelen, amely a számla- és bankszámlakivonat-feldolgozást is követi. A sor a következőt írja:
+Az előrehaladás a képernyő jobb alsó sarkában lévő **feltöltési sor panelen** jelenik meg, ugyanazon a panelen, amely a számla- és bankszámlakivonat-feldolgozást is követi. A sor címe a munkaterület neve (például az ügyfél cégneve). Ha a munkaterületnek nincs neve, a cím `Párosítás`. A cím az oldal újratöltése után is ugyanaz marad.
 
-- `Párosítás - <munkaterület>`: Folyamatban…
-- Befejezés után: `Párosítás - <munkaterület>`: Kész: N párosítás létrehozva
-- Hiba esetén: `Párosítás - <munkaterület>`: Sikertelen (Újrapróbálás lehetőséggel)
+A sor állapota:
 
-A sor egy perccel a befejezés után automatikusan eltűnik a panelről. A régebbi futások megtekintéséhez nyissa meg az Előzmények panelt.
+- Futás közben: `Folyamatban…`
+- Befejezés után: `Kész: 1 párosítás létrehozva` vagy `Kész: N párosítás létrehozva`
+- Hiba esetén: `Sikertelen`, vagy a futás hibaüzenete
+
+A sikertelen sornál nincs újrapróbálás gomb. Az újbóli próbálkozáshoz kattintson ismét a **Párosítás futtatása** gombra.
+
+A sor körülbelül egy perccel a futás befejezése után eltűnik a panelről. A régebbi futások megtekintéséhez nyissa meg az Előzmények panelt.
 
 ## Párosítás a tranzakció oldalpaneljéről
 
