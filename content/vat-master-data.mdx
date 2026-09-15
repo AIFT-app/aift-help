@@ -1,6 +1,6 @@
 # VAT Master Data
 
-AI Finance Team resolves the correct **VAT code** for every invoice line automatically. To make that possible, each workspace carries its own VAT master data: five small tables that describe, in your accounting system's terms, how VAT works for that client. You'll find them under **Master data → VAT**, organised as five tabs.
+AI Finance Team resolves the correct **VAT code** for every invoice line automatically. To make that possible, each workspace carries its own VAT master data: five small tables that describe, in your accounting system's terms, how VAT works for that client. You'll find them under **Master data → VAT codes**, organised as five tabs.
 
 ## How a VAT Code Is Composed
 
@@ -21,7 +21,7 @@ Each VAT code row has two identifiers:
 - **Accounting code** - the code exactly as your accounting system expects it on import. Always required.
 - **AIFT code** - an optional internal code, useful when several AIFT-side distinctions map to a single accounting-system code.
 
-A workspace-level setting (Workspace settings → **VAT**) decides which of the two must be unique among active codes. Most workspaces leave it on accounting-system codes; switch it to AIFT codes when you deliberately want several AIFT codes pointing at one accounting code.
+A workspace-level setting (Settings → **VAT settings**) decides which of the two must be unique among active codes. Most workspaces leave it on accounting-system codes; switch it to AIFT codes when you deliberately want several AIFT codes pointing at one accounting code.
 
 ## What Your Client Does Changes the Answer
 
