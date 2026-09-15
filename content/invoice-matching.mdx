@@ -137,13 +137,17 @@ Narrower ranges run faster. Use **All time** only when you have historical data 
 
 #### Progress feedback
 
-Progress appears in the **upload queue panel** at the bottom-right of the screen - the same panel that tracks invoice and bank-statement processing. The row reads:
+Progress appears in the **upload queue panel** at the bottom-right of the screen, the same panel that tracks invoice and bank-statement processing. The row is titled with the workspace name (for example, the client's company name). If the workspace has no name, the title is `Matching`. The title stays the same after a page reload.
 
-- `Matching - <workspace>`: In progress…
-- After completion: `Matching - <workspace>`: Completed: N matches created
-- On failure: `Matching - <workspace>`: Failed (with a Retry affordance)
+The row's status reads:
 
-The row disappears from the panel automatically once it has been completed for a minute. To inspect older runs, open the History panel.
+- While running: `In progress…`
+- After completion: `Completed: 1 match created` or `Completed: N matches created`
+- On failure: `Failed`, or the error message of the run
+
+A failed row has no retry button. To try again, click **Run Matching** again.
+
+The row disappears from the panel about a minute after the run finishes. To inspect older runs, open the History panel.
 
 ## Matching from the transaction slide-over
 
