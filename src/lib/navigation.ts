@@ -52,6 +52,17 @@ export const navigation: NavItem[] = [
     slug: 'paying-approved-invoices',
     title: { en: 'Paying Approved Invoices', hu: 'Jóváhagyott számlák kifizetése', de: 'Freigegebene Rechnungen bezahlen' },
   },
+  // Company register check (partner-registry-validation): evidence on the
+  // payee account, next to the payment articles it informs. The app's section
+  // is "Company register" / "Cégjegyzék" / "Firmenregister".
+  {
+    slug: 'company-register-check',
+    title: {
+      en: 'Checking Suppliers Against the Company Register',
+      hu: 'Szállítók ellenőrzése a cégjegyzékben',
+      de: 'Lieferanten im Firmenregister prüfen',
+    },
+  },
   {
     slug: 'fixed-payment-method',
     title: {
