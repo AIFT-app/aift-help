@@ -133,6 +133,14 @@ export const navigation: NavItem[] = [
   // tells the reader which menu item to click.
   { slug: 'reports', title: { en: 'Reports', hu: 'Riportok', de: 'Berichte' } },
   { slug: 'ledger', title: { en: 'Ledger Explorer', hu: 'Főkönyvi kivonat', de: 'Hauptbuch-Explorer' } },
+  // Keyboard date entry (keyboard-date-entry): the compact digit forms and the
+  // `..` range shorthand. The in-app hint is "Date formats" / "Dátumformátumok"
+  // / "Datumsformate" (date_filter.formats_help); every example in the article
+  // is executed against aift-web's real parseDateInput/parseDateRangeInput.
+  {
+    slug: 'date-entry',
+    title: { en: 'Fast Date Entry', hu: 'Gyors dátumbevitel', de: 'Schnelle Datumseingabe' },
+  },
   { slug: 'messages', title: { en: 'Messages', hu: 'Üzenetek', de: 'Nachrichten' } },
   { slug: 'mcp', title: { en: 'AI Assistants (MCP)', hu: 'AI-asszisztensek (MCP)', de: 'KI-Assistenten (MCP)' } },
   {
