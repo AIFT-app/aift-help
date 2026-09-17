@@ -1,0 +1,64 @@
+# Schnelle Datumseingabe
+
+Die Datumsfelder in AIFT verstehen kurze Tastatureingaben, wie Sie sie vielleicht aus Business Central oder SAP Business One kennen. Wenige Ziffern genügen für ein vollständiges Datum, und eine einzige Eingabe kann einen ganzen Zeitraum füllen.
+
+Die Kurzformen funktionieren in jedem Datumsfeld: in den Datumsfiltern der Listenseiten (Rechnungen, Banktransaktionen, Zuordnung, die Exportseiten) und in den Datumsfeldern von Belegen, etwa den Rechnungsdaten oder den Zeilen des Kontoauszug-Editors.
+
+Bestätigen Sie eine Eingabe mit **Enter** oder **Tab**. Das Feld zeigt danach das vollständige Datum (zum Beispiel 31. Dez. 2026), Sie sehen also immer, was aus Ihrer Eingabe geworden ist. Lässt sich eine Eingabe nicht als echtes Datum lesen, kehrt das Feld einfach zu seinem vorherigen Wert zurück; nichts wird gelöscht.
+
+## Nur Ziffern: die Kompaktformen
+
+Eine Kompakteingabe besteht aus Ziffern ohne Trennzeichen. Sie wird immer als **Jahr, Monat, Tag** gelesen, in dieser Reihenfolge, in jeder Sprache.
+
+| Sie tippen | Sie erhalten |
+|------------|--------------|
+| 15 | den 15. des laufenden Monats |
+| 05 | den 5. des laufenden Monats |
+| 1231 | den 31. Dezember des laufenden Jahres |
+| 260101 | 1. Jan. 2026 |
+| 20260101 | 1. Jan. 2026 |
+
+Drei Regeln:
+
+- **Ein bloßer Tag braucht zwei Ziffern.** 05 ist der 5.; eine einzelne 5 wird nicht angenommen.
+- **Der Monat steht immer vor dem Tag.** 0106 ist der 6. Januar, nicht der 1. Juni. Wenn Sie Tag-zuerst eingeben möchten, verwenden Sie Trennzeichen: 1.6.2026 ist der 1. Juni.
+- **Unmögliche Daten werden abgelehnt.** Es gibt keinen 31. April, also wird 0431 verworfen und das Feld behält seinen vorherigen Wert. Dasselbe gilt für einen Monat über 12: 1501 ist nicht der 15. Januar; tippen Sie dafür 0115.
+
+Ein zweistelliges Jahr von 00 bis 68 bedeutet 20xx.
+
+## Ausgeschriebene Formen: Trennzeichen und Monatsnamen
+
+Die gewohnten Schreibweisen funktionieren weiter. Mit Trennzeichen (Punkt, Schrägstrich, Bindestrich oder Leerzeichen) schreiben Sie das volle vierstellige Jahr; Tag und Monat folgen der Reihenfolge Ihrer Sprache:
+
+- 31.12.2026 oder 1.6.2026 (Tag zuerst, wie im Deutschen üblich)
+- 2026-12-31 (ISO)
+- 2026.9.5 (Jahr zuerst funktioniert in jeder Sprache: 5. Sept. 2026)
+
+Monatsnamen funktionieren zusammen mit einer Jahreszahl, abgekürzt und auch ohne Umlaut: 15 dez 2026, 15. Dezember 2026 und 15 marz 2026 sind alle gültig.
+
+## Ein ganzer Zeitraum mit einer Eingabe
+
+Öffnen Sie auf den Listenseiten den Datumsfilter und wechseln Sie zum Tab **Eigener**. Tippen Sie in das Feld **Startdatum** beide Enden des Zeitraums, getrennt durch zwei Punkte, und drücken Sie Enter: Beide Felder werden gefüllt, und die Liste ist gefiltert.
+
+| Sie tippen | Sie filtern auf |
+|------------|-----------------|
+| 15..20 | den 15. bis 20. des laufenden Monats |
+| 0901..0915 | den 1. bis 15. September des laufenden Jahres |
+| 260101..260630 | den Zeitraum vom 1. Jan. 2026 bis 30. Juni 2026 |
+
+Auf beiden Seiten der zwei Punkte ist jede Datumsform erlaubt, auch gemischt. Zwei Regeln:
+
+- **Beide Enden sind erforderlich.** 260101.. und ..260630 werden abgelehnt; für offene Zeiträume nutzen Sie die Voreinstellungen des Filters.
+- **Der Start darf nicht nach dem Ende liegen.** 20..15 wird abgelehnt: Eine getippte Reihenfolge gilt wie geschrieben und wird nie vertauscht.
+
+Die Zeitraum-Eingabe gehört zum Startdatum-Feld des Filters; das Datumsfeld eines Belegs enthält ein einzelnes Datum.
+
+## Der eingebaute Spickzettel
+
+Neben den Datumsfeldern des Filters sitzt ein kleines **i**-Symbol (**Datumsformate**). Zeigen Sie mit der Maus darauf oder springen Sie mit der Tastatur hin: Es listet die Kurzformen neben den Daten auf, zu denen sie werden. Die Ergebnisse berechnet die App selbst, die Hilfe stimmt also immer mit dem Verhalten überein.
+
+## Tipps
+
+- Werfen Sie nach dem Bestätigen einen Blick auf das Feld: Das angezeigte vollständige Datum ist das, was verwendet wird; ein Tippfehler fällt sofort auf.
+- Das graue Beispiel im leeren Feld (31. Dez. 2026) ist die Anzeigeform, und diese Form wird selbst immer akzeptiert: Was ein Feld anzeigt, können Sie auch wieder eintippen.
+- Filtern Sie mehrere Seiten nacheinander auf denselben Zeitraum? Stellen Sie ihn einmal ein, mit dem Schalter **Fokussierter Zeitraum** in der Seitenleiste: siehe [Fokussierter Zeitraum](/focused-period).
