@@ -124,6 +124,14 @@ export const navigation: NavItem[] = [
     slug: 'date-entry',
     title: { en: 'Fast Date Entry', hu: 'Gyors dátumbevitel', de: 'Schnelle Datumseingabe' },
   },
+  // Focus mode (focus-mode): the accountant-only working period. The article
+  // title IS the app's switch label, "Focused period" / "Fókuszált időszak" /
+  // "Fokussierter Zeitraum" (focus.open_label); status rows quote
+  // focus.status.* verbatim.
+  {
+    slug: 'focused-period',
+    title: { en: 'Focused Period', hu: 'Fókuszált időszak', de: 'Fokussierter Zeitraum' },
+  },
   { slug: 'messages', title: { en: 'Messages', hu: 'Üzenetek', de: 'Nachrichten' } },
   { slug: 'mcp', title: { en: 'AI Assistants (MCP)', hu: 'AI-asszisztensek (MCP)', de: 'KI-Assistenten (MCP)' } },
   {
