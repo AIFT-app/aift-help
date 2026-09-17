@@ -1,0 +1,64 @@
+# Fast Date Entry
+
+AIFT's date fields understand short keyboard forms, in the style you may know from Business Central or SAP Business One. A few digits are enough for a full date, and a single entry can fill a whole period.
+
+The short forms work in every date field: in the date filters on the list pages (Invoices, Bank transactions, Matching, the export pages), and in the date fields on records, such as invoice dates or the rows of the bank statement editor.
+
+Confirm an entry with **Enter** or **Tab**. The field then shows the complete date (for example 31 Dec 2026), so you always see what your entry became. If an entry cannot be read as a real date, the field simply returns to its previous value; nothing is cleared.
+
+## Digits only: the compact forms
+
+A compact entry is digits without separators. It is always read as **year, month, day**, in this order, in every language.
+
+| You type | You get |
+|----------|---------|
+| 15 | the 15th of the current month |
+| 05 | the 5th of the current month |
+| 1231 | 31 December of the current year |
+| 260101 | 1 Jan 2026 |
+| 20260101 | 1 Jan 2026 |
+
+Three rules to know:
+
+- **A bare day needs two digits.** 05 is the 5th; a single 5 is not accepted.
+- **The month always comes before the day.** 0106 is 6 January, not 1 June. If you prefer day-first, use separators instead: 1/6/2026 is 1 June.
+- **Impossible dates are refused.** There is no 31 April, so 0431 is rejected and the field keeps its previous value. The same goes for a month above 12: 1501 is not 15 January; type 0115 for that.
+
+A two-digit year from 00 to 68 means 20xx.
+
+## Written forms: separators and month names
+
+The usual written forms keep working. With separators (dot, slash, hyphen or space), write the full four-digit year; the day and month follow the order of your language:
+
+- 31/12/2026 (day first, as in English)
+- 2026-12-31 (ISO)
+- 2026.9.5 (year first works in every language: 5 Sept 2026)
+
+Month names work together with a year, abbreviated or written out: 15 dec 2026 and 15 December 2026 both read as 15 Dec 2026.
+
+## A whole period in one entry
+
+On the list pages, open the date filter and switch to the **Custom** tab. In the **Start date** field, type both ends of the period with two dots between them, then press Enter: both fields fill and the list is filtered.
+
+| You type | You filter for |
+|----------|----------------|
+| 15..20 | the 15th to the 20th of the current month |
+| 0901..0915 | 1 to 15 September of the current year |
+| 260101..260630 | 1 Jan 2026 to 30 Jun 2026 |
+
+Any date form works on either side of the two dots, and the two sides may mix forms. Two rules:
+
+- **Both ends are required.** 260101.. and ..260630 are refused; for an open-ended view use the filter's presets instead.
+- **The start must not be after the end.** 20..15 is refused: a typed range is taken as written, never swapped.
+
+The range entry belongs to the filter's Start date field. A record's date field holds a single date.
+
+## The built-in cheat sheet
+
+Next to the filter's date fields sits a small **i** icon labelled **Date formats**. Point at it, or focus it with the keyboard, and it lists the short forms next to the dates they become. The results are computed by the app itself, so the hint always matches the behaviour.
+
+## Tips
+
+- After confirming, glance at the field: the full date it shows is what will be used, so a slip is visible immediately.
+- The grey example in an empty field (31 Dec 2026) is the display form, and the display form is itself always accepted: whatever a field shows, you can type back.
+- Filtering several pages to the same period one by one? Set it once with the **Focused period** switch in the sidebar instead: see [Focused Period](/focused-period).
