@@ -46,6 +46,17 @@ export const navigation: NavItem[] = [
     slug: 'setting-up-approvals',
     title: { en: 'Setting Up Payment Approvals', hu: 'A kifizetések jóváhagyásának beállítása', de: 'Zahlungsfreigaben einrichten' },
   },
+  // Company register check (partner-registry-validation): evidence on the payee
+  // account of a supplier invoice. The app's section is "Company register" /
+  // "Cégjegyzék" / "Firmenregister".
+  {
+    slug: 'company-register-check',
+    title: {
+      en: 'Checking Suppliers Against the Company Register',
+      hu: 'Szállítók ellenőrzése a cégjegyzékben',
+      de: 'Lieferanten im Firmenregister prüfen',
+    },
+  },
   {
     slug: 'fixed-payment-method',
     title: {
