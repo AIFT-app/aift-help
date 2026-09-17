@@ -15,6 +15,8 @@ The check is switched on per workspace. If you don't see it, ask your AI Finance
 - **Not found in the company register for this tax number.** The register does not list this account for the supplier. **This is not proof of fraud.** A bank has eight days to report a newly opened account, so a recent account may still be genuine. Check with the supplier on a phone number you already know before paying.
 - **Cannot be checked.** The register could not answer, and the reason is shown: the partner has no tax number, the supplier is not Hungarian, the supplier is a sole trader, the register has no company with this tax number, there is no bank account to compare, or the register could not be reached. Cannot be checked is never a negative result.
 
+On a partner with no bank account on file, the **Company register** section says **Found in the register** instead: the lookup worked, there was just no account to compare.
+
 Nothing here blocks an approval or a payment file. The check adds evidence to your decision; it does not make the decision.
 
 ## Accounts confirmed automatically
@@ -38,13 +40,13 @@ When the register knows something you don't, such as the partner's address, it f
 - the name or the address differs,
 - the tax number differs,
 - you hold an account the register does not list for this company,
-- the register lists an account you don't hold.
+- the register lists accounts you don't hold (shown as one line with a count, and marked in the register's list).
 
 Each difference is for you to look at. Nothing is changed until you change it.
 
 ## Checks go out of date
 
-A check is valid for 90 days. After that the section marks it **Out of date**. Nothing re-checks itself, because every check uses one of AI Finance Team's monthly register lookups. Press **Revalidate** when you want a fresh answer. You need the **Edit master data** permission for this (see [Roles & Permissions](/roles-and-permissions)).
+A check is valid for 90 days. After that the section marks it **Out of date**. Nothing re-checks itself, because every check uses AI Finance Team's monthly register lookups. Press **Revalidate** when you want a fresh answer. You need the **Edit master data** permission for this (see [Roles & Permissions](/roles-and-permissions)).
 
 New supplier invoices start a check on their own. Invoices that arrived before the check was switched on do not.
 
