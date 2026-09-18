@@ -74,6 +74,14 @@ export const navigation: NavItem[] = [
     title: { en: 'Connecting Bank Accounts', hu: 'Bankszámlák csatlakoztatása', de: 'Bankkonten verbinden' },
   },
   {
+    slug: 'cash-pool',
+    title: {
+      en: 'Cash Pool: One Bank Account for Several Companies',
+      hu: 'Cash pool: egy bankszámla több cégnek',
+      de: 'Cash-Pool: Ein Bankkonto für mehrere Unternehmen',
+    },
+  },
+  {
     slug: 'bank-statement-upload',
     title: { en: 'Uploading Bank Statements', hu: 'Bankszámlakivonatok feltöltése', de: 'Kontoauszüge hochladen' },
   },
