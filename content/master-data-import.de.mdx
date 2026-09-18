@@ -57,6 +57,26 @@ Wie „bereits vorhanden" bestimmt wird:
 
 Da vorhandene Datensätze übersprungen und nicht geändert werden, können Sie dieselbe Datei gefahrlos erneut ausführen - der zweite Durchlauf meldet einfach alles als **Vorhanden**.
 
+## Richtung der Kategorie
+
+Eine Kategorie kann für **Einnahmen**, für **Ausgaben** oder für **beide** verwendet werden. Enthält Ihre Datei eine Richtungsspalte, liest der Import sie auf Deutsch, Ungarisch und Englisch. Groß- und Kleinschreibung sowie Akzente und Umlaute spielen keine Rolle, `Erträge`, `ERTRAGE` und `erträge` sind also dasselbe Wort.
+
+| In der Datei | Die Kategorie wird |
+|---|---|
+| `Einnahme`, `Ertrag`, `Erlös`, `income`, `revenue`, `sales`, `bevétel`, `árbevétel` | **Einnahme** |
+| `Ausgabe`, `Aufwand`, `Kosten`, `expense`, `cost`, `kiadás`, `költség`, `ráfordítás` | **Ausgabe** |
+| `beide`, `Einnahme und Ausgabe`, `both`, `income and expense`, `mindkettő`, `bevétel és kiadás` | **Beide** |
+| leere Zelle oder gar keine Richtungsspalte | **Beide** |
+| jedes andere Wort | **Beide**, und die Zeile erhält den Hinweis **Richtung nicht erkannt** |
+
+Gängige Pluralformen funktionieren ebenfalls (`Ausgaben`, `expenses`, `kiadások`).
+
+Im Schritt **Prüfen** sehen Sie vor dem Erstellen drei Zahlen: wie viele Kategorien Einnahme werden, wie viele Ausgabe und wie viele für beide verwendbar sind. Jede Zeile zeigt ihre Richtung. Konnten einige Richtungszellen nicht gelesen werden, nennt ein gelber Hinweis die Anzahl.
+
+Wörter wie `eingehend` / `ausgehend`, `in` / `out`, `incoming` / `outgoing`, `bejövő` / `kimenő` und `debit` / `credit` werden **absichtlich nicht** gelesen. Sie zeigen je nach Datei in entgegengesetzte Richtungen: Eine Eingangsrechnung ist eine Ausgabe, ein Geldeingang auf dem Kontoauszug dagegen eine Einnahme. Verwenden Sie stattdessen eines der Wörter aus der Tabelle.
+
+Eine für beide verwendbare Kategorie wird bei Ausgangs- und Eingangsrechnungen gleichermaßen angeboten. Die meisten Kategorien gehören nur zu einer Seite, prüfen Sie daher die Zahl bei **beide**, bevor Sie erstellen. Die Richtung einer Kategorie können Sie jederzeit im Bearbeitungsformular der Kategorie ändern.
+
 ## Über mehrere Spalten verteilte Adressen
 
 Büro-Exporte teilen eine Adresse oft auf mehrere Spalten auf - Postleitzahl, Ort, Straße, Hausnummer. Im Schritt **Spalten zuordnen** können Sie **Adresse** mehreren Spalten zuordnen: klicken Sie auf **+ Spalte hinzufügen** und wählen Sie jeden Teil. Die Teile werden der Reihe nach zu einer einzigen Adresse zusammengefügt (zum Beispiel wird aus `1051`, `Budapest`, `Váci utca`, `1` „1051, Budapest, Váci utca, 1"). Der Schritt **Prüfen** zeigt das zusammengesetzte Ergebnis.
