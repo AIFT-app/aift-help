@@ -57,6 +57,26 @@ How "already exists" is decided:
 
 Because existing records are skipped rather than changed, you can safely re-run the same file - the second run simply reports everything as **Exists**.
 
+## Category Direction
+
+A category can be used for **income**, for **expense**, or for **both**. If your file has a direction column, the importer reads it in English, Hungarian and German. Capital letters and accents do not matter, so `Bevétel`, `BEVETEL` and `bevétel` are the same word.
+
+| In the file | The category becomes |
+|---|---|
+| `income`, `revenue`, `sales`, `bevétel`, `árbevétel`, `Einnahme`, `Ertrag`, `Erlös` | **Income** |
+| `expense`, `cost`, `kiadás`, `költség`, `ráfordítás`, `Ausgabe`, `Aufwand`, `Kosten` | **Expense** |
+| `both`, `income and expense`, `mindkettő`, `bevétel és kiadás`, `beide`, `Einnahme und Ausgabe` | **Both** |
+| empty cell, or no direction column at all | **Both** |
+| any other word | **Both**, and the row is marked **direction not recognized** |
+
+Common plural forms work too (`expenses`, `kiadások`, `Ausgaben`).
+
+On the **Review** step you see three counts before anything is created: how many categories will be income, how many expense, and how many usable for both. Each row shows its direction. If some direction cells could not be read, an amber note says how many.
+
+Words such as `in` / `out`, `incoming` / `outgoing`, `bejövő` / `kimenő`, `eingehend` / `ausgehend` and `debit` / `credit` are **not** read on purpose. They point opposite ways depending on the file: an incoming invoice is an expense, while money coming in on a bank statement is income. Use one of the words in the table instead.
+
+A category that is usable for both is offered on sales invoices and on purchase invoices alike. Most categories belong to one side only, so check the **both** count before you create. You can change a category's direction at any time on the category's edit form.
+
 ## Addresses Split Across Columns
 
 Office exports often split an address across several columns - postal code, city, street, house number. On the **Map the columns** step you can map **Address** to more than one column: click **+ add a column** and choose each part. The pieces are joined, in order, into a single address (for example `1051`, `Budapest`, `Váci utca`, `1` becomes "1051, Budapest, Váci utca, 1"). The **Review** step shows the assembled result.
