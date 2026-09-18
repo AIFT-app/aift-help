@@ -1,0 +1,73 @@
+# Cash-Pool: Ein Bankkonto für mehrere Unternehmen
+
+In Unternehmensgruppen liegt das Bankkonto häufig bei einem Unternehmen, und die Schwestergesellschaften bezahlen darüber ihre Lieferanten und nehmen die Zahlungen ihrer Kunden ein. Auf dem Kontoauszug steht dann der Kontoinhaber, während die Rechnung hinter einer Zahlung zu einem anderen Unternehmen gehört.
+
+AI Finance Team bildet das mit einem **geteilten Bankkonto** ab: Das Konto bleibt bei dem Unternehmen, dem es gehört, und Sie geben an, welche weiteren Unternehmen es nutzen. Jede Banktransaktion auf diesem Konto trägt danach das Unternehmen, zu dem sie gehört.
+
+Wenn in Ihrem Arbeitsbereich kein Konto geteilt ist, gilt nichts davon, und es ändert sich nichts.
+
+## Bevor Sie beginnen
+
+- Alle Unternehmen müssen im **selben Arbeitsbereich** angelegt sein.
+- Das Einrichten eines geteilten Kontos ist Aufgabe der Buchhaltung. Mandanten sehen das Ergebnis, können es aber nicht ändern.
+- Legen Sie dieselbe Kontonummer **nicht** bei jedem Unternehmen an. Das Konto wird einmal erfasst, bei dem Unternehmen, dem es gehört. Wenn Sie es ein zweites Mal anlegen wollen, bietet AI Finance Team an, das vorhandene Konto zu teilen.
+
+## Ein geteiltes Konto einrichten
+
+1. Klicken Sie in der Seitenleiste des Arbeitsbereichs auf **Stammdaten** und dann auf **Bankkonten**.
+2. Klicken Sie auf den Stift neben dem Konto, über das die Gruppe zahlt.
+3. Markieren Sie im Abschnitt **Von anderen Unternehmen genutzt (Cash-Pool)** jedes Unternehmen, dessen Zahlungsverkehr über dieses Konto läuft.
+4. Klicken Sie auf **Unternehmen speichern**.
+
+In der Liste trägt das Konto nun ein Kennzeichen für die Teilung, und auf der Seite jedes beteiligten Unternehmens erscheint es schreibgeschützt mit dem Hinweis **Geteilt, Inhaber:** und dem Namen des Kontoinhabers.
+
+### Wenn das Konto bereits vorhanden ist
+
+Wenn Sie bei einem Unternehmen ein Bankkonto anlegen, dessen Nummer bereits zu einem anderen Unternehmen des Arbeitsbereichs gehört, sehen Sie:
+
+> Dieses Konto gehört (Kontoinhaber). Möchten Sie es als geteiltes (Cash-Pool-)Konto für (Unternehmen) nutzen?
+
+Klicken Sie auf **Als geteiltes Konto nutzen**, und das Unternehmen wird dem vorhandenen Konto hinzugefügt. Es entsteht keine zweite Kopie.
+
+### Den Kontoinhaber ändern
+
+Kontoinhaber ist das Unternehmen, bei dem das Konto zuerst erfasst wurde. Ist das falsch, öffnen Sie das Konto, wählen Sie unter **Kontoinhaber ändern** eines der nutzenden Unternehmen und klicken Sie auf **Inhaber ändern**. Der bisherige Inhaber bleibt auf der Liste der nutzenden Unternehmen.
+
+## Zu welchem Unternehmen eine Transaktion gehört
+
+Auf der Detailseite einer Transaktion eines geteilten Kontos sehen Sie die Zeile **Unternehmen** mit einem von drei Kennzeichen:
+
+| Kennzeichen | Bedeutung |
+|---|---|
+| **Standard** | Es ist keine Rechnung zugeordnet. Die Transaktion gehört dem Kontoinhaber. Bankgebühren, Zinsen und Steuern bleiben in der Regel hier. |
+| **Aus zugeordneter Rechnung** | Die Transaktion ist einer Rechnung zugeordnet und hat deren Unternehmen übernommen. Wird die Zuordnung entfernt, steht sie wieder auf **Standard**. |
+| **Manuell festgelegt** | Jemand hat das Unternehmen von Hand gewählt. Die Zuordnung ändert es nicht mehr. Mit **Auf Standard zurücksetzen** geben Sie es an die automatische Regel zurück. |
+
+Um eine Transaktion ohne Rechnung einem anderen Unternehmen zuzuweisen, wählen Sie das Unternehmen in der Zeile **Unternehmen**.
+
+Der Unternehmensfilter im Hauptbuch und die Exporte folgen diesem Unternehmen, nicht dem Namen auf dem Bankkonto.
+
+## Wie die Zuordnung auf einem geteilten Konto arbeitet
+
+Die Zuordnung prüft ohnehin die Rechnungen aller Unternehmen des Arbeitsbereichs, es muss also nichts eingeschaltet werden. Drei Regeln gelten nur auf einem geteilten Konto:
+
+- **Eine Zahlung, ein Unternehmen.** Eine Banktransaktion kann nur Rechnungen eines einzigen Unternehmens ausgleichen.
+- **Unternehmen, die das Konto nicht nutzen.** Ist der beste Treffer die Rechnung eines Unternehmens, das *nicht* auf der Liste des Kontos steht, ordnet AI Finance Team nicht automatisch zu, sondern zeigt einen Vorschlag zur Prüfung.
+- **Der Unternehmensname im Verwendungszweck.** Ein Kunde, der an den Kontoinhaber zahlt, nennt oft das Unternehmen, das die Rechnung gestellt hat. Auf einem geteilten Konto gilt das als normal und hält eine automatische Zuordnung nicht auf.
+
+## Die Cash-Pool-Abrechnung
+
+Klicken Sie in der Liste der Bankkonten neben einem geteilten Konto auf **Cash-Pool-Abrechnung**. Für den gewählten Zeitraum zeigt der Bericht je Unternehmen:
+
+- **Ausgezahlt**: was der Kontoinhaber für dieses Unternehmen gezahlt hat
+- **Eingenommen**: was er für dieses Unternehmen erhalten hat
+- **Netto** und die Anzahl der Transaktionen
+
+Ein Klick auf ein Unternehmen zeigt darunter dessen Transaktionen, und mit **XLSX herunterladen** erhalten Sie ein Übersichtsblatt und ein Transaktionsblatt.
+
+Der Kontoinhaber bucht jede Bewegung auf seinem eigenen Bankkonto. Was er für eine Schwestergesellschaft gezahlt oder eingenommen hat, ist ein konzerninterner Verrechnungsposten gegenüber diesem Unternehmen, und dieser Bericht liefert die Beträge dafür. AI Finance Team bucht das nicht in Ihrem Buchhaltungssystem.
+
+## Verwandte Artikel
+
+- [Bankkonten verbinden](/bank-accounts)
+- [Unternehmen verwalten](/master-data-entities)
