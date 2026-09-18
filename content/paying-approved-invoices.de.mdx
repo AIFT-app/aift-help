@@ -47,6 +47,20 @@ Das Ausführungsdatum ist das Fälligkeitsdatum oder der nächste Bankarbeitstag
 
 Die Liste der erzeugten Dateien steht unter den Gruppen. **Erneut herunterladen** liefert dieselbe Datei noch einmal.
 
+## Eine Position zurücknehmen
+
+Eine Zahlungsdatei ist ein Vorschlag, daher kommt es vor, dass die Überweisung nicht stattfindet: Die Datei wurde nie hochgeladen, die Bank hat den Import abgelehnt, oder niemand hat unterschrieben. Schalten Sie **Positionen zeigen, die bereits in einer Datei sind** ein, suchen Sie die Position und klicken Sie auf **Zurücknehmen**. Wählen Sie einen Grund (**Nicht hochgeladen**, **Von der Bank abgelehnt**, **Nicht unterschrieben** oder **Sonstiges**), und die Rechnung steht sofort wieder auf der Liste der zu zahlenden Rechnungen. **Datei zurücknehmen** in der Dateiliste unter den Gruppen tut dasselbe für jede noch wartende Position einer Datei.
+
+Eine Position, deren Zahlung bereits bei der Bank eingegangen ist, kann nicht zurückgenommen werden, und das Zurücknehmen ändert nichts an der Freigabe. Auf der Rechnung zeigt die Freigabekarte danach die Dateinummer, das Datum und den Grund.
+
+Mit **Noch nicht bei der Bank gesehen** ist eine Position markiert, die vor einiger Zeit exportiert wurde und zu der noch keine Banktransaktion erschienen ist. Oben auf der Seite steht deren Anzahl. Das ist nur ein Hinweis: Prüfen Sie im Onlinebanking und nehmen Sie die Position zurück, wenn die Überweisung nie ausgeführt wurde.
+
+## Wie die Zahlung ihre Rechnung findet
+
+Wenn die Banktransaktion eintrifft, sucht AI Finance Team zuerst unter den Positionen, die es in Zahlungsdateien geschrieben hat. Es kennt das zahlende Konto, das Konto des Empfängers, den genauen Betrag und das Datum und kann die Zahlung daher ohne Bewertung zuordnen. Bei der Zuordnung steht dann **Zugeordnet aus Zahlungsdatei #N**. Passen zwei exportierte Positionen zur selben Zahlung, entscheidet die Rechnungskennung im Verwendungszweck; reicht auch das nicht, übernimmt die normale Zuordnung.
+
+Alles andere auf dem Kontoauszug (Kundenzahlungen, Steuern, Bankgebühren, von Hand ausgeführte Überweisungen) wird wie bisher zugeordnet.
+
 ## Welche Datei mit welcher Bank funktioniert
 
 Derzeit ist die Tabelle das einzige Format, und sie funktioniert mit jeder Bank, weil eine Person sie eintippt. Direkte Bankimportdateien sind geplant; jede Bank wird hier erst nach einem echten Testimport auf dem Konto eines Kunden aufgeführt.
@@ -70,6 +84,6 @@ Derzeit ist die Tabelle das einzige Format, und sie funktioniert mit jeder Bank,
 
 **Kann ich eine nicht freigegebene Rechnung bezahlen?** Nein. Die Liste enthält nur freigegebene Rechnungen. Geben Sie sie zuerst frei oder bitten Sie den Finanzverantwortlichen, sie als nicht freigabepflichtig zu markieren.
 
-**Ich habe versehentlich eine Datei erzeugt.** In der Bank ist nichts passiert. Importieren Sie sie einfach nicht. Die Rechnungen bleiben freigegeben und unbezahlt; die nächste Datei kann sie wieder aufnehmen, wenn Sie „Positionen zeigen, die bereits in einer Datei sind" einschalten.
+**Ich habe versehentlich eine Datei erzeugt.** In der Bank ist nichts passiert. Importieren Sie sie einfach nicht und nehmen Sie die Datei zurück (siehe „Eine Position zurücknehmen"), dann stehen die Rechnungen sofort wieder auf der Liste.
 
 **Der Betrag entspricht nicht der Rechnung.** Die Liste zeigt, was noch offen ist. Bei einer teilweise bezahlten Rechnung den Restbetrag, und Forint-Beträge sind ganze Forint.

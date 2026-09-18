@@ -47,6 +47,20 @@ The execution date is the due date, or the next banking day when the due date fa
 
 The list of files you generated is shown under the groups. **Download again** hands you the same file once more.
 
+## Taking a line back
+
+A payment file is a proposal, so sometimes the transfer does not happen: the file was never uploaded, the bank rejected the import, or nobody signed it. Switch on **Show lines already in a file**, find the line and click **Release**. Choose a reason (**Not uploaded**, **Rejected by the bank**, **Not signed** or **Other**) and the invoice goes straight back to the list of invoices to pay. **Release file**, in the list of files under the groups, does the same for every line of a file that is still waiting.
+
+A line whose payment already arrived at the bank cannot be released, and releasing never changes the approval. On the invoice, the approval card then reads "Released from payment file #N" with the date and the reason.
+
+A line marked **Not seen at the bank yet** was exported some time ago and no bank transaction has shown up for it. The page counts these at the top. It is information only: check the netbank, and release the line if the transfer was never made.
+
+## How the payment finds its invoice
+
+When the bank transaction arrives, AI Finance Team first looks among the lines it wrote into payment files. It knows the paying account, the payee's account, the exact amount and the date, so it can match the payment without any scoring. The match then reads **Matched from payment file #N**. If two exported lines could fit the same payment, the invoice id in the remittance text decides; if that does not settle it either, the normal matching takes over.
+
+Everything else on the statement (customer receipts, tax, bank fees, transfers made by hand) is matched exactly as before.
+
 ## Which file works with which bank
 
 At the moment the spreadsheet is the only format, and it works with every bank because a person keys it in. Direct bank import files are planned; each bank will be listed here only after a real test import on a client's account.
@@ -70,6 +84,6 @@ At the moment the spreadsheet is the only format, and it works with every bank b
 
 **Can I pay an invoice that is not approved?** No. The list contains approved invoices only. Approve it first, or ask the finance admin to mark it as not needing approval.
 
-**I generated a file by mistake.** Nothing happened in the bank. Simply do not import it. The invoices stay approved and unpaid; the next file can include them again when you switch on "Show lines already in a file".
+**I generated a file by mistake.** Nothing happened in the bank. Simply do not import it, and release the file (see "Taking a line back") so the invoices return to the list at once.
 
 **The amount is not what the invoice says.** The list shows what is still owed. A partially paid invoice shows the remaining balance, and Hungarian forint amounts are whole forints.

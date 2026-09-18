@@ -47,6 +47,20 @@ A terhelés napja az esedékesség napja, vagy a következő banki munkanap, ha 
 
 A létrehozott fájlok listája a csoportok alatt látható. A **Letöltés újra** ugyanazt a fájlt adja még egyszer.
 
+## Tétel visszavonása
+
+Az utalási fájl javaslat, ezért előfordul, hogy az utalás nem történik meg: a fájlt nem töltötték fel, a bank visszautasította az importot, vagy senki nem írta alá. Kapcsolja be a **Már fájlban lévő tételek mutatása** opciót, keresse meg a tételt, és kattintson a **Visszavonás** hivatkozásra. Válasszon okot (**Nem töltötték fel**, **A bank visszautasította**, **Nem írták alá** vagy **Egyéb**), és a számla azonnal visszakerül a fizetendő számlák listájára. A csoportok alatti fájllistában a **Fájl visszavonása** ugyanezt teszi a fájl minden, még várakozó tételével.
+
+Az a tétel, amelynek a kifizetése már megérkezett a bankba, nem vonható vissza, és a visszavonás a jóváhagyást nem érinti. A számlán a jóváhagyási kártya ezután a fájl számát, a dátumot és az okot mutatja.
+
+**A bankban még nem jelent meg** jelölést az a tétel kapja, amelyet már korábban exportáltak, de banki tranzakció nem érkezett hozzá. Az oldal tetején ezek száma is látszik. Ez csak tájékoztatás: ellenőrizze a netbankban, és vonja vissza a tételt, ha az utalás nem történt meg.
+
+## Hogyan találja meg a kifizetés a számláját
+
+Amikor a banki tranzakció megérkezik, az AI Finance Team először azok között a tételek között keres, amelyeket utalási fájlba írt. Ismeri a fizető számlát, a kedvezményezett számláját, a pontos összeget és a dátumot, így a kifizetést pontozás nélkül párosítja. A párosításnál ekkor ez áll: **Párosítva a(z) #N utalási fájl alapján**. Ha ugyanarra a kifizetésre két exportált tétel is illene, a közleményben szereplő számlaazonosító dönt; ha ez sem elég, a szokásos párosítás veszi át.
+
+A kivonat minden más tétele (vevői befizetések, adók, bankköltségek, kézzel indított utalások) a korábbiak szerint párosul.
+
 ## Melyik fájl melyik bankkal működik
 
 Jelenleg a táblázat az egyetlen formátum, és minden bankkal működik, mert egy személy gépeli be. A közvetlen banki importfájlok tervben vannak; minden bank csak azután kerül ide, hogy egy ügyfél számláján valódi tesztimport történt.
@@ -70,6 +84,6 @@ A "banki dokumentáció" azt jelenti, hogy a bank közzéteszi a formátumot; "a
 
 **Kifizethetek egy nem jóváhagyott számlát?** Nem. A lista csak jóváhagyott számlákat tartalmaz. Előbb hagyja jóvá, vagy kérje meg a pénzügyi adminisztrátort, hogy jelölje jóváhagyást nem igénylőnek.
 
-**Tévedésből készítettem fájlt.** A bankban nem történt semmi. Egyszerűen ne importálja. A számlák jóváhagyottak és kifizetetlenek maradnak; a következő fájlba újra bekerülhetnek, ha bekapcsolja a "Már fájlban lévő tételek mutatása" opciót.
+**Tévedésből készítettem fájlt.** A bankban nem történt semmi. Egyszerűen ne importálja, és vonja vissza a fájlt (lásd „Tétel visszavonása"), így a számlák azonnal visszakerülnek a listára.
 
 **Az összeg nem egyezik a számlán szereplővel.** A lista azt mutatja, ami még fizetendő. Részben kifizetett számlánál a fennmaradó egyenleget, a forint összegek pedig egész forintok.
