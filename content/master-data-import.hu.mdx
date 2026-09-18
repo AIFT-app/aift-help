@@ -57,6 +57,26 @@ Hogyan dől el, mi „létezik már":
 
 Mivel a meglévő rekordok kimaradnak, nem pedig módosulnak, ugyanazt a fájlt nyugodtan újra lefuttathatja - a második futás egyszerűen mindent **Létezik**-ként jelez.
 
+## A kategória iránya
+
+Egy kategória használható **bevételhez**, **kiadáshoz** vagy **mindkettőhöz**. Ha a fájlban van irány oszlop, az importáló magyarul, németül és angolul is elolvassa. A kis- és nagybetű, valamint az ékezet nem számít, így a `Bevétel`, a `BEVETEL` és a `bevétel` ugyanaz a szó.
+
+| A fájlban | A kategória iránya |
+|---|---|
+| `bevétel`, `árbevétel`, `income`, `revenue`, `sales`, `Einnahme`, `Ertrag`, `Erlös` | **Bevétel** |
+| `kiadás`, `költség`, `ráfordítás`, `expense`, `cost`, `Ausgabe`, `Aufwand`, `Kosten` | **Kiadás** |
+| `mindkettő`, `bevétel és kiadás`, `both`, `income and expense`, `beide`, `Einnahme und Ausgabe` | **Mindkettő** |
+| üres cella, vagy nincs irány oszlop | **Mindkettő** |
+| bármilyen más szó | **Mindkettő**, és a sor mellett ez áll: **az irány nem értelmezhető** |
+
+A gyakori többes számú alakok is működnek (`kiadások`, `expenses`, `Ausgaben`).
+
+Az **Áttekintés** lépésben, még a létrehozás előtt három számot lát: hány kategória lesz bevétel, hány kiadás, és hány használható mindkettőhöz. Minden sor mellett ott az iránya. Ha néhány irány cellát nem sikerült értelmezni, egy sárga megjegyzés mutatja, hányat.
+
+Az olyan szavakat, mint a `bejövő` / `kimenő`, `in` / `out`, `incoming` / `outgoing`, `eingehend` / `ausgehend` és `debit` / `credit`, az importáló **szándékosan nem** olvassa el. Ezek a fájltól függően ellentétes irányt jelentenek: a bejövő számla kiadás, a bankszámlára bejövő pénz viszont bevétel. Használja helyettük a táblázat valamelyik szavát.
+
+A mindkettőhöz használható kategória a kimenő és a bejövő számláknál egyaránt felajánlásra kerül. A legtöbb kategória csak az egyik oldalhoz tartozik, ezért létrehozás előtt nézze meg a **mindkettő** számot. A kategória irányát később bármikor módosíthatja a kategória szerkesztő űrlapján.
+
 ## Több oszlopra bontott címek
 
 Az irodai exportok gyakran több oszlopra bontják a címet - irányítószám, város, utca, házszám. Az **Oszlopok hozzárendelése** lépésben a **Cím** mezőt több oszlophoz is hozzárendelheti: kattintson a **+ oszlop hozzáadása** lehetőségre, és válassza ki az egyes részeket. A részek sorrendben, egyetlen címmé fűződnek össze (például `1051`, `Budapest`, `Váci utca`, `1` ebből „1051, Budapest, Váci utca, 1" lesz). Az **Áttekintés** lépés mutatja az összeállított eredményt.
