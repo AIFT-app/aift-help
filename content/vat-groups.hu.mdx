@@ -1,0 +1,43 @@
+# Áfacsoportok (csoportos áfaalanyiság)
+
+Csoportos áfaalanyiságban több cég egyetlen NAV Online Számla fiókot használ. A NAV ezért egy kapcsolaton keresztül adja át a csoport összes tagjának számláit, és az AI Finance Teamnek minden számlánál el kell döntenie, melyik céghez tartozik. Ez az oldal leírja, hogyan állítja be az áfacsoportot, és hogyan dől el, hová kerül egy számla.
+
+Az áfacsoportokat a **Törzsadatok › Áfacsoportok** menüpontban találja. Egy csoport oldalán három fül van, a munka sorrendjében: **NAV-kapcsolat**, **Tagok** és **Besorolás**.
+
+## 1. NAV-kapcsolat
+
+A NAV-kapcsolatot a csoporton hozza létre, nem az egyik cégen, mert a NAV-fiók a csoporté. A csoport adószáma (csoportazonosító) a 9. számjegyén **5**-öst visel. A belépési adatok ugyanazok, mint egy egyedi cég kapcsolatánál (lásd: [NAV Online Számla](/nav-online-szamla)).
+
+## 2. Tagok
+
+A NAV nem ad listát a csoport tagjairól. A tagok a beérkező számlákból töltődnek fel: amikor egy számla megnevez egy tagot, az megjelenik a **Tagok** fülön. Minden tagnál két döntést hoz:
+
+- **Párosítás céghez…**: melyik cégéhez tartozik a tag. Ha a cég még nincs meg, az **Új cég ebből** gombbal létrehozhatja.
+- **Nem kezeljük ebben a munkaterületben**: a tag számláit nem ebben a munkaterületben kezelik. A cég ettől még lehet az ügyfelük, például ha a számláit egy másik munkaterületben könyvelik. Az ilyen tagok a **Nem itt kezeljük** csoportba kerülnek, és a **Mégis kezeljük** gombbal bármikor visszahozhatók. A tag számláiból ekkor nem lesz számla ebben a munkaterületben.
+
+Az **Ellenőrzés a NAV-nál** gomb tagonként megkérdezi a NAV-ot, valóban a csoport tagja-e a cég. A csoportképviselőt a párosított tagok közül választja ki (**Legyen csoportképviselő**).
+
+Amikor minden tag rendezve van, az oldal a **Tagok** fülön marad, és egy **Tovább a besoroláshoz** gomb viszi tovább, ha vannak besorolásra váró számlák.
+
+## 3. Hogyan dől el, melyik céghez kerül egy számla
+
+Csoportos áfaalanyiságban a számlán csak a csoport adószáma kötelező. A tag saját adószámát a szállítók nem mindig írják rá, és nem is egységesen: ugyanaz a vevőnév két különböző tag adószámával is előfordul. A számlára írt cégnév az, akinek a szállító ténylegesen számlázott, ezért az AI Finance Team ezt a sorrendet követi:
+
+1. **Megjegyzett döntés.** Ha korábban már besorolt egy szállító és vevőnév párost a **Jegyezd meg a döntésem** bejelölésével, a következő ilyen számla ugyanoda kerül.
+2. **A számlára írt cégnév.** Ha a vevő (kimenő számlánál a szállító) neve pontosan megegyezik egy párosított cég hivatalos nevével, rövid nevével vagy valamelyik alternatív nevével, és ez **pontosan egy** céget jelöl, a számla oda kerül. Az összevetés nem veszi figyelembe a kis- és nagybetűt, az ékezeteket, az írásjeleket és a cégforma végződést (Kft., Zrt.), de részleges vagy hasonló nevet nem fogad el.
+3. **A tag saját adószáma.** Csak ha a név nem dönt, akkor számít a tag adószáma, ha a szállító feltüntette.
+4. **Az Ön döntése.** Ha egyik sem egyértelmű, a számla a **Besorolás** fülre kerül.
+
+Egy cég alternatív neveit a cég adatlapján adhatja meg. Ha egy szállító rendszeresen más névvel írja a vevőt, egy alternatív név felvételével a számlái ezután maguktól a helyükre kerülnek.
+
+Egy már besorolt számla később nem kerül át másik céghez, akkor sem, ha egy nevet vagy párosítást megváltoztat.
+
+## 4. Besorolás
+
+A **Besorolás** fül szállító és vevőnév szerint csoportosítja a várakozó számlákat, így egy döntés több számlát is besorol. Ha a vevőnév megegyezik egy párosított cég nevével, a cég már ki van választva (**Névegyezés**). Ha ugyanazt a nevet több cégre is használták, a rendszer nem tippel.
+
+### Ha a név és az adószám mást mond
+
+Előfordul, hogy a számlára írt cégnév és a tag adószáma két különböző céget jelöl. Ilyenkor a számla a név szerinti céghez kerül, és megjelenik a **Besorolás** fül **A név és az adószám mást mond** listájában. Nézze át ezeket, és ha valamelyik rossz helyre került, a **Számla megnyitása** hivatkozással a számla saját oldalán tegye át a megfelelő céghez.
+
+> A besorolás azt dönti el, melyik cég könyveibe és áfabevallásába kerül a számla. Ha bizonytalan, hogy egy számla melyik tagé, kérdezze meg a csoportképviselőt vagy a könyvelőjét.

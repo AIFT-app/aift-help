@@ -34,6 +34,12 @@ export const navigation: NavItem[] = [
     slug: 'nav-online-szamla',
     title: { en: 'NAV Online Számla (Hungary)', hu: 'NAV Online Számla (Magyarország)', de: 'NAV Online Számla (Ungarn)' },
   },
+  // VAT groups (nav-vat-group-master-data, vat-group-routing-by-name): the app's page is
+  // "VAT groups" / "Áfacsoportok" / "USt-Gruppen" (nav.master_data.vat_groups).
+  {
+    slug: 'vat-groups',
+    title: { en: 'VAT Groups', hu: 'Áfacsoportok', de: 'USt-Gruppen' },
+  },
   { slug: 'partners', title: { en: 'Managing Partners', hu: 'Partnerek kezelése', de: 'Partner verwalten' } },
   // Payment approvals (invoice-payment-approval): the approver's article, then
   // the firm-side setup article. The app's sidebar item is "Approvals" /
