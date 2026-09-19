@@ -13,7 +13,7 @@ You connect NAV on the group, not on one of its companies, because the NAV accou
 NAV has no list of a group's members. Members appear as invoices arrive: when an invoice names a member, it shows up on the **Members** tab. For each member you make two decisions:
 
 - **Match to a company…**: which of your companies the member is. If the company does not exist yet, **New company from this** creates it.
-- **Not handled in this workspace**: this member's invoices are not handled in this workspace. The company can still be your client, for example when its books are kept in another workspace. Such members move to the **Not handled here** group, and **Handle here after all** brings them back. Their invoices do not become invoices in this workspace.
+- **Not a member of this group**: the member was only suggested from invoices, and the company is not actually in the VAT group (for example, **Check with NAV** did not confirm it). Such members move to the **Not group members** group, and **Is a member after all** brings them back. The company itself stays in **Master data › Entities**, and invoices from its own NAV connection are not affected. Invoices that name it on the group's NAV account do not become invoices here.
 
 **Check with NAV** asks NAV, one member at a time, whether the company really is in the group. You choose the group representative from the matched members (**Make group representative**).
 
