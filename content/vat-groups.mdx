@@ -15,6 +15,8 @@ NAV has no list of a group's members. Members appear as invoices arrive: when an
 - **Match to a company…**: which of your companies the member is. If the company does not exist yet, **New company from this** creates it.
 - **Not a member of this group**: the member was only suggested from invoices, and the company is not actually in the VAT group (for example, **Check with NAV** did not confirm it). Such members move to the **Not group members** group, and **Is a member after all** brings them back. The company itself stays in **Master data › Companies**, and invoices from its own NAV connection are not affected. When an invoice on the group's NAV account carries this member's tax number and a company with that tax number exists here, the invoice goes to that company and you can check it on the **Filing** tab. If there is no such company, it does not become an invoice here.
 
+When you match a member to a company, the waiting invoices on the group's NAV account that NAV attributed to that member **and** those whose printed name is exactly that company's name are both filed to it. The confirmation says how many invoices that was. Invoices that are already filed never move.
+
 **Check with NAV** asks NAV, one member at a time, whether the company really is in the group. You choose the group representative from the matched members (**Make group representative**).
 
 When every member is sorted, the page stays on the **Members** tab and a **Go to filing** button takes you on when invoices are waiting.
