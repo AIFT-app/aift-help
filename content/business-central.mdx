@@ -117,6 +117,28 @@ Unpair from the same page, or from the entity's own page. Unpairing removes the 
 
 ---
 
+## Accounts as categories
+
+Business Central cannot create a ledger account through its API, so the client's chart of accounts stays theirs. To let an AIFT category name a ledger account, bring the accounts into AIFT as categories.
+
+Open **Master data > Accounting categories** and choose **Import accounts from Business Central**. The button is on both the **Invoice** and the **Cash** tab.
+
+At the top, **Create as** decides what each ticked account becomes:
+
+- **Invoice categories**: for invoice lines.
+- **Cash categories**: for bank movements.
+- **Both**: one invoice category and one cash category with the same account number. They stay two separate categories, so renaming one does not rename the other.
+
+The list shows the accounts that do not have a category of the chosen kind yet. Tick the ones you want, check the direction, then choose **Create**. The next screen shows exactly what will be created and what is skipped, and nothing is written until you confirm.
+
+**The account number is what identifies the category.** Two accounts with different numbers become two categories even when they have the same name. An account number that already has a category of that kind is skipped and left as it is.
+
+### Copying invoice categories to cash categories
+
+On the **Cash** tab, **Copy from invoice categories** creates a cash category for every invoice category the cash side does not have yet, with the same account number, name and direction. It shows the counts first and changes nothing that already exists. Built-in categories are not copied, because the cash side has its own.
+
+---
+
 ## Who can set this up
 
 A workspace administrator or the client owner can connect and disconnect. Everyone else in the workspace can see the status but cannot change it.
