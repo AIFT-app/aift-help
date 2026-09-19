@@ -1,10 +1,10 @@
 # Cégek kezelése
 
-A cégek azok a vállalatok, magánszemélyek és szervezetek, amelyek megjelennek a számláin és bankszámlakivonatain - szállítók, vevők és a saját jogi személyei. Ha ezeket pontosan tartja az AI Finance Teamben, az AI helyesen ismeri fel a partnereket, gyorsabban kategorizálja a dokumentumokat, és kevesebb kivétel igényel kézi átnézést.
+A cégek az ügyfele saját vállalkozásai: azok a jogi személyek, amelyeknek a számláit és bankszámláit ez a munkaterület könyveli. A szállítók és a vevők partnerek, nem cégek (lásd [Partnerek kezelése](/partners)). Ha a cégeket pontosan tartja az AI Finance Teamben, az AI meg tudja állapítani, melyik számla bevétel és melyik kiadás, felismeri a saját számlák közötti átvezetéseket, és kevesebb kivétel igényel kézi átnézést.
 
 ## Mi az a cég?
 
-A cég egy rekord, amely egy valós felet képvisel. A munkaterületén minden cég a következőket tartalmazza:
+A cég egy rekord, amely az ügyfele egyik saját jogi személyét képviseli. A munkaterületén minden cég a következőket tartalmazza:
 
 - **Cégnév** - a dokumentumokon használt hivatalos, bejegyzett név
 - **Ország** - a bejegyzés országa
@@ -20,6 +20,16 @@ A cég egy rekord, amely egy valós felet képvisel. A munkaterületén minden c
 
 A munkaterület oldalsávjában kattintson a **Törzsadatok**, majd a **Cégek** menüpontra. Ez az oldal a munkaterület összes aktív cégét felsorolja. Az archivált cégek külön szakaszban jelennek meg az aktív lista alatt.
 
+### NAV-jelzés az adószám mellett
+
+A magyar cégeknél az **Adószám** oszlopban egy kis **NAV** jelzés látható, ha a számlaadatok a NAV Online Számlából érkeznek:
+
+- **Épület ikon:** a cégnek saját NAV-kapcsolata van.
+- **Csoport ikon:** a cég egy áfacsoport (csoportos áfaalany) párosított tagja, és a csoport NAV-kapcsolata fedi le. Ezt a kapcsolatot az áfacsoportnál javítsa vagy szüneteltesse, ne a cégnél.
+- A **zöld** jelzés azt jelenti, hogy a kapcsolat szinkronizál. A **szürke** azt, hogy be van állítva, de most nem szinkronizál: szünetel, még nem indult el, vagy a legutóbbi szinkron sikertelen volt. Ha az egeret a jelzés fölé viszi, látja, melyik.
+
+Ha nincs jelzés, a NAV nem fedi le a céget.
+
 ## Cég felvétele
 
 1. Kattintson a jobb felső sarokban a **Cég hozzáadása** gombra.
@@ -28,7 +38,7 @@ A munkaterület oldalsávjában kattintson a **Törzsadatok**, majd a **Cégek**
 
 A rendszer közvetlenül a cég részletező oldalára viszi, ahol felveheti az összes további mezőt: EU adószám, cégjegyzékszám, alternatív nevek, bankszámlák, elérhetőségek és párosítási környezet. Nem kell mindent egyszerre megadni - töltse ki azt, ami most megvan, és térjen vissza később, ahogy többet megtud.
 
-> **Megjegyzés:** Az adószámoknak egyedinek kell lenniük a munkaterületen belül. Ha olyan adószámot ad meg, amelyet már használ egy másik aktív cég, hibaüzenetet kap, és a cég nem jön létre.
+> **Egy adószám, egy cég.** Egy munkaterületen minden cég csak egyszer szerepel. Gépelés közben az AI Finance Team összeveti az adószámot a meglévő cégekkel, bármilyen írásmódban (`12345678-2-41`, `12345678` és `HU12345678` ugyanaz a cég). Ha a cég már létezik, az űrlap megnevezi és hivatkozik rá, a **Cég létrehozása** gomb pedig nem kattintható. Az archivált cégek nem számítanak. Csoportazonosítót soha nem tekintünk egy cég saját adószámának.
 
 ## Cég szerkesztése
 
@@ -36,7 +46,7 @@ Nyissa meg a céget a nevére kattintva a listában. A részletező oldal minden
 
 ### Azonosítás
 
-Módosíthatja a cégnevet, az országot, az adószámot, az EU adószámot vagy a cégjegyzékszámot. Ha végzett, kattintson a **Mentés** gombra. Ha az új adószám ütközik a munkaterület egy másik aktív cégével, a mentés hibaüzenettel elakad.
+Módosíthatja a cégnevet, az országot, az adószámot, az EU adószámot vagy a cégjegyzékszámot. Ha végzett, kattintson a **Mentés** gombra. Ha az új adószám már a munkaterület egy másik cégéhez tartozik, az űrlap megnevezi azt a céget, és a **Mentés** gomb nem kattintható.
 
 #### Hogyan függ össze az adószám és az EU adószám
 
@@ -95,7 +105,7 @@ Az archivált cégek:
 
 Az archiváláshoz nyissa meg a céget, görgessen a **Veszélyes zóna** szakaszhoz, és kattintson a **Cég archiválása** gombra.
 
-A visszaállításhoz görgessen le a céglista oldalon az **Archivált cégek** szakaszhoz, és kattintson a **Visszaállítás** gombra.
+A visszaállításhoz görgessen le a céglista oldalon az **Archivált cégek** szakaszhoz, és kattintson a **Visszaállítás** gombra. Ha az archiválás alatt egy másik cég kapta meg ugyanezt az adószámot, a visszaállítás nem sikerül, és az üzenet megnevezi azt a céget.
 
 ## Cég végleges törlése
 

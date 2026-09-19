@@ -33,7 +33,7 @@ AI Finance Team reads the first page of the statement and looks up the account n
 
 Matching works with both IBAN format (`HU12 3456 7890 1234 5678 0000 0000`) and domestic account number format (`34567890-12345678`). Spaces and hyphens are ignored during comparison.
 
-If the bank account does not exist yet in your workspace but the account is listed under one of your entities in **Master Data → Entities**, the account is created automatically and linked to that entity.
+If the bank account does not exist yet in your workspace but the account is listed under one of your companies in **Master Data → Companies**, the account is created automatically and linked to that company.
 
 ## Statements Tab
 
@@ -93,7 +93,7 @@ If extraction failed or produced incorrect results, contact your accountant. Acc
 
 ## Tips
 
-- **Match accounts before uploading.** If you add bank account details under **Master Data → Entities** before uploading, the statement will match automatically - no manual assignment needed.
+- **Match accounts before uploading.** If you add bank account details under **Master Data → Companies** before uploading, the statement will match automatically - no manual assignment needed.
 - **Upload one period at a time.** Overlapping statements from the same account will be deduplicated, but keeping periods clean makes reconciliation easier.
 - **Check the Statements tab for status.** If you uploaded a file and see no new transactions, check the Statements tab - the row shows whether extraction is still running or needs attention.
 - **Large statements take longer.** A 20-page statement processes page by page; expect a few minutes for completion.
