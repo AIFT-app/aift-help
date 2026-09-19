@@ -13,7 +13,7 @@ Sie verbinden NAV mit der Gruppe, nicht mit einem ihrer Unternehmen, weil das NA
 NAV liefert keine Liste der Gruppenmitglieder. Die Mitglieder erscheinen mit den eingehenden Rechnungen: Sobald eine Rechnung ein Mitglied nennt, erscheint es im Reiter **Mitglieder**. Für jedes Mitglied treffen Sie zwei Entscheidungen:
 
 - **Unternehmen zuordnen…**: welches Ihrer Unternehmen das Mitglied ist. Gibt es das Unternehmen noch nicht, legt **Neues Unternehmen daraus** es an.
-- **Kein Mitglied dieser Gruppe**: Das Mitglied wurde nur anhand von Rechnungen vorgeschlagen, und das Unternehmen gehört nicht zur USt-Gruppe (zum Beispiel hat **Bei NAV prüfen** es nicht bestätigt). Solche Mitglieder stehen unter **Keine Gruppenmitglieder**, und **Doch Mitglied** holt sie zurück. Das Unternehmen selbst bleibt unter **Stammdaten › Unternehmen**, und Rechnungen über seine eigene NAV-Verbindung sind nicht betroffen. Rechnungen, die es über das NAV-Konto der Gruppe nennen, werden hier nicht zu Rechnungen.
+- **Kein Mitglied dieser Gruppe**: Das Mitglied wurde nur anhand von Rechnungen vorgeschlagen, und das Unternehmen gehört nicht zur USt-Gruppe (zum Beispiel hat **Bei NAV prüfen** es nicht bestätigt). Solche Mitglieder stehen unter **Keine Gruppenmitglieder**, und **Doch Mitglied** holt sie zurück. Das Unternehmen selbst bleibt unter **Stammdaten › Unternehmen**, und Rechnungen über seine eigene NAV-Verbindung sind nicht betroffen. Trägt eine Rechnung über das NAV-Konto der Gruppe die Steuernummer dieses Mitglieds und gibt es hier ein Unternehmen mit dieser Steuernummer, geht die Rechnung an dieses Unternehmen, und Sie können sie im Reiter **Zuordnung** prüfen. Gibt es kein solches Unternehmen, wird daraus hier keine Rechnung.
 
 **Bei NAV prüfen** fragt NAV für jedes Mitglied, ob das Unternehmen tatsächlich zur Gruppe gehört. Den Gruppenvertreter wählen Sie aus den zugeordneten Mitgliedern (**Zum Gruppenvertreter machen**).
 
@@ -34,10 +34,10 @@ Eine bereits zugeordnete Rechnung wechselt später nie zu einem anderen Unterneh
 
 ## 4. Zuordnung
 
-Der Reiter **Zuordnung** gruppiert wartende Rechnungen nach Lieferant und Käufername, sodass eine Entscheidung mehrere Rechnungen zuordnet. Stimmt der Käufername mit dem Namen eines zugeordneten Unternehmens überein, ist dieses bereits ausgewählt (**Name stimmt überein**). Wurde derselbe Name für mehrere Unternehmen verwendet, wird nichts geraten.
+Der Reiter **Zuordnung** gruppiert wartende Rechnungen nach Lieferant und Käufername, sodass eine Entscheidung mehrere Rechnungen zuordnet. Stimmt der Käufername mit dem Namen eines zugeordneten Unternehmens überein, ist dieses bereits ausgewählt (**Name stimmt überein**). Trägt die Rechnung die Steuernummer eines als kein Gruppenmitglied markierten Unternehmens und gibt es dieses hier, ist stattdessen dieses ausgewählt (**Gleiche Steuernummer**). Wurde derselbe Name für mehrere Unternehmen verwendet, wird nichts geraten.
 
 ### Wenn Name und Steuernummer nicht zusammenpassen
 
-Manchmal zeigen der gedruckte Firmenname und die Steuernummer des Mitglieds auf zwei verschiedene Unternehmen. Die Rechnung geht dann an das Unternehmen, das der Name bezeichnet, und erscheint im Reiter **Zuordnung** unter **Name und Steuernummer passen nicht zusammen**. Prüfen Sie diese Rechnungen und verschieben Sie eine falsch zugeordnete über **Rechnung öffnen** auf der Seite der Rechnung zum richtigen Unternehmen.
+Manchmal zeigen der gedruckte Firmenname und die Steuernummer des Mitglieds auf zwei verschiedene Unternehmen. Die Rechnung geht dann an das Unternehmen, das der Name bezeichnet, und erscheint im Reiter **Zuordnung** unter **Name und Steuernummer passen nicht zusammen**. Dieselbe Liste zeigt Rechnungen, die nach der Steuernummer eines als kein Gruppenmitglied markierten Unternehmens zugeordnet wurden (**Nach der Steuernummer zugeordnet**). Prüfen Sie diese Rechnungen und verschieben Sie eine falsch zugeordnete über **Rechnung öffnen** auf der Seite der Rechnung zum richtigen Unternehmen.
 
 > Die Zuordnung entscheidet, in welche Bücher und in welche USt-Erklärung eine Rechnung gelangt. Wenn Sie unsicher sind, zu welchem Mitglied eine Rechnung gehört, fragen Sie den Gruppenvertreter oder Ihre Steuerberatung.

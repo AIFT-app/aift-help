@@ -13,7 +13,7 @@ A NAV-kapcsolatot a csoporton hozza létre, nem az egyik cégen, mert a NAV-fió
 A NAV nem ad listát a csoport tagjairól. A tagok a beérkező számlákból töltődnek fel: amikor egy számla megnevez egy tagot, az megjelenik a **Tagok** fülön. Minden tagnál két döntést hoz:
 
 - **Párosítás céghez…**: melyik cégéhez tartozik a tag. Ha a cég még nincs meg, az **Új cég ebből** gombbal létrehozhatja.
-- **Nem tagja a csoportnak**: a tagot csak a számlák alapján javasoltuk, de a cég valójában nem tagja az áfacsoportnak (például a NAV-nál végzett ellenőrzés sem erősítette meg). Az ilyen tagok a **Nem tagjai a csoportnak** csoportba kerülnek, és a **Mégis tagja** gombbal bármikor visszahozhatók. A cég ettől a **Törzsadatok › Cégek** között marad, és a saját NAV-kapcsolatán érkező számláit ez nem érinti. A csoport NAV-fiókján érkező, erre a cégre szóló számlákból viszont nem lesz számla.
+- **Nem tagja a csoportnak**: a tagot csak a számlák alapján javasoltuk, de a cég valójában nem tagja az áfacsoportnak (például a NAV-nál végzett ellenőrzés sem erősítette meg). Az ilyen tagok a **Nem tagjai a csoportnak** csoportba kerülnek, és a **Mégis tagja** gombbal bármikor visszahozhatók. A cég ettől a **Törzsadatok › Cégek** között marad, és a saját NAV-kapcsolatán érkező számláit ez nem érinti. Ha a csoport NAV-fiókján olyan számla érkezik, amely ennek a tagnak az adószámát viseli, és ezzel az adószámmal van cég a munkaterületben, a számla ahhoz a céghez kerül, és a **Besorolás** fülön ellenőrizheti. Ha nincs ilyen cég, a számlából itt nem lesz számla.
 
 Az **Ellenőrzés a NAV-nál** gomb tagonként megkérdezi a NAV-ot, valóban a csoport tagja-e a cég. A csoportképviselőt a párosított tagok közül választja ki (**Legyen csoportképviselő**).
 
@@ -34,10 +34,10 @@ Egy már besorolt számla később nem kerül át másik céghez, akkor sem, ha 
 
 ## 4. Besorolás
 
-A **Besorolás** fül szállító és vevőnév szerint csoportosítja a várakozó számlákat, így egy döntés több számlát is besorol. Ha a vevőnév megegyezik egy párosított cég nevével, a cég már ki van választva (**Névegyezés**). Ha ugyanazt a nevet több cégre is használták, a rendszer nem tippel.
+A **Besorolás** fül szállító és vevőnév szerint csoportosítja a várakozó számlákat, így egy döntés több számlát is besorol. Ha a vevőnév megegyezik egy párosított cég nevével, a cég már ki van választva (**Névegyezés**). Ha a számla egy nem tagként jelölt cég adószámát viseli, és ilyen cég van a munkaterületben, az a cég van kiválasztva (**Adószám-egyezés**). Ha ugyanazt a nevet több cégre is használták, a rendszer nem tippel.
 
 ### Ha a név és az adószám mást mond
 
-Előfordul, hogy a számlára írt cégnév és a tag adószáma két különböző céget jelöl. Ilyenkor a számla a név szerinti céghez kerül, és megjelenik a **Besorolás** fül **A név és az adószám mást mond** listájában. Nézze át ezeket, és ha valamelyik rossz helyre került, a **Számla megnyitása** hivatkozással a számla saját oldalán tegye át a megfelelő céghez.
+Előfordul, hogy a számlára írt cégnév és a tag adószáma két különböző céget jelöl. Ilyenkor a számla a név szerinti céghez kerül, és megjelenik a **Besorolás** fül **A név és az adószám mást mond** listájában. Ugyanitt látja azokat a számlákat is, amelyek egy nem tagként jelölt cég adószáma alapján kerültek a céghez (**Az adószám alapján ide került**). Nézze át ezeket, és ha valamelyik rossz helyre került, a **Számla megnyitása** hivatkozással a számla saját oldalán tegye át a megfelelő céghez.
 
 > A besorolás azt dönti el, melyik cég könyveibe és áfabevallásába kerül a számla. Ha bizonytalan, hogy egy számla melyik tagé, kérdezze meg a csoportképviselőt vagy a könyvelőjét.
