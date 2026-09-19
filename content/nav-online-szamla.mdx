@@ -6,10 +6,10 @@ This connection is **read-only**. AI Finance Team only *reads* invoice data from
 
 ## Before You Start
 
-- This feature is available only for entities whose country is **Hungary (HU)**. Non-Hungarian entities will not see the NAV section.
+- This feature is available only for companies whose country is **Hungary (HU)**. Non-Hungarian companies will not see the NAV section.
 - The connection can be set up by a **client owner** or an **accountant admin**. (In practice accounting offices usually create the NAV technical user themselves, so they can start the connection too.) Other roles can see the connection *status* but never the credentials.
 - You need a **NAV technical user** ("technikai felhasználó"), which you create inside your own NAV account. Specifically, AI Finance Team needs:
-  - the entity's **tax number** (the 8-digit core),
+  - the company's **tax number** (the 8-digit core),
   - the technical user's **login**,
   - the technical user's **password**,
   - the technical user's **XML signing key** ("aláírókulcs").
@@ -27,7 +27,7 @@ Your credentials are stored encrypted in a secure vault. **Once saved, nobody ca
 
 ## Connecting in AI Finance Team
 
-1. From the workspace sidebar, open **Master data → Entities** and select your Hungarian entity.
+1. From the workspace sidebar, open **Master data → Companies** and select your Hungarian company.
 2. Scroll to the **NAV Online Számla** section.
 3. Enter the tax number, technical-user login, password, and signing key.
 4. Click **Save & verify**. AI Finance Team immediately checks the credentials against NAV and pulls your most recent invoices, so you can see straight away whether the connection works - or exactly what NAV rejected.
@@ -44,7 +44,7 @@ Syncing only begins **after you start it** - a large history download never star
 
 - **NAV-only invoices become real ledger entries** even before any PDF exists. These show as *document-less* until a matching PDF is uploaded.
 - When you (or your supplier's document) later upload the **PDF** for an invoice already pulled from NAV, the two are **merged into a single invoice** - no duplicate. The PDF becomes the viewable document; NAV's government-validated amounts remain authoritative.
-- **Income vs. expense is set from NAV's direction**: invoices NAV reports as *outbound* for your entity are income; *inbound* are expenses.
+- **Income vs. expense is set from NAV's direction**: invoices NAV reports as *outbound* for your company are income; *inbound* are expenses.
 - If NAV's figures disagree with an uploaded document beyond a small tolerance, the invoice is flagged as an **exception** for your accountant to review - nothing is silently overwritten.
 
 - **Invoices to private individuals arrive with no buyer at all.** NAV is not permitted to report personal data, so it states only that the buyer is a private individual. Nominate one partner to book them to and they stop landing without a partner - see [Managing Partners](/partners).
@@ -62,4 +62,4 @@ Syncing only begins **after you start it** - a large history download never star
 ## Troubleshooting
 
 - **"Last sync error"** in the status panel usually means the credentials were rejected by NAV. Re-check the login, password, and signing key, then **Update credentials** and **Test connection** again. (NAV technical-user passwords expire periodically and must be rotated.)
-- If no invoices appear after connecting, confirm the technical user has the **invoice query** permission in NAV and that the entity's tax number is correct.
+- If no invoices appear after connecting, confirm the technical user has the **invoice query** permission in NAV and that the company's tax number is correct.

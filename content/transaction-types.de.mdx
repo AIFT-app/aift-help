@@ -35,13 +35,13 @@ Diese Typen enthalten bereits gängige Muster auf Basis typischer Bankbeschreibu
 
 Wenn Sie Geld zwischen zwei Ihrer eigenen Bankkonten bewegen - meist EUR in HUF umwandeln oder ein Konto vom anderen aufladen -, gibt es keine Rechnung, weil beide Seiten dasselbe Unternehmen sind.
 
-AI Finance Team erkennt dies automatisch und verlässt sich **nicht** allein auf den Beschreibungstext. Wenn das andere Konto einer Transaktion ein Bankkonto einer Ihrer [Gesellschaften](/master-data-entities) ist (per IBAN oder Kontonummer abgeglichen), wird die Transaktion:
+AI Finance Team erkennt dies automatisch und verlässt sich **nicht** allein auf den Beschreibungstext. Wenn das andere Konto einer Transaktion ein Bankkonto eines Ihrer [Unternehmen](/master-data-entities) ist (per IBAN oder Kontonummer abgeglichen), wird die Transaktion:
 
 - mit dem Typ **Interne Umbuchung** versehen,
 - als **Keine Rechnung nötig** markiert und
-- mit einem speziellen **Eigene Gesellschaft**-Partner verknüpft statt mit einem überflüssigen Lieferantendatensatz (siehe [Partner verwalten](/partners#interne-überweisungen-zwischen-ihren-eigenen-konten)).
+- mit einem speziellen **Eigenes Unternehmen**-Partner verknüpft statt mit einem überflüssigen Lieferantendatensatz (siehe [Partner verwalten](/partners#interne-überweisungen-zwischen-ihren-eigenen-konten)).
 
-Da dies auf Ihren gespeicherten Kontonummern beruht - nicht auf fälschbarem Text -, halten Sie die Bankkonten jeder Gesellschaft unter **Stammdaten → Gesellschaften** aktuell.
+Da dies auf Ihren gespeicherten Kontonummern beruht - nicht auf fälschbarem Text -, halten Sie die Bankkonten jedes Unternehmens unter **Stammdaten → Unternehmen** aktuell.
 
 ### Einen neuen Typ anlegen
 

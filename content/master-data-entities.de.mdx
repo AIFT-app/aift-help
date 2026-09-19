@@ -1,10 +1,10 @@
 # Unternehmen verwalten
 
-Unternehmen sind die Firmen, Personen und Organisationen, die auf Ihren Rechnungen und Kontoauszügen erscheinen - Lieferanten, Kunden und Ihre eigenen juristischen Personen. Sie in AI Finance Team gepflegt zu halten bedeutet, dass die KI Partner korrekt erkennt, Belege schneller kategorisiert und weniger Ausnahmen manuell geprüft werden müssen.
+Unternehmen sind die eigenen Firmen Ihres Mandanten: die juristischen Personen, deren Rechnungen und Bankkonten dieser Arbeitsbereich bucht. Lieferanten und Kunden sind Partner, keine Unternehmen (siehe [Partner verwalten](/partners)). Sie in AI Finance Team gepflegt zu halten bedeutet, dass die KI erkennt, welche Rechnungen Einnahmen und welche Ausgaben sind, Umbuchungen zwischen eigenen Konten erkennt und weniger Ausnahmen manuell geprüft werden müssen.
 
 ## Was ist ein Unternehmen?
 
-Ein Unternehmen ist ein Datensatz, der eine reale Partei abbildet. Jedes Unternehmen in Ihrem Arbeitsbereich enthält:
+Ein Unternehmen ist ein Datensatz, der eine der eigenen juristischen Personen Ihres Mandanten abbildet. Jedes Unternehmen in Ihrem Arbeitsbereich enthält:
 
 - **Firmenname** - der offizielle, eingetragene Name, der auf Belegen verwendet wird
 - **Land** - das Land der Eintragung
@@ -20,6 +20,16 @@ Ein Unternehmen ist ein Datensatz, der eine reale Partei abbildet. Jedes Unterne
 
 Klicken Sie in der Seitenleiste des Arbeitsbereichs auf **Stammdaten** und dann auf **Unternehmen**. Diese Seite listet alle aktiven Unternehmen Ihres Arbeitsbereichs auf. Archivierte Unternehmen erscheinen in einem eigenen Abschnitt unter der aktiven Liste.
 
+### NAV-Kennzeichen neben der Steuernummer
+
+Bei ungarischen Unternehmen zeigt die Spalte **Steuernummer** ein kleines **NAV**-Kennzeichen, wenn Rechnungsdaten aus NAV Online Számla eingehen:
+
+- **Gebäude-Symbol:** Das Unternehmen hat eine eigene NAV-Verbindung.
+- **Gruppen-Symbol:** Das Unternehmen ist ein zugeordnetes Mitglied einer umsatzsteuerlichen Organschaft (csoportos áfaalany), und die NAV-Verbindung der Gruppe deckt es ab. Korrigieren oder pausieren Sie diese Verbindung bei der Organschaft, nicht beim Unternehmen.
+- **Grün** bedeutet, dass die Verbindung synchronisiert. **Grau** bedeutet, dass sie eingerichtet ist, aber gerade nicht synchronisiert: pausiert, noch nicht gestartet, oder die letzte Synchronisierung ist fehlgeschlagen. Fahren Sie mit der Maus über das Kennzeichen, um den Grund zu sehen.
+
+Ohne Kennzeichen deckt NAV das Unternehmen nicht ab.
+
 ## Ein Unternehmen anlegen
 
 1. Klicken Sie oben rechts auf **Unternehmen hinzufügen**.
@@ -28,7 +38,7 @@ Klicken Sie in der Seitenleiste des Arbeitsbereichs auf **Stammdaten** und dann 
 
 Sie gelangen direkt zur Detailseite des Unternehmens, wo Sie alle übrigen Felder ergänzen können: USt-IdNr., Firmenbuchnummer, alternative Namen, Bankkonten, Kontaktdaten und Zuordnungskontext. Sie müssen nicht alles auf einmal eingeben - tragen Sie ein, was Sie jetzt haben, und kommen Sie später darauf zurück.
 
-> **Hinweis:** Steuernummern müssen innerhalb eines Arbeitsbereichs eindeutig sein. Geben Sie eine Steuernummer ein, die bereits von einem anderen aktiven Unternehmen verwendet wird, erscheint eine Fehlermeldung, und das Unternehmen wird nicht angelegt.
+> **Ein Unternehmen pro Steuernummer.** Ein Arbeitsbereich enthält jedes Unternehmen nur einmal. Schon während der Eingabe vergleicht AI Finance Team die Steuernummer mit den vorhandenen Unternehmen, in jeder Schreibweise (`12345678-2-41`, `12345678` und `HU12345678` sind dasselbe Unternehmen). Gibt es das Unternehmen bereits, nennt das Formular es und verlinkt darauf, und **Unternehmen erstellen** bleibt deaktiviert. Archivierte Unternehmen zählen nicht. Eine Gruppenkennung gilt nie als eigene Steuernummer eines Unternehmens.
 
 ## Ein Unternehmen bearbeiten
 
@@ -36,7 +46,7 @@ Sie gelangen direkt zur Detailseite des Unternehmens, wo Sie alle übrigen Felde
 
 ### Identität
 
-Ändern Sie Firmenname, Land, Steuernummer, USt-IdNr. oder Firmenbuchnummer. Klicken Sie anschließend auf **Speichern**. Kollidiert die neue Steuernummer mit einem anderen aktiven Unternehmen im Arbeitsbereich, wird das Speichern mit einer Fehlermeldung blockiert.
+Ändern Sie Firmenname, Land, Steuernummer, USt-IdNr. oder Firmenbuchnummer. Klicken Sie anschließend auf **Speichern**. Gehört die neue Steuernummer bereits einem anderen Unternehmen im Arbeitsbereich, nennt das Formular dieses Unternehmen, und **Speichern** bleibt deaktiviert.
 
 #### Wie Steuernummer und USt-IdNr. zusammenhängen
 
@@ -95,7 +105,7 @@ Archivierte Unternehmen:
 
 Zum Archivieren öffnen Sie das Unternehmen, scrollen zum Abschnitt **Gefahrenbereich** und klicken auf **Unternehmen archivieren**.
 
-Zum Wiederherstellen scrollen Sie auf der Unternehmensliste zum Abschnitt **Archivierte Unternehmen** und klicken auf **Wiederherstellen**.
+Zum Wiederherstellen scrollen Sie auf der Unternehmensliste zum Abschnitt **Archivierte Unternehmen** und klicken auf **Wiederherstellen**. Hat während der Archivierung ein anderes Unternehmen dieselbe Steuernummer erhalten, wird die Wiederherstellung abgelehnt, und die Meldung nennt dieses Unternehmen.
 
 ## Ein Unternehmen endgültig löschen
 
