@@ -117,6 +117,28 @@ Heben Sie die Zuordnung auf derselben Seite oder auf der Seite der Einheit auf. 
 
 ---
 
+## Sachkonten als Kategorien
+
+Über die API von Business Central lässt sich kein Sachkonto anlegen, der Kontenplan bleibt also der des Mandanten. Damit eine AIFT-Kategorie auf ein Sachkonto verweisen kann, übernehmen Sie die Sachkonten als Kategorien in AIFT.
+
+Öffnen Sie **Stammdaten > Buchhaltungskategorien** und wählen Sie **Konten aus Business Central importieren**. Die Schaltfläche finden Sie auf dem Reiter **Rechnung** und auf dem Reiter **Cashflow**.
+
+Oben legt **Anlegen als** fest, was aus jedem angehakten Sachkonto wird:
+
+- **Rechnungskategorien**: für Rechnungszeilen.
+- **Cashflow-Kategorien**: für Bankbewegungen.
+- **Beides**: eine Rechnungs- und eine Cashflow-Kategorie mit derselben Kontonummer. Es bleiben zwei getrennte Kategorien, eine Umbenennung der einen benennt die andere nicht um.
+
+Die Liste zeigt die Sachkonten, zu denen es noch keine Kategorie der gewählten Art gibt. Haken Sie die gewünschten an, prüfen Sie die Richtung und wählen Sie **Anlegen**. Der nächste Schritt zeigt genau, was angelegt und was übersprungen wird, und bis zu Ihrer Bestätigung wird nichts geschrieben.
+
+**Die Kontonummer identifiziert die Kategorie.** Zwei Sachkonten mit unterschiedlichen Nummern werden zu zwei Kategorien, auch wenn sie gleich heißen. Eine Kontonummer, zu der es bereits eine Kategorie dieser Art gibt, wird übersprungen und bleibt unverändert.
+
+### Rechnungskategorien als Cashflow-Kategorien kopieren
+
+Auf dem Reiter **Cashflow** legt **Aus Rechnungskategorien kopieren** für jede Rechnungskategorie, die es auf der Cashflow-Seite noch nicht gibt, eine Cashflow-Kategorie mit derselben Kontonummer, Bezeichnung und Richtung an. Sie sehen zuerst die Anzahl, und nichts Bestehendes wird geändert. Integrierte Kategorien werden nicht kopiert, weil die Cashflow-Seite eigene hat.
+
+---
+
 ## Wer die Einrichtung vornehmen kann
 
 Eine Arbeitsbereichsadministratorin oder der Mandanteninhaber kann verbinden und trennen. Alle übrigen Mitglieder des Arbeitsbereichs sehen den Status, können ihn aber nicht ändern.
