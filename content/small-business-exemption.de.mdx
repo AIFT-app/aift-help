@@ -1,0 +1,70 @@
+# Kleinunternehmerbefreiung
+
+Ein Unternehmen unterhalb der gesetzlichen Umsatzgrenze kann darauf verzichten, USt in Rechnung zu stellen - die österreichische und deutsche *Kleinunternehmerregelung*, in Ungarn *alanyi adómentesség*. Es stellt Rechnungen ohne USt aus, zieht keine Vorsteuer ab und gibt in der Regel keine USt-Erklärung ab. AI Finance Team führt dies als Einstellung auf der **Gesellschaft** (der Entität); ist sie eingeschaltet, folgt die USt-Codierung automatisch daraus.
+
+Dieser Artikel beschreibt, was der Schalter tut, was er bewusst nicht tut, die Vorlage, die die USt-Stammdaten anlegt, warum manche Positionen absichtlich zur Prüfung landen, wie die gebuchten Beträge angezeigt werden und was zu tun ist, wenn der Mandant aus der Befreiung ausscheidet.
+
+## Wo der Schalter ist
+
+Öffnen Sie **Stammdaten → Gesellschaften**, wählen Sie die Gesellschaft und den Tab **Steuer**. Unter **USt-Einstellungen** setzen Sie das Häkchen bei **Kleinunternehmer**. Zwei Datumsfelder erscheinen:
+
+- **Befreit ab** - das erste USt-Datum, für das die Befreiung gilt.
+- **Befreit bis** - das letzte. Lassen Sie es leer, solange die Befreiung unbefristet ist.
+
+Ob eine Rechnung als befreit behandelt wird, entscheidet sich **je Rechnung anhand ihres USt-Datums** gegen diesen Zeitraum. Eine Rechnung vor oder nach dem Zeitraum wird als gewöhnlicher steuerpflichtiger Beleg behandelt. Ändern Sie das USt-Datum einer Rechnung von Hand, entscheidet das geänderte Datum.
+
+Verwechseln Sie dies nicht mit der Partner-USt-Gruppe **Kleinunternehmer-Lieferant**: Diese beschreibt einen *Lieferanten*, der befreit ist, und ist eines der fünf Elemente eines USt-Codes. Der Schalter auf der Gesellschaft betrifft den Status *Ihres Mandanten selbst*.
+
+## Was der Schalter tut
+
+Solange die Befreiung am USt-Datum einer Position in Kraft ist, passiert genau eines: Die **Produkt-/Leistungs-USt-Gruppe** der Position wird auf **Kleinunternehmerbefreiung (eigene Gesellschaft)** gesetzt, eine zu 100% nicht abziehbare Gruppe. Sie wird beim ersten Bedarf für den Arbeitsbereich angelegt. Die übrigen Elemente - Partnergruppe, Satz, Berechnungsmethode - stammen weiterhin aus dem Beleg und der normalen Auflösung; der Schalter kann keinen USt-Code aus dem Nichts erfinden.
+
+Bei **Ausgangs**positionen kommt eines hinzu: Der Satz wird auf **Kleinunternehmerbefreiung (AAM)** gesetzt, das eigene Satzelement der Befreiung - es sei denn, der Beleg weist USt über null aus; dann wird nichts erzwungen und die Position wird markiert (siehe unten).
+
+Das Ergebnis ist, was ein Buchhalter von Hand tut: Einkäufe werden **brutto im Nettofeld mit null USt gebucht**, Verkäufe tragen den Befreiungssatz mit eigener Erklärungszeile.
+
+## Die Vorlage
+
+Die Befreiung braucht einige USt-Stammdatenzeilen: die befreite Produkt-/Leistungsgruppe, die drei Befreiungs-Satzelemente (Kleinunternehmerbefreiung, steuerbefreiter Umsatz, nicht steuerbar) und je Richtung, inländischer Partnergruppe und Satz einen USt-Code. Ist der Schalter an, zeigt der Tab Steuer, ob diese vorhanden sind; fehlt etwas, nennt ein gelber Hinweis die Anzahl, und **Vorlage prüfen** öffnet die Liste.
+
+Zwei Regeln gelten für die Vorlage:
+
+- **Sie füllt nur Lücken.** Bestehende USt-Codes, Sätze, Gruppen und Methoden werden nie verändert oder gelöscht. Als *Vorhanden* markierte Zeilen gehören bereits Ihnen; nur als *Wird angelegt* markierte werden ergänzt.
+- **Sie wird bestätigt, nicht getippt.** Die Werte sind die üblichen. Sie prüfen die Liste und klicken **Fehlende Einträge anlegen**; nichts wird stillschweigend angelegt.
+
+Die Vorlage enthält bewusst **keine ausländischen Partnergruppen und keine Reverse-Charge-Kombinationen**. Das ist es, was den nächsten Abschnitt möglich macht.
+
+Drei Vorlagenzeilen - der Befreiungs-, der Steuerbefreiungs- und der Nicht-steuerbar-Satz - werden **ohne Erklärungszeile** (Buchhaltungscode) angelegt. Tragen Sie diese unter **Stammdaten → USt.-Codes** nach, sobald Sie wissen, welche Zeile Ihr Programm erwartet.
+
+## Positionen, die absichtlich zur Prüfung landen
+
+Ein befreiter Steuerpflichtiger schuldet - ohne Vorsteuerabzug - weiterhin USt auf inländische Reverse-Charge-Einkäufe, innergemeinschaftliche Erwerbe und aus dem Ausland bezogene Dienstleistungen; der Alltagsfall sind ausländische Software-Abonnements und Werbeplattformen. AI Finance Team codiert diese nicht automatisch: Bei befreiten Mandanten sind sie selten, und eine falsche automatische Buchung wäre schlimmer als eine markierte.
+
+Weil die Vorlage keine solche Kombination enthält, können diese Positionen zu keinem USt-Code aufgelöst werden. Sie erscheinen auf der Rechnung mit eigenem Wortlaut - *Der befreite Steuerpflichtige schuldet hier USt ohne Vorsteuerabzug* - sowie als Aufgabe in der Rechnungsübersicht und in Mission Control. So codieren Sie eine solche Position:
+
+1. Ändern Sie im Tab **Positionen & USt** die Gruppe **Produkt / Dienstleistung** der Position auf eine gewöhnliche Gruppe (zum Beispiel *Dienstleistungen*).
+2. Wählen oder erstellen Sie dafür einen gewöhnlichen zahlbaren USt-Code, etwa Inland 27%.
+
+Die Position ist nun als **Manuell** markiert, behält Ihre Wahl bei jedem späteren Lauf und wird - da sie die befreite Gruppe nicht mehr trägt - als gewöhnliche USt-belegte Position gebucht.
+
+Eine zweite Markierung, *USt auf dem Ausgangsumsatz einer befreiten Gesellschaft*, erscheint, wenn eine Verkaufsposition USt trägt, obwohl die Gesellschaft befreit ist. Das bedeutet meist einen Einrichtungsfehler oder eine noch nicht erfasste Überschreitung der Grenze. AI Finance Team überwacht die Umsatzgrenze **nicht**.
+
+## Was Sie auf der Rechnung sehen
+
+Nichts wird umgeschrieben. Die Position behält die Netto-, USt- und Bruttobeträge des Belegs. Darunter zeigen in Grün die Werte **Gebucht**, was an das Buchhaltungssystem, die Berichte und die GuV geht - bei einem befreiten Einkauf brutto als netto und null USt. Ein kleines Abzeichen an den USt-Elementen sagt, woher sie stammen: **Befreite Gesellschaft** für die Zuordnung durch den Schalter, **Manuell** für Ihre Überschreibung.
+
+Dieselben gebuchten Werte erscheinen in den Positionsspalten des Hauptbuch-Explorers und im universellen Export (Spalten *Booking Net Amount* und *Booking VAT Amount*). Die RLB- und Hessyn-Exporte buchen befreite Positionen auf dieselbe Weise.
+
+## Anwendung auf bereits geladene Rechnungen
+
+Das Einschalten wirkt auf Rechnungen, die ab dann verarbeitet werden. Für bereits im Arbeitsbereich vorhandene Rechnungen verwenden Sie **Auf bestehende Rechnungen anwenden** im Tab Steuer: Zeitraum wählen, mit **Vorschau** sehen, wie viele Positionen neu codiert würden, dann **Anwenden**. Positionen mit manuell gewähltem USt-Code oder manueller Produkt-/Leistungsgruppe werden übersprungen und gezählt. Was danach ohne Code bleibt, greift **USt-Codierung erneut ausführen** in der Rechnungsliste auf.
+
+## Ausscheiden aus der Befreiung
+
+Überschreitet der Mandant die Grenze, setzen Sie **Befreit bis** auf den letzten Tag der Befreiung und speichern. Rechnungen mit späterem USt-Datum werden als steuerpflichtig behandelt; frühere behalten ihre Behandlung. Führen Sie **Auf bestehende Rechnungen anwenden** für den Zeitraum danach aus, falls bereits Rechnungen geladen waren.
+
+## Verwandte Artikel
+
+- [USt-Stammdaten](/vat-master-data) - die fünf Elemente und die Partnergruppe für befreite Lieferanten.
+- [USt-Codes auf Rechnungen](/vat-codes-on-invoices) - Korrektur der Elemente einer Position.
+- [USt in Exporten](/vat-in-exports) - wie die gebuchten Beträge in Ihr Buchhaltungssystem gelangen.

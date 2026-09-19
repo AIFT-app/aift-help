@@ -135,6 +135,14 @@ export const navigation: NavItem[] = [
     title: { en: 'VAT in Exports', hu: 'ÁFA az exportokban', de: 'USt in Exporten' },
   },
   {
+    slug: 'small-business-exemption',
+    title: {
+      en: 'Small Business VAT Exemption',
+      hu: 'Alanyi adómentesség',
+      de: 'Kleinunternehmerbefreiung',
+    },
+  },
+  {
     slug: 'vat-setup-import-export',
     title: {
       en: 'Importing, Exporting & Copying Your VAT Setup',
