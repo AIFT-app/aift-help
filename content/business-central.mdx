@@ -70,50 +70,54 @@ If the status says the environment could not be found, check the environment nam
 
 At this stage, only the **list of companies**: their names and identifiers. Nothing is written back to Business Central, and no invoice, transaction or balance is read yet.
 
-Connecting company data to the entities in AI Finance Team is a separate step, and you choose which companies to connect. Companies you do not connect are simply left alone.
+Connecting company data to the companies in AI Finance Team is a separate step, and you choose which Business Central companies to connect. Companies you do not connect are simply left alone.
 
 ---
 
-## Pairing companies with entities
+## Pairing Business Central companies with AI Finance Team companies
 
-Once the connection works, the Business Central page lists every company in your Business Central. Each company can be paired with one entity in AI Finance Team, and each entity with one company.
+Once the connection works, the Business Central page lists every company in your Business Central. Each Business Central company can be paired with one company in AI Finance Team, and each AI Finance Team company with one Business Central company.
 
 There are two ways to pair:
 
-- **Create a new entity from a company.** AI Finance Team takes the name, the tax number, the country and the address from Business Central. You can tick several companies and create them all in one go.
-- **Pair with an entity you already have.** Use this when the entity is already in AI Finance Team.
+- **Create a new company from a Business Central company.** AI Finance Team takes the name, the tax number, the country and the address from Business Central. You can tick several companies and create them all in one go.
+- **Pair with a company you already have.** Use this when the company is already in AI Finance Team.
 
 AI Finance Team suggests a match where it can. A suggestion based on the **tax number** is reliable. A suggestion based on the **name** is only a suggestion, so check it before you accept it.
 
+### One company per tax number
+
+A workspace holds each company once. If a Business Central company's tax number already belongs to a company in AI Finance Team, the row offers **Pair** only, never **Create company**. If that company is already paired with another Business Central company (a test copy of the same firm, for example), the row says which one, and you unpair that first if this is the right one.
+
 ### Where you can start
 
-There are two places to create an entity from a company.
+There are two places to create a company from a Business Central company.
 
-- **Settings ▸ Business Central.** The Companies list has a **Create entity** button on every company that is not connected yet, and a checkbox to create several at once.
-- **Master data ▸ Entities.** When your workspace has a working connection and some companies are still unconnected, an **Add from Business Central** button sits next to **Add entity**. It lists only the companies that are not connected yet.
+- **Master data ▸ Business Central ▸ Companies.** Every company that is not connected yet has a **Create company** button, and a checkbox to create several at once.
+- **Master data ▸ Companies.** When your workspace has a working connection and some companies are still unconnected, a **Create companies from Business Central** button sits next to **Add company**. It lists only the companies that are not connected yet, and marks the ones that already exist in AI Finance Team.
 
-Both do the same thing and both connect the company to the entity they create.
+Both do the same thing and both connect the Business Central company to the company they create.
 
-Creating one at a time shows you the legal name, country and tax number first, and lets you correct the name before the entity exists. Creating several at once takes the values from Business Central as they stand.
+Creating one at a time shows you the legal name, country and tax number first, and lets you correct the name before the company exists. Creating several at once takes the values from Business Central as they stand.
 
 ### What gets written, and what does not
 
-When you pair with an existing entity, you can copy the address and the tax number across from Business Central. **Only empty fields can be filled.** A value that is already in AI Finance Team is never overwritten, whatever you tick. To change a value you already have, edit the entity itself.
+When you pair with an existing company, you can copy the address and the tax number across from Business Central. **Only empty fields can be filled.** A value that is already in AI Finance Team is never overwritten, whatever you tick. To change a value you already have, edit the company itself.
 
 Nothing is ever written back to Business Central.
 
 ### Companies you cannot pair
 
-A company whose tax number is a **VAT group identifier**, that is a group registration rather than a company, cannot become an entity. AI Finance Team says so on the row. Leave it unpaired. It is a filing arrangement, not a business.
+A Business Central company whose tax number is a **VAT group identifier**, that is a group registration rather than a company, cannot become a company in AI Finance Team. AI Finance Team says so on the row. Leave it unpaired. It is a filing arrangement, not a business.
 
 ### Warnings you may see
 
 - **Different currency.** Business Central keeps that company's books in a currency other than your workspace's base currency. This is a warning only. It never stops you pairing.
-- **Different tax numbers.** The company and the entity you are pairing it with state different tax numbers. Check which one is right before you accept.
+- **Different tax numbers.** The Business Central company and the company you are pairing it with state different tax numbers. Check which one is right before you accept.
 
 ### Undoing a pair
 
-Unpair from the same page, or from the entity's own page. Unpairing removes the connection and nothing else. The entity stays exactly as it is, and nothing changes in Business Central.
+Unpair from the same page, or from the company's own page. Unpairing removes the connection and nothing else. The company stays exactly as it is, and nothing changes in Business Central.
 
 ---
 

@@ -28,7 +28,7 @@ From the workspace sidebar, click **Invoices** to see all invoices in the worksp
 - **Status** - the extraction status (Pending, Processing, Completed, or Failed)
 - **Cat.** - a small icon if the line items need categorisation review or if categorisation failed
 
-Invoices flagged as **Duplicate** or **Review** carry a badge next to the invoice number. Invoices without an assigned entity carry an **Entity needed** badge.
+Invoices flagged as **Duplicate** or **Review** carry a badge next to the invoice number. Invoices without an assigned company carry a **Company needed** badge.
 
 ### Previewing an Invoice
 
@@ -131,7 +131,7 @@ A **Completed** status does not mean the data is correct - it means the AI produ
 
 ## Tips
 
-- **Keep entity records up to date.** The AI uses entity names, tax IDs, and alternative names to identify partners. If a supplier appears as unknown, add them to Master Data → Entities with their correct name and tax ID.
+- **Keep company records up to date.** The AI uses company names, tax IDs, and alternative names to identify partners. If a supplier appears as unknown, add them to Master Data → Companies with their correct name and tax ID.
 - **Use the preview drawer** to check documents quickly without navigating away from the list. Navigate the full list with ← and → to triage a batch of invoices efficiently.
 - **Download as XLSX** if you need to share structured invoice data with a colleague who works in Excel - the two-sheet format keeps summary and line items separate.
 - **Download as JSON** for integrations - the structured output matches the fields used internally and can be consumed directly by most accounting connectors.

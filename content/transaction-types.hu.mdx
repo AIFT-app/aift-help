@@ -35,13 +35,13 @@ Ezek a típusok már tartalmaznak gyakori mintákat a tipikus banki leírások a
 
 Amikor a saját két bankszámlája között mozgat pénzt - legtöbbször EUR-t HUF-ra váltva, vagy egyik számlát a másikról feltöltve -, nincs számla, mert mindkét oldal ugyanaz a cég.
 
-Az AI Finance Team ezt automatikusan felismeri, és **nem** kizárólag a leírás szövegére támaszkodik. Ha a tranzakció másik számlája az egyik saját [entitása](/master-data-entities) bankszámlája (IBAN vagy számlaszám alapján egyeztetve), a tranzakció:
+Az AI Finance Team ezt automatikusan felismeri, és **nem** kizárólag a leírás szövegére támaszkodik. Ha a tranzakció másik számlája az egyik saját [cége](/master-data-entities) bankszámlája (IBAN vagy számlaszám alapján egyeztetve), a tranzakció:
 
 - megkapja az **Átvezetés** típust,
 - **Nincs szükség számlára** jelölést kap, és
-- egy speciális **Saját entitás** partnerhez kapcsolódik, nem pedig egy fölösleges szállítói rekordhoz (lásd [Partnerek kezelése](/partners#belső-átvezetések-a-saját-számlái-között)).
+- egy speciális **Saját cég** partnerhez kapcsolódik, nem pedig egy fölösleges szállítói rekordhoz (lásd [Partnerek kezelése](/partners#belső-átvezetések-a-saját-számlái-között)).
 
-Mivel ez a mentett számlaszámokon alapul - nem hamisítható szövegen -, tartsa naprakészen az egyes entitások bankszámláit a **Törzsadatok → Entitások** alatt.
+Mivel ez a mentett számlaszámokon alapul - nem hamisítható szövegen -, tartsa naprakészen az egyes cégek bankszámláit a **Törzsadatok → Cégek** alatt.
 
 ### Új típus létrehozása
 
