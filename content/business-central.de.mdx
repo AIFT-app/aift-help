@@ -70,50 +70,54 @@ Meldet der Status, dass die Umgebung nicht gefunden wurde, prüfen Sie den Umgeb
 
 In dieser Phase nur die **Liste der Unternehmen**: Namen und Kennungen. Nach Business Central wird nichts zurückgeschrieben, und Rechnungen, Transaktionen oder Salden werden noch nicht gelesen.
 
-Die Unternehmensdaten mit den Einheiten in AI Finance Team zu verbinden ist ein eigener Schritt, und Sie wählen aus, welche Unternehmen verbunden werden. Nicht verbundene Unternehmen bleiben unberührt.
+Die Unternehmensdaten mit den Unternehmen in AI Finance Team zu verbinden ist ein eigener Schritt, und Sie wählen aus, welche Business-Central-Unternehmen verbunden werden. Nicht verbundene Unternehmen bleiben unberührt.
 
 ---
 
-## Unternehmen und Einheiten einander zuordnen
+## Business-Central-Unternehmen und AI-Finance-Team-Unternehmen zuordnen
 
-Sobald die Verbindung funktioniert, listet die Business-Central-Seite alle Unternehmen aus Ihrem Business Central auf. Jedes Unternehmen lässt sich einer Einheit in AI Finance Team zuordnen und jede Einheit einem Unternehmen.
+Sobald die Verbindung funktioniert, listet die Business-Central-Seite alle Unternehmen aus Ihrem Business Central auf. Jedes Business-Central-Unternehmen lässt sich einem Unternehmen in AI Finance Team zuordnen und jedes AI-Finance-Team-Unternehmen einem Business-Central-Unternehmen.
 
 Es gibt zwei Wege:
 
-- **Aus einem Unternehmen eine neue Einheit anlegen.** AI Finance Team übernimmt Name, Steuernummer, Land und Adresse aus Business Central. Sie können mehrere Unternehmen auswählen und in einem Zug anlegen.
-- **Einer vorhandenen Einheit zuordnen.** Nutzen Sie das, wenn die Einheit in AI Finance Team bereits existiert.
+- **Aus einem Business-Central-Unternehmen ein neues Unternehmen anlegen.** AI Finance Team übernimmt Name, Steuernummer, Land und Adresse aus Business Central. Sie können mehrere Unternehmen auswählen und in einem Zug anlegen.
+- **Einem vorhandenen Unternehmen zuordnen.** Nutzen Sie das, wenn das Unternehmen in AI Finance Team bereits existiert.
 
-AI Finance Team schlägt eine Zuordnung vor, wo es das kann. Ein Vorschlag auf Basis der **Steuernummer** ist verlässlich. Ein Vorschlag auf Basis des **Namens** ist nur ein Vorschlag, prüfen Sie ihn vor der Übernahme.
+AI Finance Team schlägt eine Zuordnung vor, wo es kann. Ein Vorschlag auf Basis der **Steuernummer** ist verlässlich. Ein Vorschlag auf Basis des **Namens** ist nur ein Vorschlag, prüfen Sie ihn also, bevor Sie ihn übernehmen.
+
+### Ein Unternehmen pro Steuernummer
+
+Ein Arbeitsbereich enthält jedes Unternehmen nur einmal. Gehört die Steuernummer eines Business-Central-Unternehmens bereits einem Unternehmen in AI Finance Team, bietet die Zeile nur **Zuordnen** an, nie **Unternehmen anlegen**. Ist dieses Unternehmen bereits einem anderen Business-Central-Unternehmen zugeordnet (etwa einer Testkopie derselben Firma), nennt die Zeile es, und Sie heben diese Zuordnung zuerst auf, falls diese hier die richtige ist.
 
 ### Wo Sie beginnen können
 
-Es gibt zwei Stellen, an denen aus einem Unternehmen eine Einheit wird.
+Es gibt zwei Stellen, an denen aus einem Business-Central-Unternehmen ein Unternehmen wird.
 
-- **Einstellungen ▸ Business Central.** In der Unternehmensliste steht bei jedem noch nicht zugeordneten Unternehmen eine Schaltfläche **Einheit anlegen**, dazu ein Kontrollkästchen, um mehrere auf einmal anzulegen.
-- **Stammdaten ▸ Einheiten.** Hat der Arbeitsbereich eine funktionierende Verbindung und sind noch Unternehmen offen, erscheint neben **Einheit hinzufügen** die Schaltfläche **Aus Business Central hinzufügen**. Sie listet nur die noch nicht zugeordneten Unternehmen.
+- **Stammdaten ▸ Business Central ▸ Firmen.** Bei jedem noch nicht zugeordneten Unternehmen steht eine Schaltfläche **Unternehmen anlegen**, dazu ein Kontrollkästchen, um mehrere auf einmal anzulegen.
+- **Stammdaten ▸ Unternehmen.** Hat der Arbeitsbereich eine funktionierende Verbindung und sind noch Unternehmen offen, erscheint neben **Unternehmen hinzufügen** die Schaltfläche **Firmen aus Business Central anlegen**. Sie listet nur die noch nicht zugeordneten Unternehmen und kennzeichnet die, die es in AI Finance Team schon gibt.
 
-Beide tun dasselbe und ordnen das Unternehmen der neu angelegten Einheit zu.
+Beide tun dasselbe und ordnen das Business-Central-Unternehmen dem neu angelegten Unternehmen zu.
 
-Beim einzelnen Anlegen sehen Sie zuerst Firmenname, Land und Steuernummer und können den Namen korrigieren, bevor die Einheit entsteht. Beim Anlegen mehrerer werden die Werte aus Business Central unverändert übernommen.
+Beim einzelnen Anlegen sehen Sie zuerst Firmenname, Land und Steuernummer und können den Namen korrigieren, bevor das Unternehmen entsteht. Beim Anlegen mehrerer werden die Werte aus Business Central unverändert übernommen.
 
 ### Was geschrieben wird und was nicht
 
-Bei der Zuordnung zu einer vorhandenen Einheit können Sie Adresse und Steuernummer aus Business Central übernehmen. **Nur leere Felder können gefüllt werden.** Ein Wert, den AI Finance Team bereits hat, wird nie überschrieben, unabhängig davon, was Sie ankreuzen. Um einen vorhandenen Wert zu ändern, bearbeiten Sie die Einheit selbst.
+Bei der Zuordnung zu einem vorhandenen Unternehmen können Sie Adresse und Steuernummer aus Business Central übernehmen. **Nur leere Felder können gefüllt werden.** Ein Wert, den AI Finance Team bereits hat, wird nie überschrieben, unabhängig davon, was Sie ankreuzen. Um einen vorhandenen Wert zu ändern, bearbeiten Sie das Unternehmen selbst.
 
-Nach Business Central wird nichts zurückgeschrieben.
+Nach Business Central wird nie etwas zurückgeschrieben.
 
 ### Unternehmen, die sich nicht zuordnen lassen
 
-Ein Unternehmen, dessen Steuernummer eine **Gruppenkennung** ist, also eine umsatzsteuerliche Organschaft und kein Unternehmen, kann keine Einheit werden. AI Finance Team weist in der Zeile darauf hin. Lassen Sie es ohne Zuordnung. Es ist eine Melderegelung, kein Betrieb.
+Ein Business-Central-Unternehmen, dessen Steuernummer eine **Gruppenkennung** ist, also eine umsatzsteuerliche Organschaft und kein Unternehmen, kann in AI Finance Team kein Unternehmen werden. AI Finance Team weist in der Zeile darauf hin. Lassen Sie es ohne Zuordnung. Es ist eine Melderegelung, kein Betrieb.
 
 ### Hinweise, die Ihnen begegnen können
 
 - **Abweichende Währung.** Business Central führt die Bücher dieses Unternehmens in einer anderen Währung als der Basiswährung Ihres Arbeitsbereichs. Das ist nur ein Hinweis und verhindert die Zuordnung nie.
-- **Abweichende Steuernummern.** Unternehmen und zugeordnete Einheit nennen unterschiedliche Steuernummern. Prüfen Sie vor der Übernahme, welche richtig ist.
+- **Abweichende Steuernummern.** Das Business-Central-Unternehmen und das zugeordnete Unternehmen nennen unterschiedliche Steuernummern. Prüfen Sie vor der Übernahme, welche richtig ist.
 
 ### Eine Zuordnung aufheben
 
-Heben Sie die Zuordnung auf derselben Seite oder auf der Seite der Einheit auf. Dabei wird nur die Verbindung entfernt. Die Einheit bleibt unverändert, und in Business Central ändert sich nichts.
+Heben Sie die Zuordnung auf derselben Seite oder auf der Seite des Unternehmens auf. Dabei wird nur die Verbindung entfernt. Das Unternehmen bleibt unverändert, und in Business Central ändert sich nichts.
 
 ---
 

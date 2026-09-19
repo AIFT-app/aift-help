@@ -70,50 +70,54 @@ Ha az állapot szerint a környezet nem található, ellenőrizze a környezet n
 
 Ebben a szakaszban csak a **cégek listáját**: a nevüket és az azonosítójukat. A Business Centralba semmit nem írunk vissza, és számlát, tranzakciót vagy egyenleget még nem olvasunk.
 
-A cégadatok összekötése az AI Finance Team-beli entitásokkal külön lépés, és Ön választja ki, melyik cégeket köti össze. Az össze nem kötött cégeket egyszerűen békén hagyjuk.
+A cégadatok összekötése az AI Finance Team-beli cégekkel külön lépés, és Ön választja ki, melyik Business Central cégeket köti össze. Az össze nem kötött cégeket egyszerűen békén hagyjuk.
 
 ---
 
-## Cégek és entitások összepárosítása
+## Business Central cégek és AI Finance Team-beli cégek összepárosítása
 
-Ha a kapcsolat működik, a Business Central oldal felsorolja a Business Centralban lévő összes céget. Minden cég egy AI Finance Team-beli entitáshoz párosítható, és minden entitás egy céghez.
+Ha a kapcsolat működik, a Business Central oldal felsorolja a Business Centralban lévő összes céget. Minden Business Central cég egy AI Finance Team-beli céghez párosítható, és minden AI Finance Team-beli cég egy Business Central céghez.
 
-Két módon lehet párosítani:
+Kétféleképpen párosíthat:
 
-- **Új entitás létrehozása a cégből.** Az AI Finance Team a nevet, az adószámot, az országot és a címet a Business Centralból veszi át. Több céget is kijelölhet, és egyszerre hozhatja létre őket.
-- **Párosítás meglévő entitással.** Akkor használja, ha az entitás már megvan az AI Finance Teamben.
+- **Új cég létrehozása egy Business Central cégből.** Az AI Finance Team a nevet, az adószámot, az országot és a címet a Business Centralból veszi át. Több céget is kijelölhet, és egyszerre hozhatja létre őket.
+- **Párosítás meglévő céggel.** Akkor használja, ha a cég már megvan az AI Finance Teamben.
 
-Az AI Finance Team javaslatot tesz, ahol tud. Az **adószám** alapján tett javaslat megbízható. A **név** alapján tett javaslat csak javaslat, ezért elfogadás előtt ellenőrizze.
+Ahol tud, az AI Finance Team párosítást javasol. Az **adószám** alapján tett javaslat megbízható. A **név** alapján tett javaslat csak javaslat, ezért elfogadás előtt ellenőrizze.
 
-### Hol kezdheted
+### Egy adószám, egy cég
 
-Két helyről tudsz céget létrehozni egy Business Central cégből.
+Egy munkaterületen minden cég csak egyszer szerepel. Ha egy Business Central cég adószáma már egy AI Finance Team-beli cégé, a sor csak **Párosítás** lehetőséget kínál, **Cég létrehozása** gombot soha. Ha ez a cég már egy másik Business Central céggel van párosítva (például ugyanannak a cégnek egy tesztpéldányával), a sor megmondja, melyikkel, és ha ez a helyes, előbb azt a párosítást bontsa.
 
-- **Beállítások ▸ Business Central.** A céglistában minden még nem kapcsolt cégnél van egy **Cég létrehozása** gomb, és jelölőnégyzet is, ha egyszerre többet szeretne.
-- **Törzsadatok ▸ Cégek.** Ha a munkaterületnek működő kapcsolata van, és még van nem kapcsolt cég, a **Cég hozzáadása** mellett megjelenik a **Hozzáadás Business Centralból** gomb. Ez csak a még nem kapcsolt cégeket sorolja fel.
+### Hol kezdheti
 
-Mindkettő ugyanazt csinálja, és mindkettő hozzákapcsolja a Business Central céget a létrejövő céghez.
+Két helyen hozhat létre céget egy Business Central cégből.
 
-Ha egyesével hoz létre, előbb látja a cégnevet, az országot és az adószámot, és a nevet javíthatja, mielőtt a cég létrejön. Ha egyszerre többet hoz létre, a Business Centralban szereplő értékeket vesszük át.
+- **Törzsadatok ▸ Business Central ▸ Cégek.** Minden még össze nem kötött cég mellett van egy **Cég létrehozása** gomb, és egy jelölőnégyzet, amellyel egyszerre többet hozhat létre.
+- **Törzsadatok ▸ Cégek.** Ha a munkaterületnek működő kapcsolata van, és maradt még össze nem kötött cég, a **Cég hozzáadása** mellett megjelenik egy **Cégek létrehozása a Business Centralból** gomb. Csak a még össze nem kötött cégeket sorolja fel, és jelzi, melyik szerepel már az AI Finance Teamben.
+
+Mindkettő ugyanazt teszi, és mindkettő összeköti a Business Central céget a létrehozott céggel.
+
+Egyenkénti létrehozáskor először a cégnevet, az országot és az adószámot látja, és a nevet javíthatja, mielőtt a cég létrejön. Több cég egyszerre történő létrehozásakor az értékeket változatlanul vesszük át a Business Centralból.
 
 ### Mit írunk be, és mit nem
 
-Meglévő entitáshoz párosításkor a címet és az adószámot át tudja venni a Business Centralból. **Csak az üres mezőket tudjuk kitölteni.** Az AI Finance Teamben már meglévő értéket soha nem írjuk felül, bármit is pipál ki. Ha meglévő értéket szeretne módosítani, az entitást szerkessze.
+Meglévő céghez párosításkor a címet és az adószámot át tudja venni a Business Centralból. **Csak az üres mezőket tudjuk kitölteni.** Az AI Finance Teamben már meglévő értéket soha nem írjuk felül, bármit is pipál ki. Ha meglévő értéket szeretne módosítani, a céget szerkessze.
 
-A Business Centralba semmit nem írunk vissza.
+A Business Centralba soha nem írunk vissza semmit.
 
 ### Cégek, amelyeket nem lehet párosítani
 
-Az a cég, amelynek az adószáma **csoportazonosító**, vagyis csoportos áfaalanyiság, nem lehet entitás. Az AI Finance Team ezt kiírja a sorban. Hagyja párosítatlanul: ez bevallási megoldás, nem működő cég.
+Az a Business Central cég, amelynek az adószáma **csoportazonosító**, vagyis csoportos áfaalanyiság, nem lehet cég az AI Finance Teamben. Az AI Finance Team ezt kiírja a sorban. Hagyja párosítatlanul: ez bevallási megoldás, nem működő cég.
 
 ### Figyelmeztetések, amelyeket láthat
 
-- **Eltérő pénznem.** A Business Central annak a cégnek a könyveit a munkaterület alapdevizájától eltérő pénznemben vezeti. Ez csak figyelmeztetés, a párosítást soha nem akadályozza meg.
-- **Eltérő adószám.** A cég és a hozzá párosítani kívánt entitás más adószámot mond. Elfogadás előtt nézze meg, melyik a helyes.
+- **Eltérő pénznem.** A Business Central ennek a cégnek a könyveit a munkaterület alappénznemétől eltérő pénznemben vezeti. Ez csak figyelmeztetés, a párosítást soha nem akadályozza.
+- **Eltérő adószám.** A Business Central cég és a hozzá párosítani kívánt cég más adószámot mond. Elfogadás előtt nézze meg, melyik a helyes.
 
 ### A párosítás visszavonása
 
-A párosítást ugyanezen az oldalon vagy az entitás saját oldalán bonthatja. A bontás csak a kapcsolatot szünteti meg. Az entitás pontosan úgy marad, ahogy volt, és a Business Centralban sem változik semmi.
+A párosítást ugyanezen az oldalon vagy a cég saját oldalán bonthatja. A bontás csak a kapcsolatot szünteti meg. A cég pontosan úgy marad, ahogy volt, és a Business Centralban sem változik semmi.
 
 ---
 
