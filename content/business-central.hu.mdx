@@ -117,6 +117,28 @@ A párosítást ugyanezen az oldalon vagy az entitás saját oldalán bonthatja.
 
 ---
 
+## Főkönyvi számok kategóriaként
+
+A Business Central API-ján keresztül nem lehet főkönyvi számot létrehozni, ezért a számlatükör az ügyfélé marad. Ahhoz, hogy egy AIFT kategória főkönyvi számra mutathasson, hozza be a főkönyvi számokat kategóriaként.
+
+Nyissa meg a **Törzsadatok > Könyvelési kategóriák** oldalt, és válassza a **Számlatükör beolvasása a Business Centralból** gombot. A gomb a **Számla** és a **Pénzforgalmi** fülön is megtalálható.
+
+Felül a **Mi legyen belőlük** választó dönti el, mi lesz a bepipált főkönyvi számokból:
+
+- **Számla kategória**: a számlasorokhoz.
+- **Pénzforgalmi kategória**: a banki mozgásokhoz.
+- **Mindkettő**: egy számla kategória és egy pénzforgalmi kategória ugyanazzal a főkönyvi számmal. A kettő külön kategória marad, az egyik átnevezése nem nevezi át a másikat.
+
+A listában azok a főkönyvi számok szerepelnek, amelyekhez még nincs a választott fajtájú kategória. Pipálja be, amelyekre szüksége van, ellenőrizze az irányt, majd válassza a **Létrehozom** gombot. A következő képernyő pontosan megmutatja, mi jön létre és mi marad ki, és amíg nem erősíti meg, semmi nem íródik be.
+
+**A kategóriát a főkönyvi szám azonosítja.** Két különböző számú főkönyvi számból két kategória lesz akkor is, ha ugyanaz a nevük. Ha egy főkönyvi számhoz már van ilyen fajtájú kategória, azt kihagyjuk, és változatlanul marad.
+
+### Számla kategóriák másolása pénzforgalmi kategóriának
+
+A **Pénzforgalmi** fülön a **Másolás a számla kategóriákból** gomb minden olyan számla kategóriából pénzforgalmi kategóriát készít, amely a pénzforgalmi oldalon még nincs meg, ugyanazzal a főkönyvi számmal, megnevezéssel és iránnyal. Először a darabszámokat mutatja, és semmi meglévőt nem módosít. A beépített kategóriákat nem másolja, mert a pénzforgalmi oldalnak sajátjai vannak.
+
+---
+
 ## Ki állíthatja be
 
 Munkaterület-adminisztrátor vagy az ügyfél tulajdonosa köthet össze és bonthat kapcsolatot. A munkaterület többi tagja látja az állapotot, de nem tudja módosítani.
