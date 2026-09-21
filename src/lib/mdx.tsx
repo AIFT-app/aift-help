@@ -2,6 +2,7 @@ import remarkGfm from 'remark-gfm'
 import rehypeSlug from 'rehype-slug'
 import rehypePrettyCode from 'rehype-pretty-code'
 import { localizeHref, type Locale } from './i18n'
+import { visualComponents } from '@/components/visuals/registry'
 
 export const mdxOptions = {
   mdxOptions: {
@@ -21,6 +22,7 @@ export const mdxOptions = {
  */
 export function mdxComponents(locale: Locale) {
   return {
+    ...visualComponents(locale),
     a: ({ href = '', ...rest }: React.ComponentProps<'a'>) => (
       <a href={localizeHref(href, locale)} {...rest} />
     ),

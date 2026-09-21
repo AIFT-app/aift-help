@@ -4,24 +4,36 @@ If your company uses payment approvals, the supplier invoices that need your yes
 
 ## What you see
 
-The **To approve** tab opens on the invoices due in the next 14 days that are assigned to you. You do not need to filter anything. Each row shows:
+The **To approve** tab opens on the invoices due in the next 14 days that are assigned to you, earliest due date first. You do not need to filter anything. The number next to **Approvals** in the sidebar is how many invoices are assigned to you.
 
-- **Due**: the payment date and how many days are left, or how many days it is overdue.
-- **What you are approving**: the AI's one-line summary of the invoice as the headline, with the supplier and the invoice number under it. Click the number to open the invoice itself.
-- **Why you**: the reason the invoice landed with you, for example "Rule: invoices from Bau-Trans Kft. go to you" or "Fallback approver".
-- **Amount**: the gross amount in the invoice's currency.
+<ApprovalQueueFigure>
+The **To approve** tab with four invoices waiting. The numbers match the list below. The companies and amounts are examples.
+</ApprovalQueueFigure>
 
-The chips above the list switch between **Assigned to me**, **Unassigned** (invoices no rule could place, visible to every approver), **All awaiting** and **Due this week**. The count on the sidebar item is the number of invoices assigned to you.
+1. **Views**: switch between **Assigned to me**, **Unassigned** (invoices no rule could place, visible to every approver), **All awaiting** and **Due this week**.
+2. **What you are approving**: the AI's one-line summary of the invoice. Click it to open the invoice itself.
+3. **Supplier and invoice ID**: who is asking to be paid, and the invoice's ID in AI Finance Team.
+4. **Due**: the payment date and how many days are left, or how many days it is overdue. An amber stripe on the left marks invoices due within 7 days or already overdue.
+5. **Why you**: the reason the invoice landed with you. It is a rule your finance admin set up, a pattern learned from where earlier invoices of the same supplier went, the AI's pick, or the fallback approver when nothing else applies.
+6. **Amount**: the gross amount in the invoice's currency.
 
 ## Approving
 
 Click **Approve** on a row. That is the whole decision. AI Finance Team records who approved, when, and exactly which amount to which payee, so a later change to the invoice cannot be mistaken for what you agreed to.
 
-To approve several at once, tick the rows and click **Approve selected**. The confirmation lists every supplier and the totals per currency before anything happens. Approving in bulk is available only if your finance admin left it switched on.
+To approve several at once, tick the rows. A bar shows how many you picked and their total in each currency; click **Approve selected**. The confirmation lists every supplier and the totals per currency before anything happens. Approving in bulk is available only if your finance admin left it switched on.
+
+<ApprovalBulkBarFigure>
+Two invoices selected. Different currencies are totalled separately, never converted.
+</ApprovalBulkBarFigure>
 
 ## Declining
 
-Click **Decline** when the invoice should not be paid as it stands. A note is required. Four quick reasons are offered (wrong amount, work not done yet, already paid, not my decision), and you can add your own words. The note goes onto the invoice, where the accountant and the finance admin see it.
+Click **Decline** when the invoice should not be paid as it stands. A note is required. Click one of the four quick reasons to start the note, then add your own words. The note goes onto the invoice, where the accountant and the finance admin see it.
+
+<DeclineDialogFigure>
+Declining the roof repair until the work is finished. Clicking a quick reason writes it into the note, and **Decline** stays disabled until the note has text.
+</DeclineDialogFigure>
 
 Declining does not delete or reject the invoice in the books. It only says the payment is not cleared. The finance admin can reopen it once the question is settled with the supplier.
 
@@ -31,8 +43,11 @@ If an invoice reached you by mistake, click **Not mine**. It goes back to the fi
 
 ## What happens after your decision
 
-- **Approved** invoices show an "Approved" pill in the invoice list and on the invoice. Once the bank payment arrives and is matched, the invoice is paid like any other.
-- **Declined** invoices show a "Declined" pill and wait for the finance admin.
+<ApprovalLifecycleFigure>
+Each button leads somewhere different. Only an approved invoice moves on to payment; the other two come back for a new decision.
+</ApprovalLifecycleFigure>
+
+- **Approved** and **Declined** invoices show the matching pill in the invoice list and on the invoice itself.
 - If the amount or the supplier on an approved invoice changes afterwards, the approval is reset and the invoice comes back to you. The invoice's history says why.
 - An invoice that gets paid, cancelled or rejected by the accountant while it is waiting leaves your queue on its own.
 
@@ -46,11 +61,10 @@ Approving needs the permission "Approve invoices for payment" plus the right to 
 
 ## Emails
 
-Four emails keep you informed without opening the app; each has its own switch under Account, Notifications, and a one-click unsubscribe link in the footer.
+Four emails keep you informed without opening the app. Each has its own switch under **Account**, **Notifications**, and a one-click unsubscribe link in the footer.
 
-- **New invoices to approve**: when invoices are assigned to you, one email at the earliest 30 minutes after the first one, at most 2 a day.
-- **Morning list**: on working days at 08:00, your queue for the day. Nothing waiting, no email.
-- **Due-soon reminder**: on working days at 15:00, the invoices due within 2 days that still wait for you. One reminder per invoice.
-- **Declined invoices**: for finance admins, an approver declined an invoice, with their note.
+<ApprovalEmailsFigure>
+When each email arrives: **Morning list** and **Due-soon reminder** on working days, **New invoices to approve** when invoices are assigned to you, and **Declined invoices** for finance admins.
+</ApprovalEmailsFigure>
 
 The emails link into the app. There is no approve button in an email: a decision always happens signed in, on the invoice.
