@@ -13,13 +13,31 @@
    640px VIEWPORT (stacked dialog buttons, 16px button text). A screen laid out
    at desktop width and zoomed down on a phone must keep the desktop variants,
    or it matches neither the desktop app nor a phone. So inside .app-screen
-   `sm:` always applies; everywhere else it is Tailwind's usual media query.
-   The redefined variant keeps its place in Tailwind's order (checked against
-   the built-in output: identical apart from the extra scoped rule). `max-sm:`
-   is not scoped: no screen uses it. `pointer-fine:` likewise, so a phone does
-   not switch on Catalyst's invisible touch-target spans inside the buttons. */
+   `sm:`, `md:` and `lg:` always apply (a desktop app window is at least
+   1024px wide; e.g. the matching page's `lg:px-8`); everywhere else they are
+   Tailwind's usual media queries. The redefined variants keep their place in
+   Tailwind's order (checked against the built-in output: identical apart from
+   the extra scoped rules). `max-*:` and `xl:` are not scoped: no screen uses
+   them. `pointer-fine:` likewise, so a phone does not switch on Catalyst's
+   invisible touch-target spans inside the buttons. */
 @custom-variant sm {
   @media (width >= 40rem) {
+    @slot;
+  }
+  &:where(.app-screen, .app-screen *) {
+    @slot;
+  }
+}
+@custom-variant md {
+  @media (width >= 48rem) {
+    @slot;
+  }
+  &:where(.app-screen, .app-screen *) {
+    @slot;
+  }
+}
+@custom-variant lg {
+  @media (width >= 64rem) {
     @slot;
   }
   &:where(.app-screen, .app-screen *) {
@@ -92,31 +110,34 @@ body {
   }
 }
 
-/* Prose overrides — match aift-web table style */
-.prose table {
+/* Prose overrides — match aift-web table style. Unlayered, so they beat
+   Tailwind utilities: `:not(.not-prose *)` keeps them off the app screens,
+   whose own tables sit inside the article (caught by help-screen-css-diff.mjs
+   on the matching screens). */
+.prose table:not(.not-prose *) {
   font-size: 0.875rem;
   line-height: 1.5rem;
 }
 
-.prose thead th {
+.prose thead th:not(.not-prose *) {
   background-color: rgb(250 250 250);
   font-weight: 500;
   color: rgb(9 9 11);
 }
 
-.prose :where(th, td) {
+.prose :where(th, td):not(.not-prose *) {
   padding-top: 0.625rem;
   padding-bottom: 0.625rem;
 }
 
 /* Code blocks from rehype-pretty-code */
-.prose pre {
+.prose pre:not(.not-prose *) {
   background-color: rgb(250 250 250) !important;
   border: 1px solid rgb(228 228 231);
   border-radius: 0.5rem;
 }
 
-.prose code {
+.prose code:not(.not-prose *) {
   font-family: var(--font-mono);
   font-size: 0.8125rem;
 }
