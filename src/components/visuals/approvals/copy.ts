@@ -57,6 +57,13 @@ export const UI_KEYS = [
   'settings.notifications.approval_morning_row_title',
   'settings.notifications.approval_due_soon_row_title',
   'settings.notifications.approval_declined_row_title',
+  'approvals.queue.unassigned_hint',
+  'settings.notifications.approvals_section_title',
+  'settings.notifications.approvals_section_desc',
+  'settings.notifications.approval_new_items_row_desc',
+  'settings.notifications.approval_morning_row_desc',
+  'settings.notifications.approval_due_soon_row_desc',
+  'settings.notifications.approval_declined_row_desc',
 ] as const
 
 export type UiKey = (typeof UI_KEYS)[number]
@@ -98,19 +105,6 @@ type Copy = {
       notMineNext: string
       resetNote: string
       backTo: string
-    }
-    emails: {
-      everyDay: string
-      onAssign: string
-      forAdmins: string
-      morningDesc: string
-      dueSoonDesc: string
-      newItemsDesc: string
-      firstInvoice: string
-      wait: string
-      declinedDesc: string
-      morningTime: string
-      dueSoonTime: string
     }
     alt: { queue: string; bulk: string; decline: string; lifecycle: string; emails: string }
   }
@@ -157,6 +151,13 @@ const en: Copy = {
     'settings.notifications.approval_morning_row_title': 'Morning list',
     'settings.notifications.approval_due_soon_row_title': 'Due-soon reminder',
     'settings.notifications.approval_declined_row_title': 'Declined invoices',
+    'approvals.queue.unassigned_hint': 'Unassigned invoices are visible to every approver. Anything you do not recognise: use "Not mine" and it goes back to the finance admin.',
+    'settings.notifications.approvals_section_title': 'Payment approvals',
+    'settings.notifications.approvals_section_desc': 'Emails about supplier invoices waiting for your approval. Only companies where approvals are switched on send them.',
+    'settings.notifications.approval_new_items_row_desc': 'One email when invoices are assigned to you, at the earliest 30 minutes after the first one, at most 2 a day.',
+    'settings.notifications.approval_morning_row_desc': 'On working days at 08:00, your queue for the day. Nothing waiting, no email.',
+    'settings.notifications.approval_due_soon_row_desc': 'On working days at 15:00, invoices due within 2 days that still wait for you. One reminder per invoice.',
+    'settings.notifications.approval_declined_row_desc': 'For finance admins: an approver declined an invoice, with their note.',
   },
   rows: [
     {
@@ -217,29 +218,16 @@ const en: Copy = {
       resetNote: 'If the amount or the supplier of an approved invoice changes, the approval resets.',
       backTo: 'back to',
     },
-    emails: {
-      everyDay: 'Every working day',
-      onAssign: 'When invoices are assigned to you',
-      forAdmins: 'Finance admins only',
-      morningDesc: 'Your queue for the day. Nothing waiting, no email.',
-      dueSoonDesc: 'Invoices due within 2 days that still wait for you. Once per invoice.',
-      newItemsDesc: 'At most 2 a day.',
-      firstInvoice: 'First invoice arrives',
-      wait: '30 min',
-      declinedDesc: 'An approver declined an invoice, with their note.',
-      morningTime: '08:00',
-      dueSoonTime: '15:00',
-    },
     alt: {
       queue:
-        'Drawing of the To approve tab: four supplier invoices assigned to you, sorted by due date, each with Approve, Decline and Not mine buttons. Numbered markers point to the parts described in the list below.',
-      bulk: 'Drawing of the selection bar: two invoices selected, the total per currency, and the Approve selected button.',
+        'The To approve tab: four supplier invoices assigned to you, sorted by due date, each with Approve, Decline and Not mine buttons. Numbered markers point to the parts described in the list below.',
+      bulk: 'The approval queue with two invoices ticked: the dark selection bar shows how many are selected, their total in each currency, and the Approve selected button.',
       decline:
-        'Drawing of the Decline payment dialog: payee, amount and due date, four quick reasons with Work not done yet selected, and a required note.',
+        'The Decline payment dialog: payee, amount and due date, four quick reasons with Work not done yet selected, and a required note.',
       lifecycle:
         'Diagram of what happens after a decision. Approve: the invoice is Approved, then Paid once the bank payment is matched. Decline: the invoice is Declined and waits for the finance admin, who can reopen it. Not mine: it goes back to the finance admin, who assigns it again. A change to the amount or supplier of an approved invoice sends it back to Awaiting approval.',
       emails:
-        'Timeline of the approval emails: the morning list at 08:00 and the due-soon reminder at 15:00 on working days, the new-invoices email at the earliest 30 minutes after the first invoice is assigned, and the declined-invoices email for finance admins.',
+        'The Payment approvals section of Account, Notifications: four emails, each with its own switch, all switched on. Each row says when the email arrives.',
     },
   },
 }
@@ -285,6 +273,13 @@ const hu: Copy = {
     'settings.notifications.approval_morning_row_title': 'Reggeli lista',
     'settings.notifications.approval_due_soon_row_title': 'Határidő-emlékeztető',
     'settings.notifications.approval_declined_row_title': 'Elutasított számlák',
+    'approvals.queue.unassigned_hint': 'A kiosztatlan számlákat minden jóváhagyó látja. Amit nem ismersz fel: a "Nem az enyém" gombbal visszakerül a pénzügyi adminhoz.',
+    'settings.notifications.approvals_section_title': 'Kifizetések jóváhagyása',
+    'settings.notifications.approvals_section_desc': 'E-mailek a jóváhagyásodra váró szállítói számlákról. Csak olyan cég küld ilyet, ahol a jóváhagyás be van kapcsolva.',
+    'settings.notifications.approval_new_items_row_desc': 'Egy e-mail, amikor számlák kerülnek hozzád, legkorábban 30 perccel az első után, naponta legfeljebb 2.',
+    'settings.notifications.approval_morning_row_desc': 'Munkanapokon 8:00-kor a napi listád. Ha semmi nem vár rád, nincs e-mail.',
+    'settings.notifications.approval_due_soon_row_desc': 'Munkanapokon 15:00-kor a két napon belül esedékes, még rád váró számlák. Számlánként egy emlékeztető.',
+    'settings.notifications.approval_declined_row_desc': 'Pénzügyi adminoknak: egy jóváhagyó elutasított egy számlát, az indoklásával.',
   },
   rows: [
     {
@@ -345,29 +340,16 @@ const hu: Copy = {
       resetNote: 'Ha egy jóváhagyott számla összege vagy szállítója megváltozik, a jóváhagyás visszaáll.',
       backTo: 'vissza:',
     },
-    emails: {
-      everyDay: 'Minden munkanapon',
-      onAssign: 'Amikor számlák kerülnek Önhöz',
-      forAdmins: 'Csak pénzügyi adminoknak',
-      morningDesc: 'A napi listája. Ha semmi sem vár, nincs e-mail.',
-      dueSoonDesc: 'A két napon belül esedékes, még Önre váró számlák. Számlánként egyszer.',
-      newItemsDesc: 'Naponta legfeljebb 2.',
-      firstInvoice: 'Megérkezik az első számla',
-      wait: '30 perc',
-      declinedDesc: 'Egy jóváhagyó elutasított egy számlát, az indoklásával.',
-      morningTime: '8:00',
-      dueSoonTime: '15:00',
-    },
     alt: {
       queue:
-        'A Jóváhagyandó fül rajza: négy Önnek kiosztott szállítói számla esedékesség szerint rendezve, mindegyiken Jóváhagyom, Elutasítom és Nem az enyém gombbal. A számozott jelölők az alábbi listában leírt részekre mutatnak.',
-      bulk: 'A kijelölősáv rajza: két kijelölt számla, a pénznemenkénti összeg és a Kijelöltek jóváhagyása gomb.',
+        'A Jóváhagyandó fül: négy Önnek kiosztott szállítói számla esedékesség szerint rendezve, mindegyiken Jóváhagyom, Elutasítom és Nem az enyém gombbal. A számozott jelölők az alábbi listában leírt részekre mutatnak.',
+      bulk: 'A jóváhagyási lista két bejelölt számlával: a sötét kijelölősáv mutatja, hány számla van kijelölve, mennyi az összegük pénznemenként, és a Kijelöltek jóváhagyása gombot.',
       decline:
-        'A Kifizetés elutasítása ablak rajza: kedvezményezett, összeg és esedékesség, négy gyors indok, köztük kijelölve A munka még nincs kész, és a kötelező megjegyzés.',
+        'A Kifizetés elutasítása ablak: kedvezményezett, összeg és esedékesség, négy gyors indok, köztük kijelölve A munka még nincs kész, és a kötelező megjegyzés.',
       lifecycle:
         'Ábra arról, mi történik a döntés után. Jóváhagyás: a számla Jóváhagyva állapotba kerül, majd Fizetve lesz, amint a banki kifizetés párosítódik. Elutasítás: a számla Elutasítva állapotban a pénzügyi adminra vár, aki újranyithatja. Nem az enyém: visszakerül a pénzügyi adminhoz, aki újra kiosztja. Ha egy jóváhagyott számla összege vagy szállítója megváltozik, visszakerül Jóváhagyásra vár állapotba.',
       emails:
-        'A jóváhagyási e-mailek idővonala: munkanapokon 8:00-kor a reggeli lista és 15:00-kor a határidő-emlékeztető, az új számlákról szóló e-mail legkorábban 30 perccel az első kiosztott számla után, és az elutasított számlákról szóló e-mail a pénzügyi adminoknak.',
+        'A Fiók, Értesítések oldal Kifizetések jóváhagyása szakasza: négy e-mail, mindegyik saját kapcsolóval, mind bekapcsolva. Minden sor megmondja, mikor érkezik az e-mail.',
     },
   },
 }
@@ -413,6 +395,13 @@ const de: Copy = {
     'settings.notifications.approval_morning_row_title': 'Morgenliste',
     'settings.notifications.approval_due_soon_row_title': 'Fälligkeitserinnerung',
     'settings.notifications.approval_declined_row_title': 'Abgelehnte Rechnungen',
+    'approvals.queue.unassigned_hint': 'Nicht zugewiesene Rechnungen sehen alle Freigeber. Was Sie nicht erkennen: mit "Nicht meins" geht es zurück an den Finanzadmin.',
+    'settings.notifications.approvals_section_title': 'Zahlungsfreigaben',
+    'settings.notifications.approvals_section_desc': 'E-Mails zu Lieferantenrechnungen, die auf Ihre Freigabe warten. Nur Unternehmen mit eingeschalteter Freigabe senden sie.',
+    'settings.notifications.approval_new_items_row_desc': 'Eine E-Mail, wenn Ihnen Rechnungen zugewiesen werden, frühestens 30 Minuten nach der ersten, höchstens 2 am Tag.',
+    'settings.notifications.approval_morning_row_desc': 'An Arbeitstagen um 8:00 Ihre Liste für den Tag. Wartet nichts, kommt keine E-Mail.',
+    'settings.notifications.approval_due_soon_row_desc': 'An Arbeitstagen um 15:00 die in 2 Tagen fälligen Rechnungen, die noch auf Sie warten. Eine Erinnerung pro Rechnung.',
+    'settings.notifications.approval_declined_row_desc': 'Für Finanzadmins: ein Freigeber hat eine Rechnung abgelehnt, mit Begründung.',
   },
   rows: [
     {
@@ -473,29 +462,16 @@ const de: Copy = {
       resetNote: 'Ändern sich Betrag oder Lieferant einer freigegebenen Rechnung, wird die Freigabe zurückgesetzt.',
       backTo: 'zurück zu',
     },
-    emails: {
-      everyDay: 'An jedem Arbeitstag',
-      onAssign: 'Wenn Ihnen Rechnungen zugewiesen werden',
-      forAdmins: 'Nur für Finanzadmins',
-      morningDesc: 'Ihre Liste für den Tag. Nichts wartet, keine E-Mail.',
-      dueSoonDesc: 'Rechnungen, die in 2 Tagen fällig sind und noch auf Sie warten. Einmal je Rechnung.',
-      newItemsDesc: 'Höchstens 2 pro Tag.',
-      firstInvoice: 'Die erste Rechnung kommt',
-      wait: '30 Min.',
-      declinedDesc: 'Eine Rechnung wurde abgelehnt, die Notiz der ablehnenden Person ist dabei.',
-      morningTime: '8:00',
-      dueSoonTime: '15:00',
-    },
     alt: {
       queue:
-        'Zeichnung des Reiters Freizugeben: vier Ihnen zugewiesene Lieferantenrechnungen, nach Fälligkeit sortiert, jede mit den Schaltflächen Freigeben, Ablehnen und Nicht meins. Nummerierte Markierungen zeigen auf die Teile, die in der Liste darunter beschrieben sind.',
-      bulk: 'Zeichnung der Auswahlleiste: zwei Rechnungen ausgewählt, die Summe je Währung und die Schaltfläche Auswahl freigeben.',
+        'Der Reiter Freizugeben: vier Ihnen zugewiesene Lieferantenrechnungen, nach Fälligkeit sortiert, jede mit den Schaltflächen Freigeben, Ablehnen und Nicht meins. Nummerierte Markierungen zeigen auf die Teile, die in der Liste darunter beschrieben sind.',
+      bulk: 'Die Freigabeliste mit zwei markierten Rechnungen: die dunkle Auswahlleiste zeigt, wie viele ausgewählt sind, ihre Summe je Währung und die Schaltfläche Auswahl freigeben.',
       decline:
-        'Zeichnung des Dialogs Zahlung ablehnen: Empfänger, Betrag und Fälligkeit, vier Schnellgründe mit ausgewähltem Leistung noch nicht erbracht und eine Pflichtnotiz.',
+        'Der Dialog Zahlung ablehnen: Empfänger, Betrag und Fälligkeit, vier Schnellgründe mit ausgewähltem Leistung noch nicht erbracht und eine Pflichtnotiz.',
       lifecycle:
         'Diagramm, was nach einer Entscheidung passiert. Freigeben: die Rechnung ist Freigegeben und wird Bezahlt, sobald die Bankzahlung abgeglichen ist. Ablehnen: die Rechnung ist Abgelehnt und wartet auf den Finanzadmin, der sie erneut öffnen kann. Nicht meins: sie geht zurück an den Finanzadmin, der sie neu zuweist. Ändern sich Betrag oder Lieferant einer freigegebenen Rechnung, geht sie zurück zu Freigabe ausstehend.',
       emails:
-        'Zeitleiste der Freigabe-E-Mails: an Arbeitstagen die Morgenliste um 8:00 und die Fälligkeitserinnerung um 15:00, die E-Mail zu neuen Rechnungen frühestens 30 Minuten nach der ersten Zuweisung und die E-Mail zu abgelehnten Rechnungen für Finanzadmins.',
+        'Der Abschnitt Zahlungsfreigaben unter Konto, Benachrichtigungen: vier E-Mails, jede mit eigenem Schalter, alle eingeschaltet. Jede Zeile sagt, wann die E-Mail kommt.',
     },
   },
 }

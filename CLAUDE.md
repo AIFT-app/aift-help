@@ -24,13 +24,14 @@ Every change to an article, whatever its size, starts by checking the article's 
 
 Then update the article's row in the **Help Centre Refresh** tracker (https://claude.ai/artifact/QNYFXjnFzNmumFJiN2tLxd, collection `articles`, doc id = the slug, `home` for the index): `visuals`, `content` (`unchecked` / `stale` / `verified`), `contentCheckedOn`, `notes`. Full standard: `aift-ops/specs/help-visuals-pilot.md`.
 
-## Visuals: drawn, where they add value
+## Visuals: app screens rebuilt 1:1, where they add value
 
-- **New articles include visual components when a picture explains faster than prose**: a drawn screen with numbered markers plus a numbered legend list, a state diagram, a timeline. A short reference page may need none.
-- **Drawn, never screenshots.** Build from `src/components/visuals/`: `kit.tsx` (Figure, AppWindow, Marker, Pill, FakeButton, Chip, Checkbox, FakeDialog), `StateFlow.tsx`, `format.ts`; one folder per article with its own `copy.ts`; register each figure in `registry.tsx`, then write `<XFigure>caption</XFigure>` in the MDX (the caption is article text and is searchable). `approvals/` is the worked example.
+- **New articles include visuals when a picture explains faster than prose**: an app screen with numbered markers plus a numbered legend list, a state diagram, a timeline. A short reference page may need none.
+- **App screens are rebuilt 1:1 from aift-web, not drawn and not screenshotted.** Use the real Catalyst components from `src/components/catalyst/` (a byte-identical mirror of the app's, checked by the manifest; sync missing ones with `aift-ops/scripts/sync-catalyst-to-help.sh`) and copy the app's own non-Catalyst markup (list rows, chips, tabs, panels, pills) **class for class** from the aift-web source file, naming that file in the screen's header comment. Wrap the screen in `AppScreen` (`src/components/visuals/kit.tsx`): it applies the app's fonts (Arial body, Geist Mono for `font-mono`; see `.app-screen` in `globals.css`), the app's desktop content panel, lays the screen out at a real window width and zooms it to fit, and makes it `inert`. Put numbered markers in with `Pin`, which never shifts the app's layout. `approvals/` is the worked example.
+- **Verify against the real component**, not by eye: render the aift-web component with the same fixture in a throwaway local page (never committed) and compare element sizes and positions; the approvals rebuild matched within 1px of zoom rounding.
 - **Labels verbatim** from the app's message files, keyed by message key in `copy.ts`. **Data fictional**: web-search every invented company name and drop it if a real business uses it. Never real customer data.
-- **Light styles only, never `dark:`.** This site has no dark theme, but Tailwind's dark variant follows the OS, so Catalyst components (which carry `dark:` classes) would turn dark on a white page. Violet is reserved for annotation markers.
-- Each figure is `role="img"` with localized alt text; nothing inside a drawing may be focusable.
+- `dark:` is class-based on this site (see `globals.css`), so Catalyst components always render light, matching the white site. Violet is reserved for annotation markers.
+- Each figure is `role="img"` with localized alt text; nothing inside a figure may be focusable.
 - Check the result at phone width and at the article's full 768px width in all three locales before shipping.
 
 ## Localization (en / hu / de)

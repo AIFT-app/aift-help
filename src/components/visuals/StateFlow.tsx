@@ -9,7 +9,8 @@
 
 import clsx from 'clsx'
 import { ArrowUturnLeftIcon } from '@heroicons/react/16/solid'
-import { FakeButton, Pill, type Tone } from './kit'
+import { Button } from '@/components/catalyst/button'
+import { Pill, type Tone } from './kit'
 
 export type FlowState = { label: string; tone: Tone }
 
@@ -30,6 +31,13 @@ function Arrow({ className }: { className?: string }) {
       <path d="M1 6h20m-4-4 4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   )
+}
+
+/** The app's real Catalyst buttons, sized like the approval queue's row actions. */
+function ActionButton({ kind, children }: { kind: 'emerald' | 'outline' | 'plain'; children: React.ReactNode }) {
+  if (kind === 'emerald') return <Button color="emerald" className="!px-2.5 !py-1 !text-xs">{children}</Button>
+  if (kind === 'plain') return <Button plain className="!px-2 !py-1 !text-xs">{children}</Button>
+  return <Button outline className="!px-2.5 !py-1 !text-xs">{children}</Button>
 }
 
 function Result({ result }: { result: FlowBranch['result'] }) {
@@ -65,7 +73,7 @@ export function StateFlow({
   footnote?: string
 }) {
   return (
-    <div className="rounded-xl bg-white p-4 shadow-sm ring-1 ring-zinc-950/10 sm:p-6">
+    <div inert className="rounded-xl bg-white p-4 shadow-sm ring-1 ring-zinc-950/10 sm:p-6">
       <div className="flex flex-col gap-4 @xl:grid @xl:grid-cols-[auto_1.5rem_1fr] @xl:items-center @xl:gap-0">
         <div className="flex justify-start @xl:justify-center">
           <span className="rounded-xl bg-amber-50 p-3 ring-1 ring-amber-200">
@@ -89,9 +97,7 @@ export function StateFlow({
               {/* Line 1: the button and where it lands. Line 2: what happens
                   next. Two fixed lines wrap predictably in every language. */}
               <div className="flex flex-wrap items-center gap-2">
-                <FakeButton kind={b.actionKind ?? 'outline'} small>
-                  {b.action}
-                </FakeButton>
+                <ActionButton kind={b.actionKind ?? 'outline'}>{b.action}</ActionButton>
                 <Arrow />
                 <Result result={b.result} />
               </div>

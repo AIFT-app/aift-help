@@ -1,6 +1,32 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* Tailwind's `dark:` follows the OS by default. This site has no dark theme
+   (the body is always white), so `dark:` applies only under an explicit .dark
+   class, which nothing sets. Without this, the mirrored Catalyst components
+   (search dialog, the app screens in articles) turned dark on a white page for
+   anyone whose OS is in dark mode. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* App screens rebuilt in articles (src/components/visuals) render in the app's
+   fonts, not the help site's. aift-web's globals.css sets `body` to Arial after
+   Tailwind's base layer, so the app's text is Arial (verified on the live app,
+   2026-09-21); `font-mono` there is Geist Mono (--font-geist-mono comes from
+   src/components/visuals/fonts.ts). */
+.app-screen {
+  font-family: Arial, Helvetica, sans-serif;
+  /* What the app's text inherits (Tailwind preflight + aift-web's --foreground).
+     Needed because an article is `.prose`: `not-prose` stops prose's rules from
+     reaching descendants, but ordinary inheritance still carries the article's
+     own line-height 1.75 and body colour into the screen. */
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #171717;
+}
+.app-screen .font-mono {
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
 @theme inline {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
