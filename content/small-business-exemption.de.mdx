@@ -17,30 +17,37 @@ Verwechseln Sie dies nicht mit der Partner-USt-Gruppe **Kleinunternehmer-Liefera
 
 ## Was der Schalter tut
 
-Solange die Befreiung am USt-Datum einer Position in Kraft ist, passiert genau eines: Die **Produkt-/Leistungs-USt-Gruppe** der Position wird auf **Kleinunternehmerbefreiung (eigene Gesellschaft)** gesetzt, eine zu 100% nicht abziehbare Gruppe. Sie wird beim ersten Bedarf für den Arbeitsbereich angelegt. Die übrigen Elemente - Partnergruppe, Satz, Berechnungsmethode - stammen weiterhin aus dem Beleg und der normalen Auflösung; der Schalter kann keinen USt-Code aus dem Nichts erfinden.
+Solange die Befreiung am USt-Datum einer Position in Kraft ist, passiert genau eines: Die **Produkt-/Leistungs-USt-Gruppe** der Position wird auf **Kleinunternehmerbefreiung (eigene Gesellschaft)** gesetzt, eine zu 100% nicht abziehbare Gruppe. Sie wird beim ersten Bedarf für den Arbeitsbereich angelegt. Der Satz stammt weiterhin aus dem Beleg. Welchen USt-Code die Position erhält, hängt nicht mehr von der Partnergruppe oder der Berechnungsmethode ab: Die Positionen einer befreiten Gesellschaft werden auf die Partnergruppe **Inland** und die Methode **Normal** aufgelöst (siehe die Vorlage unten).
 
-Bei **Ausgangs**positionen kommt eines hinzu: Der Satz wird auf **Kleinunternehmerbefreiung (AAM)** gesetzt, das eigene Satzelement der Befreiung - es sei denn, der Beleg weist USt über null aus; dann wird nichts erzwungen und die Position wird markiert (siehe unten).
+Bei **Ausgangs**positionen kommt eines hinzu: Der Satz wird auf **Kleinunternehmerbefreiung (AAM)** gesetzt, das eigene Satzelement der Befreiung, außer der Beleg zeigt einen anderen Satz. Ein von der Rechnung gelesener steuerbefreiter (TAM) oder nicht steuerbarer Satz bleibt erhalten. USt über null bleibt ebenfalls erhalten, und die Position wird markiert (siehe unten).
 
 Das Ergebnis ist, was ein Buchhalter von Hand tut: Einkäufe werden **brutto im Nettofeld mit null USt gebucht**, Verkäufe tragen den Befreiungssatz mit eigener Erklärungszeile.
 
 ## Die Vorlage
 
-Die Befreiung braucht einige USt-Stammdatenzeilen: die befreite Produkt-/Leistungsgruppe, die drei Befreiungs-Satzelemente (Kleinunternehmerbefreiung, steuerbefreiter Umsatz, nicht steuerbar) und je Richtung, inländischer Partnergruppe und Satz einen USt-Code. Ist der Schalter an, zeigt der Tab Steuer, ob diese vorhanden sind; fehlt etwas, nennt ein gelber Hinweis die Anzahl, und **Vorlage prüfen** öffnet die Liste.
+Die Befreiung braucht einige USt-Stammdatenzeilen: die befreite Produkt-/Leistungsgruppe, die drei Befreiungs-Satzelemente (Kleinunternehmerbefreiung, steuerbefreiter Umsatz, nicht steuerbar) und eine kurze Liste von USt-Codes, alle auf der Partnergruppe Inland und der Methode Normal:
+
+- **Ausgang:** ein Code je Satz. Der Code Kleinunternehmerbefreiung (AAM) ist der Standard für jeden Verkauf, gleich wer der Kunde ist. Die Codes für steuerbefreite, nicht steuerbare, 0%- und steuerpflichtige Sätze decken eine Rechnung ab, die einen dieser Sätze zeigt.
+- **Eingang:** ein einziger Code, Kleinunternehmerbefreiung (AAM). Jeder inländische Einkauf wird darauf aufgelöst. Die Position behält Satz und USt-Betrag des Belegs; nur der Code ist einheitlich.
+
+Für die befreite Gesellschaft selbst gibt es keine Ist-Versteuerungs-Codes und keine Codes auf der Gruppe *Kleinunternehmer-Lieferant*: Eine befreite Gesellschaft kann nicht zugleich nach vereinnahmten Entgelten versteuern, und diese Partnergruppe beschreibt Lieferanten. Die Liste zeigt auch die gewöhnlichen Sätze, die die Codes verwenden, als *Vorhanden*.
+
+Ist der Schalter an, zeigt der Tab Steuer, ob diese vorhanden sind; fehlt etwas, nennt ein gelber Hinweis die Anzahl, und **Vorlage prüfen** öffnet die Liste.
 
 Zwei Regeln gelten für die Vorlage:
 
-- **Sie füllt nur Lücken.** Bestehende USt-Codes, Sätze, Gruppen und Methoden werden nie verändert oder gelöscht. Als *Vorhanden* markierte Zeilen gehören bereits Ihnen; nur als *Wird angelegt* markierte werden ergänzt.
-- **Sie wird bestätigt, nicht getippt.** Die Werte sind die üblichen. Sie prüfen die Liste und klicken **Fehlende Einträge anlegen**; nichts wird stillschweigend angelegt.
+- **Sie füllt Lücken und räumt nur ihre eigenen Codes auf.** Bestehende USt-Codes, Sätze, Gruppen und Methoden bleiben unverändert. Eine Ausnahme: Codes, die eine frühere Version dieser Vorlage angelegt hat und die nicht mehr benötigt werden, werden archiviert, wenn keine Rechnungsposition sie verwendet (*Wird archiviert*). Ein noch verwendeter Code bleibt (*In Verwendung, bleibt*): Führen Sie **Auf bestehende Rechnungen anwenden** aus und wenden Sie die Vorlage erneut an, dann wird er archiviert. Von Ihnen angelegte Codes werden nie verändert.
+- **Sie wird bestätigt, nicht getippt.** Die Werte sind die üblichen. Sie prüfen die Liste und klicken **Vorlage anwenden**; nichts geschieht stillschweigend.
 
 Die Vorlage enthält bewusst **keine ausländischen Partnergruppen und keine Reverse-Charge-Kombinationen**. Das ist es, was den nächsten Abschnitt möglich macht.
 
-Drei Vorlagenzeilen - der Befreiungs-, der Steuerbefreiungs- und der Nicht-steuerbar-Satz - werden **ohne Erklärungszeile** (Buchhaltungscode) angelegt. Tragen Sie diese unter **Stammdaten → USt.-Codes** nach, sobald Sie wissen, welche Zeile Ihr Programm erwartet.
+Die AAM-Codes haben **keine Erklärungszeile** (Buchhaltungscode): Die Gesellschaft gibt für sie keine USt-Erklärung ab. Die übrigen Ausgangscodes übernehmen die Erklärungszeile des eigenen inländischen Codes des Arbeitsbereichs mit demselben Satz, sodass eine befreite und eine steuerpflichtige Gesellschaft im selben Arbeitsbereich sie gleich erklären. Gibt es keinen solchen Code, steht in der Zeile *Erklärungszeile auszufüllen*; tragen Sie sie unter **Stammdaten → USt.-Codes** nach.
 
 ## Positionen, die absichtlich zur Prüfung landen
 
 Ein befreiter Steuerpflichtiger schuldet - ohne Vorsteuerabzug - weiterhin USt auf inländische Reverse-Charge-Einkäufe, innergemeinschaftliche Erwerbe und aus dem Ausland bezogene Dienstleistungen; der Alltagsfall sind ausländische Software-Abonnements und Werbeplattformen. AI Finance Team codiert diese nicht automatisch: Bei befreiten Mandanten sind sie selten, und eine falsche automatische Buchung wäre schlimmer als eine markierte.
 
-Weil die Vorlage keine solche Kombination enthält, können diese Positionen zu keinem USt-Code aufgelöst werden. Sie erscheinen auf der Rechnung mit eigenem Wortlaut - *Der befreite Steuerpflichtige schuldet hier USt ohne Vorsteuerabzug* - sowie als Aufgabe in der Rechnungsübersicht und in Mission Control. So codieren Sie eine solche Position:
+Diese Einkäufe erhalten nie automatisch einen USt-Code: ein Lieferant in einer ausländischen Partnergruppe, ein Lieferant, dessen Land nicht das des Arbeitsbereichs ist (auch wenn ihn noch niemand eingeordnet hat), und eine Position mit Reverse Charge. Sie erscheinen auf der Rechnung mit eigenem Wortlaut - *Der befreite Steuerpflichtige schuldet hier USt ohne Vorsteuerabzug* - sowie als Aufgabe in der Rechnungsübersicht und in Mission Control. So codieren Sie eine solche Position:
 
 1. Ändern Sie im Tab **Positionen & USt** die Gruppe **Produkt / Dienstleistung** der Position auf eine gewöhnliche Gruppe (zum Beispiel *Dienstleistungen*).
 2. Wählen oder erstellen Sie dafür einen gewöhnlichen zahlbaren USt-Code, etwa Inland 27%.

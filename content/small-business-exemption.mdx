@@ -17,30 +17,37 @@ Do not confuse this with the **Small-business-exempt supplier** partner VAT grou
 
 ## What the Switch Does
 
-While the exemption is in force on a line's VAT date, exactly one thing happens: the line's **Product / Service VAT group** is set to **Small business exemption (own entity)**, a group that is 100% non-deductible. It is created for the workspace the first time it is needed. The other elements - the partner group, the rate, the calculation method - still come from the document and the normal resolver, so the switch cannot invent a VAT code out of nothing.
+While the exemption is in force on a line's VAT date, exactly one thing happens: the line's **Product / Service VAT group** is set to **Small business exemption (own entity)**, a group that is 100% non-deductible. It is created for the workspace the first time it is needed. The rate still comes from the document. Which VAT code the line gets no longer depends on the partner's group or the calculation method: an exempt company's lines resolve on the **Domestic** partner group and the **Normal** method (see the template below).
 
-For **sales** lines, one more thing: the rate is set to **Small business exemption (AAM)**, the exemption's own rate element - unless the document carries VAT above zero, in which case nothing is forced and the line is flagged (see below).
+For **sales** lines, one more thing: the rate is set to **Small business exemption (AAM)**, the exemption's own rate element, unless the document shows another rate. An exempt supply (TAM) or out-of-scope rate read from the invoice is kept. VAT above zero is kept too, and the line is flagged (see below).
 
 The result is what a bookkeeper does by hand: purchases are **booked gross in the net field with zero VAT**, and sales carry the exemption rate with its own return line.
 
 ## The Template
 
-The exemption needs a handful of VAT master data rows: the exempt product/service group, the three exemption rate elements (small business exemption, exempt supply, out of scope) and one VAT code per direction, domestic partner group and rate. When the switch is on, the Tax tab shows whether these are in place; if anything is missing, an amber notice says how many items, and **Review template** opens the list.
+The exemption needs a handful of VAT master data rows: the exempt product/service group, the three exemption rate elements (small business exemption, exempt supply, out of scope) and a short list of VAT codes, all on the Domestic partner group and the Normal method:
+
+- **Sales:** one code per rate. The small business exemption (AAM) code is the default for every sale, whoever the customer is. The exempt supply, out-of-scope, 0% and taxable-rate codes cover an invoice that shows one of those rates.
+- **Purchases:** one code, small business exemption (AAM). Every domestic purchase resolves to it. The line keeps the rate and the VAT amount the document shows; only the code is the same.
+
+There are no cash-method codes and no codes on the *Small-business-exempt supplier* group for the exempt company itself: an exempt company cannot also use cash accounting, and that partner group describes suppliers. The list also shows the ordinary rates the codes use, marked *Present*.
+
+When the switch is on, the Tax tab shows whether these are in place; if anything is missing, an amber notice says how many items, and **Review template** opens the list.
 
 Two rules govern the template:
 
-- **It only fills gaps.** Existing VAT codes, rates, groups and methods are never changed or deleted. Rows marked *Present* are yours already; only rows marked *Will be created* are added.
-- **It is confirmed, not typed.** The values are the standard ones. You review the list and click **Create missing items**; nothing is created silently.
+- **It fills gaps, and tidies only its own.** Existing VAT codes, rates, groups and methods are not changed. One exception: codes an earlier version of this template created and no longer needs are archived when no invoice line uses them (*Will be archived*). A code still in use stays (*In use, kept*): run **Apply to existing invoices**, then apply the template again, and it is archived then. Codes you created yourself are never touched.
+- **It is confirmed, not typed.** The values are the standard ones. You review the list and click **Apply template**; nothing happens silently.
 
 The template deliberately contains **no foreign partner groups and no reverse-charge combinations**. That is what makes the next section work.
 
-Three template rows - the exemption, the exempt-supply and the out-of-scope rate - are created **without a return line** (the accounting code). Fill those in under **Master data → VAT codes** once you know which line your package expects.
+The AAM codes have **no return line** (the accounting code): the company files no VAT return for them. The other sales codes copy the return line of the workspace's own domestic code for the same rate, so an exempt and a taxable company in the same workspace report them the same way. Where the workspace has no such code, the row says *return line to fill in*; fill it in under **Master data → VAT codes**.
 
 ## Lines That Land in Review on Purpose
 
 An exempt taxpayer is still liable, with no right to deduct, for domestic reverse-charge purchases, intra-Community acquisitions and services bought from abroad - the everyday case being foreign software subscriptions and advertising platforms. AI Finance Team does not code these automatically: they are rare at exempt clients, and a wrong automatic posting would be worse than a flagged one.
 
-Because the template has no such combination, these lines cannot resolve to a VAT code. They appear on the invoice with their own wording - *Exempt taxpayer owes VAT here with no right to deduct* - and as a to-do on the invoice overview and in Mission Control. To code one:
+These purchases never get a VAT code automatically: a supplier in a foreign partner group, a supplier whose country is not the workspace's (even one nobody has classified yet), and a line with reverse charge. They appear on the invoice with their own wording - *Exempt taxpayer owes VAT here with no right to deduct* - and as a to-do on the invoice overview and in Mission Control. To code one:
 
 1. On the **Lines & VAT** tab, change the line's **Product / Service** group to an ordinary group (for example *Services*).
 2. Pick or create an ordinary payable VAT code for it, such as domestic 27%.
