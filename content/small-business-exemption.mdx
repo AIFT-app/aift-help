@@ -43,6 +43,10 @@ The template deliberately contains **no foreign partner groups and no reverse-ch
 
 The AAM codes have **no return line** (the accounting code): the company files no VAT return for them. The other sales codes copy the return line of the workspace's own domestic code for the same rate, so an exempt and a taxable company in the same workspace report them the same way. Where the workspace has no such code, the row says *return line to fill in*; fill it in under **Master data → VAT codes**.
 
+The codes are named in the workspace's language, which follows the workspace's country (a Hungarian workspace gets for example *AAM-KI-27*, "Alanyi adómentesség sablon: kimenő, Belföldi, 27%"). The language is read when you apply the template. Codes the template made earlier in another language are renamed (*Will be renamed*), unless someone has edited them.
+
+After the template is applied, the Tax tab points to the next step: **Apply to existing invoices** (see below).
+
 ## Lines That Land in Review on Purpose
 
 An exempt taxpayer is still liable, with no right to deduct, for domestic reverse-charge purchases, intra-Community acquisitions and services bought from abroad - the everyday case being foreign software subscriptions and advertising platforms. AI Finance Team does not code these automatically: they are rare at exempt clients, and a wrong automatic posting would be worse than a flagged one.
@@ -64,7 +68,7 @@ The same booked figures appear in the Ledger Explorer's line columns and in the 
 
 ## Applying It to Invoices Already Loaded
 
-Turning the switch on affects invoices processed from then on. For invoices that are already in the workspace, use **Apply to existing invoices** on the Tax tab: pick the period, click **Preview** to see how many lines would be re-coded, then **Apply**. Lines with a manually chosen VAT code or product/service group are skipped and counted. Whatever is left without a code afterwards is picked up by **Re-run VAT coding** on the invoice list.
+Turning the switch on affects invoices processed from then on. For invoices that are already in the workspace, use **Apply to existing invoices** on the Tax tab: pick the period, click **1. Preview** to see how many lines would be re-coded (nothing changes yet), then **2. Apply**, which becomes available only after the preview. Lines with a manually chosen VAT code or product/service group are skipped and counted. Whatever is left without a code afterwards is picked up by **Re-run VAT coding** on the invoice list.
 
 ## Leaving the Exemption
 
