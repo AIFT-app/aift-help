@@ -43,6 +43,10 @@ A sablon szándékosan **nem tartalmaz külföldi partnercsoportot és fordítot
 
 Az AAM kódoknak **nincs bevallási soruk** (könyvelési kódjuk): ezekről a cég nem ad be ÁFA-bevallást. A többi kimenő kód átveszi a munkaterület saját, azonos kulcsú belföldi kódjának bevallási sorát, így egy mentes és egy adóköteles cég ugyanabban a munkaterületen ugyanúgy vallja be őket. Ha a munkaterületen nincs ilyen kód, a sorban *bevallási sor kitöltendő* áll; ezt a **Törzsadatok → ÁFA-kódok** alatt töltse ki.
 
+A kódok neve a munkaterület nyelvén jön létre, amely a munkaterület országát követi (magyar munkaterületen például *AAM-KI-27*, „Alanyi adómentesség sablon: kimenő, Belföldi, 27%”). A nyelvet a sablon alkalmazásakor olvassa ki a rendszer. A sablon korábban, más nyelven létrehozott kódjait átnevezi (*Átnevezés*), hacsak valaki nem módosította őket.
+
+A sablon alkalmazása után az Adó fül a következő lépésre mutat: **Alkalmazás a meglévő számlákra** (lásd lent).
+
 ## Sorok, amelyek szándékosan ellenőrzésre kerülnek
 
 Az alanyi adómentes adózó levonási jog nélkül is ÁFA-fizetésre kötelezett a belföldi fordított adózású beszerzések, a Közösségen belüli beszerzések és a külföldről igénybe vett szolgáltatások után - a leggyakoribb eset a külföldi szoftver-előfizetés és a hirdetési platformok. Az AI Finance Team ezeket nem kódolja automatikusan: alanyi mentes ügyfeleknél ritkák, és egy hibás automatikus könyvelés rosszabb lenne egy jelölt sornál.
@@ -64,7 +68,7 @@ Ugyanezek a könyvelendő értékek megjelennek a Főkönyvi kivonat soroszlopai
 
 ## Alkalmazás a már betöltött számlákra
 
-A kapcsoló bekapcsolása az ezután feldolgozott számlákra hat. A már a munkaterületen lévő számlákhoz használja az Adó fül **Alkalmazás a meglévő számlákra** gombját: válassza ki az időszakot, az **Előnézet** gombbal nézze meg, hány sor kapna új kódot, majd kattintson az **Alkalmazás** gombra. A kézzel választott ÁFA-kódú vagy termék/szolgáltatás csoportú sorok kimaradnak, és a rendszer megszámolja őket. Ami ezután kód nélkül marad, azt a számlalista **ÁFA-kódolás újrafuttatása** funkciója veszi fel.
+A kapcsoló bekapcsolása az ezután feldolgozott számlákra hat. A már a munkaterületen lévő számlákhoz használja az Adó fül **Alkalmazás a meglévő számlákra** gombját: válassza ki az időszakot, az **1. Előnézet** gombbal nézze meg, hány sor kapna új kódot (ekkor még semmi nem változik), majd kattintson a **2. Alkalmazás** gombra, amely csak az előnézet után válik elérhetővé. A kézzel választott ÁFA-kódú vagy termék/szolgáltatás csoportú sorok kimaradnak, és a rendszer megszámolja őket. Ami ezután kód nélkül marad, azt a számlalista **ÁFA-kódolás újrafuttatása** funkciója veszi fel.
 
 ## Kikerülés a mentességből
 
