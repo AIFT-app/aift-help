@@ -4,7 +4,7 @@ A kifizetések jóváhagyásával az ügyfélcég számlánként dönti el, kifi
 
 ## Bekapcsolás
 
-Nyissa meg az ügyfél munkaterületét, menjen a **Beállítások**, majd a **Jóváhagyások** menüpontra, és kapcsolja be **A kifizetések jóváhagyása be van kapcsolva** kapcsolót.
+Nyissa meg az ügyfél munkaterületét, menjen a **Beállítások**, majd a **Jóváhagyási szabályok** menüpontra, és kapcsolja be **A kifizetések jóváhagyása be van kapcsolva** kapcsolót.
 
 Mi indítja el egy számla jóváhagyását? Egy szállítói számla akkor kerül a folyamatba, amint le van könyvelve: a kinyerés és az AI-kategorizálás lezárult, költségszámla, nincs kifizetve, és nem duplikátum vagy elutasított. A rendszer percenként ellenőriz, így egy új számla egy percen belül a jóváhagyójához ér, és a jóváhagyók az oldalsáv **Jóváhagyások** pontja alatt látják a listájukat. A bekapcsolás előtt már kifizetett számlákhoz a rendszer nem nyúl.
 
@@ -19,26 +19,35 @@ Két jogosultság mozgatja a funkciót:
 
 Alapértelmezés szerint az ügyfél tulajdonosa és a könyvelő admin mindkettővel rendelkezik. Bárki másnak hozzon létre szerepet a **Beállítások**, majd a **Csapat** alatt, például egy "Pénzügyi admin" szerepet mindkét joggal, vagy egy "Csak jóváhagyó" szerepet csak az elsővel, és ossza ki. Lásd: [Szerepek és jogosultságok](/roles-and-permissions).
 
-## A szabályzat
+## A beállítások oldal
+
+A beállítások abban a sorrendben olvashatók, ahogy a folyamat fut: kapcsolja be, mondja meg, ki hagyhat jóvá, mondja meg, mi kihez kerül, majd azt, hogyan néz ki a listájuk.
+
+**Kifizetések jóváhagyása** a fenti kapcsoló. **Jóváhagyók** felsorolja mindenkit, akinek megvan a joga, és a leírást, amit az AI-nak ad.
+
+**Irányítás** tartalmazza a szabályokat, közvetlenül alattuk pedig a **Ha egyetlen szabály sem illeszkedik** részt:
 
 - **Mindenhez kell jóváhagyás, hacsak egy szabály mást nem mond**: a biztonságos alapbeállítás. Egy számla két okból kerülheti el a jóváhagyást: mert egy Ön által írt szabály mondja ki, vagy mert a partner utolsó 3 számlájánál Ön döntött úgy, hogy nem kell hozzájuk jóváhagyás. Az AI erről soha nem dönt magától.
+- **Alapértelmezett jóváhagyó**: az a személy, aki minden olyan számlát megkap, amelyet egyik szabály sem helyez el. Nélküle ezek a számlák az Áttekintés Rád vár listájában várják, hogy Ön kiossza őket.
+
+**A jóváhagyó listája** azt írja le, mit lát a jóváhagyó:
+
 - **Lista időablaka**: napok száma, szabadon beírható. Az alap a számla fizetési határideje: a jóváhagyók az ennyi napon belül esedékes számlákat látják, a későbbiek várnak, amíg közelebb nem érnek. Ha egy számlának nincs határideje, mindig megjelenik. Üresen hagyva minden nyitott számla látszik.
-- **"Ellenőrizendő" jelölésű számlák**: a könyvelő visszatartja őket a kinyerés ellenőrzéséig, vagy figyelmeztetéssel jelennek meg a jóváhagyóknál.
-- **Alapértelmezett jóváhagyó**: az a személy, aki minden olyan számlát megkap, amelyet egyik szabály sem helyez el. Nélküle ezek a számlák a tábla Kiosztatlan oszlopában várják, hogy Ön kiossza őket.
 - **Csoportos jóváhagyás**: a jóváhagyók egy megerősítéssel több számlát hagyhatnak-e jóvá. Az elutasítás mindig egyesével történik.
 - **A kiosztatlan számlákat minden jóváhagyó látja**: kikapcsolva csak a "Jóváhagyások kezelése" joggal rendelkezők látják és döntik el a kiosztatlan számlákat, egyik listában sem jelennek meg másnak.
+- **"Ellenőrizendő" jelölésű számlák**: a könyvelő visszatartja őket a kinyerés ellenőrzéséig, vagy figyelmeztetéssel jelennek meg a jóváhagyóknál.
 
 ## Szabályok
 
 A szabályok mondatok, sorrendben futnak. Az első szabály nyer, amely illik a számlára.
 
-Egy szabály partner, számlakategória, entitás és a munkaterület alappénznemében megadott összegsáv bármely kombinációjára illeszkedhet. Vagy egy jóváhagyóhoz küldi a számlát, vagy kimondja, hogy nem kell jóváhagyás. Példák:
+Egy szabály partner, számlakategória, cég és a munkaterület alappénznemében megadott összegsáv bármely kombinációjára illeszkedhet. Vagy egy jóváhagyóhoz küldi a számlát, vagy kimondja, hogy nem kell jóváhagyás. Példák:
 
 - Bau-Trans Kft. számlái, jóváhagyó: Péter.
 - Alvállalkozói munka kategóriában 500 000 Ft felett, jóváhagyó: Péter.
 - Minden számla 20 000 Ft alatt jóváhagyás nélkül.
 
-A nyilakkal rendezheti át a sorrendet. Az a szabály, amelynek jóváhagyója elvesztette a jogot, kimarad, és a számla kiosztatlanul landol, így egy szabály sosem hagyhat számlát olyannál, aki nem tud dönteni.
+A bal oldali fogantyúval húzva rendezheti át a sorrendet, vagy a fogantyúra állva a nyílbillentyűkkel. Egy szabályra kattintva szerkesztheti; a Törlés a szerkesztőn belül van. Az a szabály, amelynek jóváhagyója elvesztette a jogot, kimarad, és a számla kiosztatlanul landol, így egy szabály sosem hagyhat számlát olyannál, aki nem tud dönteni.
 
 Ha egyik szabály sem illik, az irányítás nem áll meg. Az irányító először a partnernél hozott korábbi döntéseit követi, majd az alapértelmezett jóváhagyóhoz teszi a számlát, ha van ilyen, és csak utolsó lépésként kéri az AI-t, hogy a leírások alapján javasoljon jóváhagyót. A szabály mindig erősebb mindháromnál, és az AI választhat személyt, de jóváhagyást nem engedhet el. A lenti szakaszok írják le, mit tanul az irányító, milyen szabályokat javasol, és milyen leírásokból dolgozik az AI.
 
@@ -52,15 +61,21 @@ Minden döntés tanítja az irányítót. Ha kézzel oszt ki egy számlát valak
 
 ## AI javaslatok
 
-Ugyanekkor az irányító szabályt javasol a szabálylista alatt, ugyanazokkal a szavakkal: "A Hetzner számlái ide kerülnek: Péter · 3 korábbi döntésből 3 egyezik". Az Elfogadom az utolsó szabályként veszi fel, így a kézzel írt szabályok elsőbbsége megmarad. Az Elvetem eltünteti, és ugyanaz a javaslat nem jön elő újra, amíg a döntések nem változnak. Szabály csak abból lesz, amit egy személy elfogad. Az AI magától soha nem kapcsolja ki a jóváhagyást.
+Ugyanekkor az irányító szabályt javasol az Áttekintés **Rád vár** listájában, ugyanazokkal a szavakkal, ahogy egy szabály íródik: "A Hetzner számlái ide kerülnek: Péter · 3 korábbi döntésből 3 egyezik". Az Elfogadom az utolsó szabályként veszi fel, így a kézzel írt szabályok elsőbbsége megmarad. Az Elvetem eltünteti, és ugyanaz a javaslat nem jön elő újra, amíg a döntések nem változnak. Szabály csak abból lesz, amit egy személy elfogad. Az AI magától soha nem kapcsolja ki a jóváhagyást.
 
 ## A jóváhagyók leírása
 
-A Jóváhagyók alatt írjon egy-két mondatot minden személyről arról, miről dönt: "Ügyvezető, az alvállalkozókat és minden 500 000 Ft feletti számlát ő írja alá". Ezek a leírások szó szerint az AI-hoz kerülnek, amikor a számlát semmi más nem helyezte el: nem illett rá szabály, nem volt korábbi döntés, és nincs beállítva alapértelmezett jóváhagyó. Az AI azt a személyt választja, akinek a leírása lefedi a számlát, vagy senkit, ha egyik leírás sem illik. Csak akkor lép, ha legalább 70%-ban biztos; különben a számla a Kiosztatlan oszlopban vár egy ilyen megjegyzéssel: "AI 0.58, a küszöb alatt". Az AI számlánként egyszer próbálkozik; ha módosít egy leírást, minden még kiosztatlan számlát újra megnéz. Azt írja le, miről dönt a személy, ne utasításokat. Az AI csak akkor fut, ha legalább egy jóváhagyónak van leírása, és soha nem költ olyan cégnél, ahol a jóváhagyás ki van kapcsolva.
+A Jóváhagyók alatt írjon egy-két mondatot minden személyről arról, miről dönt: "Ügyvezető, az alvállalkozókat és minden 500 000 Ft feletti számlát ő írja alá". Ezek a leírások szó szerint az AI-hoz kerülnek, amikor a számlát semmi más nem helyezte el: nem illett rá szabály, nem volt korábbi döntés, és nincs beállítva alapértelmezett jóváhagyó. Az AI azt a személyt választja, akinek a leírása lefedi a számlát, vagy senkit, ha egyik leírás sem illik. Csak akkor lép, ha legalább 70%-ban biztos; különben a számla az Áttekintés Rád vár listájában vár egy ilyen megjegyzéssel: "AI 0.58, a küszöb alatt". Az AI számlánként egyszer próbálkozik; ha módosít egy leírást, minden még kiosztatlan számlát újra megnéz. Azt írja le, miről dönt a személy, ne utasításokat. Az AI csak akkor fut, ha legalább egy jóváhagyónak van leírása, és soha nem költ olyan cégnél, ahol a jóváhagyás ki van kapcsolva.
 
-## Az Áttekintés tábla
+## Az Áttekintés
 
-A Jóváhagyások alatti **Áttekintés** fül négy oszlopot mutat: **Kiosztatlan** (egyik szabály sem helyezte el őket), **Várakozik** jóváhagyónként, **Elutasítva** a jóváhagyó megjegyzésével, és **Jóváhagyva, kifizetetlen**. A lejárt számlák borostyán csíkot kapnak. Egy kártyáról kioszthat jóváhagyót, újranyithat egy elutasított számlát, vagy megjelölheti, hogy nem kell jóváhagyás. A felső csempék számolják, mi vár, mi járt le, és mennyi volt a döntési idő mediánja az elmúlt 30 napban.
+A Jóváhagyások alatti **Áttekintés** fül két kérdésre válaszol, ebben a sorrendben.
+
+A **Rád vár** egyetlen lista mindenről, ami Önre vár: számlák, amelyeket egyik szabály sem helyezett el, számlák, amelyeket egy jóváhagyó elutasított, és szabályok, amelyeket az irányító javasol. A lejártak elöl, borostyán csíkkal, mindegyik a saját gombjaival. Kioszthat jóváhagyót, újranyithat egy elutasított számlát, megjelölheti, hogy nem kell jóváhagyás, vagy elfogadhat egy javasolt szabályt. A Mind megjelenítése kinyitja a lista többi részét; a mellette lévő hivatkozások a teljes listákat nyitják meg.
+
+A **Folyamatban lévők** nem az Ön munkája, hanem arra válasz, hogy elakadt-e valami: jóváhagyónként egy sor arról, hány számla vár nála, mennyi járt le, és mennyi ideje van nála a legrégebbi. A névre kattintva megnyílnak az adott személy várakozó számlái, ahol át is oszthat egyet. Alatta a jóváhagyott és kifizetetlen tétel, pénznemenkénti összeggel és hivatkozással az utalási listára.
+
+Mindkettő fölött két szám: a folyamatban lévő összeg, és a döntési idő mediánja az elmúlt 30 napban.
 
 ## Mit lát a könyvelő
 

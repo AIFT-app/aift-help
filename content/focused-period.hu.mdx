@@ -1,0 +1,51 @@
+# Fókuszált időszak
+
+Egy könyvelő egyszerre egy hónapon, negyedéven vagy éven dolgozik. A **Fókuszált időszak** kapcsolóval ezt az időszakot egyszer állítja be az oldalsávban, és a munkaoldalak követik: a **Számlák**, a **Banki tranzakciók**, a **Párosítás** és az **Exportok** mind ugyanarra az időszakra szűrnek, az időszak Zárása pedig egy kattintásra van. Enélkül minden oldal a saját dátumszűrőjét használja, és ugyanazt a tartományt oldalanként újra be kell állítani.
+
+A kapcsoló a könyvelőknek érhető el; az ügyfelek nem látják. A választása soha nem változtatja meg azt, amit egy kollégája lát.
+
+## Be- és kikapcsolás
+
+A bal oldalsávban, közvetlenül a munkaterület-váltó alatt kattintson a **Fókuszált időszak** sorra. A panelen válasszon **hónapot**, **negyedévet** vagy **évet**: az időszak azonnal érvénybe lép, a panel bezárul. A kapcsoló sora ezután a kiválasztott időszakot mutatja, és az alatta csoportosított oldalak ezen dolgoznak.
+
+A kikapcsoláshoz nyissa meg újra a panelt, és kattintson alul a **Fókusz kikapcsolása** gombra. Minden oldal visszatér a saját dátumszűrőihez, pontosan úgy, ahogy korábban. A kikapcsolással semmi nem vész el.
+
+## Mi követi az időszakot, és mi nem
+
+Amíg a fókusz be van kapcsolva:
+
+- A **Számlák**, a **Banki tranzakciók**, a **Párosítás** és az **Exportok** listái a fókuszált időszakot mutatják. A dátumvezérlőjük az időszakot nevezi meg, és rákattintva a fókusz panelje nyílik meg, így pontosan egy helyen módosítható.
+- A számlalistákon továbbra is oldalanként választja meg a **dátum alapját** (teljesítés, számla kelte és így tovább). Az időszak a fókuszból jön; hogy melyik dátumon mérjük, az az oldal döntése marad. Az a számla, amelynek a választott alapon nincs dátuma, kívül esik a szűrőn.
+- Az oldal címe is jelzi az időszakot (például ◆ 2026. július), így egy szűkített lista soha nem tűnik a teljes képnek.
+- Azok a műveletek, amelyek mindig a teljes munkaterületen futnak, ezt a megerősítő ablakukban jelzik, így a fejlécben látott időszak nem vezetheti félre.
+
+Szándékosan nem szűkül: a **keresés** és a **párosítási javaslatok** az időszakon túlra is néznek, mert egy júliusi számlát jogosan egyenlíthet ki egy augusztusi utalás. A törzsadat-oldalaknak egyáltalán nincs időszak-dimenziójuk.
+
+## A kapcsoló alatti állapot
+
+A kapcsoló mindig jelzi, mit csinál a fókusz éppen azon az oldalon, amelyet néz:
+
+| Állapot | Jelentése |
+|---------|-----------|
+| Szűri ezt az oldalt | Az oldal listája a fókuszált időszakot követi. |
+| Lezárva · szűr | Szűr, és az időszak már le van zárva a Zárásban. |
+| Ezen az oldalon nem használt | Az oldalnak nincs dátum-dimenziója (törzsadatok, beállítások). |
+| Ez az oldal saját időszakot használ | Az oldal a saját, látható dátummezőin fut (a folyószámla-kiegyenlítés munkafelülete). Ott az oldalon látható mezők számítanak. |
+| Erről az oldalról állítható | A Záráson jelenik meg: egy zárási hónap maga is időszak, ezért a Zárás az a hely, ahol az időszakot feldolgozzák és lezárják, nem pedig egy lista, amelyet a fókusz szűkít. |
+
+## A panel
+
+Az időszak-választón kívül a panel két szakaszt mutat:
+
+- **Ez az időszak**: hol tart az időszak zárása, élő számmal a rendezendő tételekről, illetve **Lezárva** felirattal, ha már alá van írva. A sorra kattintva egyből a Zárásra ugrik. A már lezárt hónapokat az időszak-rácsban pont is jelöli.
+- **Törzsadatok**: gyorslinkek a törzsadat-oldalakra, amelyek időszaktól függetlenek.
+
+## Személyes és böngészőnkénti
+
+A fókuszált időszakot a böngészője tárolja, munkaterületenként. Mindenkinél kikapcsolva indul, csak az Öné, és nem követi másik számítógépre. Ha két gépen használja az AIFT-et, mindkettőn állítsa be.
+
+## Jó tudni
+
+- Amíg egyetlen hónap van fókuszban, a Párosítás áttekintőjének grafikonja napi bontásra vált. Ez ugyanaz az adat finomabb felbontásban, nem hiányzó grafikon.
+- Bekapcsolt fókusz mellett egy oldal önmagában nem írhatja felül az időszakot. Ha egy oldalon egyszeri, eltérő tartományra van szüksége, kapcsolja ki a fókuszt, állítsa be ott a tartományt, majd kapcsolja vissza, amikor visszatér az időszakos munkához.
+- Dátumokat és egész időszakokat néhány billentyűleütéssel is beírhat bárhol: lásd [Gyors dátumbevitel](/date-entry).

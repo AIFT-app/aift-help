@@ -1,6 +1,6 @@
 # NAV Online Számla verbinden (Ungarn)
 
-Für ungarische Unternehmen kann AI Finance Team Rechnungsdaten direkt aus dem System **NAV Online Számla** der ungarischen Steuerbehörde importieren. Da Lieferanten ihre Ausgangsrechnungen an die NAV melden, erscheinen Ihre Eingangsrechnungen (von Lieferanten) in AI Finance Team oft **bevor** Sie das PDF hochladen — und Ihre eigenen Ausgangsrechnungen werden ebenfalls automatisch abgerufen.
+Für ungarische Unternehmen kann AI Finance Team Rechnungsdaten direkt aus dem System **NAV Online Számla** der ungarischen Steuerbehörde importieren. Da Lieferanten ihre Ausgangsrechnungen an die NAV melden, erscheinen Ihre Eingangsrechnungen (von Lieferanten) in AI Finance Team oft **bevor** Sie das PDF hochladen - und Ihre eigenen Ausgangsrechnungen werden ebenfalls automatisch abgerufen.
 
 Diese Verbindung ist **schreibgeschützt**. AI Finance Team *liest* ausschließlich Rechnungsdaten aus der NAV. Es stellt, meldet, ändert oder storniert niemals Rechnungen in Ihrem Namen.
 
@@ -14,9 +14,9 @@ Diese Verbindung ist **schreibgeschützt**. AI Finance Team *liest* ausschließl
   - das **Passwort** des technischen Benutzers,
   - den **XML-Signaturschlüssel** des technischen Benutzers („aláírókulcs").
 
-> Sie benötigen **nicht** den XML-Austauschschlüssel („cserekulcs") — dieser wird nur zum Ausstellen von Rechnungen verwendet, was AI Finance Team niemals tut.
+> Sie benötigen **nicht** den XML-Austauschschlüssel („cserekulcs") - dieser wird nur zum Ausstellen von Rechnungen verwendet, was AI Finance Team niemals tut.
 
-Ihre Zugangsdaten werden verschlüsselt in einem sicheren Tresor gespeichert. **Nach dem Speichern kann sie niemand mehr auslesen** — weder Sie noch Ihr Buchhalter noch die Person, die sie eingegeben hat. Deshalb müssen beim Bearbeiten der Verbindung alle vier Werte erneut eingegeben werden.
+Ihre Zugangsdaten werden verschlüsselt in einem sicheren Tresor gespeichert. **Nach dem Speichern kann sie niemand mehr auslesen** - weder Sie noch Ihr Buchhalter noch die Person, die sie eingegeben hat. Deshalb müssen beim Bearbeiten der Verbindung alle vier Werte erneut eingegeben werden.
 
 ## Einen technischen NAV-Benutzer erstellen
 
@@ -30,11 +30,11 @@ Ihre Zugangsdaten werden verschlüsselt in einem sicheren Tresor gespeichert. **
 1. Öffnen Sie in der Seitenleiste des Arbeitsbereichs **Stammdaten → Unternehmen** und wählen Sie Ihr ungarisches Unternehmen aus.
 2. Scrollen Sie zum Abschnitt **NAV Online Számla**.
 3. Geben Sie die Steuernummer, den Login des technischen Benutzers, das Passwort und den Signaturschlüssel ein.
-4. Klicken Sie auf **Speichern & prüfen**. AI Finance Team prüft die Zugangsdaten sofort bei der NAV und lädt Ihre neuesten Rechnungen — so sehen Sie unmittelbar, ob die Verbindung funktioniert oder was die NAV bemängelt.
+4. Klicken Sie auf **Speichern & prüfen**. AI Finance Team prüft die Zugangsdaten sofort bei der NAV und lädt Ihre neuesten Rechnungen - so sehen Sie unmittelbar, ob die Verbindung funktioniert oder was die NAV bemängelt.
 5. Wählen Sie das **Startdatum**: wie weit der Verlauf zurückreichen soll. Standard sind 3 Monate, maximal 12. Das Enddatum ist immer heute.
 6. Prüfen Sie die **geschätzte Rechnungsanzahl** für diesen Zeitraum und klicken Sie dann auf **Synchronisierung starten**.
 
-Die Synchronisierung beginnt **erst nach dem Start** — ein großer Verlaufsdownload startet nie von selbst. Danach fragt AI Finance Team die NAV regelmäßig ab und importiert sowohl Ihre **ausgehenden** (Ausgangs-) als auch Ihre **eingehenden** (Eingangs-)Rechnungen.
+Die Synchronisierung beginnt **erst nach dem Start** - ein großer Verlaufsdownload startet nie von selbst. Danach fragt AI Finance Team die NAV regelmäßig ab und importiert sowohl Ihre **ausgehenden** (Ausgangs-) als auch Ihre **eingehenden** (Eingangs-)Rechnungen.
 
 > **Warum das „~" vor der Anzahl?** Die NAV liefert keine genaue Anzahl, sondern nur Seiteninformationen, daher können wir nur einen Schätzwert anzeigen. Der Zeitraum richtet sich nach dem Eingangsdatum bei der NAV, nicht nach dem Rechnungsdatum.
 
@@ -43,11 +43,11 @@ Die Synchronisierung beginnt **erst nach dem Start** — ein großer Verlaufsdow
 ## Was mit den importierten Daten geschieht
 
 - **Reine NAV-Rechnungen werden zu echten Hauptbucheinträgen**, noch bevor ein PDF existiert. Diese werden als *belegslos* angezeigt, bis ein passendes PDF hochgeladen wird.
-- Wenn Sie (oder das Dokument Ihres Lieferanten) später das **PDF** für eine bereits aus der NAV abgerufene Rechnung hochladen, werden die beiden zu **einer einzigen Rechnung zusammengeführt** — kein Duplikat. Das PDF wird zum anzeigbaren Dokument; die behördlich validierten Beträge der NAV bleiben maßgeblich.
+- Wenn Sie (oder das Dokument Ihres Lieferanten) später das **PDF** für eine bereits aus der NAV abgerufene Rechnung hochladen, werden die beiden zu **einer einzigen Rechnung zusammengeführt** - kein Duplikat. Das PDF wird zum anzeigbaren Dokument; die behördlich validierten Beträge der NAV bleiben maßgeblich.
 - **Einnahme vs. Ausgabe wird aus der Richtung der NAV bestimmt**: Rechnungen, die die NAV für Ihr Unternehmen als *ausgehend* meldet, sind Einnahmen; *eingehende* sind Ausgaben.
-- Wenn die Zahlen der NAV über eine kleine Toleranz hinaus von einem hochgeladenen Dokument abweichen, wird die Rechnung als **Ausnahme** zur Prüfung durch Ihren Buchhalter markiert — es wird nichts stillschweigend überschrieben.
+- Wenn die Zahlen der NAV über eine kleine Toleranz hinaus von einem hochgeladenen Dokument abweichen, wird die Rechnung als **Ausnahme** zur Prüfung durch Ihren Buchhalter markiert - es wird nichts stillschweigend überschrieben.
 
-- **Rechnungen an Privatpersonen kommen ganz ohne Käufer an.** NAV darf keine personenbezogenen Daten melden und teilt nur mit, dass der Käufer eine Privatperson ist. Benennen Sie einen Partner, auf den sie gebucht werden, dann landen sie nicht mehr partnerlos — siehe [Partner verwalten](/partners).
+- **Rechnungen an Privatpersonen kommen ganz ohne Käufer an.** NAV darf keine personenbezogenen Daten melden und teilt nur mit, dass der Käufer eine Privatperson ist. Benennen Sie einen Partner, auf den sie gebucht werden, dann landen sie nicht mehr partnerlos - siehe [Partner verwalten](/partners).
 
 ## Pausieren oder Trennen
 
@@ -57,7 +57,7 @@ Die Synchronisierung beginnt **erst nach dem Start** — ein großer Verlaufsdow
 ## Hinweise & Einschränkungen
 
 - Die NAV zeigt einem Käufer nur die eingehenden Rechnungen an, die Lieferanten tatsächlich gemeldet haben, und nur die Felder, die sie gemeldet haben. Die meisten konformen B2B-Rechnungen seit Mitte 2020 sind abgedeckt, aber „jede Eingangsrechnung erscheint automatisch" ist nicht garantiert. Als *unvollständig* markierte Rechnungen tragen einen kleinen Marker.
-- Eine Korrektur- oder Stornorechnung wird als eigener Eintrag importiert, verknüpft mit dem Original — sie wird niemals in die Originalrechnung zusammengeführt.
+- Eine Korrektur- oder Stornorechnung wird als eigener Eintrag importiert, verknüpft mit dem Original - sie wird niemals in die Originalrechnung zusammengeführt.
 
 ## Fehlerbehebung
 

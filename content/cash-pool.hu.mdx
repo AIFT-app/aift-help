@@ -1,0 +1,74 @@
+# Cash pool: egy bankszámla több cégnek
+
+Cégcsoportoknál gyakori, hogy a bankszámla egy cég nevén van, és a testvércégek ezen keresztül fizetik a szállítóikat és szedik be a vevőik utalásait. A bankkivonaton ilyenkor a számlatulajdonos neve szerepel, miközben a fizetés mögötti számla egy másik céghez tartozik.
+
+Az AI Finance Team ezt **megosztott bankszámlával** kezeli: a számla annál a cégnél marad, amelyiké, Ön pedig megadja, mely további cégek használják. Az ezen a számlán megjelenő minden banki tranzakció ezután hordozza, hogy melyik céghez tartozik.
+
+Ha a munkaterületen egyetlen számla sincs megosztva, az itt leírtak nem érvényesek, és semmi sem változik.
+
+## Mielőtt nekikezd
+
+- Minden cégnek ugyanannak a **munkaterületnek** a cégeként kell szerepelnie.
+- A megosztott számla beállítása könyvelői feladat. Az ügyfél-felhasználók látják az eredményt, de nem módosíthatják.
+- **Ne** vegye fel ugyanazt a számlaszámot minden cégnél. A számlát egyszer kell rögzíteni, annál a cégnél, amelyiké. Ha másodszor is megpróbálja felvenni, az AI Finance Team felajánlja, hogy a meglévő számlát ossza meg.
+
+## Megosztott számla beállítása
+
+1. A munkaterület oldalsávjában kattintson a **Törzsadatok**, majd a **Bankszámlák** menüpontra.
+2. Kattintson a ceruza ikonra annál a számlánál, amelyen keresztül a csoport fizet.
+3. A **Más cégek is használják (cash pool)** részben jelölje be az összes céget, amelynek a pénzforgalma ezen a számlán fut.
+4. Kattintson a **Cégek mentése** gombra.
+
+A számla mellett a listában megjelenik a megosztást jelző címke, a tagcégek oldalán pedig a számla csak olvashatóan látszik, a **Megosztott, tulajdonos:** felirattal és a számlatulajdonos nevével.
+
+### Ha a számla már szerepel
+
+Ha egy céghez olyan bankszámlát vesz fel, amelynek a száma már a munkaterület egy másik cégénél szerepel, ezt látja:
+
+> Ez a számla a(z) (számlatulajdonos) számlája. Használod megosztott (cash pool) számlaként a(z) (cég) cégnél?
+
+Kattintson a **Használat megosztott számlaként** gombra, és a cég felkerül a meglévő számlára. Másolat nem jön létre.
+
+### A számlatulajdonos módosítása
+
+A számlatulajdonos az a cég, amelynél a számlát először rögzítették. Ha ez téves, nyissa meg a számlát, a **Számlatulajdonos módosítása** alatt válassza ki a számlát használó cégek egyikét, majd kattintson a **Tulajdonos módosítása** gombra. A korábbi tulajdonos a számlát használó cégek listáján marad.
+
+## Melyik céghez tartozik egy tranzakció
+
+Megosztott számla tranzakciójának adatlapján megjelenik a **Cég** sor, a következő három címke egyikével:
+
+| Címke | Jelentés |
+|---|---|
+| **Alapértelmezett** | Nincs párosított számla. A tranzakció a számlatulajdonoshoz tartozik. A bankköltségek, kamatok és adók jellemzően itt maradnak. |
+| **Párosított számla alapján** | A tranzakció számlához van párosítva, és átvette a számla cégét. A párosítás törlésekor visszaáll **Alapértelmezett** értékre. |
+| **Kézzel beállítva** | Valaki kézzel választotta ki a céget. A párosítás ezt többé nem módosítja. A **Visszaállítás alapértelmezettre** hivatkozással adhatja vissza az automatikus szabálynak. |
+
+Ha egy számla nélküli tranzakciót másik céghez szeretne átsorolni, válassza ki a céget a **Cég** sorban.
+
+A Főkönyvi kivonat cégszűrője és az exportok ezt a céget követik, nem a bankszámlán szereplő nevet.
+
+## Hogyan működik a párosítás megosztott számlán
+
+A párosítás eleve a munkaterület összes cégének számláit vizsgálja, ezért semmit sem kell bekapcsolni. Három szabály kizárólag megosztott számlán érvényes:
+
+- **Egy fizetés, egy cég.** Egy banki tranzakció csak egyetlen cég számláit egyenlítheti ki.
+- **A számlát nem használó cégek.** Ha a legjobb találat olyan cég számlája, amely *nem* szerepel a számla listáján, az AI Finance Team nem párosítja automatikusan, hanem javaslatként jeleníti meg, hogy Ön ellenőrizhesse.
+- **Cégnév a közleményben.** A számlatulajdonosnak fizető vevő gyakran a számlát kiállító cég nevét írja a közleménybe. Megosztott számlán ez természetes, és nem akadályozza az automatikus párosítást.
+
+## A cash pool elszámolás
+
+A bankszámlák listájában kattintson a megosztott számla melletti **Cash pool elszámolás** hivatkozásra. A riport a választott időszakra cégenként mutatja:
+
+- **Kifizetve**: amit a számlatulajdonos az adott cég helyett kifizetett
+- **Beszedve**: amit az adott cég helyett beszedett
+- **Nettó** és a tranzakciók száma
+
+Egy cégre kattintva alatta megjelennek a tranzakciói, az **XLSX letöltése** gombbal pedig egy összesítő és egy tranzakciós munkalapot kap.
+
+A számlatulajdonos minden tételt a saját bankszámláján könyvel. Amit egy testvércég helyett fizetett ki vagy szedett be, az a céggel szembeni csoporton belüli elszámolási tétel, és ez a riport adja hozzá az összegeket. Az AI Finance Team ezt nem könyveli le a könyvelőprogramban.
+
+## Kapcsolódó cikkek
+
+- [Bankszámlák csatlakoztatása](/bank-accounts)
+- [Cégek kezelése](/master-data-entities)
+- [Jóváhagyott számlák kifizetése](/paying-approved-invoices)
