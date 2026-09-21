@@ -17,7 +17,7 @@ Verwechseln Sie dies nicht mit der Partner-USt-Gruppe **Kleinunternehmer-Liefera
 
 ## Was der Schalter tut
 
-Solange die Befreiung am USt-Datum einer Position in Kraft ist, passiert genau eines: Die **Produkt-/Leistungs-USt-Gruppe** der Position wird auf **Kleinunternehmerbefreiung (eigene Gesellschaft)** gesetzt, eine zu 100% nicht abziehbare Gruppe. Sie wird beim ersten Bedarf für den Arbeitsbereich angelegt. Der Satz stammt weiterhin aus dem Beleg. Welchen USt-Code die Position erhält, hängt nicht mehr von der Partnergruppe oder der Berechnungsmethode ab: Die Positionen einer befreiten Gesellschaft werden auf die Partnergruppe **Inland** und die Methode **Normal** aufgelöst (siehe die Vorlage unten).
+Solange die Befreiung am USt-Datum einer Position in Kraft ist, passiert genau eines: Die **Produkt-/Leistungs-USt-Gruppe** der Position wird auf **Kleinunternehmerbefreiung (eigene Gesellschaft)** gesetzt, eine zu 100% nicht abziehbare Gruppe. Sie wird beim ersten Bedarf für den Arbeitsbereich angelegt. Der Satz stammt weiterhin aus dem Beleg. Welchen USt-Code die Position erhält, hängt nicht mehr von der Partnergruppe oder der Berechnungsmethode ab: Die Positionen einer befreiten Gesellschaft werden auf die Partnergruppe **Inländisch** und die Methode **Normal** aufgelöst (siehe die Vorlage unten).
 
 Bei **Ausgangs**positionen kommt eines hinzu: Der Satz wird auf **Kleinunternehmerbefreiung (AAM)** gesetzt, das eigene Satzelement der Befreiung, außer der Beleg zeigt einen anderen Satz. Ein von der Rechnung gelesener steuerbefreiter (TAM) oder nicht steuerbarer Satz bleibt erhalten. USt über null bleibt ebenfalls erhalten, und die Position wird markiert (siehe unten).
 
@@ -25,7 +25,7 @@ Das Ergebnis ist, was ein Buchhalter von Hand tut: Einkäufe werden **brutto im 
 
 ## Die Vorlage
 
-Die Befreiung braucht einige USt-Stammdatenzeilen: die befreite Produkt-/Leistungsgruppe, die drei Befreiungs-Satzelemente (Kleinunternehmerbefreiung, steuerbefreiter Umsatz, nicht steuerbar) und eine kurze Liste von USt-Codes, alle auf der Partnergruppe Inland und der Methode Normal:
+Die Befreiung braucht einige USt-Stammdatenzeilen: die befreite Produkt-/Leistungsgruppe, die drei Befreiungs-Satzelemente (Kleinunternehmerbefreiung, steuerbefreiter Umsatz, nicht steuerbar) und eine kurze Liste von USt-Codes, alle auf der Partnergruppe Inländisch und der Methode Normal:
 
 - **Ausgang:** ein Code je Satz. Der Code Kleinunternehmerbefreiung (AAM) ist der Standard für jeden Verkauf, gleich wer der Kunde ist. Die Codes für steuerbefreite, nicht steuerbare, 0%- und steuerpflichtige Sätze decken eine Rechnung ab, die einen dieser Sätze zeigt.
 - **Eingang:** ein einziger Code, Kleinunternehmerbefreiung (AAM). Jeder inländische Einkauf wird darauf aufgelöst. Die Position behält Satz und USt-Betrag des Belegs; nur der Code ist einheitlich.
@@ -42,6 +42,10 @@ Zwei Regeln gelten für die Vorlage:
 Die Vorlage enthält bewusst **keine ausländischen Partnergruppen und keine Reverse-Charge-Kombinationen**. Das ist es, was den nächsten Abschnitt möglich macht.
 
 Die AAM-Codes haben **keine Erklärungszeile** (Buchhaltungscode): Die Gesellschaft gibt für sie keine USt-Erklärung ab. Die übrigen Ausgangscodes übernehmen die Erklärungszeile des eigenen inländischen Codes des Arbeitsbereichs mit demselben Satz, sodass eine befreite und eine steuerpflichtige Gesellschaft im selben Arbeitsbereich sie gleich erklären. Gibt es keinen solchen Code, steht in der Zeile *Erklärungszeile auszufüllen*; tragen Sie sie unter **Stammdaten → USt.-Codes** nach.
+
+Die Codes werden in der Sprache des Arbeitsbereichs benannt, die dem Land des Arbeitsbereichs folgt (ein deutscher Arbeitsbereich erhält etwa *KU-AUS-19*, „Kleinunternehmer-Vorlage: Ausgang, Inländisch, 19%“). Die Sprache wird beim Anwenden der Vorlage gelesen. Codes, die die Vorlage früher in einer anderen Sprache angelegt hat, werden umbenannt (*Wird umbenannt*), sofern sie niemand bearbeitet hat.
+
+Nach dem Anwenden der Vorlage zeigt der Tab Steuer auf den nächsten Schritt: **Auf bestehende Rechnungen anwenden** (siehe unten).
 
 ## Positionen, die absichtlich zur Prüfung landen
 
@@ -64,7 +68,7 @@ Dieselben gebuchten Werte erscheinen in den Positionsspalten des Hauptbuch-Explo
 
 ## Anwendung auf bereits geladene Rechnungen
 
-Das Einschalten wirkt auf Rechnungen, die ab dann verarbeitet werden. Für bereits im Arbeitsbereich vorhandene Rechnungen verwenden Sie **Auf bestehende Rechnungen anwenden** im Tab Steuer: Zeitraum wählen, mit **Vorschau** sehen, wie viele Positionen neu codiert würden, dann **Anwenden**. Positionen mit manuell gewähltem USt-Code oder manueller Produkt-/Leistungsgruppe werden übersprungen und gezählt. Was danach ohne Code bleibt, greift **USt-Codierung erneut ausführen** in der Rechnungsliste auf.
+Das Einschalten wirkt auf Rechnungen, die ab dann verarbeitet werden. Für bereits im Arbeitsbereich vorhandene Rechnungen verwenden Sie **Auf bestehende Rechnungen anwenden** im Tab Steuer: Zeitraum wählen, mit **1. Vorschau** sehen, wie viele Positionen neu codiert würden (noch ändert sich nichts), dann **2. Anwenden**, das erst nach der Vorschau verfügbar ist. Positionen mit manuell gewähltem USt-Code oder manueller Produkt-/Leistungsgruppe werden übersprungen und gezählt. Was danach ohne Code bleibt, greift **USt-Codierung erneut ausführen** in der Rechnungsliste auf.
 
 ## Ausscheiden aus der Befreiung
 
