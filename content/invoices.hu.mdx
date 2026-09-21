@@ -1,137 +1,114 @@
 # Számlák kezelése
 
-Az AI Finance Team automatikusan feldolgozza a számlákat — kinyeri a kulcsfontosságú adatokat, azonosítja a partnereket, és kategóriákat javasol. Ez a cikk bemutatja, hogyan tekintheti meg, ellenőrizheti, szerkesztheti és exportálhatja a számlaadatokat.
+Az AI Finance Team minden számlát elolvas Ön helyett: kinyeri az adatokat, megállapítja, melyik cégéhez tartozik a számla és hogy bevétel vagy kiadás, megkeresi a partnert, és kategóriákat és ÁFA-kódokat javasol. Ez a cikk bemutatja, hogyan érkeznek a számlák, hogyan találja meg és ellenőrizze őket, és hogyan javítsa, utasítsa el és töltse le őket.
 
-## Számlák feltöltése
+<InvoiceLifecycleFigure>
+Egy számla útja az AI Finance Teamben, az érkezéstől a kifizetésig. A címkék és állapotok azok, amelyeket az alkalmazás az egyes lépéseknél mutat.
+</InvoiceLifecycleFigure>
 
-Kattintson a **Számlák feltöltése** gombra a Számlák oldal jobb felső sarkában, vagy húzzon egy vagy több fájlt (PDF, JPEG, PNG, WebP vagy HEIC) közvetlenül az oldalra. Feltölthet egyszerre egyetlen számlát, többet egyszerre, vagy számlákat tartalmazó `.zip` archívumot is — a böngésző kicsomagolja az archívumot, és minden fájlt külön sorba állít.
+## Hogyan érkeznek a számlák
 
-A jobb alsó sarokban megjelenő folyamatpanel mutatja az egyes fájlokat feltöltés és kinyerés közben. Közben tovább dolgozhat — a panel látható marad navigálás közben is, és az oldal frissítése nem szakítja meg a folyamatban lévő műveleteket.
+- **Feltöltés**: a **Számlák** oldalon kattintson a jobb felső sarokban a **Számlák feltöltése** gombra, vagy húzza a fájlokat bárhová az oldalon: PDF, JPEG, PNG, WebP vagy HEIC, fájlonként legfeljebb 50 MB, vagy egy `.zip` archívum, amelyet a böngésző kicsomagol és fájlonként sorba állít. A jobb alsó sarokban egy folyamatpanel követi az egyes fájlokat. Egy feltöltött fájl kinyerése akkor is folytatódik, ha elhagyja vagy újratölti az oldalt; a böngészőből még feltöltés alatt álló fájl újratöltéskor elvész. Lásd: [Fájlok feltöltése](/uploading-files).
+- **E-mail**: továbbítsa a számlákat a munkaterület címére. Lásd: [Dokumentumok továbbítása e-mailben](/email-forwarding).
+- **NAV Online Számla**: a NAV-nak bejelentett számlák maguktól megérkeznek, PDF nélkül. Lásd: [NAV Online Számla (Magyarország)](/nav-online-szamla).
 
-A feltöltés teljes működéséről — fogd és vidd, többfájlos kiválasztás, ZIP-archívumok, sikertelen kinyerések újrapróbálása — lásd a [Fájlok feltöltése](/uploading-files) cikket.
+### Mi történik ezután
 
-### Duplikációk észlelése
+A Claude elolvassa a számlát, és kinyeri a fejlécet, a feleket, az összegeket és a számlatételeket. Ezután az AI Finance Team megállapítja, melyik cége szerepel a számlán: ha az Ön cége az eladó, a számla bevétel; ha a vevő, kiadás. Megkeresi a partnert, tételenként kategóriát és ÁFA-kódokat javasol, és egymondatos összefoglalót ír. A kategóriákat akkor javasolja, amikor az irány már ismert. Lásd: [Számlák és tranzakciók kategorizálása](/categorization) és [ÁFA-kódok a számlákon](/vat-codes-on-invoices).
 
-Amikor olyan fájlt tölt fel, amelynek tartalma megegyezik egy a munkaterületen már meglévő számlával, az AI Finance Team ezt automatikusan észleli (a fájl SHA-256 hash-e alapján), és az új feltöltést a meglévő rekordhoz kapcsolja ahelyett, hogy újra kinyerné. A feltöltési panel sorában kék színnel a **Már létezik** felirat jelenik meg — kattintson rá, hogy közvetlenül az eredeti számlára ugorjon.
+### Duplikációk
 
-Ha mindkettőt külön számlaként szeretné megtartani (ritka, de előfordul, amikor egy beszállító ugyanazt a PDF-et két különböző számlához használja fel), egy könyvelő törölheti a duplikáció-jelzést a számla részletoldaláról.
+Ha egy olyan fájlt tölt fel, amely azonos egy, a munkaterületen már meglévővel, az AI Finance Team létrehozza a számlát, de az eredeti duplikációjaként jelöli meg, és nem nyeri ki újra. A feltöltési panel ezt mutatja: **Már létezik**, és egy kattintás megnyitja az eredetit. A kinyerés után az a számla is duplikációnak minősül, amelynek számlaszáma, kiállítási dátuma, bruttó összege és pénzneme egy másikéval megegyezik.
+
+A duplikációk rejtve vannak a listában: az eredeti alatt lenyitható **kapcsolódó** sorként, és a **Duplikáció** szűrő bekapcsolásával jelennek meg. Ha két számla valóban különböző (egy szállító két számlához ugyanazt a PDF-et használta), nyissa meg a duplikációt, és kattintson a sávján a **Mark as not a duplicate** gombra.
 
 ## A számlalista
 
-A munkaterület oldalsávjában kattintson a **Számlák** menüpontra a munkaterület összes számlájának megtekintéséhez. Minden sor a következőket mutatja:
+<InvoiceListFigure>
+A számlalista négy számlával. A számok az alábbi listának felelnek meg. A cégek és az összegek példák.
+</InvoiceListFigure>
 
-- **Számlaszám** — a dokumentumból kinyert szám
-- **Dátum** — a kiállítás dátuma
-- **Partner** — a számla másik fele (beszállító vagy vevő)
-- **Irány** — hogy bevételről (Ön az eladó) vagy kiadásról (Ön a vevő) van-e szó
-- **Összeg** — a bruttó végösszeg a számla pénznemében; ha létezik alap pénznemre történő átváltás, az átváltott összeg kisebb betűmérettel alatta jelenik meg. Az árfolyam-állapot jelzésekről és az árfolyamok forrásáról lásd a [Több pénznem és árfolyamok](/currency-exchange) cikket.
-- **Állapot** — a kinyerés állapota (Függőben, Feldolgozás, Kész vagy Sikertelen)
-- **Kat.** — kis ikon, ha a számlatételek kategorizálása ellenőrzést igényel, vagy ha a kategorizálás sikertelen volt
+1. **Partner**, alatta a számlaszámmal. A sorra bárhol kattintva megnyílik a számla.
+2. **Címkék**: legfeljebb három címke arról, mire van szüksége a számlának, továbbiak esetén **+N**.
+3. **Összeg**: a bruttó végösszeg a számla pénznemében, bevételnél zöld, felfelé mutató nyíllal, kiadásnál piros, lefelé mutató nyíllal.
 
-A **Duplikáció** vagy **Áttekintés szükséges** jelzéssel ellátott számlák a számlaszám mellett jelzést viselnek. A céghez nem rendelt számlák **Cég szükséges** jelzést kapnak.
+Kattintson az oldalsávban a **Számlák** menüpontra. A lista oszlopai: **Azonosító** (az AI Finance Team saját sorszáma, ha a munkaterület mutatja; kattintásra másolható), **Dátum** (a kiállítás dátuma), **Partner**, **Címkék** és **Összeg**. Oldalanként 50 számlát mutat, és azonosító, dátum vagy összeg szerint rendezhető. A bal oldali borostyánsárga szegély teendőt igénylő számlát jelöl.
 
-### Számla előnézete
+A leggyakoribb címkék:
 
-Kattintson a szem ikonra bármelyik sor végén, hogy a képernyő jobb oldalán megnyíljon az előnézeti fiók. A fiók az eredeti PDF-dokumentumot mutatja anélkül, hogy elhagyná a listaoldalt.
+| Címke | Jelentés |
+|-------|---------|
+| **Ellenőrzés** | A kinyerés hiányos vagy sikertelen volt: vesse össze a számlát a dokumentummal |
+| **Cég szükséges** | Az AI Finance Team nem tudta megállapítani, melyik cégéhez tartozik a számla |
+| **Válassz irányt** | Nem dönthető el, hogy bevétel vagy kiadás; válassza ki a számlán |
+| **NAV** / **Nincs PDF** | A számla a NAV Online Számlából jött / nincs dokumentumfájl |
+| **Árfolyam függő** | Az alappénznemre váltás árfolyama még nem áll rendelkezésre |
+| **Nem ellenőrzött** | A partner még nem ellenőrzött partner (lásd: [Partnerek kezelése](/partners)) |
+| **Hiányos ÁFA-kódok** / **Alapért. kódolt** | ÁFA-kód nélküli tételek / alapértelmezett kóddal kódolt tételek |
+| **Duplikáció**, **Sztornózva** | Egy másik számla duplikációja / sztornószámlával érvénytelenítve |
+| **Jóváhagyásra vár**, **Jóváhagyva**, **Elutasítva** | A kifizetés jóváhagyásának állapota, ahol a jóváhagyás be van kapcsolva (lásd: [Számlák jóváhagyása kifizetésre](/approving-invoices)) |
 
-**Billentyűparancsok az előnézeti fiókban:**
+### Számlák keresése
 
-| Billentyű | Művelet |
-|-----|--------|
-| `←` `→` | Ugrás a lista előző vagy következő számlájára |
-| `E` | A teljes számlaszerkesztő megnyitása |
-| `Esc` | A fiók bezárása |
+Kereshet számlaszám, AI Finance Team-azonosító, eladó vagy vevő neve, illetve partner szerint. A lista felett szűrhet időszakra, **Cég** szerint (ha több cége van), valamint **Irány**, **Forrás** (NAV vagy feltöltött), **Fizetés** és **Jóváhagyás** szerint, és bekapcsolhat szűrőcímkéket: **Áttekintés szükséges**, **Fizetésre vár**, **Cég szükséges**, **Árfolyam függő**, **Duplikáció**, **Elutasítva**, **Nincs dokumentum**, **Hiányos ÁFA-kódok** és **Áfa: alapértelmezéssel kódolt**. Az elutasított számlák, a duplikációk és a sztornózott párok rejtve maradnak, amíg a címkéjüket be nem kapcsolja. Ha [fókuszált időszakban](/focused-period) dolgozik, a lista azt követi.
 
-Használhatja a fiók fejlécében lévő **←** és **→** gombokat is, vagy kattintson a **Szerkesztő megnyitása →** gombra, hogy közvetlenül a számla részletoldalára lépjen.
+A számlák szerkesztésére vonatkozó jogosultsággal sorokat jelölhet ki, és választhatja az **Újrakategorizálás**, az **Áfakódolás újrafuttatása** vagy az **Ellenőrzött tételek jóváhagyása** műveletet.
 
-Az előnézet egér nélküli megnyitásához fókuszáljon egy sorra a billentyűzettel, és nyomja meg a `Space` billentyűt.
+## A számla oldala
 
-## A számla részletoldala
+Kattintson egy számlára az oldala megnyitásához. A felső kártya mutatja a számlaszámot, az olyan jelvényeket, mint a **Duplikáció**, az **Elutasítva**, az **Áttekintés szükséges** és a **Teljesség**, a fizetési állapotot, valamint a **Partner**, **Irány**, **Bruttó** és **Kiállítva** adatokat, a **Letöltés** és a **Szerkesztés** gombbal. Alatta az AI-összefoglaló áll, amelyet szerkeszthet, és a **Teendők**, például egy hiányzó ÁFA-kód vagy egy ellenőrizendő partner.
 
-Kattintson bármelyik számlaszámra a részletoldal megnyitásához. Ez az oldal az összes kinyert adatot strukturált, csak olvasható nézetben mutatja az eredeti PDF mellett.
+Az oldalnak hat füle van:
 
-Az oldal a következő szakaszokra tagolódik:
+- **Áttekintés**: a **Felek** (eladó és vevő, az Ön oldala megjelölve), az **Összegek** (nettó, ÁFA és bruttó, eltérés esetén az alappénznemű összegekkel) és a **Dátumok** (kiállítás, teljesítés, fizetési határidő, ÁFA- és könyvelési dátum), valamint az egyéni kategóriák és a kifizetés jóváhagyásának kártyája, ahol ezek érvényesek.
+- **Tételek & ÁFA**: a számlatételek leírással és mennyiséggel, nettó összeggel, ÁFA-kulccsal, bruttó összeggel, kategóriával és ÁFA-kóddal.
+- **Dokumentum**: az eredeti fájl, NAV-számlánál a NAV-megjelenítés.
+- **Párosítás & fizetés**: a számlához párosított banki tranzakciók. Lásd: [Számlák párosítása](/invoice-matching).
+- **Üzenetek**: a számláról szóló beszélgetés. Lásd: [Üzenetek](/messages).
+- **Előzmények**: minden változás egy idővonalon, mezőnként a régi és az új értékkel, azzal, hogy ki és mikor végezte, a kinyerési, párosítási és NAV-eseményekkel együtt. Személy szerint szűrhető, és nem szerkeszthető.
 
-- **Fejléc** — számlaszám, kiállítás dátuma, fizetési határidő, teljesítés dátuma, pénznem és irány
-- **Felek** — eladó neve és adószáma, vevő neve és adószáma
-- **Összegek** — nettó végösszeg, ÁFA végösszeg és bruttó végösszeg
-- **Számlatételek** — táblázat minden tétellel: leírás, mennyiség, egységár, nettó összeg, ÁFA-kulcs, bruttó összeg és hozzárendelt kategória
-- **Előzmények** — a számlán végzett minden kézi módosítás nyilvántartása, a módosított mezővel, a régi értékkel, az új értékkel, és azzal, hogy ki végezte a módosítást
+Néhány dolog közvetlenül az oldalon javítható, például az összefoglaló, az ÁFA- és a könyvelési dátum, a kategóriák és az ÁFA-kódok.
 
-## Számla szerkesztése
+## Egy számla szerkesztése
 
-A kinyert adatok javításához kattintson a **Szerkesztés** gombra a számla részletoldalának jobb felső sarkában. Ez megnyitja a teljes képernyős szerkesztőfelületet.
+Kattintson a számla oldalán a **Szerkesztés** gombra, vagy nyomja meg az `E` billentyűt, ha egyik mező sincs kijelölve. Ehhez a számlák szerkesztésére vonatkozó jogosultság kell. A szerkesztő teljes képernyőn nyílik meg, bal oldalon a dokumentummal (széles képernyőn), jobb oldalon az űrlappal:
 
-A szerkesztő bal oldalon az eredeti PDF-et, jobb oldalon pedig egy szerkeszthető űrlapot mutat. Az űrlap minden mezője kattintható:
+- **Hozzárendelés**: hogy Ön az eladó vagy a vevő (**Mi vagyunk az eladó · bevétel** vagy **Mi vagyunk a vevő · kiadás**), melyik cégéről van szó, és a partner. A számlára nyomtatott neveket és adószámokat nem szerkeszti: azt választja ki, kihez tartozik a számla.
+- **Számla részletei**: a számlaszám, a pénznem, valamint a kiállítás, a fizetési határidő, a teljesítés, az ÁFA- és a könyvelési dátum.
+- A nettó, az ÁFA és a bruttó végösszeg.
+- **Számlatételek**: tételenként a leírás, a nettó, a bruttó és a kategória szerkeszthető; az ÁFA-kulcs látható, de nem szerkeszthető. A **Sor hozzáadása** új tételt ad hozzá, a kuka ikon töröl egyet.
 
-- **Fejléc-mezők** (számlaszám, dátumok, pénznem, irány) — kattintson az értékre a helyben történő szerkesztéshez. Nyomja meg az `Enter` billentyűt, vagy kattintson máshová a mentéshez. A módosítások egyenként és azonnal mentődnek — nincs Mentés gomb a teljes űrlaphoz.
-- **Felek mezői** (eladó/vevő neve és adószáma) — ugyanaz a kattintással szerkeszthető viselkedés.
-- **Összegmezők** (nettó, ÁFA, bruttó) — ugyanaz a kattintással szerkeszthető viselkedés.
+Egy értékre kattintva szerkesztheti; Enter lenyomására vagy máshová kattintva mentődik. Mentés gomb nincs. Ha egy mező fölé viszi az egeret, az érték sárgán kiemelődik a PDF-ben, így összevetheti a forrással. Egy módosított mezőnél az egér fölé vitelekor visszaállító nyíl jelenik meg, amely visszaállítja az AI által kinyert értéket. A szerkesztőt az `Esc` billentyűvel vagy a **×** gombbal zárhatja be.
 
-### Kiemelés rámutatással
+## Egy számla elutasítása
 
-Amikor a szerkesztőben egy mezőre mutat az egérrel, a megfelelő érték kiemelődik a bal oldali PDF-ben. Ez megkönnyíti a kinyert adatok ellenőrzését a forrásdokumentummal szemben, különösen akkor, ha egy érték gyanúsnak tűnik.
+Ha egy számla egyik cégéhez sem tartozik, nyissa meg a számlán a cég kiválasztását, kattintson az **Ez a számla nem egyik cégünké sem** hivatkozásra, és adjon meg egy okot. A számla az **Elutasítva** szűrő alá kerül, a hozzá tartozó párosítási javaslatok törlődnek, a meglévő párosítások megmaradnak és megjelölődnek. A sávja felajánlja az **Undo rejection** lehetőséget. Számlát törölni nem lehet.
 
-Mutasson rá egy számlatétel leírására, hogy az adott szöveg kiemelődjön a PDF-ben. A kiemelés sárga rávetítést használ közvetlenül a PDF szövegrétegén — nem módosítja a dokumentumot.
+## Egy számla letöltése
 
-### Számlatételek szerkesztése
-
-A szerkesztőben lévő számlatétel-táblázat teljesen szerkeszthető. Minden tételnél:
-
-- Kattintson bármelyik cellára (leírás, mennyiség, egységár, ÁFA-kulcs vagy kategória) a szerkesztéshez
-- A módosítások azonnal mentődnek, amint máshová kattint
-- A **nettó összeg** és **bruttó összeg** oszlopok automatikusan számítódnak — ezek csak olvashatók
-
-Tétel hozzáadásához kattintson a táblázat alatti **Sor hozzáadása** gombra. Tétel eltávolításához kattintson a sor végén lévő **×** gombra.
-
-### Mező visszaállítása
-
-Ha szerkesztett egy mezőt, és vissza szeretné állítani a dokumentumból kinyert eredeti értéket, kattintson a mező mellett a szerkesztés közben megjelenő **↩** visszaállító ikonra. Ez visszaállítja az AI által kinyert értéket.
-
-### A szerkesztő bezárása
-
-Nyomja meg az `Esc` billentyűt, vagy kattintson a jobb felső sarokban lévő **×** gombra a szerkesztő bezárásához és a csak olvasható részletnézetbe való visszatéréshez.
-
-A szerkesztőt megnyithatja az `E` billentyűparanccsal is, amikor a részletoldalon van, és egyetlen beviteli mező sincs fókuszban.
-
-## Számla letöltése
-
-Használja a **Letöltés** gombot a számla részletoldalán a számla exportálásához. Kattintson a gombra az eredeti PDF azonnali letöltéséhez, vagy kattintson a **▾** nyílra a formátum kiválasztásához:
+A számla oldalán a **Letöltés** gombbal az eredeti fájlt kapja meg, a **▾** nyíllal formátumot választhat:
 
 | Formátum | Tartalom |
 |--------|----------|
-| **PDF** | Az eredeti feltöltött dokumentum |
-| **XLSX** | Kétlapos munkafüzet: egy „Számla" összefoglaló lap és egy „Számlatételek" lap az összes tételadattal |
-| **CSV** | Lapos fájl a számla fejlécével az első sorokban és a tételekkel alatta |
-| **JSON** | Strukturált JSON az összes számlamezővel és egy `line_items` tömbbel |
+| **PDF** | Az eredeti dokumentum |
+| **XLSX** | Két munkalap: „Invoice” az összesítővel és „Line Items” minden tétellel |
+| **CSV** | Az első sorokban a számla fejléce, utána a tételek |
+| **JSON** | A számla minden mezője és egy `line_items` lista |
 
-Minden letöltést a számlaszámról nevezünk el (vagy az eredeti fájlnévről PDF esetén). Az XLSX, CSV és JSON a platform strukturált adatait használja — ezek tükrözik az Ön által végzett kézi javításokat.
+A fájlok neve az eredeti fájl neve. Az XLSX, a CSV és a JSON az aktuális adatokból készül, így tartalmazza a javításait; az oszlopfejlécek angolok. Dokumentumfájl nélküli számlánál (például NAV-ból) nincs Letöltés gomb.
 
-## Az előzmények napló
+## Kinyerés és ellenőrzés
 
-Minden kézi szerkesztés rögzítésre kerül az előzmények naplóban a számla részletoldalának alján. Minden bejegyzés a következőket mutatja:
+A feltöltési panel minden fájlt ezekkel az állapotokkal mutat: **Sorban**, **Feltöltés…**, **Kinyerés…**, **Kinyerve** vagy sikertelen, ez utóbbinál **Újra** gombbal. Amíg egy számla még olvasás alatt áll, az oldala a felső kártyában mutatja a kinyerés állapotát.
 
-- A módosított mezőt
-- A korábbi értéket
-- Az új értéket
-- Hogy ki végezte a módosítást és mikor
+Az **Ellenőrzés** címke azt jelenti, hogy a kinyerés teljessége 80% alatt maradt: hiányzik a számlaszám, egy dátum, egy adószám, egy összeg vagy a tételek, vagy az összegek nem egyeznek. A számla oldala a pontszámot így mutatja: **Teljesség: N%**. A sikertelen kinyerés is **Ellenőrzés** címkét kap. Az ilyen számlákat vesse össze a dokumentummal, és javítsa a szerkesztőben.
 
-Az előzmények napló csak olvasható. Nem törölhető és nem szerkeszthető.
+## Ki mit tehet
 
-## A kinyerési állapot megértése
-
-| Állapot | Jelentés |
-|--------|---------|
-| **Függőben** | A dokumentum megérkezett, és feldolgozásra vár |
-| **Feldolgozás** | Az AI éppen kinyeri az adatokat a dokumentumból |
-| **Kész** | A kinyerés befejeződött; az adatok ellenőrzésre rendelkezésre állnak |
-| **Sikertelen** | A kinyerés nem fejeződhetett be; a dokumentumot lehet, hogy újra fel kell tölteni, vagy kézzel kell rögzíteni |
-
-A **Kész** állapot nem jelenti azt, hogy az adatok helyesek — csak azt jelenti, hogy az AI eredményt állított elő. Mindig ellenőrizze az **Áttekintés szükséges** jelzéssel ellátott számlákat, mivel ezek olyan esetek, ahol az AI bizonyossága a küszöbérték alatt volt.
+A számlák megtekintéséhez a számlák és banki tranzakciók megtekintésére vonatkozó jogosultság kell. A szerkesztéshez, az elutasításhoz és a csoportos műveletekhez a számlák szerkesztésére vonatkozó jogosultság, amely alapértelmezés szerint a könyvelőknél van; az ügyfél felhasználói megtekinthetik a számlákat, megnyithatják a dokumentumot és feltölthetnek. Lásd: [Szerepek és jogosultságok](/roles-and-permissions).
 
 ## Tippek
 
-- **Tartsa naprakészen a cégadatokat.** Az AI a cégnevek, adószámok és alternatív nevek alapján azonosítja a partnereket. Ha egy beszállító ismeretlenként jelenik meg, adja hozzá a Törzsadatok → Cégek menüpontban a helyes nevével és adószámával.
-- **Használja az előnézeti fiókot** a dokumentumok gyors ellenőrzéséhez anélkül, hogy elnavigálna a listáról. Navigáljon a teljes listában a ← és → billentyűkkel egy köteg számla hatékony átnézéséhez.
-- **Töltse le XLSX formátumban**, ha strukturált számlaadatokat kell megosztania egy Excelben dolgozó kollégával — a kétlapos formátum elkülönítve tartja az összefoglalót és a tételeket.
-- **Töltse le JSON formátumban** integrációkhoz — a strukturált kimenet megfelel a belsőleg használt mezőknek, és a legtöbb könyvelési csatlakozó közvetlenül fel tudja dolgozni.
+- **A szállítók és a vevők partnerek.** Ha egy szállítót nem ismer fel a rendszer, vegye fel vagy ellenőrizze a Törzsadatok, Partnerek alatt. A **Cégek** az Ön saját vállalkozásai. Lásd: [Partnerek kezelése](/partners).
+- **Használja az Előzmények fület**, ha látni szeretné, ki mit és mikor változtatott.
+- **Töltse le XLSX-ként**, ha egy Excelben dolgozó kollégával osztja meg a számlát: az összesítő és a tételek külön munkalapon maradnak.
