@@ -1,18 +1,18 @@
 # Számlák kezelése
 
-Az AI Finance Team automatikusan feldolgozza a számlákat — kinyeri a kulcsfontosságú adatokat, azonosítja a partnereket, és kategóriákat javasol. Ez a cikk bemutatja, hogyan tekintheti meg, ellenőrizheti, szerkesztheti és exportálhatja a számlaadatokat.
+Az AI Finance Team automatikusan feldolgozza a számlákat - kinyeri a kulcsfontosságú adatokat, azonosítja a partnereket, és kategóriákat javasol. Ez a cikk bemutatja, hogyan tekintheti meg, ellenőrizheti, szerkesztheti és exportálhatja a számlaadatokat.
 
 ## Számlák feltöltése
 
-Kattintson a **Számlák feltöltése** gombra a Számlák oldal jobb felső sarkában, vagy húzzon egy vagy több fájlt (PDF, JPEG, PNG, WebP vagy HEIC) közvetlenül az oldalra. Feltölthet egyszerre egyetlen számlát, többet egyszerre, vagy számlákat tartalmazó `.zip` archívumot is — a böngésző kicsomagolja az archívumot, és minden fájlt külön sorba állít.
+Kattintson a **Számlák feltöltése** gombra a Számlák oldal jobb felső sarkában, vagy húzzon egy vagy több fájlt (PDF, JPEG, PNG, WebP vagy HEIC) közvetlenül az oldalra. Feltölthet egyszerre egyetlen számlát, többet egyszerre, vagy számlákat tartalmazó `.zip` archívumot is - a böngésző kicsomagolja az archívumot, és minden fájlt külön sorba állít.
 
-A jobb alsó sarokban megjelenő folyamatpanel mutatja az egyes fájlokat feltöltés és kinyerés közben. Közben tovább dolgozhat — a panel látható marad navigálás közben is, és az oldal frissítése nem szakítja meg a folyamatban lévő műveleteket.
+A jobb alsó sarokban megjelenő folyamatpanel mutatja az egyes fájlokat feltöltés és kinyerés közben. Közben tovább dolgozhat - a panel látható marad navigálás közben is, és az oldal frissítése nem szakítja meg a folyamatban lévő műveleteket.
 
-A feltöltés teljes működéséről — fogd és vidd, többfájlos kiválasztás, ZIP-archívumok, sikertelen kinyerések újrapróbálása — lásd a [Fájlok feltöltése](/uploading-files) cikket.
+A feltöltés teljes működéséről - fogd és vidd, többfájlos kiválasztás, ZIP-archívumok, sikertelen kinyerések újrapróbálása - lásd a [Fájlok feltöltése](/uploading-files) cikket.
 
 ### Duplikációk észlelése
 
-Amikor olyan fájlt tölt fel, amelynek tartalma megegyezik egy a munkaterületen már meglévő számlával, az AI Finance Team ezt automatikusan észleli (a fájl SHA-256 hash-e alapján), és az új feltöltést a meglévő rekordhoz kapcsolja ahelyett, hogy újra kinyerné. A feltöltési panel sorában kék színnel a **Már létezik** felirat jelenik meg — kattintson rá, hogy közvetlenül az eredeti számlára ugorjon.
+Amikor olyan fájlt tölt fel, amelynek tartalma megegyezik egy a munkaterületen már meglévő számlával, az AI Finance Team ezt automatikusan észleli (a fájl SHA-256 hash-e alapján), és az új feltöltést a meglévő rekordhoz kapcsolja ahelyett, hogy újra kinyerné. A feltöltési panel sorában kék színnel a **Már létezik** felirat jelenik meg - kattintson rá, hogy közvetlenül az eredeti számlára ugorjon.
 
 Ha mindkettőt külön számlaként szeretné megtartani (ritka, de előfordul, amikor egy beszállító ugyanazt a PDF-et két különböző számlához használja fel), egy könyvelő törölheti a duplikáció-jelzést a számla részletoldaláról.
 
@@ -20,13 +20,13 @@ Ha mindkettőt külön számlaként szeretné megtartani (ritka, de előfordul, 
 
 A munkaterület oldalsávjában kattintson a **Számlák** menüpontra a munkaterület összes számlájának megtekintéséhez. Minden sor a következőket mutatja:
 
-- **Számlaszám** — a dokumentumból kinyert szám
-- **Dátum** — a kiállítás dátuma
-- **Partner** — a számla másik fele (beszállító vagy vevő)
-- **Irány** — hogy bevételről (Ön az eladó) vagy kiadásról (Ön a vevő) van-e szó
-- **Összeg** — a bruttó végösszeg a számla pénznemében; ha létezik alap pénznemre történő átváltás, az átváltott összeg kisebb betűmérettel alatta jelenik meg. Az árfolyam-állapot jelzésekről és az árfolyamok forrásáról lásd a [Több pénznem és árfolyamok](/currency-exchange) cikket.
-- **Állapot** — a kinyerés állapota (Függőben, Feldolgozás, Kész vagy Sikertelen)
-- **Kat.** — kis ikon, ha a számlatételek kategorizálása ellenőrzést igényel, vagy ha a kategorizálás sikertelen volt
+- **Számlaszám** - a dokumentumból kinyert szám
+- **Dátum** - a kiállítás dátuma
+- **Partner** - a számla másik fele (beszállító vagy vevő)
+- **Irány** - hogy bevételről (Ön az eladó) vagy kiadásról (Ön a vevő) van-e szó
+- **Összeg** - a bruttó végösszeg a számla pénznemében; ha létezik alap pénznemre történő átváltás, az átváltott összeg kisebb betűmérettel alatta jelenik meg. Az árfolyam-állapot jelzésekről és az árfolyamok forrásáról lásd a [Több pénznem és árfolyamok](/currency-exchange) cikket.
+- **Állapot** - a kinyerés állapota (Függőben, Feldolgozás, Kész vagy Sikertelen)
+- **Kat.** - kis ikon, ha a számlatételek kategorizálása ellenőrzést igényel, vagy ha a kategorizálás sikertelen volt
 
 A **Duplikáció** vagy **Áttekintés szükséges** jelzéssel ellátott számlák a számlaszám mellett jelzést viselnek. A céghez nem rendelt számlák **Cég szükséges** jelzést kapnak.
 
@@ -52,11 +52,11 @@ Kattintson bármelyik számlaszámra a részletoldal megnyitásához. Ez az olda
 
 Az oldal a következő szakaszokra tagolódik:
 
-- **Fejléc** — számlaszám, kiállítás dátuma, fizetési határidő, teljesítés dátuma, pénznem és irány
-- **Felek** — eladó neve és adószáma, vevő neve és adószáma
-- **Összegek** — nettó végösszeg, ÁFA végösszeg és bruttó végösszeg
-- **Számlatételek** — táblázat minden tétellel: leírás, mennyiség, egységár, nettó összeg, ÁFA-kulcs, bruttó összeg és hozzárendelt kategória
-- **Előzmények** — a számlán végzett minden kézi módosítás nyilvántartása, a módosított mezővel, a régi értékkel, az új értékkel, és azzal, hogy ki végezte a módosítást
+- **Fejléc** - számlaszám, kiállítás dátuma, fizetési határidő, teljesítés dátuma, pénznem és irány
+- **Felek** - eladó neve és adószáma, vevő neve és adószáma
+- **Összegek** - nettó végösszeg, ÁFA végösszeg és bruttó végösszeg
+- **Számlatételek** - táblázat minden tétellel: leírás, mennyiség, egységár, nettó összeg, ÁFA-kulcs, bruttó összeg és hozzárendelt kategória
+- **Előzmények** - a számlán végzett minden kézi módosítás nyilvántartása, a módosított mezővel, a régi értékkel, az új értékkel, és azzal, hogy ki végezte a módosítást
 
 ## Számla szerkesztése
 
@@ -64,15 +64,15 @@ A kinyert adatok javításához kattintson a **Szerkesztés** gombra a számla r
 
 A szerkesztő bal oldalon az eredeti PDF-et, jobb oldalon pedig egy szerkeszthető űrlapot mutat. Az űrlap minden mezője kattintható:
 
-- **Fejléc-mezők** (számlaszám, dátumok, pénznem, irány) — kattintson az értékre a helyben történő szerkesztéshez. Nyomja meg az `Enter` billentyűt, vagy kattintson máshová a mentéshez. A módosítások egyenként és azonnal mentődnek — nincs Mentés gomb a teljes űrlaphoz.
-- **Felek mezői** (eladó/vevő neve és adószáma) — ugyanaz a kattintással szerkeszthető viselkedés.
-- **Összegmezők** (nettó, ÁFA, bruttó) — ugyanaz a kattintással szerkeszthető viselkedés.
+- **Fejléc-mezők** (számlaszám, dátumok, pénznem, irány) - kattintson az értékre a helyben történő szerkesztéshez. Nyomja meg az `Enter` billentyűt, vagy kattintson máshová a mentéshez. A módosítások egyenként és azonnal mentődnek - nincs Mentés gomb a teljes űrlaphoz.
+- **Felek mezői** (eladó/vevő neve és adószáma) - ugyanaz a kattintással szerkeszthető viselkedés.
+- **Összegmezők** (nettó, ÁFA, bruttó) - ugyanaz a kattintással szerkeszthető viselkedés.
 
 ### Kiemelés rámutatással
 
 Amikor a szerkesztőben egy mezőre mutat az egérrel, a megfelelő érték kiemelődik a bal oldali PDF-ben. Ez megkönnyíti a kinyert adatok ellenőrzését a forrásdokumentummal szemben, különösen akkor, ha egy érték gyanúsnak tűnik.
 
-Mutasson rá egy számlatétel leírására, hogy az adott szöveg kiemelődjön a PDF-ben. A kiemelés sárga rávetítést használ közvetlenül a PDF szövegrétegén — nem módosítja a dokumentumot.
+Mutasson rá egy számlatétel leírására, hogy az adott szöveg kiemelődjön a PDF-ben. A kiemelés sárga rávetítést használ közvetlenül a PDF szövegrétegén - nem módosítja a dokumentumot.
 
 ### Számlatételek szerkesztése
 
@@ -80,7 +80,7 @@ A szerkesztőben lévő számlatétel-táblázat teljesen szerkeszthető. Minden
 
 - Kattintson bármelyik cellára (leírás, mennyiség, egységár, ÁFA-kulcs vagy kategória) a szerkesztéshez
 - A módosítások azonnal mentődnek, amint máshová kattint
-- A **nettó összeg** és **bruttó összeg** oszlopok automatikusan számítódnak — ezek csak olvashatók
+- A **nettó összeg** és **bruttó összeg** oszlopok automatikusan számítódnak - ezek csak olvashatók
 
 Tétel hozzáadásához kattintson a táblázat alatti **Sor hozzáadása** gombra. Tétel eltávolításához kattintson a sor végén lévő **×** gombra.
 
@@ -105,7 +105,7 @@ Használja a **Letöltés** gombot a számla részletoldalán a számla exportá
 | **CSV** | Lapos fájl a számla fejlécével az első sorokban és a tételekkel alatta |
 | **JSON** | Strukturált JSON az összes számlamezővel és egy `line_items` tömbbel |
 
-Minden letöltést a számlaszámról nevezünk el (vagy az eredeti fájlnévről PDF esetén). Az XLSX, CSV és JSON a platform strukturált adatait használja — ezek tükrözik az Ön által végzett kézi javításokat.
+Minden letöltést a számlaszámról nevezünk el (vagy az eredeti fájlnévről PDF esetén). Az XLSX, CSV és JSON a platform strukturált adatait használja - ezek tükrözik az Ön által végzett kézi javításokat.
 
 ## Az előzmények napló
 
@@ -127,11 +127,11 @@ Az előzmények napló csak olvasható. Nem törölhető és nem szerkeszthető.
 | **Kész** | A kinyerés befejeződött; az adatok ellenőrzésre rendelkezésre állnak |
 | **Sikertelen** | A kinyerés nem fejeződhetett be; a dokumentumot lehet, hogy újra fel kell tölteni, vagy kézzel kell rögzíteni |
 
-A **Kész** állapot nem jelenti azt, hogy az adatok helyesek — csak azt jelenti, hogy az AI eredményt állított elő. Mindig ellenőrizze az **Áttekintés szükséges** jelzéssel ellátott számlákat, mivel ezek olyan esetek, ahol az AI bizonyossága a küszöbérték alatt volt.
+A **Kész** állapot nem jelenti azt, hogy az adatok helyesek - csak azt jelenti, hogy az AI eredményt állított elő. Mindig ellenőrizze az **Áttekintés szükséges** jelzéssel ellátott számlákat, mivel ezek olyan esetek, ahol az AI bizonyossága a küszöbérték alatt volt.
 
 ## Tippek
 
 - **Tartsa naprakészen a cégadatokat.** Az AI a cégnevek, adószámok és alternatív nevek alapján azonosítja a partnereket. Ha egy beszállító ismeretlenként jelenik meg, adja hozzá a Törzsadatok → Cégek menüpontban a helyes nevével és adószámával.
 - **Használja az előnézeti fiókot** a dokumentumok gyors ellenőrzéséhez anélkül, hogy elnavigálna a listáról. Navigáljon a teljes listában a ← és → billentyűkkel egy köteg számla hatékony átnézéséhez.
-- **Töltse le XLSX formátumban**, ha strukturált számlaadatokat kell megosztania egy Excelben dolgozó kollégával — a kétlapos formátum elkülönítve tartja az összefoglalót és a tételeket.
-- **Töltse le JSON formátumban** integrációkhoz — a strukturált kimenet megfelel a belsőleg használt mezőknek, és a legtöbb könyvelési csatlakozó közvetlenül fel tudja dolgozni.
+- **Töltse le XLSX formátumban**, ha strukturált számlaadatokat kell megosztania egy Excelben dolgozó kollégával - a kétlapos formátum elkülönítve tartja az összefoglalót és a tételeket.
+- **Töltse le JSON formátumban** integrációkhoz - a strukturált kimenet megfelel a belsőleg használt mezőknek, és a legtöbb könyvelési csatlakozó közvetlenül fel tudja dolgozni.

@@ -1,24 +1,34 @@
 # Cégek kezelése
 
-A cégek azok a vállalatok, magánszemélyek és szervezetek, amelyek megjelennek a számláin és bankszámlakivonatain — szállítók, vevők és a saját jogi személyei. Ha ezeket pontosan tartja az AI Finance Teamben, az AI helyesen ismeri fel a partnereket, gyorsabban kategorizálja a dokumentumokat, és kevesebb kivétel igényel kézi átnézést.
+A cégek az ügyfele saját vállalkozásai: azok a jogi személyek, amelyeknek a számláit és bankszámláit ez a munkaterület könyveli. A szállítók és a vevők partnerek, nem cégek (lásd [Partnerek kezelése](/partners)). Ha a cégeket pontosan tartja az AI Finance Teamben, az AI meg tudja állapítani, melyik számla bevétel és melyik kiadás, felismeri a saját számlák közötti átvezetéseket, és kevesebb kivétel igényel kézi átnézést.
 
 ## Mi az a cég?
 
-A cég egy rekord, amely egy valós felet képvisel. A munkaterületén minden cég a következőket tartalmazza:
+A cég egy rekord, amely az ügyfele egyik saját jogi személyét képviseli. A munkaterületén minden cég a következőket tartalmazza:
 
-- **Cégnév** — a dokumentumokon használt hivatalos, bejegyzett név
-- **Ország** — a bejegyzés országa
-- **Adószám** — a belföldi adóazonosító (például a magyar adószám vagy a német Steuernummer)
-- **EU adószám** — az EU által kiadott adószám a szabványos formátumban (például HU12345678)
-- **Cégjegyzékszám** — a cégnyilvántartási szám
-- **Alternatív nevek** — más nevek, amelyeket ugyanaz a fél használ a számlákon vagy a bankszámlakivonatokon (kereskedelmi nevek, rövidítések, korábbi nevek)
-- **Bankszámlák** — a fizetésekhez használt IBAN- és/vagy belföldi számlaszámok
-- **Elérhetőségek** — cím, weboldal, e-mail-domain
-- **Párosítási környezet** — szabad szöveges megjegyzés, amely eligazítja az AI-t a kétes dokumentumoknál
+- **Cégnév** - a dokumentumokon használt hivatalos, bejegyzett név
+- **Ország** - a bejegyzés országa
+- **Adószám** - a belföldi adóazonosító (például a magyar adószám vagy a német Steuernummer)
+- **EU adószám** - az EU által kiadott adószám a szabványos formátumban (például HU12345678)
+- **Cégjegyzékszám** - a cégnyilvántartási szám
+- **Alternatív nevek** - más nevek, amelyeket ugyanaz a fél használ a számlákon vagy a bankszámlakivonatokon (kereskedelmi nevek, rövidítések, korábbi nevek)
+- **Bankszámlák** - a fizetésekhez használt IBAN- és/vagy belföldi számlaszámok
+- **Elérhetőségek** - cím, weboldal, e-mail-domain
+- **Párosítási környezet** - szabad szöveges megjegyzés, amely eligazítja az AI-t a kétes dokumentumoknál
 
 ## Eljutás a törzsadatokhoz
 
 A munkaterület oldalsávjában kattintson a **Törzsadatok**, majd a **Cégek** menüpontra. Ez az oldal a munkaterület összes aktív cégét felsorolja. Az archivált cégek külön szakaszban jelennek meg az aktív lista alatt.
+
+### NAV-jelzés az adószám mellett
+
+A magyar cégeknél az **Adószám** oszlopban egy kis **NAV** jelzés látható, ha a számlaadatok a NAV Online Számlából érkeznek:
+
+- **Épület ikon:** a cégnek saját NAV-kapcsolata van.
+- **Csoport ikon:** a cég egy áfacsoport (csoportos áfaalany) párosított tagja, és a csoport NAV-kapcsolata fedi le. Ezt a kapcsolatot az áfacsoportnál javítsa vagy szüneteltesse, ne a cégnél.
+- A **zöld** jelzés azt jelenti, hogy a kapcsolat szinkronizál. A **szürke** azt, hogy be van állítva, de most nem szinkronizál: szünetel, még nem indult el, vagy a legutóbbi szinkron sikertelen volt. Ha az egeret a jelzés fölé viszi, látja, melyik.
+
+Ha nincs jelzés, a NAV nem fedi le a céget.
 
 ## Cég felvétele
 
@@ -26,9 +36,9 @@ A munkaterület oldalsávjában kattintson a **Törzsadatok**, majd a **Cégek**
 2. Töltse ki a **Cégnév** (kötelező), az **Ország** (kötelező) és az **Adószám** (opcionális) mezőt.
 3. Kattintson a **Cég létrehozása** gombra.
 
-A rendszer közvetlenül a cég részletező oldalára viszi, ahol felveheti az összes további mezőt: EU adószám, cégjegyzékszám, alternatív nevek, bankszámlák, elérhetőségek és párosítási környezet. Nem kell mindent egyszerre megadni — töltse ki azt, ami most megvan, és térjen vissza később, ahogy többet megtud.
+A rendszer közvetlenül a cég részletező oldalára viszi, ahol felveheti az összes további mezőt: EU adószám, cégjegyzékszám, alternatív nevek, bankszámlák, elérhetőségek és párosítási környezet. Nem kell mindent egyszerre megadni - töltse ki azt, ami most megvan, és térjen vissza később, ahogy többet megtud.
 
-> **Megjegyzés:** Az adószámoknak egyedinek kell lenniük a munkaterületen belül. Ha olyan adószámot ad meg, amelyet már használ egy másik aktív cég, hibaüzenetet kap, és a cég nem jön létre.
+> **Egy adószám, egy cég.** Egy munkaterületen minden cég csak egyszer szerepel. Gépelés közben az AI Finance Team összeveti az adószámot a meglévő cégekkel, bármilyen írásmódban (`12345678-2-41`, `12345678` és `HU12345678` ugyanaz a cég). Ha a cég már létezik, az űrlap megnevezi és hivatkozik rá, a **Cég létrehozása** gomb pedig nem kattintható. Az archivált cégek nem számítanak. Csoportazonosítót soha nem tekintünk egy cég saját adószámának.
 
 ## Cég szerkesztése
 
@@ -36,21 +46,21 @@ Nyissa meg a céget a nevére kattintva a listában. A részletező oldal minden
 
 ### Azonosítás
 
-Módosíthatja a cégnevet, az országot, az adószámot, az EU adószámot vagy a cégjegyzékszámot. Ha végzett, kattintson a **Mentés** gombra. Ha az új adószám ütközik a munkaterület egy másik aktív cégével, a mentés hibaüzenettel elakad.
+Módosíthatja a cégnevet, az országot, az adószámot, az EU adószámot vagy a cégjegyzékszámot. Ha végzett, kattintson a **Mentés** gombra. Ha az új adószám már a munkaterület egy másik cégéhez tartozik, az űrlap megnevezi azt a céget, és a **Mentés** gomb nem kattintható.
 
 #### Hogyan függ össze az adószám és az EU adószám
 
-Egy cég két adóazonosítót viselhet: **belföldi adószámot** (a helyi adószám — például a magyar adószám vagy a német Steuernummer) és **EU adószámot** (a határon átnyúló ÁFA-azonosító — például `HU12345678`, `DE123456789`). Az, hogy az AI Finance Team hogyan kezeli a párost, országfüggő:
+Egy cég két adóazonosítót viselhet: **belföldi adószámot** (a helyi adószám - például a magyar adószám vagy a német Steuernummer) és **EU adószámot** (a határon átnyúló ÁFA-azonosító - például `HU12345678`, `DE123456789`). Az, hogy az AI Finance Team hogyan kezeli a párost, országfüggő:
 
-- **Országok, ahol a kettő ugyanaz a szám** — Magyarország, Lengyelország, Románia, Spanyolország, Portugália és a legtöbb további EU-tagállam. Itt az EU adószám csupán a belföldi szám országelőtaggal, ezért az AI Finance Team összeveti őket: ha mindkettő megvan és összhangban van, kis ✓ jelenik meg, ha pedig nem illenek össze, halvány borostyánsárga figyelmeztetés hívja fel rá a figyelmet. A figyelmeztetés sosem akadályozza a mentést.
-- **Országok, ahol a kettő külön szám** — Németország, Ausztria, Hollandia, Franciaország és néhány további. A Steuernummer / UID és az EU adószám független azonosítók, amelyek nem vezethetők le egymásból, ezért az AI Finance Team mindegyiket önmagában ellenőrzi, és **nem** hasonlítja össze őket. Helyes német vagy osztrák párosnál **nem** fog „nem ugyanaz a szám” figyelmeztetést látni — az EU adószám mező alatti rövid megjegyzés emlékeztet rá, hogy a kettő ellenőrzése külön történik.
-- **EU-n kívüli cégek** — például Svájc, az Egyesült Királyság, az Egyesült Államok. Csak a belföldi adószám értelmezhető, ezért az EU adószám mező rejtve marad.
+- **Országok, ahol a kettő ugyanaz a szám** - Magyarország, Lengyelország, Románia, Spanyolország, Portugália és a legtöbb további EU-tagállam. Itt az EU adószám csupán a belföldi szám országelőtaggal, ezért az AI Finance Team összeveti őket: ha mindkettő megvan és összhangban van, kis ✓ jelenik meg, ha pedig nem illenek össze, halvány borostyánsárga figyelmeztetés hívja fel rá a figyelmet. A figyelmeztetés sosem akadályozza a mentést.
+- **Országok, ahol a kettő külön szám** - Németország, Ausztria, Hollandia, Franciaország és néhány további. A Steuernummer / UID és az EU adószám független azonosítók, amelyek nem vezethetők le egymásból, ezért az AI Finance Team mindegyiket önmagában ellenőrzi, és **nem** hasonlítja össze őket. Helyes német vagy osztrák párosnál **nem** fog „nem ugyanaz a szám” figyelmeztetést látni - az EU adószám mező alatti rövid megjegyzés emlékeztet rá, hogy a kettő ellenőrzése külön történik.
+- **EU-n kívüli cégek** - például Svájc, az Egyesült Királyság, az Egyesült Államok. Csak a belföldi adószám értelmezhető, ezért az EU adószám mező rejtve marad.
 
-Mindkét azonosító segít felismerni a céget a beérkező dokumentumokon: az a számla, amelyen **akár** a belföldi adószám, **akár** az EU adószám szerepel, továbbra is helyesen azonosítja a céget — a saját cégeinél pedig a megfelelő irányban, bevételként vagy kiadásként könyveli a dokumentumot.
+Mindkét azonosító segít felismerni a céget a beérkező dokumentumokon: az a számla, amelyen **akár** a belföldi adószám, **akár** az EU adószám szerepel, továbbra is helyesen azonosítja a céget - a saját cégeinél pedig a megfelelő irányban, bevételként vagy kiadásként könyveli a dokumentumot.
 
 ### Alternatív nevek
 
-Vegye fel mindazokat a további neveket, amelyeket ez a fél használ — például a számláin megjelenő kereskedelmi nevet, a banki hivatkozásokban használt rövidítést vagy egy arculatváltás utáni korábbi cégnevet.
+Vegye fel mindazokat a további neveket, amelyeket ez a fél használ - például a számláin megjelenő kereskedelmi nevet, a banki hivatkozásokban használt rövidítést vagy egy arculatváltás utáni korábbi cégnevet.
 
 Név felvételéhez írja be a mezőbe, és kattintson a **Hozzáadás** gombra (vagy nyomjon Entert). Eltávolításhoz kattintson a mellette lévő × jelre.
 
@@ -66,13 +76,13 @@ A bankszámlákat a tranzakciópárosítás használja: a bejövő és kimenő f
 
 ### Elérhetőségek
 
-Tárolja a cég címét, weboldalát és e-mail-domainjét. Az e-mail-domain különösen hasznos azoknál a cégeknél, amelyek számlái e-mailben érkeznek — amikor az AI `@acmesolutions.com` címről lát üzenetet, a megfelelő céghez tudja kötni.
+Tárolja a cég címét, weboldalát és e-mail-domainjét. Az e-mail-domain különösen hasznos azoknál a cégeknél, amelyek számlái e-mailben érkeznek - amikor az AI `@acmesolutions.com` címről lát üzenetet, a megfelelő céghez tudja kötni.
 
 ### Párosítási környezet
 
-Ez egy rövid, szabad szöveges megjegyzés az AI számára — nem ügyfélnek szól, és egyetlen dokumentumon sem jelenik meg. Használja azoknak az eseteknek a feloldására, ahol az automatikus párosítás kétes:
+Ez egy rövid, szabad szöveges megjegyzés az AI számára - nem ügyfélnek szól, és egyetlen dokumentumon sem jelenik meg. Használja azoknak az eseteknek a feloldására, ahol az automatikus párosítás kétes:
 
-- Két hasonló nevű cég megkülönböztetése („A WKA Studio az ügynökség; a WKA Holding az anyacég — tartsuk külön”)
+- Két hasonló nevű cég megkülönböztetése („A WKA Studio az ügynökség; a WKA Holding az anyacég - tartsuk külön”)
 - Egy ismert furcsaság rögzítése abban, ahogyan ez a fél a számláit felcímkézi („mindig »WKA Creative« szerepel a számlafejlécen, noha a cégnév WKA Studio Kft.”)
 - Olyan fél megjelölése, amely a vártnál eltérő nyelven állítja ki a számláit
 
@@ -86,7 +96,7 @@ Képviselő hozzárendeléséhez kattintson a **+ Hozzáadás** gombra, és vál
 
 ## Cég archiválása és visszaállítása
 
-Ha egy cég már nem aktív — véget ért egy szállítói kapcsolat, egy ügyfél megszűnt, vagy tévedésből duplikátum jött létre —, archiválhatja ahelyett, hogy törölné.
+Ha egy cég már nem aktív - véget ért egy szállítói kapcsolat, egy ügyfél megszűnt, vagy tévedésből duplikátum jött létre -, archiválhatja ahelyett, hogy törölné.
 
 Az archivált cégek:
 - Nem jelennek meg az aktív céglistában, sem a cégválasztóban dokumentumok kategorizálásakor
@@ -95,7 +105,7 @@ Az archivált cégek:
 
 Az archiváláshoz nyissa meg a céget, görgessen a **Veszélyes zóna** szakaszhoz, és kattintson a **Cég archiválása** gombra.
 
-A visszaállításhoz görgessen le a céglista oldalon az **Archivált cégek** szakaszhoz, és kattintson a **Visszaállítás** gombra.
+A visszaállításhoz görgessen le a céglista oldalon az **Archivált cégek** szakaszhoz, és kattintson a **Visszaállítás** gombra. Ha az archiválás alatt egy másik cég kapta meg ugyanezt az adószámot, a visszaállítás nem sikerül, és az üzenet megnevezi azt a céget.
 
 ## Cég végleges törlése
 

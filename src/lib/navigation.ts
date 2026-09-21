@@ -29,10 +29,16 @@ export const navigation: NavItem[] = [
     slug: 'currency-exchange',
     title: { en: 'Multi-Currency & Exchange Rates', hu: 'Több pénznem és árfolyamok', de: 'Mehrwährung & Wechselkurse' },
   },
-  { slug: 'master-data-entities', title: { en: 'Managing Entities', hu: 'Cégek kezelése', de: 'Unternehmen verwalten' } },
+  { slug: 'master-data-entities', title: { en: 'Managing Companies', hu: 'Cégek kezelése', de: 'Unternehmen verwalten' } },
   {
     slug: 'nav-online-szamla',
     title: { en: 'NAV Online Számla (Hungary)', hu: 'NAV Online Számla (Magyarország)', de: 'NAV Online Számla (Ungarn)' },
+  },
+  // VAT groups (nav-vat-group-master-data, vat-group-routing-by-name): the app's page is
+  // "VAT groups" / "Áfacsoportok" / "USt-Gruppen" (nav.master_data.vat_groups).
+  {
+    slug: 'vat-groups',
+    title: { en: 'VAT Groups', hu: 'Áfacsoportok', de: 'USt-Gruppen' },
   },
   { slug: 'partners', title: { en: 'Managing Partners', hu: 'Partnerek kezelése', de: 'Partner verwalten' } },
   // Payment approvals (invoice-payment-approval): the approver's article, then
@@ -45,6 +51,23 @@ export const navigation: NavItem[] = [
   {
     slug: 'setting-up-approvals',
     title: { en: 'Setting Up Payment Approvals', hu: 'A kifizetések jóváhagyásának beállítása', de: 'Zahlungsfreigaben einrichten' },
+  },
+  // Payment file (payment-file-list): the finance admin's article. The app's
+  // tab is "Payment file" / "Utalási fájl" / "Zahlungsdatei" (approvals.tabs.payments).
+  {
+    slug: 'paying-approved-invoices',
+    title: { en: 'Paying Approved Invoices', hu: 'Jóváhagyott számlák kifizetése', de: 'Freigegebene Rechnungen bezahlen' },
+  },
+  // Company register check (partner-registry-validation): evidence on the payee
+  // account of a supplier invoice. The app's section is "Company register" /
+  // "Cégjegyzék" / "Firmenregister".
+  {
+    slug: 'company-register-check',
+    title: {
+      en: 'Checking Suppliers Against the Company Register',
+      hu: 'Szállítók ellenőrzése a cégjegyzékben',
+      de: 'Lieferanten im Firmenregister prüfen',
+    },
   },
   {
     slug: 'fixed-payment-method',
@@ -61,6 +84,14 @@ export const navigation: NavItem[] = [
   {
     slug: 'bank-accounts',
     title: { en: 'Connecting Bank Accounts', hu: 'Bankszámlák csatlakoztatása', de: 'Bankkonten verbinden' },
+  },
+  {
+    slug: 'cash-pool',
+    title: {
+      en: 'Cash Pool: One Bank Account for Several Companies',
+      hu: 'Cash pool: egy bankszámla több cégnek',
+      de: 'Cash-Pool: Ein Bankkonto für mehrere Unternehmen',
+    },
   },
   {
     slug: 'bank-statement-upload',
@@ -116,6 +147,22 @@ export const navigation: NavItem[] = [
   // tells the reader which menu item to click.
   { slug: 'reports', title: { en: 'Reports', hu: 'Riportok', de: 'Berichte' } },
   { slug: 'ledger', title: { en: 'Ledger Explorer', hu: 'Főkönyvi kivonat', de: 'Hauptbuch-Explorer' } },
+  // Keyboard date entry (keyboard-date-entry): the compact digit forms and the
+  // `..` range shorthand. The in-app hint is "Date formats" / "Dátumformátumok"
+  // / "Datumsformate" (date_filter.formats_help); every example in the article
+  // is executed against aift-web's real parseDateInput/parseDateRangeInput.
+  {
+    slug: 'date-entry',
+    title: { en: 'Fast Date Entry', hu: 'Gyors dátumbevitel', de: 'Schnelle Datumseingabe' },
+  },
+  // Focus mode (focus-mode): the accountant-only working period. The article
+  // title IS the app's switch label, "Focused period" / "Fókuszált időszak" /
+  // "Fokussierter Zeitraum" (focus.open_label); status rows quote
+  // focus.status.* verbatim.
+  {
+    slug: 'focused-period',
+    title: { en: 'Focused Period', hu: 'Fókuszált időszak', de: 'Fokussierter Zeitraum' },
+  },
   { slug: 'messages', title: { en: 'Messages', hu: 'Üzenetek', de: 'Nachrichten' } },
   { slug: 'mcp', title: { en: 'AI Assistants (MCP)', hu: 'AI-asszisztensek (MCP)', de: 'KI-Assistenten (MCP)' } },
   {

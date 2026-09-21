@@ -1,15 +1,27 @@
 # Categorising Invoices and Bank Transactions
 
-AI Finance Team automatically assigns categories to your invoices and bank transactions. The AI handles the bulk of the work — your accountant steps in only when it needs a second opinion.
+AI Finance Team automatically assigns categories to your invoices and bank transactions. The AI handles the bulk of the work - your accountant steps in only when it needs a second opinion.
 
 ## How Categories Work
 
 There are two separate sets of categories in every workspace:
 
-- **Invoice categories** — applied to individual line items on invoices (e.g. Software licence, Office rent, Professional services)
-- **Cash categories** — applied to bank transactions (e.g. Bank fees, Payroll, Client payment)
+- **Invoice categories** - applied to individual line items on invoices (e.g. Software licence, Office rent, Professional services)
+- **Cash categories** - applied to bank transactions (e.g. Bank fees, Payroll, Client payment)
+
+Both lists live on the Master data → **Accounting categories** page, one tab each (**Invoice**, **Cash**).
 
 Categories are set up and managed by your accountant. If you feel a category is missing or named incorrectly, ask your accountant to add or adjust it.
+
+### A new workspace starts with no categories
+
+AI Finance Team does not come with a ready-made category list. Every office keeps its own chart of accounts, and a generic list would only have to be undone. So a new workspace has **no invoice categories and no cash categories** until your accountant brings in the office's own list:
+
+- **From a spreadsheet** - Master data → **Accounting categories**, open the **Invoice** or **Cash** tab and click **Import**. See [Importing master data](/master-data-import).
+- **From Business Central** - when the client's Business Central is connected, its chart of accounts can be imported as invoice categories.
+- **By hand** - add categories one by one on the same tabs.
+
+Until a list exists, nothing is categorised: invoices and bank transactions still arrive, match and appear in exports, just without a category. Once the list is in place, select the records on the **Invoices** or **Bank transactions** page and use **Re-categorize** to let the AI book the ones that arrived earlier.
 
 ---
 
@@ -17,7 +29,7 @@ Categories are set up and managed by your accountant. If you feel a category is 
 
 ### What the AI does
 
-When an invoice arrives — whether uploaded manually, sent by email, or pulled from an invoice provider — the AI reads each line item and assigns it the most appropriate category from your workspace's invoice category list.
+When an invoice arrives - whether uploaded manually, sent by email, or pulled from an invoice provider - the AI reads each line item and assigns it the most appropriate category from your workspace's invoice category list.
 
 It also gives each assignment a confidence score. If the AI is confident in its choice, the category is applied immediately. If it is less sure, the item is flagged for your accountant to review.
 
@@ -35,11 +47,11 @@ Once a category is confirmed, the invoice moves to **Categorised** status.
 
 ### How the AI gets smarter over time
 
-Every time your accountant corrects a category, AI Finance Team records that decision as a correction. The next time a similar line item appears — from the same supplier, with similar wording — the AI uses that past correction as a strong signal.
+Every time your accountant corrects a category, AI Finance Team records that decision as a correction. The next time a similar line item appears - from the same supplier, with similar wording - the AI uses that past correction as a strong signal.
 
 This means categorisation accuracy tends to improve over the first few months as the AI learns the patterns specific to your business.
 
-Accountants can see, edit, and pre-load what the AI has learned on the **Examples** tab of the invoice and cash category pages — see [How AIFT Learns Your Categories](/categorization-examples).
+Accountants can see, edit, and pre-load what the AI has learned on the **Examples** tab of the Accounting categories page - see [How AIFT Learns Your Categories](/categorization-examples).
 
 ---
 
@@ -49,16 +61,16 @@ Accountants can see, edit, and pre-load what the AI has learned on the **Example
 
 Each bank transaction is matched against your workspace's cash category list. As with invoices, the AI assigns a category and a confidence score.
 
-- **High confidence** — category applied automatically, status shows **Categorised**
-- **Lower confidence** — a suggested category is noted but the transaction is flagged for review
-- **Very low confidence** — the transaction is marked **Pending** and waits for accountant input
+- **High confidence** - category applied automatically, status shows **Categorised**
+- **Lower confidence** - a suggested category is noted but the transaction is flagged for review
+- **Very low confidence** - the transaction is marked **Pending** and waits for accountant input
 
 ### What your accountant sees
 
 On the **Transactions** page, each row shows:
 
-- **Status** — Pending, Processing, Categorised, or Failed
-- **Category** — the assigned category name, with a confidence percentage badge
+- **Status** - Pending, Processing, Categorised, or Failed
+- **Category** - the assigned category name, with a confidence percentage badge
 - An **Edited** label if the category was set manually
 
 Accountants can override any transaction's category inline by clicking the pencil icon next to the category name and selecting from the list. Only transactions that match the direction of the transaction (income or expense) are shown as options.
@@ -76,8 +88,8 @@ If your accountant adds a new cash category or modifies an existing one, AI Fina
 | **Pending** | Waiting to be processed by the AI |
 | **Processing** | The AI is working on it right now |
 | **Categorised** | A category has been assigned |
-| **Review** | The AI assigned a category but is not confident — accountant should check |
-| **Failed** | Processing encountered an error — your accountant will be notified |
+| **Review** | The AI assigned a category but is not confident - accountant should check |
+| **Failed** | Processing encountered an error - your accountant will be notified |
 
 ---
 

@@ -4,7 +4,7 @@ Mit Zahlungsfreigaben entscheidet ein Kundenunternehmen Rechnung für Rechnung, 
 
 ## Einschalten
 
-Öffnen Sie den Kundenarbeitsbereich, gehen Sie zu **Einstellungen**, dann **Freigaben**, und schalten Sie **Die Zahlungsfreigabe ist eingeschaltet** ein.
+Öffnen Sie den Kundenarbeitsbereich, gehen Sie zu **Einstellungen**, dann **Freigaberegeln**, und schalten Sie **Die Zahlungsfreigabe ist eingeschaltet** ein.
 
 Was löst eine Freigabe aus? Eine Lieferantenrechnung kommt in den Prozess, sobald sie gebucht ist: Extraktion und KI-Kategorisierung sind abgeschlossen, sie ist eine Ausgabe, unbezahlt und weder Duplikat noch abgelehnt. Das System prüft jede Minute, eine neue Rechnung erreicht ihren Freigeber also innerhalb einer Minute, und Freigeber sehen ihre Liste unter **Freigaben** in der Seitenleiste. Rechnungen, die vor dem Einschalten bereits bezahlt waren, bleiben unberührt.
 
@@ -19,26 +19,35 @@ Zwei Berechtigungen steuern die Funktion:
 
 Standardmäßig halten der Kundeninhaber und der Buchhaltungsadmin beide. Für alle anderen legen Sie unter **Einstellungen**, dann **Team** eine Rolle an, etwa "Finanzadmin" mit beiden Rechten oder "Nur Freigeber" mit nur dem ersten, und weisen sie zu. Siehe [Rollen und Berechtigungen](/roles-and-permissions).
 
-## Die Richtlinie
+## Die Einstellungsseite
+
+Die Einstellungen stehen in der Reihenfolge, in der der Ablauf läuft: einschalten, festlegen wer freigeben darf, festlegen was an wen geht, dann festlegen wie deren Liste aussieht.
+
+**Zahlungsfreigabe** ist der Schalter oben. **Freigeber** listet alle Personen mit der Berechtigung und die Beschreibung, die jede der KI gibt.
+
+**Zuordnung** enthält die Regeln und direkt darunter **Wenn keine Regel greift**:
 
 - **Alles braucht eine Freigabe, außer eine Regel sagt etwas anderes**: die sichere Voreinstellung. Eine Rechnung kann die Freigabe aus zwei Gründen überspringen: weil eine von Ihnen geschriebene Regel es sagt, oder weil Sie die letzten 3 Rechnungen dieses Partners als "keine Freigabe nötig" markiert haben. Die KI entscheidet das nie von sich aus.
+- **Standard-Freigeber**: die Person, die jede Rechnung erhält, die keine Regel zuordnet. Ohne ihn warten diese Rechnungen in der Übersicht unter Braucht Sie auf Ihre Zuweisung.
+
+**Die Liste der freigebenden Person** beschreibt, was eine freigebende Person sieht:
+
 - **Zeitfenster der Liste**: eine frei eingegebene Anzahl Tage. Grundlage ist das Fälligkeitsdatum der Rechnung: Freigeber sehen Rechnungen, die innerhalb so vieler Tage fällig sind, spätere warten, bis sie näher rücken. Eine Rechnung ohne Fälligkeitsdatum erscheint immer. Leer lassen, um jede offene Rechnung zu zeigen.
-- **Als "prüfen" markierte Rechnungen**: von der Buchhaltung zurückgehalten, bis die Extraktion geprüft ist, oder den Freigebern mit Warnung gezeigt.
-- **Standard-Freigeber**: die Person, die jede Rechnung erhält, die keine Regel zuordnet. Ohne ihn warten diese Rechnungen in der Spalte Nicht zugewiesen der Tafel auf Ihre Zuweisung.
 - **Sammelfreigabe**: ob Freigeber mehrere Rechnungen mit einer Bestätigung freigeben dürfen. Ablehnen geht immer einzeln.
 - **Nicht zugewiesene Rechnungen sehen alle Freigeber**: ausgeschaltet sehen und entscheiden nur Personen mit "Freigaben verwalten" nicht zugewiesene Rechnungen; für alle anderen erscheinen sie in keiner Liste.
+- **Als "prüfen" markierte Rechnungen**: von der Buchhaltung zurückgehalten, bis die Extraktion geprüft ist, oder den Freigebern mit Warnung gezeigt.
 
 ## Regeln
 
 Regeln sind Sätze und werden der Reihe nach geprüft. Die erste Regel, die auf eine Rechnung zutrifft, gewinnt.
 
-Eine Regel trifft auf jede Kombination aus Partner, Rechnungskategorie, Einheit und einem Betragsband in der Basiswährung des Arbeitsbereichs zu. Sie schickt die Rechnung entweder an einen Freigeber oder sagt, dass keine Freigabe nötig ist. Beispiele:
+Eine Regel trifft auf jede Kombination aus Partner, Rechnungskategorie, Unternehmen und einem Betragsband in der Basiswährung des Arbeitsbereichs zu. Sie schickt die Rechnung entweder an einen Freigeber oder sagt, dass keine Freigabe nötig ist. Beispiele:
 
 - Rechnungen von Bau-Trans Kft. gehen an Péter.
 - Rechnungen in Subunternehmerleistungen über 500 000 Ft gehen an Péter.
 - Jede Rechnung unter 20 000 Ft braucht keine Freigabe.
 
-Mit den Pfeilen ändern Sie die Reihenfolge. Eine Regel, deren Freigeber die Berechtigung verloren hat, wird übersprungen und die Rechnung landet nicht zugewiesen, sodass eine Regel nie eine Rechnung bei jemandem lässt, der nicht handeln kann.
+Ziehen Sie eine Regel am Griff links, um die Reihenfolge zu ändern, oder nutzen Sie die Pfeiltasten, wenn der Griff den Fokus hat. Ein Klick auf eine Regel öffnet den Editor; Löschen liegt darin. Eine Regel, deren Freigeber die Berechtigung verloren hat, wird übersprungen und die Rechnung landet nicht zugewiesen, sodass eine Regel nie eine Rechnung bei jemandem lässt, der nicht handeln kann.
 
 Trifft keine Regel zu, endet die Zuordnung nicht. Die Zuordnung folgt zuerst Ihren früheren Entscheidungen zu dem Partner, gibt die Rechnung dann an den Standard-Freigeber, falls einer gesetzt ist, und bittet erst als letzten Schritt die KI, anhand Ihrer Beschreibungen einen Freigeber vorzuschlagen. Eine Regel hat immer Vorrang vor allen dreien, und die KI kann eine Person wählen, aber nie eine Freigabe erlassen. Die Abschnitte unten beschreiben, was die Zuordnung lernt, welche Regeln sie vorschlägt und mit welchen Beschreibungen die KI arbeitet.
 
@@ -52,15 +61,21 @@ Jede Entscheidung lehrt die Zuordnung. Wenn Sie eine Rechnung von Hand jemandem 
 
 ## Von der KI vorgeschlagen
 
-Im selben Moment schlägt die Zuordnung unter der Regelliste eine Regel vor, in denselben Worten: "Rechnungen von Hetzner gehen an Péter · 3 von 3 bisherigen Entscheidungen stimmen überein". Annehmen fügt sie als letzte Regel hinzu, sodass von Hand geschriebene Regeln Vorrang behalten. Verwerfen entfernt sie, und derselbe Vorschlag kommt nicht wieder, solange sich die Entscheidungen nicht ändern. Eine Regel entsteht nur, wenn eine Person sie annimmt. Die KI schaltet die Freigabe nie von sich aus ab.
+Im selben Moment schlägt die Zuordnung in der Übersicht unter **Braucht Sie** eine Regel vor, in denselben Worten, in denen eine Regel geschrieben wird: "Rechnungen von Hetzner gehen an Péter · 3 von 3 bisherigen Entscheidungen stimmen überein". Annehmen fügt sie als letzte Regel hinzu, sodass von Hand geschriebene Regeln Vorrang behalten. Verwerfen entfernt sie, und derselbe Vorschlag kommt nicht wieder, solange sich die Entscheidungen nicht ändern. Eine Regel entsteht nur, wenn eine Person sie annimmt. Die KI schaltet die Freigabe nie von sich aus ab.
 
 ## Beschreibungen der Freigeber
 
-Schreiben Sie unter Freigeber ein bis zwei Sätze pro Person darüber, worüber sie entscheidet: "Geschäftsführer, unterschreibt Subunternehmer und alles über 500 000 Ft". Diese Beschreibungen werden der KI wörtlich übergeben, wenn nichts anderes die Rechnung platziert hat: keine Regel traf zu, keine frühere Entscheidung galt, und kein Standard-Freigeber ist gesetzt. Die KI wählt die Person, deren Beschreibung die Rechnung abdeckt, oder niemanden, wenn keine Beschreibung passt. Sie handelt nur, wenn sie sich mindestens zu 70% sicher ist; sonst wartet die Rechnung in der Spalte Nicht zugewiesen mit einem Hinweis wie "KI 0.58, unter der Schwelle". Die KI hat einen Versuch pro Rechnung; ändern Sie eine Beschreibung, sieht sie sich alle noch nicht zugewiesenen Rechnungen erneut an. Beschreiben Sie, worüber die Person entscheidet, keine Anweisungen. Die KI läuft nur, wenn mindestens ein Freigeber eine Beschreibung hat, und gibt nie etwas für einen Kunden aus, bei dem die Freigabe ausgeschaltet ist.
+Schreiben Sie unter Freigeber ein bis zwei Sätze pro Person darüber, worüber sie entscheidet: "Geschäftsführer, unterschreibt Subunternehmer und alles über 500 000 Ft". Diese Beschreibungen werden der KI wörtlich übergeben, wenn nichts anderes die Rechnung platziert hat: keine Regel traf zu, keine frühere Entscheidung galt, und kein Standard-Freigeber ist gesetzt. Die KI wählt die Person, deren Beschreibung die Rechnung abdeckt, oder niemanden, wenn keine Beschreibung passt. Sie handelt nur, wenn sie sich mindestens zu 70% sicher ist; sonst wartet die Rechnung in der Übersicht unter Braucht Sie mit einem Hinweis wie "KI 0.58, unter der Schwelle". Die KI hat einen Versuch pro Rechnung; ändern Sie eine Beschreibung, sieht sie sich alle noch nicht zugewiesenen Rechnungen erneut an. Beschreiben Sie, worüber die Person entscheidet, keine Anweisungen. Die KI läuft nur, wenn mindestens ein Freigeber eine Beschreibung hat, und gibt nie etwas für einen Kunden aus, bei dem die Freigabe ausgeschaltet ist.
 
-## Die Übersichtstafel
+## Die Übersicht
 
-Der Reiter **Übersicht** unter Freigaben zeigt vier Spalten: **Nicht zugewiesen** (keine Regel hat sie zugeordnet), **Ausstehend** je Freigeber, **Abgelehnt** mit der Notiz des Freigebers und **Freigegeben, unbezahlt**. Überfällige Rechnungen tragen eine bernsteinfarbene Leiste. Von einer Karte aus können Sie einen Freigeber zuweisen, eine abgelehnte Rechnung erneut öffnen oder sie als nicht freigabepflichtig markieren. Die Kacheln darüber zählen, was wartet, was überfällig ist, und die mittlere Zeit bis zur Entscheidung der letzten 30 Tage.
+Der Reiter **Übersicht** unter Freigaben beantwortet zwei Fragen, in dieser Reihenfolge.
+
+**Braucht Sie** ist eine einzige Liste mit allem, was auf Sie wartet: Rechnungen, die keine Regel zugeordnet hat, Rechnungen, die eine freigebende Person abgelehnt hat, und Regeln, die die Zuordnung vorschlägt. Überfällige zuerst, jede mit einer bernsteinfarbenen Leiste und mit eigenen Schaltflächen. Weisen Sie einen Freigeber zu, öffnen Sie eine abgelehnte Rechnung erneut, markieren Sie eine als nicht freigabepflichtig oder nehmen Sie eine vorgeschlagene Regel an. Alle anzeigen öffnet den Rest der Liste; die Links daneben öffnen die vollständigen Listen.
+
+**Im Ablauf** ist nicht Ihre Arbeit, sondern die Antwort auf "hängt irgendwo etwas": eine Zeile je freigebender Person mit der Anzahl wartender Rechnungen, den überfälligen davon und dem Alter der ältesten. Ein Klick auf den Namen öffnet die wartenden Rechnungen dieser Person, wo Sie eine neu zuweisen können. Darunter freigegeben und offen, mit der Summe je Währung und einem Link zur Zahldatei.
+
+Über beiden zwei Zahlen: das Geld im Ablauf und die mittlere Zeit bis zur Entscheidung der letzten 30 Tage.
 
 ## Was die Buchhaltung sieht
 

@@ -8,7 +8,7 @@
     "src/components/catalyst/alert.tsx": "ea5333519f9e902061e4ebac387446d8504b5ca2c4fbcd2c9a4879a9feac1d34",
     "src/components/catalyst/avatar.tsx": "36896085812bf1852002bf5352f63f46a8f987a66a2c44983aedb6faeff40402",
     "src/components/catalyst/badge.tsx": "1d2287c01a62845e6e5db64d756c70a436581543a6c1a83a7490efbc94378602",
-    "src/components/catalyst/button.tsx": "8176d6c38315ebb29eb56101cb5d6da63c4feccc05996398472744edcea12c64",
+    "src/components/catalyst/button.tsx": "9b17ed5cd17d5ec6144704770c198320eb40497077d39c424d114319d92ca2ef",
     "src/components/catalyst/checkbox.tsx": "be20df0b2d35a60fde9f141ed8f6defd8135d5234d93a56696715de298488b1c",
     "src/components/catalyst/combobox.tsx": "9a0fc07d43a30ae2e13b4cfe1d00a1bf53588e948d70e5afaff84420eb9fd0bf",
     "src/components/catalyst/dialog.tsx": "916800fa48b710703a8a87d67a81f3ac55a64b0d474c280054c6d77b28649669",
