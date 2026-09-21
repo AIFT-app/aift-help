@@ -10,6 +10,7 @@ import {
   ApprovalQueueFigure,
   DeclineDialogFigure,
 } from './approvals'
+import { MatchingOutcomeFigure, MatchingQueueFigure, TransactionMatchFigure } from './matching'
 
 type WithLocale = { locale: Locale; children?: React.ReactNode }
 
@@ -19,6 +20,9 @@ const FIGURES: Record<string, (props: WithLocale) => React.ReactNode> = {
   DeclineDialogFigure,
   ApprovalLifecycleFigure,
   ApprovalEmailsFigure,
+  MatchingOutcomeFigure,
+  MatchingQueueFigure,
+  TransactionMatchFigure,
 }
 
 export function visualComponents(locale: Locale) {
