@@ -4,24 +4,36 @@ Wenn Ihr Unternehmen Zahlungsfreigaben nutzt, warten die Lieferantenrechnungen, 
 
 ## Was Sie sehen
 
-Der Reiter **Freizugeben** öffnet mit den Rechnungen, die in den nächsten 14 Tagen fällig und Ihnen zugewiesen sind. Sie müssen nichts filtern. Jede Zeile zeigt:
+Der Reiter **Freizugeben** öffnet mit den Rechnungen, die in den nächsten 14 Tagen fällig und Ihnen zugewiesen sind, die früheste Fälligkeit zuerst. Sie müssen nichts filtern. Die Zahl neben **Freigaben** in der Seitenleiste zeigt, wie viele Rechnungen Ihnen zugewiesen sind.
 
-- **Fällig**: das Zahlungsdatum und wie viele Tage noch bleiben, oder wie viele Tage es überfällig ist.
-- **Was Sie freigeben**: die einzeilige KI-Zusammenfassung der Rechnung als Überschrift, darunter Lieferant und Rechnungsnummer. Ein Klick auf die Nummer öffnet die Rechnung selbst.
-- **Warum Sie**: der Grund, warum die Rechnung bei Ihnen gelandet ist, etwa "Regel: Rechnungen von Bau-Trans Kft. gehen an Sie" oder "Standard-Freigeber".
-- **Betrag**: der Bruttobetrag in der Währung der Rechnung.
+<ApprovalQueueFigure>
+Der Reiter **Freizugeben** mit vier wartenden Rechnungen. Die Nummern entsprechen der Liste darunter. Unternehmen und Beträge sind Beispiele.
+</ApprovalQueueFigure>
 
-Die Schaltflächen über der Liste wechseln zwischen **Mir zugewiesen**, **Nicht zugewiesen** (Rechnungen, die keine Regel zuordnen konnte, sichtbar für alle Freigeber), **Alle ausstehenden** und **Diese Woche fällig**. Die Zahl am Eintrag in der Seitenleiste ist die Anzahl der Ihnen zugewiesenen Rechnungen.
+1. **Ansichten**: Wechsel zwischen **Mir zugewiesen**, **Nicht zugewiesen** (Rechnungen, die keine Regel zuordnen konnte, sichtbar für alle Freigeber), **Alle ausstehenden** und **Diese Woche fällig**.
+2. **Was Sie freigeben**: die einzeilige KI-Zusammenfassung der Rechnung. Ein Klick darauf öffnet die Rechnung selbst.
+3. **Lieferant und Rechnungs-ID**: wer bezahlt werden möchte, und die ID der Rechnung in AI Finance Team.
+4. **Fällig**: das Zahlungsdatum und wie viele Tage noch bleiben, oder wie viele Tage es überfällig ist. Ein bernsteinfarbener Streifen links markiert Rechnungen, die innerhalb von 7 Tagen fällig oder bereits überfällig sind.
+5. **Warum Sie**: der Grund, warum die Rechnung bei Ihnen gelandet ist. Das ist eine Regel Ihres Finanzadmins, ein Muster, gelernt daraus, wohin frühere Rechnungen desselben Lieferanten gingen, die Wahl der KI oder der Standard-Freigeber, wenn nichts anderes passt.
+6. **Betrag**: der Bruttobetrag in der Währung der Rechnung.
 
 ## Freigeben
 
 Klicken Sie in der Zeile auf **Freigeben**. Das ist die ganze Entscheidung. AI Finance Team hält fest, wer wann freigegeben hat und genau welchen Betrag an welchen Empfänger, damit eine spätere Änderung der Rechnung nicht mit dem verwechselt werden kann, dem Sie zugestimmt haben.
 
-Um mehrere auf einmal freizugeben, markieren Sie die Zeilen und klicken auf **Auswahl freigeben**. Die Bestätigung listet jeden Lieferanten und die Summen je Währung, bevor etwas passiert. Die Sammelfreigabe steht nur zur Verfügung, wenn Ihr Finanzadmin sie eingeschaltet gelassen hat.
+Um mehrere auf einmal freizugeben, markieren Sie die Zeilen. Eine Leiste zeigt, wie viele Sie ausgewählt haben und ihre Summe je Währung; klicken Sie auf **Auswahl freigeben**. Die Bestätigung listet jeden Lieferanten und die Summen je Währung, bevor etwas passiert. Die Sammelfreigabe steht nur zur Verfügung, wenn Ihr Finanzadmin sie eingeschaltet gelassen hat.
+
+<ApprovalBulkBarFigure>
+Zwei Rechnungen ausgewählt. Verschiedene Währungen werden getrennt summiert, nie umgerechnet.
+</ApprovalBulkBarFigure>
 
 ## Ablehnen
 
-Klicken Sie auf **Ablehnen**, wenn die Rechnung so nicht bezahlt werden soll. Eine Notiz ist Pflicht. Vier Schnellgründe stehen bereit (falscher Betrag, Leistung noch nicht erbracht, bereits bezahlt, nicht meine Entscheidung), und Sie können eigene Worte ergänzen. Die Notiz landet auf der Rechnung, wo Buchhaltung und Finanzadmin sie sehen.
+Klicken Sie auf **Ablehnen**, wenn die Rechnung so nicht bezahlt werden soll. Eine Notiz ist Pflicht. Ein Klick auf einen der vier Schnellgründe beginnt die Notiz, danach ergänzen Sie eigene Worte. Die Notiz landet auf der Rechnung, wo Buchhaltung und Finanzadmin sie sehen.
+
+<DeclineDialogFigure>
+Die Dachreparatur wird abgelehnt, bis die Arbeit fertig ist. Ein Klick auf einen Schnellgrund schreibt ihn in die Notiz, und **Ablehnen** bleibt gesperrt, solange die Notiz leer ist.
+</DeclineDialogFigure>
 
 Ablehnen löscht die Rechnung nicht und lehnt sie auch nicht buchhalterisch ab. Es sagt nur, dass die Zahlung nicht freigegeben ist. Der Finanzadmin kann sie erneut öffnen, sobald die Frage mit dem Lieferanten geklärt ist.
 
@@ -31,8 +43,11 @@ Ist eine Rechnung versehentlich bei Ihnen gelandet, klicken Sie auf **Nicht mein
 
 ## Was nach Ihrer Entscheidung passiert
 
-- **Freigegebene** Rechnungen tragen in der Rechnungsliste und auf der Rechnung das Kennzeichen "Freigegeben". Sobald die Bankzahlung eintrifft und zugeordnet wird, ist die Rechnung bezahlt wie jede andere.
-- **Abgelehnte** Rechnungen tragen das Kennzeichen "Abgelehnt" und warten auf den Finanzadmin.
+<ApprovalLifecycleFigure>
+Jede Schaltfläche führt woanders hin. Nur eine freigegebene Rechnung geht weiter zur Zahlung; die anderen beiden kommen für eine neue Entscheidung zurück.
+</ApprovalLifecycleFigure>
+
+- **Freigegebene** und **abgelehnte** Rechnungen tragen das passende Kennzeichen in der Rechnungsliste und auf der Rechnung selbst.
 - Ändert sich Betrag oder Lieferant einer freigegebenen Rechnung später, wird die Freigabe zurückgesetzt und die Rechnung kommt zu Ihnen zurück. Der Verlauf der Rechnung sagt warum.
 - Eine Rechnung, die während des Wartens bezahlt, storniert oder von der Buchhaltung abgelehnt wird, verlässt Ihre Liste von selbst.
 
@@ -46,11 +61,10 @@ Freigeben braucht die Berechtigung "Rechnungen zur Zahlung freigeben" sowie das 
 
 ## E-Mails
 
-Vier E-Mails halten Sie auf dem Laufenden, ohne die App zu öffnen; jede hat einen eigenen Schalter unter Konto, Benachrichtigungen und einen Abmeldelink in der Fußzeile.
+Vier E-Mails halten Sie auf dem Laufenden, ohne die App zu öffnen. Jede hat einen eigenen Schalter unter **Konto**, **Benachrichtigungen** und einen Abmeldelink in der Fußzeile.
 
-- **Neue Rechnungen zur Freigabe**: wenn Ihnen Rechnungen zugewiesen werden, eine E-Mail frühestens 30 Minuten nach der ersten, höchstens 2 am Tag.
-- **Morgenliste**: an Arbeitstagen um 8:00 Ihre Liste für den Tag. Wartet nichts, kommt keine E-Mail.
-- **Fälligkeitserinnerung**: an Arbeitstagen um 15:00 die in 2 Tagen fälligen Rechnungen, die noch auf Sie warten. Eine Erinnerung pro Rechnung.
-- **Abgelehnte Rechnungen**: für Finanzadmins, ein Freigeber hat eine Rechnung abgelehnt, mit Begründung.
+<ApprovalEmailsFigure>
+Wann welche E-Mail kommt: **Morgenliste** und **Fälligkeitserinnerung** an Arbeitstagen, **Neue Rechnungen zur Freigabe**, wenn Ihnen Rechnungen zugewiesen werden, und **Abgelehnte Rechnungen** für Finanzadmins.
+</ApprovalEmailsFigure>
 
 Die E-Mails führen in die App. In einer E-Mail gibt es keinen Freigabe-Button: eine Entscheidung fällt immer angemeldet, auf der Rechnung.

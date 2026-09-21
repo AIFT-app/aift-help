@@ -32,6 +32,9 @@ function toPlainText(markdown) {
       // Fenced code: config/JSON noise that makes for unreadable snippets.
       .replace(/^```[\s\S]*?^```/gm, ' ')
       .replace(/<!--[\s\S]*?-->/g, ' ')
+      // MDX illustration tags (<ApprovalQueueFigure>…</ApprovalQueueFigure>):
+      // drop the tags, keep the caption between them, which is article text.
+      .replace(/<\/?[A-Z][\w.]*(?:\s[^>]*)?\/?>/g, ' ')
       // Images before links — an image is a link with a leading `!`.
       .replace(/!\[[^\]]*\]\([^)]*\)/g, ' ')
       .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
