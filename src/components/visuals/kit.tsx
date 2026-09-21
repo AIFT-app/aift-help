@@ -1,29 +1,26 @@
-// Building blocks for the help centre's coded illustrations.
+// Building blocks for app screens and diagrams in help articles.
 //
-// Why drawings instead of screenshots: they are translated with the article,
-// never show customer data, stay sharp at any size, and change in a normal
-// text diff when the app changes. The price is fidelity, so every drawing
-// quotes the app's real labels (aift-web/messages/<locale>.json) and copies
-// its colours and layout, and the data is fictional.
+// App screens are REBUILT 1:1 from aift-web, not drawn: they render the same
+// Catalyst components (src/components/catalyst, a byte-identical mirror of the
+// app's, verified by the manifest) and copy the app's own markup class for
+// class, in the app's fonts (see .app-screen in globals.css). Each screen file
+// names the aift-web source it mirrors; when that source changes, re-copy.
+// They are coded rather than screenshots so they translate with the article,
+// never show customer data, and change in a text diff. Data is fictional.
 //
-// LIGHT ONLY, ON PURPOSE. The help site has no dark theme (the body is always
-// white), but Tailwind's `dark:` variant follows the OS setting. The Catalyst
-// mirror carries `dark:` classes, so a Catalyst badge would turn dark on a
-// white page for anyone whose OS is in dark mode. These primitives therefore
-// copy the app's LIGHT styles and never use `dark:`.
-//
-// Server components only: no state, no handlers, zero client JavaScript.
+// Server components except ScaledStage; the screens are `inert`, so the real
+// Catalyst buttons, checkboxes and switches inside them are never focusable.
 
 import clsx from 'clsx'
+import { appMono } from './fonts'
+import { ScaledStage } from './ScaledStage'
 
 // ── Figure ──────────────────────────────────────────────────────────────────
 
 /**
  * A framed illustration with a caption. `alt` is what a screen reader hears
- * instead of the drawing (the drawing is `role="img"`, so its fake buttons and
- * labels are not read out one by one). `children` is the visible caption,
- * written in the article's MDX so it is translated and searchable with the
- * rest of the text.
+ * instead of the picture (`role="img"`). `children` is the visible caption,
+ * written in the article's MDX so it is translated and searchable.
  */
 export function Figure({
   alt,
@@ -42,10 +39,7 @@ export function Figure({
       <div
         role="img"
         aria-label={alt}
-        className={clsx(
-          'overflow-hidden rounded-2xl',
-          bleed ? '' : 'bg-zinc-100/70 p-2 ring-1 ring-zinc-950/5 sm:p-4',
-        )}
+        className={clsx('overflow-hidden rounded-2xl', bleed ? '' : 'bg-zinc-100/70 p-2 ring-1 ring-zinc-950/5 sm:p-4')}
       >
         {art}
       </div>
@@ -58,18 +52,44 @@ export function Figure({
   )
 }
 
-// ── App window ──────────────────────────────────────────────────────────────
+// ── App screens ─────────────────────────────────────────────────────────────
 
-/** Browser-style window chrome around a drawn app screen. */
-export function AppWindow({ children, className }: { children: React.ReactNode; className?: string }) {
+/**
+ * The app's page at a real window size: the zinc ground and the white content
+ * panel of aift-web's SidebarLayout (src/components/catalyst/sidebar.tsx, the
+ * `<main>` panel), laid out at `width` px and zoomed to fit the article.
+ * 836 = the panel at a 1100px browser window (1100 - 256 sidebar - 8 gutter).
+ */
+export function AppScreen({
+  width = 836,
+  clipHeight,
+  overlay,
+  children,
+}: {
+  width?: number
+  /** Crop the screen to this height (px, before zoom), like a partial screenshot. */
+  clipHeight?: number
+  /** Drawn over the whole screen, e.g. a modal dialog with its backdrop. */
+  overlay?: React.ReactNode
+  children: React.ReactNode
+}) {
   return (
-    <div className={clsx('overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-zinc-950/10', className)}>
-      <div className="flex items-center gap-1.5 border-b border-zinc-950/5 bg-zinc-50 px-3 py-2">
-        <span className="size-2.5 rounded-full bg-zinc-300" />
-        <span className="size-2.5 rounded-full bg-zinc-300" />
-        <span className="size-2.5 rounded-full bg-zinc-300" />
-      </div>
-      <div className="p-3 sm:p-4">{children}</div>
+    <div
+      inert
+      className={clsx('app-screen overflow-hidden rounded-xl bg-zinc-100 antialiased ring-1 ring-zinc-950/10', appMono.variable)}
+    >
+      <ScaledStage width={width}>
+        <div className="relative overflow-hidden p-2" style={clipHeight ? { height: clipHeight } : undefined}>
+          {/* The app's DESKTOP panel classes without their `lg:` prefix: the screen is
+              always shown as the app looks at desktop size, whatever the reader's
+              window. (Catalyst's own `sm:` text sizes still follow the viewport, so
+              on a phone the text inside is a touch larger than in the app.) */}
+          <div className="grow rounded-2xl bg-white p-10 shadow-xs ring-1 ring-zinc-950/5 dark:bg-zinc-900 dark:ring-white/10">
+            {children}
+          </div>
+          {overlay}
+        </div>
+      </ScaledStage>
     </div>
   )
 }
@@ -85,7 +105,7 @@ export function Marker({ n, className }: { n: number; className?: string }) {
   return (
     <span
       className={clsx(
-        'inline-flex size-5 shrink-0 items-center justify-center rounded-full bg-violet-600 text-[11px] font-bold text-white shadow-sm ring-2 ring-white',
+        'inline-flex size-[18px] shrink-0 items-center justify-center rounded-full bg-violet-600 font-sans text-[10px] font-bold text-white shadow-sm ring-2 ring-white',
         className,
       )}
     >
@@ -94,108 +114,51 @@ export function Marker({ n, className }: { n: number; className?: string }) {
   )
 }
 
-// ── UI pieces (the app's light styles) ─────────────────────────────────────
+/**
+ * A marker pinned to the next element WITHOUT changing the app's layout: a
+ * zero-width flex item whose negative margin cancels the container's gap, with
+ * the marker floating outside the text line (left, above or below it).
+ * `cancel` is the negative margin matching the parent's gap, e.g. "-mr-1.5".
+ */
+export function Pin({ n, at = 'above', cancel }: { n: number; at?: 'left' | 'above' | 'below'; cancel: string }) {
+  return (
+    <span aria-hidden="true" className={clsx('relative w-0 shrink-0 self-stretch', cancel)}>
+      <Marker
+        n={n}
+        className={clsx(
+          'absolute',
+          at === 'left' && 'top-1/2 -left-7 -translate-y-1/2',
+          at === 'above' && 'bottom-full left-0 mb-px -translate-x-1/2',
+          at === 'below' && 'top-full left-0 mt-px -translate-x-1/2',
+        )}
+      />
+    </span>
+  )
+}
+
+// ── The app's label pill ────────────────────────────────────────────────────
 
 export type Tone = 'amber' | 'emerald' | 'blue' | 'zinc'
 
-// aift-web src/components/list-view/label-tones.ts, light half.
+// aift-web src/components/list-view/label-tones.ts LABEL_TONE_CLASSES, verbatim.
 const TONE: Record<Tone, string> = {
-  amber: 'bg-amber-100 text-amber-800',
-  emerald: 'bg-emerald-100 text-emerald-800',
-  blue: 'bg-blue-100 text-blue-800',
-  zinc: 'bg-zinc-100 text-zinc-700',
+  amber: 'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-200',
+  emerald: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-200',
+  blue: 'bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-200',
+  zinc: 'bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300',
 }
 
+/** aift-web src/components/approvals/ApprovalStatePill.tsx markup. */
 export function Pill({ tone, children, size = 'sm' }: { tone: Tone; children: React.ReactNode; size?: 'sm' | 'md' }) {
   return (
     <span
       className={clsx(
-        'inline-flex items-center rounded-full font-medium whitespace-nowrap',
+        'inline-flex items-center rounded-full font-medium',
         size === 'sm' ? 'px-2 py-0.5 text-[10px]' : 'px-2.5 py-0.5 text-xs',
         TONE[tone],
       )}
     >
       {children}
     </span>
-  )
-}
-
-type ButtonKind = 'emerald' | 'outline' | 'plain' | 'dark'
-
-const BUTTON: Record<ButtonKind, string> = {
-  emerald: 'bg-emerald-600 text-white shadow-sm',
-  outline: 'bg-white text-zinc-950 ring-1 ring-zinc-950/15',
-  plain: 'text-zinc-700',
-  dark: 'bg-zinc-900 text-white shadow-sm',
-}
-
-/** Looks like a button, is a span: a drawing must not put dead controls in the tab order. */
-export function FakeButton({
-  kind,
-  children,
-  small = false,
-  disabled = false,
-}: {
-  kind: ButtonKind
-  children: React.ReactNode
-  small?: boolean
-  disabled?: boolean
-}) {
-  return (
-    <span
-      className={clsx(
-        'inline-flex items-center justify-center rounded-lg font-semibold whitespace-nowrap',
-        small ? 'px-2.5 py-1 text-xs' : 'px-3.5 py-2 text-sm',
-        BUTTON[kind],
-        disabled && 'opacity-50',
-      )}
-    >
-      {children}
-    </span>
-  )
-}
-
-/** The rounded filter chip the app uses above lists (active = filled). */
-export function Chip({ active = false, children, count }: { active?: boolean; children: React.ReactNode; count?: number }) {
-  return (
-    <span
-      className={clsx(
-        'inline-flex items-center gap-1 rounded-full border px-3 py-1 text-xs font-medium whitespace-nowrap',
-        active ? 'border-zinc-900 bg-zinc-900 text-white' : 'border-zinc-300 text-zinc-600',
-      )}
-    >
-      {children}
-      {count !== undefined ? <span className="tabular-nums opacity-70">{count}</span> : null}
-    </span>
-  )
-}
-
-export function Checkbox({ checked = false }: { checked?: boolean }) {
-  return (
-    <span
-      className={clsx(
-        'inline-flex size-4 shrink-0 items-center justify-center rounded border',
-        checked ? 'border-zinc-900 bg-zinc-900' : 'border-zinc-300 bg-white',
-      )}
-    >
-      {checked ? (
-        <svg viewBox="0 0 12 12" className="size-3 text-white" fill="none" aria-hidden="true">
-          <path d="M3 6l2 2 4-4.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      ) : null}
-    </span>
-  )
-}
-
-/** A dialog panel over a dimmed page, for drawing modal steps. */
-export function FakeDialog({ title, children, actions }: { title: string; children: React.ReactNode; actions: React.ReactNode }) {
-  return (
-    <div className="rounded-xl bg-zinc-950/15 p-3 sm:p-8">
-      <div className="mx-auto max-w-md rounded-2xl bg-white p-5 shadow-lg ring-1 ring-zinc-950/10 sm:p-6">
-        <p className="text-base/6 font-semibold text-zinc-950">{title}</p>
-        <div className="mt-2">{children}</div>
-        <div className="mt-6 flex flex-wrap items-center justify-end gap-3">{actions}</div>
-      </div>
-    </div>
   )
 }

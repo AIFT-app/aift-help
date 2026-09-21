@@ -18,6 +18,22 @@ npm run build  # static export (output: `out/`)
 - **Keep aift-help out of slug promotes.** `promote.sh <slug>` cherry-picks, which rewrites the sha, so the change lands on `main` twice — once from the cherry-pick, once when the next wholesale merge carries the original along. Shiplog counts both. Use `AIFT_PROMOTE_REPOS` to drop aift-help, and merge `staging -> main` for it separately.
 - A behind-by-N `staging` here is almost always drifted **history, not content** — the trees usually match exactly. Diff them (`git diff origin/staging origin/main`) before treating it as missing work. Full mechanism and evidence: `aift-ops/docs/aift-help-branch-model.md`.
 
+## Changing an article: check the content first
+
+Every change to an article, whatever its size, starts by checking the article's claims against the app as it is on `main`: quoted labels against `aift-web/messages/<locale>.json`, screens against the component that renders them, numbers and thresholds against the code. Fix what is stale in the same PR, in all three locales. Adding visuals to `approving-invoices` found three stale claims this way.
+
+Then update the article's row in the **Help Centre Refresh** tracker (https://claude.ai/artifact/QNYFXjnFzNmumFJiN2tLxd, collection `articles`, doc id = the slug, `home` for the index): `visuals`, `content` (`unchecked` / `stale` / `verified`), `contentCheckedOn`, `notes`. Full standard: `aift-ops/specs/help-visuals-pilot.md`.
+
+## Visuals: app screens rebuilt 1:1, where they add value
+
+- **New articles include visuals when a picture explains faster than prose**: an app screen with numbered markers plus a numbered legend list, a state diagram, a timeline. A short reference page may need none.
+- **App screens are rebuilt 1:1 from aift-web, not drawn and not screenshotted.** Use the real Catalyst components from `src/components/catalyst/` (a byte-identical mirror of the app's, checked by the manifest; sync missing ones with `aift-ops/scripts/sync-catalyst-to-help.sh`) and copy the app's own non-Catalyst markup (list rows, chips, tabs, panels, pills) **class for class** from the aift-web source file, naming that file in the screen's header comment. Wrap the screen in `AppScreen` (`src/components/visuals/kit.tsx`): it applies the app's fonts (Arial body, Geist Mono for `font-mono`; see `.app-screen` in `globals.css`), the app's desktop content panel, lays the screen out at a real window width and zooms it to fit, and makes it `inert`. Put numbered markers in with `Pin`, which never shifts the app's layout. `approvals/` is the worked example.
+- **Verify against the real component**, not by eye: render the aift-web component with the same fixture in a throwaway local page (never committed) and compare element sizes and positions; the approvals rebuild matched within 1px of zoom rounding.
+- **Labels verbatim** from the app's message files, keyed by message key in `copy.ts`. **Data fictional**: web-search every invented company name and drop it if a real business uses it. Never real customer data.
+- `dark:` is class-based on this site (see `globals.css`), so Catalyst components always render light, matching the white site. Violet is reserved for annotation markers.
+- Each figure is `role="img"` with localized alt text; nothing inside a figure may be focusable.
+- Check the result at phone width and at the article's full 768px width in all three locales before shipping.
+
 ## Localization (en / hu / de)
 
 English lives at the root (`/invoices`); Hungarian and German live under a prefix (`/hu/invoices`, `/de/invoices`). Any article without a translation **falls back to English** with a notice, so nothing 404s.
