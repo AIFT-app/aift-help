@@ -12,7 +12,8 @@
    fonts, not the help site's. aift-web's globals.css sets `body` to Arial after
    Tailwind's base layer, so the app's text is Arial (verified on the live app,
    2026-09-21); `font-mono` there is Geist Mono (--font-geist-mono comes from
-   src/components/visuals/fonts.ts). */
+   src/components/visuals/fonts.ts). Screens render at 100%, so these values
+   reach the reader's screen exactly as the app's do. */
 .app-screen {
   font-family: Arial, Helvetica, sans-serif;
   /* What the app's text inherits (Tailwind preflight + aift-web's --foreground).
@@ -24,7 +25,8 @@
   color: #171717;
 }
 .app-screen .font-mono {
-  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  /* Exactly the app's value: aift-web maps font-mono to var(--font-geist-mono). */
+  font-family: var(--font-geist-mono);
 }
 
 @theme inline {

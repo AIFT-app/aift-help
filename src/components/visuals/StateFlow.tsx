@@ -35,13 +35,28 @@ function Arrow({ className }: { className?: string }) {
 
 /** The app's real Catalyst buttons, sized like the approval queue's row actions. */
 function ActionButton({ kind, children }: { kind: 'emerald' | 'outline' | 'plain'; children: React.ReactNode }) {
-  if (kind === 'emerald') return <Button color="emerald" className="!px-2.5 !py-1 !text-xs">{children}</Button>
-  if (kind === 'plain') return <Button plain className="!px-2 !py-1 !text-xs">{children}</Button>
-  return <Button outline className="!px-2.5 !py-1 !text-xs">{children}</Button>
+  const button =
+    kind === 'emerald' ? (
+      <Button color="emerald" className="!px-2.5 !py-1 !text-xs">{children}</Button>
+    ) : kind === 'plain' ? (
+      <Button plain className="!px-2 !py-1 !text-xs">{children}</Button>
+    ) : (
+      <Button outline className="!px-2.5 !py-1 !text-xs">{children}</Button>
+    )
+  // App elements in the diagram use the app's fonts, like the app screens.
+  return <span className="app-screen contents">{button}</span>
+}
+
+function AppPill(props: React.ComponentProps<typeof Pill>) {
+  return (
+    <span className="app-screen contents">
+      <Pill {...props} />
+    </span>
+  )
 }
 
 function Result({ result }: { result: FlowBranch['result'] }) {
-  if ('tone' in result) return <Pill tone={result.tone} size="md">{result.label}</Pill>
+  if ('tone' in result) return <AppPill tone={result.tone} size="md">{result.label}</AppPill>
   return (
     <span className="rounded-md border border-dashed border-zinc-300 bg-white px-2 py-0.5 text-xs font-medium text-zinc-700">
       {result.label}
@@ -54,7 +69,7 @@ function BackTo({ start, backTo }: { start: FlowState; backTo: string }) {
     <span className="inline-flex items-center gap-1.5 text-xs text-zinc-500">
       <ArrowUturnLeftIcon className="size-3.5 text-zinc-500" aria-hidden="true" />
       <span>{backTo}</span>
-      <Pill tone={start.tone}>{start.label}</Pill>
+      <AppPill tone={start.tone}>{start.label}</AppPill>
     </span>
   )
 }
@@ -77,7 +92,7 @@ export function StateFlow({
       <div className="flex flex-col gap-4 @xl:grid @xl:grid-cols-[auto_1.5rem_1fr] @xl:items-center @xl:gap-0">
         <div className="flex justify-start @xl:justify-center">
           <span className="rounded-xl bg-amber-50 p-3 ring-1 ring-amber-200">
-            <Pill tone={start.tone} size="md">{start.label}</Pill>
+            <AppPill tone={start.tone} size="md">{start.label}</AppPill>
           </span>
         </div>
         {/* stub from the start state to the trunk */}
@@ -106,7 +121,7 @@ export function StateFlow({
                 {b.end ? (
                   <>
                     <Arrow />
-                    <Pill tone={b.end.tone} size="md">{b.end.label}</Pill>
+                    <AppPill tone={b.end.tone} size="md">{b.end.label}</AppPill>
                   </>
                 ) : null}
                 {b.loops ? <BackTo start={start} backTo={backTo} /> : null}
