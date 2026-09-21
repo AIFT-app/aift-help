@@ -1,34 +1,36 @@
 'use client'
 
-// Renders an app screen at the width the app really lays it out at, then zooms
-// it to fit the article, the way a screenshot is shown smaller than its pixels.
-// Laying out at a narrower width instead would reflow the screen (truncation,
-// wrapping) into something the app never shows at desktop size.
+// App screens render at 100%: 1 CSS px is 1 px, exactly as in the app, and the
+// screen's own responsive markup lays itself out at the figure's width, the
+// way the app does at that window width. Only when the figure is narrower than
+// `minWidth` (a phone) is the screen laid out at `minWidth` and zoomed down to
+// fit, like a desktop screenshot viewed on a phone.
 //
-// `zoom` (not transform) so the scaled box also takes its scaled height in the
-// page flow. The first paint assumes the article's usual 736px content width,
-// so desktop readers see the right size before hydration.
+// `zoom` (not transform) so a zoomed box also takes its zoomed height in the
+// page flow. The server render is the 100% case, so desktop readers never see
+// a resize.
 
 import { useLayoutEffect, useRef, useState } from 'react'
 
-const TYPICAL_ARTICLE_WIDTH = 736
-
-export function ScaledStage({ width, children }: { width: number; children: React.ReactNode }) {
+export function ScaledStage({ minWidth, children }: { minWidth: number; children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null)
-  const [zoom, setZoom] = useState(Math.min(1, TYPICAL_ARTICLE_WIDTH / width))
+  const [fit, setFit] = useState<{ width?: number; zoom: number }>({ zoom: 1 })
 
   useLayoutEffect(() => {
     const parent = ref.current?.parentElement
     if (!parent) return
-    const fit = () => setZoom(Math.min(1, parent.clientWidth / width))
-    fit()
-    const ro = new ResizeObserver(fit)
+    const measure = () => {
+      const w = parent.clientWidth
+      setFit(w >= minWidth ? { zoom: 1 } : { width: minWidth, zoom: w / minWidth })
+    }
+    measure()
+    const ro = new ResizeObserver(measure)
     ro.observe(parent)
     return () => ro.disconnect()
-  }, [width])
+  }, [minWidth])
 
   return (
-    <div ref={ref} style={{ width, zoom }}>
+    <div ref={ref} style={{ width: fit.width, zoom: fit.zoom }}>
       {children}
     </div>
   )
