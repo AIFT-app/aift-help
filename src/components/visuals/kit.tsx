@@ -8,12 +8,18 @@
 // They are coded rather than screenshots so they translate with the article,
 // never show customer data, and change in a text diff. Data is fictional.
 //
-// Server components except ScaledStage; the screens are `inert`, so the real
-// Catalyst buttons, checkboxes and switches inside them are never focusable.
+// Server components except ScaledStage and ZoomFigure. The screens are
+// `inert`, so the real Catalyst buttons, checkboxes and switches inside them
+// are never focusable.
 
 import clsx from 'clsx'
+import { ui, type Locale } from '@/lib/i18n'
 import { appMono } from './fonts'
 import { ScaledStage } from './ScaledStage'
+import { ZoomFigure } from './ZoomFigure'
+
+/** Below this figure width a screen is zoomed down (see AppScreen). */
+const SCREEN_MIN_WIDTH = 640
 
 // ── Figure ──────────────────────────────────────────────────────────────────
 
@@ -28,6 +34,7 @@ export function Figure({
   art,
   bleed = false,
   wide = false,
+  zoomable,
 }: {
   alt: string
   children?: React.ReactNode
@@ -41,19 +48,30 @@ export function Figure({
    * the text column.
    */
   wide?: boolean
+  /**
+   * For app screens: on phones, where the screen is zoomed down, an "Enlarge"
+   * control opens it full screen at 100% (ZoomFigure). Pass the page locale
+   * for the control's labels.
+   */
+  zoomable?: Locale
 }) {
   return (
     <figure className="not-prose my-8 @container">
       <div
-        role="img"
-        aria-label={alt}
         className={clsx(
-          'overflow-hidden rounded-2xl',
+          'relative overflow-hidden rounded-2xl',
           bleed ? '' : 'bg-zinc-100/70 p-2 ring-1 ring-zinc-950/5 sm:p-4',
           wide && '-mx-6 sm:-mx-10',
         )}
       >
-        {art}
+        <div role="img" aria-label={alt}>
+          {art}
+        </div>
+        {zoomable ? (
+          <ZoomFigure alt={alt} enlarge={ui[zoomable].enlarge} close={ui[zoomable].enlargeClose} width={SCREEN_MIN_WIDTH}>
+            {art}
+          </ZoomFigure>
+        ) : null}
       </div>
       {children ? (
         <figcaption className="mt-3 text-sm/6 text-zinc-500 [&_p]:m-0 [&_strong]:font-semibold [&_strong]:text-zinc-700">
@@ -75,10 +93,12 @@ export function Figure({
  * inherited text styles (.app-screen in globals.css).
  *
  * `minWidth`: below this figure width (phones) the screen is laid out at
- * `minWidth` and zoomed to fit instead of reflowing into a phone layout.
+ * `minWidth` and zoomed to fit instead of reflowing into a phone layout, and a
+ * `zoomable` Figure offers it full screen at 100%. Inside the screen `sm:`
+ * always applies (globals.css), so a phone shows the desktop screen.
  */
 export function AppScreen({
-  minWidth = 640,
+  minWidth = SCREEN_MIN_WIDTH,
   clipHeight,
   overlay,
   children,

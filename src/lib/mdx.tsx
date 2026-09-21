@@ -26,5 +26,14 @@ export function mdxComponents(locale: Locale) {
     a: ({ href = '', ...rest }: React.ComponentProps<'a'>) => (
       <a href={localizeHref(href, locale)} {...rest} />
     ),
+    // A table wider than a phone scrolls in its own box instead of widening
+    // the page (which makes mobile browsers zoom the whole article out). On
+    // phones the box reaches into the article's side padding (px-6), so the
+    // table gets the full screen width before it has to scroll.
+    table: (props: React.ComponentProps<'table'>) => (
+      <div className="-mx-6 overflow-x-auto px-6 sm:mx-0 sm:px-0">
+        <table {...props} />
+      </div>
+    ),
   }
 }

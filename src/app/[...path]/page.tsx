@@ -56,7 +56,7 @@ export default async function ArticlePage({
   const toc = extractHeadings(content)
 
   return (
-    <ArticleLayout toc={toc} locale={locale}>
+    <ArticleLayout toc={toc} locale={locale} lang={isFallback ? defaultLocale : locale}>
       {isFallback && <FallbackNotice locale={locale} />}
       <MDXRemote source={content} options={mdxOptions} components={mdxComponents(locale)} />
     </ArticleLayout>
