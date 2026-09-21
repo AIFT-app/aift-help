@@ -169,7 +169,6 @@ function QueueBody({
             </form>
           </div>
           <div className="mt-4 flex flex-wrap items-center gap-2">
-            {annotate ? <Pin n={1} at="left" cancel="-mr-2" /> : null}
             {CHIPS.map(([key, count], i) => (
               <span
                 key={key}
@@ -184,6 +183,7 @@ function QueueBody({
                 <span className="tabular-nums opacity-70">{c.counts[count]}</span>
               </span>
             ))}
+            {annotate ? <Pin n={1} at="right" cancel="-ml-2" /> : null}
           </div>
         </>
       )}
@@ -224,6 +224,7 @@ export function ApprovalQueueFigure({ locale, children }: FigureProps) {
     <Figure
       alt={approvalsCopy[locale].help.alt.queue}
       bleed
+      wide
       art={
         <AppScreen>
           <ApprovalsPage locale={locale}>
@@ -246,9 +247,12 @@ export function ApprovalBulkBarFigure({ locale, children }: FigureProps) {
     <Figure
       alt={approvalsCopy[locale].help.alt.bulk}
       bleed
+      wide
       art={
         <AppScreen>
-          <div className="mx-auto max-w-6xl px-4">
+          {/* A crop from the middle of the page: the layout's px-4, and 16px below
+              the list where the screenshot is cut. */}
+          <div className="mx-auto max-w-6xl px-4 pb-4">
             <QueueBody locale={locale} selected={BULK_ROWS} listOnly />
           </div>
         </AppScreen>
@@ -327,6 +331,7 @@ export function DeclineDialogFigure({ locale, children }: FigureProps) {
     <Figure
       alt={approvalsCopy[locale].help.alt.decline}
       bleed
+      wide
       art={
         <AppScreen clipHeight={520} overlay={<DeclineOverlay locale={locale} />}>
           <ApprovalsPage locale={locale}>
@@ -399,10 +404,12 @@ export function ApprovalEmailsFigure({ locale, children }: FigureProps) {
     <Figure
       alt={approvalsCopy[locale].help.alt.emails}
       bleed
+      wide
       art={
         <AppScreen>
-          {/* The account layout's column (account/layout.tsx: max-w-3xl px-4). */}
-          <div className="mx-auto max-w-3xl px-4">
+          {/* The account layout's column (account/layout.tsx: max-w-3xl px-4), cut
+              32px above and below the section. */}
+          <div className="mx-auto max-w-3xl px-4 py-8">
             <section>
               <h2 className="text-base/7 font-semibold text-zinc-950 dark:text-white">
                 {ui['settings.notifications.approvals_section_title']}

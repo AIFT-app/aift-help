@@ -27,19 +27,31 @@ export function Figure({
   children,
   art,
   bleed = false,
+  wide = false,
 }: {
   alt: string
   children?: React.ReactNode
   art: React.ReactNode
   /** Drop the grey backdrop, for art that brings its own frame. */
   bleed?: boolean
+  /**
+   * Extend the art into the article column's side padding (ArticleLayout:
+   * px-6 / sm:px-10), so an app screen shown at 100% gets the most width the
+   * page has without overlapping the table of contents. The caption stays on
+   * the text column.
+   */
+  wide?: boolean
 }) {
   return (
     <figure className="not-prose my-8 @container">
       <div
         role="img"
         aria-label={alt}
-        className={clsx('overflow-hidden rounded-2xl', bleed ? '' : 'bg-zinc-100/70 p-2 ring-1 ring-zinc-950/5 sm:p-4')}
+        className={clsx(
+          'overflow-hidden rounded-2xl',
+          bleed ? '' : 'bg-zinc-100/70 p-2 ring-1 ring-zinc-950/5 sm:p-4',
+          wide && '-mx-6 sm:-mx-10',
+        )}
       >
         {art}
       </div>
@@ -55,19 +67,24 @@ export function Figure({
 // ── App screens ─────────────────────────────────────────────────────────────
 
 /**
- * The app's page at a real window size: the zinc ground and the white content
- * panel of aift-web's SidebarLayout (src/components/catalyst/sidebar.tsx, the
- * `<main>` panel), laid out at `width` px and zoomed to fit the article.
- * 836 = the panel at a 1100px browser window (1100 - 256 sidebar - 8 gutter).
+ * A part of an app page, like a tightly cropped screenshot, at 100% scale.
+ * The crop edge is the inner edge of the app's white content panel
+ * (aift-web SidebarLayout), so everything inside, including the page's own
+ * layout padding (e.g. approvals/layout.tsx `px-4 py-8`), is the app's markup
+ * and the app's numbers. The screen is `inert` and scopes the app's fonts and
+ * inherited text styles (.app-screen in globals.css).
+ *
+ * `minWidth`: below this figure width (phones) the screen is laid out at
+ * `minWidth` and zoomed to fit instead of reflowing into a phone layout.
  */
 export function AppScreen({
-  width = 836,
+  minWidth = 640,
   clipHeight,
   overlay,
   children,
 }: {
-  width?: number
-  /** Crop the screen to this height (px, before zoom), like a partial screenshot. */
+  minWidth?: number
+  /** Crop the screen to this height (px at 100%), like a partial screenshot. */
   clipHeight?: number
   /** Drawn over the whole screen, e.g. a modal dialog with its backdrop. */
   overlay?: React.ReactNode
@@ -76,17 +93,11 @@ export function AppScreen({
   return (
     <div
       inert
-      className={clsx('app-screen overflow-hidden rounded-xl bg-zinc-100 antialiased ring-1 ring-zinc-950/10', appMono.variable)}
+      className={clsx('app-screen overflow-hidden rounded-xl bg-white antialiased ring-1 ring-zinc-950/10', appMono.variable)}
     >
-      <ScaledStage width={width}>
-        <div className="relative overflow-hidden p-2" style={clipHeight ? { height: clipHeight } : undefined}>
-          {/* The app's DESKTOP panel classes without their `lg:` prefix: the screen is
-              always shown as the app looks at desktop size, whatever the reader's
-              window. (Catalyst's own `sm:` text sizes still follow the viewport, so
-              on a phone the text inside is a touch larger than in the app.) */}
-          <div className="grow rounded-2xl bg-white p-10 shadow-xs ring-1 ring-zinc-950/5 dark:bg-zinc-900 dark:ring-white/10">
-            {children}
-          </div>
+      <ScaledStage minWidth={minWidth}>
+        <div className="relative overflow-hidden" style={clipHeight ? { height: clipHeight } : undefined}>
+          {children}
           {overlay}
         </div>
       </ScaledStage>
@@ -117,10 +128,10 @@ export function Marker({ n, className }: { n: number; className?: string }) {
 /**
  * A marker pinned to the next element WITHOUT changing the app's layout: a
  * zero-width flex item whose negative margin cancels the container's gap, with
- * the marker floating outside the text line (left, above or below it).
+ * the marker floating outside the text line (left, right, above or below it).
  * `cancel` is the negative margin matching the parent's gap, e.g. "-mr-1.5".
  */
-export function Pin({ n, at = 'above', cancel }: { n: number; at?: 'left' | 'above' | 'below'; cancel: string }) {
+export function Pin({ n, at = 'above', cancel }: { n: number; at?: 'left' | 'right' | 'above' | 'below'; cancel: string }) {
   return (
     <span aria-hidden="true" className={clsx('relative w-0 shrink-0 self-stretch', cancel)}>
       <Marker
@@ -128,6 +139,7 @@ export function Pin({ n, at = 'above', cancel }: { n: number; at?: 'left' | 'abo
         className={clsx(
           'absolute',
           at === 'left' && 'top-1/2 -left-7 -translate-y-1/2',
+          at === 'right' && 'top-1/2 left-2 -translate-y-1/2',
           at === 'above' && 'bottom-full left-0 mb-px -translate-x-1/2',
           at === 'below' && 'top-full left-0 mt-px -translate-x-1/2',
         )}
