@@ -35,6 +35,7 @@ export function Figure({
   bleed = false,
   wide = false,
   zoomable,
+  zoomWidth = SCREEN_MIN_WIDTH,
 }: {
   alt: string
   children?: React.ReactNode
@@ -54,6 +55,8 @@ export function Figure({
    * for the control's labels.
    */
   zoomable?: Locale
+  /** The width the Enlarge view shows the screen at: its AppScreen minWidth. */
+  zoomWidth?: number
 }) {
   return (
     <figure className="not-prose my-8 @container">
@@ -68,7 +71,7 @@ export function Figure({
           {art}
         </div>
         {zoomable ? (
-          <ZoomFigure alt={alt} enlarge={ui[zoomable].enlarge} close={ui[zoomable].enlargeClose} width={SCREEN_MIN_WIDTH}>
+          <ZoomFigure alt={alt} enlarge={ui[zoomable].enlarge} close={ui[zoomable].enlargeClose} width={zoomWidth}>
             {art}
           </ZoomFigure>
         ) : null}
