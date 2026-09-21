@@ -254,7 +254,7 @@ How the bank reports a payment makes a big difference.
 
 **Transfers** carry the payment reference through unchanged. If the invoice number is in the reference and the amount is exact, the pair is matched without AI within 30 days of the invoice, and otherwise the invoice number is the AI's strongest signal.
 
-**Card payments** carry the merchant's own text (for example `QUILLMOOR*SUBSCR 4471` or `PENNAVAROS BUDAPEST 0231`) and a terminal ID, not the invoice number. They are still matched automatically when:
+**Card payments** carry the merchant's own text (for example `QUILLMOOR*SUBSCR 4471` or `REAMWELL OFFICE 0231`) and a terminal ID, not the invoice number. They are still matched automatically when:
 
 - the merchant is the same partner as the invoice's (by partner record or [verified partner](/partners) link) and the amount and date line up, through the [same-partner rule](#the-order-of-the-checks); or
 - the amount is exact, the payment is within 30 days of the invoice, and it is the only candidate on both sides; or

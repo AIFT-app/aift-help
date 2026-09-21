@@ -2,8 +2,10 @@
 //
 // `ui`: the app's own labels, VERBATIM from aift-web messages/<locale>.json,
 // keyed by message key so a label change in the app is easy to find here.
-// `queue` / `tx`: fictional example data (the companies were checked against
-// real businesses for the approvals pilot; see ../approvals/copy.ts). The AI
+// `queue` / `tx`: fictional example data, the same international companies as
+// ../approvals/copy.ts (web-checked). The bank texts are deliberately not the
+// partner's name without its suffix: that would make both sides the same
+// partner, and the pair would be matched automatically, not suggested. The AI
 // reasoning is English in every locale because the app's matching prompt
 // writes it in English.
 // `help`: the help centre's own words (diagram, alt texts), formal register.
@@ -112,10 +114,10 @@ const HUF_QUEUE: QueueGroup[] = [
   {
     scores: [87],
     invoiceNumber: 'HPK-INV-2026-0398',
-    invoicePartner: 'Kőhíd Tetőfedő Kft.',
+    invoicePartner: 'Slatebridge Roofing Ltd.',
     invoiceAmount: 1524000,
     invoiceCurrency: 'HUF',
-    txPartner: 'KOHID T. ES TARSA',
+    txPartner: 'SLATEBRIDGE RFG',
     txDate: '2026-09-18',
     txAmount: 1524000,
     txCurrency: 'HUF',
@@ -123,10 +125,10 @@ const HUF_QUEUE: QueueGroup[] = [
   {
     scores: [86, 85],
     invoiceNumber: 'HPK-INV-2026-0412',
-    invoicePartner: 'Pennaváros Irodaellátó Kft.',
+    invoicePartner: 'Reamwell Office Supplies Ltd.',
     invoiceAmount: 264000,
     invoiceCurrency: 'HUF',
-    txPartner: 'PENNAVAROS IRODA',
+    txPartner: 'REAMWELL OFFICE',
     txDate: '2026-09-15',
     txAmount: 264000,
     txCurrency: 'HUF',
@@ -134,10 +136,10 @@ const HUF_QUEUE: QueueGroup[] = [
   {
     scores: [85],
     invoiceNumber: 'HPK-INV-2026-0425',
-    invoicePartner: 'Csavarhúzó Autószerviz Bt.',
+    invoicePartner: 'Gearmont Fleet Services Ltd.',
     invoiceAmount: 94615,
     invoiceCurrency: 'HUF',
-    txPartner: 'CSAVARHUZO BT',
+    txPartner: 'GEARMONT FLEET',
     txDate: '2026-09-25',
     txAmount: 94615,
     txCurrency: 'HUF',
@@ -148,16 +150,16 @@ const HUF_TX: MatchingCopy['tx'] = {
   suggestion: {
     score: 87,
     invoiceNumber: 'HPK-INV-2026-0433',
-    partner: 'Pennaváros Irodaellátó Kft.',
+    partner: 'Reamwell Office Supplies Ltd.',
     amount: 58420,
     currency: 'HUF',
     reason:
-      'Amount 58,420 HUF equals the invoice balance; 4 days after the invoice date; card text PENNAVAROS BUDAPEST resembles the partner name but is not linked to it',
+      'Amount 58,420 HUF equals the invoice balance; 4 days after the invoice date; card text REAMWELL OFFICE 0231 resembles the partner name but is not linked to it',
   },
   openInvoices: [
-    { number: 'HPK-INV-2026-0433', partner: 'Pennaváros Irodaellátó Kft.', total: 58420, currency: 'HUF', issueDate: '2026-09-10' },
-    { number: 'HPK-INV-2026-0398', partner: 'Kőhíd Tetőfedő Kft.', total: 1524000, balance: 762000, currency: 'HUF', issueDate: '2026-09-02' },
-    { number: 'HPK-INV-2026-0425', partner: 'Csavarhúzó Autószerviz Bt.', total: 94615, currency: 'HUF', issueDate: '2026-09-19' },
+    { number: 'HPK-INV-2026-0433', partner: 'Reamwell Office Supplies Ltd.', total: 58420, currency: 'HUF', issueDate: '2026-09-10' },
+    { number: 'HPK-INV-2026-0398', partner: 'Slatebridge Roofing Ltd.', total: 1524000, balance: 762000, currency: 'HUF', issueDate: '2026-09-02' },
+    { number: 'HPK-INV-2026-0425', partner: 'Gearmont Fleet Services Ltd.', total: 94615, currency: 'HUF', issueDate: '2026-09-19' },
   ],
   types: [],
 }
@@ -330,10 +332,10 @@ export const matchingCopy: Record<Locale, MatchingCopy> = {
         {
           scores: [87],
           invoiceNumber: 'BWG-INV-2026-0398',
-          invoicePartner: 'Dachwerk Steinbrück GmbH',
+          invoicePartner: 'Slatebridge Roofing Ltd.',
           invoiceAmount: 6480,
           invoiceCurrency: 'EUR',
-          txPartner: 'DACHWERK STEINBR.',
+          txPartner: 'SLATEBRIDGE RFG',
           txDate: '2026-09-18',
           txAmount: 6480,
           txCurrency: 'EUR',
@@ -341,10 +343,10 @@ export const matchingCopy: Record<Locale, MatchingCopy> = {
         {
           scores: [86, 85],
           invoiceNumber: 'BWG-INV-2026-0412',
-          invoicePartner: 'Papierfalke Bürobedarf GmbH',
+          invoicePartner: 'Reamwell Office Supplies Ltd.',
           invoiceAmount: 2640,
           invoiceCurrency: 'EUR',
-          txPartner: 'PAPIERFALKE BUEROBED.',
+          txPartner: 'REAMWELL OFFICE',
           txDate: '2026-09-15',
           txAmount: 2640,
           txCurrency: 'EUR',
@@ -352,10 +354,10 @@ export const matchingCopy: Record<Locale, MatchingCopy> = {
         {
           scores: [85],
           invoiceNumber: 'BWG-INV-2026-0425',
-          invoicePartner: 'Moosbauer Kfz-Technik GmbH',
+          invoicePartner: 'Gearmont Fleet Services Ltd.',
           invoiceAmount: 386.4,
           invoiceCurrency: 'EUR',
-          txPartner: 'MOOSBAUER KFZ',
+          txPartner: 'GEARMONT FLEET',
           txDate: '2026-09-25',
           txAmount: 386.4,
           txCurrency: 'EUR',
@@ -367,16 +369,16 @@ export const matchingCopy: Record<Locale, MatchingCopy> = {
       suggestion: {
         score: 87,
         invoiceNumber: 'BWG-INV-2026-0433',
-        partner: 'Papierfalke Bürobedarf GmbH',
+        partner: 'Reamwell Office Supplies Ltd.',
         amount: 412.8,
         currency: 'EUR',
         reason:
-          'Amount 412.80 EUR equals the invoice balance; 4 days after the invoice date; card text PAPIERFALKE MUENCHEN resembles the partner name but is not linked to it',
+          'Amount 412.80 EUR equals the invoice balance; 4 days after the invoice date; card text REAMWELL OFFICE 0231 resembles the partner name but is not linked to it',
       },
       openInvoices: [
-        { number: 'BWG-INV-2026-0433', partner: 'Papierfalke Bürobedarf GmbH', total: 412.8, currency: 'EUR', issueDate: '2026-09-10' },
-        { number: 'BWG-INV-2026-0398', partner: 'Dachwerk Steinbrück GmbH', total: 6480, balance: 3240, currency: 'EUR', issueDate: '2026-09-02' },
-        { number: 'BWG-INV-2026-0425', partner: 'Moosbauer Kfz-Technik GmbH', total: 386.4, currency: 'EUR', issueDate: '2026-09-19' },
+        { number: 'BWG-INV-2026-0433', partner: 'Reamwell Office Supplies Ltd.', total: 412.8, currency: 'EUR', issueDate: '2026-09-10' },
+        { number: 'BWG-INV-2026-0398', partner: 'Slatebridge Roofing Ltd.', total: 6480, balance: 3240, currency: 'EUR', issueDate: '2026-09-02' },
+        { number: 'BWG-INV-2026-0425', partner: 'Gearmont Fleet Services Ltd.', total: 386.4, currency: 'EUR', issueDate: '2026-09-19' },
       ],
       types: ['Bankgebühr', 'Gehalt'],
     },

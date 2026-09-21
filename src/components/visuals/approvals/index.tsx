@@ -219,6 +219,11 @@ function QueueBody({
   )
 }
 
+// The queue row is not responsive in the app: narrower than this, its buttons
+// cover the due date and the summary truncates to a few letters. So on phones
+// the queue screens are laid out at this width and zoomed, and Enlarge uses it.
+const QUEUE_MIN_WIDTH = 768
+
 export function ApprovalQueueFigure({ locale, children }: FigureProps) {
   return (
     <Figure
@@ -226,8 +231,9 @@ export function ApprovalQueueFigure({ locale, children }: FigureProps) {
       bleed
       wide
       zoomable={locale}
+      zoomWidth={QUEUE_MIN_WIDTH}
       art={
-        <AppScreen>
+        <AppScreen minWidth={QUEUE_MIN_WIDTH}>
           <ApprovalsPage locale={locale}>
             <QueueBody locale={locale} annotate />
           </ApprovalsPage>
@@ -250,8 +256,9 @@ export function ApprovalBulkBarFigure({ locale, children }: FigureProps) {
       bleed
       wide
       zoomable={locale}
+      zoomWidth={QUEUE_MIN_WIDTH}
       art={
-        <AppScreen>
+        <AppScreen minWidth={QUEUE_MIN_WIDTH}>
           {/* A crop from the middle of the page: the layout's px-4, and 16px below
               the list where the screenshot is cut. */}
           <div className="mx-auto max-w-6xl px-4 pb-4">
@@ -335,8 +342,9 @@ export function DeclineDialogFigure({ locale, children }: FigureProps) {
       bleed
       wide
       zoomable={locale}
+      zoomWidth={QUEUE_MIN_WIDTH}
       art={
-        <AppScreen clipHeight={520} overlay={<DeclineOverlay locale={locale} />}>
+        <AppScreen minWidth={QUEUE_MIN_WIDTH} clipHeight={520} overlay={<DeclineOverlay locale={locale} />}>
           <ApprovalsPage locale={locale}>
             <QueueBody locale={locale} />
           </ApprovalsPage>

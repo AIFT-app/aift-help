@@ -254,7 +254,7 @@ Wie die Bank eine Zahlung meldet, macht einen großen Unterschied.
 
 **Überweisungen** geben den Verwendungszweck unverändert weiter. Steht die Rechnungsnummer im Verwendungszweck und ist der Betrag exakt, wird das Paar innerhalb von 30 Tagen um die Rechnung ohne KI zugeordnet; ansonsten ist die Rechnungsnummer das stärkste Signal der KI.
 
-**Kartenzahlungen** tragen den eigenen Text des Händlers (zum Beispiel `QUILLMOOR*SUBSCR 4471` oder `PAPIERFALKE MUENCHEN 0231`) und eine Terminal-ID, nicht die Rechnungsnummer. Sie werden trotzdem automatisch zugeordnet, wenn:
+**Kartenzahlungen** tragen den eigenen Text des Händlers (zum Beispiel `QUILLMOOR*SUBSCR 4471` oder `REAMWELL OFFICE 0231`) und eine Terminal-ID, nicht die Rechnungsnummer. Sie werden trotzdem automatisch zugeordnet, wenn:
 
 - der Händler derselbe Partner ist wie der der Rechnung (per Partnerdatensatz oder Verknüpfung als [verifizierter Partner](/partners)) und Betrag und Datum passen, über die [Regel für denselben Partner](#die-reihenfolge-der-prüfungen); oder
 - der Betrag exakt ist, die Zahlung innerhalb von 30 Tagen um die Rechnung liegt und es auf beiden Seiten der einzige Kandidat ist; oder
