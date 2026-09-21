@@ -12,9 +12,12 @@
 //            labels, alt text, rendered plurals. Hungarian here is magázó,
 //            like every other aift-help article.
 //
-// The data is FICTIONAL. Supplier names were checked against a web search
-// on 2026-09-21 and dropped when they matched a real business. Do not swap
-// in names from a real workspace, a demo account, or a customer conversation.
+// The data is FICTIONAL. Supplier names are international and the same in
+// every locale (Reamwell Office Supplies, Slatebridge Roofing, Quillmoor
+// Software, Gearmont Fleet Services); each was checked against a web search
+// on 2026-09-21 and candidates matching a real business were dropped. Do not
+// swap in names from a real workspace, a demo account, or a customer
+// conversation.
 
 import type { Locale } from '@/lib/i18n'
 import type { Tone } from '../kit'
@@ -162,18 +165,18 @@ const en: Copy = {
   rows: [
     {
       summary: 'Office supplies and printer paper',
-      partner: 'Pennaváros Irodaellátó Kft.',
+      partner: 'Reamwell Office Supplies Ltd.',
       internalId: 'HPK-INV-2026-0412',
       dueDate: '2026-09-21',
       dueRel: '1 day overdue',
       soon: true,
       amount: 186690,
       currency: 'HUF',
-      why: { key: 'approvals.why.rule_partner', partner: 'Pennaváros Irodaellátó Kft.' },
+      why: { key: 'approvals.why.rule_partner', partner: 'Reamwell Office Supplies Ltd.' },
     },
     {
       summary: 'Warehouse roof repair, 2nd instalment',
-      partner: 'Kőhíd Tetőfedő Kft.',
+      partner: 'Slatebridge Roofing Ltd.',
       internalId: 'HPK-INV-2026-0398',
       dueDate: '2026-09-25',
       dueRel: 'in 3 days',
@@ -195,7 +198,7 @@ const en: Copy = {
     },
     {
       summary: 'Company car service and brake pads',
-      partner: 'Csavarhúzó Autószerviz Bt.',
+      partner: 'Gearmont Fleet Services Ltd.',
       internalId: 'HPK-INV-2026-0425',
       dueDate: '2026-10-04',
       dueRel: 'in 12 days',
@@ -284,18 +287,18 @@ const hu: Copy = {
   rows: [
     {
       summary: 'Irodaszer és nyomtatópapír',
-      partner: 'Pennaváros Irodaellátó Kft.',
+      partner: 'Reamwell Office Supplies Ltd.',
       internalId: 'HPK-INV-2026-0412',
       dueDate: '2026-09-21',
       dueRel: '1 napja lejárt',
       soon: true,
       amount: 186690,
       currency: 'HUF',
-      why: { key: 'approvals.why.rule_partner', partner: 'Pennaváros Irodaellátó Kft.' },
+      why: { key: 'approvals.why.rule_partner', partner: 'Reamwell Office Supplies Ltd.' },
     },
     {
       summary: 'Raktártető javítása, 2. részszámla',
-      partner: 'Kőhíd Tetőfedő Kft.',
+      partner: 'Slatebridge Roofing Ltd.',
       internalId: 'HPK-INV-2026-0398',
       dueDate: '2026-09-25',
       dueRel: '3 nap múlva',
@@ -317,7 +320,7 @@ const hu: Copy = {
     },
     {
       summary: 'Céges autó szervize, fékbetétcsere',
-      partner: 'Csavarhúzó Autószerviz Bt.',
+      partner: 'Gearmont Fleet Services Ltd.',
       internalId: 'HPK-INV-2026-0425',
       dueDate: '2026-10-04',
       dueRel: '12 nap múlva',
@@ -406,18 +409,18 @@ const de: Copy = {
   rows: [
     {
       summary: 'Büromaterial und Druckerpapier',
-      partner: 'Papierfalke Bürobedarf GmbH',
+      partner: 'Reamwell Office Supplies Ltd.',
       internalId: 'BWG-INV-2026-0412',
       dueDate: '2026-09-21',
       dueRel: '1 Tag überfällig',
       soon: true,
       amount: 412.8,
       currency: 'EUR',
-      why: { key: 'approvals.why.rule_partner', partner: 'Papierfalke Bürobedarf GmbH' },
+      why: { key: 'approvals.why.rule_partner', partner: 'Reamwell Office Supplies Ltd.' },
     },
     {
       summary: 'Dachreparatur Lager, 2. Teilrechnung',
-      partner: 'Dachwerk Steinbrück GmbH',
+      partner: 'Slatebridge Roofing Ltd.',
       internalId: 'BWG-INV-2026-0398',
       dueDate: '2026-09-25',
       dueRel: 'in 3 Tagen',
@@ -439,7 +442,7 @@ const de: Copy = {
     },
     {
       summary: 'Firmenwagen: Service und Bremsbeläge',
-      partner: 'Moosbauer Kfz-Technik GmbH',
+      partner: 'Gearmont Fleet Services Ltd.',
       internalId: 'BWG-INV-2026-0425',
       dueDate: '2026-10-04',
       dueRel: 'in 12 Tagen',
