@@ -28,20 +28,26 @@ export function DocsHeader() {
             >
               <Bars3Icon className="size-5" />
             </button>
-            <a href={localizeHref('/', locale)} className="flex items-center gap-2.5">
+            {/* One line at every width: below 360px (small phones) the "| Help"
+                suffix goes, so the brand never wraps under the header icons. */}
+            <a href={localizeHref('/', locale)} className="flex items-center gap-2.5 whitespace-nowrap">
               <span className="text-sm font-semibold text-zinc-950">AI Finance Team</span>
-              <span className="text-zinc-200">|</span>
-              <span className="text-sm text-zinc-500">{t.helpSuffix}</span>
+              <span className="text-zinc-200 max-[360px]:hidden">|</span>
+              <span className="text-sm text-zinc-500 max-[360px]:hidden">{t.helpSuffix}</span>
             </a>
           </div>
           <div className="flex items-center gap-1 sm:gap-3">
             <Search />
             <LanguageSwitcher />
+            {/* Icon only below lg (the label crowded the Hungarian header on
+                tablets), padded there to a 30px tap target; aria-label names it
+                when the label is hidden. */}
             <a
               href="https://aift.aifinance.team"
-              className="flex items-center gap-1.5 text-sm text-zinc-500 transition-colors hover:text-zinc-950"
+              aria-label={t.backToApp}
+              className="flex items-center gap-1.5 text-sm text-zinc-500 transition-colors hover:text-zinc-950 max-lg:-my-2 max-lg:-mr-2 max-lg:rounded-md max-lg:p-2"
             >
-              <span className="hidden sm:inline">{t.backToApp}</span>
+              <span className="hidden lg:inline">{t.backToApp}</span>
               <ArrowTopRightOnSquareIcon className="size-3.5" />
             </a>
           </div>

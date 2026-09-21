@@ -8,6 +8,33 @@
    anyone whose OS is in dark mode. */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* App screens show the desktop app at every page width. Their markup is the
+   app's, whose `sm:` classes switch Catalyst to its phone variants below a
+   640px VIEWPORT (stacked dialog buttons, 16px button text). A screen laid out
+   at desktop width and zoomed down on a phone must keep the desktop variants,
+   or it matches neither the desktop app nor a phone. So inside .app-screen
+   `sm:` always applies; everywhere else it is Tailwind's usual media query.
+   The redefined variant keeps its place in Tailwind's order (checked against
+   the built-in output: identical apart from the extra scoped rule). `max-sm:`
+   is not scoped: no screen uses it. `pointer-fine:` likewise, so a phone does
+   not switch on Catalyst's invisible touch-target spans inside the buttons. */
+@custom-variant sm {
+  @media (width >= 40rem) {
+    @slot;
+  }
+  &:where(.app-screen, .app-screen *) {
+    @slot;
+  }
+}
+@custom-variant pointer-fine {
+  @media (pointer: fine) {
+    @slot;
+  }
+  &:where(.app-screen, .app-screen *) {
+    @slot;
+  }
+}
+
 /* App screens rebuilt in articles (src/components/visuals) render in the app's
    fonts, not the help site's. aift-web's globals.css sets `body` to Arial after
    Tailwind's base layer, so the app's text is Arial (verified on the live app,
@@ -23,6 +50,8 @@
   font-size: 1rem;
   line-height: 1.5;
   color: #171717;
+  /* The article's word breaking (below) is for prose, not for the app. */
+  overflow-wrap: normal;
 }
 .app-screen .font-mono {
   /* Exactly the app's value: aift-web maps font-mono to var(--font-geist-mono). */
@@ -37,6 +66,30 @@
 body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+}
+
+/* Phones: nothing in an article may be wider than the screen, or mobile
+   browsers zoom the whole page out (Chrome) or scroll it sideways (Safari).
+   Long German and Hungarian compounds in headings and long paths in inline
+   code break instead of overflowing; `hyphens: auto` uses the page language
+   (set per locale in layout.tsx). Tables scroll in their own box (mdx.tsx).
+   `break-word` only breaks a word that cannot fit a line, so ordinary text and
+   table column widths are unchanged. */
+.prose {
+  overflow-wrap: break-word;
+}
+/* `:not(.not-prose *)` keeps these off the app screens, whose own headings
+   sit inside the article (caught by help-screen-css-diff.mjs). */
+.prose :is(h1, h2, h3, h4):not(.not-prose *) {
+  hyphens: auto;
+}
+.prose :not(pre) > code:not(.not-prose *) {
+  overflow-wrap: anywhere;
+}
+@media (width < 40rem) {
+  .prose h1:not(.not-prose *) {
+    font-size: 1.875rem;
+  }
 }
 
 /* Prose overrides — match aift-web table style */

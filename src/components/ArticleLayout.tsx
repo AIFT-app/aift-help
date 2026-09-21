@@ -6,15 +6,18 @@ export function ArticleLayout({
   children,
   toc,
   locale,
+  lang = locale,
 }: {
   children: React.ReactNode
   toc: Heading[]
   locale: Locale
+  /** The language the article text is in: English for a fallback article. */
+  lang?: Locale
 }) {
   return (
     <div className="flex min-w-0 flex-1">
       <div className="min-w-0 flex-1 px-6 py-10 sm:px-10">
-        <article className="prose prose-zinc max-w-3xl">
+        <article lang={lang} className="prose prose-zinc max-w-3xl">
           {children}
         </article>
       </div>

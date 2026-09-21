@@ -225,6 +225,7 @@ export function ApprovalQueueFigure({ locale, children }: FigureProps) {
       alt={approvalsCopy[locale].help.alt.queue}
       bleed
       wide
+      zoomable={locale}
       art={
         <AppScreen>
           <ApprovalsPage locale={locale}>
@@ -248,6 +249,7 @@ export function ApprovalBulkBarFigure({ locale, children }: FigureProps) {
       alt={approvalsCopy[locale].help.alt.bulk}
       bleed
       wide
+      zoomable={locale}
       art={
         <AppScreen>
           {/* A crop from the middle of the page: the layout's px-4, and 16px below
@@ -332,6 +334,7 @@ export function DeclineDialogFigure({ locale, children }: FigureProps) {
       alt={approvalsCopy[locale].help.alt.decline}
       bleed
       wide
+      zoomable={locale}
       art={
         <AppScreen clipHeight={520} overlay={<DeclineOverlay locale={locale} />}>
           <ApprovalsPage locale={locale}>
@@ -405,6 +408,7 @@ export function ApprovalEmailsFigure({ locale, children }: FigureProps) {
       alt={approvalsCopy[locale].help.alt.emails}
       bleed
       wide
+      zoomable={locale}
       art={
         <AppScreen>
           {/* The account layout's column (account/layout.tsx: max-w-3xl px-4), cut
