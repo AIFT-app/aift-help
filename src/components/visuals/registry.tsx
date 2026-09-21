@@ -11,6 +11,9 @@ import {
   DeclineDialogFigure,
 } from './approvals'
 import { MatchingOutcomeFigure, MatchingQueueFigure, TransactionMatchFigure } from './matching'
+import { PaymentFileFigure, PaymentFlowFigure } from './payments'
+import { ApprovalRulesFigure, RoutingLadderFigure } from './approval-setup'
+import { InvoiceLifecycleFigure, InvoiceListFigure } from './invoices'
 
 type WithLocale = { locale: Locale; children?: React.ReactNode }
 
@@ -23,6 +26,12 @@ const FIGURES: Record<string, (props: WithLocale) => React.ReactNode> = {
   MatchingOutcomeFigure,
   MatchingQueueFigure,
   TransactionMatchFigure,
+  PaymentFlowFigure,
+  PaymentFileFigure,
+  ApprovalRulesFigure,
+  RoutingLadderFigure,
+  InvoiceLifecycleFigure,
+  InvoiceListFigure,
 }
 
 export function visualComponents(locale: Locale) {
