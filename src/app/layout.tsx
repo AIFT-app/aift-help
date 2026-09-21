@@ -21,7 +21,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={inter.variable}>
+    // One layout serves /, /hu/* and /de/*, so the static HTML can only say
+    // "en". The script sets the page's real language before first paint:
+    // screen readers pick their voice from it, browsers their translation
+    // offer, and `hyphens: auto` its dictionary. Articles also carry their own
+    // `lang` (ArticleLayout) for readers without JavaScript.
+    <html lang="en" className={inter.variable} suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.lang=(location.pathname.match(/^\\/(hu|de)(\\/|$)/)||[0,'en'])[1]",
+          }}
+        />
+      </head>
       <body className="bg-white text-zinc-950 antialiased">
         <DocsHeader />
 
