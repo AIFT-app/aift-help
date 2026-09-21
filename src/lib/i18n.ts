@@ -61,7 +61,7 @@ export const ui: Record<Locale, Record<string, string>> = {
     closeNav: 'Close navigation',
     language: 'Language',
     fallbackNotice:
-      'This article isn’t available in your language yet — showing the English version.',
+      'This article isn’t available in your language yet - showing the English version.',
     search: 'Search',
     searchPlaceholder: 'Search the help centre…',
     searchNoResults: 'No results for',
@@ -85,7 +85,7 @@ export const ui: Record<Locale, Record<string, string>> = {
     closeNav: 'Navigáció bezárása',
     language: 'Nyelv',
     fallbackNotice:
-      'Ez a cikk még nem érhető el magyarul — az angol változatot mutatjuk.',
+      'Ez a cikk még nem érhető el magyarul - az angol változatot mutatjuk.',
     search: 'Keresés',
     searchPlaceholder: 'Keresés a súgóban…',
     searchNoResults: 'Nincs találat erre:',
@@ -109,7 +109,7 @@ export const ui: Record<Locale, Record<string, string>> = {
     closeNav: 'Navigation schließen',
     language: 'Sprache',
     fallbackNotice:
-      'Dieser Artikel ist noch nicht auf Deutsch verfügbar — wir zeigen die englische Fassung.',
+      'Dieser Artikel ist noch nicht auf Deutsch verfügbar - wir zeigen die englische Fassung.',
     search: 'Suchen',
     searchPlaceholder: 'Hilfe-Center durchsuchen…',
     searchNoResults: 'Keine Ergebnisse für',

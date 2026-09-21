@@ -1,0 +1,74 @@
+# Cash Pool: One Bank Account for Several Companies
+
+In a company group, one company often holds the bank account and the sister companies pay their suppliers and collect from their customers through it. The bank statement then names the account holder, while the invoice behind a payment belongs to another company.
+
+AI Finance Team handles this with a **shared bank account**: the account stays with the company that holds it, and you list the other companies that use it. Every bank transaction on that account then carries the company it belongs to.
+
+If no account in your workspace is shared, nothing described here applies and nothing changes.
+
+## Before You Start
+
+- All the companies must be in the **same workspace**.
+- Setting up a shared account is an accountant task. Client users see the result but cannot change it.
+- Do **not** add the same account number under each company. The account is recorded once, under the company that holds it. If you try to add it a second time, AI Finance Team offers to share the existing account instead.
+
+## Setting Up a Shared Account
+
+1. From the workspace sidebar, click **Master data**, then **Bank accounts**.
+2. Click the pencil next to the account the group pays through.
+3. In the section **Used by other companies (cash pool)**, tick every company whose payments and receipts run through this account.
+4. Click **Save companies**.
+
+The account now shows a **Shared with...** badge in the list, and on each member company's page it appears read-only with the label **Shared, held by** and the name of the account holder.
+
+### When the Account Already Exists
+
+If you add a bank account to a company and the number already belongs to another company of the workspace, you see:
+
+> This account belongs to (account holder). Use it as a shared (cash pool) account for (company)?
+
+Click **Use as shared account** and the company is added to the existing account. No second copy is created.
+
+### Changing the Account Holder
+
+The account holder is the company the account was first added under. If that is wrong, open the account, and under **Change the account holder** choose one of the companies using the account, then click **Change holder**. The previous holder stays on the list of companies using the account.
+
+## Which Company a Transaction Belongs To
+
+On the detail page of a transaction from a shared account you see a **Company** row with one of three labels:
+
+| Label | Meaning |
+|---|---|
+| **Default** | No invoice is matched. The transaction belongs to the account holder. Bank fees, interest and taxes normally stay here. |
+| **From matched invoice** | The transaction is matched to an invoice, and it took over the company of that invoice. Removing the match sets it back to **Default**. |
+| **Set manually** | Someone chose the company by hand. Matching never changes it again. Click **Reset to default** to hand it back to the automatic rule. |
+
+To move a transaction that has no invoice to another company, choose the company in the **Company** row.
+
+The Ledger's company filter and the exports follow this company, not the name on the bank account.
+
+## How Matching Behaves on a Shared Account
+
+Matching already looks at the invoices of every company in the workspace, so nothing needs to be switched on. Three rules apply on a shared account only:
+
+- **One payment, one company.** A single bank transaction can settle invoices of one company only.
+- **Companies that do not use the account.** If the best match is an invoice of a company that is *not* on the account's list, AI Finance Team does not match it automatically. It appears as a suggestion for you to review.
+- **The company name in the reference.** A customer paying the account holder often writes the name of the company that issued the invoice. On a shared account this is treated as normal and does not hold back an automatic match.
+
+## The Cash Pool Settlement Report
+
+From the bank account list, click **Cash pool settlement** next to a shared account. For the period you choose, the report shows for each company:
+
+- **Paid out**: what the account holder paid on that company's behalf
+- **Collected**: what it received on that company's behalf
+- **Net** and the number of transactions
+
+Click a company to see its transactions underneath, and **Download XLSX** to get a summary sheet and a transactions sheet.
+
+The account holder books every movement on its own bank account. What it paid or collected for a sister company is an intercompany settlement item against that company, and this report gives you the amounts for that booking. AI Finance Team does not post it to your accounting system.
+
+## Related Articles
+
+- [Connecting Bank Accounts](/bank-accounts)
+- [Managing Companies](/master-data-entities)
+- [Paying Approved Invoices](/paying-approved-invoices)

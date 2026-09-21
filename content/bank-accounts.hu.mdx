@@ -14,7 +14,7 @@ Ha csatlakoztatja a céges bankszámláit, az AI Finance Team automatikusan impo
 2. Kattintson a **Bank összekapcsolása** gombra.
 3. Válassza ki az országot, és keressen rá a bankjára név szerint.
 4. Kattintson a **Tovább** gombra. A rendszer átirányítja a bank biztonságos hozzájárulási oldalára.
-5. Jelentkezzen be a bankjába, és engedélyezze a számlái olvasási hozzáférését. Ez az AI Finance Teamnek kizárólag olvasási jogot ad — fizetést nem tud indítani.
+5. Jelentkezzen be a bankjába, és engedélyezze a számlái olvasási hozzáférését. Ez az AI Finance Teamnek kizárólag olvasási jogot ad - fizetést nem tud indítani.
 6. Az engedélyezés után a böngésző automatikusan visszatér az AI Finance Teambe.
 
 ### Annak kiválasztása, mely számlákat kövesse
@@ -27,25 +27,25 @@ A bankból visszatérve egy párbeszédablak mutatja a hozzájárulás alá tart
 
 Az AI Finance Team azonnal megkezdi a tranzakciós előzmények importálását. A kezdeti importálás jellemzően néhány percet vesz igénybe, attól függően, hány tranzakciót ad vissza a bank.
 
-> **Megjegyzés:** Ha nem látja a várt számlákat, vagy helykitöltő számlaneveket lát, ez a bank API-jának átmeneti korlátja miatt lehet. Ettől még csatlakoztathat — rendeljen cégeket, és erősítse meg. A számlákat utólag átnevezheti a bankszámlák oldalon.
+> **Megjegyzés:** Ha nem látja a várt számlákat, vagy helykitöltő számlaneveket lát, ez a bank API-jának átmeneti korlátja miatt lehet. Ettől még csatlakoztathat - rendeljen cégeket, és erősítse meg. A számlákat utólag átnevezheti a bankszámlák oldalon.
 
 ## Mi történik a csatlakoztatás után
 
 Ha egy számla csatlakoztatva és aktív:
 
-- **A tranzakciók naponta szinkronizálódnak** — az új tranzakciók automatikusan beérkeznek, jellemzően néhány órával azután, hogy megjelentek a bankban.
-- **Az AI minden tranzakciót kategorizál** — tranzakciókategóriát rendel hozzá, és megpróbálja minden tranzakciót számlához vagy partnerhez párosítani a munkaterületen.
-- **A kivételek ellenőrzésre kerülnek** — azok a tranzakciók, amelyeket az AI nem tud nagy megbízhatósággal kategorizálni, a kivételsorban jelennek meg kézi átnézésre.
+- **A tranzakciók naponta szinkronizálódnak** - az új tranzakciók automatikusan beérkeznek, jellemzően néhány órával azután, hogy megjelentek a bankban.
+- **Az AI minden tranzakciót kategorizál** - tranzakciókategóriát rendel hozzá, és megpróbálja minden tranzakciót számlához vagy partnerhez párosítani a munkaterületen.
+- **A kivételek ellenőrzésre kerülnek** - azok a tranzakciók, amelyeket az AI nem tud nagy megbízhatósággal kategorizálni, a kivételsorban jelennek meg kézi átnézésre.
 
 ## A kapcsolat lejárata
 
-A nyílt bankolással engedélyezett bankkapcsolatok 90 nap után lejárnak. Ez jogszabályi követelmény — a bankjának időről időre újra meg kell erősítenie a hozzájárulását.
+A nyílt bankolással engedélyezett bankkapcsolatok 90 nap után lejárnak. Ez jogszabályi követelmény - a bankjának időről időre újra meg kell erősítenie a hozzájárulását.
 
 Amikor egy kapcsolat lejárathoz közeledik, figyelmeztetés jelenik meg a bankszámlák oldalon. Az újbóli engedélyezéshez ismét végig kell mennie a hozzájárulási folyamaton. A meglévő tranzakciók és azok kategorizálása megmarad.
 
 ## Kézi szinkronizálás
 
-Ha azonnal látni szeretné a tranzakciókat — például egy éppen beérkezett fizetés rögzítése után —, kézi szinkronizálást is indíthat:
+Ha azonnal látni szeretné a tranzakciókat - például egy éppen beérkezett fizetés rögzítése után -, kézi szinkronizálást is indíthat:
 
 1. A **Bankszámlák** oldalon keresse meg a számla kártyáját.
 2. Kattintson a **Szinkronizálás most** gombra.

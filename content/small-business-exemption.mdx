@@ -1,0 +1,81 @@
+# Small Business VAT Exemption
+
+A company below the statutory revenue threshold may opt out of charging VAT - Hungarian *alanyi adómentesség*, the Austrian and German *Kleinunternehmerregelung*. It issues invoices without VAT, deducts no input VAT, and normally files no VAT return. AI Finance Team holds this as a setting on the **company** (the entity), and once it is on, VAT coding follows from it automatically.
+
+This article covers what the switch does, what it deliberately does not do, the template that sets up the VAT master data, why some lines land in review on purpose, how the booked amounts are shown, and what to do when the client leaves the exemption.
+
+## Where the Switch Is
+
+Open **Master data → Entities**, pick the company, and go to the **Tax** tab. Under **VAT settings**, tick **Small-business exempt**. Two date fields appear:
+
+- **Exempt from** - the first VAT date the exemption applies to.
+- **Exempt until** - the last one. Leave it empty while the exemption is open-ended.
+
+Whether a given invoice is treated as exempt is decided **per invoice, on its VAT date**, against this period. An invoice dated before the period, or after it, is treated as an ordinary taxable document. If you change an invoice's VAT date by hand, the changed date decides.
+
+Do not confuse this with the **Small-business-exempt supplier** partner VAT group: that one describes a *supplier* who is exempt, and is one of the five elements of a VAT code. The entity switch is about *your client's own* status.
+
+## What the Switch Does
+
+While the exemption is in force on a line's VAT date, exactly one thing happens: the line's **Product / Service VAT group** is set to **Small business exemption (own entity)**, a group that is 100% non-deductible. It is created for the workspace the first time it is needed. The rate still comes from the document. Which VAT code the line gets no longer depends on the partner's group or the calculation method: an exempt company's lines resolve on the **Domestic** partner group and the **Normal** method (see the template below).
+
+For **sales** lines, one more thing: the rate is set to **Small business exemption (AAM)**, the exemption's own rate element, unless the document shows another rate. An exempt supply (TAM) or out-of-scope rate read from the invoice is kept. VAT above zero is kept too, and the line is flagged (see below).
+
+The result is what a bookkeeper does by hand: purchases are **booked gross in the net field with zero VAT**, and sales carry the exemption rate with its own return line.
+
+## The Template
+
+The exemption needs a handful of VAT master data rows: the exempt product/service group, the three exemption rate elements (small business exemption, exempt supply, out of scope) and a short list of VAT codes, all on the Domestic partner group and the Normal method:
+
+- **Sales:** one code per rate. The small business exemption (AAM) code is the default for every sale, whoever the customer is. The exempt supply, out-of-scope, 0% and taxable-rate codes cover an invoice that shows one of those rates.
+- **Purchases:** one code, small business exemption (AAM). Every domestic purchase resolves to it. The line keeps the rate and the VAT amount the document shows; only the code is the same.
+
+There are no cash-method codes and no codes on the *Small-business-exempt supplier* group for the exempt company itself: an exempt company cannot also use cash accounting, and that partner group describes suppliers. The list also shows the ordinary rates the codes use, marked *Present*.
+
+When the switch is on, the Tax tab shows whether these are in place; if anything is missing, an amber notice says how many items, and **Review template** opens the list.
+
+Two rules govern the template:
+
+- **It fills gaps, and tidies only its own.** Existing VAT codes, rates, groups and methods are not changed. One exception: codes an earlier version of this template created and no longer needs are archived when no invoice line uses them (*Will be archived*). A code still in use stays (*In use, kept*): run **Apply to existing invoices**, then apply the template again, and it is archived then. Codes you created yourself are never touched.
+- **It is confirmed, not typed.** The values are the standard ones. You review the list and click **Apply template**; nothing happens silently.
+
+The template deliberately contains **no foreign partner groups and no reverse-charge combinations**. That is what makes the next section work.
+
+The AAM codes have **no return line** (the accounting code): the company files no VAT return for them. The other sales codes copy the return line of the workspace's own domestic code for the same rate, so an exempt and a taxable company in the same workspace report them the same way. Where the workspace has no such code, the row says *return line to fill in*; fill it in under **Master data → VAT codes**.
+
+The codes are named in the workspace's language, which follows the workspace's country (a Hungarian workspace gets for example *AAM-KI-27*, "Alanyi adómentesség sablon: kimenő, Belföldi, 27%"). The language is read when you apply the template. Codes the template made earlier in another language are renamed (*Will be renamed*), unless someone has edited them.
+
+After the template is applied, the Tax tab points to the next step: **Apply to existing invoices** (see below).
+
+## Lines That Land in Review on Purpose
+
+An exempt taxpayer is still liable, with no right to deduct, for domestic reverse-charge purchases, intra-Community acquisitions and services bought from abroad - the everyday case being foreign software subscriptions and advertising platforms. AI Finance Team does not code these automatically: they are rare at exempt clients, and a wrong automatic posting would be worse than a flagged one.
+
+These purchases never get a VAT code automatically: a supplier in a foreign partner group, a supplier whose country is not the workspace's (even one nobody has classified yet), and a line with reverse charge. They appear on the invoice with their own wording - *Exempt taxpayer owes VAT here with no right to deduct* - and as a to-do on the invoice overview and in Mission Control. To code one:
+
+1. On the **Lines & VAT** tab, change the line's **Product / Service** group to an ordinary group (for example *Services*).
+2. Pick or create an ordinary payable VAT code for it, such as domestic 27%.
+
+The line is now marked **Manual**, keeps your choice through every later re-run, and - because it no longer carries the exempt group - is booked as an ordinary VAT-bearing line.
+
+A second flag, *VAT charged on an exempt entity's sale*, appears when a sales line carries VAT while the company is exempt. That usually means a setup error, or a threshold breach nobody has recorded yet. AI Finance Team does **not** monitor the revenue threshold.
+
+## What You See on the Invoice
+
+Nothing is rewritten. The line keeps the net, VAT and gross the document states. Under them, in green, the **Booked** figures show what goes to the accounting system, the reports and the P&L - for an exempt purchase, the gross as net and zero VAT. A small badge on the VAT elements says where they came from: **Exempt entity** for the switch's assignment, **Manual** for your override.
+
+The same booked figures appear in the Ledger Explorer's line columns and in the universal export (the *Booking Net Amount* and *Booking VAT Amount* columns). The RLB and Hessyn exports book the exempt lines the same way.
+
+## Applying It to Invoices Already Loaded
+
+Turning the switch on affects invoices processed from then on. For invoices that are already in the workspace, use **Apply to existing invoices** on the Tax tab: pick the period, click **1. Preview** to see how many lines would be re-coded (nothing changes yet), then **2. Apply**, which becomes available only after the preview. Lines with a manually chosen VAT code or product/service group are skipped and counted. Whatever is left without a code afterwards is picked up by **Re-run VAT coding** on the invoice list.
+
+## Leaving the Exemption
+
+When the client exceeds the threshold, set **Exempt until** to the last day of the exemption and save. Invoices with a later VAT date are treated as taxable; earlier ones keep their treatment. Run **Apply to existing invoices** for the period after that date if any were already loaded.
+
+## Related Articles
+
+- [VAT master data](/vat-master-data) - the five elements and the exempt-supplier partner group.
+- [VAT codes on invoices](/vat-codes-on-invoices) - correcting the elements on a line.
+- [VAT in exports](/vat-in-exports) - how the booked amounts reach your accounting system.
