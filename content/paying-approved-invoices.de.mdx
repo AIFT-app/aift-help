@@ -2,90 +2,124 @@
 
 Sobald Lieferantenrechnungen freigegeben sind, muss der Finanzverantwortliche sie bezahlen. AI Finance Team macht aus den freigegebenen, noch unbezahlten Rechnungen eine Zahlungsliste, die Sie herunterladen und zu Ihrer Bank mitnehmen. Dieser Artikel richtet sich an die Person, die bezahlt: den Finanzverantwortlichen oder den Inhaber.
 
+<PaymentFlowFigure>
+Von der Freigabe bis zur Zahlung. Die Datei ist nur ein Vorschlag: Sie importieren und signieren sie in Ihrem eigenen Onlinebanking, und die Rechnung gilt als bezahlt, sobald die Banktransaktion ihr zugeordnet ist.
+</PaymentFlowFigure>
+
 ## Über AI Finance Team fließt nie Geld
 
-Eine Zahlungsdatei ist ein Vorschlag. Sie importieren sie in Ihr eigenes Onlinebanking, prüfen sie dort und signieren sie dort, genau wie eine von Hand erfasste Überweisung. Jede ungarische Bank verlangt diese Signatur nach einem Import. AI Finance Team speichert nie Ihren Bankzugang und löst nie eine Überweisung aus.
+Eine Zahlungsdatei ist ein Vorschlag. Sie importieren sie in Ihr eigenes Onlinebanking, prüfen sie dort und signieren sie dort, genau wie eine von Hand erfasste Überweisung. AI Finance Team speichert nie Ihren Bankzugang und löst nie eine Überweisung aus.
 
-Eine Rechnung gilt erst als bezahlt, wenn der Bankumsatz eintrifft und ihr zugeordnet wird, wie bisher. In einer Zahlungsdatei zu stehen markiert eine Rechnung nicht als bezahlt.
+Eine Rechnung gilt erst als bezahlt, wenn die Banktransaktion eintrifft und ihr zugeordnet wird. In einer Zahlungsdatei zu stehen markiert eine Rechnung nicht als bezahlt.
 
 ## Wo Sie es finden
 
-Öffnen Sie **Zahlungsdatei** in der Seitenleiste. Der Eintrag steht direkt unter **Freigaben**, weil das Zahlen ein eigener Schritt nach der Freigabe ist. Sie brauchen die Berechtigung „Zahlungsdatei exportieren"; standardmäßig haben sie der Kundeninhaber und der Buchhaltungsadministrator. Ihr Arbeitsbereichsadministrator kann sie über eine Rolle oder eine Ausnahme pro Mitglied jedem geben. Siehe [Rollen und Berechtigungen](/roles-and-permissions).
+Öffnen Sie **Zahlungsdatei** in der Seitenleiste, direkt unter **Freigaben**. Auch die Freigabe-Übersicht hat eine Schaltfläche **Zahlungsdatei**. Sie brauchen die Berechtigung „Zahlungsdatei exportieren“; standardmäßig haben sie der Kundeninhaber und der Buchhaltungsadministrator, und Ihr Arbeitsbereichsadministrator kann sie über eine Rolle oder eine Ausnahme pro Mitglied jedem geben. Siehe [Rollen & Berechtigungen](/roles-and-permissions).
+
+Die Seite funktioniert nur, wenn die Zahlungsfreigabe für das Unternehmen eingeschaltet ist. Sonst steht dort **Zahlungsfreigaben sind ausgeschaltet**; siehe [Zahlungsfreigaben einrichten](/setting-up-approvals).
 
 ## Was Sie sehen
 
-Der Reiter listet jede Lieferantenrechnung, die freigegeben und noch unbezahlt ist, gruppiert nach dem Bankkonto, das sie bezahlt (eine Gruppe je zahlendem Unternehmen und Währung). Jede Position zeigt:
+<PaymentFileFigure>
+Die Seite **Zahlungsdatei** mit zwei ausgewählten Rechnungen in einer Gruppe und einer Position, die noch nicht aufgenommen werden kann. Die Nummern entsprechen der Liste darunter. Die Unternehmen und Beträge sind Beispiele.
+</PaymentFileFigure>
+
+1. Eine Gruppe je zahlendem Unternehmen und Währung, mit dem zahlenden Konto.
+2. Die Kontoprüfung jedes Empfängerkontos.
+3. Die Daten **Fällig** und **Ausführung**.
+4. Das Format und die Schaltfläche zum Herunterladen.
+5. Eine Position, die noch nicht in eine Datei kann, mit dem Grund und dem nächsten Schritt.
+
+Die Seite listet die Lieferantenrechnungen, die freigegeben und noch unbezahlt sind (offen oder teilweise bezahlt), gruppiert nach dem Bankkonto, das sie bezahlt: eine Gruppe je zahlendem Unternehmen und Währung. Rechnungen, die als ohne Freigabe markiert sind, erscheinen hier nie, ebenso wenig abgelehnte Rechnungen und Duplikate. Jede Position zeigt:
 
 - **Empfänger** und die Rechnungsnummer, mit einem Link zur Rechnung.
 - **Empfängerkonto**: das Konto, auf das das Geld geht, und den Stand der Prüfung.
-- **Fällig** und **Ausführung**: das Zahlungsdatum auf der Rechnung und das Datum, für das die Überweisung angefordert wird. Ein verstrichenes Fälligkeitsdatum wird durch das heutige Datum ersetzt.
+- **Fällig** und **Ausführung**: das Zahlungsdatum auf der Rechnung und das Datum, für das die Überweisung beauftragt wird (siehe unten).
 - **Betrag**: was noch offen ist. Bei einer teilweise bezahlten Rechnung der Restbetrag.
 
-Positionen, die bereits in eine Datei geschrieben wurden, sind ausgeblendet. Schalten Sie **Positionen zeigen, die bereits in einer Datei sind** ein, um sie mit der Dateinummer zu sehen.
+Positionen, die schon in einer Datei stehen, sind ausgeblendet. Schalten Sie **Positionen zeigen, die bereits in einer Datei sind** ein, um sie zu sehen, markiert mit **In Datei #N**. Eine zurückgenommene Position kommt ohne diese Markierung zurück, und nach einer Teilzahlung kommt die Rechnung mit dem Rest zurück.
 
 ## Die Kontoprüfung
 
-Die häufigste Form von Rechnungsbetrug ist die Zahlung auf ein falsches Konto. Deshalb muss jedes Empfängerkonto bestätigt werden, bevor es in eine Datei aufgenommen werden kann. Das tut eine Person, oder, wo die Firmenregisterprüfung für Ihren Arbeitsbereich eingeschaltet ist, kann das Register ein zum ersten Mal gesehenes Konto bestätigen.
+Die Zahlung auf ein falsches Konto ist der häufigste Rechnungsbetrug, deshalb muss jedes Empfängerkonto bestätigt sein, bevor es in eine Datei darf. Eine Person mit „Freigaben verwalten“ bestätigt es auf der Partnerseite. Wo die Firmenregisterprüfung für Ihren Arbeitsbereich eingeschaltet ist, kann auch das Register ein Konto bestätigen, wenn es zum ersten Mal gesehen wird: bei einer Rechnung, die nach dem Einschalten der Prüfung eingegangen ist, von einem aktiven Unternehmen, das kein Einzelunternehmer ist, wenn die Namen übereinstimmen.
 
-- **Bestätigt**: jemand mit „Freigaben verwalten" hat dieses Konto auf der Partnerseite bestätigt, oder das Firmenregister führt dieses Konto zur Steuernummer des Lieferanten. Die Position kann bezahlt werden. Unter dem Konto steht, welches von beiden es war, mit Datum, und die heruntergeladene Tabelle enthält dasselbe in ihrer letzten Spalte.
-- **Zum ersten Mal gesehen**: das Konto dieses Lieferanten ist noch nicht bestätigt. Öffnen Sie den Partner und bestätigen Sie es, nachdem Sie es mit dem Lieferanten geprüft haben.
-- **Konto geändert**: das Konto auf dieser Rechnung weicht von dem zuvor bestätigten ab. Die Position bleibt gesperrt, bis jemand das neue Konto bestätigt. Rufen Sie den Lieferanten vorher unter einer Ihnen bereits bekannten Nummer an.
-- **Kein Konto**, **Ungültiges Konto**, **Kein verifizierter Partner**: die Position kann noch nicht bezahlt werden; Grund und nächster Schritt stehen darunter.
+- **Bestätigt**: Die Position kann bezahlt werden. Unter dem Konto zeigt die Seite, wer es bestätigt hat oder an welchem Datum das Register es geführt hat. Die heruntergeladene Tabelle zeigt in ihrer letzten Spalte, wer es wann bestätigt hat.
+- **Zum ersten Mal gesehen**: Das Konto dieses Lieferanten ist noch nicht bestätigt. Öffnen Sie den Partner und bestätigen Sie es, nachdem Sie es mit dem Lieferanten geprüft haben.
+- **Konto geändert**: Das Konto auf dieser Rechnung weicht vom zuvor bestätigten ab. Die Position bleibt gesperrt, bis jemand das neue Konto bestätigt. Rufen Sie den Lieferanten vorher unter einer Nummer an, die Sie bereits kennen.
+- **Kein Konto**, **Ungültiges Konto**, **Kein verifizierter Partner**: Die Position kann noch nicht bezahlt werden; der Grund und der nächste Schritt stehen darunter.
 
-Gesperrte Positionen stehen in einer eigenen Gruppe, „Noch nicht aufnehmbar", mit einem Link zur Partnerseite.
+Gesperrte Positionen stehen in einer eigenen Gruppe, **Noch nicht aufnehmbar**, mit Links zum Partner und zur Rechnung. Zwei weitere Gründe können eine Position dorthin bringen: Das zahlende Unternehmen hat kein Bankkonto in dieser Währung (hinterlegen Sie eines unter Stammdaten, Unternehmen), oder auf der Rechnung ist nichts mehr zu zahlen. Nur jemand mit „Freigaben verwalten“ kann ein Konto bestätigen; wer nur exportieren darf, bittet diese Person darum.
 
-Wo die Firmenregisterprüfung eingeschaltet ist, zeigt jede Position außerdem, was das Register zum Konto sagt: seit einem Datum eingetragen, nicht eingetragen oder nicht prüfbar, mit Grund. Ein geändertes Konto bestätigt das Register nie. Es wartet immer auf eine Person, und die Antwort des Registers steht daneben, damit die Entscheidung fundiert ist. „Nicht eingetragen" ist kein Betrugsbeweis: eine Bank hat acht Tage Zeit, ein neues Konto zu melden. Siehe [Firmenregisterprüfung](/company-register-check).
+Wo die Firmenregisterprüfung eingeschaltet ist, zeigt jede Position auch, was das Register zum Konto sagt: geführt seit einem Datum, nicht geführt, oder nicht prüfbar und warum, mit dem Datum der letzten Prüfung. Ein geändertes Konto wird vom Register nie bestätigt: Es wartet immer auf eine Person, und die Antwort des Registers steht daneben, damit die Entscheidung informiert fällt. „Nicht geführt“ ist kein Beweis für Betrug: Eine Bank hat acht Tage Zeit, ein neues Konto zu melden. Siehe [Lieferanten im Firmenregister prüfen](/company-register-check).
 
 ## Die Liste herunterladen
 
-1. Haken Sie die zu zahlenden Positionen einer Gruppe an oder nutzen Sie **Alle in dieser Gruppe auswählen**.
-2. Hat das Unternehmen mehrere Konten in dieser Währung, wählen Sie das zahlende Konto.
-3. Wählen Sie das Format. Die **Tabelle (XLSX)** funktioniert mit jeder Bank. Die **Bankdatei (pain.001 XML)** wird angeboten, wenn die Bank des zahlenden Kontos einen pain.001-Import dokumentiert. Die **Electra-Datei (.HUF)** wird bei HUF-Gruppen an den Banken angeboten, die ein Electra-basiertes Onlinebanking betreiben (K&H, Erste, MBH, Gránit). Die Zeile über der Gruppe zeigt, wie weit dieser Import verifiziert ist.
+1. Haken Sie in einer Gruppe die zu zahlenden Positionen an, oder nutzen Sie **Alle in dieser Gruppe auswählen**.
+2. Hat das Unternehmen mehrere Konten in dieser Währung, wählen Sie das **Zahlende Konto**.
+3. Wählen Sie das **Format**:
+   - **Tabelle (XLSX), für jede Bank** funktioniert mit jeder Bank.
+   - **Bankdatei (pain.001 XML)** wird angeboten, wenn die Bank des zahlenden Kontos erkannt wird und einen Dateiimport hat (nicht bei OTP, MagNet, Revolut und Wise).
+   - **Electra-Datei (.HUF)** wird bei Forint-Gruppen der Banken angeboten, die ein Electra-basiertes Onlinebanking betreiben: K&H, Erste, MBH und Gránit.
+
+   Ein Hinweis über den Positionen sagt, wie weit der Import dieser Bank verifiziert ist.
 4. Klicken Sie auf **Liste herunterladen (XLSX)**, **Bankdatei herunterladen (pain.001)** oder **Electra-Datei herunterladen (.HUF)**.
 
-AI Finance Team legt eine nummerierte Zahlungsdatei an, markiert jede Rechnung mit „In Zahlungsdatei #N" und lädt die Datei herunter. Die Tabelle enthält je Zeile Empfänger, Konto, Betrag, Ausführungsdatum und Rechnungsnummer. Diese können Sie in jedes Onlinebanking eintippen oder den Import Ihrer Bank nutzen, wenn dieser eine Tabelle akzeptiert. Die Bankdatei ist pain.001.001.03 XML im ungarischen HCT-Profil: Laden Sie sie im Dateiimport des Onlinebankings hoch, prüfen Sie die Positionen und unterschreiben Sie dort. Jede Position trägt die Rechnungsnummer als Verwendungszweck. Die Electra-Datei ist der Festbreitensatz „Forint átutalási megbízás"; K&H e-bank akzeptiert höchstens 40 Positionen je Datei, eine größere Auswahl lehnt die Seite ab.
+AI Finance Team legt eine nummerierte Zahlungsdatei an, meldet **Zahlungsdatei #N erstellt**, markiert jede Rechnung mit **In Zahlungsdatei #N** und dem Datum und lädt die Datei herunter.
 
-Das Ausführungsdatum ist das Fälligkeitsdatum oder der nächste Bankarbeitstag, wenn die Fälligkeit auf ein Wochenende, einen Feiertag, einen per Verordnung festgelegten Ruhetag oder in die Vergangenheit fällt. Beide Formate verwenden dieselben Daten.
+- **Die Tabelle** beginnt mit einem Kopfblock (zahlendes Konto, Kontoinhaber, Währung, Summe) und hat je Zahlung eine Zeile mit Empfänger, Konto, Betrag, Ausführungsdatum und Rechnungsnummer, unter englischen und ungarischen Spaltenköpfen. Erfassen Sie sie in jedem Onlinebanking, oder nutzen Sie den Import Ihrer Bank, falls er eine Tabelle annimmt.
+- **Die Bankdatei** ist pain.001.001.03 XML im ungarischen HCT-Profil: Importieren Sie sie im Datei-Upload des Onlinebankings, prüfen Sie die Positionen und signieren Sie dort. Der Verwendungszweck jeder Position ist die Rechnungsnummer, gefolgt von der AI-Finance-Team-ID der Rechnung.
+- **Die Electra-Datei** ist der Datensatz „Forint átutalási megbízás“ mit fester Feldlänge. K&H nimmt höchstens 40 Positionen je Datei an; darüber ist die Schaltfläche zum Herunterladen deaktiviert.
 
-Die Liste der erzeugten Dateien steht unter den Gruppen. **Erneut herunterladen** liefert dieselbe Datei noch einmal.
+Das Ausführungsdatum ist das Fälligkeitsdatum, oder der nächste Bankarbeitstag, wenn das Fälligkeitsdatum auf ein Wochenende, einen Feiertag, einen per Verordnung festgelegten Ruhetag oder in die Vergangenheit fällt. Alle drei Formate verwenden dieselben Daten.
+
+Die Liste **Dateien** unter den Gruppen zeigt die letzten 50 Dateien: Nummer, Datum und Uhrzeit, wer sie erstellt hat, das zahlende Konto, die Anzahl der Positionen und die Summe. **Erneut herunterladen** gibt Ihnen dieselbe Datei noch einmal.
 
 ## Eine Position zurücknehmen
 
-Eine Zahlungsdatei ist ein Vorschlag, daher kommt es vor, dass die Überweisung nicht stattfindet: Die Datei wurde nie hochgeladen, die Bank hat den Import abgelehnt, oder niemand hat unterschrieben. Schalten Sie **Positionen zeigen, die bereits in einer Datei sind** ein, suchen Sie die Position und klicken Sie auf **Zurücknehmen**. Wählen Sie einen Grund (**Nicht hochgeladen**, **Von der Bank abgelehnt**, **Nicht unterschrieben** oder **Sonstiges**), und die Rechnung steht sofort wieder auf der Liste der zu zahlenden Rechnungen. **Datei zurücknehmen** in der Dateiliste unter den Gruppen tut dasselbe für jede noch wartende Position einer Datei.
+Eine Zahlungsdatei ist ein Vorschlag, deshalb kommt die Überweisung manchmal nicht zustande: Die Datei wurde nie hochgeladen, die Bank hat den Import abgelehnt, oder niemand hat unterschrieben. Schalten Sie **Positionen zeigen, die bereits in einer Datei sind** ein, suchen Sie die Position und klicken Sie auf **Zurücknehmen**. Wählen Sie einen Grund (**Nicht hochgeladen**, **Von der Bank abgelehnt**, **Nicht unterschrieben** oder **Sonstiges**), fügen Sie bei Bedarf eine Notiz hinzu, und die Rechnung steht sofort wieder auf der Liste der zu zahlenden Rechnungen. **Datei zurücknehmen** in der Liste **Dateien** macht dasselbe für jede noch wartende Position einer Datei; bereits bezahlte Positionen bleiben.
 
-Eine Position, deren Zahlung bereits bei der Bank eingegangen ist, kann nicht zurückgenommen werden, und das Zurücknehmen ändert nichts an der Freigabe. Auf der Rechnung zeigt die Freigabekarte danach die Dateinummer, das Datum und den Grund.
+Eine Position, deren Zahlung schon bei der Bank eingegangen ist, lässt sich nicht zurücknehmen, und das Zurücknehmen ändert nie die Freigabe. Auf der Rechnung steht in der Zeile zur Zahlungsdatei dann **Aus Zahlungsdatei #N zurückgenommen**, mit Datum und Grund. Wird eine zugeordnete Zahlung später wieder getrennt, wartet ihre Position wieder und kann erneut zurückgenommen werden.
 
-Mit **Noch nicht bei der Bank gesehen** ist eine Position markiert, die vor einiger Zeit exportiert wurde und zu der noch keine Banktransaktion erschienen ist. Oben auf der Seite steht deren Anzahl. Das ist nur ein Hinweis: Prüfen Sie im Onlinebanking und nehmen Sie die Position zurück, wenn die Überweisung nie ausgeführt wurde.
+Zu einer Position mit **Noch nicht bei der Bank gesehen** ist mehr als 10 Tage nach ihrem Ausführungsdatum keine Banktransaktion eingegangen. Die Seite zählt diese oben, mit einem Link **Anzeigen**. Das ist nur eine Information: Prüfen Sie das Onlinebanking, und nehmen Sie die Position zurück, falls die Überweisung nie ausgeführt wurde.
 
 ## Wie die Zahlung ihre Rechnung findet
 
-Wenn die Banktransaktion eintrifft, sucht AI Finance Team zuerst unter den Positionen, die es in Zahlungsdateien geschrieben hat. Es kennt das zahlende Konto, das Konto des Empfängers, den genauen Betrag und das Datum und kann die Zahlung daher ohne Bewertung zuordnen. Bei der Zuordnung steht dann **Zugeordnet aus Zahlungsdatei #N**. Passen zwei exportierte Positionen zur selben Zahlung, entscheidet die Rechnungskennung im Verwendungszweck; reicht auch das nicht, übernimmt die normale Zuordnung.
+Wenn die Banktransaktion eintrifft, sucht AI Finance Team zuerst unter den Positionen, die es in Zahlungsdateien geschrieben hat. Es kennt das zahlende Konto, das Konto des Empfängers, den Betrag und das Datum und kann die Zahlung deshalb ohne Bewertung zuordnen:
 
-Alles andere auf dem Kontoauszug (Kundenzahlungen, Steuern, Bankgebühren, von Hand ausgeführte Überweisungen) wird wie bisher zugeordnet.
+- der Betrag darf höchstens 10 Ft (in anderen Währungen 0,05) von der Position abweichen;
+- das Buchungsdatum muss zwischen 1 Tag vor und 10 Tagen nach dem Ausführungsdatum liegen;
+- trägt die Bankzeile kein Empfängerkonto, tritt die Rechnungs-ID im Banktext oder ein übereinstimmender Empfängername an seine Stelle.
+
+Passen zwei exportierte Positionen zur selben Zahlung, entscheidet die Rechnungs-ID im Banktext; entscheidet auch sie nicht, übernimmt der normale Abgleich. Auf der Detailseite der Zuordnung steht **Zugeordnet aus Zahlungsdatei #N**, und auf der Rechnung zeigt die Zeile zur Zahlungsdatei, dass die Zahlung eingegangen und zugeordnet ist. Auch eine von Hand ausgeführte und normal zugeordnete Überweisung erledigt ihre Position. Siehe [Rechnungsabgleich](/invoice-matching).
+
+Alles andere auf dem Auszug (Kundenzahlungen, Steuern, Bankgebühren, von Hand ausgeführte Überweisungen) wird genau wie bisher zugeordnet.
 
 ## Welche Datei mit welcher Bank funktioniert
 
-Derzeit ist die Tabelle das einzige Format, und sie funktioniert mit jeder Bank, weil eine Person sie eintippt. Direkte Bankimportdateien sind geplant; jede Bank wird hier erst nach einem echten Testimport auf dem Konto eines Kunden aufgeführt.
+Die Tabelle funktioniert mit jeder Bank, weil eine Person sie erfasst oder die Bank eine Tabelle importiert. Die Bankdateien hängen von der Bank ab, und eine Bank gilt erst als verifiziert, wenn ein echter Testimport auf dem Konto eines Kunden stattgefunden hat.
 
-| Bank | Tabellenliste | Bankimportdatei | Wie weit verifiziert |
+| Bank | Tabellenliste | Bank-Importdatei | Wie weit verifiziert |
 |---|---|---|---|
-| OTP Firmen-Onlinebanking | Ja | Kein Dateiimport im Onlinebanking vorhanden (geprüft am 13.09.2026) | im Produkt verifiziert |
-| K&H e-bank | Ja | pain.001 XML (als .HCT für HUF, .SCT für EUR speichern); Electra-Datei (.HUF, höchstens 40 Positionen je Datei) | Bankdokumentation, noch nicht mit einer echten Datei getestet |
+| OTP Business-Onlinebanking | Ja | Im Onlinebanking gibt es keinen Dateiimport (geprüft am 2026-09-13) | im Produkt verifiziert |
+| K&H | Ja | pain.001 XML für Electra und web Electra (für HUF als .HCT, für EUR als .SCT speichern); Electra-Datei (.HUF, höchstens 40 Positionen je Datei), die auch das e-bank annimmt | Bankdokumentation, noch nicht mit einer echten Datei getestet |
 | MBH Vállalati Netbank | Ja | pain.001 XML; Electra-Datei (.HUF) | Bankdokumentation, noch nicht mit einer echten Datei getestet |
 | Erste Vállalati NetBank | Ja | pain.001 XML; Electra-Datei (.HUF) | Bankdokumentation, noch nicht mit einer echten Datei getestet |
 | CIB Business Online | Ja | pain.001 XML (GIRO-HCT) | Bankdokumentation, noch nicht mit einer echten Datei getestet |
 | Raiffeisen | Ja | pain.001 XML (MultiCash HCT) | Bankdokumentation, noch nicht mit einer echten Datei getestet |
 | UniCredit | Ja | pain.001 XML | Anbieterdokumentation, noch nicht mit einer echten Datei getestet |
-| Gránit | Ja | pain.001 XML (nicht verifiziert); Electra-Datei (.HUF) | Electra-Datei: Bankdokumentation von 2012, noch nicht mit einer echten Datei getestet |
-| Jede andere Bank | Ja | pain.001 XML, als nicht verifiziert angeboten | keine |
-| MagNet, Revolut, Wise | Ja | Für die ersten Versionen nicht geplant | Bankdokumentation |
+| Gránit | Ja | pain.001 XML (nicht verifiziert); Electra-Datei (.HUF) | Electra-Datei: Bankdokumentation, noch nicht mit einer echten Datei getestet |
+| Jede andere erkannte Bank | Ja | pain.001 XML, als nicht verifiziert angeboten | keine |
+| Eine nicht erkannte Bank | Ja | keine; die Seite sagt, dass die Bank nicht erkannt wird | keine |
+| MagNet, Revolut, Wise | Ja | keine | Bankdokumentation |
 
-„Bankdokumentation" bedeutet, dass die Bank das Format veröffentlicht; „im Produkt verifiziert", dass wir es ausprobiert haben. Keine Bank wird als für den Dateiimport unterstützt aufgeführt ohne einen echten, unsignierten Testimport über den Kanal eines Kunden.
+„Bankdokumentation“ heißt, die Bank veröffentlicht das Format; „im Produkt verifiziert“ heißt, wir haben es ausprobiert.
 
 ## Häufige Fragen
 
-**Kann ich eine nicht freigegebene Rechnung bezahlen?** Nein. Die Liste enthält nur freigegebene Rechnungen. Geben Sie sie zuerst frei oder bitten Sie den Finanzverantwortlichen, sie als nicht freigabepflichtig zu markieren.
+**Kann ich eine nicht freigegebene Rechnung bezahlen?** Nicht über diese Seite: Sie listet nur freigegebene Rechnungen. Rechnungen, die als ohne Freigabe markiert sind, erscheinen auch nicht; bezahlen Sie diese wie gewohnt im Onlinebanking.
 
-**Ich habe versehentlich eine Datei erzeugt.** In der Bank ist nichts passiert. Importieren Sie sie einfach nicht und nehmen Sie die Datei zurück (siehe „Eine Position zurücknehmen"), dann stehen die Rechnungen sofort wieder auf der Liste.
+**Die Seite zeigt „Zahlungsfreigaben sind ausgeschaltet“.** Die Liste entsteht aus Freigaben und bleibt deshalb leer, bis die Zahlungsfreigabe für das Unternehmen unter Einstellungen, Freigaberegeln eingeschaltet ist. Siehe [Zahlungsfreigaben einrichten](/setting-up-approvals).
 
-**Der Betrag entspricht nicht der Rechnung.** Die Liste zeigt, was noch offen ist. Bei einer teilweise bezahlten Rechnung den Restbetrag, und Forint-Beträge sind ganze Forint.
+**Ich habe versehentlich eine Datei erzeugt.** In der Bank ist nichts passiert. Importieren Sie sie einfach nicht, und nehmen Sie die Datei zurück (siehe „Eine Position zurücknehmen“), damit die Rechnungen sofort wieder auf der Liste stehen.
+
+**Der Betrag ist nicht der auf der Rechnung.** Die Liste zeigt, was noch offen ist. Eine teilweise bezahlte Rechnung zeigt den Restbetrag, und Forintbeträge sind ganze Forint.

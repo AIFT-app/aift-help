@@ -1,137 +1,114 @@
 # Working with Invoices
 
-AI Finance Team processes invoices automatically - extracting key data, identifying partners, and suggesting categories. This article explains how to view, review, edit, and export invoice data.
+AI Finance Team reads every invoice for you: it extracts the data, works out which of your companies the invoice belongs to and whether it is income or an expense, finds the partner, and suggests categories and VAT codes. This article explains how invoices arrive, how to find and check them, and how to correct, reject and download them.
 
-## Uploading invoices
+<InvoiceLifecycleFigure>
+The way of an invoice through AI Finance Team, from arrival to paid. The pills are the labels and states the app shows at each step.
+</InvoiceLifecycleFigure>
 
-Click **Upload invoices** in the top-right corner of the Invoices page, or drag one or more files (PDFs, JPEGs, PNGs, WebP, or HEIC) directly onto the page. You can upload one invoice at a time, many at once, or a `.zip` archive of invoices - the browser unpacks the archive and queues each file individually.
+## How invoices arrive
 
-A progress panel appears in the bottom-right corner showing each file as it uploads and extracts. You can keep working - the panel stays in view while you navigate, and refreshing the page won't interrupt anything in flight.
+- **Upload**: on the **Invoices** page, click **Upload invoices** in the top-right corner, or drop files anywhere on the page: PDF, JPEG, PNG, WebP or HEIC, up to 50 MB each, or a `.zip` archive, which the browser unpacks and queues file by file. A progress panel in the bottom-right corner follows each file. Once a file has uploaded, its extraction keeps going even if you leave or reload the page; a file that is still uploading from your browser is lost on reload. See [Uploading Files](/uploading-files).
+- **Email**: forward invoices to the workspace's address. See [Forwarding Documents by Email](/email-forwarding).
+- **NAV Online Számla** (Hungary): invoices reported to NAV arrive by themselves, without a PDF. See [NAV Online Számla](/nav-online-szamla).
 
-For the full upload mechanics - drag-and-drop, multi-file selection, ZIP archives, retrying failed extractions - see [Uploading Files](/uploading-files).
+### What happens next
 
-### Duplicate detection
+Claude reads the invoice and extracts the header, the parties, the amounts and the line items. AI Finance Team then works out which of your companies is on the invoice: if your company is the seller, the invoice is income; if it is the buyer, it is an expense. It finds the partner, suggests a category for each line and the VAT codes, and writes a one-line summary. Categories are suggested once the direction is known. See [Categorising Invoices & Transactions](/categorization) and [VAT Codes on Invoices](/vat-codes-on-invoices).
 
-When you upload a file whose contents match an invoice that's already in the workspace, AI Finance Team detects this automatically (via the file's SHA-256 hash) and links the new upload to the existing record instead of re-extracting. The row in the upload panel shows **Already exists** in blue - click it to jump straight to the original invoice.
+### Duplicates
 
-If you want to keep both as distinct invoices (rare, but happens when a vendor reuses a PDF for two different bills), an accountant can clear the duplicate flag from the invoice detail page.
+When you upload a file identical to one already in the workspace, AI Finance Team creates the invoice but marks it as a duplicate of the original and does not extract it again. The upload panel shows **Already exists**, and a click opens the original. After extraction, an invoice with the same invoice number, issue date, gross amount and currency as another one is marked a duplicate too.
 
-## The Invoice List
+Duplicates are hidden from the list: they appear as a **related** row you can expand under the original, and with the **Duplicate** filter on. If two invoices really are different (a supplier reused a PDF for two bills), open the duplicate and click **Mark as not a duplicate** on its banner.
 
-From the workspace sidebar, click **Invoices** to see all invoices in the workspace. Each row shows:
+## The invoice list
 
-- **Invoice number** - the number extracted from the document
-- **Date** - the issue date
-- **Partner** - the other party on the invoice (supplier or customer)
-- **Direction** - whether it is income (you are the seller) or an expense (you are the buyer)
-- **Amount** - the gross total in the invoice currency; if a base-currency conversion exists, the converted amount appears below in smaller text. See [Multi-Currency & Exchange Rates](/currency-exchange) for details on FX status badges and how rates are sourced.
-- **Status** - the extraction status (Pending, Processing, Completed, or Failed)
-- **Cat.** - a small icon if the line items need categorisation review or if categorisation failed
+<InvoiceListFigure>
+The invoice list with four invoices. The numbers match the list below. The companies and amounts are examples.
+</InvoiceListFigure>
 
-Invoices flagged as **Duplicate** or **Review** carry a badge next to the invoice number. Invoices without an assigned company carry a **Company needed** badge.
+1. **Partner**, with the invoice number underneath. A click anywhere on the row opens the invoice.
+2. **Labels**: up to three pills that say what the invoice needs, then **+N** for more.
+3. **Amount**: the gross total in the invoice currency, green with an up arrow for income, red with a down arrow for an expense.
 
-### Previewing an Invoice
+Click **Invoices** in the sidebar. The list has these columns: **ID** (AI Finance Team's own number, when your workspace shows it; click to copy), **Date** (the issue date), **Partner**, **Labels** and **Amount**. It shows 50 invoices per page and can be sorted by ID, date or amount. An amber left edge marks an invoice that needs action.
 
-Click the eye icon at the end of any row to open a preview drawer on the right side of the screen. The drawer shows the original PDF document without leaving the list page.
+The labels you meet most often:
 
-**Keyboard shortcuts in the preview drawer:**
+| Label | Meaning |
+|-------|---------|
+| **Review** | The extraction is incomplete or failed: check the invoice against the document |
+| **Company needed** | AI Finance Team could not tell which of your companies the invoice belongs to |
+| **Pick direction** | Income or expense could not be decided; choose it on the invoice |
+| **NAV** / **No PDF** | The invoice came from NAV Online Számla / there is no document file |
+| **FX pending** | The exchange rate to your base currency is not available yet |
+| **Unverified** | The partner is not a verified partner yet (see [Managing Partners](/partners)) |
+| **VAT codes incomplete** / **Default-coded** | Lines without a VAT code / lines coded with the default code |
+| **Duplicate**, **Cancelled** | A duplicate of another invoice / cancelled by a storno invoice |
+| **Awaiting approval**, **Approved**, **Declined** | The payment approval state, where approvals are switched on (see [Approving Invoices for Payment](/approving-invoices)) |
 
-| Key | Action |
-|-----|--------|
-| `←` `→` | Navigate to the previous or next invoice in the list |
-| `E` | Open the full invoice editor |
-| `Esc` | Close the drawer |
+### Finding invoices
 
-You can also use the **←** and **→** buttons in the drawer header, or click **Open editor →** to go directly to the invoice detail page.
+Search by invoice number, AI Finance Team ID, seller or buyer name, or partner. Above the list you can filter by date range, **Company** (when you have more than one), **Direction**, **Source** (NAV or uploaded), **Payment** and **Approval**, and switch on filter pills: **Needs review**, **Unpaid**, **Company needed**, **FX pending**, **Duplicate**, **Rejected**, **No document**, **VAT codes incomplete** and **VAT: default-coded**. Rejected invoices, duplicates and cancelled storno pairs stay hidden unless their pill is on. If you work in a [focused period](/focused-period), the list follows it.
 
-To open the preview without using the mouse, focus a row with the keyboard and press `Space`.
+With permission to edit invoices you can tick rows and **Re-categorize** them, **Re-run VAT coding**, or **Approve reviewed items**.
 
-## The Invoice Detail Page
+## The invoice page
 
-Click any invoice number to open its detail page. This page shows all extracted data in a structured read-only view alongside the original PDF.
+Click an invoice to open its page. The top card shows the invoice number, badges such as **Duplicate**, **Rejected**, **Needs review** and **Completeness**, the payment status, and the facts **Partner**, **Direction**, **Gross** and **Issued**, with the **Download** and **Edit** buttons. Under it are the AI summary, which you can edit, and the **To-do** chips, for example a missing VAT code or a partner to verify.
 
-The page is divided into sections:
+The page has six tabs:
 
-- **Header** - invoice number, issue date, due date, delivery date, currency, and direction
-- **Parties** - seller name and tax ID, buyer name and tax ID
-- **Amounts** - net total, VAT total, and gross total
-- **Line items** - a table with each line: description, quantity, unit price, net amount, VAT rate, gross amount, and assigned category
-- **Audit log** - a record of every manual change made to this invoice, with the field changed, the old value, the new value, and who made the change
+- **Overview**: the **Parties** (seller and buyer, with your side marked), **Amounts** (net, VAT and gross, with the base-currency amounts where they differ) and **Dates** (issue, fulfilment, due, VAT and posting date), plus custom categories and the payment approval card where they apply.
+- **Lines & VAT**: the line items with description and quantity, net, VAT rate, gross, category and VAT code.
+- **Document**: the original file, or the NAV rendering for a NAV invoice.
+- **Matching & payment**: the bank transactions matched to the invoice. See [Invoice Matching](/invoice-matching).
+- **Messages**: the conversation about the invoice. See [Messages](/messages).
+- **History**: every change on a timeline, field by field with the old and the new value, who made it and when, together with extraction, matching and NAV events. It can be filtered by person, and it cannot be edited.
 
-## Editing an Invoice
+Some things are corrected right on the page, such as the summary, the VAT and posting dates, the categories and the VAT codes.
 
-To correct extracted data, click **Edit** in the top-right corner of the invoice detail page. This opens the full-screen editing overlay.
+## Editing an invoice
 
-The editor shows the original PDF on the left and an editable form on the right. Every field in the form is clickable:
+Click **Edit** on the invoice page, or press `E` when no field is focused. You need the permission to edit invoices. The editor opens full screen, with the document on the left (on wide screens) and the form on the right:
 
-- **Header fields** (invoice number, dates, currency, direction) - click the value to edit it in place. Press `Enter` or click away to save. Changes are saved individually and immediately - there is no Save button for the whole form.
-- **Party fields** (seller/buyer name and tax ID) - same click-to-edit behaviour.
-- **Amount fields** (net, VAT, gross) - same click-to-edit behaviour.
+- **Assignment**: whether you are the seller or the buyer (**We are the seller · income** or **We are the buyer · expense**), which of your companies it is, and the partner. The names and tax numbers printed on the invoice are not edited: you choose who the invoice belongs to.
+- **Invoice details**: the invoice number, the currency, and the issue, due, fulfilment, VAT and posting dates.
+- The net, VAT and gross totals.
+- **Line items**: the description, net, gross and category of each line can be edited; the VAT rate is shown but not edited. **Add row** adds a line, and the bin icon removes one.
 
-### Hover to Highlight
+Click a value to edit it; it is saved when you press Enter or click away. There is no Save button. When you hover over a field, the value is highlighted in yellow in the PDF, so you can check it against the source. A field you changed shows a revert arrow on hover, which restores the value the AI extracted. Press `Esc` or click **×** to close the editor.
 
-When you hover over a field in the editor, the corresponding value is highlighted in the PDF on the left. This makes it easy to verify extracted data against the source document, especially when a value looks suspicious.
+## Rejecting an invoice
 
-Hover over a line item description to highlight that text in the PDF. The highlight uses a yellow overlay directly on the PDF text layer - it does not modify the document.
+If an invoice does not belong to any of your companies, open the company choice on the invoice and click **This invoice isn't for any of our companies**, then give a reason. The invoice moves to the **Rejected** filter, matching suggestions for it are discarded, and existing matches are kept and flagged. Its banner offers **Undo rejection**. Invoices cannot be deleted.
 
-### Editing Line Items
+## Downloading an invoice
 
-The line items table in the editor is fully editable. For each line:
-
-- Click any cell (description, quantity, unit price, VAT rate, or category) to edit it
-- Changes save as soon as you click away
-- The **net amount** and **gross amount** columns are calculated automatically - they are read-only
-
-To add a line item, click **Add line** below the table. To remove one, click the **×** at the end of the row.
-
-### Reverting a Field
-
-If you edited a field and want to restore the original value extracted from the document, click the **↩** revert icon that appears next to the field while it is being edited. This restores the AI-extracted value.
-
-### Closing the Editor
-
-Press `Esc` or click the **×** button in the top-right corner to close the editor and return to the read-only detail view.
-
-You can also open the editor with the `E` keyboard shortcut when you are on the detail page and no input field is focused.
-
-## Downloading an Invoice
-
-Use the **Download** button on the invoice detail page to export the invoice. Click the button to download the original PDF immediately, or click the **▾** arrow to choose a format:
+Click **Download** on the invoice page to get the original file, or the **▾** arrow to choose a format:
 
 | Format | Contents |
 |--------|----------|
-| **PDF** | The original uploaded document |
-| **XLSX** | Two-sheet workbook: an "Invoice" summary sheet and a "Line Items" sheet with all line data |
-| **CSV** | A flat file with the invoice header on the first rows and line items below |
-| **JSON** | Structured JSON with all invoice fields and a `line_items` array |
+| **PDF** | The original document |
+| **XLSX** | Two sheets: "Invoice" with the summary and "Line Items" with every line |
+| **CSV** | The invoice header on the first rows, then the line items |
+| **JSON** | All invoice fields and a `line_items` list |
 
-All downloads are named after the invoice number (or the original file name for PDF). XLSX, CSV, and JSON use the structured data from the platform - they reflect any manual corrections you have made.
+The files are named after the original file. XLSX, CSV and JSON are built from the current data, so they include your corrections; their column headers are in English. An invoice without a document file (for example from NAV) has no Download button.
 
-## The Audit Log
+## Extraction and review
 
-Every manual edit is recorded in the audit log at the bottom of the invoice detail page. Each entry shows:
+The upload panel shows each file as **Queued**, **Uploading…**, **Extracting…**, **Extracted** or **Failed**, with **Retry** for a failed one. While an invoice is still being read, its page shows the extraction state in the top card.
 
-- The field that was changed
-- The previous value
-- The new value
-- Who made the change and when
+The **Review** label means the extraction scored below 80% for completeness: the invoice number, a date, a tax number, an amount or the line items are missing, or the totals do not add up. The invoice page shows the score as **Completeness: N%**. A failed extraction is labelled **Review** too. Check such invoices against the document and correct them in the editor.
 
-The audit log is read-only. It cannot be cleared or edited.
+## Who can do what
 
-## Understanding Extraction Status
-
-| Status | Meaning |
-|--------|---------|
-| **Pending** | The document has been received and is queued for processing |
-| **Processing** | The AI is currently extracting data from the document |
-| **Completed** | Extraction finished; data is available for review |
-| **Failed** | Extraction could not complete; the document may need to be re-uploaded or manually entered |
-
-A **Completed** status does not mean the data is correct - it means the AI produced a result. Always review invoices with a **Review** badge, as these are cases where the AI confidence was below the threshold.
+Seeing invoices needs the permission to view invoices and bank transactions. Editing, rejecting and the bulk actions need the permission to edit invoices, which accountants hold by default; client users can view invoices, open the document and upload. See [Roles and Permissions](/roles-and-permissions).
 
 ## Tips
 
-- **Keep company records up to date.** The AI uses company names, tax IDs, and alternative names to identify partners. If a supplier appears as unknown, add them to Master Data → Companies with their correct name and tax ID.
-- **Use the preview drawer** to check documents quickly without navigating away from the list. Navigate the full list with ← and → to triage a batch of invoices efficiently.
-- **Download as XLSX** if you need to share structured invoice data with a colleague who works in Excel - the two-sheet format keeps summary and line items separate.
-- **Download as JSON** for integrations - the structured output matches the fields used internally and can be consumed directly by most accounting connectors.
+- **Suppliers and customers are partners.** If a supplier is not recognised, add or verify it under Master data, Partners. **Companies** are your own businesses. See [Managing Partners](/partners).
+- **Use the History tab** to see who changed what and when.
+- **Download as XLSX** to share an invoice with a colleague who works in Excel: the summary and the lines stay on separate sheets.

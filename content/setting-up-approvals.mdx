@@ -4,85 +4,108 @@ Payment approvals let a client company decide, invoice by invoice, whether a sup
 
 ## Switching it on
 
-Open the client workspace, go to **Settings**, then **Approval rules**, and switch **Payment approvals are switched on**.
+Open the client workspace, go to **Settings**, then **Approval rules** (the page itself is titled **Approvals**), and switch **Payment approvals are switched on**. Only people holding "Manage approvals" see this page.
 
-What starts an approval? A supplier invoice enters the flow as soon as it is booked: the extraction and the AI categorisation have finished, it is an expense, it is unpaid, and it is not a duplicate or rejected. The system checks once a minute, so a new invoice reaches its approver within a minute, and approvers see their queue under **Approvals** in the sidebar. Invoices that were already paid before you switched it on are left alone.
+Set up the rules and the approvers first, and switch approvals on last. The rules, the descriptions and the fallback can all be edited while approvals are off, and switching on admits every unpaid supplier invoice at once, oldest due date first.
 
-Switching it off stops new invoices from entering. Decisions already made stay on the invoices.
+What starts an approval? A supplier invoice enters the flow as soon as it is booked: the extraction and the AI categorisation have finished, it is an expense, it is open or partially paid, and it is not a duplicate or rejected. An invoice without line items enters 15 minutes after it arrived. The system checks once a minute, so a new invoice usually reaches its approver within a minute or two, and approvers see their queue under **Approvals** in the sidebar. Invoices that were already paid are left alone.
+
+Switching it off stops new invoices from entering and pauses the invoices already waiting: nobody can approve, decline or assign them until it is on again, the queue says **Payment approvals are not switched on yet**, and no approval emails are sent. Decisions already made stay on the invoices.
+
+The defaults: approvals off, **Everything needs approval unless a rule says otherwise** on, no fallback approver, a queue window of 14 days, bulk approval on, unassigned invoices visible to every approver, and invoices flagged "needs review" held.
 
 ## Who does what
 
-Two permissions drive the feature:
+Three permissions make up payment approvals:
 
 - **Approve invoices for payment**: sees the queue and can approve or decline. Needs "View invoices and bank transactions" as well.
-- **Manage approvals**: sees the whole flow on the Overview board, assigns invoices, reopens decisions and edits the rules and the policy.
+- **Manage approvals**: sees the whole flow on the Overview, assigns invoices, reopens decisions, confirms supplier bank accounts and edits the rules and the policy.
+- **Export payment file**: downloads the payment file for approved invoices. See [Paying approved invoices](/paying-approved-invoices).
 
-By default the client owner and the accountant admin hold both. For anyone else, create a role under **Settings**, then **Team**, for example "Finance admin" holding both keys, or "Approver only" holding just the first one, and assign it. See [Roles and Permissions](/roles-and-permissions).
+By default the client owner and the accountant admin hold all three. For anyone else, create a role under **Settings**, **Team management**, **Roles** (this needs "Manage members and roles"), for example "Finance admin" holding the approval keys, or "Approver only" holding just the first one, and assign it. See [Roles and Permissions](/roles-and-permissions).
 
 ## The settings page
 
 Settings reads in the order the flow runs: switch it on, say who may approve, say what goes to whom, then say what their queue looks like.
 
-**Payment approvals** is the switch above. **Approvers** lists everyone who holds the permission, with the description each gives the AI.
+**Payment approvals** is the switch above. **Approvers** lists everyone who holds both "Approve invoices for payment" and "View invoices and bank transactions", with a description of what each of them decides. Someone with "Manage approvals" writes the descriptions (up to 600 characters, saved when you leave the field). When nobody holds the permission, an amber warning says so.
 
 **Routing** holds the rules, and directly beneath them, **When no rule matches**:
 
-- **Everything needs approval unless a rule says otherwise**: the safe default. An invoice can skip approval for two reasons: a rule you wrote says so, or you marked the last 3 invoices from that partner as not needing one. The AI never decides that on its own.
-- **Fallback approver**: the person who receives every invoice no rule places. Without one, such invoices wait in Needs you on the Overview for you to assign.
+- **Everything needs approval unless a rule says otherwise**: the safe default. An invoice then skips approval only when a rule you wrote says so, or when the last 3 decisions for that partner were "no approval needed". Switched off, every invoice that no rule and no earlier decision places needs no approval, and neither the fallback nor the AI is asked.
+- **Fallback approver**: the person who receives every invoice that no rule and no earlier decision places, as long as that person can still approve. Without one, the AI tries first, and anything it cannot place waits in **Needs you** on the Overview for you to assign.
 
 **The approver's queue** describes what an approver sees:
 
-- **Queue window**: a number of days, typed freely. The basis is the invoice due date: approvers see invoices due within this many days, later ones wait until they come closer. An invoice with no due date always appears. Leave it empty to show every open invoice.
+- **Queue window**: a whole number of days from 1 to 365, 14 by default. The basis is the invoice due date: approvers see invoices due within this many days, later ones wait until they come closer. An invoice with no due date always appears. Leave it empty to show every open invoice. The window applies to the approver's own list, the unassigned list, the sidebar count and the morning email; **All awaiting** ignores it.
 - **Bulk approval**: whether approvers may approve several invoices with one confirmation. Declining is always one at a time.
 - **Unassigned invoices are visible to every approver**: when off, only people with "Manage approvals" see and decide unrouted invoices; they appear in no list for anyone else.
-- **Invoices flagged "needs review"**: held by the accountant until the extraction is checked, or shown to approvers with a warning.
+- **Invoices flagged "needs review" by extraction**: **Hold until reviewed** (the default: held invoices cannot be approved until the accountant checks the extraction), or **Show with a warning**.
 
 ## Rules
 
-Rules are sentences, checked in order. The first rule that matches an invoice wins.
+<ApprovalRulesFigure>
+The **Routing** section with three rules and the settings for invoices no rule places. The numbers match the list below. The companies, people and amounts are examples.
+</ApprovalRulesFigure>
 
-A rule matches on any combination of partner, invoice category, company and an amount band in the workspace's base currency. It either sends the invoice to an approver or says no approval is needed. Examples:
+1. The drag handle: rules are checked from the top, and the first match wins.
+2. A rule, written as a sentence. Click it to edit it.
+3. A rule whose outcome is that no approval is needed.
+4. **When no rule matches**: the policy and the fallback approver.
+5. **Apply rules to waiting invoices**.
 
-- Invoices from Bau-Trans Kft. go to Péter.
-- Invoices in Subcontracted work above 500 000 Ft go to Péter.
-- Every invoice under 20 000 Ft needs no approval.
+Rules are sentences, checked in order. The first rule that matches an invoice wins. **Add rule** opens the rule editor.
 
-Drag a rule by the handle on its left to reorder it, or focus the handle and use the arrow keys. Click a rule to edit it; Delete is inside the editor. A rule whose approver lost the permission is skipped and the invoice lands unrouted, so a rule can never leave an invoice with someone who cannot act.
+A rule matches on any combination of **Partner**, **Category**, **Company** and an amount band (**Amount from**, **Amount up to**) in the workspace's base currency, gross. **Amount from** includes the limit, **Amount up to** does not, and an invoice without a base-currency amount never matches a rule with an amount band. The **Outcome** either sends the invoice to an **Approver** or says no approval is needed. A rule can be switched off with **Active**; inactive rules are shown dimmed and skipped. The list shows each rule as a sentence, for example:
 
-When no rule matches, routing does not stop. The router first follows your earlier decisions for the partner, then hands the invoice to the fallback approver if you set one, and only as a last step asks the AI to propose an approver from your descriptions. A rule always outranks all three, and the AI can pick a person but never waive approval. The sections below describe what the router learns, the rules it proposes, and the descriptions the AI works from.
+- An invoice from Reamwell Office Supplies Ltd. goes to Anna Berg
+- Any invoice in Subcontracted work above HUF 500,000.00 goes to David Hart
+- Any invoice under HUF 20,000.00 needs no approval
+
+To reorder a rule, drag it by the handle on its left, or focus the handle, press Space to lift it, move it with the arrow keys and press Space again to drop it. Click a rule to edit it; **Delete** is inside the editor and asks for confirmation.
+
+If a rule's approver can no longer approve, the rule shows **This approver can no longer approve. The rule is skipped.** An invoice that reaches that rule stops there and waits unrouted with the reason "The rule's approver cannot approve", so a rule never leaves an invoice with someone who cannot act. Fix the rule or the permission; the invoice is routed again within a minute.
+
+<RoutingLadderFigure>
+The order in which an invoice finds its approver. Each step is tried only when the ones above it placed nothing.
+</RoutingLadderFigure>
+
+When no rule matches, routing does not stop. The router first follows your earlier decisions for the partner, then hands the invoice to the fallback approver if you set one, and only as a last step asks the AI to propose an approver from your descriptions. A rule always outranks all three, and the AI can pick a person but never waive approval.
 
 ## Applying rules to invoices already waiting
 
-A new rule only routes invoices that arrive after it. Anything already waiting with an approver stays there. To make a new or changed rule reach the invoices already waiting, click **Apply rules to waiting invoices** under the rules. The system re-runs the rules over every invoice still waiting and tells you how many it rerouted, how many no longer need approval, and how many stayed unchanged. Invoices someone assigned by hand are not touched.
+Invoices waiting unrouted are routed again automatically within a minute when you add or change a rule. Invoices already assigned to an approver stay where they are. To make a new or changed rule reach those too, click **Apply rules to waiting invoices** under the rules. The system re-runs the rules and your earlier decisions (not the AI) over every invoice still waiting and tells you how many it rerouted, how many no longer need approval, and how many stayed unchanged. Invoices someone assigned by hand, or handed back with "Not mine", are not touched. The button works only while approvals are switched on.
 
 ## What the router learns
 
-Every decision teaches the router. When you assign an invoice to someone by hand, when an approver approves it, or when you mark it as not needing approval, the router remembers the partner and the outcome. Once the last 3 decisions for a partner agree, the next invoice from that partner follows them without a rule: the approver sees "Learned: the last 3 invoices from Hetzner went to you". A "not mine" click forgets that invoice. Declines teach nothing, because a decline is about the invoice, not about who should decide.
+Decisions on invoices from a verified partner teach the router. When you assign an invoice to someone by hand, when an approver approves it, or when you mark it as not needing approval, the router remembers the partner and the outcome. Once the last 3 decisions for a partner agree, the next invoice from that partner follows them without a rule, as long as that approver can still approve: the approver sees "Learned: the last 3 invoices from Quillmoor Software Ltd. went to you". A "Not mine" click forgets that invoice. Declines teach nothing, because a decline is about the invoice, not about who should decide.
 
-## Proposed by AI
+## Proposed rules
 
-At the same moment the router proposes a rule in **Needs you** on the Overview, in the same words a rule is written in: "Invoices from Hetzner go to Péter · 3 of 3 past decisions agree". Accept adds it as the last rule, so rules you wrote by hand keep precedence. Dismiss removes it and the same proposal is not made again unless the decisions change. Only a person turns a proposal into a rule. The AI never switches approval off by itself.
+When the last 3 decisions for a partner agree, the Overview also proposes a rule in **Needs you**, in two lines: "Invoices from Quillmoor Software Ltd. go to Anna Berg" and "Proposed rule. 3 of 3 past decisions agree". The proposal is counted from your decisions; no AI is involved. **Accept** adds it as the last rule, so rules you wrote by hand keep precedence. **Dismiss** removes it for good: the same partner, outcome and approver are not proposed again. Only a person turns a proposal into a rule.
 
 ## Approver descriptions
 
-Under Approvers, write one or two sentences per person about what they decide: "CEO, signs subcontractors and anything above 500 000 Ft". These descriptions are sent to the AI word for word when nothing else placed the invoice: no rule matched, no past decision applied, and no fallback approver is set. The AI picks the person whose description covers the invoice, or nobody when no description fits. It acts only when it is at least 70% sure; otherwise the invoice waits in Needs you on the Overview with a note like "AI 0.58, below the threshold". The AI gets one attempt per invoice; editing a description makes it look again at everything still unrouted. Describe what the person decides, not instructions. The AI runs only when at least one approver has a description, and never spends anything for a company where approvals are switched off.
+Under Approvers, write one or two sentences per person about what they decide: "CEO, signs subcontractors and anything above 500 000 Ft". These descriptions are sent to the AI word for word when nothing else placed the invoice: no rule matched, no earlier decision applied, no fallback approver is set, and **Everything needs approval unless a rule says otherwise** is on. Invoices handed back with "Not mine", and invoices stopped at a rule whose approver cannot approve, are not sent to the AI.
+
+The AI picks the person whose description covers the invoice, or nobody when no description fits. It acts only when it is at least 70% sure; otherwise the invoice waits in **Needs you** on the Overview with a note like "AI 0.58, below the threshold". The AI gets one attempt per invoice; adding, editing or clearing a description makes it look again at everything still unrouted. Describe what the person decides, not instructions. The AI runs only when at least one approver has a description, and never for a company where approvals are switched off.
 
 ## The Overview
 
-The **Overview** tab under Approvals answers two questions, in that order.
+The **Overview** tab under Approvals answers two questions, in that order. Its header has a **Routing rules** button, which opens the settings page, and a **Payment file** button.
 
-**Needs you** is one list of everything waiting on you: invoices no rule placed, invoices an approver declined, and rules the router proposes. Overdue first, each with an amber rail, and each with its own buttons. Assign an approver, reopen a declined invoice, mark one as not needing approval, or accept a proposed rule. Show all opens the rest of the list; the links beside it open the full queue views.
+**Needs you** is one list of everything waiting on you: invoices no rule placed, invoices an approver declined, and proposed rules. Overdue first, each with an amber edge, and each with its own buttons: **Assign** an approver, **Reopen** a declined invoice, **Mark not required**, or accept a proposed rule. When there are more than 10 rows, **Show all** opens the rest and **Open the unassigned list** opens the full list of unassigned invoices.
 
-**In flight** is not your work, it is the answer to "is anything stuck": one row per approver with how many invoices are waiting, how many are overdue, and how long the oldest has been with them. Click a name to open that person's awaiting invoices, where you can reassign one. Underneath, approved and unpaid, with the total per currency and a link to the payment file.
+**In flight** is not your work, it is the answer to "is anything stuck": one row per approver with how many invoices are waiting, how many are overdue, and how long the oldest has been with them. A click on a name opens the list of everything awaiting approval, where you can reassign an invoice. Underneath, approved and unpaid, with the total per currency and a link to the payment file.
 
-Above both, two figures: the money in the flow, and the median time to a decision over the last 30 days.
+Above both, two figures: the money in the flow, and the median time to a decision over the last 30 days. A line under them says how many invoices are held because the extraction flagged them "needs review".
 
 ## What the accountant sees
 
-Every invoice shows its approval state: a pill in the invoice list, a filter value, a "Payment approval" card on the invoice, and each decision on the invoice's history. Approval never blocks exporting or closing a month. It is a cash decision by the client, not a bookkeeping check.
+Every invoice shows its approval state: a pill in the invoice list for awaiting, approved and declined invoices, a filter value, a "Payment approval" card on the invoice, and each decision on the invoice's history. Approval never blocks exporting or closing a month. It is a cash decision by the client, not a bookkeeping check.
 
-If an accountant rejects an invoice, any pending approval is cancelled and recorded. If the amount or the supplier of an approved invoice changes, the approval is reset and the invoice goes back to its approver.
+If an accountant rejects an invoice, any approval is cancelled and the invoice shows "Rejected by the accountant"; if the rejection is undone, the invoice is routed afresh. If the gross amount, the currency or the supplier of an approved invoice changes, the approval is reset and the invoice goes back to its approver.
 
 ## Emails
 
-Approvers receive four emails: new invoices to approve (at the earliest 30 minutes after the first one, at most 2 a day), a morning list on working days at 08:00, a due-soon reminder on working days at 15:00 for invoices due within 2 days, and, for finance admins, a declined notice with the approver's note. Each has its own switch on the person's Notifications page. The Friday digest to the accountants gains a line per company with approvals on: waiting, overdue, declined, approved and unpaid. Nothing is sent for a company where approvals are switched off.
+Approvers receive four emails: new invoices to approve (at the earliest 30 minutes after the first one, at most 2 a day), a morning list on working days at 08:00, a due-soon reminder on working days at 15:00 for invoices due within 2 days, and a declined notice with the approver's note, which goes to everyone holding "Manage approvals" except the person who declined. Working days are Monday to Friday, Budapest time. Each email has its own switch on the person's Notifications page, under **Payment approvals**. The **Monday summary** to the accountants gains a line per company with approvals on: waiting, overdue, declined, approved and unpaid. Nothing is sent for a company where approvals are switched off.
