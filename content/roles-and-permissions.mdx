@@ -24,40 +24,40 @@ Client users have no organization role. They exist only in the workspaces they w
 
 ## Permissions
 
-Every workspace member has one **role**, and a role is a named set of **permissions**. Every workspace has four **system roles**, and its managers can add **custom roles** for that workspace.
+Every workspace member has one **role**, and a role is a named set of **permissions**. Every workspace has five **system roles**, and its managers can add **custom roles** for that workspace.
 
 <AccessDecisionFigure>
 How AI Finance Team answers "may this member do this?": the fixed rules first, then the side, then the member's exceptions, then the role.
 </AccessDecisionFigure>
 
-| Permission | Side | Accountant admin | Accountant | Client owner | Client member |
-|---|---|---|---|---|---|
-| View invoices and bank transactions | any | ✓ | ✓ | ✓ | ✓ |
-| Upload documents | any | ✓ | ✓ | ✓ | ✓ |
-| Edit invoices | firm | ✓ | ✓ | — | — |
-| Edit bank transactions | firm | ✓ | ✓ | — | — |
-| Manage matching | firm | ✓ | ✓ | — | — |
-| Run accounting exports | firm | ✓ | ✓ | — | — |
-| Close periods | firm | ✓ | ✓ | — | — |
-| Manage reports | any | ✓ | ✓ | — | — |
-| Edit master data | firm | ✓ | ✓ | — | — |
-| Edit workspace settings | firm | ✓ | — | — | — |
-| Invite members | any | ✓ | — | ✓ | — |
-| Manage members and roles | any | ✓ | — | ✓ | — |
-| Manage connections | any | ✓ | — | ✓ | — |
-| Approve invoices for payment | any | ✓ | — | ✓ | — |
-| Manage approvals | any | ✓ | — | ✓ | — |
-| Export payment file | any | ✓ | — | ✓ | — |
-| Push into the accounting system | firm | ✓ | — | — | — |
+| Permission | Side | Accountant admin | Accountant | Finance lead | Finance admin | Team member |
+|---|---|---|---|---|---|---|
+| View invoices and bank transactions | any | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Upload documents | any | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Edit invoices | firm | ✓ | ✓ |  |  |  |
+| Edit bank transactions | firm | ✓ | ✓ |  |  |  |
+| Manage matching | firm | ✓ | ✓ |  |  |  |
+| Run accounting exports | firm | ✓ | ✓ |  |  |  |
+| Close periods | firm | ✓ | ✓ |  |  |  |
+| Manage reports | any | ✓ | ✓ |  |  |  |
+| Edit master data | firm | ✓ | ✓ |  |  |  |
+| Edit workspace settings | firm | ✓ |  |  |  |  |
+| Invite members | any | ✓ |  | ✓ |  |  |
+| Manage members and roles | any | ✓ |  | ✓ |  |  |
+| Manage connections | any | ✓ |  | ✓ |  |  |
+| Approve invoices for payment | any | ✓ |  | ✓ |  |  |
+| Manage approvals | any | ✓ |  | ✓ | ✓ |  |
+| Export payment file | any | ✓ |  | ✓ | ✓ |  |
+| Push into the accounting system | firm | ✓ |  |  |  |  |
 
-The ticks are the **defaults of the four system roles**. A custom role picks its own set, and an exception changes a single member. "Push into the accounting system" also needs the connection to be switched on for the workspace.
+The ticks are the **defaults of the five system roles**. A custom role picks its own set, and an exception changes a single member. "Push into the accounting system" also needs the connection to be switched on for the workspace.
 
 Two things are fixed by rule and are never part of a role:
 
 - **Connecting and disconnecting bank accounts.** Any client-side member can connect a bank; disconnecting a bank connection belongs to the client owner. Bank credentials always stay on the client side.
 - **NAV Online Számla credentials** can be set up by the client owner, an accountant admin or an accountant. Nobody can read them back.
 
-Both are decided by the member's **base role** (the system role a custom role is based on), so a custom role based on Client owner also owns the bank connection.
+Both are decided by the member's **base role** (the system role a custom role is based on), so a custom role based on Finance lead also owns the bank connection.
 
 What the broader permissions cover:
 
@@ -72,8 +72,9 @@ What the broader permissions cover:
 |---|---|---|
 | Accountant admin | Firm | Lead accountant on the engagement: everything, including the team and the settings |
 | Accountant | Firm | Supporting accountant: all bookkeeping work, no team or settings |
-| Client owner | Client | Senior person at the client: uploads, invites and manages the client's people and connections, approves and pays invoices, owns the bank connection |
-| Client member | Client | Other people at the client: uploads and views |
+| Finance lead | Client | Senior person at the client: uploads, invites and manages the client's people and connections, approves and pays invoices, owns the bank connection |
+| Finance admin | Client | On the finance lead's team: files the incoming documents, uploads what is missing, routes approvals and prepares the payment file |
+| Team member | Client | Other people at the client: uploads and views |
 
 System roles cannot be changed. Click **View** on one to see, read-only, what a member on that role can do.
 
@@ -82,7 +83,7 @@ System roles cannot be changed. Click **View** on one to see, read-only, what a 
 Open **Settings → Team management → Roles** in the workspace.
 
 <RolesTabFigure>
-The **Roles** tab with the four system roles and a custom role. The numbers match the list below. The role and the member count are examples.
+The **Roles** tab with the five system roles and a custom role. The numbers match the list below. The role and the member count are examples.
 </RolesTabFigure>
 
 1. The tabs of Team management.
@@ -121,52 +122,52 @@ The sidebar follows the member's side and permissions, but hiding a menu item is
 
 ## What each role sees
 
-These tables show the **defaults** of the four system roles; a custom role or an exception changes them.
+These tables show the **defaults** of the five system roles; a custom role or an exception changes them.
 
 ### Sidebar
 
-| Item | Accountant admin | Accountant | Client owner | Client member |
-|---|---|---|---|---|
-| Home, Invoices, Bank transactions | ✓ | ✓ | ✓ | ✓ |
-| Matching, Exports, Closing | ✓ | ✓ | — | — |
-| Approvals | ✓ | — | ✓ | — |
-| Payment file | ✓ | — | ✓ | — |
-| Reports | ✓ | ✓ | ✓ | ✓ |
-| Intake, Messages | ✓ | ✓ | ✓ | ✓ |
-| Missing receipts | ✓ | ✓ | ✓ | ✓ |
-| Documents | ✓ | ✓ | — | — |
-| Master data, Settings | ✓ | ✓ | ✓ | ✓ |
+| Item | Accountant admin | Accountant | Finance lead | Finance admin | Team member |
+|---|---|---|---|---|---|
+| Home, Invoices, Bank transactions | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Matching, Exports, Closing | ✓ | ✓ |  |  |  |
+| Approvals | ✓ |  | ✓ | ✓ |  |
+| Payment file | ✓ |  | ✓ | ✓ |  |
+| Reports | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Intake, Messages | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Missing receipts | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Documents | ✓ | ✓ |  |  |  |
+| Master data, Settings | ✓ | ✓ | ✓ | ✓ | ✓ |
 
 **Approvals** appears for members holding "Approve invoices for payment" or "Manage approvals", and **Payment file** for those holding "Export payment file". **Missing receipts** appears only where that feature is switched on for the workspace (see [Missing Receipts](/documents-needed)). Under **Master data**, client-side members see Companies, Bank accounts, Accounting categories and Custom categories; Partners, Transaction types, VAT groups and the VAT setup are firm-only.
 
 ### Settings → Team management
 
-| Tab or action | Accountant admin | Accountant | Client owner | Client member |
-|---|---|---|---|---|
-| Team members | ✓ | ✓ | ✓ | ✓ |
-| Edit access (role, exceptions) | ✓ | — | ✓ (client-side members) | — |
-| Invite a new member | ✓ | — | ✓ (client roles only) | — |
-| Pending invitations, revoke | ✓ | — | ✓ (client-side invitations) | — |
-| Pending requests (join requests) | ✓ | — | — | — |
-| Roles | ✓ | — | ✓ | — |
+| Tab or action | Accountant admin | Accountant | Finance lead | Finance admin | Team member |
+|---|---|---|---|---|---|
+| Team members | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Edit access (role, exceptions) | ✓ |  | ✓ (client-side members) |  |  |
+| Invite a new member | ✓ |  | ✓ (Finance admin and Team member) |  |  |
+| Pending invitations, revoke | ✓ |  | ✓ (client-side invitations) |  |  |
+| Pending requests (join requests) | ✓ |  |  |  |  |
+| Roles | ✓ |  | ✓ |  |  |
 
 ### Invoices
 
-| Action | Accountant admin | Accountant | Client owner | Client member |
-|---|---|---|---|---|
-| Upload an invoice | ✓ | ✓ | ✓ | ✓ |
-| View invoice details | ✓ | ✓ | ✓ | ✓ |
-| Edit an invoice (company, direction, partner, fields, lines) | ✓ | ✓ | — | — |
-| Change categories and VAT codes | ✓ | ✓ | — | — |
+| Action | Accountant admin | Accountant | Finance lead | Finance admin | Team member |
+|---|---|---|---|---|---|
+| Upload an invoice | ✓ | ✓ | ✓ | ✓ | ✓ |
+| View invoice details | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Edit an invoice (company, direction, partner, fields, lines) | ✓ | ✓ |  |  |  |
+| Change categories and VAT codes | ✓ | ✓ |  |  |  |
 
 Clients submit the documents; the accountants categorise and check them.
 
 ### Reports
 
-| Action | Accountant admin | Accountant | Client owner | Client member |
-|---|---|---|---|---|
-| View reports and drill down | ✓ | ✓ | ✓ | ✓ |
-| Create, edit, rename or delete a report | ✓ | ✓ | — | — |
+| Action | Accountant admin | Accountant | Finance lead | Finance admin | Team member |
+|---|---|---|---|---|---|
+| View reports and drill down | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Create, edit, rename or delete a report | ✓ | ✓ |  |  |  |
 
 ## How membership works
 
