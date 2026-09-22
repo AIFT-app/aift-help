@@ -1,243 +1,176 @@
 # Partnerek kezelése
 
-A partnerek a hitelesített, kanonikus rekordjai azoknak a cégeknek és magánszemélyeknek, akikkel a munkaterülete üzletet köt - beszállítók, vevők, platformok és szolgáltatók. A partnerek naprakészen tartása azt jelenti, hogy az AI minden új számlán vagy banki tranzakción automatikusan fel tudja ismerni a másik felet, anélkül hogy minden alkalommal kézi ellenőrzésre lenne szükség.
+A partnerek azok a cégek és személyek, akikkel az ügyfele üzleti kapcsolatban áll: beszállítók, vevők, platformok és szolgáltatók. A **hitelesített partner** az az egyetlen, kanonikus rekord, amely összefogja mindazokat a neveket, adószámokat és bankszámlákat, amelyek alatt egy vállalkozás megjelenik, így az AI Finance Team minden új számlán és banki tranzakción felismeri a másik felet anélkül, hogy bárkinek ellenőriznie kellene.
+
+<PartnerRecognitionFlowFigure>
+Hogyan jut el egy számlán vagy banki tranzakción megjelenő új név egy hitelesített partnerhez.
+</PartnerRecognitionFlowFigure>
 
 ## Hitelesített és nem hitelesített partnerek
 
-Amikor az AI Finance Team kinyer egy számlát vagy importál egy banki tranzakciót, a másik felet partnerként rögzíti - pontosan azzal a névvel, ahogyan az a dokumentumon megjelent. Ugyanaz a valós vállalkozás több néven is megjelenhet (például „OpenAI OpCo, LLC" az egyik számlán és „OpenAI, L.L.C." egy másikon).
+Amikor az AI Finance Team beolvas egy számlát vagy importál egy banki tranzakciót, a másik felet pontosan azon a néven rögzíti, ahogyan az a dokumentumon szerepel. Ugyanaz a vállalkozás gyakran több néven is megjelenik, például „OpenAI OpCo, LLC” néven az egyik számlán és „OpenAI, L.L.C.” néven egy másikon. Amíg egy ilyen név nincs hitelesített partnerhez kapcsolva, **nem hitelesített partner**.
 
-A **hitelesített partner** az az egyetlen kanonikus rekord, amely az összes névváltozatot összeköti. A **nem hitelesített partner** egy nyers, kinyert név, amelyet még nem gondoztak.
+A nem hitelesített partner nem hiba, hanem ellenőrzésre hívja fel a figyelmet: a dokumentum feldolgozása teljes. Így látja:
 
-### A ⚠ Nem hitelesített jelzés
+- **Nem hitelesített** felirat a számla **Felek** kártyáján, és egy borostyánsárga **Partner hitelesítése** teendő a számla és a banki tranzakció oldalán;
+- szürke **Nem ellenőrzött** címke a számlalistában;
+- borostyánsárga **Nem hitelesített** jelzés a partnerválasztóban.
 
-Minden olyan számla vagy banki tranzakció, amelynek partnere még nincs hitelesített partnerhez kapcsolva, borostyánsárga **⚠ Nem hitelesített** jelzést mutat a partnernév mellett. Ez a jelzés ellenőrzésre és kapcsolásra ösztönöz, nem hiba - a dokumentum teljesen fel van dolgozva, csak hiányzik a hitelesített partnerkapcsolat.
+## Hogyan találja meg egy név a partnerét
 
-### Hol látja a partnereket
+Minden számla és banki tranzakció feldolgozásakor az AI Finance Team megpróbálja felismerni a másik felet:
 
-A partnerek három helyen jelennek meg:
+1. **Adószám**: az a név, amelynek adószáma megegyezik egy ismert partnerével, ahhoz a partnerhez kapcsolódik. Két azonos adószámú nem hitelesített névből egyetlen hitelesített partner lesz.
+2. **Név és alternatív nevek**: számlán az a név kapcsolódik, amely megegyezik egy hitelesített partner nevével vagy valamelyik alternatív nevével (az írásjeleket és a cégforma-változatokat figyelmen kívül hagyva). Banki tranzakción lazább a szabály: a név akkor kapcsolódik, ha pontosan egy partnernév vagy alternatív név tér el tőle legfeljebb néhány betűben.
+3. **Névminták**: az olyan előtagszabályok, mint a `LinkedIn*`, elkapják a tranzakcióról tranzakcióra változó neveket.
+4. **Bankszámla** (banki tranzakcióknál): ha a bankszámla az Ön egyik saját cégéhez tartozik, a tranzakció ahhoz a céghez kapcsolódik (lásd: [Belső átvezetések](#átvezetés-a-saját-számlái-között)); ha a bankszámla egy hitelesített partneren van elmentve, a tranzakció ahhoz a partnerhez kapcsolódik.
+5. **Párosítások**: amikor megerősít egy párosítást egy számla és egy banki tranzakció között, az egyik oldalon álló nem hitelesített név a másik oldal hitelesített partneréhez kapcsolódik.
 
-- **Egy számlán** - a **Partner** mező a számla részletoldalán
-- **Egy banki tranzakción** - a **Partner** sor a tranzakció részletpaneljén (kattintson bármelyik sorra a Tranzakciók oldalon)
-- **A bankszámlakivonat-szerkesztőben** - a **Partner** oszlop egy feltöltött PDF-kivonat szerkesztésekor
+Amit ezek egyike sem ismer fel, az nem hitelesített marad, amíg valaki össze nem kapcsolja. Ha egyszer hozzáadja a megfelelő alternatív nevet, névmintát vagy bankszámlát, az adott féltől érkező minden jövőbeli dokumentumot magától felismer a rendszer.
 
-Minden felület ugyanazt a partnerválasztót használja, ugyanazzal a hitelesített/nem hitelesített pirulával és ugyanazzal a „+ Új partner" lehetőséggel.
+## A Partnerek oldal megnyitása
 
-## A Partnerekhez navigálás
+A munkaterület oldalsávjában kattintson a **Törzsadatok**, majd a **Partnerek** menüpontra. Az oldal a könyvelőiroda tagjai számára érhető el; a partnerek módosításához a „Törzsadatok szerkesztése” jogosultság szükséges.
 
-A munkaterület oldalsávjában kattintson a **Törzsadatok**, majd a **Partnerek** menüpontra. Az oldalnak két szakasza van:
+Az oldalon két lista található:
 
-- **Hitelesített partnerek** - a gondozott listája az ismert partnereknek. Minden sor mutatja az **Alternatív nevek** számát (más formák, amelyek alatt ezt a partnert látták) az adott partnerhez.
-- **Nem hitelesített partnerek** - nyers partnernevek, amelyek megjelentek a dokumentumokon, de még nincsenek hitelesített partnerhez párosítva. Tranzakciószám szerint rendezve, így a legaktívabbak jelennek meg elsőként.
+- **Hitelesített partnerek**: az Ön által gondozott partnerek. Az **Archiváltak megjelenítése** az archivált partnereket is megmutatja.
+- **Nem hitelesített partnerek**: dokumentumokon már megjelent, de még össze nem kapcsolt nevek, elöl a legaktívabbakkal. A szűrőcsipek (**Összes**, **Számlák**, **Tranzakciók**) és az egyes sorokon látható **Forrás** jelzés megmutatja, hol bukkant fel először a név: **Számla**, **Tranzakció** vagy **Bankkivonat PDF**.
 
-> A Partnerek oldal csak a **Könyvelő** vagy **Könyvelő admin** szerepkörrel rendelkező munkaterület-tagok számára látható.
+Ha egy teljes partnerlistát szeretne behozni táblázatból, használja az **Importálás** gombot (lásd: [Törzsadatok importálása](/master-data-import)).
 
-### Szűrés aszerint, hol jelent meg először a partner
+## Partnerek hozzáadása és hitelesítése
 
-A Nem hitelesített partnerek táblázat felett három szűrőcsip található: **Összes · Számlák · Tranzakciók**. Minden nem hitelesített partner egy **Forrás** jelzést is mutat:
+- **Nem hitelesített névből** (ajánlott): kattintson a sorában a **Partner létrehozása** gombra. A párbeszédablak a dokumentumok adataival töltődik ki; ellenőrizze, majd kattintson a **Partner létrehozása** gombra, vagy a **Létrehozás és megnyitás** gombra, ha a partner oldalán szeretne folytatni. Az azonos nevű banki tranzakciók mind azonnal az új partnerhez kerülnek, a név pedig alternatív névként kapcsolva marad.
+- **Kapcsolás meglévő partnerhez**: a sor **Partnerhez kapcsolás** gombja egy már meglévő partnerhez adja hozzá a nevet. A sor **…** menüjében az **Ez a saját cégünk** lehetőség is megtalálható.
+- **A semmiből**: az **Új partner** a nevet, az adószámot és a partner azonosítót kéri; minden mást a partner oldalán adhat hozzá.
+- Az **Összes partner ellenőrzése** egy lépésben minden nem hitelesített névből hitelesített partnert készít, azt a nevet pedig, amelynek adószámával már létezik partner, ahhoz a partnerhez vonja be. Az esetleges duplikációk utána a sávban jelennek meg.
 
-- **Számla** - először egy feltöltött vagy kinyert számlán látták
-- **Tranzakció** - először egy szinkronizált banki tranzakción látták
-- **Kivonat-PDF** - először egy feltöltött bankszámlakivonaton látták
+Dokumentumból is hitelesíthet: válassza ki a hitelesített partnert egy számla, egy banki tranzakció vagy a bankkivonat-szerkesztő **Partner** választójában. Az eredeti név alternatív névként hozzáadódik a partnerhez, így a következő, ugyanezen a néven érkező dokumentumot a rendszer felismeri. A nem hitelesített választó alatti **Hitelesítés most →** a Partnerek oldalt nyitja meg, a **Partner létrehozása** párbeszédablakkal előkészítve. A választó **Eredeti név:** felirattal mutatja azt a szöveget, amely ténylegesen a banki tételen vagy a számlán szerepelt.
 
-Használja a szűrőt, hogy például csak a bank-tranzakció oldali nevekre összpontosítson egy friss kivonatfeltöltés utáni gondozáskor.
+Banki díjnak vagy kamatnak nincs partnere: válassza a választó tetején a **- Nincs partner (pl. banki költség) -** lehetőséget. A saját számlái közötti átutalások ehelyett az Ön egyik cégéhez kapcsolódnak (lásd lentebb).
 
-### Az adószám-ütközés sáv
+## A partner oldala
 
-Amikor két hitelesített partner ugyanazt az adószámot osztja, egy borostyánsárga **Lehetséges ismétlődő partnerek** sáv jelenik meg a Partnerek oldal tetején. Kattintson az **Áttekintés** gombra a panel kibontásához - minden párhoz két művelet tartozik:
+Kattintson egy partner nevére az oldala megnyitásához. A fejléc csipekkel mutatja a partnerre beállított szabályokat, például **Rögzített számlakategória** vagy **Mindig ezt értékesíti**, és itt található az **Összevonás másikkal…** gomb is. Az oldalnak öt füle van: **Partner**, **Szabályok**, **Felismerés**, **Előzmények** és **Üzenetek**.
 
-- **Összevonás** - megnyitja az összevonási párbeszédet az első partnerrel előre kiválasztva, mint az összevonandóval
-- **Nem duplikáció** - elveti a javaslatot, így a sáv nem mutatja tovább
+<PartnerRecognitionFigure>
+Egy partner **Felismerés** füle. A számok az alábbi listának felelnek meg. A partner, a nevei és a bankszámlái példák.
+</PartnerRecognitionFigure>
 
-A sáv csak a könyvelők számára látható.
+1. A fülek.
+2. Az **Alternatív nevek**, **auto** vagy **manuális** jelöléssel.
+3. A **Névminták**, és az **Illeszkedő partnerek összekapcsolása most** a már meglévő nevekhez.
+4. Egy **Nincs megerősítve** állapotú bankszámla a **Megerősítés** gombbal.
+5. Egy megerősített bankszámla.
 
-## Partner hozzáadása
+### Partner fül
 
-### Nem hitelesített partnerből (ajánlott)
+- **Azonosítás**: a név, a partner azonosító, az adószám és az ország, helyben szerkeszthető, **Mentés** gombbal. Az adószám mező belföldi adószámot, közösségi adószámot vagy mindkettőt elfogad; illessze be, ami a dokumentumon szerepel, és az AI Finance Team rendszerezi (a **Belföldi és közösségi külön szerkesztése** külön-külön rögzíti a kettőt). A párt a rendszer országtól függő módon ellenőrzi, ahogyan azt a [Cégek kezelése](/master-data-entities#hogyan-függ-össze-az-adószám-és-a-közösségi-adószám) cikk leírja.
+- **Elérhetőség**: a cím.
+- **Partner típusa**: **Hétköznapi partner**, **A saját egyik cégünk** (lásd: [Belső átvezetések](#átvezetés-a-saját-számlái-között)), vagy **Egyenként nem azonosítható partnerek csoportját képviseli** (lásd: [Magánszemélynek kiállított számlák](#magánszemélynek-kiállított-számlák)).
+- **Cégjegyzék** és **Business Central**, ha a munkaterületén elérhetők.
 
-1. A **Nem hitelesített partnerek** táblázatban keresse meg a hitelesíteni kívánt nevet, és kattintson a **Partner létrehozása** gombra.
-2. Az űrlap előre kitöltődik a névvel és a dokumentumokból kinyert adószámmal. Ellenőrizze és igazítsa szükség szerint.
-3. Kattintson a **Partner létrehozása** gombra.
+### Felismerés fül
 
-A nem hitelesített partner azonnal az új hitelesített partnerhez kapcsolódik, és a ⚠ jelzés eltűnik minden olyan számláról és tranzakcióról, amely hivatkozott rá.
+Az **Alternatív nevek** felsorolja az összes többi nevet, amelyen a partnert ismerik: az **auto** nevek ehhez a partnerhez kapcsolt nem hitelesített nevek, a **manuális** nevek az Ön által hozzáadottak. Új név felvételéhez írja be a nevet, és kattintson az **Alternatív név hozzáadása** gombra. Egy auto név eltávolítása (× és **Eltávolítás**) megszünteti a név kapcsolatát, így az máshová kapcsolható, vagy nem hitelesítettként hagyható.
 
-### A semmiből
+A **Névminták** az alkalomról alkalomra változó neveket kapják el, például a kártyakivonatokon, ahol a kereskedő neve hivatkozást is tartalmaz: a `LinkedIn*` a „LinkedIn*P3035867117” és a „LinkedInPreC *34952934” nevet is összekapcsolja. Egy mintában legalább négy betűnek kell állnia a `*` előtt. Gépelés közben az előnézet mutatja, hány nem hitelesített nevet kapcsolna össze, és hány tartozik más partnerekhez; az **Illeszkedő partnerek összekapcsolása most** a már meglévő neveket kapcsolja össze.
 
-Kattintson az **Új partner** gombra a jobb felső sarokban. Töltse ki a kötelező **Név** mezőt és bármely választható mezőt (Partner azonosító, Adószám, ország, cím, bankszámlák), majd kattintson a **Mentés** gombra.
+A **Bankszámlák** azok a bankszámlák, amelyekre a partnernek utalnak. A számláról leolvasott vagy banki párosításból rögzített bankszámla csak javaslat, és **Nincs megerősítve** jelzéssel látszik, amíg egy „Jóváhagyások kezelése” jogosultsággal rendelkező személy a **Megerősítés** gombra nem kattint. Utalási fájlba csak megerősített bankszámla kerülhet: ez a védelem a számlacsalás ellen (lásd: [Jóváhagyott számlák kifizetése](/paying-approved-invoices)). Minden bankszámla a partner banki tranzakcióinak felismerését is segíti.
 
-> **Egyszerre sokat adna hozzá?** Ha egy egész partnerlistát szeretne behozni táblázatból, használja az oldal **Importálás** gombját - lásd: [Törzsadatok importálása](/master-data-import).
+### Szabályok fül
 
-## A partner részletoldala
-
-Kattintson bármelyik partnernévre a részletoldal megnyitásához. A következő szakaszokra tagolódik:
-
-### Azonosítás
-
-A partner kanonikus neve, partner azonosítója, adószáma, országa és címe. Kattintson a **Szerkesztés** gombra ezen adatok módosításához.
-
-### Alternatív nevek
-
-Egyetlen összevont listája minden más névnek, amely alatt ezt a partnert ismerik - mindkettő:
-
-- **auto** bejegyzések - nem hitelesített partnerektől származó nevek, amelyek ehhez a hitelesített partnerhez lettek kapcsolva (kék jelzés)
-- **manuális** bejegyzések - kézzel hozzáadott nevek (szürke jelzés)
-
-**Miért fontosak az alternatív nevek:** Amikor egy új számla vagy banki tranzakció érkezik, az AI Finance Team összeveti a kinyert partnernevet minden hitelesített partner kanonikus nevével és összes alternatív nevével. A pontos egyezés (központozásra és cégformai változatokra normalizálva) automatikusan a partnerhez kapcsolja az új rekordot - nincs szükség kézi műveletre.
-
-**Alternatív név hozzáadásához:**
-
-1. Gépelje be a nevet az Alternatív nevek szakasz alján lévő beviteli mezőbe.
-2. Nyomja meg az **Enter** billentyűt, vagy kattintson a **Hozzáadás** gombra.
-
-**Alternatív név eltávolításához** kattintson a mellette lévő × gombra, majd a megerősítéshez az **Eltávolítás** gombra. Egy auto bejegyzés eltávolítása lekapcsolja a mögöttes nem hitelesített partnert, így az máshová kapcsolható, vagy nem hitelesítettként hagyható.
-
-### Elérhetőség és bankadatok
-
-A partner címe és bankszámla-adatai.
-
-### Rögzített kategóriák
-
-A legtöbb esetben az AI választ könyvelési kategóriát számlasoronként és banki tranzakciónként. Olyan partnernél, amelynél a könyvelés soha nem változik - bérbeadó, biztosító, kártyaelfogadó -, ezt a döntést teljesen ki lehet hagyni, és egyetlen kategóriát lehet a partnerhez rögzíteni. Két független szabály él itt, taxonómiánként egy.
+Az **ÁFA-csoport** (a partner ÁFA-besorolása, amely alapján a rendszer meghatározza a számláin szereplő ÁFA-kódokat) és a **Mindig ezt értékesíti** (az a termék- vagy szolgáltatás-ÁFA-csoport, amelyet ez a szállító mindig számláz) adja meg a partner ÁFA-alapértelmezéseit; lásd: [ÁFA-törzsadatok](/vat-master-data). Alattuk három szabály található, amelyek egy döntést levesznek az AI válláról olyan partnernél, amelynek könyvelése soha nem változik.
 
 #### Rögzített számlakategória
 
 A partner számláinak minden sora ebbe a kategóriába kerül, **felülírva az AI javaslatát**. Az AI továbbra is lefut, és a véleménye megmarad a nyilvántartásban, de az érvényes kategória az Öné.
 
-A kategóriának aktív számlakategóriának kell lennie, amelynek iránya összeegyeztethető a számlával - bevételi kategória a bevételi számlákra, költségkategória a kiadásokra kerül. Ha egy partner vevő és szállító is, és az egyetlen rögzített kategória csak az egyik irányhoz illik, a szabály a másik irányban csendben nem tesz semmit. Ha archiválja a kategóriát, a szabály inaktívvá válik, és a szakaszon sárga figyelmeztetés jelenik meg, amíg másikat nem választ.
+A kategóriának aktív számlakategóriának kell lennie, amelynek iránya illik a számlához: bevételi kategória a bevételi számlákra, költségkategória a kiadásokra kerül. Ha egy partner vevő és szállító is, és a kategória csak az egyik irányhoz illik, a másik irányban a szabály nem tesz semmit. Ha archiválja a kategóriát, a szabály inaktívvá válik, és a szakaszon borostyánsárga figyelmeztetés jelenik meg, amíg másikat nem választ.
 
 #### Rögzített tranzakciókategória
 
-A partner minden banki tranzakciója ebbe a kategóriába kerül, **ha még nincs kategóriája**. A számlaszabállyal ellentétben ez nem írja felül a már meglévő kategóriát.
-
-Ez tisztán kategorizálás. Nem érinti a párosítást, és semmit nem jelöl meg **Nem szükséges számla** állapottal - ezek külön döntések, amelyeket a [Tranzakciótípusok](/transaction-types) alatt hozhat meg.
+A partner minden banki tranzakciója ebbe a kategóriába kerül, **ha még nincs kategóriája**. A számlaszabállyal ellentétben nem írja felül a már meglévő kategóriát. Csak a kategóriát állítja be; arról, hogy egy tranzakcióhoz kell-e számla, a [Tranzakciótípusok](/transaction-types) döntenek, amelyekre a fül hivatkozást is tartalmaz.
 
 #### Rögzített fizetési mód
 
-E kettő mellett egy harmadik szabály is található, azokra a partnerekre, amelyek számlái rossz fizetési módot tüntetnek fel - leggyakrabban a készpénzesként jelentett kártyás fizetésre, ami lezárja a számlát, és kihagyja a párosításból. Ugyanígy állítható be, de a kategóriákkal ellentétben **csak előre hat**, és nincs visszamenőleges futtatása. Lásd: [A partner fizetési módjának rögzítése](/fixed-payment-method).
+Azokra a partnerekre való, amelyek számlái rossz fizetési módot tüntetnek fel, leggyakrabban készpénzesként jelentett kártyás fizetést, ami lezárja a számlát, és kihagyja a párosításból. A kategóriákkal ellentétben **csak előre hat**, a meglévő tételeken nem futtatható. Lásd: [A partner fizetési módjának rögzítése](/fixed-payment-method).
 
 #### A saját szerkesztései mindig elsőbbséget élveznek
 
-Egyik szabály sem írja felül azt a kategóriát, amelyet egy személy kézzel állított be. Az Ön által besorolt számlasor megtartja az Ön kategóriáját; az Ön által besorolt tranzakció érintetlen marad. Ez érvényes az automatikus szabályra és az alábbi visszamenőleges futtatásra is.
+Egyik kategóriaszabály sem írja felül a kézzel beállított kategóriát, sem automatikusan, sem az alábbi, meglévő tételeken végzett futtatásban.
 
-### Szabály alkalmazása a már meglévő tételekre
+### Kategóriaszabály alkalmazása a már meglévő tételekre
 
-Mindkét szabály **előretekintő**: azt könyveli, ami a mentés után érkezik. Ha rögzített kategóriát állít be egy partnernél, akit két éve könyvel, az a két év változatlan marad.
+Mindkét kategóriaszabály azt könyveli, ami a mentésük után érkezik. A **Futtatás a meglévő tételeken**, amely mindkét szakaszban a **Mentés** mellett található, a **mentett** szabályt alkalmazza a már meglévő tételekre:
 
-A **Futtatás a meglévő tételeken** ezt a hiányt zárja be. A **Mentés** gomb mellett található mindkét szakaszban, és a **mentett** szabályt alkalmazza a már meglévő tételekre.
-
-1. Válassza ki a kategóriát, és kattintson a **Mentés** gombra. A gomb a mentett szabállyal dolgozik, ezért a nem mentett kiválasztást nem használja - addig letiltva marad, amíg nincs mentett szabály.
+1. Válassza ki a kategóriát, és kattintson a **Mentés** gombra. A gomb a mentett szabállyal dolgozik, és letiltva marad, amíg nincs mentett szabály.
 2. Kattintson a **Futtatás a meglévő tételeken** gombra.
-3. Hagyja bekapcsolva az **Összes tétel** kapcsolót a partner minden tételének ellenőrzéséhez, vagy kapcsolja ki, és válasszon időszakot - hónapot, negyedévet, évet vagy egyedi tartományt.
-4. Olvassa el az előnézetet. Megmutatja, pontosan hány tétel fog változni, *mielőtt* bármi történne, és hányat hagy érintetlenül azért, mert valaki kézzel sorolta be.
-5. Kattintson az **Újrakönyvelés** gombra. Az összegzés jelenti, hány tétel változott.
+3. Hagyja bekapcsolva az **Összes tétel** kapcsolót, vagy kapcsolja ki, és válasszon időszakot: hónapot, negyedévet, évet vagy egyedi tartományt.
+4. Olvassa el az előnézetet: hány tétel fog változni, és hány marad érintetlen, mert valaki kézzel sorolta be.
+5. Kattintson az **Újrakönyvelés** gombra. Az összegzés jelzi, hány tétel változott.
 
-Néhány dolog, amit érdemes tudni:
+Érdemes tudni:
 
-- **Az előnézet a valóság.** Ugyanúgy számolódik, ahogy a futtatás dolgozik, így a látott szám az, ami változni fog. A kétszeri futtatás biztonságos - a második alkalommal nincs mit újrakönyvelni, mert minden már megfelel a szabálynak.
-- **A visszamenőleges futtatás felülírja a tranzakció meglévő kategóriáját.** Ez az egyetlen pont, ahol határozottabb az automatikus szabálynál, amely csak az üres kategóriát tölti ki. Így is kell lennie: mire rögzített kategóriát állít be, az AI a múltat többnyire már besorolta - és éppen ennek a helyesbítése a cél. A kézzel beállított kategóriák továbbra sem sérülnek.
-- **Melyik dátum dönt az időszakról.** A számlák aszerint a dátum szerint kerülnek az időszakba, amelyet a munkaterület **Alapértelmezett dátumalap** beállítása megnevez (teljesítési dátum, ha nem módosította - a **Beállítások → Főkönyv** alatt); ha a számlán ez hiányzik, a számla kelte lép a helyébe, így semmi nem esik ki észrevétlenül a futtatásból. A banki tranzakciók mindig a könyvelési dátumukat használják.
-- **A könyvelőirodának már elküldött számlák.** Ha az időszakban van olyan számla, amely már szerepelt RLB exportban, a párbeszédablak jelzi. Ezek is újrakönyvelésre kerülnek - a figyelmeztetés azért van ott, mert a megváltozott főkönyvi szám eltérhet attól, amit az irodája már lekönyvelt. Egyeztessen velük, mielőtt lezárt időszakot könyvelne újra.
-- **Visszavonás nincs.** A futtatás 2000 tételre van korlátozva; efölött szűkítse az időszakot, és futtassa újra.
+- **Az előnézet a valóság.** Ugyanúgy számolódik, ahogyan a futtatás dolgozik. A kétszeri futtatás biztonságos; a második futtatás nem talál újrakönyvelnivalót.
+- **A futtatás felülírja a tranzakció meglévő kategóriáját**, az automatikus szabállyal ellentétben, mert mire beállítja a szabályt, az AI többnyire már besorolta a korábbi tételeket. A kézzel beállított kategóriákhoz ekkor sem nyúl.
+- **Melyik dátum dönt az időszakról.** A számláknál a munkaterület alapértelmezett dátumalapja szerinti dátum számít (a **Beállítások → Könyvelési alapértelmezések** alatt; a teljesítés dátuma, ha nem módosította), ennek hiányában a kiállítás dátuma. A banki tranzakcióknál a könyvelési dátum számít.
+- **Már exportált számlák.** Ha az időszakban van olyan számla, amely már szerepelt RLB-exportban, a párbeszédablak jelzi. Ezt is újrakönyveli a rendszer; lezárt időszak újrakönyvelése előtt egyeztessen az irodával.
+- **Visszavonás nincs**, és a futtatás legfeljebb 2000 tételre terjed ki; ennél több esetén szűkítse az időszakot.
 
-## Hogyan működik az automatikus párosítás
+## Duplikált partnerek
 
-Minden alkalommal, amikor egy számla vagy bankszámlakivonat feldolgozásra kerül, az AI Finance Team a következő lépéseken halad végig a partner azonosításához:
+Az AI Finance Team keresi azokat a hitelesített partnereket, amelyek valószínűleg ugyanazt a vállalkozást jelentik, és a Partnerek oldal tetején egy sávban sorolja fel őket: **Lehetséges ismétlődő partnerek észlelve**. Egy párt a következők miatt javasolhat:
 
-1. **Adószám-egyezés** - ha a kinyert adószám megegyezik egy a munkaterületen már meglévő partnerrel, az a rekord újrahasznosul.
-2. **Név-egyezés** - ha a kinyert név (normalizálva) megegyezik egy meglévő partnernévvel, az a rekord újrahasznosul.
-3. **Alternatívnév-egyezés** - ha a kinyert név megegyezik egy hitelesített partner kanonikus nevével vagy bármely alternatív nevével, egy új nem-hitelesített-partner rekord jön létre, és automatikusan ahhoz a hitelesített partnerhez kapcsolódik.
-4. **Új partner** - ha nincs találat, új nem hitelesített partner jön létre, és megjelenik a ⚠ jelzés.
+- azonos adószám, vagy eltérő formátumban írt azonos adószám;
+- azonos név;
+- közös bankszámla;
+- közös fizetés („Közös fizetés alapján párosítva”);
+- az AI megítélése, a biztonság mértékével együtt.
 
-A lényegi felismerés: ha egyszer hozzáadta a megfelelő alternatív nevet egy partnerhez, attól a féltől minden jövőbeli dokumentum automatikusan hitelesítve lesz.
+Ötnél több javaslat esetén az **Áttekintés** nyitja meg a listát. A 60% és 79% közötti AI-javaslatok egy összecsukott **Alacsony biztonság** szakaszban vannak. Kattintson egy javaslatra az összehasonlító oldal megnyitásához: a két partner egymás mellett látható az őket összekötő jelekkel, valamint a **Partnerek összevonása** és a **Nem duplikátum** gombbal. Egy második sáv a hasonlónak tűnő nem hitelesített nevek összevonását javasolja, az **Egyesíted egybe?** és az **Elvetés** lehetőséggel.
 
-### Extra lépések banki tranzakcióknál
+A Partnerek oldalon lévő **Partnerek összevonása** gomb igény szerint lefuttatja az AI-keresést. Csak javasol: magától soha semmit nem von össze, az **Előzmények** pedig a korábbi kereséseket mutatja.
 
-Amikor egy banki tranzakció feldolgozásra kerül (nyílt banki kapcsolaton keresztül vagy kivonatfeltöltés után), két további automatikus kapcsolási ellenőrzés fut az alternatívnév-lépés előtt:
+## Partnerek összevonása
 
-1. **Saját-számlás IBAN-ellenőrzés** - ha a tranzakción lévő IBAN vagy számlaszám megegyezik az Ön egyik saját cég-bankszámlájával, a tranzakció a saját számlái közötti belső átutalás: egy speciális **Saját cég** partnerhez kapcsolódik, megkapja a **Belső átvezetés** típust, és automatikusan **Nincs számla szükséges** jelölést kap (lásd lentebb a *Belső átvezetések a saját számlái között* szakaszt).
-2. **Hitelesített-partner IBAN-egyezés** - ha az IBAN megegyezik egy hitelesített partner rekordján tárolttal (a partner részletoldalának **Elérhetőség és bankadatok** szakasza), a tranzakció automatikusan ahhoz a partnerhez kapcsolódik, további művelet nélkül.
-
-A partner banki IBAN-jainak hozzáadása tehát ugyanolyan értékes, mint az alternatív nevek hozzáadása: egyetlen elmentett IBAN azt jelenti, hogy attól a partnertől minden jövőbeli bejövő vagy kimenő átutalás automatikusan hitelesítve lesz.
-
-## Belső átvezetések a saját számlái között
-
-Amikor két saját bankszámlája között mozgat pénzt, a tranzakció „másik fele" a saját cége - nem valódi szállító vagy vevő. Az AI Finance Team ezt egy speciális **saját cég partnerrel** kezeli: ez egy háttérben tárolt rekord, amely az Ön egyik [cégét](/master-data-entities) képviseli, így az átutalás valós rekordhoz kapcsolódhat felesleges partner létrehozása nélkül.
-
-- **A felismerés automatikus és azonosító-alapú.** Ha a tranzakció másik számlája (IBAN vagy számlaszám alapján) megegyezik az egyik cégén tárolt bankszámlával, a tranzakció ahhoz a céghez tartozó saját cég partnerhez kapcsolódik, megkapja a **Belső átvezetés** típust, és **Nincs számla szükséges** jelölést kap. Ehhez tartsa naprakészen a cégek bankszámláit a **Törzsadatok → Cégek** alatt.
-- **A „Saját cég" jelzés.** Ahol a partner megjelenik - a tranzakció részletoldalán, a partnerválasztóban -, a szokásos hitelesített jelzés helyett kék **Saját cég** jelzést mutat.
-- **Nem lógnak ki.** A saját cég partnerek **nem** jelennek meg a **Törzsadatok → Partnerek** alatt (nem valódi üzleti partnerek), és **kimaradnak a partner folyószámlából** (az önmagával szembeni egyenleg értelmetlen). A partnerválasztóban a lista tetején egy rögzített **Saját cégek** csoportban vannak, így egy kattintással bármelyik cégéhez hozzárendelhet egy átutalást.
-- **Kézi megjelölés.** Ha egy tranzakció tévesen közönséges partnerként rögzült, pedig valójában a saját cége, nyissa meg az adott partner részletoldalát, és a **Saját cég** szakaszban válassza ki a képviselt céget. Ettől kezdve saját cég partnerként viselkedik, és az adott számlán a jövőbeli átutalások automatikusan felismerődnek.
-
-> Ez előretekintő: a jövőbeli tranzakciókra vonatkozik. A meglévő sorok nem dolgozódnak fel újra automatikusan - szükség esetén rendelje hozzá őket a tranzakció partnerválasztójából.
-
-## Magánszemélynek kiállított számlák
-
-Amikor magánszemélynek állít ki számlát, a NAV **egyáltalán nem közöl vevőt** - sem nevet, sem adószámot. A jogszabály nem engedi a személyes adatok jelentését, így a NAV mindössze annyit közöl, hogy a vevő magánszemély. Ezek a számlák korábban partner nélkül érkeztek, ezért üres Partner oszloppal kerültek az RLB- és Hessyn-exportba, és nem jelentek meg a partner folyószámlán.
-
-Ezt egyszer kell beállítania: kijelöl egy partnert, amelyre mindegyik könyvelődjön.
-
-- **A beállítás.** Hozzon létre (vagy válasszon) egy partnert - a legtöbb iroda *Magánszemély* néven tartja -, nyissa meg a részletoldalát, és a **Különleges szerep** szakaszban válassza a **Magánszemély** lehetőséget. Munkaterületenként egy partner töltheti be a szerepet.
-- **Mi változik.** Ettől kezdve minden olyan NAV-os bevételi számla, amelyet a NAV magánszemélynek kiállítottként jelent, erre a partnerre könyvelődik. Névvel jelenik meg az RLB- és Hessyn-exportban, és látszik a partner folyószámlán, így a magánszemélyekkel szembeni követelések nem tűnnek el.
-- **A felismerés a NAV adatából történik, nem üres mezőből.** A számla csak akkor kerül ide, ha a NAV kifejezetten magánszemélyként jelenti a vevőt. A pusztán hiányosan érkező számlákat soha nem sodorja be.
-- **Ezen a partneren fizetés párosítása soha nem történik.** Sok különböző személyt képvisel, ezért az ide sorolt számlák nem tartoznak össze. Az AI Finance Team nem javasol és nem hoz létre automatikusan párosítást pusztán a közös partner alapján.
-- **Nem tanul a párosításból.** Ha kézzel párosít egy magánszemélytől érkező fizetést az ilyen számlák egyikéhez, semmi nem rögzül - sem banki név, sem számlaszám. Ez szándékos: a partner közös, így bármi, amit rátanulnánk, az összes többi ide könyvelt tételre is átragadna.
-
-> **Ha tudja, ki a vevő, használjon valódi partnert.** Nagyobb értékű, eseti értékesítésnél - gépjármű, eszköz - hozzon létre rendes partnert, és arra állítsa a számlát. Így valódi folyószámlasort kap egy valódi követeléshez. A magánszemély partner azokra való, akiket soha nem fog egyenként azonosítani, például a mindennapi online rendelésekre.
-
-> Ez előretekintő: a beállítás pillanatától érkező számlákra vonatkozik. A rendszerben már meglévő számlák nem kerülnek át.
-
-## Partner hitelesítése helyben
-
-Ha a ⚠ Nem hitelesített jelzést egy dokumentum áttekintése közben veszi észre, megoldhatja anélkül, hogy elhagyná a dokumentumot.
-
-### Számláról
-
-1. Nyissa meg a számla részletoldalát.
-2. A **Partner** legördülő menüben válassza ki a hozzárendelni kívánt hitelesített partnert.
-3. A legördülő menü automatikusan ment.
-
-### Banki tranzakcióról
-
-1. A Tranzakciók oldalon kattintson bármelyik sorra a részletpanel megnyitásához.
-2. A panel tetején lévő **Partner** választóban keressen rá és válassza ki a hitelesített partnert.
-3. A választó automatikusan ment, és a hitelesített pirula azonnal megjelenik.
-
-A nyers banki név (a szöveg, amelyet a bank ténylegesen küldött) megőrződik a választó legördülő menüjének fejlécében „Eredeti név: …" formában, így láthatja, mit nyertek ki eredetileg.
-
-### A bankszámlakivonat-szerkesztőből
-
-Egy feltöltött kivonat szerkesztésekor (Kivonatok fül → kattintson egy kivonatra → **Sorok szerkesztése**) minden sor **Partner** oszlopa ugyanazt a partnerválasztót használja. Minden szerkesztés együtt mentődik, amikor a **Mentés** gombra kattint.
-
-### Olyan tranzakciókhoz, amelyeknek valóban nincs partnere
-
-A banki díjak és kamatok nem tartoznak partnerhez. A választó tetején van egy dedikált **- Nincs partner (pl. banki költség) -** lehetőség - ennek kiválasztása tisztán törli a meglévő kapcsolatot. (A saját számlák közötti átutalások mások - ezek egy saját cég partnerhez kapcsolódnak, nem a „nincs partner" opcióhoz.)
-
-### A hitelesített kapcsolat újrahasznosítása legközelebb
-
-Amikor egy nem hitelesített partnerről egy hitelesített partnerre rendel át, az AI Finance Team automatikusan hozzáadja az eredeti nem hitelesített nevet alternatív névként a hitelesített partnerhez. Az ugyanazon névről érkező következő számla vagy tranzakció hitelesítve lesz az Ön bármilyen művelete nélkül.
-
-Alternatívaként kattintson a **Hitelesítés most →** gombra (bármelyik nem hitelesített választó alatt látható), hogy közvetlenül a Partnerek oldalra lépjen, ahol létrehozhat egy új partnert, vagy a nevet egy meglévőhöz kapcsolhatja.
-
-## Duplikált partnerek összevonása
-
-Ha két hitelesített partner ugyanazt a valós céget képviseli, összevonhatja őket - vagy a Partnerek oldalon lévő **adószám-ütközés sávból**, vagy közvetlenül a partner részletoldaláról.
-
-### A partner részletoldaláról
-
-1. Nyissa meg azt a partnert, amelyet **el** szeretne vonni (a duplikátumot, amelyet meg szeretne szüntetni).
-2. Kattintson az **Összevonás másikkal…** gombra az oldal fejlécében.
-3. A párbeszédben keressen rá a megtartani kívánt partnerre - név vagy adószám szerint. Kattintson a találatra az eredmények között.
-4. Egy megerősítő képernyő összefoglalja, mi fog történni. Kattintson az **Összevonás** gombra a megerősítéshez, vagy a **Vissza** gombra egy másik cél kiválasztásához.
-
-### Mi történik az összevonás során
+Összevonhat egy javaslatból, vagy nyissa meg a partnert, kattintson az **Összevonás másikkal…** gombra, keressen rá a másik partnerre név vagy adószám alapján, és válassza ki. A párbeszédablak ezután megkérdezi, melyiket tartsa meg a kettő közül (**Megtartás**): ha a partner oldaláról indult, az a partner kapja a **Megtartás** jelölést, amelyikből kiindult, amíg a másikra nem kattint. Erősítse meg az **Összevonás** gombbal; ezután visszakerül a Partnerek listára.
 
 Amikor az A partnert a B partnerbe vonja össze:
 
-- **Az A-hoz csatolt összes kapcsolódó partnerrekord** újra a B-hez csatolódik.
-- **Az A neve** alternatív névként őrződik meg a B-n (egy „manuális" jelzéssel), így az A nevét említő jövőbeli számlák és tranzakciók továbbra is automatikusan párosulnak.
-- **Az A adószáma, IBAN-jai és egyéb azonosító mezői** nem másolódnak át - a B értékei maradnak változatlanul. Utólag tekintse át a B Elérhetőség és bankadatok szakaszát, ha az A-nak volt olyan információja, amely a B-nek nem.
-- **Az A archiválódik** egy állandó visszahivatkozással a B-re (így az előzmények naplóban az A-ra mutató hivatkozások továbbra is működnek).
-- **Az A-t érintő minden függőben lévő adószám-ütközési javaslat** automatikusan elvetésre kerül.
+- az A-hoz kapcsolt minden név, alternatív név és névminta átkerül a B-hez, az A neve pedig a B alternatív neve lesz;
+- a B üres adószáma, országa és címe az A adataiból töltődik ki; ha a kettőnek eltérő az adószáma, a rendszer megkérdezi, melyiket tartsa meg;
+- az A bankszámlái **nem** másolódnak át: utána ellenőrizze a B **Felismerés** fülét;
+- az A archiválódik, a B-re mutató hivatkozással, és az A-t érintő összes függőben lévő duplikációs javaslat elvetésre kerül.
 
-Az összevonás egyirányú, és nem vonható vissza - ellenőrizze, hogy a megfelelő forrás és cél van-e megadva, mielőtt megerősíti.
+Különleges szerepű partner nem vonható össze. Az összevonás egyirányú, és nem vonható vissza.
 
-> Az összevonáshoz **Könyvelő** vagy **Könyvelő admin** szerepkör szükséges.
+## Archiválás
+
+Hitelesített partnert a listában a sorából archiválhat. A hozzá kapcsolt nevek visszakerülnek a nem hitelesítettek közé. A partnert később visszaállíthatja (**Archiváltak megjelenítése**, majd **Visszaállítás**), de a kapcsolatok maguktól nem állnak helyre. Partnert törölni nem lehet.
+
+## Átvezetés a saját számlái között
+
+Amikor két saját bankszámlája között mozog pénz, a másik fél az Ön saját cége, nem szállító vagy vevő. Az AI Finance Team az ilyen tranzakciót felesleges partner létrehozása helyett az Ön egyik [cégéhez](/master-data-entities) kapcsolja:
+
+- **A felismerés automatikus, és a számlaszámon alapul.** Ha a tranzakció másik bankszámlája az Ön egyik cégén van elmentve, a tranzakció ahhoz a céghez kapcsolódik. Ugyanazon cég két bankszámlája között ezenfelül az **Átvezetés** típust és a **Nincs számla szükséges** jelölést is megkapja. Tartsa naprakészen a cégek bankszámláit a **Törzsadatok → Cégek** alatt.
+- **A Saját cég jelzés.** Ahol a partner megjelenik, a hitelesített jelzés helyett kék **Saját cég** jelzést mutat.
+- **Nincsenek útban.** A saját cég partnerek nem jelennek meg a Partnerek között, és kimaradnak a folyószámlából. A partnerválasztóban a lista tetején, egy rögzített **Saját cégek** csoportban találhatók.
+- **Kézi megjelölés.** Ha egy tranzakció olyan hétköznapi partner alatt rögzült, amely valójában az Ön egyik cége, nyissa meg a partnert, állítsa a **Partner típusa** értékét **A saját egyik cégünk** lehetőségre, és válassza ki a céget. A partner ezután eltűnik a Partnerek listából, az adott bankszámlán érkező jövőbeli átutalásokat pedig a rendszer automatikusan felismeri.
+
+> Ez a beállítástól kezdve érvényes. A meglévő tranzakciókat a rendszer nem dolgozza fel újra; szükség esetén rendelje hozzá őket a tranzakció partnerválasztójából.
+
+## Magánszemélynek kiállított számlák
+
+Amikor magánszemélynek állít ki számlát, a NAV **egyáltalán nem közöl vevőt**: a magyar jogszabályok nem engedik a személyes adatok jelentését, így a NAV csak annyit közöl, hogy a vevő *magánszemély*. Partner nélkül ezek a számlák üres partnerrel kerültek az RLB- és Hessyn-exportba, és soha nem jelentek meg a folyószámlán.
+
+Ezt egyszer kell rendeznie, egy olyan partner kijelölésével, amelyre mindegyik könyvelődik:
+
+- **Beállítás.** Hozzon létre vagy válasszon ki egy partnert (a legtöbb iroda *Magánszemély* néven tartja), és a **Partner típusa** alatt válassza az **Egyenként nem azonosítható partnerek csoportját képviseli** lehetőséget, **Magánszemély** szereppel. Munkaterületenként csak egy partner töltheti be ezt a szerepet.
+- **Mi változik.** Ettől kezdve minden olyan NAV-os bevételi számla, amelyet a NAV magánszemélynek kiállítottként jelent, erre a partnerre könyvelődik, névvel szerepel az exportokban, és megjelenik a folyószámlán.
+- **A felismerés a NAV adatából történik, nem üres mezőből.** A pusztán hiányosan érkező számlát soha nem sorolja ide a rendszer.
+- **Ez a partner soha nem alapja a fizetések párosításának.** Sok különböző személyt képvisel, ezért két számla nem számít összetartozónak attól, hogy ez a közös partnerük.
+- **Soha nem tanul a párosításból.** Semmilyen banki név vagy számlaszám nem rögzül rajta, mert bármi, amit megjegyezne, mindenkire vonatkozna, aki ide van könyvelve.
+
+> **Ha tudja, ki a vevő, használjon valódi partnert.** Nagyobb értékű, eseti értékesítésnél, például egy gépjármű eladásakor, hozzon létre rendes partnert. A magánszemély partner azokra a vevőkre való, akiket soha nem fog egyenként azonosítani, például a mindennapi online rendelésekre. A beállítás pillanatától érkező számlákra vonatkozik.

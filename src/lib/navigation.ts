@@ -153,7 +153,7 @@ export const navigation: NavItem[] = [
   // "Riportok" is the help centre's term. The app's own sidebar says "Jelentések"
   // (nav.workspace.reports) — the article quotes that label verbatim where it
   // tells the reader which menu item to click.
-  { slug: 'reports', title: { en: 'Reports', hu: 'Riportok', de: 'Berichte' } },
+  { slug: 'reports', title: { en: 'Reports', hu: 'Jelentések', de: 'Berichte' } },
   { slug: 'ledger', title: { en: 'Ledger Explorer', hu: 'Főkönyvi kivonat', de: 'Hauptbuch-Explorer' } },
   // Keyboard date entry (keyboard-date-entry): the compact digit forms and the
   // `..` range shorthand. The in-app hint is "Date formats" / "Dátumformátumok"

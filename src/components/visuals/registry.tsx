@@ -14,6 +14,11 @@ import { MatchingOutcomeFigure, MatchingQueueFigure, TransactionMatchFigure } fr
 import { PaymentFileFigure, PaymentFlowFigure } from './payments'
 import { ApprovalRulesFigure, RoutingLadderFigure } from './approval-setup'
 import { InvoiceLifecycleFigure, InvoiceListFigure } from './invoices'
+import { CompanyMatchFigure, CompanyRecognitionFigure } from './companies'
+import { TransactionTypeEditorFigure, TransactionTypeFlowFigure } from './transaction-types'
+import { ReportPageFigure, ReportStructureFigure } from './reports'
+import { AccessDecisionFigure, RolesTabFigure } from './roles'
+import { PartnerRecognitionFigure, PartnerRecognitionFlowFigure } from './partners'
 
 type WithLocale = { locale: Locale; children?: React.ReactNode }
 
@@ -32,6 +37,16 @@ const FIGURES: Record<string, (props: WithLocale) => React.ReactNode> = {
   RoutingLadderFigure,
   InvoiceLifecycleFigure,
   InvoiceListFigure,
+  CompanyMatchFigure,
+  CompanyRecognitionFigure,
+  TransactionTypeFlowFigure,
+  TransactionTypeEditorFigure,
+  ReportStructureFigure,
+  ReportPageFigure,
+  AccessDecisionFigure,
+  RolesTabFigure,
+  PartnerRecognitionFlowFigure,
+  PartnerRecognitionFigure,
 }
 
 export function visualComponents(locale: Locale) {
