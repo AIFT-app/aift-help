@@ -67,7 +67,22 @@ export function DialogBody({
   children: React.ReactNode
 }) {
   return (
-    <div className={clsx('mt-4 min-h-0 flex-1 overflow-y-auto', className)}>
+    <div
+      className={clsx(
+        // `overflow-y-auto` forces overflow-x to `auto` as well (CSS Overflow 3:
+        // a computed `visible` on one axis becomes `auto` when the other is not
+        // `visible`), so this box clips on ALL FOUR sides. Catalyst focus rings
+        // are drawn outside the control's border box (`outline-2` +
+        // `outline-offset-2` = 4px on checkboxes, switches and buttons), so a
+        // control sitting flush against an edge of the body lost part of its
+        // ring. Reserve 6px of clip room and pull the box back out by the same
+        // amount, which leaves the content column exactly where it was.
+        // mt-2.5 + pt-1.5 reproduces the original mt-4 top gap.
+        'mt-2.5 min-h-0 flex-1 overflow-y-auto',
+        '-mx-1.5 px-1.5 pt-1.5 -mb-1.5 pb-1.5',
+        className
+      )}
+    >
       {children}
     </div>
   )
