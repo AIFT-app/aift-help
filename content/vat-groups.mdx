@@ -1,0 +1,45 @@
+# VAT groups (Hungarian group VAT registration)
+
+Under a Hungarian VAT group (csoportos áfaalanyiság) several companies share one NAV Online Számla account. NAV therefore delivers every member's invoices through one connection, and AI Finance Team has to decide, invoice by invoice, which company each one belongs to. This page explains how to set a VAT group up and how that decision is made.
+
+You find VAT groups under **Master data › VAT groups**. A group's page has three tabs, in the order you work through them: **NAV connection**, **Members** and **Filing**.
+
+## 1. NAV connection
+
+You connect NAV on the group, not on one of its companies, because the NAV account belongs to the group. The group tax number (csoportazonosító) has a **5** as its 9th digit. The credentials are the same as for a single company's connection (see [NAV Online Számla](/nav-online-szamla)).
+
+## 2. Members
+
+NAV has no list of a group's members. Members appear as invoices arrive: when an invoice names a member, it shows up on the **Members** tab. For each member you make two decisions:
+
+- **Match to a company…**: which of your companies the member is. If the company does not exist yet, **New company from this** creates it.
+- **Not a member of this group**: the member was only suggested from invoices, and the company is not actually in the VAT group (for example, **Check with NAV** did not confirm it). Such members move to the **Not group members** group, and **Is a member after all** brings them back. The company itself stays in **Master data › Companies**, and invoices from its own NAV connection are not affected. When an invoice on the group's NAV account carries this member's tax number and a company with that tax number exists here, the invoice goes to that company and you can check it on the **Filing** tab. If there is no such company, it does not become an invoice here.
+
+When you match a member to a company, the waiting invoices on the group's NAV account that NAV attributed to that member **and** those whose printed name is exactly that company's name are both filed to it. The confirmation says how many invoices that was. Invoices that are already filed never move.
+
+**Check with NAV** asks NAV, one member at a time, whether the company really is in the group. You choose the group representative from the matched members (**Make group representative**).
+
+When every member is sorted, the page stays on the **Members** tab and a **Go to filing** button takes you on when invoices are waiting.
+
+## 3. How an invoice finds its company
+
+Under a VAT group only the group tax number is mandatory on the invoice. Suppliers do not always print the member's own tax number, and not consistently: the same buyer name has appeared with two different member numbers. The company name printed on the invoice is who the supplier actually billed, so AI Finance Team uses this order:
+
+1. **A remembered choice.** If you filed a supplier and buyer-name pair before with **Remember my choice** ticked, the next such invoice goes to the same company.
+2. **The company name on the invoice.** If the buyer's name (the supplier's, on an outgoing invoice) matches a matched company's legal name, short name or one of its alternative names, and that points to **exactly one** company, the invoice goes there. The comparison ignores case, accents, punctuation and the legal-form ending (Kft., Zrt.), but never accepts a partial or merely similar name.
+3. **The member's own tax number.** Only when the name does not decide does the member tax number count, if the supplier printed one.
+4. **Your decision.** When neither is clear, the invoice waits on the **Filing** tab.
+
+You add a company's alternative names on its own page, under **Alternative names**. If a supplier keeps writing the buyer differently, adding that spelling as an alternative name files its invoices automatically from then on.
+
+An invoice that has been filed never moves to another company later, even if you change a name or a match.
+
+## 4. Filing
+
+The **Filing** tab groups waiting invoices by supplier and buyer name, so one decision files several invoices. When the buyer name matches a matched company's name, that company is already selected (**Name matches**). When the invoice carries the tax number of a company you marked as not a group member, and that company exists here, it is selected instead (**Same tax number**). When the same name has been used for several companies, nothing is guessed.
+
+### When the name and the tax number disagree
+
+Sometimes the printed company name and the member tax number point to two different companies. The invoice then goes to the company the name names, and it is listed under **Name and tax number disagree** on the **Filing** tab. The same list shows invoices filed by the tax number of a company you marked as not a group member (**Filed to … by the tax number**). Check these, and if one is wrong, use **Open invoice** and move it to the right company on the invoice's own page.
+
+> Filing decides which company's books and VAT return an invoice goes into. If you are unsure which member an invoice belongs to, ask the group representative or your accountant.

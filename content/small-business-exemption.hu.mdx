@@ -1,0 +1,81 @@
+# Alanyi adómentesség
+
+A törvényi bevételi értékhatár alatt maradó vállalkozás választhatja, hogy nem számít fel ÁFA-t - ez az **alanyi adómentesség** (Ausztriában és Németországban a *Kleinunternehmerregelung*). Az ilyen cég ÁFA nélkül állít ki számlát, előzetesen felszámított ÁFA-t nem von le, és rendszerint ÁFA-bevallást sem ad be. Az AI Finance Team ezt a **cég** (a jogalany) beállításaként tárolja, és ha be van kapcsolva, az ÁFA-kódolás automatikusan ehhez igazodik.
+
+Ez a cikk bemutatja, mit tesz a kapcsoló, mit szándékosan nem tesz, a törzsadatokat létrehozó sablont, miért kerülnek egyes sorok szándékosan ellenőrzésre, hogyan jelennek meg a könyvelendő összegek, és mi a teendő, ha az ügyfél kikerül az alanyi mentességből.
+
+## Hol található a kapcsoló
+
+Nyissa meg a **Törzsadatok → Cégek** menüpontot, válassza ki a céget, majd az **Adó** fület. Az **ÁFA-beállítások** alatt jelölje be az **Alanyi adómentes** lehetőséget. Két dátummező jelenik meg:
+
+- **Mentesség kezdete** - az első ÁFA-dátum, amelyre a mentesség vonatkozik.
+- **Mentesség vége** - az utolsó. Hagyja üresen, amíg a mentesség nyitott végű.
+
+Azt, hogy egy adott számla mentesnek minősül-e, a rendszer **számlánként, a számla ÁFA-dátuma alapján** dönti el ehhez az időszakhoz viszonyítva. Az időszak előtti vagy utáni dátumú számla közönséges, adóköteles bizonylatként kezelendő. Ha egy számla ÁFA-dátumát kézzel módosítja, a módosított dátum dönt.
+
+Ne tévessze össze az **Alanyi adómentes szállító** partner ÁFA-csoporttal: az egy *szállító* mentességét írja le, és az ÁFA-kód öt elemének egyike. A cég kapcsolója az *ügyfél saját* státuszáról szól.
+
+## Mit tesz a kapcsoló
+
+Amíg a mentesség egy sor ÁFA-dátumán érvényben van, pontosan egy dolog történik: a sor **Termék / Szolgáltatás ÁFA-csoportja** az **Alanyi adómentesség (saját cég)** csoport lesz - ez a csoport 100%-ban le nem vonható. A rendszer az első használatkor létrehozza a munkaterületen. A kulcs továbbra is a bizonylatból származik. Az, hogy a sor melyik ÁFA-kódot kapja, már nem függ a partner csoportjától és a számítási módtól: az alanyi mentes cég sorai a **Belföldi** partnercsoportra és a **Normál** módra oldódnak fel (lásd a sablont lent).
+
+**Kimenő** soroknál egy további lépés: a kulcs az **Alanyi adómentes (AAM)** kulcselem lesz, a mentesség saját kulcsa, kivéve, ha a bizonylaton más kulcs látszik. A számláról kiolvasott tárgyi adómentes (TAM) vagy ÁFA hatályán kívüli kulcs megmarad. A nullánál nagyobb ÁFA is megmarad, és a sor jelölést kap (lásd alább).
+
+Az eredmény az, amit a könyvelő kézzel is tenne: a beszerzések **bruttó összege a nettó mezőbe kerül, nulla ÁFA-val**, az értékesítések pedig a mentesség kulcsát viselik, saját bevallási sorral.
+
+## A sablon
+
+A mentességhez néhány ÁFA-törzsadat szükséges: a mentes termék/szolgáltatás csoport, a három mentességi kulcselem (alanyi adómentes, tárgyi adómentes, ÁFA hatályán kívüli), valamint néhány ÁFA-kód, mind a Belföldi partnercsoporton és a Normál módon:
+
+- **Kimenő oldal:** kulcsonként egy kód. Az alanyi adómentes (AAM) kód az alapértelmezett minden értékesítésnél, bárki a vevő. A tárgyi adómentes, az ÁFA hatályán kívüli, a 0%-os és az adóköteles kulcsú kódok arra az esetre valók, ha a számlán ilyen kulcs látszik.
+- **Bejövő oldal:** egyetlen kód, az alanyi adómentes (AAM). Minden belföldi beszerzés erre oldódik fel. A sor megtartja a bizonylaton szereplő kulcsot és ÁFA-összeget; csak a kód egységes.
+
+A mentes cégnek nincs pénzforgalmi kódja és nincs az *Alanyi adómentes szállító* csoportra épülő kódja: alanyi adómentes cég nem választhat pénzforgalmi elszámolást, az a partnercsoport pedig a szállítókat írja le. A lista a kódok által használt közönséges kulcsokat is mutatja, *Megvan* jelöléssel.
+
+Ha a kapcsoló be van kapcsolva, az Adó fül jelzi, hogy ezek megvannak-e; ha valami hiányzik, egy sárga figyelmeztetés mutatja a tételek számát, a **Sablon átnézése** pedig megnyitja a listát.
+
+A sablonra két szabály vonatkozik:
+
+- **Pótolja a hiányokat, és csak a sajátját rendezi.** A meglévő ÁFA-kódok, kulcsok, csoportok és módok nem változnak. Egy kivétel van: a sablon korábbi változata által létrehozott, már nem szükséges kódok archiválódnak, ha egyetlen számlasor sem használja őket (*Archiválódik*). A még használt kód marad (*Használatban, marad*): futtassa le az **Alkalmazás a meglévő számlákra** funkciót, majd alkalmazza újra a sablont, és akkor archiválódik. Az Ön által létrehozott kódokhoz soha nem nyúl.
+- **Jóváhagyásra kerül, nem gépelésre.** Az értékek a szokásosak. Ön átnézi a listát, és a **Sablon alkalmazása** gombra kattint; semmi nem történik csendben.
+
+A sablon szándékosan **nem tartalmaz külföldi partnercsoportot és fordított adózású kombinációt**. Ettől működik a következő szakasz.
+
+Az AAM kódoknak **nincs bevallási soruk** (könyvelési kódjuk): ezekről a cég nem ad be ÁFA-bevallást. A többi kimenő kód átveszi a munkaterület saját, azonos kulcsú belföldi kódjának bevallási sorát, így egy mentes és egy adóköteles cég ugyanabban a munkaterületen ugyanúgy vallja be őket. Ha a munkaterületen nincs ilyen kód, a sorban *bevallási sor kitöltendő* áll; ezt a **Törzsadatok → ÁFA-kódok** alatt töltse ki.
+
+A kódok neve a munkaterület nyelvén jön létre, amely a munkaterület országát követi (magyar munkaterületen például *AAM-KI-27*, „Alanyi adómentesség sablon: kimenő, Belföldi, 27%”). A nyelvet a sablon alkalmazásakor olvassa ki a rendszer. A sablon korábban, más nyelven létrehozott kódjait átnevezi (*Átnevezés*), hacsak valaki nem módosította őket.
+
+A sablon alkalmazása után az Adó fül a következő lépésre mutat: **Alkalmazás a meglévő számlákra** (lásd lent).
+
+## Sorok, amelyek szándékosan ellenőrzésre kerülnek
+
+Az alanyi adómentes adózó levonási jog nélkül is ÁFA-fizetésre kötelezett a belföldi fordított adózású beszerzések, a Közösségen belüli beszerzések és a külföldről igénybe vett szolgáltatások után - a leggyakoribb eset a külföldi szoftver-előfizetés és a hirdetési platformok. Az AI Finance Team ezeket nem kódolja automatikusan: alanyi mentes ügyfeleknél ritkák, és egy hibás automatikus könyvelés rosszabb lenne egy jelölt sornál.
+
+Ezek a beszerzések soha nem kapnak automatikusan ÁFA-kódot: a külföldi partnercsoportba tartozó szállító, az a szállító, akinek az országa nem a munkaterületé (akkor is, ha még senki nem sorolta be), és a fordított adózású sor. A számlán saját szöveggel jelennek meg - *Az alanyi adómentes adózó itt ÁFA-fizetésre kötelezett, levonási jog nélkül* -, valamint teendőként a számla áttekintésén és a Mission Controlban. Egy ilyen sor kódolása:
+
+1. A **Tételek és ÁFA** fülön módosítsa a sor **Termék / Szolgáltatás** csoportját egy szokásos csoportra (például *Szolgáltatások*).
+2. Válasszon vagy hozzon létre hozzá egy közönséges, fizetendő ÁFA-kódot, például belföldi 27%-ot.
+
+A sor ettől kezdve **Kézi** jelölést visel, minden későbbi újrafuttatás során megőrzi a választását, és - mivel már nem a mentes csoportot hordozza - közönséges, ÁFA-t tartalmazó sorként kerül könyvelésre.
+
+Egy második jelölés - *ÁFA szerepel egy alanyi mentes cég kimenő számláján* - akkor jelenik meg, ha egy értékesítési sor ÁFA-t tartalmaz, miközben a cég mentes. Ez általában beállítási hiba, vagy olyan értékhatár-átlépés, amelyet még senki nem rögzített. Az AI Finance Team **nem** figyeli a bevételi értékhatárt.
+
+## Mit lát a számlán
+
+Semmi nem íródik át. A sor megtartja a bizonylaton szereplő nettó, ÁFA és bruttó összeget. Alattuk zölddel a **Könyvelendő** értékek mutatják, mi kerül a könyvelőprogramba, a riportokba és az eredménykimutatásba - mentes beszerzésnél a bruttó nettóként, nulla ÁFA-val. Az ÁFA-elemek melletti kis jelvény mutatja, honnan származnak: **Alanyi mentes cég** a kapcsoló hozzárendelésénél, **Kézi** az Ön felülírásánál.
+
+Ugyanezek a könyvelendő értékek megjelennek a Főkönyvi kivonat soroszlopaiban és az univerzális exportban (a *Booking Net Amount* és *Booking VAT Amount* oszlopokban). Az RLB- és a Hessyn-export ugyanígy könyveli a mentes sorokat.
+
+## Alkalmazás a már betöltött számlákra
+
+A kapcsoló bekapcsolása az ezután feldolgozott számlákra hat. A már a munkaterületen lévő számlákhoz használja az Adó fül **Alkalmazás a meglévő számlákra** gombját: válassza ki az időszakot, az **1. Előnézet** gombbal nézze meg, hány sor kapna új kódot (ekkor még semmi nem változik), majd kattintson a **2. Alkalmazás** gombra, amely csak az előnézet után válik elérhetővé. A kézzel választott ÁFA-kódú vagy termék/szolgáltatás csoportú sorok kimaradnak, és a rendszer megszámolja őket. Ami ezután kód nélkül marad, azt a számlalista **ÁFA-kódolás újrafuttatása** funkciója veszi fel.
+
+## Kikerülés a mentességből
+
+Ha az ügyfél átlépi az értékhatárt, állítsa a **Mentesség vége** mezőt a mentesség utolsó napjára, és mentsen. A későbbi ÁFA-dátumú számlák adókötelesként kezelendők; a korábbiak megtartják a kezelésüket. Ha az azt követő időszakból már voltak betöltött számlák, futtassa rájuk az **Alkalmazás a meglévő számlákra** funkciót.
+
+## Kapcsolódó cikkek
+
+- [ÁFA-törzsadatok](/vat-master-data) - az öt elem és az alanyi adómentes szállító partnercsoport.
+- [ÁFA-kódok a számlákon](/vat-codes-on-invoices) - az elemek javítása egy soron.
+- [ÁFA az exportokban](/vat-in-exports) - hogyan jutnak el a könyvelendő összegek a könyvelőprogramba.

@@ -1,6 +1,6 @@
 # A NAV Online Számla csatlakoztatása (Magyarország)
 
-Magyar cégek esetében az AI Finance Team közvetlenül a Nemzeti Adó- és Vámhivatal **NAV Online Számla** rendszeréből tudja importálni a számlaadatokat. Mivel a beszállítók jelentik a kimenő számláikat a NAV felé, a költség- (beszállítói) számlái gyakran **azelőtt** megjelennek az AI Finance Teamben, hogy feltöltené a PDF-et — és a saját kimenő számlái is automatikusan beérkeznek.
+Magyar cégek esetében az AI Finance Team közvetlenül a Nemzeti Adó- és Vámhivatal **NAV Online Számla** rendszeréből tudja importálni a számlaadatokat. Mivel a beszállítók jelentik a kimenő számláikat a NAV felé, a költség- (beszállítói) számlái gyakran **azelőtt** megjelennek az AI Finance Teamben, hogy feltöltené a PDF-et - és a saját kimenő számlái is automatikusan beérkeznek.
 
 Ez a kapcsolat **csak olvasható**. Az AI Finance Team kizárólag *olvassa* a számlaadatokat a NAV-tól. Soha nem állít ki, jelent, módosít vagy érvénytelenít számlákat az Ön nevében.
 
@@ -14,9 +14,9 @@ Ez a kapcsolat **csak olvasható**. Az AI Finance Team kizárólag *olvassa* a s
   - a technikai felhasználó **jelszava**,
   - a technikai felhasználó **XML aláírókulcsa** („aláírókulcs").
 
-> **Nincs** szüksége az XML cserekulcsra („cserekulcs") — azt csak számlák kiállításához használják, amit az AI Finance Team soha nem tesz.
+> **Nincs** szüksége az XML cserekulcsra („cserekulcs") - azt csak számlák kiállításához használják, amit az AI Finance Team soha nem tesz.
 
-A belépési adatait titkosítva, biztonságos páncélteremben tároljuk. **Mentés után senki nem tudja visszaolvasni őket** — sem Ön, sem a könyvelője, sem az, aki beírta. Ezért a kapcsolat szerkesztésekor mind a négy adatot újra meg kell adni.
+A belépési adatait titkosítva, biztonságos páncélteremben tároljuk. **Mentés után senki nem tudja visszaolvasni őket** - sem Ön, sem a könyvelője, sem az, aki beírta. Ezért a kapcsolat szerkesztésekor mind a négy adatot újra meg kell adni.
 
 ## NAV technikai felhasználó létrehozása
 
@@ -30,11 +30,11 @@ A belépési adatait titkosítva, biztonságos páncélteremben tároljuk. **Men
 1. A munkaterület oldalsávjában nyissa meg a **Törzsadatok → Cégek** menüpontot, és válassza ki a magyar cégét.
 2. Görgessen le a **NAV Online Számla** szakaszhoz.
 3. Adja meg az adószámot, a technikai felhasználó nevét, jelszavát és az aláírókulcsot.
-4. Kattintson a **Mentés és ellenőrzés** gombra. Az AI Finance Team rögtön ellenőrzi a belépési adatokat a NAV-nál, és le is tölti az utolsó néhány számlát — így azonnal látja, hogy működik-e a kapcsolat, vagy mi a NAV hibaüzenete.
+4. Kattintson a **Mentés és ellenőrzés** gombra. Az AI Finance Team rögtön ellenőrzi a belépési adatokat a NAV-nál, és le is tölti az utolsó néhány számlát - így azonnal látja, hogy működik-e a kapcsolat, vagy mi a NAV hibaüzenete.
 5. Válassza ki a **kezdő dátumot**: meddig menjünk vissza az előzményekben. Alapértelmezés 3 hónap, legfeljebb 12 hónap. A záró dátum mindig a mai nap.
 6. Nézze meg a **becsült számlaszámot** az adott időszakra, majd kattintson a **Szinkron indítása** gombra.
 
-A szinkron **csak az indítás után** kezdődik el — a nagyobb előzmény-letöltés soha nem indul el magától. Utána az AI Finance Team rendszeresen lekérdezi a NAV-ot, és importálja mind a **kimenő** (értékesítési), mind a **bejövő** (beszállítói) számláit.
+A szinkron **csak az indítás után** kezdődik el - a nagyobb előzmény-letöltés soha nem indul el magától. Utána az AI Finance Team rendszeresen lekérdezi a NAV-ot, és importálja mind a **kimenő** (értékesítési), mind a **bejövő** (beszállítói) számláit.
 
 > **Miért „~" a számlaszám előtt?** A NAV nem ad meg pontos darabszámot, csak lapozási információt, ezért becsült értéket tudunk mutatni. Az időszak a NAV-hoz beérkezés dátuma szerint számít, nem a számla kelte szerint.
 
@@ -43,11 +43,11 @@ A szinkron **csak az indítás után** kezdődik el — a nagyobb előzmény-let
 ## Mi történik az importált adatokkal
 
 - **A csak NAV-os számlák valódi főkönyvi tételekké válnak** még azelőtt, hogy bármilyen PDF létezne. Ezek *dokumentum nélküliként* jelennek meg, amíg egy megfelelő PDF-et fel nem töltenek.
-- Amikor Ön (vagy a beszállítója dokumentuma) később feltölti a **PDF-et** egy már NAV-ról beérkezett számlához, a kettő **egyetlen számlává egyesül** — nincs duplikáció. A PDF lesz a megtekinthető dokumentum; a NAV hatóságilag validált összegei maradnak a mértékadók.
+- Amikor Ön (vagy a beszállítója dokumentuma) később feltölti a **PDF-et** egy már NAV-ról beérkezett számlához, a kettő **egyetlen számlává egyesül** - nincs duplikáció. A PDF lesz a megtekinthető dokumentum; a NAV hatóságilag validált összegei maradnak a mértékadók.
 - **A bevétel és kiadás a NAV iránya alapján kerül beállításra**: azok a számlák, amelyeket a NAV az Ön cégénél *kimenőként* jelent, bevételek; a *bejövők* kiadások.
-- Ha a NAV számai egy kis tűréshatáron túl eltérnek egy feltöltött dokumentumtól, a számla **kivételként** kerül megjelölésre a könyvelője általi áttekintésre — semmit nem írunk felül csendben.
+- Ha a NAV számai egy kis tűréshatáron túl eltérnek egy feltöltött dokumentumtól, a számla **kivételként** kerül megjelölésre a könyvelője általi áttekintésre - semmit nem írunk felül csendben.
 
-- **A magánszemélynek kiállított számlák vevő nélkül érkeznek.** A NAV nem jelenthet személyes adatot, ezért csak annyit közöl, hogy a vevő magánszemély. Jelöljön ki egy partnert, amelyre könyvelődjenek, és többé nem maradnak partner nélkül — lásd: [Partnerek kezelése](/partners).
+- **A magánszemélynek kiállított számlák vevő nélkül érkeznek.** A NAV nem jelenthet személyes adatot, ezért csak annyit közöl, hogy a vevő magánszemély. Jelöljön ki egy partnert, amelyre könyvelődjenek, és többé nem maradnak partner nélkül - lásd: [Partnerek kezelése](/partners).
 
 ## Szüneteltetés vagy lecsatlakozás
 
@@ -57,7 +57,7 @@ A szinkron **csak az indítás után** kezdődik el — a nagyobb előzmény-let
 ## Megjegyzések és korlátozások
 
 - A NAV egy vevőnek csak azokat a bejövő számlákat mutatja, amelyeket a beszállítók ténylegesen jelentettek, és csak azokat a mezőket, amelyeket jelentettek. A legtöbb szabályos B2B számla 2020 közepe óta lefedett, de az, hogy „minden költségszámla automatikusan megjelenik", nem garantált. A *részlegesként* megjelölt számlák egy kis jelölést viselnek.
-- Egy módosító vagy érvénytelenítő (storno) számla saját bejegyzésként importálódik, az eredetihez kapcsolva — soha nem egyesül az eredeti számlába.
+- Egy módosító vagy érvénytelenítő (storno) számla saját bejegyzésként importálódik, az eredetihez kapcsolva - soha nem egyesül az eredeti számlába.
 
 ## Hibaelhárítás
 

@@ -1,0 +1,34 @@
+# Content checks for help articles.
+#
+# Blocks new em dashes (U+2014) in content/**/*.mdx copy. House style is a
+# hyphen. Fenced code, inline code and lone-dash table-cell placeholders are
+# ignored by the script itself.
+#
+# No setup-node and no npm install: the checker is dependency-free and the
+# runner ships a modern node. Same minimal action surface as
+# catalyst-drift-check.yml, with the checkout pinned to a full commit SHA.
+#
+# PRD: copy-em-dash-to-hyphen
+
+name: content-checks
+
+on:
+  pull_request:
+    branches: [staging, main]
+  push:
+    branches: [staging, main]
+
+permissions:
+  contents: read
+
+jobs:
+  no-em-dash:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout aift-help
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - name: No em dashes in article copy
+        run: node scripts/check-no-em-dash.mjs
