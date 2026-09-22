@@ -1,122 +1,136 @@
 # Reports
 
-Reports let you summarise invoice or bank transaction data by category across any date range. You can build a custom P&L, a cash-flow summary, or any other view that makes sense for a client, break it down by one of your own category lists, and drill into the numbers all the way down to individual documents.
+Reports summarise invoice or bank transaction data by category over any period. You can build a custom P&L, a cash-flow summary or any other view that makes sense for a client, break it down by one of your own category lists, and drill into the numbers down to individual documents.
+
+<ReportStructureFigure>
+How a report is built: categories add up into reporting lines, and calculated lines combine reporting lines.
+</ReportStructureFigure>
 
 ## Opening Reports
 
-In the workspace sidebar, click **Reports**. You will see a list of all reports created for this workspace. Each card shows the report name, its type (Invoice or Cash), and when it was last updated.
+In the workspace sidebar, click **Reports**. You see the reports of this workspace as cards, each with its name, its type (**Invoice** or **Cash**) and when it was last updated, and a search box to find one. Click a card to open the report. Hovering over a card shows **Edit name** and **Delete**; deleting a report also deletes its lines and cannot be undone.
 
-Click **Open** on any card to view the report.
+## Report types
 
-## Report Types
-
-| Type | What it aggregates |
+| Type | What it adds up |
 |------|--------------------|
 | **Invoice** | Invoice line items, grouped by invoice category |
 | **Cash** | Bank transactions, grouped by transaction category |
 
-Choose **Invoice** for a P&L-style view. Choose **Cash** for a cash-flow view. The two types use separate category sets. See [Categorising Invoices & Transactions](/categorization) for how categories are set up.
+Choose **Invoice** for a P&L-style view and **Cash** for a cash-flow view. The two types use separate category sets. See [Categorising Invoices and Bank Transactions](/categorization) for how categories are set up.
 
-## Choosing the Period
+### Where the numbers come from
 
-When you open a report, it runs automatically for the current year. Use the date control at the left of the toolbar to change the period: pick a preset such as this month or last quarter, or set an exact range. The report re-runs as soon as you choose, and the period travels in the page address, so a link you send to a colleague opens on the same period you were looking at.
+- **Invoice reports** add up the categorised line items of invoices whose extraction has finished, dated by the invoice's **issue date**. The amount is the line's net amount plus any VAT that cannot be deducted, in the workspace's base currency. **Income counts as plus and expenses as minus.**
+- **Cash reports** add up the bank transactions' amounts in the base currency, dated by the **booking date**.
 
-## Reading the Results
+Items without a base-currency amount yet, such as an invoice still waiting for its exchange rate, are left out until the rate arrives.
 
-Results appear as a table. Each row is a **reporting line**, a named line in the report structure:
+## The report page
 
-- **Regular lines** (indented) show the total for one or more categories over the selected period.
-- **Calculated lines** (shown with a Σ symbol, slightly bolder) are totals computed from other lines, for example Gross Profit = Revenue − Cost of Sales.
+<ReportPageFigure>
+An Invoice report for this year. The numbers match the list below. The lines and amounts are examples.
+</ReportPageFigure>
 
-Negative amounts appear in red.
+1. The period.
+2. **Break down by** one of your custom category lists.
+3. A reporting line: the total of its categories.
+4. A calculated line, marked **Σ**.
+5. **Edit report**.
+
+### Choosing the period
+
+A report opens on the current year. Use the date control at the left of the toolbar to change it: pick a shortcut such as **This month**, **Last month**, **Year to date** or **Last 30 days**, pick a month, a quarter or a year on the **Month**, **Quarter** or **Year** tab, or set an exact range on **Custom** and click **Apply range**. The report runs again as soon as you choose. The period travels in the page address, so a link you send to a colleague opens on the same period; the breakdown, filters and search do not travel with it.
+
+### Reading the results
+
+Each row is a **reporting line**, a named line of the report:
+
+- **Reporting lines** (indented) show the total of one or more categories over the period.
+- **Calculated lines** (marked **Σ**, in semibold) combine other lines with a formula, for example Gross profit = Revenue + Cost of sales.
+
+Negative amounts are shown in red.
 
 ## Breaking Down by a Custom Category List
 
-A report can be split into columns by one of your own category lists, so a single P&L answers "and how does this divide across cost centres?" without building a second report.
+A report can be split into columns by one of your own category lists, so a single P&L also answers "and how does this divide across cost centres?".
 
-Use **Break down by** in the toolbar and pick a list. Only lists that fit the report are offered: an Invoice report offers lists that apply to invoices, a Cash report offers lists that apply to bank transactions. If nothing is offered, the workspace has no matching list yet. See [Custom Categories](/custom-categories) for how to create one.
+Use **Break down by** in the toolbar and pick a list. Only lists that fit the report are offered: an Invoice report offers lists that apply to invoices, a Cash report lists that apply to bank transactions. When the workspace has no fitting list, the control is not shown. See [Custom Categories](/custom-categories) for how to create one.
 
-Every reporting line then shows one column per category, plus two more:
+Every reporting line then shows one column per category with activity in the period, plus two more:
 
 - **Unassigned** collects everything in the period that carries no category from that list. It is the honest remainder, not an error.
-- **Other (n)** appears when the list has more categories with activity than fit on screen. The report keeps the largest twelve and folds the rest into this one column, with `n` telling you how many were folded. Folding rather than hiding is deliberate: the columns still add up to the Total on every line.
+- **Other (n)** appears when more than twelve categories have activity. The report keeps the twelve largest and folds the rest into this one column, with `n` telling you how many were folded, so the columns still add up to the **Total** on every line.
 
-Under the table you will see how much of the period actually carries a value on this list, for example **62% assigned**, with the unassigned amount spelled out beneath it. Low coverage on a new list is normal. It rises as the AI works through incoming items, and you can cover the past from the list's own page.
+Lines with × or ÷ in their formula show only a total in a breakdown.
+
+A strip under the table shows how much of the period carries a value on this list, for example **62% assigned**, with the unassigned amount beside it. Low coverage on a new list is normal. It rises as the AI works through incoming items, and **Apply to existing items** on the list's page under **Master data → Custom Categories** covers the past.
 
 Two things to know while a breakdown is on:
 
-- **Clicking a row does not open the detail panel.** Drill-down works on the plain report. Remove the breakdown to drill into a number.
-- **Each column header has an "only this" link.** Click it to narrow the whole report to that single category. This also removes the breakdown, which is what you want when you are printing or exporting one cost centre's report on its own.
+- **Clicking a row does not open the detail panel.** Drill-down works on the plain report; remove the breakdown to drill into a number.
+- **Each column header has an "only this" link** (except **Other**). It narrows the whole report to that single category and removes the breakdown, which is what you want when you look at one cost centre on its own.
 
 ## Filtering
 
-**Filter** in the toolbar restricts the report to items carrying a particular category. Pick a value and the report re-runs; the choice appears as a chip next to the button, and the button shows how many filters are active. Remove one with the × on its chip, or choose **All** in the menu.
+**Filter** in the toolbar restricts the report to items carrying a particular category, one value per list. Pick a value and the report runs again; the choice appears as a chip next to the button, and the button shows how many filters are active. Remove one with the × on its chip, or choose **All** in the menu.
 
-Filters and a breakdown work together, and that combination is the useful one: break down by cost centre while filtered to a single business line, and you get that line's cost centre split. Filters on different lists narrow each other, so adding a second filter always shows less, never more.
+Filters and a breakdown work together: break down by cost centre while filtered to a single business line, and you get that line's cost-centre split. Filters on different lists narrow each other, so adding a second filter always shows less, never more.
 
-The list you are breaking down by is not in the filter menu, and the menu says so. Its categories are already the columns, so filtering to one of them would leave a single column equal to the Total. Use **only this** on the column header instead. If a workspace has just one list and you are breaking down by it, there is nothing left to filter on and the button does not appear at all.
+The list you are breaking down by is not in the filter menu, and the menu says so. Use **only this** on its column header instead. If there is nothing left to filter on, the button does not appear.
 
-## Showing Another Currency
+## Showing another currency
 
-**Display currency** converts the whole report for reading. The conversion uses one ECB rate for the end of the period, and the rate and its date are printed under the table, so a converted report always says what it was converted at. Ratio lines and the drill-down panel stay in the base currency, because a ratio has no currency and the detail should match the underlying documents.
+**Display currency**, above the table on the right, converts the whole report for reading. Choose a currency, or the default (the base currency, or the workspace's display currency if one is set under **Settings → Currency & FX**). The conversion uses one ECB rate for the end of the period, or today's rate for a period that has not ended yet, and the rate and its date are shown next to the selector. The choice is saved on the report for everyone who opens it.
 
-If no rate is available for the target currency, the report says so and stays in the base currency rather than showing a number it cannot stand behind.
+Ratio lines and the drill-down panel stay in the base currency, because a ratio has no currency and the detail should match the documents. If no rate is available, the report says so and stays in the base currency.
 
-## Drilling Down
+## Drilling down
 
-Click any row to open a detail panel on the right. The panel shows what is behind that number:
+Click a row to open a detail panel on the right:
 
-1. **Categories**, the categories that contribute to the line, with their totals and item counts. Click a category to expand it.
-2. **Items**, the individual invoices or transactions inside each category. Each item shows the date, partner, reference or invoice number, and amount. Click **PDF** to view the original document, or **→** to open the full invoice detail page.
+1. **Categories**: the categories behind the line, with their totals and item counts. Click one to expand it.
+2. **Items**: the invoice lines or bank transactions inside each category, newest first, with the date, partner, reference or invoice number and amount. On an Invoice report, **PDF** shows the original document and **→** opens the invoice in a new tab.
 
-Click the same row again to close the panel. Any active filter applies to the panel too, so what you see there is what makes up the number you clicked.
+For a calculated line, the panel shows the formula and the lines it is made of. Click the row again, or the × in the panel, to close it. Active filters apply to the panel too.
 
 ## Searching
 
-Use the search bar in the toolbar to filter the report. The search matches:
+**Search lines…** in the toolbar narrows the table to reporting lines whose name or one of whose categories matches; a name match is shown in bold. Once a detail panel is open, the search also filters its items by partner, invoice number, reference and description, and highlights the matches in yellow. A supplier name matches no line name, so the table shows no lines while the open panel still filters.
 
-- **Reporting line names**, rows whose name contains your query
-- **Category names**, rows that have a matching category assigned
-- **Items in the detail panel**: partner names, invoice numbers, references, and descriptions are all searchable once a line is expanded
+## Creating a report
 
-Matching text is highlighted in yellow throughout.
+Click **+ New Report**, enter a name, choose the type and click **Create Report**. The report starts with no lines; use **Edit report** to build it.
 
-## Creating a Report
+## Editing a report
 
-Any workspace member can create a new report. Click **New report**, enter a name, and choose the type. The report is created with no lines. Use **Edit** to build the structure.
+Click **Edit report** in the toolbar. The editor has two panels.
 
-## Editing a Report
+**Left: the lines.**
 
-Click the **Edit** button in the toolbar. The editor opens with two panels:
+- **Add reporting line** adds a line that adds up categories; **Add calculated line** adds one with a formula. New lines appear at the bottom.
+- Click a line's name to rename it; it saves when you click away.
+- Drag the handle (≡) to reorder, and use the bin icon to delete a line. Deleting a line that a formula uses shows a warning first.
 
-**Left panel: Lines**
+**Right: the categories of the selected line.** Click a reporting line's **Categories** button (it shows how many it has) to select it. The right panel lists:
 
-This is the list of reporting lines. You can:
+- **Assigned categories**: × removes one from this line.
+- **Used in other lines**: click one to add it to this line as well.
+- **⚠ Not yet assigned**: categories no line of this report uses. Click one to assign it. Unassigned categories are left out of this report.
 
-- **Add a reporting line** that aggregates one or more categories. Click **+ Reporting line**.
-- **Add a calculated line** that sums or subtracts other lines. Click **+ Calculated line**.
-- **Rename a line** by clicking the name and typing. The change saves when you click away.
-- **Reorder lines** by dragging the handle (≡) on the left of any row.
-- **Delete a line** with the trash icon on the right.
+**Formulas.** Click a calculated line's **Formula** button to open its formula under the row. **+ Add operand** adds a reporting line, and you set the operator between two operands: +, −, × or ÷. A formula can only use reporting lines, each once, and it is worked out strictly from left to right; a division by zero leaves the line blank.
 
-**Right panel: Categories**
+Remember the signs on an Invoice report: expenses are already negative, so profit is Revenue **+** Cost of sales, not minus.
 
-When a reporting line is selected, the right panel shows which categories are assigned to it. Categories are divided into three groups:
+Every change is saved as you make it; there is no undo. Click **Done editing** when you are finished, and the report runs with the new structure.
 
-- **Assigned to this line**, click × to remove one.
-- **Used in another line**, click to add it to this line as well.
-- **Not yet assigned**, shown with a warning icon. Click to assign.
+## Who can do what
 
-Categories not assigned to any line are excluded from all reports.
-
-For calculated lines, the right panel shows the expression builder instead. Add operands (other lines) and set the operator (+, −, ×, ÷) between them.
-
-Click **Done** when you are finished editing. The report runs immediately with the updated structure.
+Seeing reports needs the permission "View invoices and bank transactions". Creating, renaming, deleting and editing reports, and setting the display currency, need "Manage reports", which the accountant admin and the accountant hold by default. See [Roles and Permissions](/roles-and-permissions). AI assistants connected to the workspace can list and run reports too; see [AI Assistants (MCP)](/mcp).
 
 ## Tips
 
-- **Start with categories.** A reporting line is only as useful as the categories behind it. Make sure your invoice and transaction categories are well-defined before building report structure. See [Categorising Invoices & Transactions](/categorization).
-- **Use calculated lines for totals.** Build sub-totals such as Total Revenue and Total Costs as calculated lines, then combine them into a final total. This makes the drill-down more meaningful.
-- **Read the coverage line before trusting a breakdown.** A split across cost centres means something different at 90% assigned than at 20%, and the report tells you which one you are looking at.
-- **Search while drilling down.** Type a supplier name or invoice number in the search bar while the detail panel is open. Matching items stay visible and are highlighted.
-- **The date range does not affect the structure.** You can change dates freely without losing your line setup. Run the same report for different periods to compare.
+- **Start with categories.** A reporting line is only as useful as the categories behind it. See [Categorising Invoices and Bank Transactions](/categorization).
+- **Build totals from reporting lines.** A calculated line cannot use another calculated line, so a final result adds up the reporting lines themselves, for example Result = Revenue + Cost of sales + Operating costs.
+- **Read the coverage strip before trusting a breakdown.** A split across cost centres means something different at 90% assigned than at 20%.
+- **The period does not change the structure.** Change the dates freely to compare periods; the lines stay as they are.

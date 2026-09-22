@@ -1,24 +1,29 @@
 # Managing Companies
 
-Companies are your client's own businesses: the legal companies whose invoices and bank accounts this workspace books. Suppliers and customers are partners, not companies (see [Managing Partners](/partners)). Keeping companies accurate in AI Finance Team means the AI can tell which invoices are income and which are expenses, recognise transfers between your own accounts, and reduce the number of exceptions that need manual review.
+Companies are your client's own businesses: the legal companies whose invoices and bank accounts this workspace books. Suppliers and customers are partners, not companies (see [Managing Partners](/partners)). AI Finance Team uses your companies to decide which of them an invoice belongs to and whether it is income or an expense, to recognise transfers between your own bank accounts, and to know which accounts pay the supplier invoices in a payment file.
 
-## What Is a Company?
+<CompanyMatchFigure>
+How AI Finance Team finds the company on an invoice, from the strongest signal to the weakest, and how that decides the direction.
+</CompanyMatchFigure>
 
-A company is a record that represents one of your client's own legal companies. Each company in your workspace holds:
+## How AI Finance Team uses your companies
 
-- **Legal name** - the official registered name used on documents
-- **Country** - the country of registration
-- **Tax ID** - the domestic tax identifier (e.g. Hungarian adószám, German Steuernummer)
-- **EU VAT number** - the EU-issued VAT number in the standard format (e.g. HU12345678)
-- **Registration number** - the company registry number
-- **Alternative names** - other names the same party uses on invoices or bank statements (trade names, abbreviations, former names)
-- **Bank accounts** - IBAN and/or domestic account numbers used for payments
-- **Contact details** - address, website, email domain
-- **Matching context** - a free-text note that guides the AI when it encounters ambiguous documents
+When an invoice is read, AI Finance Team looks for one of your companies among the seller and the buyer:
 
-## Getting to Master Data
+1. **Tax number or EU VAT number**: the strongest signal. Either number identifies the company.
+2. **Registration number**, or one of the company's own bank accounts printed on the invoice.
+3. **Name or an alternative name**, the **email domain** or **website** printed on the invoice, and the name of a **representative** who signed it.
+4. When these do not settle it, the AI decides, using the company's **Matching context**.
 
-From the workspace sidebar, click **Master data**, then **Companies**. This page lists all active companies in your workspace. Archived companies are shown in a separate section below the active list.
+If your company is the seller, the invoice is income; if it is the buyer, the invoice is an expense. When both sides are your companies, it is an internal invoice, booked as an expense of the buyer. When none of your companies is found, the invoice is labelled **Company needed** and you choose the company on the invoice. A workspace with a single company skips the search and only works out the direction; with no signal at all it books the invoice as an expense and flags it for review.
+
+Archived companies are no longer recognised on new invoices.
+
+## Getting to Companies
+
+From the workspace sidebar, click **Master data**, then **Companies**. The list shows your active companies with their country and tax number; **Show archived** above the table adds archived ones, marked **Archived**. Each row has **Archive**, **Delete** or **Restore** among its actions.
+
+Any member of the workspace can open Companies and add or edit a company. Changing the settings on the **Tax & VAT** tab needs the permission "Edit master data", which only the accounting firm can hold.
 
 ### NAV marker next to the tax number
 
@@ -33,93 +38,98 @@ No marker means NAV does not cover the company.
 ## Adding a Company
 
 1. Click **Add company** in the top-right corner.
-2. Fill in the **Legal name** (required), **Country** (required), and **Tax ID** (optional).
+2. Fill in the **Legal name** (required), **Country** (required) and **Tax ID** (optional).
 3. Click **Create company**.
 
-You are taken directly to the company detail page, where you can add all remaining fields: EU VAT number, registration number, alternative names, bank accounts, contact details, and matching context. There is no need to enter everything at once - fill in what you have now and return later as you learn more.
+You are taken to the company's page, where you can add everything else. There is no need to enter everything at once. If the new company's name looks like one you already have, a notice warns that it may be a duplicate. Where Business Central is connected, **Create companies from Business Central** on the list creates them from there.
 
 > **One company per tax number.** A workspace holds each company once. As you type the Tax ID, AI Finance Team checks it against the companies you already have, in any spelling (`12345678-2-41`, `12345678` and `HU12345678` are the same company). If it already exists, the form names it and links to it, and **Create company** stays disabled. Archived companies do not count. A VAT group identifier is never treated as a company's own number.
 
-## Editing a Company
+## The company page
 
-Open the company by clicking its name in the list. Each section of the detail page can be edited and saved independently.
+<CompanyRecognitionFigure>
+The **Recognition** tab of a company. The numbers match the list below. The company, its accounts and names are examples.
+</CompanyRecognitionFigure>
+
+1. The tabs, one per job.
+2. The status row: the NAV connection and how many bank accounts are on file.
+3. **Bank accounts**, with the pencil to edit one and × to remove it.
+4. **Alternative names**.
+5. **Matching context**, with its **Save** button.
+
+Click a company's name to open its page. Under the name and country, a status row shows the NAV connection (for Hungarian companies), the number of bank accounts and, when the Tax ID looks like a VAT group identifier, a warning. The page has five tabs, and each section on them is saved on its own:
+
+- **Company**: Identity, Contact, Representatives and the Danger zone.
+- **Recognition**: Bank accounts, Alternative names and Matching context.
+- **Tax & VAT**: Business activity and VAT settings.
+- **Connections**: NAV Online Számla and Business Central. Hidden for a company outside Hungary when Business Central is not connected.
+- **Messages**: the conversation about the company.
 
 ### Identity
 
-Change the legal name, country, Tax ID, EU VAT number, or registration number. Click **Save** when done. If the new Tax ID already belongs to another company in the workspace, the form names that company and **Save** stays disabled.
+The legal name, country, Tax ID, EU VAT number and registration number. Click **Save** when done. If the new Tax ID already belongs to another company in the workspace, the form names that company and **Save** stays disabled.
 
 #### How the Tax ID and EU VAT number relate
 
-A company can hold two tax identifiers: a **domestic Tax ID** (the local tax number - e.g. the Hungarian adószám or the German Steuernummer) and an **EU VAT number** (the cross-border VAT identifier - e.g. `HU12345678`, `DE123456789`). How AI Finance Team treats the pair depends on the country:
+A company can hold two tax identifiers: a **domestic Tax ID** (the local tax number, e.g. the Hungarian adószám or the German Steuernummer) and an **EU VAT number** (the cross-border VAT identifier, e.g. `HU12345678`, `DE123456789`). How AI Finance Team treats the pair depends on the country:
 
-- **Countries where the two share the same number** - Hungary, Poland, Romania, Spain, Portugal, and most other EU members. Here the EU VAT number is just the domestic number with a country prefix, so AI Finance Team cross-checks them: when both are present and consistent you see a small ✓, and if they don't line up a soft amber warning appears so you can double-check. The warning never blocks saving.
-- **Countries where the two are separate numbers** - Germany, Austria, the Netherlands, France, and a few others. The Steuernummer / UID and the EU VAT number are independent identifiers that cannot be derived from one another, so AI Finance Team validates each on its own and does **not** compare them. You will **not** see a "they don't share the same number" warning for a correct German or Austrian pair - a short note under the EU VAT field reminds you the two are checked separately.
-- **Non-EU companies** - e.g. Switzerland, the United Kingdom, the United States. Only the domestic Tax ID applies, so the EU VAT number field is hidden.
+- **Countries where the two share the same number**: Hungary, Poland, Romania, Slovenia, Croatia, Bulgaria, Greece, Portugal, Spain, Belgium, Denmark, Finland, Sweden and Latvia. Here the EU VAT number is the domestic number with a country prefix, so AI Finance Team cross-checks them: when both are present and consistent you see a small ✓, and if they don't line up a soft amber warning appears so you can double-check. The warning never blocks saving.
+- **Countries where the two are separate numbers**: Germany, Austria, the Netherlands, France, Luxembourg, Ireland, Estonia, Lithuania, Cyprus, Malta, Italy, Czechia and Slovakia (and Northern Ireland). The two are independent identifiers that cannot be derived from one another, so AI Finance Team validates each on its own and does **not** compare them. A short note under the EU VAT field says so.
+- **Non-EU companies**, e.g. Switzerland, the United Kingdom, the United States. Only the domestic Tax ID applies, so the EU VAT number field is hidden.
 
-Both identifiers help recognise the company on incoming documents: an invoice that shows **either** the domestic Tax ID or the EU VAT number will still identify the company correctly - and for your own companies, book the document as income or expense in the right direction.
+An invoice that shows **either** the domestic Tax ID or the EU VAT number identifies the company.
 
-### Alternative Names
+### Contact
 
-Add any other names this party uses - for example, a trading name that appears on their invoices, an abbreviation used in bank references, or a former company name after a rebrand.
-
-To add a name, type it into the field and click **Add** (or press Enter). To remove one, click the × next to it.
-
-These names are used during document matching: when the AI encounters a name it doesn't recognise, it checks it against the alternative names of all companies in your workspace.
-
-### Bank Accounts
-
-Add the IBAN and/or domestic account numbers associated with this company. For Hungarian companies, you can store both the international IBAN and the domestic account number (the three-segment format).
-
-To add an account, fill in the fields and click **Add account**. To remove one, click the × next to it.
-
-Bank accounts are used during transaction matching: incoming or outgoing payments are linked to the company whose account number appears in the bank statement reference.
-
-### Contact Details
-
-Store the company's address, website, and email domain. The email domain is particularly useful for companies whose invoices arrive by email - when the AI sees a message from `@acmesolutions.com`, it can associate it with the correct company.
-
-### Matching Context
-
-This is a short free-text note for the AI - not customer-facing, not displayed on any document. Use it to resolve cases where automatic matching is ambiguous:
-
-- Distinguish two companies with similar names ("WKA Studio is the agency; WKA Holding is the parent company - keep separate")
-- Note a known quirk in how this party labels their invoices ("always uses 'WKA Creative' on invoice headers despite legal name being WKA Studio Kft.")
-- Flag a party that issues invoices in a different language than expected
-
-The note is used as additional context during AI categorisation. A few sentences are usually enough.
+The address, website and email domain. The email domain and the website are compared with the email address and website printed on an invoice for the seller or the buyer, so they help recognise the company when the tax number is missing.
 
 ### Representatives
 
-Assign workspace members as the primary contact for this company. Representatives appear on the company detail page and are used in internal workflows to route questions or exceptions to the right person.
+Workspace members who represent the company. Click **Add representative** and **Add** next to a member; × removes one. A representative's full name is compared with the signatory printed on an invoice, one of the weaker signals in finding the company.
 
-To assign a representative, click **+ Add** and select a workspace member. To remove one, click the × next to their name.
+### Bank accounts
 
-## Archiving and Restoring a Company
+Click **Add bank account**. In the panel that opens, fill in a nickname if you like, the **IBAN** and/or the **Domestic account number** (the three-segment Hungarian format), and the **Currency**, then click **Add**. The pencil next to an account edits it; × removes it.
 
-If a company is no longer active - a supplier relationship has ended, a client has been wound down, or a duplicate was created by mistake - you can archive it rather than delete it.
+A company's bank accounts are used to:
 
-Archived companies:
-- Are hidden from the active company list and from the company picker when categorising documents
-- Are preserved in the database, so historical documents linked to them remain intact
-- Can be fully restored at any time
+- **recognise payments between your own accounts**: a bank transaction whose other account belongs to one of your companies is linked to that company instead of a partner; between two accounts of the same company it is also marked as an internal transfer (see [Transaction Types](/transaction-types#internal-transfers-between-your-own-accounts));
+- **identify the company on an invoice** that prints the account number;
+- **pay supplier invoices**: the accounts are the paying accounts of the [payment file](/paying-approved-invoices). An invoice is paid from an account in its currency; an account without a currency counts for any currency.
 
-To archive, open the company, scroll to the **Danger zone** section, and click **Archive company**.
+An account number that another company already holds is refused. An account shared with another company in a cash pool shows as **Shared, held by** that company.
 
-To restore, scroll down to the **Archived companies** section on the companies list page and click **Restore**. If another company took the same tax number while this one was archived, restoring is refused and the message names that company.
+### Alternative names
 
-## Permanently Deleting a Company
+Other names the company uses on invoices and bank statements: a trading name, an abbreviation, a former name. Type the name and click **Add** (or press Enter); × removes one. Alternative names are compared with the names on invoices, and with the names on bank transactions when AI Finance Team looks for payments between your own companies.
 
-Permanent deletion removes the company record and is irreversible. It is only available for companies that have no linked documents (invoices, transactions). If there are linked documents, you will need to archive instead.
+### Matching context
 
-To delete, open an archived company, scroll to the **Danger zone**, and click **Delete permanently**.
+**Matching hints** is a short free-text note, up to 1000 characters, for the one decision the exact signals cannot make: which of your companies an invoice belongs to. It is not shown on any document. Use it for things like:
 
-## Why Company Data Quality Matters
+- two of your companies with similar names ("Invoices addressed to the warehouse at the industrial park belong to this company");
+- a former name that still appears on some documents.
 
-The AI categorisation engine uses company data as one of its strongest signals. When a company record is complete:
+Click **Save** to keep it.
 
-- Partner identification is faster and more accurate
-- Alternative names catch document variants that would otherwise generate unmatched exceptions
-- Bank accounts enable automatic payment matching
-- Matching context resolves edge cases without manual intervention
+### Tax & VAT
 
-Incomplete company records are one of the most common reasons AI confidence scores stay low. If you notice the AI repeatedly misidentifying a partner, the first thing to check is whether that party exists as a company and whether its alternative names are up to date.
+**Business activity** (the activity code and a description, used for VAT decisions) and **VAT settings**: the recognition method, the VAT reporting currency, small-business exemption with its dates, and the pro-rata percentage. Changing them needs the permission "Edit master data". See [Small-Business VAT Exemption](/small-business-exemption) and [VAT Master Data](/vat-master-data).
+
+### Connections
+
+Where you connect a Hungarian company to NAV Online Számla with **Connect NAV** (the client owner, an accountant admin or an accountant) and see its Business Central link. For a paired member of a VAT group, the tab says that the group's connection covers it. See [NAV Online Számla](/nav-online-szamla).
+
+## Archiving, restoring and deleting
+
+**Archive** a company that is no longer in use but has history: in the list, choose **Archive** on its row, or open the company and use **Archive** in the **Danger zone** on the **Company** tab (offered when the company has invoices or connected bank accounts). An archived company is hidden from the list unless **Show archived** is on, is no longer recognised on new invoices, and keeps its history intact.
+
+**Restore** it from the list (**Show archived**, then **Restore** on its row) or from its Danger zone. If another company took the same tax number in the meantime, restoring is refused and the message names that company.
+
+**Delete** removes the company for good, together with its bank accounts, alternative names and representatives. It is only possible when the company has no invoices and no connected bank accounts; otherwise archive it. Delete from the list (**Delete**, then **Confirm**), or from the Danger zone of a company with nothing linked (**Delete**, then **Delete permanently**).
+
+## Tips
+
+- **Never add a supplier or a customer as a company.** AI Finance Team treats a company's invoices as your own: a supplier added as a company turns its invoices into income or into internal invoices between your companies. Suppliers and customers belong under [Partners](/partners).
+- **Keep bank accounts complete.** Every account your companies own should be on file, so transfers between them are recognised and the payment file offers the right paying account.
+- **Add the names your companies really appear under.** Alternative names catch invoices that print a trading name or a former name.

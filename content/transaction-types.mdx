@@ -1,204 +1,181 @@
 # Transaction Types & No Invoice Needed
 
-Some bank transactions will never have a matching invoice - bank fees, interest charges, payroll runs, VAT payments, and similar recurring items. **Transaction types** let you define rules for these transactions so they are automatically recognised and excluded from the Missing Documents list, keeping your inbox focused on genuinely unmatched items.
+Some bank transactions will never have an invoice: bank fees, interest, payroll, tax payments, transfers between your own accounts. **Transaction types** recognise these transactions and mark them **No invoice needed**, so they stop waiting for a document and stay out of the unmatched work.
 
-## How it works
+<TransactionTypeFlowFigure>
+How a bank transaction gets its type: your patterns first, then the partner, then the AI, and a person can always mark or undo.
+</TransactionTypeFlowFigure>
 
-When new transactions arrive (via bank statement upload or bank feed), AI Finance Team runs your transaction type rules against every unmatched transaction. Any transaction whose description, partner name, or reference matches a rule is immediately marked **No invoice needed** with that transaction type attached. No manual review required.
+## How a transaction gets its type
 
-For transactions that don't match a rule exactly, the AI can also suggest a type based on the content of the transaction - you will see the confidence level in the transaction detail.
+1. **Your patterns.** When a statement is uploaded or a new bank-feed transaction arrives, AI Finance Team checks every unmatched transaction against the patterns of your active types. A match marks it **No invoice needed** with that type straight away.
+2. **The partner.** A transfer between two accounts of the same company is always an internal transfer (see below), and a type bound to a **specific partner** applies whenever the transaction's partner is that partner.
+3. **The AI.** For what is still unmarked, the AI reads the transaction, your type descriptions and the examples you taught it. When it is at least 60% sure, it marks the transaction itself. It looks at each transaction once; below that confidence it leaves the transaction alone.
+4. **A person** can mark or undo any time on the transaction's page.
 
----
+The transaction's page says which of these marked it: **Matched by pattern rule**, **Matched by AI** with the confidence, or **Marked manually**.
 
 ## Setting up transaction types
 
-Transaction types are managed under **Master data → Transaction Types**. This page is only visible to users with the **Accountant** or **Accountant admin** role.
+Open **Master data**, then **Transaction Types**. The page has two tabs, **Types** and **Examples**. Members of the accounting firm can open it; creating and changing types needs the permission "Edit master data".
+
+<TransactionTypeEditorFigure>
+Editing the **Bank Fee** type. The numbers match the list below. The patterns and counts are examples.
+</TransactionTypeEditorFigure>
+
+1. **Description**: the AI reads it to decide which transactions belong to the type.
+2. **Set the partner from this type**, here with **Bank** selected.
+3. The patterns: a field, a match mode and a value.
+4. The live preview: how many existing transactions the patterns match.
 
 ### Default types
 
-Every new workspace comes with eight pre-seeded transaction types to get you started:
+A new workspace starts with ten types, or with your accounting firm's own template if it has one:
 
 | Type | Purpose |
 |------|---------|
-| Bank Fee | Monthly account maintenance charges, transfer fees |
+| Bank Fee | Account maintenance charges, transfer fees |
 | Interest | Interest credited or debited by the bank |
 | Internal Bank Adjustment | Bank-initiated corrections and adjustments |
 | Card Reserve / Authorization | Pre-authorisation holds on cards |
-| VAT / Tax Payment | Direct tax authority payments |
+| VAT / Tax Payment | Payments to the tax authority |
 | Payroll | Salary and payroll runs |
-| Cash withdrawal | ATM / cash withdrawals from the account |
+| Cash withdrawal | ATM and cash withdrawals from the account |
 | Internal transfer | Moving money between your own bank accounts (see below) |
+| Loan / financing movement | Loan disbursements, repayments and other financing movements |
+| Card acquirer settlement | Payouts from a card acquirer |
 
-These types already include common patterns based on typical bank descriptions (such as `BANK FEE` and `COMMISSION` for bank fees). You can edit, extend, or deactivate any of them.
+The default types come with patterns for typical bank wording, such as `BANK FEE`, `JUTALÉK`, `PROVISION` and `HAVI DÍJ` for bank fees. Their names are shown in the workspace's language; once you rename one, it keeps your name. You can edit, extend or deactivate any of them.
 
-### Internal transfers between your own accounts
+### Creating and editing a type
 
-When you move money between two of your own bank accounts - most commonly converting EUR to HUF, or topping up one account from another - there is no invoice, because both sides are the same company.
+1. Click **+ New Type**, or **Edit** on a type's row.
+2. Enter a **Name**.
+3. Write a **Description**. This is not a private note: the AI reads it to decide which transactions belong to the type, so describe them plainly.
+4. Leave **Active** on.
+5. Set a partner if the type has one (see below).
+6. Add one or more patterns with **+ Add pattern**.
+7. Click **Create type**, or **Save changes** for an existing type. Saving replaces all the patterns of the type.
 
-AI Finance Team recognises these automatically and **does not** rely on the description wording alone. When the other account on a transaction is one of your own company's bank accounts (matched by IBAN or account number against your [companies'](/master-data-entities) bank accounts), the transaction is:
-
-- given the **Internal transfer** type,
-- marked **No invoice needed**, and
-- linked to a special **Own company** partner rather than a junk supplier record (see [Managing Partners](/partners#internal-transfers-between-your-own-accounts)).
-
-Because this is based on your saved account numbers - not forgeable text - keep each company's bank accounts up to date under **Master data → Companies** so transfers are caught reliably. A transaction whose description merely mentions a transfer word (e.g. "átvezetés") but whose other account you don't own is still flagged **No invoice needed** with the Internal transfer type, but it is **not** linked to an own company.
-
-### Creating a new type
-
-1. Click **+ New Type** in the top-right corner.
-2. Enter a **Name** - this is what accountants and the AI will see.
-3. Optionally add a **Description** for internal reference.
-4. Add one or more **patterns** (see below).
-5. Click **Save**.
-
-### Editing a type
-
-Click the **Edit** button on any row in the table. The same form opens with the current settings pre-filled. Saving replaces all patterns for that type.
-
-### Activating and deactivating types
-
-Click **Deactivate** (or **Activate**) on any row. Inactive types are greyed out and their patterns are not applied during matching. Use this to temporarily disable a type without losing its configuration.
-
----
-
-## Partner binding - who the transaction is with
-
-Bank fees, interest, tax payments and card-acquirer settlements don't just need *No invoice needed* - they also have a **real party**: the bank that runs the account, the tax authority, or the payment provider. A transaction type can resolve that party automatically, so these movements carry a proper party into the ledger and exports instead of a junk record scraped from the statement text.
-
-In a type's editor, turn on **Set the partner from this type** and pick one of two modes:
-
-| Mode | The party is… | Use it for |
-|------|---------------|-----------|
-| **Bank** | The bank that runs the account (taken from the account itself) | Bank fees, interest, cash withdrawals, card reserves - it differs per account, but is always "that account's bank" |
-| **Specific partner** | One verified partner you pick | A tax authority (e.g. NAV VAT), or a card acquirer like Teya - always the same party |
-
-Leaving the toggle **off** means the type doesn't set a party - the partner comes from the transaction itself, as usual.
-
-For a **Specific partner** type you can also set a **Fixed category**: the transaction is booked to it automatically (only when it doesn't already have one). If the partner doesn't exist yet, use **+ Create partner** right in the editor - no need to leave the page first.
-
-### Bank: set each account's bank
-
-A **Bank** type takes its party from the account itself - the bank is not a separate partner. (You have no running balance / folyószámla with your bank for fees; the balance you hold with the bank is the account's own cash balance.) Set it under **Master data → Bank accounts**: open a bank account with **Edit** (or when adding one) and fill in the **Bank** and **Bank tax ID** fields, next to the account's IBAN and currency, so bank charges always export with a party.
-
-### Specific partner: fires on identity, never look-alikes
-
-A **Specific partner** type only applies when the transaction's partner actually resolves to the partner you picked - never because the text merely looks similar. For example, a type fixed to *Teya* classifies Teya's card settlements but leaves a look-alike *Wolt* settlement untouched, because Wolt is a different party (and may well need an invoice). You decide which partners get a rule at all.
-
-> **Moved here:** transaction rules that used to live on the **Partner** detail page now live here as **Specific partner** types. Create one type per partner - for example one for *NAV VAT* and a separate one for *NAV Personal income tax*, because tax sub-accounts are never the same party.
-
----
+**Deactivate** on a row switches a type off without losing it: an inactive type is shown dimmed, its patterns are not applied, the AI does not use it, and it is not offered when you mark a transaction. **Activate** switches it back on.
 
 ## Patterns
 
-Each transaction type can have one or more **patterns**. A transaction matches the type if **any** of its patterns match (case-insensitive OR logic).
-
-### Pattern structure
-
-Every pattern is a combination of three fields:
+A transaction matches a type if **any** of its patterns match. A pattern is a field, a match mode and a value:
 
 | Field | What it checks |
 |-------|---------------|
 | **Description** | The transaction's free-text description from the bank |
 | **Partner name** | The name of the other party on the transaction |
-| **Reference** | The payment reference / communication field |
-
-Combined with a match mode:
+| **Reference** | The payment reference |
 
 | Mode | Behaviour |
 |------|-----------|
-| **Contains** | The field contains the value anywhere (most flexible) |
+| **Contains** | The field contains the value anywhere |
 | **Starts with** | The field begins with the value |
-| **Exact** | The field matches the value exactly |
+| **Exact** | The field is exactly the value |
 
-**Example:** A pattern with Field = *Description*, Mode = *Contains*, Value = `BANK FEE` will match any transaction whose description contains the words "BANK FEE", regardless of what comes before or after it.
+Patterns ignore upper and lower case and accents, so `fizetés` also matches `FIZETES`.
 
-### Live match preview
+As you type, the editor shows how many existing transactions the patterns match. The count includes transactions that are already matched or marked, and adds up the patterns one by one, so treat it as an upper limit: it tells you whether a pattern is far too broad or catches nothing at all.
 
-As you type a pattern value, AI Finance Team shows you a count of how many **existing** transactions in the workspace would match that pattern. Use this to check whether a pattern is too broad or too narrow before saving.
+## Partner binding: who the transaction is with
 
----
+Bank fees, interest, tax payments and card-acquirer payouts have a real party: the bank that runs the account, the tax authority or the payment provider. A type can set that party, so these transactions carry a proper partner into the ledger and the exports instead of a name scraped from the statement.
 
-## Teaching AIFT which transactions need an invoice
+In the editor, turn on **Set the partner from this type** and pick a mode:
 
-Patterns are not the only way AIFT learns. Every time you mark a transaction **No invoice needed** - or undo that mark - it remembers the decision as an **example**, and shows it to the AI the next time something similar arrives. You don't have to do anything to build this up; it accumulates as you work.
+| Mode | The party is… | Use it for |
+|------|---------------|-----------|
+| **Bank** | The bank that runs the account, taken from the account itself | Bank fees, interest, cash withdrawals, card reserves |
+| **Specific partner** | One verified partner you pick | A tax authority, or a card acquirer: always the same party |
 
-Examples live under **Master data → Transaction types → Examples**.
+With the switch off, the type sets no partner and the partner comes from the transaction itself. If the partner you need does not exist yet, **+ Create partner** creates it right in the editor.
+
+### Bank: set each account's bank
+
+A **Bank** type takes its party from the bank account. Set it under **Master data → Bank accounts**: open the account with **Edit** (or when adding one) and fill in **Bank** and **Bank tax ID**, so bank charges always export with a party.
+
+### Specific partner: fires on identity, never on look-alikes
+
+A **Specific partner** type applies when the transaction's partner is the partner you picked, never because the text merely looks similar, and it always marks the transaction **No invoice needed**. Its patterns are not used. For example, a type bound to a card acquirer classifies that acquirer's payouts but leaves a look-alike from another company untouched, because that is a different party that may well need an invoice. Create one type per partner: one for the VAT account of the tax authority and a separate one for personal income tax, because tax sub-accounts are not the same party.
+
+> **The category belongs to the partner.** To book a partner's transactions to a fixed category, set **Fixed transaction category** on the partner's **Rules** tab (see [Managing Partners](/partners)). It only sets the category; whether a transaction needs an invoice is decided here.
+
+## Internal transfers between your own accounts
+
+When you move money between two of your own bank accounts, most often converting EUR to HUF or topping one account up from another, there is no invoice.
+
+AI Finance Team recognises these by the account number, not by the wording. When the other account on a transaction belongs to one of your [companies](/master-data-entities):
+
+- the transaction is linked to that company instead of a partner, shown with an **Own company** badge;
+- between two accounts of the **same** company, it also gets the **Internal transfer** type and is marked **No invoice needed**;
+- between two **different** companies of yours, only the company is linked; the transaction is not marked, because a payment between two companies can have an invoice behind it.
+
+Keep each company's bank accounts up to date under **Master data → Companies** so transfers are caught reliably. A transaction whose description only mentions a transfer word (e.g. "átvezetés") can still get the Internal transfer type from a pattern, but it is not linked to one of your companies.
+
+## Teaching AI Finance Team which transactions need an invoice
+
+Patterns are not the only way to teach. When you mark a transaction **No invoice needed** with a type, or undo such a mark, AI Finance Team remembers the decision as an **example** and shows it to the AI the next time something similar arrives. A mark with **No specific type** teaches nothing, because it says nothing about which type applies.
+
+Examples live on the **Examples** tab of Transaction Types.
 
 ### Examples are not rules
 
-This is the important distinction, and it is worth getting right before you reach for either one:
-
 | | **Patterns** | **Examples** |
 |---|---|---|
-| Where they come from | You write them | Captured automatically from your own marks and undos |
-| What they do | A hard rule - a match is filed immediately, no AI involved | A hint the AI weighs alongside everything else about the transaction |
-| If one is wrong | Transactions are silently filed wrong | The AI can still decide against it |
+| Where they come from | You write them | Captured from your marks and undos, or added by hand |
+| What they do | A hard rule: a match is marked at once, no AI involved | A hint the AI weighs with everything else about the transaction |
+| If one is wrong | Transactions are marked wrong | The AI can still decide against it |
 | Can say "this **does** need an invoice" | No | **Yes** |
 
-Use a **pattern** when you know the exact bank wording and want it handled deterministically - and check the live match preview before saving, because a broad pattern will catch things you didn't intend. Use **examples** for everything else: they are what your day-to-day corrections build up on their own.
+Use a **pattern** when you know the exact bank wording and want it handled every time. Use **examples** for everything else; your day-to-day decisions build them up on their own.
 
 ### Teaching the opposite: "this needs an invoice"
 
-When you undo a **No invoice needed** mark, AIFT records that as a **Needs an invoice** example - a veto. The AI will then leave similar transactions alone even when the wording looks invoice-free.
+When you undo a **No invoice needed** mark, AI Finance Team records a **Needs an invoice** example, and the AI then leaves similar transactions alone even when the wording looks invoice-free.
 
-This is the fix for the near-miss cases. Hungarian bank text is full of them: a rule written for *fizetés* (payroll) also reads *kifizetés* (a payout), and *adó* appears inside plenty of ordinary company names. Rather than trying to word a pattern around every one of those, undo the wrong mark once and AIFT learns the exception.
+If a **pattern** made the wrong mark, undoing it is not enough: the pattern marks the transaction again on the next run, because patterns run before the AI. Fix the pattern instead. Hungarian bank text is full of near misses: a pattern for *fizetés* (payroll) also catches *kifizetés* (a payout), and *adó* appears inside plenty of company names. Make such a pattern more specific, for example with **Starts with** or a longer value.
 
 ### What each example shows
 
 | Column | Meaning |
 |--------|---------|
-| **Partner** | The partner the example matches on |
-| **Description** | Text the transaction should contain |
-| **Verdict** | **No invoice needed** (with the type below) or **Needs an invoice** |
-| **Transaction type** | The type to apply - blank for a *Needs an invoice* example |
+| **Partner** | The partner the example is about |
+| **Description** | Text the transaction contains |
+| **Verdict** | **No invoice needed** (with the type) or **Needs an invoice** |
+| **Transaction type** | The type to apply; blank for a *Needs an invoice* example |
 | **Source** | **Auto-learned** (from your mark) or **Manual** (you added it) |
-| **Times seen** | How many transactions you've ruled on this way |
+| **Times seen** | How many transactions you have decided this way |
 
-Repeated decisions about the same partner collapse into one example with a rising **Times seen** count, rather than one row per transaction - so the list stays readable even after a few hundred bank fees.
+Repeated decisions about the same partner collapse into one example with a rising **Times seen** count. **+ Add example** teaches something before AI Finance Team has seen it, which helps when you take on a client whose recurring items you already know. Your most recent decision wins, and a new or changed example affects transactions from then on; it does not revisit transactions already processed.
 
-### Adding an example by hand
+**AI learning**, in the tab's settings, sets how many learned examples AI Finance Team shows the AI, from **Low** to **High**; **Off** stops using them. Changing it needs the permission "Edit workspace settings". Examples belong to one client workspace and are never shared between clients.
 
-Use **+ Add example** to teach AIFT something before it has seen it organically - useful when onboarding a client whose recurring items you already know. Pick **No invoice needed** and a type, or **Needs an invoice** for a veto.
+## Marking a transaction by hand
 
-**Your most recent decision wins.** If you mark a pattern invoice-free and later undo it, the example flips - it doesn't keep both answers.
+Open the transaction from **Bank transactions**. On an unmatched transaction, the **Matching & payment** card has a menu, **Mark as: no invoice needed…**:
 
-**Changes apply going forward.** A new or edited example affects the next classification run; it does not revisit transactions AIFT has already processed.
+1. Pick a transaction type, or **No specific type** if none fits.
+2. The transaction is marked **No invoice needed** at once.
 
-> Examples are per client, never shared between clients, and are visible to accountants only.
+To take it back, click **Undo - mark as unmatched**. The transaction returns to unmatched and waits for a document again. Marking and undoing need the permission "Edit bank transactions"; client users see the mark but cannot change it. The menu appears only when the workspace has at least one active type.
 
----
+## Labels and filters on the transaction list
 
-## Labels on the transaction list
-
-Each transaction row in the **Transactions** page can show one or more labels:
+A row on the **Bank transactions** page can carry these labels:
 
 | Label | Meaning |
 |-------|---------|
-| **No invoice** | Matched by a transaction type rule or manually marked by an accountant |
-| **Duplicate** | This transaction was detected as a duplicate of another |
-| **Bank feed** | Imported via a live GoCardless bank feed connection |
-| **Statement** | Imported from an uploaded PDF bank statement |
+| **No invoice** | Marked No invoice needed, by a type or by a person |
+| **Matched** | Matched to an invoice |
+| **Unmatched** | Still waiting for an invoice or a decision |
+| **Duplicate** | Detected as a duplicate of another transaction |
+| **Bank feed** | Imported from a live bank connection |
+| **Statement** | Imported from an uploaded bank statement |
 
-A transaction can carry multiple labels at once - for example, a statement import that is also a duplicate will show both **Statement** and **Duplicate**.
+The pills above the list filter by the same states: **Bank feed**, **Statement**, **Duplicate**, **Unmatched**, **Matched** and **No invoice**, plus **Custom category missing**. Several pills can be on at once.
 
-### Filtering by label
+## Exports
 
-Below the main filter bar on the Transactions page, there is a row of toggleable pill filters. Click any pill to activate it; click again to deactivate. Multiple pills can be active at the same time - the results show transactions matching **any** of the active pills in each group.
-
-Available filter pills: **Bank feed**, **Statement**, **Duplicate**, **Unmatched**, **Matched**, **No invoice needed**.
-
----
-
-## Manually marking a transaction
-
-Even without a matching pattern, an accountant can mark any unmatched transaction as no invoice needed directly from the transaction detail panel:
-
-1. Click on the transaction row to open the detail panel.
-2. In the **Match** section, choose a transaction type from the dropdown - or select **No specific type** if none applies.
-3. The transaction is immediately marked as **No invoice needed**.
-
-To undo this, click **Undo - mark as unmatched** in the **No invoice needed** section. The transaction returns to unmatched and will reappear in the Missing Documents list.
-
-Both the mark and the undo are remembered - see [Teaching AIFT which transactions need an invoice](#teaching-aift-which-transactions-need-an-invoice) above. Marking a few of the same kind is usually enough for AIFT to handle the rest on its own.
-
-> Only **Accountant** and **Accountant admin** users can mark or unmark transactions. Clients can see the label but cannot change it.
+A transaction marked **No invoice needed** still needs a transaction category with a ledger code before it can be exported; the RLB export flags it otherwise. Transactions of a **Bank** type export with the bank name and tax ID from the bank account.

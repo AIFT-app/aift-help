@@ -1,243 +1,176 @@
 # Partner verwalten
 
-Partner sind die verifizierten, kanonischen Datensätze für die Unternehmen und Personen, mit denen Ihr Arbeitsbereich Geschäfte macht - Lieferanten, Kunden, Plattformen und Dienstleister. Wenn Sie Partner aktuell halten, kann die KI die andere Partei auf jeder neuen Rechnung oder Banktransaktion automatisch erkennen, ohne dass jedes Mal eine manuelle Prüfung nötig ist.
+Partner sind die Unternehmen und Personen, mit denen Ihr Mandant Geschäfte macht: Lieferanten, Kunden, Plattformen und Dienstleister. Ein **verifizierter Partner** ist der eine kanonische Datensatz, der alle Namen, Steuernummern und Bankkonten zusammenführt, unter denen ein Unternehmen auftritt, sodass AI Finance Team die Gegenpartei auf jeder neuen Rechnung und Banktransaktion erkennt, ohne dass jemand sie prüfen muss.
 
-## Verifizierte vs. nicht verifizierte Partner
+<PartnerRecognitionFlowFigure>
+Wie ein neuer Name auf einer Rechnung oder einer Banktransaktion bei einem verifizierten Partner landet.
+</PartnerRecognitionFlowFigure>
 
-Wenn AI Finance Team eine Rechnung extrahiert oder eine Banktransaktion importiert, erfasst es die andere Partei als Partner - und zwar mit dem Namen genau so, wie er auf dem Dokument erschien. Dasselbe reale Unternehmen kann unter mehreren Namen auftauchen (zum Beispiel „OpenAI OpCo, LLC" auf einer Rechnung und „OpenAI, L.L.C." auf einer anderen).
+## Verifizierte und nicht verifizierte Partner
 
-Ein **verifizierter Partner** ist der einzelne kanonische Datensatz, der all diese Namensvarianten zusammenführt. Ein **nicht verifizierter Partner** ist ein roher extrahierter Name, der noch nicht aufbereitet wurde.
+Wenn AI Finance Team eine Rechnung liest oder eine Banktransaktion importiert, erfasst es die Gegenpartei unter dem Namen genau so, wie er auf dem Dokument steht. Dasselbe Unternehmen erscheint oft unter mehreren Namen, zum Beispiel „OpenAI OpCo, LLC“ auf einer Rechnung und „OpenAI, L.L.C.“ auf einer anderen. Solange ein solcher Name nicht mit einem verifizierten Partner verknüpft ist, ist er ein **nicht verifizierter Partner**.
 
-### Das Badge ⚠ Nicht verifiziert
+Ein nicht verifizierter Partner ist eine Aufforderung zur Prüfung, kein Fehler: Das Dokument ist vollständig verarbeitet. Sie sehen ihn als:
 
-Jede Rechnung oder Banktransaktion, deren Partner noch nicht mit einem verifizierten Partner verknüpft wurde, zeigt neben dem Partnernamen ein gelbes Badge **⚠ Nicht verifiziert**. Dieses Badge ist eine Aufforderung zum Prüfen und Verknüpfen, kein Fehler - das Dokument ist vollständig verarbeitet, es fehlt lediglich die Verbindung zu einem verifizierten Partner.
+- **Nicht verifiziert** in der Karte **Parteien** einer Rechnung und als gelbe Aufgabe **Partner verifizieren** auf der Rechnungs- und der Banktransaktionsseite;
+- graues Label **Nicht verifiziert** in der Rechnungsliste;
+- gelbe Pille **Nicht verifiziert** in der Partnerauswahl.
 
-### Wo Sie Partner sehen
+## Wie ein Name seinen Partner findet
 
-Partner erscheinen an drei Stellen:
+Jedes Mal, wenn eine Rechnung oder eine Banktransaktion verarbeitet wird, versucht AI Finance Team, die Gegenpartei zu erkennen:
 
-- **Auf einer Rechnung** - das Feld **Partner** auf der Rechnungsdetailseite
-- **Auf einer Banktransaktion** - die Zeile **Partner** im Detailfenster der Transaktion (klicken Sie auf eine beliebige Zeile auf der Seite Transaktionen)
-- **Im Kontoauszug-Editor** - die Spalte **Partner** beim Bearbeiten eines hochgeladenen PDF-Kontoauszugs
+1. **Steuernummer**: Ein Name mit derselben Steuernummer wie ein bekannter Partner wird mit diesem verknüpft. Zwei nicht verifizierte Namen mit derselben Steuernummer werden zu einem verifizierten Partner.
+2. **Name und alternative Namen**: Auf einer Rechnung wird ein Name verknüpft, der mit dem Namen eines verifizierten Partners oder einem seiner alternativen Namen übereinstimmt (Zeichensetzung und Varianten der Rechtsform werden ignoriert). Bei einer Banktransaktion ist die Regel lockerer: Der Name wird verknüpft, wenn genau ein Partnername oder alternativer Name höchstens ein paar Buchstaben von ihm abweicht.
+3. **Namensmuster**: Präfixregeln wie `LinkedIn*` erfassen Namen, die sich mit jeder Transaktion ändern.
+4. **Bankkonto** (Banktransaktionen): Ein Konto, das zu einem Ihrer eigenen Unternehmen gehört, verknüpft die Transaktion mit diesem Unternehmen (siehe [Interne Überweisungen](#umbuchungen-zwischen-ihren-eigenen-konten)); ein bei einem verifizierten Partner gespeichertes Konto verknüpft die Transaktion mit diesem Partner.
+5. **Zuordnungen**: Wenn Sie eine Zuordnung zwischen einer Rechnung und einer Banktransaktion bestätigen, wird ein nicht verifizierter Name auf der einen Seite mit dem verifizierten Partner auf der anderen verknüpft.
 
-Jeder Bereich verwendet dieselbe Partnerauswahl, mit derselben Pille verifiziert/nicht verifiziert und derselben Funktion „+ Neuer Partner".
+Was keiner dieser Schritte erkennt, bleibt nicht verifiziert, bis jemand es verknüpft. Sobald Sie den richtigen alternativen Namen, das richtige Muster oder das richtige Bankkonto hinzugefügt haben, wird jedes künftige Dokument dieser Partei von selbst erkannt.
 
 ## So gelangen Sie zu den Partnern
 
-Klicken Sie in der Seitenleiste des Arbeitsbereichs auf **Stammdaten** und dann auf **Partner**. Die Seite hat zwei Abschnitte:
+Klicken Sie in der Seitenleiste des Arbeitsbereichs auf **Stammdaten** und dann auf **Partner**. Die Seite steht Mitgliedern der Buchhaltungskanzlei zur Verfügung; zum Ändern von Partnern brauchen Sie die Berechtigung „Stammdaten bearbeiten“.
 
-- **Verifizierte Partner** - Ihre aufbereitete Liste bekannter Partner. Jede Zeile zeigt die Anzahl der **Alternativen Namen** (andere Formen, unter denen dieser Partner gesehen wurde) für diesen Partner.
-- **Nicht verifizierte Partner** - rohe Partnernamen, die auf Dokumenten erschienen sind, aber noch keinem verifizierten Partner zugeordnet wurden. Nach Transaktionsanzahl sortiert, sodass die aktivsten zuerst erscheinen.
+Die Seite enthält zwei Listen:
 
-> Die Seite Partner ist nur für Mitglieder des Arbeitsbereichs mit der Rolle **Buchhalter** oder **Buchhalter-Admin** sichtbar.
+- **Verifizierte Partner**: Ihre gepflegten Partner. **Archivierte anzeigen** blendet auch archivierte Partner ein.
+- **Nicht verifizierte Partner**: Namen, die auf Dokumenten aufgetaucht, aber noch nicht verknüpft sind, die aktivsten zuerst. Filter-Chips (**Alle**, **Rechnungen**, **Transaktionen**) und ein Badge **Quelle** in jeder Zeile zeigen, wo der Name zuerst gesehen wurde: **Rechnung**, **Transaktion** oder **Kontoauszug PDF**.
 
-### Filtern danach, wo der Partner zuerst aufgetaucht ist
+Um eine ganze Partnerliste aus einer Tabelle einzubringen, nutzen Sie **Importieren** (siehe [Stammdaten importieren](/master-data-import)).
 
-Die Tabelle der nicht verifizierten Partner hat darüber drei Filter-Chips: **Alle · Rechnungen · Transaktionen**. Jeder nicht verifizierte Partner zeigt außerdem ein **Quelle**-Badge:
+## Partner hinzufügen und verifizieren
 
-- **Rechnung** - zuerst auf einer hochgeladenen oder extrahierten Rechnung gesehen
-- **Transaktion** - zuerst auf einer synchronisierten Banktransaktion gesehen
-- **Kontoauszug PDF** - zuerst auf einem hochgeladenen Kontoauszug gesehen
+- **Aus einem nicht verifizierten Namen** (empfohlen): Klicken Sie in seiner Zeile auf **Partner erstellen**. Der Dialog wird aus den Dokumenten vorausgefüllt; prüfen Sie ihn und klicken Sie auf **Partner erstellen** oder auf **Erstellen & öffnen**, um zur Seite des Partners weiterzugehen. Jede Banktransaktion mit demselben Namen wird sofort dem neuen Partner zugeordnet, und der Name bleibt als alternativer Name verknüpft.
+- **Mit einem bestehenden Partner verknüpfen**: **Mit Partner verknüpfen** in der Zeile fügt den Namen einem Partner hinzu, den Sie bereits haben. Das Menü **…** der Zeile bietet außerdem **Das ist unser eigenes Unternehmen**.
+- **Von Grund auf**: **Neuer Partner** fragt nach Name, Steuernummer und Partner-ID; alles Weitere ergänzen Sie auf der Seite des Partners.
+- **Alle Partner verifizieren** macht in einem Schritt aus jedem nicht verifizierten Namen einen verifizierten Partner und legt einen Namen mit einem bestehenden Partner zusammen, der dieselbe Steuernummer hat. Mögliche Duplikate erscheinen anschließend im Banner.
 
-Verwenden Sie den Filter, um sich beispielsweise nach einem frischen Kontoauszug-Upload nur auf die Namen aus den Banktransaktionen zu konzentrieren.
+Sie können auch aus einem Dokument heraus verifizieren: Wählen Sie den verifizierten Partner in der Auswahl **Partner** einer Rechnung, einer Banktransaktion oder des Kontoauszug-Editors. Der ursprüngliche Name wird diesem Partner als alternativer Name hinzugefügt, sodass das nächste Dokument unter diesem Namen erkannt wird. **Jetzt verifizieren →** unter einer nicht verifizierten Auswahl öffnet die Seite Partner mit dem vorbereiteten Dialog **Partner erstellen**. Die Auswahl zeigt den Text, den die Bank oder die Rechnung tatsächlich enthielt, als **Originalname:**.
 
-### Das Banner zur Steuernummer-Kollision
+Bankgebühren und Zinsen haben keinen Partner: Wählen Sie oben in der Auswahl **- Keine Partner (z. B. Bankgebühr) -**. Überweisungen zwischen Ihren eigenen Konten werden stattdessen mit einem Ihrer Unternehmen verknüpft (siehe unten).
 
-Wenn zwei verifizierte Partner dieselbe Steuernummer teilen, erscheint oben auf der Seite Partner ein gelbes Banner **Mögliche doppelte Partner erkannt**. Klicken Sie auf **Prüfen**, um das Panel aufzuklappen - jedes Paar hat zwei Aktionen:
+## Die Partnerseite
 
-- **Zusammenführen** - öffnet den Zusammenführen-Dialog, wobei der erste Partner als der zusammenzuführende vorausgewählt ist
-- **Kein Duplikat** - verwirft den Vorschlag, sodass das Banner ihn nicht mehr anzeigt
+Klicken Sie auf den Namen eines Partners, um seine Seite zu öffnen. Die Kopfzeile zeigt Chips für die daran gesetzten Regeln, etwa **Feste Rechnungskategorie** oder **Verkauft immer**, sowie **Zusammenführen mit…**. Die Seite hat fünf Reiter: **Partner**, **Regeln**, **Erkennung**, **Verlauf** und **Nachrichten**.
 
-Das Banner ist nur für Buchhalter sichtbar.
+<PartnerRecognitionFigure>
+Der Reiter **Erkennung** eines Partners. Die Nummern entsprechen der Liste darunter. Der Partner, seine Namen und Konten sind Beispiele.
+</PartnerRecognitionFigure>
 
-## Einen Partner hinzufügen
+1. Die Reiter.
+2. **Alternative Namen**, markiert mit **auto** oder **manuell**.
+3. **Namensmuster** und **Passende Gegenparteien jetzt verknüpfen** für die bereits vorhandenen Namen.
+4. Ein Bankkonto mit **Nicht bestätigt** und der Schaltfläche **Bestätigen**.
+5. Ein bestätigtes Bankkonto.
 
-### Aus einem nicht verifizierten Partner (empfohlen)
+### Reiter Partner
 
-1. Suchen Sie in der Tabelle **Nicht verifizierte Partner** den Namen, den Sie verifizieren möchten, und klicken Sie auf **Partner erstellen**.
-2. Das Formular wird mit dem Namen und einer eventuell aus Dokumenten extrahierten Steuernummer vorausgefüllt. Prüfen und passen Sie nach Bedarf an.
-3. Klicken Sie auf **Partner erstellen**.
+- **Identität**: Name, Partner-ID, Steuernummer und Land, direkt bearbeitet und mit **Speichern** übernommen. Das Steuernummernfeld akzeptiert eine inländische Steuernummer, eine USt-IdNr. oder beides; fügen Sie ein, was auf dem Dokument steht, und AI Finance Team strukturiert es (**Inländisch & EU getrennt bearbeiten** erfasst beide ausdrücklich). Das Paar wird länderabhängig geprüft, wie unter [Unternehmen verwalten](/master-data-entities#wie-steuernummer-und-ust-idnr-zusammenhängen) beschrieben.
+- **Kontakt**: die Adresse.
+- **Partnerart**: **Gewöhnlicher Partner**, **Eines unserer eigenen Unternehmen** (siehe [Interne Überweisungen](#umbuchungen-zwischen-ihren-eigenen-konten)) oder **Steht für eine Gruppe, die nicht einzeln identifiziert werden kann** (siehe [Rechnungen an Privatpersonen](#rechnungen-an-privatpersonen)).
+- **Firmenregister** und **Business Central**, sofern Ihr Arbeitsbereich sie hat.
 
-Der nicht verifizierte Partner wird sofort mit dem neuen verifizierten Partner verknüpft, und das Badge ⚠ verschwindet von allen Rechnungen und Transaktionen, die auf ihn verwiesen haben.
+### Reiter Erkennung
 
-### Von Grund auf
+**Alternative Namen** listet alle weiteren Namen, unter denen der Partner bekannt ist: Namen mit **auto** sind nicht verifizierte Namen, die mit diesem Partner verknüpft sind, Namen mit **manuell** haben Sie selbst hinzugefügt. Geben Sie einen Namen ein und klicken Sie auf **Alternativen Namen hinzufügen**, um einen hinzuzufügen. Das Entfernen eines auto-Namens (× und **Entfernen**) hebt die Verknüpfung dieses Namens auf, sodass er anderswo verknüpft oder unverifiziert gelassen werden kann.
 
-Klicken Sie oben rechts auf **Neuer Partner**. Füllen Sie das erforderliche Feld **Name** und beliebige optionale Felder aus (Partner-ID, Steuernummer, Land, Adresse, Bankkonten) und klicken Sie dann auf **Speichern**.
+**Namensmuster** erfassen Namen, die sich jedes Mal ändern, etwa auf Kartenabrechnungen, bei denen der Händlername eine Referenz enthält: `LinkedIn*` verknüpft sowohl „LinkedIn*P3035867117“ als auch „LinkedInPreC *34952934“. Ein Muster braucht mindestens vier Buchstaben vor dem `*`. Während Sie tippen, zeigt die Vorschau, wie viele nicht verifizierte Namen es verknüpfen würde und wie viele zu anderen Partnern gehören; **Passende Gegenparteien jetzt verknüpfen** verknüpft die bereits vorhandenen.
 
-> **Viele auf einmal hinzufügen?** Um eine ganze Partnerliste aus einer Tabelle einzubringen, nutzen Sie die Schaltfläche **Importieren** auf dieser Seite - siehe [Stammdaten importieren](/master-data-import).
+**Bankkonten** sind die Konten, auf die an den Partner gezahlt wird. Ein von einer Rechnung gelesenes oder aus einer Bankzuordnung übernommenes Konto ist ein Vorschlag und wird als **Nicht bestätigt** angezeigt, bis eine Person mit der Berechtigung „Freigaben verwalten“ auf **Bestätigen** klickt. Nur ein bestätigtes Konto kann in eine Zahlungsdatei aufgenommen werden: Das ist die Kontrolle gegen Rechnungsbetrug (siehe [Freigegebene Rechnungen bezahlen](/paying-approved-invoices)). Jedes Konto hilft außerdem, die Banktransaktionen des Partners zu erkennen.
 
-## Die Partnerdetailseite
+### Reiter Regeln
 
-Klicken Sie auf einen beliebigen Partnernamen, um dessen Detailseite zu öffnen. Sie ist in folgende Abschnitte unterteilt:
-
-### Identität
-
-Der kanonische Name des Partners, die Partner-ID, die Steuernummer, das Land und die Adresse. Klicken Sie auf **Bearbeiten**, um diese Angaben zu ändern.
-
-### Alternative Namen
-
-Eine einzige konsolidierte Liste aller weiteren Namen, unter denen dieser Partner bekannt ist - sowohl:
-
-- **Auto**-Einträge - Namen von nicht verifizierten Partnern, die mit diesem verifizierten Partner verknüpft wurden (blaues Badge)
-- **Manuell**-Einträge - Namen, die Sie von Hand hinzugefügt haben (graues Badge)
-
-**Warum alternative Namen wichtig sind:** Wenn eine neue Rechnung oder Banktransaktion eintrifft, gleicht AI Finance Team den extrahierten Partnernamen mit dem kanonischen Namen jedes verifizierten Partners und all seinen alternativen Namen ab. Eine exakte Übereinstimmung (normalisiert für Zeichensetzung und Varianten von Rechtsformzusätzen) verknüpft den neuen Datensatz automatisch mit dem Partner - kein manuelles Eingreifen nötig.
-
-**So fügen Sie einen alternativen Namen hinzu:**
-
-1. Geben Sie den Namen in das Eingabefeld am unteren Rand des Abschnitts Alternative Namen ein.
-2. Drücken Sie **Enter** oder klicken Sie auf **Hinzufügen**.
-
-**Um einen alternativen Namen zu entfernen**, klicken Sie auf das × daneben und dann zur Bestätigung auf **Entfernen**. Das Entfernen eines Auto-Eintrags hebt die Verknüpfung des zugrunde liegenden nicht verifizierten Partners auf, sodass er anderswo verknüpft oder unverifiziert gelassen werden kann.
-
-### Kontakt & Bankverbindung
-
-Adresse und Bankkontodaten des Partners.
-
-### Feste Kategorien
-
-Meistens wählt die KI je Rechnungsposition und je Banktransaktion eine Buchungskategorie. Bei einem Partner, dessen Buchungen sich nie ändern - ein Vermieter, ein Versicherer, ein Kartenakzeptanzdienstleister -, können Sie diese Entscheidung ganz überspringen und dem Partner eine Kategorie fest zuordnen. Hier leben zwei unabhängige Regeln, eine je Taxonomie.
+**USt-Gruppe** (die USt-Einstufung des Partners, mit der die USt-Codes auf seinen Rechnungen ermittelt werden) und **Verkauft immer** (die Produkt- oder Leistungs-USt-Gruppe, die dieser Lieferant immer in Rechnung stellt) legen seine USt-Standardwerte fest; siehe [USt-Stammdaten](/vat-master-data). Darunter stehen drei Regeln, die der KI bei einem Partner, dessen Buchungen sich nie ändern, eine Entscheidung abnehmen.
 
 #### Feste Rechnungskategorie
 
 Jede Position einer Rechnung dieses Partners wird dieser Kategorie zugeordnet und **überschreibt den Vorschlag der KI**. Die KI läuft weiterhin und ihre Einschätzung bleibt dokumentiert, aber die wirksame Kategorie ist Ihre.
 
-Die Kategorie muss eine aktive Rechnungskategorie sein, deren Richtung zur Rechnung passt - eine Erlöskategorie wird auf Ausgangsrechnungen angewendet, eine Aufwandskategorie auf Eingangsrechnungen. Ist ein Partner zugleich Kunde und Lieferant und passt die eine feste Kategorie nur zu einer Richtung, bleibt die Regel in der anderen Richtung stillschweigend wirkungslos. Archivieren Sie die Kategorie, wird die Regel inaktiv, und auf dem Abschnitt erscheint eine gelbe Warnung, bis Sie eine andere wählen.
+Die Kategorie muss eine aktive Rechnungskategorie sein, deren Richtung zur Rechnung passt: Eine Erlöskategorie wird auf Ausgangsrechnungen angewendet, eine Aufwandskategorie auf Eingangsrechnungen. Ist ein Partner zugleich Kunde und Lieferant und passt die Kategorie nur zu einer Richtung, bewirkt die Regel in der anderen nichts. Archivieren Sie die Kategorie, wird die Regel inaktiv, und auf dem Abschnitt erscheint eine gelbe Warnung, bis Sie eine andere wählen.
 
 #### Feste Transaktionskategorie
 
-Jede Banktransaktion dieses Partners wird dieser Kategorie zugeordnet, **wenn sie noch keine hat**. Anders als die Rechnungsregel überschreibt diese keine bereits vorhandene Kategorie.
-
-Das ist reine Kategorisierung. Sie berührt den Abgleich nicht und markiert nichts als **Keine Rechnung nötig** - das sind eigene Entscheidungen, die Sie unter [Transaktionstypen](/transaction-types) treffen.
+Jede Banktransaktion dieses Partners wird dieser Kategorie zugeordnet, **wenn sie noch keine hat**. Anders als die Rechnungsregel setzt sie sich nicht über eine bereits vorhandene Kategorie hinweg. Sie setzt nur die Kategorie; ob eine Transaktion eine Rechnung braucht, entscheiden die [Transaktionstypen](/transaction-types), auf die der Reiter verweist.
 
 #### Feste Zahlungsart
 
-Neben diesen beiden gibt es eine dritte Regel - für Partner, deren Rechnungen die falsche Zahlungsart nennen, meist eine als Barzahlung gemeldete Kartenzahlung, was die Rechnung schließt und vom Abgleich ausnimmt. Sie wird genauso gesetzt, wirkt aber anders als die Kategorien **nur nach vorn** und hat keinen rückwirkenden Lauf. Siehe [Die Zahlungsart eines Partners festlegen](/fixed-payment-method).
+Für Partner, deren Rechnungen die falsche Zahlungsart nennen, meist eine als Barzahlung gemeldete Kartenzahlung, was die Rechnung schließt und von der Zuordnung ausnimmt. Anders als die Kategorien wirkt sie **nur nach vorn**, ohne Lauf auf vorhandene Datensätze. Siehe [Die Zahlungsart eines Partners festlegen](/fixed-payment-method).
 
 #### Ihre eigenen Änderungen haben immer Vorrang
 
-Keine der beiden Regeln überschreibt jemals eine von Hand gesetzte Kategorie. Eine Rechnungsposition, die Sie selbst kategorisiert haben, behält Ihre Kategorie; eine Transaktion, die Sie selbst kategorisiert haben, bleibt unberührt. Das gilt für die automatische Regel ebenso wie für den rückwirkenden Lauf unten.
+Keine der beiden Kategorieregeln überschreibt eine von Hand gesetzte Kategorie, weder automatisch noch beim Lauf auf vorhandene Datensätze unten.
 
-### Eine Regel auf bereits vorhandene Datensätze anwenden
+### Eine Kategorieregel auf bereits vorhandene Datensätze anwenden
 
-Beide Regeln wirken **in die Zukunft**: Sie buchen, was nach dem Speichern eintrifft. Wenn Sie bei einem Partner, den Sie seit zwei Jahren buchen, eine feste Kategorie setzen, ändert das an diesen zwei Jahren nichts.
+Beide Kategorieregeln buchen, was nach dem Speichern eintrifft. **Auf vorhandene Datensätze anwenden**, in jedem Abschnitt neben **Speichern**, wendet die **gespeicherte** Regel auf Ihre bereits vorhandenen Datensätze an:
 
-**Auf vorhandene Datensätze anwenden** schließt diese Lücke. Die Schaltfläche steht in beiden Abschnitten neben **Speichern** und wendet die **gespeicherte** Regel auf bereits vorhandene Datensätze an.
-
-1. Wählen Sie die Kategorie und klicken Sie auf **Speichern**. Die Schaltfläche arbeitet mit der gespeicherten Regel, eine nicht gespeicherte Auswahl wird also nicht verwendet - sie bleibt deaktiviert, solange keine Regel gespeichert ist.
+1. Wählen Sie die Kategorie und klicken Sie auf **Speichern**. Die Schaltfläche arbeitet mit der gespeicherten Regel und bleibt deaktiviert, bis eine gespeichert ist.
 2. Klicken Sie auf **Auf vorhandene Datensätze anwenden**.
-3. Lassen Sie **Alle Datensätze** eingeschaltet, um alles von diesem Partner zu prüfen, oder schalten Sie es aus und wählen Sie einen Zeitraum - einen Monat, ein Quartal, ein Jahr oder einen freien Bereich.
-4. Lesen Sie die Vorschau. Sie nennt genau, wie viele Datensätze sich ändern werden, *bevor* etwas geschieht, und wie viele unberührt bleiben, weil jemand sie von Hand kategorisiert hat.
+3. Lassen Sie **Alle Datensätze** eingeschaltet, oder schalten Sie es aus und wählen Sie einen Zeitraum: einen Monat, ein Quartal, ein Jahr oder einen freien Bereich.
+4. Lesen Sie die Vorschau: wie viele Datensätze sich ändern und wie viele unberührt bleiben, weil jemand sie von Hand kategorisiert hat.
 5. Klicken Sie auf **Neu buchen**. Eine Zusammenfassung meldet, wie viele Datensätze geändert wurden.
 
-Einiges, das Sie wissen sollten:
+Gut zu wissen:
 
-- **Die Vorschau ist verbindlich.** Sie wird genauso gezählt, wie der Lauf arbeitet, die angezeigte Zahl ist also die Zahl, die sich ändert. Zweimal auszuführen ist unbedenklich - der zweite Lauf meldet nichts mehr zu buchen, weil bereits alles der Regel entspricht.
-- **Der rückwirkende Lauf überschreibt sehr wohl eine vorhandene Kategorie einer Transaktion.** Das ist die eine Stelle, an der er entschiedener vorgeht als die automatische Regel, die nur eine leere Kategorie füllt. Das muss so sein: Wenn Sie eine feste Kategorie setzen, hat die KI die Vergangenheit meist längst kategorisiert - und genau das zu korrigieren ist der Zweck. Von Hand gesetzte Kategorien bleiben weiterhin unangetastet.
-- **Welches Datum über den Zeitraum entscheidet.** Rechnungen werden anhand des Datums zugeordnet, das die Einstellung **Standard-Datumsbezug** Ihres Arbeitsbereichs benennt (Leistungsdatum, sofern Sie es nicht geändert haben - unter **Einstellungen → Hauptbuch**); fehlt es auf einer Rechnung, tritt das Rechnungsdatum an seine Stelle, damit nichts unbemerkt aus dem Lauf fällt. Banktransaktionen verwenden immer ihr Buchungsdatum.
-- **Bereits an die Kanzlei übermittelte Rechnungen.** Ist im Zeitraum eine Rechnung enthalten, die bereits in einem RLB-Export war, weist der Dialog darauf hin. Sie werden trotzdem neu gebucht - die Warnung steht dort, weil eine geänderte Sachkontonummer von dem abweichen kann, was Ihre Kanzlei bereits gebucht hat. Stimmen Sie sich ab, bevor Sie einen abgeschlossenen Zeitraum neu buchen.
-- **Ein Rückgängig gibt es nicht.** Der Lauf ist auf 2000 Datensätze begrenzt; darüber grenzen Sie den Zeitraum ein und führen ihn erneut aus.
+- **Die Vorschau ist verbindlich.** Sie wird genauso gezählt wie der Lauf. Zweimal auszuführen ist unbedenklich; der zweite Lauf findet nichts mehr neu zu buchen.
+- **Der Lauf überschreibt sehr wohl die vorhandene Kategorie einer Transaktion**, anders als die automatische Regel, weil die KI die Vergangenheit meist schon kategorisiert hat, wenn Sie die Regel setzen. Von Hand gesetzte Kategorien bleiben trotzdem unangetastet.
+- **Welches Datum über den Zeitraum entscheidet.** Rechnungen verwenden das Datum, das der Standard-Datumsbezug Ihres Arbeitsbereichs benennt (unter **Einstellungen → Buchungs-Standardwerte**; das Leistungsdatum, sofern Sie es nicht geändert haben), ersatzweise das Rechnungsdatum. Banktransaktionen verwenden ihr Buchungsdatum.
+- **Bereits exportierte Rechnungen.** War eine Rechnung im Zeitraum bereits in einem RLB-Export enthalten, weist der Dialog darauf hin. Sie wird trotzdem neu gebucht; stimmen Sie sich mit der Kanzlei ab, bevor Sie einen abgeschlossenen Zeitraum neu buchen.
+- **Es gibt kein Rückgängig**, und der Lauf ist auf 2000 Datensätze begrenzt; darüber grenzen Sie den Zeitraum ein.
 
-## Wie der automatische Abgleich funktioniert
+## Doppelte Partner
 
-Jedes Mal, wenn eine Rechnung oder ein Kontoauszug verarbeitet wird, durchläuft AI Finance Team diese Schritte, um den Partner zu identifizieren:
+AI Finance Team sucht nach verifizierten Partnern, die wahrscheinlich dasselbe Unternehmen sind, und listet sie oben auf der Seite Partner in einem Banner auf: **Mögliche doppelte Partner erkannt**. Ein Paar kann vorgeschlagen werden wegen:
 
-1. **Abgleich der Steuernummer** - wenn die extrahierte Steuernummer mit einem bereits im Arbeitsbereich vorhandenen Partner übereinstimmt, wird dieser Datensatz wiederverwendet.
-2. **Namensabgleich** - wenn der extrahierte Name (normalisiert) mit einem vorhandenen Partnernamen übereinstimmt, wird dieser Datensatz wiederverwendet.
-3. **Abgleich über alternative Namen** - wenn der extrahierte Name mit dem kanonischen Namen eines verifizierten Partners oder einem seiner alternativen Namen übereinstimmt, wird ein neuer nicht verifizierter Partner-Datensatz erstellt und automatisch mit diesem verifizierten Partner verknüpft.
-4. **Neuer Partner** - wenn keine Übereinstimmung gefunden wird, wird ein neuer nicht verifizierter Partner erstellt und das Badge ⚠ erscheint.
+- derselben Steuernummer oder derselben Steuernummer in unterschiedlichen Formaten;
+- desselben Namens;
+- eines gemeinsamen Bankkontos;
+- einer gemeinsamen Zahlung („Über eine gemeinsame Zahlung abgeglichen“);
+- der Einschätzung der KI, mit ihrer Sicherheit.
 
-Die zentrale Erkenntnis: Sobald Sie den richtigen alternativen Namen für einen Partner hinzugefügt haben, wird jedes künftige Dokument von dieser Partei automatisch verifiziert.
+Bei mehr als fünf Vorschlägen öffnet **Prüfen** die Liste. KI-Vorschläge zwischen 60% und 79% stehen in einem eingeklappten Abschnitt **Geringe Sicherheit**. Klicken Sie auf einen Vorschlag, um die Vergleichsseite zu öffnen: die beiden Partner nebeneinander mit den Signalen, die sie verbinden, sowie **Partner zusammenführen** oder **Kein Duplikat**. Ein zweites Banner schlägt vor, ähnlich aussehende nicht verifizierte Namen zusammenzuführen, mit **Zu einem zusammenführen?** und **Verwerfen**.
 
-### Zusätzliche Schritte bei Banktransaktionen
+**Partner konsolidieren** startet die KI-Suche bei Bedarf. Sie schlägt nur vor: Sie führt nie selbst etwas zusammen, und ihr **Verlauf** zeigt frühere Suchen.
 
-Wenn eine Banktransaktion verarbeitet wird (über Open Banking oder nach einem Kontoauszug-Upload), laufen vor dem Schritt mit den alternativen Namen zwei zusätzliche automatische Verknüpfungsprüfungen:
+## Partner zusammenführen
 
-1. **IBAN-Prüfung auf eigenes Konto** - wenn die IBAN oder Kontonummer der Transaktion mit einem Ihrer eigenen Unternehmens-Bankkonten übereinstimmt, ist die Transaktion eine interne Überweisung zwischen Ihren eigenen Konten: Sie wird mit einem speziellen **Eigenes Unternehmen**-Partner verknüpft, erhält den Typ **Interne Überweisung** und wird automatisch als **Keine Rechnung nötig** markiert (siehe unten den Abschnitt *Interne Überweisungen zwischen Ihren eigenen Konten*).
-2. **IBAN-Abgleich mit verifiziertem Partner** - wenn die IBAN mit einer auf einem verifizierten Partner-Datensatz gespeicherten IBAN übereinstimmt (Abschnitt **Kontakt & Bankverbindung** auf der Detailseite des Partners), wird die Transaktion ohne weiteres Zutun automatisch mit diesem Partner verknüpft.
+Führen Sie aus einem Vorschlag heraus zusammen, oder öffnen Sie den Partner, klicken Sie auf **Zusammenführen mit…**, suchen Sie den anderen Partner nach Name oder Steuernummer und wählen Sie ihn aus. Der Dialog fragt dann, welchen der beiden Sie behalten (**Behalten**): Von der Partnerseite aus ist der Partner, von dem Sie ausgegangen sind, als **Behalten** markiert, bis Sie auf den anderen klicken. Bestätigen Sie mit **Zusammenführen**; Sie landen wieder in der Partnerliste.
 
-Das Hinzufügen von Partner-IBANs ist daher genauso wertvoll wie das Hinzufügen alternativer Namen: Eine einzige gespeicherte IBAN bedeutet, dass jede künftige ein- oder ausgehende Überweisung dieses Partners automatisch verifiziert wird.
+Wenn Partner A mit Partner B zusammengeführt wird und B bestehen bleibt:
 
-## Interne Überweisungen zwischen Ihren eigenen Konten
+- jeder mit A verknüpfte Name, alternative Name und jedes Namensmuster geht auf B über, und der Name von A wird ein alternativer Name von B;
+- eine leere Steuernummer, ein leeres Land und eine leere Adresse von B werden aus A ergänzt; haben die beiden unterschiedliche Steuernummern, werden Sie gefragt, welche Sie behalten;
+- die Bankkonten von A werden **nicht** kopiert: Prüfen Sie danach den Reiter **Erkennung** von B;
+- A wird mit einem Verweis auf B archiviert, und alle ausstehenden Duplikatvorschläge, die A betreffen, werden verworfen.
 
-Wenn Sie Geld zwischen zwei Ihrer eigenen Bankkonten bewegen, ist die „Gegenpartei" der Transaktion Ihr eigenes Unternehmen - kein echter Lieferant oder Kunde. AI Finance Team behandelt dies mit einem speziellen **Eigenes-Unternehmen-Partner**: ein im Hintergrund geführter Datensatz, der eines Ihrer [Unternehmen](/master-data-entities) darstellt, sodass die Überweisung mit etwas Echtem verknüpft werden kann, statt einen überflüssigen Partner anzulegen.
+Ein Partner mit einer Sonderrolle kann nicht zusammengeführt werden. Die Zusammenführung erfolgt in eine Richtung und kann nicht rückgängig gemacht werden.
 
-- **Die Erkennung ist automatisch und identitätsbasiert.** Wenn das Gegenkonto einer Transaktion (per IBAN oder Kontonummer) mit einem auf einem Ihrer Unternehmen gespeicherten Bankkonto übereinstimmt, wird sie mit dem Eigenes-Unternehmen-Partner dieses Unternehmens verknüpft, erhält den Typ **Interne Überweisung** und wird als **Keine Rechnung nötig** markiert. Halten Sie dafür die Bankkonten jedes Unternehmens unter **Stammdaten → Unternehmen** aktuell.
-- **Das Badge „Eigenes Unternehmen".** Wo der Partner erscheint - auf der Transaktionsdetailseite, im Partner-Auswahlfeld -, zeigt er statt des üblichen Verifiziert-Badges ein blaues **Eigenes Unternehmen**-Badge.
-- **Sie stören nicht.** Eigenes-Unternehmen-Partner erscheinen **nicht** unter **Stammdaten → Partner** (sie sind keine echten Geschäftspartner) und werden **aus dem Kontokorrent ausgeschlossen** (ein laufender Saldo gegen sich selbst ist sinnlos). Im Auswahlfeld stehen sie oben in einer angehefteten Gruppe **Eigene Unternehmen**, sodass Sie eine Überweisung mit einem Klick jedem Ihrer Unternehmen zuordnen können.
-- **Manuelles Markieren.** Wenn eine Transaktion fälschlich als gewöhnlicher Partner erfasst wurde, der eigentlich Ihr eigenes Unternehmen ist, öffnen Sie die Detailseite dieses Partners und wählen Sie im Abschnitt **Eigenes Unternehmen** das dargestellte Unternehmen aus. Von da an verhält er sich wie ein Eigenes-Unternehmen-Partner, und künftige Überweisungen auf diesem Konto werden automatisch erkannt.
+## Archivieren
 
-> Dies gilt prospektiv: für künftige Transaktionen. Bestehende Zeilen werden nicht automatisch neu verarbeitet - ordnen Sie sie bei Bedarf über das Partner-Auswahlfeld der Transaktion zu.
+Archivieren Sie einen verifizierten Partner über seine Zeile in der Liste. Seine verknüpften Namen werden wieder nicht verifiziert. Sie können den Partner später wiederherstellen (**Archivierte anzeigen**, dann **Wiederherstellen**), aber die Verknüpfungen kehren nicht von selbst zurück. Partner können nicht gelöscht werden.
+
+## Umbuchungen zwischen Ihren eigenen Konten
+
+Wenn Geld zwischen zwei Ihrer eigenen Bankkonten fließt, ist die Gegenpartei Ihr eigenes Unternehmen, kein Lieferant oder Kunde. AI Finance Team verknüpft eine solche Transaktion mit einem Ihrer [Unternehmen](/master-data-entities), statt einen überflüssigen Partner anzulegen:
+
+- **Die Erkennung ist automatisch und beruht auf der Kontonummer.** Ist das Gegenkonto einer Transaktion bei einem Ihrer Unternehmen gespeichert, wird die Transaktion mit diesem Unternehmen verknüpft. Zwischen zwei Konten desselben Unternehmens erhält sie außerdem den Typ **Umbuchung** und wird als **Keine Rechnung nötig** markiert. Halten Sie die Bankkonten jedes Unternehmens unter **Stammdaten → Unternehmen** aktuell.
+- **Das Badge Eigenes Unternehmen.** Wo der Partner erscheint, zeigt er statt der Verifiziert-Pille ein blaues Badge **Eigenes Unternehmen**.
+- **Sie stören nicht.** Partner eigener Unternehmen werden nicht unter Partner aufgeführt und aus dem Kontokorrent ausgeschlossen. In der Partnerauswahl stehen sie oben in einer angehefteten Gruppe **Eigene Unternehmen**.
+- **Von Hand markieren.** Wurde eine Transaktion unter einem gewöhnlichen Partner erfasst, der in Wirklichkeit eines Ihrer Unternehmen ist, öffnen Sie diesen Partner, setzen Sie **Partnerart** auf **Eines unserer eigenen Unternehmen** und wählen Sie das Unternehmen. Der Partner verschwindet dann aus der Partnerliste, und künftige Überweisungen auf diesem Konto werden automatisch erkannt.
+
+> Das gilt ab diesem Zeitpunkt. Bestehende Transaktionen werden nicht erneut verarbeitet; ordnen Sie sie bei Bedarf über die Partnerauswahl der Transaktion zu.
 
 ## Rechnungen an Privatpersonen
 
-Wenn Sie einer Privatperson eine Rechnung stellen, meldet NAV **überhaupt keinen Käufer** - weder Name noch Steuernummer. Die ungarische Rechtslage lässt die Meldung personenbezogener Daten nicht zu; NAV teilt lediglich mit, dass der Käufer eine Privatperson *ist*. Solche Rechnungen kamen bisher ohne Partner an, standen deshalb mit leerer Partnerspalte im RLB- und Hessyn-Export und tauchten im Partnerkonto nie auf.
+Wenn Sie einer Privatperson eine Rechnung stellen, meldet NAV **überhaupt keinen Käufer**: Das ungarische Recht erlaubt keine Meldung personenbezogener Daten, daher teilt NAV nur mit, dass der Käufer eine Privatperson *ist*. Ohne Partner hatten diese Rechnungen im RLB- und Hessyn-Export einen leeren Partner und tauchten nie im Kontokorrent auf.
 
-Das stellen Sie einmalig ein, indem Sie einen Partner benennen, auf den sie alle gebucht werden.
+Das beheben Sie einmalig, indem Sie einen Partner benennen, auf den sie alle gebucht werden:
 
-- **Einrichtung.** Legen Sie einen Partner an (oder wählen Sie einen aus) - in den meisten Kanzleien heißt er *Magánszemély* -, öffnen Sie seine Detailseite und wählen Sie im Abschnitt **Sonderrolle** die Option **Privatperson**. Pro Arbeitsbereich kann nur ein Partner die Rolle tragen.
-- **Was sich ändert.** Ab dann wird jede NAV-Ausgangsrechnung, die NAV als an eine Privatperson gestellt meldet, auf diesen Partner gebucht. Sie erscheint mit Namen im RLB- und Hessyn-Export und im Partnerkonto, sodass Forderungen gegenüber Privatpersonen nicht länger unsichtbar sind.
-- **Erkannt wird aus der NAV-Meldung, nicht aus einem leeren Feld.** Die Rechnung landet nur hier, wenn NAV den Käufer ausdrücklich als Privatperson meldet. Eine lediglich unvollständig eingegangene Rechnung wird nie mit erfasst.
-- **Auf diesem Partner werden Zahlungen nie zugeordnet.** Er steht für viele verschiedene Personen, daher gelten Rechnungen, die ihn teilen, nicht als zusammengehörig. AI Finance Team schlägt allein aufgrund des gemeinsamen Partners keine Zuordnung vor und erstellt auch keine.
-- **Er lernt nie aus einer Zuordnung.** Wenn Sie die Zahlung einer Privatperson manuell einer dieser Rechnungen zuordnen, wird nichts gemerkt - kein Bankname, keine Kontonummer. Das ist beabsichtigt: Der Partner ist gemeinsam genutzt, alles darauf Gespeicherte würde auch allen anderen dort gebuchten Vorgängen zugeschrieben.
+- **Einrichtung.** Legen Sie einen Partner an oder wählen Sie einen aus (die meisten Kanzleien nennen ihn *Magánszemély*), und wählen Sie unter **Partnerart** die Option **Steht für eine Gruppe, die nicht einzeln identifiziert werden kann** mit der Rolle **Privatperson**. Pro Arbeitsbereich kann nur ein Partner die Rolle tragen.
+- **Was sich ändert.** Ab dann wird jede NAV-Ausgangsrechnung, die als an eine Privatperson gestellt gemeldet ist, auf diesen Partner gebucht, trägt in den Exporten einen Namen und erscheint im Kontokorrent.
+- **Erkannt wird aus der NAV-Meldung, nicht aus einem leeren Feld.** Eine Rechnung, die lediglich unvollständig eintrifft, wird nie mit erfasst.
+- **Auf diesem Partner werden Zahlungen nie zugeordnet.** Er steht für viele Personen, daher gelten zwei Rechnungen, die ihn teilen, nicht als zusammengehörig.
+- **Er lernt nie aus einer Zuordnung.** Weder ein Bankname noch eine Kontonummer wird bei ihm gespeichert, weil alles Erfasste allen dort gebuchten Personen zugeschrieben würde.
 
-> **Wenn Sie wissen, wer der Käufer ist, nehmen Sie einen echten Partner.** Bei einem einmaligen Verkauf von echtem Wert - Fahrzeug, Ausrüstung - legen Sie einen normalen Partner an und richten die Rechnung darauf aus. So erhalten Sie eine echte Partnerkontozeile für eine echte Forderung. Der Privatpersonen-Partner ist für Käufer gedacht, die Sie nie einzeln identifizieren werden, etwa alltägliche Online-Bestellungen.
-
-> Dies gilt vorausschauend: ab dem Moment der Einstellung eingehende Rechnungen. Bereits im System vorhandene Rechnungen werden nicht verschoben.
-
-## Einen Partner direkt verifizieren
-
-Wenn Ihnen das Badge ⚠ Nicht verifiziert beim Prüfen eines Dokuments auffällt, können Sie es beheben, ohne das Dokument zu verlassen.
-
-### Aus einer Rechnung
-
-1. Öffnen Sie die Rechnungsdetailseite.
-2. Wählen Sie im Dropdown **Partner** den verifizierten Partner aus, den Sie zuweisen möchten.
-3. Das Dropdown speichert automatisch.
-
-### Aus einer Banktransaktion
-
-1. Klicken Sie auf der Seite Transaktionen auf eine beliebige Zeile, um das Detailfenster zu öffnen.
-2. Suchen und wählen Sie in der Partnerauswahl **Partner** oben im Fenster den verifizierten Partner.
-3. Die Auswahl speichert automatisch, und die Pille verifiziert erscheint sofort.
-
-Der rohe Bankname (der Text, den die Bank tatsächlich gesendet hat) bleibt in der Kopfzeile des Auswahl-Dropdowns als „Roher Bankname: …" erhalten, sodass Sie sehen können, was ursprünglich extrahiert wurde.
-
-### Aus dem Kontoauszug-Editor
-
-Beim Bearbeiten eines hochgeladenen Kontoauszugs (Reiter Kontoauszüge → auf einen Kontoauszug klicken → **Zeilen bearbeiten**) hat die Spalte **Partner** in jeder Zeile dieselbe Partnerauswahl. Alle Änderungen werden gemeinsam gespeichert, wenn Sie auf **Speichern** klicken.
-
-### Für Transaktionen, die tatsächlich keinen Partner haben
-
-Bankgebühren und Zinsen gehören zu keinem Partner. Die Auswahl hat oben eine eigene Option **- Keine Partner (z. B. Bankgebühr) -** - wenn Sie sie auswählen, wird eine bestehende Verknüpfung sauber aufgehoben. (Überweisungen zwischen Ihren eigenen Konten sind anders - sie werden mit einem Eigenes-Unternehmen-Partner verknüpft, nicht mit „kein Partner".)
-
-### Die verifizierte Verknüpfung beim nächsten Mal wiederverwenden
-
-Wenn Sie von einem nicht verifizierten Partner zu einem verifizierten Partner umzuweisen, fügt AI Finance Team den ursprünglichen nicht verifizierten Namen automatisch als alternativen Namen beim verifizierten Partner hinzu. Die nächste Rechnung oder Transaktion mit genau diesem Namen wird ohne Ihr Zutun verifiziert.
-
-Alternativ klicken Sie auf **Jetzt verifizieren →** (unter jeder nicht verifizierten Auswahl angezeigt), um direkt zur Seite Partner zu gelangen, wo Sie einen neuen Partner erstellen oder den Namen mit einem bestehenden verknüpfen können.
-
-## Doppelte Partner zusammenführen
-
-Wenn zwei verifizierte Partner dasselbe reale Unternehmen darstellen, können Sie sie zusammenführen - entweder über das **Banner zur Steuernummer-Kollision** auf der Seite Partner oder direkt von der Partnerdetailseite.
-
-### Von der Partnerdetailseite
-
-1. Öffnen Sie den Partner, den Sie **wegführen** möchten (das Duplikat, das Sie ausmustern wollen).
-2. Klicken Sie in der Kopfzeile der Seite auf **Zusammenführen mit…**.
-3. Suchen Sie im Dialog nach dem Partner, den Sie behalten möchten - nach Name oder Steuernummer. Klicken Sie auf die Übereinstimmung in den Ergebnissen.
-4. Ein Bestätigungsbildschirm fasst zusammen, was passieren wird. Klicken Sie auf **Zusammenführen**, um zu bestätigen, oder auf **Zurück**, um ein anderes Ziel zu wählen.
-
-### Was während einer Zusammenführung geschieht
-
-Wenn Sie Partner A mit Partner B zusammenführen:
-
-- **Alle verknüpften Partner-Datensätze**, die an A angehängt waren, werden an B angehängt.
-- **Der Name von A** bleibt als **alternativer Name** bei B erhalten (mit einem „manuell"-Badge), sodass künftige Rechnungen und Transaktionen, die den Namen von A nennen, weiterhin automatisch zugeordnet werden.
-- **Die Steuernummer, IBANs und sonstigen Identitätsfelder von A** werden nicht kopiert - die Werte von B bleiben unverändert. Prüfen Sie anschließend den Abschnitt Kontakt & Bankverbindung von B, falls A Informationen hatte, die B nicht hatte.
-- **A wird archiviert** mit einem dauerhaften Verweis zurück auf B (sodass Verknüpfungen aus dem Prüfprotokoll zu A weiterhin funktionieren).
-- **Alle ausstehenden Vorschläge zur Steuernummer-Kollision**, die A betreffen, werden automatisch verworfen.
-
-Die Zusammenführung erfolgt in eine Richtung und kann nicht rückgängig gemacht werden - vergewissern Sie sich vor dem Bestätigen, dass Sie die richtige Quelle und das richtige Ziel haben.
-
-> Das Zusammenführen erfordert die Rolle **Buchhalter** oder **Buchhalter-Admin**.
+> **Wenn Sie wissen, wer der Käufer ist, nehmen Sie einen echten Partner.** Legen Sie für einen einmaligen Verkauf von echtem Wert, etwa ein Fahrzeug, einen normalen Partner an. Der Privatpersonen-Partner ist für Käufer gedacht, die Sie nie einzeln identifizieren werden, etwa alltägliche Online-Bestellungen. Er gilt für Rechnungen, die ab dem Moment der Einrichtung eintreffen.

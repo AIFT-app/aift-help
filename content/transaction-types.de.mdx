@@ -1,202 +1,181 @@
-# Transaktionstypen und „Keine Rechnung nötig“
+# Transaktionstypen & „Keine Rechnung nötig“
 
-Zu manchen Banktransaktionen wird es nie eine passende Rechnung geben - Bankgebühren, Zinsen, Lohnläufe, Steuerzahlungen und ähnliche wiederkehrende Posten. Mit **Transaktionstypen** legen Sie Regeln für diese Transaktionen fest, sodass sie automatisch erkannt und aus der Liste der fehlenden Dokumente ausgeschlossen werden - Ihr Posteingang bleibt auf die wirklich offenen Posten fokussiert.
+Zu manchen Banktransaktionen wird es nie eine Rechnung geben: Bankgebühren, Zinsen, Lohnzahlungen, Steuerzahlungen, Überweisungen zwischen Ihren eigenen Konten. **Transaktionstypen** erkennen diese Transaktionen und markieren sie als **Keine Rechnung erforderlich**, sodass sie nicht mehr auf einen Beleg warten und aus der offenen Zuordnungsarbeit herausbleiben.
 
-## So funktioniert es
+<TransactionTypeFlowFigure>
+Wie eine Banktransaktion ihren Typ erhält: zuerst Ihre Muster, dann der Partner, dann die KI, und eine Person kann jederzeit markieren oder rückgängig machen.
+</TransactionTypeFlowFigure>
 
-Wenn neue Transaktionen eintreffen (per Kontoauszug-Upload oder Bankverbindung), führt AI Finance Team Ihre Transaktionstyp-Regeln gegen jede offene Transaktion aus. Jede Transaktion, deren Beschreibung, Partnername oder Verwendungszweck einer Regel entspricht, wird sofort mit **Keine Rechnung nötig** und dem zugehörigen Typ markiert. Keine manuelle Prüfung nötig.
+## Wie eine Transaktion ihren Typ erhält
 
-Für Transaktionen, die keiner Regel exakt entsprechen, kann die KI anhand des Inhalts einen Typ vorschlagen - die Konfidenz sehen Sie in den Transaktionsdetails.
+1. **Ihre Muster.** Wenn ein Kontoauszug hochgeladen wird oder eine neue Transaktion über die Bankverbindung eintrifft, prüft AI Finance Team jede nicht zugeordnete Transaktion gegen die Muster Ihrer aktiven Typen. Ein Treffer markiert sie sofort mit diesem Typ als **Keine Rechnung erforderlich**.
+2. **Der Partner.** Eine Überweisung zwischen zwei Konten desselben Unternehmens ist immer eine Umbuchung (siehe unten), und ein Typ mit **Bestimmter Partner** greift immer dann, wenn der Partner der Transaktion genau dieser Partner ist.
+3. **Die KI.** Für alles, was noch nicht markiert ist, liest die KI die Transaktion, Ihre Typbeschreibungen und die Beispiele, die Sie ihr beigebracht haben. Ist sie zu mindestens 60 % sicher, markiert sie die Transaktion selbst. Sie prüft jede Transaktion einmal; unterhalb dieser Konfidenz lässt sie die Transaktion in Ruhe.
+4. **Eine Person** kann jederzeit auf der Seite der Transaktion markieren oder die Markierung zurücknehmen.
 
----
+Die Seite der Transaktion zeigt, wer sie markiert hat: **Per Musterregel zugeordnet**, **Per KI zugeordnet** mit der Konfidenz oder **Manuell markiert**.
 
 ## Transaktionstypen einrichten
 
-Transaktionstypen werden unter **Stammdaten → Transaktionstypen** verwaltet. Diese Seite ist nur für Nutzer mit der Rolle **Buchhalter** oder **Buchhalter-Admin** sichtbar.
+Öffnen Sie **Stammdaten** und dann **Transaktionstypen**. Die Seite hat zwei Reiter, **Typen** und **Beispiele**. Mitglieder der Kanzlei können sie öffnen; zum Anlegen und Ändern von Typen brauchen Sie die Berechtigung „Stammdaten bearbeiten“.
+
+<TransactionTypeEditorFigure>
+Bearbeitung des Standardtyps **Bankgebühr** (Bank Fee). Die Nummern entsprechen der Liste darunter. Muster und Zahlen sind Beispiele.
+</TransactionTypeEditorFigure>
+
+1. **Beschreibung**: Die KI liest sie, um zu entscheiden, welche Transaktionen zum Typ gehören.
+2. **Partner durch diesen Typ setzen**, hier mit **Bank** ausgewählt.
+3. Die Muster: ein Feld, ein Abgleichmodus und ein Wert.
+4. Die Live-Vorschau: wie viele bestehende Transaktionen die Muster treffen.
 
 ### Standardtypen
 
-Jeder neue Arbeitsbereich startet mit vordefinierten Transaktionstypen:
+Ein neuer Arbeitsbereich startet mit zehn Typen oder mit der eigenen Vorlage Ihrer Kanzlei, falls sie eine hat:
 
 | Typ | Zweck |
 |------|---------|
-| Bankgebühr | Monatliche Kontoführungsgebühren, Überweisungsgebühren |
-| Zinsen | Vom Institut gutgeschriebene oder belastete Zinsen |
-| Bankkorrektur | Vom Institut initiierte Korrekturen |
-| Kartenreservierung / Autorisierung | Vorautorisierungen auf Karten |
-| USt / Steuerzahlung | Direkte Zahlungen an die Steuerbehörde |
-| Lohn/Gehalt | Gehalts- und Lohnläufe |
-| Barabhebung | Geldautomat / Barabhebung vom Konto |
-| Interne Umbuchung | Geld zwischen Ihren eigenen Konten bewegen (siehe unten) |
+| Bankgebühr | Kontoführungsgebühren, Überweisungsgebühren |
+| Zinsen | Von der Bank gutgeschriebene oder belastete Zinsen |
+| Interne Bankkorrektur | Von der Bank veranlasste Korrekturen und Anpassungen |
+| Kartenreservierung / Autorisierung | Vorautorisierungen (Reservierungen) auf Karten |
+| USt / Steuerzahlung | Zahlungen an die Steuerbehörde |
+| Lohnzahlung | Gehalts- und Lohnläufe |
+| Bargeldauszahlung | Geldautomaten- und Barabhebungen vom Konto |
+| Umbuchung | Geld zwischen Ihren eigenen Bankkonten bewegen (siehe unten) |
+| Kredit- / Finanzierungsbewegung | Kreditauszahlungen, Tilgungen und andere Finanzierungsbewegungen |
+| Kartenacquirer-Abrechnung | Auszahlungen eines Kartenacquirers |
 
-Diese Typen enthalten bereits gängige Muster auf Basis typischer Bankbeschreibungen. Sie können jeden davon bearbeiten, erweitern oder deaktivieren.
+Die Standardtypen bringen Muster für typische Formulierungen der Banken mit, etwa `BANK FEE`, `JUTALÉK`, `PROVISION` und `HAVI DÍJ` für Bankgebühren. Ihre Namen werden in der Sprache des Arbeitsbereichs angezeigt; sobald Sie einen umbenennen, behält er Ihren Namen. Sie können jeden davon bearbeiten, erweitern oder deaktivieren.
 
-### Interne Umbuchungen zwischen Ihren eigenen Konten
+### Einen Typ anlegen und bearbeiten
 
-Wenn Sie Geld zwischen zwei Ihrer eigenen Bankkonten bewegen - meist EUR in HUF umwandeln oder ein Konto vom anderen aufladen -, gibt es keine Rechnung, weil beide Seiten dasselbe Unternehmen sind.
+1. Klicken Sie auf **+ Neuer Typ** oder in der Zeile eines Typs auf **Bearbeiten**.
+2. Geben Sie unter **Name** einen Namen ein.
+3. Schreiben Sie eine **Beschreibung**. Das ist keine private Notiz: Die KI liest sie, um zu entscheiden, welche Transaktionen zum Typ gehören, beschreiben Sie diese also klar und einfach.
+4. Lassen Sie **Aktiv** eingeschaltet.
+5. Legen Sie einen Partner fest, wenn der Typ einen hat (siehe unten).
+6. Fügen Sie mit **+ Muster hinzufügen** ein oder mehrere Muster hinzu.
+7. Klicken Sie auf **Typ erstellen** bzw. bei einem bestehenden Typ auf **Änderungen speichern**. Das Speichern ersetzt alle Muster des Typs.
 
-AI Finance Team erkennt dies automatisch und verlässt sich **nicht** allein auf den Beschreibungstext. Wenn das andere Konto einer Transaktion ein Bankkonto eines Ihrer [Unternehmen](/master-data-entities) ist (per IBAN oder Kontonummer abgeglichen), wird die Transaktion:
-
-- mit dem Typ **Interne Umbuchung** versehen,
-- als **Keine Rechnung nötig** markiert und
-- mit einem speziellen **Eigenes Unternehmen**-Partner verknüpft statt mit einem überflüssigen Lieferantendatensatz (siehe [Partner verwalten](/partners#interne-überweisungen-zwischen-ihren-eigenen-konten)).
-
-Da dies auf Ihren gespeicherten Kontonummern beruht - nicht auf fälschbarem Text -, halten Sie die Bankkonten jedes Unternehmens unter **Stammdaten → Unternehmen** aktuell.
-
-### Einen neuen Typ anlegen
-
-1. Klicken Sie oben rechts auf **+ Neuer Typ**.
-2. Geben Sie einen **Namen** ein - diesen sehen Buchhalter und die KI.
-3. Fügen Sie optional eine **Beschreibung** für interne Zwecke hinzu.
-4. Fügen Sie ein oder mehrere **Muster** hinzu (siehe unten).
-5. Klicken Sie auf **Speichern**.
-
-### Einen Typ bearbeiten
-
-Klicken Sie in einer beliebigen Zeile auf **Bearbeiten**. Dasselbe Formular öffnet sich mit den aktuellen Einstellungen. Das Speichern ersetzt alle Muster dieses Typs.
-
-### Typen aktivieren und deaktivieren
-
-Klicken Sie in einer Zeile auf **Deaktivieren** (oder **Aktivieren**). Deaktivierte Typen sind ausgegraut, ihre Muster werden beim Abgleich nicht angewendet.
-
----
-
-## Partnerbindung - mit wem die Transaktion ist
-
-Bankgebühren, Zinsen, Steuerzahlungen und Kartenakzeptanz-Abrechnungen brauchen nicht nur **Keine Rechnung nötig** - sie haben auch eine **echte Partei**: die kontoführende Bank, die Steuerbehörde oder den Zahlungsdienstleister. Ein Transaktionstyp kann diese Partei automatisch auflösen, sodass diese Bewegungen mit einer echten Partei ins Hauptbuch und in Exporte gelangen statt mit einem aus dem Auszugstext gekratzten Datensatz.
-
-Aktivieren Sie im Editor eines Typs **Partner durch diesen Typ setzen** und wählen Sie einen von zwei Modi:
-
-| Modus | Die Partei ist… | Wofür |
-|------|-----------------|-----------|
-| **Bank** | Die kontoführende Bank (vom Konto selbst) | Bankgebühren, Zinsen, Barabhebungen, Kartenreservierungen - unterscheidet sich pro Konto, ist aber stets „die Bank dieses Kontos“ |
-| **Bestimmter Partner** | Ein von Ihnen gewählter verifizierter Partner | Eine Steuerbehörde (z. B. NAV USt) oder ein Kartenakzeptant wie Teya - immer dieselbe Partei |
-
-Ist der Schalter **aus**, setzt der Typ keine Partei - der Partner kommt wie üblich aus der Transaktion selbst.
-
-Bei einem Typ **Bestimmter Partner** können Sie auch eine **Feste Kategorie** festlegen: Die Transaktion wird automatisch darauf gebucht (nur wenn sie noch keine hat). Falls der Partner noch nicht existiert, nutzen Sie **+ Partner anlegen** direkt im Editor.
-
-### Bank: die Bank jedes Kontos festlegen
-
-Ein Typ **Bank** nimmt seine Partei vom Konto selbst - die Bank ist kein separater Partner. (Für Gebühren haben Sie kein laufendes Kontokorrent mit Ihrer Bank; der Saldo gegenüber der Bank ist der eigene Barsaldo des Kontos.) Legen Sie die Bank unter **Stammdaten → Bankkonten** fest: Öffnen Sie ein Bankkonto mit **Bearbeiten** (oder beim Hinzufügen) und füllen Sie die Felder **Bank** und **Steuernummer der Bank** neben IBAN und Währung aus, damit Bankgebühren stets mit einer Partei exportiert werden.
-
-### Bestimmter Partner: greift bei Identität, nie bei Ähnlichem
-
-Ein Typ **Bestimmter Partner** wird nur angewendet, wenn der Partner der Transaktion tatsächlich zu dem von Ihnen gewählten Partner aufgelöst wird - nie nur, weil der Text ähnlich aussieht. Ein auf *Teya* festgelegter Typ klassifiziert z. B. die Kartenabrechnungen von Teya, lässt aber eine ähnlich aussehende *Wolt*-Abrechnung unberührt, weil Wolt eine andere Partei ist (und durchaus eine Rechnung brauchen kann). Sie entscheiden, welche Partner überhaupt eine Regel erhalten.
-
-> **Hierher verschoben:** Transaktionsregeln, die früher auf der **Partner**-Detailseite lagen, leben jetzt hier als Typen **Bestimmter Partner**. Legen Sie einen Typ pro Partner an - z. B. einen für *NAV USt* und einen separaten für *NAV Einkommensteuer* -, denn Steuer-Unterkonten sind nie dieselbe Partei.
-
----
+**Deaktivieren** in einer Zeile schaltet einen Typ ab, ohne ihn zu verlieren: Ein inaktiver Typ wird abgeblendet angezeigt, seine Muster werden nicht angewendet, die KI nutzt ihn nicht, und er wird beim Markieren einer Transaktion nicht angeboten. **Aktivieren** schaltet ihn wieder ein.
 
 ## Muster
 
-Jeder Transaktionstyp kann ein oder mehrere **Muster** haben. Eine Transaktion entspricht dem Typ, wenn **irgendeines** seiner Muster passt (Groß-/Kleinschreibung ignorierende ODER-Logik).
-
-### Aufbau eines Musters
-
-Jedes Muster ist eine Kombination aus drei Feldern:
+Eine Transaktion passt zu einem Typ, wenn **irgendeines** seiner Muster passt. Ein Muster besteht aus einem Feld, einem Abgleichmodus und einem Wert:
 
 | Feld | Was es prüft |
 |-------|---------------|
-| **Beschreibung** | Der freie Beschreibungstext der Bank |
-| **Partnername** | Der Name der anderen Partei der Transaktion |
-| **Verwendungszweck** | Das Verwendungszweck-Feld |
-
-Kombiniert mit einem Abgleichmodus:
+| **Beschreibung** | Der freie Beschreibungstext der Bank zur Transaktion |
+| **Name des Partners** | Der Name der anderen Partei der Transaktion |
+| **Verwendungszweck** | Der Verwendungszweck der Zahlung |
 
 | Modus | Verhalten |
 |------|-----------|
-| **Enthält** | Das Feld enthält den Wert an beliebiger Stelle (am flexibelsten) |
+| **Enthält** | Das Feld enthält den Wert an beliebiger Stelle |
 | **Beginnt mit** | Das Feld beginnt mit dem Wert |
-| **Exakt** | Das Feld entspricht dem Wert genau |
+| **Exakt** | Das Feld entspricht genau dem Wert |
 
-**Beispiel:** Ein Muster mit Feld = *Beschreibung*, Modus = *Enthält*, Wert = `BANK FEE` passt auf jede Transaktion, deren Beschreibung „BANK FEE“ enthält.
+Muster ignorieren Groß- und Kleinschreibung sowie Akzente, sodass `fizetés` auch auf `FIZETES` passt.
 
-### Live-Trefferschau
+Während Sie tippen, zeigt der Editor, wie viele bestehende Transaktionen die Muster treffen. Die Zahl enthält auch bereits zugeordnete oder markierte Transaktionen und addiert die Muster einzeln, betrachten Sie sie also als Obergrenze: Sie zeigt Ihnen, ob ein Muster viel zu weit ist oder gar nichts erfasst.
 
-Während Sie einen Musterwert eingeben, zeigt AI Finance Team, wie viele **bestehende** Transaktionen im Arbeitsbereich darauf passen würden. So prüfen Sie vor dem Speichern, ob ein Muster zu weit oder zu eng ist.
+## Partnerbindung: mit wem die Transaktion ist
 
----
+Bankgebühren, Zinsen, Steuerzahlungen und Auszahlungen von Kartenacquirern haben eine echte Partei: die kontoführende Bank, die Steuerbehörde oder den Zahlungsdienstleister. Ein Typ kann diese Partei setzen, sodass diese Transaktionen einen richtigen Partner ins Hauptbuch und in die Exporte mitnehmen statt eines aus dem Auszug herausgelesenen Namens.
 
-## AIFT beibringen, welche Transaktionen eine Rechnung brauchen
+Schalten Sie im Editor **Partner durch diesen Typ setzen** ein und wählen Sie einen Modus:
 
-Muster sind nicht der einzige Weg, auf dem AIFT lernt. Jedes Mal, wenn Sie eine Transaktion als **Keine Rechnung nötig** markieren - oder die Markierung aufheben -, merkt sich AIFT die Entscheidung als **Beispiel** und zeigt sie der KI, sobald etwas Ähnliches eintrifft. Sie müssen dafür nichts tun; es sammelt sich beim Arbeiten von selbst an.
+| Modus | Die Partei ist… | Wofür |
+|------|---------------|-----------|
+| **Bank** | Die kontoführende Bank, vom Konto selbst übernommen | Bankgebühren, Zinsen, Barabhebungen, Kartenreservierungen |
+| **Bestimmter Partner** | Ein von Ihnen gewählter verifizierter Partner | Eine Steuerbehörde oder ein Kartenacquirer: immer dieselbe Partei |
 
-Beispiele finden Sie unter **Stammdaten → Transaktionstypen → Beispiele**.
+Ist der Schalter aus, setzt der Typ keinen Partner, und der Partner kommt aus der Transaktion selbst. Existiert der benötigte Partner noch nicht, legt **+ Partner anlegen** ihn direkt im Editor an.
+
+### Bank: die Bank jedes Kontos festlegen
+
+Ein Typ **Bank** übernimmt seine Partei vom Bankkonto. Legen Sie sie unter **Stammdaten → Bankkonten** fest: Öffnen Sie das Konto mit **Bearbeiten** (oder beim Hinzufügen) und füllen Sie **Bank** und **Steuernummer der Bank** aus, damit Bankgebühren immer mit einer Partei exportiert werden.
+
+### Bestimmter Partner: greift bei Identität, nie bei Ähnlichem
+
+Ein Typ **Bestimmter Partner** greift, wenn der Partner der Transaktion der von Ihnen gewählte Partner ist, nie nur, weil der Text ähnlich aussieht, und er markiert die Transaktion immer als **Keine Rechnung erforderlich**. Seine Muster werden nicht verwendet. Ein an einen Kartenacquirer gebundener Typ klassifiziert zum Beispiel dessen Auszahlungen, lässt aber einen ähnlich aussehenden Posten eines anderen Unternehmens unberührt, denn das ist eine andere Partei, die durchaus eine Rechnung brauchen kann. Legen Sie einen Typ pro Partner an: einen für das USt-Konto der Steuerbehörde und einen separaten für die Einkommensteuer, denn Steuer-Unterkonten sind nicht dieselbe Partei.
+
+> **Die Kategorie gehört zum Partner.** Um die Transaktionen eines Partners auf eine feste Kategorie zu buchen, legen Sie auf dem Reiter **Regeln** des Partners die **Feste Transaktionskategorie** fest (siehe [Partner verwalten](/partners)). Sie setzt nur die Kategorie; ob eine Transaktion eine Rechnung braucht, wird hier entschieden.
+
+## Umbuchungen zwischen Ihren eigenen Konten
+
+Wenn Sie Geld zwischen zwei Ihrer eigenen Bankkonten bewegen, meist beim Umtausch von EUR in HUF oder beim Aufladen eines Kontos von einem anderen, gibt es keine Rechnung.
+
+AI Finance Team erkennt diese Bewegungen an der Kontonummer, nicht am Wortlaut. Wenn das andere Konto einer Transaktion zu einem Ihrer [Unternehmen](/master-data-entities) gehört:
+
+- wird die Transaktion statt mit einem Partner mit diesem Unternehmen verknüpft und mit dem Badge **Eigenes Unternehmen** angezeigt;
+- zwischen zwei Konten **desselben** Unternehmens erhält sie außerdem den Typ **Umbuchung** und wird als **Keine Rechnung erforderlich** markiert;
+- zwischen zwei **verschiedenen** Ihrer Unternehmen wird nur das Unternehmen verknüpft; die Transaktion wird nicht markiert, weil hinter einer Zahlung zwischen zwei Unternehmen eine Rechnung stehen kann.
+
+Halten Sie die Bankkonten jedes Unternehmens unter **Stammdaten → Unternehmen** aktuell, damit Umbuchungen zuverlässig erkannt werden. Eine Transaktion, deren Beschreibung nur ein Wort für eine Umbuchung erwähnt (z. B. „átvezetés“), kann über ein Muster trotzdem den Typ Umbuchung erhalten, wird aber mit keinem Ihrer Unternehmen verknüpft.
+
+## AI Finance Team beibringen, welche Transaktionen eine Rechnung brauchen
+
+Muster sind nicht der einzige Weg, etwas beizubringen. Wenn Sie eine Transaktion mit einem Typ als **Keine Rechnung erforderlich** markieren oder eine solche Markierung zurücknehmen, merkt sich AI Finance Team die Entscheidung als **Beispiel** und zeigt sie der KI, wenn das nächste Mal etwas Ähnliches eintrifft. Eine Markierung mit **Kein bestimmter Typ** bringt nichts bei, weil sie nichts darüber aussagt, welcher Typ zutrifft.
+
+Beispiele finden Sie auf dem Reiter **Beispiele** der Seite Transaktionstypen.
 
 ### Beispiele sind keine Regeln
 
-Das ist der entscheidende Unterschied, und er sollte klar sein, bevor Sie zu einem von beiden greifen:
-
 | | **Muster** | **Beispiele** |
 |---|---|---|
-| Woher sie kommen | Sie schreiben sie | Automatisch aus Ihren eigenen Markierungen und Rücknahmen |
-| Was sie tun | Harte Regel - ein Treffer wird sofort zugeordnet, ohne KI | Ein Hinweis, den die KI neben allem anderen abwägt |
-| Wenn einer falsch ist | Transaktionen werden still falsch zugeordnet | Die KI kann sich dagegen entscheiden |
-| Kann „hierfür **braucht** es eine Rechnung“ ausdrücken | Nein | **Ja** |
+| Woher sie kommen | Sie schreiben sie | Aus Ihren Markierungen und Rücknahmen übernommen oder von Hand angelegt |
+| Was sie tun | Eine harte Regel: Ein Treffer wird sofort markiert, ohne KI | Ein Hinweis, den die KI mit allem anderen zur Transaktion abwägt |
+| Wenn eines falsch ist | Transaktionen werden falsch markiert | Die KI kann sich trotzdem dagegen entscheiden |
+| Kann sagen „hierfür **braucht** es eine Rechnung“ | Nein | **Ja** |
 
-Nutzen Sie ein **Muster**, wenn Sie den genauen Wortlaut der Bank kennen und eine deterministische Behandlung wollen - und prüfen Sie vor dem Speichern die Live-Trefferschau, denn ein weites Muster fängt auch Unbeabsichtigtes ein. Für alles andere sind **Beispiele** da: Ihre täglichen Korrekturen bauen sie von allein auf.
+Nutzen Sie ein **Muster**, wenn Sie den genauen Wortlaut der Bank kennen und ihn jedes Mal gleich behandelt haben wollen. Für alles andere nutzen Sie **Beispiele**; Ihre täglichen Entscheidungen bauen sie von selbst auf.
 
 ### Das Gegenteil beibringen: „hierfür braucht es eine Rechnung“
 
-Wenn Sie eine Markierung **Keine Rechnung nötig** zurücknehmen, hält AIFT das als Beispiel **Rechnung erforderlich** fest - als Veto. Die KI lässt ähnliche Transaktionen dann in Ruhe, selbst wenn der Wortlaut rechnungsfrei aussieht.
+Wenn Sie eine Markierung **Keine Rechnung erforderlich** zurücknehmen, hält AI Finance Team ein Beispiel **Rechnung erforderlich** fest, und die KI lässt ähnliche Transaktionen danach in Ruhe, selbst wenn der Wortlaut so aussieht, als bräuchte es keine Rechnung.
 
-Das löst die Beinahe-Treffer. Ungarische Bankentexte sind voll davon: eine Regel für *fizetés* (Lohnzahlung) liest auch *kifizetés* (eine Auszahlung), und *adó* steckt in etlichen ganz gewöhnlichen Firmennamen. Statt jedes dieser Wörter in einem Muster zu umschiffen, nehmen Sie die falsche Markierung einmal zurück - AIFT lernt die Ausnahme.
+Hat ein **Muster** die falsche Markierung gesetzt, reicht die Rücknahme nicht: Das Muster markiert die Transaktion beim nächsten Lauf erneut, weil Muster vor der KI laufen. Korrigieren Sie stattdessen das Muster. Ungarische Bankentexte sind voller Beinahe-Treffer: Ein Muster für *fizetés* (Lohnzahlung) erfasst auch *kifizetés* (eine Auszahlung), und *adó* steckt in vielen Firmennamen. Machen Sie ein solches Muster genauer, zum Beispiel mit **Beginnt mit** oder einem längeren Wert.
 
 ### Was ein Beispiel zeigt
 
 | Spalte | Bedeutung |
-|--------|-----------|
-| **Partner** | Der Partner, auf den das Beispiel passt |
-| **Beschreibung** | Text, den die Transaktion enthalten soll |
-| **Entscheidung** | **Keine Rechnung nötig** (mit dem Typ darunter) oder **Rechnung erforderlich** |
-| **Transaktionstyp** | Der anzuwendende Typ - bei *Rechnung erforderlich* leer |
+|--------|---------|
+| **Partner** | Der Partner, um den es im Beispiel geht |
+| **Beschreibung** | Text, den die Transaktion enthält |
+| **Entscheidung** | **Keine Rechnung nötig** (mit dem Typ) oder **Rechnung erforderlich** |
+| **Transaktionstyp** | Der anzuwendende Typ; leer bei einem Beispiel *Rechnung erforderlich* |
 | **Quelle** | **Automatisch gelernt** (aus Ihrer Markierung) oder **Manuell** (von Ihnen angelegt) |
 | **Vorkommen** | Wie viele Transaktionen Sie so entschieden haben |
 
-Wiederholte Entscheidungen zum selben Partner fallen in ein Beispiel mit steigendem **Vorkommen**-Zähler zusammen, statt einer Zeile pro Transaktion - so bleibt die Liste auch nach ein paar hundert Bankgebühren lesbar.
+Wiederholte Entscheidungen zum selben Partner fallen zu einem Beispiel mit steigendem **Vorkommen**-Zähler zusammen. Mit **+ Beispiel hinzufügen** bringen Sie etwas bei, bevor AI Finance Team es gesehen hat; das hilft, wenn Sie einen Mandanten übernehmen, dessen wiederkehrende Posten Sie schon kennen. Ihre jüngste Entscheidung gilt, und ein neues oder geändertes Beispiel wirkt sich ab dann auf Transaktionen aus; bereits verarbeitete Transaktionen werden nicht erneut geprüft.
 
-### Ein Beispiel von Hand anlegen
+**KI-Lernen** in den Einstellungen des Reiters legt fest, wie viele gelernte Beispiele AI Finance Team der KI zeigt, von **Niedrig** bis **Hoch**; **Aus** beendet ihre Verwendung. Zum Ändern brauchen Sie die Berechtigung „Arbeitsbereich-Einstellungen bearbeiten“. Beispiele gehören zu einem einzelnen Mandanten-Arbeitsbereich und werden nie zwischen Mandanten geteilt.
 
-Mit **+ Beispiel hinzufügen** bringen Sie AIFT etwas bei, bevor es ihm organisch begegnet ist - praktisch beim Onboarding eines Mandanten, dessen wiederkehrende Posten Sie bereits kennen. Wählen Sie **Keine Rechnung nötig** mit einem Typ, oder **Rechnung erforderlich** für ein Veto.
+## Eine Transaktion von Hand markieren
 
-**Ihre jüngste Entscheidung gilt.** Markieren Sie ein Muster als rechnungsfrei und nehmen das später zurück, kippt das Beispiel - es behält nicht beide Antworten.
+Öffnen Sie die Transaktion unter **Banktransaktionen**. Bei einer nicht zugeordneten Transaktion hat die Karte **Zuordnung & Zahlung** ein Menü, **Markieren als: keine Rechnung erforderlich…**:
 
-**Änderungen wirken nach vorn.** Ein neues oder geändertes Beispiel greift beim nächsten Klassifizierungslauf; bereits verarbeitete Transaktionen werden nicht neu bewertet.
+1. Wählen Sie einen Transaktionstyp oder **Kein bestimmter Typ**, wenn keiner passt.
+2. Die Transaktion wird sofort als **Keine Rechnung erforderlich** markiert.
 
-> Beispiele gelten je Mandant, werden nie zwischen Mandanten geteilt und sind nur für Buchhalter sichtbar.
+Zum Zurücknehmen klicken Sie auf **Rückgängig - als nicht zugeordnet markieren**. Die Transaktion ist wieder nicht zugeordnet und wartet erneut auf einen Beleg. Markieren und Zurücknehmen erfordern die Berechtigung „Banktransaktionen bearbeiten“; Benutzer auf Mandantenseite sehen die Markierung, können sie aber nicht ändern. Das Menü erscheint nur, wenn der Arbeitsbereich mindestens einen aktiven Typ hat.
 
----
+## Labels und Filter in der Transaktionsliste
 
-## Kennzeichnungen in der Transaktionsliste
-
-Auf der Seite **Transaktionen** kann jede Zeile ein oder mehrere Labels zeigen:
+Eine Zeile auf der Seite **Banktransaktionen** kann diese Labels tragen:
 
 | Label | Bedeutung |
 |-------|---------|
-| **Keine Rechnung** | Durch eine Transaktionstyp-Regel oder manuell von einem Buchhalter markiert |
+| **Keine Rechnung** | Als Keine Rechnung erforderlich markiert, durch einen Typ oder eine Person |
+| **Zugeordnet** | Einer Rechnung zugeordnet |
+| **Nicht zugeordnet** | Wartet noch auf eine Rechnung oder eine Entscheidung |
 | **Duplikat** | Als Duplikat einer anderen Transaktion erkannt |
-| **Bankverbindung** | Über eine Live-GoCardless-Verbindung importiert |
-| **Auszug** | Aus einem hochgeladenen PDF-Kontoauszug importiert |
+| **Bank-Feed** | Aus einer Live-Bankverbindung importiert |
+| **Auszug** | Aus einem hochgeladenen Kontoauszug importiert |
 
-Eine Transaktion kann mehrere Labels gleichzeitig tragen.
+Die Filter-Pills über der Liste filtern nach denselben Zuständen: **Bank-Feed**, **Auszug**, **Duplikat**, **Nicht zugeordnet**, **Zugeordnet** und **Keine Rechnung**, dazu **Eigene Kategorie fehlt**. Mehrere Pills können gleichzeitig aktiv sein.
 
-### Nach Label filtern
+## Exporte
 
-Unter der Hauptfilterleiste gibt es umschaltbare Pill-Filter. Klicken Sie zum Aktivieren; erneut zum Deaktivieren. Mehrere können gleichzeitig aktiv sein.
-
----
-
-## Eine Transaktion manuell markieren
-
-Auch ohne passendes Muster kann ein Buchhalter jede offene Transaktion direkt im Detailbereich markieren:
-
-1. Klicken Sie auf die Transaktionszeile, um die Details zu öffnen.
-2. Wählen Sie im Abschnitt **Abgleich** einen Transaktionstyp aus dem Dropdown - oder **Kein bestimmter Typ**.
-3. Die Transaktion wird sofort als **Keine Rechnung nötig** markiert.
-
-Zum Rückgängigmachen klicken Sie auf **Rückgängig - als offen markieren**. Die Transaktion kehrt in den offenen Zustand zurück.
-
-Sowohl die Markierung als auch die Rücknahme werden gemerkt - siehe oben [AIFT beibringen, welche Transaktionen eine Rechnung brauchen](#aift-beibringen-welche-transaktionen-eine-rechnung-brauchen). Nach ein paar gleichartigen Markierungen erledigt AIFT den Rest meist von selbst.
-
-> Nur **Buchhalter** und **Buchhalter-Admin** können Transaktionen markieren oder die Markierung aufheben. Mandanten sehen das Label, können es aber nicht ändern.
+Eine als **Keine Rechnung erforderlich** markierte Transaktion braucht trotzdem eine Transaktionskategorie mit Sachkontonummer, bevor sie exportiert werden kann; andernfalls weist der RLB-Export darauf hin. Transaktionen eines Typs **Bank** werden mit Banknamen und Steuernummer aus dem Bankkonto exportiert.
