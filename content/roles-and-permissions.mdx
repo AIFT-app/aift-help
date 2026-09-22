@@ -1,63 +1,34 @@
-# AI Finance Team. Roles & Permissions
+# Roles & Permissions
 
-This guide describes how access works in AI Finance Team. It covers what users can do based on their role and how membership is granted.
+This article describes who can do what in AI Finance Team: how an accounting firm and its clients are organised, which permissions exist and who holds them, how custom roles and exceptions change them, and how people join, are invited and are removed.
 
-## How the Platform Is Organized
+## How the platform is organised
 
-AI Finance Team supports collaboration between accounting firms and their clients. The structure is:
+AI Finance Team connects accounting firms with their clients:
 
-- **Accounting organizations** are firms or practices that prepare financial records for their clients.
-- **Client organizations** are the businesses whose books are being kept.
-- A **workspace** represents one client engagement. The accounting firm manages the workspace; the client uses it. Accountants typically work across multiple workspaces; client users see only their own.
+- An **organization** is an accounting firm or practice.
+- A **workspace** is one client engagement: the firm works in it, and the client's people use it too. Accountants usually work across many workspaces; client users see only their own.
 
-Users have two kinds of roles: an **organization-level role** within their organization and a **workspace role** within each workspace they belong to.
+Every workspace member is on the **firm side** (they work for the accounting firm) or the **client side** (they work for the client). The side comes from how the person joined. It belongs to the membership, not to a role, and no role can change it. Some permissions are firm-only: they can never be given to someone on the client side.
 
----
+## The organization
 
-## Organization-Level Roles (Accounting Firm Members)
+Members of an accounting firm have an organization role, **Admin** or **Member**. When no workspace is open, the sidebar shows **Organization** with these pages:
 
-Every member of an accounting firm has an organization-level role. This determines what they can do across the whole firm, independent of any specific workspace.
+- **General**, **Manage workspaces**, **Team**, **AI access** and **Support access**, for every member of the firm;
+- **Billing**, for admins, where billing is switched on.
 
-| Organization role | Typical user | Key capabilities |
-|---|---|---|
-| Admin | Founder, partner, or senior accountant | Create workspaces, manage the team, join any workspace, approve join requests |
-| Member | Accountant or staff | Works inside workspaces they have been added to; can request to join others |
+Admins invite people to the firm, make a member an admin or an admin a member, and remove people. Removing someone from the firm also removes them from every workspace of the firm; the last admin cannot be removed. Members see the firm's team but cannot change it.
 
-Organization admins can do everything a member can do, plus:
+Client users have no organization role. They exist only in the workspaces they were invited to.
 
-- Create new client workspaces (see [Workspaces](/workspaces))
-- See all workspaces that belong to the firm on the dashboard, including ones they haven't personally joined
-- Join any firm workspace with one click (they are added as accountant admin)
-- Approve or reject join requests submitted by organization members (see [Joining a Workspace](#joining-a-workspace) below)
-- Manage the firm's team from the **Organization settings** page: invite new members, promote/demote, remove members, and revoke pending invitations
+## Permissions
 
-Organization members (non-admin accountants) work only in workspaces they have been explicitly added to or have requested to join. They do not see the Organization settings page or the Join button on the dashboard, but they can request access to any workspace in the firm.
+Every workspace member has one **role**, and a role is a named set of **permissions**. Every workspace has four **system roles**, and its managers can add **custom roles** for that workspace.
 
-Client-side users (client owner, client member) have no organization role on the accounting firm side. They exist entirely within the workspaces they've been invited to.
-
-### Organization Settings
-
-The **Organization settings** page is accessible from the bottom of the sidebar for organization admins. It provides:
-
-- A list of all current team members with their roles and email addresses
-- Controls for promoting a member to admin or demoting an admin to member
-- A bulk invite form. Add up to 10 rows in one go, each with an optional name pre-fill and a chosen role, plus an optional personal message shared with the whole batch (see [Inviting People](#inviting-people) below)
-- A list of pending organization invitations with the ability to copy the link again or revoke
-- An inbox of pending workspace join requests submitted by organization members
-
-Plain organization members (non-admin accountants) can view the member list but cannot take any actions.
-
----
-
-## Workspace Roles and Permissions
-
-Every workspace member has one **role**, and a role is a named set of **permissions**. There are four **system roles**, which every workspace has, and there can be **custom roles**, which a workspace's managers create for that workspace only.
-
-### The two sides
-
-Every member is on the **firm side** (they work for the accounting firm) or the **client side** (they work for the client company). The side comes from how the person joined; it is a property of the membership, not a permission, and no role can change it. Some permissions are firm-only: they cannot be placed on a client-side role at all.
-
-### The permissions
+<AccessDecisionFigure>
+How AI Finance Team answers "may this member do this?": the fixed rules first, then the side, then the member's exceptions, then the role.
+</AccessDecisionFigure>
 
 | Permission | Side | Accountant admin | Accountant | Client owner | Client member |
 |---|---|---|---|---|---|
@@ -74,91 +45,110 @@ Every member is on the **firm side** (they work for the accounting firm) or the 
 | Invite members | any | ✓ | — | ✓ | — |
 | Manage members and roles | any | ✓ | — | ✓ | — |
 | Manage connections | any | ✓ | — | ✓ | — |
+| Approve invoices for payment | any | ✓ | — | ✓ | — |
+| Manage approvals | any | ✓ | — | ✓ | — |
+| Export payment file | any | ✓ | — | ✓ | — |
+| Push into the accounting system | firm | ✓ | — | — | — |
 
-The ticks are the **defaults of the four system roles**. A custom role picks its own set; an exception (see below) can change a single member.
+The ticks are the **defaults of the four system roles**. A custom role picks its own set, and an exception changes a single member. "Push into the accounting system" also needs the connection to be switched on for the workspace.
 
-Two things are fixed by rule and never part of a role:
+Two things are fixed by rule and are never part of a role:
 
-- **Connecting and disconnecting bank accounts** belongs to the client owner only. Bank credentials stay on the client side.
+- **Connecting and disconnecting bank accounts.** Any client-side member can connect a bank; disconnecting a bank connection belongs to the client owner. Bank credentials always stay on the client side.
 - **NAV Online Számla credentials** can be set up by the client owner, an accountant admin or an accountant. Nobody can read them back.
 
-"Edit master data" covers partners, categories, transaction types, the VAT setup, custom category lists, the default date basis and whether clients see transaction categories. "Edit workspace settings" covers numbering, currency, AI and data settings. "Manage connections" covers the workspace's e-mail-in address and the Business Central link.
+Both are decided by the member's **base role** (the system role a custom role is based on), so a custom role based on Client owner also owns the bank connection.
+
+What the broader permissions cover:
+
+- **Edit master data**: partners, categories, transaction types, the VAT setup, custom category lists and the ledger defaults.
+- **Edit workspace settings**: numbering, currency, AI and data settings.
+- **Manage connections**: the workspace's email address for incoming documents and the Business Central link.
+- **Approve invoices for payment**, **Manage approvals** and **Export payment file**: see [Setting Up Payment Approvals](/setting-up-approvals) and [Paying Approved Invoices](/paying-approved-invoices).
 
 ### System roles
 
 | Role | Side | Typical user |
 |---|---|---|
-| Accountant admin | Firm | Lead accountant on the engagement: everything, plus team and settings |
+| Accountant admin | Firm | Lead accountant on the engagement: everything, including the team and the settings |
 | Accountant | Firm | Supporting accountant: all bookkeeping work, no team or settings |
-| Client owner | Client | Senior person at the client: uploads, invites client users, manages the client team and connections, owns the bank consent |
+| Client owner | Client | Senior person at the client: uploads, invites and manages the client's people and connections, approves and pays invoices, owns the bank connection |
 | Client member | Client | Other people at the client: uploads and views |
 
-System roles cannot be edited. Click **View** on a role to see, read-only, what a member on that role can do. To give an accountant or a client user a different set, create a custom role or add an exception.
+System roles cannot be changed. Click **View** on one to see, read-only, what a member on that role can do.
 
 ### Custom roles
 
-Open **Settings → Team → Roles** in the workspace. Anyone holding "Manage members and roles" sees it; firm-side managers see every role, client-side managers the client-side ones.
+Open **Settings → Team management → Roles** in the workspace.
 
-- A custom role is **based on** a system role of the same side and starts from that role's permissions. Untick or tick permissions; a firm-only permission is not offered for a client-side role.
-- You can only grant permissions you hold yourself.
-- Assign the role on **Team → Members → [member]**, or pick it when inviting someone.
-- A role that members still hold cannot be archived; move them first.
+<RolesTabFigure>
+The **Roles** tab with the four system roles and a custom role. The numbers match the list below. The role and the member count are examples.
+</RolesTabFigure>
+
+1. The tabs of Team management.
+2. A system role, with **View** and **Duplicate**.
+3. A custom role, based on a system role of its side.
+4. **Add role**.
+
+- **Add role** creates a role with nothing ticked; **Duplicate** starts from an existing role's permissions. A custom role is based on a system role of the same side, and a firm-only permission is not offered for a client-side role.
+- You can only give permissions you hold yourself.
+- Everyone who opens the tab sees every role, but a client-side manager cannot change firm-side roles.
+- Assign a role on a member's access page, or pick it when inviting someone.
+- A role that members still hold cannot be archived; move them to another role first.
 - Custom roles belong to the workspace they were created in.
+
+Parts of the app that have not moved to permissions yet still behave like the member's base role, as the Roles tab notes.
 
 ### Exceptions for one member
 
-On **Team → Members → [member]**, a manager can grant or deny a single permission for that one person on top of their role. Two rules: you can only grant what you hold yourself, and you cannot edit your own access. The page also shows the member's effective permissions and where each comes from (role, exception, or rule).
+On the **Team members** tab, **Edit access** next to a member opens their access page. There a manager can change the member's role and add an exception: give one permission the role lacks, or take away one it has. The rules:
 
-Denying "View invoices and bank transactions" turns a member into an upload-only user: they open the workspace, see the member list and their own access page, can upload documents, but every record list is empty and the top of every page says so.
+- you can only give or take away a permission you hold yourself;
+- you cannot change your own access;
+- an exception that the role already answers the same way is refused.
 
-### Manage members and roles
+The page lists **What this member can do**, and where each answer comes from: **From role**, **Exception, added**, **Exception, removed**, **Fixed by rule** or **Not available on the client side**. Every member can see their own access under **My access**.
 
-This permission is what makes someone a manager of the team. It lets them change a member's role, set exceptions, remove members and, on the firm side, decide join requests and see the firm's team. A client-side manager (the client owner by default) manages client-side members only. The last accountant admin and the last client owner of a workspace cannot be removed.
+Taking away "View invoices and bank transactions" makes a member an upload-only user: they open the workspace, see the member list and their own access, and can upload documents, but every record list is empty and each page says so.
+
+### Managing the team
+
+"Manage members and roles" is what makes someone a manager of the team. It lets them change a member's role, set exceptions, remove members and, on the firm side, decide join requests. A client-side manager (the client owner by default) manages client-side members only. The last accountant admin and the last client owner of a workspace cannot be removed, cannot leave, and cannot be moved to another base role.
 
 ### What a member sees
 
-The sidebar follows the member's side: firm-side members see the accountant screens, client-side members the client screens. Hiding a menu item is not access control; what a member can actually read or change is decided by their permissions in the database, so a custom role without "Close periods" is sent back from Closing however they got there.
+The sidebar follows the member's side and permissions, but hiding a menu item is not the protection: what a member can read or change is decided by their permissions in the database. A custom role without "Close periods" is turned away from Closing however they got there.
 
----
+## What each role sees
 
-## What Each Role Sees
+These tables show the **defaults** of the four system roles; a custom role or an exception changes them.
 
-The tables below show the **defaults** of the four system roles. A custom role or an exception changes them for that role or member.
+### Sidebar
 
-### Sidebar Navigation
-
-| Section | Accountant admin | Accountant | Client owner | Client member |
+| Item | Accountant admin | Accountant | Client owner | Client member |
 |---|---|---|---|---|
-| Home | ✓ | ✓ | ✓ | ✓ |
-| Invoices | ✓ | ✓ | ✓ | ✓ |
-| Bank transactions | ✓ | ✓ | — | — |
-| Missing receipts | ✓ | ✓ | ✓ | ✓ |
-| Matching | ✓ | ✓ | — | — |
-| Documents | ✓ | ✓ | — | — |
-| Intake | ✓ | ✓ | ✓ | ✓ |
-| Closing | ✓ | ✓ | — | — |
+| Home, Invoices, Bank transactions | ✓ | ✓ | ✓ | ✓ |
+| Matching, Exports, Closing | ✓ | ✓ | — | — |
+| Approvals | ✓ | — | ✓ | — |
+| Payment file | ✓ | — | ✓ | — |
 | Reports | ✓ | ✓ | ✓ | ✓ |
-| Messages | ✓ | ✓ | ✓ | ✓ |
-| Exports | ✓ | ✓ | — | — |
-| Master data | ✓ | ✓ | ✓ | ✓ |
-| Settings | ✓ | ✓ | ✓ | ✓ |
-| Organization settings | organization admin only | — | — | — |
+| Intake, Messages | ✓ | ✓ | ✓ | ✓ |
+| Missing receipts | ✓ | ✓ | ✓ | ✓ |
+| Documents | ✓ | ✓ | — | — |
+| Master data, Settings | ✓ | ✓ | ✓ | ✓ |
 
-**Missing receipts** (see [Missing Receipts](/documents-needed)) and **Documents** appear only in workspaces where the respective feature has been switched on.
+**Approvals** appears for members holding "Approve invoices for payment" or "Manage approvals", and **Payment file** for those holding "Export payment file". **Missing receipts** appears only where that feature is switched on for the workspace (see [Missing Receipts](/documents-needed)). Under **Master data**, client-side members see Companies, Bank accounts, Accounting categories and Custom categories; Partners, Transaction types, VAT groups and the VAT setup are firm-only.
 
-### Settings → Team Section
+### Settings → Team management
 
-| Tab or component | Accountant admin | Accountant | Client owner | Client member |
+| Tab or action | Accountant admin | Accountant | Client owner | Client member |
 |---|---|---|---|---|
-| Members list | ✓ | ✓ | ✓ | ✓ |
-| Edit a member's access (role, exceptions) | ✓ | — | ✓ (client-side members) | — |
-| "Your team at [Firm Name]" section | ✓ | — | — | — |
-| Invite tab | ✓ | — | ✓ (client roles only) | — |
-| Pending invitations tab, revoke | ✓ | — | ✓ (client-side invitations) | — |
-| Requests tab (join requests) | ✓ | — | — | — |
-| Roles tab (custom roles) | ✓ | — | ✓ | — |
-
-Every member can open their own access page. The invite form of a client-side inviter is restricted to client members; a firm-side inviter can invite any role.
+| Team members | ✓ | ✓ | ✓ | ✓ |
+| Edit access (role, exceptions) | ✓ | — | ✓ (client-side members) | — |
+| Invite a new member | ✓ | — | ✓ (client roles only) | — |
+| Pending invitations, revoke | ✓ | — | ✓ (client-side invitations) | — |
+| Pending requests (join requests) | ✓ | — | — | — |
+| Roles | ✓ | — | ✓ | — |
 
 ### Invoices
 
@@ -166,89 +156,48 @@ Every member can open their own access page. The invite form of a client-side in
 |---|---|---|---|---|
 | Upload an invoice | ✓ | ✓ | ✓ | ✓ |
 | View invoice details | ✓ | ✓ | ✓ | ✓ |
-| Edit header (direction, company, partner) | ✓ | ✓ | — | — |
-| Edit line item categories | ✓ | ✓ | — | — |
+| Edit an invoice (company, direction, partner, fields, lines) | ✓ | ✓ | — | — |
+| Change categories and VAT codes | ✓ | ✓ | — | — |
 
-Clients submit raw documents; accountants do the categorization and verification.
+Clients submit the documents; the accountants categorise and check them.
 
 ### Reports
 
 | Action | Accountant admin | Accountant | Client owner | Client member |
 |---|---|---|---|---|
 | View reports and drill down | ✓ | ✓ | ✓ | ✓ |
-| Create a new report | ✓ | ✓ | ✓ | ✓ |
-| Edit report structure (lines, categories, expressions) | ✓ | ✓ | ✓ | ✓ |
-| Rename or delete a report | ✓ | ✓ | ✓ | ✓ |
+| Create, edit, rename or delete a report | ✓ | ✓ | — | — |
 
----
+## How membership works
 
-## How Membership Works
+### Inviting people
 
-### Inviting People
+The workspace's **Settings → Team management → Invite a new member** (for members holding "Invite members") and the organization's **Team** page (for organization admins) have the same invite panel. It queues up to **10 invitations** at once:
 
-Both **workspace settings** (for an accountant admin or a client owner) and **Organization settings** (for an organization admin) expose the same invite panel. The flow is the same in both places.
+- One row per person: the email address, the role, and optionally their **Name** and **Language**. With a name, the invitation email greets them by name and the sign-up form is filled in.
+- An optional message, up to 500 characters, shared by the whole batch. Links in it become clickable.
+- Click **Send invite**, or **Send N invites** for several. Rows that were sent drop out of the form; rows that failed (for example a duplicate email address) stay with the error so you can fix them.
 
-The panel lets you queue up to **10 invites in one batch**:
+The role list depends on who invites: a client-side inviter can only invite client members, a firm-side inviter can invite any workspace role, and the organization panel invites to the firm.
 
-- One row per recipient. Fill in the email address and pick a role. The role dropdown is restricted based on where you are (e.g. A client owner can only invite client members; an organization admin can only invite at organization level).
-- An optional **Name** field per row. If you fill it in, the recipient's invitation email opens with their name (e.g. "Hi Anna,") instead of "Hi there," and the signup form pre-fills their full name when they accept.
-- An optional **Message** textarea (max 500 characters) that the whole batch shares. URLs in the message become clickable links in the email.
-- Click **Send invite** (or **Send N invites** when the batch has more than one row). Each successful row drops out of the form; rows that failed to send (e.g. Duplicate email) stay with an inline error so you can fix them and retry.
+AI Finance Team emails each person the invitation link and your message; the link is also shown to you in case the email does not arrive. Each invitation expires after 14 days, can be revoked before it is accepted, and only works for the email address it was sent to.
 
-After sending, AI Finance Team **emails each recipient automatically** with the invitation link and your custom message. You no longer need to copy and share the URL by hand. Though the inviter still sees the link as a fallback in case email delivery fails.
+### Accepting an invitation
 
-Each invitation:
+When the person opens the link:
 
-- Expires 14 days after creation
-- Can be revoked by the inviter at any time before acceptance
-- Is bound to the specific email address provided
+- if they are not signed in, they sign in or sign up, and the invitation is kept through it;
+- if they are signed in with a different email address, **Wrong account?** offers **Sign in with a different account**;
+- once accepted, a **workspace invitation** adds them to the workspace and opens it; an invitation with an accountant role also makes them a member of the firm. An **organization invitation** adds them to the firm's team.
 
-### Accepting an Invitation
+### Joining a workspace
 
-When the recipient clicks the invite URL:
+There are three ways into a workspace:
 
-- If they're not signed in, they're directed to log in or sign up. The invitation token is preserved through the auth flow. Their full name is pre-filled on the signup form if the inviter provided one.
-- If they sign in with a different email than the invitation was sent to, the page surfaces a "Wrong account? Sign out" link so they can switch identities without losing the invitation.
-- If they sign up, an account is created with the email the invitation was sent to.
-- On successful acceptance:
-  - **Workspace invitation** → they are added to the workspace and redirected to it.
-  - **Organization invitation** → they are added to the firm's team and redirected to the workspace dashboard. A guest-admin banner appears at the top of any workspaces they're not yet a member of, with a one-click Join button.
+1. **An invitation**, as above.
+2. **An organization admin adds themselves**: under **Organization → Manage workspaces**, they pick a role (Accountant by default) and click **Add me**. An admin who opens a firm workspace they are not a member of sees a banner with **Add me as a member**.
+3. **An organization member asks to join**: under **Organization → Manage workspaces**, they pick Accountant or Accountant admin and click **Ask to join**. The workspace's accountant admins and the firm's admins get an email. The request is decided in the workspace under **Settings → Team management → Pending requests** by a firm-side member holding "Manage members and roles": **Approve**, with the role requested or another one, or **Deny**. The person is told by email either way.
 
-### Joining a Workspace
+### Removing a member
 
-There are three ways to end up in a workspace:
-
-1. **You accept an invitation.** Standard path. See above.
-2. **You're an organization admin.** All workspaces in the firm are visible to you on the dashboard. Workspaces you haven't joined show a **Join** button. Click it and you're added as accountant admin immediately.
-3. **You're an organization member and you request to join.** Organization members see a "Browse firm workspaces" view listing workspaces they don't belong to. Clicking **Request to join** sends a request to all organization admins of the firm. They review the request in their **Organization settings** inbox and either approve (you're added as accountant) or reject (you get a notification email explaining why).
-
-The third path is new. It replaces the older flow where organization members had to ask an admin to add them manually.
-
-### After Acceptance
-
-A new member sees the workspace immediately. Their role determines what's visible according to the tables above. Their account exists at the platform level, so if they later leave the workspace (or are added to another), their account persists.
-
-### Removing a Member
-
-Anyone holding "Manage members and roles" can remove a member on their own side who has already accepted: by default the accountant admin removes firm-side members and the client owner removes client-side members. The action lives in the workspace's Team page next to each member name. The last accountant admin and the last client owner of a workspace cannot be removed. Every member can leave a workspace themselves.
-
-- **Organization member**. An organization admin can remove anyone from the firm. This also removes them from every workspace they were in. The action lives on the Organization settings page.
-
-Removed users keep their account at the platform level. They just lose access to that workspace or firm.
-
----
-
-## What's Not Yet Built
-
-A few capabilities the data model supports but the user interface doesn't yet expose:
-
-- **Bank connection management UI.** Bank account data exists but the UI for clients to connect, disconnect, or manage their bank link is not yet built.
-- **Export to accounting software.** The export feature is not yet built.
-- **Approval workflows.** Such as requiring senior approval before an invoice is finalized.
-- **Audit trail.** Visibility into who did what and when.
-
-These are planned but not part of the current release.
-
----
-
-This represents the platform as it exists today. As features ship, this document gets updated to reflect new capabilities.
+A member holding "Manage members and roles" can remove a member on their own side from the **Team members** tab: by default, the accountant admin removes firm-side members and the client owner removes client-side members. Any member can leave a workspace themselves, except the last accountant admin and the last client owner. Removed people keep their account; they only lose access to that workspace. Removing someone from the organization (on its **Team** page) removes them from every workspace of the firm.

@@ -27,3 +27,19 @@ export function formatDate(iso: string, locale: Locale): string {
     timeZone: 'UTC',
   })
 }
+
+/**
+ * A timestamp the way the app's formatDateTime renders it. The app formats in
+ * the viewer's timezone; the help pages are rendered at build time, so the
+ * illustrations pin the office's timezone to stay the same wherever they build.
+ */
+export function formatDateTime(iso: string, locale: Locale): string {
+  return new Date(iso).toLocaleString(BCP47[locale], {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZone: 'Europe/Budapest',
+  })
+}
