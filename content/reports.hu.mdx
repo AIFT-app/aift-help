@@ -8,7 +8,7 @@ A jelentések kategóriánként összesítik a számla- vagy banki tranzakciós 
 
 ## A jelentések megnyitása
 
-A munkaterület oldalsávjában kattintson a **Jelentések** menüpontra. Kártyákként látja a munkaterület jelentéseit, mindegyiken a nevével, a típusával (**Számla** vagy **Pénzforgalom**) és az utolsó frissítés idejével, valamint egy keresőmezőt, amellyel megkereshet egyet. Kattintson egy kártyára a jelentés megnyitásához. Ha az egérmutatót egy kártya fölé viszi, megjelenik a **Név szerkesztése** és a **Törlés**; egy jelentés törlése a sorait is törli, és nem vonható vissza.
+A munkaterület oldalsávjában kattintson a **Jelentések** menüpontra. Kártyákként látja a munkaterület jelentéseit, mindegyiken a nevével, a típusával (**Számla** vagy **Pénzforgalom**) és az utolsó frissítés idejével, valamint egy keresőmezőt, amellyel megkereshet egyet. Kattintson egy kártyára a jelentés megnyitásához. Ha jogosult a jelentések kezelésére, és az egérmutatót egy kártya fölé viszi, megjelenik a **Név szerkesztése** és a **Törlés**; egy jelentés törlése a sorait is törli, és nem vonható vissza.
 
 ## Jelentéstípusok
 
@@ -21,8 +21,8 @@ Eredménykimutatás-jellegű nézethez válassza a **Számla**, pénzforgalmi n�
 
 ### Honnan származnak a számok
 
-- A **számla típusú jelentések** azoknak a számláknak a kategorizált tételeit adják össze, amelyeknek befejeződött a kinyerése, a számla **kiállítás dátuma** szerint. Az összeg a tétel nettó összege plusz a le nem vonható áfa, ha van, a munkaterület bázis pénznemében. **A bevétel pluszként, a kiadás mínuszként számít.**
-- A **pénzforgalom típusú jelentések** a banki tranzakciók bázis pénznemben vett összegét adják össze, a **könyvelés dátuma** szerint.
+- A **számla típusú jelentések** azoknak a számláknak a kategorizált tételeit adják össze, amelyeknek befejeződött a kinyerése, a számla **kiállítás dátuma** szerint. Az összeg a tétel nettó összege plusz a le nem vonható áfa, ha van, a munkaterület bázis pénznemében. **A bevétel pluszként, a kiadás mínuszként számít.** A **Duplikáció** és az **Elutasítva** jelölésű számlák kimaradnak, ahogy a számlalistából is.
+- A **pénzforgalom típusú jelentések** a banki tranzakciók bázis pénznemben vett összegét adják össze, a **könyvelés dátuma** szerint. **A beérkező pénz pluszként, a kimenő pénz mínuszként számít**, így egy sor, amely mindkettőt tartalmazza, a nettó mozgást mutatja.
 
 Azok a tételek, amelyeknek még nincs bázis pénznemű összegük, például egy még az árfolyamára váró számla, kimaradnak, amíg az árfolyam meg nem érkezik.
 
@@ -40,7 +40,7 @@ Egy számla típusú jelentés erre az évre. A számok az alábbi lista pontjai
 
 ### Az időszak kiválasztása
 
-A jelentés az aktuális évre nyílik meg. Az időszakot az eszköztár bal szélén lévő dátumvezérlővel módosíthatja: válasszon egy gyorsválasztást, például **Ez a hónap**, **Előző hónap**, **Év eleje óta** vagy **Utolsó 30 nap**; válasszon hónapot, negyedévet vagy évet a **Hónap**, **Negyedév** vagy **Év** fülön; vagy adjon meg pontos tartományt az **Egyedi** fülön, és kattintson az **Alkalmaz** gombra. A jelentés a választás után azonnal újrafut. Az időszak bekerül az oldal címébe, így ha elküldi a linket egy kollégájának, ugyanarra az időszakra nyílik meg; a bontás, a szűrők és a keresés nem kerülnek bele.
+A jelentés az aktuális évre nyílik meg. Az időszakot az eszköztár bal szélén lévő dátumvezérlővel módosíthatja: válasszon egy gyorsválasztást, például **Ez a hónap**, **Előző hónap**, **Év eleje óta**, **Utolsó 30 nap** vagy **Teljes időszak** (minden időszak, kezdő- és záródátum nélkül); válasszon hónapot, negyedévet vagy évet a **Hónap**, **Negyedév** vagy **Év** fülön; vagy adjon meg pontos tartományt az **Egyedi** fülön, és kattintson az **Alkalmaz** gombra. A jelentés a választás után azonnal újrafut. Az időszak bekerül az oldal címébe, így ha elküldi a linket egy kollégájának, ugyanarra az időszakra nyílik meg; a bontás, a szűrők és a keresés nem kerülnek bele.
 
 ### Az eredmények értelmezése
 
@@ -81,7 +81,7 @@ Az a lista, amely szerint éppen bont, nem szerepel a szűrőmenüben, és a men
 
 ## Megjelenítés más pénznemben
 
-A táblázat fölött jobbra található **Megjelenítési pénznem** a teljes jelentést átszámítja, olvasási célra. Válasszon pénznemet, vagy az alapértelmezettet (a bázis pénznemet, illetve a munkaterület megjelenítési pénznemét, ha a **Beállítások → Pénznem és árfolyam** alatt be van állítva ilyen). Az átszámítás egyetlen, az időszak végére vonatkozó ECB-árfolyammal történik, egy még le nem zárult időszaknál a mai árfolyammal, az árfolyam és a dátuma pedig a választó mellett látható. A választás a jelentésen mentődik, mindenki számára, aki megnyitja.
+A táblázat fölött jobbra található **Megjelenítési pénznem** a teljes jelentést átszámítja, olvasási célra. Válasszon pénznemet, vagy az alapértelmezettet (a bázis pénznemet, illetve a munkaterület megjelenítési pénznemét, ha a **Beállítások → Pénznem és árfolyam** alatt be van állítva ilyen). Az átszámítás egyetlen, az időszak végére vonatkozó ECB-árfolyammal történik, egy még le nem zárult időszaknál és a **Teljes időszak** esetén a mai árfolyammal, az árfolyam és a dátuma pedig a választó mellett látható. A választás a jelentésen mentődik, mindenki számára, aki megnyitja.
 
 Az arányt számoló sorok és a részletező panel a bázis pénznemben maradnak, mert egy aránynak nincs pénzneme, a részletezésnek pedig egyeznie kell a dokumentumokkal. Ha nincs elérhető árfolyam, a jelentés ezt jelzi, és a bázis pénznemben marad.
 
@@ -92,7 +92,7 @@ Kattintson egy sorra, és jobb oldalt megnyílik a részletező panel:
 1. **Kategóriák**: a sor mögötti kategóriák, összegükkel és tételszámukkal. Kattintson egyre a kibontásához.
 2. **Tételek**: az egyes kategóriákon belüli számlatételek vagy banki tranzakciók, a legújabbal kezdve, dátummal, partnerrel, hivatkozással vagy számlaszámmal és összeggel. Számla típusú jelentésben a **PDF** az eredeti dokumentumot mutatja, a **→** pedig új lapon megnyitja a számlát.
 
-Számított sornál a panel a képletet és az azt alkotó sorokat mutatja. A panelt a sorra újra kattintva vagy a panel × jelével zárhatja be. Az aktív szűrők a panelre is vonatkoznak.
+Számított sornál a panel a képletet és az azt alkotó sorokat mutatja. A panelt a sorra újra kattintva vagy a panel × jelével zárhatja be; az időszak módosításakor is bezárul. Az aktív szűrők a panelre is vonatkoznak.
 
 ## Keresés
 
@@ -126,7 +126,7 @@ Minden módosítás azonnal mentődik; visszavonásra nincs lehetőség. Ha vég
 
 ## Ki mit tehet
 
-A jelentések megtekintéséhez a „Számlák és banki tranzakciók megtekintése” jogosultság szükséges. Jelentések létrehozásához, átnevezéséhez, törléséhez és szerkesztéséhez, valamint a megjelenítési pénznem beállításához a „Riportok kezelése” jogosultság kell, amellyel alapértelmezetten a Könyvelő admin és a Könyvelő szerepkör rendelkezik. Lásd: [Szerepek és jogosultságok](/roles-and-permissions). A munkaterülethez csatlakoztatott AI-asszisztensek is ki tudják listázni és le tudják futtatni a jelentéseket; lásd: [AI-asszisztensek (MCP)](/mcp).
+A jelentések megtekintéséhez a „Számlák és banki tranzakciók megtekintése” jogosultság szükséges. Jelentések létrehozásához, átnevezéséhez, törléséhez és szerkesztéséhez, valamint a megjelenítési pénznem beállításához a „Riportok kezelése” jogosultság kell, amellyel alapértelmezetten a Könyvelő admin és a Könyvelő szerepkör rendelkezik. A „Riportok kezelése” jogosultság nélkül ezek a vezérlők nem jelennek meg: a jelentéseket megnyithatja, olvashatja, és a részletező panelen a számok mögé nézhet, de a **+ Új jelentés**, a **Név szerkesztése**, a **Törlés**, a **Jelentés szerkesztése** és a **Megjelenítési pénznem** nem látható. Lásd: [Szerepek és jogosultságok](/roles-and-permissions). A munkaterülethez csatlakoztatott AI-asszisztensek is ki tudják listázni és le tudják futtatni a jelentéseket; lásd: [AI-asszisztensek (MCP)](/mcp).
 
 ## Tippek
 

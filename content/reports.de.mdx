@@ -8,7 +8,7 @@ So ist ein Bericht aufgebaut: Kategorien summieren sich zu Berichtszeilen, und b
 
 ## Berichte öffnen
 
-Klicken Sie in der Seitenleiste des Arbeitsbereichs auf **Berichte**. Sie sehen die Berichte dieses Arbeitsbereichs als Karten, jeweils mit Namen, Typ (**Rechnung** oder **Cashflow**) und dem Zeitpunkt der letzten Aktualisierung, dazu ein Suchfeld, um einen Bericht zu finden. Klicken Sie auf eine Karte, um den Bericht zu öffnen. Wenn Sie mit der Maus über eine Karte fahren, erscheinen **Name bearbeiten** und **Löschen**; das Löschen eines Berichts löscht auch seine Zeilen und kann nicht rückgängig gemacht werden.
+Klicken Sie in der Seitenleiste des Arbeitsbereichs auf **Berichte**. Sie sehen die Berichte dieses Arbeitsbereichs als Karten, jeweils mit Namen, Typ (**Rechnung** oder **Cashflow**) und dem Zeitpunkt der letzten Aktualisierung, dazu ein Suchfeld, um einen Bericht zu finden. Klicken Sie auf eine Karte, um den Bericht zu öffnen. Wenn Sie Berichte verwalten dürfen und mit der Maus über eine Karte fahren, erscheinen **Name bearbeiten** und **Löschen**; das Löschen eines Berichts löscht auch seine Zeilen und kann nicht rückgängig gemacht werden.
 
 ## Berichtstypen
 
@@ -21,8 +21,8 @@ Wählen Sie **Rechnung** für eine GuV-artige Ansicht und **Cashflow** für eine
 
 ### Woher die Zahlen kommen
 
-- **Rechnungsberichte** summieren die kategorisierten Positionen von Rechnungen, deren Extraktion abgeschlossen ist, datiert nach dem **Rechnungsdatum**. Der Betrag ist der Nettobetrag der Position zuzüglich nicht abziehbarer Umsatzsteuer, falls vorhanden, in der Basiswährung des Arbeitsbereichs. **Einnahmen zählen als Plus, Ausgaben als Minus.**
-- **Cashflow-Berichte** summieren die Beträge der Banktransaktionen in der Basiswährung, datiert nach dem **Buchungsdatum**.
+- **Rechnungsberichte** summieren die kategorisierten Positionen von Rechnungen, deren Extraktion abgeschlossen ist, datiert nach dem **Rechnungsdatum**. Der Betrag ist der Nettobetrag der Position zuzüglich nicht abziehbarer Umsatzsteuer, falls vorhanden, in der Basiswährung des Arbeitsbereichs. **Einnahmen zählen als Plus, Ausgaben als Minus.** Als **Duplikat** markierte und **abgelehnte** Rechnungen bleiben außen vor, wie in der Rechnungsliste.
+- **Cashflow-Berichte** summieren die Beträge der Banktransaktionen in der Basiswährung, datiert nach dem **Buchungsdatum**. **Eingehendes Geld zählt als Plus, ausgehendes als Minus**, sodass eine Zeile mit beidem die Nettobewegung zeigt.
 
 Posten, die noch keinen Betrag in der Basiswährung haben, etwa eine Rechnung, die noch auf ihren Wechselkurs wartet, bleiben außen vor, bis der Kurs vorliegt.
 
@@ -40,7 +40,7 @@ Ein Rechnungsbericht für dieses Jahr. Die Nummern entsprechen der Liste darunte
 
 ### Den Zeitraum wählen
 
-Ein Bericht öffnet sich mit dem laufenden Jahr. Ändern können Sie den Zeitraum mit der Datumsauswahl links in der Werkzeugleiste: Wählen Sie eine Schnellauswahl wie **Dieser Monat**, **Letzter Monat**, **Seit Jahresbeginn** oder **Letzte 30 Tage**, wählen Sie auf dem Reiter **Monat**, **Quartal** oder **Jahr** einen Monat, ein Quartal oder ein Jahr, oder legen Sie unter **Eigener** einen genauen Zeitraum fest und klicken Sie auf **Übernehmen**. Der Bericht läuft sofort nach Ihrer Auswahl erneut. Der Zeitraum steht in der Adresse der Seite, ein Link, den Sie einer Kollegin schicken, öffnet also denselben Zeitraum; Aufschlüsselung, Filter und Suche werden nicht mitgegeben.
+Ein Bericht öffnet sich mit dem laufenden Jahr. Ändern können Sie den Zeitraum mit der Datumsauswahl links in der Werkzeugleiste: Wählen Sie eine Schnellauswahl wie **Dieser Monat**, **Letzter Monat**, **Seit Jahresbeginn**, **Letzte 30 Tage** oder **Gesamter Zeitraum** (alle Zeiträume, ohne Anfangs- oder Enddatum), wählen Sie auf dem Reiter **Monat**, **Quartal** oder **Jahr** einen Monat, ein Quartal oder ein Jahr, oder legen Sie unter **Eigener** einen genauen Zeitraum fest und klicken Sie auf **Übernehmen**. Der Bericht läuft sofort nach Ihrer Auswahl erneut. Der Zeitraum steht in der Adresse der Seite, ein Link, den Sie einer Kollegin schicken, öffnet also denselben Zeitraum; Aufschlüsselung, Filter und Suche werden nicht mitgegeben.
 
 ### Die Ergebnisse lesen
 
@@ -81,7 +81,7 @@ Die Liste, nach der Sie gerade aufschlüsseln, steht nicht im Filtermenü, und d
 
 ## In einer anderen Währung anzeigen
 
-**Anzeigewährung** oben rechts über der Tabelle rechnet den ganzen Bericht zur Ansicht um. Wählen Sie eine Währung oder den Standard (die Basiswährung oder die Anzeigewährung des Arbeitsbereichs, falls unter **Einstellungen → Währung & FX** eine festgelegt ist). Die Umrechnung verwendet einen einzigen EZB-Kurs zum Ende des Zeitraums, bei einem noch nicht abgeschlossenen Zeitraum den heutigen Kurs; Kurs und Datum stehen neben der Auswahl. Die Auswahl wird am Bericht gespeichert und gilt für alle, die ihn öffnen.
+**Anzeigewährung** oben rechts über der Tabelle rechnet den ganzen Bericht zur Ansicht um. Wählen Sie eine Währung oder den Standard (die Basiswährung oder die Anzeigewährung des Arbeitsbereichs, falls unter **Einstellungen → Währung & FX** eine festgelegt ist). Die Umrechnung verwendet einen einzigen EZB-Kurs zum Ende des Zeitraums, bei einem noch nicht abgeschlossenen Zeitraum und bei **Gesamter Zeitraum** den heutigen Kurs; Kurs und Datum stehen neben der Auswahl. Die Auswahl wird am Bericht gespeichert und gilt für alle, die ihn öffnen.
 
 Quotenzeilen und das Detailfenster bleiben in der Basiswährung, denn eine Quote hat keine Währung, und die Details sollen zu den Belegen passen. Ist kein Kurs verfügbar, weist der Bericht darauf hin und bleibt in der Basiswährung.
 
@@ -92,7 +92,7 @@ Klicken Sie auf eine Zeile, um rechts ein Detailfenster zu öffnen:
 1. **Kategorien**: die Kategorien hinter der Zeile, mit ihren Summen und Postenzahlen. Klicken Sie auf eine, um sie aufzuklappen.
 2. **Posten**: die Rechnungspositionen oder Banktransaktionen in jeder Kategorie, die neuesten zuerst, mit Datum, Partner, Referenz oder Rechnungsnummer und Betrag. In einem Rechnungsbericht zeigt **PDF** den Originalbeleg, und **→** öffnet die Rechnung in einem neuen Tab.
 
-Bei einer berechneten Zeile zeigt das Fenster die Formel und die Zeilen, aus denen sie besteht. Klicken Sie erneut auf die Zeile oder auf das × im Fenster, um es zu schließen. Aktive Filter gelten auch im Detailfenster.
+Bei einer berechneten Zeile zeigt das Fenster die Formel und die Zeilen, aus denen sie besteht. Klicken Sie erneut auf die Zeile oder auf das × im Fenster, um es zu schließen; auch ein Wechsel des Zeitraums schließt es. Aktive Filter gelten auch im Detailfenster.
 
 ## Suchen
 
@@ -126,7 +126,7 @@ Jede Änderung wird sofort gespeichert; es gibt kein Rückgängigmachen. Klicken
 
 ## Wer was darf
 
-Zum Ansehen von Berichten ist die Berechtigung „Rechnungen und Banktransaktionen ansehen“ nötig. Zum Erstellen, Umbenennen, Löschen und Bearbeiten von Berichten sowie zum Festlegen der Anzeigewährung ist die Berechtigung „Berichte verwalten“ nötig, die die Rollen Buchhalter-Admin und Buchhalter standardmäßig haben. Siehe [Rollen & Berechtigungen](/roles-and-permissions). Mit dem Arbeitsbereich verbundene KI-Assistenten können Berichte ebenfalls auflisten und ausführen; siehe [KI-Assistenten (MCP)](/mcp).
+Zum Ansehen von Berichten ist die Berechtigung „Rechnungen und Banktransaktionen ansehen“ nötig. Zum Erstellen, Umbenennen, Löschen und Bearbeiten von Berichten sowie zum Festlegen der Anzeigewährung ist die Berechtigung „Berichte verwalten“ nötig, die die Rollen Buchhalter-Admin und Buchhalter standardmäßig haben. Ohne „Berichte verwalten“ werden diese Bedienelemente nicht angezeigt: Sie können Berichte öffnen, lesen und im Detailfenster nachvollziehen, aber **+ Neuer Bericht**, **Name bearbeiten**, **Löschen**, **Bericht bearbeiten** und **Anzeigewährung** erscheinen nicht. Siehe [Rollen & Berechtigungen](/roles-and-permissions). Mit dem Arbeitsbereich verbundene KI-Assistenten können Berichte ebenfalls auflisten und ausführen; siehe [KI-Assistenten (MCP)](/mcp).
 
 ## Tipps
 
