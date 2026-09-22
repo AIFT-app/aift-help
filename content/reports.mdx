@@ -8,7 +8,7 @@ How a report is built: categories add up into reporting lines, and calculated li
 
 ## Opening Reports
 
-In the workspace sidebar, click **Reports**. You see the reports of this workspace as cards, each with its name, its type (**Invoice** or **Cash**) and when it was last updated, and a search box to find one. Click a card to open the report. Hovering over a card shows **Edit name** and **Delete**; deleting a report also deletes its lines and cannot be undone.
+In the workspace sidebar, click **Reports**. You see the reports of this workspace as cards, each with its name, its type (**Invoice** or **Cash**) and when it was last updated, and a search box to find one. Click a card to open the report. If you can manage reports, hovering over a card shows **Edit name** and **Delete**; deleting a report also deletes its lines and cannot be undone.
 
 ## Report types
 
@@ -21,8 +21,8 @@ Choose **Invoice** for a P&L-style view and **Cash** for a cash-flow view. The t
 
 ### Where the numbers come from
 
-- **Invoice reports** add up the categorised line items of invoices whose extraction has finished, dated by the invoice's **issue date**. The amount is the line's net amount plus any VAT that cannot be deducted, in the workspace's base currency. **Income counts as plus and expenses as minus.**
-- **Cash reports** add up the bank transactions' amounts in the base currency, dated by the **booking date**.
+- **Invoice reports** add up the categorised line items of invoices whose extraction has finished, dated by the invoice's **issue date**. The amount is the line's net amount plus any VAT that cannot be deducted, in the workspace's base currency. **Income counts as plus and expenses as minus.** Invoices marked **Duplicate** or **Rejected** are left out, as they are in the invoice list.
+- **Cash reports** add up the bank transactions' amounts in the base currency, dated by the **booking date**. **Money coming in counts as plus and money going out as minus**, so a line that holds both shows the net movement.
 
 Items without a base-currency amount yet, such as an invoice still waiting for its exchange rate, are left out until the rate arrives.
 
@@ -40,7 +40,7 @@ An Invoice report for this year. The numbers match the list below. The lines and
 
 ### Choosing the period
 
-A report opens on the current year. Use the date control at the left of the toolbar to change it: pick a shortcut such as **This month**, **Last month**, **Year to date** or **Last 30 days**, pick a month, a quarter or a year on the **Month**, **Quarter** or **Year** tab, or set an exact range on **Custom** and click **Apply range**. The report runs again as soon as you choose. The period travels in the page address, so a link you send to a colleague opens on the same period; the breakdown, filters and search do not travel with it.
+A report opens on the current year. Use the date control at the left of the toolbar to change it: pick a shortcut such as **This month**, **Last month**, **Year to date**, **Last 30 days** or **All time** (every period, with no start or end date), pick a month, a quarter or a year on the **Month**, **Quarter** or **Year** tab, or set an exact range on **Custom** and click **Apply range**. The report runs again as soon as you choose. The period travels in the page address, so a link you send to a colleague opens on the same period; the breakdown, filters and search do not travel with it.
 
 ### Reading the results
 
@@ -81,7 +81,7 @@ The list you are breaking down by is not in the filter menu, and the menu says s
 
 ## Showing another currency
 
-**Display currency**, above the table on the right, converts the whole report for reading. Choose a currency, or the default (the base currency, or the workspace's display currency if one is set under **Settings → Currency & FX**). The conversion uses one ECB rate for the end of the period, or today's rate for a period that has not ended yet, and the rate and its date are shown next to the selector. The choice is saved on the report for everyone who opens it.
+**Display currency**, above the table on the right, converts the whole report for reading. Choose a currency, or the default (the base currency, or the workspace's display currency if one is set under **Settings → Currency & FX**). The conversion uses one ECB rate for the end of the period, or today's rate for a period that has not ended yet and for **All time**, and the rate and its date are shown next to the selector. The choice is saved on the report for everyone who opens it.
 
 Ratio lines and the drill-down panel stay in the base currency, because a ratio has no currency and the detail should match the documents. If no rate is available, the report says so and stays in the base currency.
 
@@ -92,7 +92,7 @@ Click a row to open a detail panel on the right:
 1. **Categories**: the categories behind the line, with their totals and item counts. Click one to expand it.
 2. **Items**: the invoice lines or bank transactions inside each category, newest first, with the date, partner, reference or invoice number and amount. On an Invoice report, **PDF** shows the original document and **→** opens the invoice in a new tab.
 
-For a calculated line, the panel shows the formula and the lines it is made of. Click the row again, or the × in the panel, to close it. Active filters apply to the panel too.
+For a calculated line, the panel shows the formula and the lines it is made of. Click the row again, or the × in the panel, to close it; changing the period also closes it. Active filters apply to the panel too.
 
 ## Searching
 
@@ -126,7 +126,7 @@ Every change is saved as you make it; there is no undo. Click **Done editing** w
 
 ## Who can do what
 
-Seeing reports needs the permission "View invoices and bank transactions". Creating, renaming, deleting and editing reports, and setting the display currency, need "Manage reports", which the accountant admin and the accountant hold by default. See [Roles and Permissions](/roles-and-permissions). AI assistants connected to the workspace can list and run reports too; see [AI Assistants (MCP)](/mcp).
+Seeing reports needs the permission "View invoices and bank transactions". Creating, renaming, deleting and editing reports, and setting the display currency, need "Manage reports", which the accountant admin and the accountant hold by default. Without "Manage reports" those controls are not shown: you can open, read and drill into reports, but **+ New Report**, **Edit name**, **Delete**, **Edit report** and **Display currency** do not appear. See [Roles and Permissions](/roles-and-permissions). AI assistants connected to the workspace can list and run reports too; see [AI Assistants (MCP)](/mcp).
 
 ## Tips
 
