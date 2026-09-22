@@ -255,7 +255,7 @@ const de: Copy = {
     'master_data.transaction_types.patterns.remove_aria': 'Muster entfernen',
     'master_data.transaction_types.patterns.add_pattern': '+ Muster hinzufügen',
     'master_data.transaction_types.patterns.value_placeholder': 'z. B. FORGALMI KÜLÖNDÍJ',
-    'defaults.systemDefaultHint': 'Systemstandard – der Name wird automatisch in der Sprache des Arbeitsbereichs angezeigt. Benenne ihn um, um einen eigenen Namen zu vergeben.',
+    'defaults.systemDefaultHint': 'Systemstandard. Der Name wird automatisch in der Sprache des Arbeitsbereichs angezeigt. Benennen Sie ihn um, um einen eigenen Namen zu vergeben.',
     'defaults.transactionTypes.TT-BANK-FEE': 'Bankgebühr',
     'transactions.slide_over.matched_by_pattern': 'Per Musterregel zugeordnet',
     'transactions.slide_over.matched_by_ai': 'Per KI zugeordnet · Konfidenz: {label} ({score})',
