@@ -1,6 +1,7 @@
 // App screens and a diagram for the approving-invoices article.
 //
-// The screens are rebuilt 1:1 from aift-web (origin/main, 2026-09-21), class
+// The screens are rebuilt 1:1 from aift-web (origin/main, 2026-09-21; the
+// decline dialog's body re-copied 2026-09-22), class
 // for class, with the real Catalyst components from the help mirror:
 //   ApprovalsPage     src/app/(app)/workspaces/[workspaceId]/approvals/layout.tsx
 //                     + approvals/_components/ApprovalTabs.tsx
@@ -292,7 +293,8 @@ function DeclineOverlay({ locale }: { locale: Locale }) {
           <h2 className="shrink-0 text-base/6 font-semibold text-zinc-950 dark:text-white">
             {ui['approvals.queue.decline_title']}
           </h2>
-          <div className="mt-4 min-h-0 flex-1 overflow-y-auto">
+          {/* DialogBody: the clip room keeps focus rings visible (aift-web #1350). */}
+          <div className="mt-2.5 min-h-0 flex-1 overflow-y-auto -mx-1.5 px-1.5 pt-1.5 -mb-1.5 pb-1.5">
             <Text>{ui['approvals.queue.decline_body']}</Text>
             <dl className="mt-4 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm">
               <dt className="text-zinc-500">{ui['approvals.queue.decline_payee']}</dt>
