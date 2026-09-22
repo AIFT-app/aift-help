@@ -1,42 +1,53 @@
-# Business Central verbinden
+# Business Central
 
-AI Finance Team kann die Unternehmen in Ihrem Microsoft Dynamics 365 Business Central lesen. Diese Seite erklärt, was genehmigt werden muss und von wem.
+AI Finance Team verbindet sich mit Microsoft Dynamics 365 Business Central: Es ordnet Ihre Unternehmen den Firmen in Business Central zu, kopiert deren Stammdaten und kann Ihre Partner dort als Kreditorenstammsätze anlegen.
 
-Die Einrichtung erfordert **zwei getrennte Genehmigungen**, und sie werden meist von zwei verschiedenen Personen erteilt. Die eine erteilt nicht die andere. Das ist der wichtigste Punkt, bevor Sie beginnen.
+**Zuallererst müssen wir Business Central für den Arbeitsbereich einschalten.** Es ist standardmäßig aus, und solange es aus ist, gibt es das Menü gar nicht. Sagen Sie uns Bescheid, dann schalten wir es ein.
 
----
+## Was gelesen und was geschrieben wird
 
-## Die zwei Genehmigungen
+AI Finance Team **liest** die Firmen in Ihrem Business Central und zu jeder zugeordneten Firma deren Sachkonten, MwSt.- und Buchungsgruppen, Mengeneinheiten, Währungen, Bankkonten, Zahlungsformen und Zahlungsbedingungen, Dimensionen und Dimensionswerte sowie Kreditoren. **Es werden keine Buchungen, Rechnungen oder Salden gelesen.**
 
-**1. Microsoft-Genehmigung.** Eine Person mit **globalen Administratorrechten** in Ihrem Microsoft 365 genehmigt AI Finance Team einmalig. Das ist in der Regel Ihre IT-Administration oder Ihr IT-Dienstleister. Es dauert etwa eine Minute und geschieht auf einer Microsoft-Seite, nicht auf unserer.
+Genau eines **schreibt** AI Finance Team: einen **Kreditorenstammsatz**, angelegt aus einem Ihrer Partner, wenn jemand auf dem Übertragungsbildschirm die Schaltfläche drückt. Auch das ist aus, solange wir es nicht zusätzlich für Ihren Arbeitsbereich freischalten.
 
-**2. Business-Central-Registrierung.** Eine Person mit **SUPER**-Rechten in Business Central fügt unsere Anwendung dort hinzu und weist ihr einen Berechtigungssatz zu. Das ist oft die Buchhaltung, nicht die IT.
+Und selbst dann:
 
-Der zweite Schritt lässt sich nicht automatisieren. Business Central bietet keine Schnittstelle dafür, eine Person muss ihn also manuell ausführen. Die Genehmigung allein führt zu einer Verbindung, die jede Anfrage ablehnt. Deshalb unterscheidet AI Finance Team die beiden Zustände, statt ein allgemeines „Nicht verbunden" anzuzeigen.
+- **Es wird nie etwas gebucht.** Kein Journal, keine Buchung, kein Beleg.
+- **Ein vorhandener Kreditorenstammsatz wird nie überschrieben.** Ein Stammsatz mit derselben Steuernummer wird stattdessen mit Ihrem Partner verknüpft.
+- **Es wird nie etwas gelöscht.**
 
----
+## Die Verbindung einrichten
 
-## Schritt 1: Genehmigungslink senden
+Die Einrichtung erfordert **zwei getrennte Genehmigungen**, die meist von zwei verschiedenen Personen erteilt werden. Die eine erteilt nicht die andere. Das ist der wichtigste Punkt, bevor Sie beginnen.
 
-Öffnen Sie in AI Finance Team **Einstellungen → Business Central** und wählen Sie **Genehmigungslink erstellen**.
+1. **Microsoft-Genehmigung.** Eine Person mit **globalen Administratorrechten** in Ihrem Microsoft 365 genehmigt AI Finance Team einmalig. Das ist in der Regel Ihre IT-Administration oder Ihr IT-Dienstleister. Es dauert etwa eine Minute, auf einer Microsoft-Seite.
+2. **Business-Central-Registrierung.** Eine Person mit **SUPER**-Rechten in Business Central fügt unsere Anwendung dort hinzu und weist ihr einen Berechtigungssatz zu. Das ist oft die Buchhaltung, nicht die IT.
 
-Sie erhalten einen Link und eine vorformulierte Nachricht. Senden Sie beides an die Person, die Ihr Microsoft 365 verwaltet. Der Link läuft nach 7 Tagen ab, und Sie können jederzeit einen neuen erstellen. Sobald ein neuer erstellt ist, funktioniert der vorherige nicht mehr.
+<BusinessCentralApprovalsFigure>
+Die beiden Genehmigungen und der Zustand, in dem die Verbindung dazwischen verharrt.
+</BusinessCentralApprovalsFigure>
 
-Zwei Hinweise:
+Der zweite Schritt lässt sich nicht automatisieren: Business Central bietet keine Schnittstelle dafür, eine Person muss ihn also manuell ausführen. Die Genehmigung allein führt zu einer Verbindung, die jede Anfrage ablehnt. Deshalb unterscheidet AI Finance Team die beiden Zustände.
 
-- Microsoft warnt, dass **der Herausgeber nicht verifiziert** ist. Das ist bei dieser Anwendung normal und hindert eine Administratorin nicht an der Genehmigung. Es verhindert die Genehmigung durch gewöhnliche Benutzer, und darum geht es hier nicht.
-- Die Administration sieht eine Seite, die den Eingang der Genehmigung bestätigt. Ihr Unternehmen wird darauf nicht genannt, denn wer den Link besitzt, kann sie öffnen.
+Öffnen Sie **Einstellungen → Business Central Verbindung** und klicken Sie auf **Verbindung einrichten**.
+
+### Schritt 1: den Genehmigungslink senden
+
+Wählen Sie **Genehmigungslink erstellen**. Sie erhalten einen Link und eine vorformulierte Nachricht an die Person, die Ihr Microsoft 365 verwaltet.
+
+- **Kopieren Sie den Link sofort.** Er wird nur als Hash gespeichert und lässt sich daher nach dem Verlassen der Seite nicht erneut anzeigen; ein neuer Link macht den alten ungültig. Jeder Link gilt 7 Tage.
+- Sind Sie selbst der globale Administrator, nutzen Sie **Ich bin der Microsoft-Administrator, jetzt genehmigen**. Auch das erzeugt einen neuen Link und macht den aktuellen ungültig.
+- Microsoft warnt, dass **der Herausgeber nicht verifiziert** ist. Das ist hier normal und hindert eine Administratorin nicht an der Genehmigung.
+- Die Seite, die die Administration sieht, nennt Ihr Unternehmen nicht, denn wer den Link besitzt, kann sie öffnen.
 
 Die erteilte Berechtigung ist Lesen und Schreiben auf der Business-Central-API. Sie erlaubt kein Erstellen oder Löschen von Umgebungen.
 
----
+### Schritt 2: die Anwendung in Business Central registrieren
 
-## Schritt 2: Anwendung in Business Central registrieren
-
-Sobald die Microsoft-Genehmigung vorliegt, zeigt AI Finance Team eine **Application ID** und diese Schritte an. Senden Sie sie an die Person mit SUPER-Rechten in Business Central.
+Die Schritte stehen von Anfang an auf der Seite, mit **Nach Schritt 1** gekennzeichnet, bis die Microsoft-Genehmigung eintrifft. **Schritte kopieren** legt die Application ID und alle Schritte in einem Block in die Zwischenablage, fertig zum Weiterleiten.
 
 1. Drücken Sie in Business Central **Alt+Q** und suchen Sie nach **Microsoft Entra Applications**.
-2. Wählen Sie **Neu** und fügen Sie die Application ID ein.
+2. Wählen Sie **Neu** und fügen Sie die erhaltene **Application ID** ein.
 3. Setzen Sie die Beschreibung auf **AI Finance Team integration**.
 4. Setzen Sie **State** auf **Enabled**.
 5. Fügen Sie den Berechtigungssatz **D365 BUS FULL ACCESS** hinzu.
@@ -44,107 +55,115 @@ Sobald die Microsoft-Genehmigung vorliegt, zeigt AI Finance Team eine **Applicat
 
 Drei Dinge gehen hier häufiger schief als alles andere:
 
-- **Wird in dieser Zeile ein Unternehmen eingetragen**, beschränkt sich AI Finance Team unbemerkt auf dieses eine Unternehmen. Alles scheint zu funktionieren, die übrigen Unternehmen tauchen schlicht nie auf. Lassen Sie das Feld leer.
-- **D365 AUTOMATION statt dessen zu verwenden.** Die Verbindung gelingt und liefert dann nichts Brauchbares, denn dieser Berechtigungssatz deckt Verwaltungs-APIs ab, keine Geschäftsdaten.
-- **SUPER zu verwenden.** Es funktioniert und gewährt weit mehr, als die Integration benötigt. Tun Sie es nicht.
+- **Wird in dieser Zeile eine Firma eingetragen**, beschränkt sich AI Finance Team unbemerkt auf diese eine Firma. Alles scheint zu funktionieren, und die übrigen Firmen tauchen nie auf. Lassen Sie das Feld leer.
+- **D365 AUTOMATION zu verwenden.** Die Verbindung gelingt und liefert nichts Brauchbares, denn dieser Berechtigungssatz deckt Verwaltungs-APIs ab, keine Geschäftsdaten.
+- **SUPER zu verwenden.** Es funktioniert und gewährt weit mehr, als die Integration benötigt.
 
-Die Registrierung gilt **pro Umgebung**. Eine Registrierung in Production deckt keine Sandbox ab; jede Umgebung benötigt eine eigene.
+Die Registrierung gilt **pro Umgebung**. Eine Registrierung in Production deckt keine Sandbox ab.
 
----
-
-## Was die Status bedeuten
+### Was die Status bedeuten
 
 | Status | Bedeutung | Wer ist am Zug |
 |---|---|---|
 | Nicht verbunden | Es wurde noch kein Genehmigungslink erstellt. | Sie. |
 | Wartet auf Microsoft-Genehmigung | Der Link besteht, wurde aber nicht genehmigt. | Ihre Microsoft-Administration. |
-| Wartet auf Business-Central-Registrierung | Microsoft hat uns genehmigt und unsere Anmeldung funktioniert. Business Central verweigert weiterhin, Schritt 2 fehlt also. | Ihre Business-Central-Administration. |
-| Verbunden | Wir können Ihre Unternehmen lesen. | Niemand. |
-| Fehler | Es ist ein konkreter Fehler aufgetreten. Die Seite zeigt den Code. | Hängt vom Code ab. |
+| Wartet auf Business-Central-Registrierung | Unsere Anmeldung funktioniert; Business Central verweigert weiterhin, Schritt 2 fehlt also. | Ihre Business-Central-Administration. |
+| Verbunden | Wir können Ihre Firmen lesen. | Niemand. |
+| Fehler | Die Seite zeigt den Code und sagt, ob dieser bei uns liegt. | Hängt vom Code ab. |
 
-Meldet der Status, dass die Umgebung nicht gefunden wurde, prüfen Sie den Umgebungsnamen in Ihrer eigenen Business-Central-Adresse. Bei den meisten Kunden lautet er **Production**.
+Meldet der Status, dass die Umgebung nicht gefunden wurde, bietet die Seite ein Feld **Umgebung** an. Bei den meisten Kunden lautet sie **Production**; prüfen Sie den Namen in Ihrer eigenen Business-Central-Adresse. Nach dem Speichern gilt die Verbindung bis zur nächsten erfolgreichen Prüfung als ungeprüft, das Menü Stammdaten unten verschwindet also kurz.
 
----
+Dieses Menü, **Stammdaten → Business Central**, erscheint erst, wenn die Verbindung mindestens einmal funktioniert hat.
 
-## Was AI Finance Team liest
+## Firmen zuordnen
 
-In dieser Phase nur die **Liste der Unternehmen**: Namen und Kennungen. Nach Business Central wird nichts zurückgeschrieben, und Rechnungen, Transaktionen oder Salden werden noch nicht gelesen.
+Öffnen Sie **Stammdaten → Business Central → Firmen**. Dort steht jede Firma aus Ihrem Business Central, gruppiert danach, was mit ihr möglich ist: bereits zugeordnet, ein Vorschlag, keine Entsprechung, schon in AI Finance Team vorhanden und keine Firma.
 
-Die Unternehmensdaten mit den Unternehmen in AI Finance Team zu verbinden ist ein eigener Schritt, und Sie wählen aus, welche Business-Central-Unternehmen verbunden werden. Nicht verbundene Unternehmen bleiben unberührt.
+Jede Business-Central-Firma lässt sich einem Unternehmen in AI Finance Team zuordnen und umgekehrt. Es gibt zwei Wege:
 
----
+- **Aus einer Business-Central-Firma ein Unternehmen anlegen.** Name, Steuernummer, Land und Adresse werden aus Business Central übernommen. Haken Sie mehrere an, um sie in einem Zug anzulegen; beim einzelnen Anlegen sehen Sie zuerst die Werte und können den Namen korrigieren.
+- **Einem vorhandenen Unternehmen zuordnen.**
 
-## Business-Central-Unternehmen und AI-Finance-Team-Unternehmen zuordnen
+Ein Vorschlag auf Basis der **Steuernummer** ist verlässlich. Ein Vorschlag auf Basis des **Namens** ist nur ein Vorschlag.
 
-Sobald die Verbindung funktioniert, listet die Business-Central-Seite alle Unternehmen aus Ihrem Business Central auf. Jedes Business-Central-Unternehmen lässt sich einem Unternehmen in AI Finance Team zuordnen und jedes AI-Finance-Team-Unternehmen einem Business-Central-Unternehmen.
-
-Es gibt zwei Wege:
-
-- **Aus einem Business-Central-Unternehmen ein neues Unternehmen anlegen.** AI Finance Team übernimmt Name, Steuernummer, Land und Adresse aus Business Central. Sie können mehrere Unternehmen auswählen und in einem Zug anlegen.
-- **Einem vorhandenen Unternehmen zuordnen.** Nutzen Sie das, wenn das Unternehmen in AI Finance Team bereits existiert.
-
-AI Finance Team schlägt eine Zuordnung vor, wo es kann. Ein Vorschlag auf Basis der **Steuernummer** ist verlässlich. Ein Vorschlag auf Basis des **Namens** ist nur ein Vorschlag, prüfen Sie ihn also, bevor Sie ihn übernehmen.
+Sie können auch bei **Stammdaten → Unternehmen** beginnen: Dort steht **Firmen aus Business Central anlegen** neben **Unternehmen hinzufügen** und listet nur, was noch nicht zugeordnet ist.
 
 ### Ein Unternehmen pro Steuernummer
 
-Ein Arbeitsbereich enthält jedes Unternehmen nur einmal. Gehört die Steuernummer eines Business-Central-Unternehmens bereits einem Unternehmen in AI Finance Team, bietet die Zeile nur **Zuordnen** an, nie **Unternehmen anlegen**. Ist dieses Unternehmen bereits einem anderen Business-Central-Unternehmen zugeordnet (etwa einer Testkopie derselben Firma), nennt die Zeile es, und Sie heben diese Zuordnung zuerst auf, falls diese hier die richtige ist.
+Ein Arbeitsbereich enthält jedes Unternehmen nur einmal. Gehört die Steuernummer einer Business-Central-Firma bereits einem Unternehmen hier, bietet die Zeile nur **Zuordnen** an, nie **Unternehmen anlegen**, und sie bleibt bei der Mehrfachauswahl außen vor. Ist dieses Unternehmen bereits einer anderen Business-Central-Firma zugeordnet, etwa einer Testkopie derselben Firma, nennt die Zeile sie; heben Sie diese Zuordnung zuerst auf.
 
-### Wo Sie beginnen können
+Teilen sich mehrere Business-Central-Firmen eine Steuernummer, weist die Seite darauf hin und bittet Sie, die richtige zu wählen, statt zu raten.
 
-Es gibt zwei Stellen, an denen aus einem Business-Central-Unternehmen ein Unternehmen wird.
+### Hinweise in einer Zeile
 
-- **Stammdaten ▸ Business Central ▸ Firmen.** Bei jedem noch nicht zugeordneten Unternehmen steht eine Schaltfläche **Unternehmen anlegen**, dazu ein Kontrollkästchen, um mehrere auf einmal anzulegen.
-- **Stammdaten ▸ Unternehmen.** Hat der Arbeitsbereich eine funktionierende Verbindung und sind noch Unternehmen offen, erscheint neben **Unternehmen hinzufügen** die Schaltfläche **Firmen aus Business Central anlegen**. Sie listet nur die noch nicht zugeordneten Unternehmen und kennzeichnet die, die es in AI Finance Team schon gibt.
+- **Abweichende Währung.** Business Central führt die Bücher dieser Firma in einer anderen Währung als Ihrer Basiswährung. Nur ein Hinweis.
+- **Abweichendes Land.**
+- **Abweichende Steuernummern.** Prüfen Sie vor der Übernahme, welche richtig ist.
+- **Die Steuernummer ist eine Kennung einer Organschaft.** Ihr Unternehmen nennt die Nummer der Gruppe, Business Central die des Mitglieds.
+- **Die Details konnten nicht gelesen werden.**
 
-Beide tun dasselbe und ordnen das Business-Central-Unternehmen dem neu angelegten Unternehmen zu.
+Eine Business-Central-Firma, deren Steuernummer eine Gruppenregistrierung und keine Firma bezeichnet, kann hier kein Unternehmen werden. Lassen Sie sie ohne Zuordnung: Es ist eine Melderegelung, kein Betrieb.
 
-Beim einzelnen Anlegen sehen Sie zuerst Firmenname, Land und Steuernummer und können den Namen korrigieren, bevor das Unternehmen entsteht. Beim Anlegen mehrerer werden die Werte aus Business Central unverändert übernommen.
+### Was die Zuordnung schreibt
 
-### Was geschrieben wird und was nicht
-
-Bei der Zuordnung zu einem vorhandenen Unternehmen können Sie Adresse und Steuernummer aus Business Central übernehmen. **Nur leere Felder können gefüllt werden.** Ein Wert, den AI Finance Team bereits hat, wird nie überschrieben, unabhängig davon, was Sie ankreuzen. Um einen vorhandenen Wert zu ändern, bearbeiten Sie das Unternehmen selbst.
-
-Nach Business Central wird nie etwas zurückgeschrieben.
-
-### Unternehmen, die sich nicht zuordnen lassen
-
-Ein Business-Central-Unternehmen, dessen Steuernummer eine **Gruppenkennung** ist, also eine umsatzsteuerliche Organschaft und kein Unternehmen, kann in AI Finance Team kein Unternehmen werden. AI Finance Team weist in der Zeile darauf hin. Lassen Sie es ohne Zuordnung. Es ist eine Melderegelung, kein Betrieb.
-
-### Hinweise, die Ihnen begegnen können
-
-- **Abweichende Währung.** Business Central führt die Bücher dieses Unternehmens in einer anderen Währung als der Basiswährung Ihres Arbeitsbereichs. Das ist nur ein Hinweis und verhindert die Zuordnung nie.
-- **Abweichende Steuernummern.** Das Business-Central-Unternehmen und das zugeordnete Unternehmen nennen unterschiedliche Steuernummern. Prüfen Sie vor der Übernahme, welche richtig ist.
+Bei der Zuordnung zu einem vorhandenen Unternehmen können Sie Adresse und Steuernummer übernehmen. **Nur leere Felder werden gefüllt.** Ein Wert, den AI Finance Team bereits hat, wird nie überschrieben, unabhängig davon, was Sie ankreuzen; um ihn zu ändern, bearbeiten Sie das Unternehmen selbst.
 
 ### Eine Zuordnung aufheben
 
-Heben Sie die Zuordnung auf derselben Seite oder auf der Seite des Unternehmens auf. Dabei wird nur die Verbindung entfernt. Das Unternehmen bleibt unverändert, und in Business Central ändert sich nichts.
+**Zuordnung aufheben** in der Zeile oder auf der Seite des Unternehmens. Das entfernt die Zuordnung und **löscht die kopierten Stammdaten dieser Firma** samt den Verknüpfungen zu allen Kreditorenstammsätzen. Die USt-Zuordnung und der Nachweis des bereits Übertragenen bleiben erhalten, und in Business Central ändert sich nichts.
 
----
+## Die Kopie aktuell halten
+
+Die kopierten Stammdaten frischen sich selbst auf: Was älter als ein Tag ist, wird bei der nächsten stündlichen Prüfung erneut gelesen. Sie müssen nicht darum bitten.
+
+## Worin die beiden Systeme abweichen
+
+**Stammdaten → Business Central → Unterschiede** vergleicht vier Arten von Datensätzen, in beide Richtungen: Sachkonten, USt, eigene Kategorielisten und Partner. Jede Zelle bietet an, was dort sinnvoll ist, etwa das Fehlende zu importieren oder den Datensatz zu öffnen.
+
+Lesen Sie die Zahlen genau. Eine leere Zelle kann dreierlei bedeuten: **nicht zutreffend**, **noch nicht gelesen** oder eine echte Null. Die Registerkarte sagt, was davon.
 
 ## Sachkonten als Kategorien
 
-Über die API von Business Central lässt sich kein Sachkonto anlegen, der Kontenplan bleibt also der des Mandanten. Damit eine AIFT-Kategorie auf ein Sachkonto verweisen kann, übernehmen Sie die Sachkonten als Kategorien in AIFT.
+Über die API von Business Central lässt sich kein Sachkonto anlegen, der Kontenplan bleibt also der des Mandanten. Damit eine Kategorie auf ein Sachkonto verweisen kann, übernehmen Sie die Sachkonten als Kategorien.
 
-Öffnen Sie **Stammdaten > Buchhaltungskategorien** und wählen Sie **Konten aus Business Central importieren**. Die Schaltfläche finden Sie auf dem Reiter **Rechnung** und auf dem Reiter **Cashflow**.
+Öffnen Sie **Stammdaten → Buchhaltungskategorien** und wählen Sie **Konten aus Business Central importieren**. Die Schaltfläche finden Sie auf der Registerkarte **Rechnung** und auf der Registerkarte **Cashflow**.
 
-Oben legt **Anlegen als** fest, was aus jedem angehakten Sachkonto wird:
+**Anlegen als** legt fest, was aus jedem angehakten Sachkonto wird: **Rechnungskategorien**, **Cashflow-Kategorien** oder **Beides**, was je eine von beiden mit derselben Kontonummer anlegt. Danach bleiben sie getrennt, eine Umbenennung der einen benennt die andere nicht um.
 
-- **Rechnungskategorien**: für Rechnungszeilen.
-- **Cashflow-Kategorien**: für Bankbewegungen.
-- **Beides**: eine Rechnungs- und eine Cashflow-Kategorie mit derselben Kontonummer. Es bleiben zwei getrennte Kategorien, eine Umbenennung der einen benennt die andere nicht um.
+Der Prüfschritt ist ein tabellenartiges Raster, keine Liste von Kontrollkästchen. Sie können die Bezeichnung einer Zeile ändern, ihre Richtung setzen, nach Kontenart filtern, nach dem Anfang einer Kontonummer suchen und eine aus Excel kopierte Zahlenspalte einfügen, um diese anzuhaken. Wählen Sie dann **Anlegen**: Der nächste Bildschirm zeigt, was angelegt und was übersprungen wurde, jeweils mit dem Grund.
 
-Die Liste zeigt die Sachkonten, zu denen es noch keine Kategorie der gewählten Art gibt. Haken Sie die gewünschten an, prüfen Sie die Richtung und wählen Sie **Anlegen**. Die Kategorien werden sofort angelegt. Der nächste Schritt zeigt, was angelegt wurde und welche Sachkonten übersprungen wurden, jeweils mit dem Grund.
-
-**Die Kontonummer identifiziert die Kategorie.** Zwei Sachkonten mit unterschiedlichen Nummern werden zu zwei Kategorien, auch wenn sie gleich heißen. Eine Kontonummer, zu der es bereits eine Kategorie dieser Art gibt, wird übersprungen und bleibt unverändert.
+**Die Kontonummer identifiziert die Kategorie.** Zwei Sachkonten mit unterschiedlichen Nummern werden zu zwei Kategorien, auch wenn sie gleich heißen, und eine Kontonummer, zu der es bereits eine Kategorie dieser Art gibt, wird übersprungen.
 
 ### Rechnungskategorien als Cashflow-Kategorien kopieren
 
-Auf dem Reiter **Cashflow** legt **Aus Rechnungskategorien kopieren** für jede Rechnungskategorie, die es auf der Cashflow-Seite noch nicht gibt, eine Cashflow-Kategorie mit derselben Kontonummer, Bezeichnung und Richtung an. Sie sehen zuerst die Anzahl, und nichts Bestehendes wird geändert. Integrierte Kategorien werden nicht kopiert, weil die Cashflow-Seite eigene hat.
+Auf der Registerkarte **Cashflow** legt **Aus Rechnungskategorien kopieren** für jede Rechnungskategorie, die auf der Cashflow-Seite fehlt, eine Cashflow-Kategorie mit derselben Kontonummer, Bezeichnung und Richtung an. Sie sehen zuerst die Anzahl, und nichts Bestehendes wird geändert. Integrierte Kategorien werden nicht kopiert.
 
----
+## Kreditoren als Partner
 
-## Wer die Einrichtung vornehmen kann
+**Aus Business Central hinzufügen** unter **Stammdaten → Partner** und auf der Registerkarte Unterschiede holt Kreditorenstammsätze als Partner herein. Sie werden über die Steuernummer zugeordnet, ein hier bereits vorhandener Kreditor wird also als solcher angezeigt und kann nicht zweimal hinzugefügt werden. Kreditorenstammsätze ohne Steuernummer lassen sich ebenfalls hinzufügen, danach kann sie aber nichts mehr automatisch zuordnen.
 
-Eine Arbeitsbereichsadministratorin oder der Mandanteninhaber kann verbinden und trennen. Alle übrigen Mitglieder des Arbeitsbereichs sehen den Status, können ihn aber nicht ändern.
+## USt-Zuordnung
 
-Sie können die Verbindung jederzeit auf derselben Seite trennen. Ihre Microsoft-Administration kann die Genehmigung außerdem in Ihrem eigenen Microsoft 365 widerrufen, ohne uns zu fragen.
+**Stammdaten → USt.-Codes → Business Central** ordnet jedes Ihrer Paare aus Produkt- oder Leistungsgruppe und Satz einem Business-Central-Steuergruppencode zu. Es wird zeilenweise gespeichert und überdauert das Aufheben einer Zuordnung.
+
+## Partner als Kreditoren übertragen
+
+**Stammdaten → Business Central → Übertragen** legt aus Ihren Partnern Kreditorenstammsätze in Business Central an. Nur hier schreibt AI Finance Team in Ihr Buchhaltungssystem, und dafür braucht es dreierlei:
+
+- die Schreibseite für den Arbeitsbereich eingeschaltet, was nur wir tun können;
+- die Berechtigung „In das Buchhaltungssystem übertragen“, die der Buchhalter-Admin standardmäßig hat;
+- **Buchungsgruppen für jede zugeordnete Firma**, die der Bildschirm zuerst abfragt und aus Ihren eigenen Kreditorenstammsätzen vorbelegt.
+
+Sie wählen die Partner, dann die Firmen, in denen der jeweilige Partner angelegt werden soll, und prüfen die Liste vor dem Lauf. Pro Lauf werden höchstens 200 übertragen. Danach sagt jede Zeile, was geschehen ist: angelegt, mit einem vorhandenen Stammsatz gleicher Steuernummer verknüpft oder mit einem Grund fehlgeschlagen.
+
+Eine zurückgemeldete Kreditorennummer erscheint auf der Partnerseite unter dessen AI-Finance-Team-Code, eine Zeile je Firma. Diese Nummer gehört zu einer Firma in Business Central, tragen Sie sie also nicht in das eigene Codefeld des Partners ein.
+
+## Wer was darf
+
+Verbinden, Trennen und Zuordnen erfordern die Berechtigung „Verbindungen verwalten“, die standardmäßig beim Buchhalter-Admin und beim Mandanten (Inhaber) liegt. Eine eigene Rolle oder eine Ausnahme kann das ändern. Alle übrigen sehen den Status und können ihn nicht ändern. Das Übertragen erfordert wie oben eine eigene Berechtigung.
+
+## Die Verbindung trennen
+
+**Verbindung trennen** unter **Einstellungen → Business Central Verbindung**. Die Bestätigung nennt, was verschwindet: Die Zuordnungen, die kopierten Stammdaten und die USt-Zuordnungen werden gelöscht, während Ihre Unternehmen, Kategorien, Partner und die Verknüpfungen zu Kreditorenstammsätzen erhalten bleiben.
+
+Eine erneute Verbindung erfordert danach **beide Genehmigungen erneut**, und jede Firma muss neu zugeordnet werden. Ihre Microsoft-Administration kann die Genehmigung außerdem in Ihrem eigenen Microsoft 365 widerrufen, ohne es uns zu sagen.

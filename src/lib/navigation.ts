@@ -176,9 +176,9 @@ export const navigation: NavItem[] = [
   {
     slug: 'business-central',
     title: {
-      en: 'Connecting Business Central',
-      hu: 'A Business Central összekötése',
-      de: 'Business Central verbinden',
+      en: 'Business Central',
+      hu: 'Business Central',
+      de: 'Business Central',
     },
   },
   {

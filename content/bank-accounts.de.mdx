@@ -1,78 +1,104 @@
 # Bankkonten verbinden
 
-Wenn Sie Ihre Geschäftskonten verbinden, importiert AI Finance Team Transaktionen automatisch. Nach dem Verbinden erscheinen neue Transaktionen täglich, ganz ohne manuellen Export oder Upload.
+**Stammdaten → Bankkonten** enthält zwei Dinge: die **Kontonummern** Ihrer Unternehmen und die **Banken, die Sie verbunden haben**. Wenn Sie eine Bank verbinden, importiert AI Finance Team Transaktionen von selbst, und niemand muss einen Auszug von Hand exportieren.
 
-## Bevor Sie beginnen
+Kontonummern zählen auch ohne Verbindung: Eingehende Transaktionen werden gegen sie abgeglichen, und so wird eine Umbuchung zwischen zwei eigenen Konten erkannt.
 
-- Sie brauchen eine **Mandantenrolle** im Arbeitsbereich (Mandanteninhaber oder Mandantenmitglied). Nutzer mit Buchhalterrolle können verbundene Konten sehen, aber keine neuen verbinden.
-- Sie authentifizieren sich direkt bei Ihrer Bank über deren sicheres Online-Banking-Portal. AI Finance Team sieht Ihre Bankzugangsdaten zu keinem Zeitpunkt.
-- Die Bankverbindungen laufen über GoCardless Bank Account Data, das Banken in der EU und im Vereinigten Königreich unterstützt.
+## Wer darf was
+
+| Aktion | Wer |
+|---|---|
+| Kontonummern hinzufügen oder bearbeiten | Jedes Mitglied des Arbeitsbereichs |
+| Eine Bank verbinden | Alle auf der Mandantenseite (Mandanteninhaber oder Mandantenmitglied) |
+| **Jetzt synchronisieren** | Jedes Mitglied, auch Buchhalter |
+| Ein Konto trennen, eine Verbindung entfernen | Nur der Mandanteninhaber |
+| Ein geteiltes Konto angeben (Cash-Pool) | Ein Buchhalter |
+
+Bank verbinden und trennen gehört per Regel zur Mandantenseite, nicht per Rolle: Keine eigene Rolle und keine Ausnahme kann das einem Buchhalter geben, denn Bankzugangsdaten müssen beim Mandanten bleiben. Siehe [Rollen & Berechtigungen](/roles-and-permissions).
+
+## Kontonummern
+
+**Bankkontonummern** oben auf der Seite listet die IBANs und nationalen Kontonummern aller Unternehmen auf, ob eine Bank verbunden ist oder nicht. Fügen Sie eine mit **Bankkonto hinzufügen** hinzu, wählen Sie das **Unternehmen** und vergeben Sie eine **Bezeichnung**, wenn die Nummer allein nicht aussagekräftig ist.
+
+Erfassen Sie Ihre Nummern, bevor Sie eine Bank verbinden: Gibt die Bank eine IBAN zurück, die bereits auf der Liste steht, wird das Unternehmen im nächsten Schritt für Sie ausgefüllt.
+
+Ein Konto, das mehrere Ihrer Unternehmen nutzen, geben Sie ebenfalls hier an. Siehe [Cash-Pool: Ein Bankkonto für mehrere Unternehmen](/cash-pool).
 
 ## Eine Bank verbinden
 
-1. Klicken Sie in der Seitenleiste des Arbeitsbereichs auf **Stammdaten** und dann auf **Bankkonten**.
-2. Klicken Sie auf **Bank verbinden**.
-3. Wählen Sie Ihr Land und suchen Sie Ihre Bank nach Namen.
-4. Klicken Sie auf **Weiter**. Sie werden zur sicheren Zustimmungsseite Ihrer Bank weitergeleitet.
-5. Melden Sie sich bei Ihrer Bank an und erteilen Sie Lesezugriff auf Ihre Konten. Damit erhält AI Finance Team ausschließlich Lesezugriff - Zahlungen können nicht ausgelöst werden.
-6. Nach der Freigabe kehrt Ihr Browser automatisch zu AI Finance Team zurück.
+1. Klicken Sie auf **Bank verbinden**.
+2. Wählen Sie das Land und die Bank. Die Liste wird beim ersten Öffnen eines Landes vom Anbieter geholt, es kann also einen Moment dauern, bis sie gefüllt ist.
+3. Wählen Sie unter **Wie viel Historie importiert werden soll**: bis zu 90, 60 oder 30 Tage. **Das lässt sich später nur durch erneutes Verbinden ändern**, denn Ihre Bank legt den Zeitraum fest, wenn sie die Zustimmung erteilt. Manche Banken erlauben weniger als 90 Tage, dann ist die Auswahl auf das reduziert, was sie zulassen.
+4. Klicken Sie auf **Weiter**. Die eigene Zustimmungsseite Ihrer Bank öffnet sich, und Sie melden sich dort an. AI Finance Team sieht Ihre Bankzugangsdaten nie, und der Zugriff, den Ihre Bank erteilt, ist nur lesend: Geld bewegen kann er nicht.
+5. Die Seite der Bank ist auf Englisch, welche Sprache Sie in AI Finance Team auch verwenden. Das ist die Seite des Anbieters, nicht unsere.
+6. Nach der Freigabe kehrt Ihr Browser zurück, und die Konten unter Ihrer Zustimmung werden aufgelistet.
 
 ### Auswählen, welche Konten verfolgt werden
 
-Nach der Rückkehr von Ihrer Bank zeigt ein Dialog die Konten, die unter Ihrer Zustimmung verfügbar sind:
+Der Dialog listet die Konten auf, die Ihre Bank zurückgegeben hat, mit IBAN und Währung:
 
-- **Setzen Sie ein Häkchen** bei jedem Konto, für das Sie Transaktionen importieren möchten. Entfernen Sie das Häkchen bei allen, die Sie nicht brauchen.
-- **Weisen Sie jedem einbezogenen Konto ein Unternehmen zu** - über das Auswahlmenü. Das verknüpft das Konto mit der richtigen juristischen Person in Ihrem Arbeitsbereich, damit Transaktionen korrekt zugeordnet werden.
+- Haken Sie die Konten an, die Sie importieren möchten, und lassen Sie die übrigen aus.
+- Weisen Sie jedem angehakten Konto ein **Unternehmen** zu. **Bestätigen und Import starten** bleibt deaktiviert, bis jedes eines hat, der Arbeitsbereich braucht also zuerst mindestens ein Unternehmen.
 - Klicken Sie auf **Bestätigen und Import starten**.
 
-AI Finance Team beginnt sofort mit dem Import Ihrer Transaktionshistorie. Der erste Import dauert typischerweise einige Minuten, je nachdem, wie viele Transaktionen Ihre Bank zurückgibt.
+Zwei Dinge sind hier zu erwarten. Der Dialog lässt sich nicht mehr schließen, sobald er offen ist, denn die Zustimmung wurde bereits erteilt. Und er kann bis zu einer halben Minute „Konten werden geladen…“ anzeigen, weil der Anbieter die Zustimmung noch verarbeitet; er versucht es von selbst erneut.
 
-> **Hinweis:** Wenn Sie die erwarteten Konten nicht sehen oder Platzhalternamen angezeigt werden, kann das an einer vorübergehenden Grenze der Bank-API liegen. Sie können trotzdem verbinden - weisen Sie Unternehmen zu und bestätigen Sie. Konten lassen sich später auf der Seite Bankkonten umbenennen.
+Der erste Import läuft sofort und dauert einige Minuten, je nachdem, wie weit zurück Sie ihn angefordert haben.
+
+> **Platzhalternamen.** Kommt ein Konto als etwas wie „Account (…ab1234)“ an, hat die API Ihrer Bank uns beim Abruf der Kontodetails mit einer Ratenbegrenzung gebremst. Das Konto ist verbunden und wird normal synchronisieren. Der Name kommt von der Bank und lässt sich hier nicht bearbeiten.
+>
+> Ein Konto, das in der Liste **fehlt**, ist ein anderes Problem und keine Ratenbegrenzung. Verbinden Sie erneut, und wenn es weiterhin fehlt, wenden Sie sich mit dem angezeigten Fehlercode an den Support.
 
 ## Was nach dem Verbinden passiert
 
-Sobald ein Konto verbunden und aktiv ist:
+- **Transaktionen kommen zweimal täglich**, am frühen Morgen und am frühen Nachmittag, mitteleuropäischer Zeit.
+- **Die KI vergibt jeder Transaktion eine Kategorie** und sucht die Rechnung oder den Partner, zu der oder dem sie gehört. Siehe [Rechnungsabgleich](/invoice-matching).
+- **Was sie nicht sicher weiß, wartet auf Sie** auf den Seiten Banktransaktionen und Zuordnung, statt geraten zu werden.
 
-- **Transaktionen werden täglich synchronisiert** - neue Transaktionen fließen automatisch ein, meist innerhalb weniger Stunden, nachdem sie bei Ihrer Bank erscheinen.
-- **Die KI kategorisiert jede Transaktion** - sie vergibt eine Transaktionskategorie und versucht, jede Transaktion einer Rechnung oder einem Partner in Ihrem Arbeitsbereich zuzuordnen.
-- **Ausnahmen werden zur Prüfung angezeigt** - Transaktionen, die die KI nicht mit hoher Konfidenz kategorisieren kann, erscheinen zur manuellen Prüfung in der Ausnahmen-Warteschlange.
+Zu welchem Unternehmen ein Konto gehört, können Sie später ändern: in der Zeile des Kontos steht eine Unternehmensliste, die Mitglieder auf Mandantenseite umstellen können.
 
-## Ablauf der Verbindung
+### Jetzt synchronisieren
 
-Über Open Banking freigegebene Bankverbindungen laufen nach 90 Tagen ab. Das ist eine regulatorische Vorgabe - Ihre Bank muss Ihre Zustimmung regelmäßig erneut bestätigen.
+**Jetzt synchronisieren** auf der Verbindungskarte holt Transaktionen sofort, etwa nachdem eine Zahlung gerade gebucht wurde. Es ist auf **zwei manuelle Synchronisierungen pro Tag und Konto** begrenzt. Die Schaltfläche zählt sie nicht herunter: Ist das Limit erreicht, sagt Ihnen ein Klick das.
 
-Nähert sich eine Verbindung dem Ablauf, erscheint auf der Seite Bankkonten eine Warnung. Für die erneute Freigabe durchlaufen Sie den Zustimmungsprozess noch einmal. Ihre bestehenden Transaktionen und deren Kategorisierungen bleiben erhalten.
+## Ablauf der Zustimmung und erneutes Verbinden
 
-## Manuelle Synchronisierung
+<BankConsentLifecycleFigure>
+Wie eine Bankverbindung lebt und endet. Die Statusnamen sind die auf der Verbindungskarte.
+</BankConsentLifecycleFigure>
 
-Wenn Transaktionen sofort erscheinen sollen - etwa nachdem eine Zahlung gerade gebucht wurde -, können Sie eine manuelle Synchronisierung auslösen:
+Eine Open-Banking-Zustimmung läuft ab. **Wie lange sie gilt, entscheidet Ihre Bank**, üblicherweise 90 Tage, bei manchen Banken länger. Die Verbindungskarte zeigt das tatsächliche Datum.
 
-1. Suchen Sie auf der Seite **Bankkonten** die Kontokarte.
-2. Klicken Sie auf **Jetzt synchronisieren**.
+Sieben Tage vor diesem Datum wird die Karte bernsteinfarben und zeigt **Läuft in N Tagen ab**. Nehmen Sie das ernst: **Die automatische Synchronisierung stoppt in diesem Moment**, nicht am Ablaufdatum. Die letzte Woche ist eine Warnwoche, keine Schonfrist.
 
-Manuelle Synchronisierungen sind auf **2 pro Tag** und Konto begrenzt. Ist das Limit erreicht, wird die Schaltfläche deaktiviert und zeigt an, wann sie zurückgesetzt wird.
+Um weiterzumachen, verbinden Sie dieselbe Bank erneut. AI Finance Team erkennt das als Erneuerung, fragt deshalb nicht noch einmal nach der Historie und fordert bei der Bank den längsten Zeitraum an, den sie erlaubt. Ihre bestehenden Transaktionen und alles, was damit geschehen ist, bleiben erhalten.
 
-## Ein Konto trennen
+**Achten Sie auf die Lücke.** Ist eine Zustimmung abgelaufen, bevor Sie sie erneuert haben, lassen sich die Tage zwischen der letzten Synchronisierung und dem frühesten Datum, das der Anbieter jetzt noch zurückgibt, nicht von der Bank zurückholen. Die Karte benennt diesen Zeitraum. Füllen Sie ihn aus einem Auszug: siehe [Kontoauszüge hochladen](/bank-statement-upload).
 
-So stoppen Sie den Transaktionsimport eines Kontos:
+## Trennen
 
-1. Suchen Sie auf der Seite **Bankkonten** die Kontokarte.
-2. Klicken Sie auf **Trennen**.
+**Trennen** bei einem Konto stoppt dessen Synchronisierung. Die bereits importierten Transaktionen bleiben im Arbeitsbereich, nichts wird gelöscht. Sie können das Konto jederzeit wieder verbinden.
 
-Getrennte Konten werden nicht mehr synchronisiert. Bestehende Transaktionen bleiben in Ihrem Arbeitsbereich und werden nicht gelöscht. Sie können das Konto jederzeit wieder verbinden, indem Sie den Verbindungsprozess erneut durchlaufen.
+**Entfernen** nimmt eine Karte ganz von der Seite. Es funktioniert nur bei einer Verbindung, die getrennt oder im Fehlerzustand ist, und nur für den Mandanteninhaber, der sie erstellt hat. Eine abgelaufene Verbindung lässt sich nicht entfernen, deshalb kann nach einer Erneuerung eine alte Karte neben der neuen auf der Seite stehen bleiben.
 
-Sobald alle Konten einer Verbindung getrennt sind, lässt sich die Verbindungskarte über **Aus der Ansicht entfernen** von der Seite entfernen.
+Beide Schaltflächen erscheinen nur, solange eine Verbindung aktiv ist, und nur für den Mandanteninhaber.
 
 ## Fehlerbehebung
 
-**Ich sehe „Ihre Bank konnte die Verbindung nicht abschließen.“**
-Das bedeutet, dass Ihre Bank während des Zustimmungsprozesses einen Fehler zurückgegeben hat. Meist ist das ein vorübergehendes Problem auf Seiten der Bank. Warten Sie einige Minuten und versuchen Sie es erneut. Hält es an, prüfen Sie, ob das Online-Banking-Portal Ihrer Bank direkt erreichbar ist.
+**„Ihre Bank konnte die Verbindung nicht abschließen.“**
+Die Meldung endet mit einem Code in Klammern. Meist bedeutet sie ein vorübergehendes Problem bei der Bank, warten Sie also einige Minuten und versuchen Sie es erneut. Passiert es weiterhin, schicken Sie dem Support diesen Code: Ohne ihn lässt sich die Ursache nicht nachvollziehen.
 
-**Ich habe meine Bank verbunden, aber es erscheinen keine Transaktionen.**
-Der erste Import kann einige Minuten dauern. Aktualisieren Sie die Transaktionsseite nach 5 Minuten. Erscheinen dann immer noch keine Transaktionen, prüfen Sie die Kontokarte auf einen Hinweis zu einem Synchronisierungsfehler und starten Sie eine manuelle Synchronisierung.
+**Nach dem Verbinden keine Transaktionen.**
+Der erste Import dauert einige Minuten. Laden Sie die Transaktionsseite neu, prüfen Sie dann die Verbindungskarte auf einen Synchronisierungsfehler und versuchen Sie **Jetzt synchronisieren**.
 
-**Das Konto zeigt einen Platzhalternamen wie „Account (…ab1234)“.**
-Das bedeutet, dass AI Finance Team beim Verbinden die Kontodetails nicht von der Bank abrufen konnte, meist wegen einer vorübergehenden API-Ratenbegrenzung. Das Konto ist trotzdem verbunden, und Transaktionen werden normal synchronisiert. Um den Namen zu aktualisieren, klicken Sie auf der Seite Bankkonten auf den Kontonamen und bearbeiten Sie ihn.
+**Ein Konto, das ich erwartet habe, ist nicht in der Liste.**
+Das ist keine Ratenbegrenzung (die kommen mit einem Platzhalternamen). Führen Sie das Verbinden erneut aus.
 
-**Die Schaltfläche „Bank verbinden“ ist nicht sichtbar.**
-Diese Schaltfläche sehen nur Nutzer mit einer Mandantenrolle. Wenn Sie als Buchhalter einen Mandanten-Arbeitsbereich betreuen, bitten Sie den Mandanten, seine Konten zu verbinden, oder klären Sie Ihre Rolle mit dem Administrator Ihres Arbeitsbereichs.
+**Die Karte bietet Erneut autorisieren an.**
+Sie sagt Ihnen nur, dass Sie **Bank verbinden** benutzen sollen, was der echte Weg ist, eine Zustimmung zu erneuern.
+
+**Ich sehe Bank verbinden nicht.**
+Es wird nur mandantenseitigen Mitgliedern angezeigt. Ein Buchhalter kann die Bank eines Mandanten nicht verbinden, das ist so gewollt.
+
+**Die Verbindungskarte zeigt Fehler.**
+Öffnen Sie die Karte: Der Status benennt den Grund des Anbieters. Eine Verbindung im Fehlerzustand kann der Mandanteninhaber trennen und erneut verbinden.
