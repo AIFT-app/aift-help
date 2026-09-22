@@ -11,7 +11,7 @@
     "src/components/catalyst/button.tsx": "9b17ed5cd17d5ec6144704770c198320eb40497077d39c424d114319d92ca2ef",
     "src/components/catalyst/checkbox.tsx": "be20df0b2d35a60fde9f141ed8f6defd8135d5234d93a56696715de298488b1c",
     "src/components/catalyst/combobox.tsx": "9a0fc07d43a30ae2e13b4cfe1d00a1bf53588e948d70e5afaff84420eb9fd0bf",
-    "src/components/catalyst/dialog.tsx": "916800fa48b710703a8a87d67a81f3ac55a64b0d474c280054c6d77b28649669",
+    "src/components/catalyst/dialog.tsx": "2b5b6250f2e1e17a966a6b907e9f642c5310991876874c7cadcef72894ac1543",
     "src/components/catalyst/divider.tsx": "78185bd6eaecbe4b026a889cdeaad0ec4fa8e85ed7335346cebbc1e01d805d5b",
     "src/components/catalyst/dropdown.tsx": "93a06858d7c243b49e211fc5937b827b9fc8a471ab101370f7fc8dc371373485",
     "src/components/catalyst/fieldset.tsx": "d7ac2659eeab21738d4f7ae40c936c510c43b5e090fb119df2034bf0a7cf3f5a",
