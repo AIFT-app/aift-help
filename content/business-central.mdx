@@ -1,39 +1,50 @@
-# Connecting Business Central
+# Business Central
 
-AI Finance Team can read the companies in your Microsoft Dynamics 365 Business Central. This page explains what has to be approved, and by whom.
+AI Finance Team connects to Microsoft Dynamics 365 Business Central: it pairs your companies with the ones in Business Central, copies their master data, and can create your partners there as vendor cards.
 
-Setting it up needs **two separate approvals**, and they are usually given by two different people. Granting one does not grant the other. That is the single thing most worth understanding before you start.
+**Before anything else, we have to switch Business Central on for the workspace.** It is off by default, and while it is off the menu is not there at all. Ask us, and we will turn it on.
 
----
+## What Is Read, and What Is Written
 
-## The two approvals
+AI Finance Team **reads** the companies in your Business Central, and for each paired company its accounts, VAT and posting groups, units of measure, currencies, bank accounts, payment methods and terms, dimensions and dimension values, and vendors. **No ledger entries, invoices or balances are read.**
 
-**1. Microsoft approval.** Someone with **Global Administrator** rights in your Microsoft 365 approves AI Finance Team once. This is usually your IT administrator or your IT provider. It takes about a minute and happens on a Microsoft page, not ours.
+There is exactly one thing AI Finance Team **writes**: a **vendor card**, created from one of your partners, when someone presses the button on the push screen. It is off unless we enable it for your workspace as well.
 
-**2. Business Central registration.** Someone with **SUPER** rights inside Business Central adds our application there and gives it a permission set. This is often the accountant rather than the IT administrator.
+Even then:
 
-There is no way to automate the second one. Business Central has no interface for it, so a person has to do it by hand. Approval alone leaves the connection refusing every request, which is why AI Finance Team tells the two states apart instead of showing one generic "not connected".
+- **Nothing is ever posted.** No journal, no entry, no document.
+- **An existing vendor card is never rewritten.** A card with the same tax number is linked to your partner instead.
+- **Nothing is ever deleted.**
 
----
+## Setting Up the Connection
 
-## Step 1: send the approval link
+Setting it up needs **two separate approvals**, usually given by two different people. Granting one does not grant the other. That is the single thing most worth understanding before you start.
 
-In AI Finance Team, open **Settings → Business Central** and choose **Create the approval link**.
+1. **Microsoft approval.** Someone with **Global Administrator** rights in your Microsoft 365 approves AI Finance Team once. This is usually your IT administrator or IT provider. It takes about a minute, on a Microsoft page.
+2. **Business Central registration.** Someone with **SUPER** rights inside Business Central adds our application there and gives it a permission set. This is often the accountant rather than the IT administrator.
 
-You will get a link and a ready-written message. Send both to whoever administers your Microsoft 365. The link expires after 7 days, and you can create a new one at any time. Creating a new one stops the previous one working.
+<BusinessCentralApprovalsFigure>
+The two approvals, and the state the connection sits in between them.
+</BusinessCentralApprovalsFigure>
 
-Two things to expect:
+The second one cannot be automated: Business Central has no interface for it, so a person does it by hand. Approval alone leaves the connection refusing every request, which is why AI Finance Team tells the two states apart.
 
-- Microsoft will warn that **the publisher is not verified**. That is normal for this application, and it does not stop an administrator from approving. It stops ordinary users from approving, which is not what happens here.
-- The administrator sees a page confirming the approval landed. It does not mention your company by name, because anyone holding that link can open it.
+Open **Settings → Business Central Connection** and click **Set up the connection**.
+
+### Step 1: send the approval link
+
+Choose **Create the approval link**. You get a link and a ready-written message to send to whoever administers your Microsoft 365.
+
+- **Copy the link now.** It is stored hashed, so it cannot be shown again once you leave the page, and creating a new one cancels the old one. Each link lasts 7 days.
+- If you are the Global Administrator yourself, use **I am the Microsoft admin, approve now**. That also mints a new link and cancels the current one.
+- Microsoft will warn that **the publisher is not verified**. That is normal here and does not stop an administrator approving.
+- The page the administrator sees does not name your company, because anyone holding the link can open it.
 
 The permission granted is read and write on the Business Central API. It does not allow creating or deleting environments.
 
----
+### Step 2: register the application in Business Central
 
-## Step 2: register the application in Business Central
-
-Once Microsoft approval lands, AI Finance Team shows an **Application ID** and these steps. Send them to whoever holds SUPER rights in Business Central.
+The steps are on the page from the start, marked **After step 1** until Microsoft approval lands. **Copy these steps** puts the Application ID and all of them on your clipboard in one block, ready to send on.
 
 1. In Business Central, press **Alt+Q** and search for **Microsoft Entra Applications**.
 2. Choose **New** and paste in the Application ID.
@@ -44,107 +55,115 @@ Once Microsoft approval lands, AI Finance Team shows an **Application ID** and t
 
 Three things go wrong here more often than anything else:
 
-- **Naming a company on that line** silently limits AI Finance Team to that one company. Everything appears to work, and the other companies simply never show up. Leave it empty.
-- **Using D365 AUTOMATION** instead. The connection succeeds and then returns nothing useful, because that permission set covers administrative APIs rather than business data.
-- **Using SUPER.** It works and grants far more than the integration needs. Do not.
+- **Naming a company on that line** silently limits AI Finance Team to that one company. Everything appears to work and the other companies never show up. Leave it empty.
+- **Using D365 AUTOMATION.** The connection succeeds and returns nothing useful, because that permission set covers administrative APIs rather than business data.
+- **Using SUPER.** It works and grants far more than the integration needs.
 
-The registration is **per environment**. Doing it in Production does not cover a Sandbox; each environment needs its own.
+The registration is **per environment**. Doing it in Production does not cover a Sandbox.
 
----
-
-## What the statuses mean
+### What the statuses mean
 
 | Status | What it means | Who acts next |
 |---|---|---|
 | Not connected | No approval link has been created yet. | You. |
 | Waiting for Microsoft approval | The link exists but nobody has approved it. | Your Microsoft administrator. |
-| Waiting for Business Central registration | Microsoft approved us and our sign-in works. Business Central is still refusing, so step 2 is not done. | Your Business Central administrator. |
+| Waiting for Business Central registration | Our sign-in works; Business Central is still refusing, so step 2 is not done. | Your Business Central administrator. |
 | Connected | We can read your companies. | Nobody. |
-| Error | Something specific went wrong. The page shows the code. | Depends on the code. |
+| Error | The page shows the code, and says whether this one is ours to fix. | Depends on the code. |
 
-If the status says the environment could not be found, check the environment name in your own Business Central address. It is **Production** for most customers.
+If the status says the environment could not be found, the page offers an **environment** field. It is **Production** for most customers; check the name in your own Business Central address. Saving it makes the connection unverified until the next successful check, so the Master data menu below disappears for a moment.
 
----
+That menu, **Master data → Business Central**, appears only once the connection has worked at least once.
 
-## What AI Finance Team reads
+## Pairing Companies
 
-At this stage, only the **list of companies**: their names and identifiers. Nothing is written back to Business Central, and no invoice, transaction or balance is read yet.
+Open **Master data → Business Central → Companies**. Every company in your Business Central is listed, grouped by what can be done with it: already paired, a suggested match, no match, already in AI Finance Team, and not a company.
 
-Connecting company data to the companies in AI Finance Team is a separate step, and you choose which Business Central companies to connect. Companies you do not connect are simply left alone.
+Each Business Central company can be paired with one AI Finance Team company, and the other way round. There are two ways:
 
----
+- **Create a company from a Business Central company.** The name, tax number, country and address are taken from Business Central. Tick several to create them in one go; creating one at a time shows you the values first and lets you correct the name.
+- **Pair with a company you already have.**
 
-## Pairing Business Central companies with AI Finance Team companies
+A suggestion based on the **tax number** is reliable. A suggestion based on the **name** is only a suggestion.
 
-Once the connection works, the Business Central page lists every company in your Business Central. Each Business Central company can be paired with one company in AI Finance Team, and each AI Finance Team company with one Business Central company.
-
-There are two ways to pair:
-
-- **Create a new company from a Business Central company.** AI Finance Team takes the name, the tax number, the country and the address from Business Central. You can tick several companies and create them all in one go.
-- **Pair with a company you already have.** Use this when the company is already in AI Finance Team.
-
-AI Finance Team suggests a match where it can. A suggestion based on the **tax number** is reliable. A suggestion based on the **name** is only a suggestion, so check it before you accept it.
+You can also start from **Master data → Companies**, where **Create companies from Business Central** sits next to **Add company** and lists only what is not paired yet.
 
 ### One company per tax number
 
-A workspace holds each company once. If a Business Central company's tax number already belongs to a company in AI Finance Team, the row offers **Pair** only, never **Create company**. If that company is already paired with another Business Central company (a test copy of the same firm, for example), the row says which one, and you unpair that first if this is the right one.
+A workspace holds each company once. If a Business Central company's tax number already belongs to a company here, the row offers **Pair** only, never **Create company**, and it is left out of bulk selection. If that company is already paired with another Business Central company, a test copy of the same firm for example, the row says which one; unpair that first.
 
-### Where you can start
+Where several Business Central companies share one tax number, the page says so and asks you to pick the right one, rather than guessing.
 
-There are two places to create a company from a Business Central company.
+### Notices on a row
 
-- **Master data ▸ Business Central ▸ Companies.** Every company that is not connected yet has a **Create company** button, and a checkbox to create several at once.
-- **Master data ▸ Companies.** When your workspace has a working connection and some companies are still unconnected, a **Create companies from Business Central** button sits next to **Add company**. It lists only the companies that are not connected yet, and marks the ones that already exist in AI Finance Team.
+- **Different currency.** Business Central keeps that company's books in another currency than your base currency. A warning only.
+- **Different country.**
+- **Different tax numbers.** Check which is right before accepting.
+- **The tax number is a VAT group identifier.** Your company states the group's number while Business Central states the member's own.
+- **Details could not be read.**
 
-Both do the same thing and both connect the Business Central company to the company they create.
+A Business Central company whose tax number is a group registration rather than a company cannot become a company here. Leave it unpaired: it is a filing arrangement, not a business.
 
-Creating one at a time shows you the legal name, country and tax number first, and lets you correct the name before the company exists. Creating several at once takes the values from Business Central as they stand.
+### What pairing writes
 
-### What gets written, and what does not
+When you pair with an existing company you can copy the address and the tax number across. **Only empty fields are filled.** A value already in AI Finance Team is never overwritten, whatever you tick; edit the company itself to change it.
 
-When you pair with an existing company, you can copy the address and the tax number across from Business Central. **Only empty fields can be filled.** A value that is already in AI Finance Team is never overwritten, whatever you tick. To change a value you already have, edit the company itself.
+### Unpairing
 
-Nothing is ever written back to Business Central.
+**Unlink** on the row, or on the company's own page. It removes the pairing and **deletes the copied master data of that company** along with the links to any vendor cards. The VAT mapping and the record of what was pushed are kept, and nothing changes in Business Central.
 
-### Companies you cannot pair
+## Keeping the Copy Fresh
 
-A Business Central company whose tax number is a **VAT group identifier**, that is a group registration rather than a company, cannot become a company in AI Finance Team. AI Finance Team says so on the row. Leave it unpaired. It is a filing arrangement, not a business.
+The copied master data refreshes itself: anything older than a day is read again during the next hourly check. You do not need to ask for it.
 
-### Warnings you may see
+## Where the Two Systems Differ
 
-- **Different currency.** Business Central keeps that company's books in a currency other than your workspace's base currency. This is a warning only. It never stops you pairing.
-- **Different tax numbers.** The Business Central company and the company you are pairing it with state different tax numbers. Check which one is right before you accept.
+**Master data → Business Central → Differences** compares four kinds of record, in both directions: accounts, VAT, custom category lists and partners. Each cell offers what makes sense there, such as importing what is missing or opening the record.
 
-### Undoing a pair
+Read the counts carefully. An empty cell can mean three different things: **not applicable**, **not read yet**, or a genuine zero. The tab says which.
 
-Unpair from the same page, or from the company's own page. Unpairing removes the connection and nothing else. The company stays exactly as it is, and nothing changes in Business Central.
+## Accounts as Categories
 
----
+Business Central cannot create a ledger account through its API, so the client's chart of accounts stays theirs. To let a category name a ledger account, bring the accounts in as categories.
 
-## Accounts as categories
+Open **Master data → Accounting categories** and choose **Import accounts from Business Central**. The button is on both the **Invoice** and the **Cash** tab.
 
-Business Central cannot create a ledger account through its API, so the client's chart of accounts stays theirs. To let an AIFT category name a ledger account, bring the accounts into AIFT as categories.
+**Create as** decides what each ticked account becomes: **Invoice categories**, **Cash categories**, or **Both**, which makes one of each with the same account number. They stay separate afterwards, so renaming one does not rename the other.
 
-Open **Master data > Accounting categories** and choose **Import accounts from Business Central**. The button is on both the **Invoice** and the **Cash** tab.
+The review step is a spreadsheet-style grid, not a list of tick boxes. You can edit the name of a row, set its direction, filter by account kind, search by the start of an account number, and paste a column of numbers copied from Excel to tick them. Then choose **Create**: the next screen shows what was created and what was skipped, with a reason each.
 
-At the top, **Create as** decides what each ticked account becomes:
-
-- **Invoice categories**: for invoice lines.
-- **Cash categories**: for bank movements.
-- **Both**: one invoice category and one cash category with the same account number. They stay two separate categories, so renaming one does not rename the other.
-
-The list shows the accounts that do not have a category of the chosen kind yet. Tick the ones you want, check the direction, then choose **Create**. The categories are created straight away. The next screen shows what was created and which accounts were skipped, with the reason for each.
-
-**The account number is what identifies the category.** Two accounts with different numbers become two categories even when they have the same name. An account number that already has a category of that kind is skipped and left as it is.
+**The account number identifies the category.** Two accounts with different numbers become two categories even with the same name, and an account number that already has a category of that kind is skipped.
 
 ### Copying invoice categories to cash categories
 
-On the **Cash** tab, **Copy from invoice categories** creates a cash category for every invoice category the cash side does not have yet, with the same account number, name and direction. It shows the counts first and changes nothing that already exists. Built-in categories are not copied, because the cash side has its own.
+On the **Cash** tab, **Copy from invoice categories** creates a cash category for every invoice category the cash side lacks, with the same account number, name and direction. It shows the counts first and changes nothing that exists. Built-in categories are not copied.
 
----
+## Vendors as Partners
 
-## Who can set this up
+**Add from Business Central** on **Master data → Partners**, and on the Differences tab, brings vendor cards in as partners. They are matched on the tax number, so a vendor that already exists here is shown as such and cannot be added twice. Vendor cards without a tax number can still be added, but nothing can match them automatically afterwards.
 
-A workspace administrator or the client owner can connect and disconnect. Everyone else in the workspace can see the status but cannot change it.
+## VAT Mapping
 
-You can disconnect at any time from the same page. Your Microsoft administrator can also revoke the approval in your own Microsoft 365 without asking us.
+**Master data → VAT codes → Business Central** maps each of your (product/service group, rate) pairs to one Business Central tax group code. It is saved a row at a time, and it survives unpairing.
+
+## Pushing Partners as Vendors
+
+**Master data → Business Central → Push** creates vendor cards in Business Central from your partners. This is the only place AI Finance Team writes into your accounting system, and it needs three things:
+
+- the write side switched on for the workspace, which only we can do;
+- the permission "Push into the accounting system", which the accountant admin holds by default;
+- **posting groups for each paired company**, which the screen asks for first and pre-fills from your own vendor cards.
+
+You choose the partners, then the companies each one should be created in, and review the list before it runs. At most 200 are pushed in one run. Afterwards each row says what happened: created, linked to an existing card with the same tax number, or failed with a reason.
+
+A vendor number that comes back is shown on the partner's page under its AI Finance Team code, one line per company. That number belongs to a company in Business Central, so do not type it into the partner's own code field.
+
+## Who Can Do What
+
+Connecting, disconnecting and pairing need the permission "Manage connections", held by default by the accountant admin and the finance lead. A custom role or an exception can change that. Everyone else sees the status and cannot change it. Pushing needs its own permission, as above.
+
+## Disconnecting
+
+**Disconnect** on **Settings → Business Central Connection**. The confirmation says what goes: the pairings, the copied master data and the VAT mappings are deleted, while your companies, categories, partners and the links to vendor cards are kept.
+
+Reconnecting afterwards needs **both approvals again**, and every company paired again. Your Microsoft administrator can also revoke the approval in your own Microsoft 365 without telling us.
