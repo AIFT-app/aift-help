@@ -54,8 +54,8 @@ A pipák az **öt rendszerszerepkör alapértelmezései**. Az egyedi szerepkör 
 
 Két dolgot szabály rögzít, és ezek soha nem részei egy szerepkörnek:
 
-- **Bankszámlák csatlakoztatása és leválasztása.** Bármely ügyféloldali tag csatlakoztathat bankot; a bankkapcsolat leválasztása az ügyfél tulajdonosé. A banki hozzáférési adatok mindig az ügyféloldalon maradnak.
-- **NAV Online Számla hozzáférés kezelése.** A hozzáférést az ügyfél tulajdonos, a könyvelő admin vagy a könyvelő állíthatja be. Visszaolvasni senki sem tudja.
+- **Bankszámlák csatlakoztatása és leválasztása.** Bármely ügyféloldali tag csatlakoztathat bankot; a bankkapcsolat leválasztása a pénzügyi vezetőé. A banki hozzáférési adatok mindig az ügyféloldalon maradnak.
+- **NAV Online Számla hozzáférés kezelése.** A hozzáférést a pénzügyi vezető, a könyvelő admin vagy a könyvelő állíthatja be. Visszaolvasni senki sem tudja.
 
 Mindkettőt a tag **alapszerepköre** dönti el (az a rendszerszerepkör, amelyen egy egyedi szerepkör alapul), így az Pénzügyi vezető alapú egyedi szerepkörrel rendelkező tagé is a bankkapcsolat.
 
@@ -114,7 +114,7 @@ Ha elveszi egy tagtól a „Számlák és banki tranzakciók megtekintése” jo
 
 ### A csapat kezelése
 
-A „Tagok és szerepkörök kezelése” jogosultság teszi valakit a csapat kezelőjévé. Ezzel módosíthatja egy tag szerepkörét, kivételeket állíthat be, tagokat távolíthat el, és irodai oldalon elbírálhatja a csatlakozási kérelmeket. Az ügyféloldali kezelő (alapértelmezés szerint az ügyfél tulajdonos) csak ügyféloldali tagokat kezel. A munkaterület utolsó könyvelő adminja és utolsó ügyfél tulajdonosa nem távolítható el, nem léphet ki, és nem helyezhető át másik alapszerepkörbe.
+A „Tagok és szerepkörök kezelése” jogosultság teszi valakit a csapat kezelőjévé. Ezzel módosíthatja egy tag szerepkörét, kivételeket állíthat be, tagokat távolíthat el, és irodai oldalon elbírálhatja a csatlakozási kérelmeket. Az ügyféloldali kezelő (alapértelmezés szerint a pénzügyi vezető) csak ügyféloldali tagokat kezel. A munkaterület utolsó könyvelő adminja és utolsó pénzügyi vezetője nem távolítható el, nem léphet ki, és nem helyezhető át másik alapszerepkörbe.
 
 ### Mit lát egy tag
 
@@ -179,7 +179,7 @@ A munkaterület **Beállítások → Csapatkezelés → Új tag meghívása** f�
 - Egy opcionális, legfeljebb 500 karakteres üzenet, amely az egész kötegre vonatkozik. A benne lévő hivatkozások kattinthatók lesznek.
 - Kattintson a **Meghívó küldése** gombra, vagy több meghívónál az **N meghívó küldése** gombra. Az elküldött sorok eltűnnek az űrlapról; a sikertelen sorok (például duplikált e-mail-cím esetén) a hibaüzenettel együtt megmaradnak, hogy javíthassa őket.
 
-A szerepkörlista attól függ, ki hív meg: az ügyféloldali meghívó csak ügyfél tagokat hívhat meg, az irodai oldali meghívó bármely munkaterület-szerepkörre meghívhat, a szervezeti panel pedig az irodába hív meg.
+A szerepkörlista attól függ, ki hív meg: az ügyféloldali meghívó munkatársat vagy pénzügyi adminisztrátort hívhat meg, másik pénzügyi vezetőt nem, az irodai oldali meghívó bármely munkaterület-szerepkörre meghívhat, a szervezeti panel pedig az irodába hív meg.
 
 Az AI Finance Team e-mailben elküldi mindenkinek a meghívó hivatkozását és az Ön üzenetét; a hivatkozást Önnek is megmutatja arra az esetre, ha az e-mail nem érkezne meg. Minden meghívó 14 nap után lejár, elfogadás előtt visszavonható, és csak arra az e-mail-címre érvényes, amelyre küldték.
 
@@ -201,4 +201,4 @@ Háromféleképpen lehet bekerülni egy munkaterületre:
 
 ### Tag eltávolítása
 
-A „Tagok és szerepkörök kezelése” jogosultsággal rendelkező tag a **Csapattagok** fülön eltávolíthat egy saját oldalán álló tagot: alapértelmezés szerint a könyvelő admin az irodai oldali, az ügyfél tulajdonos az ügyféloldali tagokat távolítja el. Bármely tag maga is kiléphet egy munkaterületről, kivéve az utolsó könyvelő admint és az utolsó ügyfél tulajdonost. Az eltávolított felhasználók megtartják a fiókjukat; csak az adott munkaterülethez veszítik el a hozzáférést. Ha valakit a szervezetből távolítanak el (annak **Csapat** oldalán), az iroda minden munkaterületéről kikerül.
+A „Tagok és szerepkörök kezelése” jogosultsággal rendelkező tag a **Csapattagok** fülön eltávolíthat egy saját oldalán álló tagot: alapértelmezés szerint a könyvelő admin az irodai oldali, a pénzügyi vezető az ügyféloldali tagokat távolítja el. Bármely tag maga is kiléphet egy munkaterületről, kivéve az utolsó könyvelő admint és az utolsó pénzügyi vezetőt. Az eltávolított felhasználók megtartják a fiókjukat; csak az adott munkaterülethez veszítik el a hozzáférést. Ha valakit a szervezetből távolítanak el (annak **Csapat** oldalán), az iroda minden munkaterületéről kikerül.
