@@ -1,65 +1,93 @@
 # Szállítók ellenőrzése a cégjegyzékben
 
-Az AI Finance Team a szállítóit össze tudja vetni a magyar cégjegyzékkel. Megmutatja, hogy a szállítói számlán szereplő bankszámla az-e, amelyet a szállító bejelentett a cégjegyzéknek, kitölti a hiányzó partneradatokat, és listázza az eltéréseket, hogy megnézhesse őket. Ez a cikk annak szól, aki a szállítói számlákat jóváhagyja vagy kifizeti, és annak, aki a partnertörzsadatokat gondozza.
+Az AI Finance Team össze tudja vetni a szállítóit a magyar cégjegyzékkel. Megmondja, hogy a szállítói számlán szereplő bankszámla az-e, amelyet a szállító bejelentett a cégjegyzéknek, kitölti a hiányzó partneradatokat, és listázza mindazt, ami eltér, hogy megnézhesse.
 
-Az ellenőrzést munkaterületenként kapcsoljuk be. Ha nem látja, forduljon az AI Finance Team kapcsolattartójához.
+Az ellenőrzést munkaterületenként kapcsoljuk be, és addig ki van kapcsolva, amíg be nem kapcsoljuk. Ha nem látja, forduljon az AI Finance Team kapcsolattartójához.
+
+## A négy válasz
+
+A legtöbb partner az első állapotból indul, és egy frissen bekapcsolt munkaterület tele lesz vele.
+
+- **Még nincs ellenőrizve.** Erről a partnerről még semmi nem kérdezte meg a cégjegyzéket. Az ellenőrzés új szállítói számla érkezésekor fut le.
+- **Nyilvántartva.** A cégjegyzék nyilvántartja ezt a céget, és ahol volt összevetendő számlaszám, azt is nyilvántartja az adószámához. A sor kiírja, hogy mióta, és hogy mikor ellenőriztük.
+- **Nem szerepel a cégjegyzékben.** A cégjegyzék ehhez az adószámhoz nem tartja nyilván ezt a számlaszámot, vagy ezt a céget. **Ez nem bizonyítja a csalást.** A banknak nyolc napja van bejelenteni egy újonnan nyitott számlát, így egy friss számlaszám teljesen valódi is lehet. A magyar adószámmal rendelkező külföldi cégek és a nem cégformában működő szervezetek szintén nem szerepelnek benne. Fizetés előtt egyeztessen a szállítóval egy már ismert telefonszámon.
+- **Nem ellenőrizhető.** Nem tudtuk megkérdezni, vagy a cégjegyzék nem tudott válaszolni. Az okot mindig kiírjuk: nincs adószám, külföldi szállító, a cég saját adószáma helyett csoportazonosító szám, a magánszemélyeknek szóló értékesítésekhez használt partner, elfogytak az e havi lekérdezések, vagy a cégjegyzék-előfizetés elutasította a lekérdezést. **A Nem ellenőrizhető soha nem negatív eredmény.**
+
+Olyan partnernél, amelynél nincs rögzített bankszámla, a szakasz ehelyett azt írja: **Szerepel a cégjegyzékben**. A lekérdezés sikerült, csak nem volt mit összevetni.
 
 ## Hol látja
 
-- **A szállítói számlán**, a kifizetés jóváhagyásának kártyáján, a kedvezményezett számlája alatt. Egy sor mutatja, mit mond a cégjegyzék erről a számláról.
-- **Az ellenőrzött partneren**, a **Partner** fülön, a **Cégjegyzék** szakaszban: mit mond a cégjegyzék a cégről, mit töltött ki Ön helyett, és milyen eltéréseket érdemes megnézni.
+- **A szállítói számlán**, a kifizetés jóváhagyásának kártyáján, a kedvezményezett számlaszáma alatt.
+- **Az utalási fájl oldalán**, minden szóba jöhető soron.
+- **Hitelesített partneren**, a **Cégjegyzék** szakaszban: mit mond a cégjegyzék, mit töltött ki, mi tér el, és egy **Cégadatok** blokk a cégformával, a cégjegyzékszámmal, a főtevékenységgel és az utolsó beszámoló adataival.
+- **A hitelesítő párbeszédablakban**, amikor egy nem hitelesített névből partnert csinál: ha a cégjegyzék ismeri a céget, felkínáljuk a cégnevét, az adószámát, a székhelyét és a főtevékenységét, a **Vedd át ezeket az adatokat** gomb pedig kitölti őket.
 
-## Mit jelent a három válasz
+## Mi indít el egy ellenőrzést
 
-- **Szerepel a cégjegyzékben ehhez az adószámhoz.** A cégjegyzék ezt a bankszámlát tartja nyilván a szállító adószámához. A sor azt is mutatja, mióta, és mikor ellenőriztük.
-- **Ehhez az adószámhoz nem szerepel a cégjegyzékben.** A cégjegyzék nem tartja nyilván ezt a számlát a szállítónál. **Ez nem bizonyítja a csalást.** A banknak nyolc napja van bejelenteni egy újonnan nyitott számlát, így egy friss számla még lehet valódi. Fizetés előtt egyeztessen a szállítóval egy már ismert telefonszámon.
-- **Nem ellenőrizhető.** A cégjegyzék nem tudott választ adni, és látszik az ok: a partnernek nincs adószáma, a szállító külföldi cég (akkor is, ha magyar adószáma van), a szállító egyéni vállalkozó, a szállító nem szerepel a cégjegyzékben (például egy alapítvány vagy egy költségvetési szerv), nincs összevethető bankszámla, vagy a cégjegyzék nem volt elérhető. A Nem ellenőrizhető soha nem negatív eredmény.
+- **Szállítói számla olyan partnertől, akit még senki nem ellenőrzött.** Csak kiadási számla, és csak szállító: vevőt soha nem küldünk el a cégjegyzéknek.
+- **Ön, az Ellenőrzés most gombbal** egy olyan partneren, amelynek még nincs eredménye, vagy utána az **Újraellenőrzés** gombbal.
+- **Megváltozott kedvezményezetti számlaszám**, ami mindig friss ellenőrzést kényszerít ki, mert pontosan erre való ez a kontroll.
+- **A partner szerkesztése**, ami a már meglévő adatokból számol újra, ingyen.
 
-Ha a partnernél nincs rögzített bankszámla, a **Cégjegyzék** szakasz ehelyett azt írja: **Szerepel a cégjegyzékben**. A lekérdezés sikerült, csak nem volt mivel összevetni.
+Az ellenőrzés bekapcsolása előtt érkezett számlákat nem ellenőrizzük. Ha egy ügyfélnél a korábbi időszakot is le kell fedni, szóljon nekünk: le tudunk futtatni egy korlátozott, visszamenőleges ellenőrzést, amely végigmegy a meglévő szállítókon.
 
-Semmi nem blokkol jóváhagyást vagy utalási fájlt. Az ellenőrzés bizonyítékot ad a döntéséhez, a döntést nem hozza meg Ön helyett.
+### Mibe kerül egy ellenőrzés, és mibe nem
 
-## Automatikusan megerősített számlák
+Minden ellenőrzés egyet használ el a hónap cégjegyzék-lekérdezéseiből. **A cégjegyzékben név alapján keresni ingyenes**, és ingyenes az az újraszámolás is, amely csak a már lekért adatokból dolgozik. Ugyanannak a partnernek az egy órán belüli kétszeri újraellenőrzését elutasítjuk.
 
-Mielőtt egy számlaszám utalási fájlba kerülhet, valakinek meg kell erősítenie (lásd: [Jóváhagyott számlák kifizetése](/paying-approved-invoices)). A cégjegyzék ezt a megerősítést egyetlen esetben végezheti el Ön helyett: egy szállító **először** látott számlaszámánál, ha mindez teljesül:
+A cégjegyzék saját adatait legfeljebb 90 naponta frissítjük. Ezután a szakasz **Elavult** jelöléssel látja el a választ, és megvárja Önt: pusztán az elévülés soha nem használ el lekérdezést.
 
-- a cégjegyzék pontosan ezt a számlát tartja nyilván a szállító adószámához,
-- a cég a cégjegyzék szerint aktív,
-- a partner neve egyezik a cégjegyzékben szereplővel,
-- az adószámot nem név szerinti kereséssel találtuk (lásd lent).
+## Eltérések, amiket érdemes megnézni
 
-A jóváhagyási kártya és a partner oldala ilyenkor azt mutatja, hogy a számlát **a cégjegyzék alapján erősítettük meg**, dátummal, így mindig megkülönböztethető attól, amit egy személy erősített meg.
+Ahol az Ön adata és a cégjegyzék nem egyezik, a szakasz listázza az eltérést, ahelyett hogy bármit megváltoztatna. Minden eltérést megjelölünk aszerint, hogy mennyire számít: **Ellenőrizd**, **Nézd meg** vagy **Infó**.
 
-**Megváltozott számlaszámot soha nem erősítünk meg automatikusan.** Ha egy számlán más számlaszám szerepel, mint a már megerősített, az újat egy személynek kell megerősítenie, bármit mond is a cégjegyzék. Ez a számlacsalás elleni védelem, és a cégjegyzék nem helyettesíti. A megváltozott számlaszámot mindig frissen vetjük össze a cégjegyzékkel.
+- A cég már nem aktív, például felszámolás alatt áll.
+- Eltér az adószám.
+- Az Önnél lévő számlaszám nincs nyilvántartva ennél a cégnél.
+- A számlaszám egyetlen ismert bankfiókhoz sem tartozik.
+- Eltér a név vagy az irányítószám. A címeket csak irányítószám alapján vetjük össze, mert a szabad szöveges címek túlságosan sokfélék ahhoz, hogy tisztességesen összehasonlíthatók legyenek.
+- A cégjegyzék olyan számlaszámokat tart nyilván, amelyek Önnél nincsenek meg: ezeket egy sorban, darabszámmal mutatjuk.
 
-## Mit tölt ki a cégjegyzék, és mit nem ír felül soha
+## Mit tölt ki a cégjegyzék
 
-Ha a cégjegyzék tud valamit, amit Ön nem, például a partner címét, kitölti az üres mezőt. Meglévő értéket **soha nem ír felül**. Ha az Ön adata eltér a cégjegyzéktől, a szakasz az eltérést listázza:
+Ha a cégjegyzék tud valamit, amit Ön nem, pontosan négy dolgot töltünk ki, és csak addig, amíg üresek: a **cím**, az **ország**, a teljes **adószám**, ha annak első nyolc jegye már megvan, és a **csoportazonosító szám**. A nevet és a bankszámlákat a cégjegyzék soha nem írja be. Egyéni vállalkozónál egyáltalán semmit nem töltünk ki.
 
-- a cég már nem aktív (például felszámolás alatt áll),
-- eltér a név vagy a cím,
-- eltér az adószám,
-- olyan számla van Önnél, amelyet a cégjegyzék nem tart nyilván ennél a cégnél,
-- a cégjegyzékben olyan számlák szerepelnek, amelyek Önnél nincsenek meg (egy sorban, darabszámmal, és a cégjegyzék listájában megjelölve).
+## Automatikusan megerősített számlaszámok
 
-Minden eltérés arra való, hogy megnézze. Semmi nem változik, amíg Ön nem változtatja meg.
+Mielőtt egy számlaszám utalási fájlba kerülhet, valakinek meg kell erősítenie: lásd [Jóváhagyott számlák kifizetése](/paying-approved-invoices). A cégjegyzék ezt egyetlen szűk esetben teheti meg, egy szállítónál **először** látott számlaszámnál, ha mindez teljesül:
 
-## Az ellenőrzés elavul
+- a cégjegyzék pontosan ezt a számlaszámot tartja nyilván a szállító adószámához;
+- a cég aktív, és nem egyéni vállalkozó;
+- a cégjegyzékből származó adat 90 napnál nem régebbi;
+- a számla kiadási számla, és az ellenőrzés bekapcsolása után érkezett;
+- a számlaszám 24 jegyű belföldi számlaszám;
+- az adószám embertől származik, nem név szerinti keresésből.
 
-Egy ellenőrzés 90 napig érvényes. Ezután a szakasz **Elavult** jelölést kap. Semmi nem ellenőrzi újra magát, mert minden ellenőrzés az AI Finance Team havi cégjegyzék-lekérdezési keretéből fogy. Ha friss választ szeretne, nyomja meg az **Újraellenőrzés** gombot. Ehhez a **Törzsadatok szerkesztése** jogosultság kell (lásd: [Szerepek és jogosultságok](/roles-and-permissions)).
+Ez az utolsó feltétel szigorúbb, mint amilyennek hangzik: a gyakorlatban a cégjegyzék csak olyan partnernél erősít meg számlaszámot, akinek az adószámát valaki beírta vagy kijavította a partner oldalán. Mindenki másnál továbbra is egy személy erősít meg, és éppen így működik jól a csalás elleni kontroll.
 
-Az új szállítói számlák maguktól elindítják az ellenőrzést. Azok a számlák, amelyek a bekapcsolás előtt érkeztek, nem.
+**Megváltozott számlaszámot soha nem erősítünk meg automatikusan**, bármit mond is a cégjegyzék.
+
+A cégjegyzék válasza soha nem blokkol jóváhagyást vagy utalási fájlt. Az utalási fájlt a meg nem erősített számlaszám blokkolja, és a cégjegyzék megerősítése az egyik módja annak, hogy ez feloldódjon.
 
 ## Adószám nélküli partnerek
 
-Adószám nélküli partnert nem lehet ellenőrizni. A **Keresés a cégjegyzékben** gombbal a partner neve alapján kereshet a cégjegyzékben. Ha megtalálja a céget, a megfelelő találatnál nyomja meg az **Ezt az adószámot használom** gombot.
+Adószám nélküli partnert nem lehet ellenőrizni. Nyomja meg a **Keresés a cégjegyzékben** gombot, hogy név alapján keressen, ami semmibe nem kerül, majd a megfelelő találatnál az **Ezt az adószámot használom** gombot.
 
-A név alapján talált adószámot így jelöljük. Kitölti a hiányt, de **soha** nem erősít meg automatikusan bankszámlát, mert a név nem bizonyítja a személyazonosságot. Ha később Ön maga írja be az adószámot, az Önénak számít.
+A név alapján talált adószámot így jelöljük. Kitölti a hiányt, de **soha** nem használjuk bankszámla automatikus megerősítésére, mert a név nem bizonyítja a személyazonosságot. Ha később Ön maga írja be az adószámot, az már az Ön adatának számít.
 
 ## Egyéni vállalkozók és magánszemélyek
 
-Az egyéni vállalkozók magánszemélyként szerepelnek a nyilvántartásban, ezért őket nem ellenőrizzük, és a cégjegyzékből semmit nem tárolunk róluk azon kívül, hogy egyéni vállalkozók. A magánszemélyeknek szóló értékesítések partnerét soha nem küldjük el a cégjegyzéknek.
+Az egyéni vállalkozó adószámát elküldjük a cégjegyzéknek, a válasz pedig az, hogy magánszemélyről van szó, így cégadat nem érkezik vissza, és semmit nem töltünk ki. A magánszemélyeknek szóló értékesítésekhez használt partnert soha nem küldjük el.
+
+## Ki láthatja és ki használhatja
+
+A cégjegyzék válaszainak megtekintéséhez a „Számlák és banki tranzakciók megtekintése” jogosultság kell. Az **Ellenőrzés most**, az **Újraellenőrzés** és az **Ezt az adószámot használom** megnyomásához a „Törzsadatok szerkesztése” jogosultság kell. Lásd: [Szerepek és jogosultságok](/roles-and-permissions).
 
 ## Hová kerülnek az adatok
 
-A lekérdezéseket a WellData Kft. (cegadatapi.hu) végzi, amely magyar, EU-s szolgáltató. A szállító adószámát küldjük el, név szerinti keresésnél a nevét. A WellData szerepel az adatfeldolgozóink nyilvántartásában.
+A lekérdezéseket a WellData Kft. (cegadatapi.hu) végzi, amely magyar, EU-s szolgáltató. A szállító adószámát küldjük el, név szerinti keresésnél a nevét. Amit visszakapunk, a cég saját cégjegyzékadataira szorítkozik: a tulajdonosokat, a vezető tisztségviselőket, a telefonszámokat, az e-mail-címeket és a telephelyeket eldobjuk, és soha nem tároljuk. A WellData szerepel az adatfeldolgozóink nyilvántartásában.
+
+## Kapcsolódó cikkek
+
+- [Partnerek kezelése](/partners)
+- [Jóváhagyott számlák kifizetése](/paying-approved-invoices)
