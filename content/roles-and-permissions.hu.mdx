@@ -34,30 +34,30 @@ A munkaterület minden tagjának egy **szerepköre** van, a szerepkör pedig **j
 |---|---|---|---|---|---|---|
 | Számlák és banki tranzakciók megtekintése | bármelyik | ✓ | ✓ | ✓ | ✓ | ✓ |
 | Dokumentumok feltöltése | bármelyik | ✓ | ✓ | ✓ | ✓ | ✓ |
-| Számlák szerkesztése | iroda | ✓ | ✓ | — | — | — |
-| Banki tranzakciók szerkesztése | iroda | ✓ | ✓ | — | — | — |
-| Párosítás kezelése | iroda | ✓ | ✓ | — | — | — |
-| Könyvelési exportok futtatása | iroda | ✓ | ✓ | — | — | — |
-| Időszakok zárása | iroda | ✓ | ✓ | — | — | — |
-| Riportok kezelése | bármelyik | ✓ | ✓ | — | — | — |
-| Törzsadatok szerkesztése | iroda | ✓ | ✓ | — | — | — |
-| Munkaterület-beállítások szerkesztése | iroda | ✓ | — | — | — | — |
-| Tagok meghívása | bármelyik | ✓ | — | ✓ | — | — |
-| Tagok és szerepkörök kezelése | bármelyik | ✓ | — | ✓ | — | — |
-| Kapcsolatok kezelése | bármelyik | ✓ | — | ✓ | — | — |
-| Számlák jóváhagyása kifizetésre | bármelyik | ✓ | — | ✓ | — | — |
-| Jóváhagyások kezelése | bármelyik | ✓ | — | ✓ | ✓ | — |
-| Utalási fájl exportálása | bármelyik | ✓ | — | ✓ | ✓ | — |
-| Feladás a könyvelőprogramba | iroda | ✓ | — | — | — | — |
+| Számlák szerkesztése | iroda | ✓ | ✓ |  |  |  |
+| Banki tranzakciók szerkesztése | iroda | ✓ | ✓ |  |  |  |
+| Párosítás kezelése | iroda | ✓ | ✓ |  |  |  |
+| Könyvelési exportok futtatása | iroda | ✓ | ✓ |  |  |  |
+| Időszakok zárása | iroda | ✓ | ✓ |  |  |  |
+| Riportok kezelése | bármelyik | ✓ | ✓ |  |  |  |
+| Törzsadatok szerkesztése | iroda | ✓ | ✓ |  |  |  |
+| Munkaterület-beállítások szerkesztése | iroda | ✓ |  |  |  |  |
+| Tagok meghívása | bármelyik | ✓ |  | ✓ |  |  |
+| Tagok és szerepkörök kezelése | bármelyik | ✓ |  | ✓ |  |  |
+| Kapcsolatok kezelése | bármelyik | ✓ |  | ✓ |  |  |
+| Számlák jóváhagyása kifizetésre | bármelyik | ✓ |  | ✓ |  |  |
+| Jóváhagyások kezelése | bármelyik | ✓ |  | ✓ | ✓ |  |
+| Utalási fájl exportálása | bármelyik | ✓ |  | ✓ | ✓ |  |
+| Feladás a könyvelőprogramba | iroda | ✓ |  |  |  |  |
 
 A pipák az **öt rendszerszerepkör alapértelmezései**. Az egyedi szerepkör saját halmazt választ, a kivétel pedig egyetlen tagnál módosít. A „Feladás a könyvelőprogramba” jogosultsághoz az is kell, hogy a kapcsolat be legyen kapcsolva a munkaterületen.
 
 Két dolgot szabály rögzít, és ezek soha nem részei egy szerepkörnek:
 
-- **Bankszámlák csatlakoztatása és leválasztása.** Bármely ügyféloldali tag csatlakoztathat bankot; a bankkapcsolat leválasztása a pénzügyi vezetőé. A banki hozzáférési adatok mindig az ügyféloldalon maradnak.
-- **NAV Online Számla hozzáférés kezelése.** A hozzáférést a pénzügyi vezető, a könyvelő admin vagy a könyvelő állíthatja be. Visszaolvasni senki sem tudja.
+- **Bankszámlák csatlakoztatása és leválasztása.** Bármely ügyféloldali tag csatlakoztathat bankot; a bankkapcsolat leválasztása az ügyfél tulajdonosé. A banki hozzáférési adatok mindig az ügyféloldalon maradnak.
+- **NAV Online Számla hozzáférés kezelése.** A hozzáférést az ügyfél tulajdonos, a könyvelő admin vagy a könyvelő állíthatja be. Visszaolvasni senki sem tudja.
 
-Mindkettőt a tag **alapszerepköre** dönti el (az a rendszerszerepkör, amelyen egy egyedi szerepkör alapul), így a Pénzügyi vezető alapú egyedi szerepkörrel rendelkező tagé is a bankkapcsolat.
+Mindkettőt a tag **alapszerepköre** dönti el (az a rendszerszerepkör, amelyen egy egyedi szerepkör alapul), így az Pénzügyi vezető alapú egyedi szerepkörrel rendelkező tagé is a bankkapcsolat.
 
 Mit fednek le a tágabb jogosultságok:
 
@@ -72,13 +72,11 @@ Mit fednek le a tágabb jogosultságok:
 |---|---|---|
 | Könyvelő admin | Iroda | A megbízás vezető könyvelője: mindent megtehet, a csapatot és a beállításokat is beleértve |
 | Könyvelő | Iroda | Támogató könyvelő: minden könyvelési munka, csapat és beállítások nélkül |
-| Pénzügyi vezető | Ügyfél | Az ügyfél vezető munkatársa: feltölt, meghívja és kezeli az ügyfél munkatársait és kapcsolatait, jóváhagyja a számlákat, övé a bankkapcsolat |
-| Pénzügyi adminisztrátor | Ügyfél | A pénzügyi vezető csapatában: működteti a jóváhagyási folyamatot és elkészíti az utalási fájlt, de nem dönt a számlákról |
+| Pénzügyi vezető | Ügyfél | Az ügyfél vezető munkatársa: feltölt, meghívja és kezeli az ügyfél munkatársait és kapcsolatait, jóváhagyja és kifizeti a számlákat, övé a bankkapcsolat |
+| Pénzügyi adminisztrátor | Ügyfél | A pénzügyi vezető csapatában: iktatja a beérkező bizonylatokat, feltölti a hiányzókat, irányítja a jóváhagyásokat és összeállítja az utalási listát |
 | Munkatárs | Ügyfél | Az ügyfél további munkatársai: feltöltés és megtekintés |
 
 A rendszerszerepkörök nem módosíthatók. Kattintson valamelyiknél a **Megtekintés** gombra, és csak olvasható nézetben láthatja, mit tehet az adott szerepkörű tag.
-
-A **Pénzügyi adminisztrátor** új szerepkör, és addig senkinél sincs, amíg egy kezelő hozzá nem rendeli valakihez. Azért van rá szükség, mert a kifizetés előkészítése és a döntés két külön feladat: a Pénzügyi adminisztrátor működtetheti a jóváhagyási folyamatot és exportálhatja az utalási fájlt, a számla jóváhagyása viszont a pénzügyi vezetőnél marad.
 
 ### Egyedi szerepkörök
 
@@ -93,7 +91,7 @@ A **Szerepkörök** fül az öt rendszerszerepkörrel és egy egyedi szerepkörr
 3. Egy egyedi szerepkör, amely az oldala egyik rendszerszerepkörén alapul.
 4. **Új szerepkör**.
 
-- Az **Új szerepkör** olyan szerepkört hoz létre, amelyben semmi sincs bepipálva; a **Másolás** egy meglévő szerepkör jogosultságaiból indul. Az egyedi szerepkör ugyanazon oldal egyik rendszerszerepkörén alapul (ügyféloldalon a Munkatárs, a Pénzügyi adminisztrátor vagy a Pénzügyi vezető szerepkörén), és ügyféloldali szerepkörhöz a rendszer nem kínál fel csak irodai jogosultságot.
+- Az **Új szerepkör** olyan szerepkört hoz létre, amelyben semmi sincs bepipálva; a **Másolás** egy meglévő szerepkör jogosultságaiból indul. Az egyedi szerepkör ugyanazon oldal egyik rendszerszerepkörén alapul, és ügyféloldali szerepkörhöz a rendszer nem kínál fel csak irodai jogosultságot.
 - Csak olyan jogosultságot adhat, amellyel Ön is rendelkezik.
 - Aki megnyitja a fület, minden szerepkört lát, de ügyféloldali kezelő nem módosíthat irodai oldali szerepkört.
 - A szerepkört a tag hozzáférési oldalán rendelheti hozzá, vagy meghíváskor választhatja ki.
@@ -116,7 +114,7 @@ Ha elveszi egy tagtól a „Számlák és banki tranzakciók megtekintése” jo
 
 ### A csapat kezelése
 
-A „Tagok és szerepkörök kezelése” jogosultság teszi valakit a csapat kezelőjévé. Ezzel módosíthatja egy tag szerepkörét, kivételeket állíthat be, tagokat távolíthat el, és irodai oldalon elbírálhatja a csatlakozási kérelmeket. Az ügyféloldali kezelő (alapértelmezés szerint a pénzügyi vezető) csak ügyféloldali tagokat kezel. A munkaterület utolsó könyvelő adminja és utolsó pénzügyi vezetője nem távolítható el, nem léphet ki, és nem helyezhető át másik alapszerepkörbe.
+A „Tagok és szerepkörök kezelése” jogosultság teszi valakit a csapat kezelőjévé. Ezzel módosíthatja egy tag szerepkörét, kivételeket állíthat be, tagokat távolíthat el, és irodai oldalon elbírálhatja a csatlakozási kérelmeket. Az ügyféloldali kezelő (alapértelmezés szerint az ügyfél tulajdonos) csak ügyféloldali tagokat kezel. A munkaterület utolsó könyvelő adminja és utolsó ügyfél tulajdonosa nem távolítható el, nem léphet ki, és nem helyezhető át másik alapszerepkörbe.
 
 ### Mit lát egy tag
 
@@ -131,13 +129,13 @@ Az alábbi táblázatok az öt rendszerszerepkör **alapértelmezéseit** mutatj
 | Menüpont | Könyvelő admin | Könyvelő | Pénzügyi vezető | Pénzügyi adminisztrátor | Munkatárs |
 |---|---|---|---|---|---|
 | Áttekintés, Számlák, Banki tranzakciók | ✓ | ✓ | ✓ | ✓ | ✓ |
-| Párosítás, Exportok, Zárás | ✓ | ✓ | — | — | — |
-| Jóváhagyások | ✓ | — | ✓ | ✓ | — |
-| Utalási fájl | ✓ | — | ✓ | ✓ | — |
+| Párosítás, Exportok, Zárás | ✓ | ✓ |  |  |  |
+| Jóváhagyások | ✓ |  | ✓ | ✓ |  |
+| Utalási fájl | ✓ |  | ✓ | ✓ |  |
 | Jelentések | ✓ | ✓ | ✓ | ✓ | ✓ |
 | Gyűjtő, Üzenetek | ✓ | ✓ | ✓ | ✓ | ✓ |
 | Hiányzó bizonylatok | ✓ | ✓ | ✓ | ✓ | ✓ |
-| Dokumentumok | ✓ | ✓ | — | — | — |
+| Dokumentumok | ✓ | ✓ |  |  |  |
 | Törzsadatok, Beállítások | ✓ | ✓ | ✓ | ✓ | ✓ |
 
 A **Jóváhagyások** azoknak a tagoknak jelenik meg, akik rendelkeznek a „Számlák jóváhagyása kifizetésre” vagy a „Jóváhagyások kezelése” jogosultsággal, az **Utalási fájl** pedig azoknak, akik az „Utalási fájl exportálása” jogosultsággal. A **Hiányzó bizonylatok** csak ott jelenik meg, ahol ez a funkció be van kapcsolva a munkaterületen (lásd [Hiányzó bizonylatok](/documents-needed)). A **Törzsadatok** alatt az ügyféloldali tagok a Cégek, a Bankszámlák, a Könyvelési kategóriák és az Egyéni kategóriák menüpontot látják; a Partnerek, a Tranzakció típusok, az Áfacsoportok és az ÁFA-beállítás (ÁFA-kódok) csak irodai oldaliak.
@@ -147,11 +145,11 @@ A **Jóváhagyások** azoknak a tagoknak jelenik meg, akik rendelkeznek a „Sz�
 | Fül vagy művelet | Könyvelő admin | Könyvelő | Pénzügyi vezető | Pénzügyi adminisztrátor | Munkatárs |
 |---|---|---|---|---|---|
 | Csapattagok | ✓ | ✓ | ✓ | ✓ | ✓ |
-| Hozzáférés szerkesztése (szerepkör, kivételek) | ✓ | — | ✓ (ügyféloldali tagok) | — | — |
-| Új tag meghívása | ✓ | — | ✓ (csak ügyfélszerepkörök) | — | — |
-| Függőben lévő meghívók, visszavonás | ✓ | — | ✓ (ügyféloldali meghívók) | — | — |
-| Függőben lévő kérelmek (csatlakozási kérelmek) | ✓ | — | — | — | — |
-| Szerepkörök | ✓ | — | ✓ | — | — |
+| Hozzáférés szerkesztése (szerepkör, kivételek) | ✓ |  | ✓ (ügyféloldali tagok) |  |  |
+| Új tag meghívása | ✓ |  | ✓ (csak ügyfélszerepkörök) |  |  |
+| Függőben lévő meghívók, visszavonás | ✓ |  | ✓ (ügyféloldali meghívók) |  |  |
+| Függőben lévő kérelmek (csatlakozási kérelmek) | ✓ |  |  |  |  |
+| Szerepkörök | ✓ |  | ✓ |  |  |
 
 ### Számlák
 
@@ -159,8 +157,8 @@ A **Jóváhagyások** azoknak a tagoknak jelenik meg, akik rendelkeznek a „Sz�
 |---|---|---|---|---|---|
 | Számla feltöltése | ✓ | ✓ | ✓ | ✓ | ✓ |
 | Számlarészletek megtekintése | ✓ | ✓ | ✓ | ✓ | ✓ |
-| Számla szerkesztése (cég, irány, partner, mezők, tételek) | ✓ | ✓ | — | — | — |
-| Kategóriák és áfakódok módosítása | ✓ | ✓ | — | — | — |
+| Számla szerkesztése (cég, irány, partner, mezők, tételek) | ✓ | ✓ |  |  |  |
+| Kategóriák és áfakódok módosítása | ✓ | ✓ |  |  |  |
 
 Az ügyfelek beadják a dokumentumokat; a könyvelők kategorizálják és ellenőrzik őket.
 
@@ -169,7 +167,7 @@ Az ügyfelek beadják a dokumentumokat; a könyvelők kategorizálják és ellen
 | Művelet | Könyvelő admin | Könyvelő | Pénzügyi vezető | Pénzügyi adminisztrátor | Munkatárs |
 |---|---|---|---|---|---|
 | Jelentések megtekintése és lefúrás | ✓ | ✓ | ✓ | ✓ | ✓ |
-| Jelentés létrehozása, szerkesztése, átnevezése vagy törlése | ✓ | ✓ | — | — | — |
+| Jelentés létrehozása, szerkesztése, átnevezése vagy törlése | ✓ | ✓ |  |  |  |
 
 ## Hogyan működik a tagság
 
@@ -181,7 +179,7 @@ A munkaterület **Beállítások → Csapatkezelés → Új tag meghívása** f�
 - Egy opcionális, legfeljebb 500 karakteres üzenet, amely az egész kötegre vonatkozik. A benne lévő hivatkozások kattinthatók lesznek.
 - Kattintson a **Meghívó küldése** gombra, vagy több meghívónál az **N meghívó küldése** gombra. Az elküldött sorok eltűnnek az űrlapról; a sikertelen sorok (például duplikált e-mail-cím esetén) a hibaüzenettel együtt megmaradnak, hogy javíthassa őket.
 
-A szerepkörlista attól függ, ki hív meg: az ügyféloldali meghívó Munkatársat vagy Pénzügyi adminisztrátort hívhat meg, másik Pénzügyi vezetőt soha; az irodai oldali meghívó bármely munkaterület-szerepkörre meghívhat; a szervezeti panel pedig az irodába hív meg.
+A szerepkörlista attól függ, ki hív meg: az ügyféloldali meghívó csak ügyfél tagokat hívhat meg, az irodai oldali meghívó bármely munkaterület-szerepkörre meghívhat, a szervezeti panel pedig az irodába hív meg.
 
 Az AI Finance Team e-mailben elküldi mindenkinek a meghívó hivatkozását és az Ön üzenetét; a hivatkozást Önnek is megmutatja arra az esetre, ha az e-mail nem érkezne meg. Minden meghívó 14 nap után lejár, elfogadás előtt visszavonható, és csak arra az e-mail-címre érvényes, amelyre küldték.
 
@@ -203,4 +201,4 @@ Háromféleképpen lehet bekerülni egy munkaterületre:
 
 ### Tag eltávolítása
 
-A „Tagok és szerepkörök kezelése” jogosultsággal rendelkező tag a **Csapattagok** fülön eltávolíthat egy saját oldalán álló tagot: alapértelmezés szerint a könyvelő admin az irodai oldali, a pénzügyi vezető az ügyféloldali tagokat távolítja el. Bármely tag maga is kiléphet egy munkaterületről, kivéve az utolsó könyvelő admint és az utolsó pénzügyi vezetőt. Az eltávolított felhasználók megtartják a fiókjukat; csak az adott munkaterülethez veszítik el a hozzáférést. Ha valakit a szervezetből távolítanak el (annak **Csapat** oldalán), az iroda minden munkaterületéről kikerül.
+A „Tagok és szerepkörök kezelése” jogosultsággal rendelkező tag a **Csapattagok** fülön eltávolíthat egy saját oldalán álló tagot: alapértelmezés szerint a könyvelő admin az irodai oldali, az ügyfél tulajdonos az ügyféloldali tagokat távolítja el. Bármely tag maga is kiléphet egy munkaterületről, kivéve az utolsó könyvelő admint és az utolsó ügyfél tulajdonost. Az eltávolított felhasználók megtartják a fiókjukat; csak az adott munkaterülethez veszítik el a hozzáférést. Ha valakit a szervezetből távolítanak el (annak **Csapat** oldalán), az iroda minden munkaterületéről kikerül.

@@ -50,7 +50,12 @@ export const UI_KEYS = [
 
 export type UiKey = (typeof UI_KEYS)[number]
 
-export type SystemRoleKey = 'accountant_admin' | 'accountant' | 'client_owner' | 'financial_admin' | 'client_member'
+export type SystemRoleKey =
+  | 'accountant_admin'
+  | 'accountant'
+  | 'client_owner'
+  | 'financial_admin'
+  | 'client_member'
 
 export type RoleRow =
   | { system: true; key: SystemRoleKey; side: 'firm' | 'client'; members: number }
@@ -62,7 +67,7 @@ export function roleRows(customName: string): RoleRow[] {
     { system: true, key: 'accountant_admin', side: 'firm', members: 1 },
     { system: true, key: 'accountant', side: 'firm', members: 2 },
     { system: true, key: 'client_owner', side: 'client', members: 1 },
-    { system: true, key: 'financial_admin', side: 'client', members: 1 },
+    { system: true, key: 'financial_admin', side: 'client', members: 2 },
     { system: true, key: 'client_member', side: 'client', members: 3 },
     { system: false, name: customName, base: 'client_member', side: 'client', members: 1 },
   ]
@@ -101,7 +106,7 @@ const en: Copy = {
     'settings.team.pending_requests_heading': 'Pending requests',
     'settings.team.pending_invitations_heading': 'Pending invitations',
     'settings.team.roles_heading': 'Roles',
-    'settings.team.roles.description': 'A role is a set of permissions. The four system roles are what every workspace uses today. Duplicate one to make a custom role for this workspace.',
+    'settings.team.roles.description': 'A role is a set of permissions. The five system roles are what every workspace uses today. Duplicate one to make a custom role for this workspace.',
     'settings.team.roles.unconverted_note': 'Parts of the app that have not yet moved to permissions still behave like the base role. The permission list shows what is already enforced by permission.',
     'settings.team.roles.add_role': 'Add role',
     'settings.team.roles.col_role': 'Role',
@@ -165,7 +170,7 @@ const hu: Copy = {
     'settings.team.pending_requests_heading': 'Függőben lévő kérelmek',
     'settings.team.pending_invitations_heading': 'Függőben lévő meghívók',
     'settings.team.roles_heading': 'Szerepkörök',
-    'settings.team.roles.description': 'A szerepkör jogosultságok együttese. A négy rendszerszerepkört használja ma minden munkaterület. Másolj le egyet, hogy egyedi szerepkört hozz létre ehhez a munkaterülethez.',
+    'settings.team.roles.description': 'A szerepkör jogosultságok együttese. Az öt rendszerszerepkört használja ma minden munkaterület. Másolj le egyet, hogy egyedi szerepkört hozz létre ehhez a munkaterülethez.',
     'settings.team.roles.unconverted_note': 'Az alkalmazás azon részei, amelyek még nem álltak át a jogosultságokra, továbbra is az alapszerepkör szerint működnek. A lista azt mutatja, amit már jogosultság szabályoz.',
     'settings.team.roles.add_role': 'Új szerepkör',
     'settings.team.roles.col_role': 'Szerepkör',
@@ -229,7 +234,7 @@ const de: Copy = {
     'settings.team.pending_requests_heading': 'Ausstehende Anfragen',
     'settings.team.pending_invitations_heading': 'Ausstehende Einladungen',
     'settings.team.roles_heading': 'Rollen',
-    'settings.team.roles.description': 'Eine Rolle ist ein Satz von Berechtigungen. Die vier Systemrollen nutzt heute jeder Arbeitsbereich. Duplizieren Sie eine, um eine eigene Rolle für diesen Arbeitsbereich anzulegen.',
+    'settings.team.roles.description': 'Eine Rolle ist ein Satz von Berechtigungen. Die fünf Systemrollen nutzt heute jeder Arbeitsbereich. Duplizieren Sie eine, um eine eigene Rolle für diesen Arbeitsbereich anzulegen.',
     'settings.team.roles.unconverted_note': 'Teile der Anwendung, die noch nicht auf Berechtigungen umgestellt sind, verhalten sich weiterhin wie die Basisrolle. Die Liste zeigt, was bereits per Berechtigung durchgesetzt wird.',
     'settings.team.roles.add_role': 'Rolle hinzufügen',
     'settings.team.roles.col_role': 'Rolle',
