@@ -1,81 +1,89 @@
-# Mehrwährungsrechnungen & Wechselkurse
+# Mehrwährung & Wechselkurse
 
-AI Finance Team unterstützt Rechnungen in jeder von der Europäischen Zentralbank veröffentlichten Währung. Weicht die Währung einer Rechnung von der Basiswährung des Arbeitsbereichs ab, holt die Plattform den Wechselkurs automatisch und zeigt den Originalbetrag und den umgerechneten Gegenwert nebeneinander an.
+Ein Beleg in Fremdwährung behält seine Originalbeträge, und AI Finance Team stellt die umgerechneten daneben. Überschrieben wird nie etwas.
 
-## Die Basiswährung des Arbeitsbereichs
+## Zwei Kurse, nicht einer
 
-Jeder Arbeitsbereich hat genau eine Basiswährung, die bei seiner Erstellung festgelegt wird. Alle umgerechneten Beträge auf der Plattform - Rechnungssummen, Positionen, Monatsauswertungen - werden in dieser Währung ausgedrückt.
+Eine Fremdwährungsrechnung kann **zwei voneinander unabhängige Kurse** tragen, und die meiste Verwirrung entsteht hier daraus, dass beide verwechselt werden.
 
-Die Basiswährung ist je Arbeitsbereich fest und kann nach der Erstellung nicht mehr geändert werden.
+- **Die Basisumrechnung** rechnet den Beleg in die **Basiswährung** des Arbeitsbereichs um. Sie wird überall im Produkt verwendet: in Listen, in Berichten, im Hauptbuch. Sie stammt von der Europäischen Zentralbank.
+- **Der HUF-Buchungskurs** ist ein zweiter, separat eingefrorener Kurs. Er gilt dort, wo ein Unternehmen die Umsatzsteuer in Ungarn meldet und sein Arbeitsbereich nicht ohnehin in Forint geführt wird. Er speist die gesetzliche Buchung und den RLB-Export, hat ein eigenes Datum, eine eigene Quelle und einen eigenen Status, und er ist der einzige Kurs, den Sie von Hand setzen können.
 
-## Woher die Wechselkurse stammen
+<TwoRatesFigure>
+Die zwei Kurse nebeneinander. Nur ein Beleg in Fremdwährung kann überhaupt einen davon tragen.
+</TwoRatesFigure>
 
-Die Wechselkurse stammen aus dem Referenzkurs-Feed der **Europäischen Zentralbank (EZB)**, die je Währung und Geschäftstag einen offiziellen Kurs veröffentlicht.
+## Einstellungen: Währung & FX
 
-**Welches Datum wird verwendet?**
+Unter **Einstellungen → Währung & FX** steht alles, was das Verhalten der beiden Kurse bestimmt:
 
-Bei Rechnungen ist das Kursdatum das **Leistungsdatum** der Rechnung - der Tag, an dem die Waren oder Leistungen erbracht wurden. Fehlt auf der Rechnung ein Leistungsdatum, wird ersatzweise das Rechnungsdatum verwendet.
+- **Basiswährung des Workspace**, schreibgeschützt angezeigt. Sie wird bei der Erstellung des Arbeitsbereichs gewählt, und die App bietet danach keine Möglichkeit, sie zu ändern.
+- **Kursquelle** für den Buchungskurs: **EZB (Europäische Zentralbank)** oder **MNB (Ungarische Nationalbank)**.
+- **Wenn die MNB keinen Kurs hat**: auf die EZB zurückfallen oder eine manuelle Überschreibung verlangen.
+- **Kursdatum der Rechnung**: Erfüllungsdatum, Ausstellungsdatum oder USt-Datum.
+- **Berichts-Anzeigewährung**, der Standard des Arbeitsbereichs für die Anzeige von Berichten in einer anderen Währung.
 
-Das folgt dem EU-Mehrwertsteuerrecht: Maßgeblich für die Meldung ist der Kurs am Tag der Leistung, nicht am Rechnungs- oder Zahlungsdatum.
+**Ein Wechsel der Kursquelle oder der Datumsbasis friert jede Fremdwährungsrechnung und jede Banktransaktion ohne manuelle Überschreibung neu ein.** Überschreibungen bleiben erhalten. Während das läuft, erscheint im Upload-Panel unten rechts eine Zeile **Wechselkurs-Aktualisierung** mit einem Zähler.
 
-**Wochenenden und Feiertage**
+## So funktioniert die Basisumrechnung
 
-Die EZB veröffentlicht an Wochenenden und Feiertagen keine Kurse. Fällt das Kursdatum einer Rechnung auf einen Nichthandelstag, verwendet die Plattform den zuletzt verfügbaren Kurs der vorangegangenen Geschäftstage (mit einem Rückblick von bis zu 5 Tagen).
+Der Kurs stammt aus dem Referenzkurs-Feed der **EZB**, zum **Leistungsdatum** der Rechnung, ersatzweise zum Rechnungsdatum, wenn keines vorhanden ist. Bei einer Banktransaktion ist das Kursdatum immer das **Buchungsdatum**.
 
-Die Beschriftung **Kurs** auf der Rechnungsdetailseite zeigt das genaue Datum, aus dem der Kurs stammt, damit Sie prüfen können, ob er dem entspricht, was Ihr Buchhaltungssystem erwartet.
+Die EZB veröffentlicht an Wochenenden und Feiertagen nichts, deshalb übernimmt ein Kursdatum an einem Nichthandelstag den zuletzt veröffentlichten Kurs, mit einem Rückblick von bis zu fünf Tagen.
 
-## Die Rechnungsliste
+Ist keine der beiden Währungen der Euro, ist der Kurs ein **Kreuzkurs**, berechnet aus den beiden EZB-Kursen desselben Tages, und die Beschriftung sagt das auch.
 
-In der Rechnungsliste zeigt die Spalte **Betrag** die Summe in der ursprünglichen Rechnungswährung. Existiert ein Gegenwert in der Basiswährung, erscheint er direkt darunter in kleinerer, gedämpfter Schrift.
+Netto, USt und Brutto werden jeweils einzeln umgerechnet und auf zwei Nachkommastellen gerundet, und jede Position ebenso. Genau so arbeitet ein Buchhaltungssystem, und das hat eine Folge, die man kennen sollte: umgerechnetes Netto plus umgerechnete USt muss nicht auf den Cent genau das umgerechnete Brutto ergeben.
 
-Ist die Umrechnung noch nicht verfügbar, erscheint statt des umgerechneten Betrags ein Status-Abzeichen:
+AI Finance Team unterstützt rund 30 Währungen, nämlich die von der EZB veröffentlichten. Eine Währung außerhalb dieser Liste lässt sich überhaupt nicht umrechnen.
 
-| Abzeichen | Farbe | Bedeutung |
-|-------|--------|---------|
-| **FX ausstehend** | Gelb | Der Kurs wurde angefordert und wird innerhalb weniger Minuten automatisch ergänzt |
-| **FX nicht unterstützt** | Bernstein | Die Rechnungswährung wird von der EZB nicht veröffentlicht; eine Umrechnung ist nicht möglich |
-| **FX fehlgeschlagen** | Rot | Der Kursabruf schlug fehl und wird wiederholt; wenden Sie sich an den Support, falls das anhält |
+## Auf einer Rechnung
 
-Rechnungen mit **FX ausstehend** oder **FX fehlgeschlagen** bleiben voll nutzbar - die Extraktion ist abgeschlossen, und alle übrigen Felder stehen zur Prüfung und Bearbeitung bereit.
+Die Karte **Beträge** stellt die Währungen nebeneinander: die eigenen Beträge der Rechnung, die Beträge in Basiswährung und, wo der HUF-Buchungskurs gilt, eine dritte Spalte in Forint. Darunter nennt eine Beschriftung den Kurs und das Datum, aus dem er stammt:
 
-## Die Rechnungsdetailseite
+> Rate: 0.002500 EUR/HUF · 2026-04-17
 
-Auf der Rechnungsdetailseite zeigt der Abschnitt **Beträge & Daten** eine zweispaltige Tabelle, wenn die Rechnungswährung von der Basiswährung abweicht:
+und bei einem Kreuzkurs:
 
-- Die linke Spalte zeigt die Beträge in der **Rechnungswährung** (netto, USt, brutto)
-- Die rechte Spalte zeigt die Beträge in der **Basiswährung**, gekennzeichnet mit dem Währungscode
+> Rate: 370.370000 HUF/USD · 2026-04-17 · cross via EUR
 
-Unter der Tabelle nennt eine Kursbeschriftung den genau verwendeten Kurs:
+Diese Beschriftung ist Ihr Prüfpfad: Sie nennt das Quelldatum, das Sie in Ihrer eigenen Währungstabelle nachschlagen können. Sie wird in jeder Sprache auf Englisch angezeigt.
 
-> Kurs: 0,002500 EUR/HUF · 2026-04-17
+Die Positionstabelle wiederholt die Umrechnung je Zeile, für Netto und Brutto.
 
-Wurde der Kurs als Kreuzkurs berechnet (weder die Rechnungswährung noch die Basiswährung ist der Euro), enthält die Beschriftung einen zusätzlichen Hinweis:
+**Der HUF-Buchungskurs hat eine eigene Zeile**, mit einem Status und einem Stift. Das ist der eine Kurs, den Sie pro Beleg von Hand eingeben können, und Ihr Wert gewinnt dann gegen den Feed, bis Sie **Zurück zu automatisch** wählen. Der Kurs in Basiswährung und die Basisbeträge lassen sich nirgends eintippen.
 
-> Kurs: 370,370000 HUF/USD · 2026-04-17 · Kreuzkurs über EUR
+Im Raster **Positionen & USt.** gibt es außerdem auf einer Position das Feld **USt-Wechselkurs**. Das ist der auf der Lieferantenrechnung gedruckte Kurs, erfasst für die USt-Meldung, und er rechnet nichts um.
 
-**Kreuzkurse** werden aus den beiden EZB-Referenzkursen desselben Kalendertages berechnet - EUR/Quelle und EUR/Ziel -, sodass beide Seiten stets denselben Handelstag abbilden.
+## Auf einer Banktransaktion
 
-### Umrechnung je USt-Gruppe
+Eine Transaktion in Fremdwährung wird auf ihrer Detailseite genauso behandelt: der Betrag, der Basisbetrag, der Fremdwährungsbetrag und eine Beschriftung, die den Kurs und sein Datum nennt. Das Kursdatum ist das Buchungsdatum, nie das Valutadatum. Der HUF-Buchungskurs lässt sich auch hier überschreiben.
 
-Bei Rechnungen mit mehreren USt-Sätzen (etwa einer ungarischen Rechnung mit Positionen zu 27 %, 18 %, 5 % und 0 %) erfolgt die Umrechnung auf Ebene der USt-Gruppe statt auf die Gesamtsumme. Das vermeidet kumulierte Rundungsfehler: Zuerst wird der Bruttobetrag jeder Gruppe umgerechnet, danach werden Netto und USt anteilig zurückgerechnet.
+## Wo Sie finden, was auf einen Kurs wartet
 
-Die Positionstabelle zeigt die umgerechneten Beträge für jede einzelne Zeile.
+- **Die Rechnungsliste** hat einen Statusfilter **FX ausstehend**, und das Abzeichen erscheint auf jeder Rechnung, die noch keinen Basisbetrag hat.
+- **Das Korrekturpanel des RLB-Exports** listet Rechnungen ohne HUF-Kurs und lässt Sie dort einen setzen.
+- **Die Abschlussprüfungen** enthalten Wechselkurse aufgelöst und HUF-Beträge verfügbar.
 
-## Was einen erneuten Kursabruf auslöst
+## Wenn es keinen Kurs gibt
 
-Die Plattform ruft den Wechselkurs automatisch erneut ab, sobald auf einer Rechnung das **Leistungsdatum** oder das **Rechnungsdatum** geändert wird. Die Rechnung zeigt kurz **FX ausstehend**, während der neue Kurs geholt wird.
+| Zustand | Was es bedeutet | Was als Nächstes passiert |
+|---|---|---|
+| **FX ausstehend** | Der Kurs wurde angefordert | Ein Worker trägt ihn nach. Er läuft alle zehn Minuten, rechnen Sie also damit statt mit Sekunden |
+| **FX fehlgeschlagen** | Der Abruf schlug fehl | Wird automatisch wiederholt, und die Rechnung ist währenddessen zur Prüfung markiert |
+| **FX nicht unterstützt** | Diese Währung rechnet AI Finance Team nicht um | Mehr passiert nicht: Die Basisbeträge bleiben leer, und die Rechnung ist zur Prüfung markiert |
 
-Das Bearbeiten von Beträgen (netto, USt, brutto) oder von Positionswerten löst **keinen** neuen Kursabruf aus. Stattdessen werden die Beträge in Basiswährung sofort mit dem bereits gespeicherten Kurs neu berechnet - ein externer Aufruf findet nicht statt.
+Eine nicht unterstützte Währung ist der eine Fall ohne automatischen Ausweg, und die Basisbeträge lassen sich auch nicht eintippen. Was Sie tun können: den **HUF-Buchungskurs** von Hand setzen, wo das Unternehmen die Umsatzsteuer in Ungarn meldet, damit die gesetzliche Seite trotzdem stimmt.
 
-## Nicht unterstützte Währungen
+Ein Kurs wird neu abgerufen, wenn sich auf der Rechnung ein **Datum ändert, das bereits einen Wert hatte**. Ein leeres Datum zu füllen löst keinen neuen Abruf aus, denn genau das tut die Extraktion, während sie fertig wird. Das Bearbeiten von Beträgen ruft nie etwas ab: Der gespeicherte Kurs wird einfach erneut angewendet.
 
-Die EZB veröffentlicht Kurse für rund 30 Währungen und deckt damit die meisten wichtigen Handelswährungen der EU ab. Laden Sie eine Rechnung in einer Währung hoch, die nicht auf der EZB-Liste steht (zum Beispiel kasachischer Tenge), erhält die Rechnung ein **FX nicht unterstützt**-Abzeichen und wird zur Prüfung markiert.
+## Berichte in einer anderen Währung
 
-In diesem Fall können Sie die Beträge in Basiswährung und den Wechselkurs im Rechnungseditor manuell korrigieren, sofern Ihnen der richtige Kurs aus einer anderen Quelle vorliegt. Das Abzeichen verschwindet, sobald die Basisbeträge gefüllt sind.
+Ein Bericht kann in einer anderen Währung als der Basiswährung angezeigt werden, entweder aus dem Standard des Arbeitsbereichs oder je Bericht. Die Umrechnung geschieht beim Berichtslauf, zu einem Kurs, den der Bericht nennt, und Verhältniszeilen sowie der Drilldown bleiben in der Basiswährung. Siehe [Berichte](/reports).
 
 ## Tipps
 
-- **Das Leistungsdatum bestimmt den Kurs.** Zeigt eine Rechnung einen unerwarteten Kurs, prüfen Sie, ob das Leistungsdatum stimmt - es hat beim Kursabruf Vorrang vor dem Rechnungsdatum.
-- **Ausstehend löst sich von selbst.** Rechnungen mit **FX ausstehend** werden im Hintergrund verarbeitet. Sie müssen nichts manuell anstoßen; der Kurs erscheint innerhalb von Minuten.
-- **Die Kursbeschriftung ist Ihr Prüfpfad.** Das dort angezeigte Datum ist das EZB-Quelldatum, das Sie mit der Währungstabelle Ihres Buchhaltungssystems abgleichen können.
-- **Kreuzkurs-Rechnungen brauchen beide Seiten.** Für eine USD-Rechnung in einem HUF-Arbeitsbereich benötigt die Plattform EZB-Daten für EUR/USD und EUR/HUF zum selben Datum. Fehlt eine der beiden, bleibt die Rechnung ausstehend, bis beide verfügbar sind.
+- **Prüfen Sie zuerst das Leistungsdatum.** Es bestimmt den Basiskurs, vor dem Rechnungsdatum.
+- **Die beiden Kurse dürfen legitim auseinandergehen.** Der eine ist die EZB zum Leistungsdatum, der andere kann die MNB zum USt-Datum sein. Das ist eine Einstellung, kein Fehler.
+- **Kreuzkurs-Belege brauchen beide Seiten.** Eine USD-Rechnung in einem HUF-Arbeitsbereich braucht EUR/USD und EUR/HUF der EZB zum selben Tag; bis beide vorliegen, bleibt sie ausstehend.
+- **Erwarten Sie nicht, dass Netto plus USt nach der Umrechnung das Brutto ergibt.** Jeder Wert wird für sich umgerechnet und gerundet.

@@ -1,81 +1,89 @@
-# Multi-Currency Invoices & Exchange Rates
+# Multi-Currency & Exchange Rates
 
-AI Finance Team supports invoices in any currency published by the European Central Bank. When an invoice is in a different currency from the workspace's base currency, the platform automatically fetches the exchange rate and shows both the original amount and the converted equivalent side by side.
+A document in a foreign currency keeps its original amounts, and AI Finance Team adds the converted ones beside them. Nothing is ever rewritten.
 
-## The Workspace Base Currency
+## Two Rates, Not One
 
-Every workspace has a single base currency, set when the workspace is created. All converted amounts throughout the platform - invoice totals, line items, monthly summaries - are expressed in this currency.
+A foreign-currency invoice can carry **two independent rates**, and most confusion here comes from mixing them up.
 
-The base currency is fixed per workspace and cannot be changed after creation.
+- **The base conversion** turns the document into the workspace's **base currency**. It is used everywhere in the product: lists, reports, the ledger. It comes from the European Central Bank.
+- **The HUF booking rate** is a second, separately frozen rate, used where a company reports VAT in Hungary and its workspace is not already in forints. It feeds the statutory booking and the RLB export, has its own date, its own source and its own status, and it is the only rate you can set by hand.
 
-## How Exchange Rates Are Sourced
+<TwoRatesFigure>
+The two rates side by side. Only a document in a foreign currency can carry either.
+</TwoRatesFigure>
 
-Exchange rates come from the **European Central Bank (ECB)** reference rate feed, which publishes one official rate per currency per business day.
+## Settings: Currency & FX
 
-**Which date is used?**
+**Settings → Currency & FX** holds everything that decides how the two rates behave:
 
-For invoices, the rate date is the **delivery date** (Hungarian: *teljesítés dátuma*) of the invoice - the date the goods or services were delivered. If the invoice has no delivery date, the issue date is used as a fallback.
+- **Base currency**, shown read-only. It is chosen when the workspace is created and the app offers no way to change it afterwards.
+- **Rate source** for the booking rate: **ECB** or **MNB** (the Hungarian National Bank).
+- **If MNB has no rate**: fall back to the ECB, or require a manual override.
+- **Invoice rate date**: fulfillment, issue or VAT date.
+- **Report display currency**, the workspace default for showing reports in another currency.
 
-This follows EU VAT rules: the exchange rate for reporting purposes is the rate on the date of performance, not the invoice date or the payment date.
+**Changing the rate source or the date basis re-freezes every foreign-currency invoice and bank transaction that has no manual override.** Overrides are kept. While it runs, an **Exchange rate update** row with a counter appears in the upload panel at the bottom right.
 
-**Weekends and public holidays**
+## How the Base Conversion Works
 
-The ECB does not publish rates on weekends or public holidays. If an invoice's rate date falls on a non-trading day, the platform uses the most recent available rate from the preceding business days (up to a 5-day lookback).
+The rate comes from the **ECB** reference feed, on the invoice's **fulfillment date**, falling back to the issue date when there is none. For a bank transaction the rate date is always the **booking date**.
 
-The **Rate** caption on the invoice detail page shows the exact date the rate was sourced from, so you can verify it matches what your accounting system expects.
+The ECB publishes nothing on weekends and holidays, so a rate date on a non-trading day takes the most recent published rate, looking back up to five days.
 
-## The Invoice List
+Where neither currency is the euro, the rate is a **cross-rate** computed from the two ECB rates of the same day, and the caption says so.
 
-In the invoice list, the **Amount** column shows the original invoice currency total. If a base-currency equivalent exists, it appears directly below in smaller, muted text.
+Each of net, VAT and gross is converted separately and rounded to two decimals, and so is every line. That is exactly what an accounting system does, and it has one consequence worth knowing: the converted net plus the converted VAT need not equal the converted gross to the cent.
 
-If the conversion is not yet available, a status badge appears instead of the converted amount:
+AI Finance Team supports about 30 currencies, the ones the ECB publishes. A currency outside that list cannot be converted at all.
 
-| Badge | Colour | Meaning |
-|-------|--------|---------|
-| **FX pending** | Yellow | The rate has been requested and will be filled in automatically within a few minutes |
-| **FX unsupported** | Amber | The invoice currency is not published by the ECB; conversion is not possible |
-| **FX failed** | Red | The rate fetch failed and will be retried; contact support if this persists |
+## On an Invoice
 
-Invoices with **FX pending** or **FX failed** are still fully usable - extraction is complete and all other fields are available for review and editing.
-
-## The Invoice Detail Page
-
-On the invoice detail page, the **Amounts & Dates** section displays a two-column table when the invoice currency differs from the base currency:
-
-- The left column shows amounts in the **invoice currency** (net, VAT, gross)
-- The right column shows amounts in the **base currency**, labelled with the currency code
-
-Below the table, a rate caption shows the exact rate used:
+The **Amounts** card puts the currencies side by side: the invoice's own amounts, the base-currency amounts, and, where the HUF booking rate applies, a third column in forints. Underneath, a caption states the rate and the date it came from:
 
 > Rate: 0.002500 EUR/HUF · 2026-04-17
 
-If the rate was calculated as a cross-rate (neither the invoice currency nor the base currency is EUR), the caption includes an additional note:
+and, for a cross-rate:
 
 > Rate: 370.370000 HUF/USD · 2026-04-17 · cross via EUR
 
-**Cross-rates** are computed from the two ECB reference rates on the same calendar date - EUR/source and EUR/target - so both legs always reflect the same trading day.
+That caption is your audit trail: it names the source date you can look up in your own currency table. It is shown in English in every language.
 
-### Per-VAT-Bucket Conversion
+The lines table repeats the conversion per line, for the net and the gross.
 
-For invoices with multiple VAT rates (for example, a Hungarian invoice with lines at 27%, 18%, 5%, and 0%), conversion is applied at the VAT bucket level rather than to the total. This avoids accumulated rounding error: the gross amount for each bucket is converted first, and the net and VAT are back-derived proportionally.
+**The HUF booking rate has its own row**, with a status and a pencil. This is the one rate you can enter by hand, per document, and your value then wins over the feed until you choose **Back to automatic**. The base-currency rate and the base amounts cannot be typed in anywhere.
 
-The line items table shows the converted amounts for each individual line.
+There is also a **VAT exchange rate** field on a line in the Lines & VAT grid. That is the rate printed on the supplier's invoice, recorded for the VAT return, and it converts nothing.
 
-## What Triggers a Rate Re-Fetch
+## On a Bank Transaction
 
-The platform re-fetches the exchange rate automatically whenever the **delivery date** or **issue date** is changed on an invoice. The invoice will show **FX pending** briefly while the new rate is being retrieved.
+A transaction in a foreign currency gets the same treatment on its detail page: the amount, the base amount, the foreign amount, and a caption naming the rate and its date. The rate date is the booking date, never the value date. The HUF booking rate can be overridden here too.
 
-Editing amounts (net, VAT, gross) or line item values does **not** trigger a new rate fetch. Instead, the base-currency amounts are recomputed immediately using the already-stored rate - no external call is made.
+## Finding What Is Waiting for a Rate
 
-## Unsupported Currencies
+- **The invoice list** has an **FX pending** status filter, and the pill appears on any invoice that has no base amount yet.
+- **The RLB export's fix panel** lists invoices with no HUF rate, and lets you set one there.
+- **The closing checks** include exchange rates resolved and HUF amounts available.
 
-The ECB publishes rates for approximately 30 currencies, covering most major trading currencies in the EU. If you upload an invoice in a currency that is not on the ECB list (for example, Kazakhstani tenge), the invoice will be marked with an **FX unsupported** badge and flagged for review.
+## When There Is No Rate
 
-In this case, you can manually correct the base-currency amounts and the exchange rate in the invoice editor if you have the correct rate from another source. The unsupported badge will clear once the base amounts are populated.
+| State | What it means | What happens next |
+|---|---|---|
+| **FX pending** | The rate has been asked for | A worker fills it in. It runs every ten minutes, so allow that rather than seconds |
+| **FX failed** | The fetch failed | Retried automatically, and the invoice is flagged for review meanwhile |
+| **FX unsupported** | The currency is not one AI Finance Team converts | Nothing further happens: the base amounts stay empty and the invoice is flagged for review |
+
+An unsupported currency is the one case with no automatic way out, and no way to type the base amounts in. What you can do is set the **HUF booking rate** by hand where the company reports VAT in Hungary, so the statutory side is still correct.
+
+A rate is re-fetched when a **date that already had a value** changes on the invoice. Filling in a date that was empty does not re-fetch, because that is what extraction does as it finishes. Editing amounts never fetches anything: the stored rate is simply applied again.
+
+## Reports in Another Currency
+
+A report can be shown in a currency other than the base one, either from the workspace default or per report. The conversion happens when the report runs, at one rate that the report names, and ratio lines and the drill-down stay in the base currency. See [Reports](/reports).
 
 ## Tips
 
-- **Delivery date drives the rate.** If an invoice shows an unexpected rate, check that the delivery date is correct - it takes priority over the issue date for the rate lookup.
-- **Pending clears automatically.** Invoices marked **FX pending** are processed in the background. There is no need to manually trigger anything; the rate will appear within minutes.
-- **The rate caption is your audit trail.** The date shown in the rate caption is the ECB source date, which you can cross-reference with your accounting system's currency table.
-- **Cross-rate invoices need both legs.** For a USD invoice in a HUF workspace, the platform requires ECB data for both EUR/USD and EUR/HUF on the same date. If either leg is unavailable, the invoice stays pending until both are available.
+- **Check the fulfillment date first.** It decides the base rate, ahead of the issue date.
+- **The two rates can legitimately differ.** One is ECB on the fulfillment date, the other may be MNB on the VAT date. That is a setting, not a bug.
+- **Cross-rate documents need both legs.** A USD invoice in a HUF workspace needs the ECB's EUR/USD and EUR/HUF for the same day; until both exist it stays pending.
+- **Do not expect net plus VAT to equal gross after conversion.** Each is converted and rounded on its own.

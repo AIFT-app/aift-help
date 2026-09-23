@@ -1,57 +1,98 @@
 # Custom Categories
 
-Beyond the built-in Invoice and Cash categories, every workspace can define its own **custom category lists**: extra ways of labelling invoices and bank transactions, such as cost centers, company cars, or funding sources. The AI applies them automatically in a separate pass, and anything it cannot decide on a mandatory list is flagged for manual review.
+Beyond the built-in invoice and cash categories, every workspace can define its own **custom category lists**: extra ways of labelling invoices and bank transactions, such as cost centres, company cars or funding sources. The AI applies them in a separate pass, and anything it cannot decide on a mandatory list is flagged for review.
 
-You'll find them under **Master data → Custom Categories**: one tile per list, and each tile opens the list's own page.
+You will find them under **Master data → Custom Categories**: one tile per list, plus a tile for a new one. Each tile opens the list's own page.
 
 ## Creating a List
 
 A list has:
 
-- **Title**: what accountants see everywhere ("Cost centers").
-- **Description**: plain-language guidance the AI reads word for word when it categorizes. Write it the way you would brief a junior colleague: what the list means, how to choose, and which category is the catch-all.
+- **Title**: what accountants see everywhere ("Cost centres").
+- **Description**: plain-language guidance the AI reads word for word. Write it the way you would brief a junior colleague: what the list means, how to choose, and which category is the catch-all.
 - **Applies to**: invoices, bank transactions, or both.
-- **Mandatory**: when the AI cannot assign a category with enough confidence, the item is flagged for review, just like other problems.
+- **Mandatory**: when the AI cannot assign a category with enough confidence, the item is flagged for review.
 - **Active**: inactive lists are not applied to new items and are not sent to the AI.
 
-## Categories
+**Mandatory only looks forward.** Ticking it on a list that has existed for months does not flag the ledger behind it; only items that arrive after the tick are flagged.
 
-Each list holds categories with an optional **Code** (your own identifier, e.g. `CC-100`), a **Name**, and an optional **Description** that becomes part of the AI's vocabulary. You can add them one by one or import them from Excel with the same flexible import used for the built-in categories: upload a file, confirm the column mapping, review what would be created, and nothing existing is ever overwritten.
+A workspace can hold up to 20 active lists.
 
-## Building a List from a Document
+## Filling the List
 
-If the categories already exist in a document, you do not have to type them in. Open the document under **Documents**, click **Create category list**, and the AI reads it and proposes a list: a title, the guidance text, and the categories with their codes and descriptions.
+Each category has an optional **Code** (your own identifier, for example `CC-100`), a **Name**, and an optional **Description** that becomes part of the AI's vocabulary. A code must be unique within its list, and a list can hold up to 500 active categories.
 
-It works on any document you have uploaded, up to twenty pages: a costing manual, a chart of accounts, a department list, a grant budget. Nothing happens on its own; the AI reads a document only when you ask it to.
+There are three ways to fill one:
 
-What comes back is a **proposal**, and you are the one who decides:
+- **By hand**, with **+ New Category**.
+- **From Excel**, with the same import used for the built-in categories: upload a file, confirm the column mapping, review what would be created. Nothing existing is overwritten, and one file may bring in up to 2,000 rows.
+- **From a document you have already uploaded**, described below.
 
-- Every field is editable before anything is created, including the list title and the guidance text.
-- Individual categories can be excluded with **Exclude**.
-- A category the document marks as closed or retired is created as inactive, and says so before you commit.
-- You can send the categories into a **new list**, or add them to an **existing list**, in which case only what is missing is added and nothing already there is touched.
+### Building a list from a document
 
-The last step shows exactly what will happen: how many categories will be created, how many are already there, and how many rows could not be used. Nothing is written until you click **Create**.
+Open the document under **Documents** and click **Create category list**. The AI reads it and proposes a list: a title, the guidance text, and the categories with their codes and descriptions.
 
-If the document holds no categorisation scheme, the screen says so plainly rather than offering an empty list. That is a normal answer for most documents.
+It works on a costing manual, a chart of accounts, a department list, a grant budget. Only the first 20 pages are read; a longer document is not refused, and the screen tells you how many pages it read and how many categories it found. Nothing happens on its own: the AI reads a document only when you ask it to.
 
-A list built this way remembers where it came from, and the document shows which lists it produced, so the origin of a set of codes is never a mystery later.
+What comes back is a **proposal**, and you decide:
+
+- Every field is editable before anything is created, including the title and the guidance.
+- Individual categories can be dropped with **Exclude**.
+- A category the document marks as closed or retired is created as inactive, and says so first.
+- The categories can go into a **new list** or be added to an **existing** one, where only what is missing is added.
+
+The last step shows what will happen: how many categories will be created, how many are already there, and how many rows could not be used. Nothing is written until you click **Create**.
+
+If the document holds no categorisation scheme, the screen says so plainly rather than offering an empty list. That is the normal answer for most documents.
+
+A list built this way remembers where it came from, and the document shows which lists it produced.
+
+## Archiving Categories
+
+A category you no longer use is archived rather than deleted, because records already carry it.
+
+- **One at a time**: use **Deactivate** on its row, and **Activate** to bring it back.
+- **Several at once**: tick the rows and press **Archive** in the bar that appears above the table. Only active rows have a checkbox, and the toast reports how many were actually archived. There is no bulk restore: bringing categories back is one row at a time, so the 500-category limit cannot be tripped by accident.
+
+What archiving does, and does not do:
+
+- **Records keep the category.** An invoice already tagged with it still shows it.
+- **Nobody can choose it again.** It leaves the picker on a record, and the AI never proposes it.
+- **Reports still break down by it**, so a historic period keeps its column. It does disappear from the report's filter menu.
+- **The tile's category count drops**, because that counts active categories.
+
+One rough edge: on a record whose category was archived, the name still shows but the picker beside it reads **Not set**, because the archived category is no longer among the options.
 
 ## How the AI Applies Them
 
-After an invoice or transaction finishes its normal categorization, a separate AI pass reads your lists and assigns one category per applicable list. Confident assignments are applied automatically and shown with an AI badge and confidence; uncertain ones are left empty. On a **mandatory** list, an empty assignment flags the item:
+After an invoice or transaction has finished its normal categorisation, a separate pass reads your active lists and assigns one category per applicable list. Duplicates and rejected invoices are skipped.
 
-- invoices show an amber to-do chip and count into the monthly closing checks;
-- bank transactions show the chip on their detail page, and the transaction list has a **Custom category missing** filter.
+- A confident assignment (**0.70** or better) is applied and shown with an AI badge and its score, for example **AI 0.87**.
+- Below that, nothing is written.
+- On a **mandatory** list, an empty assignment flags the item: invoices show an amber to-do chip and count into the monthly closing checks, and bank transactions show the chip on their detail page, with a **Custom category missing** filter on the list.
 
-A category you pick by hand always wins; the AI never overwrites an existing assignment, whether it came from you or from an earlier run.
+**The AI gives up after three tries** on the same record and list, and then leaves it alone. Two things ask it again: changing the list's categories or its guidance, and running **Apply to existing items**.
 
-## Covering Existing Items
+A category you pick by hand always wins, and the AI never overwrites an existing assignment. On an invoice, your choice applies to the whole invoice; where lines disagree, the card shows **Mixed per line** instead of a value.
 
-A new list only applies to items that arrive after it. To cover history, open the list and use **Apply to existing items**: the AI processes up to 2,000 older invoices and transactions per run, and you can run it again for the rest.
+## Covering Items You Already Have
+
+A new list only applies to items that arrive after it. To cover history, use **Apply to existing items** on the **Custom Categories** page itself, next to **+ New List**. It appears once the workspace has at least one list.
+
+- Choose a period: **Last 3 months**, **Last 6 months**, **This year**, **Last year** or **All time**. Invoices are picked by issue date, transactions by booking date.
+- It covers **every list that is still missing on an item**, not only one.
+- One run processes up to 2,000 records in total, invoices first. Run it again for the rest.
+
+It also clears the three-attempt limit for what it touches, so records the AI had given up on are asked again.
+
+## Who Can Change Them
+
+Creating and editing lists, adding, importing and archiving categories, and running the backfill all need the permission "Edit master data", which accountants hold. So does setting a custom category by hand on an invoice or transaction, which surprises people: it is master data, not a record edit.
+
+Client-side members see the lists and their categories, read-only.
 
 ## Using a List in Reports
 
-A list is not only a label. On any report you can pick it under **Break down by**, and every reporting line splits into one column per category, so a single P&L also shows how the numbers divide across cost centres, business lines or projects.
+A list is not only a label. On any report you can pick it under **Break down by**, and every reporting line splits into columns by that list. Only lists that fit the report are offered.
 
-Only lists that match the report are offered: an Invoice report offers lists that apply to invoices, a Cash report those that apply to bank transactions. The report also shows what carries no category yet, and what share of the period is covered, so a split is never more confident than the underlying data. See [Reports](/reports) for how to read it.
+See [Reports](/reports) for how the breakdown reads: the Unassigned column, what happens when more than twelve categories have activity, the coverage strip, and "only this".
