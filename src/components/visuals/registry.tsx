@@ -19,6 +19,17 @@ import { TransactionTypeEditorFigure, TransactionTypeFlowFigure } from './transa
 import { ReportPageFigure, ReportStructureFigure } from './reports'
 import { AccessDecisionFigure, RolesTabFigure } from './roles'
 import { PartnerRecognitionFigure, PartnerRecognitionFlowFigure } from './partners'
+import { UploadPanelFigure } from './uploads'
+import { BankConsentLifecycleFigure } from './bank'
+import { BusinessCentralApprovalsFigure } from './business-central'
+import { McpConsentFigure } from './mcp'
+import { SettlementNettingFigure } from './settlement'
+import { CashPoolSectionFigure } from './cash-pool'
+import { CategorizationBandsFigure } from './categorization'
+import { TwoRatesFigure } from './currency'
+import { OnboardingStepMapFigure } from './onboarding'
+import { VatGroupStepsFigure } from './vat-groups'
+import { StatementsTabFigure } from './statements'
 
 type WithLocale = { locale: Locale; children?: React.ReactNode }
 
@@ -47,6 +58,17 @@ const FIGURES: Record<string, (props: WithLocale) => React.ReactNode> = {
   RolesTabFigure,
   PartnerRecognitionFlowFigure,
   PartnerRecognitionFigure,
+  UploadPanelFigure,
+  BankConsentLifecycleFigure,
+  BusinessCentralApprovalsFigure,
+  McpConsentFigure,
+  SettlementNettingFigure,
+  CashPoolSectionFigure,
+  CategorizationBandsFigure,
+  TwoRatesFigure,
+  OnboardingStepMapFigure,
+  VatGroupStepsFigure,
+  StatementsTabFigure,
 }
 
 export function visualComponents(locale: Locale) {

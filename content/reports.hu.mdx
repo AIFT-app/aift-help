@@ -64,7 +64,7 @@ Ezután minden jelentéssor egy-egy oszlopot mutat minden olyan kategóriához, 
 
 Azok a sorok, amelyek képletében × vagy ÷ szerepel, bontásban csak az összesent mutatják.
 
-A táblázat alatti sáv mutatja, hogy az időszak mekkora része kapott értéket ezen a listán, például **62% hozzárendelve**, mellette a hozzá nem rendelt összeggel. Egy új listánál az alacsony lefedettség természetes. Ahogy az AI feldolgozza a beérkező tételeket, a lefedettség nő, a múltat pedig a lista oldalán, a **Törzsadatok → Egyéni kategóriák** alatt az **Alkalmazás meglévő tételekre** fedi le.
+A táblázat alatti sáv mutatja, hogy az időszak mekkora része kapott értéket ezen a listán, például **62% hozzárendelve**, mellette a hozzá nem rendelt összeggel. Egy új listánál az alacsony lefedettség természetes. Ahogy az AI feldolgozza a beérkező tételeket, a lefedettség nő, a múltat pedig a **Törzsadatok → Egyéni kategóriák** oldalon az **Alkalmazás meglévő tételekre** fedi le.
 
 Két dolgot érdemes tudni, amíg a bontás be van kapcsolva:
 
@@ -112,17 +112,23 @@ Kattintson az eszköztár **Jelentés szerkesztése** gombjára. A szerkesztőne
 - Egy sor átnevezéséhez kattintson a nevére; a módosítás akkor mentődik, amikor máshová kattint.
 - Az átrendezéshez húzza a fogantyút (≡), egy sor törléséhez használja a kuka ikont. Ha olyan sort töröl, amelyet egy képlet használ, előbb figyelmeztetés jelenik meg.
 
-**Jobb oldalon: a kiválasztott sor kategóriái.** Egy jelentéssor kiválasztásához kattintson a **Kategóriák** gombjára (ez azt is mutatja, hány kategóriája van). A jobb panel a következőket sorolja fel:
+**Jobb oldalon: a kiválasztott sor kategóriái.** Egy jelentéssor kiválasztásához kattintson a **Kategóriák** gombjára (ez azt is mutatja, hány kategóriája van). A jobb panel megmutatja, hány kategória tartozik a sorhoz, és borostyánsárgával azt is, hány kategória nem szerepel a jelentés egyetlen során sem. Ezek kimaradnak a jelentésből.
 
-- **Hozzárendelt kategóriák**: a × eltávolít egyet erről a sorról.
-- **Más sorokban használt**: kattintson egyre, hogy ehhez a sorhoz is hozzáadja.
-- **⚠ Még nincs hozzárendelve**: azok a kategóriák, amelyeket a jelentés egyetlen sora sem használ. Kattintson egyre a hozzárendeléshez. A hozzá nem rendelt kategóriák kimaradnak ebből a jelentésből.
+A **Kategóriák kiválasztása** gomb megnyitja a választót, amelynek címe **Kategóriák:** és a sor neve. Ez egy táblázat, kategóriánként egy sorral:
+
+- A **Kód**, a **Kategória** és az **Irány** a kategóriát írja le.
+- Az **Állapot** lehet **Ezen a soron**, **Másik soron** vagy **Sehol**. A borostyánsárga **Sehol** olyan kategóriát jelöl, amelyet a jelentés egyetlen sora sem használ.
+- A **Más sorokon** oszlop megnevezi a másik sort, amelyen a kategória szerepel, vagy megmondja, hány ilyen sor van, például **2 soron**.
+
+A bepipált sorok azok a kategóriák, amelyeket ez a sor összead; megnyitáskor a sor jelenlegi kategóriái már be vannak pipálva. A választó táblázatos felület: a nyilakkal lépkedhet, a Shift és egy nyíl több sort jelöl ki, a Szóköz pedig bepipálja őket, vagy kiveszi a pipát. Kereséshez kezdjen el gépelni: a találatok kiemelődnek, a többi sor a helyén marad. A számjegyek a kód elejére keresnek, így az `52` minden 52-vel kezdődő kódot megtalál. Az Excelből másolt kódokat beillesztheti, és a választó bepipálja őket. Az **Állapot** és a **Kód** fejléce szűr és rendez, a kódszűrő számlacsoportonként működik. A **Billentyűk** gomb (vagy a ?) az összes billentyűt felsorolja; lásd még: [Munka a táblázatos felületen](/spreadsheet-interface).
+
+Egy kategória több soron is szerepelhet, ezért a **Másik soron** csak tájékoztatás: ha bepipálja, ezen a soron is számít. Egy sor kiürítéséhez vegye ki az összes pipát. A **Mentés** tárolja a sor kategóriáit, a **Mégse** változatlanul hagyja őket; az Esc vagy a választón kívüli kattintás nem zárja be.
 
 **Képletek.** Egy számított sor **Képlet** gombjára kattintva a képlete megnyílik a sor alatt. A **+ Operandus hozzáadása** egy jelentéssort ad hozzá, két operandus közé pedig Ön állítja be a műveleti jelet: +, −, × vagy ÷. Egy képlet csak jelentéssorokat használhat, mindegyiket egyszer, és a számítás szigorúan balról jobbra halad; nullával való osztásnál a sor üresen marad.
 
 Ne feledje az előjeleket egy számla típusú jelentésben: a kiadások már negatívak, ezért a Bruttó eredmény = Árbevétel **+** Közvetlen költségek, nem mínusz.
 
-Minden módosítás azonnal mentődik; visszavonásra nincs lehetőség. Ha végzett, kattintson a **Szerkesztés befejezve** gombra, és a jelentés az új szerkezettel fut le.
+A sorok és a képletek módosításai azonnal mentődnek, egy sor kategóriái pedig akkor, amikor a választóban a **Mentés** gombra kattint. A mentett módosítást nem lehet visszavonni. Ha végzett, kattintson a **Szerkesztés befejezve** gombra, és a jelentés az új szerkezettel fut le.
 
 ## Ki mit tehet
 

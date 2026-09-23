@@ -64,7 +64,7 @@ Every reporting line then shows one column per category with activity in the per
 
 Lines with × or ÷ in their formula show only a total in a breakdown.
 
-A strip under the table shows how much of the period carries a value on this list, for example **62% assigned**, with the unassigned amount beside it. Low coverage on a new list is normal. It rises as the AI works through incoming items, and **Apply to existing items** on the list's page under **Master data → Custom Categories** covers the past.
+A strip under the table shows how much of the period carries a value on this list, for example **62% assigned**, with the unassigned amount beside it. Low coverage on a new list is normal. It rises as the AI works through incoming items, and **Apply to existing items** on the **Master data → Custom Categories** page covers the past.
 
 Two things to know while a breakdown is on:
 
@@ -112,17 +112,23 @@ Click **Edit report** in the toolbar. The editor has two panels.
 - Click a line's name to rename it; it saves when you click away.
 - Drag the handle (≡) to reorder, and use the bin icon to delete a line. Deleting a line that a formula uses shows a warning first.
 
-**Right: the categories of the selected line.** Click a reporting line's **Categories** button (it shows how many it has) to select it. The right panel lists:
+**Right: the categories of the selected line.** Click a reporting line's **Categories** button (it shows how many it has) to select it. The right panel says how many categories belong to the line and, in amber, how many categories are on no line of this report. Those are left out of the report.
 
-- **Assigned categories**: × removes one from this line.
-- **Used in other lines**: click one to add it to this line as well.
-- **⚠ Not yet assigned**: categories no line of this report uses. Click one to assign it. Unassigned categories are left out of this report.
+Click **Choose categories** to open the picker, titled **Categories:** and the line's name. It is a table with one row per category:
+
+- **Code**, **Category** and **Direction** describe the category.
+- **Status** is **On this line**, **On another line** or **Nowhere**. Amber **Nowhere** marks a category that no line of the report uses.
+- **On other lines** names the other line that holds it, or says how many there are, for example **On 2 lines**.
+
+The ticked rows are the categories this line adds up; when the picker opens, the line's current categories are already ticked. It works like a spreadsheet: arrow keys move, Shift and an arrow select several rows, and Space ticks or unticks them. Start typing to search: the matches are highlighted and the other rows stay where they are. Digits match the start of a code, so `52` finds every code beginning with 52. Codes copied from Excel can be pasted, and they are ticked. The **Status** and **Code** headers filter and sort, and the code filter works by account group. **Shortcuts** (or ?) lists every key; see also [Working in the Spreadsheet Interface](/spreadsheet-interface).
+
+A category may sit on several lines, so **On another line** is only information: tick it and it counts on this line too. To empty a line, untick everything. Click **Save** to store the line's categories, or **Cancel** to leave them as they were; Esc or a click outside the picker does not close it.
 
 **Formulas.** Click a calculated line's **Formula** button to open its formula under the row. **+ Add operand** adds a reporting line, and you set the operator between two operands: +, −, × or ÷. A formula can only use reporting lines, each once, and it is worked out strictly from left to right; a division by zero leaves the line blank.
 
 Remember the signs on an Invoice report: expenses are already negative, so profit is Revenue **+** Cost of sales, not minus.
 
-Every change is saved as you make it; there is no undo. Click **Done editing** when you are finished, and the report runs with the new structure.
+Changes to the lines and formulas are saved as you make them, and a line's categories when you click **Save** in the picker. There is no undo once a change is saved. Click **Done editing** when you are finished, and the report runs with the new structure.
 
 ## Who can do what
 

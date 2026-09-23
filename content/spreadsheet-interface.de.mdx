@@ -1,0 +1,153 @@
+# Arbeiten in der Tabellenoberfläche
+
+Auf einigen Bildschirmen entscheiden Sie über viele Zeilen auf einmal: welche Zeilen einer Datei angelegt werden, welche Partner Sie verifizieren, welche Kategorien Sie archivieren, welche Kategorien zu einer Berichtszeile gehören. Diese Bildschirme verwenden alle dieselbe **Tabellenoberfläche**. Sie bewegen sich mit den Pfeiltasten, markieren mit Umschalt mehrere Zeilen, haken sie mit der Leertaste an, suchen, ohne Ihre Position zu verlieren, und filtern nach Spalten. Dieser Artikel erklärt jede Taste und jede Mausaktion. Alles hier funktioniert auf allen vier Bildschirmen gleich.
+
+Auf einem Mac drücken Sie **Cmd** (⌘) überall dort, wo dieser Artikel **Strg** schreibt, und **Option** (⌥) dort, wo **Alt** steht.
+
+## Wo Sie ihr begegnen
+
+| Bildschirm | So öffnen Sie ihn | Eine angehakte Zeile wird | Beim Öffnen angehakt | Die ausführende Schaltfläche |
+|---|---|---|---|---|
+| Der Prüfschritt eines Imports | **Importieren** unter Stammdaten → **Partner**, auf dem Reiter **Rechnung** oder **Cashflow** der **Buchhaltungskategorien** oder auf einer eigenen Kategorieliste. Außerdem im Schritt **Kategorien** beim Einrichten eines neuen Arbeitsbereichs, nach **Eigene Liste hochladen**. | angelegt | jede Zeile, die der Import anlegen kann | **Anlegen** |
+| Partner verifizieren | Stammdaten → **Partner** → **Alle Partner verifizieren** | verifiziert: ein neuer Partner oder mit einem vorhandenen verknüpft | jede Zeile außer einem Namen ohne Steuernummer | **Verifizieren** |
+| Kategorien archivieren | Stammdaten → **Buchhaltungskategorien** → **Sammelarchivierung**, auf dem Reiter **Rechnung** oder **Cashflow** | archiviert | jede Kategorie, die nichts verwendet | **Archivieren** |
+| Die Kategorien einer Berichtszeile | **Berichte** → **Bericht bearbeiten** → **Kategorien auswählen** einer Zeile | gehört zu dieser Berichtszeile | die Kategorien, die die Zeile jetzt enthält | **Speichern** |
+
+Nichts wird angelegt, verifiziert, archiviert oder gespeichert, bevor Sie auf die ausführende Schaltfläche klicken. **Abbrechen** verlässt den Bildschirm ohne Änderung; in einem Import führt **Zurück** zur Spaltenzuordnung. Esc oder ein Klick neben den Bildschirm schließt ihn nicht, so geht eine halb fertige Auswahl nie versehentlich verloren.
+
+Zum Ausführen braucht es eine Berechtigung: **Stammdaten bearbeiten** für den Import, das Verifizieren von Partnern und das Archivieren von Kategorien, **Berichte verwalten** für eine Berichtszeile. Siehe [Rollen & Berechtigungen](/roles-and-permissions).
+
+Was die einzelnen Bildschirme für Ihre Daten bedeuten, beschreiben [Stammdaten importieren](/master-data-import), [Partner verwalten](/partners) und [Berichte](/reports).
+
+## Markiert und angehakt sind zwei verschiedene Dinge
+
+- **Markierte** Zeilen sind blau hinterlegt. Die Markierung zeigt, wo Sie sich befinden, wie der Cursor in einer Tabellenkalkulation, und sie kann mehrere Zeilen umfassen.
+- **Angehakte** Zeilen haben einen Haken in der ersten Spalte. Mit den angehakten Zeilen arbeitet der Bildschirm, wenn Sie auf die Schaltfläche klicken.
+
+Die meisten Tasten wirken auf die markierten Zeilen. Die Leertaste hakt zum Beispiel jede markierte Zeile an. Am Ende zählen nur die Haken.
+
+## Bewegen
+
+| Taste | Was sie tut |
+|---|---|
+| **↑** / **↓** | Eine Zeile nach oben oder unten |
+| **Bild auf** / **Bild ab** | Eine Bildschirmseite nach oben oder unten |
+| **Pos1** / **Ende** | Die erste oder die letzte Zeile |
+| **Eingabe** / **Umschalt+Eingabe** | Eine Zeile nach unten oder oben |
+| **Strg+↓** / **Strg+↑** | Die nächste oder vorherige Kontengruppe, wenn die Zeilen gruppiert sind |
+
+Ein Klick auf eine Zeile führt ebenfalls dorthin.
+
+Der Import von Rechnungs- und Cashflow-Kategorien und die Kategorieauswahl einer Berichtszeile gruppieren die Zeilen nach Kontengruppen, solange nach Code sortiert ist, zum Beispiel jeden Code, der mit 52 beginnt, unter einer Gruppenzeile. Die anderen Bildschirme zeigen eine einfache Liste.
+
+## Mehrere Zeilen markieren
+
+| Taste oder Maus | Was sie tut |
+|---|---|
+| **Umschalt+↑** / **Umschalt+↓** | Erweitert die Markierung zeilenweise. Umschalt funktioniert auch mit Bild auf, Bild ab, Pos1 und Ende. |
+| **Umschalt** und Klick | Markiert jede Zeile von der zuletzt angeklickten bis zu dieser |
+| **Strg** und Klick | Fügt eine einzelne Zeile zur Markierung hinzu oder nimmt sie heraus |
+| Mit der Maus ziehen | Markiert die Zeilen, über die Sie ziehen (überall außer in der Hakenspalte) |
+| **Strg+A** | Markiert jede Zeile, die gerade aufgelistet ist |
+| **Esc** | Beendet eine Markierung über mehrere Zeilen |
+
+Die Zeile unter der Tabelle zeigt, wie viele Zeilen markiert sind und wo Sie sich befinden, zum Beispiel „Zeile 3 von 120“.
+
+## Anhaken und Haken entfernen
+
+| Taste oder Maus | Was sie tut |
+|---|---|
+| **Leertaste** | Hakt die markierten Zeilen an. Sind alle schon angehakt, entfernt sie die Haken. |
+| **Entf** | Entfernt den Haken bei den markierten Zeilen |
+| Klick auf ein Hakenfeld | Hakt die Zeile an oder entfernt ihren Haken. Gehört die Zeile zu einer Markierung über mehrere Zeilen, wirkt der Klick auf alle. |
+| **Umschalt** und Klick auf ein Hakenfeld | Hakt jede Zeile von der zuletzt angeklickten bis zu dieser an oder entfernt ihre Haken |
+| In der Hakenspalte nach unten ziehen | Hakt jede Zeile an, über die Sie ziehen (oder entfernt ihre Haken) |
+| Das Hakenfeld in der Kopfzeile | Hakt jede gerade aufgelistete Zeile an oder entfernt die Haken, wenn alle angehakt sind |
+| Das Hakenfeld einer Gruppenzeile | Hakt die ganze Kontengruppe an, zum Beispiel jeden Code, der mit 52 beginnt |
+
+Ändern sich viele Zeilen auf einmal, bestätigt eine kurze Meldung das und bietet **Rückgängig** an.
+
+In einem Import sind Zeilen, die nicht angelegt werden können, grau und lassen sich nicht anhaken. Die Spalte **Status** zeigt, was mit ihnen geschieht, zum Beispiel **Vorhanden**, und die Spalte **Hinweis** nennt den Grund, wo es einen gibt, zum Beispiel „Duplikat in der Datei“.
+
+## Suchen
+
+Tippen Sie irgendwo in der Tabelle los, und das Suchfeld übernimmt Ihre Eingabe (**Strg+F** tut dasselbe). Die Treffer werden hervorgehoben, und **die übrigen Zeilen bleiben an ihrem Platz**, nur blasser. Das Suchfeld zählt die Treffer, zum Beispiel „3 / 12“, und kleine bernsteinfarbene Markierungen am rechten Rand der Tabelle zeigen, wo die Treffer in der ganzen Liste liegen. Ein Klick auf eine Markierung springt zu diesem Treffer.
+
+So sucht die Suche:
+
+- **Wörter** treffen irgendwo im Namen. Groß- und Kleinschreibung und Akzente spielen keine Rolle, `kozuzemi` findet also „Közüzemi díjak“. Bei mehreren Wörtern muss eine Zeile alle enthalten.
+- **Ziffern** suchen am Anfang des Codes oder der Steuernummer: `52` findet 5210, `1234` findet 12345678-2-41.
+
+Tasten im Suchfeld:
+
+| Taste | Was sie tut |
+|---|---|
+| **Eingabe** / **Umschalt+Eingabe** | Der nächste oder vorherige Treffer |
+| **Strg+Eingabe** | Hakt diesen Treffer an und springt zum nächsten |
+| **Strg+Umschalt+Eingabe** | Hakt alle Treffer an |
+| **↑** / **↓** | Zurück zur Tabelle, eine Zeile nach oben oder unten |
+| **Esc** | Zurück zur Tabelle. Ein weiteres Esc in der Tabelle löscht die Suche. |
+
+In der Tabelle springt **F3** zum nächsten und **Umschalt+F3** zum vorherigen Treffer.
+
+Gibt es mehr als einen Treffer, hakt eine Schaltfläche neben dem Suchfeld alle auf einmal an, zum Beispiel **Alle 12 Treffer anhaken**.
+
+Der Schalter **Nur Treffer** blendet die Zeilen aus, die nicht passen. Nur er blendet wegen einer Suche Zeilen aus; ohne ihn blendet die Suche nie eine Zeile aus.
+
+## Nach Spalten filtern und sortieren
+
+Klicken Sie auf einen Spaltenkopf, um danach zu sortieren. Ein weiterer Klick kehrt die Reihenfolge um. Ein kleines ▲ oder ▼ kennzeichnet die Sortierspalte.
+
+Einige Spalten haben im Kopf eine Filterschaltfläche. Sie öffnet ein Menü mit zwei Sortieroptionen oben (**Sortieren**) und den Werten der Spalte darunter (**Filtern**), jeweils mit der Anzahl der Zeilen, die diesen Wert haben. Entfernen Sie den Haken bei einem Wert, um diese Zeilen auszublenden; **(Alle auswählen)** zeigt wieder alle Werte. **Fertig** schließt das Menü.
+
+Solange ein Filter etwas ausblendet, ist seine Schaltfläche blau, und der Filter erscheint als Chip über der Tabelle. Ein Klick auf den Chip öffnet den Filter erneut, sein × entfernt ihn. Bleibt nach einem Filter keine Zeile übrig, sagt die Tabelle das und bietet **Filter entfernen** an.
+
+Welche Spalten einen Filter haben:
+
+- **Import**: Status. Bei Partnern auch Land, bei Rechnungs- und Cashflow-Kategorien auch der Code, nach Kontengruppen.
+- **Partner verifizieren**: Was passiert, und Land.
+- **Kategorien archivieren**: Verwendung, und Richtung.
+- **Berichtszeile**: Status, und der Code, nach Kontengruppen.
+
+Der Code-Filter listet die Kontengruppen unter ihrer Kontenklasse auf, so blenden Sie eine ganze Klasse mit einem Haken aus.
+
+## Haken bleiben beim Filtern und Suchen erhalten
+
+Ein Haken bleibt, bis Sie ihn entfernen. Ein Filter oder eine Suche ändert nur, was Sie sehen, nicht, was angehakt ist. Die Zeile unter der Tabelle zählt die angehakten Zeilen, und wenn einige davon ausgeblendet sind, sagt sie auch das, zum Beispiel „42 Zeilen abgehakt · davon sind 5 gerade nicht sichtbar und bleiben angehakt“. Die ausführende Schaltfläche nimmt jede angehakte Zeile, auch die ausgeblendeten.
+
+**Strg+A** und das Hakenfeld in der Kopfzeile wirken auf die gerade aufgelisteten Zeilen. Um eine Gruppe von Zeilen anzuhaken, filtern oder suchen Sie zuerst nach ihnen und haken sie dann alle auf einmal an.
+
+## Rückgängig und Wiederholen
+
+| Taste | Was sie tut |
+|---|---|
+| **Strg+Z** | Macht die letzte Änderung rückgängig: einen Haken, einen Namen oder eine Richtung |
+| **Strg+Y** (oder **Strg+Umschalt+Z**) | Stellt sie wieder her |
+
+Die Tabelle merkt sich die letzten 200 Änderungen. Es sind nur Änderungen auf dem Bildschirm; gespeichert wird nichts, bevor Sie auf die ausführende Schaltfläche klicken.
+
+## Zeilen kopieren
+
+Markieren Sie Zeilen und drücken Sie **Strg+C**. Die Zeilen werden als tabulatorgetrennter Text kopiert, mit den Spaltennamen in der ersten Zeile, bereit zum Einfügen in Excel oder ein anderes Tabellenprogramm. Die Kopie enthält die Spalten der Tabelle (in einem Import ohne die Spalte Hinweis), so können Sie eine Liste zum Prüfen oder Weiterschicken mitnehmen.
+
+## Codes oder Steuernummern einfügen, um Zeilen anzuhaken
+
+Haben Sie die gewünschten Zeilen schon als Liste, als Spalte mit Codes oder Steuernummern in Excel oder in einer E-Mail, kopieren Sie sie, klicken Sie in die Tabelle und drücken Sie **Strg+V**. Die gefundenen Zeilen werden angehakt, und die Tabelle springt zur ersten davon. Eine Meldung nennt, wie viele Zeilen angehakt wurden, und die Werte, zu denen keine Zeile passte (die ersten vier davon).
+
+- Auf den Partner-Bildschirmen (Partnerimport, Partner verifizieren) fügen Sie **Steuernummern** ein. Das Format spielt keine Rolle: `HU12345678`, `12345678-2-41` und `12345678` finden denselben Partner.
+- Auf den Kategorie-Bildschirmen fügen Sie **Codes** ein. Groß- und Kleinschreibung spielt keine Rolle.
+
+Die Werte können einzeln pro Zelle oder Zeile stehen oder durch Kommas, Semikolons oder Leerzeichen getrennt sein. Das Einfügen setzt nur Haken; es entfernt nie einen. Wie jede andere Änderung machen Sie es mit **Strg+Z** rückgängig.
+
+## Nur im Import: Name und Richtung
+
+In einem Import können Sie eine Zeile vor dem Anlegen noch korrigieren:
+
+- **F2** oder ein Doppelklick auf den Namen macht ihn bearbeitbar. **Eingabe** speichert ihn und geht eine Zeile nach unten, **Esc** verwirft ihn. Neben einem geänderten Namen erscheint **zurücksetzen**, das den Namen aus der Datei zurückholt. Angelegt wird der Name, wie Sie ihn stehen lassen.
+- Beim Import von Rechnungs- und Cashflow-Kategorien öffnet **Alt+↓** (oder der kleine Pfeil in der Zelle **Richtung**) die Richtung der Zeile: **Einnahme**, **Ausgabe** oder **Beide**. Der Wert aus der Datei ist der Vorschlag. Eine geänderte Richtung ist mit einem blauen Punkt markiert, und die Liste bietet dann **Zurück zum Wert aus der Datei** an. Sind mehrere Zeilen markiert, gilt die Wahl für alle. In der geöffneten Liste wählt der Anfangsbuchstabe einer Option diese aus.
+
+Die anderen drei Bildschirme arbeiten mit Datensätzen, die schon existieren, deshalb lässt sich der Name dort nicht bearbeiten. Den Namen eines Partners oder einer Kategorie ändern Sie auf der jeweiligen eigenen Seite.
+
+## Die eingebaute Tastenliste
+
+Drücken Sie **?** oder klicken Sie über der Tabelle auf **Tastenkürzel**, und die App zeigt die Liste der Tasten und Mausaktionen. **Esc** schließt sie. Auch die Zeile unter der Tabelle zeigt immer die wenigen Tasten, die zu dem passen, was Sie gerade tun: bewegen, suchen, einen Namen bearbeiten oder mit einer Markierung arbeiten.

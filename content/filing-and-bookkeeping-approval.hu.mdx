@@ -1,0 +1,69 @@
+# Iktatási és könyvelési jóváhagyás
+
+A kifizetés jóváhagyása mellett két további jóváhagyási lépés kapcsolható be. Mindkettő munkaterületenként állítható, és alapértelmezés szerint ki van kapcsolva. Amíg nem kapcsolja be őket, az alkalmazás pontosan úgy működik, mint eddig.
+
+## Mit igazol a két lépés
+
+**Iktatási jóváhagyás**: a bizonylat megvan, teljes, és jól olvastuk ki. A PDF és a NAV-adat, a megfelelő cég, nem duplikáció, a kinyert számok ellenőrizve. Ezt jellemzően az ügyfél pénzügyi adminisztrátora adja meg.
+
+**Könyvelési jóváhagyás**: a könyvelési adatok helyesek. Kategóriák, áfakódok, főkönyvi számok, a kötelező kategórialisták. Ezt könyvelő adja meg.
+
+A harmadik, a kifizetés jóváhagyása, egészen mást jelent: azt, hogy a számla kifizethető. Ez az ügyfél pénzügyi döntése. A három kérdés három különböző kérdés, ezért az alkalmazás külön tartja őket.
+
+## Bekapcsolás
+
+Nyissa meg a munkaterületet, lépjen a **Beállítások**, majd a **Jóváhagyási szabályok** menüpontra. Legfelül találja a **Jóváhagyási lépések** szakaszt. Ezt az oldalt csak a „Jóváhagyások kezelése” joggal rendelkezők látják.
+
+A kapcsoló nem azonnal kapcsol be. Megnyílik egy ablak, amely egy kezdő dátumot kér, és megmondja, hány számla kerül a listára és hány marad ki. Ez szándékos: egy nagyobb munkaterületen több tízezer korábbi számla van, és ezek egyszerre a listára engedve olyan sort hoznának létre, amit senki nem dolgozna fel.
+
+**A kezdő dátum végleges.** Az annál korábbi számlák soha nem kerülnek a listára, később sem. Ha korábbról is szeretné őket, kapcsolja ki a lépést, és kapcsolja be újra egy korábbi dátummal.
+
+## A két lista
+
+A jóváhagyók az oldalsáv **Jóváhagyások** menüpontja alatt találják a listájukat. Az **Iktatás** és a **Könyvelés** fül csak annak jelenik meg, aki az adott joggal rendelkezik és akinél a lépés be van kapcsolva.
+
+Minden sor harmadik sorában sárga jelölők mutatják, mi van még nyitva a számlán: hiányzó áfakód, kategorizálatlan sor, ellenőrizendő kinyert adat. Így a listát anélkül is végig lehet nézni, hogy minden számlát megnyitna.
+
+A lista tetején három szűrő:
+
+- **Kész**: nincs nyitott akadály, jóváhagyható.
+- **Akadályozott**: van olyan nyitott tétel, ami megakadályozza a jóváhagyást.
+- **Visszaküldve**: valaki visszaküldte megjegyzéssel.
+
+Egy számla mindig pontosan egy szűrőbe tartozik, ezért a három szám összege a teljes darabszámot adja.
+
+## Jóváhagyás és visszaküldés
+
+A **Jóváhagyom** gomb csak akkor aktív, ha nincs nyitott akadály. Több számla egyszerre is jóváhagyható: szűrjön a **Kész** értékre, jelölje ki mindet, és hagyja jóvá egy megerősítéssel.
+
+A **Visszaküldöm** gombhoz megjegyzés szükséges. A számla a **Visszaküldve** szűrő alatt kerül vissza a listára, a megjegyzéssel a során. Nincs külön címzett: a lista maga a címzett.
+
+## Ha valaki módosítja a számlát
+
+Ha egy jóváhagyott számlán bárki módosítja az összeget, valamelyik dátumot, a partnert, a céget, vagy bármely sor kategóriáját vagy áfakódját, a **könyvelési jóváhagyás automatikusan visszavonódik**. A számla visszakerül a listára, az idővonalon pedig megjelenik, mi változott és mire.
+
+Ez szándékos. A könyvelési jóváhagyás arról szól, hogy mi kerül az exportba. Ha az adat megváltozott, a korábbi jóváhagyás már nem arról a számláról szól.
+
+Ugyanezért az automatikus, éjszakai újrakategorizálás **nem nyúl** a könyvelésileg jóváhagyott számlákhoz. Ha egy könyvelő kifejezetten kér újrakategorizálást, az lefut, és a jóváhagyást visszavonja. Ez így helyes: ő kérte.
+
+## Láncolás
+
+Két további kapcsoló jelenik meg, miután bekapcsolta az iktatást:
+
+- **Iktatás a kifizetés előtt**: iktatási jóváhagyás nélkül a számla nem kerül a kifizetés jóváhagyójához.
+- **Iktatás a könyvelés előtt**: a könyvelési jóváhagyás megvárja az iktatásit.
+
+Mindkettő alapértelmezés szerint be van kapcsolva, és mindkettő kikapcsolható, ha a két lépés önállóan fut.
+
+## A számlán
+
+A számla oldalán a **Jóváhagyások** kártya mind a három lépést mutatja, abban a sorrendben, ahogy a számla áthalad rajtuk, azzal együtt, ki és mikor adta meg. A számlalistán sárga jelölő mutatja, ha valamelyik lépésre még vár a számla, és a szűrőben is rá lehet szűrni.
+
+## Jogosultságok
+
+Két új jogosultság a **Beállítások**, **Csapat** alatt:
+
+- **Iktatási jóváhagyás**: adható ügyféloldali tagnak is, mert jellemzően az ügyfél pénzügyi adminisztrátora iktat.
+- **Könyvelési jóváhagyás**: csak irodai oldalon adható. Ügyféloldali tag nem igazolhatja a könyvelési adatokat.
+
+Mindkettőhöz szükség van a „Számlák és banki tranzakciók megtekintése” jogra is: olyan tételről nem lehet dönteni, amit az illető nem lát.

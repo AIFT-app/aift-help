@@ -1,154 +1,90 @@
 # Arbeitsbereiche
 
-Ein Arbeitsbereich steht für ein Mandantenverhältnis. Jeder Arbeitsbereich gehört zu Ihrer Kanzlei und wird mit genau einem Mandantenunternehmen geteilt. Buchhalter arbeiten typischerweise über viele Arbeitsbereiche hinweg; Mandantennutzer sehen nur ihren eigenen.
+Ein Arbeitsbereich ist ein Mandantenverhältnis. Er gehört zu Ihrer Kanzlei und kann **mehrere Unternehmen** umfassen, was ein Mandant mit mehr als einer juristischen Person braucht. Rechnungen, Banktransaktionen, Stammdaten, Kategorien und Einstellungen liegen alle innerhalb eines Arbeitsbereichs; Ihre Kanzlei, ihre Mitarbeitenden, die Abrechnung und die Vorlagen liegen darüber, in der Organisation.
 
----
+Buchhalter arbeiten über viele Arbeitsbereiche hinweg. Mandantennutzer sehen nur ihren eigenen.
 
 ## Das Arbeitsbereiche-Dashboard
 
-Nach der Anmeldung landen Sie auf dem Dashboard **Arbeitsbereiche** - Ihrem morgendlichen Überblick über den Stand bei allen Mandanten.
+Nach der Anmeldung landen Sie normalerweise auf dem Dashboard **Arbeitsbereiche**, Ihrem morgendlichen Überblick über den Stand bei allen Mandanten. Nicht immer allerdings: Gehören Sie genau einem Arbeitsbereich an und sind kein Organisationsadministrator, kommen Sie direkt dorthin, und hat Ihre Kanzlei noch keinen Arbeitsbereich, empfängt Sie statt der Anwendung die geführte Anlage eines neuen Mandanten.
 
 ### Statuspunkte
 
-Jede Arbeitsbereichskachel zeigt einen farbigen Punkt, der auf einen Blick verrät, ob der Arbeitsbereich Aufmerksamkeit braucht:
+Jede Kachel trägt einen farbigen Punkt:
 
 | Punkt | Bedeutung |
 |-----|---------|
-| 🟢 Grün | Alles im Griff - keine offenen Probleme, weniger als fünf Posten in jedem Bereich |
-| 🟡 Bernstein | Etwas ist zu prüfen - ein Bereich hat fünf Posten erreicht, oder es gibt mindestens ein offenes Problem |
-| 🔴 Rot | Braucht heute Aufmerksamkeit - ein Bereich hat fünfzehn oder mehr Posten, drei oder mehr Probleme, oder die Arbeit liegt seit mehr als fünf Tagen ungeprüft ohne neue Mandanten-Uploads |
+| 🟢 Grün | Alles im Griff: keine offenen Probleme, weniger als fünf Posten in jedem Bereich |
+| 🟡 Bernstein | Einen Blick wert: ein Bereich hat fünf Posten erreicht, oder es gibt mindestens ein offenes Problem |
+| 🔴 Rot | Braucht heute Aufmerksamkeit: ein Bereich hat fünfzehn oder mehr Posten, drei oder mehr Probleme, oder es gibt ungeprüfte Arbeit und seit fünf Tagen wurde keine Rechnung hochgeladen |
 
-### Die drei Kennzahlenkarten
+### Die drei Zahlen
 
-Jede Kachel zeigt drei Zahlen:
+- **Zu prüfen**: Banktransaktionen, bei denen die KI für eine Kategorisierung nicht sicher genug war.
+- **Nicht zugeordnet**: Rechnungen, zu denen es keine Banktransaktion gibt.
+- **Probleme**: Banktransaktionen, die mit sehr geringer Konfidenz kategorisiert wurden, sowie Rechnungen, deren Extraktion fehlgeschlagen ist.
 
-- **Zu prüfen** - Banktransaktionen, die zur menschlichen Prüfung markiert sind (die KI war sich bei der Kategorisierung unsicher)
-- **Nicht zugeordnet** - Rechnungen, die noch keiner Banktransaktion zugeordnet wurden
-- **Probleme** - Extraktionsfehler und Kategorisierungen mit sehr geringer Konfidenz
+### Abschnitte und Suche
 
-### Abschnitte
+Die Kacheln sind in **Benötigt Aufmerksamkeit** (bernstein oder rot) und **Alles erledigt** (grün) gruppiert, und die Zahl hinter jeder Überschrift folgt dem, wonach Sie suchen. Das Suchfeld filtert nach dem Namen des Arbeitsbereichs; passt nichts, bietet der leere Zustand **Suche löschen** an.
 
-Die Kacheln sind in zwei Abschnitte gruppiert:
+Unter der Seitenüberschrift fasst eine einzelne Zeile Ihren gesamten Mandantenbestand zusammen: zu prüfende Dokumente, nicht zugeordnete Transaktionen, offene Probleme und wie viele Arbeitsbereiche markiert sind. Diese Zeile und die Begrüßung darüber sind auf Englisch geschrieben, in welcher Sprache Sie die Anwendung auch nutzen.
 
-- **Benötigt Aufmerksamkeit** - jeder Arbeitsbereich mit bernsteinfarbenem oder rotem Punkt
-- **Alles erledigt** - Arbeitsbereiche, bei denen alles grün ist
+### Zwei Dinge, die auf dem Dashboard erscheinen
 
-Die Zahl hinter jeder Abschnittsüberschrift aktualisiert sich beim Suchen.
+- **Eine an Sie gerichtete Einladung** erscheint in einem Feld über dem Banner, sodass Sie sie annehmen können, ohne die E-Mail zu suchen.
+- **Ein Mandant, dessen Einrichtung Sie begonnen und nicht beendet haben**, erscheint als gestrichelte Kachel mit seinem Fortschritt, zum Beispiel 4/7, und **Einrichtung fortsetzen**. In diesem Arbeitsbereich kommt nichts an, solange die Strecke nicht abgeschlossen ist.
 
-### Suchen
+## Zwischen Arbeitsbereichen wechseln
 
-Tippen Sie in das Suchfeld oben rechts, um nach Arbeitsbereichsnamen zu filtern. Die Abschnittsstruktur bleibt beim Tippen erhalten - Sie sehen zum Beispiel „Benötigt Aufmerksamkeit (1)“, wenn nur ein Treffer in diesen Bereich fällt. Zum Zurücksetzen klicken Sie auf **Suche löschen** oder löschen den Suchtext.
+Innerhalb eines Arbeitsbereichs ist die Kopfzeile der Seitenleiste ein Auswahlmenü: jeder Arbeitsbereich, dem Sie angehören, jeweils mit seiner Basiswährung darunter, dazu **Zurück zum Dashboard**. Mit einem einzigen Arbeitsbereich und ohne Administratorrechte ist es nur eine Beschriftung.
 
-### Übersichtsbanner
+## Einen neuen Mandanten einrichten
 
-Unter der Seitenüberschrift fasst eine einzelne Zeile Ihren gesamten Mandantenbestand zusammen: wie viele Dokumente zu prüfen sind, wie viele Transaktionen nicht zugeordnet sind, wie viele Probleme offen sind und wie viele Arbeitsbereiche markiert sind. Das ist der Blick, bevor Sie entscheiden, welchen Arbeitsbereich Sie zuerst öffnen.
+Nur **Organisationsadministratoren** legen Arbeitsbereiche an. Wenn Sie das brauchen, bitten Sie einen Administrator, Sie hochzustufen (siehe [Rollen & Berechtigungen](/roles-and-permissions)).
 
----
+**Neuer Arbeitsbereich** auf dem Dashboard öffnet eine geführte Strecke aus sieben Bildschirmen. Drei davon sind erforderlich, vier lassen sich überspringen.
 
-## Einen neuen Arbeitsbereich anlegen
+<OnboardingStepMapFigure>
+Die Route auf dem ersten Bildschirm. Es ist die einzige Stelle, an der die ganze Strecke auf einmal sichtbar ist.
+</OnboardingStepMapFigure>
 
-Nur **Organisationsadministratoren** können Arbeitsbereiche anlegen. Normale Buchhalter (Organisationsmitglieder) arbeiten in den Arbeitsbereichen, zu denen sie hinzugefügt wurden - neue können sie nicht erstellen. Wenn Sie das Recht zum Anlegen brauchen, bitten Sie einen bestehenden Administrator, Sie auf der Seite **Organisationseinstellungen** hochzustufen (siehe [Rollen & Berechtigungen](/roles-and-permissions/)).
+1. **Arbeitsbereich.** Zwei Felder: der **Name des Arbeitsbereichs** und das **Land**. Basiswährung und Zeitzone ergeben sich aus dem Land und werden angezeigt, nicht abgefragt. Beide lassen sich später ändern.
+2. **Das erste Unternehmen.** Die juristische Person, der die Bankkonten gehören und die auf den Rechnungen erscheint; AI Finance Team unterscheidet damit Einnahmen von Ausgaben. Eine ungarische Steuernummer wird Ihnen beim Tippen als Stammnummer, EU-Umsatzsteuer-Identifikationsnummer und USt-Code zurückgelesen, und das ist der schnellste Weg, einen Tippfehler zu bemerken. Hat der Mandant weitere Unternehmen, legen Sie sie hier an.
+3. **Bankkonten.** Wird meist übersprungen: die Bankverbindung stellt der Mandant selbst her, in seinem eigenen Browser, nachdem Sie ihn eingeladen haben.
+4. **Kategorien.** Ein neuer Arbeitsbereich startet **ohne Kategorien**, und nichts wird automatisch einsortiert, solange keine Liste existiert. Importieren Sie Ihre eigene, oder, wenn Ihre Kanzlei eine Kategorienvorlage pflegt, wird sie für Sie angewendet. Ab dem zweiten Mandanten können Sie auch von einem anderen Mandanten kopieren.
+5. **Datenquellen.** NAV Online Számla, die eigene E-Mail-Adresse des Arbeitsbereichs zum Weiterleiten von Rechnungen, und das, was der Mandant selbst verbinden wird.
+6. **Export.** Nur bei ungarischen Arbeitsbereichen: die Sachkontonummern, die die Exportdateien brauchen.
+7. **Personen.** Laden Sie den Mandanten ein, und haken Sie die Kolleginnen und Kollegen aus Ihrer eigenen Kanzlei an, die zu diesem Mandat gehören sollen. Kolleginnen und Kollegen werden sofort mit der Rolle hinzugefügt, die sie bereits haben; der Mandant bekommt eine Einladung per E-Mail, standardmäßig als **Finanzleitung** angeboten. Jede Zeile hat ihre eigene Sprache, sodass eine Einladung in der Sprache der Empfängerin oder des Empfängers ankommt. Schließen Sie mit **Fertig** ab.
 
-### Den Assistenten starten
+Zwei Dinge über die Strecke sollten Sie wissen:
 
-Klicken Sie auf dem Arbeitsbereiche-Dashboard in der Aktionsleiste oben rechts auf **Neuer Arbeitsbereich**. Das öffnet einen dreistufigen Assistenten.
+- **Der Arbeitsbereich wird real, wenn Sie Bildschirm 3 verlassen**, nicht am Ende. Ab da existiert er, er erscheint auf Ihrem Dashboard, und seine Seitenleiste bleibt gesperrt, bis Sie die Strecke abschließen. Durch das Schließen des Tabs geht nichts verloren.
+- **Immer nur eine Einrichtung.** Beginnen Sie einen weiteren Mandanten, während einer unfertig ist, landen Sie wieder bei dem unfertigen.
 
----
+Sie sind **Buchhalter-Admin** jedes Arbeitsbereichs, den Sie anlegen. Neben Ihren Angaben bekommt ein neuer Arbeitsbereich einen Standardsatz an Transaktionstypen, die USt-Stammdaten, die er braucht, und seine eigene E-Mail-Adresse für Rechnungen.
 
-### Schritt 1 - Angaben zum Arbeitsbereich
+## In einen bestehenden Arbeitsbereich gelangen
 
-Füllen Sie die Grunddaten des neuen Mandantenverhältnisses aus:
+Das Dashboard zeigt nur Arbeitsbereiche, in denen Sie Mitglied sind. Alles andere steht unter **Organisation → Arbeitsbereiche verwalten**, wo die Arbeitsbereiche der Kanzlei aufgelistet sind und wo Sie bei jedem stehen.
 
-| Feld | Hinweise |
-|---|---|
-| Mandantenname | Der Handelsname des Mandanten; wird zum Namen des Arbeitsbereichs |
-| Land | Bestimmt die Vorgaben für Währung und Zeitzone |
-| Basiswährung | Anhand des Landes vorausgefüllt; änderbar |
-| Zeitzone | Anhand des Landes vorausgefüllt; änderbar |
+- **Organisationsadministratoren** wählen eine Rolle, **Buchhalter** oder **Buchhalter-Admin**, und klicken auf **Mich hinzufügen**.
+- **Alle anderen** klicken auf **Beitritt beantragen**, ebenfalls nachdem sie die gewünschte Rolle gewählt haben. Die Administratoren des Arbeitsbereichs bekommen eine E-Mail, und Sie bekommen deren Entscheidung per E-Mail.
 
-Bei der Wahl eines Landes werden automatisch die dort gebräuchlichste Währung und Zeitzone eingetragen. Sie können beide Felder vor dem Fortfahren unabhängig voneinander ändern.
+Über Anfragen wird **innerhalb des Arbeitsbereichs** entschieden, unter **Einstellungen → Teamverwaltung → Ausstehende Anfragen**, nicht in den Organisationseinstellungen.
 
-Klicken Sie auf **Weiter**, um zu Schritt 2 zu gelangen.
+## Personen hinzufügen
 
----
+Die Personen eines Arbeitsbereichs werden unter **Einstellungen → Teamverwaltung** verwaltet, von allen, die die Berechtigung zum Einladen haben. Das Einladungsfenster nimmt bis zu zehn Empfänger auf einmal auf, jeweils mit Name, Rolle und Sprache, dazu eine persönliche Nachricht von bis zu 500 Zeichen für den gesamten Stapel. Auf dem Tab mit den ausstehenden Einladungen finden Sie den Link zum Kopieren, falls eine E-Mail nicht ankommt.
 
-### Schritt 2 - Primäres Unternehmen
-
-Ein Arbeitsbereich braucht mindestens ein Unternehmen - die juristische Person, der die Bankkonten des Mandanten gehören und die auf seinen Rechnungen erscheint. AI Finance Team bestimmt anhand des Unternehmens die Rechnungsrichtung (Einnahme oder Ausgabe), deshalb lässt sich dieser Schritt nicht überspringen.
-
-| Feld | Hinweise |
-|---|---|
-| Unternehmensname | Der juristische Firmenname - erforderlich |
-| Steuernummer | Dringend empfohlen; kann später in den Stammdaten ergänzt werden |
-| Land | Standardmäßig das Land des Arbeitsbereichs |
-
-Weitere Unternehmen (für Mandanten mit mehreren Unternehmen) lassen sich später im Stammdatenbereich des Arbeitsbereichs anlegen.
-
-Klicken Sie auf **Weiter**, um zu Schritt 3 zu gelangen, oder auf **Zurück**, um zu Schritt 1 zurückzukehren, ohne Ihre Eingaben zu verlieren.
-
----
-
-### Schritt 3 - Mandanten einladen (optional)
-
-Dieser Schritt schlägt vor, den Mandanteninhaber einzuladen, damit er Bankkonten verbinden und Rechnungen hochladen kann. Er ist optional - Sie können ihn überspringen und die Einladung später aus den Einstellungen des Arbeitsbereichs senden.
-
-Wenn Sie jetzt einladen möchten:
-
-1. Geben Sie die E-Mail-Adresse des Mandanten ein. Optional können Sie den Namen ergänzen - dann begrüßt ihn die E-Mail namentlich und füllt bei der Annahme das Registrierungsformular vor.
-2. Fügen Sie optional eine persönliche Nachricht hinzu - ein paar Sätze dazu, warum Sie einladen. Dieselbe Nachricht geht an alle Empfänger des Stapels.
-3. Klicken Sie auf **Einladung senden**.
-
-AI Finance Team versendet die Einladungs-E-Mail automatisch. Der Assistent zeigt außerdem den Einladungslink als Rückfalloption, falls die Zustellung fehlschlägt.
-
-Der Einladung wird die Rolle **Mandanteninhaber** zugewiesen. Der Mandanteninhaber kann anschließend innerhalb des Arbeitsbereichs seine Kollegen als Mandantenmitglieder einladen.
-
-Klicken Sie auf **Überspringen**, um ohne Einladung abzuschließen, oder schließen Sie den Einladungsschritt ab, um die Einladung zu senden.
-
----
-
-### Nach dem Assistenten
-
-Sobald der Assistent abgeschlossen ist, werden Sie zur Übersichtsseite des neuen Arbeitsbereichs weitergeleitet. Der Arbeitsbereich erscheint sofort in Ihrem Arbeitsbereiche-Dashboard. Sie werden automatisch als **Buchhalter-Administrator** des neuen Arbeitsbereichs eingetragen.
-
-Haben Sie für das primäre Unternehmen keine Steuernummer angegeben, zeigt die Übersicht des Arbeitsbereichs einen Hinweis, sie in den Stammdaten zu ergänzen. Diesen Hinweis können Sie ausblenden und später darauf zurückkommen.
-
----
-
-## Einem bestehenden Arbeitsbereich beitreten
-
-Wie Sie beitreten, hängt von Ihrer Organisationsrolle ab:
-
-**Organisationsadministratoren** sehen im Dashboard **alle Arbeitsbereiche** ihrer Kanzlei, auch solche, denen sie persönlich nicht beigetreten sind. Diese Arbeitsbereiche zeigen eine Schaltfläche **Arbeitsbereich beitreten** - ein Klick fügt Sie als Buchhalter-Administrator hinzu und öffnet den Arbeitsbereich.
-
-**Organisationsmitglieder** (Buchhalter ohne Administratorrechte) sehen eine separate Ansicht mit den Arbeitsbereichen der Kanzlei, denen sie noch nicht angehören. Jede Zeile hat eine Schaltfläche **Beitritt beantragen**. Ein Klick benachrichtigt die Administratoren der Kanzlei per E-Mail; sie genehmigen oder lehnen den Antrag im Posteingang ihrer Organisationseinstellungen ab. Über die Entscheidung werden Sie per E-Mail informiert.
-
----
-
-## Teammitglieder einladen
-
-Sobald ein Arbeitsbereich existiert, kann ein **Buchhalter-Administrator** unter **Einstellungen → Team** des Arbeitsbereichs weitere Mitglieder einladen:
-
-- Andere Buchhalter Ihrer Kanzlei (als Buchhalter oder Buchhalter-Administrator)
-- Nutzer beim Mandantenunternehmen (als Mandanteninhaber oder Mandantenmitglied)
-
-Das Einladungsfenster nimmt bis zu **10 Empfänger in einem Stapel** auf, jeweils mit optionaler Namensvorbelegung, dazu eine optionale persönliche Nachricht für den gesamten Stapel. AI Finance Team schreibt jeden Eingeladenen automatisch an.
-
-Was jede Rolle sehen und tun darf und wie der Einladungsablauf im Detail funktioniert, steht unter [Rollen & Berechtigungen](/roles-and-permissions/).
-
----
+[Rollen & Berechtigungen](/roles-and-permissions) hat das ganze Bild: die fünf Rollen, wer wen einladen darf, und was jede sehen und tun kann.
 
 ## Organisationseinstellungen
 
-Den Link **Organisationseinstellungen** in der Seitenleiste sehen Organisationsadministratoren. Er führt zu den Organisationseinstellungen Ihrer Kanzlei, wo Sie:
+Der Bereich **Organisation** in der Seitenleiste steht allen in Ihrer Kanzlei offen: die Angaben der Kanzlei, **Arbeitsbereiche verwalten**, das Team der Kanzlei und dessen Einladungen, KI-Zugriff und Support-Zugriff. Nur **Abrechnung** ist Administratoren vorbehalten.
 
-- Teammitglieder und ihre Rollen kanzleiweit verwalten
-- Sammeleinladungen an neue Teammitglieder senden
-- Offene **Beitrittsanträge** von Organisationsmitgliedern prüfen
+## Grenzen
 
----
-
-## Was noch nicht gebaut ist
-
-- **Oberfläche zur Verwaltung von Bankverbindungen** - die Bankkontodaten existieren, aber die Oberfläche, über die Mandanten ihre Bankverbindung herstellen, trennen oder verwalten, ist noch nicht verfügbar.
-- **Arbeitsbereichseinstellungen** - die Einstellungsseite ist noch ein Platzhalter; Konfigurationen wie automatische Kategorisierung und Hinweise auf fehlende Dokumente werden beim Anlegen des Arbeitsbereichs gesetzt, lassen sich über die Oberfläche aber noch nicht ändern.
-- **Abschlussrhythmus je Arbeitsbereich** - die in der Fußzeile jeder Kachel gezeigte Abschlussperiode ist derzeit der laufende Kalendermonat. Unterstützung für vierteljährliche USt-Zyklen und andere Melderhythmen ist geplant.
+- **Ein Arbeitsbereich lässt sich weder archivieren noch löschen.** Es gibt dafür keinen Weg, und das mit Absicht.
+- **Es gibt keine Grenze dafür, wie viele Arbeitsbereiche Sie haben.** Die Abrechnung zählt Dokumente pro Monat, nicht Arbeitsbereiche.
+- **Der Abschlusszeitraum ist der Kalendermonat.** Die Fußzeile jeder Kachel nennt den Monat, der abgeschlossen wird; vierteljährliche und andere Rhythmen werden noch nicht unterstützt.

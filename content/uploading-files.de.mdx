@@ -1,102 +1,128 @@
 # Dateien hochladen
 
-Sie können Rechnungen und Kontoauszüge einzeln, in großen Mengen oder als ZIP-Archiv hochladen. Alle Uploads laufen im Hintergrund - Sie können weiterarbeiten, während sie verarbeitet werden.
+Sie können Rechnungen und Kontoauszüge einzeln, in großen Mengen oder als ZIP-Archiv hochladen. Uploads laufen im Hintergrund, Sie können also weiterarbeiten, während sie verarbeitet werden.
 
-Der Upload-Ablauf ist auf den Seiten **Rechnungen** und **Transaktionen** identisch. Die Unterschiede (was die Extraktion als Nächstes tut, wie Duplikate und Bankkonten behandelt werden) sind je nach Art spezifisch - siehe [Arbeiten mit Rechnungen](/invoices) und [Kontoauszüge hochladen](/bank-statement-upload).
+Der Ablauf ist auf den Seiten **Rechnungen** und **Banktransaktionen** derselbe. Was danach geschieht, unterscheidet sich: siehe [Arbeiten mit Rechnungen](/invoices) und [Kontoauszüge hochladen](/bank-statement-upload).
 
-Möchten Sie den Upload-Schritt ganz überspringen? Sie können auch [Dokumente per E-Mail an Ihren Arbeitsbereich weiterleiten](/email-forwarding), und sie werden automatisch erfasst.
+Jedes Mitglied des Arbeitsbereichs darf hochladen. Eine besondere Berechtigung ist dafür nicht nötig.
+
+Lieber gar nicht hochladen? Sie können [Dokumente per E-Mail an Ihren Arbeitsbereich weiterleiten](/email-forwarding).
+
+## Was Sie hochladen können
+
+| Seite | Akzeptierte Typen | Grenze |
+|---|---|---|
+| **Rechnungen** | PDF, JPEG, PNG, WebP | 50 MB pro Datei, und ein PDF mit höchstens 10 Seiten |
+| **Banktransaktionen** | nur PDF | 50 MB pro Datei |
+
+Zwei Grenzen, die Sie vor einem großen Stapel kennen sollten:
+
+- **Ein Rechnungs-PDF mit mehr als 10 Seiten wird abgelehnt**, denn ein so langes Dokument ist meist ein Kontoauszug oder ein Bündel. Laden Sie es als Kontoauszug hoch, oder teilen Sie es auf.
+- **Fotos vom iPhone (HEIC) funktionieren noch nicht.** Der Upload wird angenommen, danach scheitert das Lesen. Wandeln Sie das Foto zuerst in JPEG oder PDF um; auf dem iPhone funktioniert beides: es sich selbst als „Most compatible“ zu schicken oder es als PDF zu exportieren.
+
+Dateien jedes anderen Typs werden zu einer roten Zeile mit **Wrong file type**.
 
 ## Einen Upload starten
 
-Drei Wege, um zu beginnen, alle gleichwertig:
+Drei Wege, alle gleichwertig:
 
-1. **Klicken Sie auf die Upload-Schaltfläche** oben rechts auf der Seite **Rechnungen** oder **Transaktionen**.
-2. **Ziehen Sie Dateien aus Ihrem Dateimanager** auf die Seite. In dem Moment, in dem Sie etwas hineinziehen, erscheint eine seitenfüllende Ablagezone; lassen Sie an einer beliebigen Stelle der Seite los.
-3. **Ziehen Sie ein ZIP-Archiv** auf die Seite - der Browser entpackt es für Sie (siehe [ZIP-Archive](#zip-archive) unten).
+1. **Klicken Sie auf die Upload-Schaltfläche** oben rechts: **Rechnungen hochladen** auf der Seite Rechnungen, **Kontoauszug hochladen** auf Banktransaktionen.
+2. **Ziehen Sie Dateien auf die Seite.** Sobald Sie etwas hineinziehen, legt sich eine Ablagezone über die Seite, und Sie können an beliebiger Stelle loslassen.
+3. **Ziehen Sie ein ZIP-Archiv** auf die Seite. Ihr Browser entpackt es (siehe [ZIP-Archive](#zip-archive)).
 
-Die Dateiauswahl des Betriebssystems unterstützt Mehrfachauswahl - halten Sie Strg/Cmd beim Klicken gedrückt, oder klicken Sie mit gedrückter Umschalttaste, um einen Bereich auszuwählen. Sie können einen ganzen Ordner mit Belegen auswählen oder ablegen, und sie reihen sich alle gemeinsam in die Warteschlange ein.
+Im Dateidialog wählen Sie mit Strg oder Cmd mehrere Dateien auf einmal aus, mit der Umschalttaste einen Bereich. **Ein Ordner lässt sich weder auswählen noch ablegen**: Öffnen Sie ihn und wählen Sie die Dateien darin aus.
+
+Uploads werden bewusst **Datei für Datei** gesendet, und das Lesen eines Dokuments dauert etwa zehn bis dreißig Sekunden. Ein Stapel von hundert Rechnungen ist eine Kaffeepause, kein Klick.
 
 ## Das Upload-Fenster
 
-In dem Moment, in dem Sie einen Upload starten, erscheint ein Fenster in der **unteren rechten Ecke** des Bildschirms. Jede in Bearbeitung befindliche Datei erhält ihre eigene Zeile. Das Fenster ist beständig - es bleibt bestehen, während Sie sich im Arbeitsbereich bewegen, und es übersteht ein Aktualisieren der Seite.
+<UploadPanelFigure>
+Das Upload-Fenster während eines laufenden Stapels. Die Dateinamen sind Beispiele.
+</UploadPanelFigure>
+
+Sobald ein Upload beginnt, erscheint in der **unteren rechten Ecke** ein Fenster mit einer Zeile pro Datei. Es meldet auch zwei Dinge, die keine Uploads sind: einen Zuordnungslauf und eine Aktualisierung der Wechselkurse.
 
 ### Zeilenstatus
 
 | Bezeichnung | Bedeutung |
 |---|---|
-| **In Warteschlange** | Wartet in der Upload-Warteschlange. |
+| **In Warteschlange** | Wartet, bis sie an der Reihe ist. |
 | **Hochladen…** | Die Datei wird in den Speicher kopiert. |
-| **Extrahieren…** | Die KI liest die Datei. |
-| **Seite X / Y wird extrahiert** | Der Kontoauszug wird Seite für Seite gelesen. |
-| **Kategorisieren…** | Den Kontoauszug-Transaktionen werden Kategorien zugewiesen (kurz). |
-| **Extrahiert** | Die Rechnungsextraktion ist abgeschlossen. |
-| **Fertig · N Transaktionen (M zusammengeführt)** | Die Kontoauszug-Extraktion ist abgeschlossen. |
-| **Bereits vorhanden** | Die Rechnungsdatei ist ein Duplikat einer bestehenden - klicken Sie auf die Zeile, um das Original zu öffnen. |
-| **Fehlgeschlagen: …** | Etwas ist schiefgelaufen. Rechts erscheint eine Schaltfläche **Erneut versuchen**. |
+| **Extrahieren…** | Die KI liest das Dokument. |
+| **Seite X / Y extrahieren** | Ein Kontoauszug wird Seite für Seite gelesen. |
+| **Kategorisieren…** | Den Transaktionen des Kontoauszugs werden Kategorien zugewiesen. |
+| **Extrahiert** | Eine Rechnung ist fertig. Klicken Sie auf die Zeile, um sie zu öffnen. |
+| **Fertig · N Transaktionen (M zusammengeführt)** | Ein Kontoauszug ist fertig. Klicken Sie auf die Zeile, um ihn zu öffnen. |
+| **Fertig mit Fehlern · Details prüfen** | Ein Kontoauszug ist fertig geworden, einzelne Seiten aber nicht. Öffnen Sie ihn, um zu sehen, welche. |
+| **Bereits vorhanden** | Genau diese Datei liegt bereits im Arbeitsbereich. Klicken Sie auf die Zeile, um das Original zu öffnen. |
+| **Abgebrochen** | Der Kontoauszug wurde während der Verarbeitung verworfen. |
+| Eine rote Zeile | Etwas ist schiefgelaufen. Siehe [Wenn ein Upload fehlschlägt](#wenn-ein-upload-fehlschlägt). |
 
-### Automatisches Einklappen und Schließen
+### Einklappen und Schließen
 
-Sobald jede Zeile einen Endzustand erreicht hat (Extrahiert, Fertig, Bereits vorhanden oder Fehlgeschlagen), klappt das Fenster nach einigen Sekunden zu einer kleinen Pille unten rechts zusammen. Klicken Sie auf die Pille, um die Liste wieder aufzuklappen, oder klicken Sie auf das **×** in der Kopfzeile, um es ganz zu schließen.
+Solange noch etwas läuft, bietet die Kopfzeile **Collapse** an, wodurch das Fenster zu einer Pille schrumpft; klicken Sie auf die Pille, um es wieder zu öffnen. Sobald jede Zeile fertig ist, klappt das Fenster nach etwa acht Sekunden von selbst ein, und ein **×** erscheint, um es zu schließen.
 
-### Aktualisieren oder Arbeitsbereich wechseln
+### Die Seite verlassen
 
-- **Das Aktualisieren der Seite** ist sicher - das Fenster lädt alle laufenden Uploads neu. Sie verlieren keinen Überblick über bereits laufende Vorgänge.
-- **Der Wechsel zu einem anderen Arbeitsbereich** leert das Fenster; es lädt dann die laufenden Uploads des neuen Arbeitsbereichs neu.
-- **Das Öffnen der App in einem zweiten Tab** ist ebenfalls sicher - beide Tabs sehen dieselben laufenden Zeilen.
+- **Eine fertig hochgeladene Datei ist sicher.** Das Lesen geschieht auf unseren Servern und läuft weiter, ob Sie bleiben oder nicht.
+- **Eine Datei, die Ihr Browser noch sendet, geht verloren**, wenn Sie neu laden oder den Tab schließen. Laden Sie sie erneut hoch.
+- **Das Fenster selbst ist kein Verlauf.** Nach einem Neuladen zeigt es nur, was noch läuft oder in der letzten Minute fertig geworden ist. Zeilen für Duplikate und für Dateien, die Ihr Browser abgelehnt hat, sind weg. Was hochgeladen wurde, steht auf der Seite Rechnungen oder Banktransaktionen, und das ist der eigentliche Nachweis.
+- Ein Wechsel des Arbeitsbereichs leert das Fenster und füllt es dann mit den laufenden Uploads dieses Arbeitsbereichs. Ein zweiter Tab sieht dieselben laufenden Zeilen.
 
-## Einen fehlgeschlagenen Upload erneut versuchen
+## Wenn ein Upload fehlschlägt
 
-Wenn die Extraktion für eine bestimmte Datei fehlschlägt (meist, wenn ein PDF ungewöhnlich groß ist oder ein komplexes Layout hat), wird die Zeile im Fenster rot und zeigt eine Schaltfläche **Erneut versuchen**. Klicken Sie darauf, um die Extraktion erneut auszuführen.
+Es gibt zwei Arten von Fehlern, und sie verhalten sich unterschiedlich.
 
-Wenn dieselbe Datei wiederholt fehlschlägt, benötigt vermutlich die Datei selbst Aufmerksamkeit:
+**Ihr Browser hat die Datei abgelehnt.** Falscher Typ, über 50 MB, ein beschädigtes oder verschlüsseltes ZIP, oder das Dokumentenlimit des Arbeitsbereichs in der Testphase. Die Zeile ist rot und hat **keine Schaltfläche Erneut versuchen**, denn die Datei hat Ihren Computer nie verlassen. Korrigieren Sie die Datei und fügen Sie sie erneut hinzu.
 
-- **Versuchen Sie eine kleinere Version.** Öffnen Sie das PDF in der Vorschau → Datei → Exportieren und reduzieren Sie die Dateigröße, oder lassen Sie es durch ein Komprimierungsprogramm laufen. Oft lässt sich ein 7-MB-PDF auf unter 1 MB verkleinern, ohne dass die Lesbarkeit leidet.
-- **Konvertieren Sie das Format.** Wenn Sie ein Bild hochgeladen haben, versuchen Sie, es als PDF zu speichern (oder umgekehrt).
-- **Erfassen Sie sie manuell.** Als letzten Ausweg kann ein Buchhalter die Rechnung manuell über die **Stammdaten** anlegen.
+**Das Lesen des Dokuments ist fehlgeschlagen.** Die Datei liegt im Arbeitsbereich, aber die KI konnte sie nicht lesen. Diese Zeilen zeigen **Fehlgeschlagen:** mit dem Grund und bieten **Erneut versuchen** an.
 
-## Beschränkungen für Dateitypen
+Erneut versuchen hilft bei einem vorübergehenden Problem. Es hilft nicht, wenn der Grund das Dokument selbst ist: mehr als 10 Seiten, ein nicht unterstützter Typ, ein passwortgeschütztes PDF oder ein Dokument, das zu komplex zum Lesen ist. Dann gilt:
 
-| Bereich | Akzeptierte Typen | Maximale Größe pro Datei |
-|---|---|---|
-| **Rechnungen** | PDF, JPEG, PNG, WebP, HEIC | 50 MB |
-| **Kontoauszüge** | nur PDF | 50 MB |
+- **Machen Sie es kleiner oder einfacher.** Exportieren Sie das PDF mit geringerer Größe neu, oder teilen Sie ein Bündel in einzelne Rechnungen auf.
+- **Wandeln Sie es um.** Ein Bild, das scheitert, funktioniert oft als PDF, und umgekehrt.
+- **Tippen Sie es ein.** Eine fehlgeschlagene Rechnung liegt weiterhin im Arbeitsbereich: Öffnen Sie sie und füllen Sie die Felder von Hand aus.
 
-Alles außerhalb dieser Typen wird zu einer roten Zeile im Fenster mit **Falscher Dateityp**.
+Fehlermeldungen Ihres Browsers erscheinen in jeder Sprache auf Englisch. Das ist eine Eigenheit der App und kein Zeichen dafür, dass sonst etwas nicht stimmt.
+
+## Duplikate
+
+Wenn Sie eine Rechnung hochladen, vergleicht AI Finance Team die Datei mit dem, was der Arbeitsbereich bereits enthält. **Eine identische Datei** ergibt eine Zeile **Bereits vorhanden**, die auf das Original verweist.
+
+Verglichen wird die Datei selbst, nicht ihr Inhalt. Ein zweiter Scan oder ein erneuter Export derselben Rechnung wird hier also nicht erkannt. Solche Fälle werden später an der Rechnung als mögliche Duplikate gefunden. Kontoauszüge werden beim Upload überhaupt nicht geprüft.
+
+Liegt dieselbe Datei in einem Vorgang zweimal vor, wird die zweite Kopie stillschweigend verworfen.
 
 ## ZIP-Archive
 
-Wenn Sie einen Ordner mit Belegen als `.zip` archiviert haben, legen Sie das Archiv direkt auf der Upload-Fläche ab - der Browser entpackt es im Arbeitsspeicher Ihres Computers und speist jede Datei als separate Zeile in das Fenster ein.
+Legen Sie eine `.zip` auf der Seite Rechnungen oder Banktransaktionen ab, und Ihr Browser entpackt sie im Arbeitsspeicher und fügt jede Datei darin als eigene Zeile hinzu. **Das Archiv selbst wird nie hochgeladen**, nur die Dateien darin.
 
-### Schritt für Schritt
+1. Legen Sie das Archiv ab, oder wählen Sie es über die Upload-Schaltfläche aus.
+2. Eine kurzlebige Zeile zeigt, dass das Archiv entpackt wird.
+3. Jede gültige Datei darin wird zu einer eigenen Zeile.
 
-1. Ziehen Sie die `.zip`-Datei auf die Seite **Rechnungen** oder **Transaktionen** (oder klicken Sie auf die Upload-Schaltfläche und wählen Sie die ZIP-Datei aus).
-2. Während der Browser sie entpackt, erscheint für das Archiv kurz eine Zeile mit der Bezeichnung **Extrahieren…**.
-3. Jede gültige Datei in der ZIP-Datei wird zu einer eigenen Zeile.
-4. Die ZIP-Datei selbst wird nie hochgeladen - nur die extrahierten Dateien landen in Ihrem Arbeitsbereich.
+Was das Archiv enthalten darf, richtet sich nach der Seite, auf der Sie es abgelegt haben: Rechnungen auf der Seite Rechnungen, Kontoauszug-PDFs auf Banktransaktionen. Alles andere wird zu einer roten Zeile **Wrong file type**, und der Rest des Archivs läuft trotzdem durch.
 
-### Was innerhalb einer ZIP-Datei akzeptiert wird
-
-Es gelten dieselben Regeln pro Datei wie für lose Uploads. Auf der Seite **Rechnungen** sollte die ZIP-Datei Rechnungen (PDFs oder Bilder) enthalten; auf der Seite **Transaktionen** sollte sie Kontoauszug-PDFs enthalten. Alles andere wird zu einer roten Zeile mit **Falscher Dateityp**.
-
-### Einschränkungen
-
-| Beschränkung | Wert |
+| Grenze | Wert |
 |---|---|
-| Maximale ZIP-Größe | 200 MB |
-| Maximale Dateigröße innerhalb einer ZIP-Datei | 50 MB |
-| Verschlüsselte / passwortgeschützte ZIP-Dateien | Nicht unterstützt - Sie sehen **Verschlüsselte ZIP-Dateien werden nicht unterstützt** |
-| Verschachtelte ZIP-Dateien (eine `.zip` innerhalb des Archivs) | Nicht unterstützt - die innere ZIP-Datei wird zu einer Zeile „Falscher Dateityp", der Rest des Archivs wird jedoch normal verarbeitet |
-| macOS-Metadaten (`__MACOSX/`, `.DS_Store`) | Werden stillschweigend ignoriert - sie erscheinen nicht als Fehler im Fenster |
-| Ordnerstruktur innerhalb des Archivs | Wird abgeflacht - nur der Dateiname bleibt erhalten; Ordnernamen werden nicht beibehalten |
+| Größtes Archiv | 200 MB |
+| Größte Datei darin | 50 MB |
+| Verschlüsselte Archive | Nicht unterstützt |
+| Ein ZIP im ZIP | Wird nicht entpackt; es wird zu einer Zeile mit falschem Dateityp |
+| Ordner im Archiv | Werden abgeflacht; nur Dateinamen bleiben erhalten |
+| `__MACOSX`, `.DS_Store` und jeder andere Name, der mit einem Punkt beginnt | Werden ohne Zeile übersprungen |
 
-### Tipps
+Mehrere Archive auf einmal abzulegen ist in Ordnung; sie werden nacheinander entpackt. Ein sehr großes Archiv kann auch unter 200 MB beim Entpacken scheitern, weil es im Arbeitsspeicher Ihres Browsers entpackt wird: Teilen Sie es in diesem Fall auf.
 
-- **Sie können lose Dateien und ZIP-Dateien in einem Vorgang mischen.** Ziehen Sie zwei lose PDFs und ein ZIP-Archiv gemeinsam auf die Seite. Sie alle fließen in dasselbe Fenster.
-- **Legen Sie auf der richtigen Seite ab.** Eine auf der Seite Rechnungen ausgewählte ZIP-Datei wird so behandelt, als enthielte sie Rechnungen; auf der Seite Transaktionen, als enthielte sie Kontoauszüge. Es gibt keinen gemischten Modus - laden Sie die Dateien der falschen Art von der jeweils anderen Seite erneut hoch.
-- **Komprimieren Sie vor dem Zippen eines großen Stapels.** Wenn sich Ihre ZIP-Datei den 200 MB nähert, komprimieren Sie zuerst die größten Belege; die ZIP-Obergrenze ist die maßgebliche Beschränkung, nicht die Anzahl der Dateien.
+## Weitere Stellen für Dateien
+
+Nicht jede Datei gehört in die Warteschlange für Rechnungen oder Kontoauszüge:
+
+- **[Dokumente](/documents)** enthält Verträge, Bescheinigungen und alles andere, was sich beim Mandanten aufzubewahren lohnt. Es hat einen eigenen Upload mit eigenen Grenzen.
+- **[Fehlende Belege](/documents-needed)** ist die Stelle, an der ein Mandant eine Anfrage nach einem bestimmten Dokument beantwortet.
 
 ## Tipps für große Stapel
 
-- **Verwenden Sie die Dateiauswahl für bekannte Ordner und Drag-and-drop für bereits geöffnete Dateien** - beide landen im selben Fenster.
-- **Warten Sie nicht am Fenster.** Uploads laufen im Hintergrund; Sie können die gestrigen Transaktionen weiter kategorisieren, während die heutigen Rechnungen verarbeitet werden.
-- **Prüfen Sie das Fenster, bevor Sie gehen.** Wenn Sie mit der Arbeit für heute fertig sind, werfen Sie einen Blick auf das Fenster - bei roten Zeilen lohnt sich vor dem Feierabend ein Erneut versuchen oder ein kleinerer erneuter Export.
+- **Lassen Sie es laufen.** Uploads laufen weiter, während Sie an anderer Stelle im Arbeitsbereich arbeiten.
+- **Senden Sie Rechnungen und Kontoauszüge von ihren eigenen Seiten.** Einen gemischten Modus gibt es nicht.
+- **Prüfen Sie das Fenster, bevor Sie für heute Schluss machen.** Eine rote Zeile braucht eine korrigierte Datei, kein zweites Warten.

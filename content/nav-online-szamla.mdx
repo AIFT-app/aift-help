@@ -1,65 +1,94 @@
 # Connecting NAV Online Számla (Hungary)
 
-For Hungarian companies, AI Finance Team can import invoice data directly from the Hungarian Tax Authority's **NAV Online Számla** system. Because suppliers report their outgoing invoices to NAV, your cost (supplier) invoices often appear in AI Finance Team **before** you upload the PDF - and your own sales invoices are pulled automatically too.
+For Hungarian companies, AI Finance Team can import invoice data directly from the Hungarian Tax Authority's **NAV Online Számla** system. Because suppliers report their outgoing invoices to NAV, your cost invoices often appear in AI Finance Team **before** anyone uploads a PDF, and your own sales invoices are pulled automatically too.
 
-This connection is **read-only**. AI Finance Team only *reads* invoice data from NAV. It never issues, reports, modifies, or annuls invoices on your behalf.
+The connection is **read-only**. AI Finance Team only reads invoice data from NAV. It never issues, reports, modifies or annuls an invoice on your behalf.
 
 ## Before You Start
 
-- This feature is available only for companies whose country is **Hungary (HU)**. Non-Hungarian companies will not see the NAV section.
-- The connection can be set up by a **client owner** or an **accountant admin**. (In practice accounting offices usually create the NAV technical user themselves, so they can start the connection too.) Other roles can see the connection *status* but never the credentials.
-- You need a **NAV technical user** ("technikai felhasználó"), which you create inside your own NAV account. Specifically, AI Finance Team needs:
-  - the company's **tax number** (the 8-digit core),
-  - the technical user's **login**,
-  - the technical user's **password**,
-  - the technical user's **XML signing key** ("aláírókulcs").
+- The section exists only for companies whose country is **Hungary (HU)**.
+- The connection can be set up by an **accountant**, an **accountant admin** or the **finance lead**. Accounting offices usually create the technical user themselves, so this is the normal path, not a workaround.
+- Members without that right see the connection's **status** only: the technical-user login and the tax number are hidden from them, and the credentials are never shown to anyone.
+- You need a **NAV technical user** ("technikai felhasználó"), which you create in your own NAV account. AI Finance Team needs four things: the company's **tax number** (the 8-digit core), the technical user's **login**, its **password**, and its **XML signing key** ("aláírókulcs").
 
-> You do **not** need the XML exchange key ("cserekulcs") - that is only used for issuing invoices, which AI Finance Team never does.
+> You do **not** need the XML exchange key ("cserekulcs"). That is for issuing invoices, which AI Finance Team never does.
 
-Your credentials are stored encrypted in a secure vault. **Once saved, nobody can read them back** - not you, not your accountant, not even whoever entered them. That is why editing the connection requires re-entering all four values.
+Credentials are stored encrypted in a vault. **Once saved, nobody can read them back**, which is why editing the connection means typing all four values again.
+
+## Is the Company in a VAT Group?
+
+For a Hungarian VAT group (csoportos áfaalany), NAV reports to the **group**, not to its members, and the connection belongs to the group as well. Set it up under **Master data → VAT groups**, not on the company. A member company that is paired with a group shows a note instead of its own NAV box, and the database refuses credentials for it.
+
+If a member still has its own old connection while the group has one too, the same invoices can arrive twice. Disconnect the member's.
+
+The rest of this article describes a company that files on its own; [VAT group filing](#how-a-group-invoice-finds-its-company) covers what is different for a group.
 
 ## Creating a NAV Technical User
 
 1. Log in to the [NAV Online Számla portal](https://onlineszamla.nav.gov.hu/) with your company's primary user.
 2. Go to **User management → Create technical user**.
-3. Assign the technical user the **invoice query** permission ("Számla lekérdezése").
-4. Save and note the **login** and **password**, then generate and copy the **signing key**.
+3. Give it the **invoice query** permission ("Számla lekérdezése").
+4. Save the **login** and **password**, then generate and copy the **signing key**.
 
 ## Connecting in AI Finance Team
 
-1. From the workspace sidebar, open **Master data → Companies** and select your Hungarian company.
-2. Scroll to the **NAV Online Számla** section.
-3. Enter the tax number, technical-user login, password, and signing key.
-4. Click **Save & verify**. AI Finance Team immediately checks the credentials against NAV and pulls your most recent invoices, so you can see straight away whether the connection works - or exactly what NAV rejected.
-5. Choose the **start date**: how far back to pull history. The default is 3 months and the maximum is 12. The end date is always today.
-6. Review the **estimated invoice count** for that period, then click **Start sync**.
+1. Open **Master data → Companies**, select the Hungarian company, and go to its **Connections** tab.
+2. Enter the tax number, the technical-user login, the password and the signing key.
+3. Click **Save & verify**. This checks the credentials against NAV and **downloads nothing**: no invoice arrives yet, and nothing counts against your allowance. You see straight away whether the connection works, or exactly what NAV rejected.
+4. Choose the **start date**, which is how far back to go. The default is three months and the furthest is **two years**. The end date is always today.
+5. Click **Estimate invoice count** to see roughly how many invoices that period holds. Nothing is priced until you ask.
+6. Click **Start sync**.
 
-Syncing only begins **after you start it** - a large history download never starts on its own. From then on, AI Finance Team polls NAV regularly and imports both your **outbound** (sales) and **inbound** (supplier) invoices.
+Nothing is downloaded until you press **Start sync**. From then on AI Finance Team polls NAV **every half hour** and imports both your outbound (sales) and inbound (supplier) invoices. A large backlog arrives over several rounds rather than in one go.
 
-> **Why the "~" before the count?** NAV does not return an exact number, only pagination information, so we can only show an estimate. The period counts by the date NAV received the invoice, not the invoice date.
+> **Why the count is approximate.** NAV returns pagination information rather than a number, so the figure is an estimate. It counts by the date NAV received the invoice, not by the invoice date, and it looks back at most twelve months, so a longer window is not priced in full.
 
-> **A longer period means more processing.** Every invoice downloaded goes through categorization and matching, which costs money. If you only need the current period, choose a shorter range.
+> **A longer period costs more.** Every invoice downloaded is categorised and matched, and that is real processing. If you only need the current period, choose a shorter range.
 
 ## What Happens to the Imported Data
 
-- **NAV-only invoices become real ledger entries** even before any PDF exists. These show as *document-less* until a matching PDF is uploaded.
-- When you (or your supplier's document) later upload the **PDF** for an invoice already pulled from NAV, the two are **merged into a single invoice** - no duplicate. The PDF becomes the viewable document; NAV's government-validated amounts remain authoritative.
-- **Income vs. expense is set from NAV's direction**: invoices NAV reports as *outbound* for your company are income; *inbound* are expenses.
-- If NAV's figures disagree with an uploaded document beyond a small tolerance, the invoice is flagged as an **exception** for your accountant to review - nothing is silently overwritten.
+- **A NAV invoice becomes a real entry** before any PDF exists. It appears under [Missing receipts](/documents-needed) with a **From NAV** badge: the data is there, the document is not.
+- **Uploading the PDF later merges the two** into one invoice. The PDF becomes the viewable document, and NAV's validated amounts stay authoritative.
+- **Income or expense comes from NAV's direction**: what NAV reports as outbound for your company is income, inbound is expense.
+- **Disagreements are flagged, never overwritten.** If NAV's figures differ from an uploaded document by more than 10 HUF (0.05 in another currency), the invoice waits for your accountant.
+- **Invoices to private individuals arrive with no buyer.** NAV may not report personal data, so it states only that the buyer is a private individual. Nominate one partner to book them to: see [Managing Partners](/partners).
+- **You can see NAV's own record.** On the invoice's Document tab, the PDF and the NAV data sit side by side, and an invoice with no document can be rendered from NAV's data as a facsimile. It is the tax authority's record, not the supplier's original.
 
-- **Invoices to private individuals arrive with no buyer at all.** NAV is not permitted to report personal data, so it states only that the buyer is a private individual. Nominate one partner to book them to and they stop landing without a partner - see [Managing Partners](/partners).
+### A NAV invoice the supplier reported as cash
 
-## Pausing or Disconnecting
+NAV carries the payment method the **supplier** claimed. When that says cash, AI Finance Team closes the invoice as paid in cash, and a closed invoice is out of bank matching for good. A card payment that a shop reported as cash can therefore never meet its bank debit.
 
-- **Pause sync** stops polling but keeps your credentials and imported data.
-- **Disconnect** permanently deletes your stored NAV credentials from the vault. Imported invoice data stays in your ledger.
+The fix is a **fixed payment method on the partner**, which overrides what the document says. It applies from the moment you set it, never to what is already booked: see [Fixing a Partner's Payment Method](/fixed-payment-method).
 
-## Notes & Limitations
+## How a Group Invoice Finds Its Company
 
-- NAV shows a buyer only the inbound invoices that suppliers actually reported, and only the fields they reported. Most compliant B2B invoices since mid-2020 are covered, but "every cost invoice appears automatically" is not guaranteed. Invoices flagged as *partial* carry a small marker.
-- A modification or cancellation (storno) invoice is imported as its own entry, linked to the original - it is never merged into the original invoice.
+Under a VAT group, one connection brings in invoices for every member, and each invoice has to be filed to the right company. AI Finance Team decides in this order:
+
+1. **A decision you made before**, for that supplier and that buyer name.
+2. **The buyer name printed on the invoice**, when it matches the legal name or one of the alternative names of exactly one paired member.
+3. **The member tax number**, when NAV supplies one. Under a group it is optional, and suppliers fill it in inconsistently.
+4. **Nothing**: the invoice is created without a company and waits on the group's **Filing** tab.
+
+[VAT groups](/vat-groups) has the full order, including the rung that reads what the same name did on earlier invoices.
+
+Two rules follow from that, and both surprise people. **The name beats the tax number** when they disagree, and the disagreement is recorded for a person to look at. And **a decision is not retroactive**: it files what arrives next, not what is already filed. Pairing a new member, though, does file the invoices that were waiting for it.
+
+NAV keeps no list of a group's members, so members are discovered from incoming invoices and paired by hand, or added by tax number.
+
+## Pausing and Disconnecting
+
+- **Pause sync** stops the polling and keeps everything else.
+- **Disconnect** deletes the credentials from the vault. Imported invoices stay in the ledger, but the connection is reset: reconnecting means verifying, choosing a window and starting the sync again.
+
+## Notes and Limits
+
+- NAV shows a buyer only the inbound invoices that suppliers actually reported, and only the fields they reported. Most compliant B2B invoices since mid-2020 are covered, but "every cost invoice appears automatically" is not a promise. An invoice NAV reported only partially carries a marker.
+- A modification or cancellation (storno) invoice arrives as its own entry, linked to the original. Both become closed and leave the payables and the matching pool, unless the original is already matched to a bank payment, in which case they are linked and left for the accountant.
+- The Companies list shows, per company, whether NAV is covered by its own connection or by a group's.
+- The period-closing checklist includes a NAV sync check, and the invoice list can filter by source NAV.
 
 ## Troubleshooting
 
-- **"Last sync error"** in the status panel usually means the credentials were rejected by NAV. Re-check the login, password, and signing key, then **Update credentials** and **Test connection** again. (NAV technical-user passwords expire periodically and must be rotated.)
-- If no invoices appear after connecting, confirm the technical user has the **invoice query** permission in NAV and that the company's tax number is correct.
+**"Last sync error" in the status panel** usually means NAV rejected the credentials, and NAV technical-user passwords expire and have to be rotated. Two buttons help: **Check again** re-runs the check on the stored credentials, and **Edit connection** lets you retype them. All four values have to be entered again, because none can be read back, and replacing them does not restart the history download.
+
+**No invoices after connecting.** Check that the technical user really has the **invoice query** permission in NAV, that the tax number is right, and that you pressed **Start sync**.

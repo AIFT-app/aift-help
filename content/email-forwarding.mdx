@@ -20,13 +20,13 @@ The local part (the bit before the `@`) is unique to your workspace. Copy it, ad
 
 If a billing settings page needs a tidier address than the auto-generated one, you can claim up to **five custom aliases** per workspace (for example `acme@in.aifinance.team`). Under **Custom aliases**, type the name you want, click **Claim**, and use it anywhere the primary address would work. You can **Retire** an alias when it's no longer needed.
 
-Managing aliases (claiming or retiring) is limited to **accountant admins** and **client owners**. Everyone else sees the addresses read-only - which is all you need to forward.
+Managing aliases (claiming or retiring) is limited to **accountant admins** and **finance leads**. Everyone else sees the addresses read-only - which is all you need to forward.
 
 ## What happens to a forwarded email
 
 1. The email arrives at your workspace address and a row appears in **Intake**.
 2. Each attachment is **triaged** - the app works out whether it's an invoice, a bank statement, a receipt, or something else.
-3. Invoices and receipts flow into extraction and show up on the **Invoices** page like any other upload; bank statements go to the statement pipeline.
+3. Invoices and receipts flow into extraction and show up on the **Invoices** page like any other upload. A bank statement is **not** extracted this way: it waits in Intake marked **Awaiting extractor**, and has to be uploaded on the **Bank transactions** page to be read, see [Uploading Bank Statements](/bank-statement-upload).
 4. Anything the app can't confidently classify is set aside under **Needs review** for a person to sort out.
 
 The original email itself is never billed to you as a document - only the useful attachments inside it end up in your workspace.

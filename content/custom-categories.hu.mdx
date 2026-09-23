@@ -1,57 +1,98 @@
 # Egyéni kategóriák
 
-A beépített számla- és készpénzkategóriákon túl minden munkaterület saját **egyéni kategórialistákat** is definiálhat; a számlák és banki tételek további címkézési szempontjait, például költséghelyeket, céges autókat vagy finanszírozási forrást. Az AI ezeket külön menetben, automatikusan alkalmazza, és amit egy kötelező listán nem tud eldönteni, azt kézi ellenőrzésre jelöli meg.
+A beépített számla- és pénzforgalmi kategóriákon túl minden munkaterület saját **egyéni kategórialistákat** is definiálhat: a számlák és a banki tranzakciók további címkézési szempontjait, például költséghelyeket, céges autókat vagy finanszírozási forrásokat. Az AI ezeket külön menetben alkalmazza, és amit egy kötelező listán nem tud eldönteni, azt ellenőrzésre jelöli.
 
-A listákat a **Törzsadatok → Egyéni kategóriák** alatt találja: listánként egy csempe, és minden csempe a lista saját oldalát nyitja meg.
+A listákat a **Törzsadatok → Egyéni kategóriák** alatt találja: listánként egy csempe, mellettük pedig egy csempe az újhoz. Minden csempe a lista saját oldalát nyitja meg.
 
 ## Lista létrehozása
 
 Egy lista a következőkből áll:
 
-- **Cím**: ezt látják a könyvelők mindenhol („Költséghelyek").
-- **Leírás**: közérthető útmutató, amelyet az AI szó szerint elolvas kategorizáláskor. Úgy érdemes megírni, mintha egy kezdő kollégának magyarázná: mit jelent a lista, hogyan kell választani, és melyik kategória a gyűjtő.
+- **Cím**: ezt látják a könyvelők mindenhol („Költséghelyek”).
+- **Leírás**: közérthető útmutató, amelyet az AI szó szerint elolvas. Úgy írja meg, mintha egy kezdő kollégájának magyarázná el: mit jelent a lista, hogyan kell választani, és melyik kategória a gyűjtő.
 - **Alkalmazás**: számlákra, banki tételekre vagy mindkettőre.
-- **Kötelező**: ha az AI nem tud elég magabiztosan kategóriát választani, a tétel ellenőrzésre kerül, ugyanúgy, mint a többi probléma.
+- **Kötelező**: ha az AI nem tud elég magabiztosan kategóriát választani, a tétel ellenőrzésre kerül.
 - **Aktív**: az inaktív listák nem kerülnek alkalmazásra az új tételekre, és az AI sem kapja meg őket.
 
-## Kategóriák
+**A Kötelező csak előre hat.** Ha egy hónapok óta létező listán pipálja be, attól a mögötte lévő anyag nem lesz megjelölve; csak a bepipálás után érkező tételek kapnak jelölést.
 
-Minden lista kategóriákat tartalmaz: opcionális **kóddal** (saját azonosító, pl. `CC-100`), **névvel** és opcionális **leírással**, amely az AI szókincsének része lesz. Felveheti őket egyenként, vagy importálhatja Excelből ugyanazzal a rugalmas importtal, amelyet a beépített kategóriáknál is használ: fájl feltöltése, oszlopok megfeleltetése, előnézet; és meglévő adat soha nem íródik felül.
+Egy munkaterületen legfeljebb 20 aktív lista lehet.
 
-## Lista készítése dokumentumból
+## A lista feltöltése
 
-Ha a kategóriák már szerepelnek egy dokumentumban, nem kell begépelnie őket. Nyissa meg a dokumentumot a **Dokumentumok** alatt, kattintson a **Kategórialista készítése** gombra, és az AI elolvassa, majd javaslatot tesz egy listára: címet, útmutató szöveget, valamint a kategóriákat kóddal és leírással.
+Minden kategóriának van egy opcionális **Kód** mezője (saját azonosító, például `CC-100`), egy **Név** mezője és egy opcionális **Leírás** mezője, amely az AI szókincsének részévé válik. A kódnak a listán belül egyedinek kell lennie, és egy lista legfeljebb 500 aktív kategóriát tartalmazhat.
 
-Bármelyik feltöltött dokumentumon működik, legfeljebb húsz oldalig: költséghely-szabályzat, számlatükör, szervezeti lista, pályázati költségvetés. Magától semmi nem indul el; az AI csak akkor olvassa el a dokumentumot, ha Ön megkéri rá.
+Háromféleképpen töltheti fel:
+
+- **Kézzel**, a **+ Új kategória** gombbal.
+- **Táblázatból**, ugyanazzal az importtal, amelyet a beépített kategóriáknál is használ: töltsön fel egy fájlt, erősítse meg az oszlopok megfeleltetését, nézze át, mi jönne létre. Meglévő adat nem íródik felül, és egy fájllal legfeljebb 2000 sor hozható be.
+- **Egy már feltöltött dokumentumból**, ahogy alább olvasható.
+
+### Lista készítése dokumentumból
+
+Nyissa meg a dokumentumot a **Dokumentumok** alatt, és kattintson a **Kategórialista készítése** gombra. Az AI elolvassa, és javaslatot tesz egy listára: címet, útmutató szöveget, valamint a kategóriákat kóddal és leírással.
+
+Működik költséghely-szabályzaton, számlatükrön, szervezeti listán, pályázati költségvetésen. Csak az első 20 oldalt olvassa el; a hosszabb dokumentumot nem utasítja vissza, a képernyő pedig megírja, hány oldalt olvasott el és hány kategóriát talált. Magától semmi nem indul el: az AI csak akkor olvas el egy dokumentumot, ha Ön megkéri rá.
 
 Amit visszakap, az **javaslat**, és Ön dönt róla:
 
-- Minden mező szerkeszthető, mielőtt bármi létrejönne, a lista címe és az útmutató szöveg is.
-- Az egyes kategóriák a **Kihagy** gombbal kihagyhatók.
-- Azt a kategóriát, amelyet a dokumentum lezártként jelöl, a rendszer inaktívként hozza létre, és ezt előre jelzi is.
-- A kategóriák mehetnek **új listába**, vagy hozzáadhatók egy **meglévő listához**; utóbbi esetben csak a hiányzók kerülnek be, a már meglévőkhöz semmi nem nyúl.
+- Minden mező szerkeszthető, mielőtt bármi létrejönne, a cím és az útmutató szöveg is.
+- Az egyes kategóriák a **Kihagy** gombbal hagyhatók ki.
+- Azt a kategóriát, amelyet a dokumentum lezártként vagy kifutottként jelöl, a rendszer inaktívként hozza létre, és ezt előre jelzi is.
+- A kategóriák mehetnek **új listába**, vagy hozzáadhatók egy **meglévőhöz**; ilyenkor csak a hiányzók kerülnek be.
 
-Az utolsó lépés pontosan megmutatja, mi fog történni: hány kategória jön létre, hány van már meg, és hány sor nem használható. Amíg nem kattint a **Létrehozás** gombra, semmi nem íródik ki.
+Az utolsó lépés megmutatja, mi fog történni: hány kategória jön létre, hány van már meg, és hány sor nem volt használható. Amíg nem kattint a **Létrehozás** gombra, semmi nem íródik ki.
 
-Ha a dokumentumban nincs kategóriarendszer, a képernyő ezt őszintén megírja, ahelyett hogy üres listát kínálna. A legtöbb dokumentumnál ez a szokásos válasz.
+Ha a dokumentumban nincs kategóriarendszer, a képernyő ezt kereken megírja, ahelyett hogy üres listát kínálna. A legtöbb dokumentumnál ez a szokásos válasz.
 
-Az így készült lista megjegyzi, honnan származik, a dokumentum pedig mutatja, mely listák születtek belőle, így később sem lesz rejtély egy kódkészlet eredete.
+Az így készült lista megjegyzi, honnan származik, a dokumentum pedig mutatja, mely listák születtek belőle.
+
+## Kategóriák archiválása
+
+A már nem használt kategóriát a rendszer nem törli, hanem archiválja, mert a meglévő tételek hordozzák.
+
+- **Egyesével**: a sorában lévő **Inaktiválás** gombbal, visszahozni pedig az **Aktiválás** gombbal tudja.
+- **Többet egyszerre**: pipálja be a sorokat, és nyomja meg az **Archiválás** gombot a táblázat fölött megjelenő sávban. Jelölőnégyzet csak az aktív sorokon van, a visszajelzés pedig megírja, ténylegesen hányat archivált a rendszer. Tömeges visszaállítás nincs: a kategóriák visszahozása soronként megy, így az 500 kategóriás korlát nem léphető át véletlenül.
+
+Mit tesz az archiválás, és mit nem:
+
+- **A tételek megtartják a kategóriát.** A vele megjelölt számlán továbbra is látszik.
+- **Újra senki nem választhatja.** Kikerül a tételen lévő választóból, és az AI sem javasolja többé.
+- **A jelentések továbbra is bontanak szerinte**, így egy múltbeli időszak megtartja az oszlopát. A jelentés szűrőmenüjéből viszont eltűnik.
+- **A csempén lévő kategóriaszám csökken**, mert az az aktív kategóriákat számolja.
+
+Egy érdesség: azon a tételen, amelynek a kategóriáját archiválták, a név továbbra is látszik, de a mellette lévő választóban **Nincs megadva** áll, mert az archivált kategória már nincs a választható elemek között.
 
 ## Hogyan alkalmazza az AI
 
-Miután egy számla vagy tétel végzett a normál kategorizálással, egy külön AI-menet elolvassa a listáit, és listánként egy kategóriát rendel hozzá. A magabiztos hozzárendelések automatikusan megtörténnek, AI-jelvénnyel és megbízhatósági értékkel; a bizonytalanok üresen maradnak. **Kötelező** listán az üres hozzárendelés megjelöli a tételt:
+Miután egy számla vagy tranzakció végzett a normál kategorizálással, egy külön menet elolvassa az aktív listáit, és listánként egy kategóriát rendel hozzá. A duplikált és az elutasított számlákat kihagyja.
 
-- a számláknál borostyán teendőcímke jelenik meg, és a tétel beleszámít a havi zárási ellenőrzésekbe;
-- a banki tételeknél a címke a részletoldalon látszik, a tranzakciólistában pedig van egy **Hiányzó egyéni kategória** szűrő.
+- A magabiztos hozzárendelést (**0.70** vagy afölött) a rendszer alkalmazza, és AI-jelvénnyel meg a pontszámmal mutatja, például **AI 0.87**.
+- Ez alatt nem ír ki semmit.
+- **Kötelező** listán az üres hozzárendelés megjelöli a tételt: a számlákon borostyánsárga teendőcímke jelenik meg, és a tétel beleszámít a havi zárási ellenőrzésekbe; a banki tranzakcióknál a címke a részletoldalon látszik, a tranzakciólistán pedig ott a **Hiányzó egyéni kategória** szűrő.
 
-A kézzel választott kategória mindig erősebb; az AI soha nem ír felül meglévő hozzárendelést, akár Öntől származik, akár egy korábbi futtatásból.
+**Az AI három próbálkozás után feladja** ugyanazon a tételen és listán, és onnantól békén hagyja. Két dolog kérdezi meg újra: ha módosítja a lista kategóriáit vagy az útmutatóját, illetve ha lefuttatja az **Alkalmazás meglévő tételekre** műveletet.
+
+A kézzel választott kategória mindig erősebb, és az AI soha nem ír felül meglévő hozzárendelést. Számlán az Ön választása az egész számlára vonatkozik; ahol a sorok eltérnek, a kártyán érték helyett **Soronként eltérő** áll.
 
 ## Meglévő tételek lefedése
 
-Az új lista csak az utána érkező tételekre vonatkozik. A korábbiakhoz nyissa meg a listát, és használja az **Alkalmazás meglévő tételekre** gombot: az AI futtatásonként legfeljebb 2000 régebbi számlát és tételt dolgoz fel, és a maradékhoz újra futtatható.
+Az új lista csak az utána érkező tételekre vonatkozik. A múlt lefedéséhez használja az **Alkalmazás meglévő tételekre** gombot magán az **Egyéni kategóriák** oldalon, a **+ Új lista** mellett. Akkor jelenik meg, ha a munkaterületen már van legalább egy lista.
 
-## A lista használata riportokban
+- Válasszon időszakot: **Utolsó 3 hónap**, **Utolsó 6 hónap**, **Aktuális év**, **Előző év** vagy **Teljes időszak**. A számlákat a kiállítás dátuma, a tranzakciókat a könyvelési dátum alapján válogatja ki a rendszer.
+- **Minden olyan listát lefed, amely egy tételről még hiányzik**, nem csak egyet.
+- Egy futtatás összesen legfeljebb 2000 tételt dolgoz fel, előbb a számlákat. A maradékhoz futtassa újra.
 
-A lista nem csak címke. Bármelyik riportban kiválaszthatja a **Bontás** vezérlőnél, és ekkor minden jelentéssor kategóriánként egy oszlopra bomlik, így egyetlen eredménykimutatás azt is megmutatja, hogyan oszlanak meg a számok a költséghelyek, üzletágak vagy projektek között.
+A háromszori próbálkozás korlátját is törli azon, amihez hozzányúl, így az AI azokkal a tételekkel is újra megpróbálkozik, amelyeket korábban feladott.
 
-Csak a riporthoz illő listák jelennek meg: a Számla típusú riport a számlákra vonatkozókat kínálja, a Pénzforgalom típusú a banki tételekre vonatkozókat. A riport azt is mutatja, mi nem kapott még kategóriát, és az időszak mekkora része van lefedve, így a megoszlás soha nem tűnik magabiztosabbnak, mint amilyen a mögötte lévő adat. Az értelmezéséről lásd: [Riportok](/reports).
+## Ki módosíthatja
+
+A listák létrehozásához és szerkesztéséhez, a kategóriák felvételéhez, importálásához és archiválásához, valamint a visszamenőleges futtatáshoz a „Törzsadatok szerkesztése” jogosultság kell, amellyel a könyvelők rendelkeznek. Ugyanez kell ahhoz is, hogy valaki kézzel állítson be egyéni kategóriát egy számlán vagy tranzakción; ez sokakat meglep, mert törzsadat, nem a tétel szerkesztése.
+
+Az ügyféloldali tagok a listákat és a kategóriáikat csak olvasni tudják.
+
+## A lista használata jelentésekben
+
+A lista nem csak címke. Bármelyik jelentésben kiválaszthatja a **Bontás** vezérlőnél, és ekkor minden jelentéssor a lista szerinti oszlopokra bomlik. Csak a jelentéshez illő listák jelennek meg.
+
+A bontás értelmezéséről lásd: [Jelentések](/reports): a Nincs hozzárendelve oszlop, mi történik, ha tizenkettőnél több kategóriának van forgalma, a lefedettségi sáv és a „csak ez”.

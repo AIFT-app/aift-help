@@ -1,63 +1,69 @@
 # Connecting an AI assistant via MCP
 
-AI Finance Team has a built-in **MCP server** - a standard interface that lets AI assistants like Claude, Mistral Le Chat, or ChatGPT query and (optionally) edit your bookkeeping data on your behalf. It's the same product, accessed conversationally.
+AI Finance Team has a built-in **MCP server**, a standard interface that lets AI assistants such as Claude, Mistral Le Chat or ChatGPT read your bookkeeping data, and with your permission change it. It is the same product, reached by conversation.
 
-Once connected, you can ask your assistant questions in plain language ("What invoices in Pannónia Bistro need my attention?") and it will pull live data from your AIFT workspace. With the optional write scope, it can also categorise transactions, accept matches, and edit invoice fields for you.
+Once connected, you can ask in plain language ("Which invoices in Quillmoor Software need my attention?") and the assistant pulls live data from your workspace.
 
-This guide is for accountants. Clients don't currently have MCP access.
+The article is written for accountants, who can use every tool. A client-side member can connect too and read their own workspace, but the tools that change something will refuse them.
 
----
+## Before You Connect
 
-## What it does
+**AI assistant access must be switched on for your accounting firm.** Open **Organization → AI access**. Every member of the firm can see whether it is on; an **organization admin** can change it.
 
-The MCP connection sits on top of the same data and permissions you already have inside AIFT. It can't see anything you can't see, and - when the **Make changes** scope is granted - it can only do things an accountant can already do through the UI. Every action is auditable.
+A few things worth knowing about that switch:
 
-### Things you can ask (no changes made)
+- It covers the whole organization and every client workspace in it. The web app is unaffected either way.
+- Turning it off takes effect immediately, including for assistants that are already connected. Turning it back on restores them without reconnecting.
+- The page also states which AI providers receive data when you use this, and is the right place to read that before you connect.
+- AI Finance Team can also switch it off, with a reason. Your organization can override that itself on the same page.
+
+## What It Can Do
+
+The connection sits on the same data and the same permissions you already have. It cannot see what you cannot see, and it can only do what you could do in the app. Every call is recorded.
+
+### Questions (nothing changes)
 
 > "List my client workspaces and tell me which need the most attention."
 
-> "In Csavar Csárda, what bank transactions in May don't have a matching invoice yet?"
+> "In Slatebridge Roofing, which bank transactions in May have no matching invoice yet?"
 
-> "Show me Q1 results for Pannónia Bistro - both the P&L and cash-flow reports."
+> "Show me Q1 for Quillmoor Software, the P&L and the cash-flow report."
 
-> "Which Logikum Kft. invoices have uncategorised line items, sorted by amount?"
+> "Which Gearmont Fleet Services invoices have uncategorised lines, largest first?"
 
-> "Find every Telekom bank transaction in Zöld Saláta Kft. from March."
+> "Find every card payment in Reamwell Office Supplies from March."
 
-> "What's been done in this workspace through MCP today?"
+> "What has been done in this workspace through MCP today?"
 
-### Things you can ask the assistant to do (write scope required)
+### Actions (the Make changes scope)
 
-> "Mark all the bank-fee transactions in May as 'no invoice needed'."
+> "Mark the bank fees in May as no invoice needed."
 
-> "Categorise this Adobe invoice line as 'Software licence'."
+> "Categorise this subscription invoice line as software licence."
 
-> "Confirm the suggested match between INV-0314 and TXN-0892."
+> "Confirm the suggested match between AH-INV-2026-0314 and AH-TXN-2026-0892."
 
-> "This invoice's partner is wrong - set it to the verified partner 'Magyar Telekom'."
+> "This invoice's partner is wrong: set it to the verified partner Slatebridge Roofing."
 
-> "AcmeCorp is actually a new vendor - promote it to a verified partner."
+> "Promote this supplier to a verified partner."
 
-> "Revert the categorisation on AH-TXN-2026-0042."
+> "Undo the categorisation on AH-TXN-2026-0042."
 
-Every write action records a **before** and **after** snapshot in the audit log, so you can review (and undo) any change.
+Categorising and editing invoices are **accountant-only**, whichever scope you granted.
 
----
+## What It Cannot Do
 
-## What it explicitly cannot do
+- **Move money.** No transfers, no payments, no access to bank credentials.
+- **Reach your credentials.** Bank connection settings, passwords and tokens are all out of reach. The assistant can see *whether* a NAV connection exists, never its credentials.
+- **Upload or re-read a document.** Files go through the app or your workspace's email address. The assistant cannot take an attachment, and it cannot ask for a document to be read again.
+- **Export to your accounting system.** Exports stay a deliberate step in the app.
+- **Touch other workspaces.** It sees only workspaces you belong to, and only while the firm's AI access is on.
 
-- **Move money.** No transfers, no payments, no bank-credential access. The connection only touches bookkeeping data.
-- **Change account credentials.** Bank-connection settings, user passwords, OAuth tokens - all off-limits.
-- **Submit invoices to tax authorities.** Export to your accounting system is a separate, manual step.
-- **Touch other workspaces.** The assistant only sees workspaces you're a member of, and the per-tool checks reject anything outside that scope.
+These are enforced on our side. Asking the assistant to do them anyway changes nothing.
 
-These are enforced server-side; nothing the assistant tries - even if asked - can bypass them.
+## Setting Up the Connection
 
----
-
-## Setting up the connection
-
-The exact steps depend on which assistant you use. The URL to give the connector is always the same:
+The URL is always the same:
 
 ```
 https://aift.aifinance.team/api/mcp
@@ -65,104 +71,112 @@ https://aift.aifinance.team/api/mcp
 
 ### Claude (desktop or web)
 
-Available on Pro, Max, Team, and Enterprise plans.
+Available on Pro, Max, Team and Enterprise plans.
 
 1. Open **Settings → Connectors → Add custom connector**.
-2. Paste the URL above.
-3. Click **Add**. Claude opens an AIFT sign-in tab.
-4. Sign in with your normal AIFT account.
-5. On the consent screen, tick **Read your books** to grant the read scope. Tick **Make changes** as well if you want the assistant to be able to categorise, match, edit invoices, etc.
-6. Click **Allow**. You're back in Claude with the tools loaded.
+2. Paste the URL.
+3. Click **Add**. Claude opens an AI Finance Team sign-in tab.
+4. Sign in with your normal account.
+5. On the consent screen, tick **Read your books**, and **Make changes** as well if you want the assistant to be able to categorise, match and edit.
+6. Click **Allow**.
 
-To disconnect: Settings → Connectors → AIFT → **Remove**.
+<McpConsentFigure>
+The consent screen, with **Read your books** ticked and **Make changes** left for you to decide. The numbers match the list below.
+</McpConsentFigure>
+
+1. **Read your books**, which every question needs.
+2. **Make changes**, which the assistant needs to categorise, match or edit.
+3. **Allow** grants what is ticked. **Cancel** grants nothing.
+
+To disconnect: Settings → Connectors → AI Finance Team → **Remove**.
 
 ### Mistral Le Chat
 
 Available on Free and Pro.
 
 1. **Settings → MCP Connectors → Add Connector**.
-2. Paste the URL above. Auth is auto-detected.
-3. Follow the same sign-in + consent flow.
-
-Mistral is currently the friendliest path - no plan gating, fastest setup.
+2. Paste the URL. The sign-in is detected automatically.
+3. Sign in and give consent as above.
 
 ### ChatGPT
 
-Available on Plus and Pro (via Developer Mode), or org-published on Business / Enterprise.
+Available on Plus and Pro through Developer Mode, or published by your organization on Business and Enterprise.
 
 1. Enable **Developer Mode** in settings.
 2. **Add Custom Connector** with the URL above.
-3. Follow the same sign-in + consent flow.
+3. Sign in and give consent as above.
 
-For Business / Enterprise accounts, your IT admin can publish AIFT as an org-wide connector so individual users don't need to enable Developer Mode.
+ChatGPT is given two extra general-purpose tools of its own shape, so its answers can look different from Claude's on the same question.
 
-### Microsoft Copilot / Gemini Enterprise
+### Microsoft Copilot and Gemini Enterprise
 
-Possible via Copilot Studio (Power Platform connector) or Gemini Enterprise (Google Cloud data store) - both require your IT team to wire it up. Reach out to AI Finance Team support if you want help with either.
+Possible through Copilot Studio or Gemini Enterprise, and both need your IT team. Ask us if you want help.
 
----
+## Read and Make Changes
 
-## Read vs. Make changes
-
-The consent screen shows two checkboxes. You choose what to grant.
+The consent screen has two tick boxes.
 
 | Scope | What it allows |
 |---|---|
-| **Read your books** | Every read tool: list workspaces, search the ledger, view invoices and transactions, list partners and companies, run reports, etc. No mutations. |
-| **Make changes** | Categorise invoices and bank transactions, accept and undo matches, edit invoice direction / partner / company, link or verify partners, mark transactions as no-invoice-needed. Each action is recorded with before/after values. |
+| **Read your books** | Every read tool: your workspaces, the ledger, invoices and transactions, master data, reports, missing invoices, the NAV list, problem invoices, comments, the workspace's and the firm's member list, and your own MCP activity. |
+| **Make changes** | Mark and unmark "no invoice needed", categorise invoices and transactions, confirm and undo matches, edit an invoice's direction, partner or company, and link or verify a partner. |
 
-You can grant read only, change-only, or both. You can disconnect and reconnect at any time to change the granted scopes.
+**Always tick Read**, even when you want the assistant to make changes: a write-only connection is possible and useless, because every question fails.
 
----
+Two details about reading that are easy to miss: the member lists include colleagues' **names and email addresses**, and an invoice comes back with its payment-approval decision, the payee's bank account and its confirmation state, and the payment file it went into.
 
-## Audit and safety
+"Master data" is one tool covering ten kinds: companies, partners, bank accounts, categories, transaction types, custom category lists and their values, counterparties the workspace has not verified yet, the NAV connection status and the Business Central pairings.
 
-Every MCP tool call writes one row to AIFT's audit log:
+Disconnect and connect again to change what you granted.
 
-- **Who** - the AIFT user behind the connection
-- **What** - the tool called, with arguments (free-text search terms are stripped)
-- **Which record** - for write actions, the row that was mutated
-- **Before and after values** - for write actions, full snapshots so any change can be replayed in reverse
+## When It Does Not Work
 
-You can review this directly inside the assistant:
+The assistant shows the message it received. Each one means something different:
 
-> "Show me everything I've done through MCP in the last hour."
+| What you see | What to do |
+|---|---|
+| AI assistant (MCP) access is turned off for your organization | An organization admin turns it on under **Organization → AI access**. |
+| Your account does not belong to an organization that can use MCP | Contact us. This is a setup gap, not the switch. |
+| Your sign-in for this connection is no longer valid | Disconnect the connector and add it again. |
+| Access could not be verified, try again shortly | A temporary fault. Try again, and tell us the time if it persists. |
 
-Or directly in AIFT - your administrator can pull the full log from the `mcp_access_log` table.
+Two more cases have no message of their own:
 
-If you suspect anything went wrong - wrong category applied, an invoice updated with the wrong direction - the audit log's **before_values** is the source of truth for restoring the prior state.
+- **Everything is empty.** If your role or an exception has taken "View invoices and bank transactions" away from you, every read tool returns nothing while the connection still looks healthy. See [Roles and Permissions](/roles-and-permissions).
+- **You are asked to sign in again after a long break.** A connection left untouched for about a month has to be re-authorised. This is normal.
 
----
+## What Is Recorded
 
-## Tips for productive conversations
+Every call writes one row to the audit log: who made it, which tool, when, how long it took, how many records came back, and whether it failed. For a change, the record that was touched and its values before and after are stored as well.
 
-- **Be specific about the workspace.** "Show me Pannónia Bistro's…" is much better than "Show me my client's…". The assistant has access to all your workspaces and will sometimes guess.
-- **Use friendly IDs.** Invoice numbers like `AH-INV-2026-0042` and transaction numbers like `AH-TXN-2026-0157` are stable references the assistant can resolve directly. They're shown throughout the AIFT UI.
-- **Ask for an audit trail when in doubt.** "What did you change?" usually pulls the before/after diff from the audit log.
-- **Click the links the assistant gives you.** Every record reference is returned with a `deep_link` - a direct URL into the AIFT UI for that row. Use those links rather than navigating from the sidebar; they jump you straight to the right record.
-- **The assistant cannot upload files.** PDFs and bank statements still go through the AIFT UI or your workspace's email-ingestion alias. The assistant can ask the system to **re-extract** an invoice or statement that's already uploaded, but it cannot accept attachments through the chat.
+Two limits are worth understanding:
 
----
+- **The arguments are recorded selectively.** Names of the expected arguments are kept; anything else, including any long or free-text value, is replaced. Search terms are not stored.
+- **Results are never stored.** The log holds the shape of the call, not the data the assistant saw.
 
-## Common questions
+You can ask the assistant what it has done: "What have I done through MCP in the last hour?" That lists the calls, not the before and after values. If a change went wrong, the fix is to make the right change: categorise it again with the correct value, or set the field back. For anything you cannot repair that way, ask us and we will read the log.
 
-**Does the AI assistant store my data?**
-The MCP server returns data to the assistant per request. Whether the assistant *retains* anything afterwards depends on its provider's policy (Claude, Mistral, ChatGPT each have their own data-use settings). The AIFT side keeps the audit log of which calls were made, not the data the assistant saw.
+## Tips
 
-**Can I share my connection with a colleague?**
-No - the connection is tied to your AIFT user. Each accountant on a workspace should set up their own connector. They'll see the same data via RLS, but actions are stamped to whoever performed them.
+- **Name the workspace.** "In Quillmoor Software…" beats "at my client's", because the assistant can see all of your workspaces.
+- **Use the visible identifiers.** Invoice numbers like `AH-INV-2026-0042` and transaction numbers like `AH-TXN-2026-0157` are shown in the app and the assistant can resolve them directly.
+- **Follow the links it gives you.** Invoices and transactions come back with a link straight into the app. Other records do not; ask the assistant to fetch the invoice or the transaction, and you get one.
+- **One person, one connection.** A connector is tied to your account. Each colleague sets up their own, and every action is stamped with who performed it.
 
-**What if the assistant makes a wrong change?**
-Every write action stores before/after values. Tell the assistant: "Revert the last change you made to AH-INV-2026-0042" - it will read the audit log's `before_values` and apply them. For categorisation specifically, just call categorise again with the original value.
+## Common Questions
 
-**The assistant gave me a URL that 404s.**
-Always use the `deep_link` in the assistant's response - that's the only authoritative URL. The assistant has been instructed not to construct AIFT URLs from patterns, but if you see a broken one, ask it to "use the exact deep_link you got back from the tool".
+**Does the assistant keep my data?**
+We return data per request. Whether the assistant keeps anything afterwards is a matter of its provider's policy and your settings there. On our side we keep the log of which calls were made, not what they returned.
 
-**Can the assistant export my books to my accounting system?**
-Not yet - accounting-system exports (Kulcs-Soft, Novitax, DATEV, BMD) go through AIFT's own export flow. MCP is read + edit only.
+**Can the assistant do something I am not allowed to do?**
+No. Every tool re-checks your permissions, and the ones that change data also require an accountant role.
 
----
+**Can I use it on my phone?**
+Yes, wherever the assistant runs. The connection belongs to your account, not to a device.
 
-## Need help?
+**Can it export to my accounting system?**
+No. Exports to Kulcs-Soft, Novitax, DATEV or BMD stay in the app.
 
-Mention the issue to your AIFT account contact, or write to support. Include the workspace name, the assistant you're using (Claude / Mistral / ChatGPT), and the time of day - that's usually enough to find the audit-log entry and trace what happened.
+## Need Help?
+
+Tell us the workspace, the assistant you use and roughly when it happened. That is usually enough to find the call in the log and see what went wrong.

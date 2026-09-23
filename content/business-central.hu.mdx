@@ -1,150 +1,169 @@
-# A Business Central összekötése
+# Business Central
 
-Az AI Finance Team ki tudja olvasni a Microsoft Dynamics 365 Business Centralban lévő cégeket. Ez az oldal elmagyarázza, mit kell jóváhagyni, és kinek.
+Az AI Finance Team összekapcsolható a Microsoft Dynamics 365 Business Centrallal: párosítja az Ön cégeit a Business Centralban lévőkkel, lemásolja a törzsadataikat, és létre tudja hozni ott a partnereit szállítókartonként.
+
+**Mindenekelőtt be kell kapcsolnunk a Business Centralt a munkaterületen.** Alapértelmezés szerint ki van kapcsolva, és amíg ki van kapcsolva, a menü egyáltalán nincs ott. Szóljon nekünk, és bekapcsoljuk.
+
+## Mit olvasunk ki, és mit írunk be
+
+Az AI Finance Team **kiolvassa** a Business Centralban lévő cégeket, és minden párosított cégnél a főkönyvi számait, áfa- és könyvelési csoportjait, mennyiségi egységeit, pénznemeit, bankszámláit, fizetési módjait és fizetési feltételeit, dimenzióit és dimenzióértékeit, valamint a szállítóit. **Könyvelési tételt, számlát és egyenleget nem olvasunk.**
+
+Pontosan egyetlen dolgot **ír be** az AI Finance Team: egy **szállítókartont**, az Ön egyik partneréből, amikor valaki megnyomja a gombot a feladási képernyőn. Ez is ki van kapcsolva, amíg a munkaterületén külön be nem kapcsoljuk.
+
+De még akkor is:
+
+- **Semmit nem könyvelünk le.** Se naplót, se tételt, se bizonylatot.
+- **Meglévő szállítókartont soha nem írunk felül.** Az azonos adószámú kartont inkább összekötjük az Ön partnerével.
+- **Semmit nem törlünk.**
+
+## A kapcsolat beállítása
 
 A beállításhoz **két külön jóváhagyás** kell, és ezeket általában két különböző ember adja meg. Az egyik megadása nem jelenti a másikat. Indulás előtt ezt érdemes a legjobban megérteni.
 
----
+1. **Microsoft-jóváhagyás.** Valaki, akinek **Globális rendszergazda** joga van az Önök Microsoft 365-jében, egyszer jóváhagyja az AI Finance Teamet. Ez általában az informatikus vagy az informatikai szolgáltató. Nagyjából egy percet vesz igénybe, egy Microsoft-oldalon.
+2. **Business Central-regisztráció.** Valaki, akinek **SUPER** joga van a Business Centralon belül, felveszi ott az alkalmazásunkat, és jogosultságkészletet ad neki. Ez sokszor a könyvelő, nem az informatikus.
 
-## A két jóváhagyás
+<BusinessCentralApprovalsFigure>
+A két jóváhagyás, és az az állapot, amelyben a kapcsolat a kettő között áll.
+</BusinessCentralApprovalsFigure>
 
-**1. Microsoft-jóváhagyás.** Valaki, akinek **Globális rendszergazda** joga van az Önök Microsoft 365-jében, egyszer jóváhagyja az AI Finance Teamet. Ez általában az informatikus vagy az informatikai szolgáltató. Nagyjából egy percet vesz igénybe, és a Microsoft oldalán történik, nem a miénken.
+A másodikat nem lehet automatizálni: a Business Central nem kínál hozzá felületet, tehát egy embernek kézzel kell elvégeznie. A jóváhagyás önmagában olyan kapcsolatot hagy hátra, amely minden kérést elutasít, az AI Finance Team ezért különbözteti meg a két állapotot.
 
-**2. Business Central-regisztráció.** Valaki, akinek **SUPER** joga van a Business Centralon belül, felveszi ott az alkalmazásunkat, és jogosultságkészletet ad neki. Ez sokszor a könyvelő, nem az informatikus.
+Nyissa meg a **Beállítások → Business Central kapcsolat** oldalt, és kattintson a **Kapcsolat beállítása** gombra.
 
-A másodikat nem lehet automatizálni. A Business Central nem kínál hozzá felületet, tehát egy embernek kézzel kell elvégeznie. A jóváhagyás önmagában olyan kapcsolatot hagy hátra, amely minden kérést elutasít; az AI Finance Team ezért különbözteti meg a két állapotot ahelyett, hogy egyetlen általános „nincs összekötve” üzenetet mutatna.
+### 1. lépés: küldje el a jóváhagyó linket
 
----
+Válassza a **Jóváhagyó link létrehozása** lehetőséget. Kap egy linket és egy előre megírt üzenetet, amelyet elküldhet annak, aki a Microsoft 365-öt adminisztrálja.
 
-## 1. lépés: küldje el a jóváhagyó linket
-
-Az AI Finance Teamben nyissa meg a **Beállítások → Business Central** oldalt, és válassza a **Jóváhagyó link létrehozása** lehetőséget.
-
-Kap egy linket és egy előre megírt üzenetet. Küldje el mindkettőt annak, aki a Microsoft 365-öt adminisztrálja. A link 7 nap után lejár, és bármikor létrehozhat újat. Az új link létrehozása után a korábbi már nem működik.
-
-Két dologra érdemes számítani:
-
-- A Microsoft jelezni fogja, hogy **a közzétevő nem ellenőrzött**. Ez ennél az alkalmazásnál normális, és nem akadályozza meg a rendszergazdát a jóváhagyásban. A hétköznapi felhasználók jóváhagyását akadályozza meg, de itt nem arról van szó.
-- A rendszergazda egy oldalt lát, amely megerősíti a jóváhagyást. Ez nem nevezi meg az Önök cégét, mert a linket bárki megnyithatja, akinek a kezébe kerül.
+- **Másolja ki a linket rögtön.** Kivonatolva tároljuk, ezért az oldal elhagyása után már nem lehet újra megmutatni, új link létrehozása pedig érvényteleníti a régit. Minden link 7 napig él.
+- Ha Ön maga a Globális rendszergazda, használja az **Én vagyok a Microsoft-adminisztrátor, jóváhagyom most** gombot. Ez is új linket készít, és érvényteleníti a mostanit.
+- A Microsoft jelezni fogja, hogy **a közzétevő nem ellenőrzött**. Ez itt normális, és nem akadályozza meg a rendszergazdát a jóváhagyásban.
+- Az az oldal, amelyet a rendszergazda lát, nem nevezi meg az Önök cégét, mert a linket bárki megnyithatja, akinek a kezébe kerül.
 
 A megadott jogosultság olvasás és írás a Business Central API-n. Környezetek létrehozását vagy törlését nem teszi lehetővé.
 
----
+### 2. lépés: vegye fel az alkalmazást a Business Centralban
 
-## 2. lépés: vegye fel az alkalmazást a Business Centralban
+A lépések kezdettől fogva az oldalon vannak, **Az 1. lépés után** felirattal, amíg a Microsoft-jóváhagyás meg nem érkezik. A **Lépések másolása** gomb az Application ID-t és az összes lépést egyetlen blokkban a vágólapra teszi, készen a továbbküldésre.
 
-Amint a Microsoft-jóváhagyás megérkezik, az AI Finance Team megmutat egy **Application ID**-t és az alábbi lépéseket. Küldje el ezeket annak, akinek SUPER joga van a Business Centralban.
-
-1. A Business Centralban nyomjon **Alt+Q**-t, és keressen rá: **Microsoft Entra Applications**.
-2. Válassza az **Új** lehetőséget, és illessze be az Application ID-t.
+1. A Business Centralban nyomj **Alt+Q**-t, és keress rá: **Microsoft Entra Applications**.
+2. Válaszd az **Új** lehetőséget, és illeszd be a kapott **Application ID**-t.
 3. A leírás legyen: **AI Finance Team integration**.
 4. A **State** értéke legyen **Enabled**.
-5. Adja hozzá a **D365 BUS FULL ACCESS** jogosultságkészletet.
-6. A **Company** mezőt azon a soron hagyja **üresen**.
+5. Add hozzá a **D365 BUS FULL ACCESS** jogosultságkészletet.
+6. A **Company** mezőt azon a soron hagyd **üresen**.
 
 Itt három dolog megy félre a leggyakrabban:
 
-- **Ha megnevez egy céget azon a soron**, azzal az AI Finance Team csendben csak arra az egy cégre korlátozódik. Minden működni látszik, a többi cég viszont egyszerűen nem jelenik meg. Hagyja üresen.
-- **Ha a D365 AUTOMATION-t használja** helyette. A kapcsolat létrejön, de semmi hasznosat nem ad vissza, mert az a jogosultságkészlet az adminisztrációs API-kat fedi le, nem az üzleti adatokat.
-- **Ha a SUPER-t használja.** Működik, de sokkal többet ad, mint amennyire az integrációnak szüksége van. Ne tegye.
+- **Ha megnevez egy céget azon a soron**, azzal az AI Finance Team csendben csak arra az egy cégre korlátozódik. Minden működni látszik, a többi cég pedig soha nem jelenik meg. Hagyja üresen.
+- **Ha a D365 AUTOMATION-t használja.** A kapcsolat létrejön, és semmi hasznosat nem ad vissza, mert az a jogosultságkészlet az adminisztrációs API-kat fedi le, nem az üzleti adatokat.
+- **Ha a SUPER-t használja.** Működik, de sokkal többet ad, mint amennyire az integrációnak szüksége van.
 
-A regisztráció **környezetenként** külön kell. Ha Productionben elvégzik, az nem vonatkozik egy Sandboxra; minden környezetnek sajátra van szüksége.
+A regisztráció **környezetenként** külön kell. Ha Productionben elvégzik, az nem vonatkozik egy Sandboxra.
 
----
-
-## Mit jelentenek az állapotok
+### Mit jelentenek az állapotok
 
 | Állapot | Mit jelent | Ki következik |
 |---|---|---|
 | Nincs összekötve | Még nem készült jóváhagyó link. | Ön. |
 | Microsoft-jóváhagyásra vár | A link létezik, de még senki nem hagyta jóvá. | A Microsoft-rendszergazdájuk. |
-| Business Central-regisztrációra vár | A Microsoft jóváhagyott minket, és a bejelentkezésünk működik. A Business Central még elutasít, tehát a 2. lépés nincs kész. | A Business Central-rendszergazdájuk. |
-| Összekötve | Olvassuk a cégeiket. | Senki. |
-| Hiba | Valami konkrét hiba történt. Az oldal megmutatja a kódot. | A kódtól függ. |
+| Business Central-regisztrációra vár | A bejelentkezésünk működik; a Business Central még elutasít, tehát a 2. lépés nincs kész. | A Business Central-rendszergazdájuk. |
+| Összekötve | Olvasni tudjuk a cégeiket. | Senki. |
+| Hiba | Az oldal megmutatja a kódot, és megmondja, hogy ez nekünk javítandó-e. | A kódtól függ. |
 
-Ha az állapot szerint a környezet nem található, ellenőrizze a környezet nevét a saját Business Central webcímükben. A legtöbb ügyfélnél ez a **Production**.
+Ha az állapot szerint a környezet nem található, az oldal felkínál egy **Környezet** mezőt. A legtöbb ügyfélnél ez a **Production**; a nevét nézze meg a saját Business Central webcímükben. A mentés a következő sikeres ellenőrzésig ellenőrizetlenné teszi a kapcsolatot, ezért a lenti Törzsadatok menü egy pillanatra eltűnik.
 
----
+Ez a menü, a **Törzsadatok → Business Central**, csak akkor jelenik meg, ha a kapcsolat legalább egyszer működött.
 
-## Mit olvas az AI Finance Team
+## Cégek párosítása
 
-Ebben a szakaszban csak a **cégek listáját**: a nevüket és az azonosítójukat. A Business Centralba semmit nem írunk vissza, és számlát, tranzakciót vagy egyenleget még nem olvasunk.
+Nyissa meg a **Törzsadatok → Business Central → Cégek** oldalt. Itt szerepel a Business Centralban lévő összes cég, aszerint csoportosítva, hogy mit lehet velük kezdeni: már párosítva, javasolt egyezés, nincs egyezés, már szerepel az AI Finance Teamben, és nem cég.
 
-A cégadatok összekötése az AI Finance Team-beli cégekkel külön lépés, és Ön választja ki, melyik Business Central cégeket köti össze. Az össze nem kötött cégeket egyszerűen békén hagyjuk.
+Minden Business Central cég egy AI Finance Team-beli céggel párosítható, és fordítva. Kétféleképpen:
 
----
+- **Cég létrehozása egy Business Central cégből.** A nevet, az adószámot, az országot és a címet a Business Centralból vesszük át. Jelöljön be többet, és egyszerre hozza létre őket; egyenkénti létrehozáskor előbb látja az értékeket, és javíthatja a nevet.
+- **Párosítás meglévő céggel.**
 
-## Business Central cégek és AI Finance Team-beli cégek összepárosítása
+Az **adószám** alapján tett javaslat megbízható. A **név** alapján tett javaslat csak javaslat.
 
-Ha a kapcsolat működik, a Business Central oldal felsorolja a Business Centralban lévő összes céget. Minden Business Central cég egy AI Finance Team-beli céghez párosítható, és minden AI Finance Team-beli cég egy Business Central céghez.
-
-Kétféleképpen párosíthat:
-
-- **Új cég létrehozása egy Business Central cégből.** Az AI Finance Team a nevet, az adószámot, az országot és a címet a Business Centralból veszi át. Több céget is kijelölhet, és egyszerre hozhatja létre őket.
-- **Párosítás meglévő céggel.** Akkor használja, ha a cég már megvan az AI Finance Teamben.
-
-Ahol tud, az AI Finance Team párosítást javasol. Az **adószám** alapján tett javaslat megbízható. A **név** alapján tett javaslat csak javaslat, ezért elfogadás előtt ellenőrizze.
+Kezdheti a **Törzsadatok → Cégek** oldalról is: ott a **Cégek létrehozása a Business Centralból** gomb a **Cég hozzáadása** mellett van, és csak azt sorolja fel, ami még nincs párosítva.
 
 ### Egy adószám, egy cég
 
-Egy munkaterületen minden cég csak egyszer szerepel. Ha egy Business Central cég adószáma már egy AI Finance Team-beli cégé, a sor csak **Párosítás** lehetőséget kínál, **Cég létrehozása** gombot soha. Ha ez a cég már egy másik Business Central céggel van párosítva (például ugyanannak a cégnek egy tesztpéldányával), a sor megmondja, melyikkel, és ha ez a helyes, előbb azt a párosítást bontsa.
+Egy munkaterületen minden cég csak egyszer szerepel. Ha egy Business Central cég adószáma már egy itteni cégé, a sor csak **Párosítás** lehetőséget kínál, **Cég létrehozása** gombot soha, és a tömeges kijelölésből is kimarad. Ha ez a cég már egy másik Business Central céggel van párosítva, például ugyanannak a cégnek egy tesztpéldányával, a sor megmondja, melyikkel; előbb azt a párosítást bontsa.
 
-### Hol kezdheti
+Ha több Business Central cég osztozik egy adószámon, az oldal ezt kiírja, és megkéri, hogy válassza ki a megfelelőt, ahelyett hogy találgatna.
 
-Két helyen hozhat létre céget egy Business Central cégből.
+### Figyelmeztetések a soron
 
-- **Törzsadatok ▸ Business Central ▸ Cégek.** Minden még össze nem kötött cég mellett van egy **Cég létrehozása** gomb, és egy jelölőnégyzet, amellyel egyszerre többet hozhat létre.
-- **Törzsadatok ▸ Cégek.** Ha a munkaterületnek működő kapcsolata van, és maradt még össze nem kötött cég, a **Cég hozzáadása** mellett megjelenik egy **Cégek létrehozása a Business Centralból** gomb. Csak a még össze nem kötött cégeket sorolja fel, és jelzi, melyik szerepel már az AI Finance Teamben.
+- **Eltérő pénznem.** A Business Central ennek a cégnek a könyveit az Ön alappénznemétől eltérő pénznemben vezeti. Csak figyelmeztetés.
+- **Eltérő ország.**
+- **Eltérő adószámok.** Elfogadás előtt nézze meg, melyik a helyes.
+- **Az adószám áfacsoport-azonosító.** Az Ön cége a csoport számát mondja, a Business Central pedig a tag sajátját.
+- **A részleteket nem sikerült beolvasni.**
 
-Mindkettő ugyanazt teszi, és mindkettő összeköti a Business Central céget a létrehozott céggel.
+Az a Business Central cég, amelynek az adószáma csoportos bejelentkezés, nem pedig egy cégé, itt nem lehet cég. Hagyja párosítatlanul: ez bevallási megoldás, nem működő vállalkozás.
 
-Egyenkénti létrehozáskor először a cégnevet, az országot és az adószámot látja, és a nevet javíthatja, mielőtt a cég létrejön. Több cég egyszerre történő létrehozásakor az értékeket változatlanul vesszük át a Business Centralból.
+### Mit ír a párosítás
 
-### Mit írunk be, és mit nem
+Meglévő céggel való párosításkor a címet és az adószámot át tudja venni. **Csak az üres mezőket töltjük ki.** Az AI Finance Teamben már meglévő értéket soha nem írjuk felül, bármit is pipál ki; ha módosítani szeretné, szerkessze magát a céget.
 
-Meglévő céghez párosításkor a címet és az adószámot át tudja venni a Business Centralból. **Csak az üres mezőket tudjuk kitölteni.** Az AI Finance Teamben már meglévő értéket soha nem írjuk felül, bármit is pipál ki. Ha meglévő értéket szeretne módosítani, a céget szerkessze.
+### A párosítás bontása
 
-A Business Centralba soha nem írunk vissza semmit.
+A soron vagy a cég saját oldalán a **Szétválasztás**. Megszünteti a párosítást, és **törli az adott cég lemásolt törzsadatait**, a szállítókartonokra mutató kapcsolatokkal együtt. Az ÁFA-hozzárendelés és a feladások nyilvántartása megmarad, a Business Centralban pedig semmi nem változik.
 
-### Cégek, amelyeket nem lehet párosítani
+## A másolat frissen tartása
 
-Az a Business Central cég, amelynek az adószáma **csoportazonosító**, vagyis csoportos áfaalanyiság, nem lehet cég az AI Finance Teamben. Az AI Finance Team ezt kiírja a sorban. Hagyja párosítatlanul: ez bevallási megoldás, nem működő cég.
+A lemásolt törzsadat magától frissül: ami egy napnál régebbi, azt a következő óránkénti ellenőrzés újra beolvassa. Nem kell külön kérnie.
 
-### Figyelmeztetések, amelyeket láthat
+## Miben tér el a két rendszer
 
-- **Eltérő pénznem.** A Business Central ennek a cégnek a könyveit a munkaterület alappénznemétől eltérő pénznemben vezeti. Ez csak figyelmeztetés, a párosítást soha nem akadályozza.
-- **Eltérő adószám.** A Business Central cég és a hozzá párosítani kívánt cég más adószámot mond. Elfogadás előtt nézze meg, melyik a helyes.
+A **Törzsadatok → Business Central → Eltérések** négyféle rekordot hasonlít össze, mindkét irányban: főkönyvi számlákat, ÁFÁ-t, egyedi kategórialistákat és partnereket. Minden cella azt kínálja fel, aminek ott értelme van, például a hiányzó beolvasását vagy a rekord megnyitását.
 
-### A párosítás visszavonása
-
-A párosítást ugyanezen az oldalon vagy a cég saját oldalán bonthatja. A bontás csak a kapcsolatot szünteti meg. A cég pontosan úgy marad, ahogy volt, és a Business Centralban sem változik semmi.
-
----
+A darabszámokat olvassa figyelmesen. Egy üres cella három különböző dolgot jelenthet: **nem értelmezett**, **még nincs beolvasva**, vagy tényleg nulla. A fül megmondja, melyiket.
 
 ## Főkönyvi számok kategóriaként
 
-A Business Central API-ján keresztül nem lehet főkönyvi számot létrehozni, ezért a számlatükör az ügyfélé marad. Ahhoz, hogy egy AIFT kategória főkönyvi számra mutathasson, hozza be a főkönyvi számokat kategóriaként.
+A Business Central API-ján keresztül nem lehet főkönyvi számot létrehozni, ezért a számlatükör az ügyfélé marad. Ahhoz, hogy egy kategória főkönyvi számra mutathasson, hozza be a főkönyvi számokat kategóriaként.
 
-Nyissa meg a **Törzsadatok > Könyvelési kategóriák** oldalt, és válassza a **Számlatükör beolvasása a Business Centralból** gombot. A gomb a **Számla** és a **Pénzforgalmi** fülön is megtalálható.
+Nyissa meg a **Törzsadatok → Könyvelési kategóriák** oldalt, és válassza a **Számlatükör beolvasása a Business Centralból** gombot. A gomb a **Számla** és a **Pénzforgalmi** fülön is ott van.
 
-Felül a **Mi legyen belőlük** választó dönti el, mi lesz a bepipált főkönyvi számokból:
+A **Mi legyen belőlük** választó dönti el, mi lesz minden bejelölt főkönyvi számból: **Számla kategória**, **Pénzforgalmi kategória**, vagy **Mindkettő**, ami mindkettőből egyet készít ugyanazzal a főkönyvi számmal. Ezek utána külön kategóriák maradnak, az egyik átnevezése nem nevezi át a másikat.
 
-- **Számla kategória**: a számlasorokhoz.
-- **Pénzforgalmi kategória**: a banki mozgásokhoz.
-- **Mindkettő**: egy számla kategória és egy pénzforgalmi kategória ugyanazzal a főkönyvi számmal. A kettő külön kategória marad, az egyik átnevezése nem nevezi át a másikat.
+Az átnézés táblázatszerű rács, nem jelölőnégyzetek listája. Átírhatja egy sor megnevezését, beállíthatja az irányát, szűrhet számlatípusra, kereshet egy főkönyvi szám eleje szerint, és beilleszthet egy Excelből kimásolt számoszlopot, hogy azokat jelölje be. Ezután válassza a **Létrehozom** gombot: a következő képernyő megmutatja, mi jött létre és mi maradt ki, mindegyiknél az okkal.
 
-A listában azok a főkönyvi számok szerepelnek, amelyekhez még nincs a választott fajtájú kategória. Pipálja be, amelyekre szüksége van, ellenőrizze az irányt, majd válassza a **Létrehozom** gombot. A kategóriák azonnal létrejönnek. A következő képernyő megmutatja, mi jött létre, és mely főkönyvi számok maradtak ki, mindegyiknél az okkal együtt.
-
-**A kategóriát a főkönyvi szám azonosítja.** Két különböző számú főkönyvi számból két kategória lesz akkor is, ha ugyanaz a nevük. Ha egy főkönyvi számhoz már van ilyen fajtájú kategória, azt kihagyjuk, és változatlanul marad.
+**A kategóriát a főkönyvi szám azonosítja.** Két különböző számú főkönyvi számból két kategória lesz akkor is, ha ugyanaz a nevük, és azt a főkönyvi számot, amelyhez már van ilyen fajtájú kategória, kihagyjuk.
 
 ### Számla kategóriák másolása pénzforgalmi kategóriának
 
-A **Pénzforgalmi** fülön a **Másolás a számla kategóriákból** gomb minden olyan számla kategóriából pénzforgalmi kategóriát készít, amely a pénzforgalmi oldalon még nincs meg, ugyanazzal a főkönyvi számmal, megnevezéssel és iránnyal. Először a darabszámokat mutatja, és semmi meglévőt nem módosít. A beépített kategóriákat nem másolja, mert a pénzforgalmi oldalnak sajátjai vannak.
+A **Pénzforgalmi** fülön a **Másolás a számla kategóriákból** gomb minden olyan számla kategóriából pénzforgalmi kategóriát készít, amely a pénzforgalmi oldalon még nincs meg, ugyanazzal a főkönyvi számmal, megnevezéssel és iránnyal. Először a darabszámokat mutatja, és semmi meglévőt nem módosít. A beépített kategóriákat nem másolja.
 
----
+## Szállítókból partnerek
 
-## Ki állíthatja be
+A **Törzsadatok → Partnerek** oldalon, valamint az Eltérések fülön a **Hozzáadás a Business Centralból** gomb hozza be a szállítókartonokat partnerként. Az adószám alapján párosítjuk őket, így az itt már meglévő szállítót ilyenként mutatjuk, és nem lehet kétszer hozzáadni. Az adószám nélküli szállítókartonokat is hozzá lehet adni, de utána semmi nem tudja őket automatikusan párosítani.
 
-Munkaterület-adminisztrátor vagy az ügyfél tulajdonosa köthet össze és bonthat kapcsolatot. A munkaterület többi tagja látja az állapotot, de nem tudja módosítani.
+## ÁFA-hozzárendelés
 
-A kapcsolatot bármikor bonthatja ugyanezen az oldalon. A Microsoft-rendszergazdájuk a saját Microsoft 365-jükben is visszavonhatja a jóváhagyást, anélkül hogy minket megkérdezne.
+A **Törzsadatok → ÁFA-kódok → Business Central** oldal minden (termék- vagy szolgáltatáscsoport, kulcs) párját egy Business Central-adócsoportkódhoz rendeli. Soronként mentjük, és a párosítás bontását is túléli.
+
+## Partnerek feladása szállítóként
+
+A **Törzsadatok → Business Central → Feladás** oldal a partnereiből szállítókartonokat hoz létre a Business Centralban. Az AI Finance Team csak itt ír az Ön könyvelőrendszerébe, és ehhez három dolog kell:
+
+- az írás bekapcsolása a munkaterületen, amit csak mi tudunk megtenni;
+- a „Feladás a könyvelőprogramba” jogosultság, ami alapból a Könyvelő adminé;
+- **könyvelési csoportok minden párosított céghez**, amelyeket a képernyő először bekér, és a saját szállítókartonjaiból előre kitölt.
+
+Kiválasztja a partnereket, majd azt, hogy melyik cégekben jöjjenek létre, és futtatás előtt átnézi a listát. Egy futásban legfeljebb 200 megy fel. Utána minden sor megmondja, mi történt: létrejött, azonos adószámú meglévő kartonhoz kapcsolódott, vagy megadott okkal nem sikerült.
+
+A visszakapott szállítószám a partner oldalán, az AI Finance Team-beli azonosítója alatt jelenik meg, cégenként egy sorban. Ez a szám a Business Centralban egy céghez tartozik, ezért ne írja be a partner saját azonosítómezőjébe.
+
+## Ki mit tehet
+
+Az összekötéshez, a szétkapcsoláshoz és a párosításhoz a „Kapcsolatok kezelése” jogosultság kell, amely alapból a Könyvelő adminé és a Pénzügyi vezetőé. Egyéni szerepkör vagy kivétel ezen változtathat. Mindenki más látja az állapotot, de nem tudja módosítani. A feladáshoz a fentiek szerint külön jogosultság kell.
+
+## Szétkapcsolás
+
+A **Beállítások → Business Central kapcsolat** oldalon a **Szétkapcsolás**. A megerősítés megmondja, mi tűnik el: a párosítások, a lemásolt törzsadat és az ÁFA-hozzárendelések törlődnek, míg a cégei, a kategóriái, a partnerei és a szállítókartonokra mutató kapcsolatok megmaradnak.
+
+Az újracsatlakozáshoz **mindkét jóváhagyás újra kell**, és minden céget újra kell párosítani. A Microsoft-rendszergazdájuk a saját Microsoft 365-jükben is visszavonhatja a jóváhagyást, anélkül hogy minket értesítene.

@@ -20,13 +20,13 @@ Der lokale Teil (das Stück vor dem `@`) ist für Ihren Arbeitsbereich eindeutig
 
 Wenn eine Rechnungseinstellungsseite eine aufgeräumtere Adresse braucht als die automatisch erzeugte, können Sie bis zu **fünf benutzerdefinierte Aliase** je Arbeitsbereich reservieren (zum Beispiel `acme@in.aifinance.team`). Geben Sie unter **Benutzerdefinierte Aliase** den gewünschten Namen ein, klicken Sie auf **Reservieren**, und verwenden Sie ihn überall dort, wo auch die primäre Adresse funktionieren würde. Einen nicht mehr benötigten Alias können Sie **Stilllegen**.
 
-Das Verwalten von Aliassen (Reservieren oder Stilllegen) ist auf **Buchhalter-Administratoren** und **Mandanteninhaber** beschränkt. Alle anderen sehen die Adressen nur lesend - mehr braucht es zum Weiterleiten nicht.
+Das Verwalten von Aliassen (Reservieren oder Stilllegen) ist auf **Buchhalter-Administratoren** und die **Finanzleitung** beschränkt. Alle anderen sehen die Adressen nur lesend - mehr braucht es zum Weiterleiten nicht.
 
 ## Was mit einer weitergeleiteten E-Mail passiert
 
 1. Die E-Mail trifft an der Adresse Ihres Arbeitsbereichs ein, und in der **Sammelstelle** erscheint eine Zeile.
 2. Jeder Anhang wird **triagiert** - die App ermittelt, ob es sich um eine Rechnung, einen Kontoauszug, einen Beleg oder etwas anderes handelt.
-3. Rechnungen und Belege fließen in die Extraktion und erscheinen auf der Seite **Rechnungen** wie jeder andere Upload; Kontoauszüge gehen in die Auszugsverarbeitung.
+3. Rechnungen und Belege fließen in die Extraktion und erscheinen auf der Seite **Rechnungen** wie jeder andere Upload. Ein Kontoauszug wird auf diesem Weg **nicht** extrahiert: Er wartet in der Sammelstelle mit der Markierung **Wartet auf Extraktor**, und Sie müssen ihn auf der Seite **Banktransaktionen** hochladen, damit er gelesen wird, siehe [Kontoauszüge hochladen](/bank-statement-upload).
 4. Alles, was die App nicht sicher klassifizieren kann, wird unter **Prüfung erforderlich** beiseitegelegt, damit ein Mensch es sortiert.
 
 Die ursprüngliche E-Mail selbst wird Ihnen nie als Dokument berechnet - nur die nützlichen Anhänge darin landen in Ihrem Arbeitsbereich.

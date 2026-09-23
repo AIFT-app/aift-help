@@ -1,99 +1,94 @@
 # Uploading Bank Statements
 
-If your bank account is not connected via open banking, you can import transactions by uploading a PDF bank statement. AI Finance Team reads the statement, extracts each transaction, and links them to the correct bank account automatically.
+If a bank account is not connected through open banking, you can import its transactions by uploading a PDF statement. AI Finance Team reads the statement page by page, extracts every line, and writes the transactions to the right bank account.
 
-## Who Can Upload Statements
+## Uploading One
 
-Any workspace member can upload a bank statement. The upload button is on the **Transactions** page.
+Go to **Bank transactions** in the workspace sidebar and click **Upload statement**, or drag the PDFs onto the page. Uploading needs the "Upload documents" permission, which every role holds by default.
 
-## Supported Formats
+Everything else about uploading works the same as for any other document, including drag and drop, ZIP archives, the 50 MB limit per file and what the progress panel shows: see [Uploading Files](/uploading-files).
 
-PDF bank statements only. Scanned PDFs work as long as the text is legible - very low-quality scans may produce incomplete results.
+One thing does not work: **a statement sent in by email is not extracted**. It is parked in Intake as **Awaiting extractor**, waiting for someone to deal with it. Upload statements here.
 
-If a statement spans multiple PDFs, upload each file separately. You can also bundle several statement PDFs into a `.zip` and drop the archive - the browser unpacks it and queues each file individually.
+## What Happens To It
 
-## How to Upload a Statement
+Extraction starts the moment the file lands, always, and reads one page at a time. A long statement therefore takes minutes rather than seconds, and there is no page limit.
 
-1. Go to **Transactions** in the workspace sidebar.
-2. Click **Upload statement** in the top-right corner - or simply drag one or more PDFs (or a `.zip` of them) onto the page.
-3. Select your PDF file(s) in the picker if you used the button.
+On the first page AI Finance Team reads the account number and looks it up in the workspace. IBAN (`HU12 3456 7890 1234 5678 0000 0000`) and domestic format (`34567890-12345678`) both work, and spaces and hyphens are ignored. If the account is not in the workspace yet but is listed under one of your companies in **Master data → Companies**, it is created and linked there.
 
-A progress panel appears in the bottom-right corner showing each statement as it uploads and extracts. You can keep working - the panel stays in view while you navigate, and refreshing the page won't interrupt anything in flight. Open the **Statements** tab if you want a tabular view of every upload with extra detail.
+If nothing matches, extraction still reads the whole statement. The rows are held, no transactions are created, and the statement ends as **Failed**, saying which account number it could not find. Nothing is lost: see [When it needs you](#when-it-needs-you).
 
-For the full upload mechanics - multi-file picker, drag-and-drop, ZIP archives, retrying failed extractions - see [Uploading Files](/uploading-files).
+When the rows are written, the same pipeline that handles open-banking transactions takes over: transaction-type matching, partner resolution, categorisation and invoice matching.
 
-When extraction completes, the transactions appear in the **Transactions** tab under the matched bank account.
+### What "merged" means
 
-## Automatic Account Matching
+A statement line that exactly matches **one** transaction you already have in that account, same booking date and same amount, is **merged into it** rather than added. You end up with one transaction carrying both sources, which is what you want when open banking already brought the movement in.
 
-AI Finance Team reads the first page of the statement and looks up the account number in your workspace.
+That is why the **Transactions** column reads as a ratio, for example `24 / 26`: twenty-six lines were extracted, twenty-four became new transactions, and two folded into transactions that were already there.
 
-- If a matching account is found, extraction starts automatically and the statement appears in the **Statements** tab as **Extracting**.
-- If no match is found, the statement appears in the **Statements** tab as **Pending**. An accountant can assign the correct bank account from there to start extraction.
+Where the fold would be ambiguous, nothing is folded. Two lines on the same day for the same amount, or two existing transactions that both match, are all inserted. Check those by eye.
 
-Matching works with both IBAN format (`HU12 3456 7890 1234 5678 0000 0000`) and domestic account number format (`34567890-12345678`). Spaces and hyphens are ignored during comparison.
+## The Statements Tab
 
-If the bank account does not exist yet in your workspace but the account is listed under one of your companies in **Master Data → Companies**, the account is created automatically and linked to that company.
+The **Statements** tab on the Bank transactions page lists every upload: the file, the period, the account, the transactions ratio, the duplicate count, the status with its actions, and when it was uploaded. While a statement is extracting the ratio shows page progress instead, with a bar.
 
-## Statements Tab
-
-The **Statements** tab shows every uploaded statement and its current status.
+<StatementsTabFigure>
+Four statements: one finished, one still reading pages, one that found no bank account and is waiting for **Complete import**, and one that has not started.
+</StatementsTabFigure>
 
 | Status | Meaning |
 |--------|---------|
-| Pending | Uploaded but not yet assigned to a bank account. |
-| Extracting | Extraction is running - shows page progress. |
-| Completed | All transactions extracted successfully. |
-| Errors | Extraction finished but some pages had issues. |
-| Failed | Extraction could not complete. |
+| Pending | Extraction has not started yet |
+| Extracting | Running, page by page |
+| Completed | Every page was read |
+| Errors | Some pages could not be read; everything else was imported |
+| Failed | The statement could not be imported |
 
-Click any completed statement row to open the statement detail page.
+Any row that is not Pending opens the statement when you click it. A Pending row offers **Extract**, **Assign account** and **Dismiss**. **Dismiss** hides the statement for good: there is no undo.
 
-For **Pending** statements, the row shows action buttons:
+## When It Needs You
 
-- **Extract** - start extraction without assigning an account (transactions will be linked later).
-- **Assign account** *(accountants only)* - pick a bank account from a dropdown and start extraction in one step.
-- **Dismiss** - hide the statement without extracting it.
+**No bank account.** The row says so and offers **Complete import**. Add the account under the company in **Master data → Companies**, then press the button: the rows that were held are written and the statement completes. Nothing needs re-uploading.
 
-## Extraction Progress
+**The statement is in another currency than the account.** The upload fails outright and says which two currencies clashed. Delete it and upload it again against the right account.
 
-While a statement is extracting you can see page-by-page progress in the Statements tab. You can navigate away - extraction continues in the background. Come back to the Statements tab to check the final count.
+**Done with errors.** Pages that could not be read contributed nothing; everything else was imported normally. The app does not tell you afterwards which page failed, so compare the statement against the PDF, or against the closing balance in the editor.
 
-## What Happens After Extraction
+**Something failed outright.** The failed row in the progress panel offers **Retry**, which throws away the transactions that exist only because of this upload and starts again from page one. Any member can press it. The panel only shows what is running or finished in the last minute or so, so if it has gone, delete the statement and upload it again.
 
-Once extraction completes:
+## Checking The Rows
 
-1. All extracted transactions are written to the matched bank account.
-2. Categorisation and partner resolution run automatically - the same AI pipeline used for open banking transactions.
-3. Transactions appear in the **Transactions** tab, ready for review.
+Clicking a statement opens it in a full-screen overlay: the PDF on the left, the extracted transactions on the right. On a narrow screen there is no room for the PDF, so you get the list alone.
 
-Duplicates are detected automatically. If a transaction already exists in the system (imported via open banking or a previous statement upload), it will not be inserted again.
+- **Click a row** to jump to that page in the PDF and highlight the date. Click it again to deselect.
+- **Search and filter** by partner, description or direction.
+- The **category** column shows what each transaction was booked to.
+- A **yellow or red dot** means the line was read with lower confidence. Check those against the PDF.
+- A **Dup** row, shown faded, is a transaction that was flagged as a duplicate. It is in the ledger, and the usual views filter it out.
 
-## Statement Detail Page
+The footer totals the transactions, the duplicates and the net amount.
 
-Click any completed statement row in the Statements tab to open the detail page. This shows the PDF on the left and the extracted transaction list on the right. The page opens in full-screen - the sidebar is hidden to give you more space. It reappears when you navigate away.
+### Editing a statement
 
-- **Click a transaction row** to jump to the correct page in the PDF and highlight the matching date in yellow. Click the same row again to deselect.
-- **Search and filter** transactions by partner, description, or direction (income / expenses).
-- The **category column** shows how each transaction was categorised after extraction.
-- Rows with a **yellow or red dot** were extracted with lower confidence - review those manually.
-- Rows marked **Dup** are duplicates that were not inserted into the transaction list.
+**Edit**, in the overlay header, opens the statement as a table you can work in. Accountants only, and not while extraction is running.
 
-The summary footer shows the total transaction count, duplicate count, and net amount.
+You can correct any field, add a line the extractor missed, delete one it invented, restore it again, reorder the lines, and set the partner. The **opening and closing balances** are read off the statement header when there is one, and the editor warns you when your lines do not add up to them. It is a warning, not a block: save anyway if you know better. The editor keeps you from leaving with unsaved changes.
 
 ## Deleting a Statement
 
-Accountants can delete a statement from the statement detail page. Click **Delete statement** in the footer and confirm.
+**Delete statement**, also in the overlay header, needs a confirmation. It removes the transactions that came only from that file; anything that was also imported from another source stays.
 
-Deleting a statement removes all transactions that came exclusively from that file. Transactions that were also imported from another source (for example via open banking) are kept.
+## Who Can Do What
 
-## Re-extracting a Statement
+- **Upload a statement**: "Upload documents".
+- **Assign an account, complete an import, edit or delete a statement**: "Edit bank transactions", which accountants hold.
+- **See the imported transactions**: "View invoices and bank transactions".
 
-If extraction failed or produced incorrect results, contact your accountant. Accountants can delete the statement and upload it again to start fresh.
+See [Roles and Permissions](/roles-and-permissions).
 
 ## Tips
 
-- **Match accounts before uploading.** If you add bank account details under **Master Data → Companies** before uploading, the statement will match automatically - no manual assignment needed.
-- **Upload one period at a time.** Overlapping statements from the same account will be deduplicated, but keeping periods clean makes reconciliation easier.
-- **Check the Statements tab for status.** If you uploaded a file and see no new transactions, check the Statements tab - the row shows whether extraction is still running or needs attention.
-- **Large statements take longer.** A 20-page statement processes page by page; expect a few minutes for completion.
+- **Add the account first.** Entering the bank account under the company before you upload saves the whole "no bank account" detour.
+- **Each statement has its own message thread**, on the statement page. That is the place to ask your accountant about one specific upload.
+- **Find the imported rows later** with the **Statement** source pill on the Bank transactions list. A **Duplicate** pill marks the folded ones.
+- **Scans work** as long as the text is legible. A poor scan produces an incomplete statement rather than an obvious failure, so check the count.

@@ -1,65 +1,94 @@
 # Checking Suppliers Against the Company Register
 
-AI Finance Team can check your suppliers against the Hungarian company register. It tells you whether the bank account on a supplier invoice is the one the supplier has reported to the register, fills in partner details you are missing, and lists anything that differs so you can look at it. This article is for whoever approves or pays supplier invoices, and for whoever looks after partner master data.
+AI Finance Team can check your suppliers against the Hungarian company register. It tells you whether the bank account on a supplier invoice is the one the supplier reported to the register, fills in partner details you are missing, and lists anything that differs so you can look at it.
 
-The check is switched on per workspace. If you don't see it, ask your AI Finance Team contact.
+The check is switched on per workspace, and off until we switch it on. If you do not see it, ask your AI Finance Team contact.
 
-## Where you see it
+## The Four Answers
 
-- **On a supplier invoice**, on the payment approval card, under the payee account. One line tells you what the register says about that account.
-- **On a verified partner**, on the **Partner** tab, in the **Company register** section: what the register says about the company, what it filled in for you, and the differences to look at.
+Most partners start in the first state, and a workspace that has just been switched on will be full of it.
 
-## What the three answers mean
+- **Not checked yet.** Nothing has asked the register about this partner. A check runs when a new supplier invoice arrives.
+- **Registered.** The register lists this company, and, where an account was compared, lists that account for its tax number. The line says since when, and when it was checked.
+- **Not registered.** The register does not list this account, or this company, for that tax number. **This is not proof of fraud.** A bank has eight days to report a newly opened account, so a recent account may be perfectly genuine. Foreign companies with a Hungarian tax number and organisations that are not companies are not listed there either. Check with the supplier, on a number you already know, before paying.
+- **Cannot be checked.** We could not ask, or the register could not answer. The reason is always shown: no tax number, a foreign supplier, a VAT group identifier rather than a company's own number, the partner used for private-person sales, this month's lookups are used up, or the register subscription refused. **Cannot be checked is never a negative result.**
 
-- **Registered in the company register for this tax number.** The register lists this bank account for the supplier's tax number. The line also says since when, and when it was checked.
-- **Not found in the company register for this tax number.** The register does not list this account for the supplier. **This is not proof of fraud.** A bank has eight days to report a newly opened account, so a recent account may still be genuine. Check with the supplier on a phone number you already know before paying.
-- **Cannot be checked.** The register could not answer, and the reason is shown: the partner has no tax number, the supplier is a foreign company (including a foreign company with a Hungarian tax number), the supplier is a sole trader, the supplier is not listed in the register (for example a foundation or a public body), there is no bank account to compare, or the register could not be reached. Cannot be checked is never a negative result.
+On a partner with no bank account on file, the section says **Found in the register** instead: the lookup worked, there was just no account to compare.
 
-On a partner with no bank account on file, the **Company register** section says **Found in the register** instead: the lookup worked, there was just no account to compare.
+## Where You See It
 
-Nothing here blocks an approval or a payment file. The check adds evidence to your decision; it does not make the decision.
+- **On a supplier invoice**, on the payment approval card, under the payee account.
+- **On the payment file page**, on each candidate line.
+- **On a verified partner**, in the **Company register** section: what the register says, what it filled in, the differences, and a **Company details** block with the legal form, registration number, main activity, and the figures from the last filed report.
+- **In the verify dialog**, when you turn a counterparty into a partner: if the register knows the company, its legal name, tax number, registered address and main activity are offered, and **Use these details** fills them in.
 
-## Accounts confirmed automatically
+## What Starts a Check
 
-Before an account can go into a payment file, someone has to confirm it (see [Paying Approved Invoices](/paying-approved-invoices)). The register can do that confirmation for you in one situation only: the **first** account ever seen for a supplier, when all of these hold:
+- **A supplier invoice from a partner nobody has checked yet.** Only expense invoices, and only suppliers: a customer is never sent to the register.
+- **You, with Check now** on a partner that has no result yet, or **Revalidate** afterwards.
+- **A changed payee account**, which always forces a fresh check, because that is exactly the case the control exists for.
+- **Editing the partner**, which re-checks from data we already hold, at no cost.
 
-- the register lists exactly that account for the supplier's tax number,
-- the company is active in the register,
-- the partner's name agrees with the register,
-- the tax number was not found by a name search (see below).
+Invoices that arrived before the check was switched on are not checked. If a client needs their history covered, ask us: we can run a capped backfill that walks the existing suppliers.
 
-The approval card and the partner page then say the account was **confirmed by the company register**, with the date, so you can always tell it apart from an account a person confirmed.
+### What a check costs, and what it does not
 
-**A changed account is never confirmed automatically.** When an invoice carries a different account from the one already confirmed, a person has to confirm the new one, whatever the register says. That is the invoice fraud control, and the register does not replace it. A changed account is always checked against the register afresh.
+Each check uses one of the month's register lookups. **Searching the register by name is free**, and so is a re-check that only recomputes from data already fetched. Revalidating the same partner twice within an hour is refused.
 
-## What the register fills in, and what it never changes
+The register's own data is refreshed at most every 90 days. After that the section marks the answer **Out of date** and waits for you: age alone never spends a lookup.
 
-When the register knows something you don't, such as the partner's address, it fills in the empty field. It **never overwrites** a value you already hold. If your value differs from the register, the section lists the difference instead:
+## Differences to Look At
 
-- the company is no longer active (for example under liquidation),
-- the name or the address differs,
-- the tax number differs,
-- you hold an account the register does not list for this company,
-- the register lists accounts you don't hold (shown as one line with a count, and marked in the register's list).
+Where your data and the register disagree, the section lists it rather than changing anything. Each difference is badged by how much it matters: **Check**, **Review** or **Info**.
 
-Each difference is for you to look at. Nothing is changed until you change it.
+- The company is no longer active, for example under liquidation.
+- The tax number differs.
+- The account you hold is not listed for this company.
+- The account belongs to no known bank branch.
+- The name or the postal code differs. Addresses are compared on the postal code only, because free-text addresses vary too much to compare honestly.
+- The register lists accounts you do not hold, shown as one line with a count.
 
-## Checks go out of date
+## What the Register Fills In
 
-A check is valid for 90 days. After that the section marks it **Out of date**. Nothing re-checks itself, because every check uses AI Finance Team's monthly register lookups. Press **Revalidate** when you want a fresh answer. You need the **Edit master data** permission for this (see [Roles & Permissions](/roles-and-permissions)).
+When the register knows something you do not, exactly four things are filled in, and only while they are empty: the **address**, the **country**, the full **tax number** where you already hold its first eight digits, and the **VAT group identifier**. The name and the bank accounts are never written by the register. Nothing at all is filled in for a sole trader.
 
-New supplier invoices start a check on their own. Invoices that arrived before the check was switched on do not.
+## Accounts Confirmed Automatically
 
-## Partners without a tax number
+Before an account can go into a payment file, someone has to confirm it: see [Paying Approved Invoices](/paying-approved-invoices). The register can do that in one narrow case, the **first** account ever seen for a supplier, when all of this holds:
 
-A partner with no tax number cannot be checked. Press **Find in the company register** to search the register by the partner's name. If it finds the company, press **Use this tax number** on the right result.
+- the register lists exactly that account for the supplier's tax number;
+- the register's name for the company agrees with the partner's name, either its full name or its short name. A name missing on either side counts as disagreement, never as a match;
+- the company is active, and is not a sole trader;
+- the register data is less than 90 days old;
+- the invoice is an expense invoice that arrived after the check was switched on;
+- the account is a 24-digit domestic account number;
+- the tax number came from a person, not from a name search.
+
+That last condition is stricter than it sounds: in practice the register confirms an account only for a partner whose tax number someone typed or corrected on the partner page. For everyone else a person still confirms, which is the fraud control working as intended.
+
+**A changed account is never confirmed automatically**, whatever the register says.
+
+The register's answer never blocks an approval or a payment file. What blocks a payment file is an unconfirmed account, and a register confirmation is one way to unblock it.
+
+## Partners Without a Tax Number
+
+A partner with no tax number cannot be checked. Press **Find in the company register** to search by name, which costs nothing, and **Use this tax number** on the right result.
 
 A tax number found by name is marked as such. It fills the gap, but it is **never** used to confirm a bank account automatically, because a name is not proof of identity. If you later type the tax number in yourself, it counts as yours.
 
-## Sole traders and private persons
+## Sole Traders and Private Persons
 
-Sole traders are listed in the register as private persons, so they are not checked, and AI Finance Team keeps nothing about them from the register except that they are sole traders. The partner used for private-person sales is never sent to the register at all.
+A sole trader's tax number is sent to the register, and the answer is that they are a private person, so no company data comes back and nothing is filled in. The partner used for private-person sales is never sent at all.
 
-## Where the data goes
+## Who Can See and Use It
 
-The lookups are made at WellData Kft. (cegadatapi.hu), a Hungarian provider in the EU. What is sent is the supplier's tax number, or its name for a name search. WellData is listed in our sub-processor register.
+Seeing the register's answers needs "View invoices and bank transactions". Pressing **Check now**, **Revalidate** or **Use this tax number** needs "Edit master data". See [Roles and Permissions](/roles-and-permissions).
+
+## Where the Data Goes
+
+Lookups are made at WellData Kft. (cegadatapi.hu), a Hungarian provider in the EU. What is sent is the supplier's tax number, or its name for a name search. What comes back is kept to the company's own registry data: owners, managers, phone numbers, email addresses and branch offices are discarded and never stored. WellData is listed in our sub-processor register.
+
+## Related Articles
+
+- [Managing Partners](/partners)
+- [Paying Approved Invoices](/paying-approved-invoices)
