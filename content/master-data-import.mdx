@@ -6,15 +6,18 @@ This is ideal when onboarding a new client: export the partner or category list 
 
 ## What You Can Import
 
-The importer lives on three **Master data** pages, each importing one kind of record:
+The importer is on these **Master data** pages, each importing one kind of record:
 
-- **Partners** - your verified partner list (Master data → **Partners**)
-- **Invoice categories** - the categories used to code invoice line items (Master data → **Accounting categories** → **Invoice** tab)
-- **Cash categories** - the categories used to code bank transactions (Master data → **Accounting categories** → **Cash** tab)
+- **Partners**: your verified partner list (Master data → **Partners**)
+- **Invoice categories**: the categories used to code invoice line items (Master data → **Accounting categories** → **Invoice** tab)
+- **Cash categories**: the categories used to code bank transactions (Master data → **Accounting categories** → **Cash** tab)
+- **Custom category lists**: the categories of one of your own lists (Master data → **Custom Categories**, then open the list). See [Custom Categories](/custom-categories).
 
-On each of these pages you'll find an **Import** button in the top-right corner, next to the "New…" / "Add…" button. Each import handles one target at a time - the page you start from decides what you're importing.
+Each of these pages has an **Import** button at the top. Each import handles one target at a time: the page you start from decides what you're importing.
 
-> The **Import** button - like all master-data editing - is available only to members with the **Accountant** or **Accountant admin** role.
+When you set up a new workspace, its **Categories** step offers **Upload our own list**. That runs the same import for invoice categories, with the same steps.
+
+> The **Import** button is shown to the accounting office's members. Creating the records needs the **Edit master data** permission, which the **Accountant admin** and **Accountant** roles hold by default. See [Roles and Permissions](/roles-and-permissions).
 
 ## Before You Start
 
@@ -25,35 +28,37 @@ On each of these pages you'll find an **Import** button in the top-right corner,
 ## Importing a Spreadsheet
 
 1. Open the relevant page (Master data → **Partners**, or Master data → **Accounting categories** and then the **Invoice** or **Cash** tab) and click **Import**.
-2. **Upload** - click **Choose a spreadsheet file** and select your file. AI Finance Team reads it and recognises the columns.
-3. **Map the columns** - each field (Name, Tax number, Country, Address, …) is matched to a column from your file. Review the suggestions and fix any that are wrong. Required fields are marked with an asterisk (`*`) and must be mapped before you continue. Click **Next**.
-4. **Review** - a summary shows what will happen to each row: how many will be created, how many already exist, and any that are ambiguous or have errors. Expand it to see the row-by-row outcome.
-5. Click **Create** (it shows the count, e.g. "Create 42") to run the import. When it finishes you'll see "Created 42 records." - click **Close**.
+2. **Upload**: click **Choose a spreadsheet file** and select your file, or drop the file on the box. AI Finance Team reads it and recognises the columns.
+3. **Map the columns**: each field (Name, Tax number, Country, Address, …) is matched to a column from your file. Review the suggestions and fix any that are wrong. Required fields are marked with an asterisk (`*`) and must be mapped before you continue. Click **Next**.
+4. **Review**: every row of the file is listed in a table, with its **Status** (**Create**, **Exists**, **Ambiguous** or **Error**) and, where there is one, a **Note** that says why. The rows the import can create start ticked; the other rows are grey and cannot be ticked. Untick the rows you do not want, and correct a name with **F2** before it is created. When you import categories, check the direction of each row as well. Only the ticked rows are created. This is the spreadsheet interface, with search, column filters and keyboard shortcuts; see [Working in the Spreadsheet Interface](/spreadsheet-interface).
+5. Click **Create** to create the ticked rows. When it finishes you'll see, for example, "Created 42 records." If a row turns out to exist already at that moment (for example because its changed name matches an existing record), it is left out, and a line says how many rows were left out. Click **Close**.
 
-You can click **Back** to revisit an earlier step, or **Cancel** to discard the whole import.
+On the review step, **Back** returns to the column mapping. On the first two steps, **Cancel** discards the whole import. Once a file is loaded, Esc or a click outside the dialog does not close it, so the file is not lost by accident.
 
 ## How Columns Are Recognised
 
 AI Finance Team uses AI to match your spreadsheet's headers to the right fields, so a column called `Partnernév`, `Vendor`, or `Supplier name` is all understood as **Name**. You always have the final say:
 
-- Open any field's dropdown to choose a different column, or pick **- don't import -** to leave that field empty.
+- Open any field's dropdown to choose a different column, or pick **Not used** to leave that field empty.
 - Required fields (such as **Name**) must be mapped; the wizard won't let you continue until they are.
 
 If the AI can't reach a confident match, a built-in list of common header names (in several languages) is used as a fallback, so recognition still works.
 
 ## What Gets Created vs Skipped
 
-The importer **only ever creates new records - it never overwrites or edits existing ones.** On the **Review** step every row is sorted into one of four outcomes:
+The importer **only ever creates new records. It never overwrites or edits existing ones.** On the **Review** step every row gets one of four statuses:
 
-- **Create** - a genuinely new record; it will be added.
-- **Exists** - a matching record is already in the workspace, so the row is **skipped** (the existing record is left exactly as it is).
-- **Ambiguous** - the row matches more than one existing record, so it is skipped for safety. Resolve those by hand afterwards.
-- **Error** - the row can't be imported (for example a missing name, or a country that isn't a 2-letter code). Fix it in the file and import again.
+- **Create**: a genuinely new record. The row starts ticked, and it is added if it is still ticked when you click **Create**.
+- **Exists**: a matching record is already in the workspace, so the row is **skipped** (the existing record is left exactly as it is). A row that repeats an earlier row of the same file is also marked **Exists**, with the note "duplicate in file".
+- **Ambiguous**: the row matches more than one existing record, so it is skipped for safety. Resolve those by hand afterwards.
+- **Error**: the row can't be imported (for example a missing name, or a country that isn't a 2-letter code). Fix it in the file and import again.
+
+Only **Create** rows can be ticked.
 
 How "already exists" is decided:
 
-- **Partners** are matched first by **tax number** (ignoring formatting differences such as spaces or hyphens), then by **name**.
-- **Categories** are matched by **name**, within the kind you're importing (invoice vs cash).
+- **Partners** with a tax number are matched by **tax number** (ignoring formatting differences such as spaces or hyphens). Partners without a tax number are matched by **name**.
+- **Invoice and cash categories** are matched by **name**, within the kind you're importing (invoice vs cash).
 
 Because existing records are skipped rather than changed, you can safely re-run the same file - the second run simply reports everything as **Exists**.
 
@@ -71,7 +76,7 @@ A category can be used for **income**, for **expense**, or for **both**. If your
 
 Common plural forms work too (`expenses`, `kiadások`, `Ausgaben`).
 
-On the **Review** step you see three counts before anything is created: how many categories will be income, how many expense, and how many usable for both. Each row shows its direction. If some direction cells could not be read, an amber note says how many.
+On the **Review** step you see three counts above the table: how many categories the file makes income, how many expense, and how many usable for both. If some direction cells could not be read, an amber note says how many. Each row shows its direction in the **Direction** column, and you can change it there before anything is created: press **Alt+↓** on the row (Option+↓ on a Mac) or click the arrow in the cell, and choose **Income**, **Expense** or **Both**. The value from the file stays the suggestion, and the counts above the table keep showing what the file says.
 
 Words such as `in` / `out`, `incoming` / `outgoing`, `bejövő` / `kimenő`, `eingehend` / `ausgehend` and `debit` / `credit` are **not** read on purpose. They point opposite ways depending on the file: an incoming invoice is an expense, while money coming in on a bank statement is income. Use one of the words in the table instead.
 
@@ -84,5 +89,6 @@ Office exports often split an address across several columns - postal code, city
 ## Notes & Limitations
 
 - The importer adds records; it does not update existing ones. To change a partner or category that already exists, edit it directly on its page.
+- When you import partners, the result also says which VAT groups were assigned from the tax numbers, and how many partners without a tax number need their VAT group checked under **Partners**.
 - Whether categories are imported as **invoice** or **cash** categories is decided by the page you start from, not by anything in the file.
 - For partners, only **Name** is required. Tax number, country, and address are optional, but filling them in makes automatic matching far more reliable later - see [Managing Partners](/partners).

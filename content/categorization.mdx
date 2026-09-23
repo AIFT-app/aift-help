@@ -1,102 +1,118 @@
 # Categorising Invoices and Bank Transactions
 
-AI Finance Team automatically assigns categories to your invoices and bank transactions. The AI handles the bulk of the work - your accountant steps in only when it needs a second opinion.
+AI Finance Team gives your invoices and bank transactions a category on its own, and learns from every correction an accountant makes.
 
 ## How Categories Work
 
-There are two separate sets of categories in every workspace:
+Every workspace keeps two separate sets:
 
-- **Invoice categories** - applied to individual line items on invoices (e.g. Software licence, Office rent, Professional services)
-- **Cash categories** - applied to bank transactions (e.g. Bank fees, Payroll, Client payment)
+- **Invoice categories**, applied to each line of an invoice.
+- **Cash categories**, applied to a bank transaction.
 
-Both lists live on the Master data → **Accounting categories** page, one tab each (**Invoice**, **Cash**).
-
-Categories are set up and managed by your accountant. If you feel a category is missing or named incorrectly, ask your accountant to add or adjust it.
+Both live under **Master data → Accounting categories**, on the **Invoice** and **Cash** tabs. Creating, editing and archiving a category needs "Edit master data", which accountants hold; the **Cash** and **Examples** tabs are accountant-only, and a client-side member sees the invoice list read-only.
 
 ### A new workspace starts with no categories
 
-AI Finance Team does not come with a ready-made category list. Every office keeps its own chart of accounts, and a generic list would only have to be undone. So a new workspace has **no invoice categories and no cash categories** until your accountant brings in the office's own list:
+AI Finance Team ships no ready-made list. Every office keeps its own chart of accounts, and a generic list would only have to be undone. Until the list exists, nothing is categorised: invoices and transactions still arrive and match, but **an uncategorised record is not exported**, because the accounting system would refuse it.
 
-- **From a spreadsheet** - Master data → **Accounting categories**, open the **Invoice** or **Cash** tab and click **Import**. See [Importing master data](/master-data-import).
-- **From Business Central** - when the client's Business Central is connected, its chart of accounts can be imported as invoice categories.
-- **By hand** - add categories one by one on the same tabs.
+Four ways to fill the list:
 
-Until a list exists, nothing is categorised: invoices and bank transactions still arrive, match and appear in exports, just without a category. Once the list is in place, select the records on the **Invoices** or **Bank transactions** page and use **Re-categorize** to let the AI book the ones that arrived earlier.
+- **From a spreadsheet**: **Import** on either tab. See [Importing master data](/master-data-import).
+- **From Business Central**, on either tab, when the client's Business Central is connected. See [Business Central](/business-central).
+- **From the invoice list to the cash list**: **Copy from invoice categories** on the Cash tab.
+- **By hand**, one at a time.
 
----
+Once the list is in place, select records on the **Invoices** or **Bank transactions** page and use **Re-categorize** to let the AI book what arrived earlier.
 
-## Invoice Categorisation
+## What a Category Holds
 
-### What the AI does
+- **Code**, optional: your own identifier, typically the GL account number.
+- **Name**.
+- **Direction**: income, expense, or neither. This decides what the AI may choose for a line or a transaction, and what the picker offers. A category with no direction is always offered.
+- **Description**, optional, and worth writing: the AI reads it when a case is ambiguous.
+- **Active**.
+- On a cash category only, **Books without invoice**: transactions in this category book straight to their GL account and are marked as needing no invoice.
 
-When an invoice arrives - whether uploaded manually, sent by email, or pulled from an invoice provider - the AI reads each line item and assigns it the most appropriate category from your workspace's invoice category list.
+The drawer also shows where the category is used: the report lines that sum it and the partners whose fixed category it is.
 
-It also gives each assignment a confidence score. If the AI is confident in its choice, the category is applied immediately. If it is less sure, the item is flagged for your accountant to review.
+## Archiving a Category
 
-### What your accountant sees
+Categories are archived, never deleted, because records are already booked to them.
 
-Your accountant reviews flagged items from the **Invoices** page. Items that need attention are marked with a **Review** badge.
+- **One row**: **Deactivate**, and **Activate** to bring it back. If a partner rule depends on it, you are asked to confirm and shown which partners.
+- **Many at once**: **Bulk archive** in the toolbar opens the whole list as a table with three usage columns: **Records** (how many booked lines or transactions carry it), **Report lines** (how many report lines sum it) and **Partner rules** (how many partners have it as their fixed category). Categories used nowhere start ticked; anything in use carries an amber **In use** pill and you decide deliberately. Nothing is locked. The table itself works like every other one of its kind: see [Working in the Spreadsheet Interface](/spreadsheet-interface).
 
-When reviewing, your accountant can:
+What archiving does:
 
-- Accept the AI's suggestion as-is
-- Choose a different category from the list
-- Leave a note explaining the choice
+| | Archived category |
+|---|---|
+| Records already booked to it | Keep it |
+| Pickers and the AI | It is gone from both |
+| Report lines that sum it | Keep the membership; the line simply sums less |
+| Partner rules using it | Become inactive |
 
-Once a category is confirmed, the invoice moves to **Categorised** status.
+## How the AI Picks a Category
 
-### How the AI gets smarter over time
+Both taxonomies work the same way, and differ only in where the bar sits.
 
-Every time your accountant corrects a category, AI Finance Team records that decision as a correction. The next time a similar line item appears - from the same supplier, with similar wording - the AI uses that past correction as a strong signal.
+1. **A learned correction that matches exactly** books the line straight away, without asking the AI at all.
+2. Otherwise the AI proposes a category with a confidence.
 
-This means categorisation accuracy tends to improve over the first few months as the AI learns the patterns specific to your business.
+<CategorizationBandsFigure>
+Where a confidence lands. The bars are the app's own thresholds.
+</CategorizationBandsFigure>
 
-Accountants can see, edit, and pre-load what the AI has learned on the **Examples** tab of the Accounting categories page - see [How AIFT Learns Your Categories](/categorization-examples).
+**On an invoice line:**
 
----
+- **0.85 and above**: the category is applied.
+- **Between 0.60 and 0.85**: the proposal is kept beside the line as a suggestion, and nothing is booked.
+- **Below 0.60**: the invoice is marked for review.
 
-## Cash Transaction Categorisation
+**On a bank transaction:**
 
-### What the AI does
+- **0.70 and above**: the category is applied. A transfer the AI recognises between your own accounts is applied whatever the score.
+- **Below 0.70**: the proposal is kept as a suggestion.
+- **Below 0.60**: the transaction is marked for review.
 
-Each bank transaction is matched against your workspace's cash category list. As with invoices, the AI assigns a category and a confidence score.
+Confidence is shown as a word, not a percentage: **High** from 0.85, **Medium** from 0.60, **Low** below it. You see it on the invoice's lines and on a transaction's detail panel.
 
-- **High confidence** - category applied automatically, status shows **Categorised**
-- **Lower confidence** - a suggested category is noted but the transaction is flagged for review
-- **Very low confidence** - the transaction is marked **Pending** and waits for accountant input
+## Correcting a Category
 
-### What your accountant sees
+- **On an invoice**: open the invoice, and on a line click the pencil next to the category to pick another. This needs "Edit invoices".
+- **On a bank transaction**: open the transaction and choose in the **Category** field. This needs "Edit bank transactions", and an archived category is refused.
 
-On the **Transactions** page, each row shows:
+Only categories whose direction fits are offered, plus any category with no direction.
 
-- **Status** - Pending, Processing, Categorised, or Failed
-- **Category** - the assigned category name, with a confidence percentage badge
-- An **Edited** label if the category was set manually
+### What a correction teaches
 
-Accountants can override any transaction's category inline by clicking the pencil icon next to the category name and selecting from the list. Only transactions that match the direction of the transaction (income or expense) are shown as options.
+Every correction is recorded for **that workspace only**. Nothing you fix for one client ever affects another.
 
-### When categories are added or changed
+The corrections the workspace makes most often are given to the AI as examples on the next run, so the same supplier and the same wording land in the right place without being asked again. The number of examples is a workspace setting, 30 by default; setting it to zero turns this learning off.
 
-If your accountant adds a new cash category or modifies an existing one, AI Finance Team automatically queues any uncategorised transactions for re-processing. You will see a notification confirming that categorisation has been scheduled.
+Two details worth knowing: a correction is also recorded when you fill in a category the AI left empty, not only when you overrule it. And a learned correction only books a line by itself when the amount is in the range it was learned at, never across currencies.
 
----
+Accountants can see, edit and pre-load what the AI has learned on the **Examples** tab. See [How AIFT Learns Your Categories](/categorization-examples).
 
-## Statuses at a Glance
+## Where the Work Shows Up
 
-| Status | Meaning |
-|--------|---------|
-| **Pending** | Waiting to be processed by the AI |
-| **Processing** | The AI is working on it right now |
-| **Categorised** | A category has been assigned |
-| **Review** | The AI assigned a category but is not confident - accountant should check |
-| **Failed** | Processing encountered an error - your accountant will be notified |
+- **On an invoice line**: a status badge while the AI is working (**Pending**, **Processing**, **Failed**), the suggested category where nothing was booked, and the confidence.
+- **On the invoice**: a **Review** label when the invoice needs attention, whether that came from categorisation, extraction or VAT.
+- **On a transaction**: the category with its confidence in the detail panel, and **Edited** when a person set it.
+- **In Mission Control**: a rung for invoices with uncategorised lines, and one for categorisation that failed, with a retry.
 
----
+## Re-categorising in Bulk
+
+Select records on the **Invoices** or **Bank transactions** page and choose **Re-categorize**. It re-runs the AI over **AI-assigned and uncategorised records only**: anything a person set by hand is left exactly as it is. It runs in the background, and a very large selection is refused.
+
+Adding or editing a cash category also queues any transaction still waiting to be categorised. Transactions that were settled without a category, because the workspace had none at the time, are not picked up automatically: use **Re-categorize** for those. Bulk archiving never queues anything.
+
+## Two Settings That Change What You See
+
+- **Use cash-flow categories for bookkeeping only**: the category is hidden on transactions that still expect an invoice.
+- AI categorisation can be switched off for a workspace, in which case **Re-categorize** says so instead of running.
 
 ## Tips
 
-**Keep your category list focused.** A long list of rarely-used categories makes it harder for the AI to choose correctly. Aim for categories that map to real lines in your chart of accounts.
-
-**Add descriptions to categories.** Your accountant can add a short description to each category explaining what it covers. The AI uses these descriptions to make better decisions in ambiguous cases.
-
-**Correct confidently.** When your accountant overrides a category, that correction is remembered. One clear correction is worth more than leaving ambiguous items unreviewed.
+- **Write descriptions.** One sentence per category, on the ones that are easy to confuse, is the cheapest accuracy you can buy.
+- **Correct confidently.** A clear correction is worth more than an ambiguous item left unreviewed, because it becomes an example.
+- **Do not prune a long list for the AI's sake.** Hundreds of categories are normal for a real chart of accounts, and the pages load all of them. Archive what the office no longer uses, not what the AI finds hard.

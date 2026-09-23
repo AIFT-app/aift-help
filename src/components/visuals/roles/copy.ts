@@ -8,6 +8,14 @@
 //
 // The member counts and the custom role are FICTIONAL.
 
+// ⚠️ DELIBERATE DIVERGENCE FROM THE APP, and the one entry here that is not
+// verbatim: `settings.team.roles.description` still says "four system roles"
+// in all three locales on prod, while the tab lists five since
+// [PRD: financial-admin-role]. The screen would otherwise contradict its own
+// rows. The app fix is logged in notes/backlog as
+// role-rename-left-old-labels-in-four-places; when it lands, take the string
+// verbatim again. scratchpad/drift-any.py reports these three as drift on
+// purpose.
 import type { Locale } from '@/lib/i18n'
 
 export const UI_KEYS = [
