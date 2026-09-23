@@ -1,0 +1,153 @@
+# Munka a táblázatos felületen
+
+Néhány képernyőn egyszerre sok sorról kell döntenie: egy fájl mely sorai jöjjenek létre, mely partnereket hitelesítse, mely kategóriákat archiválja, mely kategóriák tartozzanak egy jelentéssorhoz. Ezek a képernyők mind ugyanazt a **táblázatos felületet** használják. A nyilakkal lépkedhet, a Shift billentyűvel több sort jelölhet ki, a Szóközzel bepipálhatja őket, kereshet úgy, hogy közben nem veszíti el a helyét, és oszloponként szűrhet. Ez a cikk minden billentyűt és egérműveletet bemutat. Minden, ami itt szerepel, mind a négy képernyőn ugyanúgy működik.
+
+Macen a **Cmd** (⌘) billentyűt használja ott, ahol a cikk **Ctrl**-t ír, az **Option** (⌥) billentyűt pedig ott, ahol **Alt**-ot.
+
+## Hol találkozik vele
+
+| Képernyő | Hogyan nyitja meg | A bepipált sor | Megnyitáskor bepipálva | A végrehajtó gomb |
+|---|---|---|---|---|
+| Az importálás áttekintő lépése | **Importálás** a Törzsadatok → **Partnerek** oldalon, a **Könyvelési kategóriák** **Számla** vagy **Pénzforgalmi** fülén, vagy egy egyéni kategórialistán. Új munkaterület beállításakor a **Kategóriák** lépésben is, a **Feltöltöm a saját listánkat** választása után. | létrejön | minden sor, amelyet az importálás létre tud hozni | **Létrehozom** |
+| Partnerek hitelesítése | Törzsadatok → **Partnerek** → **Összes partner ellenőrzése** | hitelesítve lesz: új partner lesz belőle, vagy egy meglévőhöz kötődik | minden sor, kivéve az adószám nélküli neveket | **Hitelesítem** |
+| Kategóriák archiválása | Törzsadatok → **Könyvelési kategóriák** → **Tömeges archiválás**, a **Számla** vagy a **Pénzforgalmi** fülön | archiválva lesz | minden kategória, amelyet semmi nem használ | **Archiválom** |
+| Egy jelentéssor kategóriái | **Jelentések** → **Jelentés szerkesztése** → egy sor **Kategóriák kiválasztása** gombja | ehhez a jelentéssorhoz tartozik | a sor jelenlegi kategóriái | **Mentés** |
+
+Semmi nem jön létre, nem lesz hitelesítve, archiválva vagy mentve, amíg a végrehajtó gombra nem kattint. A **Mégse** változtatás nélkül bezárja a képernyőt; importáláskor a **Vissza** az oszlopok hozzárendeléséhez lép vissza. Az Esc vagy a képernyőn kívüli kattintás nem zárja be, így a félkész kijelölés véletlenül sem vész el.
+
+A végrehajtáshoz jogosultság kell: az importáláshoz, a partnerek hitelesítéséhez és a kategóriák archiválásához a **Törzsadatok szerkesztése**, egy jelentéssorhoz a **Riportok kezelése**. Lásd: [Szerepek és jogosultságok](/roles-and-permissions).
+
+Hogy az egyes képernyők mit jelentenek az adatai szempontjából, azt a [Törzsadatok importálása](/master-data-import), a [Partnerek kezelése](/partners) és a [Jelentések](/reports) cikk írja le.
+
+## A kijelölés és a pipa két különböző dolog
+
+- A **kijelölt** sorok kék hátterűek. A kijelölés azt mutatja, hol tart, mint a kurzor egy táblázatkezelőben, és több sorra is kiterjedhet.
+- A **bepipált** sorok első oszlopában pipa van. A gombra kattintáskor a képernyő a bepipált sorokkal dolgozik.
+
+A legtöbb billentyű a kijelölt sorokra hat. A Szóköz például minden kijelölt sort bepipál. A végén csak a pipák számítanak.
+
+## Mozgás
+
+| Billentyű | Mit csinál |
+|---|---|
+| **↑** / **↓** | Egy sorral fel vagy le |
+| **PgUp** / **PgDn** | Egy képernyőnyit fel vagy le |
+| **Home** / **End** | Az első vagy az utolsó sor |
+| **Enter** / **Shift+Enter** | Egy sorral le vagy fel |
+| **Ctrl+↓** / **Ctrl+↑** | A következő vagy az előző számlacsoport, ha a sorok csoportosítva vannak |
+
+Egy sorra kattintva is odaléphet.
+
+A számla- és pénzforgalmi kategóriák importálása és a jelentéssor kategóriaválasztója kód szerinti rendezésnél számlacsoportonként csoportosítja a sorokat, például minden 52-vel kezdődő kódot egy csoportsor alá. A többi képernyő egyetlen sima listát mutat.
+
+## Több sor kijelölése
+
+| Billentyű vagy egér | Mit csinál |
+|---|---|
+| **Shift+↑** / **Shift+↓** | Soronként bővíti a kijelölést. A Shift a PgUp, PgDn, Home és End billentyűvel is működik. |
+| **Shift** és kattintás | Kijelöl minden sort az utoljára kattintottól eddig a sorig |
+| **Ctrl** és kattintás | Egyetlen sort ad a kijelöléshez, vagy kiveszi belőle |
+| Húzás az egérrel | Kijelöli a sorokat, amelyeken áthúzza (bárhol, kivéve a pipák oszlopát) |
+| **Ctrl+A** | Kijelöl minden sort, amely most a listában van |
+| **Esc** | Befejezi a több soros kijelölést |
+
+A táblázat alatti sor mutatja, hány sor van kijelölve, és hogy hol tart, például „3. sor / 120”.
+
+## Pipálás és a pipa levétele
+
+| Billentyű vagy egér | Mit csinál |
+|---|---|
+| **Szóköz** | Bepipálja a kijelölt sorokat. Ha már mind be van pipálva, leveszi róluk a pipát. |
+| **Delete** | Leveszi a pipát a kijelölt sorokról |
+| Kattintás egy pipamezőre | Bepipálja a sort, vagy leveszi róla a pipát. Ha a sor egy több soros kijelölés része, a kattintás mindegyikre hat. |
+| **Shift** és kattintás egy pipamezőre | Az utoljára kattintott sortól eddig a sorig mindet bepipálja, vagy leveszi róluk a pipát |
+| Húzás lefelé a pipák oszlopában | Bepipálja (vagy leveszi a pipát) minden sorról, amelyen áthúzza |
+| A fejléc pipamezője | Bepipál minden sort, amely most a listában van, vagy leveszi róluk a pipát, ha már mind be van pipálva |
+| Egy csoportsor pipamezője | A teljes számlacsoportot bepipálja, például minden 52-vel kezdődő kódot |
+
+Ha egyszerre sok sor változik, egy rövid üzenet megerősíti, és **Visszavonás** lehetőséget kínál.
+
+Importáláskor a létre nem hozható sorok szürkék, és nem pipálhatók be. Az **Állapot** oszlop mutatja, mi történik velük, például **Létezik**, a **Megjegyzés** oszlop pedig megadja az okát, ha van, például „ismétlődés a fájlban”.
+
+## Keresés
+
+Kezdjen el gépelni bárhol a táblázatban, és a keresőmező átveszi a leütéseket (a **Ctrl+F** ugyanezt teszi). A találatok kiemelődnek, **a többi sor a helyén marad**, csak halványabb lesz. A keresőmező megszámolja a találatokat, például „3 / 12”, a táblázat jobb szélén pedig kis borostyánsárga jelek mutatják, hol vannak a találatok a teljes listában. Egy jelre kattintva az adott találatra ugrik.
+
+Hogyan keres:
+
+- A **szavak** a névben bárhol találnak. A kis- és nagybetű, valamint az ékezet nem számít, így a `kozuzemi` megtalálja a „Közüzemi díjak” nevet. Több szó esetén a sornak mindegyiket tartalmaznia kell.
+- A **számjegyek** a kód vagy az adószám elejére keresnek: az `52` megtalálja az 5210-et, az `1234` a 12345678-2-41-et.
+
+Billentyűk a keresőmezőben:
+
+| Billentyű | Mit csinál |
+|---|---|
+| **Enter** / **Shift+Enter** | A következő vagy az előző találat |
+| **Ctrl+Enter** | Bepipálja ezt a találatot, és a következőre lép |
+| **Ctrl+Shift+Enter** | Minden találatot bepipál |
+| **↑** / **↓** | Vissza a táblázatba, egy sorral feljebb vagy lejjebb |
+| **Esc** | Vissza a táblázatba. A táblázatban még egy Esc törli a keresést. |
+
+A táblázatból az **F3** a következő, a **Shift+F3** az előző találatra ugrik.
+
+Ha egynél több találat van, a keresőmező melletti gomb mindet egyszerre bepipálja, például **Mind a 12 találat pipálása**.
+
+A **Csak a találatok** kapcsoló elrejti a nem egyező sorokat. Ez az egyetlen, ami a keresés miatt sorokat rejt el; nélküle a keresés soha nem rejt el sort.
+
+## Szűrés és rendezés oszloponként
+
+Kattintson egy oszlop fejlécére, és a táblázat aszerint rendeződik. Még egy kattintás megfordítja a sorrendet. Egy kis ▲ vagy ▼ jelzi a rendező oszlopot.
+
+Néhány oszlop fejlécében szűrőgomb van. Ez egy menüt nyit: felül két rendezési lehetőséggel (**Rendezés**), alatta az oszlop értékeivel (**Szűrés**), mindegyik mellett az adott értékű sorok számával. Vegye le a pipát egy értékről, és azok a sorok elrejtőznek; a **(Mindet kijelölöm)** újra minden értéket megmutat. A **Kész** bezárja a menüt.
+
+Amíg egy szűrő elrejt valamit, a gombja kék, és a szűrő a táblázat fölött címkeként is megjelenik. A címkére kattintva újra megnyithatja a szűrőt, a × jellel törölheti. Ha egy szűrő után egyetlen sor sem marad, a táblázat ezt kiírja, és felkínálja a **Szűrők törlése** lehetőséget.
+
+Mely oszlopok szűrhetők:
+
+- **Importálás**: Állapot. Partnereknél az Ország is, számla- és pénzforgalmi kategóriáknál a Kód is, számlacsoportonként.
+- **Partnerek hitelesítése**: Mi történik, és Ország.
+- **Kategóriák archiválása**: Használat, és Irány.
+- **Jelentéssor**: Állapot, és a Kód, számlacsoportonként.
+
+A kódszűrő a számlacsoportokat számlaosztályuk alatt sorolja fel, így egy teljes osztályt egyetlen pipával elrejthet.
+
+## A pipák szűréskor és kereséskor is megmaradnak
+
+Egy pipa addig marad, amíg le nem veszi. A szűrés vagy a keresés csak azt változtatja meg, amit lát, azt nem, ami be van pipálva. A táblázat alatti sor megszámolja a bepipált sorokat, és ha ezek közül néhány rejtve van, azt is kiírja, például „42 sor bepipálva · ebből 5 most nem látszik, de bent marad”. A végrehajtó gomb minden bepipált sorral dolgozik, a rejtettekkel is.
+
+A **Ctrl+A** és a fejléc pipamezője a most listázott sorokra hat. Ha sorok egy csoportját szeretné bepipálni, előbb szűrjön vagy keressen rájuk, aztán egyszerre pipálja be őket.
+
+## Visszavonás és újra
+
+| Billentyű | Mit csinál |
+|---|---|
+| **Ctrl+Z** | Visszavonja az utolsó változtatást: egy pipát, egy nevet vagy egy irányt |
+| **Ctrl+Y** (vagy **Ctrl+Shift+Z**) | Újra végrehajtja |
+
+A táblázat az utolsó 200 változtatást jegyzi meg. Ezek csak a képernyőn történt változtatások; semmi nem mentődik el, amíg a végrehajtó gombra nem kattint.
+
+## Sorok másolása
+
+Jelöljön ki sorokat, és nyomja meg a **Ctrl+C** billentyűt. A sorok tabulátorral tagolt szövegként kerülnek a vágólapra, az első sorban az oszlopnevekkel, így közvetlenül beilleszthetők Excelbe vagy más táblázatkezelőbe. A másolat a táblázat oszlopait tartalmazza (importáláskor a Megjegyzés oszlop nélkül), így egy listát magával vihet ellenőrzésre vagy továbbküldésre.
+
+## Kódok vagy adószámok beillesztése pipáláshoz
+
+Ha már megvan a sorok listája, amelyeket szeretne, kódok vagy adószámok oszlopaként Excelben vagy egy e-mailben, másolja ki, kattintson a táblázatba, és nyomja meg a **Ctrl+V** billentyűt. A megtalált sorok bepipálódnak, és a táblázat az elsőre ugrik. Egy üzenet kiírja, hány sort pipált be, és megnevezi azokat az értékeket, amelyekhez nem talált sort (az első négyet).
+
+- A partneres képernyőkön (partnerek importálása, partnerek hitelesítése) **adószámot** illesszen be. A formátum nem számít: a `HU12345678`, a `12345678-2-41` és a `12345678` ugyanazt a partnert találja meg.
+- A kategóriás képernyőkön **kódot** illesszen be. A kis- és nagybetű nem számít.
+
+Az értékek lehetnek cellánként vagy soronként egyenként, vagy vesszővel, pontosvesszővel vagy szóközzel elválasztva. A beillesztés csak pipát tesz, soha nem vesz le. Mint minden más változtatást, a **Ctrl+Z** billentyűvel visszavonhatja.
+
+## Csak importáláskor: a név és az irány
+
+Importáláskor egy sort a létrehozása előtt javíthat is:
+
+- Az **F2** vagy a névre való dupla kattintás átírhatóvá teszi a nevet. Az **Enter** menti, és egy sorral lejjebb lép, az **Esc** elveti. A módosított név mellett megjelenik a **visszaállítás**, amely visszahozza a fájlban szereplő nevet. A név úgy jön létre, ahogyan hagyja.
+- Számla- és pénzforgalmi kategóriák importálásakor az **Alt+↓** (vagy az **Irány** cellában a kis nyíl) megnyitja a sor irányát: **Bevétel**, **Kiadás** vagy **Mindkettő**. A fájlban szereplő érték a javaslat. A módosított irányt kék pötty jelzi, és a lista ekkor a **Vissza a fájl értékéhez** lehetőséget is felkínálja. Ha több sor van kijelölve, a választás mindegyikre érvényes. A megnyitott listában egy lehetőség kezdőbetűje kiválasztja azt.
+
+A másik három képernyő már létező rekordokkal dolgozik, ezért az ott beírt név nem mentődik el. Egy partner vagy kategória nevét a saját oldalán módosítsa.
+
+## A beépített billentyűlista
+
+Nyomja meg a **?** billentyűt, vagy kattintson a táblázat fölötti **Billentyűk** gombra, és az alkalmazás megmutatja a billentyűk és egérműveletek listáját. Az **Esc** bezárja. A táblázat alatti sor is mindig azt a néhány billentyűt mutatja, amely az éppen végzett munkához illik: mozgáshoz, kereséshez, egy név átírásához vagy egy kijelöléshez.

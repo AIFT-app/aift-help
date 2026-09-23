@@ -163,6 +163,14 @@ export const navigation: NavItem[] = [
     slug: 'date-entry',
     title: { en: 'Fast Date Entry', hu: 'Gyors dátumbevitel', de: 'Schnelle Datumseingabe' },
   },
+  // The shared spreadsheet-style grid (SelectionGrid) behind four screens: the
+  // import review step, Verify all partners, Bulk archive and a report line's
+  // Choose categories. Naming rule (Balázs 2026-09-23): "spreadsheet interface" /
+  // "táblázatos felület"; name Excel only for copy and paste.
+  {
+    slug: 'spreadsheet-interface',
+    title: { en: 'Working in the Spreadsheet Interface', hu: 'Munka a táblázatos felületen', de: 'Arbeiten in der Tabellenoberfläche' },
+  },
   // Focus mode (focus-mode): the accountant-only working period. The article
   // title IS the app's switch label, "Focused period" / "Fókuszált időszak" /
   // "Fokussierter Zeitraum" (focus.open_label); status rows quote
