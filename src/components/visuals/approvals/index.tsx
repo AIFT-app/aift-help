@@ -22,7 +22,7 @@ import { Heading } from '@/components/catalyst/heading'
 import { Switch } from '@/components/catalyst/switch'
 import { Text } from '@/components/catalyst/text'
 import { formatAmount, formatDate } from '../format'
-import { AppScreen, Figure, Pin } from '../kit'
+import { AppScreen, Figure, Pill, Pin } from '../kit'
 import { StateFlow } from '../StateFlow'
 import { approvalsCopy, STATE_TONE, whyText, type QueueRow } from './copy'
 import sl from './slip.module.css'
@@ -135,6 +135,17 @@ function Card({
                 {annotate ? <Pin n={4} at="left" cancel="-ml-2" /> : null}
                 {`${formatDate(row.dueDate, locale)}, ${row.dueRel}`}
               </span>
+            </div>
+            <div className="flex items-baseline justify-between gap-2">
+              <span className="text-xs text-zinc-400">{ui['approvals.slip.payee_account']}</span>
+              {row.account.status === 'confirmed' ? (
+                <span className="min-w-0 truncate text-right text-xs tabular-nums text-zinc-600 dark:text-zinc-300">
+                  {annotate ? <Pin n={7} at="left" cancel="-ml-2" /> : null}
+                  {row.account.display}
+                </span>
+              ) : (
+                <Pill tone="amber">{ui['approvals.payee_account.status.first_seen']}</Pill>
+              )}
             </div>
           </div>
 

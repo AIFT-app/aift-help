@@ -55,6 +55,8 @@ export const UI_KEYS = [
   'approvals.slip.decline_hint',
   'approvals.slip.reason_placeholder',
   'approvals.slip.cancel',
+  'approvals.slip.payee_account',
+  'approvals.payee_account.status.first_seen',
   'approvals.why.rule_partner',
   'approvals.why.rule_category',
   'approvals.why.learned',
@@ -96,6 +98,8 @@ export type QueueRow = {
   amount: number
   currency: string
   why: WhyReason
+  /** The payee account line: a confirmed number, or the first_seen pill. */
+  account: { status: 'confirmed'; display: string } | { status: 'first_seen' }
 }
 
 type Copy = {
@@ -156,6 +160,8 @@ const en: Copy = {
     'approvals.slip.decline_hint': 'Final. The finance admin and Decisions will see it.',
     'approvals.slip.reason_placeholder': 'Reason (required)',
     'approvals.slip.cancel': 'Cancel',
+    'approvals.slip.payee_account': 'Bank account',
+    'approvals.payee_account.status.first_seen': 'First time seen',
     'approvals.why.rule_partner': 'Rule: invoices from {partner} go to you',
     'approvals.why.rule_category': 'Rule: {category} goes to you',
     'approvals.why.learned': 'Learned: the last {count} invoices from {partner} went to you',
@@ -187,6 +193,7 @@ const en: Copy = {
       amount: 186690,
       currency: 'HUF',
       why: { key: 'approvals.why.rule_partner', partner: 'Reamwell Office Supplies Ltd.' },
+      account: { status: 'confirmed', display: '12345678-12345678-00000000' },
     },
     {
       summary: 'Warehouse roof repair, 2nd instalment',
@@ -198,6 +205,7 @@ const en: Copy = {
       amount: 1524000,
       currency: 'HUF',
       why: { key: 'approvals.why.rule_category', category: 'Maintenance and repairs' },
+      account: { status: 'first_seen' },
     },
     {
       summary: 'Design software, annual licence',
@@ -209,6 +217,7 @@ const en: Copy = {
       amount: 588,
       currency: 'EUR',
       why: { key: 'approvals.why.learned', partner: 'Quillmoor Software Ltd.', count: 3 },
+      account: { status: 'confirmed', display: 'DE89 3704 0044 0532 0130 00' },
     },
     {
       summary: 'Company car service and brake pads',
@@ -220,6 +229,7 @@ const en: Copy = {
       amount: 94615,
       currency: 'HUF',
       why: { key: 'approvals.why.fallback' },
+      account: { status: 'confirmed', display: '12345678-00000000-87654321' },
     },
   ],
   counts: { mine: 4, unassigned: 1, allAwaiting: 7, dueWeek: 2 },
@@ -285,6 +295,8 @@ const hu: Copy = {
     'approvals.slip.decline_hint': 'Végleges. A pénzügyi adminisztrátor és a Döntések is látja.',
     'approvals.slip.reason_placeholder': 'Indoklás (kötelező)',
     'approvals.slip.cancel': 'Mégse',
+    'approvals.slip.payee_account': 'Bankszámla',
+    'approvals.payee_account.status.first_seen': 'Először látott',
     'approvals.why.rule_partner': 'Szabály: {partner} számlái hozzád kerülnek',
     'approvals.why.rule_category': 'Szabály: {category} hozzád kerül',
     'approvals.why.learned': 'Tanult: a(z) {partner} utolsó {count} számlája hozzád került',
@@ -316,6 +328,7 @@ const hu: Copy = {
       amount: 186690,
       currency: 'HUF',
       why: { key: 'approvals.why.rule_partner', partner: 'Reamwell Office Supplies Ltd.' },
+      account: { status: 'confirmed', display: '12345678-12345678-00000000' },
     },
     {
       summary: 'Raktártető javítása, 2. részszámla',
@@ -327,6 +340,7 @@ const hu: Copy = {
       amount: 1524000,
       currency: 'HUF',
       why: { key: 'approvals.why.rule_category', category: 'Karbantartás és javítás' },
+      account: { status: 'first_seen' },
     },
     {
       summary: 'Tervezőszoftver, éves licenc',
@@ -338,6 +352,7 @@ const hu: Copy = {
       amount: 588,
       currency: 'EUR',
       why: { key: 'approvals.why.learned', partner: 'Quillmoor Software Ltd.', count: 3 },
+      account: { status: 'confirmed', display: 'DE89 3704 0044 0532 0130 00' },
     },
     {
       summary: 'Céges autó szervize, fékbetétcsere',
@@ -349,6 +364,7 @@ const hu: Copy = {
       amount: 94615,
       currency: 'HUF',
       why: { key: 'approvals.why.fallback' },
+      account: { status: 'confirmed', display: '12345678-00000000-87654321' },
     },
   ],
   counts: { mine: 4, unassigned: 1, allAwaiting: 7, dueWeek: 2 },
@@ -414,6 +430,8 @@ const de: Copy = {
     'approvals.slip.decline_hint': 'Endgültig. Die Finanzadministration und Entscheidungen sehen das.',
     'approvals.slip.reason_placeholder': 'Begründung (Pflicht)',
     'approvals.slip.cancel': 'Abbrechen',
+    'approvals.slip.payee_account': 'Bankkonto',
+    'approvals.payee_account.status.first_seen': 'Zum ersten Mal gesehen',
     'approvals.why.rule_partner': 'Regel: Rechnungen von {partner} gehen an Sie',
     'approvals.why.rule_category': 'Regel: {category} geht an Sie',
     'approvals.why.learned': 'Gelernt: die letzten {count} Rechnungen von {partner} gingen an Sie',
@@ -445,6 +463,7 @@ const de: Copy = {
       amount: 412.8,
       currency: 'EUR',
       why: { key: 'approvals.why.rule_partner', partner: 'Reamwell Office Supplies Ltd.' },
+      account: { status: 'confirmed', display: '12345678-12345678-00000000' },
     },
     {
       summary: 'Dachreparatur Lager, 2. Teilrechnung',
@@ -456,6 +475,7 @@ const de: Copy = {
       amount: 6480,
       currency: 'EUR',
       why: { key: 'approvals.why.rule_category', category: 'Instandhaltung und Reparaturen' },
+      account: { status: 'first_seen' },
     },
     {
       summary: 'Designsoftware, Jahreslizenz',
@@ -467,6 +487,7 @@ const de: Copy = {
       amount: 588,
       currency: 'EUR',
       why: { key: 'approvals.why.learned', partner: 'Quillmoor Software Ltd.', count: 3 },
+      account: { status: 'confirmed', display: 'DE89 3704 0044 0532 0130 00' },
     },
     {
       summary: 'Firmenwagen: Service und Bremsbeläge',
@@ -478,6 +499,7 @@ const de: Copy = {
       amount: 386.4,
       currency: 'EUR',
       why: { key: 'approvals.why.fallback' },
+      account: { status: 'confirmed', display: '12345678-00000000-87654321' },
     },
   ],
   counts: { mine: 4, unassigned: 1, allAwaiting: 7, dueWeek: 2 },
