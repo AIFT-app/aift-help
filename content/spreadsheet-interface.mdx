@@ -1,0 +1,153 @@
+# Working in the Spreadsheet Interface
+
+Some screens ask you to pick many rows at once: which rows of a file to create, which partners to verify, which categories to archive, which categories belong to a report line. These screens all use the same **spreadsheet interface**. You move with the arrow keys, select several rows with Shift, tick them with Space, search without losing your place, and filter by column. This article explains every key and mouse action. Everything here works the same on all four screens.
+
+On a Mac, press **Cmd** (⌘) wherever this article says **Ctrl**, and **Option** (⌥) where it says **Alt**.
+
+## Where you meet it
+
+| Screen | How to open it | A ticked row is | Ticked when it opens | Button that acts |
+|---|---|---|---|---|
+| The review step of an import | **Import** on Master data → **Partners**, on the **Invoice** or **Cash** tab of **Accounting categories**, or on a custom category list. Also the **Categories** step of a new workspace's setup, after **Upload our own list**. | created | every row the import can create | **Create** |
+| Verifying partners | Master data → **Partners** → **Verify all partners** | verified: a new partner, or linked to an existing one | every row except a name with no tax number | **Verify** |
+| Archiving categories | Master data → **Accounting categories** → **Bulk archive**, on the **Invoice** or **Cash** tab | archived | every category that nothing uses | **Archive** |
+| The categories of a report line | **Reports** → **Edit report** → a line's **Choose categories** | on this report line | the categories the line holds now | **Save** |
+
+Nothing is created, verified, archived or saved until you click the button that acts. **Cancel** leaves the screen without a change; in an import, **Back** returns to the column mapping. Esc and a click outside the screen do not close it, so a half-made selection is never lost by accident.
+
+Acting needs a permission: **Edit master data** for the import, verifying partners and archiving categories, and **Manage reports** for a report line. See [Roles and Permissions](/roles-and-permissions).
+
+For what each screen means for your data, see [Importing Master Data](/master-data-import), [Managing Partners](/partners) and [Reports](/reports).
+
+## Selected and ticked are two different things
+
+- **Selected** rows are highlighted in blue. The selection is where you are, like the cursor in a spreadsheet, and it can cover several rows.
+- **Ticked** rows have a tick in the first column. The tick is what the screen acts on when you click the button.
+
+Most keys work on the selected rows. Space, for example, ticks every selected row. Only the ticks count at the end.
+
+## Moving around
+
+| Key | What it does |
+|---|---|
+| **↑** / **↓** | One row up or down |
+| **PgUp** / **PgDn** | One screen up or down |
+| **Home** / **End** | The first or the last row |
+| **Enter** / **Shift+Enter** | One row down or up |
+| **Ctrl+↓** / **Ctrl+↑** | The next or previous account group, when the rows are grouped |
+
+A click on a row moves there too.
+
+The import of invoice or cash categories and the report line picker group the rows by account group while they are sorted by code, for example every code starting with 52 under one group row. The other screens show one flat list.
+
+## Selecting several rows
+
+| Key or mouse | What it does |
+|---|---|
+| **Shift+↑** / **Shift+↓** | Extends the selection one row at a time. Shift also works with PgUp, PgDn, Home and End. |
+| **Shift** and click | Selects every row from the last one you clicked to this one |
+| **Ctrl** and click | Adds a single row to the selection, or removes it |
+| Drag with the mouse | Selects the rows you drag across (anywhere except the tick column) |
+| **Ctrl+A** | Selects every row that is listed now |
+| **Esc** | Ends a selection of several rows |
+
+The line under the table shows how many rows are selected, next to where you are, for example "Row 3 of 120".
+
+## Ticking and unticking
+
+| Key or mouse | What it does |
+|---|---|
+| **Space** | Ticks the selected rows. If all of them are ticked already, it unticks them. |
+| **Delete** | Unticks the selected rows |
+| A click on a tick box | Ticks or unticks that row. If the row is part of a selection of several rows, the click applies to all of them. |
+| **Shift** and a click on a tick box | Ticks or unticks every row from the last one you clicked to this one |
+| Drag down the tick column | Ticks (or unticks) every row you drag across |
+| The tick box in the header | Ticks every row listed now, or unticks them if all are ticked |
+| The tick box on a group row | Ticks the whole account group, for example every code starting with 52 |
+
+When many rows change at once, a short message confirms it and offers **Undo**.
+
+In an import, rows that cannot be created are grey and cannot be ticked. The **Status** column says what happens to them, for example **Exists**, and the **Note** column gives the reason where there is one, for example "duplicate in file".
+
+## Searching
+
+Start typing anywhere in the table and the search box takes your keystrokes (**Ctrl+F** does the same). The matches are highlighted, and **the other rows stay where they are**, only faded. The search box counts the matches, for example "3 / 12", and small amber marks on the right edge of the table show where the matches are in the whole list. Click a mark to jump to that match.
+
+How a search matches:
+
+- **Words** match anywhere in the name. Capital letters and accents do not matter, so `kozuzemi` finds "Közüzemi díjak". With several words, a row has to contain all of them.
+- **Digits** match the start of the code or the tax number: `52` finds 5210, `1234` finds 12345678-2-41.
+
+Keys in the search box:
+
+| Key | What it does |
+|---|---|
+| **Enter** / **Shift+Enter** | The next or previous match |
+| **Ctrl+Enter** | Ticks this match and moves to the next one |
+| **Ctrl+Shift+Enter** | Ticks every match |
+| **↑** / **↓** | Back to the table, one row up or down |
+| **Esc** | Back to the table. Press Esc again in the table to clear the search. |
+
+From the table, **F3** jumps to the next match and **Shift+F3** to the previous one.
+
+When there is more than one match, a button next to the search box ticks all of them at once, for example **Tick all 12 matches**.
+
+The **Matches only** switch hides the rows that do not match. It is the only thing that hides rows because of a search; without it, the search never hides a row.
+
+## Filtering and sorting by column
+
+Click a column header to sort by it. Click it again to reverse the order. A small ▲ or ▼ marks the sorted column.
+
+Some columns have a filter button in their header. It opens a menu with two sort options at the top and the column's values below, each with the number of rows that have it. Untick a value to hide those rows; **(Select all)** shows every value again. Click **Done** to close the menu.
+
+While a filter hides something, its button turns blue and the filter appears as a chip above the table. Click the chip to open the filter again, or its × to clear it. If a filter leaves no rows, the table says so and offers **Clear filters**.
+
+Which columns have a filter:
+
+- **Import**: Status. For partners also Country, for invoice and cash categories also the code, by account group.
+- **Verifying partners**: What happens, and Country.
+- **Archiving categories**: Usage, and Direction.
+- **Report line**: Status, and the code, by account group.
+
+The code filter lists the account groups under their account class, so you can hide a whole class with one tick.
+
+## Ticks stay when you filter or search
+
+A tick stays until you remove it. A filter or a search changes only what you see, not what is ticked. The line below the table counts the ticked rows, and when some of them are hidden, it says so, for example "42 rows ticked · 5 of them are not visible now and stay ticked". The button that acts takes every ticked row, including the hidden ones.
+
+**Ctrl+A** and the tick box in the header work on the rows listed now. To tick a group of rows, filter or search for them first, then tick them all at once.
+
+## Undo and redo
+
+| Key | What it does |
+|---|---|
+| **Ctrl+Z** | Undoes the last change: a tick, a name or a direction |
+| **Ctrl+Y** (or **Ctrl+Shift+Z**) | Redoes it |
+
+The table remembers the last 200 changes. They are changes on the screen only; nothing is saved before you click the button that acts.
+
+## Copying rows
+
+Select rows and press **Ctrl+C**. The rows are copied as tab-separated text with the column names on the first line, ready to paste into Excel or any other spreadsheet program. The copy holds the table's columns (in an import, without the Note column), so you can take a list with you to check or to send.
+
+## Pasting codes or tax numbers to tick rows
+
+If you already have the list of rows you want, as a column of codes or tax numbers in Excel or in an email, copy it, click into the table and press **Ctrl+V**. The rows it finds are ticked, and the table jumps to the first of them. A message says how many rows were ticked and names the values that did not match any row (the first four of them).
+
+- On the partner screens (partner import, verifying partners) paste **tax numbers**. The format does not matter: `HU12345678`, `12345678-2-41` and `12345678` find the same partner.
+- On the category screens paste **codes**. Capital letters do not matter.
+
+The values can be one per cell or line, or separated by commas, semicolons or spaces. Pasting only adds ticks; it never removes one. Undo it with **Ctrl+Z** like any other change.
+
+## Only in an import: the name and the direction
+
+In an import, you can correct a row before it is created:
+
+- **F2**, or a double click on the name, edits the name. **Enter** saves it and moves one row down, **Esc** discards it. A changed name shows **restore**, which brings back the name from the file. The name you leave is the one that is created.
+- When you import invoice or cash categories, **Alt+↓** (or the small arrow in the **Direction** cell) opens the direction of the row: **Income**, **Expense** or **Both**. The value from the file is the suggestion. A direction you changed is marked with a blue dot, and the list then offers **Back to the value in the file**. With several rows selected, the choice applies to all of them. In the open list, the first letter of an option picks it.
+
+The other three screens act on records that already exist, so a name typed there is not saved. Change a partner's or a category's name on its own page instead.
+
+## The built-in list of keys
+
+Press **?**, or click **Shortcuts** above the table, to open the list of keys and mouse actions in the app itself. **Esc** closes it. The line under the table also shows the few keys that fit what you are doing at the moment: moving, searching, editing a name, or working with a selection.
