@@ -65,9 +65,11 @@ The fix is a **fixed payment method on the partner**, which overrides what the d
 Under a VAT group, one connection brings in invoices for every member, and each invoice has to be filed to the right company. AI Finance Team decides in this order:
 
 1. **A decision you made before**, for that supplier and that buyer name.
-2. **The buyer name printed on the invoice**, when it matches exactly one paired member's legal name, trade name or one of its alternative names.
+2. **The buyer name printed on the invoice**, when it matches the legal name or one of the alternative names of exactly one paired member.
 3. **The member tax number**, when NAV supplies one. Under a group it is optional, and suppliers fill it in inconsistently.
 4. **Nothing**: the invoice is created without a company and waits on the group's **Filing** tab.
+
+[VAT groups](/vat-groups) has the full order, including the rung that reads what the same name did on earlier invoices.
 
 Two rules follow from that, and both surprise people. **The name beats the tax number** when they disagree, and the disagreement is recorded for a person to look at. And **a decision is not retroactive**: it files what arrives next, not what is already filed. Pairing a new member, though, does file the invoices that were waiting for it.
 
