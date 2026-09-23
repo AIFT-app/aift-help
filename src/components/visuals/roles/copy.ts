@@ -39,6 +39,7 @@ export const UI_KEYS = [
   'settings.team.role_accountant_admin',
   'settings.team.role_accountant',
   'settings.team.role_client_owner',
+  'settings.team.role_financial_admin',
   'settings.team.role_client_member',
   'permissions.source.role',
   'permissions.source.exception_grant',
@@ -49,7 +50,7 @@ export const UI_KEYS = [
 
 export type UiKey = (typeof UI_KEYS)[number]
 
-export type SystemRoleKey = 'accountant_admin' | 'accountant' | 'client_owner' | 'client_member'
+export type SystemRoleKey = 'accountant_admin' | 'accountant' | 'client_owner' | 'financial_admin' | 'client_member'
 
 export type RoleRow =
   | { system: true; key: SystemRoleKey; side: 'firm' | 'client'; members: number }
@@ -61,6 +62,7 @@ export function roleRows(customName: string): RoleRow[] {
     { system: true, key: 'accountant_admin', side: 'firm', members: 1 },
     { system: true, key: 'accountant', side: 'firm', members: 2 },
     { system: true, key: 'client_owner', side: 'client', members: 1 },
+    { system: true, key: 'financial_admin', side: 'client', members: 1 },
     { system: true, key: 'client_member', side: 'client', members: 3 },
     { system: false, name: customName, base: 'client_member', side: 'client', members: 1 },
   ]
@@ -118,8 +120,9 @@ const en: Copy = {
     'permissions.side.client': 'Client',
     'settings.team.role_accountant_admin': 'Accountant Admin',
     'settings.team.role_accountant': 'Accountant',
-    'settings.team.role_client_owner': 'Client Owner',
-    'settings.team.role_client_member': 'Client Member',
+    'settings.team.role_client_owner': 'Finance lead',
+    'settings.team.role_financial_admin': 'Finance admin',
+    'settings.team.role_client_member': 'Team member',
     'permissions.source.role': 'From role',
     'permissions.source.exception_grant': 'Exception, added',
     'permissions.source.exception_deny': 'Exception, removed',
@@ -145,7 +148,7 @@ const en: Copy = {
       decision:
         "Diagram of how AI Finance Team decides whether a member may do something: first membership, then the fixed rules for bank connections and NAV credentials, then the side (firm-only permissions are never available on the client side), then the member's exceptions, and last the role.",
       roles:
-        'The Roles tab of Team management: the four system roles, Accountant Admin, Accountant, Client Owner and Client Member, with their side, member count and the View and Duplicate buttons, a custom role Approver only based on Client Member with View, Edit and Archive, and the Add role button. Numbered markers point to the parts described in the list below.',
+        'The Roles tab of Team management: the five system roles, Accountant Admin, Accountant, Finance lead, Finance admin and Team member, with their side, member count and the View and Duplicate buttons, a custom role Approver only based on Team member with View, Edit and Archive, and the Add role button. Numbered markers point to the parts described in the list below.',
     },
   },
 }
@@ -181,8 +184,9 @@ const hu: Copy = {
     'permissions.side.client': 'Ügyfél',
     'settings.team.role_accountant_admin': 'Könyvelő admin',
     'settings.team.role_accountant': 'Könyvelő',
-    'settings.team.role_client_owner': 'Ügyfél tulajdonos',
-    'settings.team.role_client_member': 'Ügyfél tag',
+    'settings.team.role_client_owner': 'Pénzügyi vezető',
+    'settings.team.role_financial_admin': 'Pénzügyi adminisztrátor',
+    'settings.team.role_client_member': 'Munkatárs',
     'permissions.source.role': 'Szerepkörből',
     'permissions.source.exception_grant': 'Kivétel, hozzáadva',
     'permissions.source.exception_deny': 'Kivétel, elvéve',
@@ -208,7 +212,7 @@ const hu: Copy = {
       decision:
         'Ábra arról, hogyan dönti el az AI Finance Team, hogy egy tag megtehet-e valamit: először a tagság, aztán a bankkapcsolatra és a NAV-hozzáférésre vonatkozó rögzített szabályok, aztán az oldal (irodai jogosultság soha nem érhető el az ügyféloldalon), aztán a tag kivételei, végül a szerepkör.',
       roles:
-        'A Csapatkezelés Szerepkörök füle: a négy rendszerszerepkör, a Könyvelő admin, a Könyvelő, az Ügyfél tulajdonos és az Ügyfél tag, az oldalukkal, a tagok számával, valamint a Megtekintés és a Másolás gombbal, egy Ügyfél tag alapú Csak jóváhagyó egyedi szerepkör a Megtekintés, Szerkesztés és Archiválás gombbal, és az Új szerepkör gomb. A számozott jelölők az alábbi listában leírt részekre mutatnak.',
+        'A Csapatkezelés Szerepkörök füle: az öt rendszerszerepkör, a Könyvelő admin, a Könyvelő, a Pénzügyi vezető, a Pénzügyi adminisztrátor és a Munkatárs, az oldalukkal, a tagok számával, valamint a Megtekintés és a Másolás gombbal, egy Munkatárs alapú Csak jóváhagyó egyedi szerepkör a Megtekintés, Szerkesztés és Archiválás gombbal, és az Új szerepkör gomb. A számozott jelölők az alábbi listában leírt részekre mutatnak.',
     },
   },
 }
@@ -244,8 +248,9 @@ const de: Copy = {
     'permissions.side.client': 'Mandant',
     'settings.team.role_accountant_admin': 'Buchhalter-Admin',
     'settings.team.role_accountant': 'Buchhalter',
-    'settings.team.role_client_owner': 'Mandant (Inhaber)',
-    'settings.team.role_client_member': 'Mandant (Mitarbeiter)',
+    'settings.team.role_client_owner': 'Finanzleitung',
+    'settings.team.role_financial_admin': 'Finanzadmin',
+    'settings.team.role_client_member': 'Teammitglied',
     'permissions.source.role': 'Aus der Rolle',
     'permissions.source.exception_grant': 'Ausnahme, hinzugefügt',
     'permissions.source.exception_deny': 'Ausnahme, entzogen',
@@ -271,7 +276,7 @@ const de: Copy = {
       decision:
         'Diagramm, wie AI Finance Team entscheidet, ob ein Mitglied etwas darf: zuerst die Mitgliedschaft, dann die festen Regeln für Bankverbindungen und NAV-Zugangsdaten, dann die Seite (Kanzlei-Berechtigungen sind auf Mandantenseite nie verfügbar), dann die Ausnahmen des Mitglieds und zuletzt die Rolle.',
       roles:
-        'Der Tab Rollen der Teamverwaltung: die vier Systemrollen Buchhalter-Admin, Buchhalter, Mandant (Inhaber) und Mandant (Mitarbeiter) mit ihrer Seite, der Zahl der Mitglieder und den Schaltflächen Anzeigen und Duplizieren, eine eigene Rolle Nur Freigeber auf Basis von Mandant (Mitarbeiter) mit Anzeigen, Bearbeiten und Archivieren, und die Schaltfläche Rolle hinzufügen. Nummerierte Markierungen zeigen auf die Teile, die in der Liste darunter beschrieben sind.',
+        'Der Tab Rollen der Teamverwaltung: die fünf Systemrollen Buchhalter-Admin, Buchhalter, Finanzleitung, Finanzadmin und Teammitglied mit ihrer Seite, der Zahl der Mitglieder und den Schaltflächen Anzeigen und Duplizieren, eine eigene Rolle Nur Freigeber auf Basis von Teammitglied mit Anzeigen, Bearbeiten und Archivieren, und die Schaltfläche Rolle hinzufügen. Nummerierte Markierungen zeigen auf die Teile, die in der Liste darunter beschrieben sind.',
     },
   },
 }

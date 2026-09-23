@@ -9,9 +9,9 @@ Kontonummern zählen auch ohne Verbindung: Eingehende Transaktionen werden gegen
 | Aktion | Wer |
 |---|---|
 | Kontonummern hinzufügen oder bearbeiten | Jedes Mitglied des Arbeitsbereichs |
-| Eine Bank verbinden | Alle auf der Mandantenseite (Mandanteninhaber oder Mandantenmitglied) |
+| Eine Bank verbinden | Alle auf der Mandantenseite (Finanzleitung, Finanzadmin oder Teammitglied) |
 | **Jetzt synchronisieren** | Jedes Mitglied, auch Buchhalter |
-| Ein Konto trennen, eine Verbindung entfernen | Nur der Mandanteninhaber |
+| Ein Konto trennen, eine Verbindung entfernen | Nur die Finanzleitung |
 | Ein geteiltes Konto angeben (Cash-Pool) | Ein Buchhalter |
 
 Bank verbinden und trennen gehört per Regel zur Mandantenseite, nicht per Rolle: Keine eigene Rolle und keine Ausnahme kann das einem Buchhalter geben, denn Bankzugangsdaten müssen beim Mandanten bleiben. Siehe [Rollen & Berechtigungen](/roles-and-permissions).
@@ -79,9 +79,9 @@ Um weiterzumachen, verbinden Sie dieselbe Bank erneut. AI Finance Team erkennt d
 
 **Trennen** bei einem Konto stoppt dessen Synchronisierung. Die bereits importierten Transaktionen bleiben im Arbeitsbereich, nichts wird gelöscht. Sie können das Konto jederzeit wieder verbinden.
 
-**Entfernen** nimmt eine Karte ganz von der Seite. Es funktioniert nur bei einer Verbindung, die getrennt oder im Fehlerzustand ist, und nur für den Mandanteninhaber, der sie erstellt hat. Eine abgelaufene Verbindung lässt sich nicht entfernen, deshalb kann nach einer Erneuerung eine alte Karte neben der neuen auf der Seite stehen bleiben.
+**Entfernen** nimmt eine Karte ganz von der Seite. Es funktioniert nur bei einer Verbindung, die getrennt oder im Fehlerzustand ist, und nur für die Finanzleitung, die sie erstellt hat. Eine abgelaufene Verbindung lässt sich nicht entfernen, deshalb kann nach einer Erneuerung eine alte Karte neben der neuen auf der Seite stehen bleiben.
 
-Beide Schaltflächen erscheinen nur, solange eine Verbindung aktiv ist, und nur für den Mandanteninhaber.
+Beide Schaltflächen erscheinen nur, solange eine Verbindung aktiv ist, und nur für die Finanzleitung.
 
 ## Fehlerbehebung
 
@@ -101,4 +101,4 @@ Sie sagt Ihnen nur, dass Sie **Bank verbinden** benutzen sollen, was der echte W
 Es wird nur mandantenseitigen Mitgliedern angezeigt. Ein Buchhalter kann die Bank eines Mandanten nicht verbinden, das ist so gewollt.
 
 **Die Verbindungskarte zeigt Fehler.**
-Öffnen Sie die Karte: Der Status benennt den Grund des Anbieters. Eine Verbindung im Fehlerzustand kann der Mandanteninhaber trennen und erneut verbinden.
+Öffnen Sie die Karte: Der Status benennt den Grund des Anbieters. Eine Verbindung im Fehlerzustand kann die Finanzleitung trennen und erneut verbinden.

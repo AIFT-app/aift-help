@@ -24,40 +24,40 @@ Mandantennutzer haben keine Organisationsrolle. Sie existieren nur in den Arbeit
 
 ## Berechtigungen
 
-Jedes Mitglied eines Arbeitsbereichs hat eine **Rolle**, und eine Rolle ist ein benannter Satz von **Berechtigungen**. Jeder Arbeitsbereich hat vier **Systemrollen**, und seine Verwalter können für diesen Arbeitsbereich **eigene Rollen** hinzufügen.
+Jedes Mitglied eines Arbeitsbereichs hat eine **Rolle**, und eine Rolle ist ein benannter Satz von **Berechtigungen**. Jeder Arbeitsbereich hat fünf **Systemrollen**, und seine Verwalter können für diesen Arbeitsbereich **eigene Rollen** hinzufügen.
 
 <AccessDecisionFigure>
 So beantwortet AI Finance Team die Frage „Darf dieses Mitglied das?“: zuerst die festen Regeln, dann die Seite, dann die Ausnahmen des Mitglieds, dann die Rolle.
 </AccessDecisionFigure>
 
-| Berechtigung | Seite | Buchhalter-Admin | Buchhalter | Mandant (Inhaber) | Mandant (Mitarbeiter) |
-|---|---|---|---|---|---|
-| Rechnungen und Banktransaktionen ansehen | beide | ✓ | ✓ | ✓ | ✓ |
-| Dokumente hochladen | beide | ✓ | ✓ | ✓ | ✓ |
-| Rechnungen bearbeiten | Kanzlei | ✓ | ✓ | — | — |
-| Banktransaktionen bearbeiten | Kanzlei | ✓ | ✓ | — | — |
-| Zuordnung verwalten | Kanzlei | ✓ | ✓ | — | — |
-| Buchhaltungsexporte ausführen | Kanzlei | ✓ | ✓ | — | — |
-| Perioden abschließen | Kanzlei | ✓ | ✓ | — | — |
-| Berichte verwalten | beide | ✓ | ✓ | — | — |
-| Stammdaten bearbeiten | Kanzlei | ✓ | ✓ | — | — |
-| Arbeitsbereich-Einstellungen bearbeiten | Kanzlei | ✓ | — | — | — |
-| Mitglieder einladen | beide | ✓ | — | ✓ | — |
-| Mitglieder und Rollen verwalten | beide | ✓ | — | ✓ | — |
-| Verbindungen verwalten | beide | ✓ | — | ✓ | — |
-| Rechnungen zur Zahlung freigeben | beide | ✓ | — | ✓ | — |
-| Freigaben verwalten | beide | ✓ | — | ✓ | — |
-| Zahlungsdatei exportieren | beide | ✓ | — | ✓ | — |
-| In das Buchhaltungssystem übertragen | Kanzlei | ✓ | — | — | — |
+| Berechtigung | Seite | Buchhalter-Admin | Buchhalter | Finanzleitung | Finanzadmin | Teammitglied |
+|---|---|---|---|---|---|---|
+| Rechnungen und Banktransaktionen ansehen | beide | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Dokumente hochladen | beide | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Rechnungen bearbeiten | Kanzlei | ✓ | ✓ | — | — | — |
+| Banktransaktionen bearbeiten | Kanzlei | ✓ | ✓ | — | — | — |
+| Zuordnung verwalten | Kanzlei | ✓ | ✓ | — | — | — |
+| Buchhaltungsexporte ausführen | Kanzlei | ✓ | ✓ | — | — | — |
+| Perioden abschließen | Kanzlei | ✓ | ✓ | — | — | — |
+| Berichte verwalten | beide | ✓ | ✓ | — | — | — |
+| Stammdaten bearbeiten | Kanzlei | ✓ | ✓ | — | — | — |
+| Arbeitsbereich-Einstellungen bearbeiten | Kanzlei | ✓ | — | — | — | — |
+| Mitglieder einladen | beide | ✓ | — | ✓ | — | — |
+| Mitglieder und Rollen verwalten | beide | ✓ | — | ✓ | — | — |
+| Verbindungen verwalten | beide | ✓ | — | ✓ | — | — |
+| Rechnungen zur Zahlung freigeben | beide | ✓ | — | ✓ | — | — |
+| Freigaben verwalten | beide | ✓ | — | ✓ | ✓ | — |
+| Zahlungsdatei exportieren | beide | ✓ | — | ✓ | ✓ | — |
+| In das Buchhaltungssystem übertragen | Kanzlei | ✓ | — | — | — | — |
 
-Die Häkchen sind die **Voreinstellungen der vier Systemrollen**. Eine eigene Rolle wählt ihren eigenen Satz, und eine Ausnahme ändert ein einzelnes Mitglied. „In das Buchhaltungssystem übertragen“ setzt außerdem voraus, dass die Verbindung für den Arbeitsbereich aktiviert ist.
+Die Häkchen sind die **Voreinstellungen der fünf Systemrollen**. Eine eigene Rolle wählt ihren eigenen Satz, und eine Ausnahme ändert ein einzelnes Mitglied. „In das Buchhaltungssystem übertragen“ setzt außerdem voraus, dass die Verbindung für den Arbeitsbereich aktiviert ist.
 
 Zwei Dinge sind durch Regel festgelegt und nie Teil einer Rolle:
 
-- **Bankkonten verbinden und trennen.** Jedes mandantenseitige Mitglied kann eine Bank verbinden; eine Bankverbindung trennen darf nur der Mandant (Inhaber). Bankzugangsdaten bleiben immer auf der Mandantenseite.
-- **NAV-Online-Számla-Zugangsdaten verwalten.** Einrichten können sie der Mandant (Inhaber), ein Buchhalter-Admin oder ein Buchhalter. Auslesen kann sie niemand.
+- **Bankkonten verbinden und trennen.** Jedes mandantenseitige Mitglied kann eine Bank verbinden; eine Bankverbindung trennen darf nur die Finanzleitung. Bankzugangsdaten bleiben immer auf der Mandantenseite.
+- **NAV-Online-Számla-Zugangsdaten verwalten.** Einrichten können sie die Finanzleitung, ein Buchhalter-Admin oder ein Buchhalter. Auslesen kann sie niemand.
 
-Beides entscheidet die **Basisrolle** des Mitglieds (die Systemrolle, auf der eine eigene Rolle basiert). Eine eigene Rolle auf Basis von Mandant (Inhaber) verfügt also ebenfalls über die Bankverbindung.
+Beides entscheidet die **Basisrolle** des Mitglieds (die Systemrolle, auf der eine eigene Rolle basiert). Eine eigene Rolle auf Basis der Finanzleitung verfügt also ebenfalls über die Bankverbindung.
 
 Was die umfassenderen Berechtigungen abdecken:
 
@@ -72,17 +72,20 @@ Was die umfassenderen Berechtigungen abdecken:
 |---|---|---|
 | Buchhalter-Admin | Kanzlei | Federführende Buchhaltung des Mandats: alles, einschließlich Team und Einstellungen |
 | Buchhalter | Kanzlei | Unterstützende Buchhaltung: die gesamte Buchhaltungsarbeit, ohne Team und Einstellungen |
-| Mandant (Inhaber) | Mandant | Leitende Person beim Mandanten: lädt hoch, lädt die Mitarbeitenden des Mandanten ein und verwaltet sie und die Verbindungen, gibt Rechnungen frei und bezahlt sie, verfügt über die Bankverbindung |
-| Mandant (Mitarbeiter) | Mandant | Weitere Personen beim Mandanten: hochladen und ansehen |
+| Finanzleitung | Mandant | Leitende Person beim Mandanten: lädt hoch, lädt die Mitarbeitenden des Mandanten ein und verwaltet sie und die Verbindungen, gibt Rechnungen frei, verfügt über die Bankverbindung |
+| Finanzadmin | Mandant | Im Team der Finanzleitung: führt den Freigabeprozess und erstellt die Zahlungsdatei, entscheidet aber nicht über eine Rechnung |
+| Teammitglied | Mandant | Weitere Personen beim Mandanten: hochladen und ansehen |
 
 Systemrollen lassen sich nicht ändern. Klicken Sie bei einer auf **Anzeigen**, um schreibgeschützt zu sehen, was ein Mitglied mit dieser Rolle tun kann.
+
+Der **Finanzadmin** ist neu, und niemand hat diese Rolle, bis ein Verwalter sie zuweist. Es gibt sie, weil das Vorbereiten eines Zahlungslaufs und das Entscheiden darüber zwei verschiedene Aufgaben sind: Ein Finanzadmin kann den Freigabeprozess führen und die Zahlungsdatei exportieren, während das Freigeben einer Rechnung bei der Finanzleitung bleibt.
 
 ### Eigene Rollen
 
 Öffnen Sie im Arbeitsbereich **Einstellungen → Teamverwaltung → Rollen**.
 
 <RolesTabFigure>
-Der Reiter **Rollen** mit den vier Systemrollen und einer eigenen Rolle. Die Nummern entsprechen der Liste darunter. Die Rolle und die Zahl der Mitglieder sind Beispiele.
+Der Reiter **Rollen** mit den fünf Systemrollen und einer eigenen Rolle. Die Nummern entsprechen der Liste darunter. Die Rolle und die Zahl der Mitglieder sind Beispiele.
 </RolesTabFigure>
 
 1. Die Reiter der Teamverwaltung.
@@ -90,7 +93,7 @@ Der Reiter **Rollen** mit den vier Systemrollen und einer eigenen Rolle. Die Num
 3. Eine eigene Rolle, basierend auf einer Systemrolle ihrer Seite.
 4. **Rolle hinzufügen**.
 
-- **Rolle hinzufügen** legt eine Rolle an, in der nichts angehakt ist; **Duplizieren** startet mit den Berechtigungen einer bestehenden Rolle. Eine eigene Rolle basiert auf einer Systemrolle derselben Seite, und eine reine Kanzleiberechtigung wird für eine mandantenseitige Rolle nicht angeboten.
+- **Rolle hinzufügen** legt eine Rolle an, in der nichts angehakt ist; **Duplizieren** startet mit den Berechtigungen einer bestehenden Rolle. Eine eigene Rolle basiert auf einer Systemrolle derselben Seite (auf der Mandantenseite: Teammitglied, Finanzadmin oder Finanzleitung), und eine reine Kanzleiberechtigung wird für eine mandantenseitige Rolle nicht angeboten.
 - Sie können nur Berechtigungen vergeben, die Sie selbst haben.
 - Jeder, der den Reiter öffnet, sieht alle Rollen, aber ein mandantenseitiger Verwalter kann kanzleiseitige Rollen nicht ändern.
 - Weisen Sie eine Rolle auf der Zugriffsseite eines Mitglieds zu, oder wählen Sie sie beim Einladen.
@@ -113,7 +116,7 @@ Wird „Rechnungen und Banktransaktionen ansehen“ entzogen, wird das Mitglied 
 
 ### Das Team verwalten
 
-„Mitglieder und Rollen verwalten“ macht jemanden zum Verwalter des Teams. Damit kann er die Rolle eines Mitglieds ändern, Ausnahmen setzen, Mitglieder entfernen und auf der Kanzleiseite über Beitrittsanfragen entscheiden. Ein mandantenseitiger Verwalter (voreingestellt der Mandant (Inhaber)) verwaltet nur mandantenseitige Mitglieder. Der letzte Buchhalter-Admin und der letzte Mandant (Inhaber) eines Arbeitsbereichs können nicht entfernt werden, nicht austreten und nicht auf eine andere Basisrolle umgestellt werden.
+„Mitglieder und Rollen verwalten“ macht jemanden zum Verwalter des Teams. Damit kann er die Rolle eines Mitglieds ändern, Ausnahmen setzen, Mitglieder entfernen und auf der Kanzleiseite über Beitrittsanfragen entscheiden. Ein mandantenseitiger Verwalter (voreingestellt die Finanzleitung) verwaltet nur mandantenseitige Mitglieder. Der letzte Buchhalter-Admin und die letzte Finanzleitung eines Arbeitsbereichs können nicht entfernt werden, nicht austreten und nicht auf eine andere Basisrolle umgestellt werden.
 
 ### Was ein Mitglied sieht
 
@@ -121,52 +124,52 @@ Die Seitenleiste folgt der Seite und den Berechtigungen des Mitglieds, doch das 
 
 ## Was jede Rolle sieht
 
-Diese Tabellen zeigen die **Voreinstellungen** der vier Systemrollen; eine eigene Rolle oder eine Ausnahme ändert sie.
+Diese Tabellen zeigen die **Voreinstellungen** der fünf Systemrollen; eine eigene Rolle oder eine Ausnahme ändert sie.
 
 ### Seitenleiste
 
-| Menüpunkt | Buchhalter-Admin | Buchhalter | Mandant (Inhaber) | Mandant (Mitarbeiter) |
-|---|---|---|---|---|
-| Startseite, Rechnungen, Banktransaktionen | ✓ | ✓ | ✓ | ✓ |
-| Zuordnung, Exporte, Abschluss | ✓ | ✓ | — | — |
-| Freigaben | ✓ | — | ✓ | — |
-| Zahlungsdatei | ✓ | — | ✓ | — |
-| Berichte | ✓ | ✓ | ✓ | ✓ |
-| Sammelstelle, Nachrichten | ✓ | ✓ | ✓ | ✓ |
-| Fehlende Belege | ✓ | ✓ | ✓ | ✓ |
-| Dokumente | ✓ | ✓ | — | — |
-| Stammdaten, Einstellungen | ✓ | ✓ | ✓ | ✓ |
+| Menüpunkt | Buchhalter-Admin | Buchhalter | Finanzleitung | Finanzadmin | Teammitglied |
+|---|---|---|---|---|---|
+| Startseite, Rechnungen, Banktransaktionen | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Zuordnung, Exporte, Abschluss | ✓ | ✓ | — | — | — |
+| Freigaben | ✓ | — | ✓ | ✓ | — |
+| Zahlungsdatei | ✓ | — | ✓ | ✓ | — |
+| Berichte | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Sammelstelle, Nachrichten | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Fehlende Belege | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Dokumente | ✓ | ✓ | — | — | — |
+| Stammdaten, Einstellungen | ✓ | ✓ | ✓ | ✓ | ✓ |
 
 **Freigaben** erscheint für Mitglieder mit „Rechnungen zur Zahlung freigeben“ oder „Freigaben verwalten“, **Zahlungsdatei** für Mitglieder mit „Zahlungsdatei exportieren“. **Fehlende Belege** erscheint nur, wo diese Funktion für den Arbeitsbereich aktiviert ist (siehe [Fehlende Belege](/documents-needed)). Unter **Stammdaten** sehen mandantenseitige Mitglieder Unternehmen, Bankkonten, Buchhaltungskategorien und Eigene Kategorien; Partner, Transaktionstypen, USt-Gruppen und die USt-Einrichtung (USt.-Codes) gibt es nur für die Kanzleiseite.
 
 ### Einstellungen → Teamverwaltung
 
-| Reiter oder Aktion | Buchhalter-Admin | Buchhalter | Mandant (Inhaber) | Mandant (Mitarbeiter) |
-|---|---|---|---|---|
-| Teammitglieder | ✓ | ✓ | ✓ | ✓ |
-| Zugriff bearbeiten (Rolle, Ausnahmen) | ✓ | — | ✓ (mandantenseitige Mitglieder) | — |
-| Neues Mitglied einladen | ✓ | — | ✓ (nur Mandantenrollen) | — |
-| Ausstehende Einladungen, Widerruf | ✓ | — | ✓ (mandantenseitige Einladungen) | — |
-| Ausstehende Anfragen (Beitrittsanfragen) | ✓ | — | — | — |
-| Rollen | ✓ | — | ✓ | — |
+| Reiter oder Aktion | Buchhalter-Admin | Buchhalter | Finanzleitung | Finanzadmin | Teammitglied |
+|---|---|---|---|---|---|
+| Teammitglieder | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Zugriff bearbeiten (Rolle, Ausnahmen) | ✓ | — | ✓ (mandantenseitige Mitglieder) | — | — |
+| Neues Mitglied einladen | ✓ | — | ✓ (nur Mandantenrollen) | — | — |
+| Ausstehende Einladungen, Widerruf | ✓ | — | ✓ (mandantenseitige Einladungen) | — | — |
+| Ausstehende Anfragen (Beitrittsanfragen) | ✓ | — | — | — | — |
+| Rollen | ✓ | — | ✓ | — | — |
 
 ### Rechnungen
 
-| Aktion | Buchhalter-Admin | Buchhalter | Mandant (Inhaber) | Mandant (Mitarbeiter) |
-|---|---|---|---|---|
-| Rechnung hochladen | ✓ | ✓ | ✓ | ✓ |
-| Rechnungsdetails ansehen | ✓ | ✓ | ✓ | ✓ |
-| Rechnung bearbeiten (Unternehmen, Richtung, Partner, Felder, Positionen) | ✓ | ✓ | — | — |
-| Kategorien und USt-Codes ändern | ✓ | ✓ | — | — |
+| Aktion | Buchhalter-Admin | Buchhalter | Finanzleitung | Finanzadmin | Teammitglied |
+|---|---|---|---|---|---|
+| Rechnung hochladen | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Rechnungsdetails ansehen | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Rechnung bearbeiten (Unternehmen, Richtung, Partner, Felder, Positionen) | ✓ | ✓ | — | — | — |
+| Kategorien und USt-Codes ändern | ✓ | ✓ | — | — | — |
 
 Mandanten reichen die Belege ein; die Buchhaltung kategorisiert und prüft sie.
 
 ### Berichte
 
-| Aktion | Buchhalter-Admin | Buchhalter | Mandant (Inhaber) | Mandant (Mitarbeiter) |
-|---|---|---|---|---|
-| Berichte ansehen und ins Detail gehen | ✓ | ✓ | ✓ | ✓ |
-| Bericht erstellen, bearbeiten, umbenennen oder löschen | ✓ | ✓ | — | — |
+| Aktion | Buchhalter-Admin | Buchhalter | Finanzleitung | Finanzadmin | Teammitglied |
+|---|---|---|---|---|---|
+| Berichte ansehen und ins Detail gehen | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Bericht erstellen, bearbeiten, umbenennen oder löschen | ✓ | ✓ | — | — | — |
 
 ## Wie Mitgliedschaft funktioniert
 
@@ -178,7 +181,7 @@ Der Reiter **Einstellungen → Teamverwaltung → Neues Mitglied einladen** im A
 - Eine optionale Nachricht mit bis zu 500 Zeichen, die für den ganzen Stapel gilt. Links darin werden anklickbar.
 - Klicken Sie auf **Einladung senden** oder bei mehreren auf **N Einladungen senden**. Gesendete Zeilen verschwinden aus dem Formular; fehlgeschlagene Zeilen (etwa wegen einer doppelten E-Mail-Adresse) bleiben mit der Fehlermeldung stehen, damit Sie sie korrigieren können.
 
-Die Rollenauswahl hängt davon ab, wer einlädt: Wer auf der Mandantenseite einlädt, kann nur in die Rolle Mandant (Mitarbeiter) einladen; wer auf der Kanzleiseite einlädt, kann jede Arbeitsbereichsrolle vergeben; das Fenster der Organisation lädt in die Kanzlei ein.
+Die Rollenauswahl hängt davon ab, wer einlädt: Wer auf der Mandantenseite einlädt, kann ein Teammitglied oder einen Finanzadmin einladen, nie eine weitere Finanzleitung; wer auf der Kanzleiseite einlädt, kann jede Arbeitsbereichsrolle vergeben; das Fenster der Organisation lädt in die Kanzlei ein.
 
 AI Finance Team sendet jeder Person den Einladungslink und Ihre Nachricht per E-Mail; der Link wird Ihnen auch angezeigt, falls die E-Mail nicht ankommt. Jede Einladung läuft nach 14 Tagen ab, kann vor der Annahme widerrufen werden und funktioniert nur für die E-Mail-Adresse, an die sie gesendet wurde.
 
@@ -200,4 +203,4 @@ Es gibt drei Wege in einen Arbeitsbereich:
 
 ### Ein Mitglied entfernen
 
-Ein Mitglied mit „Mitglieder und Rollen verwalten“ kann auf dem Reiter **Teammitglieder** ein Mitglied der eigenen Seite entfernen: Voreingestellt entfernt der Buchhalter-Admin kanzleiseitige Mitglieder und der Mandant (Inhaber) mandantenseitige Mitglieder. Jedes Mitglied kann einen Arbeitsbereich selbst verlassen; ausgenommen sind der letzte Buchhalter-Admin und der letzte Mandant (Inhaber). Entfernte Personen behalten ihr Konto; sie verlieren nur den Zugriff auf diesen Arbeitsbereich. Wer aus der Organisation entfernt wird (auf ihrer Seite **Team**), wird aus jedem Arbeitsbereich der Kanzlei entfernt.
+Ein Mitglied mit „Mitglieder und Rollen verwalten“ kann auf dem Reiter **Teammitglieder** ein Mitglied der eigenen Seite entfernen: Voreingestellt entfernt der Buchhalter-Admin kanzleiseitige Mitglieder und die Finanzleitung mandantenseitige Mitglieder. Jedes Mitglied kann einen Arbeitsbereich selbst verlassen; ausgenommen sind der letzte Buchhalter-Admin und die letzte Finanzleitung. Entfernte Personen behalten ihr Konto; sie verlieren nur den Zugriff auf diesen Arbeitsbereich. Wer aus der Organisation entfernt wird (auf ihrer Seite **Team**), wird aus jedem Arbeitsbereich der Kanzlei entfernt.

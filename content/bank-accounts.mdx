@@ -9,9 +9,9 @@ Account numbers matter even without a connection: incoming transactions are matc
 | Action | Who |
 |---|---|
 | Add or edit account numbers | Any member of the workspace |
-| Connect a bank | Anyone on the client side (client owner or client member) |
+| Connect a bank | Anyone on the client side (finance lead, finance admin or team member) |
 | **Sync now** | Any member, accountants included |
-| Disconnect an account, remove a connection | The client owner only |
+| Disconnect an account, remove a connection | The finance lead only |
 | Declare a shared account (cash pool) | An accountant |
 
 Connecting and disconnecting a bank belong to the client side by rule, not by role: no custom role and no exception can grant them to an accountant, because bank credentials must stay with the client. See [Roles and Permissions](/roles-and-permissions).
@@ -79,9 +79,9 @@ To carry on, connect the same bank again. AI Finance Team recognises it as a ren
 
 **Disconnect** on an account stops it syncing. The transactions already imported stay in the workspace; nothing is deleted. You can connect the account again at any time.
 
-**Remove** takes a card off the page entirely. It works only on a connection that is disconnected or in error, and only for the client owner who created it. A connection that has expired cannot be removed, so an old card may stay on the page beside the new one after a renewal.
+**Remove** takes a card off the page entirely. It works only on a connection that is disconnected or in error, and only for the finance lead who created it. A connection that has expired cannot be removed, so an old card may stay on the page beside the new one after a renewal.
 
-Both buttons appear only while a connection is active, and only for the client owner.
+Both buttons appear only while a connection is active, and only for the finance lead.
 
 ## Troubleshooting
 
@@ -101,4 +101,4 @@ It only tells you to use **Connect a bank**, which is the real way to renew a co
 It is shown to client-side members only. An accountant cannot connect a client's bank, by design.
 
 **The connection card shows Error.**
-Open the card: the status names the provider's reason. A connection in error can be disconnected and connected again by the client owner.
+Open the card: the status names the provider's reason. A connection in error can be disconnected and connected again by the finance lead.

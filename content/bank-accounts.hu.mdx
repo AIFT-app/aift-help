@@ -9,9 +9,9 @@ A számlaszámok csatlakoztatás nélkül is számítanak: a beérkező tranzakc
 | Művelet | Ki |
 |---|---|
 | Számlaszám felvétele vagy szerkesztése | A munkaterület bármely tagja |
-| Bank csatlakoztatása | Bárki az ügyféloldalon (ügyfél tulajdonos vagy ügyfél tag) |
+| Bank csatlakoztatása | Bárki az ügyféloldalon (pénzügyi vezető, pénzügyi adminisztrátor vagy munkatárs) |
 | **Szinkronizálás most** | Bármely tag, a könyvelők is |
-| Számla lecsatlakoztatása, kapcsolat eltávolítása | Csak az ügyfél tulajdonos |
+| Számla lecsatlakoztatása, kapcsolat eltávolítása | Csak a pénzügyi vezető |
 | Megosztott számla (cash pool) megadása | Könyvelő |
 
 A bank csatlakoztatása és lecsatlakoztatása szabály szerint tartozik az ügyféloldalhoz, nem szerepkör szerint: egyetlen egyedi szerepkör és egyetlen kivétel sem adhatja meg ezeket könyvelőnek, mert a banki belépési adatoknak az ügyfélnél kell maradniuk. Lásd: [Szerepek és jogosultságok](/roles-and-permissions).
@@ -79,9 +79,9 @@ A folytatáshoz csatlakoztassa újra ugyanazt a bankot. Az AI Finance Team megú
 
 Egy számlánál a **Lecsatlakoztatás** leállítja a szinkronizálást. A már importált tranzakciók a munkaterületen maradnak, semmi nem törlődik. A számlát bármikor újra csatlakoztathatja.
 
-Az **Eltávolítás** teljesen leveszi a kártyát az oldalról. Csak olyan kapcsolatnál működik, amely lecsatlakoztatott vagy hibás állapotban van, és csak annál az ügyfél tulajdonosnál, aki létrehozta. A lejárt kapcsolat nem távolítható el, ezért megújítás után a régi kártya ott maradhat az oldalon az új mellett.
+Az **Eltávolítás** teljesen leveszi a kártyát az oldalról. Csak olyan kapcsolatnál működik, amely lecsatlakoztatott vagy hibás állapotban van, és csak annál a pénzügyi vezetőnél, aki létrehozta. A lejárt kapcsolat nem távolítható el, ezért megújítás után a régi kártya ott maradhat az oldalon az új mellett.
 
-Mindkét gomb csak aktív kapcsolatnál jelenik meg, és csak az ügyfél tulajdonosnak.
+Mindkét gomb csak aktív kapcsolatnál jelenik meg, és csak a pénzügyi vezetőnek.
 
 ## Hibaelhárítás
 
@@ -101,4 +101,4 @@ Csak annyit mond, hogy használja a **Bank összekapcsolása** funkciót, ami a 
 Csak az ügyféloldali tagoknak jelenik meg. Könyvelő nem csatlakoztathatja az ügyfél bankját, ez szándékos.
 
 **A kapcsolat kártyáján Hiba látszik.**
-Nyissa meg a kártyát: az állapot megnevezi a szolgáltató által megadott okot. A hibás állapotú kapcsolatot az ügyfél tulajdonos lecsatlakoztathatja és újra csatlakoztathatja.
+Nyissa meg a kártyát: az állapot megnevezi a szolgáltató által megadott okot. A hibás állapotú kapcsolatot a pénzügyi vezető lecsatlakoztathatja és újra csatlakoztathatja.
