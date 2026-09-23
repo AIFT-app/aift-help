@@ -1,78 +1,104 @@
 # Connecting Bank Accounts
 
-Connecting your business bank accounts lets AI Finance Team import transactions automatically. Once connected, new transactions appear daily without any manual export or upload.
+**Master data → Bank accounts** holds two things: the **account numbers** of your companies, and the **banks you have connected**. Connecting a bank lets AI Finance Team import transactions on its own, so nobody exports a statement by hand.
 
-## Before You Start
+Account numbers matter even without a connection: incoming transactions are matched against them, which is how a transfer between two of your own accounts is recognised.
 
-- You must have a **client** role in the workspace (client owner or client member). Accountant-role users can view connected accounts but cannot connect new ones.
-- You will need to authenticate directly with your bank through their secure online banking portal. AI Finance Team never sees your banking credentials.
-- Bank connections are powered by GoCardless Bank Account Data, which supports banks across the EU and UK.
+## Who Can Do What
+
+| Action | Who |
+|---|---|
+| Add or edit account numbers | Any member of the workspace |
+| Connect a bank | Anyone on the client side (finance lead, finance admin or team member) |
+| **Sync now** | Any member, accountants included |
+| Disconnect an account, remove a connection | The finance lead only |
+| Declare a shared account (cash pool) | An accountant |
+
+Connecting and disconnecting a bank belong to the client side by rule, not by role: no custom role and no exception can grant them to an accountant, because bank credentials must stay with the client. See [Roles and Permissions](/roles-and-permissions).
+
+## Account Numbers
+
+**Bank account numbers**, at the top of the page, lists the IBANs and domestic account numbers of every company, whether or not a bank is connected. Add one with **Add bank account**, choose the **Company**, and give it a **Nickname** if the number alone is not obvious.
+
+Register your numbers before connecting a bank: when the bank returns an IBAN that is already on the list, the company is filled in for you in the next step.
+
+An account that several of your companies use is declared here as well. See [Cash Pool](/cash-pool).
 
 ## Connecting a Bank
 
-1. From the workspace sidebar, click **Master data**, then **Bank accounts**.
-2. Click **Connect a bank**.
-3. Select your country and search for your bank by name.
-4. Click **Continue**. You will be redirected to your bank's secure consent page.
-5. Log in to your bank and authorise read access to your accounts. This grants AI Finance Team read-only access - it cannot initiate payments.
-6. After authorising, your browser returns automatically to AI Finance Team.
+1. Click **Connect a bank**.
+2. Choose the country and the bank. The list is fetched from the provider the first time you open a country, so it can take a moment to fill.
+3. Choose **How much history to import**: up to 90, 60 or 30 days. **This cannot be changed later without connecting again**, because your bank fixes the period when it grants the consent. Some banks allow less than 90 days, and the choice is then reduced to what they allow.
+4. Click **Continue**. Your bank's own consent page opens, and you sign in there. AI Finance Team never sees your banking credentials, and the access your bank grants is read-only: it cannot move money.
+5. The bank's page is in English whatever language you use in AI Finance Team. That is the provider's page, not ours.
+6. After you authorise, your browser comes back and the accounts under your consent are listed.
 
-### Choosing Which Accounts to Track
+### Choosing which accounts to track
 
-After returning from your bank, a dialog shows the accounts available under your consent:
+The dialog lists the accounts your bank returned, with the IBAN and the currency:
 
-- **Check the box** next to each account you want to import transactions for. Uncheck any accounts you don't need.
-- **Assign a company** to each included account from the dropdown. This links the account to the correct company in your workspace so that transactions are attributed correctly.
+- Tick the accounts you want to import, and leave the rest.
+- Give every ticked account a **company**. **Confirm and start importing** stays disabled until each one has it, so the workspace needs at least one company first.
 - Click **Confirm and start importing**.
 
-AI Finance Team immediately begins importing your transaction history. The initial import typically takes a few minutes, depending on how many transactions your bank returns.
+Two things to expect here. The dialog cannot be closed once it is open, because the consent has already been granted. And it may say "Loading accounts…" for up to half a minute, because the provider is still processing the consent; it retries on its own.
 
-> **Note:** If you do not see the expected accounts, or see placeholder account names, it may be due to a temporary bank API limit. You can still connect - assign companies and confirm. You can rename accounts afterwards from the bank accounts page.
+The first import runs straight away and takes a few minutes, depending on how far back you asked it to go.
 
-## What Happens After Connection
+> **Placeholder names.** If an account arrives as something like "Account (…ab1234)", your bank's API was rate-limiting us when we asked for its details. The account is connected and will sync normally. The name comes from the bank and cannot be edited here.
+>
+> An account **missing** from the list is a different problem, and not a rate limit. Connect again, and if it stays missing, contact support with the error code shown.
 
-Once an account is connected and active:
+## What Happens After Connecting
 
-- **Transactions are synced daily** - new transactions flow in automatically, usually within a few hours of them appearing in your bank.
-- **The AI categorises each transaction** - it assigns a transaction category and attempts to match each transaction to an invoice or partner in your workspace.
-- **Exceptions are surfaced for review** - transactions the AI cannot categorise with high confidence appear in the exceptions queue for manual review.
+- **Transactions arrive twice a day**, in the early morning and the early afternoon, Central European time.
+- **The AI gives each transaction a category** and looks for the invoice or partner it belongs to. See [Matching Invoices and Transactions](/invoice-matching).
+- **What it is unsure about waits for you** on the Bank transactions and Matching pages rather than being guessed.
 
-## Connection Expiry
+You can change which company an account belongs to later: the account's row carries a company list, and client-side members can change it there.
 
-Bank connections authorised through open banking expire after 90 days. This is a regulatory requirement - your bank must re-confirm your consent periodically.
+### Sync now
 
-When a connection is approaching expiry, a warning appears on the bank accounts page. You will need to go through the consent flow again to re-authorise. Your existing transactions and their categorisations are preserved.
+**Sync now** on the connection card fetches immediately, for example after a payment has just cleared. It is limited to **two manual syncs a day per account**. The button does not count them down: when the limit is reached, clicking it says so.
 
-## Manual Sync
+## Consent Expiry and Reconnecting
 
-If you need transactions to appear immediately - for example, after recording a payment that just cleared - you can trigger a manual sync:
+<BankConsentLifecycleFigure>
+How a bank connection lives and ends. The status names are the ones on the connection card.
+</BankConsentLifecycleFigure>
 
-1. On the **Bank accounts** page, find the account card.
-2. Click **Sync now**.
+Open banking consent expires. **How long it lasts is your bank's decision**, commonly 90 days, and longer at some banks. The connection card shows the actual date.
 
-Manual syncs are limited to **2 per day** per account. The button is disabled once the limit is reached, and shows when it resets.
+Seven days before that date the card turns amber and says **Expires in N days**. Take this seriously: **automatic syncing stops at that moment**, not on the expiry date. The last week is a warning week, not a grace week.
 
-## Disconnecting an Account
+To carry on, connect the same bank again. AI Finance Team recognises it as a renewal, so it does not ask about history again and asks the bank for the longest period it allows. Your existing transactions and everything done with them are kept.
 
-To stop importing transactions from an account:
+**Mind the gap.** If a consent lapsed before you renewed it, the days between the last sync and the earliest date the provider will now return cannot be recovered from the bank. The card names that period. Fill it from a statement: see [Uploading Bank Statements](/bank-statement-upload).
 
-1. On the **Bank accounts** page, find the account card.
-2. Click **Disconnect**.
+## Disconnecting
 
-Disconnected accounts stop syncing. Existing transactions remain in your workspace and are not deleted. You can reconnect the account at any time by going through the connection flow again.
+**Disconnect** on an account stops it syncing. The transactions already imported stay in the workspace; nothing is deleted. You can connect the account again at any time.
 
-Once all accounts under a connection are disconnected, the connection card can be removed from the page using **Remove from view**.
+**Remove** takes a card off the page entirely. It works only on a connection that is disconnected or in error, and only for the finance lead who created it. A connection that has expired cannot be removed, so an old card may stay on the page beside the new one after a renewal.
+
+Both buttons appear only while a connection is active, and only for the finance lead.
 
 ## Troubleshooting
 
-**I see "Your bank was unable to complete the connection."**
-This means your bank returned an error during the consent flow. It is usually a temporary issue on the bank's side. Wait a few minutes and try again. If it persists, check whether your bank's online banking portal is accessible directly.
+**"Your bank was unable to complete the connection."**
+The message ends with a code in brackets. It usually means a temporary problem at the bank, so wait a few minutes and try again. If it keeps happening, send support that code: without it the cause cannot be traced.
 
-**I connected my bank but no transactions are appearing.**
-The initial import can take a few minutes. Refresh the transactions page after 5 minutes. If transactions still do not appear, check the account card for a sync error indicator and try a manual sync.
+**No transactions after connecting.**
+The first import takes a few minutes. Reload the transactions page, then check the connection card for a sync error and try **Sync now**.
 
-**The account shows a placeholder name like "Account (…ab1234)".**
-This means AI Finance Team could not retrieve your account details from the bank at the time of connection, usually due to a temporary API rate limit. The account is still connected and transactions will sync normally. To update the name, click the account name on the bank accounts page and edit it.
+**An account I expected is not in the list.**
+That is not a rate limit (those arrive with a placeholder name). Run the connection again.
 
-**The "Connect a bank" button is not visible.**
-This button is only shown to users with a client role. If you are an accountant managing a client workspace, ask the client to connect their accounts, or check with your workspace administrator about your role.
+**The card offers Re-authorize.**
+It only tells you to use **Connect a bank**, which is the real way to renew a consent.
+
+**I cannot see Connect a bank.**
+It is shown to client-side members only. An accountant cannot connect a client's bank, by design.
+
+**The connection card shows Error.**
+Open the card: the status names the provider's reason. A connection in error can be disconnected and connected again by the finance lead.

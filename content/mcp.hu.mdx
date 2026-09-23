@@ -1,63 +1,69 @@
 # AI-asszisztens csatlakoztatása MCP-n keresztül
 
-Az AI Finance Teamnek beépített **MCP-kiszolgálója** van - ez egy szabványos felület, amelyen keresztül az olyan AI-asszisztensek, mint a Claude, a Mistral Le Chat vagy a ChatGPT, lekérdezhetik és (opcionálisan) szerkeszthetik a könyvelési adatait az Ön nevében. Ugyanaz a termék, csak beszélgetve elérve.
+Az AI Finance Teamnek beépített **MCP-kiszolgálója** van: ez egy szabványos felület, amelyen keresztül az olyan AI-asszisztensek, mint a Claude, a Mistral Le Chat vagy a ChatGPT, olvashatják a könyvelési adatait, és az Ön engedélyével módosíthatják is. Ugyanaz a termék, csak beszélgetve elérve.
 
-A csatlakoztatás után hétköznapi nyelven kérdezhet az asszisztenstől („Mely számlák igénylik a figyelmemet a Pannónia Bistróban?”), az pedig élő adatot húz le az AIFT-munkaterületéről. Az opcionális írási hatókörrel tranzakciókat is kategorizálhat, párosításokat fogadhat el és számlamezőket szerkeszthet Ön helyett.
+A csatlakoztatás után hétköznapi nyelven kérdezhet („Mely számlák igénylik a figyelmemet a Quillmoor Software-ben?”), az asszisztens pedig élő adatot húz le a munkaterületéről.
 
-Ez az útmutató könyvelőknek szól. Az ügyfelek jelenleg nem férnek hozzá az MCP-hez.
+A cikk könyvelőknek szól, akik minden eszközt használhatnak. Ügyféloldali tag is csatlakozhat, és olvashatja a saját munkaterületét, de a módosító eszközök elutasítják.
 
----
+## Mielőtt csatlakozik
+
+**Az AI-asszisztens hozzáférést be kell kapcsolni a könyvelőirodájánál.** Nyissa meg a **Szervezet → AI-hozzáférés** oldalt. Az iroda minden tagja látja, hogy be van-e kapcsolva; **szervezeti adminisztrátor** tudja átállítani.
+
+Néhány dolog, amit érdemes tudni erről a kapcsolóról:
+
+- Az egész szervezetre és a benne lévő összes ügyfél-munkaterületre vonatkozik. A webalkalmazást egyik állása sem érinti.
+- A kikapcsolás azonnal érvényes, a már csatlakoztatott asszisztensekre is. A visszakapcsolás újracsatlakozás nélkül helyreállítja őket.
+- Az oldal azt is kiírja, mely AI-szolgáltatókhoz kerülnek adatok a használat során, és ez a megfelelő hely arra, hogy ezt csatlakozás előtt elolvassa.
+- Az AI Finance Team is kikapcsolhatja, indoklással. A szervezete ezt ugyanezen az oldalon felülírhatja.
 
 ## Mit tud
 
-Az MCP-kapcsolat ugyanazokra az adatokra és jogosultságokra épül, amelyekkel az AIFT-en belül már rendelkezik. Nem lát semmit, amit Ön nem láthat, és - ha a **Módosítások végrehajtása** hatókört megadta - csak olyan dolgokat tehet, amelyeket egy könyvelő a felületen keresztül is megtehet. Minden művelet auditálható.
+A kapcsolat ugyanazokra az adatokra és ugyanazokra a jogosultságokra épül, amelyekkel Ön már rendelkezik. Nem lát olyat, amit Ön nem láthat, és csak olyat tehet, amit Ön is megtehetne az alkalmazásban. Minden hívás rögzül.
 
-### Amit kérdezhet (módosítás nélkül)
+### Kérdések (semmi nem változik)
 
 > „Sorold fel az ügyfél-munkaterületeimet, és mondd meg, melyik igényli a legtöbb figyelmet.”
 
-> „A Csavar Csárdában mely májusi banki tranzakcióknak nincs még párosított számlájuk?”
+> „A Slatebridge Roofingnál mely májusi banki tranzakciókhoz nincs még párosított számla?”
 
-> „Mutasd az első negyedéves eredményeket a Pannónia Bistróra - az eredménykimutatást és a pénzforgalmi riportot is.”
+> „Mutasd meg a Quillmoor Software első negyedévét, az eredménykimutatást és a pénzforgalmi riportot.”
 
-> „Mely Logikum Kft.-számláknak vannak kategorizálatlan tételsoraik, összeg szerint rendezve?”
+> „Mely Gearmont Fleet Services-számlákon vannak kategorizálatlan tételsorok, a legnagyobbal kezdve?”
 
-> „Keress meg minden márciusi Telekom banki tranzakciót a Zöld Saláta Kft.-ben.”
+> „Keress meg minden márciusi kártyás fizetést a Reamwell Office Supplies-nál.”
 
 > „Mi történt ma ezen a munkaterületen MCP-n keresztül?”
 
-### Amit megkérhet, hogy tegyen meg (írási hatókör szükséges)
+### Műveletek (a Módosítások végrehajtása hatókör)
 
-> „Jelöld meg az összes májusi bankköltség-tranzakciót »nem kell számla« jelöléssel.”
+> „Jelöld meg a májusi bankköltségeket úgy, hogy nem kell számla.”
 
-> „Kategorizáld ezt az Adobe-számlasort »Szoftverlicenc« kategóriába.”
+> „Kategorizáld ezt az előfizetési számlasort szoftverlicencként.”
 
-> „Erősítsd meg a javasolt párosítást az INV-0314 és a TXN-0892 között.”
+> „Erősítsd meg a javasolt párosítást az AH-INV-2026-0314 és az AH-TXN-2026-0892 között.”
 
-> „Ennek a számlának rossz a partnere - állítsd be a »Magyar Telekom« ellenőrzött partnerre.”
+> „Ennek a számlának rossz a partnere: állítsd be a Slatebridge Roofing ellenőrzött partnerre.”
 
-> „Az AcmeCorp valójában új szállító - léptesd elő ellenőrzött partnerré.”
+> „Léptesd elő ezt a szállítót ellenőrzött partnerré.”
 
 > „Vond vissza a kategorizálást az AH-TXN-2026-0042 tételen.”
 
-Minden írási művelet **előtte** és **utána** pillanatképet rögzít az auditnaplóban, így bármely változás átnézhető (és visszavonható).
+A számlák kategorizálása és szerkesztése **csak könyvelőknek** engedélyezett, bármelyik hatókört adta is meg.
 
----
+## Mit nem tud
 
-## Mit nem tud kifejezetten
+- **Pénzt mozgatni.** Nincs átutalás, nincs fizetés, nincs hozzáférés a banki belépési adatokhoz.
+- **A belépési adataihoz férni.** A bankkapcsolat-beállítások, a jelszavak és a tokenek mind elérhetetlenek. Az asszisztens azt látja, *hogy van-e* NAV-kapcsolat, a belépési adatait soha.
+- **Dokumentumot feltölteni vagy újraolvasni.** A fájlok az alkalmazáson vagy a munkaterület e-mail-címén keresztül jutnak be. Az asszisztens nem tud mellékletet átvenni, és nem is kérheti egy dokumentum ismételt beolvasását.
+- **Exportálni a könyvelőprogramjába.** Az export továbbra is szándékos lépés az alkalmazásban.
+- **Más munkaterületekhez nyúlni.** Csak azokat a munkaterületeket látja, amelyeknek Ön tagja, és csak addig, amíg az iroda AI-hozzáférése be van kapcsolva.
 
-- **Pénzt mozgatni.** Nincs átutalás, nincs fizetés, nincs hozzáférés a banki belépési adatokhoz. A kapcsolat kizárólag könyvelési adatokat érint.
-- **Fiókhitelesítő adatokat módosítani.** A bankkapcsolat-beállítások, a felhasználói jelszavak és az OAuth-tokenek mind tiltottak.
-- **Számlákat beküldeni az adóhatóságnak.** A könyvelőprogramba történő export külön, kézi lépés.
-- **Más munkaterületekhez nyúlni.** Az asszisztens csak azokat a munkaterületeket látja, amelyeknek Ön tagja, és az eszközönkénti ellenőrzések elutasítanak mindent, ami ezen kívül esik.
-
-Ezeket a kiszolgáló oldalán tartatja be a rendszer; semmi, amit az asszisztens megpróbál - még ha meg is kérik rá -, nem tudja megkerülni őket.
-
----
+Ezeket a mi oldalunkon tartatja be a rendszer. Ha mégis megkéri rá az asszisztenst, semmi nem változik.
 
 ## A kapcsolat beállítása
 
-A pontos lépések attól függnek, melyik asszisztenst használja. A konnektornak megadandó URL mindig ugyanaz:
+Az URL mindig ugyanaz:
 
 ```
 https://aift.aifinance.team/api/mcp
@@ -65,104 +71,110 @@ https://aift.aifinance.team/api/mcp
 
 ### Claude (asztali vagy webes)
 
-Pro, Max, Team és Enterprise csomagokon érhető el.
+Pro, Max, Team és Enterprise csomagon érhető el.
 
 1. Nyissa meg a **Beállítások → Konnektorok → Egyéni konnektor hozzáadása** menüpontot.
-2. Illessze be a fenti URL-t.
-3. Kattintson a **Hozzáadás** gombra. A Claude megnyit egy AIFT-bejelentkezési lapot.
-4. Jelentkezzen be a szokásos AIFT-fiókjával.
-5. A hozzájárulási képernyőn pipálja be az **Adatok olvasása** lehetőséget az olvasási hatókör megadásához. Pipálja be a **Módosítások végrehajtása** lehetőséget is, ha azt szeretné, hogy az asszisztens kategorizálni, párosítani, számlát szerkeszteni stb. tudjon.
-6. Kattintson az **Engedélyezés** gombra. Visszatér a Claude-ba, a betöltött eszközökkel.
+2. Illessze be az URL-t.
+3. Kattintson a **Hozzáadás** gombra. A Claude megnyit egy AI Finance Team bejelentkezési lapot.
+4. Jelentkezzen be a szokásos fiókjával.
+5. A hozzájárulási képernyőn pipálja be az **Adatok olvasása** lehetőséget, és a **Módosítások végrehajtása** lehetőséget is, ha azt szeretné, hogy az asszisztens kategorizálni, párosítani és szerkeszteni tudjon.
+6. Kattintson az **Engedélyezés** gombra.
 
-Lecsatlakoztatás: Beállítások → Konnektorok → AIFT → **Eltávolítás**.
+<McpConsentFigure>
+A hozzájárulási képernyő bepipált **Adatok olvasása** jelöléssel; a **Módosítások végrehajtása** az Ön döntésére vár. A számok az alábbi lista pontjainak felelnek meg.
+</McpConsentFigure>
+
+1. **Adatok olvasása**, amire minden kérdéshez szükség van.
+2. **Módosítások végrehajtása**, amire az asszisztensnek a kategorizáláshoz, a párosításhoz vagy a szerkesztéshez van szüksége.
+3. Az **Engedélyezés** azt adja meg, ami be van pipálva. A **Mégse** semmit nem ad meg.
+
+Lecsatlakoztatás: Beállítások → Konnektorok → AI Finance Team → **Eltávolítás**.
 
 ### Mistral Le Chat
 
 Free és Pro csomagon érhető el.
 
 1. **Beállítások → MCP-konnektorok → Konnektor hozzáadása**.
-2. Illessze be a fenti URL-t. A hitelesítést a rendszer automatikusan felismeri.
-3. Kövesse ugyanazt a bejelentkezési és hozzájárulási folyamatot.
-
-Jelenleg a Mistral a legbarátságosabb út - nincs csomagkorlát, és ez a leggyorsabb beállítás.
+2. Illessze be az URL-t. A bejelentkezést a rendszer automatikusan felismeri.
+3. Jelentkezzen be, és adja meg a hozzájárulást a fentiek szerint.
 
 ### ChatGPT
 
-Plus és Pro csomagon (Fejlesztői módon keresztül), illetve Business / Enterprise csomagon szervezeti szinten közzétéve érhető el.
+Plus és Pro csomagon a Fejlesztői módon keresztül, Business és Enterprise csomagon pedig a szervezete által közzétéve érhető el.
 
 1. Kapcsolja be a **Fejlesztői módot** a beállításokban.
 2. **Egyéni konnektor hozzáadása** a fenti URL-lel.
-3. Kövesse ugyanazt a bejelentkezési és hozzájárulási folyamatot.
+3. Jelentkezzen be, és adja meg a hozzájárulást a fentiek szerint.
 
-Business / Enterprise fiókoknál az informatikai adminisztrátor szervezeti szintű konnektorként teheti közzé az AIFT-et, így az egyes felhasználóknak nem kell bekapcsolniuk a Fejlesztői módot.
+A ChatGPT két további, saját formájú általános eszközt is kap, ezért ugyanarra a kérdésre másképp válaszolhat, mint a Claude.
 
-### Microsoft Copilot / Gemini Enterprise
+### Microsoft Copilot és Gemini Enterprise
 
-Lehetséges a Copilot Studión (Power Platform-konnektor) vagy a Gemini Enterprise-on (Google Cloud adattár) keresztül - mindkettőhöz az informatikai csapat közreműködése kell. Ha bármelyikhez segítséget szeretne, forduljon az AI Finance Team ügyfélszolgálatához.
+Lehetséges a Copilot Studión vagy a Gemini Enterprise-on keresztül, de mindkettőhöz az informatikai csapatára szükség lesz. Szóljon, ha segítséget szeretne.
 
----
+## Olvasás és módosítás
 
-## Olvasás kontra Módosítás
-
-A hozzájárulási képernyőn két jelölőnégyzet látható. Ön dönti el, mit ad meg.
+A hozzájárulási képernyőn két jelölőnégyzet van.
 
 | Hatókör | Mit tesz lehetővé |
 |---|---|
-| **Adatok olvasása** | Minden olvasási eszköz: munkaterületek listázása, keresés a főkönyvben, számlák és tranzakciók megtekintése, partnerek és cégek listázása, riportok futtatása stb. Módosítás nélkül. |
-| **Módosítások végrehajtása** | Számlák és banki tranzakciók kategorizálása, párosítások elfogadása és visszavonása, számlairány / partner / cég szerkesztése, partnerek összekötése vagy ellenőrzése, tranzakciók megjelölése „nem kell számla” jelöléssel. Minden művelet előtte/utána értékekkel rögzül. |
+| **Adatok olvasása** | Minden olvasási eszköz: a munkaterületei, a főkönyv, a számlák és a tranzakciók, a törzsadatok, a riportok, a hiányzó számlák, a NAV-lista, a problémás számlák, a kommentek, a munkaterület és az iroda taglistája, valamint a saját MCP-tevékenysége. |
+| **Módosítások végrehajtása** | A „nem kell számla” jelölés megadása és visszavonása, számlák és tranzakciók kategorizálása, párosítások megerősítése és visszavonása, a számla irányának, partnerének vagy cégének szerkesztése, valamint partner összekötése vagy ellenőrzése. |
 
-Megadhat csak olvasási, csak módosítási vagy mindkét hatókört. Bármikor lecsatlakoztathat és újracsatlakoztathat a megadott hatókörök módosításához.
+**Az olvasást mindig pipálja be**, akkor is, ha azt szeretné, hogy az asszisztens módosítson: a csak írásra jogosult kapcsolat létrehozható, de használhatatlan, mert minden kérdés hibára fut.
 
----
+Két könnyen elsikló részlet az olvasásról: a taglisták tartalmazzák a kollégák **nevét és e-mail-címét**, a számla pedig a kifizetési jóváhagyás döntésével, a kedvezményezett bankszámlájával és annak megerősítési állapotával, valamint azzal a fizetési fájllal együtt érkezik vissza, amelybe bekerült.
 
-## Audit és biztonság
+A megadott hozzáférés módosításához csatlakozzon le, majd újra.
 
-Minden MCP-eszközhívás egy sort ír az AIFT auditnaplójába:
+## Ha nem működik
 
-- **Ki** - a kapcsolat mögött álló AIFT-felhasználó
-- **Mit** - a meghívott eszköz, az argumentumaival (a szabad szöveges keresőkifejezések eltávolításra kerülnek)
-- **Melyik rekordot** - írási műveleteknél a módosított sor
-- **Előtte és utána értékek** - írási műveleteknél teljes pillanatképek, hogy bármely változás visszafelé lejátszható legyen
+Az asszisztens megmutatja a kapott üzenetet. Mindegyik mást jelent:
 
-Ezt közvetlenül az asszisztensen belül is átnézheti:
+| Amit lát | Mi a teendő |
+|---|---|
+| AI assistant (MCP) access is turned off for your organization | Szervezeti adminisztrátor kapcsolja be a **Szervezet → AI-hozzáférés** oldalon. |
+| Your account does not belong to an organization that can use MCP | Forduljon hozzánk. Ez beállítási hiányosság, nem a kapcsoló. |
+| Your sign-in for this connection is no longer valid | Csatlakoztassa le a konnektort, és adja hozzá újra. |
+| Access could not be verified, try again shortly | Átmeneti hiba. Próbálja újra, és ha tartósan fennáll, írja meg nekünk az időpontot. |
 
-> „Mutasd meg mindent, amit az elmúlt órában MCP-n keresztül csináltam.”
+Két további esetnek nincs saját üzenete:
 
-Vagy közvetlenül az AIFT-ben - az adminisztrátora lekérheti a teljes naplót az `mcp_access_log` táblából.
+- **Minden üres.** Ha a szerepéből vagy egy kivételből adódóan elvették Öntől a „Számlák és banki tranzakciók megtekintése” jogot, minden olvasási eszköz üresen tér vissza, miközben a kapcsolat épnek látszik. Lásd: [Szerepek és jogosultságok](/roles-and-permissions).
+- **Hosszabb szünet után újra be kell jelentkeznie.** A körülbelül egy hónapja érintetlen kapcsolatot újra engedélyezni kell. Ez normális.
 
-Ha azt gyanítja, hogy valami félresiklott - rossz kategória került alkalmazásra, vagy egy számla rossz iránnyal frissült -, az auditnapló **before_values** mezője a hiteles forrás a korábbi állapot visszaállításához.
+## Mit rögzítünk
 
----
+Minden hívás egy sort ír az auditnaplóba: ki indította, melyik eszközt, mikor, meddig tartott, hány rekord érkezett vissza, és hibára futott-e. Módosításnál az érintett rekord, valamint az előtte és utána értékei is eltárolódnak.
 
-## Tippek eredményes beszélgetésekhez
+Két korlátot érdemes érteni:
 
-- **Legyen konkrét a munkaterülettel kapcsolatban.** A „Mutasd a Pannónia Bistro…” sokkal jobb, mint a „Mutasd az ügyfelem…”. Az asszisztens az összes munkaterületéhez hozzáfér, és néha tippelni fog.
-- **Használjon beszédes azonosítókat.** Az olyan számlaszámok, mint az `AH-INV-2026-0042`, és az olyan tranzakciószámok, mint az `AH-TXN-2026-0157`, stabil hivatkozások, amelyeket az asszisztens közvetlenül fel tud oldani. Az AIFT felületén mindenütt megjelennek.
-- **Kétség esetén kérjen audit-nyomvonalat.** A „Mit változtattál?” kérdés általában lehívja az előtte/utána különbséget az auditnaplóból.
-- **Kattintson az asszisztens által adott hivatkozásokra.** Minden rekordhivatkozás `deep_link` mezővel érkezik vissza - ez egy közvetlen URL az AIFT felületén az adott sorhoz. Ezeket a hivatkozásokat használja az oldalsávból való navigálás helyett; egyenesen a megfelelő rekordhoz viszik.
-- **Az asszisztens nem tud fájlt feltölteni.** A PDF-ek és bankszámlakivonatok továbbra is az AIFT felületén vagy a munkaterület e-mail-beolvasási aliasán keresztül jutnak be. Az asszisztens kérheti a rendszertől egy már feltöltött számla vagy kivonat **újbóli kinyerését**, de a csevegésen keresztül nem tud mellékletet fogadni.
+- **Az argumentumok válogatva rögzülnek.** A várt argumentumok neve megmarad; minden más, köztük minden hosszú vagy szabad szöveges érték, lecserélődik. A keresőkifejezések nem tárolódnak.
+- **Az eredmények soha nem tárolódnak.** A napló a hívás alakját őrzi meg, nem azokat az adatokat, amelyeket az asszisztens látott.
 
----
+Megkérdezheti az asszisztenstől, mit csinált: „Mit csináltam MCP-n keresztül az elmúlt órában?” Ez a hívásokat sorolja fel, nem az előtte és utána értékeket. Ha egy módosítás rosszul sikerült, a javítás a helyes módosítás: kategorizálja újra a helyes értékkel, vagy állítsa vissza a mezőt. Amit így nem tud helyrehozni, azt jelezze nekünk, és megnézzük a naplót.
+
+## Tippek
+
+- **Nevezze meg a munkaterületet.** A „A Quillmoor Software-ben…” jobb, mint „az ügyfelemnél”, mert az asszisztens az összes munkaterületét látja.
+- **Használja a látható azonosítókat.** Az olyan számlaszámokat, mint az `AH-INV-2026-0042`, és az olyan tranzakciószámokat, mint az `AH-TXN-2026-0157`, az alkalmazás kiírja, és az asszisztens közvetlenül fel tudja oldani őket.
+- **Kövesse a kapott hivatkozásokat.** A számlák és a tranzakciók az alkalmazásba mutató hivatkozással érkeznek vissza. A többi rekord nem; kérje meg az asszisztenst, hogy hívja le a számlát vagy a tranzakciót, és kap egyet.
+- **Egy ember, egy kapcsolat.** A konnektor az Ön fiókjához kötődik. Minden kolléga a sajátját állítja be, és minden művelet annak a nevével rögzül, aki végrehajtotta.
 
 ## Gyakori kérdések
 
-**Tárolja az AI-asszisztens az adataimat?**
-Az MCP-kiszolgáló kérésenként adja vissza az adatokat az asszisztensnek. Az, hogy az asszisztens *megőriz-e* bármit utána, a szolgáltatója szabályzatától függ (a Claude, a Mistral és a ChatGPT mind saját adatkezelési beállításokkal rendelkezik). Az AIFT oldala azt naplózza, milyen hívások történtek, nem pedig azt, milyen adatot látott az asszisztens.
+**Megtartja az asszisztens az adataimat?**
+Az adatokat kérésenként adjuk vissza. Hogy az asszisztens megőriz-e utána bármit, a szolgáltatója szabályzatán és az ott megadott beállításain múlik. A mi oldalunkon azt tároljuk, milyen hívások történtek, nem azt, mit adtak vissza.
 
-**Megoszthatom a kapcsolatomat egy kollégával?**
-Nem - a kapcsolat az Ön AIFT-felhasználójához kötődik. Egy munkaterületen minden könyvelőnek saját konnektort kell beállítania. Ugyanazokat az adatokat látják az RLS révén, de a műveletek ahhoz a személyhez rendelődnek, aki végrehajtotta őket.
+**Tud az asszisztens olyat, amit nekem nem szabad?**
+Nem. Minden eszköz újra ellenőrzi a jogosultságait, a módosítók pedig könyvelői szerepet is megkövetelnek.
 
-**Mi van, ha az asszisztens rosszul módosít valamit?**
-Minden írási művelet eltárolja az előtte/utána értékeket. Mondja az asszisztensnek: „Vond vissza az utolsó változtatásodat az AH-INV-2026-0042 tételen” - kiolvassa az auditnapló `before_values` mezőjét, és alkalmazza. Kifejezetten a kategorizálásnál elég újra meghívni a kategorizálást az eredeti értékkel.
+**Használhatom telefonon?**
+Igen, bárhol, ahol az asszisztens fut. A kapcsolat a fiókjához tartozik, nem egy eszközhöz.
 
-**Az asszisztens olyan URL-t adott, amely 404-et ad.**
-Mindig az asszisztens válaszában lévő `deep_link` mezőt használja - csak az a hiteles URL. Az asszisztens utasítást kapott arra, hogy ne állítson össze AIFT-URL-eket mintázatokból, de ha hibásat lát, kérje meg, hogy „használd pontosan azt a deep_link értéket, amelyet az eszköztől kaptál”.
-
-**Ki tudja exportálni az asszisztens a könyvelésemet a könyvelőprogramomba?**
-Még nem - a könyvelőprogramokba történő exportok (Kulcs-Soft, Novitax, DATEV, BMD) az AIFT saját exportfolyamatán mennek keresztül. Az MCP csak olvasásra és szerkesztésre szolgál.
-
----
+**Tud exportálni a könyvelőprogramomba?**
+Nem. A Kulcs-Soft, a Novitax, a DATEV és a BMD felé az export az alkalmazásban marad.
 
 ## Segítségre van szüksége?
 
-Jelezze a problémát az AIFT-kapcsolattartójának, vagy írjon az ügyfélszolgálatnak. Adja meg a munkaterület nevét, a használt asszisztenst (Claude / Mistral / ChatGPT) és a napszakot - ennyi általában elég ahhoz, hogy megtaláljuk az auditnapló-bejegyzést, és kiderítsük, mi történt.
+Írja meg a munkaterületet, a használt asszisztenst és nagyjából azt, mikor történt. Ennyi általában elég ahhoz, hogy megtaláljuk a hívást a naplóban, és lássuk, mi romlott el.

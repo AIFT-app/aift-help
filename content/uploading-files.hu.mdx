@@ -1,102 +1,128 @@
 # Fájlok feltöltése
 
-Számlákat és bankszámlakivonatokat egyesével, tömegesen vagy ZIP-archívumként tölthet fel. Minden feltöltés a háttérben fut - a feldolgozás közben tovább dolgozhat.
+Számlákat és bankszámlakivonatokat egyesével, tömegesen vagy ZIP-archívumként tölthet fel. A feltöltések a háttérben futnak, így a feldolgozás alatt tovább dolgozhat.
 
-A feltöltési folyamat ugyanaz a **Számlák** és a **Tranzakciók** oldalon. A különbségek (mit csinál ezután a kinyerés, hogyan kezeli a duplikációkat és a bankszámlákat) az egyes típusokra jellemzők - lásd a [Számlák kezelése](/invoices) és a [Bankszámlakivonatok feltöltése](/bank-statement-upload) cikkeket.
+A folyamat ugyanaz a **Számlák** és a **Banki tranzakciók** oldalon. Ami utána történik, az eltér: lásd a [Számlák kezelése](/invoices) és a [Bankszámlakivonatok feltöltése](/bank-statement-upload) cikket.
 
-Inkább teljesen kihagyná a feltöltési lépést? A [dokumentumokat e-mailben is továbbíthatja a munkaterületére](/email-forwarding), és azok automatikusan rögzítésre kerülnek.
+A munkaterület bármelyik tagja tölthet fel. Ehhez nincs szükség külön jogosultságra.
+
+Inkább egyáltalán nem töltene fel? [E-mailben is továbbíthatja a dokumentumokat a munkaterületére](/email-forwarding).
+
+## Mit tölthet fel
+
+| Oldal | Elfogadott típusok | Korlát |
+|---|---|---|
+| **Számlák** | PDF, JPEG, PNG, WebP | fájlonként 50 MB, és legfeljebb 10 oldalas PDF |
+| **Banki tranzakciók** | csak PDF | fájlonként 50 MB |
+
+Két korlát, amelyet érdemes ismerni egy nagy köteg előtt:
+
+- **A 10 oldalnál hosszabb számla-PDF-et a rendszer visszautasítja**, mert egy ilyen hosszú dokumentum általában kivonat vagy köteg. Töltse fel kivonatként, vagy bontsa szét.
+- **Az iPhone-nal készült fotók (HEIC) egyelőre nem működnek.** A feltöltés sikerül, a beolvasás viszont utána meghiúsul. Alakítsa át előbb a képet JPEG vagy PDF formátumba; iPhone-on az is működik, ha „Most compatible” beállítással küldi el magának, és az is, ha PDF-ként exportálja.
+
+Minden más típusú fájl piros sorrá válik **Wrong file type** felirattal.
 
 ## Feltöltés indítása
 
-Háromféleképpen indíthatja, mindegyik egyenértékű:
+Háromféleképpen, mindegyik egyenértékű:
 
-1. **Kattintson a feltöltés gombra** a **Számlák** vagy a **Tranzakciók** oldal jobb felső sarkában.
-2. **Húzzon át fájlokat a fájlkezelőjéből** az oldalra. Egy teljes oldalas ejtési terület jelenik meg abban a pillanatban, amikor behúzza őket; engedje el bárhol az oldalon.
-3. **Húzzon egy ZIP-archívumot** az oldalra - a böngésző kicsomagolja Önnek (lásd a [ZIP-archívumok](#zip-archívumok) szakaszt alább).
+1. **Kattintson a feltöltés gombra** a jobb felső sarokban: a Számlák oldalon **Számlák feltöltése**, a Banki tranzakciók oldalon **Bankkivonat feltöltése**.
+2. **Húzza a fájlokat az oldalra.** Amint behúzza őket, egy ejtési terület borítja be az oldalt, és bárhol elengedheti.
+3. **Húzzon egy ZIP-archívumot** az oldalra. A böngészője kicsomagolja (lásd: [ZIP-archívumok](#zip-archívumok)).
 
-Az operációs rendszer fájlválasztója támogatja a több fájl kiválasztását - tartsa lenyomva a Ctrl/Cmd billentyűt kattintás közben, vagy Shift+kattintással válasszon ki egy tartományt. Kiválaszthat vagy ejthet egy egész mappányi bizonylatot, és mindegyik együtt kerül a sorba.
+A fájlválasztóban a Ctrl vagy a Cmd billentyűvel egyszerre több fájlt is kijelölhet, a Shift billentyűvel pedig egy tartományt. **Mappát nem lehet kiválasztani vagy ráhúzni**: nyissa meg, és jelölje ki a benne lévő fájlokat.
+
+A feltöltés szándékosan **egyszerre egy fájlt** küld, és egy-egy dokumentum beolvasása nagyjából tíz-harminc másodperc. Száz számla feltöltése kávészünet, nem egy kattintás.
 
 ## A feltöltési panel
 
-Abban a pillanatban, amikor elindít egy feltöltést, egy panel jelenik meg a képernyő **jobb alsó sarkában**. Minden folyamatban lévő fájl saját sort kap. A panel állandó - a helyén marad, miközben a munkaterületen belül navigál, és túléli az oldal frissítését.
+<UploadPanelFigure>
+A feltöltési panel egy futó köteg közben. A fájlnevek példák.
+</UploadPanelFigure>
+
+Amint egy feltöltés elindul, a **jobb alsó sarokban** megjelenik egy panel, fájlonként egy sorral. Két olyan dolgot is jelez, ami nem feltöltés: egy párosítási futást és egy árfolyam-frissítést.
 
 ### Sorállapotok
 
 | Felirat | Jelentés |
 |---|---|
-| **Sorban** | Várakozik a feltöltési sorban. |
-| **Feltöltés…** | A fájl a tárolóba másolódik. |
-| **Kinyerés…** | Az AI olvassa a fájlt. |
-| **X. / Y. oldal kinyerése** | A bankszámlakivonat oldalanként olvasódik be. |
-| **Kategorizálás…** | A bankszámlakivonat tranzakcióihoz kategóriák rendelődnek (röviden). |
-| **Kinyerve** | A számla kinyerése befejeződött. |
-| **Kész · N tranzakció (M egyesítve)** | A bankszámlakivonat kinyerése befejeződött. |
-| **Már létezik** | A számlafájl egy meglévő duplikátuma - kattintson a sorra az eredeti megnyitásához. |
-| **Sikertelen: …** | Valami hiba történt. Jobb oldalon megjelenik egy **Újra** gomb. |
+| **Sorban** | Várakozik, amíg sorra kerül. |
+| **Feltöltés…** | A fájl a tárhelyre másolódik. |
+| **Kinyerés…** | Az AI olvassa a dokumentumot. |
+| **X. / Y. Oldal kinyerése** | Egy kivonat oldalanként olvasódik be. |
+| **Kategorizálás…** | A kivonat tranzakciói kategóriát kapnak. |
+| **Kinyerve** | Egy számla elkészült. Kattintson a sorra a megnyitásához. |
+| **Kész · N tranzakció (M egyesítve)** | Egy kivonat elkészült. Kattintson a sorra a megnyitásához. |
+| **Kész hibákkal · részletek megtekintése** | A kivonat elkészült, de néhány oldala nem. Nyissa meg, hogy lássa, melyek azok. |
+| **Már létezik** | Pontosan ez a fájl már a munkaterületen van. Kattintson a sorra az eredeti megnyitásához. |
+| **Megszakítva** | A kivonatot a feldolgozás közben elvetették. |
+| Egy piros sor | Valami hiba történt. Lásd: [Ha egy feltöltés sikertelen](#ha-egy-feltöltés-sikertelen). |
 
-### Automatikus összecsukás és elvetés
+### Összecsukás és elvetés
 
-Amint minden sor végállapotba ér (Kinyerve, Kész, Már létezik vagy Sikertelen), a panel néhány másodperc után egy kis pirulává csukódik össze a jobb alsó sarokban. Kattintson a pirulára a lista újbóli kibontásához, vagy kattintson a fejlécben lévő **×** gombra a teljes elvetéshez.
+Amíg bármi fut, a fejléc felkínálja a **Collapse** vezérlőt, amely pirulává zsugorítja a panelt; a pirulára kattintva újra kinyithatja. Miután minden sor befejeződött, a panel körülbelül nyolc másodperc múlva magától összecsukódik, és megjelenik egy **×**, amellyel elvetheti.
 
-### Frissítés vagy munkaterületek váltása
+### Az oldal elhagyása
 
-- **Az oldal frissítése** biztonságos - a panel újratöltődik a folyamatban lévő feltöltésekből. Nem veszíti el a rálátást semmire, ami már futott.
-- **Másik munkaterületre váltás** törli a panelt; ezután az új munkaterület folyamatban lévő feltöltéseiből töltődik újra.
-- **Az alkalmazás megnyitása egy második lapon** szintén biztonságos - mindkét lap ugyanazokat a folyamatban lévő sorokat látja.
+- **A már feltöltött fájl biztonságban van.** A beolvasás a szervereinken történik, és attól függetlenül fut tovább, hogy Ön az oldalon marad-e.
+- **A böngészőjéből még küldés alatt álló fájl elveszik**, ha frissíti vagy bezárja a lapot. Töltse fel újra.
+- **Maga a panel nem előzmény.** Frissítés után csak azt mutatja, ami még fut, vagy az elmúlt percben fejeződött be. A duplikátumok és a böngésző által visszautasított fájlok sorai eltűnnek. Ami feltöltődött, az a Számlák vagy a Banki tranzakciók oldalon van, és az a valódi nyilvántartás.
+- Munkaterület váltásakor a panel kiürül, majd az adott munkaterület futó feltöltéseivel telik meg. Egy második lap ugyanazokat a futó sorokat látja.
 
-## Sikertelen feltöltés újrapróbálása
+## Ha egy feltöltés sikertelen
 
-Ha egy adott fájl kinyerése sikertelen (leggyakrabban akkor, amikor egy PDF szokatlanul nagy vagy összetett elrendezésű), a panel sora pirosra vált egy **Újra** gombbal. Kattintson rá a kinyerés újrafuttatásához.
+Kétféle hiba van, és másképp viselkednek.
 
-Ha ugyanaz a fájl ismételten sikertelen, akkor valószínűleg magával a fájllal van baj:
+**A böngészője utasította vissza a fájlt.** Rossz típus, 50 MB feletti méret, sérült vagy titkosított ZIP, vagy próbaidőszakban a munkaterület dokumentumkerete. A sor piros, és **nincs rajta Újra gomb**, mert a fájl el sem hagyta a számítógépét. Javítsa a fájlt, és adja hozzá újra.
 
-- **Próbáljon kisebb verziót.** Nyissa meg a PDF-et az Előnézetben → Fájl → Exportálás, és csökkentse a fájlméretet, vagy futtassa át egy tömörítőn. Gyakran egy 7 MB-os PDF 1 MB alá zsugorodik az olvashatóság elvesztése nélkül.
-- **Konvertálja a formátumot.** Ha képet töltött fel, próbálja meg PDF-ként menteni (vagy fordítva).
-- **Rögzítse kézzel.** Végső megoldásként egy könyvelő kézzel létrehozhatja a számlát a **Törzsadatok** menüpontból.
+**A dokumentum beolvasása hiúsult meg.** A fájl ott van a munkaterületen, de az AI nem tudta elolvasni. Ezek a sorok **Sikertelen:** feliratot mutatnak az okkal együtt, és **Újra** gombot kínálnak.
 
-## Fájltípus-korlátok
+Az Újra átmeneti hiba esetén segít. Nem segít, ha az ok maga a dokumentum: 10 oldalnál több, nem támogatott típus, jelszóval védett PDF vagy olvasásra túl összetett dokumentum. Ilyenkor:
 
-| Felület | Elfogadott típusok | Max. méret fájlonként |
-|---|---|---|
-| **Számlák** | PDF, JPEG, PNG, WebP, HEIC | 50 MB |
-| **Bankszámlakivonatok** | Csak PDF | 50 MB |
+- **Tegye kisebbé vagy egyszerűbbé.** Exportálja újra a PDF-et kisebb méretben, vagy bontsa a köteget külön számlákra.
+- **Alakítsa át.** Egy kép, amellyel nem boldogul, PDF-ként gyakran működik, és fordítva.
+- **Vigye be kézzel.** Egy sikertelen számla is ott marad a munkaterületen: nyissa meg, és töltse ki a mezőket kézzel.
 
-Bármi, ami nem ezen típusok közé esik, piros sorrá válik a panelben **Nem megfelelő fájltípus** felirattal.
+A böngészőtől érkező hibaüzenetek minden nyelven angolul jelennek meg. Ez az alkalmazás sajátossága, nem annak a jele, hogy valami más is elromlott.
+
+## Duplikátumok
+
+Amikor feltölt egy számlát, az AI Finance Team összeveti a fájlt azzal, ami már a munkaterületen van. **Azonos fájl** esetén **Már létezik** sort kap, amely az eredetire mutat.
+
+Magát a fájlt hasonlítja össze, nem a tartalmát, így ugyanannak a számlának egy újabb szkennelését vagy újraexportálását itt nem fogja meg. Azokat később, a számlán találja meg lehetséges duplikátumként. A bankszámlakivonatokat feltöltéskor egyáltalán nem ellenőrzi.
+
+Ha ugyanaz a fájl kétszer szerepel egy ejtésben, a második példány csendben kimarad.
 
 ## ZIP-archívumok
 
-Ha egy mappányi bizonylatot `.zip` formátumban archivált, ejtse az archívumot közvetlenül a feltöltési felületre - a böngésző kicsomagolja a számítógépe memóriájában, és minden fájlt külön sorként ad a panelnek.
+Ejtsen egy `.zip` fájlt a Számlák vagy a Banki tranzakciók oldalra, és a böngészője a memóriában kicsomagolja, a benne lévő fájlokat pedig külön-külön sorként adja hozzá. **Maga az archívum soha nem töltődik fel**, csak a benne lévő fájlok.
 
-### Lépésről lépésre
+1. Ejtse rá az archívumot, vagy válassza ki a feltöltés gombbal.
+2. Egy rövid életű sor mutatja, hogy az archívum kicsomagolás alatt áll.
+3. A benne lévő minden érvényes fájl saját sort kap.
 
-1. Húzza a `.zip` fájlt a **Számlák** vagy a **Tranzakciók** oldalra (vagy kattintson a feltöltés gombra, és válassza ki a zip-et).
-2. Egy **Kinyerés…** feliratú sor jelenik meg röviden az archívumhoz, miközben a böngésző kicsomagolja.
-3. A zip-en belüli minden érvényes fájl saját sorrá válik.
-4. Maga a ZIP soha nem töltődik fel - csak a kicsomagolt fájlok kerülnek a munkaterületére.
-
-### Mi fogadható el egy ZIP-en belül
-
-Ugyanazok a fájlonkénti szabályok érvényesek, mint a különálló feltöltéseknél. A **Számlák** oldalon a zip-nek számlákat (PDF-eket vagy képeket) kell tartalmaznia; a **Tranzakciók** oldalon bankszámlakivonat-PDF-eket. Bármi más piros sorrá válik **Nem megfelelő fájltípus** felirattal.
-
-### Korlátozások
+Hogy mit tartalmazhat az archívum, az attól függ, melyik oldalra ejtette: a Számlák oldalon számlákat, a Banki tranzakciók oldalon kivonat-PDF-eket. Bármi más piros **Wrong file type** sorrá válik, az archívum többi része pedig ettől még végigmegy.
 
 | Korlát | Érték |
 |---|---|
-| Maximális ZIP-méret | 200 MB |
-| Maximális fájlméret a ZIP-en belül | 50 MB |
-| Titkosított / jelszóval védett ZIP-ek | Nem támogatott - a **Titkosított ZIP-ek nem támogatottak** felirat jelenik meg |
-| Beágyazott ZIP-ek (egy `.zip` az archívumon belül) | Nem támogatott - a belső zip Nem-megfelelő-fájltípus sorrá válik, de az archívum többi része normálisan feldolgozódik |
-| macOS metaadatok (`__MACOSX/`, `.DS_Store`) | Csendben figyelmen kívül hagyva - nem jelennek meg a panelben hibaként |
-| Mappastruktúra az archívumon belül | Kilapítva - csak a fájlnév marad meg; a mappanevek nem őrződnek meg |
+| Legnagyobb archívum | 200 MB |
+| Legnagyobb fájl az archívumban | 50 MB |
+| Titkosított archívumok | Nem támogatott |
+| ZIP a ZIP-en belül | Nem csomagolódik ki; egyetlen rossz-fájltípus sorrá válik |
+| Mappák az archívumon belül | Kilapítva; csak a fájlnevek maradnak meg |
+| `__MACOSX`, `.DS_Store` és minden más, ponttal kezdődő név | Kihagyva, sor nélkül |
 
-### Tippek
+Több archívumot is ejthet egyszerre; egymás után csomagolódnak ki. Egy nagyon nagy archívum 200 MB alatt is meghiúsulhat kicsomagolás közben, mert a böngészője memóriájában bomlik ki: ilyenkor bontsa szét.
 
-- **Egy ejtésben keverhet különálló fájlokat és ZIP-eket.** Húzzon két különálló PDF-et és egy ZIP-archívumot együtt az oldalra. Mindegyik ugyanabba a panelbe folyik be.
-- **A megfelelő oldalra ejtsen.** A Számlák oldalon kiválasztott ZIP úgy kezelődik, mintha számlákat tartalmazna; a Tranzakciók oldalon mintha kivonatokat. Nincs vegyes mód - a rossz típusú fájlokat töltse fel újra a másik oldalról.
-- **Nehéz köteg zip-elése előtt tömörítsen.** Ha a zip-je közelíti a 200 MB-ot, először tömörítse a legnagyobb bizonylatokat; a zip-korlát a fő megkötés, nem a fájlszám.
+## Más helyek, ahová fájlokat tölthet fel
+
+Nem minden fájlnak a számla- vagy kivonatsorban a helye:
+
+- A **[Dokumentumok](/documents)** oldalon vannak a szerződések, igazolások és minden más, amit érdemes az ügyfélnél megőrizni. Saját feltöltése van, saját korlátokkal.
+- A **[Hiányzó bizonylatok](/documents-needed)** oldalon válaszol az ügyfél egy konkrét dokumentumra vonatkozó kérésre.
 
 ## Tippek nagy kötegekhez
 
-- **Ismert mappákhoz használja a fájlválasztót, már megnyitott fájlokhoz a fogd és vidd módot** - mindkettő ugyanabba a panelbe kerül.
-- **Ne várakozzon a panelnél.** A feltöltések a háttérben futnak; folytathatja a tegnapi tranzakciók kategorizálását, miközben a mai számlák feldolgozódnak.
-- **Ellenőrizze a panelt, mielőtt elmegy.** Amikor végzett a napra, vessen egy pillantást a panelre - minden piros sor egy Újra próbálkozást vagy egy kisebb újraexportálást igényel, mielőtt elmenne.
+- **Hagyja futni.** A feltöltések folytatódnak, miközben Ön máshol dolgozik a munkaterületen.
+- **A számlákat és a kivonatokat a saját oldalukról küldje.** Nincs vegyes mód.
+- **Nézze meg a panelt, mielőtt végez a nappal.** Egy piros sorhoz javított fájl kell, nem újabb várakozás.

@@ -14,14 +14,14 @@ A **Jóváhagyandó** fül négy várakozó számlával. A számok az alábbi li
 2. **Amit jóváhagy**: a számla AI által írt egysoros összefoglalója. Rákattintva megnyílik maga a számla.
 3. **Szállító és számlaazonosító**: ki kéri a kifizetést, és a számla azonosítója az AI Finance Teamben.
 4. **Esedékes**: a fizetési határidő, és hány nap van hátra, vagy hány napja lejárt. A bal oldali borostyánsárga csík a 7 napon belül esedékes vagy már lejárt számlákat jelöli.
-5. **Miért Ön**: az ok, amiért a számla Önhöz került. Ez lehet a pénzügyi admin által beállított szabály, egy minta, amelyet a rendszer abból tanult, hova kerültek ugyanannak a szállítónak a korábbi számlái, az AI választása, vagy az alapértelmezett jóváhagyó, ha semmi más nem illik rá.
+5. **Miért Ön**: az ok, amiért a számla Önhöz került. Ez lehet a pénzügyi adminisztrátor által beállított szabály, egy minta, amelyet a rendszer abból tanult, hova kerültek ugyanannak a szállítónak a korábbi számlái, az AI választása, vagy az alapértelmezett jóváhagyó, ha semmi más nem illik rá.
 6. **Összeg**: a bruttó összeg a számla pénznemében.
 
 ## Jóváhagyás
 
 Kattintson a sor **Jóváhagyom** gombjára. Ennyi a döntés. Az AI Finance Team rögzíti, ki hagyta jóvá, mikor, és pontosan mekkora összeget kinek, így a számla későbbi módosítása nem keverhető össze azzal, amibe Ön beleegyezett.
 
-Ha több számlát egyszerre hagyna jóvá, jelölje ki a sorokat. Egy sáv mutatja, hányat választott ki, és mennyi az összegük pénznemenként; kattintson a **Kijelöltek jóváhagyása** gombra. A megerősítés felsorol minden szállítót és a pénznemenkénti összegeket, mielőtt bármi történne. A csoportos jóváhagyás csak akkor elérhető, ha a pénzügyi admin bekapcsolva hagyta.
+Ha több számlát egyszerre hagyna jóvá, jelölje ki a sorokat. Egy sáv mutatja, hányat választott ki, és mennyi az összegük pénznemenként; kattintson a **Kijelöltek jóváhagyása** gombra. A megerősítés felsorol minden szállítót és a pénznemenkénti összegeket, mielőtt bármi történne. A csoportos jóváhagyás csak akkor elérhető, ha a pénzügyi adminisztrátor bekapcsolva hagyta.
 
 <ApprovalBulkBarFigure>
 Két kijelölt számla. A különböző pénznemeket külön összesíti, soha nem váltja át.
@@ -29,17 +29,17 @@ Két kijelölt számla. A különböző pénznemeket külön összesíti, soha n
 
 ## Elutasítás
 
-Kattintson az **Elutasítom** gombra, ha a számlát nem szabad így kifizetni. Megjegyzés kötelező. A négy gyors indok egyikére kattintva elkezdheti a megjegyzést, majd kiegészítheti saját szavaival. A megjegyzés a számlára kerül, ahol a könyvelő és a pénzügyi admin látja.
+Kattintson az **Elutasítom** gombra, ha a számlát nem szabad így kifizetni. Megjegyzés kötelező. A négy gyors indok egyikére kattintva elkezdheti a megjegyzést, majd kiegészítheti saját szavaival. A megjegyzés a számlára kerül, ahol a könyvelő és a pénzügyi adminisztrátor látja.
 
 <DeclineDialogFigure>
 A tetőjavítás elutasítása a munka befejezéséig. Egy gyors indokra kattintva az bekerül a megjegyzésbe, és az **Elutasítom** gomb addig nem használható, amíg a megjegyzés üres.
 </DeclineDialogFigure>
 
-Az elutasítás nem törli és nem utasítja el a számlát a könyvelésben. Csak azt mondja ki, hogy a kifizetés nincs engedélyezve. A pénzügyi admin újranyithatja, amint a kérdés tisztázódott a szállítóval.
+Az elutasítás nem törli és nem utasítja el a számlát a könyvelésben. Csak azt mondja ki, hogy a kifizetés nincs engedélyezve. A pénzügyi adminisztrátor újranyithatja, amint a kérdés tisztázódott a szállítóval.
 
 ## Nem az enyém
 
-Ha egy számla tévedésből került Önhöz, kattintson a **Nem az enyém** gombra. Visszakerül a pénzügyi admin kiosztatlan tálcájába, és az irányítás tanul belőle.
+Ha egy számla tévedésből került Önhöz, kattintson a **Nem az enyém** gombra. Visszakerül a pénzügyi adminisztrátor kiosztatlan tálcájába, és az irányítás tanul belőle.
 
 ## Mi történik a döntés után
 
@@ -57,7 +57,7 @@ Azokat a számlákat, amelyeket a kinyerés kétesnek jelölt, a könyvelő tart
 
 ## Ki hagyhat jóvá
 
-A jóváhagyáshoz a "Számlák jóváhagyása kifizetésre" jog kell, a számlák megtekintésének joga mellett. Alapértelmezés szerint az ügyfél tulajdonosa és a könyvelő admin rendelkezik vele. A munkaterület adminja bárkinek megadhatja szereppel vagy tagonkénti kivétellel. Lásd: [Szerepek és jogosultságok](/roles-and-permissions).
+A jóváhagyáshoz a "Számlák jóváhagyása kifizetésre" jog kell, a számlák megtekintésének joga mellett. Alapértelmezés szerint a pénzügyi vezető és a könyvelő admin rendelkezik vele. A munkaterület adminja bárkinek megadhatja szereppel vagy tagonkénti kivétellel. Lásd: [Szerepek és jogosultságok](/roles-and-permissions).
 
 ## E-mailek
 
