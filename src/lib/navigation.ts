@@ -52,6 +52,18 @@ export const navigation: NavItem[] = [
     slug: 'setting-up-approvals',
     title: { en: 'Setting Up Payment Approvals', hu: 'A kifizetések jóváhagyásának beállítása', de: 'Zahlungsfreigaben einrichten' },
   },
+  // Filing and bookkeeping approval (invoice-stage-approvals): the two
+  // checkpoints BEFORE payment approval, so the article sits before the
+  // payment-file one and after the payment-approval pair. Both are
+  // per-workspace settings that are off by default.
+  {
+    slug: 'filing-and-bookkeeping-approval',
+    title: {
+      en: 'Filing and Bookkeeping Approval',
+      hu: 'Iktatási és könyvelési jóváhagyás',
+      de: 'Erfassungs- und Buchungsfreigabe',
+    },
+  },
   // Payment file (payment-file-list): the finance admin's article. The app's
   // tab is "Payment file" / "Utalási fájl" / "Zahlungsdatei" (approvals.tabs.payments).
   {
