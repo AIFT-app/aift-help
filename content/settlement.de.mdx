@@ -1,6 +1,6 @@
 # Partnersalden ausgleichen
 
-Manche Partner zahlen nie Rechnung für Rechnung. Sie begleichen einen **Saldo**: eine Überweisung deckt mehrere Rechnungen ab, Gutschriften mindern die Schuld, und hin und wieder kommt ein runder Betrag auf Konto. Der automatische Abgleich hilft hier nicht - er sucht eine Zahlung, die zu einer Rechnung passt, und bei diesen Partnern gibt es ein solches Paar schlicht nicht.
+Manche Partner zahlen nie Rechnung für Rechnung. Sie begleichen einen **Saldo**: eine Überweisung deckt mehrere Rechnungen auf einmal ab, Gutschriften mindern die Schuld, und hin und wieder kommt ein runder Betrag auf Konto. Die automatische Zuordnung hilft hier nicht. Sie sucht eine Zahlung, die zu einer Rechnung passt, und bei diesen Partnern gibt es ein solches Paar nicht.
 
 Im **Ausgleich** ordnen Sie die Zahlungen eines Partners selbst seinen Rechnungen zu, ausgehend von einem Vorschlag der KI.
 
@@ -10,63 +10,106 @@ Greifen Sie zum Ausgleich, wenn bei einem Partner eine lange Liste offener Poste
 
 - ein Lieferant, den Sie **wöchentlich oder monatlich mit einer Überweisung** für mehrere Lieferungen bezahlen
 - ein Partner, dessen **Gutschriften** (Retouren, Korrekturen) nicht erstattet, sondern von der nächsten Zahlung abgezogen werden
-- **runde Zahlungen auf Konto** - eine Anzahlung, oder ein Kunde, der einfach „etwas auf den Saldo“ zahlt
+- **runde Zahlungen auf Konto**: eine Anzahlung, oder ein Kunde, der einfach „etwas auf den Saldo“ zahlt
 - eine Plattform, die **einmal für Verkäufe an mehrere Partner** auszahlt
 
-Passt eine Zahlung zu einer Rechnung, brauchen Sie den Ausgleich nicht - das erledigt der [Rechnungsabgleich](/invoice-matching) bereits automatisch.
+Passt eine Zahlung zu einer Rechnung, brauchen Sie den Ausgleich nicht. Das erledigt der gewöhnliche [Rechnungsabgleich](/invoice-matching) bereits, und zwar automatisch.
+
+Der Ausgleich setzt die Berechtigung „Zuordnung verwalten“ voraus, die Buchhalter haben. Mandanten sehen den Reiter nicht.
 
 ## Einen Ausgleich öffnen
 
-Gehen Sie zu **Abgleich** → **Ausgleich** und wählen Sie:
+Gehen Sie zu **Zuordnung** → **Ausgleich** und wählen Sie:
 
-- **den Partner**, dessen Saldo Sie ausgleichen. Sie können **mehrere** wählen - tun Sie das, wenn ihre Belege gemeinsam ausgeglichen werden. Der übliche Fall sind Plattformverkäufe: die Rechnungen gehen teils an die Plattform, teils an einen Privatperson-Partner, bezahlt werden sie aber mit einer einzigen Auszahlung, sodass kein Partner allein den Betrag erklärt.
+- **den Partner**, dessen Saldo Sie ausgleichen. Sie können **mehrere** wählen, bis zu 20, und Sie sollten es tun, wenn ihre Belege gemeinsam ausgeglichen werden. Der übliche Fall sind Plattformverkäufe: die Rechnungen gehen teils an die Plattform, teils an einen Privatperson-Partner, bezahlt werden sie aber mit einer einzigen Auszahlung, sodass kein Partner allein den Betrag erklärt.
 - **die Währung.** Ein Ausgleich umfasst eine Währung.
 
-Klicken Sie auf **Ausgleich öffnen**. Die Arbeitsfläche zeigt links die Zahlungen des Partners, rechts seine Rechnungen.
+Klicken Sie auf **Ausgleich öffnen**.
 
-Jede Seite hat ihren eigenen Datumsfilter, und das ist Absicht: eine Juli-Zahlung gleicht regelmäßig eine Juni-Rechnung aus - filterten Sie beide auf denselben Monat, verbärgen Sie genau die Belege, die Sie brauchen.
+In diesem Moment geschehen zwei Dinge, und beide sind wichtig:
+
+- **Die Belege werden sofort reserviert.** Jede Zahlung und jede Rechnung im Bereich wird für diese Sitzung zurückgelegt, und genau das nimmt sie aus der automatischen Zuordnung heraus. Es heißt aber auch, dass ein Beleg, den bereits eine andere offene Sitzung hält, Sie aufhält: die App meldet dann, dass einer dieser Datensätze bereits in einer anderen Ausgleichssitzung geöffnet ist.
+- **Der Zeitraum steht fest.** Die Sitzung übernimmt den Datumsfilter, der beim Öffnen auf der Seite Zuordnung gesetzt war, und behält ihn. Die Kopfzeile zeigt ihn neben der Währung.
+
+Die beiden Seiten der Arbeitsfläche sind bewusst nicht symmetrisch: der Zeitraum begrenzt die **Zahlungen**, während die Rechnungsseite alles zeigt, was bis zum Ende des Zeitraums noch offen ist. Eine Juli-Zahlung gleicht regelmäßig eine Juni-Rechnung aus, und darüber hinaus hat jede Liste noch ihren eigenen Filter.
+
+## Die Listen lesen
+
+Der Betrag in einer Zeile ist nicht immer der Betrag des Belegs. Es ist das, **was dieser Ausgleich zuordnen könnte**: was noch offen ist, plus das, was eine automatische Zuordnung hält und diese Sitzung lösen darf. Eine Zahlung, deren Bankbetrag von einer falschen automatischen Zuordnung vollständig aufgebraucht ist, kann trotzdem ihren ganzen Wert zeigen, und die Zeile sagt das mit **davon … neu zuzuordnen**.
+
+Genau darum geht es auf der Arbeitsfläche: einen solchen Beleg in eine Gruppe zu ziehen löst im selben Zug die automatische Zuordnung. Eine von einem Menschen bestätigte Zuordnung zählt die KI nie als freie Kapazität, und Sie können sie trotzdem selbst lösen, nach einer Rückfrage.
+
+Weitere Kennzeichen, die Ihnen begegnen: **Bereits zugeordnet** an einer vollständig ausgeglichenen Zahlung oder Rechnung (sie bleiben gelistet, damit eine falsche Zuordnung rückgängig gemacht werden kann), **Teilweise bezahlt** an einer Rechnung und **Keine Rechnung nötig** an einer Zahlung.
+
+**Die Suche schränkt nichts ein.** Was Sie in das Suchfeld einer Liste tippen, hebt die Treffer hervor und blendet den Rest ab, blendet aber nie eine Zeile aus, denn eine Zeile, die Sie nicht sehen, können Sie auch nicht abwählen. Ziffern treffen den Anfang einer Nummer, ein Wort trifft an beliebiger Stelle, und Akzente werden ignoriert. Blendet der Filter einer Liste Zeilen aus, die Sie angehakt haben, sagt die Liste das, und diese Zeilen zählen weiter in den Saldo.
+
+**Shift+Klick** hakt jede Zeile zwischen der zuletzt geklickten und dieser an.
 
 ## Die KI vorschlagen lassen
 
-**Ausgleich vorschlagen** lässt die KI ermitteln, welche Zahlung welche Rechnungen begleicht. Jede Gruppe wird in einem Satz begründet - eine exakte Rechnungsnummer im Verwendungszweck, ein exakt aufgehender saldierter Betrag, oder älteste Rechnungen zuerst, wenn nichts anderes sie unterscheidet.
+**Ausgleich vorschlagen** lässt die KI ermitteln, welche Zahlungen welche Rechnungen begleichen. Jede Gruppe wird in einem Satz begründet: eine exakte Rechnungsnummer im Verwendungszweck, ein exakt aufgehender saldierter Betrag, oder älteste Rechnungen zuerst, wenn nichts anderes sie unterscheidet.
 
-Zu diesem Zeitpunkt wird nichts gebucht. Jeder Vorschlag ist ein Vorschlag, den Sie prüfen, ändern oder verwerfen.
+Zu diesem Zeitpunkt wird nichts gebucht. Jeder Vorschlag ist ein Vorschlag, den Sie prüfen, ändern oder verwerfen. Beachten Sie dabei: ein Vorschlag **ersetzt die Gruppen, die Sie von Hand gebaut haben**. Lassen Sie also zuerst vorschlagen und passen Sie danach an.
 
-Haben Sie keinen Datumsfilter gesetzt, fragt AIFT zuerst nach. Ohne Filter wird die **gesamte Historie** des Partners bewertet, und ein vorgeschlagener Ausgleich kann bestehende Zuordnungen ersetzen. Vorher einen Zeitraum zu setzen ist fast immer das, was Sie wollen.
+Hat keine der beiden Listen einen Filter, fragt AI Finance Team nach, bevor es alles ansieht, was der Zeitraum der Sitzung zulässt. Ab etwa 300 Datensätzen lehnt es ab und bittet Sie, den Zeitraum einzugrenzen.
+
+Ist die KI selbst nicht verfügbar, kommt der Vorschlag trotzdem, allein aus den deterministischen Regeln gebaut, und sagt das auch.
 
 ## Einen Ausgleich selbst bauen
 
-Haken Sie die Zahlungen und Rechnungen an, die zusammengehören. Die Leiste oben führt laufend mit:
+Haken Sie die Zahlungen und die Rechnungen an, die zusammengehören. Die Leiste oben führt laufend mit:
 
 | | |
 |---|---|
-| **Ausgewählte Zahlungen** | Summe der angehakten Zahlungen |
-| **Ausgewählte Rechnungen** | Summe der angehakten Rechnungen |
+| **Ausgewählte Zahlungen** | was die angehakten Zahlungen zuordnen können |
+| **Ausgewählte Rechnungen** | was die angehakten Rechnungen aufnehmen können |
 | **Differenz** | was übrig bleibt |
 
-Eine **Gutschrift** zählt negativ, denn sie mindert das, was die Zahlung abdecken muss. Deshalb kann eine Überweisung von 238.118 zusammen eine Rechnung über 251.771 und eine Gutschrift über 13.653 exakt ausgleichen.
+Eine **Gutschrift** zählt als negativer Betrag, denn sie mindert das, was die Zahlung abdecken muss.
 
-Erreicht die Differenz null, zeigt die Leiste **Geht auf null auf**. Mit **Auswahl gruppieren** wird aus der Auswahl ein vorgeschlagener Ausgleich.
+<SettlementNettingFigure>
+Warum eine Überweisung über 238.118 eine größere Rechnung ausgleicht: die Gutschrift geht zuerst ab. Die Beträge sind Beispiele.
+</SettlementNettingFigure>
 
-Sie müssen nicht auf null kommen. Deckt eine Zahlung nur einen Teil der offenen Posten, ordnen Sie diesen Teil zu und lassen den Rest offen - siehe unten.
+Erreicht die Differenz null, zeigt die Leiste **Geht auf null auf**. Eine kleine Rundung ist erlaubt: 10 HUF, oder 0,05 in jeder anderen Währung.
+
+Mit **Auswahl gruppieren** wird aus der Auswahl ein vorgeschlagener Ausgleich. Die Zuordnung innerhalb einer Gruppe folgt einer festen Reihenfolge: Gutschriften gehen ganz auf die früheste ausgewählte Zahlung, dann wird jede Rechnung aus den Zahlungen in Datumsreihenfolge gefüllt, wobei eine Rechnung auf mehrere Zahlungen aufgeteilt wird, wenn keine einzelne sie deckt. Was danach bleibt, bleibt schlicht offen.
+
+Eine Gruppe zeigt bewusst beide Seiten dessen, was sie zurücklässt: **… bleiben offen** auf der Zahlungsseite, **… bleiben auf der Rechnung offen** auf der anderen.
 
 ## Buchen
 
-Jeder vorgeschlagene Ausgleich hat sein eigenes **Buchen**. Das Buchen erzeugt gewöhnliche Zuordnungen, genau so, als hätten Sie jede Rechnung von Hand ihrer Zahlung zugeordnet: die Rechnungen gelten als bezahlt, das Partnerkonto wird aktualisiert, und die Belege fließen wie gewohnt in die Exporte.
+Jeder vorgeschlagene Ausgleich hat sein eigenes **Buchen**. Das Buchen erzeugt gewöhnliche Zuordnungen, genau so, als hätten Sie jede Rechnung von Hand ihrer Zahlung zugeordnet: die Rechnungen gelten als bezahlt, und das Partnerkonto wird aktualisiert.
 
-Würde ein Ausgleich bestehende Zuordnungen ersetzen, weist AIFT an der Gruppe darauf hin (**Löst N bestehende**) und fragt - falls eine davon von einem Menschen bestätigt wurde - vorher nach, mit einer Liste dessen, was entfernt wird.
+Würde ein Ausgleich bestehende Zuordnungen ersetzen, steht an der Gruppe **Löst N bestehende**, und wurde eine davon von einem Menschen bestätigt, werden Sie um Bestätigung gebeten und sehen vorher, was entfernt wird.
 
-**Verwerfen** entfernt eine vorgeschlagene Gruppe, ohne irgendetwas anzurühren.
+Das Buchen räumt außerdem alle offenen **Zuordnungsvorschläge** weg, die die zugeordneten Belege nennen. Bestätigte Zuordnungen werden auf diesem Weg nie entfernt.
+
+**Im RLB-Export wird eine ausgeglichene Transaktion je Position geschrieben.** Eine Zahlung mit zwei oder mehr Zuordnungen ergibt eine Zeile je Zuordnung, jede mit ihrem eigenen Ausgleichsbeleg, plus eine Zeile für einen nicht zugeordneten Rest, sodass die Zeilen weiterhin den Betrag auf dem Kontoauszug ergeben. Eine Gutschriftsposition bucht auf der Gegenseite. Eine Zahlung mit einer einzigen Zuordnung wird wie bisher als eine Zeile exportiert.
+
+## Es sich anders überlegen
+
+Drei verschiedene Dinge machen unterschiedlich viel Arbeit rückgängig:
+
+- **Verwerfen** entfernt eine vorgeschlagene Gruppe. Es wurde nichts gebucht, also wird auch nichts rückgängig gemacht.
+- **Ablehnen** an einer Gruppe unter **In dieser Sitzung gebucht** trennt in einem Zug jede Position dieses Ausgleichs und gibt die Belege in die Listen zurück.
+- **Trennen** in der Liste **Bestehende Zuordnungen** entfernt eine einzelne Zuordnung. Diese Liste enthält jede Zuordnung an den Belegen der Sitzung, von wem und wann auch immer sie stammt, gekennzeichnet als **Manuell bestätigt** oder **Automatisch**. So machen Sie auch eine Zuordnung rückgängig, die lange vor dieser Sitzung entstanden ist. Beim Trennen einer manuell bestätigten Zuordnung wird vorher nachgefragt.
 
 ## Nicht zugeordnetes Geld
 
-Eine Zahlung muss nicht vollständig zugeordnet werden. Zahlt ein Kunde runde 250.000 auf Rechnungen über 180.000, ordnen Sie die 180.000 zu und lassen den Rest stehen. Die Transaktion gilt dann als **teilweise zugeordnet**, und die offenen 70.000 erscheinen auf dem Partnerkonto als Geld, das eingegangen, aber noch nicht zugeordnet ist - genau das ist es ja auch.
+Eine Zahlung muss nicht vollständig zugeordnet werden. Zahlt ein Kunde runde 250.000 auf Rechnungen über 180.000, ordnen Sie die 180.000 zu und lassen den Rest stehen. Die Transaktion gilt dann als **Teilweise zugeordnet**, und die offenen 70.000 erscheinen auf dem Partnerkonto als Geld, das eingegangen, aber noch nicht zugewiesen ist, genau das ist es ja auch.
 
 Erfinden Sie nie eine Zuordnung, damit eine Zahlung aufgeht. Ein ehrlicher Rest ist nützlicher als ein ordentlich aussehender, aber falscher Ausgleich.
 
+## Die Sitzung schließen
+
+Klicken Sie auf **Sitzung schließen**, wenn Sie fertig sind, damit die Belege wieder normal verarbeitet werden. Sitzungen laufen nicht von selbst ab, und eine offene hält ihre Belege weiter aus der automatischen Zuordnung heraus.
+
+Offene Sitzungen stehen im Reiter Ausgleich, jeweils mit der Anzahl der Belege, die sie halten, und die Übersicht unter Zuordnung zeigt ein Hinweisband, solange eine Sitzung offen ist.
+
 ## Gut zu wissen
 
-- **Eine Ausgleichssitzung hält ihre Belege fest.** Solange eine Sitzung offen ist, sind die enthaltenen Rechnungen und Zahlungen für Sie reserviert: der automatische Abgleich rührt sie nicht an, und sie tragen anderswo in der App den Hinweis **In Ausgleichsprüfung**, der zurück zur Sitzung führt. Klicken Sie am Ende auf **Sitzung schließen**, damit sie wieder normal verarbeitet werden.
-- **Bereits zugeordnete Rechnungen erscheinen ebenfalls**, gekennzeichnet mit **Bereits zugeordnet**. Das ist Absicht: wurde eine Zahlung der falschen Rechnung zugeordnet, müssen Sie genau diese Rechnung sehen, um sie neu zuzuordnen.
-- **Der Ausgleich ist für Buchhalter.** Mandanten sehen den Reiter nicht.
+- **Eine Zahlung in einer Sitzung ist auf ihrer eigenen Seite gekennzeichnet.** Eine Transaktion, die ein Ausgleich hält, zeigt den Link **Ausgleich fortsetzen** zurück zur Sitzung. Rechnungen tragen keine solche Kennzeichnung.
+- **Sie können auch von einer Zuordnung aus hierherkommen.** Wo ein Beleg zu viel zugeordnet bekommen hat oder konkurrierende Ansprüche auf ihn bestehen, bietet seine zugehörige Aktivität **Nach Partner ausgleichen**.
 - **Belegnamen sind Links.** Ein Klick auf eine Rechnungsnummer oder eine Zahlung öffnet den Beleg in einem neuen Tab, sodass Sie Details prüfen können, ohne den begonnenen Ausgleich zu verlieren.
+- **Was die App ablehnt:** mehr als eine Währung in einer Gruppe, mehr zuzuordnen als ein Beleg wert ist, und mehr als 20 Partner in einem Bereich.
