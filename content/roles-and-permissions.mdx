@@ -54,8 +54,8 @@ The ticks are the **defaults of the five system roles**. A custom role picks its
 
 Two things are fixed by rule and are never part of a role:
 
-- **Connecting and disconnecting bank accounts.** Any client-side member can connect a bank; disconnecting a bank connection belongs to the client owner. Bank credentials always stay on the client side.
-- **NAV Online Számla credentials** can be set up by the client owner, an accountant admin or an accountant. Nobody can read them back.
+- **Connecting and disconnecting bank accounts.** Any client-side member can connect a bank; disconnecting a bank connection belongs to the finance lead. Bank credentials always stay on the client side.
+- **NAV Online Számla credentials** can be set up by the finance lead, an accountant admin or an accountant. Nobody can read them back.
 
 Both are decided by the member's **base role** (the system role a custom role is based on), so a custom role based on Finance lead also owns the bank connection.
 
@@ -114,7 +114,7 @@ Taking away "View invoices and bank transactions" makes a member an upload-only 
 
 ### Managing the team
 
-"Manage members and roles" is what makes someone a manager of the team. It lets them change a member's role, set exceptions, remove members and, on the firm side, decide join requests. A client-side manager (the client owner by default) manages client-side members only. The last accountant admin and the last client owner of a workspace cannot be removed, cannot leave, and cannot be moved to another base role.
+"Manage members and roles" is what makes someone a manager of the team. It lets them change a member's role, set exceptions, remove members and, on the firm side, decide join requests. A client-side manager (the finance lead by default) manages client-side members only. The last accountant admin and the last finance lead of a workspace cannot be removed, cannot leave, and cannot be moved to another base role.
 
 ### What a member sees
 
@@ -179,7 +179,7 @@ The workspace's **Settings → Team management → Invite a new member** (for me
 - An optional message, up to 500 characters, shared by the whole batch. Links in it become clickable.
 - Click **Send invite**, or **Send N invites** for several. Rows that were sent drop out of the form; rows that failed (for example a duplicate email address) stay with the error so you can fix them.
 
-The role list depends on who invites: a client-side inviter can only invite client members, a firm-side inviter can invite any workspace role, and the organization panel invites to the firm.
+The role list depends on who invites: a client-side inviter can invite a Team member or a Finance admin, never another Finance lead, a firm-side inviter can invite any workspace role, and the organization panel invites to the firm.
 
 AI Finance Team emails each person the invitation link and your message; the link is also shown to you in case the email does not arrive. Each invitation expires after 14 days, can be revoked before it is accepted, and only works for the email address it was sent to.
 
@@ -201,4 +201,4 @@ There are three ways into a workspace:
 
 ### Removing a member
 
-A member holding "Manage members and roles" can remove a member on their own side from the **Team members** tab: by default, the accountant admin removes firm-side members and the client owner removes client-side members. Any member can leave a workspace themselves, except the last accountant admin and the last client owner. Removed people keep their account; they only lose access to that workspace. Removing someone from the organization (on its **Team** page) removes them from every workspace of the firm.
+A member holding "Manage members and roles" can remove a member on their own side from the **Team members** tab: by default, the accountant admin removes firm-side members and the finance lead removes client-side members. Any member can leave a workspace themselves, except the last accountant admin and the last finance lead. Removed people keep their account; they only lose access to that workspace. Removing someone from the organization (on its **Team** page) removes them from every workspace of the firm.
