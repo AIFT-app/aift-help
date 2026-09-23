@@ -26,7 +26,7 @@ Managing aliases (claiming or retiring) is limited to **accountant admins** and 
 
 1. The email arrives at your workspace address and a row appears in **Intake**.
 2. Each attachment is **triaged** - the app works out whether it's an invoice, a bank statement, a receipt, or something else.
-3. Invoices and receipts flow into extraction and show up on the **Invoices** page like any other upload; bank statements go to the statement pipeline.
+3. Invoices and receipts flow into extraction and show up on the **Invoices** page like any other upload. A bank statement is **not** extracted this way: it waits in Intake marked **Awaiting extractor**, and has to be uploaded on the **Bank transactions** page to be read, see [Uploading Bank Statements](/bank-statement-upload).
 4. Anything the app can't confidently classify is set aside under **Needs review** for a person to sort out.
 
 The original email itself is never billed to you as a document - only the useful attachments inside it end up in your workspace.
