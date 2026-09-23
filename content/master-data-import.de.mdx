@@ -6,15 +6,18 @@ Das ist ideal beim Onboarding eines neuen Mandanten: Exportieren Sie die Partner
 
 ## Was Sie importieren können
 
-Der Import befindet sich auf drei **Stammdaten**-Seiten, die jeweils eine Art von Datensatz importieren:
+Der Import befindet sich auf diesen **Stammdaten**-Seiten, die jeweils eine Art von Datensatz importieren:
 
-- **Partner** - Ihre verifizierte Partnerliste (Stammdaten → **Partner**)
-- **Rechnungskategorien** - die Kategorien zur Kodierung von Rechnungspositionen (Stammdaten → **Buchhaltungskategorien** → Reiter **Rechnung**)
-- **Cashflow-Kategorien** - die Kategorien zur Kodierung von Banktransaktionen (Stammdaten → **Buchhaltungskategorien** → Reiter **Cashflow**)
+- **Partner**: Ihre verifizierte Partnerliste (Stammdaten → **Partner**)
+- **Rechnungskategorien**: die Kategorien zur Kodierung von Rechnungspositionen (Stammdaten → **Buchhaltungskategorien** → Reiter **Rechnung**)
+- **Cashflow-Kategorien**: die Kategorien zur Kodierung von Banktransaktionen (Stammdaten → **Buchhaltungskategorien** → Reiter **Cashflow**)
+- **Eigene Kategorielisten**: die Kategorien einer Ihrer eigenen Listen (Stammdaten → **Eigene Kategorien**, dann die Liste öffnen). Siehe [Eigene Kategorien](/custom-categories).
 
-Auf jeder dieser Seiten finden Sie oben rechts eine Schaltfläche **Importieren**, neben der Schaltfläche „Neu…". Ein Import verarbeitet jeweils ein Ziel - die Seite, von der aus Sie starten, bestimmt, was Sie importieren.
+Auf jeder dieser Seiten finden Sie oben eine Schaltfläche **Importieren**. Ein Import verarbeitet jeweils ein Ziel: Die Seite, von der aus Sie starten, bestimmt, was Sie importieren.
 
-> Die Schaltfläche **Importieren** ist - wie jede Stammdaten-Bearbeitung - nur für Mitglieder mit der Rolle **Buchhalter** oder **Buchhalter-Admin** verfügbar.
+Beim Einrichten eines neuen Arbeitsbereichs bietet der Schritt **Kategorien** die Option **Eigene Liste hochladen** an. Sie führt denselben Import für Rechnungskategorien aus, mit denselben Schritten.
+
+> Die Schaltfläche **Importieren** sehen die Mitglieder der Kanzlei. Zum Anlegen der Datensätze braucht es die Berechtigung **Stammdaten bearbeiten**, die die Rollen **Buchhalter-Admin** und **Buchhalter** standardmäßig haben. Siehe [Rollen & Berechtigungen](/roles-and-permissions).
 
 ## Bevor Sie beginnen
 
@@ -25,35 +28,37 @@ Auf jeder dieser Seiten finden Sie oben rechts eine Schaltfläche **Importieren*
 ## Eine Tabelle importieren
 
 1. Öffnen Sie die entsprechende Seite (Stammdaten → **Partner**, oder Stammdaten → **Buchhaltungskategorien** und dort den Reiter **Rechnung** oder **Cashflow**) und klicken Sie auf **Importieren**.
-2. **Hochladen** - klicken Sie auf **Tabellendatei auswählen** und wählen Sie Ihre Datei. AI Finance Team liest sie und erkennt die Spalten.
-3. **Spalten zuordnen** - jedes Feld (Name, Steuernummer, Land, Adresse, …) wird einer Spalte aus Ihrer Datei zugeordnet. Prüfen Sie die Vorschläge und korrigieren Sie falsche Zuordnungen. Pflichtfelder sind mit einem Sternchen (`*`) markiert und müssen zugeordnet werden, bevor Sie fortfahren können. Klicken Sie auf **Weiter**.
-4. **Prüfen** - eine Zusammenfassung zeigt, was mit jeder Zeile geschieht: wie viele erstellt werden, wie viele bereits vorhanden sind und welche mehrdeutig oder fehlerhaft sind. Klappen Sie sie auf, um das zeilenweise Ergebnis zu sehen.
-5. Klicken Sie auf **Erstellen** (mit Anzahl, z. B. „42 erstellen"), um den Import auszuführen. Nach Abschluss erscheint „42 Datensätze erstellt." - klicken Sie auf **Schließen**.
+2. **Hochladen**: Klicken Sie auf **Tabellendatei auswählen** und wählen Sie Ihre Datei, oder ziehen Sie die Datei auf das Feld. AI Finance Team liest sie und erkennt die Spalten.
+3. **Spalten zuordnen**: Jedes Feld (Name, Steuernummer, Land, Adresse, …) wird einer Spalte aus Ihrer Datei zugeordnet. Prüfen Sie die Vorschläge und korrigieren Sie falsche Zuordnungen. Pflichtfelder sind mit einem Sternchen (`*`) markiert und müssen zugeordnet werden, bevor Sie fortfahren können. Klicken Sie auf **Weiter**.
+4. **Prüfen**: Jede Zeile der Datei erscheint in einer Tabelle. Die Spalte **Status** zeigt, was mit ihr geschieht (**Erstellen**, **Vorhanden**, **Mehrdeutig** oder **Fehler**), die Spalte **Hinweis** den Grund, wo es einen gibt. Die Zeilen, die der Import anlegen kann, sind von Anfang an angehakt; die übrigen sind grau und lassen sich nicht anhaken. Entfernen Sie den Haken bei Zeilen, die Sie nicht wollen, und korrigieren Sie einen Namen vor dem Anlegen mit **F2**. Beim Import von Kategorien prüfen Sie auch die Richtung jeder Zeile. Angelegt werden nur die angehakten Zeilen. Das ist die Tabellenoberfläche, mit Suche, Spaltenfiltern und Tastenkürzeln; siehe [Arbeiten in der Tabellenoberfläche](/spreadsheet-interface).
+5. Klicken Sie auf **Anlegen**, um die angehakten Zeilen anzulegen. Nach Abschluss erscheint zum Beispiel „42 Datensätze erstellt.“. Stellt sich in diesem Moment heraus, dass eine Zeile schon vorhanden ist (zum Beispiel weil ihr geänderter Name zu einem vorhandenen Datensatz passt), wird sie ausgelassen, und eine Zeile nennt, wie viele Zeilen ausgelassen wurden. Klicken Sie auf **Schließen**.
 
-Sie können mit **Zurück** zu einem früheren Schritt zurückkehren oder mit **Abbrechen** den gesamten Import verwerfen.
+Im Schritt **Prüfen** führt **Zurück** zur Spaltenzuordnung. In den ersten beiden Schritten verwirft **Abbrechen** den gesamten Import. Sobald eine Datei geladen ist, schließt Esc oder ein Klick neben den Dialog ihn nicht, so geht die Datei nicht versehentlich verloren.
 
 ## Wie Spalten erkannt werden
 
 AI Finance Team nutzt KI, um die Überschriften Ihrer Tabelle den richtigen Feldern zuzuordnen, sodass eine Spalte namens `Partnernév`, `Vendor` oder `Lieferantenname` gleichermaßen als **Name** verstanden wird. Die endgültige Entscheidung treffen immer Sie:
 
-- Öffnen Sie das Dropdown eines Feldes, um eine andere Spalte zu wählen, oder wählen Sie **- nicht importieren -**, um das Feld leer zu lassen.
+- Öffnen Sie das Dropdown eines Feldes, um eine andere Spalte zu wählen, oder wählen Sie **Nicht verwenden**, um das Feld leer zu lassen.
 - Pflichtfelder (wie **Name**) müssen zugeordnet werden; der Assistent lässt Sie sonst nicht fortfahren.
 
 Wenn die KI keine sichere Zuordnung findet, dient eine integrierte Liste gängiger Überschriftennamen (in mehreren Sprachen) als Rückfall, sodass die Erkennung trotzdem funktioniert.
 
 ## Was erstellt und was übersprungen wird
 
-Der Import **erstellt ausschließlich neue Datensätze - er überschreibt oder bearbeitet niemals vorhandene.** Im Schritt **Prüfen** wird jede Zeile einem von vier Ergebnissen zugeordnet:
+Der Import **erstellt ausschließlich neue Datensätze. Er überschreibt oder bearbeitet niemals vorhandene.** Im Schritt **Prüfen** erhält jede Zeile einen von vier Status:
 
-- **Erstellen** - ein wirklich neuer Datensatz; er wird hinzugefügt.
-- **Vorhanden** - ein passender Datensatz ist bereits im Arbeitsbereich, daher wird die Zeile **übersprungen** (der vorhandene Datensatz bleibt genau so, wie er ist).
-- **Mehrdeutig** - die Zeile passt zu mehr als einem vorhandenen Datensatz und wird sicherheitshalber übersprungen. Lösen Sie diese anschließend von Hand auf.
-- **Fehler** - die Zeile kann nicht importiert werden (zum Beispiel ein fehlender Name oder ein Land, das kein 2-Buchstaben-Code ist). Korrigieren Sie sie in der Datei und importieren Sie erneut.
+- **Erstellen**: ein wirklich neuer Datensatz. Die Zeile ist von Anfang an angehakt und wird angelegt, wenn sie beim Klick auf **Anlegen** noch angehakt ist.
+- **Vorhanden**: Ein passender Datensatz ist bereits im Arbeitsbereich, daher wird die Zeile **übersprungen** (der vorhandene Datensatz bleibt genau so, wie er ist). Eine Zeile, die eine frühere Zeile derselben Datei wiederholt, erhält ebenfalls **Vorhanden**, mit dem Hinweis „Duplikat in der Datei“.
+- **Mehrdeutig**: Die Zeile passt zu mehr als einem vorhandenen Datensatz und wird sicherheitshalber übersprungen. Lösen Sie diese anschließend von Hand auf.
+- **Fehler**: Die Zeile kann nicht importiert werden (zum Beispiel ein fehlender Name oder ein Land, das kein 2-Buchstaben-Code ist). Korrigieren Sie sie in der Datei und importieren Sie erneut.
 
-Wie „bereits vorhanden" bestimmt wird:
+Nur Zeilen mit **Erstellen** lassen sich anhaken.
 
-- **Partner** werden zuerst anhand der **Steuernummer** abgeglichen (Formatierungsunterschiede wie Leerzeichen oder Bindestriche werden ignoriert), dann anhand des **Namens**.
-- **Kategorien** werden anhand des **Namens** abgeglichen, innerhalb der gerade importierten Art (Rechnung vs. Cashflow).
+Wie „bereits vorhanden“ bestimmt wird:
+
+- **Partner** mit Steuernummer werden anhand der **Steuernummer** abgeglichen (Formatierungsunterschiede wie Leerzeichen oder Bindestriche werden ignoriert). Partner ohne Steuernummer werden anhand des **Namens** abgeglichen.
+- **Rechnungs- und Cashflow-Kategorien** werden anhand des **Namens** abgeglichen, innerhalb der gerade importierten Art (Rechnung vs. Cashflow).
 
 Da vorhandene Datensätze übersprungen und nicht geändert werden, können Sie dieselbe Datei gefahrlos erneut ausführen - der zweite Durchlauf meldet einfach alles als **Vorhanden**.
 
@@ -71,7 +76,7 @@ Eine Kategorie kann für **Einnahmen**, für **Ausgaben** oder für **beide** ve
 
 Gängige Pluralformen funktionieren ebenfalls (`Ausgaben`, `expenses`, `kiadások`).
 
-Im Schritt **Prüfen** sehen Sie vor dem Erstellen drei Zahlen: wie viele Kategorien Einnahme werden, wie viele Ausgabe und wie viele für beide verwendbar sind. Jede Zeile zeigt ihre Richtung. Konnten einige Richtungszellen nicht gelesen werden, nennt ein gelber Hinweis die Anzahl.
+Im Schritt **Prüfen** sehen Sie über der Tabelle drei Zahlen: wie viele Kategorien laut Datei Einnahme werden, wie viele Ausgabe und wie viele für beide verwendbar sind. Konnten einige Richtungszellen nicht gelesen werden, nennt ein gelber Hinweis die Anzahl. Jede Zeile zeigt ihre Richtung in der Spalte **Richtung**, und dort können Sie sie vor dem Anlegen ändern: Drücken Sie **Alt+↓** auf der Zeile (Option+↓ auf einem Mac) oder klicken Sie auf den Pfeil in der Zelle, und wählen Sie **Einnahme**, **Ausgabe** oder **Beide**. Der Wert aus der Datei bleibt der Vorschlag, und die Zahlen über der Tabelle zeigen weiterhin, was in der Datei steht.
 
 Wörter wie `eingehend` / `ausgehend`, `in` / `out`, `incoming` / `outgoing`, `bejövő` / `kimenő` und `debit` / `credit` werden **absichtlich nicht** gelesen. Sie zeigen je nach Datei in entgegengesetzte Richtungen: Eine Eingangsrechnung ist eine Ausgabe, ein Geldeingang auf dem Kontoauszug dagegen eine Einnahme. Verwenden Sie stattdessen eines der Wörter aus der Tabelle.
 
@@ -84,5 +89,6 @@ Büro-Exporte teilen eine Adresse oft auf mehrere Spalten auf - Postleitzahl, Or
 ## Hinweise & Einschränkungen
 
 - Der Import fügt Datensätze hinzu; er aktualisiert vorhandene nicht. Um einen bereits vorhandenen Partner oder eine Kategorie zu ändern, bearbeiten Sie ihn direkt auf seiner Seite.
+- Beim Import von Partnern nennt das Ergebnis auch, welche USt-Gruppen anhand der Steuernummern zugeordnet wurden und bei wie vielen Partnern ohne Steuernummer Sie die USt-Gruppe unter **Partner** prüfen sollten.
 - Ob Kategorien als **Rechnungs-** oder **Cashflow-Kategorien** importiert werden, entscheidet die Seite, von der aus Sie starten, nicht der Inhalt der Datei.
 - Bei Partnern ist nur der **Name** erforderlich. Steuernummer, Land und Adresse sind optional, aber ihr Ausfüllen macht den automatischen Abgleich später deutlich zuverlässiger - siehe [Partner verwalten](/partners).
