@@ -1,70 +1,115 @@
 # Dokumente per E-Mail weiterleiten
 
-Jeder Arbeitsbereich hat seine eigene E-Mail-Adresse. Leiten Sie eine Rechnung, einen Kontoauszug oder einen Beleg an diese Adresse weiter, und er erscheint innerhalb etwa einer Minute im Arbeitsbereich - mit automatisch gelesenen und klassifizierten Anhängen, ohne Anmeldung und ohne manuellen Upload. Das ist der einfachste Weg, die SaaS-Belege und Lieferantenrechnungen einzusammeln, die ohnehin in Ihrem Postfach landen.
+Jeder Arbeitsbereich hat seine eigene E-Mail-Adresse. Leiten Sie eine Rechnung oder einen Beleg dorthin weiter, und sie erscheint innerhalb etwa einer Minute im Arbeitsbereich, ohne Anmeldung und ohne manuellen Upload. Das ist der einfachste Weg, die SaaS-Belege und Lieferantenrechnungen einzusammeln, die ohnehin in Ihrem Postfach landen.
 
-Weitergeleitete Dokumente kommen in die **Sammelstelle**, das Protokoll von allem, was an den Adressen Ihres Arbeitsbereichs eingeht. Von dort fließen Rechnungen in die normale Extraktionsstrecke, und alles, was eine menschliche Entscheidung braucht, wird zur Prüfung markiert.
+Weitergeleitete E-Mails landen in der **Sammelstelle**, dem Protokoll von allem, was an den Adressen Ihres Arbeitsbereichs eingeht. Das Lesen und Klassifizieren der Anhänge dauert länger als diese eine Minute: Die Minute ist der Eingang der E-Mail, nicht die fertige Rechnung.
 
-## Ihre Adresse finden
+## Ihre Adresse
 
-Öffnen Sie **Einstellungen → E-Mail-Eingang** (Sie gelangen auch über **Adressen verwalten →** oben auf der Seite Sammelstelle dorthin). Die **Primäre Adresse** wird dort als kopierbarer Block angezeigt - etwa so:
+Öffnen Sie **Einstellungen → E-Mail-Eingang** oder oben auf der Seite Sammelstelle **Adressen verwalten →**. Die **Primäre Adresse** ist ein kopierbarer Block und sieht so aus:
 
 ```
-ihrarbeitsbereich@in.aifinance.team
+in-k7p2xq4m@in.aifinance.team
 ```
 
-Der lokale Teil (das Stück vor dem `@`) ist für Ihren Arbeitsbereich eindeutig. Kopieren Sie ihn, legen Sie ihn in Ihren Kontakten ab, und leiten Sie los. Die Seite zeigt außerdem, wie viele E-Mails Sie in den letzten 30 Tagen erhalten haben und wann die letzte eintraf.
+Der Teil vor dem `@` besteht aus acht zufälligen Zeichen, nicht aus Ihrem Firmennamen. Das ist Absicht, und der nächste Abschnitt erklärt, warum. Die Seite zeigt außerdem, wie viele E-Mails in den letzten 30 Tagen eingegangen sind und wann die letzte eintraf.
 
-> Die Adresse gilt **je Arbeitsbereich**, nicht je Unternehmen oder Person. Alles, was dorthin gesendet wird, landet in der Sammelstelle genau dieses einen Arbeitsbereichs.
+Die Adresse gilt **je Arbeitsbereich**, nicht je Unternehmen oder Person, und sie lässt sich weder umbenennen noch ändern noch neu erzeugen.
+
+### Wer daran senden darf
+
+**Jeder, der die Adresse kennt.** Es gibt keine Liste erlaubter Absender. Die einzige Prüfung ist, ob die sendende Domain ihre eigene Authentifizierung besteht. Das belegt, dass die Mail wirklich von dieser Domain kam, nicht, dass der Absender eine bestimmte Person ist.
+
+Die Adresse ist also das Geheimnis. Deshalb besteht sie aus acht zufälligen Zeichen statt aus Ihrem Firmennamen: Niemand kann sie erraten, und niemand kann aus einer Adresse die Adressen Ihrer anderen Arbeitsbereiche ableiten. Behandeln Sie sie wie einen privaten Upload-Link. Geben Sie sie den Personen und Abrechnungssystemen, die Ihnen Dokumente schicken sollen, und nicht darüber hinaus.
 
 ### Benutzerdefinierte Aliase
 
-Wenn eine Rechnungseinstellungsseite eine aufgeräumtere Adresse braucht als die automatisch erzeugte, können Sie bis zu **fünf benutzerdefinierte Aliase** je Arbeitsbereich reservieren (zum Beispiel `acme@in.aifinance.team`). Geben Sie unter **Benutzerdefinierte Aliase** den gewünschten Namen ein, klicken Sie auf **Reservieren**, und verwenden Sie ihn überall dort, wo auch die primäre Adresse funktionieren würde. Einen nicht mehr benötigten Alias können Sie **Stilllegen**.
+Wenn die Rechnungsseite eines Lieferanten eine aufgeräumtere Adresse braucht, können Sie bis zu **fünf benutzerdefinierte Aliase** je Arbeitsbereich reservieren, zum Beispiel `acme@in.aifinance.team`. Geben Sie unter **Benutzerdefinierte Aliase** den Namen ein, klicken Sie auf **Reservieren**, und verwenden Sie ihn überall dort, wo auch die primäre Adresse funktioniert.
 
-Das Verwalten von Aliassen (Reservieren oder Stilllegen) ist auf **Buchhalter-Administratoren** und die **Finanzleitung** beschränkt. Alle anderen sehen die Adressen nur lesend - mehr braucht es zum Weiterleiten nicht.
+**Ein benutzerdefinierter Alias ist erratbar, und genau das ist der Preis dafür.** Wer den eigenen Firmennamen wählt, gibt den Schutz auf, den die zufällige Adresse bietet. Für ein Lieferantenportal, das seltsam aussehende Adressen ablehnt, lohnt sich das, als Alltagsadresse nicht.
 
-## Was mit einer weitergeleiteten E-Mail passiert
+**Stilllegen** schaltet einen Alias dauerhaft ab. Mail an einen stillgelegten Alias wird abgelehnt statt angenommen, und der Name bleibt für immer reserviert: Kein anderer Arbeitsbereich kann ihn je beanspruchen, und Sie selbst auch nicht. Das Stilllegen gibt allerdings einen Platz für einen anderen Namen frei.
 
-1. Die E-Mail trifft an der Adresse Ihres Arbeitsbereichs ein, und in der **Sammelstelle** erscheint eine Zeile.
-2. Jeder Anhang wird **triagiert** - die App ermittelt, ob es sich um eine Rechnung, einen Kontoauszug, einen Beleg oder etwas anderes handelt.
-3. Rechnungen und Belege fließen in die Extraktion und erscheinen auf der Seite **Rechnungen** wie jeder andere Upload. Ein Kontoauszug wird auf diesem Weg **nicht** extrahiert: Er wartet in der Sammelstelle mit der Markierung **Wartet auf Extraktor**, und Sie müssen ihn auf der Seite **Banktransaktionen** hochladen, damit er gelesen wird, siehe [Kontoauszüge hochladen](/bank-statement-upload).
-4. Alles, was die App nicht sicher klassifizieren kann, wird unter **Prüfung erforderlich** beiseitegelegt, damit ein Mensch es sortiert.
+Reservieren und Stilllegen erfordern die Berechtigung „Verbindungen verwalten“, über die Buchhalter-Admins und die Finanzleitung standardmäßig verfügen. Alle anderen sehen die Adressen nur lesend, und mehr braucht es zum Weiterleiten nicht.
 
-Die ursprüngliche E-Mail selbst wird Ihnen nie als Dokument berechnet - nur die nützlichen Anhänge darin landen in Ihrem Arbeitsbereich.
+## Was Sie senden können
+
+Akzeptierte Anhänge: **PDF, PNG, JPEG, WEBP und HEIC**. ZIP-Archive werden geöffnet und ihre unterstützten Inhalte als eigene Dokumente übernommen.
+
+**Alles andere wird stillschweigend verworfen.** Ein Anhang im Format `.docx`, `.xlsx`, `.csv` oder `.txt` wird ohne Warnung verworfen, und die E-Mail gilt weiterhin als abgeschlossen, nur mit einer niedrigeren Anzahl an Anhängen. Die angezeigte Zahl ist das, was behalten wurde, nicht das, was gesendet wurde. Wirkt eine Zahl zu niedrig, wurde also etwas verworfen.
+
+Grenzen: 10 MB je Anhang, 20 Anhänge je E-Mail, 25 MB für die gesamte E-Mail und 200 E-Mails je Arbeitsbereich und Tag.
+
+Zwei Dinge, über die viele stolpern:
+
+- **Eine in den E-Mail-Text eingefügte Rechnung geht verloren.** Der Text wird gespeichert und Sie können ihn an der E-Mail lesen, aber er wird nie als Dokument behandelt. Als Dokumente zählen nur Anhänge.
+- **Bilder unter 10 KB werden als Signaturen und Logos verworfen.** Ein kleiner Screenshot eines Belegs kann so verschwinden. Größere in die Nachricht eingebettete Bilder werden wie jeder Anhang übernommen.
+
+> **iPhone-Fotos brauchen Sorgfalt.** Ein HEIC-Foto wird vom Postfach angenommen und scheitert dann beim Lesen. Das Dokument bleibt auf **Fehlgeschlagen** stehen und die E-Mail hängt auf **Wird verarbeitet**. Senden Sie nach Möglichkeit das Original-PDF, oder stellen Sie Ihr Telefon auf Fotos im JPEG-Format um.
+
+Dieselbe Datei zweimal weiterzuleiten kostet nichts: Die zweite Kopie wird an ihrem Inhalt erkannt, als Duplikat markiert und nie erneut verarbeitet.
+
+## Was danach passiert
+
+1. Die E-Mail trifft ein, und in der **Sammelstelle** erscheint eine Zeile.
+2. Jeder Anhang wird klassifiziert: Rechnung, Beleg, Gutschrift, Kontoauszug, Vertrag oder etwas anderes.
+3. **Rechnungen, Belege und Gutschriften** gehen in die Extraktion und erscheinen auf der Seite **Rechnungen** wie jeder andere Upload.
+4. **Ein Kontoauszug wird auf diesem Weg nicht extrahiert.** Er wartet in der Sammelstelle mit der Markierung **Wartet auf Extraktor**, er taucht in keiner Warteschlange auf und trägt kein Abzeichen, es wird Sie also nichts daran erinnern. Laden Sie ihn stattdessen auf der Seite **Banktransaktionen** hoch: siehe [Kontoauszüge hochladen](/bank-statement-upload).
+5. **Ein Vertrag oder etwas Unerkanntes** geht auf die Seite **Dokumente**, die es nur auf der Buchhalterseite gibt. Unter Prüfung erforderlich erscheint er nicht.
+6. **Alles, was mit geringer Konfidenz klassifiziert wurde**, wird unter **Prüfung erforderlich** markiert, gleich ob es danach noch in die Extraktion ging oder nicht.
+
+<TriageDestinationsFigure>
+Vier Ziele, und nur das erste ist das erwartete. Bei den mittleren beiden verstummen weitergeleitete Dokumente.
+</TriageDestinationsFigure>
+
+An den Absender wird nie etwas zurückgeschickt: keine Antwort, kein Bounce, keine Bestätigung, weder bei Erfolg noch bei Fehler. Ob eine E-Mail angekommen ist, erfahren Sie nur in der Sammelstelle.
+
+Die E-Mail selbst wird Ihnen nie als Dokument berechnet, nur die Anhänge, aus denen Rechnungen werden, zählen.
+
+Die App lernt außerdem daraus, wer was sendet. Sobald die Domain eines Absenders einige sichere Klassifizierungen geliefert hat, werden spätere Dokumente von dieser Domain besser klassifiziert, sodass die zehnte Rechnung eines Lieferanten zuverlässiger landet als die erste.
 
 ## Die Seite Sammelstelle
 
-Die Sammelstelle sehen sowohl Buchhalter als auch Mandanten. Sie hat zwei Reiter:
+Die Sammelstelle hat zwei Reiter:
 
-- **Alle E-Mails** - jede eingegangene E-Mail, die neueste zuerst. Jede Zeile zeigt Eingangszeitpunkt, Absender, Betreff, die Empfängeradresse, einen Status und die Anzahl der Anhänge.
-- **Prüfung erforderlich** - die Teilmenge, die eine menschliche Entscheidung braucht. Sie trägt ein bernsteinfarbenes Zähler-Abzeichen, damit Sie auf einen Blick sehen, ob etwas wartet.
+- **Alle E-Mails** - jede eingegangene E-Mail, die neueste zuerst, mit Eingangszeitpunkt, Absender, Betreff, der Angabe, an welche Ihrer Adressen sie ging, einem Status und der Anzahl der behaltenen Anhänge.
+- **Prüfung erforderlich** - die Teilmenge, die eine menschliche Entscheidung braucht, mit einem bernsteinfarbenen Zähler-Abzeichen.
+
+Um überhaupt etwas davon zu sehen, ist die Berechtigung „Rechnungen und Banktransaktionen ansehen“ nötig. Ein Mitglied ohne sie sieht eine leere Sammelstelle statt einer Fehlermeldung. Die Adressen selbst bleiben für alle sichtbar.
 
 ### Statusbezeichnungen
 
 | Bezeichnung | Bedeutung |
 |---|---|
-| **Abgeschlossen** | Die E-Mail wurde verarbeitet und ihre Anhänge bearbeitet. |
-| **Wird verarbeitet** | Wird noch gelesen. |
-| **Empfangen** | Eingetroffen, noch nicht verarbeitet. |
-| **Fehlgeschlagen** | Bei der Bearbeitung der E-Mail ging etwas schief. |
-| **Unbekannte Adresse** / **Stillgelegte Adresse** | An eine nicht existierende oder stillgelegte Adresse gesendet. |
-| **Auth fehlgeschlagen** | Der Absender konnte nicht verifiziert werden. |
-| **Zu groß** / **Rate-Limit erreicht** | Wegen der Größe abgelehnt, oder zu viele E-Mails zu schnell. |
-| **Mehrere Dokumente** | Ein einzelnes PDF enthielt mehrere Dokumente (siehe unten). |
-| **Keine Anhänge** | Nichts zu übernehmen. |
+| **Abgeschlossen** | Verarbeitet, ihre Anhänge bearbeitet |
+| **Wird verarbeitet** | Wird noch gelesen |
+| **Fehlgeschlagen** | Bei der Bearbeitung der E-Mail ging etwas schief |
+| **Stillgelegte Adresse** | An einen stillgelegten Alias gesendet |
+| **Auth fehlgeschlagen** | Die sendende Domain konnte nicht verifiziert werden |
+| **Zu groß** | Über der Grenze von 25 MB |
+| **Rate-Limit erreicht** | Mehr als 200 E-Mails an einem Tag |
+| **Limit der Testphase erreicht** | Mit der Mail war alles in Ordnung, das Dokumentkontingent des Testtarifs hat sie abgelehnt |
+| **Mehrere Dokumente** | Ein PDF enthielt mehrere Dokumente |
+| **Keine Anhänge** | Nichts Unterstütztes zum Übernehmen |
+
+**Keine Anhänge** sollte man genau lesen: Es bedeutet, dass es keine *unterstützten* Anhänge gab. Eine E-Mail, die nur eine Word-Datei trägt, erscheint so.
+
+**Ein Tippfehler in der Adresse hinterlässt überhaupt keine Spur.** Mail an eine Adresse, die es nicht gibt, wird verworfen, ohne Zeile, ohne Bounce und ohne Fehlermeldung. Wenn Sie etwas weitergeleitet haben und die Sammelstelle leer ist, prüfen Sie zuerst die Adresse.
 
 ## Wenn etwas Aufmerksamkeit braucht
 
-Öffnen Sie die Zeile einer E-Mail, um ihre Anhänge, den E-Mail-Text und (falls nötig) die Roh-Header zu sehen.
+Öffnen Sie die Zeile einer E-Mail, um ihre Anhänge und den Text zu sehen.
 
-- **Ein Anhang konnte nicht gespeichert werden.** Die Anhangszahl färbt sich bernsteinfarben, und die E-Mail zeigt ein Banner: *„1 Anhang konnte nicht gespeichert werden.“* Die übliche Ursache ist ein ungewöhnlicher Dateiname - **bitten Sie den Absender, die Datei umzubenennen und erneut weiterzuleiten**, oder laden Sie sie manuell über die Seite Rechnungen hoch.
-- **Ein PDF enthielt mehrere Dokumente.** Leitet jemand ein PDF weiter, das eigentlich mehrere zusammen eingescannte Rechnungen ist, wird es als **Mehrere Dokumente** markiert: *„Bitte teilen Sie das PDF in ein Dokument pro Rechnung/Kontoauszug auf und laden Sie es erneut über diese Adresse oder den manuellen Upload-Vorgang hoch.“* Teilen Sie es in ein Dokument pro Rechnung und leiten Sie die Teile weiter.
-- **Die App war sich bei einer Datei nicht sicher.** Sie landet unter **Prüfung erforderlich** mit der besten Vermutung und einem Konfidenzwert. Öffnen Sie sie und setzen Sie über die Neuklassifizierung den richtigen Typ.
+- **Ein Anhang konnte nicht gespeichert werden.** Die Anzahl färbt sich bernsteinfarben, und ein Banner weist darauf hin. Laden Sie diese Datei manuell über die Seite Rechnungen hoch. Buchhalter können zusätzlich die Roh-E-Mail herunterladen, um genau zu sehen, was eingetroffen ist.
+- **Ein PDF enthielt mehrere Dokumente.** Es wird als **Mehrere Dokumente** markiert, und es wird nichts daraus extrahiert. Teilen Sie es in ein Dokument pro Rechnung auf und leiten Sie die Teile weiter.
+- **Die App war sich bei einer Datei nicht sicher.** Sie landet mit der besten Vermutung unter **Prüfung erforderlich**. Öffnen Sie sie und setzen Sie über die Neuklassifizierung den richtigen Typ: **Rechnung**, **Kontoauszug**, **Beleg**, **Gutschrift**, **Vertrag** oder **Sonstiges**. Das kann jedes Mitglied tun, und die Korrektur bringt der App etwas für die Domain dieses Absenders bei.
 
 ## Tipps
 
-- **Weiterleiten statt Screenshot.** Das Weiterleiten des Original-PDFs oder -Bildes liefert die sauberste Extraktion. Ein Foto vom Bildschirm funktioniert, aber das Original ist immer besser.
-- **Eine Rechnung pro E-Mail ist ideal**, mehrere getrennte Anhänge an einer E-Mail sind aber ebenfalls in Ordnung - aus jedem wird ein eigenes Dokument.
-- **Nutzen Sie für vielsendende Absender einen eigenen Alias.** Wenn die Rechnungsseite eines bestimmten Anbieters nur eine Adresse akzeptiert, reservieren Sie dafür einen benutzerdefinierten Alias, damit er in der Sammelstelle leicht zu erkennen ist.
+- **Leiten Sie das Original weiter.** Aus dem PDF des Lieferanten wird weit besser extrahiert als aus einem Foto vom Bildschirm, und das HEIC-Problem entfällt damit ganz.
+- **Eine Rechnung pro E-Mail ist ideal**, mehrere unterstützte Anhänge an einer E-Mail sind aber ebenfalls in Ordnung: Aus jedem wird ein eigenes Dokument.
+- **Prüfen Sie die Anzahl der Anhänge**, nachdem Sie etwas Ungewöhnliches weitergeleitet haben. Das ist der schnellste Weg zu bemerken, dass eine Datei stillschweigend verworfen wurde.
+- **Halten Sie die primäre Adresse halb privat** und reservieren Sie einen benutzerdefinierten Alias nur dort, wo das System eines Lieferanten Sie dazu zwingt.
 
 ## Verwandte Artikel
 
