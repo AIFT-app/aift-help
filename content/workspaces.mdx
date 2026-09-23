@@ -1,154 +1,96 @@
 # Workspaces
 
-A workspace represents one client engagement. Each workspace belongs to your accounting firm and is shared with one client company. Accountants typically work across many workspaces; client users see only their own.
+A workspace is one client engagement. It belongs to your accounting firm and can hold **several companies**, which is what a client with more than one legal entity needs. Invoices, bank transactions, master data, categories and settings all live inside a workspace; your firm, its people, billing and templates live above it, in the organization.
 
----
+Accountants work across many workspaces. Client users see only their own.
 
 ## The Workspaces Dashboard
 
-When you sign in, you land on the **Workspaces** dashboard - your morning overview of where things stand across all clients.
+Signing in normally lands you on the **Workspaces** dashboard, your morning overview of where things stand across every client. Not always, though: if you belong to exactly one workspace and are not an organization admin, you are taken straight into it, and if your firm has no workspace yet you get the new-client walk instead of the application.
 
 ### Status dots
 
-Each workspace tile shows a coloured dot that tells you at a glance whether the workspace needs attention:
+Each tile carries a coloured dot:
 
 | Dot | Meaning |
 |-----|---------|
-| 🟢 Green | Everything is under control - no open issues, fewer than five items in each bucket |
-| 🟡 Amber | Something needs checking - a bucket has reached five items, or there is at least one open issue |
-| 🔴 Red | Needs attention today - a bucket has fifteen or more items, three or more issues, or work has been sitting unreviewed for more than five days with no recent client uploads |
+| 🟢 Green | Under control: no open issues, fewer than five items in each bucket |
+| 🟡 Amber | Worth a look: a bucket has reached five items, or there is at least one open issue |
+| 🔴 Red | Needs attention today: a bucket has fifteen or more items, three or more issues, or there is unreviewed work and no invoice has been uploaded in five days |
 
-### The three stat cards
+### The three counts
 
-Each tile shows three counts:
+- **To review**: bank transactions the AI was not confident enough to categorise.
+- **Unmatched**: invoices with no bank transaction against them.
+- **Issues**: bank transactions categorised with very low confidence, plus invoices whose extraction failed.
 
-- **To review** - bank transactions flagged for human review (AI was uncertain about categorisation)
-- **Unmatched** - invoices that have not yet been matched to a bank transaction
-- **Issues** - extraction failures and very-low-confidence categorisations
+### Sections and search
 
-### Sections
+Tiles are grouped into **Needs attention** (amber or red) and **All caught up** (green), and the count after each heading follows what you search for. The search box filters by workspace name; when nothing matches, the empty state offers **Clear search**.
 
-Tiles are grouped into two sections:
+Below the page header, one line sums up your whole client book: documents to review, unmatched transactions, open issues and how many workspaces are flagged. That line and the greeting above it are written in English whatever language you use the app in.
 
-- **Needs attention** - any workspace with an amber or red dot
-- **All caught up** - workspaces where everything is green
+### Two things that appear on the dashboard
 
-The count after each section title updates as you search.
+- **An invitation addressed to you** shows in a panel above the banner, so you can accept it without hunting for the email.
+- **A client you started setting up and did not finish** shows as a dashed tile with its progress, for example 4/7, and **Continue setup**. Nothing arrives in that workspace until the walk is finished.
 
-### Searching
+## Switching Workspaces
 
-Type in the search box at the top right to filter by workspace name. The section structure stays in place as you type - you'll see, for example, "Needs attention (1)" if only one matching workspace is in that bucket. To clear the filter, click **Clear search** or delete the search text.
+Inside a workspace, the sidebar header is a dropdown: every workspace you belong to, each with its base currency underneath, plus **Back to dashboard**. With a single workspace and no admin rights it is just a label.
 
-### Overview banner
+## Setting Up a New Client
 
-Below the page header, a single line summarises your full client book: how many documents need review, how many transactions are unmatched, how many issues are open, and how many workspaces are flagged. This is the one-glance check before you decide which workspace to open first.
+Only **organization admins** create workspaces. If you need to, ask an admin to promote you (see [Roles and Permissions](/roles-and-permissions)).
 
----
+**New workspace**, on the dashboard, opens a guided walk of seven screens. Three of them are required and four can be skipped.
 
-## Creating a New Workspace
+| # | Screen | |
+|---|---|---|
+| 1 | Workspace | required |
+| 2 | The first company | required |
+| 3 | Bank accounts | optional |
+| 4 | Categories | optional |
+| 5 | Data sources | required |
+| 6 | Export | optional, Hungary only |
+| 7 | People | optional |
 
-Only **organization admins** can create workspaces. Regular accountants (organization members) work inside workspaces they have been added to - they cannot create new ones. If you need workspace creation access, ask an existing admin to promote you from the **Organization settings** page (see [Roles & Permissions](/roles-and-permissions/)).
+1. **Workspace.** Two fields: the **workspace name** and the **country**. The base currency and the time zone follow from the country and are shown, not asked. Both can be changed later.
+2. **The first company.** The legal company that owns the bank accounts and appears on the invoices; AI Finance Team uses it to tell income from expense. A Hungarian tax number is read back to you as its core number, EU VAT number and VAT code as you type it, which is the quickest way to catch a typo. If the client has more companies, add them here.
+3. **Bank accounts.** Usually skipped: the bank connection is made by the client, in their own browser, after you invite them.
+4. **Categories.** A new workspace starts with **no categories**, and nothing is sorted automatically until a list exists. Import your own, or, if your firm keeps a category template, it is applied for you. From the second client onwards you can also copy from another client.
+5. **Data sources.** NAV Online Számla, the workspace's own email address for forwarding invoices, and what the client will connect themselves.
+6. **Export.** Hungarian workspaces only: the general-ledger numbers the export files need.
+7. **People.** Invite the client, and tick the colleagues from your own firm who should be on this engagement. Colleagues are added straight away with the role they already hold; the client is emailed an invitation, offered as **Finance lead** by default. Each row has its own language, so an invitation arrives in the recipient's own. Finish with **I'm done**.
 
-### Starting the wizard
+Two things about the walk are worth knowing:
 
-On the Workspaces dashboard, click **New workspace** in the top-right action bar. This opens a three-step wizard.
+- **The workspace becomes real as you leave screen 3**, not at the end. From there on it exists, it appears on your dashboard, and its sidebar stays locked until you finish the walk. Closing the tab loses nothing.
+- **One setup at a time.** Starting another client while one is unfinished takes you back to the unfinished one.
 
----
+You are an **accountant admin** of every workspace you create. Besides your answers, a new workspace gets a default set of transaction types, the VAT master data it needs, and its own email address for invoices.
 
-### Step 1 - Workspace details
+## Getting Into an Existing Workspace
 
-Fill in the basic information for the new client engagement:
+The dashboard shows only workspaces you are a member of. Everything else is under **Organization → Manage workspaces**, which lists the firm's workspaces and where you stand with each.
 
-| Field | Notes |
-|---|---|
-| Client name | The client's trading name; becomes the workspace name |
-| Country | Drives currency and timezone defaults |
-| Base currency | Pre-filled based on country; editable |
-| Timezone | Pre-filled based on country; editable |
+- **Organization admins** pick a role, Accountant or Accountant Admin, and click **Add me**.
+- **Everyone else** clicks **Ask to join**, also after picking the role they want. The workspace's admins are emailed, and you are emailed their decision.
 
-Selecting a country automatically fills in the most common currency and timezone for that country. You can change either field independently before continuing.
+Requests are decided **inside the workspace**, under **Settings → Team management → Pending requests**, not in the organization settings.
 
-Click **Next** to proceed to Step 2.
+## Adding People
 
----
+A workspace's people are managed at **Settings → Team management**, by anyone holding the permission to invite. The panel takes up to ten recipients at a time, each with a name, a role and a language, plus one personal message of up to 500 characters for the whole batch. The pending invitations tab is where you find the link to copy if an email does not arrive.
 
-### Step 2 - Primary company
-
-A workspace needs at least one company - the legal company that owns the client's bank accounts and appears on their invoices. AI Finance Team uses the company to determine invoice direction (income vs. expense), so this step cannot be skipped.
-
-| Field | Notes |
-|---|---|
-| Company name | Legal company name - required |
-| Tax ID | Strongly recommended; can be added later in master data |
-| Country | Defaults to the workspace country |
-
-Additional companies (for multi-company clients) can be added later from the workspace's master data section.
-
-Click **Next** to proceed to Step 3, or **Back** to return to Step 1 without losing your entries.
-
----
-
-### Step 3 - Invite client (optional)
-
-This step prompts you to invite the finance lead so they can connect bank accounts and upload invoices. It is optional - you can skip it and send the invitation later from workspace settings.
-
-If you choose to invite now:
-
-1. Enter the client's email address. Optionally fill in their name - it'll greet them by name in the email and pre-fill the signup form when they accept.
-2. Optionally add a personal message - a few sentences explaining why you're inviting them. The same message goes to every recipient in the batch.
-3. Click **Send invite**.
-
-AI Finance Team sends the invitation email automatically. The wizard also shows the invite link as a fallback in case email delivery fails.
-
-The invitation is assigned the **finance lead** role. The finance lead can then invite their colleagues as team members from within the workspace.
-
-Click **Skip** to finish without inviting, or complete the invite step to send the invitation.
-
----
-
-### After the wizard
-
-Once the wizard completes, you are redirected to the new workspace's overview page. The workspace appears immediately in your Workspaces dashboard. You are automatically set as an **accountant admin** of the new workspace.
-
-If you did not provide a tax ID for the primary company, the workspace overview shows a prompt to add it from master data. You can dismiss this prompt and return to it later.
-
----
-
-## Joining an Existing Workspace
-
-How you join depends on your organization role:
-
-**Organization admins** see **all workspaces** belonging to their firm on the dashboard, including workspaces they have not personally joined. These non-member workspaces show a **Join** button - one click adds you as accountant admin and opens the workspace.
-
-**Organization members** (non-admin accountants) see a separate **Browse firm workspaces** view listing workspaces they don't yet belong to. Each row has a **Request to join** button. Clicking it notifies the firm's admins by email; they approve or reject from their Organization settings inbox. You get an email when the decision is made.
-
----
-
-## Inviting Team Members
-
-Once a workspace exists, an **accountant admin** can invite additional members from workspace **Settings → Team**:
-
-- Other accountants from your firm (as accountant or accountant admin)
-- Client users at the client company (as finance lead, finance admin or team member)
-
-The invite panel takes up to **10 recipients in one batch**, each with an optional name pre-fill, plus an optional personal message that goes to the whole batch. AI Finance Team emails each invitee automatically.
-
-See [Roles & Permissions](/roles-and-permissions/) for the full breakdown of what each role can see and do, and the details of the invitation flow.
-
----
+[Roles and Permissions](/roles-and-permissions) has the full picture: the five roles, who may invite whom, and what each one can see and do.
 
 ## Organization Settings
 
-The **Organization settings** link in the sidebar is visible to organization admins. It takes you to your firm's organisation settings, where you can:
+The **Organization** section in the sidebar is open to everyone in your accounting firm: the firm's details, **Manage workspaces**, the firm's team and its invitations, AI access, and support access. Only **Billing** is admin-only.
 
-- Manage team members and their roles across the whole firm
-- Send bulk invitations to new team members
-- Review pending workspace **join requests** submitted by organization members
+## Limits
 
----
-
-## What's Not Yet Built
-
-- **Bank connection management UI** - bank account data exists but the interface for clients to connect, disconnect, or manage their bank link is not yet available.
-- **Workspace settings** - the settings page is a stub; configuration like auto-categorisation and missing document alerts are set at workspace creation but cannot yet be changed via the UI.
-- **Per-workspace closing cadence** - the closing period shown in each tile footer is currently the current calendar month. Support for quarterly VAT cycles and other reporting cadences is planned.
+- **A workspace cannot be archived or deleted.** There is no way to do it, by design.
+- **There is no limit on how many workspaces you have.** Billing counts documents per month, not workspaces.
+- **The closing period is the calendar month.** Each tile's footer names the month being closed; quarterly and other cadences are not supported yet.
