@@ -1,7 +1,7 @@
 // The itinerary on screen 1 of the guided new-client walk, for the workspaces
 // article.
 //
-// Rebuilt 1:1 from aift-web (origin/main, 2026-09-23), class for class:
+// Rebuilt 1:1 from aift-web (feat/guided-walk-tax-id-first, 2026-09-24), class for class:
 //   StepMap  src/components/onboarding/guided/StepMap.tsx
 // The screen list mirrors SCREENS in src/lib/guided-onboarding.ts. This is the
 // only place in the app where the whole route is visible at once, and the only
@@ -45,7 +45,7 @@ export function OnboardingStepMapFigure({ locale, children }: FigureProps) {
                 <p className="mt-1.5 text-[14px]/[1.5] text-zinc-500 dark:text-zinc-400">{summary}</p>
 
                 <ol className="mt-2.5">
-                  {SCREENS.map((s) => {
+                  {SCREENS.map((s, i) => {
                     const isNow = s.step === CURRENT_STEP
                     return (
                       <li
@@ -59,7 +59,7 @@ export function OnboardingStepMapFigure({ locale, children }: FigureProps) {
                               : 'text-[13px] tabular-nums text-zinc-400 dark:text-zinc-500'
                           }
                         >
-                          {s.step}
+                          {i + 1}
                         </span>
                         <span className="min-w-0">
                           <span className="block text-[14.5px] font-medium text-zinc-800 dark:text-zinc-200">
