@@ -23,6 +23,10 @@ import { UploadPanelFigure } from './uploads'
 import { BankConsentLifecycleFigure } from './bank'
 import { BusinessCentralApprovalsFigure } from './business-central'
 import { McpConsentFigure } from './mcp'
+import { SettlementNettingFigure } from './settlement'
+import { CashPoolSectionFigure } from './cash-pool'
+import { CategorizationBandsFigure } from './categorization'
+import { TwoRatesFigure } from './currency'
 
 type WithLocale = { locale: Locale; children?: React.ReactNode }
 
@@ -55,6 +59,10 @@ const FIGURES: Record<string, (props: WithLocale) => React.ReactNode> = {
   BankConsentLifecycleFigure,
   BusinessCentralApprovalsFigure,
   McpConsentFigure,
+  SettlementNettingFigure,
+  CashPoolSectionFigure,
+  CategorizationBandsFigure,
+  TwoRatesFigure,
 }
 
 export function visualComponents(locale: Locale) {

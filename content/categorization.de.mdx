@@ -1,102 +1,118 @@
 # Rechnungen und Banktransaktionen kategorisieren
 
-AI Finance Team weist Ihren Rechnungen und Banktransaktionen automatisch Kategorien zu. Die KI erledigt den Großteil der Arbeit - Ihre Buchhaltung greift nur ein, wenn eine zweite Meinung nötig ist.
+AI Finance Team gibt Ihren Rechnungen und Banktransaktionen von selbst eine Kategorie und lernt aus jeder Korrektur, die die Buchhaltung vornimmt.
 
 ## Wie Kategorien funktionieren
 
-In jedem Arbeitsbereich gibt es zwei getrennte Kategoriensätze:
+Jeder Arbeitsbereich führt zwei getrennte Sätze:
 
-- **Rechnungskategorien** - werden auf einzelne Positionen von Rechnungen angewendet (z. B. Softwarelizenz, Büromiete, Beratungsleistungen)
-- **Cashflow-Kategorien** - werden auf Banktransaktionen angewendet (z. B. Bankgebühren, Löhne und Gehälter, Mandantenzahlung)
+- **Rechnungskategorien**, die auf jede Position einer Rechnung angewendet werden.
+- **Cashflow-Kategorien**, die auf eine Banktransaktion angewendet werden.
 
-Beide Listen finden Sie unter Stammdaten → **Buchhaltungskategorien**, jeweils auf einem eigenen Reiter (**Rechnung**, **Cashflow**).
-
-Die Kategorien werden von Ihrer Buchhaltung eingerichtet und gepflegt. Wenn Ihnen eine Kategorie fehlt oder falsch benannt erscheint, bitten Sie Ihre Buchhaltung, sie anzulegen oder anzupassen.
+Beide liegen unter **Stammdaten → Buchhaltungskategorien**, auf den Reitern **Rechnung** und **Cashflow**. Eine Kategorie anzulegen, zu bearbeiten und zu archivieren erfordert die Berechtigung „Stammdaten bearbeiten“, die Buchhalter haben; die Reiter **Cashflow** und **Beispiele** sind nur für Buchhalter, und ein Mitglied auf Mandantenseite sieht die Rechnungsliste nur lesend.
 
 ### Ein neuer Arbeitsbereich startet ohne Kategorien
 
-AI Finance Team bringt keine vorgefertigte Kategorienliste mit. Jede Kanzlei arbeitet mit ihrem eigenen Kontenplan, und eine allgemeine Liste müsste ohnehin wieder zurückgebaut werden. Ein neuer Arbeitsbereich hat deshalb **weder Rechnungs- noch Cashflow-Kategorien**, bis Ihre Buchhaltung die eigene Liste der Kanzlei übernimmt:
+AI Finance Team bringt keine fertige Liste mit. Jede Kanzlei führt ihren eigenen Kontenplan, und eine allgemeine Liste müsste ohnehin wieder zurückgebaut werden. Solange die Liste fehlt, wird nichts kategorisiert: Rechnungen und Transaktionen kommen weiterhin an und werden zugeordnet, aber **ein Datensatz ohne Kategorie wird nicht exportiert**, denn das Buchhaltungssystem würde ihn ablehnen.
 
-- **Aus einer Tabelle** - Stammdaten → **Buchhaltungskategorien**, Reiter **Rechnung** oder **Cashflow** öffnen und auf **Importieren** klicken. Siehe [Stammdaten importieren](/master-data-import).
-- **Aus Business Central** - ist das Business Central des Mandanten verbunden, lässt sich dessen Kontenplan als Rechnungskategorien importieren.
-- **Von Hand** - auf denselben Reitern Kategorien einzeln anlegen.
+Vier Wege, die Liste zu füllen:
 
-Solange keine Liste existiert, wird nichts kategorisiert: Rechnungen und Banktransaktionen kommen weiterhin an, werden abgeglichen und erscheinen in Exporten, nur ohne Kategorie. Sobald die Liste steht, markieren Sie die Datensätze auf der Seite **Rechnungen** oder **Banktransaktionen** und nutzen **Neu kategorisieren**, damit die KI auch die früher eingegangenen bucht.
+- **Aus einer Tabelle**: **Importieren** auf einem der beiden Reiter. Siehe [Stammdaten importieren](/master-data-import).
+- **Aus Business Central**, auf einem der beiden Reiter, wenn das Business Central des Mandanten verbunden ist. Siehe [Business Central](/business-central).
+- **Von der Rechnungsliste in die Cashflow-Liste**: **Aus Rechnungskategorien kopieren** auf dem Reiter Cashflow.
+- **Von Hand**, einzeln.
 
----
+Steht die Liste, markieren Sie Datensätze auf der Seite **Rechnungen** oder **Banktransaktionen** und nutzen **Neu kategorisieren**, damit die KI auch früher Eingegangenes bucht.
 
-## Rechnungskategorisierung
+## Was eine Kategorie enthält
 
-### Was die KI tut
+- **Code**, optional: Ihr eigener Bezeichner, typischerweise die Sachkontonummer.
+- **Name**.
+- **Richtung**: Einnahme, Ausgabe oder keines von beiden. Das entscheidet, was die KI für eine Position oder eine Transaktion wählen darf und was die Auswahl anbietet. Eine Kategorie ohne Richtung wird immer angeboten.
+- **Beschreibung**, optional und die Mühe wert: Die KI liest sie, wenn ein Fall mehrdeutig ist.
+- **Aktiv**.
+- Nur bei einer Cashflow-Kategorie **Bucht ohne Rechnung**: Transaktionen in dieser Kategorie werden direkt auf ihr Sachkonto gebucht und als ohne Rechnung markiert.
 
-Wenn eine Rechnung eintrifft - ob manuell hochgeladen, per E-Mail gesendet oder von einem Rechnungsanbieter abgerufen -, liest die KI jede Position und weist ihr die passendste Kategorie aus der Rechnungskategorienliste Ihres Arbeitsbereichs zu.
+Das Panel zeigt außerdem, wo die Kategorie verwendet wird: die Berichtszeilen, die sie summieren, und die Partner, deren feste Kategorie sie ist.
 
-Sie vergibt zu jeder Zuordnung außerdem einen Konfidenzwert. Ist die KI ihrer Wahl sicher, wird die Kategorie sofort angewendet. Ist sie unsicherer, wird der Posten zur Prüfung durch Ihre Buchhaltung markiert.
+## Eine Kategorie archivieren
 
-### Was Ihre Buchhaltung sieht
+Kategorien werden archiviert, nie gelöscht, denn auf sie sind bereits Datensätze gebucht.
 
-Ihre Buchhaltung prüft markierte Posten auf der Seite **Rechnungen**. Posten, die Aufmerksamkeit brauchen, tragen ein **Prüfen**-Abzeichen.
+- **Eine Zeile**: **Deaktivieren**, und **Aktivieren**, um sie zurückzuholen. Hängt eine Partnerregel daran, werden Sie um Bestätigung gebeten und sehen, welche Partner es betrifft.
+- **Viele auf einmal**: **Sammelarchivierung** in der Werkzeugleiste öffnet die ganze Liste als Tabelle mit drei Verwendungsspalten: **Datensätze** (wie viele gebuchte Positionen oder Transaktionen sie tragen), **Berichtszeilen** (wie viele Berichtszeilen sie summieren) und **Partnerregeln** (für wie viele Partner sie die feste Kategorie ist). Nirgends verwendete Kategorien sind vorab angehakt; alles, was in Verwendung ist, trägt eine bernsteinfarbene Kennzeichnung **In Verwendung**, und Sie entscheiden bewusst. Nichts ist gesperrt. Die Tabelle selbst funktioniert wie jede andere dieser Art: siehe [Arbeiten in der Tabellenoberfläche](/spreadsheet-interface).
 
-Bei der Prüfung kann Ihre Buchhaltung:
+Was das Archivieren bewirkt:
 
-- den Vorschlag der KI unverändert übernehmen
-- eine andere Kategorie aus der Liste wählen
-- eine Notiz hinterlassen, die die Entscheidung erklärt
+| | Archivierte Kategorie |
+|---|---|
+| Bereits darauf gebuchte Datensätze | Behalten sie |
+| Auswahllisten und die KI | Aus beiden verschwunden |
+| Berichtszeilen, die sie summieren | Die Zugehörigkeit bleibt, die Zeile summiert einfach weniger |
+| Partnerregeln, die sie nutzen | Werden inaktiv |
 
-Sobald eine Kategorie bestätigt ist, wechselt die Rechnung in den Status **Kategorisiert**.
+## Wie die KI eine Kategorie wählt
 
-### Wie die KI mit der Zeit besser wird
+Beide Sätze arbeiten gleich und unterscheiden sich nur darin, wo die Schwelle liegt.
 
-Jedes Mal, wenn Ihre Buchhaltung eine Kategorie korrigiert, hält AI Finance Team diese Entscheidung als Korrektur fest. Taucht das nächste Mal eine ähnliche Position auf - vom selben Lieferanten, mit ähnlichem Wortlaut -, nutzt die KI diese frühere Korrektur als starkes Signal.
+1. **Eine exakt passende gelernte Korrektur** bucht die Position sofort, ganz ohne die KI zu fragen.
+2. Andernfalls schlägt die KI eine Kategorie mit einer Konfidenz vor.
 
-Deshalb verbessert sich die Kategorisierungsgenauigkeit in den ersten Monaten meist deutlich, während die KI die für Ihr Unternehmen typischen Muster lernt.
+<CategorizationBandsFigure>
+Wo eine Konfidenz landet. Die Balken sind die Schwellen der App selbst.
+</CategorizationBandsFigure>
 
-Buchhalter können auf dem Reiter **Beispiele** der Seite Buchhaltungskategorien einsehen, bearbeiten und vorab hinterlegen, was die KI gelernt hat - siehe [Wie AIFT Ihre Kategorien lernt](/categorization-examples).
+**Auf einer Rechnungsposition:**
 
----
+- **0,85 und darüber**: Die Kategorie wird gesetzt.
+- **Zwischen 0,60 und 0,85**: Der Vorschlag bleibt als Vorschlag neben der Position stehen, gebucht wird nichts.
+- **Unter 0,60**: Die Rechnung wird zur Prüfung markiert.
 
-## Kategorisierung von Banktransaktionen
+**Auf einer Banktransaktion:**
 
-### Was die KI tut
+- **0,70 und darüber**: Die Kategorie wird gesetzt. Eine Umbuchung zwischen Ihren eigenen Konten, die die KI erkennt, wird unabhängig vom Wert gesetzt.
+- **Unter 0,70**: Der Vorschlag bleibt als Vorschlag erhalten.
+- **Unter 0,60**: Die Transaktion wird zur Prüfung markiert.
 
-Jede Banktransaktion wird mit der Cashflow-Kategorienliste Ihres Arbeitsbereichs abgeglichen. Wie bei Rechnungen vergibt die KI eine Kategorie und einen Konfidenzwert.
+Die Konfidenz erscheint als Wort, nicht als Prozentsatz: **Hoch** ab 0,85, **Mittel** ab 0,60, **Niedrig** darunter. Sie sehen sie auf den Positionen der Rechnung und im Detailbereich einer Transaktion.
 
-- **Hohe Konfidenz** - die Kategorie wird automatisch angewendet, der Status lautet **Kategorisiert**
-- **Geringere Konfidenz** - eine vorgeschlagene Kategorie wird vermerkt, die Transaktion aber zur Prüfung markiert
-- **Sehr geringe Konfidenz** - die Transaktion wird als **Ausstehend** markiert und wartet auf die Buchhaltung
+## Eine Kategorie korrigieren
 
-### Was Ihre Buchhaltung sieht
+- **Auf einer Rechnung**: Öffnen Sie die Rechnung und klicken Sie in einer Position auf den Stift neben der Kategorie, um eine andere zu wählen. Dafür wird "Rechnungen bearbeiten" benötigt.
+- **Auf einer Banktransaktion**: Öffnen Sie die Transaktion und wählen Sie im Feld **Kategorie**. Dafür wird "Banktransaktionen bearbeiten" benötigt, und eine archivierte Kategorie wird abgelehnt.
 
-Auf der Seite **Transaktionen** zeigt jede Zeile:
+Angeboten werden nur Kategorien, deren Richtung passt, sowie jede Kategorie ohne Richtung.
 
-- **Status** - Ausstehend, Wird verarbeitet, Kategorisiert oder Fehlgeschlagen
-- **Kategorie** - der Name der zugewiesenen Kategorie, mit einem Abzeichen für den Konfidenzwert in Prozent
-- ein **Bearbeitet**-Label, wenn die Kategorie manuell gesetzt wurde
+### Was eine Korrektur lehrt
 
-Buchhalter können die Kategorie jeder Transaktion direkt in der Liste überschreiben: auf das Stiftsymbol neben dem Kategorienamen klicken und aus der Liste wählen. Als Optionen erscheinen nur Kategorien, die zur Richtung der Transaktion passen (Einnahme oder Ausgabe).
+Jede Korrektur wird **nur für diesen Arbeitsbereich** festgehalten. Was Sie für einen Mandanten korrigieren, wirkt sich nie auf einen anderen aus.
 
-### Wenn Kategorien hinzukommen oder sich ändern
+Die Korrekturen, die der Arbeitsbereich am häufigsten vornimmt, bekommt die KI beim nächsten Lauf als Beispiele, sodass derselbe Lieferant und derselbe Wortlaut ohne erneutes Nachfragen richtig landen. Die Anzahl der Beispiele ist eine Einstellung des Arbeitsbereichs, standardmäßig 30; auf null gesetzt schaltet sie dieses Lernen ab.
 
-Legt Ihre Buchhaltung eine neue Cashflow-Kategorie an oder ändert eine bestehende, stellt AI Finance Team alle noch nicht kategorisierten Transaktionen automatisch zur erneuten Verarbeitung in die Warteschlange. Sie sehen eine Benachrichtigung, die bestätigt, dass die Kategorisierung eingeplant wurde.
+Zwei Details lohnen sich zu wissen: Eine Korrektur wird auch dann festgehalten, wenn Sie eine Kategorie ausfüllen, die die KI leer gelassen hat, nicht nur, wenn Sie sie überstimmen. Und eine gelernte Korrektur bucht eine Position nur dann von selbst, wenn der Betrag in dem Bereich liegt, in dem sie gelernt wurde, und nie über Währungen hinweg.
 
----
+Buchhalter können auf dem Reiter **Beispiele** einsehen, bearbeiten und vorab hinterlegen, was die KI gelernt hat. Siehe [Wie AIFT Ihre Kategorien lernt](/categorization-examples).
 
-## Status auf einen Blick
+## Wo die Arbeit sichtbar wird
 
-| Status | Bedeutung |
-|--------|-----------|
-| **Ausstehend** | Wartet auf die Verarbeitung durch die KI |
-| **Wird verarbeitet** | Die KI arbeitet gerade daran |
-| **Kategorisiert** | Eine Kategorie wurde zugewiesen |
-| **Prüfen** | Die KI hat eine Kategorie vergeben, ist aber unsicher - die Buchhaltung sollte nachsehen |
-| **Fehlgeschlagen** | Bei der Verarbeitung trat ein Fehler auf - Ihre Buchhaltung wird benachrichtigt |
+- **Auf einer Rechnungsposition**: ein Status-Abzeichen, während die KI arbeitet (**Ausstehend**, **Wird verarbeitet**, **Fehlgeschlagen**), die vorgeschlagene Kategorie dort, wo nichts gebucht wurde, und die Konfidenz.
+- **Auf der Rechnung**: ein **Prüfen**-Label, wenn die Rechnung Aufmerksamkeit braucht, ob das nun aus der Kategorisierung, der Extraktion oder der USt kommt.
+- **Auf einer Transaktion**: die Kategorie mit ihrer Konfidenz im Detailbereich, und **Bearbeitet**, wenn ein Mensch sie gesetzt hat.
+- **Im Cockpit**: eine Stufe für Rechnungen mit nicht kategorisierten Positionen und eine für fehlgeschlagene Kategorisierung, mit Wiederholung.
 
----
+## Sammelweise neu kategorisieren
+
+Markieren Sie Datensätze auf der Seite **Rechnungen** oder **Banktransaktionen** und wählen Sie **Neu kategorisieren**. Die KI läuft dabei **nur über KI-zugewiesene und nicht kategorisierte Datensätze**: Was ein Mensch von Hand gesetzt hat, bleibt genau so, wie es ist. Der Lauf findet im Hintergrund statt, und eine sehr große Auswahl wird abgelehnt.
+
+Das Anlegen oder Bearbeiten einer Cashflow-Kategorie stellt außerdem jede Transaktion in die Warteschlange, die noch auf ihre Kategorisierung wartet. Transaktionen, die ohne Kategorie abgeschlossen wurden, weil der Arbeitsbereich damals keine hatte, werden nicht automatisch erfasst: Nutzen Sie dafür **Neu kategorisieren**. Die Sammelarchivierung stellt nie etwas in die Warteschlange.
+
+## Zwei Einstellungen, die ändern, was Sie sehen
+
+- **Zahlungsstrom-Kategorien nur für die Buchhaltung verwenden**: Die Kategorie wird auf Transaktionen ausgeblendet, die noch eine Rechnung erwarten.
+- Die KI-Kategorisierung lässt sich für einen Arbeitsbereich abschalten; dann sagt **Neu kategorisieren** genau das, statt zu laufen.
 
 ## Tipps
 
-**Halten Sie die Kategorienliste fokussiert.** Eine lange Liste selten genutzter Kategorien erschwert der KI die richtige Wahl. Streben Sie Kategorien an, die sich auf echte Zeilen Ihres Kontenplans abbilden lassen.
-
-**Versehen Sie Kategorien mit Beschreibungen.** Ihre Buchhaltung kann jeder Kategorie eine kurze Beschreibung hinzufügen, die erklärt, was sie abdeckt. Die KI nutzt diese Beschreibungen, um in mehrdeutigen Fällen besser zu entscheiden.
-
-**Korrigieren Sie beherzt.** Wenn Ihre Buchhaltung eine Kategorie überschreibt, wird diese Korrektur gemerkt. Eine klare Korrektur ist mehr wert, als mehrdeutige Posten ungeprüft zu lassen.
+- **Schreiben Sie Beschreibungen.** Ein Satz je Kategorie, bei denen, die leicht zu verwechseln sind, ist die günstigste Genauigkeit, die Sie kaufen können.
+- **Korrigieren Sie beherzt.** Eine klare Korrektur ist mehr wert als ein mehrdeutiger Posten, der ungeprüft bleibt, denn sie wird zu einem Beispiel.
+- **Kürzen Sie eine lange Liste nicht der KI zuliebe.** Hunderte Kategorien sind für einen echten Kontenplan normal, und die Seiten laden sie alle. Archivieren Sie, was die Kanzlei nicht mehr nutzt, nicht das, was der KI schwerfällt.
