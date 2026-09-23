@@ -4,24 +4,24 @@ Ha a cég a kifizetések jóváhagyását használja, a döntésre váró száll
 
 ## Mit lát
 
-A **Jóváhagyandó** fül a következő 14 napban esedékes, Önnek kiosztott számlákkal nyílik meg, a legkorábbi határidővel kezdve. Nem kell szűrnie semmit. Az oldalsávban a **Jóváhagyások** melletti szám azt mutatja, hány számla van Önnek kiosztva.
+A **Jóváhagyások** az Ön asztalával nyílik meg: minden listához, amelyben dönt, egy csempe azzal a számmal, amelyről most dönthet, alatta pedig egy rövid lista arról, mi vár Önre. A **Kifizetés** csempe vagy a **Kifizetés** fül nyitja meg a kifizetési listát. Ez a következő 14 napban esedékes, Önnek kiosztott számlákkal indul, a legkorábbi határidővel kezdve, minden számla egy külön kártyán. Nem kell szűrnie semmit. Az oldalsávban a **Jóváhagyások** melletti szám azt mutatja, hány számla van Önnek kiosztva.
 
 <ApprovalQueueFigure>
-A **Jóváhagyandó** fül négy várakozó számlával. A számok az alábbi lista pontjainak felelnek meg. A cégek és az összegek csak példák.
+A **Kifizetés** lista négy várakozó számlával. A számok az alábbi lista pontjainak felelnek meg. A cégek és az összegek csak példák.
 </ApprovalQueueFigure>
 
 1. **Nézetek**: váltás a **Nekem kiosztva**, a **Kiosztatlan** (számlák, amelyeket egyik szabály sem tudott elhelyezni, minden jóváhagyó látja őket), a **Minden várakozó** és az **Ezen a héten esedékes** között.
 2. **Amit jóváhagy**: a számla AI által írt egysoros összefoglalója. Rákattintva megnyílik maga a számla.
 3. **Szállító és számlaazonosító**: ki kéri a kifizetést, és a számla azonosítója az AI Finance Teamben.
-4. **Esedékes**: a fizetési határidő, és hány nap van hátra, vagy hány napja lejárt. A bal oldali borostyánsárga csík a 7 napon belül esedékes vagy már lejárt számlákat jelöli.
-5. **Miért Ön**: az ok, amiért a számla Önhöz került. Ez lehet a pénzügyi adminisztrátor által beállított szabály, egy minta, amelyet a rendszer abból tanult, hova kerültek ugyanannak a szállítónak a korábbi számlái, az AI választása, vagy az alapértelmezett jóváhagyó, ha semmi más nem illik rá.
+4. **Esedékes**: a fizetési határidő, és hány nap van hátra, vagy hány napja lejárt. A lejárt határidő piros, a következő 7 napon belüli borostyánsárga.
+5. **Miért Ön**: a kártya alján látja, kinél van a számla, és miért került Önhöz. Ez lehet a pénzügyi adminisztrátor által beállított szabály, egy minta, amelyet a rendszer abból tanult, hova kerültek ugyanannak a szállítónak a korábbi számlái, az AI választása, vagy az alapértelmezett jóváhagyó, ha semmi más nem illik rá.
 6. **Összeg**: a bruttó összeg a számla pénznemében.
 
 ## Jóváhagyás
 
-Kattintson a sor **Jóváhagyom** gombjára. Ennyi a döntés. Az AI Finance Team rögzíti, ki hagyta jóvá, mikor, és pontosan mekkora összeget kinek, így a számla későbbi módosítása nem keverhető össze azzal, amibe Ön beleegyezett.
+Kattintson a kártya **Jóváhagyom** gombjára. Ennyi a döntés. Zöld **Jóváhagyva** pecsét kerül a kártyára, és az lekerül a listáról. Az AI Finance Team rögzíti, ki hagyta jóvá, mikor, és pontosan mekkora összeget kinek, így a számla későbbi módosítása nem keverhető össze azzal, amibe Ön beleegyezett.
 
-Ha több számlát egyszerre hagyna jóvá, jelölje ki a sorokat. Egy sáv mutatja, hányat választott ki, és mennyi az összegük pénznemenként; kattintson a **Kijelöltek jóváhagyása** gombra. A megerősítés felsorol minden szállítót és a pénznemenkénti összegeket, mielőtt bármi történne. A csoportos jóváhagyás csak akkor elérhető, ha a pénzügyi adminisztrátor bekapcsolva hagyta.
+Ha több számlát egyszerre hagyna jóvá, jelölje ki a kártyákat. Egy sáv mutatja, hányat választott ki, és mennyi az összegük pénznemenként; kattintson a **Kijelöltek jóváhagyása** gombra. A megerősítés felsorol minden szállítót és a pénznemenkénti összegeket, mielőtt bármi történne. A csoportos jóváhagyás csak akkor elérhető, ha a pénzügyi adminisztrátor bekapcsolva hagyta.
 
 <ApprovalBulkBarFigure>
 Két kijelölt számla. A különböző pénznemeket külön összesíti, soha nem váltja át.
@@ -29,10 +29,10 @@ Két kijelölt számla. A különböző pénznemeket külön összesíti, soha n
 
 ## Elutasítás
 
-Kattintson az **Elutasítom** gombra, ha a számlát nem szabad így kifizetni. Megjegyzés kötelező. A négy gyors indok egyikére kattintva elkezdheti a megjegyzést, majd kiegészítheti saját szavaival. A megjegyzés a számlára kerül, ahol a könyvelő és a pénzügyi adminisztrátor látja.
+Kattintson a kártya **Elutasítom** gombjára, ha a számlát nem szabad így kifizetni. A kártya megkérdezi, miért, és az indoklás kötelező. A négy gyors indok egyikére kattintva elkezdheti, kiegészítheti saját szavaival, majd újra az **Elutasítom** gombra kattint. Piros **Elutasítva** pecsét kerül a kártyára, és az lekerül a listáról. Az indoklás a számlára kerül, ahol a könyvelő és a pénzügyi adminisztrátor látja, és a **Döntések** közé is.
 
 <DeclineDialogFigure>
-A tetőjavítás elutasítása a munka befejezéséig. Egy gyors indokra kattintva az bekerül a megjegyzésbe, és az **Elutasítom** gomb addig nem használható, amíg a megjegyzés üres.
+A tetőjavítás elutasítása a munka befejezéséig. Egy gyors indokra kattintva az bekerül az indoklásba, és az **Elutasítom** gomb addig nem használható, amíg az indoklás üres.
 </DeclineDialogFigure>
 
 Az elutasítás nem törli és nem utasítja el a számlát a könyvelésben. Csak azt mondja ki, hogy a kifizetés nincs engedélyezve. A pénzügyi adminisztrátor újranyithatja, amint a kérdés tisztázódott a szállítóval.

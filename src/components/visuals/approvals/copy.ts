@@ -48,6 +48,13 @@ export const UI_KEYS = [
   'approvals.queue.reason_not_my_decision',
   'approvals.queue.decline_cancel',
   'approvals.queue.decline_confirm',
+  'approvals.slip.to_pay',
+  'approvals.slip.due',
+  'approvals.slip.with_you',
+  'approvals.slip.decline_question',
+  'approvals.slip.decline_hint',
+  'approvals.slip.reason_placeholder',
+  'approvals.slip.cancel',
   'approvals.why.rule_partner',
   'approvals.why.rule_category',
   'approvals.why.learned',
@@ -118,8 +125,8 @@ type Copy = {
 const en: Copy = {
   ui: {
     'approvals.title': 'Approvals',
-    'approvals.tabs.queue': 'To approve',
-    'approvals.tabs.decided': 'Decided',
+    'approvals.tabs.queue': 'Payment',
+    'approvals.tabs.decided': 'Decisions',
     'approvals.queue.chip_mine': 'Assigned to me',
     'approvals.queue.chip_unassigned': 'Unassigned',
     'approvals.queue.chip_all_awaiting': 'All awaiting',
@@ -142,6 +149,13 @@ const en: Copy = {
     'approvals.queue.reason_not_my_decision': 'Not my decision',
     'approvals.queue.decline_cancel': 'Cancel',
     'approvals.queue.decline_confirm': 'Decline',
+    'approvals.slip.to_pay': 'To pay',
+    'approvals.slip.due': 'Due',
+    'approvals.slip.with_you': 'With you',
+    'approvals.slip.decline_question': 'Why are you declining it?',
+    'approvals.slip.decline_hint': 'Final. The finance admin and Decisions will see it.',
+    'approvals.slip.reason_placeholder': 'Reason (required)',
+    'approvals.slip.cancel': 'Cancel',
     'approvals.why.rule_partner': 'Rule: invoices from {partner} go to you',
     'approvals.why.rule_category': 'Rule: {category} goes to you',
     'approvals.why.learned': 'Learned: the last {count} invoices from {partner} went to you',
@@ -223,10 +237,10 @@ const en: Copy = {
     },
     alt: {
       queue:
-        'The To approve tab: four supplier invoices assigned to you, sorted by due date, each with Approve, Decline and Not mine buttons. Numbered markers point to the parts described in the list below.',
+        'The Payment list: four supplier invoices assigned to you as cards, sorted by due date, each with Approve, Decline and Not mine buttons. Numbered markers point to the parts described in the list below.',
       bulk: 'The approval queue with two invoices ticked: the dark selection bar shows how many are selected, their total in each currency, and the Approve selected button.',
       decline:
-        'The Decline payment dialog: payee, amount and due date, four quick reasons with Work not done yet selected, and a required note.',
+        'The roof repair card with its decline question open: four quick reasons, the reason Work not done yet written in, and the Decline and Cancel buttons.',
       lifecycle:
         'Diagram of what happens after a decision. Approve: the invoice is Approved, then Paid once the bank payment is matched. Decline: the invoice is Declined and waits for the finance admin, who can reopen it. Not mine: it goes back to the finance admin, who assigns it again. A change to the amount or supplier of an approved invoice sends it back to Awaiting approval.',
       emails:
@@ -240,8 +254,8 @@ const en: Copy = {
 const hu: Copy = {
   ui: {
     'approvals.title': 'Jóváhagyások',
-    'approvals.tabs.queue': 'Jóváhagyandó',
-    'approvals.tabs.decided': 'Eldöntött',
+    'approvals.tabs.queue': 'Kifizetés',
+    'approvals.tabs.decided': 'Döntések',
     'approvals.queue.chip_mine': 'Nekem kiosztva',
     'approvals.queue.chip_unassigned': 'Kiosztatlan',
     'approvals.queue.chip_all_awaiting': 'Minden várakozó',
@@ -264,6 +278,13 @@ const hu: Copy = {
     'approvals.queue.reason_not_my_decision': 'Nem az én döntésem',
     'approvals.queue.decline_cancel': 'Mégse',
     'approvals.queue.decline_confirm': 'Elutasítom',
+    'approvals.slip.to_pay': 'Fizetendő',
+    'approvals.slip.due': 'Határidő',
+    'approvals.slip.with_you': 'Nálad',
+    'approvals.slip.decline_question': 'Miért utasítod el?',
+    'approvals.slip.decline_hint': 'Végleges. A pénzügyi adminisztrátor és a Döntések is látja.',
+    'approvals.slip.reason_placeholder': 'Indoklás (kötelező)',
+    'approvals.slip.cancel': 'Mégse',
     'approvals.why.rule_partner': 'Szabály: {partner} számlái hozzád kerülnek',
     'approvals.why.rule_category': 'Szabály: {category} hozzád kerül',
     'approvals.why.learned': 'Tanult: a(z) {partner} utolsó {count} számlája hozzád került',
@@ -345,10 +366,10 @@ const hu: Copy = {
     },
     alt: {
       queue:
-        'A Jóváhagyandó fül: négy Önnek kiosztott szállítói számla esedékesség szerint rendezve, mindegyiken Jóváhagyom, Elutasítom és Nem az enyém gombbal. A számozott jelölők az alábbi listában leírt részekre mutatnak.',
+        'A Kifizetés lista: négy Önnek kiosztott szállítói számla kártyákon, esedékesség szerint rendezve, mindegyiken Jóváhagyom, Elutasítom és Nem az enyém gombbal. A számozott jelölők az alábbi listában leírt részekre mutatnak.',
       bulk: 'A jóváhagyási lista két bejelölt számlával: a sötét kijelölősáv mutatja, hány számla van kijelölve, mennyi az összegük pénznemenként, és a Kijelöltek jóváhagyása gombot.',
       decline:
-        'A Kifizetés elutasítása ablak: kedvezményezett, összeg és esedékesség, négy gyors indok, köztük kijelölve A munka még nincs kész, és a kötelező megjegyzés.',
+        'A tetőjavítás kártyája nyitott elutasítási kérdéssel: négy gyors indok, beírva A munka még nincs kész indok, és az Elutasítom és Mégse gomb.',
       lifecycle:
         'Ábra arról, mi történik a döntés után. Jóváhagyás: a számla Jóváhagyva állapotba kerül, majd Fizetve lesz, amint a banki kifizetés párosítódik. Elutasítás: a számla Elutasítva állapotban a pénzügyi adminra vár, aki újranyithatja. Nem az enyém: visszakerül a pénzügyi adminhoz, aki újra kiosztja. Ha egy jóváhagyott számla összege vagy szállítója megváltozik, visszakerül Jóváhagyásra vár állapotba.',
       emails:
@@ -362,8 +383,8 @@ const hu: Copy = {
 const de: Copy = {
   ui: {
     'approvals.title': 'Freigaben',
-    'approvals.tabs.queue': 'Freizugeben',
-    'approvals.tabs.decided': 'Entschieden',
+    'approvals.tabs.queue': 'Zahlung',
+    'approvals.tabs.decided': 'Entscheidungen',
     'approvals.queue.chip_mine': 'Mir zugewiesen',
     'approvals.queue.chip_unassigned': 'Nicht zugewiesen',
     'approvals.queue.chip_all_awaiting': 'Alle ausstehenden',
@@ -386,6 +407,13 @@ const de: Copy = {
     'approvals.queue.reason_not_my_decision': 'Nicht meine Entscheidung',
     'approvals.queue.decline_cancel': 'Abbrechen',
     'approvals.queue.decline_confirm': 'Ablehnen',
+    'approvals.slip.to_pay': 'Zu zahlen',
+    'approvals.slip.due': 'Fällig',
+    'approvals.slip.with_you': 'Bei Ihnen',
+    'approvals.slip.decline_question': 'Warum lehnen Sie sie ab?',
+    'approvals.slip.decline_hint': 'Endgültig. Die Finanzadministration und Entscheidungen sehen das.',
+    'approvals.slip.reason_placeholder': 'Begründung (Pflicht)',
+    'approvals.slip.cancel': 'Abbrechen',
     'approvals.why.rule_partner': 'Regel: Rechnungen von {partner} gehen an Sie',
     'approvals.why.rule_category': 'Regel: {category} geht an Sie',
     'approvals.why.learned': 'Gelernt: die letzten {count} Rechnungen von {partner} gingen an Sie',
@@ -467,10 +495,10 @@ const de: Copy = {
     },
     alt: {
       queue:
-        'Der Reiter Freizugeben: vier Ihnen zugewiesene Lieferantenrechnungen, nach Fälligkeit sortiert, jede mit den Schaltflächen Freigeben, Ablehnen und Nicht meins. Nummerierte Markierungen zeigen auf die Teile, die in der Liste darunter beschrieben sind.',
+        'Die Liste Zahlung: vier Ihnen zugewiesene Lieferantenrechnungen als Karten, nach Fälligkeit sortiert, jede mit den Schaltflächen Freigeben, Ablehnen und Nicht meins. Nummerierte Markierungen zeigen auf die Teile, die in der Liste darunter beschrieben sind.',
       bulk: 'Die Freigabeliste mit zwei markierten Rechnungen: die dunkle Auswahlleiste zeigt, wie viele ausgewählt sind, ihre Summe je Währung und die Schaltfläche Auswahl freigeben.',
       decline:
-        'Der Dialog Zahlung ablehnen: Empfänger, Betrag und Fälligkeit, vier Schnellgründe mit ausgewähltem Leistung noch nicht erbracht und eine Pflichtnotiz.',
+        'Die Karte der Dachreparatur mit offener Ablehnungsfrage: vier Schnellgründe, die eingetragene Begründung Leistung noch nicht erbracht und die Schaltflächen Ablehnen und Abbrechen.',
       lifecycle:
         'Diagramm, was nach einer Entscheidung passiert. Freigeben: die Rechnung ist Freigegeben und wird Bezahlt, sobald die Bankzahlung abgeglichen ist. Ablehnen: die Rechnung ist Abgelehnt und wartet auf den Finanzadmin, der sie erneut öffnen kann. Nicht meins: sie geht zurück an den Finanzadmin, der sie neu zuweist. Ändern sich Betrag oder Lieferant einer freigegebenen Rechnung, geht sie zurück zu Freigabe ausstehend.',
       emails:
