@@ -27,6 +27,9 @@ import { SettlementNettingFigure } from './settlement'
 import { CashPoolSectionFigure } from './cash-pool'
 import { CategorizationBandsFigure } from './categorization'
 import { TwoRatesFigure } from './currency'
+import { OnboardingStepMapFigure } from './onboarding'
+import { VatGroupStepsFigure } from './vat-groups'
+import { StatementsTabFigure } from './statements'
 
 type WithLocale = { locale: Locale; children?: React.ReactNode }
 
@@ -63,6 +66,9 @@ const FIGURES: Record<string, (props: WithLocale) => React.ReactNode> = {
   CashPoolSectionFigure,
   CategorizationBandsFigure,
   TwoRatesFigure,
+  OnboardingStepMapFigure,
+  VatGroupStepsFigure,
+  StatementsTabFigure,
 }
 
 export function visualComponents(locale: Locale) {

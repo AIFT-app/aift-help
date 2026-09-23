@@ -1,45 +1,92 @@
 # USt-Gruppen (ungarische Gruppenbesteuerung)
 
-In einer ungarischen USt-Gruppe (csoportos áfaalanyiság) nutzen mehrere Unternehmen ein gemeinsames NAV-Online-Számla-Konto. NAV liefert daher die Rechnungen aller Mitglieder über eine Verbindung, und AI Finance Team muss für jede Rechnung entscheiden, zu welchem Unternehmen sie gehört. Diese Seite erklärt, wie Sie eine USt-Gruppe einrichten und wie diese Entscheidung fällt.
+In einer ungarischen USt-Gruppe (csoportos áfaalanyiság) nutzen mehrere Unternehmen ein gemeinsames NAV-Online-Számla-Konto. NAV liefert daher die Rechnungen aller Mitglieder über eine Verbindung, und AI Finance Team muss Rechnung für Rechnung entscheiden, zu welchem Unternehmen sie gehört.
 
-Sie finden USt-Gruppen unter **Stammdaten › USt-Gruppen**. Die Seite einer Gruppe hat drei Reiter, in der Reihenfolge der Arbeit: **NAV-Verbindung**, **Mitglieder** und **Zuordnung**.
+Sie finden USt-Gruppen unter **Stammdaten › USt-Gruppen**. Die Seite gibt es nur auf der Kanzleiseite, ein Mandantenbenutzer sieht sie nie, und alles darauf erfordert die Berechtigung "Verbindungen verwalten". Für die Eingabe der NAV-Zugangsdaten ist zusätzlich das eigene Recht "NAV-Online-Számla-Zugangsdaten verwalten" nötig. Es muss nichts freigeschaltet werden: USt-Gruppen stehen in jedem Arbeitsbereich zur Verfügung.
 
-## 1. NAV-Verbindung
+Die Seite einer Gruppe öffnet sich bei dem ersten Punkt, der noch offen ist, und eine Leiste oben zeigt die drei Schritte und was in jedem davon noch fehlt. Die drei Reiter folgen derselben Reihenfolge: **NAV-Verbindung**, **Mitglieder** und **Zuordnung**.
 
-Sie verbinden NAV mit der Gruppe, nicht mit einem ihrer Unternehmen, weil das NAV-Konto der Gruppe gehört. Die Steuernummer der Gruppe (csoportazonosító) hat als 9. Ziffer eine **5**. Die Zugangsdaten sind dieselben wie bei der Verbindung eines einzelnen Unternehmens (siehe [NAV Online Számla](/nav-online-szamla)).
+<VatGroupStepsFigure>
+Eine Gruppe mitten in der Einrichtung: verbunden und synchronisierend, zwei Mitglieder noch zuzuordnen, vier Zuordnungsentscheidungen offen. Die Zähler an den Reitern wiederholen, was wartet.
+</VatGroupStepsFigure>
 
-## 2. Mitglieder
+## 1. Die Gruppe anlegen
 
-NAV liefert keine Liste der Gruppenmitglieder. Die Mitglieder erscheinen mit den eingehenden Rechnungen: Sobald eine Rechnung ein Mitglied nennt, erscheint es im Reiter **Mitglieder**. Für jedes Mitglied treffen Sie zwei Entscheidungen:
+Unter **Stammdaten › USt-Gruppen** fragt **USt-Gruppe anlegen** nach einem Namen und der Steuernummer der Gruppe (csoportazonosító), deren 9. Ziffer eine **5** ist.
 
-- **Unternehmen zuordnen…**: welches Ihrer Unternehmen das Mitglied ist. Gibt es das Unternehmen noch nicht, legt **Neues Unternehmen daraus** es an.
-- **Kein Mitglied dieser Gruppe**: Das Mitglied wurde nur anhand von Rechnungen vorgeschlagen, und das Unternehmen gehört nicht zur USt-Gruppe (zum Beispiel hat **Bei NAV prüfen** es nicht bestätigt). Solche Mitglieder stehen unter **Keine Gruppenmitglieder**, und **Doch Mitglied** holt sie zurück. Das Unternehmen selbst bleibt unter **Stammdaten › Unternehmen**, und Rechnungen über seine eigene NAV-Verbindung sind nicht betroffen. Trägt eine Rechnung über das NAV-Konto der Gruppe die Steuernummer dieses Mitglieds und gibt es hier ein Unternehmen mit dieser Steuernummer, geht die Rechnung an dieses Unternehmen, und Sie können sie im Reiter **Zuordnung** prüfen. Gibt es kein solches Unternehmen, wird daraus hier keine Rechnung.
+Diese 9. Ziffer ist womöglich auch der Grund, warum die App Sie hierher geschickt hat: Eine Nummer mit einer **5** an dieser Stelle wird als eigene Steuernummer eines Unternehmens abgelehnt, sowohl unter **Unternehmen hinzufügen** als auch auf dem Reiter **Unternehmen** eines Unternehmens, denn sie gehört zur Gruppe und nicht zum Mitglied. Tragen Sie beim Unternehmen dessen eigene Nummer ein und die Gruppen-Kennnummer bei der Gruppe.
 
-Wenn Sie ein Mitglied einem Unternehmen zuordnen, gehen die wartenden Rechnungen des NAV-Kontos der Gruppe, die NAV diesem Mitglied zugeordnet hat, **und** jene, auf denen genau der Name dieses Unternehmens steht, an dieses Unternehmen. Die Rückmeldung nennt die Anzahl. Bereits zugeordnete Rechnungen bleiben unverändert.
+Liefert das NAV-Konto eines Unternehmens bereits Rechnungen für mehrere Unternehmen, weist die Seite von sich aus darauf hin und bietet **Gruppe anlegen** mit dem an, was sie gefunden hat.
 
-**Bei NAV prüfen** fragt NAV für jedes Mitglied, ob das Unternehmen tatsächlich zur Gruppe gehört. Den Gruppenvertreter wählen Sie aus den zugeordneten Mitgliedern (**Zum Gruppenvertreter machen**).
+## 2. NAV verbinden
 
-Sind alle Mitglieder erledigt, bleibt die Seite im Reiter **Mitglieder**, und die Schaltfläche **Weiter zur Zuordnung** führt Sie weiter, wenn Rechnungen warten.
+Das NAV-Konto gehört der Gruppe, deshalb verbinden Sie es hier und nicht bei einem ihrer Unternehmen. Die Zugangsdaten sind dieselben vier Werte wie bei einem einzelnen Unternehmen (siehe [NAV Online Számla](/nav-online-szamla)). Dann:
 
-## 3. Wie eine Rechnung ihr Unternehmen findet
+1. **Speichern & prüfen** prüft die Zugangsdaten bei NAV. Es wird nichts heruntergeladen.
+2. Wählen Sie ein **Startdatum**, bis zu zwölf Monate zurück. Der Zeitraum richtet sich nach dem Eingangsdatum bei NAV, nicht nach dem Rechnungsdatum. **Rechnungsanzahl schätzen** nennt Ihnen ungefähr, wie viele Rechnungen das sind.
+3. **Synchronisierung starten**.
 
-In einer USt-Gruppe ist auf der Rechnung nur die Steuernummer der Gruppe Pflicht. Die eigene Steuernummer des Mitglieds geben Lieferanten nicht immer an und nicht einheitlich: Derselbe Käufername kam schon mit zwei verschiedenen Mitgliedsnummern vor. Der auf der Rechnung gedruckte Firmenname ist der, an den der Lieferant tatsächlich fakturiert hat. Daher geht AI Finance Team in dieser Reihenfolge vor:
+Bis Sie die Synchronisierung starten, kommt nichts an. Bis dahin steht der Schritt auf **Geprüft · wartet auf Start**, was fertig aussieht und es nicht ist.
 
-1. **Eine gemerkte Entscheidung.** Haben Sie ein Paar aus Lieferant und Käufername schon einmal mit **Entscheidung merken** zugeordnet, geht die nächste solche Rechnung an dasselbe Unternehmen.
-2. **Der Firmenname auf der Rechnung.** Stimmt der Name des Käufers (bei Ausgangsrechnungen des Lieferanten) mit dem offiziellen Namen, dem Kurznamen oder einem alternativen Namen eines zugeordneten Unternehmens überein und bezeichnet er **genau ein** Unternehmen, geht die Rechnung dorthin. Der Vergleich ignoriert Groß- und Kleinschreibung, Akzente, Satzzeichen und die Rechtsformendung (Kft., Zrt.), akzeptiert aber nie einen nur teilweise gleichen oder ähnlichen Namen.
-3. **Die eigene Steuernummer des Mitglieds.** Erst wenn der Name nicht entscheidet, zählt die Mitgliedsnummer, sofern der Lieferant sie angegeben hat.
-4. **Ihre Entscheidung.** Ist beides unklar, wartet die Rechnung im Reiter **Zuordnung**.
+Ein Mitgliedsunternehmen kann seine eigene NAV-Verbindung nicht behalten, solange die Gruppe eine hat: Die App lehnt das in beide Richtungen ab und sagt es auch auf der Seite des Mitglieds. Hat das Mitglied noch eine alte Verbindung, trennen Sie sie, sonst kommen dieselben Rechnungen doppelt an.
 
-Alternative Namen eines Unternehmens erfassen Sie auf seiner eigenen Seite unter **Alternative Namen**. Schreibt ein Lieferant den Käufer regelmäßig anders, wird er nach dem Hinzufügen dieser Schreibweise automatisch zugeordnet.
+## 3. Mitglieder
 
-Eine bereits zugeordnete Rechnung wechselt später nie zu einem anderen Unternehmen, auch wenn Sie einen Namen oder eine Zuordnung ändern.
+NAV führt keine Liste der Mitglieder einer Gruppe. Mitglieder erscheinen, sobald Rechnungen eintreffen: Nennt eine Rechnung ein Mitglied, taucht es im Reiter **Mitglieder** auf. Über **Mitglied manuell erfassen** können Sie ein Unternehmen auch per Steuernummer hinzufügen, das noch auf keiner Rechnung aufgetaucht ist.
 
-## 4. Zuordnung
+Für jedes Mitglied entscheiden Sie:
 
-Der Reiter **Zuordnung** gruppiert wartende Rechnungen nach Lieferant und Käufername, sodass eine Entscheidung mehrere Rechnungen zuordnet. Stimmt der Käufername mit dem Namen eines zugeordneten Unternehmens überein, ist dieses bereits ausgewählt (**Name stimmt überein**). Trägt die Rechnung die Steuernummer eines als kein Gruppenmitglied markierten Unternehmens und gibt es dieses hier, ist stattdessen dieses ausgewählt (**Gleiche Steuernummer**). Wurde derselbe Name für mehrere Unternehmen verwendet, wird nichts geraten.
+- **Unternehmen zuordnen…**, welches Ihrer Unternehmen das Mitglied ist. Gibt es das Unternehmen noch nicht, legt **Neues Unternehmen daraus** es an. Existiert bereits ein Unternehmen mit dieser Steuernummer, bietet die Kachel stattdessen an, das Mitglied diesem Unternehmen **zuzuordnen**, denn ein zweites ist nicht erlaubt.
+- **Kein Mitglied dieser Gruppe**, wenn das Mitglied nur anhand von Rechnungen vorgeschlagen wurde und tatsächlich nicht zur Gruppe gehört. Solche Mitglieder stehen unter **Keine Gruppenmitglieder**, und **Doch Mitglied** holt sie zurück. Das Unternehmen selbst bleibt unter **Stammdaten › Unternehmen**, und seine eigene NAV-Verbindung ist nicht betroffen. Eine Rechnung über das Konto der Gruppe, die die Steuernummer dieses Mitglieds trägt, wird diesem Unternehmen zugeordnet, aber nur, wenn hier genau ein aktives Unternehmen diese Steuernummer hat. Gibt es keines, wird daraus hier keine Rechnung.
+
+**Bei NAV prüfen** fragt NAV Mitglied für Mitglied, ob das Unternehmen wirklich zur Gruppe gehört. Die Antwort wird je Mitglied mit ihrem Datum festgehalten: noch nicht geprüft, bestätigt, in einer anderen Gruppe, in keiner Gruppe oder Nummer bei NAV unbekannt. Ein echter Widerspruch wird rot umrandet. Ein Mitglied, das nie geprüft wurde, wird nie als bestätigt angezeigt.
+
+**Zum Gruppenvertreter machen** wählt den Vertreter aus den zugeordneten Mitgliedern. Der Vertreter kann weder getrennt noch abgesetzt werden; wählen Sie zuerst einen anderen. Jedes andere Mitglied lässt sich wieder von seinem Unternehmen trennen.
+
+### Die Zuordnung ordnet zu, was gewartet hat
+
+Wenn Sie ein Mitglied einem Unternehmen zuordnen, werden die auf dem NAV-Konto der Gruppe wartenden Rechnungen sofort zugeordnet: jene, die NAV diesem Mitglied zugeschrieben hat, und jene, deren gedruckter Käufername der Name dieses Unternehmens ist. Die Bestätigung nennt die Anzahl.
+
+Ein Fall läuft anders, als Sie es erwarten würden. Eine Rechnung, die NAV dem gerade zugeordneten Mitglied zugeschrieben hat, deren gedruckter Name aber ein **anderes** zugeordnetes Unternehmen nennt, geht an dieses andere Unternehmen und wird zur Prüfung aufgelistet. Der Name gewinnt, wie überall sonst. Bereits zugeordnete Rechnungen wechseln nie.
+
+## 4. Wie eine Rechnung ihr Unternehmen findet
+
+In einer USt-Gruppe ist auf der Rechnung nur die Steuernummer der Gruppe Pflicht. Lieferanten drucken die eigene Nummer des Mitglieds nicht immer auf, und nicht einheitlich: Derselbe Käufername kam schon mit zwei verschiedenen Mitgliedsnummern vor. Der auf der Rechnung gedruckte Name ist der, an den der Lieferant tatsächlich fakturiert hat. Daher geht AI Finance Team in dieser Reihenfolge vor:
+
+1. **Eine gemerkte Entscheidung.** Haben Sie ein Paar aus Lieferant und Käufername schon einmal mit angehaktem **Entscheidung merken** zugeordnet, geht die nächste solche Rechnung an dasselbe Unternehmen.
+2. **Der Firmenname auf der Rechnung.** Stimmt der Name des Käufers (bei einer Ausgangsrechnung der des Lieferanten) mit dem offiziellen Namen oder einem der alternativen Namen von **genau einem** zugeordneten, nicht archivierten Unternehmen überein, geht die Rechnung dorthin. Der Vergleich ignoriert Groß- und Kleinschreibung, Akzente, Satzzeichen und die Rechtsformendung (Kft., Zrt.), akzeptiert aber nie einen nur teilweise oder lediglich ähnlich lautenden Namen.
+3. **Was dieser Name bisher getan hat.** Ist keine Steuernummer des Mitglieds aufgedruckt und gingen alle über diese Verbindung bereits zugeordneten Rechnungen mit demselben Käufernamen an ein Unternehmen, geht die neue ebenfalls dorthin.
+4. **Die eigene Steuernummer des Mitglieds**, wenn der Lieferant eine aufgedruckt hat.
+5. **Ihre Entscheidung.** Ist nichts davon eindeutig, wartet die Rechnung im Reiter **Zuordnung**.
+
+Ein archiviertes Unternehmen wird über die Steuernummer des Mitglieds weiterhin erreicht, über den Namen aber nie.
+
+Die alternativen Namen eines Unternehmens erfassen Sie auf seiner eigenen Seite im Reiter **Erkennung** unter **Alternative Namen**. Schreibt ein Lieferant den Käufer immer wieder anders, werden seine Rechnungen nach dem Hinzufügen dieser Schreibweise von da an automatisch zugeordnet.
+
+Eine einmal zugeordnete Rechnung wechselt später nie zu einem anderen Unternehmen, auch wenn Sie einen Namen oder eine Zuordnung ändern.
+
+### Eine Rechnung, die niemand zuordnen konnte
+
+Sie wird trotzdem angelegt, ohne Unternehmen, und taucht deshalb auch in Ihrer normalen Arbeit als **Firma bestätigen** auf. Sie sehen sie an zwei Stellen, und es genügt, sich an einer davon darum zu kümmern.
+
+## 5. Zuordnung
+
+Der Reiter **Zuordnung** gruppiert die wartenden Rechnungen nach Lieferant und Käufername, sodass eine Entscheidung mehrere Rechnungen zuordnet. Zwei Kacheln über der Liste zählen die wartenden Rechnungen und die Entscheidungen, auf die sie hinauslaufen.
+
+Stimmt der Käufername mit einem zugeordneten Unternehmen überein, ist dieses bereits ausgewählt und mit **Name stimmt überein** gekennzeichnet. Trägt die Rechnung die Steuernummer eines Unternehmens, das Sie als kein Gruppenmitglied markiert haben, und gibt es dieses Unternehmen hier, ist stattdessen dieses ausgewählt (**Gleiche Steuernummer**). Wurde derselbe Name in dieser Gruppe für mehrere Unternehmen verwendet, wird nichts geraten, und die Karte sagt das.
+
+**Nicht unsere** markiert Rechnungen, die die Gruppe nicht betreffen, und nimmt sie von der Liste.
+
+### Gemerkte Entscheidungen
+
+**Entscheidung merken** ist standardmäßig angehakt, sodass die Zuordnung normalerweise auch die Regel lernt. Die Regeln stehen unter der Liste, mit dem Lieferanten, dem Käufernamen in der geschriebenen Form, dem Unternehmen, dem sie zuordnen, und wie oft sie verwendet wurden, dazu je Zeile ein **Löschen**-Link. Eine Regel wirkt nur auf Rechnungen, die danach eintreffen: Sie ordnet nie neu zu, was bereits zugeordnet ist.
 
 ### Wenn Name und Steuernummer nicht zusammenpassen
 
-Manchmal zeigen der gedruckte Firmenname und die Steuernummer des Mitglieds auf zwei verschiedene Unternehmen. Die Rechnung geht dann an das Unternehmen, das der Name bezeichnet, und erscheint im Reiter **Zuordnung** unter **Name und Steuernummer passen nicht zusammen**. Dieselbe Liste zeigt Rechnungen, die nach der Steuernummer eines als kein Gruppenmitglied markierten Unternehmens zugeordnet wurden (**Nach der Steuernummer zugeordnet**). Prüfen Sie diese Rechnungen und verschieben Sie eine falsch zugeordnete über **Rechnung öffnen** auf der Seite der Rechnung zum richtigen Unternehmen.
+Manchmal zeigen der gedruckte Name und die Steuernummer des Mitglieds auf zwei verschiedene Unternehmen. Die Rechnung geht an das Unternehmen, das der Name nennt, und erscheint unter **Name und Steuernummer passen nicht zusammen**. Dieselbe Liste zeigt Rechnungen, die nach der Steuernummer eines als kein Gruppenmitglied markierten Unternehmens zugeordnet wurden. Prüfen Sie diese, und verschieben Sie eine falsch zugeordnete über **Rechnung öffnen** auf der Seite der Rechnung zum richtigen Unternehmen. Für diese Liste ist die Berechtigung "Rechnungen und Banktransaktionen ansehen" nötig.
+
+## 6. Eine Gruppe beenden
+
+Das Menü ⋯ in der Kopfzeile enthält den Rest: die Gruppe umbenennen, **Gruppe schließen**, wenn sie bei NAV geendet hat, was die Zuordnung stoppt und den Mitgliedern ihre eigene NAV-Verbindung zurückgibt, während alles bereits Zugeordnete bleibt, wo es ist, und **Gruppe löschen**, was nur angeboten wird, solange noch nie etwas zugeordnet wurde.
 
 > Die Zuordnung entscheidet, in welche Bücher und in welche USt-Erklärung eine Rechnung gelangt. Wenn Sie unsicher sind, zu welchem Mitglied eine Rechnung gehört, fragen Sie den Gruppenvertreter oder Ihre Steuerberatung.
