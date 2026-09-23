@@ -4,24 +4,24 @@ Wenn Ihr Unternehmen Zahlungsfreigaben nutzt, warten die Lieferantenrechnungen, 
 
 ## Was Sie sehen
 
-Der Reiter **Freizugeben** öffnet mit den Rechnungen, die in den nächsten 14 Tagen fällig und Ihnen zugewiesen sind, die früheste Fälligkeit zuerst. Sie müssen nichts filtern. Die Zahl neben **Freigaben** in der Seitenleiste zeigt, wie viele Rechnungen Ihnen zugewiesen sind.
+**Freigaben** öffnet mit Ihrem Schreibtisch: eine Kachel für jede Liste, in der Sie entscheiden, mit der Zahl, über die Sie jetzt entscheiden können, und darunter eine kurze Liste dessen, was auf Sie wartet. Die Kachel **Zahlung** oder der Reiter **Zahlung** öffnet die Zahlungsliste. Sie beginnt mit den Rechnungen, die in den nächsten 14 Tagen fällig und Ihnen zugewiesen sind, die früheste Fälligkeit zuerst, jede auf einer eigenen Karte. Sie müssen nichts filtern. Die Zahl neben **Freigaben** in der Seitenleiste zeigt, wie viele Rechnungen Ihnen zugewiesen sind.
 
 <ApprovalQueueFigure>
-Der Reiter **Freizugeben** mit vier wartenden Rechnungen. Die Nummern entsprechen der Liste darunter. Unternehmen und Beträge sind Beispiele.
+Die Liste **Zahlung** mit vier wartenden Rechnungen. Die Nummern entsprechen der Liste darunter. Unternehmen und Beträge sind Beispiele.
 </ApprovalQueueFigure>
 
 1. **Ansichten**: Wechsel zwischen **Mir zugewiesen**, **Nicht zugewiesen** (Rechnungen, die keine Regel zuordnen konnte, sichtbar für alle Freigeber), **Alle ausstehenden** und **Diese Woche fällig**.
 2. **Was Sie freigeben**: die einzeilige KI-Zusammenfassung der Rechnung. Ein Klick darauf öffnet die Rechnung selbst.
 3. **Lieferant und Rechnungs-ID**: wer bezahlt werden möchte, und die ID der Rechnung in AI Finance Team.
-4. **Fällig**: das Zahlungsdatum und wie viele Tage noch bleiben, oder wie viele Tage es überfällig ist. Ein bernsteinfarbener Streifen links markiert Rechnungen, die innerhalb von 7 Tagen fällig oder bereits überfällig sind.
-5. **Warum Sie**: der Grund, warum die Rechnung bei Ihnen gelandet ist. Das ist eine Regel Ihres Finanzadmins, ein Muster, gelernt daraus, wohin frühere Rechnungen desselben Lieferanten gingen, die Wahl der KI oder der Standard-Freigeber, wenn nichts anderes passt.
+4. **Fällig**: das Zahlungsdatum und wie viele Tage noch bleiben, oder wie viele Tage es überfällig ist. Ein überfälliges Datum ist rot, eines innerhalb der nächsten 7 Tage bernsteinfarben.
+5. **Warum Sie**: unten auf der Karte, bei wem die Rechnung liegt und warum sie bei Ihnen gelandet ist. Das ist eine Regel Ihres Finanzadmins, ein Muster, gelernt daraus, wohin frühere Rechnungen desselben Lieferanten gingen, die Wahl der KI oder der Standard-Freigeber, wenn nichts anderes passt.
 6. **Betrag**: der Bruttobetrag in der Währung der Rechnung.
 
 ## Freigeben
 
-Klicken Sie in der Zeile auf **Freigeben**. Das ist die ganze Entscheidung. AI Finance Team hält fest, wer wann freigegeben hat und genau welchen Betrag an welchen Empfänger, damit eine spätere Änderung der Rechnung nicht mit dem verwechselt werden kann, dem Sie zugestimmt haben.
+Klicken Sie auf der Karte auf **Freigeben**. Das ist die ganze Entscheidung. Ein grüner Stempel **Freigegeben** landet auf der Karte, und sie verlässt die Liste. AI Finance Team hält fest, wer wann freigegeben hat und genau welchen Betrag an welchen Empfänger, damit eine spätere Änderung der Rechnung nicht mit dem verwechselt werden kann, dem Sie zugestimmt haben.
 
-Um mehrere auf einmal freizugeben, markieren Sie die Zeilen. Eine Leiste zeigt, wie viele Sie ausgewählt haben und ihre Summe je Währung; klicken Sie auf **Auswahl freigeben**. Die Bestätigung listet jeden Lieferanten und die Summen je Währung, bevor etwas passiert. Die Sammelfreigabe steht nur zur Verfügung, wenn Ihr Finanzadmin sie eingeschaltet gelassen hat.
+Um mehrere auf einmal freizugeben, markieren Sie die Karten. Eine Leiste zeigt, wie viele Sie ausgewählt haben und ihre Summe je Währung; klicken Sie auf **Auswahl freigeben**. Die Bestätigung listet jeden Lieferanten und die Summen je Währung, bevor etwas passiert. Die Sammelfreigabe steht nur zur Verfügung, wenn Ihr Finanzadmin sie eingeschaltet gelassen hat.
 
 <ApprovalBulkBarFigure>
 Zwei Rechnungen ausgewählt. Verschiedene Währungen werden getrennt summiert, nie umgerechnet.
@@ -29,10 +29,10 @@ Zwei Rechnungen ausgewählt. Verschiedene Währungen werden getrennt summiert, n
 
 ## Ablehnen
 
-Klicken Sie auf **Ablehnen**, wenn die Rechnung so nicht bezahlt werden soll. Eine Notiz ist Pflicht. Ein Klick auf einen der vier Schnellgründe beginnt die Notiz, danach ergänzen Sie eigene Worte. Die Notiz landet auf der Rechnung, wo Buchhaltung und Finanzadmin sie sehen.
+Klicken Sie auf der Karte auf **Ablehnen**, wenn die Rechnung so nicht bezahlt werden soll. Die Karte fragt nach dem Grund, und eine Begründung ist Pflicht. Ein Klick auf einen der vier Schnellgründe beginnt sie, danach ergänzen Sie eigene Worte und klicken erneut auf **Ablehnen**. Ein roter Stempel **Abgelehnt** landet auf der Karte, und sie verlässt die Liste. Die Begründung landet auf der Rechnung, wo Buchhaltung und Finanzadmin sie sehen, und unter **Entscheidungen**.
 
 <DeclineDialogFigure>
-Die Dachreparatur wird abgelehnt, bis die Arbeit fertig ist. Ein Klick auf einen Schnellgrund schreibt ihn in die Notiz, und **Ablehnen** bleibt gesperrt, solange die Notiz leer ist.
+Die Dachreparatur wird abgelehnt, bis die Arbeit fertig ist. Ein Klick auf einen Schnellgrund schreibt ihn in die Begründung, und **Ablehnen** bleibt gesperrt, solange die Begründung leer ist.
 </DeclineDialogFigure>
 
 Ablehnen löscht die Rechnung nicht und lehnt sie auch nicht buchhalterisch ab. Es sagt nur, dass die Zahlung nicht freigegeben ist. Der Finanzadmin kann sie erneut öffnen, sobald die Frage mit dem Lieferanten geklärt ist.

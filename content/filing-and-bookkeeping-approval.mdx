@@ -1,0 +1,79 @@
+# Filing and Bookkeeping Approval
+
+Beside payment approval there are two further checkpoints you can switch on. Each is a per-workspace setting and both are off by default. Until you switch one on, the app behaves exactly as it does today.
+
+## What each checkpoint certifies
+
+**Filing approval**: the document is here, complete, and correctly read. The PDF and the NAV record, the right company, not a duplicate, the extracted numbers checked. Typically the client's finance admin gives it.
+
+**Bookkeeping approval**: the coding is right. Categories, VAT codes, GL codes, the mandatory category lists. An accountant gives it.
+
+The third one, payment approval, means something else entirely: that the invoice may be paid. That is the client's cash decision. Three different questions, so the app keeps them apart.
+
+## Switching one on
+
+Open the workspace, go to **Settings**, then **Approval rules**. The **Checkpoints** section is at the top. Only people holding "Manage approvals" see this page.
+
+The switch does not turn on straight away. A dialog asks for a start date and tells you how many invoices will go into the queue and how many older ones stay out. That is deliberate: a larger workspace holds tens of thousands of older invoices, and letting them all in at once would create a queue nobody would ever work through.
+
+**The start date is final.** Invoices before it never enter the queue, not even later. If you want them, switch the checkpoint off and on again with an earlier date.
+
+## The two queues
+
+Approvers find their queue under **Approvals** in the sidebar. The **Filing** and **Bookkeeping** tabs appear only for someone who holds that permission in a workspace where the checkpoint is on.
+
+Every invoice is a card with its partner, summary and gross amount, and amber markers for whatever is still open on that invoice: a missing VAT code, an uncategorised line, extracted data to check. You can work the queue without opening each invoice.
+
+Three filters sit above the list:
+
+- **Ready**: nothing open, it can be approved.
+- **Blocked**: something open is refusing the approval.
+- **Returned**: somebody sent it back with a note.
+
+An invoice is always in exactly one of the three, so the three numbers add up to the total.
+
+## Approving and returning
+
+A card shows **Approve** only when nothing is blocking. A blocked card says how many items are still open instead. Approving stamps the card with a green **Approved** and it leaves the list. You can approve many at once: filter to **Ready**, select them all, and confirm once.
+
+**Return** asks why on the card itself, with three quick reasons for that checkpoint, and the note is required. The card is stamped **Sent back** in amber and leaves the list. The invoice comes back on the queue under **Returned** with the note on its card. There is no separate recipient: the queue is the recipient.
+
+## When somebody edits the invoice
+
+If anyone changes the amount, one of the dates, the partner, the company, or any line's category or VAT code on an approved invoice, the **bookkeeping approval is withdrawn automatically**. The invoice returns to the queue, and the timeline records what changed and to what.
+
+That is deliberate. Bookkeeping approval is a statement about what goes into the export. If the data changed, the earlier approval was about a different invoice.
+
+For the same reason, the automatic overnight re-categorisation **leaves bookkeeping-approved invoices alone**. If an accountant explicitly asks for a re-run, it runs and withdraws the approval. That is correct: they asked for it.
+
+## Chaining
+
+Two more switches appear once filing is on:
+
+- **Filing before payment**: an invoice with no filing approval never reaches a payment approver.
+- **Filing before bookkeeping**: bookkeeping approval waits for filing approval.
+
+Both are on by default, and both can be switched off if the two checkpoints run independently.
+
+## Decisions
+
+The **Decisions** link sits at the top right of the **Approvals** section. Every decision on all three checkpoints lands there as a card, newest first: who decided, the note if there was one, the invoice, and what it is waiting for now. Several decisions on the same invoice on the same day share one card.
+
+The list shows decisions people made. Invoices that need no payment approval, because no rule asks for one, are also recorded as decisions, in the system's name. Tick **Include the system's decisions** to see those too; the number beside it says how many there are.
+
+Anyone who can see the invoices can see this list. No approval permission is needed: it is a record of what happened, not a statement about what you may decide.
+
+When somebody edits an invoice, the withdrawn approval appears there too, in the system's name. So "where did my approval go" is answered by the list before anyone has to ask.
+
+## On the invoice
+
+The **Approvals** card on the invoice shows all three checkpoints in the order the invoice passes them, with who signed and when. In the invoice list an amber marker shows when an invoice is still waiting for a checkpoint, and you can filter on it.
+
+## Permissions
+
+Two new permissions under **Settings**, **Team**:
+
+- **Approve filing**: can be given to a client-side member, because the client's finance admin usually does the filing.
+- **Approve bookkeeping**: firm side only. A client-side member cannot certify the coding.
+
+Both also require "View invoices and bank transactions": nobody decides on a record they cannot see.

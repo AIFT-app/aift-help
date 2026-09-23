@@ -4,24 +4,24 @@ If your company uses payment approvals, the supplier invoices that need your yes
 
 ## What you see
 
-The **To approve** tab opens on the invoices due in the next 14 days that are assigned to you, earliest due date first. You do not need to filter anything. The number next to **Approvals** in the sidebar is how many invoices are assigned to you.
+**Approvals** opens on your desk: one tile for each list you decide in, showing how many you can decide now, and a short list of what is waiting for you. The **Payment** tile, or the **Payment** tab, opens the payment list. It starts on the invoices due in the next 14 days that are assigned to you, earliest due date first, each on its own card. You do not need to filter anything. The number next to **Approvals** in the sidebar is how many invoices are assigned to you.
 
 <ApprovalQueueFigure>
-The **To approve** tab with four invoices waiting. The numbers match the list below. The companies and amounts are examples.
+The **Payment** list with four invoices waiting. The numbers match the list below. The companies and amounts are examples.
 </ApprovalQueueFigure>
 
 1. **Views**: switch between **Assigned to me**, **Unassigned** (invoices no rule could place, visible to every approver), **All awaiting** and **Due this week**.
 2. **What you are approving**: the AI's one-line summary of the invoice. Click it to open the invoice itself.
 3. **Supplier and invoice ID**: who is asking to be paid, and the invoice's ID in AI Finance Team.
-4. **Due**: the payment date and how many days are left, or how many days it is overdue. An amber stripe on the left marks invoices due within 7 days or already overdue.
-5. **Why you**: the reason the invoice landed with you. It is a rule your finance admin set up, a pattern learned from where earlier invoices of the same supplier went, the AI's pick, or the fallback approver when nothing else applies.
+4. **Due**: the payment date and how many days are left, or how many days it is overdue. An overdue date is red, and a date within the next 7 days is amber.
+5. **Why you**: at the foot of the card, who holds the invoice and the reason it landed with you. It is a rule your finance admin set up, a pattern learned from where earlier invoices of the same supplier went, the AI's pick, or the fallback approver when nothing else applies.
 6. **Amount**: the gross amount in the invoice's currency.
 
 ## Approving
 
-Click **Approve** on a row. That is the whole decision. AI Finance Team records who approved, when, and exactly which amount to which payee, so a later change to the invoice cannot be mistaken for what you agreed to.
+Click **Approve** on a card. That is the whole decision. A green **Approved** stamp lands on the card and it leaves the list. AI Finance Team records who approved, when, and exactly which amount to which payee, so a later change to the invoice cannot be mistaken for what you agreed to.
 
-To approve several at once, tick the rows. A bar shows how many you picked and their total in each currency; click **Approve selected**. The confirmation lists every supplier and the totals per currency before anything happens. Approving in bulk is available only if your finance admin left it switched on.
+To approve several at once, tick the cards. A bar shows how many you picked and their total in each currency; click **Approve selected**. The confirmation lists every supplier and the totals per currency before anything happens. Approving in bulk is available only if your finance admin left it switched on.
 
 <ApprovalBulkBarFigure>
 Two invoices selected. Different currencies are totalled separately, never converted.
@@ -29,10 +29,10 @@ Two invoices selected. Different currencies are totalled separately, never conve
 
 ## Declining
 
-Click **Decline** when the invoice should not be paid as it stands. A note is required. Click one of the four quick reasons to start the note, then add your own words. The note goes onto the invoice, where the accountant and the finance admin see it.
+Click **Decline** on the card when the invoice should not be paid as it stands. The card asks why, and a reason is required. Click one of the four quick reasons to start it, add your own words, then click **Decline** again. A red **Declined** stamp lands on the card and it leaves the list. The reason goes onto the invoice, where the accountant and the finance admin see it, and into **Decisions**.
 
 <DeclineDialogFigure>
-Declining the roof repair until the work is finished. Clicking a quick reason writes it into the note, and **Decline** stays disabled until the note has text.
+Declining the roof repair until the work is finished. Clicking a quick reason writes it into the reason, and **Decline** stays disabled until the reason has text.
 </DeclineDialogFigure>
 
 Declining does not delete or reject the invoice in the books. It only says the payment is not cleared. The finance admin can reopen it once the question is settled with the supplier.

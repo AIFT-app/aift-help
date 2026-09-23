@@ -1,0 +1,79 @@
+# Erfassungs- und Buchungsfreigabe
+
+Neben der Zahlungsfreigabe können Sie zwei weitere Prüfschritte einschalten. Beide sind Einstellungen je Arbeitsbereich und standardmäßig aus. Solange Sie keinen davon einschalten, verhält sich die Anwendung genau wie bisher.
+
+## Was jeder Prüfschritt bestätigt
+
+**Erfassungsfreigabe**: Der Beleg liegt vor, ist vollständig und wurde korrekt gelesen. PDF und NAV-Datensatz, das richtige Unternehmen, keine Dublette, die ausgelesenen Zahlen geprüft. In der Regel gibt sie der Finanzadmin des Mandanten.
+
+**Buchungsfreigabe**: Die Kontierung stimmt. Kategorien, Steuersätze, Sachkonten, die Pflicht-Kategorielisten. Diese gibt ein Buchhalter.
+
+Der dritte Schritt, die Zahlungsfreigabe, bedeutet etwas ganz anderes: dass die Rechnung bezahlt werden darf. Das ist die Zahlungsentscheidung des Mandanten. Drei verschiedene Fragen, deshalb hält die Anwendung sie getrennt.
+
+## Einschalten
+
+Öffnen Sie den Arbeitsbereich, gehen Sie zu **Einstellungen** und dann **Freigaberegeln**. Der Abschnitt **Prüfschritte** steht ganz oben. Diese Seite sehen nur Personen mit dem Recht "Freigaben verwalten".
+
+Der Schalter schaltet nicht sofort ein. Ein Dialog fragt nach einem Startdatum und nennt Ihnen, wie viele Rechnungen in die Liste kommen und wie viele ältere draußen bleiben. Das ist Absicht: Ein größerer Arbeitsbereich enthält zehntausende ältere Rechnungen, und alle auf einmal hereinzulassen erzeugt eine Liste, die niemand je abarbeitet.
+
+**Das Startdatum ist endgültig.** Rechnungen davor kommen nie in die Liste, auch später nicht. Wenn Sie sie doch brauchen, schalten Sie den Prüfschritt aus und mit einem früheren Datum wieder ein.
+
+## Die beiden Listen
+
+Freigebende finden ihre Liste unter **Freigaben** in der Seitenleiste. Die Reiter **Erfassung** und **Buchung** erscheinen nur für jemanden mit dem passenden Recht in einem Arbeitsbereich, in dem der Prüfschritt eingeschaltet ist.
+
+Jede Rechnung ist eine Karte mit Partner, Zusammenfassung und Bruttobetrag, und bernsteinfarbene Marker zeigen für alles, was an der Rechnung noch offen ist: ein fehlender Steuersatz, eine nicht kategorisierte Position, zu prüfende ausgelesene Daten. So können Sie die Liste abarbeiten, ohne jede Rechnung zu öffnen.
+
+Über der Liste stehen drei Filter:
+
+- **Bereit**: nichts offen, kann freigegeben werden.
+- **Blockiert**: etwas Offenes verhindert die Freigabe.
+- **Zurückgegeben**: jemand hat sie mit einer Notiz zurückgegeben.
+
+Eine Rechnung ist immer in genau einem der drei, deshalb ergeben die drei Zahlen zusammen die Gesamtzahl.
+
+## Freigeben und zurückgeben
+
+Eine Karte zeigt **Freigeben** nur, wenn nichts blockiert. Eine blockierte Karte nennt stattdessen, wie viele Punkte noch offen sind. Beim Freigeben bekommt die Karte einen grünen Stempel **Freigegeben** und verlässt die Liste. Sie können mehrere auf einmal freigeben: auf **Bereit** filtern, alle auswählen, einmal bestätigen.
+
+**Zurückgeben** fragt direkt auf der Karte nach dem Grund, mit drei Schnellgründen für diesen Prüfschritt, und die Notiz ist Pflicht. Die Karte bekommt einen bernsteinfarbenen Stempel **Zurückgegeben** und verlässt die Liste. Die Rechnung erscheint wieder in der Liste unter **Zurückgegeben**, mit der Notiz auf ihrer Karte. Es gibt keinen eigenen Empfänger: die Liste ist der Empfänger.
+
+## Wenn jemand die Rechnung ändert
+
+Ändert jemand an einer freigegebenen Rechnung den Betrag, eines der Daten, den Partner, das Unternehmen oder die Kategorie beziehungsweise den Steuersatz einer Position, wird die **Buchungsfreigabe automatisch zurückgezogen**. Die Rechnung kehrt in die Liste zurück, und der Zeitstrahl hält fest, was sich wie geändert hat.
+
+Das ist Absicht. Die Buchungsfreigabe ist eine Aussage darüber, was in den Export geht. Haben sich die Daten geändert, galt die frühere Freigabe einer anderen Rechnung.
+
+Aus demselben Grund lässt die automatische nächtliche Neukategorisierung **buchungsfreigegebene Rechnungen unberührt**. Bittet ein Buchhalter ausdrücklich um einen erneuten Lauf, läuft dieser und zieht die Freigabe zurück. Das ist richtig: er hat darum gebeten.
+
+## Verkettung
+
+Zwei weitere Schalter erscheinen, sobald die Erfassung eingeschaltet ist:
+
+- **Erfassung vor Zahlung**: Eine Rechnung ohne Erfassungsfreigabe erreicht keinen Zahlungsfreigeber.
+- **Erfassung vor Buchung**: Die Buchungsfreigabe wartet auf die Erfassungsfreigabe.
+
+Beide sind standardmäßig an und beide lassen sich ausschalten, wenn die zwei Prüfschritte unabhängig laufen sollen.
+
+## Entscheidungen
+
+Der Link **Entscheidungen** steht oben rechts im Bereich **Freigaben**. Dort landet jede Entscheidung zu allen drei Prüfschritten als Karte, die neueste zuerst: wer entschieden hat, die Notiz, falls es eine gab, die Rechnung, und worauf sie jetzt wartet. Mehrere Entscheidungen zur selben Rechnung am selben Tag teilen sich eine Karte.
+
+Die Liste zeigt Entscheidungen von Menschen. Rechnungen, die keine Zahlungsfreigabe brauchen, weil keine Regel eine verlangt, werden ebenfalls als Entscheidungen festgehalten, im Namen des Systems. Mit **Mit den Entscheidungen des Systems** sehen Sie auch diese; die Zahl daneben sagt, wie viele es sind.
+
+Diese Liste sieht jeder, der auch die Rechnungen sieht. Eine Freigabeberechtigung ist nicht nötig: Sie hält fest, was geschehen ist, und sagt nichts darüber aus, worüber Sie entscheiden dürfen.
+
+Ändert jemand eine Rechnung, erscheint auch die zurückgezogene Freigabe dort, im Namen des Systems. So beantwortet die Liste die Frage "wo ist meine Freigabe hin", bevor sie jemand stellen muss.
+
+## Auf der Rechnung
+
+Die Karte **Freigaben** auf der Rechnung zeigt alle drei Prüfschritte in der Reihenfolge, in der die Rechnung sie durchläuft, mit Name und Zeitpunkt. In der Rechnungsliste zeigt ein bernsteinfarbener Marker, dass eine Rechnung noch auf einen Prüfschritt wartet, und Sie können danach filtern.
+
+## Berechtigungen
+
+Zwei neue Berechtigungen unter **Einstellungen**, **Team**:
+
+- **Erfassung freigeben**: kann auch einem mandantenseitigen Mitglied gegeben werden, denn meist erfasst der Finanzadmin des Mandanten.
+- **Buchung freigeben**: nur kanzleiseitig. Ein mandantenseitiges Mitglied kann die Kontierung nicht bestätigen.
+
+Beide setzen zusätzlich "Rechnungen und Banktransaktionen ansehen" voraus: Niemand entscheidet über einen Beleg, den er nicht sehen kann.
