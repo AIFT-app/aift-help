@@ -41,7 +41,7 @@ const en: Copy = {
       expiredDetail: 'Nothing is lost: the transactions already imported stay as they are.',
       renew: 'You connect the same bank again',
       renewDetail: 'No question about history this time. Days missed while the consent was lapsed cannot be fetched from the bank; add them from a statement.',
-      disconnect: 'Separately, at any time: the client owner can disconnect an account.',
+      disconnect: 'Separately, at any time: the finance lead can disconnect an account.',
     },
   },
 }
@@ -62,7 +62,7 @@ const hu: Copy = {
       expiredDetail: 'Semmi nem vész el: a már beimportált tranzakciók változatlanok maradnak.',
       renew: 'Újra összekapcsolja ugyanazt a bankot',
       renewDetail: 'Ilyenkor nem kérdez rá az előzményekre. A lejárt időszak alatt kimaradt napokat a bank már nem adja vissza; ezeket kivonatból pótolhatja.',
-      disconnect: 'Ettől függetlenül, bármikor: az ügyfél tulajdonosa lecsatlakoztathat egy számlát.',
+      disconnect: 'Ettől függetlenül, bármikor: a pénzügyi vezető lecsatlakoztathat egy számlát.',
     },
   },
 }
@@ -83,7 +83,7 @@ const de: Copy = {
       expiredDetail: 'Nichts geht verloren: die bereits importierten Transaktionen bleiben, wie sie sind.',
       renew: 'Sie verbinden dieselbe Bank erneut',
       renewDetail: 'Diesmal ohne Frage nach der Historie. Tage, die während der abgelaufenen Zustimmung fehlen, gibt die Bank nicht mehr heraus; ergänzen Sie sie aus einem Auszug.',
-      disconnect: 'Davon unabhängig, jederzeit: der Mandanteninhaber kann ein Konto trennen.',
+      disconnect: 'Davon unabhängig, jederzeit: die Finanzleitung kann ein Konto trennen.',
     },
   },
 }
