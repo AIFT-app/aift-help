@@ -1,0 +1,54 @@
+/*
+ * The approval card, copied from aift-web
+ * src/app/(app)/workspaces/[workspaceId]/approvals/_components/slip.module.css
+ * (design round 2, 2026-09-23). Only the static parts: paper, shadow, the
+ * sawtooth bottom edge and the reason panel. The exit animations are not
+ * drawn in the help centre.
+ */
+.slip {
+  --paper: #ffffff;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  filter: drop-shadow(0 1px 2px rgb(9 9 11 / 0.06)) drop-shadow(0 6px 14px rgb(9 9 11 / 0.05));
+  margin-bottom: 9px;
+}
+.slip::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -9px;
+  height: 9px;
+  background:
+    linear-gradient(-45deg, transparent 33.333%, var(--paper) 33.333%, var(--paper) 66.667%, transparent 66.667%),
+    linear-gradient(45deg, transparent 33.333%, var(--paper) 33.333%, var(--paper) 66.667%, transparent 66.667%);
+  background-size: 18px 36px;
+  background-position: 0 -18px;
+}
+@media (prefers-color-scheme: dark) {
+  .slip {
+    --paper: #18181b;
+    filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.4)) drop-shadow(0 6px 14px rgb(0 0 0 / 0.3));
+  }
+}
+.inner {
+  /* No overflow: hidden here, unlike the app: nothing animates in a drawing,
+     and the numbered markers must be able to sit on the card's edge. */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 1rem 1rem 0.875rem;
+}
+.ask {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.875rem 1rem;
+  background: var(--paper);
+}

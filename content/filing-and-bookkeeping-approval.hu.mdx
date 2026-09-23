@@ -22,7 +22,7 @@ A kapcsoló nem azonnal kapcsol be. Megnyílik egy ablak, amely egy kezdő dátu
 
 A jóváhagyók az oldalsáv **Jóváhagyások** menüpontja alatt találják a listájukat. Az **Iktatás** és a **Könyvelés** fül csak annak jelenik meg, aki az adott joggal rendelkezik és akinél a lépés be van kapcsolva.
 
-Minden sor harmadik sorában sárga jelölők mutatják, mi van még nyitva a számlán: hiányzó áfakód, kategorizálatlan sor, ellenőrizendő kinyert adat. Így a listát anélkül is végig lehet nézni, hogy minden számlát megnyitna.
+Minden számla egy kártya a partnerrel, az összefoglalóval és a bruttó összeggel, és sárga jelölők mutatják, mi van még nyitva a számlán: hiányzó áfakód, kategorizálatlan sor, ellenőrizendő kinyert adat. Így a listát anélkül is végig lehet nézni, hogy minden számlát megnyitna.
 
 A lista tetején három szűrő:
 
@@ -34,9 +34,9 @@ Egy számla mindig pontosan egy szűrőbe tartozik, ezért a három szám össze
 
 ## Jóváhagyás és visszaküldés
 
-A **Jóváhagyom** gomb csak akkor aktív, ha nincs nyitott akadály. Több számla egyszerre is jóváhagyható: szűrjön a **Kész** értékre, jelölje ki mindet, és hagyja jóvá egy megerősítéssel.
+A kártyán csak akkor van **Jóváhagyom** gomb, ha nincs nyitott akadály. Az akadályozott kártya helyette azt írja ki, hány tétel van még nyitva. Jóváhagyáskor zöld **Jóváhagyva** pecsét kerül a kártyára, és az lekerül a listáról. Több számla egyszerre is jóváhagyható: szűrjön a **Kész** értékre, jelölje ki mindet, és hagyja jóvá egy megerősítéssel.
 
-A **Visszaküldöm** gombhoz megjegyzés szükséges. A számla a **Visszaküldve** szűrő alatt kerül vissza a listára, a megjegyzéssel a során. Nincs külön címzett: a lista maga a címzett.
+A **Visszaküldöm** gomb magán a kártyán kérdezi meg, miért, az adott lépéshez illő három gyors indokkal, és a megjegyzés kötelező. A kártyára borostyánsárga **Visszaküldve** pecsét kerül, és lekerül a listáról. A számla a **Visszaküldve** szűrő alatt kerül vissza a listára, a megjegyzéssel a kártyáján. Nincs külön címzett: a lista maga a címzett.
 
 ## Ha valaki módosítja a számlát
 
@@ -57,7 +57,9 @@ Mindkettő alapértelmezés szerint be van kapcsolva, és mindkettő kikapcsolha
 
 ## Döntések
 
-A **Jóváhagyások** szakasz utolsó füle a **Döntések**. Ide minden döntés bekerül, mind a három lépésről, időrendben: ki hagyta jóvá, mikor, és mire vár a számla most.
+A **Döntések** link a **Jóváhagyások** szakasz jobb felső sarkában van. Ide minden döntés bekerül, mind a három lépésről, egy-egy kártyán, a legújabb elöl: ki döntött, a megjegyzés, ha volt, a számla, és hogy mire vár most. Ugyanarról a számláról ugyanazon a napon hozott több döntés egy kártyán van.
+
+A lista az emberek döntéseit mutatja. Azok a számlák, amelyekhez nem kell kifizetési jóváhagyás, mert egy szabály sem kéri, szintén döntésként rögzülnek, a rendszer nevében. Ha ezeket is látni szeretné, jelölje be **A rendszer döntéseivel együtt** mezőt; a mellette álló szám mutatja, hány ilyen van.
 
 Ezt a listát mindenki látja, aki a számlákat is látja. Nem kell hozzá jóváhagyási jog: a lista arról szól, mi történt, nem arról, hogy Ön dönthet-e.
 

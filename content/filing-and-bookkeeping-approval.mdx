@@ -22,7 +22,7 @@ The switch does not turn on straight away. A dialog asks for a start date and te
 
 Approvers find their queue under **Approvals** in the sidebar. The **Filing** and **Bookkeeping** tabs appear only for someone who holds that permission in a workspace where the checkpoint is on.
 
-The third line of every row carries amber markers for whatever is still open on that invoice: a missing VAT code, an uncategorised line, extracted data to check. You can work the queue without opening each invoice.
+Every invoice is a card with its partner, summary and gross amount, and amber markers for whatever is still open on that invoice: a missing VAT code, an uncategorised line, extracted data to check. You can work the queue without opening each invoice.
 
 Three filters sit above the list:
 
@@ -34,9 +34,9 @@ An invoice is always in exactly one of the three, so the three numbers add up to
 
 ## Approving and returning
 
-**Approve** is only active when nothing is blocking. You can approve many at once: filter to **Ready**, select them all, and confirm once.
+A card shows **Approve** only when nothing is blocking. A blocked card says how many items are still open instead. Approving stamps the card with a green **Approved** and it leaves the list. You can approve many at once: filter to **Ready**, select them all, and confirm once.
 
-**Return** requires a note. The invoice comes back on the queue under **Returned** with the note on its row. There is no separate recipient: the queue is the recipient.
+**Return** asks why on the card itself, with three quick reasons for that checkpoint, and the note is required. The card is stamped **Sent back** in amber and leaves the list. The invoice comes back on the queue under **Returned** with the note on its card. There is no separate recipient: the queue is the recipient.
 
 ## When somebody edits the invoice
 
@@ -57,7 +57,9 @@ Both are on by default, and both can be switched off if the two checkpoints run 
 
 ## Decisions
 
-The last tab in the **Approvals** section is **Decisions**. Every decision on all three checkpoints lands there, newest first: who approved it, when, and what the invoice is waiting for now.
+The **Decisions** link sits at the top right of the **Approvals** section. Every decision on all three checkpoints lands there as a card, newest first: who decided, the note if there was one, the invoice, and what it is waiting for now. Several decisions on the same invoice on the same day share one card.
+
+The list shows decisions people made. Invoices that need no payment approval, because no rule asks for one, are also recorded as decisions, in the system's name. Tick **Include the system's decisions** to see those too; the number beside it says how many there are.
 
 Anyone who can see the invoices can see this list. No approval permission is needed: it is a record of what happened, not a statement about what you may decide.
 
