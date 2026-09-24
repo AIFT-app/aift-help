@@ -108,6 +108,21 @@ A **Megerősítés** elfogadja a párosítást. Az **Elutasítás** elveti a jav
 
 A párosítások megerősítéséhez, elutasításához és eltávolításához, az **Előzmények**, a **Párosítás futtatása** gombhoz és a **Kiegyenlítés** fülhöz a **Párosítás kezelése** jogosultság kell. A könyvelőknek és a könyvelő adminisztrátoroknak alapból megvan; az iroda egy szerepkörtől vagy egy személytől elveheti (lásd: [Szerepek és jogosultságok](/roles-and-permissions)). Az ügyfél felhasználóknak sosincs meg, és nem is látják a **Párosítás** menüpontot.
 
+### Számla vagy tranzakció megtekintése
+
+A sorokban a számlaszám és a tranzakció partnere link. Rákattintva a tétel előnézetben nyílik meg a lista fölött, így nem veszíti el, hol tartott. A sor bármely más pontjára kattintva továbbra is a javaslat vagy a párosítás oldala nyílik meg.
+
+Számlánál az előnézet az összegeket, a dátumokat, a feleket, a tételeket és a párosított fizetéseket mutatja, az eredeti számlát pedig a **Dokumentum** alatt. Tranzakciónál a partnert, a bankszámlát, a hivatkozást, a párosított számlát vagy a javaslatokat a pontszámukkal, és a kategóriát.
+
+- A felső nyilak a sorszám mellett (például `3 / 12`) ugyanabban a szakaszban az előző vagy a következő sor számlájára, illetve tranzakciójára lépnek. A ↑ és a ↓ billentyű ugyanezt teszi.
+- Függőben lévő sornál az előnézet alján a **Megerősítés** és az **Elutasítás** az egész javaslatra vonatkozik, ugyanúgy, mint a sor gombjai. Döntés után az előnézet a következő javaslatra lép, és bezárul, ha nem maradt több.
+- A **Teljes számla** vagy a **Teljes tranzakció** új böngészőlapon nyitja meg a teljes oldalt.
+- Az **Esc**, a **×** vagy egy kattintás az előnézeten kívül bezárja.
+
+Ha az előnézet nélkül szeretné megnyitni, kattintás közben tartsa lenyomva a **Cmd** (Windowson a **Ctrl**) billentyűt, vagy kattintson a középső egérgombbal. A teljes oldal új lapon nyílik meg.
+
+Ugyanez az előnézet nyílik meg a javaslat és a párosítás oldalán a számlaszámra és a tranzakció hivatkozására kattintva, a **Partnerek** fülön egy partner folyószámlájának soraiból, egy [kiegyenlítés](/settlement) tételeiből, és egy tranzakció oldalán a **Párosítás & fizetés** kártya számlájából. Ezeken a helyeken az előnézet alján nincsenek gombok.
+
 ## A javaslat részletei oldal
 
 Kattintson egy függőben lévő sorra a javaslat megnyitásához. Az oldalon ezek láthatók:
@@ -180,7 +195,7 @@ Egy nem párosított tranzakció **Párosítás & fizetés** kártyája egy AI-j
 3. Egy nyitott számla a fennmaradó egyenlegével és a kiállítás dátumával. Kattintásra azonnal összekapcsolódik.
 4. **Megjelölés mint: nem kell számla…** olyan tranzakcióhoz, amelyhez nem tartozik számla, például egy banki díjhoz (lásd: [Tranzakciótípusok és „nem kell számla”](/transaction-types)).
 
-Párosított tranzakciónál a kártya a kapcsolt számlát mutatja: a számát egy nyíllal, a partnert és az összeget, a **(párosítva: …)** megjegyzést, ha a számlának csak egy része van kifizetve, és az **Eltávolítás** gombot. Ha semmi nincs kapcsolva vagy javasolva, ez áll: **Nem található párosítható számla.**
+Párosított tranzakciónál a kártya a kapcsolt számlát mutatja: a számát egy nyíllal, a partnert és az összeget, a **(párosítva: …)** megjegyzést, ha a számlának csak egy része van kifizetve, és az **Eltávolítás** gombot. A számlaszámra vagy egy javasolt számlára kattintva a számla előnézetben nyílik meg, a tranzakció oldalának elhagyása nélkül. Ha semmi nincs kapcsolva vagy javasolva, ez áll: **Nem található párosítható számla.**
 
 ## Kézi párosítás
 
