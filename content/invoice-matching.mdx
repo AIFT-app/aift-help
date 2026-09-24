@@ -108,6 +108,21 @@ When several transactions pay one invoice, they share a row, for example `2 tran
 
 Approving, rejecting and removing matches, **History**, **Run Matching** and the **Settlement** tab need the **Manage matching** permission. Accountants and accountant admins have it by default; your firm can take it away from a role or from one person (see [Roles and permissions](/roles-and-permissions)). Client users never have it and do not see **Matching** in the sidebar.
 
+### Looking at an invoice or a transaction
+
+In each row, the invoice number and the transaction's partner are links. Click one and the record opens in a preview over the list, so you keep your place. A click anywhere else on the row still opens the suggestion or the match.
+
+For an invoice, the preview shows the amounts and dates, the parties, the lines and the matched payments, with the original under **Document**. For a transaction, it shows the partner, the account, the reference, the matched invoice or the suggestions with their scores, and the category.
+
+- The arrows at the top, next to the position (for example `3 / 12`), move to the invoice or transaction of the previous or next row in the same section. The ↑ and ↓ keys do the same.
+- On a pending row, **Approve** and **Reject** at the bottom of the preview act on the whole suggestion, like the buttons on the row. After a decision the preview moves on to the next suggestion, and closes when none is left.
+- **Full invoice** or **Full transaction** opens the complete page in a new browser tab.
+- **Esc**, the **×** or a click outside the preview closes it.
+
+To skip the preview, hold **Cmd** (**Ctrl** on Windows) while you click, or click with the middle mouse button. The full page opens in a new tab.
+
+The same preview opens from the invoice number and the transaction reference on the suggestion and match pages, from the rows of a partner's ledger on the **Partners** tab, from the records in a [settlement](/settlement), and from the invoice in the **Matching & payment** card on a transaction's page. In those places it has no buttons at the bottom.
+
 ## The suggestion detail page
 
 Click a pending row to open the suggestion. The page shows:
@@ -180,7 +195,7 @@ The **Matching & payment** card of an unmatched transaction, with an AI suggesti
 3. An open invoice with its open balance and issue date. Click it to link it straight away.
 4. **Mark as: no invoice needed…** for a transaction that needs no invoice, such as a bank fee (see [Transaction types and no invoice needed](/transaction-types)).
 
-When the transaction is matched, the card shows the linked invoice instead: its number with an arrow, the partner and amount, **(matched: …)** when only part of the invoice is paid, and **Remove**. When nothing is linked or suggested, it says **No matching invoice found.**
+When the transaction is matched, the card shows the linked invoice instead: its number with an arrow, the partner and amount, **(matched: …)** when only part of the invoice is paid, and **Remove**. Click the invoice number, or a suggested invoice, to see it in a preview without leaving the transaction. When nothing is linked or suggested, it says **No matching invoice found.**
 
 ## Manual matching
 

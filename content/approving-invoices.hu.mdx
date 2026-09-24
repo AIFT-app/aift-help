@@ -11,7 +11,7 @@ A **Kifizetés** lista négy várakozó számlával. A számok az alábbi lista 
 </ApprovalQueueFigure>
 
 1. **Nézetek**: váltás a **Nekem kiosztva**, a **Kiosztatlan** (számlák, amelyeket egyik szabály sem tudott elhelyezni, minden jóváhagyó látja őket), a **Minden várakozó** és az **Ezen a héten esedékes** között.
-2. **Amit jóváhagy**: a számla AI által írt egysoros összefoglalója. Rákattintva megnyílik maga a számla.
+2. **Amit jóváhagy**: a számla AI által írt egysoros összefoglalója. Rákattintva a számla előnézetben nyílik meg a lista fölött (lásd [lent](#számla-megtekintése-a-lista-elhagyása-nélkül)).
 3. **Szállító és számlaazonosító**: ki kéri a kifizetést, és a számla azonosítója az AI Finance Teamben.
 4. **Esedékes**: a fizetési határidő, és hány nap van hátra, vagy hány napja lejárt. A lejárt határidő piros, a következő 7 napon belüli borostyánsárga.
 5. **Miért Ön**: a kártya alján látja, kinél van a számla, és miért került Önhöz. Ez lehet a pénzügyi adminisztrátor által beállított szabály, egy minta, amelyet a rendszer abból tanult, hova kerültek ugyanannak a szállítónak a korábbi számlái, az AI választása, vagy az alapértelmezett jóváhagyó, ha semmi más nem illik rá.
@@ -41,6 +41,21 @@ Az elutasítás nem törli és nem utasítja el a számlát a könyvelésben. Cs
 ## Nem az enyém
 
 Ha egy számla tévedésből került Önhöz, kattintson a **Nem az enyém** gombra. Visszakerül a pénzügyi adminisztrátor kiosztatlan tálcájába, és az irányítás tanul belőle.
+
+## Számla megtekintése a lista elhagyása nélkül
+
+Kattintson a kártyán az összefoglalóra, és a számla előnézetben nyílik meg a lista fölött. Ha bezárja az előnézetet, ugyanannál a kártyánál folytatja, a lista pedig olyan, ahogy hagyta.
+
+Az előnézet azt mutatja, ami a döntéshez kell: az összegeket és a dátumokat, a szállítót és az Ön cégét, a bankszámlát, a számla tételeit, a párosított fizetéseket és azt, hol tart az egyes jóváhagyás. A **Dokumentum** az eredeti számlát mutatja. Az előzmények, az üzenetek és a könyvelési adatok a teljes számlaoldalon maradnak.
+
+- A felső nyilak a sorszám mellett (például `3 / 12`) az előző vagy a következő kártyára lépnek. A ↑ és a ↓ billentyű ugyanezt teszi.
+- Az alsó **Jóváhagyom**, **Elutasítom** és **Nem az enyém** gomb pontosan úgy működik, mint a kártyán, az elutasítás indoklásával együtt. Döntés után az előnézet egy másik várakozó kártyára lép, és bezárul, ha nem maradt több.
+- A **Teljes számla** új böngészőlapon nyitja meg a teljes számlaoldalt.
+- Az **Esc**, a **×** vagy egy kattintás az előnézeten kívül bezárja.
+
+Ha az előnézet nélkül szeretné megnyitni a számlát, kattintás közben tartsa lenyomva a **Cmd** (Windowson a **Ctrl**) billentyűt, vagy kattintson a középső egérgombbal. A teljes számlaoldal új lapon nyílik meg.
+
+Az asztalán és a **Döntések** alatt a számlák linkje ugyanezt az előnézetet nyitja meg, döntési gombok nélkül.
 
 ## Mi történik a döntés után
 
