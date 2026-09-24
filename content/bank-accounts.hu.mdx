@@ -69,7 +69,7 @@ Hogyan él és ér véget egy bankkapcsolat. Az állapotnevek a kapcsolat kárty
 
 A nyílt bankolási hozzájárulás lejár. **Azt, hogy meddig tart, a bankja dönti el**, jellemzően 90 nap, néhány banknál hosszabb. A tényleges dátumot a kapcsolat kártyája mutatja.
 
-Ez előtt a dátum előtt hét nappal a kártya borostyánsárgára vált, és a **Lejár N nap múlva** felirat jelenik meg rajta. Ezt vegye komolyan: **az automatikus szinkronizálás ekkor áll le**, nem a lejárat napján. Az utolsó hét figyelmeztető hét, nem türelmi idő.
+Ez előtt a dátum előtt hét nappal a kártya borostyánsárgára vált, és a **Lejár N nap múlva** felirat jelenik meg rajta. A kapcsolat ezen a héten még működik: a tranzakciók továbbra is naponta kétszer érkeznek, és a **Szinkronizálás most** is használható. Ezt a hetet használja a megújításra. **A lejárat napján a szinkronizálás leáll**, és a kártyán a **Lejárt** felirat jelenik meg.
 
 A folytatáshoz csatlakoztassa újra ugyanazt a bankot. Az AI Finance Team megújításként ismeri fel, ezért nem kérdez rá újra az előzményekre, és a banktól a lehető leghosszabb időszakot kéri. A meglévő tranzakciói és minden, amit velük tett, megmarad.
 
@@ -81,7 +81,7 @@ Egy számlánál a **Lecsatlakoztatás** leállítja a szinkronizálást. A már
 
 Az **Eltávolítás** teljesen leveszi a kártyát az oldalról. Csak olyan kapcsolatnál működik, amely lecsatlakoztatott vagy hibás állapotban van, és csak annál a pénzügyi vezetőnél, aki létrehozta. A lejárt kapcsolat nem távolítható el, ezért megújítás után a régi kártya ott maradhat az oldalon az új mellett.
 
-Mindkét gomb csak aktív kapcsolatnál jelenik meg, és csak a pénzügyi vezetőnek.
+A **Lecsatlakoztatás** aktív vagy hamarosan lejáró kapcsolatnál jelenik meg, az **Eltávolítás** lecsatlakoztatott vagy hibás kapcsolatnál. Mindkettő csak a pénzügyi vezetőnek.
 
 ## Hibaelhárítás
 
