@@ -69,7 +69,7 @@ How a bank connection lives and ends. The status names are the ones on the conne
 
 Open banking consent expires. **How long it lasts is your bank's decision**, commonly 90 days, and longer at some banks. The connection card shows the actual date.
 
-Seven days before that date the card turns amber and says **Expires in N days**. Take this seriously: **automatic syncing stops at that moment**, not on the expiry date. The last week is a warning week, not a grace week.
+Seven days before that date the card turns amber and says **Expires in N days**. The connection keeps working in that week: transactions still arrive twice a day and **Sync now** still works. Use the week to renew. **On the expiry date syncing stops** and the card shows **Expired**.
 
 To carry on, connect the same bank again. AI Finance Team recognises it as a renewal, so it does not ask about history again and asks the bank for the longest period it allows. Your existing transactions and everything done with them are kept.
 
@@ -81,7 +81,7 @@ To carry on, connect the same bank again. AI Finance Team recognises it as a ren
 
 **Remove** takes a card off the page entirely. It works only on a connection that is disconnected or in error, and only for the finance lead who created it. A connection that has expired cannot be removed, so an old card may stay on the page beside the new one after a renewal.
 
-Both buttons appear only while a connection is active, and only for the finance lead.
+**Disconnect** appears while a connection is active or about to expire, **Remove** once it is disconnected or in error. Both are only for the finance lead.
 
 ## Troubleshooting
 
