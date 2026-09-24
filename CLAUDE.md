@@ -22,7 +22,9 @@ npm run build  # static export (output: `out/`)
 
 Every change to an article, whatever its size, starts by checking the article's claims against the app as it is on `main`: quoted labels against `aift-web/messages/<locale>.json`, screens against the component that renders them, numbers and thresholds against the code. Fix what is stale in the same PR, in all three locales. Adding visuals to `approving-invoices` found three stale claims this way.
 
-Then update the article's row in the **Help Centre Refresh** tracker (https://claude.ai/artifact/QNYFXjnFzNmumFJiN2tLxd, collection `articles`, doc id = the slug, `home` for the index): `visuals`, `content` (`unchecked` / `stale` / `verified`), `contentCheckedOn`, `notes`. Full standard: `aift-ops/specs/help-visuals-pilot.md`.
+Then update the article's row in **`aift-ops/docs/help-centre-tracker.md`** (one row per article, plus a note section per article, keyed by slug): `content` (`unchecked` / `stale` / `verified`), `contentCheckedOn`, `visuals`, and the note. Same commit as the content change. Full standard: `aift-ops/specs/help-visuals-pilot.md`.
+
+⚠️ That tracker was a claude.ai artifact until 2026-09-24. It moved into the repo because only sessions under one account could open it, so the sessions this rule is written for could not comply with it. Do not move it back out.
 
 ## Visuals: app screens rebuilt 1:1, where they add value
 
