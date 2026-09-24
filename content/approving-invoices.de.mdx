@@ -11,7 +11,7 @@ Die Liste **Zahlung** mit vier wartenden Rechnungen. Die Nummern entsprechen der
 </ApprovalQueueFigure>
 
 1. **Ansichten**: Wechsel zwischen **Mir zugewiesen**, **Nicht zugewiesen** (Rechnungen, die keine Regel zuordnen konnte, sichtbar für alle Freigeber), **Alle ausstehenden** und **Diese Woche fällig**.
-2. **Was Sie freigeben**: die einzeilige KI-Zusammenfassung der Rechnung. Ein Klick darauf öffnet die Rechnung selbst.
+2. **Was Sie freigeben**: die einzeilige KI-Zusammenfassung der Rechnung. Ein Klick darauf öffnet die Rechnung in einer Vorschau über der Liste (siehe [unten](#eine-rechnung-ansehen-ohne-die-liste-zu-verlassen)).
 3. **Lieferant und Rechnungs-ID**: wer bezahlt werden möchte, und die ID der Rechnung in AI Finance Team.
 4. **Fällig**: das Zahlungsdatum und wie viele Tage noch bleiben, oder wie viele Tage es überfällig ist. Ein überfälliges Datum ist rot, eines innerhalb der nächsten 7 Tage bernsteinfarben.
 5. **Warum Sie**: unten auf der Karte, bei wem die Rechnung liegt und warum sie bei Ihnen gelandet ist. Das ist eine Regel Ihres Finanzadmins, ein Muster, gelernt daraus, wohin frühere Rechnungen desselben Lieferanten gingen, die Wahl der KI oder der Standard-Freigeber, wenn nichts anderes passt.
@@ -41,6 +41,21 @@ Ablehnen löscht die Rechnung nicht und lehnt sie auch nicht buchhalterisch ab. 
 ## Nicht meins
 
 Ist eine Rechnung versehentlich bei Ihnen gelandet, klicken Sie auf **Nicht meins**. Sie geht zurück in die Ablage des Finanzadmins, und die Zuordnung lernt daraus.
+
+## Eine Rechnung ansehen, ohne die Liste zu verlassen
+
+Klicken Sie auf der Karte auf die Zusammenfassung, und die Rechnung öffnet sich in einer Vorschau über der Liste. Schließen Sie die Vorschau, sind Sie wieder bei derselben Karte, und die Liste ist so, wie Sie sie verlassen haben.
+
+Die Vorschau zeigt, was eine Entscheidung braucht: Beträge und Daten, den Lieferanten und Ihr Unternehmen, das Bankkonto, die Rechnungspositionen, die zugeordneten Zahlungen und den Stand jeder Freigabe. **Dokument** zeigt die Originalrechnung. Verlauf, Nachrichten und Buchungsdetails bleiben auf der vollständigen Rechnungsseite.
+
+- Die Pfeile oben neben der Position (zum Beispiel `3 / 12`) wechseln zur vorherigen oder nächsten Karte. Die Tasten ↑ und ↓ tun dasselbe.
+- **Freigeben**, **Ablehnen** und **Nicht meins** unten funktionieren genau wie die Schaltflächen auf der Karte, einschließlich der Begründung beim Ablehnen. Nach einer Entscheidung wechselt die Vorschau zu einer anderen wartenden Karte und schließt sich, wenn keine mehr übrig ist.
+- **Ganze Rechnung** öffnet die vollständige Rechnungsseite in einem neuen Browser-Tab.
+- **Esc**, das **×** oder ein Klick außerhalb der Vorschau schließt sie.
+
+Um die Vorschau zu überspringen, halten Sie beim Klicken **Cmd** (unter Windows **Strg**) gedrückt oder klicken Sie mit der mittleren Maustaste. Die vollständige Rechnungsseite öffnet sich in einem neuen Tab.
+
+Die Rechnungslinks auf Ihrem Schreibtisch und unter **Entscheidungen** öffnen dieselbe Vorschau, ohne Entscheidungsschaltflächen.
 
 ## Was nach Ihrer Entscheidung passiert
 

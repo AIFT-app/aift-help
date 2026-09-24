@@ -11,7 +11,7 @@ The **Payment** list with four invoices waiting. The numbers match the list belo
 </ApprovalQueueFigure>
 
 1. **Views**: switch between **Assigned to me**, **Unassigned** (invoices no rule could place, visible to every approver), **All awaiting** and **Due this week**.
-2. **What you are approving**: the AI's one-line summary of the invoice. Click it to open the invoice itself.
+2. **What you are approving**: the AI's one-line summary of the invoice. Click it to open the invoice in a preview over the list (see [below](#looking-at-an-invoice-without-leaving-the-list)).
 3. **Supplier and invoice ID**: who is asking to be paid, and the invoice's ID in AI Finance Team.
 4. **Due**: the payment date and how many days are left, or how many days it is overdue. An overdue date is red, and a date within the next 7 days is amber.
 5. **Why you**: at the foot of the card, who holds the invoice and the reason it landed with you. It is a rule your finance admin set up, a pattern learned from where earlier invoices of the same supplier went, the AI's pick, or the fallback approver when nothing else applies.
@@ -41,6 +41,21 @@ Declining does not delete or reject the invoice in the books. It only says the p
 ## Not mine
 
 If an invoice reached you by mistake, click **Not mine**. It goes back to the finance admin's unrouted tray, and the routing learns from it.
+
+## Looking at an invoice without leaving the list
+
+Click the summary on a card and the invoice opens in a preview over the list. Close the preview and you are back at the same card, with the list as you left it.
+
+The preview shows what a decision needs: the amounts and dates, the supplier and your company, the bank account, the invoice lines, the matched payments and where each approval stands. **Document** shows the original invoice. The history, the messages and the booking details stay on the full invoice page.
+
+- The arrows at the top, next to the position (for example `3 / 12`), move to the previous or next card. The ↑ and ↓ keys do the same.
+- **Approve**, **Decline** and **Not mine** at the bottom work exactly like the buttons on the card, including the reason for a decline. After a decision the preview moves on to another waiting card, and closes when none is left.
+- **Full invoice** opens the complete invoice page in a new browser tab.
+- **Esc**, the **×** or a click outside the preview closes it.
+
+To skip the preview, hold **Cmd** (**Ctrl** on Windows) while you click, or click with the middle mouse button. The full invoice page opens in a new tab.
+
+The invoice links on your desk and on **Decisions** open the same preview, without the decision buttons.
 
 ## What happens after your decision
 

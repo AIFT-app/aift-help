@@ -108,6 +108,21 @@ Bezahlen mehrere Transaktionen eine Rechnung, teilen sie sich eine Zeile, zum Be
 
 Das Bestätigen, Ablehnen und Entfernen von Zuordnungen, **Verlauf**, **Zuordnung starten** und der Tab **Ausgleich** erfordern die Berechtigung **Zuordnung verwalten**. Buchhalter und Buchhalter-Admins haben sie standardmäßig; Ihre Kanzlei kann sie einer Rolle oder einer einzelnen Person entziehen (siehe [Rollen & Berechtigungen](/roles-and-permissions)). Mandantenbenutzer haben sie nie und sehen **Zuordnung** nicht in der Seitenleiste.
 
+### Eine Rechnung oder Transaktion ansehen
+
+In jeder Zeile sind die Rechnungsnummer und der Partner der Transaktion Links. Ein Klick darauf öffnet den Beleg in einer Vorschau über der Liste, sodass Sie Ihre Stelle behalten. Ein Klick irgendwo sonst in der Zeile öffnet weiterhin den Vorschlag oder die Zuordnung.
+
+Bei einer Rechnung zeigt die Vorschau Beträge und Daten, die Parteien, die Positionen und die zugeordneten Zahlungen, das Original unter **Dokument**. Bei einer Transaktion zeigt sie den Partner, das Konto, den Verwendungszweck, die zugeordnete Rechnung oder die Vorschläge mit ihrem Score und die Kategorie.
+
+- Die Pfeile oben neben der Position (zum Beispiel `3 / 12`) wechseln zur Rechnung oder Transaktion der vorherigen oder nächsten Zeile im selben Abschnitt. Die Tasten ↑ und ↓ tun dasselbe.
+- Bei einer ausstehenden Zeile gelten **Bestätigen** und **Ablehnen** unten in der Vorschau für den ganzen Vorschlag, wie die Schaltflächen in der Zeile. Nach einer Entscheidung wechselt die Vorschau zum nächsten Vorschlag und schließt sich, wenn keiner mehr übrig ist.
+- **Ganze Rechnung** oder **Ganze Transaktion** öffnet die vollständige Seite in einem neuen Browser-Tab.
+- **Esc**, das **×** oder ein Klick außerhalb der Vorschau schließt sie.
+
+Um die Vorschau zu überspringen, halten Sie beim Klicken **Cmd** (unter Windows **Strg**) gedrückt oder klicken Sie mit der mittleren Maustaste. Die vollständige Seite öffnet sich in einem neuen Tab.
+
+Dieselbe Vorschau öffnet sich über die Rechnungsnummer und den Verwendungszweck auf den Seiten eines Vorschlags und einer Zuordnung, über die Zeilen des Partnerkontos im Tab **Partner**, über die Belege in einem [Ausgleich](/settlement) und über die Rechnung in der Karte **Zuordnung & Zahlung** auf der Seite einer Transaktion. Dort hat sie unten keine Schaltflächen.
+
 ## Die Detailseite des Vorschlags
 
 Klicken Sie auf eine ausstehende Zeile, um den Vorschlag zu öffnen. Die Seite zeigt:
@@ -180,7 +195,7 @@ Die Karte **Zuordnung & Zahlung** einer nicht zugeordneten Transaktion, mit eine
 3. Eine offene Rechnung mit ihrem offenen Saldo und Rechnungsdatum. Ein Klick verknüpft sie sofort.
 4. **Markieren als: keine Rechnung erforderlich…** für eine Transaktion ohne Rechnung, etwa eine Bankgebühr (siehe [Transaktionstypen & „Keine Rechnung nötig“](/transaction-types)).
 
-Ist die Transaktion zugeordnet, zeigt die Karte stattdessen die verknüpfte Rechnung: ihre Nummer mit einem Pfeil, Partner und Betrag, **(zugeordnet: …)**, wenn nur ein Teil der Rechnung bezahlt ist, und **Entfernen**. Ist nichts verknüpft oder vorgeschlagen, steht dort **Keine passende Rechnung gefunden.**
+Ist die Transaktion zugeordnet, zeigt die Karte stattdessen die verknüpfte Rechnung: ihre Nummer mit einem Pfeil, Partner und Betrag, **(zugeordnet: …)**, wenn nur ein Teil der Rechnung bezahlt ist, und **Entfernen**. Ein Klick auf die Rechnungsnummer oder eine vorgeschlagene Rechnung zeigt sie in einer Vorschau, ohne die Transaktion zu verlassen. Ist nichts verknüpft oder vorgeschlagen, steht dort **Keine passende Rechnung gefunden.**
 
 ## Manueller Abgleich
 
