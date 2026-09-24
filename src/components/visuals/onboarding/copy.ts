@@ -1,5 +1,5 @@
 // Labels for the guided new-client walk's itinerary, verbatim from aift-web
-// messages/<locale>.json (dashboard.guided.*, origin/main 2026-09-23), keyed by
+// messages/<locale>.json (dashboard.guided.*, feat/guided-walk-tax-id-first 2026-09-24), keyed by
 // message key so scratchpad/drift-any.py catches a change. `help` is this
 // article's own text.
 import type { Locale } from '@/lib/i18n'
@@ -13,8 +13,6 @@ export const UI_KEYS = [
   'dashboard.guided.map_footer',
   'dashboard.guided.map_1_title',
   'dashboard.guided.map_1_note',
-  'dashboard.guided.map_2_title',
-  'dashboard.guided.map_2_note',
   'dashboard.guided.map_3_title',
   'dashboard.guided.map_3_note',
   'dashboard.guided.map_4_title',
@@ -34,10 +32,13 @@ type Copy = {
   help: { alt: string }
 }
 
-/** Mirrors SCREENS in aift-web src/lib/guided-onboarding.ts (origin/main). */
+/**
+ * Mirrors SCREENS in aift-web src/lib/guided-onboarding.ts. `step` is the
+ * app's screen id, which keeps a gap at 2 since guided-walk-tax-id-first merged
+ * screens 1 and 2; the figure shows the position (1 to 6), as the app does.
+ */
 export const SCREENS = [
   { step: 1, gate: true },
-  { step: 2, gate: true },
   { step: 3, gate: false },
   { step: 4, gate: false },
   { step: 5, gate: true },
@@ -54,10 +55,8 @@ const en: Copy = {
     'dashboard.guided.map_required': "required",
     'dashboard.guided.map_skippable': "optional",
     'dashboard.guided.map_footer': "You can call us at any point along the way. The number stays with you the whole time.",
-    'dashboard.guided.map_1_title': "Workspace",
-    'dashboard.guided.map_1_note': "A name and a country. They decide the base currency and the time zone.",
-    'dashboard.guided.map_2_title': "The first company",
-    'dashboard.guided.map_2_note': "Company name and tax number. Incoming invoices are matched to it.",
+    'dashboard.guided.map_1_title': "The client company",
+    'dashboard.guided.map_1_note': "Tax number, company name and country. For a Hungarian company the register fills in the rest.",
     'dashboard.guided.map_3_title': "Bank accounts",
     'dashboard.guided.map_3_note': "The company's account numbers. Bank transactions arrive on these.",
     'dashboard.guided.map_4_title': "Categories",
@@ -69,7 +68,7 @@ const en: Copy = {
     'dashboard.guided.map_7_title': "People",
     'dashboard.guided.map_7_note': "Colleagues and the client, each with their own role.",
   },
-  help: { alt: "The itinerary shown on the first screen of the new-client walk: seven numbered screens, each with a one-line note, marked required or optional." },
+  help: { alt: "The itinerary shown on the first screen of the new-client walk: six numbered screens, each with a one-line note, marked required or optional." },
 }
 
 const hu: Copy = {
@@ -80,10 +79,8 @@ const hu: Copy = {
     'dashboard.guided.map_required': "kötelező",
     'dashboard.guided.map_skippable': "kihagyható",
     'dashboard.guided.map_footer': "Menet közben bármikor felhívhatsz minket. A szám végig ott marad.",
-    'dashboard.guided.map_1_title': "Munkaterület",
-    'dashboard.guided.map_1_note': "Név és ország. Ebből lesz az alap pénznem és az időzóna.",
-    'dashboard.guided.map_2_title': "Az első cég",
-    'dashboard.guided.map_2_note': "Cégnév és adószám. Ehhez kötjük a beérkező számlákat.",
+    'dashboard.guided.map_1_title': "Az ügyfél cég",
+    'dashboard.guided.map_1_note': "Adószám, cégnév és ország. Magyar cégnél a többit a cégjegyzékből töltjük ki.",
     'dashboard.guided.map_3_title': "Bankszámlák",
     'dashboard.guided.map_3_note': "A cég számlaszámai. Ezekre érkeznek a banki tételek.",
     'dashboard.guided.map_4_title': "Kategóriák",
@@ -95,7 +92,7 @@ const hu: Copy = {
     'dashboard.guided.map_7_title': "Emberek",
     'dashboard.guided.map_7_note': "A kollégák és az ügyfél, mindenki a saját szerepével.",
   },
-  help: { alt: "Az új ügyfél beállítási folyamatának első képernyőjén látható útiterv: hét számozott képernyő, mindegyik egysoros megjegyzéssel, kötelező vagy kihagyható jelöléssel." },
+  help: { alt: "Az új ügyfél beállítási folyamatának első képernyőjén látható útiterv: hat számozott képernyő, mindegyik egysoros megjegyzéssel, kötelező vagy kihagyható jelöléssel." },
 }
 
 const de: Copy = {
@@ -106,10 +103,8 @@ const de: Copy = {
     'dashboard.guided.map_required': "erforderlich",
     'dashboard.guided.map_skippable': "optional",
     'dashboard.guided.map_footer': "Sie können uns jederzeit anrufen. Die Nummer bleibt die ganze Zeit sichtbar.",
-    'dashboard.guided.map_1_title': "Arbeitsbereich",
-    'dashboard.guided.map_1_note': "Name und Land. Daraus ergeben sich Basiswährung und Zeitzone.",
-    'dashboard.guided.map_2_title': "Das erste Unternehmen",
-    'dashboard.guided.map_2_note': "Firmenname und Steuernummer. Daran werden eingehende Rechnungen zugeordnet.",
+    'dashboard.guided.map_1_title': "Das Mandantenunternehmen",
+    'dashboard.guided.map_1_note': "Steuernummer, Firmenname und Land. Bei einem ungarischen Unternehmen füllt das Firmenregister den Rest aus.",
     'dashboard.guided.map_3_title': "Bankkonten",
     'dashboard.guided.map_3_note': "Die Kontonummern des Unternehmens. Darauf kommen die Bankbewegungen an.",
     'dashboard.guided.map_4_title': "Kategorien",
@@ -121,7 +116,7 @@ const de: Copy = {
     'dashboard.guided.map_7_title': "Personen",
     'dashboard.guided.map_7_note': "Die Kolleginnen und Kollegen und der Mandant, jeweils mit eigener Rolle.",
   },
-  help: { alt: "Der Fahrplan auf dem ersten Bildschirm der Einrichtung eines neuen Mandanten: sieben nummerierte Bildschirme, jeder mit einer einzeiligen Notiz, als erforderlich oder optional markiert." },
+  help: { alt: "Der Fahrplan auf dem ersten Bildschirm der Einrichtung eines neuen Mandanten: sechs nummerierte Bildschirme, jeder mit einer einzeiligen Notiz, als erforderlich oder optional markiert." },
 }
 
 export const onboardingCopy: Record<Locale, Copy> = { en, hu, de }

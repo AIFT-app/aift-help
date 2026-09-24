@@ -33,7 +33,7 @@ Az oldal fejléce alatt egyetlen sor foglalja össze a teljes ügyfélkörét: a
 ### Két dolog, ami megjelenik az áttekintőn
 
 - **Az Önnek szóló meghívó** a szalagcím fölötti panelen jelenik meg, így elfogadhatja anélkül, hogy az e-mailt kellene keresnie.
-- **Az az ügyfél, akinek a beállítását elkezdte, de nem fejezte be**, szaggatott szegélyű csempeként jelenik meg, a haladásával (például 4/7) és a **Folytatom** gombbal. Abba a munkaterületbe semmi nem érkezik, amíg a folyamat véget nem ér.
+- **Az az ügyfél, akinek a beállítását elkezdte, de nem fejezte be**, szaggatott szegélyű csempeként jelenik meg, a haladásával (például 3/6) és a **Folytatom** gombbal. Abba a munkaterületbe semmi nem érkezik, amíg a folyamat véget nem ér.
 
 ## Váltás a munkaterületek között
 
@@ -43,23 +43,22 @@ A munkaterületen belül az oldalsáv fejléce egy legördülő lista: benne min
 
 Munkaterületet csak **szervezeti adminisztrátorok** hozhatnak létre. Ha Önnek is szüksége van rá, kérjen meg egy adminisztrátort, hogy léptesse elő (lásd: [Szerepek és jogosultságok](/roles-and-permissions)).
 
-Az áttekintőn az **Új munkaterület** gomb egy hét képernyőből álló, végigvezetett folyamatot nyit meg. Ebből három kötelező, négy pedig kihagyható.
+Az áttekintőn az **Új munkaterület** gomb egy hat képernyőből álló, végigvezetett folyamatot nyit meg. Ebből kettő kötelező, négy pedig kihagyható.
 
 <OnboardingStepMapFigure>
 Az útiterv az első képernyőn. Ez az egyetlen hely, ahol az egész út egyszerre látszik.
 </OnboardingStepMapFigure>
 
-1. **Munkaterület.** Két mező: a **Munkaterület neve** és az **Ország**. Az alap pénznem és az időzóna az országból következik, ezeket a rendszer megmutatja, nem kérdezi. Mindkettő később módosítható.
-2. **Az első cég.** Az a jogi személy, amely a bankszámlákat birtokolja, és a számlákon szerepel; az AI Finance Team ez alapján különbözteti meg a bevételt a kiadástól. A magyar adószámot gépelés közben a rendszer visszaolvassa törzsszámra, EU-s adószámra és ÁFA-kódra bontva, ami a leggyorsabb módja egy elgépelés kiszúrásának. Ha az ügyfélnek több cége van, itt veheti fel őket.
-3. **Bankszámlák.** Általában kihagyható: a bankkapcsolatot az ügyfél hozza létre, a saját böngészőjében, miután meghívta.
-4. **Kategóriák.** Az új munkaterület **kategóriák nélkül** indul, és amíg nincs lista, addig semmi nem sorolódik be automatikusan. Importálja a sajátját, vagy ha az irodája kategóriasablont tart fenn, a rendszer azt alkalmazza Ön helyett. A második ügyféltől kezdve át is másolhatja egy másik ügyféltől.
-5. **Adatforrások.** A NAV Online Számla, a munkaterület saját e-mail-címe a számlák továbbításához, és az, amit az ügyfél maga fog csatlakoztatni.
-6. **Export.** Csak magyar munkaterületeken: azok a főkönyvi számok, amelyekre az exportfájloknak szükségük van.
-7. **Emberek.** Hívja meg az ügyfelet, és pipálja ki a saját irodájából azokat a kollégákat, akiknek részt kell venniük ebben a megbízásban. A kollégák azonnal bekerülnek azzal a szerepkörrel, amellyel már rendelkeznek; az ügyfél meghívót kap e-mailben, alapértelmezetten **Pénzügyi vezető** szerepkörre. Minden sornak saját nyelve van, így a meghívó a címzett saját nyelvén érkezik. A végén kattintson a **Kész vagyok** gombra.
+1. **Az ügyfél cég.** Az első mező az adószám, mellette az **Ország**. Magyar cégnél az AI Finance Team kikeresi a céget a cégjegyzékből, és kitölti a cégnevet, a munkaterület nevét, a székhelyet, a cégjegyzékszámot és a fő tevékenységet. Bármelyiket átírhatja. Az adószámot a rendszer törzsszámra, EU-s adószámra és ÁFA-kódra bontva is visszaolvassa, ez a leggyorsabb módja egy elgépelés kiszúrásának. Ha a cégjegyzékben nincs adat (például egyéni vállalkozónál), a mezők egyszerűen üresek maradnak, és Ön tölti ki őket. Az alap pénznem és az időzóna az országból következik. Ha az ügyfélnek több cége van, itt veheti fel őket.
+2. **Bankszámlák.** Magyar cégnél a cégjegyzékben szereplő számlák már a képernyőn vannak, kipipálva. Vegye ki a pipát azokból, amelyeket az ügyfél ehhez a könyveléshez nem használ. A számlaszám köti a banki tételt a megfelelő céghez. Az élő bankkapcsolatot később az ügyfél hozza létre, a saját böngészőjében.
+3. **Kategóriák.** Az új munkaterület **kategóriák nélkül** indul, és amíg nincs lista, addig semmi nem sorolódik be automatikusan. Importálja a sajátját, vagy ha az irodája kategóriasablont tart fenn, a rendszer azt alkalmazza Ön helyett. A második ügyféltől kezdve át is másolhatja egy másik ügyféltől.
+4. **Adatforrások.** A NAV Online Számla, a munkaterület saját e-mail-címe a számlák továbbításához, és az, amit az ügyfél maga fog csatlakoztatni.
+5. **Export.** Csak magyar munkaterületeken: azok a főkönyvi számok, amelyekre az exportfájloknak szükségük van.
+6. **Emberek.** Hívja meg az ügyfelet, és pipálja ki a saját irodájából azokat a kollégákat, akiknek részt kell venniük ebben a megbízásban. A kollégák azonnal bekerülnek azzal a szerepkörrel, amellyel már rendelkeznek; az ügyfél meghívót kap e-mailben, alapértelmezetten **Pénzügyi vezető** szerepkörre. Minden sornak saját nyelve van, így a meghívó a címzett saját nyelvén érkezik. A végén kattintson a **Kész vagyok** gombra.
 
 Két dolgot érdemes tudni a folyamatról:
 
-- **A munkaterület a 3. képernyőt elhagyva válik valóságossá**, nem a végén. Onnantól létezik, megjelenik az áttekintőjén, és az oldalsávja zárva marad, amíg be nem fejezi a folyamatot. A lap bezárásával semmi nem vész el.
+- **A munkaterület a 2. képernyőt (Bankszámlák) elhagyva válik valóságossá**, nem a végén. Onnantól létezik, megjelenik az áttekintőjén, és az oldalsávja zárva marad, amíg be nem fejezi a folyamatot. A lap bezárásával semmi nem vész el.
 - **Egyszerre egy beállítás.** Ha egy befejezetlen mellett új ügyfélbe kezdene, a rendszer visszaviszi a befejezetlenhez.
 
 Minden munkaterületnek, amelyet létrehoz, **Könyvelő admin**ja lesz. A válaszain túl az új munkaterület kap egy alapértelmezett tranzakciótípus-készletet, a szükséges ÁFA-törzsadatokat, és egy saját e-mail-címet a számlák fogadására.
