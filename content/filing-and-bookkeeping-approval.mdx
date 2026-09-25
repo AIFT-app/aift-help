@@ -61,7 +61,7 @@ A third switch appears once bookkeeping is on:
 
 This one is off by default. Paying and booking answer different questions, and most offices pay on the due date and book later, so waiting for bookkeeping can delay payments. Switch it on where the accountant has to see the coding before money leaves. With **Filing before bookkeeping** also on, payment then waits for filing too, even with **Filing before payment** off.
 
-The switches decide when an invoice enters the payment queue. An invoice already waiting there stays, even if its bookkeeping approval is later withdrawn. Invoices created before a checkpoint's start date are outside that checkpoint and are never held back by it.
+The switches hold at the moment of approval, not only when an invoice enters a queue. An invoice already waiting in the payment queue shows **Waiting for filing** (or **Waiting for bookkeeping**) instead of **Approve** until that approval is given; it can still be declined. **Filing before bookkeeping** works the same way in the bookkeeping queue. Invoices created before a checkpoint's start date are outside that checkpoint and are never held back by it. Approvals given before a switch was turned on stay as they are.
 
 ## Decisions
 
