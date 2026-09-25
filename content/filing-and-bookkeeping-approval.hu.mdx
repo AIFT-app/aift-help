@@ -55,6 +55,14 @@ Két további kapcsoló jelenik meg, miután bekapcsolta az iktatást:
 
 Mindkettő alapértelmezés szerint be van kapcsolva, és mindkettő kikapcsolható, ha a két lépés önállóan fut.
 
+Ha a könyvelés be van kapcsolva, egy harmadik kapcsoló is megjelenik:
+
+- **Könyvelés a kifizetés előtt**: könyvelési jóváhagyás nélkül a számla nem kerül a kifizetés jóváhagyójához.
+
+Ez alapértelmezés szerint ki van kapcsolva. A kifizetés és a könyvelés más kérdésre felel, és a legtöbb iroda határidőre fizet, majd később könyvel, így a könyvelésre várás késleltetheti a fizetéseket. Ott kapcsolja be, ahol a könyvelőnek látnia kell a kódolást, mielőtt a pénz kimegy. Ha az **Iktatás a könyvelés előtt** is be van kapcsolva, a kifizetés az iktatást is megvárja, akkor is, ha az **Iktatás a kifizetés előtt** ki van kapcsolva.
+
+A kapcsolók azt döntik el, mikor kerül a számla a kifizetési sorba. Ami már ott vár, az ott marad, akkor is, ha a könyvelési jóváhagyását később visszavonják. A lépés kezdő dátuma előtt létrehozott számlákra az adott lépés nem vonatkozik, és soha nem tartja vissza őket.
+
 ## Döntések
 
 A **Döntések** link a **Jóváhagyások** szakasz jobb felső sarkában van. Ide minden döntés bekerül, mind a három lépésről, egy-egy kártyán, a legújabb elöl: ki döntött, a megjegyzés, ha volt, a számla, és hogy mire vár most. Ugyanarról a számláról ugyanazon a napon hozott több döntés egy kártyán van.

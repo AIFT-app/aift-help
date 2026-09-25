@@ -55,6 +55,14 @@ Zwei weitere Schalter erscheinen, sobald die Erfassung eingeschaltet ist:
 
 Beide sind standardmäßig an und beide lassen sich ausschalten, wenn die zwei Prüfschritte unabhängig laufen sollen.
 
+Sobald die Buchung eingeschaltet ist, erscheint ein dritter Schalter:
+
+- **Buchung vor Zahlung**: Eine Rechnung ohne Buchungsfreigabe erreicht keinen Zahlungsfreigeber.
+
+Dieser ist standardmäßig aus. Zahlen und Buchen beantworten verschiedene Fragen, und die meisten Kanzleien zahlen zum Fälligkeitstermin und buchen später, daher kann das Warten auf die Buchung Zahlungen verzögern. Schalten Sie ihn dort ein, wo die Buchhaltung die Kontierung sehen muss, bevor Geld abfließt. Ist **Erfassung vor Buchung** ebenfalls an, wartet die Zahlung dann auch auf die Erfassung, selbst wenn **Erfassung vor Zahlung** aus ist.
+
+Die Schalter entscheiden, wann eine Rechnung in die Zahlungsliste kommt. Eine Rechnung, die dort bereits wartet, bleibt dort, auch wenn ihre Buchungsfreigabe später zurückgezogen wird. Rechnungen, die vor dem Startdatum eines Prüfschritts erstellt wurden, fallen nicht unter ihn und werden von ihm nie zurückgehalten.
+
 ## Entscheidungen
 
 Der Link **Entscheidungen** steht oben rechts im Bereich **Freigaben**. Dort landet jede Entscheidung zu allen drei Prüfschritten als Karte, die neueste zuerst: wer entschieden hat, die Notiz, falls es eine gab, die Rechnung, und worauf sie jetzt wartet. Mehrere Entscheidungen zur selben Rechnung am selben Tag teilen sich eine Karte.
