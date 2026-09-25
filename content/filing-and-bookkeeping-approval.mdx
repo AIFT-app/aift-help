@@ -55,6 +55,14 @@ Two more switches appear once filing is on:
 
 Both are on by default, and both can be switched off if the two checkpoints run independently.
 
+A third switch appears once bookkeeping is on:
+
+- **Bookkeeping before payment**: an invoice with no bookkeeping approval never reaches a payment approver.
+
+This one is off by default. Paying and booking answer different questions, and most offices pay on the due date and book later, so waiting for bookkeeping can delay payments. Switch it on where the accountant has to see the coding before money leaves. With **Filing before bookkeeping** also on, payment then waits for filing too, even with **Filing before payment** off.
+
+The switches decide when an invoice enters the payment queue. An invoice already waiting there stays, even if its bookkeeping approval is later withdrawn. Invoices created before a checkpoint's start date are outside that checkpoint and are never held back by it.
+
 ## Decisions
 
 The **Decisions** link sits at the top right of the **Approvals** section. Every decision on all three checkpoints lands there as a card, newest first: who decided, the note if there was one, the invoice, and what it is waiting for now. Several decisions on the same invoice on the same day share one card.
