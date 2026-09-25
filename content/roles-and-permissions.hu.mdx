@@ -42,12 +42,14 @@ A munkaterület minden tagjának egy **szerepköre** van, a szerepkör pedig **j
 | Riportok kezelése | bármelyik | ✓ | ✓ |  |  |  |
 | Törzsadatok szerkesztése | iroda | ✓ | ✓ |  |  |  |
 | Munkaterület-beállítások szerkesztése | iroda | ✓ |  |  |  |  |
-| Tagok meghívása | bármelyik | ✓ |  | ✓ |  |  |
+| Tagok meghívása | bármelyik | ✓ |  | ✓ | ✓ | ✓ |
 | Tagok és szerepkörök kezelése | bármelyik | ✓ |  | ✓ |  |  |
 | Kapcsolatok kezelése | bármelyik | ✓ |  | ✓ |  |  |
 | Számlák jóváhagyása kifizetésre | bármelyik | ✓ |  | ✓ |  |  |
 | Jóváhagyások kezelése | bármelyik | ✓ |  | ✓ | ✓ |  |
 | Utalási fájl exportálása | bármelyik | ✓ |  | ✓ | ✓ |  |
+| Iktatási jóváhagyás | bármelyik | ✓ | ✓ |  | ✓ |  |
+| Könyvelési jóváhagyás | iroda | ✓ | ✓ |  |  |  |
 | Feladás a könyvelőprogramba | iroda | ✓ |  |  |  |  |
 
 A pipák az **öt rendszerszerepkör alapértelmezései**. Az egyedi szerepkör saját halmazt választ, a kivétel pedig egyetlen tagnál módosít. A „Feladás a könyvelőprogramba” jogosultsághoz az is kell, hogy a kapcsolat be legyen kapcsolva a munkaterületen.
@@ -91,7 +93,7 @@ A **Szerepkörök** fül az öt rendszerszerepkörrel és egy egyedi szerepkörr
 3. Egy egyedi szerepkör, amely az oldala egyik rendszerszerepkörén alapul.
 4. **Új szerepkör**.
 
-- Az **Új szerepkör** olyan szerepkört hoz létre, amelyben semmi sincs bepipálva; a **Másolás** egy meglévő szerepkör jogosultságaiból indul. Az egyedi szerepkör ugyanazon oldal egyik rendszerszerepkörén alapul, és ügyféloldali szerepkörhöz a rendszer nem kínál fel csak irodai jogosultságot.
+- Az **Új szerepkör** olyan szerepkört hoz létre, amelyben semmi sincs bepipálva (ügyféloldalon a „Tagok meghívása” előre be van pipálva); a **Másolás** egy meglévő szerepkör jogosultságaiból indul. Az egyedi szerepkör ugyanazon oldal egyik rendszerszerepkörén alapul, és ügyféloldali szerepkörhöz a rendszer nem kínál fel csak irodai jogosultságot.
 - Csak olyan jogosultságot adhat, amellyel Ön is rendelkezik.
 - Aki megnyitja a fület, minden szerepkört lát, de ügyféloldali kezelő nem módosíthat irodai oldali szerepkört.
 - A szerepkört a tag hozzáférési oldalán rendelheti hozzá, vagy meghíváskor választhatja ki.
@@ -146,8 +148,8 @@ A **Jóváhagyások** azoknak a tagoknak jelenik meg, akik rendelkeznek a „Sz�
 |---|---|---|---|---|---|
 | Csapattagok | ✓ | ✓ | ✓ | ✓ | ✓ |
 | Hozzáférés szerkesztése (szerepkör, kivételek) | ✓ |  | ✓ (ügyféloldali tagok) |  |  |
-| Új tag meghívása | ✓ |  | ✓ (csak ügyfélszerepkörök) |  |  |
-| Függőben lévő meghívók, visszavonás | ✓ |  | ✓ (ügyféloldali meghívók) |  |  |
+| Új tag meghívása | ✓ |  | ✓ (bármely ügyféloldali szerepkör) | ✓ (pénzügyi adminisztrátor és munkatárs) | ✓ (pénzügyi adminisztrátor és munkatárs) |
+| Függőben lévő meghívók, visszavonás | ✓ |  | ✓ (ügyféloldali meghívók) | ✓ (ügyféloldali meghívók) | ✓ (ügyféloldali meghívók) |
 | Függőben lévő kérelmek (csatlakozási kérelmek) | ✓ |  |  |  |  |
 | Szerepkörök | ✓ |  | ✓ |  |  |
 
@@ -179,7 +181,11 @@ A munkaterület **Beállítások → Csapatkezelés → Új tag meghívása** f�
 - Egy opcionális, legfeljebb 500 karakteres üzenet, amely az egész kötegre vonatkozik. A benne lévő hivatkozások kattinthatók lesznek.
 - Kattintson a **Meghívó küldése** gombra, vagy több meghívónál az **N meghívó küldése** gombra. Az elküldött sorok eltűnnek az űrlapról; a sikertelen sorok (például duplikált e-mail-cím esetén) a hibaüzenettel együtt megmaradnak, hogy javíthassa őket.
 
-A szerepkörlista attól függ, ki hív meg: az ügyféloldali meghívó munkatársat vagy pénzügyi adminisztrátort hívhat meg, másik pénzügyi vezetőt nem, az irodai oldali meghívó bármely munkaterület-szerepkörre meghívhat, a szervezeti panel pedig az irodába hív meg.
+A szerepkörlista attól függ, ki hív meg. Az irodai oldali meghívó (a könyvelő admin, vagy a jogot megkapó könyvelő) bármely munkaterület-szerepkörre meghívhat. Az ügyféloldali meghívó bármely ügyféloldali szerepkörre meghívhat, pénzügyi vezetőt azonban csak pénzügyi vezető (vagy a jogot birtokló irodai oldali tag) hívhat meg; könyvelői szerepkörre ügyféloldali meghívó soha nem hív meg. Az egyedi szerepkör úgy viselkedik, mint az a szerepkör, amelyre épül. A szervezeti panel az irodába hív meg.
+
+A leírás alatt a **Ki hívhat meg kit?** felirat mellett egy info ikon található: ha fölé viszi az egeret (vagy billentyűzettel rááll), megjelenik ennek a munkaterületnek a meghívási mátrixa, soronként egy meghívásra jogosult szerepkörrel, oszloponként egy meghívható szerepkörrel. Az egyéni kivételek nem szerepelnek a mátrixban.
+
+Minden beépített ügyféloldali szerepkör alapból rendelkezik a „Tagok meghívása” joggal; a jogot egy embertől a hozzáférési oldalán el lehet venni. A már létező egyedi szerepkörök megtartják a nekik adott jogokat. Az újonnan létrehozott ügyféloldali egyedi szerepkörnél a jog be van jelölve.
 
 Az AI Finance Team e-mailben elküldi mindenkinek a meghívó hivatkozását és az Ön üzenetét; a hivatkozást Önnek is megmutatja arra az esetre, ha az e-mail nem érkezne meg. Minden meghívó 14 nap után lejár, elfogadás előtt visszavonható, és csak arra az e-mail-címre érvényes, amelyre küldték.
 

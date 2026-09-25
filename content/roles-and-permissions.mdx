@@ -42,12 +42,14 @@ How AI Finance Team answers "may this member do this?": the fixed rules first, t
 | Manage reports | any | ✓ | ✓ |  |  |  |
 | Edit master data | firm | ✓ | ✓ |  |  |  |
 | Edit workspace settings | firm | ✓ |  |  |  |  |
-| Invite members | any | ✓ |  | ✓ |  |  |
+| Invite members | any | ✓ |  | ✓ | ✓ | ✓ |
 | Manage members and roles | any | ✓ |  | ✓ |  |  |
 | Manage connections | any | ✓ |  | ✓ |  |  |
 | Approve invoices for payment | any | ✓ |  | ✓ |  |  |
 | Manage approvals | any | ✓ |  | ✓ | ✓ |  |
 | Export payment file | any | ✓ |  | ✓ | ✓ |  |
+| Approve filing | any | ✓ | ✓ |  | ✓ |  |
+| Approve bookkeeping | firm | ✓ | ✓ |  |  |  |
 | Push into the accounting system | firm | ✓ |  |  |  |  |
 
 The ticks are the **defaults of the five system roles**. A custom role picks its own set, and an exception changes a single member. "Push into the accounting system" also needs the connection to be switched on for the workspace.
@@ -91,7 +93,7 @@ The **Roles** tab with the five system roles and a custom role. The numbers matc
 3. A custom role, based on a system role of its side.
 4. **Add role**.
 
-- **Add role** creates a role with nothing ticked; **Duplicate** starts from an existing role's permissions. A custom role is based on a system role of the same side, and a firm-only permission is not offered for a client-side role.
+- **Add role** creates a role with nothing ticked (on the client side, "Invite members" starts ticked); **Duplicate** starts from an existing role's permissions. A custom role is based on a system role of the same side, and a firm-only permission is not offered for a client-side role.
 - You can only give permissions you hold yourself.
 - Everyone who opens the tab sees every role, but a client-side manager cannot change firm-side roles.
 - Assign a role on a member's access page, or pick it when inviting someone.
@@ -146,8 +148,8 @@ These tables show the **defaults** of the five system roles; a custom role or an
 |---|---|---|---|---|---|
 | Team members | ✓ | ✓ | ✓ | ✓ | ✓ |
 | Edit access (role, exceptions) | ✓ |  | ✓ (client-side members) |  |  |
-| Invite a new member | ✓ |  | ✓ (Finance admin and Team member) |  |  |
-| Pending invitations, revoke | ✓ |  | ✓ (client-side invitations) |  |  |
+| Invite a new member | ✓ |  | ✓ (any client-side role) | ✓ (Finance admin and Team member) | ✓ (Finance admin and Team member) |
+| Pending invitations, revoke | ✓ |  | ✓ (client-side invitations) | ✓ (client-side invitations) | ✓ (client-side invitations) |
 | Pending requests (join requests) | ✓ |  |  |  |  |
 | Roles | ✓ |  | ✓ |  |  |
 
@@ -179,7 +181,11 @@ The workspace's **Settings → Team management → Invite a new member** (for me
 - An optional message, up to 500 characters, shared by the whole batch. Links in it become clickable.
 - Click **Send invite**, or **Send N invites** for several. Rows that were sent drop out of the form; rows that failed (for example a duplicate email address) stay with the error so you can fix them.
 
-The role list depends on who invites: a client-side inviter can invite a Team member or a Finance admin, never another Finance lead, a firm-side inviter can invite any workspace role, and the organization panel invites to the firm.
+The role list depends on who invites. A firm-side inviter (an Accountant admin, or an Accountant who has been given the right) can invite any workspace role. A client-side inviter can invite any client-side role, but a Finance lead can be invited only by another Finance lead (or by a firm-side member holding the right); a client-side inviter never invites into an accountant role. A custom role behaves like the role it is based on. The organization panel invites to the firm.
+
+Under the description, **Who can invite whom?** has an info icon: hover over it (or focus it with the keyboard) to see the invitation matrix of this workspace, one row per role that may invite and one column per role that can be invited. Individual exceptions are not in the matrix.
+
+Every built-in client role holds "Invite members" by default; the right can be taken from one person on their access page. Custom roles that already existed keep the permissions they were given. A new client-side custom role starts with the right ticked.
 
 AI Finance Team emails each person the invitation link and your message; the link is also shown to you in case the email does not arrive. Each invitation expires after 14 days, can be revoked before it is accepted, and only works for the email address it was sent to.
 

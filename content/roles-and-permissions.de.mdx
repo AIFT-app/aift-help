@@ -42,12 +42,14 @@ So beantwortet AI Finance Team die Frage „Darf dieses Mitglied das?“: zuerst
 | Berichte verwalten | beide | ✓ | ✓ |  |  |  |
 | Stammdaten bearbeiten | Kanzlei | ✓ | ✓ |  |  |  |
 | Arbeitsbereich-Einstellungen bearbeiten | Kanzlei | ✓ |  |  |  |  |
-| Mitglieder einladen | beide | ✓ |  | ✓ |  |  |
+| Mitglieder einladen | beide | ✓ |  | ✓ | ✓ | ✓ |
 | Mitglieder und Rollen verwalten | beide | ✓ |  | ✓ |  |  |
 | Verbindungen verwalten | beide | ✓ |  | ✓ |  |  |
 | Rechnungen zur Zahlung freigeben | beide | ✓ |  | ✓ |  |  |
 | Freigaben verwalten | beide | ✓ |  | ✓ | ✓ |  |
 | Zahlungsdatei exportieren | beide | ✓ |  | ✓ | ✓ |  |
+| Erfassung freigeben | beide | ✓ | ✓ |  | ✓ |  |
+| Buchung freigeben | Kanzlei | ✓ | ✓ |  |  |  |
 | In das Buchhaltungssystem übertragen | Kanzlei | ✓ |  |  |  |  |
 
 Die Häkchen sind die **Voreinstellungen der fünf Systemrollen**. Eine eigene Rolle wählt ihren eigenen Satz, und eine Ausnahme ändert ein einzelnes Mitglied. „In das Buchhaltungssystem übertragen“ setzt außerdem voraus, dass die Verbindung für den Arbeitsbereich aktiviert ist.
@@ -91,7 +93,7 @@ Der Reiter **Rollen** mit den fünf Systemrollen und einer eigenen Rolle. Die Nu
 3. Eine eigene Rolle, basierend auf einer Systemrolle ihrer Seite.
 4. **Rolle hinzufügen**.
 
-- **Rolle hinzufügen** legt eine Rolle an, in der nichts angehakt ist; **Duplizieren** startet mit den Berechtigungen einer bestehenden Rolle. Eine eigene Rolle basiert auf einer Systemrolle derselben Seite, und eine reine Kanzleiberechtigung wird für eine mandantenseitige Rolle nicht angeboten.
+- **Rolle hinzufügen** legt eine Rolle an, in der nichts angehakt ist (auf der Mandantenseite ist „Mitglieder einladen“ vorausgewählt); **Duplizieren** startet mit den Berechtigungen einer bestehenden Rolle. Eine eigene Rolle basiert auf einer Systemrolle derselben Seite, und eine reine Kanzleiberechtigung wird für eine mandantenseitige Rolle nicht angeboten.
 - Sie können nur Berechtigungen vergeben, die Sie selbst haben.
 - Jeder, der den Reiter öffnet, sieht alle Rollen, aber ein mandantenseitiger Verwalter kann kanzleiseitige Rollen nicht ändern.
 - Weisen Sie eine Rolle auf der Zugriffsseite eines Mitglieds zu, oder wählen Sie sie beim Einladen.
@@ -146,8 +148,8 @@ Diese Tabellen zeigen die **Voreinstellungen** der fünf Systemrollen; eine eige
 |---|---|---|---|---|---|
 | Teammitglieder | ✓ | ✓ | ✓ | ✓ | ✓ |
 | Zugriff bearbeiten (Rolle, Ausnahmen) | ✓ |  | ✓ (mandantenseitige Mitglieder) |  |  |
-| Neues Mitglied einladen | ✓ |  | ✓ (nur Mandantenrollen) |  |  |
-| Ausstehende Einladungen, Widerruf | ✓ |  | ✓ (mandantenseitige Einladungen) |  |  |
+| Neues Mitglied einladen | ✓ |  | ✓ (jede Mandantenrolle) | ✓ (Finanzadmin und Teammitglied) | ✓ (Finanzadmin und Teammitglied) |
+| Ausstehende Einladungen, Widerruf | ✓ |  | ✓ (mandantenseitige Einladungen) | ✓ (mandantenseitige Einladungen) | ✓ (mandantenseitige Einladungen) |
 | Ausstehende Anfragen (Beitrittsanfragen) | ✓ |  |  |  |  |
 | Rollen | ✓ |  | ✓ |  |  |
 
@@ -179,7 +181,11 @@ Der Reiter **Einstellungen → Teamverwaltung → Neues Mitglied einladen** im A
 - Eine optionale Nachricht mit bis zu 500 Zeichen, die für den ganzen Stapel gilt. Links darin werden anklickbar.
 - Klicken Sie auf **Einladung senden** oder bei mehreren auf **N Einladungen senden**. Gesendete Zeilen verschwinden aus dem Formular; fehlgeschlagene Zeilen (etwa wegen einer doppelten E-Mail-Adresse) bleiben mit der Fehlermeldung stehen, damit Sie sie korrigieren können.
 
-Die Rollenauswahl hängt davon ab, wer einlädt: Wer auf der Mandantenseite einlädt, kann in die Rollen Teammitglied und Finanzadmin einladen, aber nicht in die Finanzleitung; wer auf der Kanzleiseite einlädt, kann jede Arbeitsbereichsrolle vergeben; das Fenster der Organisation lädt in die Kanzlei ein.
+Die Rollenauswahl hängt davon ab, wer einlädt. Wer auf der Kanzleiseite einlädt (Buchhalter-Admin oder ein Buchhalter mit dem Recht), kann jede Arbeitsbereichsrolle vergeben. Wer auf der Mandantenseite einlädt, kann in jede Mandantenrolle einladen, in die Finanzleitung aber nur eine Finanzleitung (oder ein Mitglied der Kanzleiseite mit dem Recht); in eine Buchhalterrolle lädt die Mandantenseite nie ein. Eine eigene Rolle verhält sich wie die Rolle, auf der sie basiert. Das Fenster der Organisation lädt in die Kanzlei ein.
+
+Unter der Beschreibung finden Sie **Wer darf wen einladen?** mit einem Info-Symbol: Fahren Sie mit der Maus darüber (oder springen Sie mit der Tastatur hin), um die Einladungsmatrix dieses Arbeitsbereichs zu sehen, mit einer Zeile je einladungsberechtigter Rolle und einer Spalte je einladbarer Rolle. Individuelle Ausnahmen stehen nicht in der Matrix.
+
+Jede eingebaute Mandantenrolle hat das Recht „Mitglieder einladen“ standardmäßig; es lässt sich einer Person auf ihrer Zugriffsseite entziehen. Bereits bestehende eigene Rollen behalten die ihnen gegebenen Rechte. Bei einer neuen eigenen Mandantenrolle ist das Recht vorausgewählt.
 
 AI Finance Team sendet jeder Person den Einladungslink und Ihre Nachricht per E-Mail; der Link wird Ihnen auch angezeigt, falls die E-Mail nicht ankommt. Jede Einladung läuft nach 14 Tagen ab, kann vor der Annahme widerrufen werden und funktioniert nur für die E-Mail-Adresse, an die sie gesendet wurde.
 
