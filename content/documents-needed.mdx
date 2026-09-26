@@ -1,60 +1,86 @@
 # Missing Receipts
 
-**Missing receipts** is the page where your accountant's missing paperwork collects itself. When the books are missing a source document that only you can provide (usually the invoice behind a payment), it appears here as one card, and uploading it takes a minute. A photo or a PDF is fine.
+**Missing receipts** is the page where your accountant's missing paperwork collects itself. When the books are missing a source document that only you can provide, usually the invoice behind a payment, it appears here as one card, and uploading it takes a minute. A photo or a PDF is fine.
 
-You'll find it in the workspace sidebar as **Missing receipts**, with a count badge showing how many items are waiting. Both clients and accountants see the same list, so there is never a question about what is still open.
+Both clients and accountants see the same list, so there is never a question about what is still open.
 
-> Not seeing the page? It is being rolled out gradually. Your accounting firm may not have switched it on for your workspace yet.
+## Who Sees It
 
-## Why an item appears
+The page is switched on per workspace, and off until your accounting firm asks us for it. If it is not on, the entry is simply not in the sidebar and the address takes you back to the workspace overview.
 
-The system asks automatically; your accountant does not have to chase you. An item shows up in **Waiting for you** in exactly two situations:
+Everyone in the workspace can see it, including members who cannot see invoices and bank transactions.
 
-1. **A payment has no invoice.** A bank transaction has been processed, categorised, and checked against every invoice in the workspace, and nothing matches. The books need the invoice behind that payment.
-2. **NAV knows about an invoice, but the PDF is missing** (Hungarian workspaces). The invoice's data arrived from NAV Online Számla, so the invoice certainly exists, but the actual document was never uploaded. These carry a **From NAV** badge. The data alone is not enough: your accountant still needs the document itself for the records.
+## Why An Item Appears
 
-Each card shows the partner, the amount, the date, and how long it has been waiting. If your accountant added context (for example "The receipts are in your Bolt app"), it appears on the card under **Your accountant added:**.
+Nobody has to chase you: the system asks on its own. An item lands in **Waiting for you** in one of three ways.
 
-The same request is also posted as an automatic message on the record's thread, clearly marked as coming from the system rather than from a person. You can reply there if you have a question about a specific item.
+1. **A payment has no invoice.** A bank transaction has been processed, categorised and checked against every invoice in the workspace, and nothing matches.
+2. **NAV knows about an invoice, but the document is missing** (Hungarian workspaces). The data arrived from NAV Online Számla, so the invoice certainly exists, but nobody uploaded the document. These carry a **From NAV** badge.
+3. **A payment turned out to be a NAV invoice with no document.** A card that started as a missing payment invoice can change into the second kind in place, keeping the time it has already been waiting. It gains the **From NAV** badge and loses its **No invoice exists** button.
 
-## Uploading against the record
+### Why a payment you expected is not here
 
-Every card has an **Upload** button. Use it rather than a general upload wherever you can: the file is tied to the exact payment or invoice it answers, so it closes its own request instead of waiting in a general queue.
+Admission is about the state of the transaction, never its age. Nothing appears just because it is old, and nothing is skipped because it is recent.
 
-After the upload:
+A payment is left out while it is still being processed, and for good if it is an internal transfer, a duplicate, something that already carries a transaction type, or something with a match waiting for a person to confirm.
 
-- the document is read automatically and matched to the payment (or merged into the NAV invoice's record),
-- the card moves to **Done this week**,
-- nothing else is needed from you.
+This page is also not the same number your accountant sees as missing documents on the workspace overview. That one counts more loosely and will legitimately be higher.
 
-If one purchase produced several pages or photos, upload them as one file if you can; otherwise upload the invoice itself and reply on the thread about the rest.
+## What A Card Shows
 
-## When no invoice exists
+The partner, the amount, and how long it has been waiting. Underneath, the transaction's reference or the invoice number.
 
-Some payments genuinely have no invoice: a bank fee, a tax payment, a deposit. If you know there is no document for an item, click **No invoice exists** on its card.
+Two details worth knowing. A payment's amount is shown **signed**, so money out carries a minus, while an invoice's amount is shown without one. And a **From NAV** card that was never a payment has **no date on it**, because the date on a card comes from the bank transaction.
 
-This records your answer and hands it to your accountant, who confirms it and closes the item. The transaction itself is never changed by your answer alone; the accounting decision stays with your accountant. Until they confirm, the card stays visible with your answer noted.
+If your accountant added context, for example "The receipts are in the Quillmoor app", it appears under **Your accountant added:**.
 
-## The emails, and how to turn them off
+The same request is also posted once as an automatic message on the record's thread, marked as coming from the system rather than from a person. You can reply there with a question about that one item. It is posted **once and never repeated**.
 
-So you don't have to keep checking the page, the system sends a short email when new documents are needed:
+The list shows everything open, oldest first, on one page. There is no search, no filter and no sorting, because the list is meant to be emptied rather than browsed.
 
-- **at most one email per day**, no matter how many items appeared that day,
-- **a Monday summary** listing everything still open,
-- **no email at all** when nothing is waiting.
+## Uploading Against The Record
 
-You can turn these emails off in two ways:
+Every card has an **Upload** button. Use it rather than a general upload: the file is tagged with the item it answers, which is what tells your accountant why it arrived.
 
-- click **Turn off these emails** at the bottom of any of the emails, or
-- open **Account → Notifications** in the app and switch off the **Missing receipts** row.
+It then goes through exactly the same reading and matching as any other upload, so it is not instant and it is not guaranteed. The card clears when the work actually lands:
 
-Turning the emails off never hides the page itself: the list and the badge keep working, you just stop being emailed about it.
+- **a payment's card** clears once the document has been read and confirmed against that payment;
+- **a From NAV card** clears once the document is attached to that NAV invoice.
 
-## For accountants
+If the extraction misreads the invoice, or the match needs a person to confirm it, the card stays open. That is the system being honest rather than stuck, and your accountant can see the same thing you can.
 
-Accountants see the same queue with two extra controls on each card:
+If one purchase produced several pages or photos, upload them as one file if you can. Otherwise upload the invoice itself and reply on the thread about the rest.
 
-- **Don't ask for this** retracts a request. The item disappears from the client's page, badge, and emails, and no further reminders go out. The automatic message stays in the thread as history, and the retraction records who did it and when.
+## When No Invoice Exists
+
+Some payments genuinely have no invoice: a bank fee, a tax payment, a deposit. On those cards, **No invoice exists** records your answer and hands it to your accountant, who confirms it and closes the item.
+
+The button is only on payment cards. A **From NAV** card never has it, because NAV reporting is proof the invoice exists.
+
+Your answer alone never changes the transaction; the accounting decision stays with your accountant. Until they confirm, the card stays visible with your answer noted.
+
+## Done This Week
+
+Items that were answered in the last seven days sit under **Done this week**: the ones where a document arrived, and the ones your accountant closed as having no invoice.
+
+Items your accountant withdrew do not appear there. They simply leave the page.
+
+## The Emails
+
+There is a **Missing receipts** row under **Account → Notifications**, in the section about conversations with your clients, and an unsubscribe link prepared for the emails themselves.
+
+**These emails are not switched on yet.** Nothing has been sent. When they start, it will be at most one a day however many items appeared, a Monday summary of everything still open, and nothing at all on a day with nothing waiting. Turning them off will never hide the page.
+
+## For Accountants
+
+Two extra controls appear on each card for anyone holding "Edit bank transactions", which is a permission rather than a job title: a client-side member whose role includes it gets them too. See [Roles and Permissions](/roles-and-permissions).
+
+- **Don't ask for this** withdraws a request. It leaves the client's page, and the item is never asked for again: there is no way to put it back from the page. The automatic message stays in the thread as history, and the withdrawal records who did it and when.
 - **Add note** attaches a short explanation that renders on the client's card, useful for telling the client where to look.
 
-Requests open and close on their own: a match, an uploaded document, or a confirmed "no invoice" answer closes the item without any manual bookkeeping.
+Requests open and close on their own. Nothing here feeds the period-closing checklist or Mission Control, so an empty page is not a sign that the month is finished.
+
+## Related Articles
+
+- [Uploading Files](/uploading-files)
+- [NAV Online Számla](/nav-online-szamla)

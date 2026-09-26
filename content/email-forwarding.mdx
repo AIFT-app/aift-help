@@ -1,70 +1,115 @@
 # Forwarding Documents by Email
 
-Every workspace has its own email address. Forward an invoice, bank statement, or receipt to that address and it shows up in the workspace within about a minute, with its attachments read and classified automatically - no logging in, no manual upload. It's the easiest way to capture the SaaS receipts and supplier invoices that already arrive in your inbox.
+Every workspace has its own email address. Forward an invoice or a receipt to it and it appears in the workspace within about a minute, with no logging in and no manual upload. It is the easiest way to capture the SaaS receipts and supplier invoices that already arrive in your inbox.
 
-Forwarded documents land in **Intake**, the log of everything received at your workspace addresses. From there, invoices flow into the normal extraction pipeline and anything that needs a human decision is flagged for review.
+Forwarded email lands in **Intake**, the log of everything received at your workspace addresses. Reading and classifying the attachments takes longer than the minute: that is the email showing up, not the invoice being finished.
 
-## Finding your address
+## Your Address
 
-Open **Settings → Email ingestion** (you can also get there from **Manage addresses →** at the top of the Intake page). The **Primary address** is shown there as a copyable block - something like:
+Open **Settings → Email ingestion**, or **Manage addresses →** at the top of the Intake page. The **Primary address** is a copyable block that looks like this:
 
 ```
-yourworkspace@in.aifinance.team
+in-k7p2xq4m@in.aifinance.team
 ```
 
-The local part (the bit before the `@`) is unique to your workspace. Copy it, add it to your contacts, and forward away. The page also shows how many emails you've received in the last 30 days and when the last one arrived.
+The part before the `@` is eight random characters, not your company name. That is deliberate, and the next section explains why. The page also shows how many emails arrived in the last 30 days and when the last one was.
 
-> The address is **per workspace**, not per company or per person. Anything sent to it lands in that one workspace's Intake.
+The address is **per workspace**, not per company or per person, and it cannot be renamed, changed or regenerated.
+
+### Who can send to it
+
+**Anyone who knows the address.** There is no list of permitted senders. The only check is that the sending domain passes its own authentication, which proves the mail really came from that domain, not that the person is anyone in particular.
+
+So the address is the secret. That is why it is eight random characters rather than your company name: nobody can guess it, and nobody can work out your other workspaces' addresses from one of them. Treat it the way you would treat a private upload link. Share it with the people and the billing systems that should be sending you documents, and not more widely.
 
 ### Custom aliases
 
-If a billing settings page needs a tidier address than the auto-generated one, you can claim up to **five custom aliases** per workspace (for example `acme@in.aifinance.team`). Under **Custom aliases**, type the name you want, click **Claim**, and use it anywhere the primary address would work. You can **Retire** an alias when it's no longer needed.
+If a supplier's billing page needs a tidier address, you can claim up to **five custom aliases** per workspace, for example `acme@in.aifinance.team`. Under **Custom aliases**, type the name, click **Claim**, and use it anywhere the primary address works.
 
-Managing aliases (claiming or retiring) is limited to **accountant admins** and **finance leads**. Everyone else sees the addresses read-only - which is all you need to forward.
+**A custom alias is guessable, and that is the trade.** Choosing your own company's name gives up the protection the random address provides. Worth it for a supplier portal that rejects odd-looking addresses, not worth it as your everyday address.
 
-## What happens to a forwarded email
+**Retire** switches an alias off, permanently. Mail to a retired alias is rejected rather than accepted, and the name is reserved for good: no other workspace can ever claim it, and neither can you. Retiring one does free a slot for a different name.
 
-1. The email arrives at your workspace address and a row appears in **Intake**.
-2. Each attachment is **triaged** - the app works out whether it's an invoice, a bank statement, a receipt, or something else.
-3. Invoices and receipts flow into extraction and show up on the **Invoices** page like any other upload. A bank statement is **not** extracted this way: it waits in Intake marked **Awaiting extractor**, and has to be uploaded on the **Bank transactions** page to be read, see [Uploading Bank Statements](/bank-statement-upload).
-4. Anything the app can't confidently classify is set aside under **Needs review** for a person to sort out.
+Claiming and retiring need the "Manage connections" permission, which accountant admins and finance leads hold by default. Everyone else sees the addresses read-only, which is all you need in order to forward.
 
-The original email itself is never billed to you as a document - only the useful attachments inside it end up in your workspace.
+## What You Can Send
 
-## The Intake page
+Accepted attachments: **PDF, PNG, JPEG, WEBP and HEIC**. ZIP archives are opened and their supported contents ingested as separate documents.
 
-Intake is visible to both accountants and clients. It has two tabs:
+**Everything else is dropped silently.** A `.docx`, `.xlsx`, `.csv` or `.txt` attachment is discarded with no warning, and the email still shows as completed with a lower attachment count. The count you see is what was kept, not what was sent, so if a number looks low, something was dropped.
 
-- **All mail** - every email received, newest first. Each row shows when it arrived, who sent it, the subject, the address it was sent to, a status, and how many attachments it carried.
-- **Needs review** - the subset that needs a human decision. It carries an amber count badge so you can see at a glance whether anything is waiting.
+Limits: 10 MB per attachment, 20 attachments per email, 25 MB for the whole email, and 200 emails per workspace per day.
+
+Two things that catch people out:
+
+- **An invoice pasted into the email body is lost.** The body is stored and you can read it on the email, but it is never treated as a document. Only attachments are.
+- **Images under 10 KB are dropped as signatures and logos.** A small screenshot of a receipt can disappear this way. Larger images embedded in the message are ingested like any attachment.
+
+> **iPhone photos need care.** A HEIC photo is accepted by the mailbox and then fails when it is read, leaving the document as **Failed** and the email stuck on **Processing**. Send the original PDF where you can, or set your phone to take photos in JPEG.
+
+Forwarding the same file twice costs nothing: the second copy is recognised by its contents, marked as a duplicate and never processed again.
+
+## What Happens Next
+
+1. The email arrives and a row appears in **Intake**.
+2. Each attachment is classified: invoice, receipt, credit note, bank statement, contract, or something else.
+3. **Invoices, receipts and credit notes** go into extraction and appear on the **Invoices** page like any other upload.
+4. **A bank statement is not extracted this way.** It waits in Intake marked **Awaiting extractor**, and it appears in no queue and carries no badge, so nothing will remind you. Upload it on the **Bank transactions** page instead: see [Uploading Bank Statements](/bank-statement-upload).
+5. **A contract or anything unrecognised** goes to the **Documents** page, which is accountant-side only. It does not appear under Needs review.
+6. **Anything classified with low confidence** is flagged under **Needs review**, whether or not it also went on to extraction.
+
+<TriageDestinationsFigure>
+Four destinations, and only the first is the one people expect. The middle two are where forwarded documents go quiet.
+</TriageDestinationsFigure>
+
+Nothing is ever sent back to the sender: no reply, no bounce, no confirmation, for success or failure. The only way to know an email arrived is to look at Intake.
+
+The email itself is never billed to you as a document; only the attachments that become invoices count.
+
+The app also learns from who sends what. Once a sender's domain has produced a few confident classifications, later documents from that domain are classified better, so the tenth invoice from a supplier lands more reliably than the first.
+
+## The Intake Page
+
+Intake has two tabs:
+
+- **All mail** - every email received, newest first, with when it arrived, who sent it, the subject, which of your addresses it was sent to, a status, and how many attachments were kept.
+- **Needs review** - the subset needing a human decision, with an amber count badge.
+
+Seeing any of it needs the "View invoices and bank transactions" permission. A member without it sees an empty Intake rather than an error. The addresses themselves stay visible to everyone.
 
 ### Status labels
 
 | Label | Meaning |
 |---|---|
-| **Completed** | The email was processed and its attachments handled. |
-| **Processing** | Still being read. |
-| **Received** | Arrived, not yet processed. |
-| **Failed** | Something went wrong handling the email. |
-| **Unknown address** / **Retired address** | Sent to an address that doesn't exist or was retired. |
-| **Auth failed** | The sender couldn't be verified. |
-| **Too large** / **Rate limited** | Rejected for size, or too many emails too fast. |
-| **Multi-document** | A single PDF held several documents (see below). |
-| **No attachments** | Nothing to ingest. |
+| **Completed** | Processed and its attachments handled |
+| **Processing** | Still being read |
+| **Failed** | Something went wrong handling the email |
+| **Retired address** | Sent to an alias that was retired |
+| **Auth failed** | The sending domain could not be verified |
+| **Too large** | Over the 25 MB limit |
+| **Rate limited** | More than 200 emails in a day |
+| **Trial limit reached** | The mail was fine; the trial plan's document allowance refused it |
+| **Multi-document** | One PDF held several documents |
+| **No attachments** | Nothing supported to ingest |
 
-## When something needs attention
+**No attachments** is worth reading carefully: it means no *supported* attachments. An email carrying only a Word file shows up this way.
 
-Open an email's row to see its attachments, the email body, and (if needed) the raw headers.
+**A typo in the address leaves no trace at all.** Mail to an address that does not exist is dropped without a row, without a bounce and without an error. If you forwarded something and Intake is empty, check the address first.
 
-- **An attachment couldn't be saved.** The attachment count turns amber and the email shows a banner: *"1 attachment couldn't be saved."* The usual cause is an odd filename - **ask the sender to rename the file and re-forward it**, or upload it manually from the Invoices page.
-- **A PDF held several documents.** If someone forwards one PDF that's actually several invoices scanned together, it's flagged **Multi-document**: *"Please split the PDF into one document per invoice/statement and re-upload."* Split it into one document per invoice and forward the pieces.
-- **The app wasn't sure what a file was.** It lands under **Needs review** with its best guess and a confidence score. Open it and use the reclassify control to set the correct type.
+## When Something Needs Attention
+
+Open an email's row to see its attachments and the body.
+
+- **An attachment could not be saved.** The count turns amber with a banner saying so. Upload that file manually from the Invoices page. Accountants can also download the raw email to see exactly what arrived.
+- **A PDF held several documents.** It is flagged **Multi-document** and nothing is extracted from it. Split it into one document per invoice and forward the pieces.
+- **The app was not sure what a file was.** It lands under **Needs review** with its best guess. Open it and use the reclassify control to set the right type: **Invoice**, **Bank statement**, **Receipt**, **Credit note**, **Contract** or **Other**. Any member can do this, and correcting it teaches the app for that sender's domain.
 
 ## Tips
 
-- **Forward, don't screenshot.** Forwarding the original PDF or image gives the cleanest extraction. A photo of a screen works, but the original is always better.
-- **One invoice per email is ideal**, but several separate attachments on one email are fine - each becomes its own document.
-- **Use a custom alias for noisy senders.** If a particular vendor's billing page only takes one address, claim a custom alias for it so it's easy to recognise in Intake.
+- **Forward the original.** The supplier's PDF extracts far better than a photo of a screen, and it avoids the HEIC problem entirely.
+- **One invoice per email is ideal**, but several supported attachments on one email are fine: each becomes its own document.
+- **Check the attachment count** after forwarding something unusual. It is the quickest way to notice that a file was silently dropped.
+- **Keep the primary address semi-private**, and claim a custom alias only where a supplier's system forces you to.
 
 ## Related
 

@@ -1,60 +1,86 @@
 # Fehlende Belege
 
-Auf der Seite **Fehlende Belege** sammeln sich alle Unterlagen, die nur Sie nachreichen können (in der Regel die Rechnung hinter einer Zahlung). Jeder fehlende Beleg erscheint als eine Karte, und das Hochladen dauert eine Minute: Foto oder PDF genügt.
+**Fehlende Belege** ist die Seite, auf der sich die Unterlagen, die Ihrer Buchhaltung fehlen, von selbst sammeln. Wenn der Buchhaltung ein Grundbeleg fehlt, den nur Sie liefern können, in der Regel die Rechnung hinter einer Zahlung, erscheint er hier als eine Karte, und das Hochladen dauert eine Minute. Ein Foto oder ein PDF genügt.
 
-Sie finden die Seite in der Seitenleiste des Arbeitsbereichs unter **Fehlende Belege**, mit einem Zähler, der zeigt, wie viele Positionen offen sind. Mandanten und Buchhalter sehen dieselbe Liste, sodass nie unklar ist, was noch fehlt.
+Mandanten und Buchhalter sehen dieselbe Liste, sodass nie unklar ist, was noch offen ist.
 
-> Sie sehen die Seite nicht? Die Funktion wird schrittweise freigeschaltet; möglicherweise ist sie für Ihren Arbeitsbereich noch nicht aktiviert.
+## Wer sie sieht
+
+Die Seite wird je Arbeitsbereich freigeschaltet und bleibt aus, bis Ihre Kanzlei sie bei uns anfragt. Ist sie nicht aktiv, fehlt der Eintrag schlicht in der Seitenleiste, und die Adresse bringt Sie zurück zur Übersicht des Arbeitsbereichs.
+
+Alle im Arbeitsbereich sehen sie, auch Mitglieder, die Rechnungen und Banktransaktionen nicht sehen dürfen.
 
 ## Warum eine Position erscheint
 
-Das System fragt automatisch nach; Ihre Buchhaltung muss Ihnen nicht hinterherlaufen. Eine Position erscheint unter **Wartet auf Sie** in genau zwei Fällen:
+Niemand muss Ihnen hinterherlaufen: Das System fragt von selbst nach. Eine Position landet auf drei Wegen unter **Wartet auf Sie**.
 
-1. **Zu einer Zahlung fehlt die Rechnung.** Eine Banktransaktion wurde vollständig verarbeitet, kategorisiert und mit allen Rechnungen im Arbeitsbereich abgeglichen, ohne Treffer. Die Buchhaltung braucht die Rechnung hinter dieser Zahlung.
-2. **NAV kennt eine Rechnung, aber das PDF fehlt** (ungarische Arbeitsbereiche). Die Rechnungsdaten kamen aus dem NAV-Online-Számla-System, die Rechnung existiert also sicher, aber das eigentliche Dokument wurde nie hochgeladen. Diese Positionen tragen das Abzeichen **Aus NAV**. Die Daten allein genügen nicht: Ihre Buchhaltung braucht für die Unterlagen auch das Dokument selbst.
+1. **Zu einer Zahlung fehlt die Rechnung.** Eine Banktransaktion wurde verarbeitet, kategorisiert und mit jeder Rechnung im Arbeitsbereich abgeglichen, und nichts passt dazu.
+2. **Die NAV kennt eine Rechnung, aber das Dokument fehlt** (ungarische Arbeitsbereiche). Die Daten kamen aus NAV Online Számla, die Rechnung existiert also sicher, aber niemand hat das Dokument hochgeladen. Diese tragen das Abzeichen **Aus NAV**.
+3. **Eine Zahlung entpuppte sich als NAV-Rechnung ohne Dokument.** Eine Karte, die als fehlende Rechnung zu einer Zahlung begann, kann an Ort und Stelle zur zweiten Art werden und behält die bereits verstrichene Wartezeit. Sie bekommt das Abzeichen **Aus NAV** und verliert ihre Schaltfläche **Keine Rechnung vorhanden**.
 
-Jede Karte zeigt den Partner, den Betrag, das Datum und die Wartezeit. Hat Ihre Buchhaltung einen Hinweis ergänzt (zum Beispiel "Die Quittungen sind in Ihrer Bolt-App"), erscheint er auf der Karte unter **Nachricht Ihrer Buchhaltung:**.
+### Warum eine Zahlung, die Sie erwartet haben, nicht hier steht
 
-Dieselbe Anfrage wird auch als automatische Nachricht im Nachrichtenverlauf des Datensatzes veröffentlicht, deutlich als Systemnachricht gekennzeichnet, nicht als Nachricht einer Person. Bei Fragen zu einer Position können Sie dort antworten.
+Ob etwas aufgenommen wird, hängt am Zustand der Transaktion, nie an ihrem Alter. Nichts erscheint nur, weil es alt ist, und nichts wird übergangen, weil es neu ist.
+
+Eine Zahlung bleibt außen vor, solange sie noch verarbeitet wird, und endgültig, wenn sie eine interne Umbuchung ist, ein Duplikat, etwas, das bereits einen Transaktionstyp trägt, oder etwas mit einer Zuordnung, die auf die Bestätigung durch einen Menschen wartet.
+
+Diese Seite ist außerdem nicht dieselbe Zahl, die Ihre Buchhaltung in der Übersicht des Arbeitsbereichs als fehlende Belege sieht. Jene zählt großzügiger und ist berechtigterweise höher.
+
+## Was eine Karte zeigt
+
+Den Partner, den Betrag und wie lange er schon wartet. Darunter den Verwendungszweck der Transaktion oder die Rechnungsnummer.
+
+Zwei Details lohnt es sich zu kennen. Der Betrag einer Zahlung wird **mit Vorzeichen** gezeigt, ausgehendes Geld trägt also ein Minus, während der Betrag einer Rechnung ohne Vorzeichen erscheint. Und eine Karte **Aus NAV**, die nie eine Zahlung war, trägt **kein Datum**, denn das Datum auf einer Karte stammt aus der Banktransaktion.
+
+Hat Ihre Buchhaltung einen Hinweis ergänzt, zum Beispiel „Die Quittungen sind in der Quillmoor-App“, erscheint er unter **Nachricht Ihrer Buchhaltung:**.
+
+Dieselbe Anfrage wird auch als automatische Nachricht im Verlauf des Datensatzes veröffentlicht, gekennzeichnet als vom System und nicht von einer Person. Dort können Sie mit einer Frage zu genau dieser Position antworten. Sie wird **einmal veröffentlicht und nie wiederholt**.
+
+Die Liste zeigt alles Offene auf einer Seite, das Älteste zuerst. Es gibt keine Suche, keinen Filter und keine Sortierung, denn die Liste soll geleert und nicht durchstöbert werden.
 
 ## Direkt zur Position hochladen
 
-Jede Karte hat eine Schaltfläche **Hochladen**. Nutzen Sie sie nach Möglichkeit statt eines allgemeinen Uploads: Die Datei wird genau der Zahlung oder Rechnung zugeordnet, auf die sie antwortet, und schließt so ihre eigene Anfrage, statt in einer allgemeinen Warteschlange zu liegen.
+Jede Karte hat eine Schaltfläche **Hochladen**. Nutzen Sie sie statt eines allgemeinen Uploads: Die Datei wird mit der Position verknüpft, auf die sie antwortet, und genau das sagt Ihrer Buchhaltung, warum sie gekommen ist.
 
-Nach dem Hochladen:
+Danach durchläuft sie genau dieselbe Auslesung und Zuordnung wie jeder andere Upload, sie ist also weder sofort fertig noch garantiert. Die Karte verschwindet, wenn die Arbeit tatsächlich ankommt:
 
-- wird das Dokument automatisch ausgelesen und der Zahlung zugeordnet (oder mit dem NAV-Rechnungsdatensatz zusammengeführt),
-- wandert die Karte in den Bereich **Diese Woche erledigt**,
-- ist von Ihrer Seite nichts weiter nötig.
+- **die Karte einer Zahlung** verschwindet, sobald das Dokument ausgelesen und gegen diese Zahlung bestätigt wurde;
+- **eine Karte Aus NAV** verschwindet, sobald das Dokument an diese NAV-Rechnung angehängt ist.
 
-Gehören zu einem Kauf mehrere Seiten oder Fotos, laden Sie sie nach Möglichkeit als eine Datei hoch; andernfalls laden Sie die Rechnung selbst hoch und schreiben zum Rest im Nachrichtenverlauf.
+Liest die Extraktion die Rechnung falsch, oder braucht die Zuordnung die Bestätigung durch einen Menschen, bleibt die Karte offen. Das ist ein System, das ehrlich ist, und keines, das feststeckt; Ihre Buchhaltung sieht dasselbe wie Sie.
+
+Gehören zu einem Kauf mehrere Seiten oder Fotos, laden Sie sie nach Möglichkeit als eine Datei hoch. Andernfalls laden Sie die Rechnung selbst hoch und schreiben zum Rest im Nachrichtenverlauf.
 
 ## Wenn keine Rechnung existiert
 
-Zu manchen Zahlungen gibt es tatsächlich keine Rechnung: eine Bankgebühr, eine Steuerzahlung, eine Kaution. Wenn Sie wissen, dass es zu einer Position kein Dokument gibt, klicken Sie auf der Karte auf **Keine Rechnung vorhanden**.
+Zu manchen Zahlungen gibt es tatsächlich keine Rechnung: eine Bankgebühr, eine Steuerzahlung, eine Kaution. Auf diesen Karten hält **Keine Rechnung vorhanden** Ihre Antwort fest und übergibt sie Ihrer Buchhaltung, die sie bestätigt und die Position schließt.
 
-Damit wird Ihre Antwort festgehalten und an Ihre Buchhaltung übergeben, die sie bestätigt und die Position schließt. Ihre Antwort allein verändert die Transaktion nie; die buchhalterische Entscheidung bleibt bei Ihrer Buchhaltung. Bis zur Bestätigung bleibt die Karte mit Ihrer vermerkten Antwort sichtbar.
+Die Schaltfläche gibt es nur auf Karten zu Zahlungen. Eine Karte **Aus NAV** hat sie nie, denn die NAV-Meldung ist der Beleg dafür, dass die Rechnung existiert.
 
-## Die E-Mails, und wie Sie sie abschalten
+Ihre Antwort allein verändert die Transaktion nie; die buchhalterische Entscheidung bleibt bei Ihrer Buchhaltung. Bis zur Bestätigung bleibt die Karte mit Ihrer vermerkten Antwort sichtbar.
 
-Damit Sie die Seite nicht im Blick behalten müssen, verschickt das System eine kurze E-Mail, wenn neue Belege gebraucht werden:
+## Diese Woche erledigt
 
-- **höchstens eine E-Mail pro Tag**, egal wie viele Positionen an dem Tag dazukamen,
-- **montags eine Übersicht** über alles, was noch offen ist,
-- **gar keine E-Mail**, wenn nichts wartet.
+Positionen, die in den letzten sieben Tagen beantwortet wurden, stehen unter **Diese Woche erledigt**: die, zu denen ein Dokument kam, und die, die Ihre Buchhaltung mangels Rechnung geschlossen hat.
 
-Sie können diese E-Mails auf zwei Wegen abschalten:
+Positionen, die Ihre Buchhaltung zurückgezogen hat, erscheinen dort nicht. Sie verlassen einfach die Seite.
 
-- klicken Sie am Ende einer solchen E-Mail auf **Diese E-Mails abbestellen**, oder
-- öffnen Sie in der App die Kontoeinstellungen im Reiter **Benachrichtigungen** und schalten Sie die Zeile **Fehlende Belege** aus.
+## Die E-Mails
 
-Das Abschalten der E-Mails blendet die Seite selbst nie aus: Liste und Zähler funktionieren weiter, Sie werden nur nicht mehr per E-Mail erinnert.
+Unter **Konto → Benachrichtigungen** gibt es eine Zeile **Fehlende Belege**, im Abschnitt über die Unterhaltungen mit Ihren Mandanten, und für die E-Mails selbst ist ein Abmeldelink vorbereitet.
+
+**Diese E-Mails sind noch nicht eingeschaltet.** Es wurde noch keine verschickt. Wenn sie starten, wird es höchstens eine pro Tag sein, egal wie viele Positionen an dem Tag dazukamen, montags eine Übersicht über alles, was noch offen ist, und an einem Tag, an dem nichts wartet, gar keine. Sie abzuschalten blendet die Seite nie aus.
 
 ## Für Buchhalter
 
-Buchhalter sehen dieselbe Liste, mit zwei zusätzlichen Bedienelementen je Karte:
+Zwei zusätzliche Bedienelemente erscheinen auf jeder Karte für alle, die „Banktransaktionen bearbeiten“ haben; das ist eine Berechtigung und keine Funktionsbezeichnung: Ein Mitglied auf Mandantenseite, dessen Rolle sie enthält, bekommt sie ebenfalls. Siehe [Rollen & Berechtigungen](/roles-and-permissions).
 
-- **Nicht anfragen** zieht eine Anfrage zurück. Die Position verschwindet von der Seite, aus dem Zähler und aus den E-Mails des Mandanten, und es gehen keine Erinnerungen mehr hinaus. Die automatische Nachricht bleibt als Verlauf im Thread erhalten, und der Rückzug wird mit Person und Zeitpunkt festgehalten.
-- **Notiz** ergänzt eine kurze Erklärung, die der Mandant auf der Karte sieht; nützlich, um zu sagen, wo das Dokument zu finden ist.
+- **Nicht anfragen** zieht eine Anfrage zurück. Sie verlässt die Seite des Mandanten, und die Position wird nie wieder angefragt: Von der Seite aus gibt es keinen Weg zurück. Die automatische Nachricht bleibt als Verlauf im Thread, und der Rückzug wird mit Person und Zeitpunkt festgehalten.
+- **Notiz** hängt eine kurze Erklärung an, die auf der Karte des Mandanten erscheint; nützlich, um dem Mandanten zu sagen, wo er nachsehen soll.
 
-Anfragen öffnen und schließen sich von selbst: eine Zuordnung, ein hochgeladenes Dokument oder eine bestätigte Antwort "keine Rechnung" schließt die Position ohne manuelle Pflege.
+Anfragen öffnen und schließen sich von selbst. Von hier fließt nichts in die Checkliste zum Periodenabschluss oder ins **Cockpit**, eine leere Seite ist also kein Zeichen dafür, dass der Monat fertig ist.
+
+## Verwandte Artikel
+
+- [Dateien hochladen](/uploading-files)
+- [NAV Online Számla](/nav-online-szamla)
