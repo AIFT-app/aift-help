@@ -88,7 +88,7 @@ The invoice's own labels are shorter than the ones on the partner dropdown, so t
 
 Nothing is hidden. The **Document** tab still renders the supplier's original NAV report exactly as it was filed, payment method included, behind the **NAV data** toggle, so you can always compare what was reported against what you decided.
 
-The method you set is not display-only: it goes out in the accounting export alongside everything else.
+The method you set never prints in the export itself: the RLB and Hessyn files both write the payment mode as a fixed value. What it does change is whether the invoice is in the Hessyn export at all, because that file leaves out everything closed as cash. So setting a partner to a non-cash method is what keeps their invoices in it.
 
 ## Your Own Decisions Always Win
 
