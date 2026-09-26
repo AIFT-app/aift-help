@@ -1,70 +1,115 @@
 # Dokumentumok továbbítása e-mailben
 
-Minden munkaterületnek saját e-mail-címe van. Továbbítson egy számlát, bankszámlakivonatot vagy nyugtát erre a címre, és nagyjából egy percen belül megjelenik a munkaterületen, a mellékleteivel együtt beolvasva és automatikusan besorolva - bejelentkezés és kézi feltöltés nélkül. Ez a legegyszerűbb módja annak, hogy elkapja azokat a SaaS-nyugtákat és szállítói számlákat, amelyek amúgy is a postaládájába érkeznek.
+Minden munkaterületnek saját e-mail-címe van. Továbbítson rá egy számlát vagy egy nyugtát, és nagyjából egy percen belül megjelenik a munkaterületen, bejelentkezés és kézi feltöltés nélkül. Ez a legegyszerűbb módja annak, hogy elkapja azokat a SaaS-nyugtákat és szállítói számlákat, amelyek amúgy is a postaládájába érkeznek.
 
-A továbbított dokumentumok a **Gyűjtő**be kerülnek, amely a munkaterület címeire érkezett minden küldemény naplója. Innen a számlák a szokásos kinyerési folyamatba jutnak, ami pedig emberi döntést igényel, azt a rendszer ellenőrzésre jelöli.
+A továbbított levél a **Gyűjtő**be kerül, amely a munkaterület címeire érkezett minden küldemény naplója. A mellékletek beolvasása és besorolása tovább tart annál az egy percnél: az egy perc az e-mail megjelenése, nem a számla elkészülte.
 
-## A cím megkeresése
+## Az Ön címe
 
-Nyissa meg a **Beállítások → E-mail beolvasás** menüpontot (a Gyűjtő oldal tetején lévő **Címek kezelése →** hivatkozással is odajut). Az **Elsődleges cím** másolható blokként jelenik meg, körülbelül így:
+Nyissa meg a **Beállítások → E-mail beolvasás** oldalt, vagy a Gyűjtő oldal tetején a **Címek kezelése →** hivatkozást. Az **Elsődleges cím** másolható blokk, körülbelül így néz ki:
 
 ```
-amunkateruleted@in.aifinance.team
+in-k7p2xq4m@in.aifinance.team
 ```
 
-A helyi rész (a `@` előtti darab) egyedi a munkaterületére. Másolja ki, vegye fel a névjegyei közé, és továbbítson bátran. Az oldal azt is mutatja, hány e-mailt kapott az elmúlt 30 napban, és mikor érkezett a legutóbbi.
+A `@` előtti rész nyolc véletlenszerű karakter, nem a cégneve. Ez szándékos, és a következő szakasz elmagyarázza, miért. Az oldal azt is mutatja, hány e-mail érkezett az elmúlt 30 napban, és mikor érkezett a legutóbbi.
 
-> A cím **munkaterületenként** egyedi, nem cégenként vagy személyenként. Bármi, amit erre küldenek, annak az egy munkaterületnek a Gyűjtőjébe kerül.
+A cím **munkaterületenként** egyedi, nem cégenként vagy személyenként, és nem nevezhető át, nem módosítható és nem generálható újra.
+
+### Ki küldhet rá
+
+**Bárki, aki ismeri a címet.** Nincs engedélyezett feladókat tartalmazó lista. Az egyetlen ellenőrzés az, hogy a küldő tartomány átmegy-e a saját hitelesítésén, ami azt bizonyítja, hogy a levél valóban arról a tartományról érkezett, nem pedig azt, hogy a feladó bárki is volna.
+
+Így a cím maga a titok. Ezért áll nyolc véletlenszerű karakterből a cégneve helyett: senki nem tudja kitalálni, és egyetlen címből senki nem tudja kikövetkeztetni a többi munkaterülete címét. Úgy kezelje, ahogy egy privát feltöltési hivatkozást kezelne. Ossza meg azokkal a személyekkel és számlázási rendszerekkel, amelyeknek dokumentumokat kell Önnek küldeniük, ennél szélesebb körben viszont ne.
 
 ### Egyéni aliasok
 
-Ha egy számlázási beállítási oldalhoz rendezettebb címre van szükség, mint az automatikusan generált, munkaterületenként akár **öt egyéni aliast** is igényelhet (például `acme@in.aifinance.team`). Az **Egyéni aliasok** alatt írja be a kívánt nevet, kattintson az **Igénylés** gombra, és használja bárhol, ahol az elsődleges cím is működne. Ha egy aliasra már nincs szükség, a **Visszavonás** gombbal vonhatja vissza.
+Ha egy szállító számlázási oldalának rendezettebb címre van szüksége, munkaterületenként akár **öt egyéni aliast** is igényelhet, például `acme@in.aifinance.team`. Az **Egyéni aliasok** alatt írja be a nevet, kattintson az **Igénylés** gombra, és használja bárhol, ahol az elsődleges cím is működik.
 
-Az aliasok kezelése (igénylés vagy visszavonás) **könyvelő adminisztrátorokra** és **pénzügyi vezetőkre** korlátozott. Mindenki más csak olvasható módon látja a címeket - a továbbításhoz ennyi is elég.
+**Az egyéni alias kitalálható, és pontosan ez az ára.** Ha a saját cégneve kerül bele, lemond arról a védelemről, amelyet a véletlenszerű cím ad. Megéri egy olyan szállítói portálhoz, amely elutasítja a furcsának tűnő címeket, de nem éri meg mindennapi címként.
 
-## Mi történik egy továbbított e-maillel
+A **Visszavonás** véglegesen kikapcsolja az aliast. A visszavont aliasra küldött levelet a rendszer elutasítja ahelyett, hogy elfogadná, a név pedig végleg foglalt marad: sem más munkaterület, sem Ön nem igényelheti többé. A visszavonás viszont felszabadít egy helyet egy másik névnek.
 
-1. Az e-mail megérkezik a munkaterület címére, és egy sor jelenik meg a **Gyűjtő**ben.
-2. Minden melléklet **osztályozásra** kerül - az alkalmazás kitalálja, hogy számla, bankszámlakivonat, nyugta vagy valami más.
-3. A számlák és nyugták a kinyerési folyamatba kerülnek, és ugyanúgy megjelennek a **Számlák** oldalon, mint bármely más feltöltés. A bankszámlakivonatot ezen az úton **nem** nyerjük ki: a Gyűjtőben várakozik **Kinyerőre vár** jelöléssel, a beolvasásához pedig a **Banki tranzakciók** oldalon kell feltöltenie, lásd [Bankszámlakivonatok feltöltése](/bank-statement-upload).
-4. Amit az alkalmazás nem tud magabiztosan besorolni, azt az **Áttekintés szükséges** alá teszi félre, hogy egy ember rendezze.
+Az igényléshez és a visszavonáshoz a „Kapcsolatok kezelése” jogosultság kell, amellyel a könyvelő adminok és a pénzügyi vezetők alapértelmezés szerint rendelkeznek. Mindenki más csak olvasható módon látja a címeket, a továbbításhoz pedig ennyi is elég.
 
-Magát az eredeti e-mailt sosem számlázzuk ki dokumentumként - csak a benne lévő hasznos mellékletek kerülnek be a munkaterületre.
+## Mit küldhet
+
+Elfogadott mellékletek: **PDF, PNG, JPEG, WEBP és HEIC**. A ZIP-archívumokat a rendszer kibontja, és a bennük lévő támogatott fájlokat külön dokumentumként olvassa be.
+
+**Minden mást némán eldob.** Egy `.docx`, `.xlsx`, `.csv` vagy `.txt` mellékletet figyelmeztetés nélkül elvet, az e-mail pedig továbbra is késznek látszik, csak alacsonyabb melléklet-darabszámmal. A látható darabszám azt mutatja, mi maradt meg, nem azt, mit küldtek, tehát ha egy szám alacsonynak tűnik, valamit eldobott a rendszer.
+
+Korlátok: mellékletenként 10 MB, e-mailenként 20 melléklet, a teljes e-mailre 25 MB, és munkaterületenként naponta 200 e-mail.
+
+Két dolog, amin sokan fennakadnak:
+
+- **Az e-mail törzsébe beillesztett számla elvész.** A törzset a rendszer eltárolja, és el tudja olvasni az e-mailen, de sosem kezeli dokumentumként. Dokumentumnak csak a mellékletek számítanak.
+- **A 10 KB alatti képeket a rendszer aláírásként és logóként eldobja.** Egy nyugtáról készült apró képernyőkép így tud eltűnni. A levélbe ágyazott nagyobb képeket a rendszer ugyanúgy beolvassa, mint bármely mellékletet.
+
+> **Az iPhone-fotók figyelmet igényelnek.** A HEIC-fotót a postafiók elfogadja, majd a beolvasása elhasal, a dokumentum **Sikertelen** állapotban marad, az e-mail pedig beragad **Feldolgozás** állapotban. Ahol teheti, az eredeti PDF-et küldje, vagy állítsa a telefonját JPEG-fotókra.
+
+Ugyanazt a fájlt kétszer továbbítani nem kerül semmibe: a második példányt a rendszer a tartalma alapján felismeri, duplikátumként megjelöli, és soha nem dolgozza fel újra.
+
+## Mi történik ezután
+
+1. Megérkezik az e-mail, és egy sor jelenik meg a **Gyűjtő**ben.
+2. A rendszer minden mellékletet besorol: számla, nyugta, sztornó számla, bankkivonat, szerződés vagy valami más.
+3. **A számlák, a nyugták és a sztornó számlák** kinyerésre kerülnek, és ugyanúgy megjelennek a **Számlák** oldalon, mint bármely más feltöltés.
+4. **A bankkivonatot ezen az úton nem nyeri ki a rendszer.** A Gyűjtőben várakozik **Kinyerőre vár** jelöléssel, nem jelenik meg semmilyen várólistán és nem visel jelvényt, tehát semmi nem fogja emlékeztetni rá. Helyette a **Banki tranzakciók** oldalon töltse fel: lásd [Bankszámlakivonatok feltöltése](/bank-statement-upload).
+5. **A szerződés és minden fel nem ismert fájl** a **Dokumentumok** oldalra kerül, amely csak a könyvelői oldalon érhető el. Az Áttekintés szükséges alatt nem jelenik meg.
+6. **Amit a rendszer alacsony magabiztossággal sorolt be**, azt az **Áttekintés szükséges** alatt jelöli meg, függetlenül attól, hogy utána kinyerésre került-e.
+
+<TriageDestinationsFigure>
+Négy végállomás, és csak az első az, amire az ember számít. A középső kettőben halkulnak el a továbbított dokumentumok.
+</TriageDestinationsFigure>
+
+A rendszer soha nem küld vissza semmit a feladónak: se választ, se visszapattanó levelet, se visszaigazolást, sem sikerről, sem hibáról. Csak a Gyűjtőből lehet megtudni, hogy megérkezett-e egy e-mail.
+
+Magát az e-mailt soha nem számlázzuk ki dokumentumként, csak azok a mellékletek számítanak, amelyekből számla lesz.
+
+Az alkalmazás abból is tanul, hogy ki mit küld. Ha egy feladó tartománya már néhány magabiztos besorolást eredményezett, az onnan érkező későbbi dokumentumokat jobban sorolja be, így egy szállító tizedik számlája megbízhatóbban landol, mint az első.
 
 ## A Gyűjtő oldal
 
-A Gyűjtőt a könyvelők és az ügyfelek egyaránt látják. Két füle van:
+A Gyűjtőnek két füle van:
 
-- **Összes levél** - minden beérkezett e-mail, a legújabbal kezdve. Minden sor mutatja az érkezés idejét, a feladót, a tárgyat, a címzett címet, egy státuszt, és hány melléklet érkezett vele.
-- **Áttekintés szükséges** - az a részhalmaz, amely emberi döntést igényel. Borostyánsárga darabszám-jelvényt visel, így egy pillantással látható, vár-e valami elintézésre.
+- **Összes levél** - minden beérkezett e-mail, a legújabbal kezdve, az érkezés idejével, a feladóval, a tárggyal, azzal, hogy melyik címére érkezett, egy státusszal, és azzal, hány mellékletet tartott meg a rendszer.
+- **Áttekintés szükséges** - az a részhalmaz, amely emberi döntést igényel, borostyánsárga darabszám-jelvénnyel.
+
+Bármelyikük megtekintéséhez a „Számlák és banki tranzakciók megtekintése” jogosultság kell. Az a tag, akinek nincs meg, üres Gyűjtőt lát, nem hibaüzenetet. Maguk a címek mindenki számára láthatók maradnak.
 
 ### Státuszcímkék
 
 | Címke | Jelentése |
 |---|---|
-| **Kész** | Az e-mail feldolgozásra került, mellékleteit lekezeltük. |
-| **Feldolgozás** | Még olvasás alatt. |
-| **Érkezett** | Megérkezett, még nincs feldolgozva. |
-| **Sikertelen** | Valami hiba történt az e-mail kezelése közben. |
-| **Ismeretlen cím** / **Visszavont cím** | Nem létező vagy visszavont címre küldve. |
-| **Hitelesítés sikertelen** | A feladót nem sikerült ellenőrizni. |
-| **Túl nagy** / **Korlátozva** | Méret miatt elutasítva, vagy túl sok e-mail túl gyorsan. |
-| **Több dokumentum** | Egyetlen PDF több dokumentumot tartalmazott (lásd alább). |
-| **Nincs melléklet** | Nincs mit beolvasni. |
+| **Kész** | Feldolgozva, a mellékletei lekezelve |
+| **Feldolgozás** | Még olvasás alatt |
+| **Sikertelen** | Valami hiba történt az e-mail kezelése közben |
+| **Visszavont cím** | Visszavont aliasra küldve |
+| **Hitelesítés sikertelen** | A küldő tartományt nem sikerült ellenőrizni |
+| **Túl nagy** | A 25 MB-os korlát felett |
+| **Korlátozva** | Naponta több mint 200 e-mail |
+| **Próbaidőszaki keret betelt** | A levéllel nem volt baj, a próbacsomag dokumentumkerete utasította el |
+| **Több dokumentum** | Egyetlen PDF több dokumentumot tartalmazott |
+| **Nincs melléklet** | Nincs beolvasható támogatott tartalom |
+
+A **Nincs melléklet** figyelmes olvasást érdemel: azt jelenti, hogy nincs *támogatott* melléklet. Egy csak Word-fájlt hordozó e-mail így jelenik meg.
+
+**Az elgépelt cím semmilyen nyomot nem hagy.** A nem létező címre küldött levelet a rendszer sor, visszapattanó levél és hibaüzenet nélkül eldobja. Ha továbbított valamit, és a Gyűjtő üres, először a címet ellenőrizze.
 
 ## Amikor valami figyelmet igényel
 
-Nyissa meg egy e-mail sorát, hogy lássa a mellékleteit, az e-mail törzsét és - ha szükséges - a nyers fejléceket.
+Nyissa meg egy e-mail sorát, hogy lássa a mellékleteit és a törzsét.
 
-- **Egy mellékletet nem sikerült menteni.** A mellékletek száma borostyánsárgára vált, és az e-mailen szalagcím jelenik meg: *„1 mellékletet nem sikerült menteni.”* A szokásos ok egy szokatlan fájlnév - **kérje meg a feladót, hogy nevezze át a fájlt, és továbbítsa újra**, vagy töltse fel kézzel a Számlák oldalról.
-- **Egy PDF több dokumentumot tartalmazott.** Ha valaki egyetlen PDF-et továbbít, amely valójában több, egybe szkennelt számla, azt a rendszer **Több dokumentum** jelöléssel látja el: *„Oszd szét a PDF-et számlánként/bankkivonatonként egy dokumentumra és töltsd fel újra ezen a címen vagy a manuális feltöltésen keresztül.”* Bontsa számlánként egy dokumentumra, és továbbítsa a darabokat.
-- **Az alkalmazás nem volt biztos abban, mi a fájl.** Ilyenkor az **Áttekintés szükséges** alá kerül a legjobb tippjével és egy megbízhatósági pontszámmal. Nyissa meg, és az újrabesorolás vezérlővel állítsa be a helyes típust.
+- **Egy mellékletet nem sikerült menteni.** A darabszám borostyánsárgára vált, és szalagcím jelzi. Töltse fel azt a fájlt kézzel a Számlák oldalról. A könyvelők a nyers e-mailt is letölthetik, hogy pontosan lássák, mi érkezett.
+- **Egy PDF több dokumentumot tartalmazott.** A rendszer **Több dokumentum** jelöléssel látja el, és semmit nem nyer ki belőle. Bontsa számlánként egy dokumentumra, és továbbítsa a darabokat.
+- **Az alkalmazás nem volt biztos abban, mi a fájl.** Az **Áttekintés szükséges** alá kerül a legjobb tippjével. Nyissa meg, és az újraosztályozás vezérlővel állítsa be a helyes típust: **Számla**, **Bankkivonat**, **Nyugta**, **Sztornó számla**, **Szerződés** vagy **Egyéb**. Ezt bármelyik tag megteheti, és a javítás megtanítja az alkalmazást az adott feladó tartományára.
 
 ## Tippek
 
-- **Továbbítson, ne képernyőképezzen.** Az eredeti PDF vagy kép továbbítása adja a legtisztább kinyerést. Egy képernyőről készült fotó is működik, de az eredeti mindig jobb.
-- **Ideális az e-mailenként egy számla**, de több különálló melléklet is rendben van egyetlen e-mailen - mindegyikből saját dokumentum lesz.
-- **Zajos feladókhoz használjon egyéni aliast.** Ha egy adott szállító számlázási oldala csak egyetlen címet fogad el, igényeljen hozzá egyéni aliast, hogy könnyen felismerhető legyen a Gyűjtőben.
+- **Az eredetit továbbítsa.** A szállító PDF-jéből sokkal jobban kinyerhetők az adatok, mint egy képernyőről készült fotóból, és így a HEIC-probléma is teljesen elkerülhető.
+- **Ideális az e-mailenként egy számla**, de több támogatott melléklet is rendben van egyetlen e-mailen: mindegyikből saját dokumentum lesz.
+- **Ellenőrizze a mellékletek számát**, miután valami szokatlant továbbított. Ez a leggyorsabb módja annak, hogy észrevegye, ha a rendszer némán eldobott egy fájlt.
+- **Tartsa félig privátban az elsődleges címet**, és csak ott igényeljen egyéni aliast, ahol egy szállító rendszere rákényszeríti.
 
 ## Kapcsolódó cikkek
 

@@ -1,68 +1,105 @@
 # VAT Master Data
 
-AI Finance Team resolves the correct **VAT code** for every invoice line automatically. To make that possible, each workspace carries its own VAT master data: five small tables that describe, in your accounting system's terms, how VAT works for that client. You'll find them under **Master data → VAT codes**, organised as five tabs.
+AI Finance Team resolves the correct **VAT code** for every invoice line automatically. To make that possible, each workspace carries its own VAT master data: small tables that describe, in your accounting system's terms, how VAT works for that client.
 
-## How a VAT Code Is Composed
+You will find them under **Master data → VAT codes**. The page has six tabs, and a seventh when Business Central is connected. This is bookkeeping configuration for the office: **client-side users cannot reach it at all.**
 
-A VAT code is not picked from a flat list - it is **resolved from five elements**:
+> **Two different things are called "VAT group".** The **VAT groups** entry in the sidebar is Hungarian group VAT registration, where several companies share one tax number: see [VAT Groups](/vat-groups). The **Partner VAT group** below is one of the five elements of a VAT code, and has nothing to do with it.
 
-1. **Partner VAT Group** - who the trading partner is, VAT-wise: domestic, EU, third country, a cash-method partner, or a small-business-exempt supplier. (That last one describes a *supplier* who is exempt. Your own client's exemption is a different thing - a setting on the entity, covered in [Small business VAT exemption](/small-business-exemption).)
-2. **Product / Service VAT Group** - what is being supplied: products, services, fixed assets, prepayments. Groups can carry a default **non-deductible %** (for example 50% for passenger-car costs).
-3. **VAT Rate** - the percentage, with its validity period (27%, 18%, 5%, zero…).
+## How A VAT Code Is Composed
+
+A VAT code is not picked from a flat list, it is **resolved from five elements**:
+
+1. **Partner VAT group** - who the trading partner is, VAT-wise: domestic, EU, third country, a cash-method partner, or a small-business-exempt supplier. (That last one describes a *supplier* who is exempt. Your own client's exemption is a different thing, covered in [Small business VAT exemption](/small-business-exemption).)
+2. **Product / service VAT group** - what is being supplied: products, services, fixed assets, prepayments. Groups can carry a default **non-deductible %**, for example 50% for passenger-car costs.
+3. **VAT rate** - the percentage, with its validity period.
 4. **Direction** - income (you are the seller) or expense (you are the buyer).
-5. **Calculation Method** - how the entry is constructed: normal, reverse charge, or VAT only.
+5. **Calculation method** - how the entry is constructed: normal, reverse charge, or VAT only.
 
-The **VAT Codes** tab combines these five elements into the codes your accounting system expects. When an invoice line's five elements match a VAT code's combination (and the invoice date falls in the code's validity period), that code is assigned automatically. There is deliberately no turnkey country code list - the code table is yours to author, because every accounting firm and every target system names codes differently.
+Four of those have their own tab. **Direction has no table**, which is why the tab count does not match the element count: it comes from the invoice.
 
-## Two Code Columns - and the Uniqueness Setting
+The **VAT codes** tab combines the five elements into the codes your accounting system expects. When a line's elements match a code's combination, and the **invoice's VAT date** falls in that code's validity period, the code is assigned.
 
-Each VAT code row has two identifiers:
+There is no turnkey country code list: the code table is yours to author, because every firm and every target system names codes differently. The one exception is the small-business exemption template, which writes its own codes for you.
 
-- **Accounting code** - the code exactly as your accounting system expects it on import. Always required.
-- **AIFT code** - an optional internal code, useful when several AIFT-side distinctions map to a single accounting-system code.
+### When the elements do not resolve
 
-A workspace-level setting (Settings → **VAT settings**) decides which of the two must be unique among active codes. Most workspaces leave it on accounting-system codes; switch it to AIFT codes when you deliberately want several AIFT codes pointing at one accounting code.
+You can set one **default VAT code per direction**. A line whose factors cannot be fully determined gets that code, marked for review, as long as nothing identified actually contradicts it. On the VAT codes tab a **Default** badge marks them, and **Set default** assigns one; clicking it again clears it.
 
-## What Your Client Does Changes the Answer
+Setting a default does not touch invoices you already have. For those, the invoice list has a **Re-run VAT coding** action, which only fills in lines whose code is missing and never touches coded lines, manual work or categories.
 
-Some VAT questions cannot be settled from the invoice text at all. A bottle of whisky bought by a bar is **stock** - the VAT on it is deductible, because the bar resells it. The same bottle bought by a consultancy is **representation**, and its VAT is not deductible at all. The invoice line reads the same either way.
+## The Four Element Tabs
 
-So AI Finance Team asks you, once per company: open **Master data → Companies**, pick the company, and fill in **Business activity**. Both fields are optional:
+Each holds one dimension, and they all work the same way: a name, a code, a description, an AI explanation, country hints, an Active flag, and a validity range.
 
-- an **activity code** (TEÁOR, NACE or your local equivalent), and
-- **one or two sentences** describing what the business actually does.
+Two things to know about them:
 
-The sentence is the part that does the work. Mention anything the company buys in order to resell, serve or build into what it sells - *"Restaurant and bar. Buys food and drink to prepare and serve to guests."* is enough to stop every beverage invoice being read as entertainment.
+- **Only the Rates tab shows the validity dates as columns.** They exist on all four, in the edit drawer.
+- **On the product/service tab, watch for the duplicate-code warning.** When two groups share a code, the app tells you plainly that it shows the AI both and asks it to choose, so its classification of those lines is effectively arbitrary. Fix the duplicate rather than living with it.
 
-Leave both blank and nothing changes: classification behaves exactly as it did before.
+## The VAT Codes Tab
 
-## When a Supplier Always Sells the Same Thing
+**How many code columns you see depends on a setting.** Under **Settings → VAT settings** you choose whether accounting-system codes or AIFT codes must be unique among active codes.
 
-For a supplier whose invoices are always the same kind of thing - a drinks wholesaler, a stationery supplier - you can skip the guessing entirely. On the partner's page, **Always sells** sets the product/service VAT group applied to every line from that supplier.
+- Leave it on accounting codes, the default, and there is a single **Accounting code** column, required.
+- Switch it to AIFT codes and an **AIFT code** column appears, required, and the accounting code becomes optional. Use this when several AIFT-side distinctions deliberately map to one accounting code.
 
-It deliberately sets **only** that one field. The VAT rate and the calculation method - including reverse charge on EU purchases - still come from the invoice itself, because a supplier's identity does not determine them: the same wholesaler can invoice a 27% spirit and a 5% item on one document.
+Hungarian workspaces have a third field, the **NAV mapping code**, which is the NAV Online VAT classification used for inbound mapping.
 
-If you pick a group that is wholly or partly non-deductible, AI Finance Team warns you before saving, because every line from that supplier will inherit it.
+That settings page has a second half the rest of this article does not cover: **VAT export settings**, which decides how non-deductible VAT is handled in the export files.
 
 ## Validity Periods
 
-Rates and codes change over time - a VAT rate change doesn't rewrite history. Every row carries an optional **Effective from / Effective to** range. When a rate or rule changes, don't edit the old row: **add a new row** with the new validity period. Resolution always picks the row that was in force on the invoice's VAT date.
+Rates and rules change over time, and a rate change does not rewrite history. Every row carries an optional **Effective from / Effective to** range. When something changes, do not edit the old row: **add a new one** with the new period. Resolution always picks the row in force on the invoice's VAT date.
 
-## Default Rows
+## Rows Cannot Be Deleted
 
-New workspaces are seeded with a sensible scaffold: universal partner groups and product/service groups, the country's current VAT rates, and the three calculation methods. The VAT Codes tab starts **empty** - the code table is authored per workspace.
+There is no delete, anywhere in VAT master data. A row you no longer want is **deactivated**, which does more than the hint suggests: an inactive row leaves the pickers *and* stops taking part in resolution. Activating it again restores both.
 
-Seeded rows behave like other system defaults in AI Finance Team:
+## What A New Workspace Ships With
 
-- Their names display in the **workspace's language** (a Hungarian workspace shows "Belföldi", a German one "Inland") regardless of your own interface language.
-- If you **rename** a default row, it becomes a custom row: the name you typed is shown verbatim from then on. Editing its description, dates, or archiving it does *not* detach it.
+Unlike accounting categories, which now start completely empty, **VAT master data is still seeded**. A new workspace gets:
 
-## Who Sees What
+- five partner VAT groups,
+- four product/service groups: products, services, fixed assets and prepayments,
+- the three calculation methods,
+- and VAT rates, but **only for Hungary, Germany and Austria**. Every other country starts with a zero rate and nothing else.
 
-All workspace members - including client roles - can **view** the five VAT tables. Creating, editing, archiving, importing and copying are restricted to members with the **Accountant** or **Accountant admin** role.
+The **VAT codes** tab starts empty.
+
+A fifth product/service group for your own company's exemption, and the exempt and out-of-scope rate elements a Hungarian workspace needs, are not seeded at creation: they arrive when the exemption template runs or when you import them.
+
+### Seeded rows behave like other system defaults
+
+- Their names display in the **workspace's language**, whatever your own interface language is. A Hungarian workspace shows "Belföldi", a German one "Inländisch".
+- **Renaming** a default row makes it a custom row, and the name you typed is shown verbatim from then on. Editing its description or dates, or deactivating it, does not detach it.
+
+## Teaching The AI What It Cannot Read
+
+Some VAT questions cannot be settled from the invoice text. A bottle of whisky bought by a bar is **stock** and its VAT is deductible, because the bar resells it. The same bottle bought by a consultancy is **representation**, and its VAT is not deductible at all. The line reads the same either way.
+
+Three places answer that, and none of them is on this page.
+
+**Business activity**, on the company's **Tax & VAT** tab under **Master data → Companies**. Both fields are optional: an activity code (TEÁOR, NACE or your local equivalent), and one or two sentences describing what the business actually does. The sentence does the work. Mention anything the company buys in order to resell, serve or build into what it sells: *"Restaurant and bar. Buys food and drink to prepare and serve to guests."* is enough to stop every beverage invoice being read as entertainment. Leave both blank and nothing changes.
+
+**The partner's VAT group** and **Always sells**, both on the partner's **Rules** tab. **Always sells** sets the product/service VAT group applied to every line from that supplier, and deliberately sets only that one field: the rate and the calculation method, including reverse charge on EU purchases, still come from the invoice, because a supplier's identity does not determine them. The same wholesaler can invoice a 27% spirit and a 5% item on one document. If you pick a group that is wholly or partly non-deductible, you are warned before saving.
+
+**The Examples tab**, the sixth tab on this page, is the fourth place the product learns from corrections. What you correct there is the **product/service group**, because that is what the system replays before resolving the code again; the resolved code itself is shown as read-only provenance. You can add examples by hand as well as leave the learned ones. It is accountant-side only, and it shares the workspace's AI learning limit with the other learning surfaces: see [How AIFT Learns Your Categories](/categorization-examples).
+
+## Who Can See And Change This
+
+The page is **office-side**: a client-side user has no way in, and the Examples tab turns them away outright.
+
+Among accountants it is a permission, not a job title. Creating, editing and deactivating rows on the four element tabs needs **"Edit master data"**, which accountants and accountant admins hold by default but which a custom role or a per-member exception can grant or withhold. A firm-side member without it sees **View** instead of **Edit**, a read-only drawer and a **Close** button, with a notice saying so.
+
+Export is available to every member who can see the page; import and copy are firm-side.
+
+See [Roles and Permissions](/roles-and-permissions).
 
 ## Related Articles
 
-- [VAT codes on invoices](/vat-codes-on-invoices) - how the five elements are filled automatically during extraction and how to correct them.
-- [VAT in exports](/vat-in-exports) - how VAT data flows into the export files for your accounting system.
-- [Importing, exporting, and copying your VAT setup](/vat-setup-import-export) - bulk-author the whole setup in Excel or copy it between workspaces.
+- [VAT codes on invoices](/vat-codes-on-invoices) - how the five elements are filled during extraction and how to correct them.
+- [VAT in exports](/vat-in-exports) - how VAT data flows into the export files.
+- [Importing, exporting, and copying your VAT setup](/vat-setup-import-export) - bulk-author the whole setup, or copy it between workspaces.
+- [Small business VAT exemption](/small-business-exemption) - the one case where AI Finance Team authors VAT codes for you.
+- [VAT Groups](/vat-groups) - Hungarian group VAT registration, which is a different thing entirely.

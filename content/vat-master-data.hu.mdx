@@ -1,68 +1,105 @@
 # ÁFA-törzsadatok
 
-Az AI Finance Team minden számlasorhoz automatikusan feloldja a megfelelő **ÁFA-kódot**. Ehhez minden munkaterület saját ÁFA-törzsadatokat hordoz: öt kis táblát, amelyek a könyvelőprogramja fogalmaival írják le, hogyan működik az ÁFA az adott ügyfélnél. A **Törzsadatok → ÁFA-kódok** alatt találja őket, öt fülre rendezve.
+Az AI Finance Team minden számlasorhoz automatikusan feloldja a megfelelő **ÁFA-kódot**. Hogy ez lehetséges legyen, minden munkaterület saját ÁFA-törzsadatokat hordoz: kis táblákat, amelyek a könyvelőprogramja fogalmaival írják le, hogyan működik az ÁFA az adott ügyfélnél.
+
+A **Törzsadatok → ÁFA-kódok** alatt találja őket. Az oldalnak hat füle van, és egy hetedik, ha a Business Central csatlakoztatva van. Ez a könyvelőiroda beállítása: **az ügyféloldali felhasználók egyáltalán nem férnek hozzá.**
+
+> **Két különböző dolgot hívnak áfacsoportnak.** Az oldalsáv **Áfacsoportok** menüpontja, a „Partner” előtag nélkül, a magyar csoportos áfaalanyiságot jelenti, ahol több cég egy adószámon osztozik: lásd [Áfacsoportok](/vat-groups). Az alább szereplő **Partner ÁFA-csoport** ezzel szemben az ÁFA-kód öt elemének egyike, és semmi köze hozzá.
 
 ## Hogyan épül fel egy ÁFA-kód
 
-Az ÁFA-kód nem egy sima listából választódik ki - **öt elemből oldódik fel**:
+Az ÁFA-kód nem egy sima listából választódik ki, hanem **öt elemből oldódik fel**:
 
-1. **Partner ÁFA-csoport** - ki a partner ÁFA-szempontból: belföldi, EU-s, harmadik országbeli, pénzforgalmi elszámolású partner vagy alanyi adómentes szállító. (Ez utóbbi egy alanyi mentes *szállítót* ír le. Az Ön saját ügyfelének alanyi mentessége más: a cégen beállítandó, lásd [Alanyi adómentesség](/small-business-exemption).)
-2. **Termék / Szolgáltatás ÁFA-csoport** - mi a teljesítés tárgya: termék, szolgáltatás, tárgyi eszköz, előleg. A csoportok alapértelmezett **le nem vonható %-ot** is hordozhatnak (például 50%-ot a személygépkocsi-költségeknél).
-3. **ÁFA-kulcs** - a százalék, érvényességi időszakkal (27%, 18%, 5%, nulla…).
-4. **Irány** - bevétel (te vagy az eladó) vagy kiadás (te vagy a vevő).
+1. **Partner ÁFA-csoport** - ki a kereskedelmi partner ÁFA-szempontból: belföldi, EU-s, harmadik országbeli, pénzforgalmi partner vagy alanyi adómentes szállító. (Ez utóbbi egy alanyi mentes *szállítót* ír le. Az Ön saját ügyfelének mentessége más kérdés, arról az [Alanyi adómentesség](/small-business-exemption) cikk szól.)
+2. **Termék / Szolgáltatás ÁFA-csoport** - mi a teljesítés tárgya: termékek, szolgáltatások, tárgyi eszköz, előleg. A csoportok alapértelmezett **le nem vonható %-ot** is hordozhatnak, például 50%-ot a személygépkocsi-költségeknél.
+3. **ÁFA-kulcs** - a százalék, az érvényességi időszakával.
+4. **Irány** - bevétel (Ön az eladó) vagy kiadás (Ön a vevő).
 5. **Számítási mód** - hogyan épül fel a tétel: normál, fordított adózás vagy csak ÁFA.
 
-Az **ÁFA-kódok** fül ezt az öt elemet kombinálja azokká a kódokká, amelyeket a könyvelőprogramja vár. Amikor egy számlasor öt eleme egyezik egy ÁFA-kód kombinációjával (és a számla dátuma a kód érvényességi időszakába esik), a kód automatikusan hozzárendelődik. Szándékosan nincs kulcsrakész, országonkénti kódlista - a kódtáblát Ön maga írja meg, mert minden könyvelőiroda és minden célrendszer másképp nevezi el a kódjait.
+Ezek közül négynek van saját füle. **Az iránynak nincs táblája**, ezért nem egyezik a fülek száma az elemek számával: az irány a számlából jön.
 
-## Két kódoszlop - és az egyediségi beállítás
+Az **ÁFA-kódok** fül az öt elemet azokká a kódokká kombinálja, amelyeket a könyvelőprogramja vár. Amikor egy sor elemei egyeznek egy kód kombinációjával, és **a számla ÁFA-dátuma** a kód érvényességi időszakába esik, a rendszer hozzárendeli a kódot.
 
-Minden ÁFA-kód sornak két azonosítója van:
+Nincs kulcsrakész, országonkénti kódlista: a kódtáblát Ön maga írja meg, mert minden iroda és minden célrendszer másképp nevezi el a kódjait. Az egyetlen kivétel az alanyi adómentesség sablonja, amely magától megírja a saját kódjait.
 
-- **Könyvelési kód** - a kód pontosan úgy, ahogy a könyvelőprogramja importáláskor várja. Mindig kötelező.
-- **AIFT-kód** - opcionális belső kód; akkor hasznos, ha több AIFT-oldali megkülönböztetés egyetlen könyvelőprogram-kódra képeződik le.
+### Ha az elemek nem oldódnak fel
 
-Egy munkaterület-szintű beállítás (Beállítások → **ÁFA-beállítások**) dönti el, hogy a kettő közül melyiknek kell egyedinek lennie az aktív kódok között. A legtöbb munkaterület a könyvelési kódoknál hagyja; akkor kapcsolja át AIFT-kódra, ha szándékosan több AIFT-kódot szeretne egyetlen könyvelési kódra irányítani.
+Irányonként egy **alapértelmezett ÁFA-kódot** állíthat be. Az a sor, amelynek a tényezői nem határozhatók meg teljesen, ezt a kódot kapja, ellenőrzésre jelölve, feltéve, hogy semmi azonosított nem mond ellent neki. Az ÁFA-kódok fülön az **Alapért.** jelvény jelöli őket, a **Legyen alapért.** művelettel pedig kijelölhet egyet; újbóli kattintásra törlődik.
 
-## Az ügyfél tevékenysége dönt
+Az alapértelmezés beállítása a már meglévő számlákhoz nem nyúl. Azokra a számlalista **Áfakódolás újrafuttatása** művelete való, amely csak a hiányzó kódú sorokat tölti ki, és soha nem nyúl a már kódolt sorokhoz, a kézi munkához vagy a kategóriákhoz.
 
-Bizonyos áfakérdések a számla szövegéből egyszerűen nem dönthetők el. Egy üveg whisky, amelyet egy bár vásárol, **árukészlet** - az áfája levonható, mert a bár továbbértékesíti. Ugyanaz az üveg egy tanácsadó cégnél **reprezentáció**, amelynek áfája egyáltalán nem vonható le. A számlasor mindkét esetben ugyanúgy néz ki.
+## A négy elemfül
 
-Ezért az AI Finance Team cégenként egyszer megkérdezi: nyissa meg a **Törzsadatok → Cégek** menüpontot, válassza ki a céget, és töltse ki a **Tevékenység** szakaszt. Mindkét mező opcionális:
+Mindegyik egy-egy dimenziót tartalmaz, és mind ugyanúgy működik: név, kód, leírás, AI magyarázat, országtipp, Aktív jelölő és érvényességi tartomány.
 
-- egy **tevékenységi kód** (TEÁOR, NACE vagy helyi megfelelője), és
-- **egy-két mondat** arról, hogy a vállalkozás valójában mit csinál.
+Két dolgot érdemes tudni róluk:
 
-A munka nagy részét a mondat végzi. Említse meg mindazt, amit a cég továbbértékesítésre, felszolgálásra vagy a saját termékébe beépítésre vásárol - a *„Étterem és bár. Ételt és italt vásárol, amelyet elkészítve a vendégeknek szolgál fel."* már elég ahhoz, hogy az italszámlák ne reprezentációként legyenek besorolva.
+- **Csak az ÁFA-kulcsok fülön jelennek meg oszlopként az érvényességi dátumok.** Mind a négy fülön léteznek, a szerkesztőpanelen.
+- **A termék/szolgáltatás fülön figyeljen a duplikált kódra figyelmeztető sávra.** Ha két csoport ugyanazt a kódot használja, az alkalmazás nyíltan megírja, hogy az AI mindkettőt látja, és választania kell közülük, így ezeknek a soroknak a besorolása gyakorlatilag esetleges. Javítsa ki a duplikációt ahelyett, hogy együtt élne vele.
 
-Ha mindkét mezőt üresen hagyja, semmi nem változik: a besorolás pontosan úgy működik, mint korábban.
+## Az ÁFA-kódok fül
 
-## Ha egy szállító mindig ugyanazt értékesíti
+**Hogy hány kódoszlopot lát, egy beállítástól függ.** A **Beállítások → ÁFA-beállítások** alatt választja ki, hogy a könyvelési kódoknak vagy az AIFT-kódoknak kell-e egyedinek lenniük az aktív kódok között.
 
-Olyan szállítónál, amelynek számlái mindig ugyanolyan jellegűek - italnagyker, irodaszer-beszállító -, a találgatás teljesen elhagyható. A partner oldalán a **Mindig ezt értékesíti** beállítás megadja azt a termék/szolgáltatás áfacsoportot, amelyet a rendszer a szállító minden sorára alkalmaz.
+- Ha a könyvelési kódokon hagyja, ami az alapértelmezés, egyetlen **Könyvelési kód** oszlop van, és kötelező.
+- Ha AIFT-kódokra kapcsolja, megjelenik egy **AIFT kód** oszlop, amely kötelező lesz, a könyvelési kód pedig opcionálissá válik. Akkor használja ezt, ha több AIFT-oldali megkülönböztetés szándékosan egyetlen könyvelési kódra képeződik le.
 
-Szándékosan **csak** ezt az egy mezőt állítja be. Az áfakulcs és a számítási mód - az uniós beszerzések fordított adózását is beleértve - továbbra is magából a számlából jön, mert ezeket a szállító személye nem határozza meg: ugyanaz a nagykereskedő egy számlán szerepeltethet 27%-os szeszes italt és 5%-os terméket is.
+A magyar munkaterületeknek van egy harmadik mezőjük, a **NAV megfeleltetési kód**, amely a beérkező megfeleltetéshez használt NAV Online ÁFA-besorolás.
 
-Ha olyan csoportot választ, amely egészben vagy részben nem levonható, az AI Finance Team mentés előtt figyelmezteti, mert a szállító minden sora ezt fogja örökölni.
+Ennek a beállítási oldalnak van egy második fele is, amellyel ez a cikk nem foglalkozik: az **ÁFA export beállítások**, amely azt dönti el, hogyan kezeli az exportfájlokban a le nem vonható ÁFA-t.
 
 ## Érvényességi időszakok
 
-A kulcsok és a kódok idővel változnak - egy ÁFA-kulcsváltozás nem írja át a múltat. Minden sor opcionális **Érvényesség kezdete / Érvényesség vége** tartományt hordoz. Amikor egy kulcs vagy szabály megváltozik, ne a régi sort szerkessze: **vegyen fel új sort** az új érvényességi időszakkal. A feloldás mindig azt a sort választja, amely a számla ÁFA-teljesítési dátumán érvényben volt.
+A kulcsok és a szabályok idővel változnak, és egy kulcsváltozás nem írja át a múltat. Minden sor opcionális **Érvényesség kezdete / Érvényesség vége** tartományt hordoz. Amikor valami megváltozik, ne a régi sort szerkessze: **vegyen fel egy újat** az új időszakkal. A feloldás mindig azt a sort választja, amely a számla ÁFA-dátumán érvényben volt.
 
-## Alapértelmezett sorok
+## A sorok nem törölhetők
 
-Az új munkaterületek észszerű alapkészlettel indulnak: univerzális partnercsoportokkal és termék-/szolgáltatáscsoportokkal, az ország aktuális ÁFA-kulcsaival és a három számítási móddal. Az **ÁFA-kódok** fül **üresen** indul - a kódtábla munkaterületenként készül.
+Az ÁFA-törzsadatokban sehol nincs törlés. Azt a sort, amelyre már nincs szüksége, **inaktiválja**, és ez többet tesz, mint amit a súgószöveg sejtet: az inaktív sor eltűnik a választókból, *és* kiesik a feloldásból is. Az újbóli aktiválás mindkettőt visszaállítja.
 
-Az előre feltöltött sorok ugyanúgy viselkednek, mint az AI Finance Team többi rendszer-alapértelmezése:
+## Mit kap egy új munkaterület
 
-- A nevük a **munkaterület nyelvén** jelenik meg (egy magyar munkaterület „Belföldi”-t mutat, egy német „Inland”-ot), a saját felületi nyelvétől függetlenül.
-- Ha **átnevez** egy alapértelmezett sort, egyedi sorrá válik: onnantól pontosan a beírt név jelenik meg. A leírás vagy a dátumok szerkesztése, illetve az archiválás *nem* választja le az alapértelmezésről.
+A könyvelési kategóriákkal ellentétben, amelyek mostantól teljesen üresen indulnak, **az ÁFA-törzsadatok továbbra is előre feltöltve érkeznek**. Egy új munkaterület a következőket kapja:
 
-## Ki mit lát
+- öt partner ÁFA-csoportot,
+- négy termék/szolgáltatás csoportot: termékek, szolgáltatások, tárgyi eszközök és előlegek,
+- a három számítási módot,
+- és ÁFA-kulcsokat, de **csak Magyarországra, Németországra és Ausztriára**. Minden más ország nulla kulccsal és semmi mással indul.
 
-Minden munkaterület-tag - az ügyfélszerepkörök is - **megtekintheti** az öt ÁFA-táblát. A létrehozás, szerkesztés, archiválás, importálás és másolás a **Könyvelő** vagy **Könyvelő admin** szerepkörű tagoknak van fenntartva.
+Az **ÁFA-kódok** fül üresen indul.
+
+A saját cég mentességéhez tartozó ötödik termék/szolgáltatás csoport, valamint a mentes és a hatályon kívüli kulcselemek, amelyekre egy magyar munkaterületnek szüksége van, nem a létrehozáskor kerülnek be: akkor jönnek létre, amikor a mentességi sablon lefut, vagy amikor Ön importálja őket.
+
+### Az előre feltöltött sorok a többi rendszer-alapértelmezéshez hasonlóan viselkednek
+
+- A nevük a **munkaterület nyelvén** jelenik meg, függetlenül attól, milyen nyelvű az Ön saját felülete. Egy magyar munkaterület „Belföldi”-t mutat, egy német „Inländisch”-t.
+- Ha **átnevez** egy alapértelmezett sort, egyedi sorrá válik, és onnantól pontosan a beírt név jelenik meg. A leírásának vagy a dátumainak szerkesztése, illetve az inaktiválása nem választja le az alapértelmezésről.
+
+## Megtanítani az AI-nak azt, amit nem tud kiolvasni
+
+Bizonyos áfakérdések a számla szövegéből nem dönthetők el. Egy üveg whisky, amelyet egy bár vásárol, **árukészlet**, és az áfája levonható, mert a bár továbbértékesíti. Ugyanaz az üveg egy tanácsadó cégnél **reprezentáció**, amelynek az áfája egyáltalán nem vonható le. A számlasor mindkét esetben ugyanúgy néz ki.
+
+Három hely válaszol erre, és egyik sincs ezen az oldalon.
+
+**A Tevékenység**, a cég **Adó és ÁFA** fülén, a **Törzsadatok → Cégek** alatt. Mindkét mező opcionális: egy tevékenységi kód (TEÁOR, NACE vagy helyi megfelelője), és egy-két mondat arról, hogy a vállalkozás valójában mit csinál. A munkát a mondat végzi. Említsen meg mindent, amit a cég továbbértékesítésre, felszolgálásra vagy a saját terméke részeként vásárol: a *„Étterem és bár. Ételt és italt vásárol, amelyet elkészítve a vendégeknek szolgál fel.”* már elég ahhoz, hogy ne minden italszámlát reprezentációként olvasson. Ha mindkettőt üresen hagyja, semmi nem változik.
+
+**A partner ÁFA-csoportja**, vagyis a **Partner ÁFA-csoport** mező, és a **Mindig ezt értékesíti**, mindkettő a partner **Szabályok** fülén. A **Mindig ezt értékesíti** azt a termék/szolgáltatás ÁFA-csoportot adja meg, amelyet a rendszer a szállító minden sorára alkalmaz, és szándékosan csak ezt az egy mezőt állítja be: az ÁFA-kulcs és a számítási mód, beleértve az uniós beszerzések fordított adózását is, továbbra is a számlából jön, mert ezeket a szállító személye nem határozza meg. Ugyanaz a nagykereskedő egy számlán szerepeltethet 27%-os szeszes italt és 5%-os terméket is. Ha olyan csoportot választ, amely egészben vagy részben nem levonható, mentés előtt figyelmeztetést kap.
+
+**Az ÁFA-példák fül**, az oldal hatodik füle, a negyedik hely, ahol a termék a javításokból tanul. Amit ott javít, az a **termék/szolgáltatás csoport**, mert a rendszer ezt játssza vissza, mielőtt újra feloldaná a kódot; magát a feloldott kódot csak olvasható háttérinformációként mutatja. Kézzel is felvehet példákat, nemcsak a tanultakat hagyhatja meg. Csak a könyvelői oldalon érhető el, és a munkaterület AI-tanulási keretén osztozik a többi tanulási felülettel: lásd [Hogyan tanulja meg az AIFT a kategóriáit](/categorization-examples).
+
+## Ki láthatja és módosíthatja
+
+Az oldal a **könyvelőirodáé**: az ügyféloldali felhasználó nem jut be, az ÁFA-példák fül pedig kereken elutasítja.
+
+A könyvelők között ez jogosultság kérdése, nem beosztásé. A négy elemfülön a sorok létrehozásához, szerkesztéséhez és inaktiválásához **Törzsadatok szerkesztése** jogosultság kell, amellyel a könyvelők és a könyvelő adminok alapból rendelkeznek, de amelyet egyedi szerepkör vagy tagonkénti kivétel megadhat vagy megvonhat. Az irodai oldal olyan tagja, akinek ez nincs meg, **Szerkesztés** helyett **Megtekintés** lehetőséget lát, csak olvasható panelt és **Bezárás** gombot, valamint egy erre figyelmeztető megjegyzést.
+
+Az exportálás minden tagnak elérhető, aki látja az oldalt; az importálás és a másolás irodai oldali.
+
+Lásd [Szerepek és jogosultságok](/roles-and-permissions).
 
 ## Kapcsolódó cikkek
 
-- [ÁFA-kódok a számlákon](/vat-codes-on-invoices) - hogyan töltődik ki az öt elem automatikusan a kinyerés során, és hogyan javíthatja őket.
-- [ÁFA az exportokban](/vat-in-exports) - hogyan kerülnek az ÁFA-adatok a könyvelőprogramjának készülő exportfájlokba.
-- [ÁFA-beállítás importálása, exportálása és másolása](/vat-setup-import-export) - a teljes beállítás tömeges megírása Excelben vagy másolása munkaterületek között.
+- [ÁFA-kódok a számlákon](/vat-codes-on-invoices) - hogyan töltődik ki az öt elem a kinyerés során, és hogyan javíthatja őket.
+- [ÁFA az exportokban](/vat-in-exports) - hogyan kerülnek az ÁFA-adatok az exportfájlokba.
+- [ÁFA-beállítás importálása, exportálása és másolása](/vat-setup-import-export) - a teljes beállítás tömeges megírása vagy másolása munkaterületek között.
+- [Alanyi adómentesség](/small-business-exemption) - az egyetlen eset, amikor az AI Finance Team írja meg Ön helyett az ÁFA-kódokat.
+- [Áfacsoportok](/vat-groups) - a magyar csoportos áfaalanyiság, ami teljesen más dolog.

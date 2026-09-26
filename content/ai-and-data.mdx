@@ -2,13 +2,13 @@
 
 Clients ask their accountant this, and accountants ask us. This page answers it plainly: what AI Finance Team does with the documents you put into it, which computers that happens on, and how long anything is kept.
 
-This is the explanation, not the contract. The binding versions are the [Privacy Notice](https://aift.aifinance.team/legal/privacy) and the [Sub-processor Register](https://aift.aifinance.team/legal/subprocessors).
+This is the explanation, not the contract. The binding versions are the [Privacy Notice](https://aift.aifinance.team/legal/privacy) and the [Sub-processor Register](https://aift.aifinance.team/legal/subprocessors). Where this page and those disagree, they win.
 
 ---
 
 ## The short answer
 
-Your invoices, bank transactions, reports and partner data live on servers in **Frankfurt, Germany**, and they stay there. The AI that reads your documents also runs in the EU by default. Nothing you upload is used to train anyone's AI model.
+Your invoices, bank transactions, reports and partner data are stored in **Frankfurt, Germany**, and storage never moves. The AI that reads your documents runs in the EU by default, with two named exceptions below. Nothing you upload is used to train anyone's AI model.
 
 ---
 
@@ -16,31 +16,59 @@ Your invoices, bank transactions, reports and partner data live on servers in **
 
 When an invoice arrives, whether uploaded, emailed in, or pulled from NAV:
 
-1. **It is stored** in AI Finance Team's database and file storage. Both are in Frankfurt.
-2. **An AI model reads it** to pull out the supplier, the amounts, the dates and the line items. The document is sent to the model for that one request and comes back as structured data.
-3. **The model forgets it.** The processing service does not keep a copy, and the company that makes the model never receives it.
-4. **We keep a log of the request** so we can debug a bad extraction and account for cost. That log lives in Frankfurt and is deleted automatically (see below).
+1. **It is stored** in AI Finance Team's database and file storage, both in Frankfurt.
+2. **Claude reads it** to pull out the supplier, the amounts, the dates and the line items. The document goes to the model for that one request and comes back as structured data.
+3. **The request is logged** so we can debug a bad extraction and account for cost. The log lives in Frankfurt and is deleted automatically.
+4. Where the model runs, and who else sees the request, depends on your workspace's setting. That is the next section.
 
-The same shape applies to categorisation, invoice–payment matching and the one-line summaries.
+One detail worth knowing, because it is the reassuring one: **the document's bytes are never written to that log.** The log records the extracted text and a pointer to the file in storage, and every attachment is replaced by a placeholder before the prompt is saved.
+
+The same shape applies to categorisation, invoice-payment matching and the one-line summaries.
 
 ---
 
 ## Which AI, and where it runs
 
-Every workspace has a setting at **Settings ▸ AI & data** that decides where AI processing happens.
+Every workspace has a setting at **Settings ▸ AI & data**. There are **three** choices, not two.
 
-| Option | Where it runs | Who can see the request |
+| Option | Where it runs | Who else sees the request |
 |---|---|---|
-| **European Union** (default) | AWS Bedrock, Frankfurt region | Nobody. Bedrock stores no inputs or outputs and passes nothing to the model provider. |
-| **United States** | Anthropic's own API | Anthropic receives the request and may keep it for up to 30 days for abuse monitoring. It is never used for training. |
+| **Follow AIFT's default** | Whatever we currently run as the default, which today is the EU option | As for the option it resolves to |
+| **European Union (Frankfurt)** | AWS Bedrock, Frankfurt | Per our agreement, Bedrock stores no inputs or outputs and passes nothing to Anthropic |
+| **United States** | Anthropic's own API | Anthropic receives the request and may keep it up to 30 days for abuse monitoring. Never used for training |
 
-New workspaces start on the European Union option. An **office administrator** can change it; everyone else in the workspace, including client users, can see which one is in force.
+A new workspace is on **Follow AIFT's default**, not pinned to the EU. The difference matters for an audit: a workspace that follows the default moves if we change our default, and one explicitly set to European Union does not. If you need the guarantee, set it explicitly.
 
-Switching takes effect within about a minute and changes nothing about where documents are stored. Storage is always Frankfurt, on both settings.
+Changing it needs the "Edit workspace settings" permission, which accountant admins hold by default; the app calls that person a **workspace admin**. Everyone else in the workspace, client users included, can see which option is in force. Switching takes effect within about a minute and changes nothing about storage.
 
-### One thing that is always outside the EU
+### Two things that can run outside the EU on any setting
 
-Semantic search, the feature that finds records by meaning rather than keyword, uses an embedding provider in the **United States**. It receives only a short AI-written summary or your search phrase, never a document. That provider keeps nothing and trains on nothing. This is true on both settings, and it is disclosed in the register.
+**Semantic search.** The feature that finds records by meaning rather than keyword uses an embedding provider in the United States. It receives only a short AI-written summary or your search phrase, never a document. Per the register that provider keeps nothing and trains on nothing.
+
+**A step whose model is not available in the EU yet.** If a processing step needs a model that has no EU deployment, it runs in the US. This is disclosed in the register and the Privacy Notice. Today the only steps in that position handle our own internal engineering data and never touch customer documents.
+
+The important part is what happens when a model is missing: the system **refuses the call** rather than quietly sending your data to the US. A step that cannot run in the region your workspace requires fails, visibly, instead of falling back.
+
+---
+
+## Who else touches your data
+
+Every provider below is called by the running product. The [Sub-processor Register](https://aift.aifinance.team/legal/subprocessors) is the binding list, with each one's location and safeguard.
+
+| | Provider | What it sees |
+|---|---|---|
+| Infrastructure | Supabase (database and file storage), Vercel (the app itself) | Everything you store; app traffic |
+| AI | AWS Bedrock or Anthropic, per your setting; Voyage AI for semantic search | Documents and extracted data; short summaries only |
+| Banking and tax | GoCardless (open banking), WellData / cegadatapi.hu (Hungarian company register) | Account details and transaction feeds; supplier tax numbers and names |
+| Email | Mailgun (inbound forwarding), Resend (outbound notifications) | Whole incoming emails with attachments, for a few days; recipients and message text |
+| Billing and security | Stripe, Cloudflare Turnstile | Billing contact details; sign-in bot checks |
+
+Two flows that are not sub-processors but are worth knowing about:
+
+- **NAV, the ECB and the MNB** are queried for invoice data and exchange rates. They are public authorities and data sources, not processors of yours.
+- **Anything you connect yourself** carries your data under your own agreement, not ours. That includes Business Central, and it includes connecting your own Claude, Mistral or ChatGPT account through our MCP connection.
+
+One more that surprises people: the company-register results are **cached per tax number and reused across workspaces**, because they are public register data about a company rather than anything belonging to you. This is stated in the register.
 
 ---
 
@@ -51,32 +79,32 @@ Semantic search, the feature that finds records by meaning rather than keyword, 
 | Your invoices, transactions, documents and reports | As long as your firm is a customer, then per the agreement |
 | Prompt and response logs for AI requests | 90 days, then deleted automatically |
 | The same logs for the invoice-matching scorer | 14 days |
-| Aggregate cost and usage figures, with no document content | Longer, for billing |
+| Per-document billing records, with no document content | **8 years**, as Hungarian accounting law requires |
+| Security and sign-in logs | 12 months |
+| Support correspondence and feedback | 24 months |
 
-Deletion is automatic, not a request you have to make.
+The log deletions are automatic. The first row is not: your bookkeeping data stays until it is deleted under the agreement, which runs through your accounting firm.
 
 ---
 
 ## Training
 
-Nothing you or your clients upload is used to train an AI model. This is contractual with every provider involved, not a setting someone could flip. It applies to both processing regions.
+Nothing you or your clients upload is used to train an AI model. This is contractual with every provider involved, not a setting someone could flip, and it applies to every processing region.
 
-The system does learn, but only inside your own workspace: when an accountant corrects a category, that correction is used to categorise future documents **for that client only**. It never crosses to another workspace and never leaves the database.
+The system does learn, but only inside your own workspace: when an accountant corrects a category, that correction is used on future documents **for that client only**. It never crosses to another workspace and never leaves the database.
 
 ---
 
 ## What to tell a client who asks
 
-Most client questions are one of these:
-
 **"Is my data leaving the country?"**
-It is in Frankfurt, inside the EU. If your firm has switched the workspace to the US option, AI reading happens in the US while storage stays in Frankfurt; you can check which is in force on the AI & data page.
+It is stored in Frankfurt, inside the EU, on every setting. If your firm has switched the workspace to the US option, the AI reading happens in the US while storage stays in Frankfurt. You can see which option is in force on the AI & data page.
 
 **"Is a person reading my invoices?"**
-No. Extraction is automated. Your accountant sees the data because they are your accountant, and AIFT staff need a time-limited access grant that your firm approves and can revoke.
+No. Extraction is automated. Your accountant sees the data because they are your accountant. AIFT staff need a grant your firm opens deliberately, with a stated reason, lasting at most 24 hours, recorded, and revocable in one action that ends every session under it.
 
 **"Will this end up training ChatGPT?"**
-No. Nothing uploaded is used to train any model.
+Nothing we do trains any model. The one thing to be aware of: if you connect your own AI assistant to AI Finance Team, your ledger data goes to that assistant under your agreement with them, and a consumer account may well train on it. That is your choice to make, not something the product does on its own.
 
 **"Can I get my data out, or have it deleted?"**
 Yes. Exports are built into the product, and deletion runs through your accounting firm, who is the controller for your bookkeeping data. The [Privacy Notice](https://aift.aifinance.team/legal/privacy) sets out the rights and how to exercise them.

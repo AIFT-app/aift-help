@@ -1,60 +1,86 @@
 # Hiányzó bizonylatok
 
-A **Hiányzó bizonylatok** oldalon gyűlik össze minden olyan bizonylat, amelyet csak Ön tud pótolni (jellemzően egy kifizetés mögötti számla). Minden hiányzó dokumentum egy kártyaként jelenik meg, a feltöltés pedig egy percet vesz igénybe: fotó vagy PDF egyaránt megfelel.
+A **Hiányzó bizonylatok** az az oldal, ahol a könyvelőnek hiányzó papírmunka magától összegyűlik. Ha a könyveléshez olyan alapbizonylat hiányzik, amelyet csak Ön tud pótolni, jellemzően egy kifizetés mögötti számla, az itt jelenik meg egyetlen kártyaként, a feltöltés pedig egy percet vesz igénybe. Fotó vagy PDF egyaránt megfelel.
 
-Az oldalt a munkaterület oldalsávjában találja **Hiányzó bizonylatok** néven, mellette számláló jelzi, hány tétel várakozik. Az ügyfelek és a könyvelők ugyanazt a listát látják, így sosem kérdés, mi van még hátra.
+Az ügyfelek és a könyvelők ugyanazt a listát látják, így sosem kérdés, mi van még nyitva.
 
-> Nem látja az oldalt? A funkciót fokozatosan kapcsoljuk be; elképzelhető, hogy az Ön munkaterületén még nem érhető el.
+## Ki látja
 
-## Miért jelenik meg egy tétel?
+Az oldal munkaterületenként kapcsolható be, és addig ki van kapcsolva, amíg a könyvelőiroda nem kéri tőlünk. Ha nincs bekapcsolva, a menüpont egyszerűen nincs ott az oldalsávban, a cím pedig visszaviszi a munkaterület áttekintésére.
 
-A rendszer automatikusan kér, a könyvelőnek nem kell Önt külön keresnie. Egy tétel pontosan két esetben kerül a **Rád vár** szakaszba:
+A munkaterületen mindenki látja, azok a tagok is, akik a számlákat és a banki tranzakciókat nem láthatják.
 
-1. **Egy kifizetéshez nincs számla.** Egy banki tranzakció feldolgozása lezárult, a rendszer minden számlával összevetette, és nem talált hozzá párt. A könyveléshez szükség van a kifizetés mögötti számlára.
-2. **A NAV tud a számláról, de a PDF hiányzik** (magyar munkaterületeken). A számla adatai megérkeztek a NAV Online Számla rendszeréből, tehát a számla biztosan létezik, de maga a dokumentum sosem került feltöltésre. Ezeket a **NAV-ból** jelvény jelöli. Az adat önmagában nem elég: a könyvelőnek az iratokhoz a dokumentumra is szüksége van.
+## Miért jelenik meg egy tétel
 
-Minden kártyán látszik a partner, az összeg, a dátum és a várakozás ideje. Ha a könyvelő magyarázatot fűzött hozzá (például "A blokkok a Bolt appban vannak"), az a kártyán **A könyvelőd üzenete:** felirat alatt jelenik meg.
+Senkinek nem kell Önt keresnie: a rendszer magától kér. Egy tétel háromféleképpen kerülhet a **Rád vár** szakaszba.
 
-Ugyanez a kérés automatikus üzenetként a tétel üzenetszálán is megjelenik, jól láthatóan jelölve, hogy a rendszertől érkezett, nem egy személytől. Ha kérdése van egy tétellel kapcsolatban, ott válaszolhat.
+1. **Egy kifizetéshez nincs számla.** Egy banki tranzakció feldolgozása lezárult, a rendszer kategorizálta és összevetette a munkaterület minden számlájával, és semmi nem illik rá.
+2. **A NAV tud egy számláról, de a dokumentum hiányzik** (magyar munkaterületeken). Az adat a NAV Online Számla rendszeréből érkezett, tehát a számla biztosan létezik, de a dokumentumot senki nem töltötte fel. Ezeken **NAV-ból** jelvény van.
+3. **Egy kifizetésről kiderült, hogy dokumentum nélküli NAV-számla.** Egy kártya, amely hiányzó kifizetési számlaként indult, helyben átalakulhat a második fajtává, és megtartja az addig várakozással töltött időt. Megkapja a **NAV-ból** jelvényt, és elveszíti a **Nincs hozzá számla** gombját.
+
+### Miért nincs itt egy kifizetés, amelyet várt
+
+A bekerülés a tranzakció állapotán múlik, sosem a korán. Semmi nem jelenik meg pusztán azért, mert régi, és semmi nem marad ki azért, mert friss.
+
+Egy kifizetés kimarad, amíg a feldolgozása tart, és véglegesen kimarad, ha belső átvezetés, ha duplikátum, ha már van tranzakciótípusa, vagy ha olyan párosítása van, amely emberi megerősítésre vár.
+
+Ez az oldal ráadásul nem ugyanaz a szám, amelyet a könyvelő a munkaterület áttekintésén hiányzó dokumentumként lát. Az lazábban számol, és jogosan lesz magasabb.
+
+## Mit mutat egy kártya
+
+A partnert, az összeget, és hogy mióta vár. Alatta a tranzakció közleményét vagy a számla sorszámát.
+
+Két részlet, amit érdemes tudni. Egy kifizetés összege **előjelesen** látszik, tehát a kimenő pénz mínuszt kap, míg egy számla összege előjel nélkül jelenik meg. Egy olyan **NAV-ból** kártyán pedig, amely sosem volt kifizetés, **nincs dátum**, mert a kártya dátuma a banki tranzakcióból származik.
+
+Ha a könyvelő magyarázatot fűzött hozzá, például „A blokkok a Quillmoor appban vannak”, az **A könyvelőd üzenete:** felirat alatt jelenik meg.
+
+Ugyanez a kérés automatikus üzenetként a tétel üzenetszálán is megjelenik, jelölve, hogy a rendszertől érkezett, nem egy személytől. Ott válaszolhat, ha kérdése van arról az egy tételről. Ez **egyszer kerül ki, és soha nem ismétlődik meg**.
+
+A lista egy oldalon mutatja az összes nyitott tételt, a legrégebbivel kezdve. Nincs keresés, nincs szűrő és nincs rendezés, mert a listát kiüríteni kell, nem böngészni.
 
 ## Feltöltés közvetlenül a tételhez
 
-Minden kártyán van egy **Feltöltés** gomb. Ha teheti, ezt használja az általános feltöltés helyett: így a fájl pontosan ahhoz a kifizetéshez vagy számlához kapcsolódik, amelyre válaszol, és a saját kérését zárja le ahelyett, hogy az általános sorban várakozna.
+Minden kártyán van egy **Feltöltés** gomb. Ezt használja az általános feltöltés helyett: a fájl megjelölve kapcsolódik ahhoz a tételhez, amelyre válaszol, és épp ez mondja meg a könyvelőnek, miért érkezett.
 
-A feltöltés után:
+Innentől pontosan ugyanazon a beolvasáson és párosításon megy át, mint bármely más feltöltés, tehát nem azonnali és nem garantált. A kártya akkor tűnik el, amikor a munka valóban a helyére kerül:
 
-- a rendszer a dokumentumot automatikusan beolvassa és párosítja a kifizetéssel (vagy összevonja a NAV-os számla adataival),
-- a kártya átkerül az **Ezen a héten elintézve** szakaszba,
-- Önnek további teendője nincs.
+- **egy kifizetés kártyája** akkor, ha a dokumentumot beolvastuk és megerősítettük az adott kifizetéshez;
+- **egy NAV-ból kártya** akkor, ha a dokumentum az adott NAV-számlához csatolva van.
 
-Ha egy vásárláshoz több oldal vagy fotó tartozik, lehetőség szerint egy fájlként töltse fel; egyébként töltse fel magát a számlát, a többiről pedig írjon az üzenetszálon.
+Ha a kinyerés félreolvassa a számlát, vagy a párosításhoz emberi megerősítés kell, a kártya nyitva marad. Ez nem elakadás, hanem őszinteség a rendszer részéről, és a könyvelő ugyanazt látja, amit Ön.
+
+Ha egy vásárláshoz több oldal vagy fotó tartozik, lehetőség szerint egy fájlként töltse fel. Egyébként töltse fel magát a számlát, a többiről pedig írjon az üzenetszálon.
 
 ## Ha nincs számla
 
-Egyes kifizetésekhez valóban nem tartozik számla: banki díj, adóbefizetés, óvadék. Ha tudja, hogy egy tételhez nincs dokumentum, kattintson a kártyán a **Nincs hozzá számla** gombra.
+Egyes kifizetésekhez valóban nem tartozik számla: banki díj, adóbefizetés, óvadék. Ezeken a kártyákon a **Nincs hozzá számla** rögzíti a válaszát, és továbbadja a könyvelőnek, aki megerősíti és lezárja a tételt.
 
-Ez rögzíti a válaszát, és továbbadja a könyvelőnek, aki megerősíti és lezárja a tételt. Az Ön válasza önmagában soha nem módosítja a tranzakciót; a könyvelési döntés a könyvelőnél marad. A megerősítésig a kártya látható marad, a válasza feltüntetésével.
+A gomb csak a kifizetéses kártyákon van. Egy **NAV-ból** kártyán soha, mert a NAV-bejelentés bizonyítja, hogy a számla létezik.
 
-## Az e-mailek és kikapcsolásuk
+Az Ön válasza önmagában soha nem módosítja a tranzakciót; a könyvelési döntés a könyvelőnél marad. A megerősítésig a kártya látható marad, a válasza feltüntetésével.
 
-Hogy ne kelljen az oldalt figyelnie, a rendszer rövid e-mailt küld, amikor új dokumentumra van szükség:
+## Ezen a héten elintézve
 
-- **naponta legfeljebb egy e-mail**, akárhány tétel jelent meg aznap,
-- **hétfőnként összefoglaló** minden még nyitott tételről,
-- **egyáltalán nincs e-mail**, ha semmi sem várakozik.
+Az elmúlt hét napban megválaszolt tételek az **Ezen a héten elintézve** szakaszban vannak: azok, amelyekhez dokumentum érkezett, és azok, amelyeket a könyvelő számla híján lezárt.
 
-Az e-maileket kétféleképpen kapcsolhatja ki:
+Amit a könyvelő visszavont, ott nem jelenik meg. Az egyszerűen lekerül az oldalról.
 
-- kattintson bármelyik ilyen e-mail alján az **Ezeknek az emaileknek a kikapcsolása** hivatkozásra, vagy
-- nyissa meg az alkalmazásban a fiókbeállítások **Értesítések** fülét, és kapcsolja ki a **Hiányzó bizonylatok** sort.
+## Az e-mailek
 
-Az e-mailek kikapcsolása magát az oldalt nem rejti el: a lista és a számláló továbbra is működik, csak e-mailt nem kap róla.
+A **Fiók → Értesítések** alatt, az ügyfelekkel folytatott beszélgetésekről szóló szakaszban van egy **Hiányzó bizonylatok** sor, és magukhoz az e-mailekhez elő van készítve egy leiratkozó hivatkozás.
+
+**Ezek az e-mailek még nincsenek bekapcsolva.** Egyetlen ilyen e-mail sem ment ki. Amikor elindulnak, naponta legfeljebb egy lesz, akárhány tétel jelent meg aznap, hétfőnként összefoglaló minden még nyitott tételről, és egyáltalán semmi olyan napon, amikor semmi nem várakozik. A kikapcsolásuk magát az oldalt soha nem rejti el.
 
 ## Könyvelőknek
 
-A könyvelők ugyanazt a listát látják, kártyánként két további vezérlővel:
+Minden kártyán két további vezérlő jelenik meg annak, akinél a „Banki tranzakciók szerkesztése” jogosultság megvan; ez jogosultság, nem beosztás: egy ügyféloldali tag is megkapja, ha a szerepköre tartalmazza. Lásd: [Szerepek és jogosultságok](/roles-and-permissions).
 
-- A **Ne kérjük ezt** visszavonja a kérést. A tétel eltűnik az ügyfél oldaláról, a számlálóból és az e-mailekből, és több emlékeztető sem megy ki. Az automatikus üzenet előzményként az üzenetszálon marad, a visszavonásról pedig rögzül, hogy ki és mikor tette.
-- A **Megjegyzés** rövid magyarázatot fűz a kártyához, amelyet az ügyfél is lát; hasznos, ha jelezni szeretné, hol keresse a dokumentumot.
+- A **Ne kérjük ezt** visszavonja a kérést. A tétel lekerül az ügyfél oldaláról, és többé nem kérjük: az oldalról nincs mód visszatenni. Az automatikus üzenet előzményként az üzenetszálon marad, a visszavonásról pedig rögzül, hogy ki és mikor tette.
+- A **Megjegyzés** rövid magyarázatot fűz a kártyához, amely az ügyfél kártyáján megjelenik; hasznos, ha meg szeretné mondani az ügyfélnek, hol keresse.
 
-A kérések maguktól nyílnak és záródnak: egy párosítás, egy feltöltött dokumentum vagy egy megerősített "nincs számla" válasz lezárja a tételt, kézi adminisztráció nélkül.
+A kérések maguktól nyílnak és záródnak. Innen semmi nem kerül be a zárási ellenőrzőlistába vagy a **Teendők** közé, tehát az üres oldal nem jele annak, hogy a hónap kész van.
+
+## Kapcsolódó cikkek
+
+- [Fájlok feltöltése](/uploading-files)
+- [NAV Online Számla](/nav-online-szamla)
