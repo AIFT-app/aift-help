@@ -112,7 +112,20 @@ A **Csapattagok** fülön a tag melletti **Hozzáférés szerkesztése** megnyit
 
 Az oldal **Mit tehet ez a tag** szakasza jogosultságonként mutatja a választ, és azt, hogy honnan ered: **Szerepkörből**, **Kivétel, hozzáadva**, **Kivétel, elvéve**, **Szabály rögzíti** vagy **Ügyféloldalon nem elérhető**. Minden tag láthatja a saját hozzáférését a **Saját hozzáférésem** alatt.
 
-Ha elveszi egy tagtól a „Számlák és banki tranzakciók megtekintése” jogosultságot, a tag csak feltölteni tud: megnyitja a munkaterületet, látja a taglistát és a saját hozzáférését, és feltölthet dokumentumokat, de minden rekordlista üres, és ezt minden oldal jelzi.
+#### A számlák és banki tranzakciók megtekintése az első
+
+A „Számlák és banki tranzakciók megtekintése” előfeltétele minden olyan jogosultságnak, amely a könyvelést mutatja vagy módosítja: számlák és tranzakciók szerkesztése, párosítás, exportok, zárás, jelentések, törzsadatok, utalási fájl, jóváhagyások kezelése, a két ellenőrzőpont jóváhagyása és a könyvelőprogramba küldés. Amíg ki van kapcsolva, ezeknél a **Megtekintés nélkül nem adható** felirat áll, és nem kapcsolhatók be. Ha visszakapcsolja, a szerepkör szerinti állapotuk tér vissza.
+
+Enélkül a tag dokumentumokat tölthet fel, és csak a sajátjait látja, a cég pénzügyeit nem:
+
+- **Számlák:** az általa feltöltöttek (egyenként, ZIP-ben vagy e-mailben a saját címéről), csak olvasásra.
+- **Banki tranzakciók:** az általa feltöltött bankkivonatokból származók, a banki feed adataival kiegészítve, ha a feed ugyanazt a tételt hozta. Ami csak a banki feedből jött, az nem látszik.
+- **Jóváhagyások:** a neki kiosztott számlák, amelyeket megnyithat, jóváhagyhat vagy elutasíthat.
+- **Gyűjtő és Üzenetek:** az általa beküldött e-mailek, valamint a saját dokumentumairól szóló vagy általa írt beszélgetések.
+
+A Jelentések, az Exportok és az utalási fájl nem szerepel a menüjében, a vezérlőpulton pedig a saját feltöltései és a rá váró jóváhagyások látszanak.
+
+A könyvelőiroda tagjaitól nem vehető el. Náluk **A könyvelőirodánál mindig be van kapcsolva** felirat áll: az a könyvelő, aki nem látja a könyvelést, nem tud mit kezdeni a munkaterületen.
 
 ### A csapat kezelése
 
