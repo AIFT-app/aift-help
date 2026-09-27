@@ -112,7 +112,13 @@ On the **Team members** tab, **Edit access** next to a member opens their access
 
 The page lists **What this member can do**, and where each answer comes from: **From role**, **Exception, added**, **Exception, removed**, **Fixed by rule** or **Not available on the client side**. Every member can see their own access under **My access**.
 
-Taking away "View invoices and bank transactions" makes a member an upload-only user: they open the workspace, see the member list and their own access, and can upload documents, but every record list is empty and each page says so.
+#### Viewing invoices and bank transactions comes first
+
+"View invoices and bank transactions" is a prerequisite of every permission that shows or changes the books: editing invoices and transactions, matching, exports, closing, reports, master data, the payment file, managing approvals, the two checkpoint approvals and sending to the accounting system. While it is off, those read **Needs viewing** and cannot be switched on; switch it back on and they return as the role gives them.
+
+Without it a member is an upload-only user: they open the workspace and can upload documents, but they do not see the company's finances. Reports, Exports, the payment file and the approval board are not in their menu, and the dashboard shows the workspace without numbers.
+
+For the accounting firm's members it cannot be taken away. It reads **Always on for the accounting firm**: an accountant who cannot see the books has nothing to do in the workspace.
 
 ### Managing the team
 
