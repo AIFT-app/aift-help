@@ -1,32 +1,100 @@
 # VAT in Exports
 
-Once your VAT setup is in place and invoices carry their VAT codes, the Ledger Explorer exports (Exports → **Ledger**) include everything an accounting system needs to book VAT correctly. This article covers the VAT columns, the non-deductibility handling modes, and the export gate.
+AI Finance Team has four export destinations, and **they do not treat VAT the same way.** Most of what follows is about the Ledger export, because it is the only one that carries the full VAT picture. Start with the table, so nothing below surprises you.
 
-## What the Exports Contain
+| | Ledger | RLB | HessynKettős | Business Central |
+|---|---|---|---|---|
+| Non-deductibility setting applies | **yes** | no, it always folds it in | not applicable, sales only | no |
+| Incomplete-VAT invoices held back | **yes** | no | no | no |
+| The VAT code in the file | yours, as you wrote it | yours, but blanked for two pseudo-codes, plus a rate-derived RLB code | derived by AI Finance Team, not yours | Business Central's own code |
 
-- **Invoice headers** - the partner's VAT group and the header-level VAT summary alongside the existing columns.
-- **Invoice lines** - the full five-element decomposition per line (partner group, product/service group, rate, direction, calculation method), the resolved **VAT code** (both the accounting code and the AIFT code), net / VAT / gross amounts, the non-deductible split, the foreign-currency VAT fields, and a `vat_consistent` flag showing whether the line was manually overridden.
-- **Partners** - each partner's VAT group, so the target system's partner master stays aligned.
-- **Companies** - your own companies' VAT-relevant attributes (VAT-reporting currency, tax IDs), exported from their own tab.
+## What The Ledger Export Contains
 
-Codes appear exactly as authored in your [VAT master data](/vat-master-data) - AI Finance Team never invents or reformats them.
+Two shapes: an **Excel workbook**, or a **CSV bundle** as a zip. Either way, five datasets: invoice headers, invoice lines, bank transactions, partners and companies. You can export the whole ledger or only the tab you are looking at.
 
-## Non-Deductibility Handling - Three Modes
+Where VAT actually sits:
 
-Some VAT is not (fully) deductible - 50% on passenger-car costs, 100% on representation, and so on. Accounting systems differ in how they want this expressed, so each workspace picks one of three modes (Settings → **VAT settings**):
+- **Invoice lines** carry the product/service group, the rate and the calculation method, plus direction. **The partner VAT group is not here**: it is on the headers and partners sheets. So a line shows four of the five elements.
+- **Invoice headers** carry the VAT date, the posting date, the partner VAT group, the VAT recognition method and the VAT reporting currency. There is no header VAT summary column.
+- **Partners** carry each partner's VAT group and tax ID.
+- **Companies** carry the VAT recognition method, the VAT reporting currency, the exemption dates and the pro-rata percentage. No tax ID. Note the sheet itself is named **Entities**, even though the tab you exported from says Companies.
+- **Bank transactions** are in the same file and carry no VAT at all.
 
-- **Native, full** - the export carries the non-deductible percentage on every line and leaves the split to the target system. For systems that handle partial deductibility themselves.
-- **Native, 100% only** *(default)* - fully non-deductible lines are passed through natively; partially deductible lines are pre-split into a deductible and a non-deductible part. Works for the common Hungarian targets.
-- **Pre-rolled, always** - AI Finance Team always splits the amounts; the target system receives ready-to-book deductible and non-deductible figures.
+There is a flag called **VAT Consistent**, and it means the opposite of what you might assume. It is **false** when a code is still assigned but the line's elements no longer resolve to it. A line you corrected by hand comes out **true**, because correcting it rewrites the elements to match. Blank reads as true.
 
-If you're unsure which mode your accounting software needs, start with the default and check the first import with your software's VAT report.
+Over 50 000 rows the export asks you to confirm; over 200 000 it refuses and asks you to narrow the filters.
 
-## The Export Gate - "VAT Codes Incomplete"
+### The VAT code is not the same string everywhere
 
-An invoice whose lines are missing VAT codes would import into your accounting system as an unbookable fragment. Exports therefore **exclude invoices with incomplete VAT codes** and tell you about it: after the export you'll see how many invoices were exported and how many were excluded, with a one-click **Review excluded** link that filters the list to exactly the offending invoices.
+The Ledger export prints your code exactly as you authored it. The others do not:
 
-To fix an excluded invoice, open it and resolve the missing-code lines - see [VAT codes on invoices](/vat-codes-on-invoices). Usually the cure is adding one missing combination to your VAT code table; re-export afterwards.
+- **RLB** blanks two pseudo-codes. If your table uses `NL` or `-` to mean "fully non-deductible" or "not on the return", the return-line cell comes out **empty**. It also writes its own rate-derived code alongside, which is an RLB package number rather than anything from your table.
+- **HessynKettős** never reads your codes. It derives its own from the rate element: exempt, small-business exempt, reverse charge, cross-border service, or the plain rate.
+- **Business Central** sends a code from its own mirrored mapping.
 
-## Universal AIFT Format
+The **AIFT VAT Code** column appears only when the workspace uses AIFT-internal codes. In that mode the accounting code becomes optional, so the plain **VAT Code** column can legitimately be empty while the AIFT one carries the value.
 
-The export columns form a stable, documented format - the same columns in the same order on every export - so an import mapping you build once in your accounting software keeps working. Column additions land at the end of the sheet, never in the middle.
+## Non-Deductible VAT
+
+Some VAT is not fully deductible: half on passenger-car costs, all of it on representation. Accounting systems disagree on how they want that expressed, so **Settings → VAT settings** offers three handlings. They apply to the **Ledger export only**.
+
+- **Native for 100% only** *(the default)*. A fully non-deductible line is passed through as it is, for the target to route by GL account. A **partly** non-deductible line has its non-deductible VAT folded into the net.
+- **Native, target system handles all non-deductibility.** Nothing is folded in; the percentage rides along and the target splits it. For systems that can, such as Business Central with the non-deductible VAT feature, or DATEV.
+- **Pre-roll always.** Everything is folded in, including the 100% case that the default leaves alone. For systems that cannot express non-deductibility at all.
+
+**"Folded in" means the exported net is larger than the invoice's net.** That is the whole point, and it is the one thing to know before you build an import mapping: the non-deductible VAT is moved into the net figure, not merely reported beside it.
+
+Changing the setting needs the **"Edit master data"** permission. Reaching the exports at all needs **"Run accounting exports"**, which is a different permission.
+
+### Two sets of columns that disagree
+
+The invoice-lines sheet carries the amounts twice, from two different engines, and on the default setting they give different answers.
+
+For one fully non-deductible line of 100 net plus 27 VAT:
+
+| | Net | Deductible VAT | Non-deductible VAT |
+|---|---|---|---|
+| **Net Amount Exported** / **VAT Amount Deductible** / **VAT Amount Non-Deductible** | 100 | 27 | 0 |
+| **Booking Net Amount** / **Booking VAT Amount** | 127 | 0 | 27 |
+
+The first set follows the setting above and is what your accounting system should read. The second always folds in, and is what the app's own screens and reports use. Take the first set for an import mapping, and do not mix the two.
+
+**Pro-rata input VAT %** is exported as a column on the Companies sheet and changes no amount anywhere. The app says so itself on the field.
+
+## Invoices Held Back For Missing VAT Codes
+
+The **Ledger export** leaves out any invoice with a line that has no VAT code, because it would import as an unbookable fragment. **RLB and Hessyn do not**: they will ship an un-coded invoice with an empty return-line cell.
+
+The file still downloads. Afterwards a note tells you how many invoices went and how many were left out, with a link that takes you to the export's own **Invoice Headers** tab, filtered to exactly those invoices. It does not take you to the invoice list.
+
+One thing the gate does not catch: a **default-coded** line has a code, so its invoice exports normally, carrying the fallback code. The invoice list flags those separately as **VAT: default-coded**.
+
+To find them without running an export, filter the invoice list by **VAT codes incomplete**.
+
+### Fixing a batch
+
+1. Use the link after the export to see which invoices were held back.
+2. Open one and look at the line reading `- missing -` on its **Lines & VAT** tab.
+3. Add the missing combination under **Master data → VAT codes**.
+4. Run **Re-run VAT coding** from the invoice list, which fills only the lines whose code is missing.
+5. Export again.
+
+See [VAT codes on invoices](/vat-codes-on-invoices) for what to do on a single invoice.
+
+## How Stable Is The Format
+
+Stable enough to map once, with two honest exceptions, both on the invoice-lines sheet and both **in the middle** rather than at the end:
+
+- the **AIFT VAT Code** column appears and disappears with the workspace setting, and
+- a **Reporting Line** column exists per report your workspace has defined, so adding a report shifts the columns along.
+
+Two workspaces therefore do not get identical columns. Match on the header text, not the column position.
+
+CSV specifics, if you are scripting against it: UTF-8 with a byte-order mark, comma-separated, quoted per RFC 4180, dot decimal separator, ISO dates.
+
+## Related Articles
+
+- [VAT master data](/vat-master-data)
+- [VAT codes on invoices](/vat-codes-on-invoices)
+- [Small business VAT exemption](/small-business-exemption) - how exempt and reverse-charge lines differ per format
+- [Business Central](/business-central)

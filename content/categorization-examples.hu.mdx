@@ -1,60 +1,112 @@
 # Hogyan tanul az AIFT a javításaiból
 
-Az AI Finance Team annál jobban kategorizálja az egyes ügyfelek számláit és banki tranzakcióit, minél többet használja. Egyszerű gondolat áll mögötte: **a ma elvégzett javításból holnapra példa lesz, amelyet az AI követ.** A **Kategorizálási példák** oldalon megnézheti, szerkesztheti és bővítheti azt, amit az AIFT megtanult - ügyfelenként külön, sosem ügyfelek között megosztva.
+Egy ma elvégzett javítás holnapra olyan példa lesz, amit az AI követ. Ez a cikk arról szól, mit jelent ez a gyakorlatban, mert egy megtalált példa nem mindig ugyanazt teszi.
 
-## A visszacsatolási kör, közérthetően
+## Mi lesz egy javításból
 
-Valahányszor egy könyvelő módosítja az AI által választott kategóriát - akár egy számlatételen, akár egy banki tranzakción -, az AIFT csendben rögzíti példaként: „ennél a partnernél, vagy ennél a szövegezésnél a helyes kategória X”. Amikor legközelebb valami hasonló érkezik, az AI erős jelzésként veszi figyelembe ezt a példát.
+Ehhez nem kell tennie semmit. Valahányszor valaki megváltoztatja az AI által választott kategóriát, a rendszer példaként rögzíti: ennél a partnernél, vagy ennél a szövegnél a helyes válasz X.
 
-Ehhez nem kell tennie semmit. Automatikusan felépül, miközben átnézi és javítja a tételeket. Az első hónapokban a pontosság jellemzően emelkedik, ahogy a példák gyűlnek.
+**Az is javításnak számít, ha olyan értéket tölt ki, amelyet az AI üresen hagyott.** Ha egy ember megadja azt a választ, amelyet az AI kihagyott, az legalább olyan erős jelzés, mint ha felülírná.
 
-Ami újdonság: ez a megtanult tudás többé nem láthatatlan. Megnyithatja, elolvashatja, javíthat egy rossz bejegyzést, vagy előre feltöltheti a példákat egy vadonatúj ügyfélhez.
+Négy dolgot szándékosan nem tanul meg a rendszer:
 
-## Hol találja
+- azt a sort, amelynek a kategóriája partnerszabályból származik, nem emberi döntésből,
+- bármit, amit maga a feldolgozási folyamat írt be,
+- a „nem kell számla” jelölést, ha nincs hozzá konkrét tranzakciótípus,
+- azt a rekordot, amelynél sem partnernév, sem leírás nincs, amire támaszkodni lehetne.
 
-A példák a hozzájuk tartozó kategóriák mellett élnek, a **Törzsadatok** alatt:
+## Mit tesz utána egy megtanult példa
 
-- **Könyvelési kategóriák** → nyissa meg a **Példák** fület, majd a fül tetején válassza a **Számla-példák** vagy a **Pénzforgalmi példák** nézetet.
-- **Tranzakciótípusok** → nyissa meg a **Példák** fület ahhoz, amit az AIFT arról tanult, hogy mely tranzakciókhoz nem kell számla. Erről bővebben: [Tranzakciótípusok és a „Nincs szükség számlára”](/transaction-types).
+Ezt érdemes megérteni, mert két nagyon különböző kimenet van.
 
-A Könyvelési kategóriák oldalon a Példák a harmadik fül, a Számla és a Pénzforgalmi lista mellett. A Tranzakciótípusok oldal tetején két fül található: a már ismert lista és a **Példák**.
+**Le tudja könyvelni a sort magától, AI-hívás nélkül.** A számla- és a pénzforgalmi kategóriáknál a megtalált példát a rendszer közvetlenül alkalmazza, nagyon magas magabiztossággal, és a rekordon az látszik, hogy javításból származik, nem az AI-tól.
 
-> A példákat csak könyvelők látják, mert azt mutatják, hol javították az AI-t.
+**Vagy csak erős jelzésként kerül az AI elé.** A többi felületen, és minden olyan esetben, amikor a közvetlen alkalmazás nem áll fenn, a példát a rendszer példaként az AI elé teszi, és az AI dönt.
 
-## Mit mutat egy példa
+A közvetlen útvonalat két feltétel szabályozza, és csak a rögzített példákra:
+
+- **Az összegnek a közelben kell lennie.** A rögzített példa megjegyzi, milyen összegek mellett tanulta meg, és magától csak ennek a nagyjából négyszeres sávján belül könyvel.
+- **Pénznemek között soha.** Ha mindkét pénznem ismert és eltér, a közvetlen útvonal elmarad.
+
+Ezeken a határokon kívül a példát a rendszer **lefokozza, nem dobja el**: jelzésként továbbra is az AI elé kerül.
+
+> **A kézzel felvett példának egyáltalán nincs összegsávja, ezért feltétel nélkül könyvel, bármilyen összegnél és bármilyen pénznemben.** Ez az éles széle annak, amikor egy új ügyfélhez előre felvesz példákat. Gyakran éppen ezt szeretné, de erősebb annál, amit egy rögzített példa tesz.
+
+## A négy felület
+
+Nem egyformán működnek, és a különbségek fontosabbak, mint a hasonlóságok.
+
+| Hol | Mit állít be a példa | Könyvel magától? | Partnerre illeszt? |
+|---|---|---|---|
+| Könyvelési kategóriák → **Példák**, Számla-példák | a számla kategóriáját | igen | nem, csak leírásra |
+| Könyvelési kategóriák → **Példák**, Pénzforgalmi példák | a tranzakció kategóriáját | igen | igen, utána a leírásra |
+| Tranzakció típusok → **Példák** | a tranzakciótípust, és hogy kell-e hozzá számla | nem, csak tájékoztatja az AI-t | igen |
+| ÁFA-kódok → **ÁFA-példák** | a termék/szolgáltatás ÁFA-csoportot | nem, a sor így is az AI-hoz kerül | csak holtverseny eldöntésére |
+
+Néhány következmény ebből a táblázatból:
+
+- **A csak partnert tartalmazó példa a számlakategóriáknál és az ÁFA-nál használhatatlan**, mert azok a leírásra illesztenek. Ezekhez adjon meg leírást is.
+- **A tranzakciótípusoknál egyáltalán nincs közvetlen útvonal.** Ott a determinisztikus réteg a tranzakciótípuson lévő külön mintalista, nem ezek a példák.
+- **Az ÁFA-példa ötből egy elemet ad meg.** A kulcsot és a számítási módot továbbra is valahonnan meg kell kapni, ezért az AI-t mindig meghívja a rendszer. Amit visszajátszik, az a **csoport**, nem a feloldott kód, és ez szándékos: így egy kulcsváltozás előtt megtanult kód nem kerül alkalmazásra utána.
+
+> **A kézzel felvett ÁFA-példák még nem működnek.** Létre tudja hozni, eltároljuk, és megjelenik a listában, de az AI soha nem olvassa be. Egy magától megtanult példa javítása működik. A kézi felvételt javítjuk.
+
+Az egyéni kategórialisták **nem** ötödik felületet jelentenek. Az ottani javításokat a rendszer rögzíti, de semmi nem olvassa be őket.
+
+## A lista olvasása
 
 | Oszlop | Jelentése |
 |--------|-----------|
-| **Partner** | A partner, amelyre a példa illeszkedik (opcionális) |
-| **Leírás** | Szöveg, amelyet a számlatételnek vagy tranzakciónak tartalmaznia kell (opcionális) |
-| **Kategória** | A kategória, amelyet az AIFT alkalmazzon |
-| **Döntés** | Csak tranzakciótípus-példáknál: **Nincs szükség számlára** vagy **Számla szükséges** |
-| **Forrás** | **Automatikusan tanult** (valódi javításból) vagy **Kézi** (Ön vette fel) |
-| **Előfordulások** | Hányszor fordult elő ez a minta |
+| **Partner** | A partner, amelyre a példa illeszt, ahol az a felület használja |
+| **Leírás** | A szöveg, amelyet a rekordnak tartalmaznia kell |
+| **Kategória** | Amit alkalmazni kell. Az adott felületen **Tranzakciótípus** vagy **Termék / szolgáltatás csoport** néven jelenik meg |
+| **Feloldott kód** | Csak az ÁFA-példáknál, csak olvasható, azt mutatja, mire oldódott fel a csoport |
+| **Döntés** | Csak a tranzakciótípus-példáknál: kell-e hozzá számla |
+| **Forrás** | **Automatikusan tanult**, vagy **Kézi**, ha valaki felvette |
+| **Előfordulások** | Lásd alább |
 | **Módosítva** | Mikor változott utoljára a példa |
 
-Kereshet partner vagy leírás szerint, és szűrhet kategóriára, valamint forrásra (automatikusan tanult vagy kézi).
+Az **Előfordulások** nem mindenhol ugyanazt jelenti. A tranzakciótípus- és az ÁFA-példáknál azt számolja, milyen gyakran fordult elő újra a minta. A kategóriapéldáknál azt, hányszor javították újra **ugyanazt a rekordot**, így egy több számlán visszatérő minta több külön, egyes értéken álló példát hoz létre, nem egy magas értékű példát.
 
-## Példa felvétele kézzel
+A kézzel felvett példa hármas értéken indul, szándékosan az egyetlen szerves javítás zajszintje fölött.
 
-A **+ Példa hozzáadása** gombbal még azelőtt taníthatja az AIFT-et, hogy az magától találkozott volna az esettel - ideális új ügyfél bevezetésekor. Például előre megadhatja, hogy a *Company Ltd.* számlái mindig *Épületkarbantartás* kategóriába tartoznak, ahelyett hogy megvárná a természetes úton bekövetkező javításokat.
+Kereshet partner vagy leírás szerint, szűrhet kategóriára és forrásra. A lista aszerint van sorrendben, milyen gyakran fordult elő egy példa.
 
-Egy példához partner **vagy** leírás kell az illesztéshez, plusz az alkalmazandó kategória.
+## Felvétel, szerkesztés és törlés kézzel
 
-## Példák szerkesztése és törlése
+A **+ Példa hozzáadása** olyat tanít meg a rendszernek, amit az még nem látott szervesen: pontosan ezt szeretné egy ügyfél indításakor.
 
-- A **Szerkesztés** javít egy rossz vagy elavult példát.
-- A **Törlés** véglegesen eltávolít egy példát - hasznos, ha a lista megnőtt, és rendet szeretne tenni. Az AI a következő kategorizálási futástól kezdve nem használja. Ez nem vonható vissza, de ha ugyanazt a tételt később újra javítják, automatikusan új példa keletkezik.
+Két viselkedést érdemes tudni:
 
-**A változások előremutatóan érvényesek.** Egy példa szerkesztése, hozzáadása vagy törlése a jövőbeli kategorizálási futásokra hat - a már feldolgozott tételeket nem kategorizálja újra.
+- A tranzakciótípus- és az ÁFA-példáknál, ha olyat vesz fel, amely meglévő mintára illeszkedik, a rendszer **a tanult sort Kézire váltja** és megtartja a felgyűlt darabszámát, nem hoz létre második sort.
+- A kategóriapéldáknál nincs ilyen összevonás, ezért két azonos, kézzel felvett példa egymás mellett is megélhet.
 
-## Hány példát használ az AI
+A **Törlés** véglegesen eltávolítja a példát. Az AI a következő futásnál már nem használja, és ha ugyanazt később újra javítják, magától új példa keletkezik.
 
-A munkaterület-adminisztrátorok a Példák fül fejlécében beállíthatják az **AI-kérésenként felhasznált példák** számát (10 és 100 között, alapértelmezés 30). Több példa javíthatja a pontosságot, de növeli minden egyes kategorizálási kérés AI-költségét, a nagyon nagy listák pedig egyre kevesebb többletet adnak - így a 30-as alapérték a legtöbb ügyfélnél észszerű kiindulópont.
+**Itt semmi nem dolgozza fel újra azt, ami már megvan.** A felvétel, a szerkesztés és a törlés csak a jövőbeli futásokra hat. A meglévő rekordokhoz használja az **Újrakategorizálás** műveletet a Számlák vagy a Banki tranzakciók listán, amely érintetlenül hagyja azt, amit ember állított be.
 
-Ez **egyetlen beállítás, amely mindhárom példatípusra vonatkozik**: a számla kategóriákra, a pénzforgalmi kategóriákra és a tranzakciótípusokra. Ha a kategorizálási költség miatt csökkenti, azzal az AI tranzakciótípus-példáit is megritkítja. **0** értéken a tanulás teljesen kikapcsol az adott ügyfélnél.
+Egy dologra figyeljen: az olyan példa, amely egy azóta archivált kategóriára mutat, a pénzforgalmi oldalon még alkalmazásra kerülhet anélkül, hogy ellenőrzésre jelölnék. Törölje azokat a példákat, amelyeknek a célja már nincs használatban.
 
-## Kapcsolódó cikkek
+## Mennyit lát az AI
 
-- [Számlák és tranzakciók kategorizálása](/categorization) - hogyan rendel az AI egyáltalán kategóriát.
-- [Tranzakciótípusok és a „Nincs szükség számlára”](/transaction-types) - ugyanez a tanulási kör arra alkalmazva, hogy mely tranzakciókhoz kell egyáltalán bizonylat.
+Egy Példák fülön a **Beállítások** gomb mögött egyetlen tárcsa van, **AI-tanulás** néven, amely a **Ki** értéktől 100-ig fut ötös lépésekben, alapértelmezés szerint 30-on.
+
+**Mind a négy felületet egyszerre szabályozza.** Ha a költség miatt leveszi, azzal a tranzakciótípus- és ÁFA-példákból is kevesebbet ad az AI-nak. Több példa javíthatja a pontosságot, de kérésenként többe kerül, és a nagyon hosszú listák egyre kevesebbet adnak, ezért a 30 értelmes kiindulópont.
+
+**A Ki többet tesz annál, hogy megállítja a példák bekerülését a promptba.** A közvetlen alkalmazás gyorsítását is kikapcsolja, így javításból sem könyvel semmi magától.
+
+A tárcsa módosításához a „Munkaterület-beállítások szerkesztése” jogosultság kell.
+
+## Ki látja és ki módosíthatja
+
+A Példák fülek **csak a könyvelői oldalon** érhetők el; az ügyféloldali felhasználók, köztük a pénzügyi adminisztrátor is, egyiket sem látják.
+
+A példák felvételéhez, szerkesztéséhez és törléséhez a „Törzsadatok szerkesztése” jogosultság kell. Ez jogosultság, nem beosztás, tehát tagonként megadható vagy elvonható. Lásd [Szerepek és jogosultságok](/roles-and-permissions).
+
+A példák soha nem kerülnek át más munkaterületre. Az egyik ügyfélnél végzett javítást csak annál az ügyfélnél használja a rendszer, és semmi nem jut belőle egy másikhoz. (A cégjegyzék az egyetlen dolog a termékben, amelyet szándékosan megosztunk a munkaterületek között, és az nyilvános cégadatokat tartalmaz, nem az Ön javításait.)
+
+## Kapcsolódó
+
+- [Számlák és banki tranzakciók kategorizálása](/categorization) - hogyan kapja meg egy tétel a kategóriáját először
+- [Tranzakciótípusok és „nem kell számla”](/transaction-types)
+- [ÁFA törzsadatok](/vat-master-data) - az ÁFA-példák fül a saját környezetében
