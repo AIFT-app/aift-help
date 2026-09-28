@@ -19,7 +19,7 @@ Olyan partnernél, amelynél nincs rögzített bankszámla, a szakasz ehelyett a
 
 - **A szállítói számlán**, a kifizetés jóváhagyásának kártyáján, a kedvezményezett számlaszáma alatt.
 - **Az utalási fájl oldalán**, minden szóba jöhető soron.
-- **Hitelesített partneren**, a **Cégjegyzék** szakaszban: mit mond a cégjegyzék, mit töltött ki, mi tér el, és egy **Cégadatok** blokk a cégformával, a cégjegyzékszámmal, a főtevékenységgel és az utolsó beszámoló adataival.
+- **Hitelesített partneren**, a **Cégjegyzék** szakaszban: a döntésre váró eltérések, az Ön adatai és a cégjegyzék adatai egymás mellett az **Összevetés a cégjegyzékkel** táblázatban, amit a cégjegyzék kitöltött, és egy összecsukott **Cégadatok** blokk a cégformával, a cégjegyzékszámmal, a főtevékenységgel és az utolsó beszámoló adataival.
 - **A hitelesítő párbeszédablakban**, amikor egy nem hitelesített névből partnert csinál: ha a cégjegyzék ismeri a céget, felkínáljuk a cégnevét, az adószámát, a székhelyét és a főtevékenységét, a **Vedd át ezeket az adatokat** gomb pedig kitölti őket.
 
 ## Mi indít el egy ellenőrzést
@@ -37,20 +37,29 @@ Minden ellenőrzés egyet használ el a hónap cégjegyzék-lekérdezéseiből. 
 
 A cégjegyzék saját adatait legfeljebb 90 naponta frissítjük. Ezután a szakasz **Elavult** jelöléssel látja el a választ, és megvárja Önt: pusztán az elévülés soha nem használ el lekérdezést.
 
-## Eltérések, amiket érdemes megnézni
+## Eltérések, és mit kezdhet velük
 
-Ahol az Ön adata és a cégjegyzék nem egyezik, a szakasz listázza az eltérést, ahelyett hogy bármit megváltoztatna. Minden eltérést megjelölünk aszerint, hogy mennyire számít: **Ellenőrizd**, **Nézd meg** vagy **Infó**.
+Ahol az Ön adata és a cégjegyzék nem egyezik, magától semmi nem változik. A szakasz kiírja, hány dolog vár döntésre, mindegyiket külön kártyán mutatja, a két értéket pedig lent, az **Összevetés a cégjegyzékkel** táblázatban egymás mellé teszi. Minden kártyát megjelölünk aszerint, hogy mennyire számít: **Ellenőrizd**, **Nézd meg** vagy **Infó**.
 
-- A cég már nem aktív, például felszámolás alatt áll.
-- Eltér az adószám.
-- Az Önnél lévő számlaszám nincs nyilvántartva ennél a cégnél.
-- A számlaszám egyetlen ismert bankfiókhoz sem tartozik.
-- Eltér a név vagy az irányítószám. A címeket csak irányítószám alapján vetjük össze, mert a szabad szöveges címek túlságosan sokfélék ahhoz, hogy tisztességesen összehasonlíthatók legyenek.
-- A cégjegyzék olyan számlaszámokat tart nyilván, amelyek Önnél nincsenek meg: ezeket egy sorban, darabszámmal mutatjuk.
+| Az eltérés | Mit tehet |
+| --- | --- |
+| Eltér az adószám | Az **Átveszem** a cégjegyzék adószámát írja be a partnerhez. Csak az utolsó három számjegy térhet el, mert az ellenőrzés az első nyolc alapján történik. |
+| Eltér a székhely (az irányítószám, mert a szabad szöveges címek túlságosan sokfélék ahhoz, hogy tisztességesen összehasonlíthatók legyenek) | Az **Átveszem** a cégjegyzékben szereplő székhelyet írja be a partnerhez. |
+| Mindkettő, és az adószám utolsó két számjegye is megváltozott | Egy kártya, **Úgy tűnik, a cég elköltözött**, a **Mindkettőt átveszem** gombbal. Ha egy cég másik megyébe viszi a székhelyét, az adószáma utolsó két számjegye (az adóhatóság kódja) is megváltozik. |
+| A cégjegyzék olyan számlaszámokat tart nyilván, amelyek Önnél nincsenek meg | Egy kártya mindegyikre, a **Mind a(z) … hozzáadása** gombbal, vagy egy soron a **Hozzáadom** gombbal. |
+| A cég már nem aktív, például felszámolás alatt áll | Csak figyelmeztetés. A **Tudomásul vettem** elrejti a kártyát. |
+| Az Önnél lévő számlaszám nincs nyilvántartva ennél a cégnél, vagy egyetlen ismert bankfiókhoz sem tartozik | Az **Ugrás a bankszámlákhoz** gombbal ott ellenőrizheti. |
+| Eltér a név | Csak a táblázatban látszik. A partnert soha nem nevezzük át a cégjegyzék alapján. |
+
+**A hozzáadott számlaszám megerősítetlen marad.** A partner bankszámlái között „a cégjegyzékből hozzáadva” jelölést kap, és fizetési fájlba csak azután kerülhet, hogy valaki a „Jóváhagyások kezelése” jogosultsággal megerősítette, ugyanúgy, mint bármely más számlát. Lásd: [Jóváhagyott számlák kifizetése](/paying-approved-invoices).
+
+Az **Így hagyom** (a számlaszámok kártyáján a **Most nem**) elrejti a kártyát, a sorban pedig az **Így hagytad** felirat jelenik meg. Így is marad, amíg a cégjegyzék más értéket nem mutat, akkor a kártya magától visszajön. A sorban a **Visszavonás** gombbal vonhatja vissza. Ez csak azt változtatja meg, mit mutat ez a szakasz: nem erősít meg számlaszámot, és nem változtat azon, mit enged egy fizetési fájl.
+
+Minden átvétel, hozzáadás és Így hagyom döntés megjelenik a partner előzményei között.
 
 ## Mit tölt ki a cégjegyzék
 
-Ha a cégjegyzék tud valamit, amit Ön nem, pontosan négy dolgot töltünk ki, és csak addig, amíg üresek: a **cím**, az **ország**, a teljes **adószám**, ha annak első nyolc jegye már megvan, és a **csoportazonosító szám**. A nevet és a bankszámlákat a cégjegyzék soha nem írja be. Egyéni vállalkozónál egyáltalán semmit nem töltünk ki.
+Ha a cégjegyzék tud valamit, amit Ön nem, pontosan négy dolgot töltünk ki, és csak addig, amíg üresek: a **cím**, az **ország**, a teljes **adószám**, ha annak első nyolc jegye már megvan, és a **csoportazonosító szám**. A nevet és a bankszámlákat a cégjegyzék magától soha nem írja be. Egy általa nyilvántartott számlaszám csak akkor kerül a partnerhez, ha valaki hozzáadja, ahogy fent leírtuk. Egyéni vállalkozónál egyáltalán semmit nem töltünk ki.
 
 ## Automatikusan megerősített számlaszámok
 
@@ -82,7 +91,7 @@ Az egyéni vállalkozó adószámát elküldjük a cégjegyzéknek, a válasz pe
 
 ## Ki láthatja és ki használhatja
 
-A cégjegyzék válaszainak megtekintéséhez a „Számlák és banki tranzakciók megtekintése” jogosultság kell. Az **Ellenőrzés most**, az **Újraellenőrzés** és az **Ezt az adószámot használom** megnyomásához a „Törzsadatok szerkesztése” jogosultság kell. Lásd: [Szerepek és jogosultságok](/roles-and-permissions).
+A cégjegyzék válaszainak megtekintéséhez a „Számlák és banki tranzakciók megtekintése” jogosultság kell. Az **Ellenőrzés most**, az **Újraellenőrzés** és az **Ezt az adószámot használom** megnyomásához, valamint egy érték átvételéhez, egy számlaszám hozzáadásához és egy eltérés meghagyásához a „Törzsadatok szerkesztése” jogosultság kell. Egy hozzáadott számlaszám megerősítéséhez a „Jóváhagyások kezelése” jogosultság kell. Lásd: [Szerepek és jogosultságok](/roles-and-permissions).
 
 ## Hová kerülnek az adatok
 
