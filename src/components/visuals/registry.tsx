@@ -32,6 +32,9 @@ import { VatGroupStepsFigure } from './vat-groups'
 import { StatementsTabFigure } from './statements'
 import { TriageDestinationsFigure } from './intake'
 import { PartnerRulesFigure } from './partner-rules'
+import { VatSetupActionsFigure, VatSetupPreviewFigure } from './vat-setup'
+import { DocumentsListFigure } from './documents'
+import { VatLinesGridFigure } from './vat-lines'
 
 type WithLocale = { locale: Locale; children?: React.ReactNode }
 
@@ -73,6 +76,10 @@ const FIGURES: Record<string, (props: WithLocale) => React.ReactNode> = {
   StatementsTabFigure,
   TriageDestinationsFigure,
   PartnerRulesFigure,
+  VatSetupActionsFigure,
+  VatSetupPreviewFigure,
+  DocumentsListFigure,
+  VatLinesGridFigure,
 }
 
 export function visualComponents(locale: Locale) {

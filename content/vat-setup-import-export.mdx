@@ -8,6 +8,15 @@ The tables involved are described in [VAT master data](/vat-master-data).
 
 All three sit in the **title row** of **Master data → VAT codes**, above the tab bar, so they are there whichever tab you are on.
 
+<VatSetupActionsFigure>
+The title row of **Master data → VAT codes**, with the tab bar under it. The numbers match the list below. The workspace is an example.
+</VatSetupActionsFigure>
+
+1. **Export VAT Setup**, for anyone who can open the page.
+2. **Import VAT Setup**, accounting side only.
+3. **Copy from workspace**, accounting side only.
+4. The six tabs. The three buttons belong to the page, not to a tab, so they are there on every one of them.
+
 **Export** is available to anyone who can open the page, which in practice means the accounting side: the page is not offered to client-side users at all. One caveat worth knowing, because it fails quietly: a member whose record access has been denied downloads a **structurally valid but empty workbook**, with no error.
 
 **Import** and **Copy** are shown to everyone on the accounting side, but the server requires the **"Edit master data"** permission. If your role lacks it the buttons are still there, and you find out late:
@@ -40,6 +49,13 @@ The flow is: upload, look at what it would do, then confirm.
 2. **Confirm.** Only then is anything applied, and all of it applies together. If any part fails, nothing is committed.
 
 **Any error blocks the whole import.** Fix the named rows and upload again.
+
+<VatSetupPreviewFigure>
+The preview step, with one sheet in error. The numbers match the list below. The counts and the code are examples.
+</VatSetupPreviewFigure>
+
+5. **Per sheet: new, updated, unchanged**, and an error count where there are errors. Four of these five sheets would go through.
+6. **Confirm import is disabled** while anything is in error, and the dialog says plainly that nothing has been imported. The error names the sheet, the row and the column, and here it is the five-element overlap: an existing active code already covers that combination for an overlapping period.
 
 Only `.xlsx`, up to 5 MB, up to 2,000 rows per sheet. There is no column-mapping step and no row-by-row review grid: headers are matched against a fixed multilingual list of known names. If you know the Partners or category imports, this one is deliberately simpler than those.
 

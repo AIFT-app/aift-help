@@ -29,9 +29,19 @@ The dialog says PDF, JPG or PNG up to 20 MB, and that is good advice rather than
 
 Every document is read once, briefly, so the list is useful without opening anything. It gets a one or two sentence **summary** with a confidence figure, its language is detected, and it is given a type.
 
-**The type badge shows whatever the AI called it**, not a fixed set. You will see `lease`, `nda` or `Kontenrahmen` as often as **Contract** or **Other**, and those free-text labels are not translated, so they read in the document's own language whatever your interface language is.
+**The type badge shows whatever the AI called it**, but only for a document that is not a contract. The first pass writes two things: a coarse kind, and a finer label in its own words. A **contract** always shows the translated word **Contract**, and its finer label (`lease`, `nda`) is never displayed anywhere. Everything else shows the finer label if there is one, and those free-text labels are not translated, so `Kontenrahmen` reads as `Kontenrahmen` whatever your interface language is.
 
 If the same file is already in the workspace, the copy is marked **Duplicate**. It still appears in the list, filed under the original's type, with the summary replaced by a line naming what it duplicates.
+
+<DocumentsListFigure>
+The Documents list with five documents. The numbers match the list below. The documents and companies are examples.
+</DocumentsListFigure>
+
+1. **Upload**, beside the heading. The only other way in is email.
+2. **Duplicates** is the one filter that carries a count, and only when there are some.
+3. **The type badge in the document's own words.** This chart of accounts is not a contract, so the badge prints what the AI called it, untranslated, whatever your interface language is.
+4. **A duplicate is filed here**, under the kind of the original, with the line naming what it duplicates in place of the summary.
+5. **A PDF holding several documents** keeps the **Processing** badge for good. Nothing further happens to it.
 
 This first pass is deliberately shallow. It reads the opening of the document to route and describe it, not to extract its contents.
 
