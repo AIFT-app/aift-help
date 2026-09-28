@@ -91,8 +91,8 @@ const en: Copy = {
     'transactions.statements.days_ago': "{days} days ago",
   },
   rendered: {
-    "periodAug": "1 Aug 2026 – 31 Aug 2026",
-    "periodJul": "1 Jul 2026 – 31 Jul 2026",
+    "periodAug": "2026-08-01 – 2026-08-31",
+    "periodJul": "2026-07-01 – 2026-07-31",
     "ratio": "24 / 26",
     "pages": "3 / 12 pages",
     "unmatched": "99999999-11111111-22222222 - unmatched",
@@ -131,8 +131,8 @@ const hu: Copy = {
     'transactions.statements.days_ago': "{days} napja",
   },
   rendered: {
-    "periodAug": "2026. aug. 1. – 2026. aug. 31.",
-    "periodJul": "2026. júl. 1. – 2026. júl. 31.",
+    "periodAug": "2026-08-01 – 2026-08-31",
+    "periodJul": "2026-07-01 – 2026-07-31",
     "ratio": "24 / 26",
     "pages": "3 / 12 oldal",
     "unmatched": "99999999-11111111-22222222 - nem párosított",
@@ -171,8 +171,8 @@ const de: Copy = {
     'transactions.statements.days_ago': "vor {days} Tagen",
   },
   rendered: {
-    "periodAug": "1. Aug. 2026 – 31. Aug. 2026",
-    "periodJul": "1. Juli 2026 – 31. Juli 2026",
+    "periodAug": "2026-08-01 – 2026-08-31",
+    "periodJul": "2026-07-01 – 2026-07-31",
     "ratio": "24 / 26",
     "pages": "3 / 12 Seiten",
     "unmatched": "99999999-11111111-22222222 - nicht zugeordnet",
