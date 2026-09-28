@@ -1,38 +1,93 @@
 # USt-Codes auf Rechnungen
 
-Jede Rechnungszeile in AI Finance Team trägt fünf USt-Felder: **Partner-USt-Gruppe** (im Rechnungskopf), **Produkt-/Leistungs-USt-Gruppe**, **USt-Satz**, **Berechnungsmethode** und den aufgelösten **USt-Code**. Dieser Artikel erklärt, wie sie automatisch befüllt werden, was die Indikatoren bedeuten und wie Korrekturen funktionieren.
+Ein USt-Code ist kein Feld, das jemand eintippt. Er wird **aus fünf Elementen aufgelöst**, und diese Auflösung findet auf dem Tab **Positionen & USt.** einer Rechnung statt. Die Elemente selbst und die Tabellen dahinter stehen in [USt-Stammdaten](/vat-master-data); dieser Artikel behandelt, was auf einer echten Rechnung mit ihnen passiert.
 
-Die fünf Tabellen hinter diesen Feldern sind in [USt-Stammdaten](/vat-master-data) beschrieben.
+## Wie eine Position codiert wird
 
-## Automatische Zuweisung bei der Extraktion
+Die Codierung läuft **nach der Extraktion, als Teil der Kategorisierung**, im selben KI-Aufruf, der auch die Kategorie wählt. Sie ist nicht Teil des Lesens des Dokuments.
 
-Wenn eine Rechnung extrahiert wird (Upload, E-Mail oder NAV Online), klassifiziert AI Finance Team die USt-Elemente jeder Zeile zusammen mit ihrer Kategorie:
+Mehrere Dinge haben ein Mitspracherecht, das spezifischste zuerst:
 
-- Die **Partner-USt-Gruppe** wird vom Partner übernommen, wenn dieser bereits mit einer Gruppe versehen ist; andernfalls wird sie aus dem Land des Partners abgeleitet (Inland / EU / Drittland).
-- **Produkt-/Leistungs-USt-Gruppe**, **USt-Satz** und **Berechnungsmethode** werden pro Zeile aus dem Dokument klassifiziert - der Satz aus dem aufgedruckten USt-Prozentsatz, Reverse Charge aus dem Wortlaut der Rechnung und so weiter.
-- Sind alle fünf Elemente vorhanden, wird der passende **USt-Code** aus der Codetabelle Ihres Arbeitsbereichs automatisch für das USt-Datum der Rechnung zugewiesen.
+1. **NAV-Daten**, bei einer ungarischen Rechnung. NAV legt den **Satz** und die **Berechnungsmethode** fest, sonst nichts: Eine Produkt- oder Leistungsklassifizierung trägt NAV nicht. Der ganze Code wird nur dann ohne KI geklärt, wenn genau einer Ihrer aktiven Codes einen passenden NAV-Zuordnungscode trägt; andernfalls geht die Produkt-/Leistungsfrage weiterhin an das Modell.
+2. **Eine gelernte Korrektur.** Wenn Sie eine ähnliche Position schon einmal korrigiert haben, wird die **Produkt-/Leistungsgruppe** erneut abgespielt, nicht der Code. Das ist Absicht, damit ein vor einer Satzänderung gelernter Code nicht danach angewendet wird. Ein Treffer erspart deshalb nicht den KI-Aufruf: Satz und Methode müssen immer noch irgendwoher kommen.
+3. **Eine Partner-Voreinstellung.** **Verkauft immer**, auf dem Tab **Regeln** des Partners, legt die Produkt-/Leistungsgruppe für jede Position dieses Lieferanten fest und geht der eigenen Vermutung der KI vor. Es setzt dieses eine Element und nichts weiter.
+4. **Die eigene Lesart der KI** von der Position.
+5. **Der Standard-Code des Arbeitsbereichs**, wenn all das die Position noch ungelöst lässt. Siehe unten.
 
-Ungarische Rechnungen, die über **NAV Online** eintreffen, haben maschinenlesbare USt-Daten, die deterministisch zugeordnet werden - ganz ohne Raten.
+Zwei Dinge, die der Artikel früher versprochen hat und die das Produkt nicht tut. Ein Partner ohne USt-Gruppe wird an dieser Stelle **nicht** aus seinem Land abgeleitet: Die Länder-Vermutung passiert einmal, wenn der Geschäftspartner zum ersten Mal angelegt wird, sodass die zweite und jede weitere Rechnung eines Partners ohne Gruppe einfach ohne dieses Element eintrifft. Und der NAV-Satz wird mit einer Toleranz von einem halben Prozentpunkt dem nächstgelegenen Ihrer konfigurierten Sätze zugeordnet, bei Gleichstand ohne Entscheidung, was eher eine gute Heuristik als eine deterministische Zuordnung ist.
 
-## Die zwei Indikatoren
+Die Auflösung stützt sich auf das **USt-Datum**. Fehlt das USt-Datum auf der Rechnung, verwendet sie stillschweigend das heutige Datum, was gut zu wissen ist, bevor Sie sich fragen, warum eine alte Rechnung einen aktuellen Code bekommen hat. Herangezogen werden nur die Gültigkeitsdaten des Codes selbst, nicht die der einzelnen Elemente.
 
-- **Fehlender USt-Code** - die Elemente der Zeile passen zu keinem Code in Ihrer Tabelle (oder ein Element konnte nicht bestimmt werden). Rechnungen mit solchen Zeilen zeigen in Listen den Status **„USt-Codes unvollständig"** und auf der Rechnung ein Banner („Fehlende USt-Codes in N Zeilen"). Fügen Sie den fehlenden Code Ihrer Tabelle hinzu - am schnellsten über die direkt dort angebotene Abkürzung **Fehlende USt-Codes hinzufügen** - oder korrigieren Sie die Elemente der Zeile.
-- **Abweichung** - die Zeile hat einen Code zugewiesen, aber ihre aktuellen Elemente stimmen nicht mehr mit der Kombination dieses Codes überein (typischerweise nach einer manuellen Übersteuerung). Das ist eine sanfte Warnung, kein Fehler: Der zugewiesene Code gilt, und das Symbol zeigt lediglich, dass die Zeile übersteuert wurde.
+### Der Standard-USt-Code des Arbeitsbereichs
 
-## USt-Felder korrigieren
+Sie können je Richtung einen Standard-USt-Code festlegen. Eine Position, deren Elemente nicht vollständig bestimmbar sind, erhält ihn, und die Zelle zeigt dann den Code mit dem Kennzeichen **Standard** daneben.
 
-Buchhalter können jedes der fünf Felder auf der Rechnung korrigieren:
+Das ist enger als eine Vermutung. Ein Standard, der einem Element widerspricht, das das System erkannt hat, wird abgelehnt, eine vollständig erkannte Position erhält ihn überhaupt nicht, und eine erkannte Partnergruppe, die dem Standard widerspricht, schließt die ganze Rechnung von der Ersatzcodierung aus.
 
-- **Ein Element ändern** (Gruppe, Satz, Methode) - der USt-Code wird aus der neuen Kombination automatisch neu aufgelöst.
-- **Einen USt-Code direkt wählen** - die Elemente der Zeile werden aus der Kombination des gewählten Codes rückbefüllt und die Zeile wird als konsistent markiert.
-- **Die Partner-USt-Gruppe im Rechnungskopf oder das USt-Datum ändern** - jede Zeile der Rechnung wird neu aufgelöst.
+**Eine standard-codierte Position gilt als codiert.** Die Rechnung ist exportfähig und zeigt keine Warnung „unvollständig“; stattdessen trägt sie in der Rechnungsliste die Markierung **USt: standard-codiert**. Die Prüfung ist bewusst nur ein Hinweis. Wenn Sie sie sich angesehen haben, entfernt die Schaltfläche **USt-Codierung OK** in der Symbolleiste das Kennzeichen bei allen auf einmal.
 
-Korrekturen werden pro Arbeitsbereich gemerkt: Wird dasselbe Dokument jemals neu extrahiert, bleiben Ihre manuellen USt-Korrekturen erhalten und werden von der KI nicht überschrieben.
+## Die USt-Code-Zelle lesen
 
-## Partner-USt-Gruppe am Partner
+Vier Dinge, die Sie sehen werden:
 
-Das dauerhafte Zuhause der Partner-USt-Gruppe ist der **Partner**, nicht die Rechnung. Setzen Sie beim Anlegen oder Verifizieren eines Partners (Stammdaten → **Partner**) seine USt-Gruppe einmal - jede künftige Rechnung dieses Partners startet mit der richtigen Gruppe. Eine Übersteuerung auf Rechnungsebene bleibt für Einzelfälle verfügbar (zum Beispiel ein normalerweise inländischer Partner, der aus dem Ausland fakturiert).
+- **Ein Code, schlicht.** Aufgelöst und konsistent.
+- **Ein Code mit dem Kennzeichen Standard.** Der Standard des Arbeitsbereichs, Prüfung empfohlen.
+- **`- fehlt -`.** Nichts hat sich aufgelöst.
+- **Ein Code mit einem Warndreieck.** Der Code bleibt zugewiesen, aber die aktuellen Elemente der Position lösen sich nicht mehr zu ihm auf. Das ist kein Nachweis dafür, dass jemand die Position übersteuert hat: Eine Satzänderung, eine Änderung der Partner-USt-Gruppe und eine Änderung des USt-Datums lösen es alle aus. Der zugewiesene Code gilt weiterhin.
+
+Die drei Element-Auswahlfelder erscheinen nur direkt in der Zeile, **solange die Position nicht aufgelöst ist**. Sobald ein Code aufgelöst ist, zeigt die Zelle **Aufgelöst - siehe Erweitert**, und sie wandern in den Bereich **Erweitert** der Zeile. Das ist das verwirrendste Verhalten auf diesem Bildschirm, und es ist Absicht: Eine fertige Position braucht weniger Platz.
+
+Erweitert enthält auch die Überschreibung des nicht abziehbaren Prozentsatzes (**Nicht abziehbar %-Überschreibung**). Wo ein nicht abziehbarer Anteil eingerechnet wurde, zeigt die Zeile darunter einen Betrag **Gebucht**, also den Bruttobetrag, der als Netto behandelt wird.
+
+## Wenn sich nichts auflöst
+
+Eine nicht codierte Position zeigt **`- fehlt -`**, und die Rechnung erhält in der Liste die Markierung **USt-Codes unvollständig**. Außerdem sehen Sie eine Aufgabe in der **Übersicht** der Rechnung und einen bernsteinfarbenen Punkt auf dem Tab **Positionen & USt.** Auf der Rechnung gibt es kein Banner, was man Ihnen auch erzählt haben mag.
+
+Zwei Wege nach vorn, und sie sind nicht dasselbe:
+
+- **Der Link `+ Hinzufügen` neben dem fehlenden Code legt einen ganz neuen USt-Code** in Ihren Stammdaten für diese Elementkombination an. Nutzen Sie ihn, wenn die Kombination in Ihrer Tabelle wirklich fehlt.
+- **Um einen Code zuzuweisen, den Sie schon haben**, öffnen Sie den Bereich **Erweitert** der Zeile und wählen ihn dort aus.
+
+Zwei Fallen, die man kennen sollte. Eine Rechnung **ohne jede Position** liest sich als vollständig, denn Vollständigkeit heißt „keiner Position fehlt ein Code“, und es gibt keine Position zu prüfen. Und **eine erneute Extraktion des Dokuments erhält Ihre USt-Korrekturen nicht**: Die erneute Extraktion löscht die Positionszeilen und fügt neue ein. Geschützt ist ein erneuter KI-Lauf über die vorhandenen Zeilen, der alles unberührt lässt, was Sie von Hand gesetzt haben.
+
+## Einen Code oder ein Element korrigieren
+
+Vier Wege, jeder mit anderer Reichweite:
+
+- **Ändern Sie ein Element** in der Position, und der Code wird aus der neuen Kombination neu aufgelöst.
+- **Wählen Sie einen Code direkt**, und die Elemente der Position werden aus diesem Code rückbefüllt und als konsistent markiert.
+- **Ändern Sie die Partner-USt-Gruppe** oben auf dem Tab **Positionen & USt.** Das ist eine Übersteuerung: unangetastet steht dort **Partner-Standard verwenden**, und sie folgt dem Partner. Eine Änderung löst **jede** Position der Rechnung neu auf.
+- **Ändern Sie das USt-Datum** in der Datumszeile auf dem Tab **Übersicht**. Das löst ebenfalls jede Position neu auf.
+
+Das dauerhafte Zuhause der USt-Gruppe eines Partners ist der Partner selbst, unter **Stammdaten → Partner**. Setzen Sie sie einmal, und jede künftige Rechnung startet mit der richtigen Gruppe; die Übersteuerung auf Rechnungsebene ist für den Einzelfall.
+
+## Einen Rückstand in einem Zug abarbeiten
+
+Den fehlenden Code Ihrer Tabelle hinzuzufügen füllt die Rechnungen, die darauf gewartet haben, nicht nachträglich. Dafür hat die Rechnungsliste die Aktion **USt-Codierung erneut ausführen**.
+
+Sie befüllt immer nur Positionen, deren Code **fehlt**: codierte Positionen, alles von Hand Gesetzte und Kategorien werden nie angefasst. Beachten Sie, dass sie über den **ganzen Arbeitsbereich** läuft und nicht über Ihre Auswahl, und dass sie bei 2000 Rechnungen abbricht, ein großer Rückstand also mehr als einen Lauf braucht.
+
+## Wer das darf
+
+Die USt-Korrektur auf einer Position braucht die Berechtigung **„Rechnungen bearbeiten“**, und die ist ausschließlich kanzleiseitig: Ein mandantenseitiger Nutzer kann sie nie haben. Er sieht das Raster Positionen & USt. weiterhin vollständig, schreibgeschützt, mit deaktivierten Auswahlfeldern und ohne die Schaltflächen zum Hinzufügen und in der Symbolleiste.
+
+Unter den Buchhaltern ist es eine Berechtigung, keine Funktionsbezeichnung, sodass eine eigene Rolle oder eine Ausnahme je Mitglied das Raster auch für jemanden auf der Buchhaltungsseite schreibgeschützt machen kann.
 
 ## USt in Fremdwährung
 
-Bei Rechnungen in einer anderen Währung als der USt-Meldewährung des Unternehmens tragen die Zeilen einen **USt-Wechselkurs** und einen **USt-Betrag in Meldewährung**. Das Bearbeiten des einen berechnet das andere neu, und beide stehen in Exporten zur Verfügung.
+Ist die Rechnung in einer anderen Währung als der Basiswährung des Arbeitsbereichs ausgestellt, enthält der Bereich **Erweitert** der Zeile einen **USt-Wechselkurs** und den USt-Betrag in der Meldewährung. Das Bearbeiten des einen berechnet das andere neu, und beide erreichen den Hauptbuch-Export als eigene Spalten.
+
+Sie sind **das, was der Lieferant aufgedruckt hat**, erfasst für die USt-Meldung. Hier wird nichts umgerechnet: Die Kurse, die tatsächlich umrechnen, behandelt [Mehrwährung & Wechselkurse](/currency-exchange).
+
+## Wenn die KI nicht entscheiden kann
+
+Anders als eine Kategorie hat ein USt-Element keinen Zustand „die KI hat abgelehnt“. Ein Element, das sie nicht bestimmen kann, bleibt einfach leer, denn ein dort festgehaltenes Urteil würde eines behaupten, das nie brauchbar war. Was Sie stattdessen sehen, ist die sinkende Konfidenz der Rechnung, und das kann schon genügen, um sie zur Prüfung zu markieren.
+
+Ein Unternehmen mit Kleinunternehmerbefreiung ist ein Sonderfall, und zwei Situationen bleiben dort bewusst uncodiert, statt einen plausibel aussehenden Nullsatz zu erhalten. Siehe [Kleinunternehmerbefreiung](/small-business-exemption).
+
+## Verwandte Artikel
+
+- [USt-Stammdaten](/vat-master-data) - die fünf Elemente und die Tabellen dahinter
+- [USt in Exporten](/vat-in-exports) - welche Codes in welchen Export fließen, und das Export-Gate
+- [Kleinunternehmerbefreiung](/small-business-exemption)
+- [Arbeiten mit Rechnungen](/invoices)
