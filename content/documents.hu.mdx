@@ -1,53 +1,97 @@
 # Dokumentumok
 
-A **Dokumentumok** oldalon a szerződések és az egyéb papírmunka gyűlik össze: minden, ami számít a könyvelésben, de nem számla és nem bankkivonat. Bérleti szerződés, hitelszerződés, költséghely-szabályzat, számlatükör, támogatói döntés.
+A **Dokumentumok** oldal a szerződések és az egyéb papírmunka helye: minden, ami számít a könyvelésben, de nem számla és nem bankkivonat. Bérleti szerződés, hitelszerződés, költséghely-szabályzat, számlatükör, támogatói döntés.
 
-A munkaterület oldalsávjában a **Dokumentumok** menüpont alatt találja. Ez könyvelői oldal; az ügyfelek nem látják.
+## Mi kerül ide, és mi nem
+
+Ez az oldal pontosan háromféle dokumentumot tartalmaz: a **szerződéseket**, az **egyéb** dokumentumokat, és mindent, amit az első menet egyáltalán nem tudott elhelyezni.
+
+Minden, amit a rendszer **számlának**, **nyugtának**, **sztornó számlának** vagy **bankkivonatnak** sorol be, máshová kerül, és itt soha nem jelenik meg. A számlák és a nyugták a [Számlák](/invoices) oldalra kerülnek, a bankkivonat a **Banki tranzakciók** oldalon várja a feltöltést (lásd [Bankszámlakivonatok feltöltése](/bank-statement-upload)), az e-mailben érkező küldeményeket pedig előbb a **Gyűjtő** naplózza (lásd [Dokumentumok továbbítása e-mailben](/email-forwarding)).
+
+Az üres Dokumentumok oldal tehát nem azt jelenti, hogy semmi nem érkezett. Azt jelenti, hogy nem érkezett semmi, ami ne pénzügyi bizonylat lett volna.
+
+## Ki nyithatja meg
+
+Azok az irodai oldali tagok, akiknek megvan a „Számlák szerkesztése” jogosultsága. Ügyféloldali tag soha nem érheti el, bármilyen szerepkört is kap: a jogosultság csak irodai oldali, és kivétellel sem adható meg.
+
+> Ha Ön a könyvelői oldalon áll, és az oldal üzenet nélkül visszaviszi a munkaterület áttekintésére, akkor a szerepköréből hiányzik a **Számlák szerkesztése**. Az oldalsávban a menüpont ettől függetlenül minden irodai oldali tagnak megjelenik, ezért néma a zsákutca.
+
+Vegye figyelembe, hogy a kategórialista készítése dokumentumból, lentebb, ismét **más** jogosultságot kíván.
 
 ## Hogyan kerülnek be a dokumentumok
 
-Kétféleképpen, és az elsőhöz semmit nem kell tennie:
+- **Továbbítsa őket e-mailben.** Ami a munkaterület címére érkezik, és nem számla vagy kivonat, magától ide kerül.
+- **Töltse fel őket.** Kattintson a **Feltöltés** gombra, majd húzza be a fájlokat, vagy tallózzon.
 
-- **Továbbítsa őket e-mailben.** Ami a munkaterület e-mail-címére érkezik, és nem számla vagy kivonat, magától ide kerül. Lásd: [Dokumentumok továbbítása e-mailben](/email-forwarding).
-- **Töltse fel őket.** Kattintson a **Feltöltés** gombra, majd húzza be a fájlokat, vagy tallózzon. PDF, JPG vagy PNG, egyenként legfeljebb 20 MB.
+A párbeszédpanel szerint PDF, JPG vagy PNG, egyenként max. 20 MB, és ez inkább jó tanács, mint kikényszerített szabály: nagyobb fájlt vagy másféle képformátumot valójában semmi nem utasít el. Mégis tartsa magát hozzá, mert a beolvasó pontosan azt tudja kezelni, amit a súgósor leír.
 
 ## Mi történik érkezéskor
 
-Minden dokumentumot elolvasunk egyszer, röviden, hogy a lista megnyitás nélkül is használható legyen:
+Minden dokumentumot elolvasunk egyszer, röviden, hogy a lista megnyitás nélkül is használható legyen. Kap egy egy-két mondatos **összefoglalót** egy magabiztossági értékkel, a rendszer felismeri a nyelvét, és típust ad neki.
 
-- Besorolásra kerül **Szerződés** vagy **Egyéb** típusba.
-- Kap egy egy-két mondatos **összefoglalót**, amely a kártyán látszik, azzal együtt, mennyire magabiztos benne az AI.
-- A rendszer felismeri a nyelvét.
-- Ha ugyanaz a fájl már szerepel a munkaterületen, a másolat **Duplikátum** jelölést kap, és félrekerül, ahelyett hogy újra feldolgoznánk.
+**A típusjelvényen az áll, aminek az AI nevezte**, nem egy kötött készlet. Ugyanolyan gyakran lát `lease`, `nda` vagy `Kontenrahmen` feliratot, mint **Szerződés** vagy **Egyéb** címkét, és ezek a szabad szöveges címkék nincsenek lefordítva, tehát a dokumentum saját nyelvén olvashatók, bármi is a felület nyelve.
+
+Ha ugyanaz a fájl már szerepel a munkaterületen, a másolat **Duplikátum** jelölést kap. A listában ettől függetlenül megjelenik, az eredeti típusa alá sorolva, az összefoglaló helyén pedig egy sor áll, amely megnevezi, minek a duplikátuma.
 
 Ez az első menet szándékosan felületes. A dokumentum elejét olvassa, hogy besorolja és leírja, nem azért, hogy kinyerje a tartalmát.
 
-## Keresés a listában
+## Hogyan talál meg valamit
 
-A lista feletti szűrők: **Mind**, **Szerződések**, **Egyéb**, **Ellenőrzendő** és **Duplikátumok**. Minden dokumentumnak van állapota is:
+A szűrők: **Mind**, **Szerződések**, **Egyéb**, **Ellenőrzendő** és **Duplikátumok**. Darabszámot csak a **Duplikátumok** mutat, és csak akkor, ha van.
+
+Nincs keresés, nincs rendezés és nincs oldalazás: a lista egyszerre mutatja a munkaterület összes dokumentumát, a legújabbal kezdve. Az üres állapot pedig ugyanazt a mondatot írja ki, bármelyik szűrőn áll, tehát a Duplikátumok szűrőn a „Még nincs dokumentum” jellemzően azt jelenti, hogy nincs duplikátum, nem azt, hogy nincs dokumentum.
 
 | Állapot | Mit jelent |
 |--------|-----------|
 | **Kész** | Besorolva, összefoglalóval |
-| **Ellenőrzés** | Az AI nem volt elég magabiztos; nézze át a típust |
-| **Feldolgozás** | Még olvasás alatt |
-| **Sikertelen** | A fájlt nem sikerült beolvasni, például jelszóval védett PDF |
+| **Ellenőrzés** | Az első menet nem volt elég magabiztos; nézze át a típust |
+| **Feldolgozás** | Még olvasás alatt, **vagy** elakadt: lásd lentebb |
+| **Sikertelen** | A fájlt nem sikerült beolvasni, például titkosított PDF |
+
+A **Feldolgozás** a gyűjtőállapot, és van egy eset, amely soha nem jut ki belőle. Azt a PDF-et, amelyben több dokumentum van egybeszkennelve, a rendszer elutasítja, nem elolvassa, és a **Feldolgozás** jelvény véglegesen rajta marad. Ha valami az érkezése napja óta ott áll, ez történt: szedje szét dokumentumonként egy-egy fájlra, és a darabokat küldje be.
 
 ## Egy dokumentum kezelése
 
-Nyisson meg egy dokumentumot: látja az összefoglalóját, típusát, nyelvét, fájlját és forrását, mellettük az előnézettel. Innen a következőket teheti:
+Nyisson meg egy dokumentumot: látja az összefoglalóját, a típusát, a nyelvét, a fájlját és a forrását.
+
+**A PDF előnézete mellettük jelenik meg; a JPG és a PNG előnézete nem.** Kép esetén helyette egy hivatkozást kap a fájl megnyitásához, amit érdemes tudni, hiszen a feltöltési párbeszédpanel épp képek beküldésére hív.
 
 - **Letöltés**, vagy az eredeti fájl megnyitása.
-- **Átsorolás.** Ha ide került valami, ami valójában számla, bankkivonat vagy nyugta, küldje oda, ahová tartozik, és a rendszer rendesen feldolgozza.
-- **Megjelölés nem relevánsként**, ami archiválja a dokumentumot; mindenhez, aminek nem kell szem előtt maradnia.
-- **Nem duplikátum**, a másolatként félretett dokumentumon, hogy visszakerüljön ellenőrzésre.
+- **A típusának megváltoztatása** a lábléc legördülő listájával. Ha ide került valami, ami valójában számla, bankkivonat vagy nyugta, ez odaküldi, ahová tartozik, és a dokumentum lekerül erről az oldalról. Egyben tanítja is az appot: a feladó domainjét a rendszer legközelebb afelé a típus felé billenti.
+- **Megjelölés nem relevánsként**, mindenhez, aminek nem kell szem előtt maradnia.
+- **Nem duplikátum**, egy másolaton, ami visszateszi az **Ellenőrzendő** közé, és feloldja a jelölést minden számlán, amely belőle készült.
+
+Kettő közülük figyelmeztetést érdemel.
+
+**A „Megjelölés nem relevánsként” nem vonható vissza.** Nincs visszaállítás, és nincs olyan szűrő, amely egy archivált dokumentumot újra megmutatna. Tekintse úgy, mint az oldalról való törlést.
+
+**A típus megváltoztatása csak annál a dokumentumnál futtatja újra a beolvasást, amely még az első menetben van.** **Sikertelen** állapotból, vagy egy már befejezett dokumentumnál, csak a címkét változtatja meg, és leveszi a dokumentumot erről az oldalról, anélkül hogy bárhová elküldené. Egy Sikertelen szerződést, amely valójában számla, ezért újra fel kell töltenie, nem átsorolnia.
+
+### Miért jelenik meg ugyanaz a fájl duplikátumként
+
+A duplikátumokat a rendszer a fájl tartalma alapján veti össze, tehát két valóban azonos fájlt elkap, bárhogy is nevezték el őket. A régebbi dokumentumokat egy gyengébb szabály, a fájl mérete és neve alapján vetette össze, ezért fordul elő időnként téves találat a listában. Erre szolgál a **Nem duplikátum**.
 
 ## Kategórialista készítése dokumentumból
 
-Ha egy dokumentum leírja, hogyan bontja a cég a költségeit, begépelés helyett közvetlenül egyéni kategórialistát készíthet belőle. Kattintson a **Kategórialista készítése** gombra, és az AI legfeljebb húsz oldalt elolvas, majd javaslatot tesz a listára: címet, útmutató szöveget, valamint a kategóriákat kóddal és leírással.
+Ha egy dokumentum leírja, hogyan bontja a cég a költségeit, begépelés helyett közvetlenül egyéni kategórialistát készíthet belőle. A **Kategórialista készítése** legfeljebb húsz oldalt elolvas, és javaslatot tesz egyre.
 
-Amíg Ön nem mondja ki, semmi nem jön létre. Minden mező szerkeszthető, kategóriák hagyhatók ki, és az utolsó lépés pontosan megmutatja, mi fog létrejönni. Költséghely-szabályzat, számlatükör, szervezeti lista és pályázati költségvetés mind jó jelölt; a legtöbb más dokumentumban nincs ilyesmi, és a képernyő ezt őszintén meg is írja, ahelyett hogy kitalálna egyet.
+Ehhez a **„Törzsadatok szerkesztése”** jogosultság kell, nem az, amely az oldalt megnyitja. A gomb minden dokumentumon megjelenik mindenkinek, aki egyáltalán eddig eljut, tehát ha a megnyomása visszaviszi a munkaterület áttekintésére, épp ez a jogosultság hiányzik Önnek.
 
-Ha a lista létrejött, az AI alkalmazza a számlákra és a banki tételekre, a jelentések pedig felbonthatók szerinte. A teljes képhez lásd: [Egyéni kategóriák](/custom-categories), a felbontott riport értelmezéséhez pedig: [Jelentések](/reports).
+Ezután megadja, **hová kerüljön**: **új lista a dokumentum alapján**, vagy **hozzáadás egy meglévőhöz**, amely esetben csak a hiányzók kerülnek be. Új listánál szerkesztheti **a lista nevét**, az **AI útmutatót**, és hogy **mire vonatkozik**: számlákra, tranzakciókra vagy mindkettőre.
 
-A dokumentum az **Ebből készült** felirat alatt mutatja, mely listák születtek belőle, így egy kódkészlet eredete jóval később is visszakövethető marad.
+**Magukat a kategóriákat vagy elfogadja, vagy nem.** Minden sornál eldöntheti, hogy **szerepeljen**, vagy hogy a rendszer **kihagy**ja, és ennyi: a kód, a név és a leírás úgy jön, ahogy az AI olvasta, és itt nem javítható. Ezeket utólag, magán a listán javítsa. Az a kategória, amelyet a dokumentum megszűntként vagy kivezetettként jelöl, inaktívan jön létre, és a sorában ez áll: **Inaktívként jön létre**.
+
+Az utolsó lépés valódi próbafuttatás. Megmutatja, hány kategória jön létre, mennyi van már meg, hány sorral nem tudott mit kezdeni, és hogy még semmit nem írt ki: **Próbafuttatás. Semmi nem íródott még ki.**
+
+Költséghely-szabályzat, számlatükör, szervezeti lista vagy pályázati költségvetés mind jó jelölt. A legtöbb más dokumentumban nincs ilyesmi, és a képernyő ezt őszintén meg is írja, ahelyett hogy kitalálna egyet.
+
+Ezután a dokumentum az **Ebből készült** felirat alatt mutatja, mi született belőle, így egy kódkészlet eredete visszakövethető marad. Arról, hogy egy lista mit tesz azután, lásd: [Egyéni kategóriák](/custom-categories).
+
+## Mit nem érint ez az oldal
+
+Innen semmi nem kerül be a zárási ellenőrzőlistába vagy a **Teendők** közé. A zárási ellenőrzések figyelik ugyan a beérkező papírmunkát, de csak a számlákat, a nyugtákat, a sztornó számlákat és a bankkivonatokat, vagyis pontosan azokat a fajtákat, amelyeket ez az oldal kizár. Olvasatlan szerződések hátraléka soha nem tarthat nyitva egy hónapot.
+
+## Kapcsolódó cikkek
+
+- [Dokumentumok továbbítása e-mailben](/email-forwarding)
+- [Egyéni kategóriák](/custom-categories)

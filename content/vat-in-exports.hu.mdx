@@ -1,32 +1,100 @@
 # ÁFA az exportokban
 
-Ha az ÁFA-beállítása a helyén van, és a számlák hordozzák az ÁFA-kódjaikat, a főkönyvi exportok (Exportok → **Főkönyv**) mindent tartalmaznak, ami a könyvelőprogramnak az ÁFA helyes könyveléséhez kell. Ez a cikk az ÁFA-oszlopokat, a le nem vonhatóság kezelési módjait és az exportkaput mutatja be.
+Az AI Finance Teamnek négy exportcélja van, és **nem egyformán kezelik az ÁFÁ-t.** Az alábbiak nagy része a **Főkönyv** exportról szól, mert egyedül az hordozza a teljes ÁFA-képet. Kezdje a táblázattal, hogy az alábbiakban semmi ne érje váratlanul.
 
-## Mit tartalmaznak az exportok
+| | Főkönyv | RLB | HessynKettős | Business Central |
+|---|---|---|---|---|
+| A le nem vonhatóság beállítása érvényes | **igen** | nem, mindig beforgatja | nem értelmezett, csak kimenő számlák | nem |
+| A hiányos ÁFA-kódú számlákat visszatartja | **igen** | nem | nem | nem |
+| Az ÁFA-kód a fájlban | az Öné, ahogyan megírta | az Öné, de két pszeudokódnál kiürítve, mellette egy kulcsból származtatott RLB-kód | az AI Finance Team származtatja, nem az Öné | a Business Central saját kódja |
 
-- **Számlafejlécek** - a partner ÁFA-csoportja és a fejléc szintű ÁFA-összesítés a meglévő oszlopok mellett.
-- **Számlasorok** - a teljes ötelemes felbontás soronként (partnercsoport, termék-/szolgáltatáscsoport, kulcs, irány, számítási mód), a feloldott **ÁFA-kód** (a könyvelési kód és az AIFT-kód is), a nettó / ÁFA / bruttó összegek, a le nem vonható megbontás, a devizás ÁFA-mezők, valamint egy `vat_consistent` jelző, amely mutatja, ha a sort kézzel felülírták.
-- **Partnerek** - minden partner ÁFA-csoportja, hogy a célrendszer partnertörzse szinkronban maradjon.
-- **Cégek** - a saját cégei ÁFA-releváns attribútumai (ÁFA-bevallási pénznem, adószámok), saját külön lapról exportálva.
+## Mit tartalmaz a Főkönyv export
 
-A kódok pontosan úgy jelennek meg, ahogy az [ÁFA-törzsadatokban](/vat-master-data) megírta őket - az AI Finance Team soha nem talál ki és nem formáz át kódokat.
+Két formában kérhető: **Excel munkafüzet** vagy zipbe csomagolt **CSV csomag**. Mindkettőben ugyanaz az öt adatkészlet van: számlafejlécek, számlatételek, banki tranzakciók, partnerek és cégek. Exportálhatja a teljes főkönyvet, vagy csak azt a fület, amelyet éppen néz.
 
-## A le nem vonhatóság kezelése - három mód
+Hol található valójában az ÁFA:
 
-Egyes ÁFA-tételek nem (teljesen) vonhatók le - 50% a személygépkocsi-költségeknél, 100% a reprezentációnál, és így tovább. A könyvelőprogramok eltérően várják ennek kifejezését, ezért minden munkaterület a három mód egyikét választja (Beállítások → **ÁFA-beállítások**):
+- A **Számlatételek** hordozzák a termék-/szolgáltatáscsoportot, a kulcsot és a számítási módot, valamint az irányt. **A partner ÁFA-csoportja nem itt van**: az a fejléc- és a partnerlapon található. Egy tétel tehát az öt elem közül négyet mutat.
+- A **Számla fejlécek** hordozzák az ÁFA-dátumot, a könyvelési dátumot, a partner ÁFA-csoportját, az ÁFA-elszámolási módot és az ÁFA-bevallási pénznemet. Fejléc szintű ÁFA-összesítő oszlop nincs.
+- A **Partnerek** minden partner ÁFA-csoportját és adószámát hordozzák.
+- A **Cégek** az ÁFA-elszámolási módot, az ÁFA-bevallási pénznemet, a mentesség dátumait és az arányosítási százalékot hordozzák. Adószámot nem. Figyelje meg, hogy magának a lapnak a neve **Entities**, pedig a fül, amelyről exportált, Cégek.
+- A **banki tranzakciók** ugyanabban a fájlban vannak, és egyáltalán nem hordoznak ÁFÁ-t.
 
-- **Natív - a célrendszer kezeli az összes le nem vonhatóságot** - az export minden soron a le nem vonható százalékot viszi, a megbontást a célrendszerre hagyja. Olyan rendszereknek való, amelyek maguk kezelik a részleges levonhatóságot.
-- **Natív csak 100%-ra** *(alapértelmezett)* - a teljesen le nem vonható sorok natívan mennek át; a részben levonható sorokat előre megbontjuk levonható és le nem vonható részre. A gyakori magyar célrendszerekkel működik.
-- **Mindig beforgatás** - az AI Finance Team mindig megbontja az összegeket; a célrendszer kész, könyvelhető levonható és le nem vonható értékeket kap.
+Van egy **VAT Consistent** nevű jelző, és az ellenkezőjét jelenti annak, amit gondolna. **false**, ha a soron még van kód, de a sor elemei már nem erre oldódnak fel. Egy kézzel javított sor **true** lesz, mert a javítás átírja az elemeket, hogy egyezzenek. Az üres érték true-nak számít.
 
-Ha nem biztos benne, melyik módra van szüksége a könyvelőprogramjának, induljon az alapértelmezettel, és ellenőrizze az első importot a programja ÁFA-kimutatásával.
+50 000 sor felett az export megerősítést kér; 200 000 felett megtagadja, és a szűrők szűkítését kéri.
 
-## Az exportkapu - „Hiányos ÁFA-kódok”
+### Az ÁFA-kód nem ugyanaz a szöveg mindenhol
 
-Az a számla, amelynek sorairól hiányzik az ÁFA-kód, könyvelhetetlen töredékként érkezne meg a könyvelőprogramjába. Az exportok ezért **kihagyják a hiányos ÁFA-kódú számlákat**, és jelzik is ezt: az export után látja, hány számla exportálódott és hány maradt ki, egy egykattintásos **Kihagyottak megtekintése** hivatkozással, amely pontosan az érintett számlákra szűri a listát.
+A **Főkönyv** export pontosan úgy írja ki a kódját, ahogyan Ön megírta. A többi nem:
 
-Egy kihagyott számla javításához nyissa meg, és oldja meg a hiányzó kódú sorokat - lásd az [ÁFA-kódok a számlákon](/vat-codes-on-invoices) cikket. A megoldás többnyire egyetlen hiányzó kombináció felvétele az ÁFA-kódtáblába; utána exportáljon újra.
+- Az **RLB** két pszeudokódot kiürít. Ha a táblája az `NL` vagy a `-` kódot használja arra, hogy „teljesen le nem vonható” vagy „nem szerepel a bevallásban”, akkor a bevallási sor cellája **üresen** jön ki. Emellé beírja a saját, kulcsból származtatott kódját is, ami RLB-csomagszám, nem pedig bármi a táblájából.
+- A **HessynKettős** soha nem olvassa be a kódjait. A sajátját a kulcselemből származtatja: mentes, alanyi adómentes, fordított adózás, határon átnyúló szolgáltatás, vagy maga a kulcs.
+- A **Business Central** a saját tükrözött leképezéséből küld kódot.
 
-## Univerzális AIFT-formátum
+Az **AIFT VAT Code** oszlop csak akkor jelenik meg, ha a munkaterület AIFT-belső kódokat használ. Ebben a módban a könyvelési kód megadása nem kötelező, így a sima **VAT Code** oszlop jogosan lehet üres, miközben az AIFT-es hordozza az értéket.
 
-Az exportoszlopok stabil, dokumentált formátumot alkotnak - minden exportban ugyanazok az oszlopok, ugyanabban a sorrendben -, így a könyvelőprogramjában egyszer felépített importleképezés a továbbiakban is működik. Az új oszlopok mindig a lap végére kerülnek, sosem a közepére.
+## Le nem vonható ÁFA
+
+Egyes ÁFA-tételek nem vonhatók le teljesen: a személygépkocsi-költségeknél a fele, a reprezentációnál az egésze. A könyvelőprogramok nem egyeznek abban, hogyan szeretnék ezt kifejezve látni, ezért a **Beállítások → ÁFA-beállítások** három kezelési módot ajánl. Ezek **csak a Főkönyv exportra** érvényesek.
+
+- **Natív csak 100%-ra** *(az alapértelmezett)*. A teljesen le nem vonható sor változatlanul megy át, hogy a célrendszer főkönyvi számla szerint irányítsa. A **részben** le nem vonható sor le nem vonható ÁFÁ-ja beforgatódik a nettóba.
+- **Natív, a célrendszer kezeli az összes le nem vonhatóságot.** Semmi nem forgatódik be; a százalék végigmegy a soron, és a célrendszer bontja meg. Azoknak a rendszereknek, amelyek erre képesek: ilyen a Business Central a le nem vonható ÁFA funkcióval, vagy a DATEV.
+- **Mindig beforgatás.** Minden beforgatódik, az a 100%-os eset is, amelyet az alapértelmezett érintetlenül hagy. Azoknak a rendszereknek, amelyek a le nem vonhatóságot egyáltalán nem tudják kifejezni.
+
+**A „beforgatás” azt jelenti, hogy az exportált nettó nagyobb, mint a számla nettója.** Épp ez a lényege, és ezt az egy dolgot érdemes tudni, mielőtt importleképezést épít: a le nem vonható ÁFA a nettó összegbe kerül át, nem csupán mellette jelenik meg.
+
+A beállítás módosításához a **„Törzsadatok szerkesztése”** jogosultság kell. Ahhoz, hogy egyáltalán eljusson az exportokhoz, a **„Könyvelési exportok futtatása”** kell, ami egy másik jogosultság.
+
+### Két oszlopkészlet, amely nem egyezik
+
+A számlatétel-lap kétszer hordozza az összegeket, két különböző motorból, és az alapértelmezett beállításnál más választ adnak.
+
+Egy teljesen le nem vonható, 100 nettó plusz 27 ÁFA soron:
+
+| | Nettó | Levonható ÁFA | Le nem vonható ÁFA |
+|---|---|---|---|
+| **Net Amount Exported** / **VAT Amount Deductible** / **VAT Amount Non-Deductible** | 100 | 27 | 0 |
+| **Booking Net Amount** / **Booking VAT Amount** | 127 | 0 | 27 |
+
+Az első készlet a fenti beállítást követi, és ezt kell a könyvelőprogramjának beolvasnia. A második mindig beforgat, és ezt használják az alkalmazás saját képernyői és kimutatásai. Az importleképezéshez az első készletet vegye, és ne keverje a kettőt.
+
+Az **ÁFA arányosítási %** oszlopként kerül ki a Cégek lapra, és sehol nem változtat meg összeget. Ezt maga az alkalmazás is kiírja a mezőnél.
+
+## Hiányzó ÁFA-kódok miatt visszatartott számlák
+
+A **Főkönyv** export kihagy minden olyan számlát, amelynek van ÁFA-kód nélküli sora, mert könyvelhetetlen töredékként importálódna. **Az RLB és a Hessyn nem**: ezek a kód nélküli számlát is elküldik, üres bevallási sor cellával.
+
+A fájl ettől még letöltődik. Utána egy üzenet megmutatja, hány számla ment el és hány maradt ki, egy hivatkozással, amely az export saját **Számla fejlécek** fülére vezet, pontosan ezekre a számlákra szűrve. Nem a számlalistára visz.
+
+Egyet a kapu nem fog meg: az **alapértelmezéssel kódolt** sornak van kódja, így a számlája rendesen exportálódik, és viszi magával a tartalék kódot. A számlalista ezeket külön jelöli: **Áfa: alapértelmezéssel kódolt**.
+
+Ha export futtatása nélkül szeretné megtalálni őket, szűrje a számlalistát a **Hiányos ÁFA-kódok** szűrővel.
+
+### Több számla javítása egyszerre
+
+1. Az export utáni hivatkozáson nézze meg, mely számlák maradtak ki.
+2. Nyisson meg egyet, és keresse meg a **Tételek & ÁFA** fülön azt a sort, amelyen `- hiányzik -` áll.
+3. Vegye fel a hiányzó kombinációt a **Törzsadatok → ÁFA-kódok** alatt.
+4. Futtassa az **Áfakódolás újrafuttatása** műveletet a számlalistából; ez csak azokat a sorokat tölti ki, amelyekről hiányzik a kód.
+5. Exportáljon újra.
+
+Egyetlen számla esetén lásd az [ÁFA-kódok a számlákon](/vat-codes-on-invoices) cikket.
+
+## Mennyire stabil a formátum
+
+Elég stabil ahhoz, hogy egyszer leképezze, két őszinte kivétellel; mindkettő a számlatétel-lapon van, és mindkettő **a lap közepén**, nem a végén:
+
+- az **AIFT VAT Code** oszlop a munkaterület beállításával együtt megjelenik és eltűnik, és
+- minden, a munkaterületén definiált kimutatáshoz tartozik egy **Reporting Line** oszlop, így egy új kimutatás felvétele eltolja az oszlopokat.
+
+Két munkaterület tehát nem ugyanazokat az oszlopokat kapja. A fejléc szövegére illesszen, ne az oszlop pozíciójára.
+
+A CSV részletei, ha szkriptet ír rá: UTF-8 bájtsorrend-jelzővel, vesszővel tagolt, RFC 4180 szerint idézőjelezve, pont a tizedesjel, ISO dátumok.
+
+## Kapcsolódó cikkek
+
+- [ÁFA-törzsadatok](/vat-master-data)
+- [ÁFA-kódok a számlákon](/vat-codes-on-invoices)
+- [Alanyi adómentesség](/small-business-exemption) - hogyan tér el a mentes és a fordított adózású sor formátumonként
+- [Business Central](/business-central)
