@@ -34,9 +34,11 @@ Az igényléshez és a visszavonáshoz a „Kapcsolatok kezelése” jogosultsá
 
 ## Mit küldhet
 
-Elfogadott mellékletek: **PDF, PNG, JPEG, WEBP és HEIC**. A ZIP-archívumokat a rendszer kibontja, és a bennük lévő támogatott fájlokat külön dokumentumként olvassa be.
+Elfogadott mellékletek: **PDF, PNG, JPEG, WEBP és HEIC**, valamint **Excel-, Word- és CSV-fájlok** (`.xlsx`, `.xls`, `.csv`, `.docx`, `.doc`). A ZIP-archívumokat a rendszer kibontja, és a bennük lévő támogatott fájlokat külön dokumentumként olvassa be.
 
-**Minden mást némán eldob.** Egy `.docx`, `.xlsx`, `.csv` vagy `.txt` mellékletet figyelmeztetés nélkül elvet, az e-mail pedig továbbra is késznek látszik, csak alacsonyabb melléklet-darabszámmal. A látható darabszám azt mutatja, mi maradt meg, nem azt, mit küldtek, tehát ha egy szám alacsonynak tűnik, valamit eldobott a rendszer.
+Az Excel-, Word- és CSV-fájlokat a rendszer soha nem olvassa be számlaként. Alátámasztó dokumentumként őrzi meg őket, például a számlával együtt küldött munkaidő-kimutatást: lásd lent, [Számlák és alátámasztó dokumentumaik](#számlák-és-alátámasztó-dokumentumaik).
+
+**Minden mást némán eldob.** Például egy `.txt` mellékletet figyelmeztetés nélkül elvet, az e-mail pedig továbbra is késznek látszik, csak alacsonyabb melléklet-darabszámmal. A látható darabszám azt mutatja, mi maradt meg, nem azt, mit küldtek, tehát ha egy szám alacsonynak tűnik, valamit eldobott a rendszer.
 
 Korlátok: mellékletenként 10 MB, e-mailenként 20 melléklet, a teljes e-mailre 25 MB, és munkaterületenként naponta 200 e-mail.
 
@@ -52,11 +54,12 @@ Ugyanazt a fájlt kétszer továbbítani nem kerül semmibe: a második példán
 ## Mi történik ezután
 
 1. Megérkezik az e-mail, és egy sor jelenik meg a **Gyűjtő**ben.
-2. A rendszer minden mellékletet besorol: számla, nyugta, sztornó számla, bankkivonat, szerződés vagy valami más.
-3. **A számlák, a nyugták és a sztornó számlák** kinyerésre kerülnek, és ugyanúgy megjelennek a **Számlák** oldalon, mint bármely más feltöltés.
-4. **A bankkivonatot ezen az úton nem nyeri ki a rendszer.** A Gyűjtőben várakozik **Kinyerőre vár** jelöléssel, nem jelenik meg semmilyen várólistán és nem visel jelvényt, tehát semmi nem fogja emlékeztetni rá. Helyette a **Banki tranzakciók** oldalon töltse fel: lásd [Bankszámlakivonatok feltöltése](/bank-statement-upload).
-5. **A szerződés és minden fel nem ismert fájl** a **Dokumentumok** oldalra kerül, amely csak a könyvelői oldalon érhető el. Az Áttekintés szükséges alatt nem jelenik meg.
-6. **Amit a rendszer alacsony magabiztossággal sorolt be**, azt az **Áttekintés szükséges** alatt jelöli meg, függetlenül attól, hogy utána kinyerésre került-e.
+2. A rendszer minden mellékletet besorol: számla, nyugta, sztornó számla, bankkivonat, szerződés, alátámasztó dokumentum vagy valami más.
+3. **A számlák, a nyugták és a sztornó számlák** kinyerésre kerülnek, és ugyanúgy megjelennek a **Számlák** oldalon, mint bármely más feltöltés. Az a bolti vagy éttermi nyugta, amelyen ÁFA szerepel, itt nyugtának számít.
+4. **Az alátámasztó dokumentumokból** (teljesítésigazolás, munkaidő-kimutatás, szállítólevél, átadás-átvételi jegyzőkönyv, vagy olyan kártyaterminál-bizonylat, amely csak a fizetést igazolja) soha nem lesz számla. Számlamellékletként kerülnek be: lásd [lent](#számlák-és-alátámasztó-dokumentumaik).
+5. **A bankkivonatot ezen az úton nem nyeri ki a rendszer.** A Gyűjtőben várakozik **Kinyerőre vár** jelöléssel, nem jelenik meg semmilyen várólistán és nem visel jelvényt, tehát semmi nem fogja emlékeztetni rá. Helyette a **Banki tranzakciók** oldalon töltse fel: lásd [Bankszámlakivonatok feltöltése](/bank-statement-upload).
+6. **A szerződés és minden fel nem ismert fájl** a **Dokumentumok** oldalra kerül, amely csak a könyvelői oldalon érhető el. Az Áttekintés szükséges alatt nem jelenik meg.
+7. **Amit a rendszer alacsony magabiztossággal sorolt be**, azt az **Áttekintés szükséges** alatt jelöli meg, függetlenül attól, hogy utána kinyerésre került-e.
 
 <TriageDestinationsFigure>
 Négy végállomás, és csak az első az, amire az ember számít. A középső kettőben halkulnak el a továbbított dokumentumok.
@@ -67,6 +70,16 @@ A rendszer soha nem küld vissza semmit a feladónak: se választ, se visszapatt
 Magát az e-mailt soha nem számlázzuk ki dokumentumként, csak azok a mellékletek számítanak, amelyekből számla lesz.
 
 Az alkalmazás abból is tanul, hogy ki mit küld. Ha egy feladó tartománya már néhány magabiztos besorolást eredményezett, az onnan érkező későbbi dokumentumokat jobban sorolja be, így egy szállító tizedik számlája megbízhatóbban landol, mint az első.
+
+### Számlák és alátámasztó dokumentumaik
+
+A szállítók gyakran a munkaidő-kimutatással vagy a teljesítésigazolással együtt küldik a számlát. Hogy mi történik az alátámasztó dokumentumokkal, az attól függ, hány számla van az e-mailben:
+
+- **Pontosan egy számla:** az alátámasztó dokumentumok automatikusan hozzá kapcsolódnak, és a számla **Mellékletek** fülén **Automatikusan kapcsolva** jelzéssel látszanak.
+- **Több számla:** semmi nem kapcsolódik automatikusan. Az alátámasztó dokumentumok a **Dokumentumok** oldalon, a **Nem kapcsolt mellékletek** szűrő alatt várakoznak, és az ugyanabból az e-mailből érkezett számlákat a rendszer javaslatként kínálja fel.
+- **Nincs számla:** az alátámasztó dokumentumok ugyanott várakoznak, kapcsolat nélkül.
+
+Lásd: [Számlamellékletek](/invoice-attachments).
 
 ## A Gyűjtő oldal
 
@@ -92,7 +105,7 @@ Bármelyikük megtekintéséhez a „Számlák és banki tranzakciók megtekint�
 | **Több dokumentum** | Egyetlen PDF több dokumentumot tartalmazott |
 | **Nincs melléklet** | Nincs beolvasható támogatott tartalom |
 
-A **Nincs melléklet** figyelmes olvasást érdemel: azt jelenti, hogy nincs *támogatott* melléklet. Egy csak Word-fájlt hordozó e-mail így jelenik meg.
+A **Nincs melléklet** figyelmes olvasást érdemel: azt jelenti, hogy nincs *támogatott* melléklet. Egy csak `.txt` fájlt hordozó e-mail így jelenik meg.
 
 **Az elgépelt cím semmilyen nyomot nem hagy.** A nem létező címre küldött levelet a rendszer sor, visszapattanó levél és hibaüzenet nélkül eldobja. Ha továbbított valamit, és a Gyűjtő üres, először a címet ellenőrizze.
 

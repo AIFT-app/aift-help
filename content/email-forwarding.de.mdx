@@ -34,9 +34,11 @@ Reservieren und Stilllegen erfordern die Berechtigung „Verbindungen verwalten�
 
 ## Was Sie senden können
 
-Akzeptierte Anhänge: **PDF, PNG, JPEG, WEBP und HEIC**. ZIP-Archive werden geöffnet und ihre unterstützten Inhalte als eigene Dokumente übernommen.
+Akzeptierte Anhänge: **PDF, PNG, JPEG, WEBP und HEIC**, dazu **Excel-, Word- und CSV-Dateien** (`.xlsx`, `.xls`, `.csv`, `.docx`, `.doc`). ZIP-Archive werden geöffnet und ihre unterstützten Inhalte als eigene Dokumente übernommen.
 
-**Alles andere wird stillschweigend verworfen.** Ein Anhang im Format `.docx`, `.xlsx`, `.csv` oder `.txt` wird ohne Warnung verworfen, und die E-Mail gilt weiterhin als abgeschlossen, nur mit einer niedrigeren Anzahl an Anhängen. Die angezeigte Zahl ist das, was behalten wurde, nicht das, was gesendet wurde. Wirkt eine Zahl zu niedrig, wurde also etwas verworfen.
+Excel-, Word- und CSV-Dateien werden nie als Rechnung gelesen. Sie werden als Nachweisdokumente aufbewahrt, etwa ein Stundenzettel, der mit einer Rechnung kommt: siehe unten, [Rechnungen und ihre Nachweisdokumente](#rechnungen-und-ihre-nachweisdokumente).
+
+**Alles andere wird stillschweigend verworfen.** Ein Anhang im Format `.txt` etwa wird ohne Warnung verworfen, und die E-Mail gilt weiterhin als abgeschlossen, nur mit einer niedrigeren Anzahl an Anhängen. Die angezeigte Zahl ist das, was behalten wurde, nicht das, was gesendet wurde. Wirkt eine Zahl zu niedrig, wurde also etwas verworfen.
 
 Grenzen: 10 MB je Anhang, 20 Anhänge je E-Mail, 25 MB für die gesamte E-Mail und 200 E-Mails je Arbeitsbereich und Tag.
 
@@ -52,11 +54,12 @@ Dieselbe Datei zweimal weiterzuleiten kostet nichts: Die zweite Kopie wird an ih
 ## Was danach passiert
 
 1. Die E-Mail trifft ein, und in der **Sammelstelle** erscheint eine Zeile.
-2. Jeder Anhang wird klassifiziert: Rechnung, Beleg, Gutschrift, Kontoauszug, Vertrag oder etwas anderes.
-3. **Rechnungen, Belege und Gutschriften** gehen in die Extraktion und erscheinen auf der Seite **Rechnungen** wie jeder andere Upload.
-4. **Ein Kontoauszug wird auf diesem Weg nicht extrahiert.** Er wartet in der Sammelstelle mit der Markierung **Wartet auf Extraktor**, er taucht in keiner Warteschlange auf und trägt kein Abzeichen, es wird Sie also nichts daran erinnern. Laden Sie ihn stattdessen auf der Seite **Banktransaktionen** hoch: siehe [Kontoauszüge hochladen](/bank-statement-upload).
-5. **Ein Vertrag oder etwas Unerkanntes** geht auf die Seite **Dokumente**, die es nur auf der Buchhalterseite gibt. Unter Prüfung erforderlich erscheint er nicht.
-6. **Alles, was mit geringer Konfidenz klassifiziert wurde**, wird unter **Prüfung erforderlich** markiert, gleich ob es danach noch in die Extraktion ging oder nicht.
+2. Jeder Anhang wird klassifiziert: Rechnung, Beleg, Gutschrift, Kontoauszug, Vertrag, Nachweisdokument oder etwas anderes.
+3. **Rechnungen, Belege und Gutschriften** gehen in die Extraktion und erscheinen auf der Seite **Rechnungen** wie jeder andere Upload. Ein Kassenbon aus einem Geschäft oder Restaurant, der die Umsatzsteuer ausweist, zählt hier als Beleg.
+4. **Nachweisdokumente** (ein Leistungsnachweis, ein Stundenzettel, ein Lieferschein, ein Abnahmeprotokoll oder ein Kartenterminal-Beleg, der nur eine Zahlung nachweist) werden nie zu Rechnungen. Sie werden zu Rechnungsanhängen: siehe [unten](#rechnungen-und-ihre-nachweisdokumente).
+5. **Ein Kontoauszug wird auf diesem Weg nicht extrahiert.** Er wartet in der Sammelstelle mit der Markierung **Wartet auf Extraktor**, er taucht in keiner Warteschlange auf und trägt kein Abzeichen, es wird Sie also nichts daran erinnern. Laden Sie ihn stattdessen auf der Seite **Banktransaktionen** hoch: siehe [Kontoauszüge hochladen](/bank-statement-upload).
+6. **Ein Vertrag oder etwas Unerkanntes** geht auf die Seite **Dokumente**, die es nur auf der Buchhalterseite gibt. Unter Prüfung erforderlich erscheint er nicht.
+7. **Alles, was mit geringer Konfidenz klassifiziert wurde**, wird unter **Prüfung erforderlich** markiert, gleich ob es danach noch in die Extraktion ging oder nicht.
 
 <TriageDestinationsFigure>
 Vier Ziele, und nur das erste ist das erwartete. Bei den mittleren beiden verstummen weitergeleitete Dokumente.
@@ -67,6 +70,16 @@ An den Absender wird nie etwas zurückgeschickt: keine Antwort, kein Bounce, kei
 Die E-Mail selbst wird Ihnen nie als Dokument berechnet, nur die Anhänge, aus denen Rechnungen werden, zählen.
 
 Die App lernt außerdem daraus, wer was sendet. Sobald die Domain eines Absenders einige sichere Klassifizierungen geliefert hat, werden spätere Dokumente von dieser Domain besser klassifiziert, sodass die zehnte Rechnung eines Lieferanten zuverlässiger landet als die erste.
+
+### Rechnungen und ihre Nachweisdokumente
+
+Lieferanten schicken eine Rechnung oft zusammen mit dem Stundenzettel oder dem Leistungsnachweis. Was mit den Nachweisdokumenten geschieht, hängt davon ab, wie viele Rechnungen die E-Mail enthält:
+
+- **Genau eine Rechnung:** Die Nachweisdokumente werden automatisch mit ihr verknüpft und erscheinen im Reiter **Anhänge** der Rechnung als **Automatisch verknüpft**.
+- **Mehrere Rechnungen:** Nichts wird automatisch verknüpft. Die Nachweisdokumente warten auf der Seite **Dokumente** unter dem Filter **Nicht verknüpfte Anhänge**, und die Rechnungen aus derselben E-Mail werden als Vorschläge angeboten.
+- **Keine Rechnung:** Die Nachweisdokumente warten dort unverknüpft.
+
+Siehe [Rechnungsanhänge](/invoice-attachments).
 
 ## Die Seite Sammelstelle
 
@@ -92,7 +105,7 @@ Um überhaupt etwas davon zu sehen, ist die Berechtigung „Rechnungen und Bankt
 | **Mehrere Dokumente** | Ein PDF enthielt mehrere Dokumente |
 | **Keine Anhänge** | Nichts Unterstütztes zum Übernehmen |
 
-**Keine Anhänge** sollte man genau lesen: Es bedeutet, dass es keine *unterstützten* Anhänge gab. Eine E-Mail, die nur eine Word-Datei trägt, erscheint so.
+**Keine Anhänge** sollte man genau lesen: Es bedeutet, dass es keine *unterstützten* Anhänge gab. Eine E-Mail, die nur eine `.txt`-Datei trägt, erscheint so.
 
 **Ein Tippfehler in der Adresse hinterlässt überhaupt keine Spur.** Mail an eine Adresse, die es nicht gibt, wird verworfen, ohne Zeile, ohne Bounce und ohne Fehlermeldung. Wenn Sie etwas weitergeleitet haben und die Sammelstelle leer ist, prüfen Sie zuerst die Adresse.
 
