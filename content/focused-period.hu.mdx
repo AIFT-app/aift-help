@@ -1,51 +1,111 @@
 # Fókuszált időszak
 
-Egy könyvelő egyszerre egy hónapon, negyedéven vagy éven dolgozik. A **Fókuszált időszak** kapcsolóval ezt az időszakot egyszer állítja be az oldalsávban, és a munkaoldalak követik: a **Számlák**, a **Banki tranzakciók**, a **Párosítás** és az **Exportok** mind ugyanarra az időszakra szűrnek, az időszak Zárása pedig egy kattintásra van. Enélkül minden oldal a saját dátumszűrőjét használja, és ugyanazt a tartományt oldalanként újra be kell állítani.
+Egy könyvelő egyszerre egy hónapon, egy negyedéven vagy egy éven dolgozik. Az oldalsáv fókuszkapcsolója ezt az időszakot egyszer állítja be, és a fő munkaoldalak ezt követik ahelyett, hogy mindegyik a saját dátumszűrőjét tartaná.
 
-A kapcsoló a könyvelőknek érhető el; az ügyfelek nem látják. A választása soha nem változtatja meg azt, amit egy kollégája lát.
+Csak a könyvelői oldalon létezik, és csak az Öné: amit itt beállít, nem változtat azon, amit egy kollégája lát.
 
-## Be- és kikapcsolás
+## Bekapcsolás
 
-A bal oldalsávban, közvetlenül a munkaterület-váltó alatt kattintson a **Fókuszált időszak** sorra. A panelen válasszon **hónapot**, **negyedévet** vagy **évet**: az időszak azonnal érvénybe lép, a panel bezárul. A kapcsoló sora ezután a kiválasztott időszakot mutatja, és az alatta csoportosított oldalak ezen dolgoznak.
+A kapcsoló a bal oldalsávban van, közvetlenül az **Áttekintés** alatt. Amíg nincs beállított időszak, a felirata **Nincs időszak**, alatta pedig **Időszak kiválasztása** - a „Fókuszált időszak” szavak csak akkor jelennek meg, amikor megnyitja: ez a panel címe.
 
-A kikapcsoláshoz nyissa meg újra a panelt, és kattintson alul a **Fókusz kikapcsolása** gombra. Minden oldal visszatér a saját dátumszűrőihez, pontosan úgy, ahogy korábban. A kikapcsolással semmi nem vész el.
+Kattintson rá, válasszon **Hónap**, **Negyedév** vagy **Év** lehetőséget, és az időszak azonnal érvénybe lép, a panel pedig bezárul. A kapcsoló sora ezután megnevezi az időszakot, és jelzi, mit csinál azon az oldalon, amelyen éppen áll.
 
-## Mi követi az időszakot, és mi nem
+## Kikapcsolás
 
-Amíg a fókusz be van kapcsolva:
+Nyissa meg a panelt, és kattintson a **Fókusz kikapcsolása** gombra: a panel fejlécének **jobb felső** sarkában, a bezárás gomb mellett van.
 
-- A **Számlák**, a **Banki tranzakciók**, a **Párosítás** és az **Exportok** listái a fókuszált időszakot mutatják. A dátumvezérlőjük az időszakot nevezi meg, és rákattintva a fókusz panelje nyílik meg, így pontosan egy helyen módosítható.
-- A számlalistákon továbbra is oldalanként választja meg a **dátum alapját** (teljesítés, számla kelte és így tovább). Az időszak a fókuszból jön; hogy melyik dátumon mérjük, az az oldal döntése marad. Az a számla, amelynek a választott alapon nincs dátuma, kívül esik a szűrőn.
-- Az oldal címe is jelzi az időszakot (például ◆ 2026. július), így egy szűkített lista soha nem tűnik a teljes képnek.
-- Azok a műveletek, amelyek mindig a teljes munkaterületen futnak, ezt a megerősítő ablakukban jelzik, így a fejlécben látott időszak nem vezetheti félre.
+Egy dologra számítson: **az az oldal, amelyen éppen áll, azon az időszakon marad.** A fókusz kikapcsolásával az többé nem vezérli az oldalait, de nem tekeri vissza azt az oldalt, amelyet éppen néz. A dátum egyszerűen újra szerkeszthető lesz, és ott helyben módosíthatja. Azok az oldalak, amelyekre ezután lép, már a saját szűrőiket használják.
 
-Szándékosan nem szűkül: a **keresés** és a **párosítási javaslatok** az időszakon túlra is néznek, mert egy júliusi számlát jogosan egyenlíthet ki egy augusztusi utalás. A törzsadat-oldalaknak egyáltalán nincs időszak-dimenziójuk.
+## A Zárásban megnyitott hónap bekapcsolja a fókuszt
+
+Ez sokakat meglep, mert rákérdezés nélkül történik. **Ha megnyit egy időszakot a Zárásban, a fókuszált időszak arra a hónapra áll**, függetlenül attól, hogy be volt-e kapcsolva a fókusz. Ha a Záráson belül júliusról augusztusra lép, a fókusz Önnel együtt mozdul.
+
+Vagyis ha soha nem nyúlt a kapcsolóhoz, megnézi a júliusi Zárást, majd megnyitja a Számlák oldalt, a listát júliusra szűkítve találja, a dátumvezérlőt pedig nem tudja szerkeszteni. Ez nem hiba: ez a fókusz, amelyet a Zárás kapcsolt be. Az oldalsáv paneljén kapcsolhatja ki.
+
+## Mi követi az időszakot
+
+| Oldal | Követi a fókuszt? |
+|---|---|
+| **Számlák** | Igen |
+| **Banki tranzakciók** | Igen |
+| **Párosítás** | Csak a **Megerősített** szakasz |
+| **Főkönyv** és **RLB export** | Igen |
+| **HessynKettős** és **Business Central** export | **Nem** - saját dátumválasztójuk van, **Teljes időszak** beállítással |
+| **Jelentések** | Nem - egy jelentésnek saját tartománya van |
+| Törzsadatok, beállítások | Nincs szűrhető dátum |
+
+Két sort érdemes kétszer elolvasni, mert az oldalsáv kapcsolója egyikről sem szól.
+
+**A Párosítás csak azt szűkíti, ami már meg van erősítve.** Az oldal tetején lévő **Függőben lévő javaslatok** lista szándékosan soha nem szűrődik: ez az Ön teendőlistája, és egy júliusi számlát jogosan egyenlíthet ki egy augusztusi utalás. A fent látható darabszám tehát nem csökken attól, hogy egy hónapra fókuszál.
+
+**A négy exportoldal közül kettő teljesen figyelmen kívül hagyja az időszakot.** A **Főkönyv** és az **RLB export** követi. A **HessynKettős** és a **Business Central** viszont a saját dátumvezérlőjét tartja meg, amely **Teljes időszak** beállítással indul - a kapcsoló mégis azt írja, hogy **Szűri ezt az oldalt**, amíg ezeken áll. Ott magán az oldalon állítsa be a tartományt, és ne bízzon a kapcsolóban.
+
+A Számlák és a Banki tranzakciók oldalon az oldal címe is tartalmazza az időszakot, így egy szűkített lista soha nem tűnik a teljes képnek. A Párosításnak és az exportoldalaknak nincs ilyen címük, és éppen ott a legkönnyebb félreolvasni egy szűkített listát.
+
+## A dátumvezérlő egy fókuszált oldalon
+
+Amíg a fókusz be van kapcsolva, a Számlák és a Banki tranzakciók dátumvezérlője **feliratként jelenik meg, nem vezérlőként**. Az időszakot egy ◆ jellel az elején mutatja, és ha az egeret fölé viszi, ezt írja: *„Az oldalsávban állítható - egy időszak minden oldalra”*.
+
+Ez szándékos. Az az időszak, amelyet oldalanként módosíthatna, pontosan azt teszi lehetővé, hogy egy lista és az exportja másképp válaszoljon ugyanarra a kérdésre. Az oldalsáv az egyetlen hely, ahol módosul.
+
+A Számlák oldalon a vezérlő jobb oldali fele továbbra is élő: ott állítja be a **dátum alapját** (**Teljesítés**, **Számla kelte** és így tovább). Az időszak a fókuszból jön; hogy melyik dátumon mérjük, az az oldal döntése marad, és az a számla, amelynek a választott alapon nincs dátuma, kívül esik a szűrőn. A Banki tranzakciók oldalon a vezérlőben semmi nem kattintható, mert egy banki tranzakció mindig a könyvelési dátumát használja.
+
+## Mi néz továbbra is az időszakon túlra
+
+A keresőmezők nem. Egy listán a keresés a fókuszált időszakon **belül** keres, mint az oldal minden más szűrője.
+
+Ami valóban figyelmen kívül hagyja az időszakot, az mind olyan, aminek épp az a dolga, hogy messzebbre nézzen:
+
+- **A kézi párosításkor felkínált számlák.** A jelöltlista soha nem korlátozódik dátumra, mert az illeszkedő számla gyakran az időszakon kívül van.
+- **A függőben lévő javaslatok** a Párosításon, a fentiek szerint.
+- **A Főkönyv Jelentés alapú keresése**, amelynek egyáltalán nincs saját dátumszűrése.
+
+A **Párosítás futtatása** szintén figyelmen kívül hagyja a fókuszált időszakot: saját tartománymenüje van, és a fókuszált időszak nem szerepel a választható lehetőségei között.
 
 ## A kapcsoló alatti állapot
 
-A kapcsoló mindig jelzi, mit csinál a fókusz éppen azon az oldalon, amelyet néz:
+A kapcsoló mindig jelzi, mit csinál a fókusz azon az oldalon, amelyet éppen néz.
 
 | Állapot | Jelentése |
-|---------|-----------|
+|--------|-----------|
 | Szűri ezt az oldalt | Az oldal listája a fókuszált időszakot követi. |
-| Lezárva · szűr | Szűr, és az időszak már le van zárva a Zárásban. |
-| Ezen az oldalon nem használt | Az oldalnak nincs dátum-dimenziója (törzsadatok, beállítások). |
-| Ez az oldal saját időszakot használ | Az oldal a saját, látható dátummezőin fut (a folyószámla-kiegyenlítés munkafelülete). Ott az oldalon látható mezők számítanak. |
-| Erről az oldalról állítható | A Záráson jelenik meg: egy zárási hónap maga is időszak, ezért a Zárás az a hely, ahol az időszakot feldolgozzák és lezárják, nem pedig egy lista, amelyet a fókusz szűkít. |
+| Lezárva · szűr | Szűr, és a hónap a Zárásban le van zárva. |
+| Ezen az oldalon nem használt | Az oldalnak nincs dátum-dimenziója. |
+| Ez az oldal saját időszakot használ | Az oldalon látható dátummezők a mérvadók: a Kiegyenlítés munkafelülete és a Cash pool elszámolás. |
+| Erről az oldalról állítható | A Záráson jelenik meg, amely beállítja az időszakot, nem pedig aszerint szűrődik. |
+
+A **Szűri ezt az oldalt** feliratot az oldal fő listájára vonatkozó állításként olvassa, ne pedig garanciaként mindarra, ami az oldalon van. A Párosításon a megerősített szakaszra vonatkozik, a HessynKettős és a Business Central exportoldalán pedig ma egyszerűen téves.
 
 ## A panel
 
-Az időszak-választón kívül a panel két szakaszt mutat:
+Az időszak-választón kívül a panel két szakaszt tartalmaz.
 
-- **Ez az időszak**: hol tart az időszak zárása, élő számmal a rendezendő tételekről, illetve **Lezárva** felirattal, ha már alá van írva. A sorra kattintva egyből a Zárásra ugrik. A már lezárt hónapokat az időszak-rácsban pont is jelöli.
-- **Törzsadatok**: gyorslinkek a törzsadat-oldalakra, amelyek időszaktól függetlenek.
+Az **Ez az időszak** azt mutatja, hol tart a hónap zárása, és ez a funkció legszűkebb része:
 
-## Személyes és böngészőnkénti
+- Csak fókuszált **hónapra** működik. Negyedév vagy év fókuszálásakor a felirata **Nincs számított adat**, nincs darabszám, és a sor nem ugrik az adott időszak Zárására.
+- Szükséges hozzá az **„Időszakok zárása”** jogosultság. Enélkül a sor felirata örökre **Nincs számított adat** marad, és rákattintva visszakerül a munkaterület áttekintőjére.
+- A darabszám a nem teljesült **blokkoló ellenőrzések** száma, nem a rekordoké. A „3 rendezendő tétel” jelenthet háromezer számlát vagy egyetlen hiányzó beállítást is. Kimaradnak belőle a figyelmeztetések és a kézi ellenőrzőlista is, pedig mindkettő odaállhat Ön és a zárás közé.
+- Mindig a **teljesítés dátumán** mérjük, bármilyen alapra is vannak állítva a listái.
 
-A fókuszált időszakot a böngészője tárolja, munkaterületenként. Mindenkinél kikapcsolva indul, csak az Öné, és nem követi másik számítógépre. Ha két gépen használja az AIFT-et, mindkettőn állítsa be.
+A **Törzsadatok** szakasz gyorshivatkozások rácsa azokra az oldalakra, amelyeknek egyáltalán nincs időszakuk.
+
+## Hol tárolódik
+
+A fókuszált időszak **az Ön böngészőjében él, munkaterületenként**. Kikapcsolva indul, nem követi Önt egy másik számítógépre, és ha két gépen dolgozik, mindkettőn külön állítsa be.
+
+Ennek két következménye van:
+
+- Nem személyenként tárolódik, hanem böngészőnként, így **közösen használt böngészőprofilon** a következő belépő örökli az időszakot, amíg meg nem változtatja.
+- Ha a böngészője nem engedélyezi a helyi tárolást, ahogy egy privát ablak teheti, a kapcsoló egyáltalán nem marad bekapcsolva.
 
 ## Jó tudni
 
-- Amíg egyetlen hónap van fókuszban, a Párosítás áttekintőjének grafikonja napi bontásra vált. Ez ugyanaz az adat finomabb felbontásban, nem hiányzó grafikon.
-- Bekapcsolt fókusz mellett egy oldal önmagában nem írhatja felül az időszakot. Ha egy oldalon egyszeri, eltérő tartományra van szüksége, kapcsolja ki a fókuszt, állítsa be ott a tartományt, majd kapcsolja vissza, amikor visszatér az időszakos munkához.
+- **Egy hónap fókuszálásától még nem lesz napi bontású grafikonja.** A Párosítás áttekintője fókuszált hónapnál és negyedévnél **heti**, évnél havi oszlopokra vált. Ez ugyanaz az adat durvább felbontásban, nem hiányzó grafikon.
+- **Egy Önnek küldött hivatkozás elveszítheti a dátumát.** Ha a fókusz be van kapcsolva, egy megosztott hivatkozás megnyitásakor az Ön időszaka érvényesül, nem a hivatkozásé.
 - Dátumokat és egész időszakokat néhány billentyűleütéssel is beírhat bárhol: lásd [Gyors dátumbevitel](/date-entry).
+
+## Kapcsolódó cikkek
+
+- [Főkönyv](/ledger) - az az exportfelület, amely követi az időszakot
+- [Számlák párosítása](/invoice-matching) - miért nem szűkül a függőben lévő javaslatok listája
+- [Gyors dátumbevitel](/date-entry)

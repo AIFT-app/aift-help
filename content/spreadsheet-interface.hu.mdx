@@ -1,6 +1,6 @@
 # Munka a táblázatos felületen
 
-Néhány képernyőn egyszerre sok sorról kell döntenie: egy fájl mely sorai jöjjenek létre, mely partnereket hitelesítse, mely kategóriákat archiválja, mely kategóriák tartozzanak egy jelentéssorhoz. Ezek a képernyők mind ugyanazt a **táblázatos felületet** használják. A nyilakkal lépkedhet, a Shift billentyűvel több sort jelölhet ki, a Szóközzel bepipálhatja őket, kereshet úgy, hogy közben nem veszíti el a helyét, és oszloponként szűrhet. Ez a cikk minden billentyűt és egérműveletet bemutat. Minden, ami itt szerepel, mind a négy képernyőn ugyanúgy működik.
+Néhány képernyőn egyszerre sok sorról kell döntenie: egy fájl mely sorai jöjjenek létre, mely partnereket hitelesítse, mely kategóriákat archiválja, mely kategóriák tartozzanak egy jelentéssorhoz. Ezek a képernyők mind ugyanazt a **táblázatos felületet** használják. A nyilakkal lépkedhet, a Shift billentyűvel több sort jelölhet ki, a Szóközzel bepipálhatja őket, kereshet úgy, hogy közben nem veszíti el a helyét, és oszloponként szűrhet. Ez a cikk minden billentyűt és egérműveletet bemutat. Az alábbi négy képernyőre vonatkozik; ugyanezt a felületet használják a Business Central beolvasási és feladási képernyői is, amelyeken egy további oszlopfajta is szerepel.
 
 Macen a **Cmd** (⌘) billentyűt használja ott, ahol a cikk **Ctrl**-t ír, az **Option** (⌥) billentyűt pedig ott, ahol **Alt**-ot.
 
@@ -9,11 +9,16 @@ Macen a **Cmd** (⌘) billentyűt használja ott, ahol a cikk **Ctrl**-t ír, az
 | Képernyő | Hogyan nyitja meg | A bepipált sor | Megnyitáskor bepipálva | A végrehajtó gomb |
 |---|---|---|---|---|
 | Az importálás áttekintő lépése | **Importálás** a Törzsadatok → **Partnerek** oldalon, a **Könyvelési kategóriák** **Számla** vagy **Pénzforgalmi** fülén, vagy egy egyéni kategórialistán. Új munkaterület beállításakor a **Kategóriák** lépésben is, a **Feltöltöm a saját listánkat** választása után. | létrejön | minden sor, amelyet az importálás létre tud hozni | **Létrehozom** |
-| Partnerek hitelesítése | Törzsadatok → **Partnerek** → **Összes partner ellenőrzése** | hitelesítve lesz: új partner lesz belőle, vagy egy meglévőhöz kötődik | minden sor, kivéve az adószám nélküli neveket | **Hitelesítem** |
+| Partnerek hitelesítése | Törzsadatok → **Partnerek** → **Összes partner ellenőrzése** | hitelesítve lesz: új partner lesz belőle, vagy egy meglévőhöz kötődik | minden sor, kivéve azt, amelyből olvasható adószám nélkül jönne létre teljesen új partner | **Hitelesítem** |
 | Kategóriák archiválása | Törzsadatok → **Könyvelési kategóriák** → **Tömeges archiválás**, a **Számla** vagy a **Pénzforgalmi** fülön | archiválva lesz | minden kategória, amelyet semmi nem használ | **Archiválom** |
 | Egy jelentéssor kategóriái | **Jelentések** → **Jelentés szerkesztése** → egy sor **Kategóriák kiválasztása** gombja | ehhez a jelentéssorhoz tartozik | a sor jelenlegi kategóriái | **Mentés** |
 
 Semmi nem jön létre, nem lesz hitelesítve, archiválva vagy mentve, amíg a végrehajtó gombra nem kattint. A **Mégse** változtatás nélkül bezárja a képernyőt; importáláskor a **Vissza** az oszlopok hozzárendeléséhez lép vissza. Az Esc vagy a képernyőn kívüli kattintás nem zárja be, így a félkész kijelölés véletlenül sem vész el.
+
+A gomb megnyomása előtt érdemes tudni két különbséget a képernyők között:
+
+- **Importáláskor a gomb nem működik, amíg nincs bepipálva semmi.** A másik hármon nulla pipával is aktív marad, és ilyenkor a kattintásnak van értelme: ha egy jelentéssort úgy ment, hogy semmi nincs bepipálva, azzal **kiüríti azt a sort**, mert a mentés a sor teljes kategóriakészletét váltja fel, nem pedig hozzáad.
+- **A pipa nem garancia.** A képernyő ellenőriz, amit tud, de egy sor a végrehajtáskor mégis kimaradhat: az importálás jelzi azokat a sorokat, amelyek közben már létezőnek vagy érvénytelennek bizonyultak, a hitelesítés pedig azokat, amelyek kézi ellenőrzést igényelnek. Az eredményről szóló üzenetet olvassa el, ne csak a pipák számát.
 
 A végrehajtáshoz jogosultság kell: az importáláshoz, a partnerek hitelesítéséhez és a kategóriák archiválásához a **Törzsadatok szerkesztése**, egy jelentéssorhoz a **Riportok kezelése**. Lásd: [Szerepek és jogosultságok](/roles-and-permissions).
 
@@ -40,6 +45,8 @@ Egy sorra kattintva is odaléphet.
 
 A számla- és pénzforgalmi kategóriák importálása és a jelentéssor kategóriaválasztója kód szerinti rendezésnél számlacsoportonként csoportosítja a sorokat, például minden 52-vel kezdődő kódot egy csoportsor alá. A többi képernyő egyetlen sima listát mutat.
 
+Csak a legalább három számjegyből álló kód kerül csoportba. A rövidebb, az üres vagy a betűt is tartalmazó kód minden csoporton kívül marad, és **a kódszűrő nem tudja elrejteni**: ha minden számlacsoportról leveszi a pipát, ezek a sorok a képernyőn maradnak.
+
 ## Több sor kijelölése
 
 | Billentyű vagy egér | Mit csinál |
@@ -51,7 +58,7 @@ A számla- és pénzforgalmi kategóriák importálása és a jelentéssor kateg
 | **Ctrl+A** | Kijelöl minden sort, amely most a listában van |
 | **Esc** | Befejezi a több soros kijelölést |
 
-A táblázat alatti sor mutatja, hány sor van kijelölve, és hogy hol tart, például „3. sor / 120”.
+A táblázat alsó szélén **belül** futó sor mutatja, hol tart, és hogy hány sor van kijelölve, például „3. sor / 120”. A bepipált sorok száma máshol van: a táblázat **alatti** gombsorban, a Mégse mellett.
 
 ## Pipálás és a pipa levétele
 
@@ -65,9 +72,17 @@ A táblázat alatti sor mutatja, hány sor van kijelölve, és hogy hol tart, p�
 | A fejléc pipamezője | Bepipál minden sort, amely most a listában van, vagy leveszi róluk a pipát, ha már mind be van pipálva |
 | Egy csoportsor pipamezője | A teljes számlacsoportot bepipálja, például minden 52-vel kezdődő kódot |
 
-Ha egyszerre sok sor változik, egy rövid üzenet megerősíti, és **Visszavonás** lehetőséget kínál.
+Ha egyszerre tíz vagy több sor változik, egy rövid üzenet megerősíti, és **Visszavonás** lehetőséget kínál. Tíz alatt nincs üzenet, de a **Ctrl+Z** ilyenkor is visszavonja.
 
 Importáláskor a létre nem hozható sorok szürkék, és nem pipálhatók be. Az **Állapot** oszlop mutatja, mi történik velük, például **Létezik**, a **Megjegyzés** oszlop pedig megadja az okát, ha van, például „ismétlődés a fájlban”.
+
+## A táblázat fölötti megjegyzés
+
+Mindegyik képernyő mond valami fontosat a táblázat fölötti sorban, és ezen könnyű átsiklani:
+
+- A **kategóriák archiválása** kiírja, mennyi van már archiválva. Azok a sorok egyáltalán nincsenek a listában: ez a képernyő archivál, visszaállítani soha nem tud.
+- A **partnerek hitelesítése** egyszerre legfeljebb **1000** nevet mutat, és kiírja, hogy az összesből mennyi látszik most. A többi a következő megnyitáskor jön.
+- A **kategóriák importálása** kiírja, hány irány cellát nem sikerült értelmezni. Azok a kategóriák mindkét irányban használhatóként jönnek létre, amit a fájlban vagy utólag javíthat.
 
 ## Keresés
 
@@ -78,6 +93,10 @@ Hogyan keres:
 - A **szavak** a névben bárhol találnak. A kis- és nagybetű, valamint az ékezet nem számít, így a `kozuzemi` megtalálja a „Közüzemi díjak” nevet. Több szó esetén a sornak mindegyiket tartalmaznia kell.
 - A **számjegyek** a kód vagy az adószám elejére keresnek: az `52` megtalálja az 5210-et, az `1234` a 12345678-2-41-et.
 
+Más nem szerepel a keresésben. A többi oszlopot - az országot, a címet, a meglévő partnert, azokat a jelentéssorokat, amelyeken egy kategória szerepel - nem veti össze a keresés, és egy szó soha nem egyezik számmal, sem fordítva.
+
+Ha a keresőmezőben már van valami, a táblázatban való gépelés **felülírja** azt. Második szó hozzáadásához kattintson először a mezőbe.
+
 Billentyűk a keresőmezőben:
 
 | Billentyű | Mit csinál |
@@ -86,11 +105,11 @@ Billentyűk a keresőmezőben:
 | **Ctrl+Enter** | Bepipálja ezt a találatot, és a következőre lép |
 | **Ctrl+Shift+Enter** | Minden találatot bepipál |
 | **↑** / **↓** | Vissza a táblázatba, egy sorral feljebb vagy lejjebb |
-| **Esc** | Vissza a táblázatba. A táblázatban még egy Esc törli a keresést. |
+| **Esc** | Vissza a táblázatba. A táblázatban az Esc utána egyenként szüntet meg dolgokat: először a billentyűlista panelt, ha nyitva van, aztán a több soros kijelölést, végül a keresést. |
 
 A táblázatból az **F3** a következő, a **Shift+F3** az előző találatra ugrik.
 
-Ha egynél több találat van, a keresőmező melletti gomb mindet egyszerre bepipálja, például **Mind a 12 találat pipálása**.
+Ha egynél több találat van, a keresőmező melletti gomb mindegyik találatra egyszerre hat. Kapcsolóként működik: **Mind a(z) 12 találat pipálása**, amíg van köztük pipa nélküli, és **Mind a(z) 12 találat pipájának levétele**, ha már mind be van pipálva. Importáláskor, ahol minden sor pipával indul, általában a pipa levételét kínálja.
 
 A **Csak a találatok** kapcsoló elrejti a nem egyező sorokat. Ez az egyetlen, ami a keresés miatt sorokat rejt el; nélküle a keresés soha nem rejt el sort.
 
@@ -117,6 +136,8 @@ Egy pipa addig marad, amíg le nem veszi. A szűrés vagy a keresés csak azt v�
 
 A **Ctrl+A** és a fejléc pipamezője a most listázott sorokra hat. Ha sorok egy csoportját szeretné bepipálni, előbb szűrjön vagy keressen rájuk, aztán egyszerre pipálja be őket.
 
+**A kék kijelölés nem olyan tartós, mint a pipa.** Az a sor, amely kikerül a látótérből, kijelöletlenné válik, és ha minden kijelölt sor eltűnik, a kijelölés arra a sorra zsugorodik, ahol a kurzor áll. Szűrés vagy keresés után csak a pipák maradnak meg.
+
 ## Visszavonás és újra
 
 | Billentyű | Mit csinál |
@@ -132,7 +153,7 @@ Jelöljön ki sorokat, és nyomja meg a **Ctrl+C** billentyűt. A sorok tabulát
 
 ## Kódok vagy adószámok beillesztése pipáláshoz
 
-Ha már megvan a sorok listája, amelyeket szeretne, kódok vagy adószámok oszlopaként Excelben vagy egy e-mailben, másolja ki, kattintson a táblázatba, és nyomja meg a **Ctrl+V** billentyűt. A megtalált sorok bepipálódnak, és a táblázat az elsőre ugrik. Egy üzenet kiírja, hány sort pipált be, és megnevezi azokat az értékeket, amelyekhez nem talált sort (az első négyet).
+Ha már megvan a sorok listája, amelyeket szeretne, kódok vagy adószámok oszlopaként Excelben vagy egy e-mailben, másolja ki, kattintson a táblázatba, és nyomja meg a **Ctrl+V** billentyűt. A megtalált sorok bepipálódnak, és a táblázat az elsőre ugrik. Egy üzenet kiírja, hány sorra **talált**, és megnevezi azokat az értékeket, amelyekhez nem talált sort (az első négyet). A találatokat számolja, nem az új pipákat, ezért ha ugyanazt a listát kétszer illeszti be, másodszor is ugyanazt a számot írja ki, pedig semmi nem változott.
 
 - A partneres képernyőkön (partnerek importálása, partnerek hitelesítése) **adószámot** illesszen be. A formátum nem számít: a `HU12345678`, a `12345678-2-41` és a `12345678` ugyanazt a partnert találja meg.
 - A kategóriás képernyőkön **kódot** illesszen be. A kis- és nagybetű nem számít.
@@ -143,7 +164,7 @@ Az értékek lehetnek cellánként vagy soronként egyenként, vagy vesszővel, 
 
 Importáláskor egy sort a létrehozása előtt javíthat is:
 
-- Az **F2** vagy a névre való dupla kattintás átírhatóvá teszi a nevet. Az **Enter** menti, és egy sorral lejjebb lép, az **Esc** elveti. A módosított név mellett megjelenik a **visszaállítás**, amely visszahozza a fájlban szereplő nevet. A név úgy jön létre, ahogyan hagyja.
+- Az **F2** vagy a névre való dupla kattintás átírhatóvá teszi a nevet. Az **Enter** menti, és egy sorral lejjebb lép; a **Tab** és a máshová kattintás **szintén ment**, elvetni csak az **Esc** billentyűvel lehet. A módosított név mellett megjelenik a **visszaállítás**, amely visszahozza a fájlban szereplő nevet. A név úgy jön létre, ahogyan hagyja. A kód vagy az adószám cellájára dupla kattintva ugyanez a szerkesztő nyílik meg.
 - Számla- és pénzforgalmi kategóriák importálásakor az **Alt+↓** (vagy az **Irány** cellában a kis nyíl) megnyitja a sor irányát: **Bevétel**, **Kiadás** vagy **Mindkettő**. A fájlban szereplő érték a javaslat. A módosított irányt kék pötty jelzi, és a lista ekkor a **Vissza a fájl értékéhez** lehetőséget is felkínálja. Ha több sor van kijelölve, a választás mindegyikre érvényes. A megnyitott listában egy lehetőség kezdőbetűje kiválasztja azt.
 
 A másik három képernyő már létező rekordokkal dolgozik, ezért ott a név nem szerkeszthető. Egy partner vagy kategória nevét a saját oldalán módosítsa.
