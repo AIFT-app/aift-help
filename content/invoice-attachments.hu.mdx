@@ -1,0 +1,85 @@
+# Számlamellékletek
+
+Egy számlához gyakran olyan papírok is tartoznak, amelyek igazolják, hogy a munka elkészült vagy az áru megérkezett: teljesítésigazolás, munkaidő-kimutatás, szállítólevél. Az AI Finance Teamben ezeket **mellékletként** magán a számlán tarthatja, így aki a számlát ellenőrzi, jóváhagyja vagy könyveli, egy helyen találja a bizonyítékot.
+
+## Mi számít mellékletnek
+
+A melléklet olyan alátámasztó dokumentum, amely egy számlához tartozik, de maga nem számla. Minden mellékletnek van típusa:
+
+| Típus | Jellemző példa |
+|-------|----------------|
+| **Teljesítésigazolás** | A megrendelő igazolja, hogy a szolgáltatás teljesült |
+| **Munkaidő-kimutatás** | Egy hónap ledolgozott órái, a havi számla alapja |
+| **Szállítólevél** | A leszállított áru, átvételkor aláírva |
+| **Átadás-átvételi jegyzőkönyv** | Egy elkészült munka átadása és átvétele |
+| **Kártyaterminál-bizonylat** | A kártyaterminál bizonylata, amely csak a fizetést igazolja |
+| **Egyéb** | Minden más, ami a számlát alátámasztja |
+
+A kártyaterminál-bizonylat és a nyugta nem ugyanaz. Az a bolti vagy éttermi nyugta, amelyen ÁFA szerepel, továbbra is számla jellegű bizonylatként kerül feldolgozásra, ugyanúgy, mint egy számla. Csak az a bizonylat melléklet, amely pusztán a kártyás fizetést igazolja.
+
+## Hol találja a mellékleteket
+
+Nyissa meg a számlát, és kattintson a **Mellékletek** fülre, a **Dokumentum** mellett. A fül azt is mutatja, hány melléklet van. Minden mellékletnél látja a fájl nevét, a típusát, azt, hogy ki és mikor adta hozzá. Egy dokumentum nélküli számlához, például egy PDF nélkül, a NAV-ból érkezett számlához ugyanúgy csatolhat mellékletet, mint bármely másikhoz.
+
+A jóváhagyók is látják a mellékleteket: a jóváhagyási listákból megnyíló számla-előnézetben van egy **Mellékletek** szakasz, a kártyákon pedig egy gemkapocs mutatja a mellékletek számát. Lásd: [Számlák jóváhagyása kifizetésre](/approving-invoices).
+
+A PDF-ek és a képek előnézetben nyílnak meg. Minden melléklet letölthető.
+
+## Ki adhat hozzá, és ki láthatja
+
+- **Megtekintés és letöltés:** aki látja a számlát, az a mellékleteit is megnyithatja és letöltheti. Ez arra a jóváhagyóra is vonatkozik, aki csak a neki kiosztott számlákat látja.
+- **Hozzáadás, a típus módosítása, kapcsolás és eltávolítás:** ehhez a dokumentumfeltöltési jog kell. Alapértelmezés szerint a könyvelők rendelkeznek vele, ügyféloldalon pedig a pénzügyi vezető, a pénzügyi adminisztrátor és a munkatársak. Az a jóváhagyó, aki csak a neki kiosztott számlákat látja, megtekintheti és letöltheti a mellékleteket, de nem módosíthat semmit, hacsak a szerepe a feltöltést is meg nem engedi.
+
+Lásd: [Szerepek és jogosultságok](/roles-and-permissions).
+
+## Mellékletek hozzáadása
+
+A **Mellékletek** fülön húzza a fájlokat a feltöltési területre, vagy kattintson rá, és válassza ki őket. Egyszerre több fájlt is hozzáadhat.
+
+- **A PDF-ek és a képek** (JPEG, PNG, WebP, HEIC) előnézetben megtekinthetők.
+- **Excel-, Word- és CSV-fájlokat** is elfogadunk. Ezeknek nincs előnézete; letöltésre megőrizzük őket.
+- Egy fájl legfeljebb 50 MB lehet.
+
+A mellékletekért nem számlázunk, és nem számítanak bele a próbaidőszak keretébe.
+
+## A melléklet típusa
+
+Az új melléklet **Egyéb** típussal indul. PDF-nél és képnél az AI megnézi az első oldalt, és javasol egy típust, például **Munkaidő-kimutatás**. A javasolt típus AI-javaslatként jelölve látszik, amíg valaki meg nem erősíti vagy meg nem változtatja. Ha az AI nem elég biztos a dolgában, a típus egyszerűen **Egyéb** marad.
+
+A típust a listában bármikor módosíthatja. Az ember által választott típust egy későbbi javaslat soha nem írja felül. Az Excel-, Word- és CSV-fájlokra nem érkezik javaslat; ha fontos, állítsa be a típusukat Ön.
+
+## E-mailben érkező mellékletek
+
+A szállítók gyakran ugyanabban az e-mailben küldik a számlát és az alátámasztó dokumentumokat. Ha egy ilyen e-mailt továbbít a munkaterület címére (lásd: [Dokumentumok továbbítása e-mailben](/email-forwarding)), az AI Finance Team felismeri az alátámasztó dokumentumokat, és soha nem dolgozza fel őket számlaként.
+
+- **Az e-mailben pontosan egy számla van:** az alátámasztó dokumentumok automatikusan ehhez a számlához kapcsolódnak. Ezt az **Automatikusan kapcsolva** címke jelzi.
+- **Az e-mailben több számla van:** semmi nem kapcsolódik automatikusan, mert nem tudható, melyik dokumentum melyik számlához tartozik. A mellékletek a **Dokumentumok** oldalon várakoznak, és az ugyanabból az e-mailből érkezett számlákat a rendszer javaslatként kínálja fel. Egy kattintással a megfelelő számlához kapcsolhatja a mellékletet.
+- **Az e-mailben nincs számla**, csak alátámasztó dokumentumok: ezek is a **Dokumentumok** oldalon várakoznak.
+
+Az e-mailben küldött Excel-, Word- és CSV-fájlokat is megőrizzük mellékletként. A szokásos e-mail-korlátok érvényesek.
+
+## Nem kapcsolt mellékletek
+
+A **Dokumentumok** oldalon a **Nem kapcsolt mellékletek** szűrő minden olyan mellékletet felsorol, amely még egyetlen számlához sem kapcsolódik, a típusával és azzal, honnan érkezett (az e-mail feladója és tárgya, vagy feltöltés). Innen számlához kapcsolhatja, elfogadhat egy javasolt számlát, beállíthatja a típusát vagy eltávolíthatja. A Dokumentumok oldal a könyvelőknek szól; lásd: [Dokumentumok](/documents).
+
+## Egy melléklet, több számla
+
+Egy melléklet általában egy számlához tartozik. Előfordul, hogy egy teljesítésigazolás többet is lefed, például egy részszámla-sorozatot. Ilyenkor kapcsolja ugyanazt a mellékletet kézzel mindegyik számlához. A lista ekkor mutatja, mely más számlákhoz kapcsolódik még. Az automatikus kapcsolás egy mellékletet soha nem kapcsol egynél több számlához.
+
+Egy melléklet kapcsolatát egy számlával meg is szüntetheti. A melléklet megmarad, és ha már sehová nem kapcsolódik, a nem kapcsolt mellékletek között jelenik meg.
+
+## Melléklet eltávolítása
+
+Kattintson a mellékletnél az eltávolításra, és erősítse meg. A megerősítés minden számlát megnevez, amelyhez a melléklet kapcsolódik, mert mindegyikről eltűnik.
+
+Az eltávolítás elrejti a mellékletet, de maga a dokumentum megmarad. Az alátámasztó dokumentumok számviteli bizonylatok, amelyeket meg kell őrizni, ezért semmi nem törlődik véglegesen. Az eltávolítás minden érintett számla **Előzmények** fülén megjelenik azzal együtt, hogy ki és mikor távolította el.
+
+## Előzmények
+
+A mellékletek minden változása megjelenik a számla **Előzmények** fülén: hozzáadás, kapcsolás, a kapcsolat megszüntetése, típusváltozás és eltávolítás, mindegyik azzal, hogy ki és mikor végezte. Az e-mailből létrejött automatikus kapcsolást a rendszer végzi, és így is látszik.
+
+## Amire a mellékletek nincsenek hatással
+
+- A mellékletek soha nem kerülnek bele az exportokba.
+- Nem számlázzuk őket.
+- Nem változtatják meg a számla adatait, kategóriáit, ÁFA-kódjait és párosítását.
