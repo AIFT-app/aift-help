@@ -1,6 +1,6 @@
 // Where a forwarded attachment lands, for the email-forwarding article.
 //
-// Not an app screen: the four destinations never appear together in the
+// Not an app screen: the five destinations never appear together in the
 // product, which is exactly why the old article sent readers to the wrong one.
 // The destination names are the app's own (./copy.ts, keyed by message key);
 // the rest is this article's text, checked against triage-document on
