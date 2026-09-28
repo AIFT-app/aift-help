@@ -4,7 +4,7 @@ AIFT's date fields understand short keyboard forms, in the style you may know fr
 
 The short forms work in every date field: in the date filters on the list pages (Invoices, Bank transactions, Matching, the export pages), and in the date fields on records, such as invoice dates or the rows of the bank statement editor.
 
-Confirm an entry with **Enter** or **Tab**. The field then shows the complete date (for example 31 Dec 2026), so you always see what your entry became. If an entry cannot be read as a real date, the field simply returns to its previous value; nothing is cleared.
+Confirm an entry with **Enter** or **Tab**. The field then shows the complete date as year-month-day (for example 2026-12-31), the same form AIFT uses for every date, so you always see what your entry became. If an entry cannot be read as a real date, the field simply returns to its previous value; nothing is cleared.
 
 ## Digits only: the compact forms
 
@@ -15,8 +15,8 @@ A compact entry is digits without separators. It is always read as **year, month
 | 15 | the 15th of the current month |
 | 05 | the 5th of the current month |
 | 1231 | 31 December of the current year |
-| 260101 | 1 Jan 2026 |
-| 20260101 | 1 Jan 2026 |
+| 260101 | 2026-01-01 |
+| 20260101 | 2026-01-01 |
 
 Three rules to know:
 
@@ -32,9 +32,9 @@ The usual written forms keep working. With separators (dot, slash, hyphen or spa
 
 - 31/12/2026 (day first, as in English)
 - 2026-12-31 (ISO)
-- 2026.9.5 (year first works in every language: 5 Sept 2026)
+- 2026.9.5 (year first works in every language: 2026-09-05)
 
-Month names work together with a year, abbreviated or written out: 15 dec 2026 and 15 December 2026 both read as 15 Dec 2026.
+Month names work together with a year, abbreviated or written out: 15 dec 2026 and 15 December 2026 both become 2026-12-15.
 
 ## A whole period in one entry
 
@@ -44,7 +44,7 @@ On the list pages, open the date filter and switch to the **Custom** tab. In the
 |----------|----------------|
 | 15..20 | the 15th to the 20th of the current month |
 | 0901..0915 | 1 to 15 September of the current year |
-| 260101..260630 | 1 Jan 2026 to 30 Jun 2026 |
+| 260101..260630 | 2026-01-01 to 2026-06-30 |
 
 Any date form works on either side of the two dots, and the two sides may mix forms. Two rules:
 
@@ -60,5 +60,5 @@ Next to the filter's date fields sits a small **i** icon labelled **Date formats
 ## Tips
 
 - After confirming, glance at the field: the full date it shows is what will be used, so a slip is visible immediately.
-- The grey example in an empty field (31 Dec 2026) is the display form, and the display form is itself always accepted: whatever a field shows, you can type back.
+- The grey example in an empty field (2026-12-31) is the display form, and the display form is itself always accepted: whatever a field shows, you can type back.
 - Filtering several pages to the same period one by one? Set it once with the **Focused period** switch in the sidebar instead: see [Focused Period](/focused-period).
