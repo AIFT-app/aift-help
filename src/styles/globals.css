@@ -75,6 +75,12 @@
   /* Exactly the app's value: aift-web maps font-mono to var(--font-geist-mono). */
   font-family: var(--font-geist-mono);
 }
+.app-screen .font-sans {
+  /* Likewise: aift-web maps font-sans to var(--font-geist-sans). The screen's
+     body text is Arial (aift-web's own body rule beats Tailwind's base), but an
+     element that asks for font-sans explicitly gets Geist there. */
+  font-family: var(--font-geist-sans);
+}
 
 /* A native <select> inside an app screen, exactly as aift-web styles it.
    aift-web's globals.css gives every plain select the Catalyst control's own
