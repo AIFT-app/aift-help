@@ -1,51 +1,111 @@
 # Focused Period
 
-An accountant works a month, a quarter or a year at a time. The **Focused period** switch sets that period once, in the sidebar, and the work pages follow it: **Invoices**, **Bank transactions**, **Matching** and **Exports** all filter to the same period, and the period's Closing is one click away. Without it, every page keeps its own date filter and you re-set the same range page by page.
+An accountant works a month, a quarter or a year at a time. The focus switch in the sidebar sets that period once, and the main work pages follow it instead of each keeping its own date filter.
 
-The switch is available to accountants; clients do not see it. Your choice never changes what a colleague sees.
+It is accountant-side only, and it is yours: nothing you set here changes what a colleague sees.
 
-## Turning it on and off
+## Turning it on
 
-In the left sidebar, directly under the workspace switcher, click **Focused period**. In the panel, pick a **Month**, a **Quarter** or a **Year**: the period applies immediately and the panel closes. The switch row now names the period, and the pages grouped beneath it work on it.
+The switch sits in the left sidebar, just under **Home**. When no period is set it reads **No period** over **Select period** - the words "Focused period" only appear once you open it, as the panel's title.
 
-To stop, open the panel again and click **Turn focus off** at the bottom. Every page returns to its own date filters, exactly as before. Nothing is lost by switching off.
+Click it, pick a **Month**, a **Quarter** or a **Year**, and the period applies at once and the panel closes. The switch row then names the period and reports what it is doing on the page you are on.
 
-## What follows the period, and what does not
+## Turning it off
 
-While focus is on:
+Open the panel and click **Turn focus off**, at the **top right** of the panel header, beside the close button.
 
-- The lists on **Invoices**, **Bank transactions**, **Matching** and **Exports** show the focused period. Their date control names the period, and clicking it opens the focus panel, so there is exactly one place to change it.
-- On invoice lists you still choose the **date basis** per page (fulfillment, issue date, and so on). The period comes from focus; which date it is measured on stays a page choice. An invoice with no date on the chosen basis falls outside the filter.
-- The page title carries the period too (for example ◆ July 2026), so a narrowed list never looks like the whole picture.
-- Actions that always run on the whole workspace say so in their confirmation dialog, so the period in the header cannot mislead you.
+One thing to expect: **the page you are standing on stays on that period.** Switching focus off stops it driving your pages, but it does not rewind the page you are already looking at. The date is simply editable again, and you can change it on the spot. Pages you navigate to afterwards are back to their own filters.
 
-Deliberately not narrowed: **search** and **match suggestions** look beyond the period, because a July invoice may legitimately settle against an August payment. Master data pages have no period dimension at all.
+## Opening a month in Closing turns focus on
+
+This surprises people, because it happens without asking. **Opening a period in Closing sets the focused period to that month**, whether or not you had focus on. Move from July to August inside Closing and the focus moves with you.
+
+So if you have never touched the switch, look at July's Closing and then open Invoices, you will find the list narrowed to July with a date control you cannot edit. That is not a fault: it is focus, switched on by Closing. Turn it off in the sidebar panel.
+
+## What follows the period
+
+| Page | Follows focus? |
+|---|---|
+| **Invoices** | Yes |
+| **Bank transactions** | Yes |
+| **Matching** | The **Approved** section only |
+| **Ledger** and **RLB export** | Yes |
+| **HessynKettős** and **Business Central** exports | **No** - they keep their own date picker, set to all time |
+| **Reports** | No - a report has its own range |
+| Master data, settings | No date to filter |
+
+Two entries there are worth reading twice, because the sidebar switch does not tell you about either.
+
+**Matching narrows only what is already approved.** The pending suggestion queue at the top of the page is deliberately never filtered: it is your action queue, and a July invoice may legitimately settle against an August payment. So the count at the top does not shrink when you focus a month.
+
+**Two of the four export pages ignore the period entirely.** The Ledger and the RLB export follow it. **HessynKettős** and **Business Central** each keep their own date control, which starts at all time - yet the switch still says **Filtering this page** while you are on them. Set the range on the page itself there, and do not trust the switch.
+
+On Invoices and Bank transactions the page title carries the period as well, so a narrowed list never looks like the whole picture. Matching and the export pages have no such title, which is where a narrowed list is easiest to misread.
+
+## The date control on a focused page
+
+While focus is on, the date control on Invoices and Bank transactions becomes a **label, not a control**. It shows the period with a ◆ in front of it, and hovering says *"Set in the sidebar - one period for every page"*.
+
+This is deliberate. A period you could change per page is exactly what lets a list and its export answer the same question differently. The sidebar is the one place it changes.
+
+On Invoices the right-hand half of that control is still live: it sets the **date basis** (fulfillment, issue date and so on). The period comes from focus; which date it is measured on stays a page choice, and an invoice with no date on the chosen basis falls outside the filter. On Bank transactions nothing in the control is clickable, because a bank transaction always uses its booking date.
+
+## What still looks beyond the period
+
+Not the search boxes. A search on a list searches **inside** the focused period, like every other filter on it.
+
+What genuinely ignores the period is anything whose job is to look further:
+
+- **The invoices offered when you match by hand.** The candidate list is never date-limited, because the matching invoice is often outside the period.
+- **The pending suggestion queue** on Matching, as above.
+- **The Ledger's Meaning search**, which has no date filtering of its own at all.
+
+**Run matching** also ignores the focused period: it has its own range menu, and the period is not one of its options.
 
 ## The status under the switch
 
-The switch always reports what focus is doing on the page you are looking at:
+The switch always reports what focus is doing on the page you are looking at.
 
 | Status | Meaning |
 |--------|---------|
-| Filtering this page | The page's list follows the focused period. |
-| Closed · filtering | Filtering, and the period is already signed off in Closing. |
-| Not used on this page | The page has no date dimension (master data, settings). |
-| This page uses its own dates | The page runs on its own visible date fields (the settlement workbench). The fields on the page are the truth there. |
-| Set from this page | Shown on Closing: a closing month is itself a period, so Closing is where a period is worked and signed off rather than a list that focus narrows. |
+| Filtering this page | The list follows the focused period. |
+| Closed · filtering | Filtering, and the month is signed off in Closing. |
+| Not used on this page | The page has no date dimension. |
+| This page uses its own dates | The visible date fields on the page are the truth: the settlement workbench and the cash pool report. |
+| Set from this page | Shown on Closing, which sets the period rather than being filtered by it. |
+
+Take **Filtering this page** as a claim about the page's main list, not a guarantee about everything on it. On Matching it covers the approved section, and on the HessynKettős and Business Central export pages it is simply wrong today.
 
 ## The panel
 
-Besides the period picker, the panel shows two sections:
+Besides the period picker, the panel holds two sections.
 
-- **This period**: where the period's closing stands, with a live count of items to resolve, or **Closed** once it is signed off. Click the row to jump straight to Closing. Months already signed off also carry a dot in the period grid.
-- **Master data**: shortcuts to the master data pages, which are period-independent.
+**This period** shows where the month's closing stands, and is the narrowest part of the feature:
 
-## Personal and per-browser
+- It only works for a focused **month**. With a quarter or a year focused it reads **Not calculated**, there is no count, and the row does not jump to that period's Closing.
+- It needs the **"Close periods"** permission. Without it the row reads **Not calculated** for ever, and clicking it returns you to the workspace overview.
+- The count is of failing **blocking checks**, not of records. "3 items to resolve" can mean three thousand invoices or one missing setting. It also leaves out advisory checks and the manual checklist, both of which can still stand between you and a close.
+- It is always measured on the **fulfillment date**, whatever basis your lists are set to.
 
-The focused period is stored in your browser, per workspace. It starts off for everyone, it is yours alone, and it does not follow you to another computer. If you use AIFT on two machines, set it on each.
+**Master data** is a grid of shortcuts to the pages that have no period at all.
+
+## Where it is kept
+
+The focused period lives in **your browser, per workspace**. It starts off, it does not follow you to another computer, and if you work on two machines you set it on each.
+
+Two consequences:
+
+- It is stored per browser rather than per person, so on a **shared browser profile** the next person to sign in inherits the period until they change it.
+- If your browser refuses local storage, as a private window may, the switch will not stay on at all.
 
 ## Good to know
 
-- While a single month is focused, the chart on the Matching overview switches to daily buckets. That is the same data at a finer grain, not a missing chart.
-- A page cannot override the period on its own while focus is on. For a one-off different range on one page, turn focus off, set the range there, and turn focus back on when you return to period work.
+- **Focusing a month does not give you a daily chart.** The Matching overview switches to **weekly** bars for a focused month or quarter, and monthly for a year. That is the same data at a coarser grain, not a missing chart.
+- **A link you were sent can lose its date.** If focus is on, opening a shared link applies your period rather than the link's.
 - Type dates and whole periods in a few keystrokes anywhere: see [Fast Date Entry](/date-entry).
+
+## Related
+
+- [Ledger](/ledger) - the export surface that does follow the period
+- [Invoice Matching](/invoice-matching) - why the pending queue is not narrowed
+- [Fast Date Entry](/date-entry)

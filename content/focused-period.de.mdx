@@ -1,51 +1,111 @@
 # Fokussierter Zeitraum
 
-Wer Buchhaltung macht, arbeitet an einem Monat, einem Quartal oder einem Jahr. Der Schalter **Fokussierter Zeitraum** stellt diesen Zeitraum einmal ein, in der Seitenleiste, und die Arbeitsseiten folgen ihm: **Rechnungen**, **Banktransaktionen**, **Zuordnung** und **Exporte** filtern alle auf denselben Zeitraum, und der Abschluss des Zeitraums ist einen Klick entfernt. Ohne ihn behält jede Seite ihren eigenen Datumsfilter, und Sie stellen denselben Bereich Seite für Seite neu ein.
+Wer Buchhaltung macht, arbeitet einen Monat, ein Quartal oder ein Jahr auf einmal. Der Fokus-Schalter in der Seitenleiste stellt diesen Zeitraum einmal ein, und die wichtigsten Arbeitsseiten folgen ihm, statt dass jede ihren eigenen Datumsfilter behält.
 
-Der Schalter steht Buchhalterinnen und Buchhaltern zur Verfügung; Mandanten sehen ihn nicht. Ihre Wahl ändert nie, was jemand anderes sieht.
+Er existiert nur auf der Buchhalterseite der App, und er gehört Ihnen: Was Sie hier einstellen, ändert nichts an dem, was eine Kollegin oder ein Kollege sieht.
 
-## Ein- und ausschalten
+## Einschalten
 
-Klicken Sie in der linken Seitenleiste, direkt unter dem Arbeitsbereich-Umschalter, auf **Fokussierter Zeitraum**. Wählen Sie im Panel einen **Monat**, ein **Quartal** oder ein **Jahr**: Der Zeitraum gilt sofort, und das Panel schließt sich. Die Schalterzeile nennt nun den gewählten Zeitraum, und die darunter gruppierten Seiten arbeiten auf ihm.
+Der Schalter sitzt in der linken Seitenleiste, direkt unter **Startseite**. Ist kein Zeitraum gesetzt, liest er **Kein Zeitraum** über **Zeitraum wählen** - die Worte „Fokussierter Zeitraum“ erscheinen erst, wenn Sie ihn öffnen, als Titel des Panels.
 
-Zum Beenden öffnen Sie das Panel erneut und klicken unten auf **Fokus ausschalten**. Jede Seite kehrt zu ihren eigenen Datumsfiltern zurück, genau wie zuvor. Durch das Ausschalten geht nichts verloren.
+Klicken Sie ihn an, wählen Sie **Monat**, **Quartal** oder **Jahr**: Der Zeitraum gilt sofort, und das Panel schließt sich. Die Schalterzeile nennt dann den Zeitraum und meldet, was er auf der Seite tut, auf der Sie gerade stehen.
 
-## Was dem Zeitraum folgt, und was nicht
+## Ausschalten
 
-Solange der Fokus eingeschaltet ist:
+Öffnen Sie das Panel und klicken Sie auf **Fokus ausschalten**, **oben rechts** in der Kopfzeile des Panels, neben der Schließen-Schaltfläche.
 
-- Die Listen auf **Rechnungen**, **Banktransaktionen**, **Zuordnung** und **Exporte** zeigen den fokussierten Zeitraum. Ihr Datumsregler nennt den Zeitraum, und ein Klick darauf öffnet das Fokus-Panel, es gibt also genau einen Ort, ihn zu ändern.
-- Auf Rechnungslisten wählen Sie die **Datumsbasis** weiterhin pro Seite (Leistungsdatum, Rechnungsdatum und so weiter). Der Zeitraum kommt aus dem Fokus; auf welchem Datum er gemessen wird, bleibt Sache der Seite. Eine Rechnung ohne Datum auf der gewählten Basis fällt aus dem Filter heraus.
-- Auch der Seitentitel trägt den Zeitraum (zum Beispiel ◆ Juli 2026), eine eingegrenzte Liste sieht also nie wie das Gesamtbild aus.
-- Aktionen, die immer auf dem gesamten Arbeitsbereich laufen, sagen das in ihrem Bestätigungsdialog, damit der Zeitraum im Kopf der Seite nicht in die Irre führt.
+Eines müssen Sie dabei einkalkulieren: **Die Seite, auf der Sie gerade stehen, bleibt auf diesem Zeitraum.** Den Fokus auszuschalten nimmt ihm die Steuerung Ihrer Seiten, aber es spult die Seite nicht zurück, die Sie schon vor sich haben. Das Datum ist dort einfach wieder bearbeitbar, und Sie können es auf der Stelle ändern. Seiten, die Sie danach aufrufen, sind zurück bei ihren eigenen Filtern.
 
-Bewusst nicht eingegrenzt: die **Suche** und die **Zuordnungsvorschläge** blicken über den Zeitraum hinaus, denn eine Juli-Rechnung kann berechtigt durch eine August-Zahlung beglichen werden. Stammdaten-Seiten haben gar keine Zeitraum-Dimension.
+## Ein Monat im Abschluss schaltet den Fokus ein
+
+Das überrascht viele, weil es ohne Rückfrage passiert. **Wenn Sie im Abschluss einen Zeitraum öffnen, wird der fokussierte Zeitraum auf diesen Monat gesetzt**, ganz gleich, ob der Fokus vorher an war. Wechseln Sie im Abschluss von Juli zu August, wandert der Fokus mit.
+
+Wenn Sie also den Schalter nie angefasst haben, sich den Abschluss für Juli ansehen und dann **Rechnungen** öffnen, finden Sie die Liste auf Juli eingegrenzt, mit einem Datumsfilter, den Sie nicht bearbeiten können. Das ist kein Fehler: Das ist der Fokus, eingeschaltet vom Abschluss. Schalten Sie ihn im Panel in der Seitenleiste aus.
+
+## Was dem Zeitraum folgt
+
+| Seite | Folgt dem Fokus? |
+|---|---|
+| **Rechnungen** | Ja |
+| **Banktransaktionen** | Ja |
+| **Zuordnung** | Nur der Abschnitt **Bestätigt** |
+| **Hauptbuch** und **RLB**-Export | Ja |
+| Exporte **HessynKettős** und **Business Central** | **Nein** - sie behalten ihren eigenen Datumsfilter, eingestellt auf **Gesamter Zeitraum** |
+| **Berichte** | Nein - ein Bericht hat seinen eigenen Bereich |
+| Stammdaten, Einstellungen | Kein Datum, das gefiltert werden könnte |
+
+Zwei Einträge darin lohnen ein zweites Lesen, denn über keinen von beiden sagt der Schalter in der Seitenleiste etwas.
+
+**Die Zuordnung grenzt nur ein, was schon bestätigt ist.** Die Warteschlange der offenen Vorschläge oben auf der Seite wird bewusst nie gefiltert: Sie ist Ihre Aufgabenliste, und eine Juli-Rechnung kann berechtigt durch eine August-Zahlung beglichen werden. Die Zahl oben schrumpft also nicht, wenn Sie einen Monat fokussieren.
+
+**Zwei der vier Export-Seiten ignorieren den Zeitraum völlig.** Das **Hauptbuch** und der **RLB**-Export folgen ihm. **HessynKettős** und **Business Central** behalten je ihren eigenen Datumsfilter, der auf **Gesamter Zeitraum** startet - und trotzdem sagt der Schalter **Filtert diese Seite**, solange Sie auf ihnen sind. Stellen Sie den Bereich dort auf der Seite selbst ein, und verlassen Sie sich nicht auf den Schalter.
+
+Auf **Rechnungen** und **Banktransaktionen** trägt auch der Seitentitel den Zeitraum, eine eingegrenzte Liste sieht also nie wie das Gesamtbild aus. Die Zuordnung und die Export-Seiten haben keinen solchen Titel, und genau dort lässt sich eine eingegrenzte Liste am leichtesten falsch lesen.
+
+## Der Datumsfilter auf einer fokussierten Seite
+
+Solange der Fokus an ist, wird der Datumsfilter auf **Rechnungen** und **Banktransaktionen** zu einer **Anzeige, nicht zu einem Bedienelement**. Er zeigt den Zeitraum mit einem ◆ davor, und wenn Sie mit der Maus darüberfahren, steht dort *„In der Seitenleiste einstellbar - ein Zeitraum für alle Seiten“*.
+
+Das ist Absicht. Ein Zeitraum, den Sie pro Seite ändern könnten, ist genau das, was eine Liste und ihren Export dieselbe Frage unterschiedlich beantworten lässt. Die Seitenleiste ist der eine Ort, an dem er sich ändert.
+
+Auf **Rechnungen** ist die rechte Hälfte dieses Elements weiterhin aktiv: Dort stellen Sie die **Datumsbasis** ein (Leistungsdatum, Rechnungsdatum und so weiter). Der Zeitraum kommt aus dem Fokus; auf welchem Datum er gemessen wird, bleibt eine Entscheidung der Seite, und eine Rechnung ohne Datum auf der gewählten Basis fällt aus dem Filter heraus. Auf **Banktransaktionen** ist in dem Element nichts anklickbar, denn eine Banktransaktion verwendet immer ihr Buchungsdatum.
+
+## Was weiterhin über den Zeitraum hinausblickt
+
+Nicht die Suchfelder. Eine Suche in einer Liste sucht **innerhalb** des fokussierten Zeitraums, wie jeder andere Filter auf ihr.
+
+Was den Zeitraum wirklich ignoriert, ist alles, dessen Aufgabe es ist, weiter zu blicken:
+
+- **Die Rechnungen, die beim Zuordnen von Hand angeboten werden.** Die Kandidatenliste ist nie auf ein Datum begrenzt, denn die passende Rechnung liegt oft außerhalb des Zeitraums.
+- **Die Warteschlange der offenen Vorschläge** in der Zuordnung, wie oben.
+- **Die Bedeutungssuche im Hauptbuch**, die überhaupt keine eigene Datumsfilterung hat.
+
+Auch **Zuordnung starten** ignoriert den fokussierten Zeitraum: Die Schaltfläche hat ihr eigenes Bereichsmenü, und der Zeitraum ist dort keine der Optionen.
 
 ## Der Status unter dem Schalter
 
-Der Schalter meldet immer, was der Fokus auf der Seite tut, die Sie gerade ansehen:
+Der Schalter meldet immer, was der Fokus auf der Seite tut, die Sie gerade ansehen.
 
 | Status | Bedeutung |
 |--------|-----------|
-| Filtert diese Seite | Die Liste der Seite folgt dem fokussierten Zeitraum. |
-| Abgeschlossen · filtert | Filtert, und der Zeitraum ist im Abschluss bereits abgezeichnet. |
-| Auf dieser Seite nicht verwendet | Die Seite hat keine Datums-Dimension (Stammdaten, Einstellungen). |
-| Diese Seite nutzt eigene Daten | Die Seite läuft auf ihren eigenen, sichtbaren Datumsfeldern (die Saldenausgleich-Arbeitsfläche). Dort gelten die Felder auf der Seite. |
-| Wird auf dieser Seite gesetzt | Erscheint im Abschluss: Ein Abschlussmonat ist selbst ein Zeitraum, der Abschluss ist also der Ort, an dem ein Zeitraum bearbeitet und abgezeichnet wird, keine Liste, die der Fokus eingrenzt. |
+| Filtert diese Seite | Die Liste folgt dem fokussierten Zeitraum. |
+| Abgeschlossen · filtert | Filtert, und der Monat ist im Abschluss abgezeichnet. |
+| Auf dieser Seite nicht verwendet | Die Seite hat keine Datums-Dimension. |
+| Diese Seite nutzt eigene Daten | Die sichtbaren Datumsfelder auf der Seite sind maßgeblich: die Ausgleichs-Arbeitsfläche und die Cash-Pool-Abrechnung. |
+| Wird auf dieser Seite gesetzt | Erscheint im Abschluss, der den Zeitraum setzt, statt von ihm gefiltert zu werden. |
+
+Nehmen Sie **Filtert diese Seite** als Aussage über die Hauptliste der Seite, nicht als Garantie für alles darauf. In der Zuordnung deckt es den Abschnitt **Bestätigt** ab, und auf den Export-Seiten **HessynKettős** und **Business Central** ist es heute einfach falsch.
 
 ## Das Panel
 
-Neben der Zeitraum-Auswahl zeigt das Panel zwei Abschnitte:
+Neben der Zeitraum-Auswahl enthält das Panel zwei Abschnitte.
 
-- **Dieser Zeitraum**: wo der Abschluss des Zeitraums steht, mit einer laufenden Zahl offener Punkte, oder **Abgeschlossen**, sobald er abgezeichnet ist. Ein Klick auf die Zeile springt direkt in den Abschluss. Bereits abgezeichnete Monate tragen im Zeitraum-Raster zudem einen Punkt.
-- **Stammdaten**: Verknüpfungen zu den Stammdaten-Seiten, die zeitraumunabhängig sind.
+**Dieser Zeitraum** zeigt, wo der Abschluss des Monats steht, und ist der engste Teil der Funktion:
 
-## Persönlich und pro Browser
+- Es funktioniert nur für einen fokussierten **Monat**. Mit einem fokussierten Quartal oder Jahr liest die Zeile **Nicht berechnet**, es gibt keine Zahl, und sie springt nicht in den Abschluss dieses Zeitraums.
+- Es braucht die Berechtigung **Perioden abschließen**. Ohne sie liest die Zeile dauerhaft **Nicht berechnet**, und ein Klick darauf führt Sie zurück zur Arbeitsbereich-Übersicht.
+- Gezählt werden fehlgeschlagene **blockierende Prüfungen**, nicht Datensätze. „3 offene Punkte“ können dreitausend Rechnungen oder eine einzige fehlende Einstellung bedeuten. Hinweisende Prüfungen und die manuelle Checkliste sind darin außerdem nicht enthalten, und beide können weiterhin zwischen Ihnen und einem Abschluss stehen.
+- Gemessen wird immer am **Leistungsdatum**, auf welche Basis Ihre Listen auch eingestellt sind.
 
-Der fokussierte Zeitraum wird in Ihrem Browser gespeichert, pro Arbeitsbereich. Er startet für alle ausgeschaltet, gehört nur Ihnen und folgt Ihnen nicht auf einen anderen Rechner. Wenn Sie AIFT auf zwei Geräten nutzen, stellen Sie ihn auf beiden ein.
+**Stammdaten** ist ein Raster von Verknüpfungen zu den Seiten, die überhaupt keinen Zeitraum haben.
+
+## Wo er gespeichert wird
+
+Der fokussierte Zeitraum lebt in **Ihrem Browser, pro Arbeitsbereich**. Er startet ausgeschaltet, folgt Ihnen nicht auf einen anderen Rechner, und wenn Sie an zwei Geräten arbeiten, stellen Sie ihn auf jedem ein.
+
+Zwei Folgen daraus:
+
+- Er wird pro Browser gespeichert, nicht pro Person. In einem **geteilten Browser-Profil** erbt die nächste Person, die sich anmeldet, also den Zeitraum, bis sie ihn ändert.
+- Wenn Ihr Browser lokalen Speicher verweigert, wie es ein privates Fenster tun kann, bleibt der Schalter gar nicht an.
 
 ## Gut zu wissen
 
-- Solange ein einzelner Monat fokussiert ist, wechselt das Diagramm der Zuordnungs-Übersicht auf Tagesbalken. Das sind dieselben Daten in feinerer Auflösung, kein fehlendes Diagramm.
-- Eine Seite kann den Zeitraum bei eingeschaltetem Fokus nicht von sich aus übersteuern. Für einen einmalig abweichenden Bereich auf einer Seite schalten Sie den Fokus aus, stellen den Bereich dort ein und schalten ihn wieder ein, wenn Sie zur Zeitraum-Arbeit zurückkehren.
+- **Einen Monat zu fokussieren gibt Ihnen kein Tagesdiagramm.** Die Zuordnungs-Übersicht wechselt bei einem fokussierten Monat oder Quartal auf **Wochen**-Balken und bei einem Jahr auf Monate. Das sind dieselben Daten in gröberer Auflösung, kein fehlendes Diagramm.
+- **Ein Link, den man Ihnen geschickt hat, kann sein Datum verlieren.** Ist der Fokus an, wendet ein geteilter Link beim Öffnen Ihren Zeitraum an, nicht den des Links.
 - Daten und ganze Zeiträume tippen Sie überall mit wenigen Tastenanschlägen: siehe [Schnelle Datumseingabe](/date-entry).
+
+## Verwandte Artikel
+
+- [Hauptbuch](/ledger) - die Export-Oberfläche, die dem Zeitraum tatsächlich folgt
+- [Rechnungsabgleich](/invoice-matching) - warum die Warteschlange der offenen Vorschläge nicht eingegrenzt wird
+- [Schnelle Datumseingabe](/date-entry)

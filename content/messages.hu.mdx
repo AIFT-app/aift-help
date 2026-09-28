@@ -1,59 +1,93 @@
 # Üzenetek
 
-Az üzenetek rövid, kétirányú beszélgetések, amelyek egy adott rekordhoz kapcsolódnak - egy számlához, egy banki tranzakcióhoz, egy bankszámlakivonathoz, egy párosításhoz, egy céghez vagy egy partnerhez. Így tisztázhatják a könyvelők és az ügyfelek a könyvelés során felmerülő apró kérdéseket („Mire ment ez a fizetés?", „El tudná küldeni a hiányzó számlát?") anélkül, hogy elhagynák az alkalmazást vagy e-mail-szálat indítanának.
+Az üzenet rövid megjegyzés, amely egy adott rekordhoz kapcsolódik: egy számlához, egy banki tranzakcióhoz, egy bankkivonathoz, egy párosításhoz, egy céghez vagy egy partnerhez. Így tisztázza a könyvelői és az ügyféloldal a könyvelés során felmerülő apró kérdéseket („Mire ment ez a kifizetés?”, „El tudná küldeni a hiányzó számlát?”) anélkül, hogy e-mail-szálat indítanának.
 
-Egy beszélgetés mindig **azon a rekordon él, amelyről szól**, így a kontextus vele utazik. A munkaterület másik oldalán bárki elolvashatja és válaszolhat rá.
+A beszélgetés **azon a rekordon él, amelyről szól**, így a kontextus vele utazik.
 
-## Ki kinek üzenhet
+> **A beszélgetés nem csak az Ön oldala számára látható.** A munkaterületen mindenki elolvashatja, aki látja a rekordot, mindkét oldalon. Két könyvelő írhat egymásnak egy szálban, és az ügyfél minden szót látni fog. A belső feljegyzéseket hagyja ki belőle.
 
-Az üzenetek a munkaterület **könyvelői oldala** és **ügyféloldala** között futnak:
+## Hol él a beszélgetés
 
-- Egy **könyvelő** (vagy könyvelő admin), aki egy rekordra ír, eléri az ügyfélcsapatot.
-- Egy **ügyfél** (pénzügyi vezető, pénzügyi adminisztrátor vagy munkatárs), aki egy rekordra ír, eléri a könyvelőcsapatot.
+A rekord típusától függően két különböző helyen van, és ezt érdemes tudni, mielőtt keresni kezdi:
 
-Nincs külön kiválasztandó címzett - Ön a rekordra ír, és a másik oldalon lévők látják. Minden üzenet mutatja a feladó nevét és egy szerepkör-jelzést (**Könyvelő**, **Könyvelő admin**, **Pénzügyi vezető**, **Pénzügyi adminisztrátor** vagy **Munkatárs**), így mindig egyértelmű, ki mit mondott.
+| Rekord | Hol |
+|---|---|
+| Számla, cég, partner | egy **Üzenetek** fül, rajta az olvasatlanok számával |
+| Banki tranzakció, párosítás, bankkivonat | egy **Üzenetek** kártya, lejjebb az oldalon |
 
-## Üzenet írása egy rekordról
+A banki tranzakcióknál már nincs oldalsó panel: egy sorra kattintva a teljes tranzakcióoldal nyílik meg, és a kártya azon található.
 
-Nyisson meg bármilyen számlát, tranzakciót, kivonatot, párosítást, céget vagy partnert. Az **Üzenetek** panel a részletoldalon (és a tranzakció oldalsó paneljén) található. Beszélgetés indításához vagy folytatásához:
+## Üzenet írása
 
-1. Gépeljen a panel alján lévő mezőbe - a helyőrző szövege **„Írj választ…"**.
+1. Gépeljen a panel alján lévő mezőbe. A helyőrző szövege **„Írj választ…”**.
 2. Kattintson a **Küldés** gombra.
 
-Ennyi az egész. Az első üzenet létrehozza a beszélgetést; ugyanazon a rekordon minden későbbi üzenet ugyanahhoz a szálhoz csatlakozik. A panel megnyitása az Ön számára olvasottként jelöli a beszélgetést, így az olvasatlanságot jelző jelzés eltűnik.
+Az első üzenet elindítja a beszélgetést; ugyanazon a rekordon minden későbbi üzenet ugyanahhoz a szálhoz csatlakozik.
 
-Az üzenetek rövidnek szántak - üzenetenként 2 000 karakteres korlát van.
+Az üzenetek rövidre szántak. A korlát 2 000 karakter, és a **Küldés** e fölött egyszerűen nem működik, saját figyelmeztetés nélkül.
 
-## Sablonok és a „Fogalmazás AI-jal"
+## Amit lát, azt többnyire nem ember írta
 
-A könyvelők két gyorsítót kapnak a szerkesztőben, amikor egy számlára vagy tranzakcióra írnak:
+Egy szálat megnyitva elsőként jó eséllyel egy olyan kérést talál, amelyet az AIFT magától vetett fel: egy hiányzó bizonylatot, egy dokumentumot, amelyre az ügyféltől van szüksége. Ezeknél a feladó **AI Finance Team**, szerepkör helyett **Automatikus kérés** jelzéssel, és szándékosan **nem küldenek e-mailt**. Jelenleg ezek adják az összes üzenet nagy többségét.
 
-- **Sablon használata…** - egy legördülő menü a leggyakoribb helyzetekhez előre megírt üzenetekkel (például *„Adószám-eltérés"* vagy *„Dátum nem egyértelmű"*). Egy kiválasztása a rekord adataival már kitöltve helyezi a szöveget a mezőbe. A megmaradó helyőrző chipek kattinthatók - **kattintson minden helyőrző chipre, hogy kicserélje** a megfelelő értékre küldés előtt. A teljes készletet az Üzenetek oldal tetején lévő **Sablonkönyvtár böngészése** menüpontból tallózhatja.
-- **Fogalmazás AI-jal** - kattintson rá, és az alkalmazás megírja Önnek az első vázlatot a rekordra szabva, generálás közben fokozatosan beáramolva. Ez kiindulópont, nem automatikus küldés: olvassa el, szerkessze, és kattintson a **Küldés** gombra, amikor elégedett. Semmi nem kerül elküldésre az Ön nevében.
+Ha ezekre ember válaszol, a válasz ugyanúgy viselkedik, mint bármely más üzenet, az e-mailes emlékeztetőt is beleértve.
 
-A sablonok és az AI-vázlatok a könyvelői oldal kényelmi funkciói - az ügyféloldalnak mindig az egyszerű szerkesztő áll rendelkezésére.
+## Sablonok, javaslatok és a Fogalmazás AI-jal
+
+Három dolog van a mező fölött, és könnyű összekeverni őket, mert hasonlóan néznek ki:
+
+- **Sablon használata…**: legördülő menü előre megírt üzenetekkel („Adószám eltérés”, „Dátum nem egyértelmű”). A sima szöveget **az összes helyőrzővel együtt, kitöltetlenül** teszi be. Az alatta lévő tipp azt írja: *„Kattints minden helyőrző chipre, hogy kicseréld.”* - tegye is meg, mert semmi nem akadályozza meg abban, hogy az üzenetet a puszta helyőrzőnevekkel együtt küldje el. **Ezt a legördülő menüt mindenki megkapja, mindkét oldalon.**
+- **Javasolt:** chipek jelennek meg fölötte, amikor az AIFT valami konkrétumot észlelt a rekordról. Ezek azok, amelyek **már kitöltve**, az adott rekord értékeivel érkeznek, és egyetlen koppintással használhatók. Csak a könyvelői oldalon.
+- **Fogalmazás AI-jal**: első vázlatot ír a rekordhoz, menet közben folyamatosan beáramolva. Ez kiindulópont, nem automatikus küldés: olvassa el, szerkessze, majd kattintson a **Küldés** gombra. Csak a könyvelői oldalon.
+
+Az összes sablont az Üzenetek oldal tetején lévő **Sablonok böngészése** hivatkozásból tallózhatja.
+
+## Ki olvashat egy szálat
+
+Nincs külön „üzenetküldés” jogosultság. Aki látja a rekordot, az elolvashatja a szálát és válaszolhat is rá.
+
+Ennek két következménye van:
+
+- **A saját oldala is olvassa**, ahogy fentebb. A könyvelőiroda adminisztrátorai szintén elolvashatják a szálakat, auditálás céljából.
+- **Az a tag, akinek a rekordokhoz való hozzáférését visszavonták**, sokkal kisebb Üzenetek oldalt lát: csak az általa feltöltött dokumentumokról szóló beszélgetéseket, illetve azokat, amelyekbe ő maga írt.
+
+Minden üzenet mutatja a feladó nevét és egy szerepkör-jelzést: **Könyvelő**, **Könyvelő admin**, **Pénzügyi vezető**, **Pénzügyi adminisztrátor** vagy **Munkatárs**. Aki egyéni szerepkörben van, annak a szerepkörnek a jelzését mutatja, amelyre az épült.
+
+## Az e-mailes emlékeztető
+
+Ha az üzenete olvasatlan marad, a **másik** oldalon lévők e-mailt kapnak róla. Érdemes tudni, mi ez az e-mail, és mi nem:
+
+- Azt írja, hogy üzenet várakozik, és megnevezi a rekordot. **Az üzenet szövegét nem tartalmazza**, és e-mailben nem lehet rá válaszolni. Csak emlékeztető, hogy jöjjön és nézze meg.
+- Csak a másik oldalra megy. A saját oldala soha nem kap e-mailt.
+- Beszélgetésenként és címzettenként **tíz percenként legfeljebb egy**, így egy rekordon érkező üzenetdömping nem lesz e-maildömping.
+- Az automatikus kérések soha nem küldenek ilyet.
+
+Ezeket bárki kikapcsolhatja magának a **Fiók → Értesítések** alatt, az **Olvasatlan üzenet emlékeztető** sorral.
 
 ## A beszélgetések megtalálása
 
-Két helyen jelennek meg az üzenetek:
+**A csengő** az oldalsáv fejlécében piros számlálót visel, és megnyitva a legutóbbi üzeneteit mutatja, az alján az **Összes üzenet** hivatkozással.
 
-- **A csengő** az oldalsáv fejlécében. Piros számláló jelenik meg rajta, amikor olvasatlan üzenetei vannak; megnyitása megmutatja a **Legutóbbi üzenetek**et, az **Összes üzenet** pedig a teljes listához visz.
-- **Az Üzenetek oldal** (a munkaterület oldalsávjában). Felsorolja a munkaterület összes beszélgetését, a legújabb tevékenységgel az élen. Minden sor mutatja a rekordot, amelyről szól, az utolsó üzenet előnézetét, mikor történt, és hogy kitől **érkezett**. Az olvasatlan beszélgetések számláló-jelzést viselnek; a késznek jelöltek **Megoldva** jelzést kapnak.
+Két dolog, ami hibának tűnik, de nem az:
 
-Kattintson bármelyik sorra, hogy közvetlenül az adott rekordra és a beszélgetésére ugorjon.
+- A **számláló** minden munkaterületet figyelembe vesz, amelyhez tartozik, míg a **lista** csak azt a munkaterületet mutatja, amelyben éppen van. Egy piros jelzés üres lista fölött azt jelenti, hogy az üzenetek egy másik munkaterületen vannak.
+- Körülbelül percenként egyszer frissül, így egy vadonatfriss üzenet megjelenése eltarthat egy pillanatig.
 
-## Értesítések
+**Az Üzenetek oldal** az oldalsávban felsorolja a munkaterület összes beszélgetését, a legújabbal az élen, a rekorddal, egy előnézettel, az időponttal és azzal, hogy kitől jött. Kattintson egy sorra, hogy a rekordra ugorjon. Az üzenetek a **Teendők** oldalon is megjelennek.
 
-Amikor üzenetet tesz közzé, a másik oldalon lévők **e-mailben** is értesítést kapnak, nem csak az alkalmazásban, így egy kérdés nem marad észrevétlen. Az értesítések ésszerűen csoportosítva vannak - egy rekordon érkező sok üzenet nem küld külön e-mailt mindegyikhez.
+**Az olvasatlanság az oldal betöltésekor szűnik meg, nem akkor, amikor elolvassa.** Banki tranzakción, párosításon vagy kivonaton a szál egy kártya az oldalon, így a rekord puszta megnyitása olvasottnak jelöli a beszélgetést, akkor is, ha soha nem görget le hozzá.
 
-## Mi *nem* az Üzenetek
+**Egy beszélgetést nem lehet késznek jelölni.** Előfordulhat, hogy a felületen említve látja a **Megoldva** jelzést; a termékben jelenleg semmi nem állítja be, így egyetlen beszélgetés sem viseli. A beszélgetések a listában maradnak.
 
-- **Nem a saját oldalával való beszélgetésre.** A beszélgetések könyvelő ↔ ügyfél irányúak. Ugyanazon iroda két könyvelője, vagy az ügyfélcégnél két ember nem üzen egymásnak itt.
-- **Nem a bejövő e-mailje.** Az e-mailben továbbított dokumentumok a [Gyűjtőbe](/email-forwarding) érkeznek, nem ide.
-- **Nem a rekord szerkesztésének helyettesítője.** Ha a javítás az, hogy „változtasd meg a kategóriát" vagy „állítsd be a partnert", végezze el a módosítást közvetlenül - üzenetet csak akkor használjon, amikor azt szeretné, hogy a másik oldal tegyen vagy erősítsen meg valamit.
+## Mi nem az Üzenetek
+
+- **Nem privát.** Azért ismételjük meg, mert ez az, ami igazán számít: az ügyfél mindent lát, amit a rekordra írnak.
+- **Nem a bejövő e-mailje.** Az e-mailben továbbított dokumentumok a Gyűjtőbe érkeznek, nem ide. Lásd: [Dokumentumok továbbítása e-mailben](/email-forwarding).
+- **Nem a rekord javításának helyettesítője.** Ha a válasz az, hogy „változtassa meg a kategóriát” vagy „állítsa be a partnert”, végezze el a módosítást. Üzenetet akkor használjon, amikor azt szeretné, hogy a másik oldal tegyen vagy erősítsen meg valamit.
 
 ## Kapcsolódó
 
-- [Dokumentumok továbbítása e-mailben](/email-forwarding) - hogyan érkeznek a továbbított számlák és bizonylatok a Gyűjtőbe
+- [Dokumentumok továbbítása e-mailben](/email-forwarding) - ahová a továbbított dokumentumok valójában érkeznek
+- [Hiányzó bizonylatok](/documents-needed) - az automatikus kérések és az oldal, amely nyomon követi őket
 - [Számlák kezelése](/invoices)
 - [Szerepek és jogosultságok](/roles-and-permissions)
