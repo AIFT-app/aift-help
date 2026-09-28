@@ -1,0 +1,85 @@
+# Invoice Attachments
+
+An invoice often comes with paperwork that proves the work was done or the goods arrived: a performance certificate, a timesheet, a delivery note. In AI Finance Team you keep these **attachments** on the invoice itself, so whoever checks, approves or books the invoice has the evidence in the same place.
+
+## What counts as an attachment
+
+An attachment is a supporting document that belongs to an invoice but is not an invoice itself. Each attachment has a type:
+
+| Type | Typical example |
+|------|-----------------|
+| **Performance certificate** | The customer confirms that the service was performed |
+| **Timesheet** | Hours worked in a month, the basis of a monthly invoice |
+| **Delivery note** | The goods delivered, signed on receipt |
+| **Handover record** | The handover and acceptance of a finished job |
+| **Card-terminal slip** | The slip from a card terminal that only proves a payment |
+| **Other** | Anything else that supports the invoice |
+
+A card-terminal slip and a receipt are not the same thing. A shop or restaurant receipt that states VAT is still handled as an invoice-type document and processed like an invoice. Only a slip that merely proves the card payment is an attachment.
+
+## Where to find attachments
+
+Open the invoice and click the **Attachments** tab, next to **Document**. The tab shows how many attachments there are. Each attachment is listed with its file name, type, who added it and when. A document-less invoice, such as one that came from NAV without a PDF, can have attachments just like any other.
+
+Approvers see attachments too: the invoice preview that opens from the approval lists has an **Attachments** section, and the cards show a paperclip with the number of attachments. See [Approving Invoices for Payment](/approving-invoices).
+
+PDFs and images open in a preview. Every attachment can be downloaded.
+
+## Who can add and who can see
+
+- **Seeing and downloading:** anyone who can see the invoice can open and download its attachments. This includes an approver who sees only the invoices assigned to them.
+- **Adding, changing the type, linking and removing:** these need the permission to upload documents. By default the accountants have it, and on the client side the finance lead, the finance admin and team members. An approver who sees only their assigned invoices can view and download, but not change anything, unless their role also allows uploading.
+
+See [Roles and Permissions](/roles-and-permissions).
+
+## Adding attachments
+
+On the **Attachments** tab, drag files onto the upload area, or click it and choose files. You can add several files at once.
+
+- **PDF and images** (JPEG, PNG, WebP, HEIC) can be previewed.
+- **Excel, Word and CSV files** are accepted too. They cannot be previewed; they are kept for download.
+- Each file can be up to 50 MB.
+
+Attachments are not billed and do not count towards your trial limit.
+
+## The attachment type
+
+A new attachment starts as **Other**. For PDFs and images the AI looks at the first page and suggests the type, for example **Timesheet**. A suggested type is marked as an AI suggestion until someone confirms or changes it. When the AI is not sure enough, the type simply stays **Other**.
+
+You can change the type at any time from the list. A type a person has chosen is never overwritten by a later suggestion. Excel, Word and CSV files get no suggestion; set their type yourself if it matters.
+
+## Attachments that arrive by email
+
+Suppliers often send the invoice and its supporting documents in the same email. When you forward such an email to the workspace address (see [Forwarding Documents by Email](/email-forwarding)), AI Finance Team recognises the supporting documents and never processes them as invoices.
+
+- **The email contains exactly one invoice:** the supporting documents are linked to that invoice automatically. They show the label **Linked automatically**.
+- **The email contains several invoices:** nothing is linked automatically, because it cannot be known which document belongs to which invoice. The attachments wait on the **Documents** page, and the invoices from the same email are offered as suggestions. One click links the attachment to the right invoice.
+- **The email contains no invoice**, only supporting documents: they wait on the **Documents** page too.
+
+Excel, Word and CSV files sent by email are kept as attachments as well. The usual email limits apply.
+
+## Unlinked attachments
+
+On the **Documents** page, the **Unlinked attachments** filter lists every attachment that is not linked to any invoice yet, with its type and where it came from (the sender and subject of the email, or an upload). From there you can link it to an invoice, accept a suggested invoice, set its type or remove it. The Documents page is for accountants; see [Documents](/documents).
+
+## One attachment, several invoices
+
+Usually an attachment belongs to one invoice. Sometimes one certificate covers several, for example a series of partial invoices. In that case link the same attachment to each invoice by hand. The list then shows which other invoices it is also linked to. The automatic linking never links one attachment to more than one invoice.
+
+You can also unlink an attachment from an invoice. The attachment is kept, and if it is no longer linked anywhere, it appears among the unlinked attachments.
+
+## Removing an attachment
+
+Click remove on the attachment and confirm. The confirmation names every invoice the attachment is linked to, because it disappears from all of them.
+
+Removing hides the attachment, but the document itself is kept. Supporting documents are accounting evidence and have to be retained, so nothing is ever permanently deleted. The removal is recorded on the **History** tab of each invoice, with who removed it and when.
+
+## History
+
+Every change to attachments appears on the invoice's **History** tab: added, linked, unlinked, type changed and removed, each with who did it and when. An automatic link from an email shows as done by the system.
+
+## What attachments do not affect
+
+- Attachments never appear in exports.
+- They are not billed.
+- They do not change the invoice's data, categories, VAT codes or matching.

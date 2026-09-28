@@ -1,0 +1,85 @@
+# Rechnungsanhänge
+
+Zu einer Rechnung gehören oft Unterlagen, die belegen, dass die Arbeit erledigt oder die Ware angekommen ist: ein Leistungsnachweis, ein Stundenzettel, ein Lieferschein. In AI Finance Team bewahren Sie diese **Anhänge** direkt an der Rechnung auf, damit jeder, der die Rechnung prüft, freigibt oder bucht, den Nachweis an derselben Stelle findet.
+
+## Was als Anhang gilt
+
+Ein Anhang ist ein Nachweisdokument, das zu einer Rechnung gehört, aber selbst keine Rechnung ist. Jeder Anhang hat einen Typ:
+
+| Typ | Typisches Beispiel |
+|-----|--------------------|
+| **Leistungsnachweis** | Der Auftraggeber bestätigt, dass die Leistung erbracht wurde |
+| **Stundenzettel** | Die in einem Monat geleisteten Stunden, Grundlage einer Monatsrechnung |
+| **Lieferschein** | Die gelieferte Ware, bei Empfang unterschrieben |
+| **Abnahmeprotokoll** | Übergabe und Abnahme einer fertigen Arbeit |
+| **Kartenterminal-Beleg** | Der Beleg eines Kartenterminals, der nur eine Zahlung nachweist |
+| **Sonstiges** | Alles andere, was die Rechnung belegt |
+
+Ein Kartenterminal-Beleg und ein Kassenbon sind nicht dasselbe. Ein Kassenbon aus einem Geschäft oder Restaurant, der die Umsatzsteuer ausweist, wird weiterhin als rechnungsartiger Beleg behandelt und wie eine Rechnung verarbeitet. Nur ein Beleg, der lediglich die Kartenzahlung nachweist, ist ein Anhang.
+
+## Wo Sie Anhänge finden
+
+Öffnen Sie die Rechnung und klicken Sie auf den Reiter **Anhänge**, neben **Dokument**. Der Reiter zeigt, wie viele Anhänge es gibt. Zu jedem Anhang sehen Sie den Dateinamen, den Typ und wer ihn wann hinzugefügt hat. Auch eine Rechnung ohne Dokument, etwa eine aus NAV ohne PDF, kann Anhänge haben wie jede andere.
+
+Auch Freigeber sehen die Anhänge: Die Rechnungsvorschau, die sich aus den Freigabelisten öffnet, hat einen Abschnitt **Anhänge**, und die Karten zeigen eine Büroklammer mit der Zahl der Anhänge. Siehe [Rechnungen zur Zahlung freigeben](/approving-invoices).
+
+PDFs und Bilder öffnen sich in einer Vorschau. Jeder Anhang lässt sich herunterladen.
+
+## Wer hinzufügen und wer sehen darf
+
+- **Ansehen und herunterladen:** Wer die Rechnung sehen kann, kann auch ihre Anhänge öffnen und herunterladen. Das gilt auch für Freigeber, die nur die ihnen zugewiesenen Rechnungen sehen.
+- **Hinzufügen, Typ ändern, verknüpfen und entfernen:** Dafür braucht es die Berechtigung, Dokumente hochzuladen. Standardmäßig haben sie die Buchhaltung und auf Mandantenseite die Finanzleitung, der Finanzadmin und die Teammitglieder. Ein Freigeber, der nur die ihm zugewiesenen Rechnungen sieht, kann ansehen und herunterladen, aber nichts ändern, es sei denn, seine Rolle erlaubt auch das Hochladen.
+
+Siehe [Rollen und Berechtigungen](/roles-and-permissions).
+
+## Anhänge hinzufügen
+
+Ziehen Sie im Reiter **Anhänge** Dateien auf den Upload-Bereich, oder klicken Sie darauf und wählen Sie Dateien aus. Sie können mehrere Dateien auf einmal hinzufügen.
+
+- **PDFs und Bilder** (JPEG, PNG, WebP, HEIC) lassen sich in der Vorschau ansehen.
+- **Excel-, Word- und CSV-Dateien** werden ebenfalls angenommen. Sie haben keine Vorschau und stehen zum Herunterladen bereit.
+- Jede Datei darf bis zu 50 MB groß sein.
+
+Anhänge werden nicht abgerechnet und zählen nicht gegen das Limit Ihres Testzeitraums.
+
+## Der Typ des Anhangs
+
+Ein neuer Anhang beginnt als **Sonstiges**. Bei PDFs und Bildern sieht sich die KI die erste Seite an und schlägt einen Typ vor, zum Beispiel **Stundenzettel**. Ein vorgeschlagener Typ ist als KI-Vorschlag gekennzeichnet, bis jemand ihn bestätigt oder ändert. Ist die KI nicht sicher genug, bleibt der Typ einfach **Sonstiges**.
+
+Sie können den Typ jederzeit in der Liste ändern. Einen Typ, den eine Person gewählt hat, überschreibt ein späterer Vorschlag nie. Excel-, Word- und CSV-Dateien bekommen keinen Vorschlag; setzen Sie ihren Typ selbst, wenn er wichtig ist.
+
+## Anhänge, die per E-Mail kommen
+
+Lieferanten schicken die Rechnung und ihre Nachweise oft in derselben E-Mail. Wenn Sie eine solche E-Mail an die Adresse des Arbeitsbereichs weiterleiten (siehe [Dokumente per E-Mail weiterleiten](/email-forwarding)), erkennt AI Finance Team die Nachweisdokumente und verarbeitet sie nie als Rechnung.
+
+- **Die E-Mail enthält genau eine Rechnung:** Die Nachweisdokumente werden automatisch mit dieser Rechnung verknüpft. Sie tragen das Etikett **Automatisch verknüpft**.
+- **Die E-Mail enthält mehrere Rechnungen:** Nichts wird automatisch verknüpft, weil sich nicht sagen lässt, welches Dokument zu welcher Rechnung gehört. Die Anhänge warten auf der Seite **Dokumente**, und die Rechnungen aus derselben E-Mail werden als Vorschläge angeboten. Ein Klick verknüpft den Anhang mit der richtigen Rechnung.
+- **Die E-Mail enthält keine Rechnung**, nur Nachweisdokumente: Diese warten ebenfalls auf der Seite **Dokumente**.
+
+Per E-Mail geschickte Excel-, Word- und CSV-Dateien werden ebenfalls als Anhänge aufbewahrt. Es gelten die üblichen Grenzen für E-Mails.
+
+## Nicht verknüpfte Anhänge
+
+Auf der Seite **Dokumente** listet der Filter **Nicht verknüpfte Anhänge** jeden Anhang, der noch mit keiner Rechnung verknüpft ist, mit seinem Typ und seiner Herkunft (Absender und Betreff der E-Mail oder ein Upload). Von dort aus können Sie ihn mit einer Rechnung verknüpfen, eine vorgeschlagene Rechnung übernehmen, seinen Typ setzen oder ihn entfernen. Die Seite Dokumente ist für die Buchhaltung; siehe [Dokumente](/documents).
+
+## Ein Anhang, mehrere Rechnungen
+
+Meist gehört ein Anhang zu einer Rechnung. Manchmal deckt ein Leistungsnachweis mehrere ab, etwa eine Reihe von Teilrechnungen. Verknüpfen Sie denselben Anhang dann von Hand mit jeder Rechnung. Die Liste zeigt anschließend, mit welchen anderen Rechnungen er ebenfalls verknüpft ist. Die automatische Verknüpfung verknüpft einen Anhang nie mit mehr als einer Rechnung.
+
+Sie können die Verknüpfung eines Anhangs mit einer Rechnung auch lösen. Der Anhang bleibt erhalten, und ist er nirgends mehr verknüpft, erscheint er unter den nicht verknüpften Anhängen.
+
+## Einen Anhang entfernen
+
+Klicken Sie beim Anhang auf Entfernen und bestätigen Sie. Die Bestätigung nennt jede Rechnung, mit der der Anhang verknüpft ist, denn er verschwindet von allen.
+
+Entfernen blendet den Anhang aus, das Dokument selbst bleibt aber erhalten. Nachweisdokumente sind Buchungsbelege und müssen aufbewahrt werden, deshalb wird nichts endgültig gelöscht. Das Entfernen wird im Reiter **Verlauf** jeder betroffenen Rechnung festgehalten, mit wer und wann.
+
+## Verlauf
+
+Jede Änderung an Anhängen erscheint im Reiter **Verlauf** der Rechnung: hinzugefügt, verknüpft, Verknüpfung gelöst, Typ geändert und entfernt, jeweils mit wer und wann. Eine automatische Verknüpfung aus einer E-Mail erscheint als vom System ausgeführt.
+
+## Worauf Anhänge keinen Einfluss haben
+
+- Anhänge erscheinen nie in Exporten.
+- Sie werden nicht abgerechnet.
+- Sie ändern weder die Daten der Rechnung noch ihre Kategorien, USt-Codes oder Zuordnung.
