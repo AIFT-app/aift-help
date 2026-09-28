@@ -66,7 +66,12 @@ export function VatSetupActionsFigure({ locale, children }: FigureProps) {
       zoomWidth={SCREEN_MIN_WIDTH}
       art={
         <AppScreen minWidth={SCREEN_MIN_WIDTH}>
-          <div className="bg-white p-4">
+          {/* The app's content panel pads 40px (SidebarLayout's `lg:p-10`), so
+              a 16px top crop under-shows it AND leaves the `above` markers on
+              the title row with 16px of room for an 18px pin: they were being
+              sliced by the screen's own overflow-hidden. 32px above, 16px at
+              the sides, the same crop the partners screen takes. */}
+          <div className="bg-white px-4 pt-8 pb-4">
             {/* master-data/vat/layout.tsx */}
             <div>
               <div className="flex flex-wrap items-start justify-between gap-4">
@@ -153,11 +158,13 @@ export function VatSetupPreviewFigure({ locale, children }: FigureProps) {
                           <span className="w-56 truncate text-sm font-medium text-zinc-700 dark:text-zinc-300">
                             {ui[`master_data.vat_setup.sheet.${sheet}` as keyof typeof ui]}
                           </span>
-                          {sheet === 'vat_codes' ? <Pin n={5} at="above" cancel="-mr-2" /> : null}
                           <Badge color="green">{r.new}</Badge>
                           <Badge color="blue">{r.updated}</Badge>
                           <Badge color="zinc">{r.unchanged}</Badge>
                           {n.errors > 0 && r.errors ? <Badge color="red">{r.errors}</Badge> : null}
+                          {/* After the badges, in the row's empty tail: `above`
+                              landed it on the badges of the row above. */}
+                          {sheet === 'vat_codes' ? <Pin n={5} at="right" cancel="-ml-2" /> : null}
                         </div>
                       )
                     })}

@@ -66,7 +66,10 @@ export function VatLinesGridFigure({
       zoomWidth={SCREEN_MIN_WIDTH}
       art={
         <AppScreen minWidth={SCREEN_MIN_WIDTH}>
-          <div className="bg-white p-4">
+          {/* 32px above, 16px at the sides: the app's content panel pads 40px
+              (SidebarLayout `lg:p-10`), and a 16px top crop left the `above`
+              marker on the toolbar sliced by the screen's overflow-hidden. */}
+          <div className="bg-white px-4 pt-8 pb-4">
             <section>
               {/* Bulk affordances + summary. */}
               <div className="mb-3 flex flex-wrap items-center gap-3">
@@ -76,7 +79,8 @@ export function VatLinesGridFigure({
                 >
                   {c.rendered.addMissing}
                 </button>
-                <Pin n={1} at="left" cancel="-ml-3" />
+                {/* `left` here sat inside the button, over its "(n)" count. */}
+                <Pin n={1} at="above" cancel="-ml-3" />
                 <button
                   type="button"
                   className="rounded-lg border border-amber-300 bg-amber-50 px-3 py-1.5 text-sm font-medium text-amber-700 dark:border-amber-900/50 dark:bg-amber-900/20 dark:text-amber-300"
@@ -98,13 +102,19 @@ export function VatLinesGridFigure({
                       <th className={TH}>
                         <span>{ui['invoices.line_items_table.category']}</span>
                       </th>
+                      {/* Above, not beside. These two header labels are as wide
+                          as their columns, so a pin on either side of the text
+                          lands on a neighbouring header (measured: 12px of slack
+                          between "Category" and this column). The toolbar's
+                          middle is empty over exactly these two columns, so
+                          that is where the markers go. */}
                       <th className={TH}>
+                        <Pin n={2} at="above" cancel="" />
                         {ui['invoices.detail.lines.col_vat_elements']}
-                        <Pin n={2} at="right" cancel="" />
                       </th>
                       <th className={TH}>
+                        <Pin n={3} at="above" cancel="" />
                         {ui['invoices.detail.lines.col_vat_code']}
-                        <Pin n={3} at="right" cancel="" />
                       </th>
                       <th className="pb-2" />
                     </tr>
