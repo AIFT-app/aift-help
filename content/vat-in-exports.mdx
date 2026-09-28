@@ -15,9 +15,9 @@ Codes appear exactly as authored in your [VAT master data](/vat-master-data) - A
 
 Some VAT is not (fully) deductible - 50% on passenger-car costs, 100% on representation, and so on. Accounting systems differ in how they want this expressed, so each workspace picks one of three modes (Settings → **VAT settings**):
 
-- **Native, full** - the export carries the non-deductible percentage on every line and leaves the split to the target system. For systems that handle partial deductibility themselves.
-- **Native, 100% only** *(default)* - fully non-deductible lines are passed through natively; partially deductible lines are pre-split into a deductible and a non-deductible part. Works for the common Hungarian targets.
-- **Pre-rolled, always** - AI Finance Team always splits the amounts; the target system receives ready-to-book deductible and non-deductible figures.
+- **Native: target system handles all non-deductibility** - the export carries the non-deductible percentage on every line and leaves the split to the target system. For systems that handle partial deductibility themselves.
+- **Native for 100% only** *(default)* - fully non-deductible lines are passed through natively; partially deductible lines are pre-split into a deductible and a non-deductible part. Works for the common Hungarian targets.
+- **Pre-roll always** - AI Finance Team always splits the amounts; the target system receives ready-to-book deductible and non-deductible figures.
 
 If you're unsure which mode your accounting software needs, start with the default and check the first import with your software's VAT report.
 
