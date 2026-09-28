@@ -151,7 +151,6 @@ function PaymentFilePage({ locale }: { locale: Locale }) {
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-2">
-                <Pin n={4} at="left" cancel="-mr-2" />
                 <label className="flex items-center gap-2 text-xs text-zinc-500">
                   {ui['approvals.payments.format_pick']}
                   <Select defaultValue="xlsx" className="!w-56">
@@ -162,6 +161,10 @@ function PaymentFilePage({ locale }: { locale: Locale }) {
                     ))}
                   </Select>
                 </label>
+                {/* Between the picker and the button, which is what item 4
+                    names. Ahead of the group it lands outside the section —
+                    `overflow-hidden` — as soon as German wraps the header. */}
+                <Pin n={4} at="left" cancel="-mr-2" />
                 <Button>{ui['approvals.payments.download_xlsx']}</Button>
               </div>
             </header>

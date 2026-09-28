@@ -139,10 +139,14 @@ function Card({
             <div className="flex items-baseline justify-between gap-2">
               <span className="text-xs text-zinc-400">{ui['approvals.slip.payee_account']}</span>
               {row.account.status === 'confirmed' ? (
-                <span className="min-w-0 truncate text-right text-xs tabular-nums text-zinc-600 dark:text-zinc-300">
-                  {annotate ? <Pin n={7} at="left" cancel="-ml-2" /> : null}
-                  {row.account.display}
-                </span>
+                <>
+                  {/* Outside the span, not in it: `truncate` is overflow-hidden,
+                      which clips the marker to a sliver. */}
+                  {annotate ? <Pin n={7} at="left" cancel="-mr-2" /> : null}
+                  <span className="min-w-0 truncate text-right text-xs tabular-nums text-zinc-600 dark:text-zinc-300">
+                    {row.account.display}
+                  </span>
+                </>
               ) : (
                 <Pill tone="amber">{ui['approvals.payee_account.status.first_seen']}</Pill>
               )}

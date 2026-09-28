@@ -78,10 +78,12 @@ export function MessageComposerFigure({
 
               {/* The plain picker (everyone) + the AI draft (accountant side). */}
               <div className="flex items-center gap-2">
-                <Pin n={2} at="above" cancel="-mr-2" />
                 <Select aria-label={ui['comments.thread.use_template']} className="flex-1" defaultValue="">
                   <option value="">{ui['comments.thread.use_template']}</option>
                 </Select>
+                {/* `above` would put this on top of the Suggested: label in the
+                    row above; `left` drops it into the select's empty right end. */}
+                <Pin n={2} at="left" cancel="-mr-2" />
                 <Pin n={3} at="above" cancel="-mr-2" />
                 <Button outline>
                   <SparklesIcon data-slot="icon" className="size-4" aria-hidden="true" />

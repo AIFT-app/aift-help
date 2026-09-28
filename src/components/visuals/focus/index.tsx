@@ -24,6 +24,13 @@
 // The basis half's ★ means "this is the workspace default"; losing the star is
 // itself the deviation signal, which is why the figure keeps it. A server
 // component: the popover never opens, and the screen is `inert` regardless.
+//
+// ⚠️ THE MARKERS SIT ON THE SECTION LABELS, NOT INSIDE THE CHIP. The chip is
+// `overflow-hidden` (it needs to be, for its rounded corners over the divider),
+// so a Pin placed inside it is CLIPPED, and `at="right"` lands it on top of the
+// basis label. The computed-CSS diff cannot catch either fault: it skips
+// `aria-hidden` + `w-0` pins on both sides by design, so it only ever proves
+// the app markup matches. Marker placement has to be looked at.
 
 import clsx from 'clsx'
 import type { Locale } from '@/lib/i18n'
@@ -39,14 +46,12 @@ function Chip({
   basis,
   showBasis,
   readonlyTitle,
-  pin,
 }: {
   period: string
   basisOn: string
   basis: string
   showBasis: boolean
   readonlyTitle: string
-  pin?: number
 }) {
   return (
     <div className="inline-flex h-9 items-stretch overflow-hidden rounded-lg border border-blue-200 bg-blue-50 dark:border-blue-900 dark:bg-blue-950/40">
@@ -58,8 +63,6 @@ function Chip({
           {GLYPH.diamond}
         </span>
         {period}
-        {/* the parent is flex with gap-1.5, so the pin must cancel one gap */}
-        {pin ? <Pin n={pin} at="right" cancel="-ml-1.5" /> : null}
       </span>
 
       {showBasis && (
@@ -114,6 +117,7 @@ export function FocusChipFigure({
               <div>
                 <p className="mb-2 text-xs font-medium tracking-wide text-zinc-400 uppercase">
                   {ui['nav.workspace.invoices']}
+                  <Pin n={1} at="right" cancel="" />
                 </p>
                 <Chip
                   period={c.rendered.period}
@@ -121,12 +125,12 @@ export function FocusChipFigure({
                   basis={ui['date_filter.basis_short_delivery']}
                   showBasis
                   readonlyTitle={ui['focus.period_readonly']}
-                  pin={1}
                 />
               </div>
               <div>
                 <p className="mb-2 text-xs font-medium tracking-wide text-zinc-400 uppercase">
                   {ui['nav.workspace.transactions']}
+                  <Pin n={2} at="right" cancel="" />
                 </p>
                 <Chip
                   period={c.rendered.period}
@@ -134,7 +138,6 @@ export function FocusChipFigure({
                   basis={ui['date_filter.basis_short_delivery']}
                   showBasis={false}
                   readonlyTitle={ui['focus.period_readonly']}
-                  pin={2}
                 />
               </div>
             </div>
