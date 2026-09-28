@@ -4,7 +4,7 @@ Die Datumsfelder in AIFT verstehen kurze Tastatureingaben, wie Sie sie vielleich
 
 Die Kurzformen funktionieren in jedem Datumsfeld: in den Datumsfiltern der Listenseiten (Rechnungen, Banktransaktionen, Zuordnung, die Exportseiten) und in den Datumsfeldern von Belegen, etwa den Rechnungsdaten oder den Zeilen des Kontoauszug-Editors.
 
-Bestätigen Sie eine Eingabe mit **Enter** oder **Tab**. Das Feld zeigt danach das vollständige Datum (zum Beispiel 31. Dez. 2026), Sie sehen also immer, was aus Ihrer Eingabe geworden ist. Lässt sich eine Eingabe nicht als echtes Datum lesen, kehrt das Feld einfach zu seinem vorherigen Wert zurück; nichts wird gelöscht.
+Bestätigen Sie eine Eingabe mit **Enter** oder **Tab**. Das Feld zeigt danach das vollständige Datum in der Form Jahr-Monat-Tag (zum Beispiel 2026-12-31), so wie AIFT jedes Datum anzeigt. Sie sehen also immer, was aus Ihrer Eingabe geworden ist. Lässt sich eine Eingabe nicht als echtes Datum lesen, kehrt das Feld einfach zu seinem vorherigen Wert zurück; nichts wird gelöscht.
 
 ## Nur Ziffern: die Kompaktformen
 
@@ -15,8 +15,8 @@ Eine Kompakteingabe besteht aus Ziffern ohne Trennzeichen. Sie wird immer als **
 | 15 | den 15. des laufenden Monats |
 | 05 | den 5. des laufenden Monats |
 | 1231 | den 31. Dezember des laufenden Jahres |
-| 260101 | 1. Jan. 2026 |
-| 20260101 | 1. Jan. 2026 |
+| 260101 | 2026-01-01 |
+| 20260101 | 2026-01-01 |
 
 Drei Regeln:
 
@@ -32,9 +32,9 @@ Die gewohnten Schreibweisen funktionieren weiter. Mit Trennzeichen (Punkt, Schr�
 
 - 31.12.2026 oder 1.6.2026 (Tag zuerst, wie im Deutschen üblich)
 - 2026-12-31 (ISO)
-- 2026.9.5 (Jahr zuerst funktioniert in jeder Sprache: 5. Sept. 2026)
+- 2026.9.5 (Jahr zuerst funktioniert in jeder Sprache: 2026-09-05)
 
-Monatsnamen funktionieren zusammen mit einer Jahreszahl, abgekürzt und auch ohne Umlaut: 15 dez 2026, 15. Dezember 2026 und 15 marz 2026 sind alle gültig.
+Monatsnamen funktionieren zusammen mit einer Jahreszahl, abgekürzt und auch ohne Umlaut: 15 dez 2026, 15. Dezember 2026 und 15 marz 2026 sind alle gültig. Nach dem Bestätigen zeigt das Feld auch diese als Jahr-Monat-Tag an (2026-12-15).
 
 ## Ein ganzer Zeitraum mit einer Eingabe
 
@@ -44,7 +44,7 @@ Monatsnamen funktionieren zusammen mit einer Jahreszahl, abgekürzt und auch ohn
 |------------|-----------------|
 | 15..20 | den 15. bis 20. des laufenden Monats |
 | 0901..0915 | den 1. bis 15. September des laufenden Jahres |
-| 260101..260630 | den Zeitraum vom 1. Jan. 2026 bis 30. Juni 2026 |
+| 260101..260630 | den Zeitraum vom 2026-01-01 bis 2026-06-30 |
 
 Auf beiden Seiten der zwei Punkte ist jede Datumsform erlaubt, auch gemischt. Zwei Regeln:
 
@@ -60,5 +60,5 @@ Neben den Datumsfeldern des Filters sitzt ein kleines **i**-Symbol (**Datumsform
 ## Tipps
 
 - Werfen Sie nach dem Bestätigen einen Blick auf das Feld: Das angezeigte vollständige Datum ist das, was verwendet wird; ein Tippfehler fällt sofort auf.
-- Das graue Beispiel im leeren Feld (31. Dez. 2026) ist die Anzeigeform, und diese Form wird selbst immer akzeptiert: Was ein Feld anzeigt, können Sie auch wieder eintippen.
+- Das graue Beispiel im leeren Feld (2026-12-31) ist die Anzeigeform, und diese Form wird selbst immer akzeptiert: Was ein Feld anzeigt, können Sie auch wieder eintippen.
 - Filtern Sie mehrere Seiten nacheinander auf denselben Zeitraum? Stellen Sie ihn einmal ein, mit dem Schalter **Fokussierter Zeitraum** in der Seitenleiste: siehe [Fokussierter Zeitraum](/focused-period).
