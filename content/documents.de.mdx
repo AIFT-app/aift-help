@@ -29,9 +29,19 @@ Im Dialog steht PDF, JPG oder PNG, je bis zu 20 MB, und das ist ein guter Rat un
 
 Jedes Dokument wird einmal kurz gelesen, damit die Liste brauchbar ist, ohne dass Sie etwas öffnen müssen. Es bekommt eine **Zusammenfassung** in ein bis zwei Sätzen samt einem Sicherheitswert, seine Sprache wird erkannt, und es erhält einen Typ.
 
-**Auf dem Typ-Abzeichen steht, wie die KI es genannt hat**, kein festes Set. Sie sehen `lease`, `nda` oder `Kontenrahmen` genauso oft wie **Vertrag** oder **Andere**, und diese Freitext-Bezeichnungen werden nicht übersetzt, sie stehen also in der Sprache des Dokuments, welche Oberflächensprache Sie auch gewählt haben.
+**Auf dem Typ-Abzeichen steht, wie die KI es genannt hat**, aber nur bei Dokumenten, die keine Verträge sind. Der erste Durchgang schreibt zweierlei: eine grobe Art und eine feinere Bezeichnung in eigenen Worten. Bei einem **Vertrag** steht immer das übersetzte Wort **Vertrag**, und seine feinere Bezeichnung (`lease`, `nda`) wird nirgends angezeigt. Bei allem anderen erscheint die feinere Bezeichnung, sofern es eine gibt, und diese Freitext-Bezeichnungen werden nicht übersetzt: `Kontenrahmen` bleibt `Kontenrahmen`, welche Oberflächensprache Sie auch gewählt haben.
 
 Liegt dieselbe Datei bereits im Arbeitsbereich, wird die Kopie als **Duplikat** markiert. Sie erscheint dennoch in der Liste, unter dem Typ des Originals eingeordnet, und an der Stelle der Zusammenfassung steht eine Zeile, die nennt, wovon sie ein Duplikat ist.
+
+<DocumentsListFigure>
+Die Dokumentenliste mit fünf Dokumenten. Die Nummern entsprechen der Liste darunter. Die Dokumente und Firmen sind Beispiele.
+</DocumentsListFigure>
+
+1. **Hochladen**, neben der Überschrift. Der einzige andere Weg hierher ist die E-Mail.
+2. **Duplikate** ist der einzige Filter mit einer Anzahl, und auch nur, wenn es welche gibt.
+3. **Das Typ-Abzeichen in den Worten des Dokuments.** Dieser Kontenrahmen ist kein Vertrag, also steht auf dem Abzeichen, wie die KI ihn genannt hat, unübersetzt, welche Oberflächensprache Sie auch gewählt haben.
+4. **Ein Duplikat bleibt hier**, unter der Art des Originals, und an der Stelle der Zusammenfassung steht die Zeile, die nennt, wovon es ein Duplikat ist.
+5. **Ein PDF mit mehreren Dokumenten** behält das Kennzeichen **Verarbeitung** dauerhaft. Weiter passiert damit nichts.
 
 Dieser erste Durchgang ist bewusst flach. Er liest den Anfang des Dokuments, um es einzuordnen und zu beschreiben, nicht um seinen Inhalt auszulesen.
 

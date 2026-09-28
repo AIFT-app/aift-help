@@ -8,6 +8,15 @@ Az érintett táblákat az [ÁFA-törzsadatok](/vat-master-data) cikk írja le.
 
 Mind a három a **Törzsadatok → ÁFA-kódok** oldal **címsorában** áll, a fülek sávja fölött, így bármelyik fülön jár éppen, ott vannak.
 
+<VatSetupActionsFigure>
+A **Törzsadatok → ÁFA-kódok** oldal címsora, alatta a fülek sávjával. A számok az alábbi lista pontjainak felelnek meg. A munkaterület példa.
+</VatSetupActionsFigure>
+
+1. **ÁFA-beállítás exportálása**, bárkinek, aki meg tudja nyitni az oldalt.
+2. **ÁFA-beállítás importálása**, csak a könyvelői oldalon.
+3. **Másolás munkaterületről**, csak a könyvelői oldalon.
+4. A hat fül. A három gomb az oldalhoz tartozik, nem a fülhöz, ezért mindegyiken ott van.
+
 Az **ÁFA-beállítás exportálása** mindenkinek elérhető, aki meg tudja nyitni az oldalt, ami a gyakorlatban a könyvelői oldalt jelenti: az ügyféloldali felhasználók egyáltalán nem kapják meg az oldalt. Egy fenntartás, amit érdemes tudni, mert csendben hibázik: az a tag, akitől a rekordokhoz való hozzáférést elvonták, **szerkezetileg érvényes, de üres munkafüzetet** tölt le, hibajelzés nélkül.
 
 Az **ÁFA-beállítás importálása** és a **Másolás munkaterületről…** a könyvelői oldalon mindenkinek megjelenik, a szerver azonban megköveteli a „Törzsadatok szerkesztése” jogosultságot. Ha a szerepköréből ez hiányzik, a gombok ugyanúgy ott vannak, és csak későn derül ki:
@@ -40,6 +49,13 @@ A menete: feltöltés, majd megnézi, mit tenne, és csak utána erősíti meg.
 2. **Megerősítés.** Csak ekkor kerül bármi alkalmazásra, és mind egyszerre. Ha bármelyik része hibázik, semmi nem íródik be.
 
 **Bármely hiba az egész importot blokkolja.** Javítsa a megnevezett sorokat, és töltse fel újra.
+
+<VatSetupPreviewFigure>
+Az előnézeti lépés, egy hibás munkalappal. A számok az alábbi lista pontjainak felelnek meg. A darabszámok és a kód példák.
+</VatSetupPreviewFigure>
+
+5. **Munkalaponként: új, frissített, változatlan**, és ahol van hiba, hibaszám is. Ebből az öt munkalapból négy átmenne.
+6. **Az Importálás megerősítése inaktív**, amíg bármi hibás, és a párbeszédpanel kimondja, hogy semmi nem lett importálva. A hiba megnevezi a munkalapot, a sort és az oszlopot; itt az ötelemű átfedésről van szó: egy meglévő aktív kód már lefedi ezt a kombinációt átfedő időszakra.
 
 Csak `.xlsx`, legfeljebb 5 MB, munkalaponként legfeljebb 2 000 sor. Nincs oszlop-hozzárendelési lépés, és nincs soronkénti átnézési tábla sem: a fejléceket egy fix, többnyelvű névlistához hasonlítjuk. Ha ismeri a partner- vagy a kategóriaimportot, ez szándékosan egyszerűbb azoknál.
 

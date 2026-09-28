@@ -35,6 +35,14 @@ Four things you will see:
 - **`- missing -`.** Nothing resolved.
 - **A code with a warning triangle.** The code is still assigned, but the line's current elements no longer resolve to it. This is not a record of someone overriding the line: a rate change, a partner VAT group change or a VAT date change will all trip it. The assigned code still wins.
 
+<VatLinesGridFigure>
+Four lines, one in each of the four states. The numbers match the list below. The invoice and its amounts are examples.
+</VatLinesGridFigure>
+
+1. **Add missing VAT codes** and **VAT coding OK**, the two bulk actions, with the line and missing-code count on the right.
+2. **P/S · Rate · Method**, the three elements. Only the unresolved line shows them here.
+3. **VAT code**, in all four states: plain, **Default**, `- missing -` beside **+ Add**, and a code with the warning triangle.
+
 The three element dropdowns are only shown inline **while the line is unresolved**. Once a code resolves, the cell reads **Resolved - see Advanced** and they move into the row's **Advanced** expander. That is the single most confusing behaviour on this screen, and it is deliberate: a finished line takes less room.
 
 Advanced also holds the non-deductible percentage override. Where a non-deductible share has been folded in, the row shows a **Booked** figure underneath, which is the gross treated as net.

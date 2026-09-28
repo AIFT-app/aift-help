@@ -29,9 +29,19 @@ A párbeszédpanel szerint PDF, JPG vagy PNG, egyenként max. 20 MB, és ez ink�
 
 Minden dokumentumot elolvasunk egyszer, röviden, hogy a lista megnyitás nélkül is használható legyen. Kap egy egy-két mondatos **összefoglalót** egy magabiztossági értékkel, a rendszer felismeri a nyelvét, és típust ad neki.
 
-**A típusjelvényen az áll, aminek az AI nevezte**, nem egy kötött készlet. Ugyanolyan gyakran lát `lease`, `nda` vagy `Kontenrahmen` feliratot, mint **Szerződés** vagy **Egyéb** címkét, és ezek a szabad szöveges címkék nincsenek lefordítva, tehát a dokumentum saját nyelvén olvashatók, bármi is a felület nyelve.
+**A típusjelvényen az áll, aminek az AI nevezte**, de csak azoknál a dokumentumoknál, amelyek nem szerződések. Az első olvasás két dolgot ír fel: egy durva fajtát, és egy finomabb címkét a saját szavaival. A **szerződéseken** mindig a lefordított **Szerződés** szó áll, a finomabb címkéjük (`lease`, `nda`) pedig sehol nem jelenik meg. A többinél a finomabb címke látszik, ha van, és ezek a szabad szöveges címkék nincsenek lefordítva, tehát a `Kontenrahmen` `Kontenrahmen` marad, bármi is a felület nyelve.
 
 Ha ugyanaz a fájl már szerepel a munkaterületen, a másolat **Duplikátum** jelölést kap. A listában ettől függetlenül megjelenik, az eredeti típusa alá sorolva, az összefoglaló helyén pedig egy sor áll, amely megnevezi, minek a duplikátuma.
+
+<DocumentsListFigure>
+A Dokumentumok lista öt dokumentummal. A számok az alábbi lista pontjainak felelnek meg. A dokumentumok és a cégek példák.
+</DocumentsListFigure>
+
+1. A **Feltöltés**, a címsor mellett. Az egyetlen másik út ide az e-mail.
+2. A **Duplikátumok** az egyetlen szűrő, amely darabszámot is mutat, és azt is csak akkor, ha van ilyen.
+3. **A típusjelvény a dokumentum saját szavaival.** Ez a számlatükör nem szerződés, ezért a jelvényen az áll, aminek az AI nevezte, lefordítatlanul, bármi is a felület nyelve.
+4. **A duplikátum itt marad**, az eredeti fajtája alatt, és az összefoglaló helyén az a sor áll, amely megnevezi, minek a duplikátuma.
+5. **A több dokumentumot tartalmazó PDF** véglegesen a **Feldolgozás** jelölésen marad. Semmi más nem történik vele.
 
 Ez az első menet szándékosan felületes. A dokumentum elejét olvassa, hogy besorolja és leírja, nem azért, hogy kinyerje a tartalmát.
 

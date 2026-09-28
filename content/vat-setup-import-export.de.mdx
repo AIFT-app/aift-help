@@ -8,6 +8,15 @@ Die beteiligten Tabellen sind in [USt-Stammdaten](/vat-master-data) beschrieben.
 
 Alle drei sitzen in der **Titelzeile** von **Stammdaten → USt.-Codes**, über der Tab-Leiste, und sind damit auf jedem Tab vorhanden.
 
+<VatSetupActionsFigure>
+Die Titelzeile von **Stammdaten → USt.-Codes**, darunter die Tab-Leiste. Die Nummern entsprechen der Liste darunter. Der Arbeitsbereich ist ein Beispiel.
+</VatSetupActionsFigure>
+
+1. **USt-Einrichtung exportieren**, für jeden, der die Seite öffnen kann.
+2. **USt-Einrichtung importieren**, nur auf der Kanzleiseite.
+3. **Aus Arbeitsbereich kopieren**, nur auf der Kanzleiseite.
+4. Die sechs Tabs. Die drei Schaltflächen gehören zur Seite, nicht zu einem Tab, und sind deshalb auf jedem vorhanden.
+
 **USt-Einrichtung exportieren** steht jedem offen, der die Seite öffnen kann, was in der Praxis die Kanzleiseite bedeutet: Mandantenseitigen Nutzern wird die Seite überhaupt nicht angeboten. Eine Einschränkung, die man kennen sollte, weil sie still scheitert: Ein Mitglied, dem der Zugriff auf die Datensätze entzogen wurde, lädt eine **strukturell gültige, aber leere Arbeitsmappe** herunter, ohne Fehlermeldung.
 
 **USt-Einrichtung importieren** und **Aus Arbeitsbereich kopieren…** werden allen auf der Kanzleiseite angezeigt, der Server verlangt aber die Berechtigung „Stammdaten bearbeiten“. Fehlt sie Ihrer Rolle, sind die Schaltflächen trotzdem da, und Sie erfahren es spät:
@@ -40,6 +49,13 @@ Der Ablauf ist: hochladen, ansehen, was passieren würde, dann bestätigen.
 2. **Bestätigen.** Erst dann wird etwas angewendet, und alles zusammen. Schlägt ein Teil fehl, wird nichts übernommen.
 
 **Jeder Fehler blockiert den gesamten Import.** Korrigieren Sie die benannten Zeilen und laden Sie erneut hoch.
+
+<VatSetupPreviewFigure>
+Der Vorschauschritt mit einem fehlerhaften Blatt. Die Nummern entsprechen der Liste darunter. Die Anzahlen und der Code sind Beispiele.
+</VatSetupPreviewFigure>
+
+5. **Pro Blatt: neu, aktualisiert, unverändert**, und wo es Fehler gibt, eine Fehleranzahl. Vier dieser fünf Blätter gingen durch.
+6. **Import bestätigen ist deaktiviert**, solange etwas fehlerhaft ist, und der Dialog sagt ausdrücklich, dass nichts importiert wurde. Der Fehler nennt Blatt, Zeile und Spalte; hier ist es die Fünf-Elemente-Überlappung: Ein vorhandener aktiver Code deckt diese Kombination für einen überlappenden Zeitraum bereits ab.
 
 Nur `.xlsx`, bis 5 MB, bis zu 2.000 Zeilen pro Blatt. Es gibt keinen Schritt für die Spaltenzuordnung und kein Prüfraster Zeile für Zeile: Die Kopfzeilen werden gegen eine feste, mehrsprachige Liste bekannter Namen abgeglichen. Wenn Sie den Partner- oder den Kategorieimport kennen: dieser hier ist bewusst einfacher als jene.
 
