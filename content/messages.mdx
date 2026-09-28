@@ -1,59 +1,93 @@
 # Messages
 
-Messages are short, two-way conversations attached to a specific record - an invoice, a bank transaction, a bank statement, a match, a company, or a partner. They're how accountants and clients sort out the small questions that come up during the books ("What was this payment for?", "Can you send the missing invoice?") without leaving the app or starting an email thread.
+A message is a short note attached to a specific record: an invoice, a bank transaction, a bank statement, a match, a company or a partner. They are how the accounting side and the client side settle the small questions that come up in the books ("What was this payment for?", "Can you send the missing invoice?") without starting an email thread.
 
-A conversation always lives **on the record it's about**, so the context travels with it. Anyone on the other side of the workspace can read and reply.
+The conversation lives **on the record it is about**, so the context travels with it.
 
-## Who can message whom
+> **A conversation is not private to your side.** Everyone in the workspace who can see the record can read it, on both sides. Two accountants can write to each other in a thread, and the client will see every word. Keep internal notes out of it.
 
-Messages run between the **accountant side** and the **client side** of a workspace:
+## Where the conversation lives
 
-- An **accountant** (or accountant admin) writing on a record reaches the client team.
-- Someone on the **client side** writing on a record reaches the accounting team.
+It is in two different places depending on the record, which is worth knowing before you go looking:
 
-There's no separate recipient to pick - you write on the record, and the people on the other side see it. Every message shows the sender's name and a role badge (**Accountant**, **Accountant admin**, **Finance lead**, **Finance admin** or **Team member**) so it's always clear who said what.
+| Record | Where |
+|---|---|
+| Invoice, company, partner | a **Messages** tab, with an unread count on it |
+| Bank transaction, match, bank statement | a **Messages** card, further down the page |
 
-## Writing a message about a record
+There is no longer a slide-over on bank transactions: clicking a row opens the full transaction page, and the card is on it.
 
-Open any invoice, transaction, statement, match, company, or partner. The **Messages** panel sits on the detail page (and in the transaction slide-over). To start or continue a conversation:
+## Writing one
 
-1. Type in the box at the bottom of the panel - the placeholder reads **"Write a reply…"**.
+1. Type in the box at the foot of the panel. The placeholder reads **"Write a reply…"**.
 2. Click **Send**.
 
-That's it. The first message creates the conversation; every later message on the same record joins the same thread. Opening the panel marks the conversation as read for you, so the unread badge clears.
+The first message starts the conversation; everything later on the same record joins the same thread.
 
-Messages are meant to be short - there's a 2,000-character limit per message.
+Messages are meant to be short. The limit is 2,000 characters, and **Send** simply stops working above it, with no warning of its own.
 
-## Templates and "Draft with AI"
+## Most of what you see was not written by a person
 
-Accountants get two shortcuts in the composer when writing on an invoice or transaction:
+Opening a thread, the first thing you are likely to find is a request AIFT raised by itself: a missing receipt, a document it needs from the client. These show the sender as **AI Finance Team** with an **Automatic request** badge instead of a role, and they deliberately send **no email**. They are the large majority of all messages today.
 
-- **Use a template…** - a dropdown of pre-written messages for the most common situations (for example *"Tax ID mismatch"* or *"Date unclear"*). Picking one drops the text into the box with the record's details already filled in. Any placeholder chips that remain are clickable - **click each placeholder chip to replace it** with the right value before sending. You can browse the full set from **Browse template library** at the top of the Messages page.
-- **Draft with AI** - click it and the app writes a first draft for you, tailored to the record, streaming in as it's generated. It's a starting point, not an auto-send: read it, edit it, and click **Send** when you're happy. Nothing is sent on your behalf.
+A human reply to one of them behaves like any other message, email nudge included.
 
-Templates and AI drafts are conveniences for the accountant side - the client side always has the plain composer.
+## Templates, suggestions and Draft with AI
+
+Three things sit above the box, and they are easy to confuse because they look alike:
+
+- **Use a template…** is a dropdown of pre-written messages ("Tax ID mismatch", "Date unclear"). It drops the plain text in **with every placeholder still to fill.** The hint underneath says *"Click each placeholder chip to replace it."* - do that, because nothing stops you sending the message with the bare placeholder names still in it. **Everyone gets this dropdown, on both sides.**
+- **Suggested:** chips appear above it when AIFT has spotted something specific about the record. These are the ones that arrive **already filled in** with that record's values, and they are one tap. Accounting side only.
+- **Draft with AI** writes a first draft for the record, streaming as it goes. It is a starting point, not an auto-send: read it, edit it, click **Send**. Accounting side only.
+
+You can browse every template from **Browse template library** at the top of the Messages page.
+
+## Who can read a thread
+
+There is no separate "messaging" permission. If you can see the record, you can read its thread and reply to it.
+
+Two consequences:
+
+- **Your own side reads it too**, as above. Administrators of the accounting organisation can also read threads, for audit.
+- **A member whose access to the records has been withdrawn** sees a much smaller Messages page: only conversations about documents they uploaded themselves, or ones they have written in.
+
+Every message carries the sender's name and a role badge - **Accountant**, **Accountant admin**, **Finance lead**, **Finance admin** or **Team member**. Someone on a custom role shows the badge of the role it was based on.
+
+## The email nudge
+
+When your message stays unread, the people on the **other** side get an email about it. Worth knowing what that email is and is not:
+
+- It says a message is waiting and names the record. **It does not contain the message text**, and you cannot reply to it by email. It is a nudge to come and look.
+- It goes to the other side only. Your own side is never emailed.
+- At most **one per conversation per recipient every ten minutes**, so a flurry on one record does not become a flurry of email.
+- Automatic requests never send one.
+
+Anyone can turn these off for themselves under **Account → Notifications**, with **Unread message reminders**.
 
 ## Finding your conversations
 
-Two places surface messages:
+**The bell** in the sidebar header carries a red count and opens your recent messages, with **View all messages** at the foot.
 
-- **The bell** in the sidebar header. It carries a red count when you have unread messages; opening it shows your **Recent messages**, and **View all messages** takes you to the full list.
-- **The Messages page** (in the workspace sidebar). It lists every conversation in the workspace, newest activity first. Each row shows the record it's about, a preview of the last message, when it happened, and who it's **from**. Unread conversations carry a count badge; ones marked done show a **Resolved** badge.
+Two things about it that look like faults and are not:
 
-Click any row to jump straight to that record and its conversation.
+- The **count** covers every workspace you belong to, while the **list** shows only the workspace you are in. A red badge over an empty list means the messages are in another workspace.
+- It refreshes about once a minute, so a brand-new message can take a moment to appear.
 
-## Notifications
+**The Messages page** in the sidebar lists every conversation in the workspace, newest first, with the record, a preview, the time and who it is from. Click a row to jump to the record. Messages also surface on **Mission control**.
 
-When you post a message, the people on the other side are notified **by email** as well as in the app, so a question doesn't sit unseen. Notifications are batched sensibly - a flurry of messages on one record won't send a separate email for each.
+**Unread clears when the page loads, not when you read.** On a bank transaction, match or statement the thread is a card on the page, so simply opening the record marks the conversation read even if you never scroll down to it.
 
-## What Messages is *not*
+**There is no way to mark a conversation done.** You may see a **Resolved** badge mentioned in the interface; nothing in the product currently sets it, so no conversation ever carries it. Conversations stay in the list.
 
-- **Not for talking to your own side.** Conversations are accountant ↔ client. Two accountants on the same firm, or two people at the client company, don't message each other here.
-- **Not your incoming email.** Documents you forward by email land in [Intake](/email-forwarding), not here.
-- **Not a substitute for editing the record.** If the fix is "change the category" or "set the partner," make the change directly - use a message only when you need the other side to do or confirm something.
+## What Messages is not
+
+- **Not private.** Repeating it because it is the one that matters: the client sees everything written on the record.
+- **Not your incoming email.** Documents forwarded by email land in Intake, not here. See [Forwarding Documents by Email](/email-forwarding).
+- **Not a substitute for fixing the record.** If the answer is "change the category" or "set the partner", make the change. Use a message when you need the other side to do or confirm something.
 
 ## Related
 
-- [Forwarding Documents by Email](/email-forwarding) - how forwarded invoices and receipts arrive in Intake
+- [Forwarding Documents by Email](/email-forwarding) - where forwarded documents actually arrive
+- [Missing Receipts](/documents-needed) - the automatic requests, and the page that tracks them
 - [Working with Invoices](/invoices)
 - [Roles & Permissions](/roles-and-permissions)

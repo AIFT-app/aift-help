@@ -1,61 +1,97 @@
-# Főkönyvi kivonat
+# Főkönyv
 
-A Főkönyv az a hely, ahol **az adataival válaszolhat meg egy kérdést** - „mutasd az összes EUR-kiadást az előző negyedévben”, „mely Erste Bank-tranzakciók történtek márciusban”, „minden számla ettől a szállítótól idén”. Egyszerre böngészi az összes feldolgozott számlát és banki tranzakciót, tetszés szerint szűri őket, majd Excelbe exportálja az eredményt.
+A Főkönyv az a hely, ahol az adataival válaszol meg egy kérdést: az előző negyedév összes EUR-kiadása, egyetlen bankszámla összes márciusi tranzakciója, egyetlen szállító összes idei számlája. Egyszerre böngészi a számláit és a banki tranzakcióit, szűri őket, majd exportálja az eredményt.
 
-Könyvelői eszköz - a munkaterület oldalsávjában az **Exportok → Főkönyv** menüpont alatt találja. (Az ügyfelek nem látják.)
+Az oldalsávban az **Exportok → Főkönyv** alatt találja, és az **Exportok** menüpontra kattintva közvetlenül ide jut. Az ügyféloldali felhasználók egyáltalán nem látják.
 
-## A három nézet
+A megnyitásához a **„Könyvelési exportok futtatása”** jogosultság kell. Ez jogosultság kérdése, nem beosztás, így egy könyvelőnél is előfordulhat, hogy nincs meg - az oldalsáv pedig ettől is mutatja a hivatkozást: megnyomva minden üzenet nélkül visszakerül a munkaterület áttekintőjére. Ha Önnel ez történik, ez a jogosultság hiányzik.
 
-A Főkönyv háromféleképpen mutatja az adatait; a felül lévő fülekkel válthat közöttük:
+## Amit a megnyitáskor lát
+
+Két alapértelmezés dönti el, hogy először mit lát, és egyik sem magától értetődő:
+
+- A dátumtartomány **az utolsó 30 nappal** indul.
+- A számlákat a munkaterület alapértelmezett dátumtípusa szerint méri, ami a **Teljesítés dátuma**, hacsak valaki meg nem változtatta a **Beállítások** alatt.
+
+Vagyis ha a Főkönyv egy forgalmas hónapban szinte üresnek látszik, az általában nem így van: szélesítse ki a tartományt.
+
+## Az öt fül
 
 | Fül | Soronként | Mire jó |
 |---|---|---|
-| **Számla fejlécek** | egy számla | végösszegek, dátumok, partner, státusz - a számlaszintű összesítés |
-| **Számlatételek** | egy tétel | kategória és ÁFA részletei tételszinten |
-| **Banki tranzakciók** | egy banki mozgás | ami ténylegesen a számlára érkezett, párosítási státusszal |
+| **Számla fejlécek** | egy számla | végösszegek, dátumok, cég, partner, irány |
+| **Számlatételek** | egy tételsor | ugyanazok a számlák, tételsorig lebontva, kategóriával és ÁFA-részletekkel |
+| **Banki tranzakciók** | egy banki mozgás | ami valóban megérkezett a számlára |
+| **Cégek** | egy cég | a munkaterület cégei, csak olvasásra |
+| **Partnerek** | egy partner | a munkaterület hitelesített partnerei, csak olvasásra |
 
-A beállított szűrő mindhárom nézetre érvényes, így ugyanazt a kérdést a számlák és a bank felől is megválaszolhatja anélkül, hogy újra be kellene gépelnie.
+Az érdemi munka az első három fülön folyik. A **Cégek** és a **Partnerek** nyilvántartási listák: nincs szűrősávjuk, nincs keresőmezőjük, és a soraik nem nyitnak meg semmit. Az első három fülön viszont a sor hivatkozás, a számlára vagy a tranzakcióra.
+
+Duplikátumok és elutasított számlák soha nem jelennek meg, egyetlen fülön és egyetlen exportban sem.
+
+### Egy szűrő nem ugyanazt jelenti minden fülön
+
+Az a cikk, amelyet ez felvált, azt ígérte, hogy egy szűrő mindkét oldalról ugyanarra a kérdésre válaszol. Nem így van, és a különbségek számítanak:
+
+- **A kategóriaszűrők a Számla fejlécek fülön nem érvényesülnek**, szándékosan, mert a kategória a tételsorhoz tartozik, nem a számlához. Az alkalmazás ezt sárga figyelmeztetésben ki is mondja, **„A kategóriaszűrő itt nem érvényes”**, **Mutasd inkább a számlatételeket** hivatkozással. Kövesse.
+- A csak bankra vonatkozó szűrők (tranzakció típusa, bankszámla, CF kategória) nem hatnak a számlasorokra, a csak számlára vonatkozó szűrők pedig nem hatnak a banki sorokra.
+- A dátumtípus számlafogalom. A banki tranzakciókat a rendszer mindig a könyvelési dátumuk szerint méri.
+
+Ami valóban átjárja mind a három fület: a dátumtartomány, az irány, a cég, a partner és a pénznem.
 
 ## Szűrés
 
-Kétféleképpen szűkíthet - használja azt, amelyik gyorsabbnak tűnik.
+### Kérdezd a Főkönyvet
 
-### Kérdezd a Főkönyvet (természetes nyelven)
+A felül lévő sáv felirata **Kérdezd a Főkönyvet**. Írjon be egy hétköznapi mondatot, és az alkalmazás szűrőkké alakítja. Ezután **„Értelmezve:”** felirattal megmutatja, hogyan olvasta a kérését, és **Visszavonás** gombot ad, ha félreértette.
 
-Van egy **Kérdezd a Főkönyvet** feliratú keresőmező. Írja be hétköznapi szavakkal, mit szeretne, az alkalmazás pedig szűrőkké alakítja:
+Kérdezhet bármilyen nyelven: a válasz mindenképpen a felület nyelvén jön vissza.
 
-- *„Eurofins számlák az előző negyedévben”*
-- *„kiadások EUR-ban”*
-- *„Erste Bank tranzakciói, 2026 március”*
+A sáv mellett van a **Keresőmotor** választó: **Auto**, **Pontos** vagy **Jelentés**. Ezt érdemes tudni, mert a Jelentés nem másféle szűrő, hanem másik oldal. A tételek AI-összefoglalójában keres, így csak összefoglalóval rendelkező tételek jelennek meg, és **ott a szűrők, a rendezés és az exportálás nem érvényesek** - az Export gomb egyszerűen nincs ott. **Auto** módban egy tágabb kérdés magától is ide irányíthatja, ezért fordulhat elő, hogy egy „utazási költségek” típusú keresés után Export gomb nélküli oldalon találja magát.
 
-Megmutatja, hogyan értelmezte a kérését - **„Értelmezve: …”** -, és **Visszavonás** gombbal javíthatja, ha valamit félreértett. Ha a nyelvi értelmezés éppen nem érhető el, jelzi, és visszatérhet az alábbi szűrővezérlőkhöz.
+Ha egy keresés semmit vagy szinte semmit nem ad vissza, egy sáv felajánlja a jelentés szerinti keresést: *„N tétel illeszkedik jelentés alapján.”*, **Mutasd őket** gombbal.
 
-### Szűrővezérlők
+### A szűrősáv
 
-Kattintson a **Szűrők megjelenítése** gombra a teljes készletért: dátumtartomány (előre beállított és egyedi tartománnyal), irány (bejövő / kimenő pénz), partner, cég, bankszámla és pénznem, számlakategóriák, tranzakciótípusok, továbbiak pedig a **További szűrők** alatt. Minden alkalmazott szűrő eltávolítható chipként jelenik meg az **Aktív szűrők** alatt - a chipen lévő **×** csak azt az egyet törli, a **Törlés** pedig mindent visszaállít.
+Nincs „Szűrők megjelenítése” gomb. A gyakori vezérlők mindig a képernyőn vannak, a keresősáv alatti sávban: a **dátumtartomány** a dátumtípus-választójával, az **Irány**, és vagy egy partnerválasztó, vagy - a banki fülön - egy bankszámla. Minden más a jobb oldali **További szűrők** mögött van, amely azt is mutatja, hány szűrőt állított be.
 
-Ha egy nézet üresen tér vissza, a Főkönyv gyakran egy jobb fülre irányítja - *„Próbálja a Banki tranzakciókat - 12 találat.”*
+Amit beállít, chipek soraként megjelenik az **Aktív szűrők** alatt. Egy chip ×-ére kattintva egyet dob el, az **Összes visszaállítása** pedig mindet törli. Ha semmi nem illeszkedik, az alkalmazás ezt írja: *„Nincs találat ezen szűrőkkel.”*
 
-## Exportálás Excelbe
+**A dátumszűrés szigorú.** Az a számla, amelynek nincs a kiválasztott típusú dátuma, kimarad, nem pedig egy másik dátumra esik vissza - a sáv pedig meg is számolja őket Önnek, hogy ne maradjanak láthatatlanok.
 
-Ha a nézet azt mutatja, amit szeretne, kattintson az **Export** gombra. Egy `.xlsx` fájlt kap, két lehetőséggel:
+Minden ott van a böngésző címsorában: a fül, a szűrők, a rendezés, az oldalszám. Egy Főkönyv-nézet könyvjelzőbe tehető, vagy beilleszthető egy kollégának.
 
-- **Mind a három munkalap exportálása** - Számla fejlécek, Számlatételek és Banki tranzakciók, mindegyik külön munkalapon, mind az aktuális szűrők szerint.
-- **Csak ez a nézet** - kizárólag az éppen megnyitott fül.
+## Exportálás
 
-Néhány védőkorlát:
+Kattintson az **Export** gombra, majd válasszon először formátumot, utána hatókört:
 
-- Nagyon nagy eredménynél az alkalmazás előbb megerősítést kér (*„Ez az export kb. N sort állít elő. Folytatja?”*).
-- Van egy felső határ is - ha az eredmény túl nagy, a rendszer a **szűrők szűkítését** kéri az export előtt. Szűkítse a dátumtartományt, vagy adjon hozzá egy szűrőt, és próbálja újra.
+| | **Mindhárom lap exportálása** | **Csak ezen nézet exportálása** |
+|---|---|---|
+| **Excel munkafüzet (.xlsx)** | egy munkafüzet, benne minden adathalmaz | egy munkafüzet, az éppen nyitott fül |
+| **CSV csomag (.zip)** | egy zip, adathalmazonként egy CSV | egy zip, benne egy CSV |
+
+**A felirata ellenére a „mindhárom lap” ötöt állít elő**: számla fejlécek, számlatételek, banki tranzakciók, partnerek és cégek. A felirat akkor született, amikor még valóban három volt, és nem érte utol a valóságot.
+
+A két törzsadat-lap a munkaterület teljes nyilvántartása. A szűrői csak a három tranzakciós lapot alakítják.
+
+Két korlát és egy csendes kivonás:
+
+- **50 000 sor** felett az alkalmazás megerősítést kér.
+- **200 000 sor** felett elutasítja az exportot, amíg nem szűkít, és ezt a chipet mutatja: *„Pontosítsd a szűrőket az exporthoz - több mint 200000 sor.”*
+- **A hiányos ÁFA-kódolású számlák kimaradnak az exportból.** Utána egy összegzés megmondja, hányat hagyott ki, **Kihagyottak megtekintése** hivatkozással pedig pontosan ezekre a számlákra szűri le a fejlécek fülét. Ezt nézze meg, mielőtt a sorok számát bármivel egyeztetné. Az [ÁFA az exportokban](/vat-in-exports) cikk elmagyarázza a kaput.
+
+A fájl neve az exportált időszakra utal.
 
 ## Tippek
 
-- **Induljon tágan, majd szűkítsen.** Először a dátumtartományt állítsa be, utána adjon hozzá partner- vagy kategóriaszűrőt - a sorszámok menet közben frissülnek.
-- **Az első vágáshoz a Kérdezd a Főkönyvet, a finomhangoláshoz a szűrők valók.** A természetes nyelv arra kiváló, hogy „nagyjából a jó helyre” jusson; a chipek pontosak.
-- **Az irodának exportál?** A „mind a három munkalap” adja a legteljesebb képet egyetlen fájlban.
+- **Először a dátumtartományt szélesítse ki.** A „hol vannak az adataim” pillanatok többsége a 30 napos alapértelmezés.
+- **Az első vágáshoz a Kérdezd a Főkönyvet, a finomhangoláshoz a chipek valók.** A mondat nagyjából a jó helyre viszi, a chipek pontosak.
+- **Végösszeget egyeztet? Olvassa el a kihagyott számlákról szóló összegzést**, különben az export csendben kevesebb lesz.
+- **Nézetet küld a kollégájának?** Inkább a címet másolja ki, mint hogy leírja a szűrőket.
 
 ## Kapcsolódó cikkek
 
-- [Jelentések](/reports) - mentett, kategóriaalapú összesítések (szemben a Főkönyv eseti böngészésével)
+- [Jelentések](/reports) - mentett, kategóriaalapú összesítések, szemben a Főkönyv eseti böngészésével
+- [ÁFA az exportokban](/vat-in-exports) - miért maradhat ki egy számla az exportból
 - [Számlák kezelése](/invoices)
 - [Számlák párosítása](/invoice-matching)
