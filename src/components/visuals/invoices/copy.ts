@@ -15,6 +15,8 @@ import type { Tone } from '../kit'
 
 export const UI_KEYS = [
   'list_view.col_date',
+  'list_view.col_id',
+  'list_view.copy_id',
   'list_view.col_counterparty',
   'list_view.col_labels',
   'list_view.col_amount',
@@ -70,6 +72,8 @@ export const LABEL_TONE: Record<LabelKey, Tone> = {
 /** One row of the invoice list (aift-web InvoiceRow, the parts shown). */
 export type ListRow = {
   issueDate: string
+  /** AI Finance Team's friendly ID, shown under the date. */
+  internalId: string
   partner: string
   invoiceNumber: string
   /** In resolveInvoiceLabels order. */
@@ -111,6 +115,7 @@ function rows(amounts: [number, number, number, number], currency: string, forei
   return [
     {
       issueDate: '2026-09-14',
+      internalId: 'DEMO-INV-2026-0214',
       partner: 'Reamwell Office Supplies Ltd.',
       invoiceNumber: 'RW-2026-1204',
       labels: ['awaiting_approval'],
@@ -120,15 +125,17 @@ function rows(amounts: [number, number, number, number], currency: string, forei
     },
     {
       issueDate: '2026-09-12',
+      internalId: 'DEMO-INV-2026-0209',
       partner: 'Slatebridge Roofing Ltd.',
       invoiceNumber: 'SBR/2026/0342',
-      labels: ['nav', 'unverified', 'no_document', 'approved'],
+      labels: ['unverified', 'vat_incomplete', 'no_document', 'approved', 'nav'],
       direction: 'expense',
       amount: amounts[1],
       currency,
     },
     {
       issueDate: '2026-09-10',
+      internalId: 'DEMO-INV-2026-0203',
       partner: 'Quillmoor Software Ltd.',
       invoiceNumber: 'HT-2026-0217',
       labels: [],
@@ -138,6 +145,7 @@ function rows(amounts: [number, number, number, number], currency: string, forei
     },
     {
       issueDate: '2026-09-08',
+      internalId: 'DEMO-INV-2026-0198',
       partner: 'Gearmont Fleet Services Ltd.',
       invoiceNumber: 'GFS-26-00931',
       labels: ['review', 'fx_pending'],
@@ -153,6 +161,8 @@ function rows(amounts: [number, number, number, number], currency: string, forei
 const en: Copy = {
   ui: {
     'list_view.col_date': 'Date',
+    'list_view.col_id': 'ID',
+    'list_view.copy_id': 'Copy {id}',
     'list_view.col_counterparty': 'Partner',
     'list_view.col_labels': 'Labels',
     'list_view.col_amount': 'Amount',
@@ -195,7 +205,7 @@ const en: Copy = {
       lifecycle:
         'Diagram of an invoice in seven steps: it arrives by upload, email or from NAV; it is extracted; it is checked for duplicates; the company and the direction are found; the partner, categories and VAT codes are suggested; a supplier invoice goes through payment approval; the bank transaction is matched and the invoice is paid. Each step shows the labels the app gives an invoice there.',
       list:
-        'The invoice list with four invoices, newest first: date, partner with the invoice number, label pills and the amount, red with a down arrow for expenses and green with an up arrow for income. Two rows have an amber left edge. Numbered markers point to the columns described in the list below.',
+        'The invoice list with four invoices, newest first: the date with the AI Finance Team ID under it, the partner with the invoice number, label pills with the ones that need action first, and the amount, red with a down arrow for expenses and green with an up arrow for income. Three rows have an amber left edge. Numbered markers point to the parts described in the list below.',
     },
   },
 }
@@ -205,6 +215,8 @@ const en: Copy = {
 const hu: Copy = {
   ui: {
     'list_view.col_date': 'Dátum',
+    'list_view.col_id': 'Azonosító',
+    'list_view.copy_id': '{id} másolása',
     'list_view.col_counterparty': 'Partner',
     'list_view.col_labels': 'Címkék',
     'list_view.col_amount': 'Összeg',
@@ -247,7 +259,7 @@ const hu: Copy = {
       lifecycle:
         'Ábra egy számla hét lépéséről: feltöltéssel, e-mailben vagy a NAV-ból érkezik; kinyerjük az adatait; ellenőrizzük, nem duplikáció-e; megállapítjuk a céget és az irányt; javasoljuk a partnert, a kategóriákat és az ÁFA-kódokat; a szállítói számla kifizetési jóváhagyáson megy át; a banki tranzakció párosításával a számla kifizetett lesz. Minden lépésnél látszanak a címkék, amelyeket az alkalmazás ott ad a számlának.',
       list:
-        'A számlalista négy számlával, a legújabb elöl: dátum, partner a számlaszámmal, címkék és az összeg, kiadásnál piros, lefelé mutató nyíllal, bevételnél zöld, felfelé mutató nyíllal. Két sor bal szélén borostyánsárga szegély van. A számozott jelölők az alábbi listában leírt oszlopokra mutatnak.',
+        'A számlalista négy számlával, a legújabb elöl: a dátum alatta az AI Finance Team azonosítóval, a partner a számlaszámmal, a címkék elöl a teendőt jelzőkkel, és az összeg, kiadásnál piros, lefelé mutató nyíllal, bevételnél zöld, felfelé mutató nyíllal. Három sor bal szélén borostyánsárga szegély van. A számozott jelölők az alábbi listában leírt részekre mutatnak.',
     },
   },
 }
@@ -257,6 +269,8 @@ const hu: Copy = {
 const de: Copy = {
   ui: {
     'list_view.col_date': 'Datum',
+    'list_view.col_id': 'ID',
+    'list_view.copy_id': '{id} kopieren',
     'list_view.col_counterparty': 'Partner',
     'list_view.col_labels': 'Labels',
     'list_view.col_amount': 'Betrag',
@@ -299,7 +313,7 @@ const de: Copy = {
       lifecycle:
         'Diagramm einer Rechnung in sieben Schritten: Sie trifft per Upload, E-Mail oder aus NAV ein; sie wird extrahiert; sie wird auf Duplikate geprüft; Unternehmen und Richtung werden ermittelt; Partner, Kategorien und USt-Codes werden vorgeschlagen; eine Lieferantenrechnung durchläuft die Zahlungsfreigabe; die Banktransaktion wird zugeordnet und die Rechnung ist bezahlt. Jeder Schritt zeigt die Labels, die die App einer Rechnung dort gibt.',
       list:
-        'Die Rechnungsliste mit vier Rechnungen, die neueste zuerst: Datum, Partner mit der Rechnungsnummer, Labels und der Betrag, rot mit Pfeil nach unten für Ausgaben und grün mit Pfeil nach oben für Einnahmen. Zwei Zeilen haben einen gelben linken Rand. Nummerierte Markierungen zeigen auf die Spalten, die in der Liste darunter beschrieben sind.',
+        'Die Rechnungsliste mit vier Rechnungen, die neueste zuerst: das Datum mit der AI-Finance-Team-ID darunter, der Partner mit der Rechnungsnummer, Labels mit denen zuerst, die eine Aktion brauchen, und der Betrag, rot mit Pfeil nach unten für Ausgaben und grün mit Pfeil nach oben für Einnahmen. Drei Zeilen haben einen gelben linken Rand. Nummerierte Markierungen zeigen auf die Teile, die in der Liste darunter beschrieben sind.',
     },
   },
 }
