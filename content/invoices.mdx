@@ -47,6 +47,7 @@ The labels you meet most often:
 | **VAT codes incomplete** / **Default-coded** | Lines without a VAT code / lines coded with the default code |
 | **Duplicate**, **Cancelled** | A duplicate of another invoice / cancelled by a storno invoice |
 | **Awaiting approval**, **Approved**, **Declined** | The payment approval state, where approvals are switched on (see [Approving Invoices for Payment](/approving-invoices)) |
+| **To file**, **To book**, **Filing returned**, **Bookkeeping returned** | A checkpoint still waiting, where filing or bookkeeping approval is switched on (see [Filing and Bookkeeping Approval](/filing-and-bookkeeping-approval)) |
 
 ### Finding invoices
 
@@ -60,7 +61,7 @@ Click an invoice to open its page. The top card shows the invoice number, badges
 
 The page has six tabs:
 
-- **Overview**: the **Parties** (seller and buyer, with your side marked), **Amounts** (net, VAT and gross, with the base-currency amounts where they differ) and **Dates** (issue, fulfilment, due, VAT and posting date), plus custom categories and the payment approval card where they apply.
+- **Overview**: the **Parties** (seller and buyer, with your side marked), **Amounts** (net, VAT and gross, with the base-currency amounts where they differ) and **Dates** (issue, fulfilment, due, VAT and posting date), plus custom categories where they apply. Above the payment approval card sits an **Approvals** card listing the checkpoints this invoice passes - filing, bookkeeping and payment - each with its state and who decided it. It appears even where only payment approvals are switched on. See [Filing and Bookkeeping Approval](/filing-and-bookkeeping-approval).
 - **Lines & VAT**: the line items with description and quantity, net, VAT rate, gross, category and VAT code.
 - **Document**: the original file, or the NAV rendering for a NAV invoice.
 - **Matching & payment**: the bank transactions matched to the invoice. See [Invoice Matching](/invoice-matching).
@@ -105,7 +106,9 @@ The **Review** label means the extraction scored below 80% for completeness: the
 
 ## Who can do what
 
-Seeing invoices needs the permission to view invoices and bank transactions. Editing, rejecting and the bulk actions need the permission to edit invoices, which accountants hold by default; client users can view invoices, open the document and upload. See [Roles and Permissions](/roles-and-permissions).
+Seeing the workspace's invoices needs the permission to view invoices and bank transactions. A member without it still sees the invoices they uploaded themselves, and any invoice routed to them for approval: four tabs instead of six, no labels, no payment status and no to-dos, with a note on the list saying only their own invoices are shown.
+
+Editing, rejecting, marking or unmarking a duplicate, and the bulk actions all need the permission to edit invoices, which accountants hold by default; client users can view invoices, open the document and upload. See [Roles and Permissions](/roles-and-permissions).
 
 ## Tips
 

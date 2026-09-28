@@ -6,15 +6,18 @@ AI Finance Team connects to Microsoft Dynamics 365 Business Central: it pairs yo
 
 ## What Is Read, and What Is Written
 
-AI Finance Team **reads** the companies in your Business Central, and for each paired company its accounts, VAT and posting groups, units of measure, currencies, bank accounts, payment methods and terms, dimensions and dimension values, and vendors. **No ledger entries, invoices or balances are read.**
+AI Finance Team **reads** the companies in your Business Central, and for each paired company its accounts, VAT and posting groups, units of measure, currencies, bank accounts, payment methods and terms, dimensions and dimension values, and vendors. **No ledger entries and no balances are read.** The only documents ever read back are purchase invoices we may have created ourselves, when we need to find out what became of one.
 
-There is exactly one thing AI Finance Team **writes**: a **vendor card**, created from one of your partners, when someone presses the button on the push screen. It is off unless we enable it for your workspace as well.
+AI Finance Team **writes** two kinds of record, both behind a second switch that only we can turn on:
+
+- a **vendor card**, created from one of your partners;
+- a **purchase invoice**, created from one of your expense invoices.
 
 Even then:
 
-- **Nothing is ever posted.** No journal, no entry, no document.
-- **An existing vendor card is never rewritten.** A card with the same tax number is linked to your partner instead.
-- **Nothing is ever deleted.**
+- **Nothing is ever posted.** The purchase invoice is created as a **draft** and left there. Posting is available over the interface and we deliberately do not use it: a document posted from wrong data has to be reversed, which marks the ledger for good, while a draft is deleted in one click. Posting stays the bookkeeper's act, inside Business Central.
+- **An existing record is never rewritten.** A vendor card with the same tax number is linked to your partner instead, and an existing document is never touched.
+- **We only ever delete what we created.** Two controls delete, both on the send screen: the probe removes the throwaway draft it just made, and the cleanup removes drafts AI Finance Team recorded sending but never managed to link. Nothing else is ever deleted, and nothing Business Central does not call a draft.
 
 ## Setting Up the Connection
 
@@ -126,7 +129,7 @@ Read the counts carefully. An empty cell can mean three different things: **not 
 
 Business Central cannot create a ledger account through its API, so the client's chart of accounts stays theirs. To let a category name a ledger account, bring the accounts in as categories.
 
-Open **Master data → Accounting categories** and choose **Import accounts from Business Central**. The button is on both the **Invoice** and the **Cash** tab.
+Open **Master data → Accounting categories** and choose **Import**, then **Import accounts from Business Central**. The dropdown is on both the **Invoice** and the **Cash** tab.
 
 **Create as** decides what each ticked account becomes: **Invoice categories**, **Cash categories**, or **Both**, which makes one of each with the same account number. They stay separate afterwards, so renaming one does not rename the other.
 
@@ -140,7 +143,7 @@ On the **Cash** tab, **Copy from invoice categories** creates a cash category fo
 
 ## Vendors as Partners
 
-**Add from Business Central** on **Master data → Partners**, and on the Differences tab, brings vendor cards in as partners. They are matched on the tax number, so a vendor that already exists here is shown as such and cannot be added twice. Vendor cards without a tax number can still be added, but nothing can match them automatically afterwards.
+**Import → From Business Central** on **Master data → Partners**, and **Add from Business Central** on the Differences tab, brings vendor cards in as partners. They are matched on the tax number, so a vendor that already exists here is shown as such and cannot be added twice. Vendor cards without a tax number can still be added, but nothing can match them automatically afterwards.
 
 ## VAT Mapping
 
@@ -148,7 +151,7 @@ On the **Cash** tab, **Copy from invoice categories** creates a cash category fo
 
 ## Pushing Partners as Vendors
 
-**Master data → Business Central → Push** creates vendor cards in Business Central from your partners. This is the only place AI Finance Team writes into your accounting system, and it needs three things:
+**Master data → Business Central → Push** creates vendor cards in Business Central from your partners. This is one of the two places AI Finance Team writes into your accounting system; the other is sending invoices, below. It needs three things:
 
 - the write side switched on for the workspace, which only we can do;
 - the permission "Push into the accounting system", which the accountant admin holds by default;
@@ -158,12 +161,47 @@ You choose the partners, then the companies each one should be created in, and r
 
 A vendor number that comes back is shown on the partner's page under its AI Finance Team code, one line per company. That number belongs to a company in Business Central, so do not type it into the partner's own code field.
 
+## Sending Invoices
+
+**Exports → Business Central** is where expense invoices go up, as draft purchase invoices. It is a different screen from the vendor push, under a different menu, behind a different permission.
+
+The top half is a read-only funnel: how many invoices are **ready to send**, how many are **in the period**, and what stops the rest. Nine things can stop an invoice, and only the first one found is shown: no company on the invoice, the company not paired, the company not read yet, the partner not verified, no vendor card for that partner in that company, a line with no category, the category's ledger account missing from that company, no invoice number or delivery date, and **bookkeeping approval missing** (see [Filing and Bookkeeping Approval](/filing-and-bookkeeping-approval)). Each one expands to the invoices behind it with a link that takes you where it is fixed. Two more are warnings rather than blockers: an unmapped VAT pair, and a currency that company does not hold.
+
+Only expense invoices are considered, and never a duplicate or an archived one. **The invoice's own PDF is not sent**, and a missing document never blocks a send.
+
+### What to know before you press Send
+
+- **At most 25 invoices go per press.**
+- **The run stops after three failures in a row** and marks the remainder *Not attempted*, so one broken setting cannot burn the whole batch.
+- Each invoice comes back with its own outcome: **Created**, **Failed**, **We do not know**, **Did not start** or **Not attempted**.
+
+**"We do not know" is the one that matters.** It means the request went and the answer did not come back. Do not simply send it again: Business Central does **not** refuse a second purchase invoice carrying the same supplier invoice number, so a blind retry can leave two drafts for one invoice. Use **Resolve interrupted sends**, which asks Business Central what actually happened and sends nothing.
+
+An invoice already up there leaves the sendable count, and the screen says how many of your selection are already in Business Central.
+
+### The maintenance buttons
+
+Four buttons sit beside Send, and they stay visible even when nothing is sendable, because a stray draft in the client's ledger is invisible to anyone without a Business Central login.
+
+- **Probe** creates a real throwaway draft from a real invoice and deletes it again. It answers whether this tenant accepts a duplicate supplier invoice number, and shows what we sent beside what Business Central stored.
+- **What BC exposes about a vendor** reads a vendor card and writes nothing.
+- **Resolve interrupted sends** asks what happened to a send whose answer was lost. It neither sends nor deletes.
+- **Look for drafts left behind** finds drafts we recorded but never linked. Deleting them is a separate, red **Delete from Business Central** button: the check and the delete are two steps on purpose.
+
+## Payment Methods
+
+**Master data → Business Central → Payment methods** maps each AI Finance Team payment method (transfer, cash, card, voucher, other) onto one Business Central code, as a workspace default or per company. A code is proposed only where exactly one Business Central code reads as that method.
+
+The mapping is applied to the draft immediately after it is created, because the interface has no payment-method field on the document itself. **A missing mapping is not an error** and never blocks a send. An individual invoice can override the mapping on its own payment tab, and the send list shows the code each invoice will go up with.
+
 ## Who Can Do What
 
-Connecting, disconnecting and pairing need the permission "Manage connections", held by default by the accountant admin and the finance lead. A custom role or an exception can change that. Everyone else sees the status and cannot change it. Pushing needs its own permission, as above.
+Connecting, disconnecting and pairing need the permission "Manage connections", held by default by the accountant admin and the finance lead. A custom role or an exception can change that. Everyone else sees the status and cannot change it.
+
+Sending anything into Business Central needs **two** permissions: "Run accounting exports" to reach the send screen at all, which the accountant admin and the accountant hold, and "Push into the accounting system" to actually send, which only the accountant admin holds. An accountant without the second one can open the screen and read it, and every button that writes will refuse.
 
 ## Disconnecting
 
-**Disconnect** on **Settings → Business Central Connection**. The confirmation says what goes: the pairings, the copied master data and the VAT mappings are deleted, while your companies, categories, partners and the links to vendor cards are kept.
+**Disconnect** on **Settings → Business Central Connection**. The confirmation says what goes: the pairings, the copied master data and the VAT mappings are deleted. The **payment method mapping goes too**, which the dialog does not mention. Your companies, categories, partners, the links to vendor cards and the record of which invoices were sent are all kept.
 
 Reconnecting afterwards needs **both approvals again**, and every company paired again. Your Microsoft administrator can also revoke the approval in your own Microsoft 365 without telling us.

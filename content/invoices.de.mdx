@@ -20,7 +20,7 @@ Claude liest die Rechnung und extrahiert den Kopf, die Parteien, die Beträge un
 
 Laden Sie eine Datei hoch, die mit einer bereits vorhandenen identisch ist, legt AI Finance Team die Rechnung an, markiert sie aber als Duplikat des Originals und extrahiert sie nicht erneut. Das Upload-Fenster zeigt **Bereits vorhanden**, und ein Klick öffnet das Original. Nach der Extraktion wird auch eine Rechnung mit derselben Rechnungsnummer, demselben Rechnungsdatum, demselben Bruttobetrag und derselben Währung wie eine andere als Duplikat markiert.
 
-Duplikate sind in der Liste ausgeblendet: Sie erscheinen als **verknüpft**-Zeile, die Sie unter dem Original aufklappen können, und bei eingeschaltetem Filter **Duplikat**. Sind zwei Rechnungen wirklich verschieden (ein Lieferant hat ein PDF für zwei Rechnungen verwendet), öffnen Sie das Duplikat und klicken Sie in seinem Banner auf **Mark as not a duplicate**.
+Duplikate sind in der Liste ausgeblendet: Sie erscheinen als **verknüpft**-Zeile, die Sie unter dem Original aufklappen können, und bei eingeschaltetem Filter **Duplikat**. Sind zwei Rechnungen wirklich verschieden (ein Lieferant hat ein PDF für zwei Rechnungen verwendet), öffnen Sie das Duplikat und klicken Sie in seinem Banner auf **Kein Duplikat**.
 
 ## Die Rechnungsliste
 
@@ -47,6 +47,7 @@ Die Labels, die Ihnen am häufigsten begegnen:
 | **USt-Codes unvollständig** / **Standard-codiert** | Positionen ohne USt-Code / mit dem Standardcode codierte Positionen |
 | **Duplikat**, **Storniert** | Ein Duplikat einer anderen Rechnung / durch eine Stornorechnung aufgehoben |
 | **Freigabe ausstehend**, **Freigegeben**, **Abgelehnt** | Der Stand der Zahlungsfreigabe, wo Freigaben eingeschaltet sind (siehe [Rechnungen zur Zahlung freigeben](/approving-invoices)) |
+| **Zu erfassen**, **Zu buchen**, **Erfassung zurückgegeben**, **Buchung zurückgegeben** | Ein Prüfschritt wartet noch auf eine Entscheidung, wo die Erfassungs- oder Buchungsfreigabe eingeschaltet ist (siehe [Erfassungs- und Buchungsfreigabe](/filing-and-bookkeeping-approval)) |
 
 ### Rechnungen finden
 
@@ -60,7 +61,7 @@ Klicken Sie auf eine Rechnung, um ihre Seite zu öffnen. Die obere Karte zeigt d
 
 Die Seite hat sechs Reiter:
 
-- **Übersicht**: die **Parteien** (Verkäufer und Käufer, Ihre Seite markiert), **Beträge** (netto, USt. und brutto, bei Abweichung mit den Beträgen in der Basiswährung) und **Daten** (Rechnungs-, Leistungs-, Fälligkeits-, USt- und Buchungsdatum), dazu eigene Kategorien und die Karte zur Zahlungsfreigabe, wo sie gelten.
+- **Übersicht**: die **Parteien** (Verkäufer und Käufer, Ihre Seite markiert), **Beträge** (netto, USt. und brutto, bei Abweichung mit den Beträgen in der Basiswährung) und **Daten** (Rechnungs-, Leistungs-, Fälligkeits-, USt- und Buchungsdatum), dazu eigene Kategorien, wo sie gelten. Über der Karte zur Zahlungsfreigabe steht eine Karte **Freigaben**: Sie listet die Prüfschritte auf, die diese Rechnung durchläuft (Erfassung, Buchung und Zahlung), jeden mit seinem Stand und der Person, die entschieden hat. Sie erscheint auch dort, wo nur Zahlungsfreigaben eingeschaltet sind. Siehe [Erfassungs- und Buchungsfreigabe](/filing-and-bookkeeping-approval).
 - **Positionen & USt.**: die Positionen mit Beschreibung und Menge, netto, USt-Satz, brutto, Kategorie und USt-Code.
 - **Dokument**: die Originaldatei, bei einer NAV-Rechnung die NAV-Darstellung.
 - **Zuordnung & Zahlung**: die der Rechnung zugeordneten Banktransaktionen. Siehe [Rechnungsabgleich](/invoice-matching).
@@ -82,7 +83,7 @@ Klicken Sie auf einen Wert, um ihn zu bearbeiten; er wird gespeichert, wenn Sie 
 
 ## Eine Rechnung ablehnen
 
-Gehört eine Rechnung zu keinem Ihrer Unternehmen, öffnen Sie auf der Rechnung die Auswahl des Unternehmens, klicken Sie auf **Diese Rechnung ist für keines unserer Unternehmen** und geben Sie einen Grund an. Die Rechnung wandert unter den Filter **Abgelehnt**, Zuordnungsvorschläge zu ihr werden verworfen, bestehende Zuordnungen bleiben erhalten und werden markiert. Ihr Banner bietet **Undo rejection** an. Rechnungen lassen sich nicht löschen.
+Gehört eine Rechnung zu keinem Ihrer Unternehmen, öffnen Sie auf der Rechnung die Auswahl des Unternehmens, klicken Sie auf **Diese Rechnung ist für keines unserer Unternehmen** und geben Sie einen Grund an. Die Rechnung wandert unter den Filter **Abgelehnt**, Zuordnungsvorschläge zu ihr werden verworfen, bestehende Zuordnungen bleiben erhalten und werden markiert. Ihr Banner bietet **Ablehnung rückgängig machen** an. Rechnungen lassen sich nicht löschen.
 
 ## Eine Rechnung herunterladen
 
@@ -105,7 +106,9 @@ Das Label **Prüfen** bedeutet, dass die Extraktion bei der Vollständigkeit unt
 
 ## Wer was darf
 
-Um Rechnungen zu sehen, braucht man die Berechtigung, Rechnungen und Banktransaktionen anzusehen. Bearbeiten, Ablehnen und die Sammelaktionen brauchen die Berechtigung, Rechnungen zu bearbeiten, die standardmäßig die Buchhalter haben; Kundenbenutzer können Rechnungen ansehen, das Dokument öffnen und hochladen. Siehe [Rollen & Berechtigungen](/roles-and-permissions).
+Um die Rechnungen des Arbeitsbereichs zu sehen, braucht man die Berechtigung, Rechnungen und Banktransaktionen anzusehen. Ein Mitglied ohne sie sieht weiterhin die Rechnungen, die es selbst hochgeladen hat, und jede Rechnung, die ihm zur Freigabe zugewiesen wurde: vier Reiter statt sechs, keine Labels, keinen Zahlungsstatus und keine Aufgaben, dazu einen Hinweis in der Liste, dass nur die eigenen Rechnungen gezeigt werden.
+
+Bearbeiten, Ablehnen, das Markieren und das Aufheben der Markierung eines Duplikats sowie die Sammelaktionen brauchen alle die Berechtigung, Rechnungen zu bearbeiten, die standardmäßig die Buchhalter haben; Kundenbenutzer können Rechnungen ansehen, das Dokument öffnen und hochladen. Siehe [Rollen & Berechtigungen](/roles-and-permissions).
 
 ## Tipps
 
