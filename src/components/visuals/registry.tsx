@@ -38,6 +38,7 @@ import { VatLinesGridFigure } from './vat-lines'
 import { FocusChipFigure } from './focus'
 import { MessageComposerFigure } from './composer'
 import { LedgerFiltersFigure } from './ledger'
+import { SelectionGridFigure } from './grid'
 
 type WithLocale = { locale: Locale; children?: React.ReactNode }
 
@@ -86,6 +87,7 @@ const FIGURES: Record<string, (props: WithLocale) => React.ReactNode> = {
   FocusChipFigure,
   MessageComposerFigure,
   LedgerFiltersFigure,
+  SelectionGridFigure,
 }
 
 export function visualComponents(locale: Locale) {

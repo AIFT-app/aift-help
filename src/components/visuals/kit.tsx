@@ -14,7 +14,7 @@
 
 import clsx from 'clsx'
 import { ui, type Locale } from '@/lib/i18n'
-import { appMono } from './fonts'
+import { appMono, appSans } from './fonts'
 import { ScaledStage } from './ScaledStage'
 import { ZoomFigure } from './ZoomFigure'
 
@@ -116,7 +116,7 @@ export function AppScreen({
   return (
     <div
       inert
-      className={clsx('app-screen overflow-hidden rounded-xl bg-white antialiased ring-1 ring-zinc-950/10', appMono.variable)}
+      className={clsx('app-screen overflow-hidden rounded-xl bg-white antialiased ring-1 ring-zinc-950/10', appMono.variable, appSans.variable)}
     >
       <ScaledStage minWidth={minWidth}>
         <div className="relative overflow-hidden" style={clipHeight ? { height: clipHeight } : undefined}>
