@@ -19,7 +19,7 @@ Bei einem Partner, für den kein Bankkonto hinterlegt ist, zeigt der Abschnitt s
 
 - **Auf einer Lieferantenrechnung**, auf der Karte zur Zahlungsfreigabe, unter dem Empfängerkonto.
 - **Auf der Seite der Zahlungsdatei**, auf jeder infrage kommenden Position.
-- **Bei einem verifizierten Partner**, im Abschnitt **Firmenregister**: was das Register sagt, was es ausgefüllt hat, die Abweichungen und ein Block **Unternehmensdaten** mit Rechtsform, Handelsregisternummer, Haupttätigkeit und den Zahlen aus dem letzten eingereichten Jahresabschluss.
+- **Bei einem verifizierten Partner**, im Abschnitt **Firmenregister**: die offenen Entscheidungen, Ihre Daten und die des Registers nebeneinander unter **Abgleich mit dem Register**, was das Register ausgefüllt hat, und ein eingeklappter Block **Unternehmensdaten** mit Rechtsform, Handelsregisternummer, Haupttätigkeit und den Zahlen aus dem letzten eingereichten Jahresabschluss.
 - **Im Verifizierungsdialog**, wenn Sie aus einer Gegenpartei einen Partner machen: Kennt das Register das Unternehmen, werden sein Firmenname, seine Steuernummer, sein Sitz und seine Haupttätigkeit angeboten, und **Diese Daten übernehmen** füllt sie aus.
 
 ## Was eine Prüfung auslöst
@@ -37,20 +37,29 @@ Jede Prüfung verbraucht eine der Registerabfragen dieses Monats. **Die Namenssu
 
 Die Daten des Registers werden höchstens alle 90 Tage aufgefrischt. Danach markiert der Abschnitt die Antwort als **Veraltet** und wartet auf Sie: Das Alter allein verbraucht nie eine Abfrage.
 
-## Abweichungen zur Prüfung
+## Abweichungen, und was Sie damit tun können
 
-Wo Ihre Daten und das Register nicht übereinstimmen, listet der Abschnitt das auf, statt etwas zu ändern. Jede Abweichung ist danach gekennzeichnet, wie wichtig sie ist: **Prüfen**, **Ansehen** oder **Info**.
+Wo Ihre Daten und das Register nicht übereinstimmen, ändert sich nichts von selbst. Der Abschnitt zeigt, wie viele Entscheidungen offen sind, jede als eigene Karte, und stellt beide Werte unten in der Tabelle **Abgleich mit dem Register** nebeneinander. Jede Karte ist danach gekennzeichnet, wie wichtig sie ist: **Prüfen**, **Ansehen** oder **Info**.
 
-- Das Unternehmen ist nicht mehr aktiv, zum Beispiel in Liquidation.
-- Die Steuernummer weicht ab.
-- Das Konto, das Sie führen, ist für dieses Unternehmen nicht eingetragen.
-- Das Konto gehört zu keiner bekannten Bankfiliale.
-- Der Name oder die Postleitzahl weicht ab. Adressen werden nur über die Postleitzahl verglichen, weil Freitextadressen zu unterschiedlich sind, um sie ehrlich zu vergleichen.
-- Das Register führt Konten, die Sie nicht haben: als eine Zeile mit Anzahl.
+| Die Abweichung | Was Sie tun können |
+| --- | --- |
+| Die Steuernummer weicht ab | **Übernehmen** schreibt die Steuernummer aus dem Register in den Partner. Nur die letzten drei Ziffern können abweichen, weil über die ersten acht geprüft wird. |
+| Der Sitz weicht ab (die Postleitzahl, weil Freitextadressen zu unterschiedlich sind, um sie ehrlich zu vergleichen) | **Übernehmen** schreibt den Sitz aus dem Register in den Partner. |
+| Beides, und die letzten beiden Ziffern der Steuernummer haben sich geändert | Eine Karte, **Das Unternehmen scheint umgezogen zu sein**, mit **Beides übernehmen**. Verlegt ein Unternehmen seinen Sitz in ein anderes Komitat, ändern sich auch die letzten beiden Ziffern seiner Steuernummer (der Code des Finanzamts). |
+| Das Register führt Konten, die Sie nicht haben | Eine Karte für alle, mit **Alle … hinzufügen**, oder **Hinzufügen** in einer einzelnen Zeile. |
+| Das Unternehmen ist nicht mehr aktiv, zum Beispiel in Liquidation | Nur ein Hinweis. **Zur Kenntnis genommen** blendet die Karte aus. |
+| Ein Konto, das Sie führen, ist für dieses Unternehmen nicht eingetragen oder gehört zu keiner bekannten Bankfiliale | Mit **Zu den Bankkonten** prüfen Sie es dort. |
+| Der Name weicht ab | Nur in der Tabelle. Der Partner wird nie aus dem Register umbenannt. |
+
+**Ein hinzugefügtes Konto bleibt unbestätigt.** Es ist bei den Bankkonten des Partners als „aus dem Firmenregister übernommen“ gekennzeichnet und kann erst in eine Zahlungsdatei, wenn jemand mit „Freigaben verwalten“ es bestätigt hat, wie jedes andere Konto. Siehe [Freigegebene Rechnungen bezahlen](/paying-approved-invoices).
+
+**So lassen** (auf der Kontenkarte **Nicht jetzt**) blendet eine Karte aus und kennzeichnet die Zeile mit **So belassen**. Das bleibt so, bis das Register einen anderen Wert meldet; dann erscheint die Karte von selbst wieder. Mit **Rückgängig** in der Zeile nehmen Sie es zurück. Das ändert nur, was dieser Abschnitt zeigt: Es bestätigt kein Konto und ändert nichts daran, was eine Zahlungsdatei zulässt.
+
+Jedes Übernehmen, Hinzufügen und So lassen erscheint im Verlauf des Partners.
 
 ## Was das Register ausfüllt
 
-Weiß das Register etwas, das Ihnen fehlt, werden genau vier Dinge ausgefüllt, und nur solange sie leer sind: die **Adresse**, das **Land**, die vollständige **Steuernummer**, wenn Sie deren erste acht Ziffern bereits haben, und die **Nummer der Organschaft**. Den Namen und die Bankkonten schreibt das Register nie. Bei einem Einzelunternehmer wird überhaupt nichts ausgefüllt.
+Weiß das Register etwas, das Ihnen fehlt, werden genau vier Dinge ausgefüllt, und nur solange sie leer sind: die **Adresse**, das **Land**, die vollständige **Steuernummer**, wenn Sie deren erste acht Ziffern bereits haben, und die **Nummer der Organschaft**. Den Namen und die Bankkonten schreibt das Register nie von selbst. Ein Konto, das es führt, kommt nur zum Partner, wenn jemand es hinzufügt, wie oben beschrieben. Bei einem Einzelunternehmer wird überhaupt nichts ausgefüllt.
 
 ## Automatisch bestätigte Konten
 
@@ -82,7 +91,7 @@ Die Steuernummer eines Einzelunternehmers wird an das Register gesendet, und die
 
 ## Wer es sehen und nutzen darf
 
-Um die Antworten des Registers zu sehen, brauchen Sie „Rechnungen und Banktransaktionen ansehen“. Um **Jetzt prüfen**, **Erneut prüfen** oder **Diese Steuernummer übernehmen** zu drücken, brauchen Sie „Stammdaten bearbeiten“. Siehe [Rollen & Berechtigungen](/roles-and-permissions).
+Um die Antworten des Registers zu sehen, brauchen Sie „Rechnungen und Banktransaktionen ansehen“. Um **Jetzt prüfen**, **Erneut prüfen** oder **Diese Steuernummer übernehmen** zu drücken und um einen Wert zu übernehmen, ein Konto hinzuzufügen oder eine Abweichung so zu lassen, brauchen Sie „Stammdaten bearbeiten“. Um ein hinzugefügtes Konto zu bestätigen, brauchen Sie „Freigaben verwalten“. Siehe [Rollen & Berechtigungen](/roles-and-permissions).
 
 ## Wohin die Daten gehen
 
