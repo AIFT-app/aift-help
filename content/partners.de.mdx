@@ -37,7 +37,7 @@ Die Seite enthält zwei Listen:
 - **Verifizierte Partner**: Ihre gepflegten Partner. **Archivierte anzeigen** blendet auch archivierte Partner ein.
 - **Nicht verifizierte Partner**: Namen, die auf Dokumenten aufgetaucht, aber noch nicht verknüpft sind, die aktivsten zuerst. Filter-Chips (**Alle**, **Rechnungen**, **Transaktionen**) und ein Badge **Quelle** in jeder Zeile zeigen, wo der Name zuerst gesehen wurde: **Rechnung**, **Transaktion** oder **Kontoauszug PDF**.
 
-Um eine ganze Partnerliste aus einer Tabelle einzubringen, nutzen Sie **Importieren** (siehe [Stammdaten importieren](/master-data-import)).
+Um eine ganze Partnerliste aus einer Tabelle einzubringen, nutzen Sie **Importieren** (siehe [Stammdaten importieren](/master-data-import)). Hat der Arbeitsbereich Business Central, öffnet **Importieren** die Wahl zwischen **Aus einer Datei** und **Aus Business Central**.
 
 ## Partner hinzufügen und verifizieren
 
@@ -69,7 +69,7 @@ Der Reiter **Erkennung** eines Partners. Die Nummern entsprechen der Liste darun
 - **Identität**: Name, Partner-ID, Steuernummer und Land, direkt bearbeitet und mit **Speichern** übernommen. Das Steuernummernfeld akzeptiert eine inländische Steuernummer, eine USt-IdNr. oder beides; fügen Sie ein, was auf dem Dokument steht, und AI Finance Team strukturiert es (**Inländisch & EU getrennt bearbeiten** erfasst beide ausdrücklich). Das Paar wird länderabhängig geprüft, wie unter [Unternehmen verwalten](/master-data-entities#wie-steuernummer-und-ust-idnr-zusammenhängen) beschrieben.
 - **Kontakt**: die Adresse.
 - **Partnerart**: **Gewöhnlicher Partner**, **Eines unserer eigenen Unternehmen** (siehe [Interne Überweisungen](#umbuchungen-zwischen-ihren-eigenen-konten)) oder **Steht für eine Gruppe, die nicht einzeln identifiziert werden kann** (siehe [Rechnungen an Privatpersonen](#rechnungen-an-privatpersonen)).
-- **Firmenregister** und **Business Central**, sofern Ihr Arbeitsbereich sie hat.
+- **Firmenregister** und **Business Central**, sofern Ihr Arbeitsbereich sie hat. Der Abschnitt **Firmenregister** zeigt, was das Register führt, listet die Unterschiede auf, die auf eine Entscheidung warten, und lässt Sie einen Wert übernehmen oder ein Konto hinzufügen. Siehe [Lieferanten im Firmenregister prüfen](/company-register-check).
 
 ### Reiter Erkennung
 
@@ -77,7 +77,7 @@ Der Reiter **Erkennung** eines Partners. Die Nummern entsprechen der Liste darun
 
 **Namensmuster** erfassen Namen, die sich jedes Mal ändern, etwa auf Kartenabrechnungen, bei denen der Händlername eine Referenz enthält: `LinkedIn*` verknüpft sowohl „LinkedIn*P3035867117“ als auch „LinkedInPreC *34952934“. Ein Muster braucht mindestens vier Buchstaben vor dem `*`. Während Sie tippen, zeigt die Vorschau, wie viele nicht verifizierte Namen es verknüpfen würde und wie viele zu anderen Partnern gehören; **Passende Gegenparteien jetzt verknüpfen** verknüpft die bereits vorhandenen.
 
-**Bankkonten** sind die Konten, auf die an den Partner gezahlt wird. Ein von einer Rechnung gelesenes oder aus einer Bankzuordnung übernommenes Konto ist ein Vorschlag und wird als **Nicht bestätigt** angezeigt, bis eine Person mit der Berechtigung „Freigaben verwalten“ auf **Bestätigen** klickt. Nur ein bestätigtes Konto kann in eine Zahlungsdatei aufgenommen werden: Das ist die Kontrolle gegen Rechnungsbetrug (siehe [Freigegebene Rechnungen bezahlen](/paying-approved-invoices)). Jedes Konto hilft außerdem, die Banktransaktionen des Partners zu erkennen.
+**Bankkonten** sind die Konten, auf die an den Partner gezahlt wird. Ein Konto, das von einer Rechnung gelesen, aus einer Bankzuordnung erfasst oder **aus dem Firmenregister übernommen** wurde, ist ein Vorschlag und wird als **Nicht bestätigt** angezeigt, bis eine Person mit der Berechtigung „Freigaben verwalten“ auf **Bestätigen** klickt - oder, in einem einzigen, engen Fall, das Register das erste Konto selbst bestätigt (siehe [Lieferanten im Firmenregister prüfen](/company-register-check)). Nur ein bestätigtes Konto kann in eine Zahlungsdatei aufgenommen werden: Das ist die Kontrolle gegen Rechnungsbetrug (siehe [Freigegebene Rechnungen bezahlen](/paying-approved-invoices)). Jedes Konto hilft außerdem, die Banktransaktionen des Partners zu erkennen.
 
 ### Reiter Regeln
 

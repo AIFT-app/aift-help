@@ -37,7 +37,7 @@ Az oldalon két lista található:
 - **Hitelesített partnerek**: az Ön által gondozott partnerek. Az **Archiváltak megjelenítése** az archivált partnereket is megmutatja.
 - **Nem hitelesített partnerek**: dokumentumokon már megjelent, de még össze nem kapcsolt nevek, elöl a legaktívabbakkal. A szűrőcsipek (**Összes**, **Számlák**, **Tranzakciók**) és az egyes sorokon látható **Forrás** jelzés megmutatja, hol bukkant fel először a név: **Számla**, **Tranzakció** vagy **Bankkivonat PDF**.
 
-Ha egy teljes partnerlistát szeretne behozni táblázatból, használja az **Importálás** gombot (lásd: [Törzsadatok importálása](/master-data-import)).
+Ha egy teljes partnerlistát szeretne behozni táblázatból, használja az **Importálás** gombot (lásd: [Törzsadatok importálása](/master-data-import)). Ha a munkaterületen elérhető a Business Central, az **Importálás** a **Fájlból** és a **Business Centralból** lehetőség közötti választást nyitja meg.
 
 ## Partnerek hozzáadása és hitelesítése
 
@@ -69,7 +69,7 @@ Egy partner **Felismerés** füle. A számok az alábbi listának felelnek meg. 
 - **Azonosítás**: a név, a partner azonosító, az adószám és az ország, helyben szerkeszthető, **Mentés** gombbal. Az adószám mező belföldi adószámot, közösségi adószámot vagy mindkettőt elfogad; illessze be, ami a dokumentumon szerepel, és az AI Finance Team rendszerezi (a **Belföldi és közösségi külön szerkesztése** külön-külön rögzíti a kettőt). A párt a rendszer országtól függő módon ellenőrzi, ahogyan azt a [Cégek kezelése](/master-data-entities#hogyan-függ-össze-az-adószám-és-a-közösségi-adószám) cikk leírja.
 - **Elérhetőség**: a cím.
 - **Partner típusa**: **Hétköznapi partner**, **A saját egyik cégünk** (lásd: [Belső átvezetések](#átvezetés-a-saját-számlái-között)), vagy **Egyenként nem azonosítható partnerek csoportját képviseli** (lásd: [Magánszemélynek kiállított számlák](#magánszemélynek-kiállított-számlák)).
-- **Cégjegyzék** és **Business Central**, ha a munkaterületén elérhetők.
+- **Cégjegyzék** és **Business Central**, ha a munkaterületén elérhetők. A **Cégjegyzék** szakasz megmutatja, mit tart nyilván a cégjegyzék, felsorolja a döntésre váró eltéréseket, és lehetővé teszi egy érték átvételét vagy egy bankszámla hozzáadását. Lásd: [Szállítók ellenőrzése a cégjegyzékben](/company-register-check).
 
 ### Felismerés fül
 
@@ -77,7 +77,7 @@ Az **Alternatív nevek** felsorolja az összes többi nevet, amelyen a partnert 
 
 A **Névminták** az alkalomról alkalomra változó neveket kapják el, például a kártyakivonatokon, ahol a kereskedő neve hivatkozást is tartalmaz: a `LinkedIn*` a „LinkedIn*P3035867117” és a „LinkedInPreC *34952934” nevet is összekapcsolja. Egy mintában legalább négy betűnek kell állnia a `*` előtt. Gépelés közben az előnézet mutatja, hány nem hitelesített nevet kapcsolna össze, és hány tartozik más partnerekhez; az **Illeszkedő partnerek összekapcsolása most** a már meglévő neveket kapcsolja össze.
 
-A **Bankszámlák** azok a bankszámlák, amelyekre a partnernek utalnak. A számláról leolvasott vagy banki párosításból rögzített bankszámla csak javaslat, és **Nincs megerősítve** jelzéssel látszik, amíg egy „Jóváhagyások kezelése” jogosultsággal rendelkező személy a **Megerősítés** gombra nem kattint. Utalási fájlba csak megerősített bankszámla kerülhet: ez a védelem a számlacsalás ellen (lásd: [Jóváhagyott számlák kifizetése](/paying-approved-invoices)). Minden bankszámla a partner banki tranzakcióinak felismerését is segíti.
+A **Bankszámlák** azok a bankszámlák, amelyekre a partnernek utalnak. A számláról leolvasott, banki párosításból rögzített vagy a cégjegyzékből átvett bankszámla (ez utóbbi **a cégjegyzékből hozzáadva** jelölést kapja) csak javaslat, és **Nincs megerősítve** jelzéssel látszik, amíg egy „Jóváhagyások kezelése” jogosultsággal rendelkező személy a **Megerősítés** gombra nem kattint - vagy, egyetlen szűk esetben, amíg maga a cégjegyzék meg nem erősíti az első bankszámlát (lásd: [Szállítók ellenőrzése a cégjegyzékben](/company-register-check)). Utalási fájlba csak megerősített bankszámla kerülhet: ez a védelem a számlacsalás ellen (lásd: [Jóváhagyott számlák kifizetése](/paying-approved-invoices)). Minden bankszámla a partner banki tranzakcióinak felismerését is segíti.
 
 ### Szabályok fül
 

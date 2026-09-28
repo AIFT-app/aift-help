@@ -37,7 +37,7 @@ The page has two lists:
 - **Verified partners**: your curated partners. **Show archived** adds archived ones.
 - **Unverified partners**: names that have appeared on documents but are not linked yet, the most active first. Filter chips (**All**, **Invoices**, **Transactions**) and a **Source** badge on each row tell you where the name was first seen: **Invoice**, **Transaction** or **Statement PDF**.
 
-To bring in a whole list of partners from a spreadsheet, use **Import** (see [Importing Master Data](/master-data-import)).
+To bring in a whole list of partners from a spreadsheet, use **Import** (see [Importing Master Data](/master-data-import)). Where the workspace has Business Central, **Import** opens a choice of **From a file** or **From Business Central**.
 
 ## Adding and verifying partners
 
@@ -69,7 +69,7 @@ The **Recognition** tab of a partner. The numbers match the list below. The part
 - **Identity**: the name, partner ID, tax number and country, edited in place with **Save**. The tax number field accepts a domestic tax number, an EU VAT number or both; paste what is on the document and AI Finance Team structures it (**Edit local & EU separately** enters the two explicitly). The pair is checked the country-aware way described in [Managing Companies](/master-data-entities#how-the-tax-id-and-eu-vat-number-relate).
 - **Contact**: the address.
 - **Partner kind**: **Ordinary partner**, **One of our own companies** (see [Internal transfers](#internal-transfers-between-your-own-accounts)), or **Stands for a group that cannot be identified individually** (see [Invoices to private individuals](#invoices-to-private-individuals)).
-- **Company register** and **Business Central**, where your workspace has them.
+- **Company register** and **Business Central**, where your workspace has them. The register section shows what the register holds, lists the differences waiting for a decision, and lets you take a value over or add an account. See [Checking Suppliers Against the Company Register](/company-register-check).
 
 ### Recognition tab
 
@@ -77,7 +77,7 @@ The **Recognition** tab of a partner. The numbers match the list below. The part
 
 **Name patterns** catch names that change every time, such as card statements where the merchant name carries a reference: `LinkedIn*` links both "LinkedIn*P3035867117" and "LinkedInPreC *34952934". A pattern needs at least four letters before the `*`. While you type, the preview shows how many unverified names it would link and how many belong to other partners; **Link matching partners now** links the existing ones.
 
-**Bank accounts** are the accounts the partner is paid to. An account read off an invoice or captured from a bank match is a proposal, shown as **Not confirmed**, until a person holding "Manage approvals" clicks **Confirm**. Only a confirmed account can go into a payment file: this is the control against invoice fraud (see [Paying Approved Invoices](/paying-approved-invoices)). Every account also helps recognise the partner's bank transactions.
+**Bank accounts** are the accounts the partner is paid to. An account read off an invoice, captured from a bank match, or **added from the company register** is a proposal, shown as **Not confirmed**, until a person holding "Manage approvals" clicks **Confirm** - or, in one narrow case, the register confirms the first account itself (see [Checking Suppliers Against the Company Register](/company-register-check)). Only a confirmed account can go into a payment file: this is the control against invoice fraud (see [Paying Approved Invoices](/paying-approved-invoices)). Every account also helps recognise the partner's bank transactions.
 
 ### Rules tab
 
