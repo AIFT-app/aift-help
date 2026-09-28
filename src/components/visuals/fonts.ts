@@ -2,6 +2,13 @@
 // Geist Mono the same way (src/app/layout.tsx) and maps `font-mono` to it.
 // Declared here rather than in the help layout so only pages with app screens
 // pay for it.
-import { Geist_Mono } from 'next/font/google'
+import { Geist, Geist_Mono } from 'next/font/google'
 
 export const appMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono' })
+
+// The app's sans face. aift-web maps `--font-sans: var(--font-geist-sans)`, so
+// anything inside a screen carrying `font-sans` — the keyboard hints under the
+// spreadsheet grid, for one — renders in Geist there and not in the body Arial.
+// Without it the CSS diff reports
+// `fontFamily: app=Geist, "Geist Fallback" help=Inter, ...`.
+export const appSans = Geist({ subsets: ['latin'], variable: '--font-geist-sans' })
