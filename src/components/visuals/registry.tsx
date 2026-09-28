@@ -35,6 +35,9 @@ import { PartnerRulesFigure } from './partner-rules'
 import { VatSetupActionsFigure, VatSetupPreviewFigure } from './vat-setup'
 import { DocumentsListFigure } from './documents'
 import { VatLinesGridFigure } from './vat-lines'
+import { FocusChipFigure } from './focus'
+import { MessageComposerFigure } from './composer'
+import { LedgerFiltersFigure } from './ledger'
 
 type WithLocale = { locale: Locale; children?: React.ReactNode }
 
@@ -80,6 +83,9 @@ const FIGURES: Record<string, (props: WithLocale) => React.ReactNode> = {
   VatSetupPreviewFigure,
   DocumentsListFigure,
   VatLinesGridFigure,
+  FocusChipFigure,
+  MessageComposerFigure,
+  LedgerFiltersFigure,
 }
 
 export function visualComponents(locale: Locale) {
