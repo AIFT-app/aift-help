@@ -225,10 +225,13 @@ export function LedgerFiltersFigure({
                   >
                     <span>{ui[`ledger_explorer.${t.key}` as keyof typeof ui]}</span>
                     <Badge color={isActive ? 'blue' : 'zinc'}>{t.count}</Badge>
+                    {/* After the FIRST tab's badge, in the gap before the next
+                        one. A pin after the last tab lands past the screen's
+                        right edge and is clipped away. */}
+                    {isActive ? <Pin n={5} at="right" cancel="-mr-2" /> : null}
                   </span>
                 )
               })}
-              <Pin n={5} at="right" cancel="" />
             </div>
           </div>
         </AppScreen>
