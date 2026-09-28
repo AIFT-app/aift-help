@@ -14,7 +14,7 @@ Eine Rechnung gilt erst als bezahlt, wenn die Banktransaktion eintrifft und ihr 
 
 ## Wo Sie es finden
 
-Öffnen Sie **Zahlungsdatei** in der Seitenleiste, direkt unter **Freigaben**. Auch die Freigabe-Übersicht hat eine Schaltfläche **Zahlungsdatei**. Sie brauchen die Berechtigung „Zahlungsdatei exportieren“; standardmäßig haben sie die Finanzleitung und der Buchhaltungsadministrator, und Ihr Arbeitsbereichsadministrator kann sie über eine Rolle oder eine Ausnahme pro Mitglied jedem geben. Siehe [Rollen & Berechtigungen](/roles-and-permissions).
+Öffnen Sie **Zahlungsdatei** in der Seitenleiste, direkt unter **Freigaben**. Auch **Freigaben → Übersicht** hat eine Schaltfläche **Zahlungsdatei**, für Personen mit „Freigaben verwalten“. Sie brauchen die Berechtigung „Zahlungsdatei exportieren“; standardmäßig haben sie der Buchhalter-Admin, die Finanzleitung und der Finanzadmin, und Ihr Arbeitsbereichsadministrator kann sie über eine Rolle oder eine Ausnahme pro Mitglied jedem geben, der auch „Rechnungen und Banktransaktionen ansehen“ hat - die Zahlungsdatei ist eine der Berechtigungen, die das braucht. Siehe [Rollen & Berechtigungen](/roles-and-permissions).
 
 Die Seite funktioniert nur, wenn die Zahlungsfreigabe für das Unternehmen eingeschaltet ist. Sonst steht dort **Zahlungsfreigaben sind ausgeschaltet**; siehe [Zahlungsfreigaben einrichten](/setting-up-approvals).
 
@@ -117,6 +117,8 @@ Die Tabelle funktioniert mit jeder Bank, weil eine Person sie erfasst oder die B
 ## Häufige Fragen
 
 **Kann ich eine nicht freigegebene Rechnung bezahlen?** Nicht über diese Seite: Sie listet nur freigegebene Rechnungen. Rechnungen, die als ohne Freigabe markiert sind, erscheinen auch nicht; bezahlen Sie diese wie gewohnt im Onlinebanking.
+
+**Eine Rechnung ist von allen freigegeben und steht trotzdem nicht hier.** Ein Prüfschritt kann sie zurückhalten, *bevor* der Zahlungsfreigeber sie überhaupt sieht: Wo die Erfassungs- oder die Buchungsfreigabe eingeschaltet ist, steht auf der Zahlungsfreigabe-Karte **Wartet auf Erfassung** oder **Wartet auf Buchung**, statt dass sie **Freigeben** anbietet. Eine solche Rechnung ist noch nicht zur Zahlung freigegeben und erscheint deshalb nirgendwo auf dieser Seite, auch nicht unter „Noch nicht aufnehmbar“. Siehe [Erfassungs- und Buchungsfreigabe](/filing-and-bookkeeping-approval).
 
 **Die Seite zeigt „Zahlungsfreigaben sind ausgeschaltet“.** Die Liste entsteht aus Freigaben und bleibt deshalb leer, bis die Zahlungsfreigabe für das Unternehmen unter Einstellungen, Freigaberegeln eingeschaltet ist. Siehe [Zahlungsfreigaben einrichten](/setting-up-approvals).
 

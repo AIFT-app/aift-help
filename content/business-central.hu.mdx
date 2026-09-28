@@ -6,15 +6,18 @@ Az AI Finance Team összekapcsolható a Microsoft Dynamics 365 Business Centrall
 
 ## Mit olvasunk ki, és mit írunk be
 
-Az AI Finance Team **kiolvassa** a Business Centralban lévő cégeket, és minden párosított cégnél a főkönyvi számait, áfa- és könyvelési csoportjait, mennyiségi egységeit, pénznemeit, bankszámláit, fizetési módjait és fizetési feltételeit, dimenzióit és dimenzióértékeit, valamint a szállítóit. **Könyvelési tételt, számlát és egyenleget nem olvasunk.**
+Az AI Finance Team **kiolvassa** a Business Centralban lévő cégeket, és minden párosított cégnél a főkönyvi számait, áfa- és könyvelési csoportjait, mennyiségi egységeit, pénznemeit, bankszámláit, fizetési módjait és fizetési feltételeit, dimenzióit és dimenzióértékeit, valamint a szállítóit. **Könyvelési tételt és egyenleget nem olvasunk.** Bizonylatot egyetlen esetben olvasunk vissza: azokat a bejövő számlákat, amelyeket esetleg mi magunk hoztunk létre, amikor meg kell tudnunk, mi lett az egyikkel.
 
-Pontosan egyetlen dolgot **ír be** az AI Finance Team: egy **szállítókartont**, az Ön egyik partneréből, amikor valaki megnyomja a gombot a feladási képernyőn. Ez is ki van kapcsolva, amíg a munkaterületén külön be nem kapcsoljuk.
+Az AI Finance Team kétféle rekordot **ír be**, és mindkettő egy második kapcsoló mögött van, amelyet csak mi tudunk bekapcsolni:
+
+- egy **szállítókarton**, az Ön egyik partneréből;
+- egy **bejövő számla**, az Ön egyik itteni bejövő számlájából.
 
 De még akkor is:
 
-- **Semmit nem könyvelünk le.** Se naplót, se tételt, se bizonylatot.
-- **Meglévő szállítókartont soha nem írunk felül.** Az azonos adószámú kartont inkább összekötjük az Ön partnerével.
-- **Semmit nem törlünk.**
+- **Semmit nem könyvelünk le.** A bejövő számla **piszkozatként** jön létre, és ott is marad. A könyvelés elérhető a felületen, és szándékosan nem élünk vele: a rossz adatból lekönyvelt bizonylatot sztornózni kell, ami végleges nyomot hagy a főkönyvben, a piszkozat viszont egyetlen kattintással törölhető. A könyvelés a könyvelő dolga marad, a Business Centralon belül.
+- **Meglévő rekordot soha nem írunk felül.** Az azonos adószámú szállítókartont inkább összekötjük az Ön partnerével, meglévő bizonylathoz pedig soha nem nyúlunk.
+- **Csak azt töröljük, amit mi hoztunk létre.** Két funkció töröl, mindkettő a feladási képernyőn: a szonda eltávolítja az éppen létrehozott, eldobható piszkozatot, a takarítás pedig azokat a piszkozatokat, amelyek feladását az AI Finance Team feljegyezte, de összekötni soha nem sikerült. Semmi mást nem törlünk, és semmi olyat, amit a Business Central nem piszkozatnak tart.
 
 ## A kapcsolat beállítása
 
@@ -126,7 +129,7 @@ A darabszámokat olvassa figyelmesen. Egy üres cella három különböző dolgo
 
 A Business Central API-ján keresztül nem lehet főkönyvi számot létrehozni, ezért a számlatükör az ügyfélé marad. Ahhoz, hogy egy kategória főkönyvi számra mutathasson, hozza be a főkönyvi számokat kategóriaként.
 
-Nyissa meg a **Törzsadatok → Könyvelési kategóriák** oldalt, és válassza a **Számlatükör beolvasása a Business Centralból** gombot. A gomb a **Számla** és a **Pénzforgalmi** fülön is ott van.
+Nyissa meg a **Törzsadatok → Könyvelési kategóriák** oldalt, és válassza az **Importálás**, majd a **Számlatükör beolvasása a Business Centralból** lehetőséget. A legördülő menü a **Számla** és a **Pénzforgalmi** fülön is ott van.
 
 A **Mi legyen belőlük** választó dönti el, mi lesz minden bejelölt főkönyvi számból: **Számla kategória**, **Pénzforgalmi kategória**, vagy **Mindkettő**, ami mindkettőből egyet készít ugyanazzal a főkönyvi számmal. Ezek utána külön kategóriák maradnak, az egyik átnevezése nem nevezi át a másikat.
 
@@ -140,7 +143,7 @@ A **Pénzforgalmi** fülön a **Másolás a számla kategóriákból** gomb mind
 
 ## Szállítókból partnerek
 
-A **Törzsadatok → Partnerek** oldalon, valamint az Eltérések fülön a **Hozzáadás a Business Centralból** gomb hozza be a szállítókartonokat partnerként. Az adószám alapján párosítjuk őket, így az itt már meglévő szállítót ilyenként mutatjuk, és nem lehet kétszer hozzáadni. Az adószám nélküli szállítókartonokat is hozzá lehet adni, de utána semmi nem tudja őket automatikusan párosítani.
+A **Törzsadatok → Partnerek** oldalon az **Importálás → Business Centralból**, az Eltérések fülön pedig a **Hozzáadás a Business Centralból** hozza be a szállítókartonokat partnerként. Az adószám alapján párosítjuk őket, így az itt már meglévő szállítót ilyenként mutatjuk, és nem lehet kétszer hozzáadni. Az adószám nélküli szállítókartonokat is hozzá lehet adni, de utána semmi nem tudja őket automatikusan párosítani.
 
 ## ÁFA-hozzárendelés
 
@@ -148,7 +151,7 @@ A **Törzsadatok → ÁFA-kódok → Business Central** oldal minden (termék- v
 
 ## Partnerek feladása szállítóként
 
-A **Törzsadatok → Business Central → Feladás** oldal a partnereiből szállítókartonokat hoz létre a Business Centralban. Az AI Finance Team csak itt ír az Ön könyvelőrendszerébe, és ehhez három dolog kell:
+A **Törzsadatok → Business Central → Feladás** oldal a partnereiből szállítókartonokat hoz létre a Business Centralban. Ez az egyik a két hely közül, ahol az AI Finance Team az Ön könyvelőrendszerébe ír; a másik a számlák feladása, lentebb. Ehhez három dolog kell:
 
 - az írás bekapcsolása a munkaterületen, amit csak mi tudunk megtenni;
 - a „Feladás a könyvelőprogramba” jogosultság, ami alapból a Könyvelő adminé;
@@ -158,12 +161,47 @@ Kiválasztja a partnereket, majd azt, hogy melyik cégekben jöjjenek létre, é
 
 A visszakapott szállítószám a partner oldalán, az AI Finance Team-beli azonosítója alatt jelenik meg, cégenként egy sorban. Ez a szám a Business Centralban egy céghez tartozik, ezért ne írja be a partner saját azonosítómezőjébe.
 
+## Számlák feladása
+
+Az **Exportok → Business Central** oldalról mennek fel a bejövő számlák, piszkozat bejövő számlaként. Ez más képernyő, mint a szállítói feladás: másik menüben van, és másik jogosultság kell hozzá.
+
+A felső fele csak olvasható tölcsér: hány a **feladható számla**, hány a **számla az időszakban**, és **mi akasztja meg a többit**. Kilenc dolog akaszthatja meg a számlát, és mindig csak az elsőként megtalált látszik: nincs cég a számlán, a cég nincs párosítva, a cég adatai nincsenek beolvasva, a partner nincs ellenőrizve, a partnernek nincs szállítókartonja abban a cégben, van kategória nélküli sor, a sor kategóriájához tartozó főkönyvi szám hiányzik a cégből, hiányzik a számlaszám vagy a teljesítés dátuma, és **a könyvelési jóváhagyás nincs meg** (lásd: [Iktatási és könyvelési jóváhagyás](/filing-and-bookkeeping-approval)). Mindegyik lenyitható a mögötte álló számlákra, egy linkkel, amely oda visz, ahol javítani lehet. Kettő inkább figyelmeztetés, mint akadály: a megfeleltetés nélküli áfapár, és az a deviza, amelyet az adott cég nem tart nyilván.
+
+Csak bejövő számlákat veszünk figyelembe, duplikátumot és archiváltat soha. **A számla saját PDF-je nem megy fel**, és a hiányzó dokumentum soha nem akadályozza a feladást.
+
+### Amit a feladás előtt tudni kell
+
+- **Egy gombnyomással legfeljebb 25 számla megy.**
+- **Három egymás utáni hiba után a futás leáll**, a maradékot pedig *Nem próbáltuk meg* jelöléssel hagyja, így egyetlen rossz beállítás nem égeti el az egész köteget.
+- Minden számla a saját eredményével jön vissza: **Létrejött**, **Nem sikerült**, **Nem tudjuk**, **Nem indult el** vagy **Nem próbáltuk meg**.
+
+**A „Nem tudjuk” az, ami számít.** Azt jelenti, hogy a kérés elment, a válasz pedig nem jött vissza. Ne küldje egyszerűen újra: a Business Central **nem** utasítja vissza a második bejövő számlát ugyanazzal a szállítói számlaszámmal, így a vaktában indított újraküldés két piszkozatot hagyhat egyetlen számla után. Használja a **Félbemaradt küldések rendezése** gombot: az megkérdezi a Business Centraltól, mi történt valójában, és nem küld semmit.
+
+Ami már fent van, kikerül a feladható számlák közül, és a képernyő megmondja, a kijelöléséből mennyi van már bent a Business Centralban.
+
+### A karbantartó gombok
+
+A **Feladás** mellett négy gomb áll. Ezek akkor is látszanak, ha éppen semmi nem feladható: az ügyfél főkönyvében bent felejtett piszkozatot ugyanis nem látja senki, akinek nincs Business Central-belépése.
+
+- A **Szonda** valódi, eldobható piszkozatot hoz létre egy valódi számlából, majd törli is. Megválaszolja, hogy ez a Business Central elfogadja-e ugyanazt a szállítói számlaszámot másodszor is, és megmutatja egymás mellett, mit küldtünk és mit tárolt el a Business Central.
+- A **Mit ad a BC a szállítóról** beolvas egy szállítókartont, és semmit nem ír.
+- A **Félbemaradt küldések rendezése** megkérdezi, mi lett azzal a küldéssel, amelynek a válasza elveszett. Sem nem küld, sem nem töröl.
+- A **Bent maradt piszkozatok keresése** megtalálja azokat a piszkozatokat, amelyek feladását feljegyeztük, de összekötni soha nem sikerült. A törlésük külön, piros **Törlés a Business Centralból** gomb: az ellenőrzés és a törlés szándékosan két lépés.
+
+## Fizetési módok
+
+A **Törzsadatok → Business Central → Fizetési módok** oldal az AI Finance Team minden fizetési módját (átutalás, készpénz, kártya, utalvány, egyéb) egyetlen Business Central-kódhoz rendeli, munkaterületi alapértelmezésként vagy cégenként. Kódot csak ott javasolunk, ahol pontosan egy Business Central-kód illeszkedik az adott fizetési módra.
+
+A hozzárendelést közvetlenül a piszkozat létrehozása után írjuk rá, mert a felületen magán a bizonylaton nincs fizetésimód-mező. **A hiányzó hozzárendelés nem hiba**, és soha nem akadályozza a feladást. Egy-egy számla a saját fizetési fülén felülírhatja a hozzárendelést, a feladási lista pedig megmutatja, melyik számla milyen kóddal megy fel.
+
 ## Ki mit tehet
 
-Az összekötéshez, a szétkapcsoláshoz és a párosításhoz a „Kapcsolatok kezelése” jogosultság kell, amely alapból a Könyvelő adminé és a Pénzügyi vezetőé. Egyéni szerepkör vagy kivétel ezen változtathat. Mindenki más látja az állapotot, de nem tudja módosítani. A feladáshoz a fentiek szerint külön jogosultság kell.
+Az összekötéshez, a szétkapcsoláshoz és a párosításhoz a „Kapcsolatok kezelése” jogosultság kell, amely alapból a Könyvelő adminé és a Pénzügyi vezetőé. Egyéni szerepkör vagy kivétel ezen változtathat. Mindenki más látja az állapotot, de nem tudja módosítani.
+
+Ahhoz, hogy bármi bekerüljön a Business Centralba, **két** jogosultság kell: a „Könyvelési exportok futtatása”, hogy egyáltalán elérje a feladási képernyőt, ez a Könyvelő adminnak és a Könyvelőnek van meg, és a „Feladás a könyvelőprogramba” a tényleges feladáshoz, ez pedig csak a Könyvelő adminnak. Az a könyvelő, akinek a második nincs meg, meg tudja nyitni és el tudja olvasni a képernyőt, de minden író gomb elutasítja.
 
 ## Szétkapcsolás
 
-A **Beállítások → Business Central kapcsolat** oldalon a **Szétkapcsolás**. A megerősítés megmondja, mi tűnik el: a párosítások, a lemásolt törzsadat és az ÁFA-hozzárendelések törlődnek, míg a cégei, a kategóriái, a partnerei és a szállítókartonokra mutató kapcsolatok megmaradnak.
+A **Beállítások → Business Central kapcsolat** oldalon a **Szétkapcsolás**. A megerősítés megmondja, mi tűnik el: a párosítások, a lemásolt törzsadat és az ÁFA-hozzárendelések törlődnek. **A fizetésimód-hozzárendelés is törlődik**, amit a párbeszédpanel nem említ. A cégei, a kategóriái, a partnerei, a szállítókartonokra mutató kapcsolatok és annak nyilvántartása, hogy mely számlák mentek fel, mind megmarad.
 
 Az újracsatlakozáshoz **mindkét jóváhagyás újra kell**, és minden céget újra kell párosítani. A Microsoft-rendszergazdájuk a saját Microsoft 365-jükben is visszavonhatja a jóváhagyást, anélkül hogy minket értesítene.
