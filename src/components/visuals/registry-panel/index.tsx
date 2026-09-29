@@ -97,7 +97,7 @@ export function RegistryPanelFigure({ locale, children }: { locale: Locale; chil
                     </div>
                   </div>
                   <div className="flex flex-wrap gap-2">
-                    <Button outline className={SMALL_BTN} title={k('costs_a_lookup')}>
+                    <Button outline className={SMALL_BTN}>
                       {k('revalidate')}
                     </Button>
                   </div>
@@ -288,8 +288,6 @@ export function RegistryPanelFigure({ locale, children }: { locale: Locale; chil
                       and not focusable, which the figure requires. */}
                   <a className="mt-2 inline-block text-xs text-zinc-500 underline">{k('action.go_to_bank_accounts')}</a>
                 </div>
-
-                <Text className="text-xs">{k('costs_a_lookup')}</Text>
               </div>
             </section>
           </div>
