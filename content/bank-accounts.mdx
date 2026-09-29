@@ -41,6 +41,8 @@ The dialog lists the accounts your bank returned, with the IBAN and the currency
 - Give every ticked account a **company**. **Confirm and start importing** stays disabled until each one has it, so the workspace needs at least one company first.
 - Click **Confirm and start importing**.
 
+> **One approval per bank login.** Some banks keep only your latest approval for each login. If you hold several accounts at one bank, tick them all in the same round, both on your bank's page and in this list. Connecting the same bank again later with fewer accounts can switch off the ones you left out.
+
 Two things to expect here. The dialog cannot be closed once it is open, because the consent has already been granted. And it may say "Loading accounts…" for up to half a minute, because the provider is still processing the consent; it retries on its own.
 
 The first import runs straight away and takes a few minutes, depending on how far back you asked it to go.
@@ -71,6 +73,8 @@ Open banking consent expires. **How long it lasts is your bank's decision**, com
 
 Seven days before that date the card turns amber and says **Expires in N days**. The connection keeps working in that week: transactions still arrive twice a day and **Sync now** still works. Use the week to renew. **On the expiry date syncing stops** and the card shows **Expired**.
 
+A bank can also withdraw access before that date, for example when a newer approval for the same login replaces this one, or when you revoke it in your internet bank. The card then shows **Expired** at the next sync and syncing stops. Connect the bank again to continue.
+
 To carry on, connect the same bank again. AI Finance Team recognises it as a renewal, so it does not ask about history again and asks the bank for the longest period it allows. Your existing transactions and everything done with them are kept.
 
 **Mind the gap.** If a consent lapsed before you renewed it, the days between the last sync and the earliest date the provider will now return cannot be recovered from the bank. The card names that period. Fill it from a statement: see [Uploading Bank Statements](/bank-statement-upload).
@@ -79,9 +83,9 @@ To carry on, connect the same bank again. AI Finance Team recognises it as a ren
 
 **Disconnect** on an account stops it syncing. The transactions already imported stay in the workspace; nothing is deleted. You can connect the account again at any time.
 
-**Remove** takes a card off the page entirely. It works only on a connection that is disconnected or in error, and only for the finance lead who created it. A connection that has expired cannot be removed, so an old card may stay on the page beside the new one after a renewal.
+**Remove** takes a card off the page entirely, and its accounts stop importing. It works on any connection that no longer syncs (expired, disconnected, in error or not finished), and on a connection with no active account, for example an approval whose accounts were never saved. Any finance lead can remove a card, not only the one who created it. When you connect the same bank again, the old cards the new approval replaces are removed for you.
 
-**Disconnect** appears while a connection is active or about to expire, **Remove** once it is disconnected or in error. Both are only for the finance lead.
+**Disconnect** appears while a connection is active or about to expire, **Remove** once it no longer syncs. Both are only for the finance lead.
 
 ## Troubleshooting
 
@@ -93,6 +97,12 @@ The first import takes a few minutes. Reload the transactions page, then check t
 
 **An account I expected is not in the list.**
 That is not a rate limit (those arrive with a placeholder name). Run the connection again.
+
+**The card says Expired before its date.**
+Your bank withdrew access early. Connect the bank again and tick every account you want to keep at that bank, including accounts shown on other cards for the same bank.
+
+**A card says Not finished.**
+The connection was started but never approved at the bank. Remove it, or connect the bank again.
 
 **The card offers Re-authorize.**
 It only tells you to use **Connect a bank**, which is the real way to renew a consent.

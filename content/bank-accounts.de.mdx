@@ -41,6 +41,8 @@ Der Dialog listet die Konten auf, die Ihre Bank zurückgegeben hat, mit IBAN und
 - Weisen Sie jedem angehakten Konto ein **Unternehmen** zu. **Bestätigen und Import starten** bleibt deaktiviert, bis jedes eines hat, der Arbeitsbereich braucht also zuerst mindestens ein Unternehmen.
 - Klicken Sie auf **Bestätigen und Import starten**.
 
+> **Eine Freigabe pro Bankzugang.** Manche Banken behalten pro Zugang nur die jüngste Freigabe. Wenn Sie bei einer Bank mehrere Konten haben, wählen Sie alle in derselben Runde aus, auf der Seite Ihrer Bank und in dieser Liste. Wenn Sie dieselbe Bank später mit weniger Konten erneut verbinden, können die ausgelassenen Konten abgeschaltet werden.
+
 Zwei Dinge sind hier zu erwarten. Der Dialog lässt sich nicht mehr schließen, sobald er offen ist, denn die Zustimmung wurde bereits erteilt. Und er kann bis zu einer halben Minute „Konten werden geladen…“ anzeigen, weil der Anbieter die Zustimmung noch verarbeitet; er versucht es von selbst erneut.
 
 Der erste Import läuft sofort und dauert einige Minuten, je nachdem, wie weit zurück Sie ihn angefordert haben.
@@ -71,6 +73,8 @@ Eine Open-Banking-Zustimmung läuft ab. **Wie lange sie gilt, entscheidet Ihre B
 
 Sieben Tage vor diesem Datum wird die Karte bernsteinfarben und zeigt **Läuft in N Tagen ab**. Die Verbindung arbeitet in dieser Woche weiter: Transaktionen kommen weiterhin zweimal täglich, und **Jetzt synchronisieren** funktioniert. Nutzen Sie die Woche zum Erneuern. **Am Ablaufdatum stoppt die Synchronisierung**, und die Karte zeigt **Abgelaufen**.
 
+Eine Bank kann den Zugriff auch vor diesem Datum entziehen, etwa wenn eine neuere Freigabe für denselben Zugang diese ersetzt oder wenn Sie sie im Onlinebanking widerrufen. Die Karte zeigt dann bei der nächsten Synchronisierung **Abgelaufen**, und die Synchronisierung stoppt. Verbinden Sie die Bank erneut, um weiterzumachen.
+
 Um weiterzumachen, verbinden Sie dieselbe Bank erneut. AI Finance Team erkennt das als Erneuerung, fragt deshalb nicht noch einmal nach der Historie und fordert bei der Bank den längsten Zeitraum an, den sie erlaubt. Ihre bestehenden Transaktionen und alles, was damit geschehen ist, bleiben erhalten.
 
 **Achten Sie auf die Lücke.** Ist eine Zustimmung abgelaufen, bevor Sie sie erneuert haben, lassen sich die Tage zwischen der letzten Synchronisierung und dem frühesten Datum, das der Anbieter jetzt noch zurückgibt, nicht von der Bank zurückholen. Die Karte benennt diesen Zeitraum. Füllen Sie ihn aus einem Auszug: siehe [Kontoauszüge hochladen](/bank-statement-upload).
@@ -79,9 +83,9 @@ Um weiterzumachen, verbinden Sie dieselbe Bank erneut. AI Finance Team erkennt d
 
 **Trennen** bei einem Konto stoppt dessen Synchronisierung. Die bereits importierten Transaktionen bleiben im Arbeitsbereich, nichts wird gelöscht. Sie können das Konto jederzeit wieder verbinden.
 
-**Entfernen** nimmt eine Karte ganz von der Seite. Es funktioniert nur bei einer Verbindung, die getrennt oder im Fehlerzustand ist, und nur für die Finanzleitung, die sie erstellt hat. Eine abgelaufene Verbindung lässt sich nicht entfernen, deshalb kann nach einer Erneuerung eine alte Karte neben der neuen auf der Seite stehen bleiben.
+**Entfernen** nimmt eine Karte ganz von der Seite, und ihre Konten importieren nicht mehr. Es funktioniert bei jeder Verbindung, die nicht mehr synchronisiert (abgelaufen, getrennt, im Fehlerzustand oder nicht abgeschlossen), und bei einer Verbindung ohne aktives Konto, etwa einer Freigabe, deren Konten nie gespeichert wurden. Jede Finanzleitung kann eine Karte entfernen, nicht nur die, die sie erstellt hat. Wenn Sie dieselbe Bank erneut verbinden, werden die alten Karten, die die neue Freigabe ersetzt, für Sie entfernt.
 
-**Trennen** erscheint, solange eine Verbindung aktiv ist oder bald abläuft, **Entfernen**, sobald sie getrennt oder im Fehlerzustand ist. Beide nur für die Finanzleitung.
+**Trennen** erscheint, solange eine Verbindung aktiv ist oder bald abläuft, **Entfernen**, sobald sie nicht mehr synchronisiert. Beide nur für die Finanzleitung.
 
 ## Fehlerbehebung
 
@@ -93,6 +97,12 @@ Der erste Import dauert einige Minuten. Laden Sie die Transaktionsseite neu, pr�
 
 **Ein Konto, das ich erwartet habe, ist nicht in der Liste.**
 Das ist keine Ratenbegrenzung (die kommen mit einem Platzhalternamen). Führen Sie das Verbinden erneut aus.
+
+**Die Karte zeigt Abgelaufen vor dem Datum.**
+Ihre Bank hat den Zugriff vorzeitig entzogen. Verbinden Sie die Bank erneut und wählen Sie jedes Konto aus, das Sie bei dieser Bank behalten möchten, auch Konten, die auf anderen Karten derselben Bank stehen.
+
+**Eine Karte zeigt Nicht abgeschlossen.**
+Die Verbindung wurde begonnen, aber bei der Bank nie freigegeben. Entfernen Sie sie oder verbinden Sie die Bank erneut.
 
 **Die Karte bietet Erneut autorisieren an.**
 Sie sagt Ihnen nur, dass Sie **Bank verbinden** benutzen sollen, was der echte Weg ist, eine Zustimmung zu erneuern.

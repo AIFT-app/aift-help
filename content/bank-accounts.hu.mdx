@@ -41,6 +41,8 @@ A párbeszédablak felsorolja a bank által visszaadott számlákat, az IBAN-nal
 - Minden bejelölt számlához rendeljen egy **céget**. A **Megerősítés és importálás indítása** gomb addig inaktív marad, amíg mindegyiknél nincs cég, ezért a munkaterületen legalább egy cégnek lennie kell.
 - Kattintson a **Megerősítés és importálás indítása** gombra.
 
+> **Egy engedély banki belépésenként.** Egyes bankok belépésenként csak a legutóbbi engedélyt tartják meg. Ha egy banknál több számlája van, ugyanabban a körben jelölje be mindet, a bank oldalán és ebben a listában is. Ha később ugyanazt a bankot kevesebb számlával csatlakoztatja újra, a kimaradt számlák leállhatnak.
+
 Két dologra számítson itt. A párbeszédablakot megnyitás után nem lehet bezárni, mert a hozzájárulást már megadta. És előfordulhat, hogy fél percig a „Számlák betöltése…” felirat látszik, mert a szolgáltató még dolgozik a hozzájáruláson; magától újrapróbálkozik.
 
 Az első importálás azonnal elindul, és néhány percig tart, attól függően, milyen messzire visszamenőleg kérte.
@@ -71,6 +73,8 @@ A nyílt bankolási hozzájárulás lejár. **Azt, hogy meddig tart, a bankja d�
 
 Ez előtt a dátum előtt hét nappal a kártya borostyánsárgára vált, és a **Lejár N nap múlva** felirat jelenik meg rajta. A kapcsolat ezen a héten még működik: a tranzakciók továbbra is naponta kétszer érkeznek, és a **Szinkronizálás most** is használható. Ezt a hetet használja a megújításra. **A lejárat napján a szinkronizálás leáll**, és a kártyán a **Lejárt** felirat jelenik meg.
 
+A bank ennél korábban is visszavonhatja a hozzáférést, például ha ugyanahhoz a belépéshez egy újabb engedély váltja fel ezt, vagy ha Ön az internetbankban visszavonja. Ilyenkor a kártyán a következő szinkronizáláskor a **Lejárt** felirat jelenik meg, és a szinkronizálás leáll. A folytatáshoz csatlakoztassa újra a bankot.
+
 A folytatáshoz csatlakoztassa újra ugyanazt a bankot. Az AI Finance Team megújításként ismeri fel, ezért nem kérdez rá újra az előzményekre, és a banktól a lehető leghosszabb időszakot kéri. A meglévő tranzakciói és minden, amit velük tett, megmarad.
 
 **Figyeljen a kimaradásra.** Ha a hozzájárulás lejárt, mielőtt megújította volna, az utolsó szinkronizálás és a szolgáltató által mostantól visszaadott legkorábbi dátum közötti napokat a banktól már nem lehet pótolni. A kártya megnevezi ezt az időszakot. Pótolja kivonatból: lásd [Bankszámlakivonatok feltöltése](/bank-statement-upload).
@@ -79,9 +83,9 @@ A folytatáshoz csatlakoztassa újra ugyanazt a bankot. Az AI Finance Team megú
 
 Egy számlánál a **Lecsatlakoztatás** leállítja a szinkronizálást. A már importált tranzakciók a munkaterületen maradnak, semmi nem törlődik. A számlát bármikor újra csatlakoztathatja.
 
-Az **Eltávolítás** teljesen leveszi a kártyát az oldalról. Csak olyan kapcsolatnál működik, amely lecsatlakoztatott vagy hibás állapotban van, és csak annál a pénzügyi vezetőnél, aki létrehozta. A lejárt kapcsolat nem távolítható el, ezért megújítás után a régi kártya ott maradhat az oldalon az új mellett.
+Az **Eltávolítás** teljesen leveszi a kártyát az oldalról, és a számlái nem importálnak tovább. Minden olyan kapcsolatnál működik, amely már nem szinkronizál (lejárt, lecsatlakoztatott, hibás vagy befejezetlen), és olyannál is, amelynek nincs aktív számlája, például egy engedélynél, amelynek a számláit sosem mentettük el. Bármelyik pénzügyi vezető eltávolíthatja a kártyát, nem csak az, aki létrehozta. Ha ugyanazt a bankot újra csatlakoztatja, az új engedély által felváltott régi kártyákat automatikusan eltávolítjuk.
 
-A **Lecsatlakoztatás** aktív vagy hamarosan lejáró kapcsolatnál jelenik meg, az **Eltávolítás** lecsatlakoztatott vagy hibás kapcsolatnál. Mindkettő csak a pénzügyi vezetőnek.
+A **Lecsatlakoztatás** aktív vagy hamarosan lejáró kapcsolatnál jelenik meg, az **Eltávolítás** olyannál, amely már nem szinkronizál. Mindkettő csak a pénzügyi vezetőnek.
 
 ## Hibaelhárítás
 
@@ -93,6 +97,12 @@ Az első importálás néhány percig tart. Töltse újra a tranzakciók oldalt,
 
 **Egy számla, amelyre számítottam, nincs a listán.**
 Ez nem API-korlát (azok helykitöltő névvel érkeznek). Futtassa le újra a csatlakoztatást.
+
+**A kártyán a dátum előtt megjelenik a Lejárt.**
+A bank korábban visszavonta a hozzáférést. Csatlakoztassa újra a bankot, és jelölje be az összes számlát, amelyet meg szeretne tartani annál a banknál, azokat is, amelyek ugyanannak a banknak egy másik kártyáján szerepelnek.
+
+**Egy kártyán Befejezetlen látszik.**
+A csatlakoztatás elindult, de a banknál nem hagyták jóvá. Távolítsa el, vagy csatlakoztassa újra a bankot.
 
 **A kártyán megjelenik az Újra engedélyezés.**
 Csak annyit mond, hogy használja a **Bank összekapcsolása** funkciót, ami a hozzájárulás megújításának valódi módja.
