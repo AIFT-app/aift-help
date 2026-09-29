@@ -28,7 +28,7 @@ Wenn Sie also den Schalter nie angefasst haben, sich den Abschluss für Juli ans
 |---|---|
 | **Rechnungen** | Ja |
 | **Banktransaktionen** | Ja |
-| **Zuordnung** | Nur der Abschnitt **Bestätigt** |
+| **Zuordnung** | Der Reiter **Übersicht**, und im Reiter **Zuordnungen** nur der Abschnitt **Bestätigt** |
 | **Hauptbuch** und **RLB**-Export | Ja |
 | Exporte **HessynKettős** und **Business Central** | **Nein** - sie behalten ihren eigenen Datumsfilter, eingestellt auf **Gesamter Zeitraum** |
 | **Berichte** | Nein - ein Bericht hat seinen eigenen Bereich |
@@ -36,7 +36,7 @@ Wenn Sie also den Schalter nie angefasst haben, sich den Abschluss für Juli ans
 
 Zwei Einträge darin lohnen ein zweites Lesen, denn über keinen von beiden sagt der Schalter in der Seitenleiste etwas.
 
-**Die Zuordnung grenzt nur ein, was schon bestätigt ist.** Die Warteschlange der offenen Vorschläge oben auf der Seite wird bewusst nie gefiltert: Sie ist Ihre Aufgabenliste, und eine Juli-Rechnung kann berechtigt durch eine August-Zahlung beglichen werden. Die Zahl oben schrumpft also nicht, wenn Sie einen Monat fokussieren.
+**In der Zuordnung wird die Warteschlange der offenen Vorschläge nie eingegrenzt.** Der Reiter **Übersicht** folgt dem Zeitraum, im Reiter **Zuordnungen** nur der bestätigte Abschnitt. Die Warteschlange der offenen Vorschläge oben auf der Seite wird bewusst nie gefiltert: Sie ist Ihre Aufgabenliste, und eine Juli-Rechnung kann berechtigt durch eine August-Zahlung beglichen werden. Die Zahl oben schrumpft also nicht, wenn Sie einen Monat fokussieren.
 
 **Zwei der vier Export-Seiten ignorieren den Zeitraum völlig.** Das **Hauptbuch** und der **RLB**-Export folgen ihm. **HessynKettős** und **Business Central** behalten je ihren eigenen Datumsfilter, der auf **Gesamter Zeitraum** startet - und trotzdem sagt der Schalter **Filtert diese Seite**, solange Sie auf ihnen sind. Stellen Sie den Bereich dort auf der Seite selbst ein, und verlassen Sie sich nicht auf den Schalter.
 
@@ -77,11 +77,11 @@ Der Schalter meldet immer, was der Fokus auf der Seite tut, die Sie gerade anseh
 |--------|-----------|
 | Filtert diese Seite | Die Liste folgt dem fokussierten Zeitraum. |
 | Abgeschlossen · filtert | Filtert, und der Monat ist im Abschluss abgezeichnet. |
-| Auf dieser Seite nicht verwendet | Die Seite hat keine Datums-Dimension. |
+| Auf dieser Seite nicht verwendet | Der Fokus wirkt nicht auf diese Seite: Sie hat kein Datum oder, wie die Berichte, einen eigenen Zeitraum. |
 | Diese Seite nutzt eigene Daten | Die sichtbaren Datumsfelder auf der Seite sind maßgeblich: die Ausgleichs-Arbeitsfläche und die Cash-Pool-Abrechnung. |
 | Wird auf dieser Seite gesetzt | Erscheint im Abschluss, der den Zeitraum setzt, statt von ihm gefiltert zu werden. |
 
-Nehmen Sie **Filtert diese Seite** als Aussage über die Hauptliste der Seite, nicht als Garantie für alles darauf. In der Zuordnung deckt es den Abschnitt **Bestätigt** ab, und auf den Export-Seiten **HessynKettős** und **Business Central** ist es heute einfach falsch.
+Nehmen Sie **Filtert diese Seite** als Aussage über die Hauptliste der Seite, nicht als Garantie für alles darauf. In der Zuordnung deckt es den Reiter **Übersicht** und den Abschnitt **Bestätigt** ab. Im Reiter **Partner** der Zuordnung und auf den Export-Seiten **HessynKettős** und **Business Central** ist es heute einfach falsch.
 
 ## Das Panel
 
@@ -98,11 +98,12 @@ Neben der Zeitraum-Auswahl enthält das Panel zwei Abschnitte.
 
 ## Wo er gespeichert wird
 
-Der fokussierte Zeitraum lebt in **Ihrem Browser, pro Arbeitsbereich**. Er startet ausgeschaltet, folgt Ihnen nicht auf einen anderen Rechner, und wenn Sie an zwei Geräten arbeiten, stellen Sie ihn auf jedem ein.
+Der fokussierte Zeitraum lebt in **Ihrem Browser, pro Person und pro Arbeitsbereich**. Er startet ausgeschaltet, folgt Ihnen nicht auf einen anderen Rechner, und wenn Sie an zwei Geräten arbeiten, stellen Sie ihn auf jedem ein.
 
-Zwei Folgen daraus:
+Drei Folgen daraus:
 
-- Er wird pro Browser gespeichert, nicht pro Person. In einem **geteilten Browser-Profil** erbt die nächste Person, die sich anmeldet, also den Zeitraum, bis sie ihn ändert.
+- In einem **geteilten Browser-Profil** behält jede Person ihren eigenen Zeitraum. Wer sich nach Ihnen anmeldet, startet mit der eigenen Einstellung, nicht mit Ihrer, und Ihre ist wieder da, wenn Sie sich erneut anmelden.
+- Mandantenbenutzer haben nie einen fokussierten Zeitraum. Meldet sich ein Mandant in einem Browser an, den vorher jemand aus der Kanzlei benutzt hat, sieht er seine Listen mit den normalen Datumsfiltern.
 - Wenn Ihr Browser lokalen Speicher verweigert, wie es ein privates Fenster tun kann, bleibt der Schalter gar nicht an.
 
 ## Gut zu wissen
