@@ -21,16 +21,16 @@ The page works only when payment approvals are switched on for the company. Othe
 ## What you see
 
 <PaymentFileFigure>
-The **Payment file** page with two invoices selected in one group and a line that cannot be included yet. The numbers match the list below. The companies and amounts are examples.
+The **To pay** tab with two invoices ticked in one group and a line that cannot be included yet. The numbers match the list below. The companies and amounts are examples.
 </PaymentFileFigure>
 
-1. One group per paying company and currency, with the paying account.
-2. The account check of each payee account.
-3. **Due** and **Execution** dates.
-4. The format and the download button.
+1. The two tabs: **To pay** and **Payment files**.
+2. The filter bar.
+3. One group per paying account and currency, with the account's name and full number.
+4. The line's account check, its **Due** and **Execution** dates, and its **Reference**.
 5. A line that cannot go into a file yet, with the reason and the next step.
 
-The page lists the supplier invoices that were approved and are still unpaid (open or partially paid), grouped by the bank account that will pay them: one group per paying company and currency. Invoices marked as not needing approval never appear here, and neither do rejected invoices or duplicates. Each line shows:
+The page lists the supplier invoices that were approved and are still unpaid (open or partially paid), grouped by the bank account that will pay them: one group per paying account and currency, so a shared cash-pool account is one group for every company that uses it. Invoices marked as not needing approval never appear here, and neither do rejected invoices or duplicates. Each line shows:
 
 - **Payee** and the invoice number, with a link to the invoice.
 - **Payee account**: the account the money goes to, and its check state.
@@ -80,6 +80,16 @@ Changes are saved with **Save** and appear on the invoice's history. You can cha
 4. Choose the **Execution date**: **On the due date (recommended)** or **As soon as possible**.
 5. Click **Generate and download**.
 
+<CreateFileDialogFigure>
+The **Create payment file** window for the two ticked invoices. The numbers match the list below.
+</CreateFileDialogFigure>
+
+1. **Pay from**, with the full account number under it.
+2. The **Format**: the one this account used last time is preselected, with the note on the bank's import under it.
+3. **Lines and payment references**: each payee with the reference the bank will get.
+4. The **Execution date**.
+5. **Generate and download**.
+
 One file is made per paying account and currency, because your bank signs each account separately. A shared cash-pool account makes one file for all the companies that use it; see [Cash Pool](/cash-pool#paying-suppliers-from-a-shared-account). When your selection covers several accounts, all the files are made at once and download together as one ZIP.
 
 AI Finance Team records a numbered payment file, marks each invoice **In payment file #N** with the date, and downloads the file. The window then shows **Payment file ready** and reminds you that the invoices are not paid until the bank books the transfers.
@@ -100,7 +110,16 @@ The **Payment files** tab lists every file: number, date and time, who made it, 
 - **Needs attention**: a line has not appeared on the bank statement 10 days after its execution date.
 - **Released**: every line was taken back.
 
-Paid means proven: a line counts as paid when a bank transaction is matched to its invoice, and the file's page links each paid line to that transaction. Open a file to see its lines, **Download again**, or take lines back. The number of lines that need attention is shown on the tab.
+Paid means proven: a line counts as paid when a bank transaction is matched to its invoice, and the file's page links each paid line to that transaction. Open a file to see its lines, **Download again**, or take lines back. The number of lines that need attention is shown on the tab. The **State** filter shows how many files are in each state, and the counts add up to the total.
+
+<PaymentFileDetailFigure>
+The page of payment file #3: one of its three lines is paid. The numbers match the list below.
+</PaymentFileDetailFigure>
+
+1. The file's state, and how many of its lines are paid.
+2. **Download again** and **Release file**.
+3. A paid line, linked to the bank transaction that proves it.
+4. A waiting line and its **Release** link.
 
 ## Taking a line back
 

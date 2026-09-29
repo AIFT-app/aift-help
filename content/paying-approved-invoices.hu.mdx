@@ -21,16 +21,16 @@ Az oldal csak akkor működik, ha a cégnél be van kapcsolva a kifizetések jó
 ## Mit lát
 
 <PaymentFileFigure>
-Az **Utalási fájl** oldal két kijelölt számlával egy csoportban, és egy tétellel, amely még nem kerülhet be. A számok az alábbi listának felelnek meg. A cégek és az összegek példák.
+A **Fizetendő** fül két kijelölt számlával egy csoportban, és egy tétellel, amely még nem kerülhet be. A számok az alábbi listának felelnek meg. A cégek és az összegek példák.
 </PaymentFileFigure>
 
-1. Fizető cégenként és pénznemenként egy csoport, a fizető számlával.
-2. Az egyes kedvezményezetti számlaszámok ellenőrzése.
-3. A **Határidő** és a **Terhelés** dátuma.
-4. A formátum és a letöltés gombja.
+1. A két fül: **Fizetendő** és **Utalási fájlok**.
+2. A szűrősáv.
+3. Fizető számlánként és pénznemenként egy csoport, a számla nevével és teljes számlaszámával.
+4. A sor számlaszám-ellenőrzése, a **Határidő** és a **Terhelés** dátuma, valamint a **Közlemény**.
 5. Egy tétel, amely még nem kerülhet fájlba, az okkal és a teendővel.
 
-Az oldal a jóváhagyott és még kifizetetlen (nyitott vagy részben fizetett) szállítói számlákat sorolja fel, a fizető bankszámla szerint csoportosítva: fizető cégenként és pénznemenként egy csoport. A jóváhagyást nem igénylőnek jelölt számlák soha nem jelennek meg itt, ahogy az elutasított számlák és a duplikációk sem. Minden sorban ez látszik:
+Az oldal a jóváhagyott és még kifizetetlen (nyitott vagy részben fizetett) szállítói számlákat sorolja fel, a fizető bankszámla szerint csoportosítva: fizető számlánként és pénznemenként egy csoport, így egy megosztott (cash pool) számla egyetlen csoport minden cégnek, amely használja. A jóváhagyást nem igénylőnek jelölt számlák soha nem jelennek meg itt, ahogy az elutasított számlák és a duplikációk sem. Minden sorban ez látszik:
 
 - **Kedvezményezett** és a számlaszám, hivatkozással a számlára.
 - **Kedvezményezett számlája**: a számlaszám, ahová a pénz megy, és az ellenőrzés állapota.
@@ -80,6 +80,16 @@ A módosításokat a **Mentés** gomb rögzíti, és megjelennek a számla előz
 4. Válassza ki a **Terhelés napja** értékét: **A határidő napján (javasolt)** vagy **A lehető leghamarabb**.
 5. Kattintson az **Elkészítés és letöltés** gombra.
 
+<CreateFileDialogFigure>
+Az **Utalási fájl készítése** ablak a két kijelölt számlával. A számok az alábbi listának felelnek meg.
+</CreateFileDialogFigure>
+
+1. **Fizető számla**, alatta a teljes számlaszámmal.
+2. A **Formátum**: amit ez a számla legutóbb használt, az van előre kiválasztva, alatta a bank importjáról szóló tájékoztatóval.
+3. **Tételek és közlemények**: minden kedvezményezett azzal a közleménnyel, amelyet a bank megkap.
+4. A **Terhelés napja**.
+5. **Elkészítés és letöltés**.
+
 Fizető számlánként és pénznemenként egy fájl készül, mert a bank minden számlát külön ír alá. Egy megosztott (cash pool) számla egyetlen fájlt készít az összes azt használó cégnek; lásd: [Cash pool](/cash-pool#szállítók-kifizetése-megosztott-számláról). Ha a kijelölés több számlát érint, az összes fájl egyszerre készül el, és egyetlen ZIP-ben töltődik le.
 
 Az AI Finance Team egy sorszámozott utalási fájlt rögzít, minden számlát **A(z) #N utalási fájlban** jelöléssel lát el a dátummal, és letölti a fájlt. Az ablak ezután **Az utalási fájl elkészült** üzenetet mutat, és emlékeztet, hogy a számlák addig nincsenek kifizetve, amíg a bank nem könyveli az utalásokat.
@@ -100,7 +110,16 @@ Az **Utalási fájlok** fül minden fájlt felsorol: sorszám, dátum és időpo
 - **Figyelmet igényel**: egy sor a terhelés napja után 10 nappal sem jelent meg a bankszámlakivonaton.
 - **Visszavonva**: minden sort visszavontak.
 
-A kifizetett bizonyított: egy sor akkor számít kifizetettnek, ha egy banki tranzakciót párosítottunk a számlájához, és a fájl oldala minden kifizetett sort ehhez a tranzakcióhoz köt. Nyisson meg egy fájlt, hogy lássa a sorait, az **Újra letöltés** gombot, vagy hogy sorokat vonjon vissza. A figyelmet igénylő sorok száma a fülön látszik.
+A kifizetett bizonyított: egy sor akkor számít kifizetettnek, ha egy banki tranzakciót párosítottunk a számlájához, és a fájl oldala minden kifizetett sort ehhez a tranzakcióhoz köt. Nyisson meg egy fájlt, hogy lássa a sorait, az **Újra letöltés** gombot, vagy hogy sorokat vonjon vissza. A figyelmet igénylő sorok száma a fülön látszik. Az **Állapot** szűrő mutatja, hány fájl van az egyes állapotokban; a számok összege az összes fájl.
+
+<PaymentFileDetailFigure>
+A 3. utalási fájl oldala: a három sorából egy ki van fizetve. A számok az alábbi listának felelnek meg.
+</PaymentFileDetailFigure>
+
+1. A fájl állapota, és hogy a sorai közül hány van kifizetve.
+2. **Újra letöltés** és **Fájl visszavonása**.
+3. Egy kifizetett sor, amely az őt bizonyító banki tranzakcióra mutat.
+4. Egy várakozó sor a **Visszavonás** linkkel.
 
 ## Egy tétel visszavonása
 

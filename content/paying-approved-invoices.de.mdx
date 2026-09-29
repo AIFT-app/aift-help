@@ -21,16 +21,16 @@ Die Seite funktioniert nur, wenn die Zahlungsfreigabe für das Unternehmen einge
 ## Was Sie sehen
 
 <PaymentFileFigure>
-Die Seite **Zahlungsdatei** mit zwei ausgewählten Rechnungen in einer Gruppe und einer Position, die noch nicht aufgenommen werden kann. Die Nummern entsprechen der Liste darunter. Die Unternehmen und Beträge sind Beispiele.
+Der Reiter **Zu zahlen** mit zwei ausgewählten Rechnungen in einer Gruppe und einer Position, die noch nicht aufgenommen werden kann. Die Nummern entsprechen der Liste darunter. Die Unternehmen und Beträge sind Beispiele.
 </PaymentFileFigure>
 
-1. Eine Gruppe je zahlendem Unternehmen und Währung, mit dem zahlenden Konto.
-2. Die Kontoprüfung jedes Empfängerkontos.
-3. Die Daten **Fällig** und **Ausführung**.
-4. Das Format und die Schaltfläche zum Herunterladen.
+1. Die zwei Reiter: **Zu zahlen** und **Zahlungsdateien**.
+2. Die Filterleiste.
+3. Eine Gruppe je zahlendem Konto und Währung, mit dem Namen und der vollständigen Nummer des Kontos.
+4. Die Kontoprüfung der Position, ihre Daten **Fällig** und **Ausführung** und ihr **Verwendungszweck**.
 5. Eine Position, die noch nicht in eine Datei kann, mit dem Grund und dem nächsten Schritt.
 
-Die Seite listet die Lieferantenrechnungen, die freigegeben und noch unbezahlt sind (offen oder teilweise bezahlt), gruppiert nach dem Bankkonto, das sie bezahlt: eine Gruppe je zahlendem Unternehmen und Währung. Rechnungen, die als ohne Freigabe markiert sind, erscheinen hier nie, ebenso wenig abgelehnte Rechnungen und Duplikate. Jede Position zeigt:
+Die Seite listet die Lieferantenrechnungen, die freigegeben und noch unbezahlt sind (offen oder teilweise bezahlt), gruppiert nach dem Bankkonto, das sie bezahlt: eine Gruppe je zahlendem Konto und Währung, sodass ein geteiltes Cash-Pool-Konto eine Gruppe für alle Unternehmen ist, die es nutzen. Rechnungen, die als ohne Freigabe markiert sind, erscheinen hier nie, ebenso wenig abgelehnte Rechnungen und Duplikate. Jede Position zeigt:
 
 - **Empfänger** und die Rechnungsnummer, mit einem Link zur Rechnung.
 - **Empfängerkonto**: das Konto, auf das das Geld geht, und den Stand der Prüfung.
@@ -80,6 +80,16 @@ Jede noch zu zahlende Lieferantenrechnung hat unten auf ihrem Reiter **Zuordnung
 4. Wählen Sie das **Ausführungsdatum**: **Am Fälligkeitstag (empfohlen)** oder **So bald wie möglich**.
 5. Klicken Sie auf **Erstellen und herunterladen**.
 
+<CreateFileDialogFigure>
+Das Fenster **Zahlungsdatei erstellen** für die zwei ausgewählten Rechnungen. Die Nummern entsprechen der Liste darunter.
+</CreateFileDialogFigure>
+
+1. **Zahlen von**, darunter die vollständige Kontonummer.
+2. Das **Format**: vorausgewählt ist das, das dieses Konto zuletzt verwendet hat, darunter der Hinweis zum Import der Bank.
+3. **Positionen und Verwendungszwecke**: jeder Empfänger mit dem Verwendungszweck, den die Bank erhält.
+4. Das **Ausführungsdatum**.
+5. **Erstellen und herunterladen**.
+
 Je Zahlungskonto und Währung entsteht eine Datei, weil Ihre Bank jedes Konto einzeln signiert. Ein geteiltes Cash-Pool-Konto erstellt eine Datei für alle Unternehmen, die es nutzen; siehe [Cash-Pool](/cash-pool#lieferanten-von-einem-geteilten-konto-bezahlen). Umfasst Ihre Auswahl mehrere Konten, werden alle Dateien auf einmal erstellt und zusammen als eine ZIP-Datei heruntergeladen.
 
 AI Finance Team legt eine nummerierte Zahlungsdatei an, markiert jede Rechnung mit **In Zahlungsdatei #N** und dem Datum und lädt die Datei herunter. Das Fenster zeigt dann **Zahlungsdatei erstellt** und erinnert daran, dass die Rechnungen erst bezahlt sind, wenn die Bank die Überweisungen bucht.
@@ -100,7 +110,16 @@ Der Reiter **Zahlungsdateien** listet jede Datei: Nummer, Datum und Uhrzeit, wer
 - **Braucht Aufmerksamkeit**: eine Position ist 10 Tage nach ihrem Ausführungsdatum nicht auf dem Kontoauszug erschienen.
 - **Zurückgenommen**: jede Position wurde zurückgenommen.
 
-Bezahlt heißt belegt: Eine Position gilt als bezahlt, wenn eine Banktransaktion ihrer Rechnung zugeordnet ist, und die Seite der Datei verlinkt jede bezahlte Position mit dieser Transaktion. Öffnen Sie eine Datei, um ihre Positionen zu sehen, **Erneut herunterladen** zu nutzen oder Positionen zurückzunehmen. Die Zahl der Positionen, die Aufmerksamkeit brauchen, steht am Reiter.
+Bezahlt heißt belegt: Eine Position gilt als bezahlt, wenn eine Banktransaktion ihrer Rechnung zugeordnet ist, und die Seite der Datei verlinkt jede bezahlte Position mit dieser Transaktion. Öffnen Sie eine Datei, um ihre Positionen zu sehen, **Erneut herunterladen** zu nutzen oder Positionen zurückzunehmen. Die Zahl der Positionen, die Aufmerksamkeit brauchen, steht am Reiter. Der Filter **Status** zeigt, wie viele Dateien jeden Status haben; zusammen ergeben sie die Gesamtzahl.
+
+<PaymentFileDetailFigure>
+Die Seite der Zahlungsdatei #3: eine ihrer drei Positionen ist bezahlt. Die Nummern entsprechen der Liste darunter.
+</PaymentFileDetailFigure>
+
+1. Der Status der Datei und wie viele ihrer Positionen bezahlt sind.
+2. **Erneut herunterladen** und **Datei zurücknehmen**.
+3. Eine bezahlte Position mit dem Link zur Banktransaktion, die sie belegt.
+4. Eine wartende Position mit ihrem Link **Zurücknehmen**.
 
 ## Eine Position zurücknehmen
 
