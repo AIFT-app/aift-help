@@ -77,10 +77,17 @@ A jóváhagyáshoz a "Számlák jóváhagyása kifizetésre" jog kell, a száml�
 
 ## E-mailek
 
-Négy e-mail tartja Önt képben az alkalmazás megnyitása nélkül. Mindegyiknek külön kapcsolója van a **Fiók**, **Értesítések** alatt, és egykattintásos leiratkozó link a láblécben.
+Három jóváhagyási e-mail tartja Önt képben az alkalmazás megnyitása nélkül, továbbá egy értesítés, ha valaki elutasít egy számlát. Mindegyiknek külön kapcsolója van a **Fiók**, **Értesítések** oldal **Jóváhagyások** szakaszában, és egykattintásos leiratkozó link a láblécben.
+
+- **Új jóváhagyandó tételek**: egy e-mail, amikor egy új tételekből álló hullám véget ér. Az alkalmazás megvárja, hogy az Ön listája 5 percig ne változzon, vagy hogy a legrégebbi, e-mailben még nem jelzett tétel 30 perce várjon, amelyik előbb bekövetkezik. Egy hullám akár egyetlen számla is lehet. Minden olyan fajtára vonatkozik, amelyet Ön hagy jóvá: az Önnek kiosztott, kifizetésre váró számlák felsorolva; az olyan iktatási és könyvelési tételek, amelyek egy Ön által jóváhagyható listában váltak késszé vagy kerültek visszaküldésre, cégenkénti darabszámként, a listára mutató gombbal. Nincs napi korlát, és minden nap fut, hétvégén is.
+- **Napi összefoglaló**: munkanapokon, az Ön által választott időpontban (budapesti idő szerint 8:00, amíg meg nem változtatja). Egy e-mail az összes cégéről: az Önre váró, kifizetésre váró számlák, cégenként legfeljebb 5, a legkorábban esedékes elöl, jelöléssel azokon, amelyeket még egyetlen e-mail sem mutatott meg; az iktatás és a könyvelés darabszámként: kész, megjegyzéssel visszaküldött és akadályozott tételek, a listára mutató gombbal. Ha semmi nem vár Önre, nincs e-mail. A csak akadályozott tételek nem indítják el.
+- **Határidő-emlékeztető**: munkanapokon, az Ön által választott időpontban (budapesti idő szerint 14:00, amíg meg nem változtatja), a két napon belül esedékes, még Önre váró, kifizetésre váró számlák. Számlánként egy emlékeztető.
+- **Elutasított számlák**: azonnal elmegy mindenkinek, aki „Jóváhagyások kezelése” joggal rendelkezik, kivéve azt, aki elutasított, az indoklásával együtt.
+
+A munkanapok hétfőtől péntekig tartanak, budapesti idő szerint. Mindkét időpont negyedórás lépésekben állítható.
 
 <ApprovalEmailsFigure>
-A **Kifizetések jóváhagyása** szakasz a **Fiók**, **Értesítések** alatt, mind a négy bekapcsolva. Minden sor megmondja, mikor érkezik az adott e-mail.
+A **Jóváhagyások** szakasz a **Fiók**, **Értesítések** alatt, mind a négy bekapcsolva. A napi összefoglaló és a határidő-emlékeztető leírása alatt egy-egy időpontválasztó áll.
 </ApprovalEmailsFigure>
 
 Az e-mailek az alkalmazásba mutatnak. Az e-mailben nincs jóváhagyó gomb: a döntés mindig bejelentkezve, a számlán történik.
