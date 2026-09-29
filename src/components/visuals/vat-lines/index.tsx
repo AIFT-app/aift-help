@@ -1,11 +1,11 @@
 // The Lines & VAT grid, for the vat-codes-on-invoices article.
 //
 // Rebuilt 1:1 from aift-web (branch feat/page-layout-sweep, 2026-09-29, PRD
-// page-layout-sweep), class for class:
+// page-layout-sweep, up to commit 4af4ca73), class for class:
 //   src/app/(app)/workspaces/[workspaceId]/invoices/[invoiceId]/(tabs)/
 //     _components/MergedLinesVatGrid.tsx: the toolbar, the table head, the row
-//     cells, CategoryCell's resting state, ElementSelects (inline, side by
-//     side) and SELECT_CLASS.
+//     cells, CategoryCell's resting state, ElementSelects (inline, auto-fit:
+//     side by side with room, 2 + 1 or stacked without) and SELECT_CLASS.
 //
 // WHY THIS SCREEN
 //
@@ -16,28 +16,33 @@
 //   article calls the single most confusing behaviour on the screen: the three
 //   element dropdowns are only shown while the line is UNRESOLVED, and move
 //   into the row's Advanced part (opened by the arrow at the end of the row)
-//   once a code resolves. One picture with all four lines side by side says
+//   once a code resolves. One picture with all four lines together says
 //   both at once.
 //
 // WHY THE TABLE IS SHOWN SCROLLED TO ITS RIGHT END
 //
-//   Since page-layout-sweep the grid's columns carry minimum widths (the
-//   element selects sit side by side in a 20rem cell), so the table is about
-//   1024px wide at its narrowest (en; hu 1070, de 1041). In the app the lines
-//   tab lifts the page's width cap and the table fits; in an article column
-//   (816px at most) it cannot, and in the app at that width the scroll box
-//   scrolls sideways. Zooming a desktop screen to fit is ruled out (see the
+//   With this figure's fixture the grid is 836px wide at its narrowest (en;
+//   hu 882, de 853; measured 2026-09-29 on commit 4af4ca73, element selects
+//   stacked). The widest cell floors are the nowrap "DOM-21-GOODS · Default"
+//   chip and the 12.25rem elements cell. In the app the lines tab lifts the
+//   page's width cap and the table fits from about a 1280px window; in an
+//   article column (816px at most, a 784px scroll box) it cannot, and in the
+//   app at that width the scroll box scrolls sideways. Zooming a desktop screen to fit is ruled out (see the
 //   aift-help CLAUDE.md), so the figure shows the app at the figure's width
 //   with the table scrolled to its right end: the columns the article is
 //   about (category, elements, VAT code, the Advanced arrow) at 100%, the
-//   line number and description off to the left, exactly as a user who
-//   scrolled right sees them. That is the ONLY deviation from the app's
+//   line number and the start of each description off to the left, exactly
+//   as a user who scrolled right sees them. Re-measure when the component or
+//   the fixture changes: if the narrowest table fits the 784px box in every
+//   locale, drop the two `dir` attributes and the caption's sentence about
+//   scrolling. That is the ONLY deviation from the app's
 //   markup: `dir="rtl"` on the scroll box (which puts its initial scroll
 //   position at the right end) and `dir="ltr"` on the table (so nothing
 //   inside changes). Neither is a CSS property the diff compares, and the
 //   computed style of every element matches the app's.
 //   On phones the Enlarge view is ENLARGE_WIDTH wide, which fits the whole
-//   table in every locale, so there the reader sees every column.
+//   table in every locale (hu needs 914px), with the selects 2 + 1 as in the
+//   app at common window widths, so there the reader sees every column.
 //
 // MARKERS
 //
@@ -64,8 +69,8 @@ import { CURRENCY, INVOICE_ID, LINES, vatLinesCopy } from './copy'
 
 /** Below this figure width (phones) the screen is laid out here and zoomed. */
 const SCREEN_MIN_WIDTH = 760
-/** The Enlarge view's width: the whole table fits in every locale (hu needs 1102). */
-const ENLARGE_WIDTH = 1104
+/** The Enlarge view's width: the whole table fits in every locale (hu needs 914). */
+const ENLARGE_WIDTH = 1000
 
 /** The app's empty-value placeholder, an em dash, built from its code point. */
 const EMPTY = String.fromCharCode(0x2014)
@@ -75,6 +80,7 @@ const SELECT_CLASS =
   'block w-full rounded-md border border-zinc-300 bg-white px-2 py-1 text-xs text-zinc-900 disabled:opacity-60 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100'
 
 const TH = 'pb-2 pr-3 text-xs font-medium uppercase tracking-wide text-zinc-500'
+const TH_RIGHT = 'pb-2 pr-3 text-right text-xs font-medium uppercase tracking-wide text-zinc-500'
 
 /** CategoryCell's `label`, for a category a person or the AI has confirmed. */
 function CategoryLabel({ name }: { name: string }) {
@@ -130,13 +136,13 @@ export function VatLinesGridFigure({
                     <tr className="border-b border-zinc-200 dark:border-zinc-700">
                       <th className={`w-12 ${TH}`}>{ui['invoices.line_items_table.line_number']}</th>
                       <th className={TH}>{ui['invoices.line_items_table.description']}</th>
-                      <th className={`w-36 pb-2 pr-3 text-right text-xs font-medium uppercase tracking-wide text-zinc-500`}>
+                      <th className={TH_RIGHT}>
                         {c.rendered.netHeader}
                       </th>
-                      <th className={`w-36 pb-2 pr-3 text-right text-xs font-medium uppercase tracking-wide text-zinc-500`}>
+                      <th className={TH_RIGHT}>
                         {ui['invoices.line_items_table.gross']}
                       </th>
-                      <th className={`w-[17%] ${TH}`}>
+                      <th className={TH}>
                         {/* ConfidenceLabel: an unstyled span while nothing breathes. */}
                         <span>{ui['invoices.line_items_table.category']}</span>
                       </th>
@@ -146,7 +152,7 @@ export function VatLinesGridFigure({
                         <Pin n={2} at="below" cancel="" />
                         {ui['invoices.detail.lines.col_vat_elements']}
                       </th>
-                      <th className={`w-48 ${TH}`}>
+                      <th className={TH}>
                         <Pin n={3} at="below" cancel="" />
                         {ui['invoices.detail.lines.col_vat_code']}
                       </th>
@@ -171,7 +177,7 @@ export function VatLinesGridFigure({
                               {nn}
                             </span>
                           </td>
-                          <td className="min-w-[10rem] py-3 pr-3 text-sm text-zinc-900 wrap-anywhere dark:text-zinc-100">
+                          <td className="min-w-[8rem] py-3 pr-3 text-sm text-zinc-900 wrap-anywhere dark:text-zinc-100">
                             {c.descriptions[line.n]}
                           </td>
                           <td className="whitespace-nowrap py-3 pr-3 text-right text-sm tabular-nums text-zinc-700 dark:text-zinc-300">
@@ -188,7 +194,7 @@ export function VatLinesGridFigure({
 
                           {/* CategoryCell, resting state: the name, then a row
                               with the Code, the confidence, Edited and the pencil. */}
-                          <td className="min-w-[10rem] py-3 pr-3">
+                          <td className="min-w-[8rem] py-3 pr-3">
                             <div className="flex flex-col gap-1">
                               {/* CategoryCell wraps the label in VerifyOnInteract
                                   when the line carries an AI signal: an unstyled
@@ -228,15 +234,16 @@ export function VatLinesGridFigure({
                             </div>
                           </td>
 
-                          {/* VAT elements: inline while unresolved, side by side;
-                              gone into Advanced once resolved. */}
-                          <td className="min-w-[20rem] py-3 pr-3">
+                          {/* VAT elements: inline while unresolved (auto-fit, so
+                              they wrap in a narrow column); gone into Advanced
+                              once resolved. */}
+                          <td className="min-w-[12.25rem] py-3 pr-3">
                             {resolved ? (
                               <span className="text-xs text-zinc-400">
                                 {ui['invoices.detail.lines.elements_collapsed']}
                               </span>
                             ) : (
-                              <div className="grid grid-cols-[7.5fr_5.5fr_6.5fr] gap-1">
+                              <div className="grid grid-cols-[repeat(auto-fit,minmax(7.25rem,1fr))] gap-1">
                                 <select
                                   aria-label={ui['invoices.vat_panel.product_group']}
                                   defaultValue=""

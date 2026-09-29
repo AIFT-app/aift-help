@@ -132,7 +132,7 @@ const en: Copy = {
     summary: "4 lines · 1 VAT code missing",
     codingOk: "VAT coding OK (1)",
   },
-  help: { alt: "The Lines & VAT grid with four invoice lines, shown scrolled to the right end of the table. The first line carries a plain code and says its elements are resolved and in Advanced; the second carries an amber code ending in Default; the third reads dash missing dash with an Add link, and its three element dropdowns sit side by side in the row; the fourth carries a code with a warning triangle beside it. Each row ends in an arrow that opens its Advanced part. Above the table, buttons to add the missing codes and to mark the VAT coding reviewed." },
+  help: { alt: "The Lines & VAT grid with four invoice lines, shown scrolled to the right end of the table. The first line carries a plain code and says its elements are resolved and in Advanced; the second carries an amber code ending in Default; the third reads dash missing dash with an Add link, and its three element dropdowns are shown in the row; the fourth carries a code with a warning triangle beside it. Each row ends in an arrow that opens its Advanced part. Above the table, buttons to add the missing codes and to mark the VAT coding reviewed." },
 }
 
 const hu: Copy = {
@@ -175,7 +175,7 @@ const hu: Copy = {
     summary: "4 tétel · 1 ÁFA-kód hiányzik",
     codingOk: "Áfakódolás rendben (1)",
   },
-  help: { alt: "A Tételek és ÁFA rács négy számlasorral, a táblázat jobb széléig görgetve. Az első soron sima kód áll, és a cella jelzi, hogy az elemek feloldva a Speciális alatt vannak; a másodikon borostyánszínű kód, a végén az Alapért. szóval; a harmadikon a - hiányzik - felirat, mellette a Hozzáad hivatkozás, és a három elemválasztó egymás mellett a sorban; a negyediken a kód mellett figyelmeztető háromszög. Minden sor végén egy nyíl nyitja ki a sor Speciális részét. A táblázat fölött gomb a hiányzó kódok hozzáadására és egy másik az áfakódolás ellenőrzöttre jelölésére." },
+  help: { alt: "A Tételek és ÁFA rács négy számlasorral, a táblázat jobb széléig görgetve. Az első soron sima kód áll, és a cella jelzi, hogy az elemek feloldva a Speciális alatt vannak; a másodikon borostyánszínű kód, a végén az Alapért. szóval; a harmadikon a - hiányzik - felirat, mellette a Hozzáad hivatkozás, és a három elemválasztó a sorban látszik; a negyediken a kód mellett figyelmeztető háromszög. Minden sor végén egy nyíl nyitja ki a sor Speciális részét. A táblázat fölött gomb a hiányzó kódok hozzáadására és egy másik az áfakódolás ellenőrzöttre jelölésére." },
 }
 
 const de: Copy = {
@@ -218,7 +218,7 @@ const de: Copy = {
     summary: "4 Positionen · 1 USt-Code fehlt",
     codingOk: "USt-Codierung OK (1)",
   },
-  help: { alt: "Das Raster Positionen & USt. mit vier Rechnungspositionen, bis zum rechten Ende der Tabelle gescrollt. Die erste trägt einen einfachen Code und den Hinweis, dass ihre Elemente aufgelöst sind und unter Erweitert liegen; die zweite einen bernsteinfarbenen Code, der auf Standard endet; die dritte liest sich als - fehlt - mit einem Hinzufügen-Link, und ihre drei Elementauswahlen stehen nebeneinander in der Zeile; die vierte trägt neben dem Code ein Warndreieck. Jede Zeile endet mit einem Pfeil, der ihren Bereich Erweitert öffnet. Über der Tabelle Schaltflächen, um die fehlenden Codes hinzuzufügen und die USt-Codierung als geprüft zu markieren." },
+  help: { alt: "Das Raster Positionen & USt. mit vier Rechnungspositionen, bis zum rechten Ende der Tabelle gescrollt. Die erste trägt einen einfachen Code und den Hinweis, dass ihre Elemente aufgelöst sind und unter Erweitert liegen; die zweite einen bernsteinfarbenen Code, der auf Standard endet; die dritte liest sich als - fehlt - mit einem Hinzufügen-Link, und ihre drei Elementauswahlen stehen direkt in der Zeile; die vierte trägt neben dem Code ein Warndreieck. Jede Zeile endet mit einem Pfeil, der ihren Bereich Erweitert öffnet. Über der Tabelle Schaltflächen, um die fehlenden Codes hinzuzufügen und die USt-Codierung als geprüft zu markieren." },
 }
 
 export const vatLinesCopy: Record<Locale, Copy> = { en, hu, de }
