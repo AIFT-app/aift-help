@@ -67,7 +67,9 @@ Click a company's name to open its page. Under the name and country, a status ro
 
 ### Identity
 
-The legal name, country, Tax ID, EU VAT number and registration number. Click **Save** when done. If the new Tax ID already belongs to another company in the workspace, the form names that company and **Save** stays disabled.
+The legal name, short name, country, Tax ID, EU VAT number and registration number. Click **Save** when done. If the new Tax ID already belongs to another company in the workspace, the form names that company and **Save** stays disabled.
+
+The **Short name** is optional. It shows under the legal name and helps recognise the company on bank statements. Use a recognisable short form, not initials.
 
 #### How the Tax ID and EU VAT number relate
 
@@ -98,6 +100,10 @@ A company's bank accounts are used to:
 - **pay supplier invoices**: the accounts are the paying accounts of the [payment file](/paying-approved-invoices). An invoice is paid from an account in its currency; an account without a currency counts for any currency.
 
 An account number that another company already holds is refused. An account shared with another company in a cash pool shows as **Shared, held by** that company.
+
+#### Default for payments
+
+Below the bank accounts, **Default for payments** sets which account pays this company's invoices, one choice per currency. Until you choose, the payment file uses the oldest account in that currency, and the row says which one. Each account is shown by its nickname, or by its bank and currency, with the full account number underneath, so give your accounts a nickname to tell them apart. Changing the default needs the permission to edit master data.
 
 ### Alternative names
 
