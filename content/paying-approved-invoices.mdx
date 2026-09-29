@@ -37,7 +37,9 @@ The page lists the supplier invoices that were approved and are still unpaid (op
 - **Due** and **Execution**: the payment date on the invoice, and the date the transfer is requested for (see below).
 - **Amount**: what is still owed. For a partially paid invoice, the remaining balance.
 
-Lines already written into a file are hidden. Switch **Show lines already in a file** on to see them, marked **In file #N**. A released line comes back without the mark, and after a partial payment the invoice comes back for the rest.
+The page has two tabs: **To pay** (this list) and **Payment files** (every file you made, see below). Lines already written into a file are hidden on **To pay**; tick the **In a file** status to see them, marked **In file #N**. A released line comes back without the mark, and after a partial payment the invoice comes back for the rest.
+
+The filter bar above the list narrows it by **Due** date (**Overdue**, **Next 7 days**, **Next 30 days**, a month or your own range), **Paying account**, **Company**, **Payment method** and a search on the payee, the invoice number and the reference. The due-date filter is there for cash flow: you can pay what is due this week and leave the rest for later. It does not follow the focused period in the sidebar, because due dates look ahead.
 
 ## The account check
 
@@ -48,39 +50,65 @@ Paying the wrong account is the most common invoice fraud, so every payee accoun
 - **Account changed**: the account on this invoice differs from the one confirmed before. The line stays blocked until someone confirms the new account. Call the supplier on a number you already know before you do.
 - **No account**, **Invalid account**, **No verified partner**: the line cannot be paid yet; the reason and the next step are shown under it.
 
-Blocked lines sit in their own group, **Cannot be included yet**, with links to the partner and the invoice. Two more reasons can put a line there: the paying company has no bank account in that currency (add one under Master data, Companies), or nothing is left to pay on the invoice. Only someone holding "Manage approvals" can confirm an account, so a payer who can only export files asks them.
+Blocked lines sit in their own group, **Cannot be included yet**, with links to the partner and the invoice. Three more reasons can put a line there: the paying company has no bank account in that currency (add one under Master data, Companies), nothing is left to pay on the invoice, or the invoice is not paid by bank transfer (see Payment method below). Only someone holding "Manage approvals" can confirm an account, so a payer who can only export files asks them.
 
 Where the company register check is on, every line also shows what the register says about the account: listed since a date, not listed, or cannot be checked and why, with the date of the last check. A changed account is never confirmed by the register: it always waits for a person, and the register's answer is shown next to it so the decision is informed. "Not listed" is not proof of fraud: a bank has eight days to report a new account. See [Company register check](/company-register-check).
 
-## Downloading the list
+## Paying account and payment reference
 
-1. Tick the lines to pay in a group, or use **Select all in this group**.
-2. If the company has several accounts in that currency, choose the **Paying account**.
-3. Pick the **Format**:
-   - **Spreadsheet (XLSX), any bank** works with every bank.
-   - **Bank file (pain.001 XML)** is offered when the paying account's bank is recognised and has a file import (not at OTP, MagNet, Revolut or Wise).
-   - **Electra file (.HUF)** is offered on HUF groups at the banks that run an Electra-based netbank: K&H, Erste, MBH and Gránit.
+Every supplier invoice that can still be paid has a **Payment instructions** card at the bottom of its **Matching & payment** tab, below the payment status and the matched transactions. You can fill it in while you review the invoice, before or after it is approved.
 
-   A hint above the lines says how far that bank's import is verified.
-4. Click **Download list (XLSX)**, **Download bank file (pain.001)** or **Download Electra file (.HUF)**.
+- **Pay from**: the bank account that pays the invoice. It starts as the company's **Default for payments** for the currency (set on the company's Recognition tab), or its oldest account in that currency when there is no default. Pick another account to pay this one invoice from it; the invoice then appears in that account's group here.
+- **Payment reference**: the text (közlemény) that goes to the bank with the transfer. It is filled in automatically with the invoice number, and you can change it; a character counter shows how long it is, and **Reset to automatic** brings the invoice number back.
+- **Payment method**: an invoice paid by card, voucher or another non-transfer method is left out of payment files, and shows under "Cannot be included yet". Switch on **Include anyway** if it has to be paid by transfer after all. An invoice without a stated payment method is treated as a bank transfer.
 
-AI Finance Team records a numbered payment file, shows **Payment file #N created**, marks each invoice **In payment file #N** with the date, and downloads the file.
+Changes are saved with **Save** and appear on the invoice's history. You can change them at any time: a file that was already made keeps what it was written with, and the card says so when the two differ. To get the new reference into the bank, release the line and put the invoice into a new file.
+
+## Creating a payment file
+
+1. Tick the lines to pay, in one group or in several. **Select all in this group** ticks a whole group.
+2. Click **Create payment file** on a group, or the button at the top, which counts every ticked line across groups.
+3. In the window that opens, check each file:
+   - **Pay from**: the paying account, preselected from the group. The full account number is shown under it.
+   - **Lines and payment references**: what goes into the file and the reference the bank will get.
+   - **Format**: the one this account used last time is preselected.
+     - **Spreadsheet (XLSX), any bank** works with every bank.
+     - **Bank file (pain.001 XML)** is offered when the paying account's bank is recognised and has a file import (not at OTP, MagNet, Revolut or Wise).
+     - **Electra file (.HUF)** is offered on HUF groups at the banks that run an Electra-based netbank: K&H, Erste, MBH and Gránit.
+
+     A hint under the format says how far that bank's import is verified.
+4. Choose the **Execution date**: **On the due date (recommended)** or **As soon as possible**.
+5. Click **Generate and download**.
+
+One file is made per paying account and currency, because your bank signs each account separately. A shared cash-pool account makes one file for all the companies that use it; see [Cash Pool](/cash-pool#paying-suppliers-from-a-shared-account). When your selection covers several accounts, all the files are made at once and download together as one ZIP.
+
+AI Finance Team records a numbered payment file, marks each invoice **In payment file #N** with the date, and downloads the file. The window then shows **Payment file ready** and reminds you that the invoices are not paid until the bank books the transfers.
 
 - **The spreadsheet** has a header block (paying account, account holder, currency, total) and one row per payment with the payee, the account, the amount, the execution date and the invoice number, under English and Hungarian column headers. Key it into any netbank, or use your bank's own import if it accepts a spreadsheet.
-- **The bank file** is pain.001.001.03 XML in the Hungarian HCT profile: import it in the netbank's file upload, check the lines and sign there. The remittance text of each line is the invoice number followed by the invoice's AI Finance Team id.
-- **The Electra file** is the fixed-width "Forint átutalási megbízás" record. K&H accepts at most 40 lines per file; above that the download button is disabled.
+- **The bank file** is pain.001.001.03 XML in the Hungarian HCT profile: import it in the netbank's file upload, check the lines and sign there. The remittance text of each line is its payment reference: the invoice number unless someone changed it. In EUR (SEPA) transfers accented letters are replaced (á becomes a), because SEPA accepts only unaccented letters.
+- **The Electra file** is the fixed-width "Forint átutalási megbízás" record. K&H accepts at most 40 lines per file; above that the download button is disabled. The file holds a payment reference of at most 96 characters; a longer one is refused with a reason, never cut.
 
-The execution date is the due date, or the next banking day when the due date falls on a weekend, a public holiday, a rest day set by decree or in the past. All three formats use the same dates.
+With **On the due date**, the execution date is the due date, or the next banking day when the due date falls on a weekend, a public holiday, a rest day set by decree or in the past, so nothing is paid early. With **As soon as possible**, every transfer is requested for the next banking day. All three formats use the same dates; the bank file carries them to the bank, while in the spreadsheet they are for whoever keys the transfers in.
 
-The **Files** list under the groups shows the last 50 files: number, date and time, who made it, the paying account, the number of lines and the total. **Download again** gives you the same file once more.
+## Following up on a file
+
+The **Payment files** tab lists every file: number, date and time, who made it, the paying account, the format, the total, and how many of its lines are paid, with a small bar. Each file shows one state:
+
+- **Generated**: nothing has appeared at the bank yet.
+- **Partially paid**: some lines are paid.
+- **Paid**: every line that was not taken back is paid.
+- **Needs attention**: a line has not appeared on the bank statement 10 days after its execution date.
+- **Released**: every line was taken back.
+
+Paid means proven: a line counts as paid when a bank transaction is matched to its invoice, and the file's page links each paid line to that transaction. Open a file to see its lines, **Download again**, or take lines back. The number of lines that need attention is shown on the tab.
 
 ## Taking a line back
 
-A payment file is a proposal, so sometimes the transfer does not happen: the file was never uploaded, the bank rejected the import, or nobody signed it. Switch on **Show lines already in a file**, find the line and click **Release**. Choose a reason (**Not uploaded**, **Rejected by the bank**, **Not signed** or **Other**), add a note if you like, and the invoice goes straight back to the list of invoices to pay. **Release file**, in the **Files** list, does the same for every line of a file that is still waiting; lines that were already paid are kept.
+A payment file is a proposal, so sometimes the transfer does not happen: the file was never uploaded, the bank rejected the import, or nobody signed it. Open the file on the **Payment files** tab, find the line and click **Release**. Choose a reason (**Not uploaded**, **Rejected by the bank**, **Not signed** or **Other**), add a note if you like, and the invoice goes straight back to the list of invoices to pay. **Release file**, on the file's page, does the same for every line of a file that is still waiting; lines that were already paid are kept.
 
 A line whose payment already arrived at the bank cannot be released, and releasing never changes the approval. On the invoice, the payment file row then reads **Released from payment file #N** with the date and the reason. If a matched payment is later unmatched, its line goes back to waiting and can be released again.
 
-A line marked **Not seen at the bank yet** has had no bank transaction for more than 10 days after its execution date. The page counts these at the top, with a **Show them** link. It is information only: check the netbank, and release the line if the transfer was never made.
+A line marked **Not seen at the bank yet** has had no bank transaction for more than 10 days after its execution date, and its file shows **Needs attention**. Nothing is released automatically, because the transfer may have gone through while the bank feed lags, and an automatic release would let the invoice be paid twice. Check the netbank; if the transfers were never made, **Release all unseen lines** on the file takes them all back with one reason. The Monday summary email also counts these lines.
 
 ## How the payment finds its invoice
 
@@ -88,9 +116,9 @@ When the bank transaction arrives, AI Finance Team first looks among the lines i
 
 - the amount may differ from the line by at most 10 Ft (0.05 in other currencies);
 - the booking date must fall between 1 day before and 10 days after the execution date;
-- when the bank line carries no payee account, the invoice id in the bank text or a matching payee name stands in for it.
+- when the bank line carries no payee account, the payment reference in the bank text (in older files, the invoice id) or a matching payee name stands in for it.
 
-If two exported lines could fit the same payment, the invoice id in the bank text decides; if that does not settle it either, the normal matching takes over. On the match detail page the match reads **Matched from payment file #N**, and on the invoice the payment file row says the payment arrived and is matched. A transfer made by hand and matched the normal way settles its line too. See [Invoice matching](/invoice-matching).
+If two exported lines could fit the same payment, the payment reference in the bank text decides; if that does not settle it either, the normal matching takes over. On the match detail page the match reads **Matched from payment file #N**, and on the invoice the payment file row says the payment arrived and is matched. A transfer made by hand and matched the normal way settles its line too. See [Invoice matching](/invoice-matching).
 
 Everything else on the statement (customer receipts, tax, bank fees, transfers made by hand) is matched exactly as before.
 
