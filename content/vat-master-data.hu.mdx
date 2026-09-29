@@ -24,7 +24,7 @@ Nincs kulcsrakész, országonkénti kódlista: a kódtáblát Ön maga írja meg
 
 ### Ha az elemek nem oldódnak fel
 
-Irányonként egy **alapértelmezett ÁFA-kódot** állíthat be. Az a sor, amelynek a tényezői nem határozhatók meg teljesen, ezt a kódot kapja, ellenőrzésre jelölve, feltéve, hogy semmi azonosított nem mond ellent neki. Az ÁFA-kódok fülön az **Alapért.** jelvény jelöli őket, a **Legyen alapért.** művelettel pedig kijelölhet egyet; újbóli kattintásra törlődik.
+Irányonként egy **alapértelmezett ÁFA-kódot** állíthat be. Az a sor, amelynek a tényezői nem határozhatók meg teljesen, ezt a kódot kapja, ellenőrzésre jelölve, feltéve, hogy semmi azonosított nem mond ellent neki. Az ÁFA-kódok fülön a kód melletti **Alapért.** jelvény jelöli őket. Egyet a sor végi **⋯** menü **Legyen alapértelmezett** pontjával jelölhet ki, és ugyanebben a menüben az **Alapértelmezés törlése** veszi le.
 
 Az alapértelmezés beállítása a már meglévő számlákhoz nem nyúl. Azokra a számlalista **Áfakódolás újrafuttatása** művelete való, amely csak a hiányzó kódú sorokat tölti ki, és soha nem nyúl a már kódolt sorokhoz, a kézi munkához vagy a kategóriákhoz.
 
@@ -39,10 +39,12 @@ Két dolgot érdemes tudni róluk:
 
 ## Az ÁFA-kódok fül
 
-**Hogy hány kódoszlopot lát, egy beállítástól függ.** A **Beállítások → ÁFA-beállítások** alatt választja ki, hogy a könyvelési kódoknak vagy az AIFT-kódoknak kell-e egyedinek lenniük az aktív kódok között.
+**Hogy melyik kód áll elöl az első oszlopban, egy beállítástól függ.** A **Beállítások → ÁFA-beállítások** alatt választja ki, hogy a könyvelési kódoknak vagy az AIFT-kódoknak kell-e egyedinek lenniük az aktív kódok között.
 
-- Ha a könyvelési kódokon hagyja, ami az alapértelmezés, egyetlen **Könyvelési kód** oszlop van, és kötelező.
-- Ha AIFT-kódokra kapcsolja, megjelenik egy **AIFT kód** oszlop, amely kötelező lesz, a könyvelési kód pedig opcionálissá válik. Akkor használja ezt, ha több AIFT-oldali megkülönböztetés szándékosan egyetlen könyvelési kódra képeződik le.
+- Ha a könyvelési kódokon hagyja, ami az alapértelmezés, az első oszlopban a **Könyvelési kód** áll, és kötelező.
+- Ha AIFT-kódokra kapcsolja, az első oszlopban felül az **AIFT kód** áll, amely kötelező lesz, alatta a könyvelési kód, amely opcionálissá válik. Akkor használja ezt, ha több AIFT-oldali megkülönböztetés szándékosan egyetlen könyvelési kódra képeződik le.
+
+A kód sosem vágódik le: ha az oszlop keskeny, egy `/` után a második sorban folytatódik. A partnercsoport és a termék- vagy szolgáltatáscsoport egy oszlopban áll, felül a partnercsoport. A sorra kattintva szerkesztheti, az **Inaktiválás** a sor végi **⋯** menüben van.
 
 A magyar munkaterületeknek van egy harmadik mezőjük, a **NAV megfeleltetési kód**, amely a beérkező megfeleltetéshez használt NAV Online ÁFA-besorolás.
 

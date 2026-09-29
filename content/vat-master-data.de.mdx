@@ -24,7 +24,7 @@ Es gibt keine schlüsselfertige Ländercodeliste: Die Codetabelle erstellen Sie 
 
 ### Wenn die Elemente sich nicht auflösen lassen
 
-Sie können je Richtung einen **Standard-USt-Code** festlegen. Eine Zeile, deren Faktoren nicht vollständig bestimmbar sind, erhält diesen Code, zur Prüfung markiert, solange nichts Identifiziertes ihm tatsächlich widerspricht. Im Tab USt-Codes kennzeichnet sie das Kennzeichen **Standard**, und mit **Als Standard** weisen Sie einen zu; ein erneuter Klick entfernt ihn wieder.
+Sie können je Richtung einen **Standard-USt-Code** festlegen. Eine Zeile, deren Faktoren nicht vollständig bestimmbar sind, erhält diesen Code, zur Prüfung markiert, solange nichts Identifiziertes ihm tatsächlich widerspricht. Im Tab USt-Codes kennzeichnet sie das Kennzeichen **Standard** neben dem Code. Mit **Als Standard festlegen** im Menü **⋯** am Zeilenende weisen Sie einen zu, und **Standard entfernen** im selben Menü nimmt ihn wieder weg.
 
 Das Setzen eines Standards berührt bereits vorhandene Rechnungen nicht. Dafür gibt es in der Rechnungsliste die Aktion **USt-Codierung erneut ausführen**, die nur Zeilen ohne Code befüllt und weder codierte Zeilen noch manuelle Arbeit oder Kategorien anfasst.
 
@@ -39,10 +39,12 @@ Zwei Dinge sollten Sie dazu wissen:
 
 ## Der Tab USt-Codes
 
-**Wie viele Code-Spalten Sie sehen, hängt von einer Einstellung ab.** Unter **Einstellungen → USt.-Einstellungen** wählen Sie, ob die Codes des Buchhaltungssystems oder die AIFT-Codes unter den aktiven Codes eindeutig sein müssen.
+**Welcher Code die erste Spalte anführt, hängt von einer Einstellung ab.** Unter **Einstellungen → USt.-Einstellungen** wählen Sie, ob die Codes des Buchhaltungssystems oder die AIFT-Codes unter den aktiven Codes eindeutig sein müssen.
 
-- Belassen Sie es bei den Buchhaltungscodes, dem Standard, gibt es eine einzige Spalte **Buchhaltungscode**, und sie ist erforderlich.
-- Stellen Sie auf AIFT-Codes um, erscheint eine Spalte **AIFT-Code**, die erforderlich ist, und der Buchhaltungscode wird optional. Nutzen Sie das, wenn mehrere AIFT-seitige Unterscheidungen bewusst auf einen Buchhaltungscode abgebildet werden.
+- Belassen Sie es bei den Buchhaltungscodes, dem Standard, zeigt die erste Spalte den **Buchhaltungscode**, und er ist erforderlich.
+- Stellen Sie auf AIFT-Codes um, steht oben der **AIFT-Code**, der erforderlich ist, und darunter der Buchhaltungscode, der optional wird. Nutzen Sie das, wenn mehrere AIFT-seitige Unterscheidungen bewusst auf einen Buchhaltungscode abgebildet werden.
+
+Ein Code wird nie abgeschnitten: Ist die Spalte schmal, bricht er nach einem `/` in eine zweite Zeile um. Partnergruppe und Produkt- oder Leistungsgruppe teilen sich eine Spalte, die Partnergruppe oben. Ein Klick auf die Zeile öffnet die Bearbeitung; **Deaktivieren** steht im Menü **⋯** am Zeilenende.
 
 Ungarische Arbeitsbereiche haben ein drittes Feld, den **NAV-Zuordnungscode**: die NAV-Online-USt-Klassifizierung für die eingehende Zuordnung.
 
