@@ -28,7 +28,7 @@ So if you have never touched the switch, look at July's Closing and then open In
 |---|---|
 | **Invoices** | Yes |
 | **Bank transactions** | Yes |
-| **Matching** | The **Approved** section only |
+| **Matching** | The **Overview** tab, and on the **Matches** tab the **Approved** section only |
 | **Ledger** and **RLB export** | Yes |
 | **HessynKettős** and **Business Central** exports | **No** - they keep their own date picker, set to all time |
 | **Reports** | No - a report has its own range |
@@ -36,7 +36,7 @@ So if you have never touched the switch, look at July's Closing and then open In
 
 Two entries there are worth reading twice, because the sidebar switch does not tell you about either.
 
-**Matching narrows only what is already approved.** The pending suggestion queue at the top of the page is deliberately never filtered: it is your action queue, and a July invoice may legitimately settle against an August payment. So the count at the top does not shrink when you focus a month.
+**On Matching, the pending queue is never narrowed.** The **Overview** tab follows the period, and on the **Matches** tab only the approved section does. The pending suggestion queue at the top of the page is deliberately never filtered: it is your action queue, and a July invoice may legitimately settle against an August payment. So the count at the top does not shrink when you focus a month.
 
 **Two of the four export pages ignore the period entirely.** The Ledger and the RLB export follow it. **HessynKettős** and **Business Central** each keep their own date control, which starts at all time - yet the switch still says **Filtering this page** while you are on them. Set the range on the page itself there, and do not trust the switch.
 
@@ -67,7 +67,7 @@ What genuinely ignores the period is anything whose job is to look further:
 - **The pending suggestion queue** on Matching, as above.
 - **The Ledger's Meaning search**, which has no date filtering of its own at all.
 
-**Run matching** also ignores the focused period: it has its own range menu, and the period is not one of its options.
+**Run Matching** also ignores the focused period: it has its own range menu, and the period is not one of its options.
 
 ## The status under the switch
 
@@ -77,11 +77,11 @@ The switch always reports what focus is doing on the page you are looking at.
 |--------|---------|
 | Filtering this page | The list follows the focused period. |
 | Closed · filtering | Filtering, and the month is signed off in Closing. |
-| Not used on this page | The page has no date dimension. |
+| Not used on this page | Focus does not drive this page: it has no dates, or keeps its own range, as Reports does. |
 | This page uses its own dates | The visible date fields on the page are the truth: the settlement workbench and the cash pool report. |
 | Set from this page | Shown on Closing, which sets the period rather than being filtered by it. |
 
-Take **Filtering this page** as a claim about the page's main list, not a guarantee about everything on it. On Matching it covers the approved section, and on the HessynKettős and Business Central export pages it is simply wrong today.
+Take **Filtering this page** as a claim about the page's main list, not a guarantee about everything on it. On Matching it covers the **Overview** tab and the approved section. On the Matching **Partners** tab and on the HessynKettős and Business Central export pages it is simply wrong today.
 
 ## The panel
 
@@ -98,11 +98,12 @@ Besides the period picker, the panel holds two sections.
 
 ## Where it is kept
 
-The focused period lives in **your browser, per workspace**. It starts off, it does not follow you to another computer, and if you work on two machines you set it on each.
+The focused period lives in **your browser, per person and per workspace**. It starts off, it does not follow you to another computer, and if you work on two machines you set it on each.
 
-Two consequences:
+Three things follow from that:
 
-- It is stored per browser rather than per person, so on a **shared browser profile** the next person to sign in inherits the period until they change it.
+- On a **shared browser profile** everyone keeps their own period. Whoever signs in after you starts from their own setting, not yours, and yours is back when you sign in again.
+- Client users never have a focused period. A client who signs in on a browser an accountant used before sees their lists with the normal date filters.
 - If your browser refuses local storage, as a private window may, the switch will not stay on at all.
 
 ## Good to know
