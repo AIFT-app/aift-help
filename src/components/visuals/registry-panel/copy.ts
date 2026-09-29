@@ -24,7 +24,6 @@ type Copy = {
     'master_data.partners.registry.title': string
     'master_data.partners.registry.description': string
     'master_data.partners.registry.revalidate': string
-    'master_data.partners.registry.costs_a_lookup': string
     'master_data.partners.registry.field_legal_name': string
     'master_data.partners.registry.field_tax_number': string
     'master_data.partners.registry.field_address': string
@@ -67,8 +66,6 @@ const en: Copy = {
     'master_data.partners.registry.description':
       'What the Hungarian company register says about this partner. Nothing here is changed without you: empty fields are filled in, and anything that differs is listed for you to look at.',
     'master_data.partners.registry.revalidate': 'Revalidate',
-    'master_data.partners.registry.costs_a_lookup':
-      'Each check uses one of this month’s data sheets. Searching the register by name is free.',
     'master_data.partners.registry.field_legal_name': 'Name',
     'master_data.partners.registry.field_tax_number': 'Tax number',
     'master_data.partners.registry.field_address': 'Registered address',
@@ -114,8 +111,6 @@ const hu: Copy = {
     'master_data.partners.registry.description':
       'Amit a magyar cégjegyzék erről a partnerről mond. Nélküled semmi nem változik: az üres mezőket kitöltjük, az eltéréseket pedig listázzuk, hogy megnézhesd.',
     'master_data.partners.registry.revalidate': 'Újraellenőrzés',
-    'master_data.partners.registry.costs_a_lookup':
-      'Minden ellenőrzés egyet használ el az e havi adatlapokból. A cégjegyzékben név alapján keresni ingyenes.',
     'master_data.partners.registry.field_legal_name': 'Név',
     'master_data.partners.registry.field_tax_number': 'Adószám',
     'master_data.partners.registry.field_address': 'Székhely',
@@ -161,8 +156,6 @@ const de: Copy = {
     'master_data.partners.registry.description':
       'Was das ungarische Firmenregister über diesen Partner sagt. Ohne Sie wird nichts geändert: Leere Felder werden ausgefüllt, Abweichungen werden zur Prüfung aufgelistet.',
     'master_data.partners.registry.revalidate': 'Erneut prüfen',
-    'master_data.partners.registry.costs_a_lookup':
-      'Jede Prüfung verbraucht eines der Datenblätter dieses Monats. Die Namenssuche im Register ist kostenlos.',
     'master_data.partners.registry.field_legal_name': 'Name',
     'master_data.partners.registry.field_tax_number': 'Steuernummer',
     'master_data.partners.registry.field_address': 'Sitz',
