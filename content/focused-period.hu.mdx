@@ -28,7 +28,7 @@ Vagyis ha soha nem nyúlt a kapcsolóhoz, megnézi a júliusi Zárást, majd meg
 |---|---|
 | **Számlák** | Igen |
 | **Banki tranzakciók** | Igen |
-| **Párosítás** | Csak a **Megerősített** szakasz |
+| **Párosítás** | Az **Áttekintés** fül, a **Párosítások** fülön pedig csak a **Megerősített** szakasz |
 | **Főkönyv** és **RLB export** | Igen |
 | **HessynKettős** és **Business Central** export | **Nem** - saját dátumválasztójuk van, **Teljes időszak** beállítással |
 | **Jelentések** | Nem - egy jelentésnek saját tartománya van |
@@ -36,7 +36,7 @@ Vagyis ha soha nem nyúlt a kapcsolóhoz, megnézi a júliusi Zárást, majd meg
 
 Két sort érdemes kétszer elolvasni, mert az oldalsáv kapcsolója egyikről sem szól.
 
-**A Párosítás csak azt szűkíti, ami már meg van erősítve.** Az oldal tetején lévő **Függőben lévő javaslatok** lista szándékosan soha nem szűrődik: ez az Ön teendőlistája, és egy júliusi számlát jogosan egyenlíthet ki egy augusztusi utalás. A fent látható darabszám tehát nem csökken attól, hogy egy hónapra fókuszál.
+**A Párosításon a függőben lévő lista soha nem szűkül.** Az **Áttekintés** fül követi az időszakot, a **Párosítások** fülön pedig csak a megerősített szakasz. Az oldal tetején lévő **Függőben lévő javaslatok** lista szándékosan soha nem szűrődik: ez az Ön teendőlistája, és egy júliusi számlát jogosan egyenlíthet ki egy augusztusi utalás. A fent látható darabszám tehát nem csökken attól, hogy egy hónapra fókuszál.
 
 **A négy exportoldal közül kettő teljesen figyelmen kívül hagyja az időszakot.** A **Főkönyv** és az **RLB export** követi. A **HessynKettős** és a **Business Central** viszont a saját dátumvezérlőjét tartja meg, amely **Teljes időszak** beállítással indul - a kapcsoló mégis azt írja, hogy **Szűri ezt az oldalt**, amíg ezeken áll. Ott magán az oldalon állítsa be a tartományt, és ne bízzon a kapcsolóban.
 
@@ -77,11 +77,11 @@ A kapcsoló mindig jelzi, mit csinál a fókusz azon az oldalon, amelyet éppen 
 |--------|-----------|
 | Szűri ezt az oldalt | Az oldal listája a fókuszált időszakot követi. |
 | Lezárva · szűr | Szűr, és a hónap a Zárásban le van zárva. |
-| Ezen az oldalon nem használt | Az oldalnak nincs dátum-dimenziója. |
+| Ezen az oldalon nem használt | A fókusz nem hat erre az oldalra: nincs rajta dátum, vagy saját időszakot használ, mint a Jelentések. |
 | Ez az oldal saját időszakot használ | Az oldalon látható dátummezők a mérvadók: a Kiegyenlítés munkafelülete és a Cash pool elszámolás. |
 | Erről az oldalról állítható | A Záráson jelenik meg, amely beállítja az időszakot, nem pedig aszerint szűrődik. |
 
-A **Szűri ezt az oldalt** feliratot az oldal fő listájára vonatkozó állításként olvassa, ne pedig garanciaként mindarra, ami az oldalon van. A Párosításon a megerősített szakaszra vonatkozik, a HessynKettős és a Business Central exportoldalán pedig ma egyszerűen téves.
+A **Szűri ezt az oldalt** feliratot az oldal fő listájára vonatkozó állításként olvassa, ne pedig garanciaként mindarra, ami az oldalon van. A Párosításon az **Áttekintés** fülre és a megerősített szakaszra vonatkozik. A Párosítás **Partnerek** fülén, valamint a HessynKettős és a Business Central exportoldalán ma egyszerűen téves.
 
 ## A panel
 
@@ -98,11 +98,12 @@ A **Törzsadatok** szakasz gyorshivatkozások rácsa azokra az oldalakra, amelye
 
 ## Hol tárolódik
 
-A fókuszált időszak **az Ön böngészőjében él, munkaterületenként**. Kikapcsolva indul, nem követi Önt egy másik számítógépre, és ha két gépen dolgozik, mindkettőn külön állítsa be.
+A fókuszált időszak **az Ön böngészőjében él, személyenként és munkaterületenként**. Kikapcsolva indul, nem követi Önt egy másik számítógépre, és ha két gépen dolgozik, mindkettőn külön állítsa be.
 
-Ennek két következménye van:
+Ebből három dolog következik:
 
-- Nem személyenként tárolódik, hanem böngészőnként, így **közösen használt böngészőprofilon** a következő belépő örökli az időszakot, amíg meg nem változtatja.
+- **Közösen használt böngészőprofilon** mindenkinek megmarad a saját időszaka. Aki Ön után lép be, a saját beállításával indul, nem az Önével, és amikor Ön újra belép, a sajátját visszakapja.
+- Ügyfélfelhasználóknak soha nincs fókuszált időszakuk. Ha egy ügyfél olyan böngészőben lép be, amelyet előtte egy könyvelő használt, a listáit a szokásos dátumszűrőkkel látja.
 - Ha a böngészője nem engedélyezi a helyi tárolást, ahogy egy privát ablak teheti, a kapcsoló egyáltalán nem marad bekapcsolva.
 
 ## Jó tudni
