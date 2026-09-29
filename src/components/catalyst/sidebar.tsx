@@ -33,11 +33,16 @@ export function SidebarLayout({
   return (
     <SidebarContext.Provider value={{ collapsed, toggle }}>
       <div className="relative isolate flex min-h-svh w-full bg-white max-lg:flex-col lg:bg-zinc-100 dark:bg-zinc-900 dark:lg:bg-zinc-950">
-        {/* Sidebar on desktop */}
+        {/* Sidebar on desktop. 17rem (272px), not Catalyst's 16rem: in Geist
+            the longest sub-menu labels (Settings: "Business Central Connection",
+            "Business Central Verbindung", "Könyvelési alapértelmezések") need
+            about 191px at font-medium and a 16rem sidebar leaves a leaf 183px.
+            The content column below pads by the same width; change both
+            together. PRD: aift-ops/specs/app-typeface-geist.md */}
         <div
           className={clsx(
             'fixed inset-y-0 left-0 max-lg:hidden overflow-hidden transition-all duration-200 ease-in-out',
-            collapsed ? 'w-16' : 'w-64',
+            collapsed ? 'w-16' : 'w-68',
           )}
         >
           {sidebar}
@@ -52,7 +57,7 @@ export function SidebarLayout({
         <main
           className={clsx(
             'flex flex-1 flex-col pb-2 lg:min-w-0 lg:pr-2 lg:pt-2 transition-all duration-200 ease-in-out',
-            collapsed ? 'lg:pl-16' : 'lg:pl-64',
+            collapsed ? 'lg:pl-16' : 'lg:pl-68',
           )}
         >
           {/* Card chrome + content cap. Pages that need a wider cap can
