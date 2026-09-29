@@ -48,9 +48,19 @@ A leggyakoribb számlacsalás a rossz számlaszámra utalás, ezért minden kedv
 - **Számlaszám változott**: a számlán szereplő számlaszám eltér a korábban megerősítettől. A sor zárolva marad, amíg valaki meg nem erősíti az újat. Előtte hívja fel a szállítót egy már ismert telefonszámon.
 - **Nincs számlaszám**, **Érvénytelen számlaszám**, **Nincs ellenőrzött partner**: a sor még nem fizethető ki; az ok és a következő lépés alatta látható.
 
-A zárolt sorok külön csoportban vannak, **Még nem kerülhet be** címmel, a partnerre és a számlára mutató hivatkozással. Két további ok is ide sorolhat egy tételt: a fizető cégnek nincs bankszámlája az adott pénznemben (adja meg a Törzsadatok, Cégek alatt), vagy a számlán már nincs mit fizetni. Számlaszámot csak a „Jóváhagyások kezelése” joggal rendelkező személy erősíthet meg, ezért aki csak exportálni tud, őt kéri meg.
+A zárolt sorok külön csoportban vannak, **Még nem kerülhet be** címmel, a partnerre és a számlára mutató hivatkozással. Három további ok is ide sorolhat egy tételt: a fizető cégnek nincs bankszámlája az adott pénznemben (adja meg a Törzsadatok, Cégek alatt), a számlán már nincs mit fizetni, vagy a számla nem átutalással fizetendő (lásd lent a Fizetési módot). Számlaszámot csak a „Jóváhagyások kezelése” joggal rendelkező személy erősíthet meg, ezért aki csak exportálni tud, őt kéri meg.
 
 Ahol a cégjegyzék-ellenőrzés be van kapcsolva, minden sor azt is mutatja, mit mond a cégjegyzék a számlaszámról: mióta szerepel benne, nem szerepel, vagy nem ellenőrizhető és miért, a legutóbbi ellenőrzés dátumával. A megváltozott számlaszámot a cégjegyzék soha nem erősíti meg: az mindig egy személyre vár, a cégjegyzék válasza pedig mellette látszik, hogy a döntés megalapozott legyen. A „nem szerepel” nem bizonyítéka a csalásnak: a banknak nyolc napja van egy új számla bejelentésére. Lásd: [Szállítók ellenőrzése a cégjegyzékben](/company-register-check).
+
+## Fizető számla és utalási közlemény
+
+Minden még kifizethető szállítói számla **Párosítás & fizetés** fülének tetején megtalálja az **Utalási adatok** kártyát. A számla átnézésekor kitöltheti, jóváhagyás előtt vagy után is.
+
+- **Fizető számla**: az a bankszámla, amelyről a számlát fizetjük. Alapból a cég adott devizára beállított **Alapértelmezett fizetési számla** értéke (a cég Felismerés fülén állítható be), ennek hiányában a cég legrégebben rögzített bankszámlája abban a devizában. Ha ezt az egy számlát másik bankszámláról fizetné, válassza ki azt; a számla ekkor itt annak a bankszámlának a csoportjában jelenik meg.
+- **Utalási közlemény**: az utalással együtt a bankba kerülő szöveg. Automatikusan a számlaszám kerül bele, de átírhatja; a karakterszámláló mutatja a hosszát, a **Vissza automatikusra** pedig visszaállítja a számlaszámot.
+- **Fizetési mód**: a kártyával, utalvánnyal vagy egyéb, nem átutalásos módon fizetendő számla kimarad az utalási fájlokból, és a „Még nem kerülhet be” csoportban jelenik meg. Ha mégis átutalással kell fizetni, kapcsolja be a **Mégis kerüljön bele** opciót. A fizetési mód nélküli számlát átutalásnak tekintjük.
+
+A módosításokat a **Mentés** gomb rögzíti, és megjelennek a számla előzményei között. Bármikor módosíthat: egy már elkészült fájl azzal marad, amivel készült, és a kártya jelzi, ha a kettő eltér. Ha az új közleményt is a bankba szeretné juttatni, vonja vissza a tételt, és tegye a számlát egy új fájlba.
 
 ## A lista letöltése
 
@@ -67,8 +77,8 @@ Ahol a cégjegyzék-ellenőrzés be van kapcsolva, minden sor azt is mutatja, mi
 Az AI Finance Team egy sorszámozott utalási fájlt rögzít, kiírja: **#N utalási fájl létrehozva**, minden számlát **A(z) #N utalási fájlban** jelöléssel lát el a dátummal, és letölti a fájlt.
 
 - **A táblázat** egy fejlécblokkal kezdődik (fizető számla, számlatulajdonos, pénznem, összesen), majd kifizetésenként egy sorban szerepel a kedvezményezett, a számlaszám, az összeg, a terhelés napja és a számlaszám, angol és magyar oszlopfejlécekkel. Bármelyik netbankba begépelheti, vagy használhatja a bank saját importját, ha az elfogad táblázatot.
-- **A banki fájl** pain.001.001.03 XML a magyar HCT-profilban: importálja a netbank fájlfeltöltésében, ellenőrizze a sorokat, és ott írja alá. Minden sor közleménye a számlaszám, utána a számla AI Finance Team-azonosítója.
-- **Az Electra fájl** a fix hosszúságú „Forint átutalási megbízás” rekord. A K&H fájlonként legfeljebb 40 sort fogad el; e fölött a letöltés gombja inaktív.
+- **A banki fájl** pain.001.001.03 XML a magyar HCT-profilban: importálja a netbank fájlfeltöltésében, ellenőrizze a sorokat, és ott írja alá. Minden sor közleménye a hozzá tartozó utalási közlemény: a számlaszám, ha senki nem írta át. EUR (SEPA) utalásnál az ékezetes betűk ékezet nélkül kerülnek bele (az á-ból a lesz), mert a SEPA csak ékezet nélküli betűket fogad el.
+- **Az Electra fájl** a fix hosszúságú „Forint átutalási megbízás” rekord. A K&H fájlonként legfeljebb 40 sort fogad el; e fölött a letöltés gombja inaktív. A fájlba legfeljebb 96 karakteres közlemény fér; a hosszabbat a rendszer indoklással visszautasítja, soha nem vágja le.
 
 A terhelés napja a fizetési határidő, vagy a következő banki nap, ha a határidő hétvégére, munkaszüneti napra, rendeletben meghatározott pihenőnapra vagy a múltba esik. Mindhárom formátum ugyanezeket a dátumokat használja.
 
@@ -88,9 +98,9 @@ Amikor a banki tranzakció megérkezik, az AI Finance Team először az utalási
 
 - az összeg legfeljebb 10 Ft-tal (más pénznemben 0,05-tel) térhet el a sortól;
 - a könyvelés napjának a terhelés napja előtti 1 és utáni 10 nap közé kell esnie;
-- ha a banki sorban nincs kedvezményezetti számlaszám, a banki szövegben szereplő számlaazonosító vagy az egyező kedvezményezettnév helyettesíti.
+- ha a banki sorban nincs kedvezményezetti számlaszám, a banki szövegben szereplő utalási közlemény (régebbi fájloknál a számlaazonosító) vagy az egyező kedvezményezettnév helyettesíti.
 
-Ha két exportált sor is illene ugyanarra a kifizetésre, a banki szövegben szereplő számlaazonosító dönt; ha ez sem dönti el, a szokásos párosítás veszi át. A párosítás részletei oldalon ez áll: **Párosítva a(z) #N utalási fájl alapján**, a számlán pedig az utalási fájl sora jelzi, hogy a kifizetés megérkezett és párosítva van. Egy kézzel indított, a szokásos módon párosított átutalás is rendezi a sorát. Lásd: [Számlák párosítása](/invoice-matching).
+Ha két exportált sor is illene ugyanarra a kifizetésre, a banki szövegben szereplő utalási közlemény dönt; ha ez sem dönti el, a szokásos párosítás veszi át. A párosítás részletei oldalon ez áll: **Párosítva a(z) #N utalási fájl alapján**, a számlán pedig az utalási fájl sora jelzi, hogy a kifizetés megérkezett és párosítva van. Egy kézzel indított, a szokásos módon párosított átutalás is rendezi a sorát. Lásd: [Számlák párosítása](/invoice-matching).
 
 A kivonat minden más tételét (vevői befizetések, adó, banki díjak, kézzel indított átutalások) pontosan úgy párosítjuk, mint eddig.
 
