@@ -79,6 +79,17 @@ Die Zuordnung prüft ohnehin die Rechnungen aller Unternehmen des Arbeitsbereich
 - **Unternehmen, die das Konto nicht nutzen.** Ist der beste Treffer die Rechnung eines Unternehmens, das nicht auf der Liste des Kontos steht, wird sie als Vorschlag angeboten statt automatisch zugeordnet.
 - **Der Unternehmensname im Verwendungszweck.** Ein Kunde, der an den Kontoinhaber zahlt, nennt oft das Unternehmen, das die Rechnung gestellt hat. Auf einem geteilten Konto hält dieser Name die automatische Zuordnung nicht mehr auf, solange es das Unternehmen ist, zu dem die Rechnung gehört. Der Name eines anderen Unternehmens der Gruppe hält sie weiterhin auf.
 
+## Lieferanten von einem geteilten Konto bezahlen
+
+Ein geteiltes Konto kann die freigegebenen Lieferantenrechnungen aller Unternehmen bezahlen, die es nutzen, in einer Zahlungsdatei.
+
+- **Auswählen.** Ein Mitgliedsunternehmen kann das geteilte Konto als **Standardkonto für Zahlungen** für die Währung festlegen oder es für eine einzelne Rechnung unter **Zahlungsangaben** wählen. Es erscheint als **(gemeinsam, Inhaber:** der Inhaber**)**.
+- **Eine Datei für die Gruppe.** Auf der Seite **Zahlungsdatei** enthält die Gruppe eines geteilten Kontos die Rechnungen aller Mitgliedsunternehmen. Jede Position eines anderen Unternehmens ist mit **Für** und dem Unternehmen markiert.
+- **Wessen Rechnung es ist.** Der Verwendungszweck wird zu `Rechnungsnummer; Firmenname`, damit der Lieferant sieht, welches Unternehmen bezahlt hat. Die Bankdatei (pain.001) nennt das Unternehmen außerdem als tatsächlichen Zahler (*Tényleges fizető*). Die Tabelle hat eine Spalte **Company / Cég**.
+- **Unternehmen außerhalb des Pools.** Die Rechnung eines Unternehmens, das nicht auf der Liste des Kontos steht, kann nicht in dessen Datei.
+
+Siehe [Freigegebene Rechnungen bezahlen](/paying-approved-invoices).
+
 ## Der Bericht Cash-Pool-Abrechnung
 
 Klicken Sie in der Liste der Bankkonten neben einem geteilten Konto auf **Cash-Pool-Abrechnung**. Der Bericht benötigt die Berechtigung „Buchhaltungsexporte ausführen“; Mitglieder ohne sie erhalten eine Nicht-gefunden-Seite, obwohl der Link sichtbar ist.
