@@ -79,6 +79,17 @@ A párosítás eleve a munkaterület összes cégének számláit vizsgálja. Me
 - **A számlát nem használó cégek.** Ha a legjobb találat olyan cég számlája, amely nem szerepel a számla listáján, javaslatként jelenik meg, és nem párosítódik automatikusan.
 - **A cégnév a közleményben.** A számlatulajdonosnak fizető vevő gyakran a számlát kiállító cég nevét írja a közleménybe. Megosztott számlán ez a név már nem akadályozza az automatikus párosítást, feltéve, hogy annak a cégnek a neve, amelyikhez a számla tartozik. Egy másik csoporttag cégneve továbbra is visszatartja.
 
+## Szállítók kifizetése megosztott számláról
+
+Egy megosztott számláról az azt használó összes cég jóváhagyott szállítói számlái kifizethetők, egyetlen utalási fájlban.
+
+- **Kiválasztás.** Egy tagcég a megosztott számlát beállíthatja **Alapértelmezett fizetési számla**ként az adott devizára, vagy egyetlen számlánál kiválaszthatja az **Utalási adatok** alatt. A listában **(közös, tulajdonos:** a tulajdonos neve**)** jelöléssel szerepel.
+- **Egy fájl a csoportnak.** Az **Utalási fájl** oldalon a megosztott számla csoportjában az összes tagcég számlái szerepelnek. Egy másik cég sorain a „*cégnév* **részére**” jelölés mutatja, melyik cégé.
+- **Kié a számla.** Az utalási közlemény `számlaszám; cégnév` lesz, így a szállító látja, melyik cég fizetett. A banki fájl (pain.001) a céget tényleges fizetőként is megnevezi. A táblázatban **Company / Cég** oszlop is van.
+- **A poolon kívüli cégek.** Olyan cég számlája, amely nem szerepel a számla listáján, nem kerülhet a fájljába.
+
+Lásd: [Jóváhagyott számlák kifizetése](/paying-approved-invoices).
+
 ## A cash pool elszámolási jelentés
 
 A bankszámlák listájában kattintson a megosztott számla melletti **Cash pool elszámolás** hivatkozásra. A riporthoz a „Könyvelési exportok futtatása” jogosultság kell, és aki ezzel nem rendelkezik, hiába látja a hivatkozást: a jelentés helyett „nem található” oldalt kap.

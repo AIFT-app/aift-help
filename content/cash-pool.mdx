@@ -79,6 +79,17 @@ Matching already looks at the invoices of every company in the workspace. Three 
 - **Companies that do not use the account.** If the best match is an invoice of a company that is not on the account's list, it is offered as a suggestion rather than matched automatically.
 - **The company name in the reference.** A customer paying the account holder often writes the name of the company that issued the invoice. On a shared account that name no longer blocks the automatic match, as long as it is the company the invoice belongs to. Another group company's name still holds it back.
 
+## Paying Suppliers from a Shared Account
+
+A shared account can pay the approved supplier invoices of every company that uses it, in one payment file.
+
+- **Choosing it.** A member company can make the shared account its **Default for payments** for the currency, or pick it for a single invoice under **Payment instructions**. It is listed as **(shared, held by** the holder**)**.
+- **One file for the group.** On the **Payment file** page, a shared account's group holds the invoices of all its member companies. Each line of another company is marked **For** that company.
+- **Whose invoice it is.** The payment reference becomes `invoice number; company name`, so the supplier sees which company paid. The bank file (pain.001) also names the company as the ultimate payer (*Tényleges fizető*). The spreadsheet has a **Company / Cég** column.
+- **Companies outside the pool.** An invoice of a company that is not on the account's list cannot go into its file.
+
+See [Paying Approved Invoices](/paying-approved-invoices).
+
 ## The Cash Pool Settlement Report
 
 From the bank account list, click **Cash pool settlement** next to a shared account. The report needs the permission "Run accounting exports", and members without it get a not-found page even though the link is visible.
