@@ -1,53 +1,110 @@
 # ÁFA-beállítás importálása, exportálása és másolása
 
-Egy teljes ÁFA-kódtábla soronkénti megírása fáradságos - egy életszerű magyar munkaterületnek több tucat kódra van szüksége, plusz a mögöttük álló dimenziósorokra. Az AI Finance Team ezért a teljes ÁFA-beállítást **egyetlen hordozható egységként** kezeli: exportálja egyetlen Excel-munkafüzetbe, szerkessze vagy írja meg Excelben és importálja vissza, vagy másoljon át egy bevált beállítást az egyik munkaterületről a másikra két kattintással.
+Egy teljes ÁFA-kódtáblát soronként megírni fáradságos: egy életszerű magyar munkaterületnek több tucat kódra van szüksége, plusz a mögöttük álló dimenziósorokra. Ezért a teljes ÁFA-beállítás egyetlen egységként utazik. Exportálja egyetlen Excel-munkafüzetbe, írja meg vagy szerkessze ott, és importálja vissza, vagy másoljon át egy bevált beállítást egy másik munkaterületről.
 
-Az érintett öt táblát az [ÁFA-törzsadatok](/vat-master-data) cikk írja le.
+Az érintett táblákat az [ÁFA-törzsadatok](/vat-master-data) cikk írja le.
 
-## Az öt munkalapos munkafüzet
+## Hol vannak a gombok, és ki használhatja őket
 
-Az **ÁFA-beállítás exportálása** (a Törzsadatok → ÁFA-kódok bármelyik fülén) egyetlen `.xlsx` fájlt tölt le öt munkalappal - `Partner VAT Groups`, `Product-Service VAT Groups`, `VAT Rates`, `Calculation Methods` és `VAT Codes`. A fájl teljes pillanatkép: az archivált sorok is benne vannak (`Archived = yes` jelöléssel), és az ÁFA-kód sorok a dimenziólapokra **kód szerint** hivatkoznak, sosem belső azonosítókkal.
+Mind a három a **Törzsadatok → ÁFA-kódok** oldal **címsorában** áll, a fülek sávja fölött, így bármelyik fülön jár éppen, ott vannak.
 
-Egy frissen létrehozott munkaterület kicsi, de érvényes munkafüzetet exportál - ez a fájl egyben az üres sablonja is a kézi megíráshoz. Külön sablonletöltés nincs.
+<VatSetupActionsFigure>
+A **Törzsadatok → ÁFA-kódok** oldal címsora, alatta a fülek sávjával. A számok az alábbi lista pontjainak felelnek meg. A munkaterület példa.
+</VatSetupActionsFigure>
 
-Hasznos konvenciók a fájlban:
+1. **ÁFA-beállítás exportálása**, bárkinek, aki meg tudja nyitni az oldalt.
+2. **ÁFA-beállítás importálása**, csak a könyvelői oldalon.
+3. **Másolás munkaterületről**, csak a könyvelői oldalon.
+4. A hat fül. A három gomb az oldalhoz tartozik, nem a fülhöz, ezért mindegyiken ott van.
 
-- A dátumok `YYYY-MM-DD` formátumúak. A százalékok sima számok (`27`, nem `27%`). Az igen/nem oszlopok elfogadják a `yes`/`no` értékeket (és magyar, illetve német megfelelőiket).
-- Az exportált fájlnak **két fejlécsora** van: felül az angol, alatta a munkaterület nyelve. Importáláskor bármelyik sor szókincse működik - egy csak magyar vagy csak német fejlécű fájl is gond nélkül importálható. Csak ne keverje a nyelveket egy munkalapon belül.
-- A munkalapok **nevei** angolok maradnak - az importáló ezekről a rögzített nevekről ismeri fel a lapokat.
+Az **ÁFA-beállítás exportálása** mindenkinek elérhető, aki meg tudja nyitni az oldalt, ami a gyakorlatban a könyvelői oldalt jelenti: az ügyféloldali felhasználók egyáltalán nem kapják meg az oldalt. Egy fenntartás, amit érdemes tudni, mert csendben hibázik: az a tag, akitől a rekordokhoz való hozzáférést elvonták, **szerkezetileg érvényes, de üres munkafüzetet** tölt le, hibajelzés nélkül.
+
+Az **ÁFA-beállítás importálása** és a **Másolás munkaterületről…** a könyvelői oldalon mindenkinek megjelenik, a szerver azonban megköveteli a „Törzsadatok szerkesztése” jogosultságot. Ha a szerepköréből ez hiányzik, a gombok ugyanúgy ott vannak, és csak későn derül ki:
+
+- Az importálás eljut a fájlválasztóig, aztán elutasítja.
+- A másolás korábban és zavarba ejtőbben hibázik: olyan üzenettel, hogy nem sikerült betölteni a munkaterületeket. Ez a jogosultság, nem hálózati probléma.
+
+A gombok alatt az **Utolsó importálás** sor mutatja, mikor és ki módosította utoljára tömegesen a beállítást. A legutóbbin túl nincs előzmény, és a sort csak a könyvelői oldal látja.
+
+## A munkafüzet
+
+Az export egyetlen `.xlsx` fájlt tölt le öt munkalappal: `Partner VAT Groups`, `Product-Service VAT Groups`, `VAT Rates`, `Calculation Methods` és `VAT Codes`. A munkalapok neve angolul marad, mert az importáló ezekről ismeri fel őket. Az import előnézete más írásmóddal, szóközökkel és lefordítva jelöli őket, ezért a fájlban ne az előnézetben látott megnevezést keresse. A fájlnév a munkaterületet és a dátumot hordozza.
+
+Teljes pillanatkép. Az archivált sorok is benne vannak, megjelölve, az ÁFA-kód sorok pedig **kód szerint** hivatkoznak a dimenziólapokra, sosem belső azonosítókkal. Egy frissen létrehozott munkaterület kicsi, de érvényes munkafüzetet exportál, ami egyben az üres sablonja is: külön sablonletöltés nincs.
+
+Konvenciók a fájlban:
+
+- A dátumok `YYYY-MM-DD` formátumúak, importáláskor pedig a `2026.01.31.`, a `2026/01/31` és az igazi Excel-dátumcellák is elfogadottak.
+- A százalékok sima számok (`27`, nem `27%`), és a tizedesvessző is jó.
+- Az igen/nem oszlopok a `yes` és a `no` értéket fogadják el. Magyar munkaterület exportjában az Archived oszlop lefordított fejléce **Archivált**, a benne álló érték viszont minden nyelven `yes`.
+- **A második, lefordított fejlécsor csak magyar vagy német munkaterületnél jelenik meg.** Az angol nyelvű munkaterület egyetlen fejlécsort exportál. Importáláskor bármelyik szókincs működik, amíg egy munkalapon belül nem kever nyelveket.
+
+> **A fájl az előre feltöltött sorok eltárolt angol nevét hordozza, nem a képernyőn látott lefordított feliratot.** Egy magyar munkaterület exportjában `Domestic` áll, nem `Belföldi`. Ha a képernyőn látható magyar nevet írja a helyére, azzal átnevezte a sort, ami **leválasztja a rendszer-alapértelmezésekről**. Hagyja békén ezeket a neveket, kivéve, ha valóban át akarja nevezni őket.
 
 ## Importálás
 
-Az **ÁFA-beállítás importálása** ugyanilyen felépítésű munkafüzetet fogad vissza. Az import szigorú, kétlépéses folyamat:
+A menete: feltöltés, majd megnézi, mit tenne, és csak utána erősíti meg.
 
-1. **Ellenőrzés és előnézet.** A fájlt teljes egészében ellenőrizzük, **változtatás nélkül**. Munkalaponként látja, hány sor *új*, *frissített* és *változatlan*, és hánynak van *hibája* - kinyitható listával, amely minden hibánál megnevezi a munkalapot, a sort és az oszlopot.
-2. **Megerősítés és alkalmazás.** A változások csak az Ön megerősítése után kerülnek alkalmazásra - mind egyszerre, atomikusan. Ha bármi hibázik, semmi nem íródik be.
+1. **Előnézet.** A fájlt teljes egészében ellenőrizzük, anélkül hogy bármi beíródna. Munkalaponként látja, hány sor új, frissített és változatlan, és hánynak van hibája. A hibalista ott van mindjárt a számok alatt, egy görgethető keretben.
+2. **Megerősítés.** Csak ekkor kerül bármi alkalmazásra, és mind egyszerre. Ha bármelyik része hibázik, semmi nem íródik be.
 
-**Bármely hiba az egész importot blokkolja.** Az előnézettel a fájl javítása olcsó: javítsa a megnevezett sorokat, és töltse fel újra.
+**Bármely hiba az egész importot blokkolja.** Javítsa a megnevezett sorokat, és töltse fel újra.
 
-Mit csinál az import - és mit szándékosan nem:
+<VatSetupPreviewFigure>
+Az előnézeti lépés, egy hibás munkalappal. A számok az alábbi lista pontjainak felelnek meg. A darabszámok és a kód példák.
+</VatSetupPreviewFigure>
 
-- A sorokat a **kódjuk** alapján párosítjuk (ÁFA-kódoknál a könyvelési kód vagy az AIFT-kód, a munkaterület egyediségi beállítása szerint). A párosított sorok frissülnek; a nem párosítottak létrejönnek.
-- **Semmi nem törlődik soha.** Az a sor, amely létezik az AI Finance Teamben, de az Ön fájljában nem, érintetlen marad. Fájlból úgy tud archiválni, hogy a sor `Archived` oszlopát kifejezetten `yes`-re állítja.
-- A fájlból hiányzó munkalapokat kihagyjuk - egy csak a `VAT Rates` lapot tartalmazó fájl érvényes egytáblás import.
-- Egy feltöltés bevezethet egy új dimenziósort *és* egy azt használó ÁFA-kódot is: a lapok függőségi sorrendben dolgozódnak fel.
-- Egy alapértelmezett sor importon keresztüli átnevezése leválasztja a rendszer-alapértelmezésekről, pontosan úgy, mint a szerkesztőben történő átnevezés. (Az alapértelmezett sorokról lásd az [ÁFA-törzsadatok](/vat-master-data) cikket.)
+5. **Munkalaponként: új, frissített, változatlan**, és ahol van hiba, hibaszám is. Ebből az öt munkalapból négy átmenne.
+6. **Az Importálás megerősítése inaktív**, amíg bármi hibás, és a párbeszédpanel kimondja, hogy semmi nem lett importálva. A hiba megnevezi a munkalapot, a sort és az oszlopot; itt az ötelemű átfedésről van szó: egy meglévő aktív kód már lefedi ezt a kombinációt átfedő időszakra.
 
-Korlátok: legfeljebb 5 MB-os fájl, munkalaponként legfeljebb 2 000 sor.
+Csak `.xlsx`, legfeljebb 5 MB, munkalaponként legfeljebb 2 000 sor. Nincs oszlop-hozzárendelési lépés, és nincs soronkénti átnézési tábla sem: a fejléceket egy fix, többnyelvű névlistához hasonlítjuk. Ha ismeri a partner- vagy a kategóriaimportot, ez szándékosan egyszerűbb azoknál.
+
+### Mit változtat az import, és mit hagy békén
+
+- A sorokat a **kódjuk** alapján párosítjuk. ÁFA-kódoknál ez a könyvelési kód vagy az AIFT kód, a munkaterület egyediségi beállítása szerint. A párosított sorok frissülnek, a nem párosítottak létrejönnek.
+- **Semmi nem törlődik soha.** Az a sor, amely itt létezik, de a fájljában nem, érintetlen marad.
+- Csak a fájlban szereplő oszlopok íródnak be, így egy szűk fájl szűken változtat.
+- A fájlból hiányzó munkalapokat kihagyjuk, így egy csak `VAT Rates` lapot tartalmazó fájl érvényes egytáblás import. Az ismeretlen munkalapokat és oszlopokat megjegyzéssel átugorjuk, nem hibaként.
+- Egy feltöltés bevihet egy dimenziósort **és** egy azt használó ÁFA-kódot is: a lapok függőségi sorrendben dolgozódnak fel.
+
+Három dolog, amin sokan elcsúsznak:
+
+- **Az `Archived = no`, vagy egy üres Archived cella, megszünteti a sor archiválását.** A cella kiürítése nem azt jelenti, hogy „maradjon, ahogy van”.
+- **A kód módosítása az azonosságot módosítja.** Ha átírja a kódot, a könyvelési kódot vagy az AIFT kódot, a sor már semmivel nem párosul, tehát nem frissül, hanem új sorként jön létre.
+- **Az átfedő érvényességi időszakokat elutasítjuk.** Ha egy fájlsor öt eleme és érvényességi időszaka átfed egy létező aktív sorral, vagy a fájl két sora fed át egymással, az import leáll. Ez a leggyakoribb valódi blokkoló, és semmi köze az elgépelésekhez.
+
+### Egy export visszaimportálása nem mindig hatástalan
+
+Rendszerint az, de két élő beállítás elrontja, és mindkettő olyan állapot, amelyet a szerkesztő jogosan megenged:
+
+- **Kód nélküli dimenziósor.** A szerkesztő engedi, az export üres Code cellát ír, az import pedig kötelező mezőként elutasítja.
+- **Könyvelési kód nélküli ÁFA-kód**, ami AIFT-kód módban megengedett. Az importáló **mindkét** módban megköveteli a könyvelési kódot minden ÁFA-kód soron.
+
+Az oda-vissza utat tehát tekintse hasznos, de nem garantált ellenőrzésnek. Ha ezeken bukik el, a fájl rendben van, csak a szerkesztő és az importáló nem ért egyet.
 
 ## Másolás másik munkaterületről
 
-Egy bevált beállítás kigördítéséhez az iroda ügyfél-munkaterületeire fájl sem kell. A **Másolás munkaterületről…** (az importálás gombja mellett) a szervezete azon munkaterületeit listázza, ahol könyvelői szerepköre van; válassza ki a forrást, és **ugyanazt az előnézetet** kapja - új / frissített / változatlan munkalaponként -, mielőtt bármi beíródna. A megerősítés a forrás teljes aktuális beállítását alkalmazza (az archivált sorokkal együtt), pontosan az import szabályai szerint: párosítás kód alapján, frissítés vagy létrehozás, törlés soha.
+A **Másolás munkaterületről…** a könyvelőirodája szervezetének azon munkaterületeit listázza, amelyekben Ön a könyvelői oldalon van. Válasszon forrást, kattintson a **Változások előnézete** gombra, majd a **Másolás megerősítése** gombra. Figyeljen a plusz lépésre: nem két kattintás.
 
-## Ki mit tehet
+Az, hogy egy munkaterület megjelenik a listában, nem garantálja, hogy a másolás sikerül, mert magához a másoláshoz a „Törzsadatok szerkesztése” jogosultság kell **mindkét** munkaterületen.
 
-- **Exportálás** - minden munkaterület-tag, az ügyfélszerepkörök is (az ÁFA-táblákat egyébként is látják, csak olvasásra).
-- **Importálás és másolás** - csak a könyvelői szerepkörök.
+**A másolás többet ír felül, mint az import.** A forrás teljes aktuális beállítását küldi el, tehát minden mező jelen van, és mindegyiken a forrás nyer: kitörli a leírást, ami a célnál megvolt, és felülírja a cél érvényességi dátumait és archiválási jelzéseit is. A „frissítés vagy létrehozás, törlés soha” a sorokra igaz, a mezőkre nem.
 
-Minden megerősített import vagy másolás naplózódik; a gombok melletti **Utolsó importálás** sor mutatja, mikor és ki módosította utoljára tömegesen a beállítást.
+Két eltérés, amit másolás előtt érdemes ellenőrizni:
+
+- **Egyediségi mód.** A kulcsképzés a **cél** munkaterületet követi. Ha AIFT kód nélküli sorokat másol egy AIFT-módú célba, minden soron elbukik.
+- **Ország.** Semmi nem állítja meg abban, hogy egy magyar kulcstáblát egy német munkaterületbe másoljon.
+
+### Mit nem hoz magával sem az import, sem a másolás
+
+- **Az iránykénti alapértelmezett ÁFA-kódot.** Másolás után ezt kézzel kell újra beállítania: lásd az [ÁFA-törzsadatok](/vat-master-data) cikket.
+- **A két ÁFA-beállítást**, a kódegyediségi módot és az exportkezelést.
+- **Az ÁFA-példák fület**, valamint a Business Central ÁFA-hozzárendelést.
+
+Van egy második út is, amelyet a legtöbb új ügyfél valójában bejár: az új ügyfelet végigvezető folyamat az egyik lépésében átmásolja egy kiválasztott munkaterület beállítását, az ÁFÁ-val együtt. Lásd: [Munkaterületek](/workspaces).
 
 ## Tippek
 
-- Egy ügyfél ÁFA-beállításának átnézéséhez vagy megbeszéléséhez exportálja, és ossza meg a fájlt - Excelben jól olvasható.
-- Egy módosítatlan export újraimportálása nem változtat semmin (minden *változatlan*-ként jelenik meg) - nyugodtan használhatja oda-vissza ellenőrzésre.
-- Egy tábla tömeges szerkesztéséhez exportáljon, szerkessze azt az egy lapot, törölje a másik négy munkalapot, és importáljon.
+- Egy ügyfél ÁFA-beállításának átnézéséhez vagy megbeszéléséhez exportálja, és ossza meg a fájlt. Excelben jól olvasható.
+- Egy tábla tömeges szerkesztéséhez exportáljon, szerkessze azt az egy munkalapot, törölje a másik négyet, és importáljon.
+- Minden tömeges változtatás után ellenőrizze újra az alapértelmezett ÁFA-kódokat, és nézzen rá a termék/szolgáltatás fülön az esetleges duplikált kódokra, amelyekre az alkalmazás ott figyelmeztet.

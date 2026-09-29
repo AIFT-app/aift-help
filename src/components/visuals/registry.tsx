@@ -30,8 +30,19 @@ import { TwoRatesFigure } from './currency'
 import { OnboardingStepMapFigure } from './onboarding'
 import { VatGroupStepsFigure } from './vat-groups'
 import { StatementsTabFigure } from './statements'
+import { BankTransactionListFigure } from './bank-transactions'
 import { TriageDestinationsFigure } from './intake'
 import { PartnerRulesFigure } from './partner-rules'
+import { VatSetupActionsFigure, VatSetupPreviewFigure } from './vat-setup'
+import { DocumentsListFigure } from './documents'
+import { VatLinesGridFigure } from './vat-lines'
+import { FocusChipFigure } from './focus'
+import { MessageComposerFigure } from './composer'
+import { LedgerFiltersFigure } from './ledger'
+import { SelectionGridFigure } from './grid'
+import { LanguageLadderFigure } from './language'
+import { RegistryPanelFigure } from './registry-panel'
+import { FoldedVatFigure } from './folded-vat'
 
 type WithLocale = { locale: Locale; children?: React.ReactNode }
 
@@ -71,8 +82,20 @@ const FIGURES: Record<string, (props: WithLocale) => React.ReactNode> = {
   OnboardingStepMapFigure,
   VatGroupStepsFigure,
   StatementsTabFigure,
+  BankTransactionListFigure,
   TriageDestinationsFigure,
   PartnerRulesFigure,
+  VatSetupActionsFigure,
+  VatSetupPreviewFigure,
+  DocumentsListFigure,
+  VatLinesGridFigure,
+  FocusChipFigure,
+  MessageComposerFigure,
+  LedgerFiltersFigure,
+  SelectionGridFigure,
+  LanguageLadderFigure,
+  RegistryPanelFigure,
+  FoldedVatFigure,
 }
 
 export function visualComponents(locale: Locale) {

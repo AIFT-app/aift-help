@@ -1,61 +1,107 @@
-# Ledger Explorer
+# Ledger
 
-The Ledger is where you go to **answer a question with your data** - "show me all EUR expenses last quarter," "which Erste Bank transactions happened in March," "every invoice from this supplier this year." It browses across all your processed invoices and bank transactions at once, filters them however you like, and exports the result to Excel.
+The Ledger is where you answer a question with your data: every expense in EUR last quarter, every transaction on one bank account in March, every invoice from one supplier this year. It browses your invoices and bank transactions together, filters them, and exports the result.
 
-It's an accountant tool - you'll find it under **Exports → Ledger** in the workspace sidebar. (Clients don't see it.)
+It lives under **Exports → Ledger** in the sidebar, and clicking **Exports** lands you here directly. Client-side users never see it.
 
-## The three views
+Opening it needs the **"Run exports"** permission. That is a permission rather than a job title, so an accountant can be without it, and the sidebar still shows the link: pressing it returns you to the workspace overview with no message. If that happens to you, that is the permission you are missing.
 
-The Ledger shows your data three ways, switched with the tabs at the top:
+## What you are looking at when it opens
 
-| Tab | One row per | Use it for |
+Two defaults decide what you see first, and neither is obvious:
+
+- The date range starts at **the last 30 days**.
+- Invoices are measured on the workspace's default date type, which is **Fulfillment date** unless someone changed it under **Settings**.
+
+So a Ledger that looks nearly empty on a busy month usually is not: widen the range.
+
+## The five tabs
+
+| Tab | One row per | What it is for |
 |---|---|---|
-| **Invoice Headers** | invoice | totals, dates, partner, status - the invoice-level summary |
-| **Invoice Lines** | line item | category and VAT detail down to each line |
-| **Bank Transactions** | bank movement | what actually hit the account, with match status |
+| **Invoice Headers** | invoice | totals, dates, company, partner, direction |
+| **Invoice Lines** | line item | the same invoices, down to each line, with category and VAT detail |
+| **Bank Transactions** | bank movement | what actually reached the account |
+| **Companies** | company | the workspace's companies, read only |
+| **Partners** | partner | the workspace's verified partners, read only |
 
-A filter you set applies across the views, so you can answer the same question from the invoice side and the bank side without re-typing it.
+The first three are the working tabs. **Companies** and **Partners** are registry lists: no filter strip, no search bar, and their rows do not open anything. On the three working tabs a row is a link, to the invoice or to the transaction.
+
+Duplicates and rejected invoices never appear, on any tab or in any export.
+
+### A filter does not mean the same thing on every tab
+
+The article this replaces promised that one filter answers the same question from both sides. It does not, and the differences matter:
+
+- **Category filters are ignored on Invoice Headers**, by design, because a category belongs to a line and not to an invoice. The app says so in an amber notice, **"Category filters don't apply here"**, with a **Show invoice lines instead** link. Follow it.
+- Bank-only filters (transaction type, bank account, cash-flow category) do nothing to invoice rows, and invoice-only filters do nothing to bank rows.
+- The date type is an invoice idea. Bank transactions are always measured on their booking date.
+
+What genuinely crosses all three: the date range, direction, company, partner and currency.
 
 ## Filtering
 
-Two ways to narrow things down - use whichever feels faster.
+### Ask the Ledger
 
-### Ask the Ledger (plain language)
+The bar at the top is labelled **Ask the Ledger**. Type an ordinary sentence and the app turns it into filters. It then shows **"Understood as:"** with its reading of your request and an **Undo** if it got it wrong.
 
-There's a search box labelled **Ask the Ledger**. Type what you want in ordinary words and the app turns it into filters for you:
+Ask in any language you like: the answer comes back in your interface language either way.
 
-- *"Eurofins invoices last quarter"*
-- *"expenses in EUR"*
-- *"transactions from Erste Bank, March 2026"*
+Beside the bar is a **Search engine** choice: **Auto**, **Exact** or **Meaning**. This is worth knowing, because Meaning is a different page rather than a different filter. It searches the AI's summary of each record, so only records that have one appear, and **filters, sorting and export do not apply there** - the Export button is simply absent. On **Auto** a vague question can route you there by itself, which is why a search for something like "travel costs" can land you on a page with no Export button.
 
-It shows you how it read your request - **"Understood as: …"** - with an **Undo** if it got something wrong. If the language understanding is ever unavailable, it'll say so and you can fall back to the filter controls below.
+When a search returns nothing or almost nothing, a banner offers to look by meaning instead: *"N records match by meaning."* with a **Show them** button.
 
-### Filter controls
+### The filter strip
 
-Click **Show filters** for the full set: date range (with presets and a custom range), direction (money in / money out), partner, company, bank account and currency, invoice categories, transaction types, and more under **More filters**. Everything you've applied appears as removable chips under **Active filters** - click the **×** on a chip to drop just that one, or **Clear** to reset.
+There is no "Show filters" button. The common controls are always on screen, in a strip under the search bar: the **date range** with its date-type dropdown, **Direction**, and either a partner picker or, on the bank tab, a bank account. Everything else is behind **More filters** on the right, which carries a count of how many you have set.
 
-If a view comes back empty, the Ledger will often point you at a better tab - *"Try Bank Transactions - 12 matches."*
+<LedgerFiltersFigure>
+The top of the Ledger. The numbers match the list below. The counts and filters are examples.
+</LedgerFiltersFigure>
 
-## Exporting to Excel
+1. **Ask the Ledger.** Type an ordinary sentence; the answer comes back in your interface language whatever you ask in.
+2. **The search engine**, and the reason to know it exists: **Meaning** is a different page, with no filters and no Export button.
+3. **More filters**, with a count. Nothing is hidden behind a show-or-hide toggle: the strip above is always there.
+4. **Reset all** clears every chip at once; a chip's own × clears just that one.
+5. **Five tabs**, each with its own count. The last two are read-only registries.
 
-When the view shows what you want, click **Export**. You get an `.xlsx` file with two choices:
+Whatever you apply appears as a row of chips under **Active filters**. Click a chip's × to drop one, or **Reset all** to clear them. When nothing matches, the app says *"No results match these filters."*
 
-- **Export all three sheets** - Invoice Headers, Invoice Lines, and Bank Transactions, each on its own sheet, all reflecting your current filters.
-- **Export this view only** - just the tab you're looking at.
+**Date filtering is strict.** An invoice that has no date of the type you picked is left out rather than falling back to another date, and the strip counts them for you so they are not invisible.
 
-A couple of guardrails:
+Everything is in the address bar: the tab, the filters, the sort, the page. A Ledger view can be bookmarked or pasted to a colleague.
 
-- For a very large result the app asks you to confirm first (*"This export will produce ~N rows. Continue?"*).
-- There's a hard ceiling - if the result is enormous, you'll be asked to **refine the filters** before exporting. Tighten the date range or add a filter and try again.
+## Exporting
+
+Click **Export** and pick a format first, then a scope:
+
+| | **Export all three sheets** | **Export this view only** |
+|---|---|---|
+| **Excel workbook (.xlsx)** | one workbook, every dataset | one workbook, the tab you are on |
+| **CSV bundle (.zip)** | a zip, one CSV per dataset | a zip with one CSV |
+
+**Despite its label, "all three sheets" produces five**: invoice headers, invoice lines, bank transactions, partners and companies. The label was written when there were three and has not caught up.
+
+The two master-data sheets are the workspace's full registries. Your filters shape the three transactional sheets only.
+
+Two limits and one silent subtraction:
+
+- Above **50,000 rows** you are asked to confirm.
+- Above **200,000 rows** the export is refused until you narrow it, with a chip reading *"Refine filters to export - over 200000 rows."*
+- **Invoices whose VAT coding is incomplete are left out of the export.** Afterwards a summary tells you how many, with a **Review excluded** link that filters the headers tab down to exactly those invoices. Check this before reconciling a row count against anything. [VAT in exports](/vat-in-exports) explains the gate.
+
+The file is named for the period you exported.
 
 ## Tips
 
-- **Start broad, then narrow.** Set the date range first, then add partner or category filters - the row counts update as you go.
-- **Use Ask the Ledger for the first cut, filters for the fine-tuning.** Natural language is great for "get me in the right ballpark"; the chips are precise.
-- **Exporting for the office?** "All three sheets" gives the fullest picture in one file.
+- **Widen the date range first.** Most "where is my data" moments are the 30-day default.
+- **Ask the Ledger for the first cut, the chips for the fine-tuning.** The sentence gets you to the right ballpark; the chips are exact.
+- **Reconciling a total? Read the excluded-invoice summary**, or the export will be quietly short.
+- **Sending a view to a colleague?** Copy the address rather than describing the filters.
 
 ## Related
 
-- [Reports](/reports) - saved, category-based summaries (vs. the Ledger's ad-hoc browsing)
+- [Reports](/reports) - saved, category-based summaries, as against the Ledger's ad-hoc browsing
+- [VAT in exports](/vat-in-exports) - why an invoice can be left out of an export
 - [Working with Invoices](/invoices)
 - [Invoice Matching](/invoice-matching)

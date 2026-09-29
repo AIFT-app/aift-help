@@ -79,10 +79,17 @@ Approving needs the permission "Approve invoices for payment" plus the right to 
 
 ## Emails
 
-Four emails keep you informed without opening the app. Each has its own switch under **Account**, **Notifications**, and a one-click unsubscribe link in the footer.
+Three approval emails keep you informed without opening the app, plus a notice when somebody declines. Each has its own switch under **Account**, **Notifications**, in the **Approvals** section, and a one-click unsubscribe link in the footer.
+
+- **New items to approve**: one email when a wave of new items ends. The app waits until your queue has been quiet for 5 minutes, or until the oldest item no email has told you about has waited 30 minutes, whichever comes first. A wave can be a single invoice. It covers every kind you approve: payment invoices assigned to you are listed; filing and bookkeeping items that became ready, or were returned, in a queue you hold the key for appear as counts per company with a button to the queue. There is no daily limit, and it runs every day, weekends included.
+- **Daily digest**: on working days, at the time you choose (08:00 Budapest time unless you change it). One email across all your companies: payment invoices waiting for you, up to 5 per company, soonest due first, with a marker on the ones no email has shown you yet; filing and bookkeeping as counts of ready, returned with a note, and blocked items, with a button to the queue. Nothing waiting, no email. Items that are only blocked do not trigger it.
+- **Due-soon reminder**: on working days, at the time you choose (14:00 Budapest time unless you change it), payment invoices due within 2 days that still wait for you. One reminder per invoice.
+- **Declined invoices**: sent at once to everyone holding "Manage approvals" except the person who declined, with their note.
+
+Working days are Monday to Friday, Budapest time. Both times are set in quarter-hour steps.
 
 <ApprovalEmailsFigure>
-The **Payment approvals** section under **Account**, **Notifications**, with all four switched on. Each row says when that email arrives.
+The **Approvals** section under **Account**, **Notifications**, with all four switched on. The daily digest and the due-soon reminder each have a time picker below their description.
 </ApprovalEmailsFigure>
 
 The emails link into the app. There is no approve button in an email: a decision always happens signed in, on the invoice.

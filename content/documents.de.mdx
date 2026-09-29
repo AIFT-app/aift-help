@@ -1,55 +1,110 @@
 # Dokumente
 
-Unter **Dokumente** sammeln sich Verträge und sonstige Unterlagen: alles, was für die Buchhaltung zählt, aber weder Rechnung noch Kontoauszug ist. Ein Mietvertrag, ein Darlehensvertrag, eine Kostenstellenrichtlinie, ein Kontenrahmen, ein Förderbescheid.
+Unter **Dokumente** haben Verträge und sonstige Unterlagen ihren Platz: alles, was für die Buchhaltung zählt, aber weder Rechnung noch Kontoauszug ist. Ein Mietvertrag, ein Darlehensvertrag, eine Kostenstellenrichtlinie, ein Kontenrahmen, ein Förderbescheid.
 
-Sie finden die Seite in der Seitenleiste des Arbeitsbereichs unter **Dokumente**. Es ist eine Seite für die Buchhaltung; Mandanten sehen sie nicht.
+## Was hier landet und was nicht
+
+Diese Seite enthält genau drei Arten: **Verträge**, **Andere** und alles, was der erste Durchgang überhaupt nicht einordnen konnte.
+
+Alles, was als **Rechnung**, **Beleg**, **Gutschrift** oder **Kontoauszug** klassifiziert wird, geht anderswohin und erscheint hier nie. Rechnungen und Belege gehen zu [Rechnungen](/invoices), ein Kontoauszug wartet auf der Seite **Banktransaktionen** darauf, hochgeladen zu werden (siehe [Kontoauszüge hochladen](/bank-statement-upload)), und was per E-Mail eintrifft, wird zuerst in der **Sammelstelle** protokolliert (siehe [Dokumente per E-Mail weiterleiten](/email-forwarding)).
+
+Ist die Seite Dokumente leer, bedeutet das also nicht, dass nichts eingetroffen ist. Es bedeutet, dass nichts eingetroffen ist, das kein Finanzbeleg war.
+
+## Wer sie öffnen kann
+
+Mitglieder auf der Kanzleiseite mit der Berechtigung „Rechnungen bearbeiten“. Ein Mitglied auf der Mandantenseite erreicht sie nie, welche Rolle es auch bekommt: Die Berechtigung gibt es nur für die Kanzleiseite, und keine Ausnahme kann sie vergeben.
+
+> Wenn Sie auf der Seite der Buchhaltung stehen und die Seite Sie ohne Meldung zurück zur Übersicht des Arbeitsbereichs bringt, fehlt Ihrer Rolle **Rechnungen bearbeiten**. Der Eintrag in der Seitenleiste wird trotzdem jedem Mitglied auf der Kanzleiseite gezeigt, deshalb ist die Sackgasse stumm.
+
+Beachten Sie: Eine Kategorieliste aus einem Dokument zu bauen, weiter unten, braucht noch einmal eine **andere** Berechtigung.
 
 ## Wie Dokumente hereinkommen
 
-Auf zwei Wegen, und der erste kostet keine Mühe:
+- **Per E-Mail weiterleiten.** Was an die Adresse des Arbeitsbereichs geht und weder Rechnung noch Auszug ist, landet von selbst hier.
+- **Hochladen.** Klicken Sie auf **Hochladen** und ziehen Sie Dateien hinein oder wählen Sie sie aus.
 
-- **Per E-Mail weiterleiten.** Was an die E-Mail-Adresse des Arbeitsbereichs geht und weder Rechnung noch Auszug ist, landet von selbst hier. Siehe [Dokumente per E-Mail weiterleiten](/email-forwarding).
-- **Hochladen.** Klicken Sie auf **Hochladen** und ziehen Sie Dateien hinein oder wählen Sie sie aus. PDF, JPG oder PNG, je bis zu 20 MB.
+Im Dialog steht PDF, JPG oder PNG, je bis zu 20 MB, und das ist ein guter Rat und keine erzwungene Regel: Eine größere Datei oder ein anderes Bildformat weist tatsächlich nichts ab. Halten Sie sich trotzdem daran, denn was der Leser verarbeiten kann, ist genau das, was der Hinweis beschreibt.
 
 ## Was bei der Ankunft passiert
 
-Jedes Dokument wird einmal kurz gelesen, damit die Liste brauchbar ist, ohne dass Sie etwas öffnen müssen:
+Jedes Dokument wird einmal kurz gelesen, damit die Liste brauchbar ist, ohne dass Sie etwas öffnen müssen. Es bekommt eine **Zusammenfassung** in ein bis zwei Sätzen samt einem Sicherheitswert, seine Sprache wird erkannt, und es erhält einen Typ.
 
-- Es wird als **Vertrag** oder **Andere** klassifiziert.
-- Es bekommt eine **Zusammenfassung** in ein bis zwei Sätzen, die auf der Karte steht, zusammen mit der Sicherheit der KI.
-- Die Sprache wird erkannt.
-- Liegt dieselbe Datei bereits im Arbeitsbereich, wird die Kopie als **Duplikat** markiert und beiseitegelegt, statt erneut verarbeitet zu werden.
+**Auf dem Typ-Abzeichen steht, wie die KI es genannt hat**, aber nur bei Dokumenten, die keine Verträge sind. Der erste Durchgang schreibt zweierlei: eine grobe Art und eine feinere Bezeichnung in eigenen Worten. Bei einem **Vertrag** steht immer das übersetzte Wort **Vertrag**, und seine feinere Bezeichnung (`lease`, `nda`) wird nirgends angezeigt. Bei allem anderen erscheint die feinere Bezeichnung, sofern es eine gibt, und diese Freitext-Bezeichnungen werden nicht übersetzt: `Kontenrahmen` bleibt `Kontenrahmen`, welche Oberflächensprache Sie auch gewählt haben.
+
+Liegt dieselbe Datei bereits im Arbeitsbereich, wird die Kopie als **Duplikat** markiert. Sie erscheint dennoch in der Liste, unter dem Typ des Originals eingeordnet, und an der Stelle der Zusammenfassung steht eine Zeile, die nennt, wovon sie ein Duplikat ist.
+
+<DocumentsListFigure>
+Die Dokumentenliste mit fünf Dokumenten. Die Nummern entsprechen der Liste darunter. Die Dokumente und Firmen sind Beispiele.
+</DocumentsListFigure>
+
+1. **Hochladen**, neben der Überschrift. Der einzige andere Weg hierher ist die E-Mail.
+2. **Duplikate** ist der einzige Filter mit einer Anzahl, und auch nur, wenn es welche gibt.
+3. **Das Typ-Abzeichen in den Worten des Dokuments.** Dieser Kontenrahmen ist kein Vertrag, also steht auf dem Abzeichen, wie die KI ihn genannt hat, unübersetzt, welche Oberflächensprache Sie auch gewählt haben.
+4. **Ein Duplikat bleibt hier**, unter der Art des Originals, und an der Stelle der Zusammenfassung steht die Zeile, die nennt, wovon es ein Duplikat ist.
+5. **Ein PDF mit mehreren Dokumenten** behält das Kennzeichen **Verarbeitung** dauerhaft. Weiter passiert damit nichts.
 
 Dieser erste Durchgang ist bewusst flach. Er liest den Anfang des Dokuments, um es einzuordnen und zu beschreiben, nicht um seinen Inhalt auszulesen.
 
 ## Etwas wiederfinden
 
-Über der Liste stehen die Filter **Alle**, **Verträge**, **Andere**, **Zu prüfen** und **Duplikate**. Jedes Dokument trägt außerdem einen Status:
+Die Filter sind **Alle**, **Verträge**, **Andere**, **Zu prüfen** und **Duplikate**. Nur **Duplikate** trägt eine Zahl, und nur, wenn es welche gibt.
+
+Es gibt keine Suche, keine Sortierung und kein Blättern: Die Liste ist alles im Arbeitsbereich, das Neueste zuerst, auf einmal. Und der leere Zustand sagt denselben Satz, auf welchem Filter Sie auch stehen, „Noch keine Dokumente“ auf dem Filter Duplikate heißt also meist, dass es keine Duplikate gibt, und nicht, dass es keine Dokumente gibt.
 
 | Status | Bedeutung |
 |--------|-----------|
 | **Bereit** | Klassifiziert, mit Zusammenfassung |
-| **Prüfen** | Die KI war nicht sicher genug; prüfen Sie den Typ selbst |
-| **Verarbeitung** | Wird noch gelesen |
+| **Prüfen** | Der erste Durchgang war nicht sicher genug; prüfen Sie den Typ selbst |
+| **Verarbeitung** | Wird noch gelesen, **oder** hängt: siehe unten |
 | **Fehlgeschlagen** | Die Datei war nicht lesbar, etwa ein verschlüsseltes PDF |
+
+**Verarbeitung** ist der Sammelstatus, und es gibt einen Fall, der ihn nie verlässt. Ein PDF, in dem mehrere Dokumente zusammen eingescannt sind, wird abgewiesen statt gelesen, und es behält das Abzeichen **Verarbeitung** für immer. Steht etwas seit dem Tag seiner Ankunft dort, ist genau das passiert: Teilen Sie es in ein Dokument je Vorgang auf und senden Sie die Teile.
 
 Nachweisdokumente wie Stundenzettel, Leistungsnachweise und Lieferscheine werden als Rechnungsanhänge erkannt und nie als Rechnung verarbeitet. Solche, die noch mit keiner Rechnung verknüpft sind, warten unter dem Filter **Nicht verknüpfte Anhänge**, wo Sie sie verknüpfen können. Siehe [Rechnungsanhänge](/invoice-attachments).
 
 ## Mit einem Dokument arbeiten
 
-Öffnen Sie ein Dokument, und Sie sehen Zusammenfassung, Typ, Sprache, Datei und Quelle, daneben eine Vorschau. Von hier aus können Sie:
+Öffnen Sie ein Dokument, und Sie sehen seine Zusammenfassung, seinen Typ, seine Sprache, seine Datei und seine Quelle.
 
-- Die Originaldatei **herunterladen** oder öffnen.
-- Es **neu klassifizieren.** Ist hier etwas gelandet, das in Wahrheit eine Rechnung, ein Kontoauszug oder ein Beleg ist, schicken Sie es dorthin, wo es hingehört, und es wird richtig verarbeitet.
-- Es **als irrelevant markieren** und damit archivieren, für alles, was nicht im Blick bleiben muss.
-- **Kein Duplikat** wählen, bei einem als Kopie beiseitegelegten Dokument, um es zur Prüfung zurückzuholen.
+**Ein PDF wird daneben in einer Vorschau gezeigt, ein JPG oder PNG nicht.** Bei einem Bild bekommen Sie stattdessen einen Link, um die Datei zu öffnen, was zu wissen lohnt, da der Upload-Dialog Sie ja einlädt, Bilder zu senden.
+
+- **Herunterladen**, oder die Originaldatei öffnen.
+- **Seinen Typ ändern**, über die Auswahlliste in der Fußzeile. Ist hier etwas gelandet, das in Wahrheit eine Rechnung, ein Kontoauszug oder ein Beleg ist, geht es damit dorthin, wo es hingehört, und verlässt diese Seite. Es bringt der App außerdem etwas bei: Die Domain des Absenders wird für das nächste Mal in Richtung dieses Typs geschoben.
+- **Als irrelevant markieren**, für alles, was nicht im Blick bleiben muss.
+- **Kein Duplikat**, bei einer Kopie, was sie zurück nach **Zu prüfen** holt und die Markierung an jeder Rechnung aufhebt, die aus ihr entstanden ist.
+
+Zwei davon verdienen eine Warnung.
+
+**„Als irrelevant markieren“ lässt sich nicht widerrufen.** Es gibt keine Wiederherstellung und keinen Filter, der Ihnen ein archiviertes Dokument wieder zeigt. Behandeln Sie es als Löschen von dieser Seite.
+
+**Den Typ zu ändern startet das Lesen nur bei einem Dokument neu, das noch im ersten Durchgang steckt.** Aus **Fehlgeschlagen**, oder bei einem schon fertigen Dokument, ändert es die Bezeichnung und nimmt das Dokument von dieser Seite, ohne es irgendwohin zu schicken. Ein fehlgeschlagener Vertrag, der in Wahrheit eine Rechnung ist, muss deshalb neu hochgeladen und nicht neu klassifiziert werden.
+
+### Warum dieselbe Datei als Duplikat auftaucht
+
+Duplikate werden über den Inhalt der Datei erkannt, zwei wirklich identische Dateien werden also gefasst, wie sie auch heißen. Ältere Dokumente wurden mit einer schwächeren Regel abgeglichen, über Dateigröße und Name, deshalb taucht in der Liste gelegentlich ein Fehlalarm auf. Dafür ist **Kein Duplikat** da.
 
 ## Aus einem Dokument eine Kategorieliste bauen
 
-Beschreibt ein Dokument, wie das Unternehmen seine Kosten gliedert, können Sie daraus direkt eine eigene Kategorieliste machen, statt sie abzutippen. Klicken Sie auf **Kategorieliste erstellen**, und die KI liest bis zu zwanzig Seiten und schlägt die Liste vor: einen Titel, den Hinweistext und die Kategorien mit Codes und Beschreibungen.
+Beschreibt ein Dokument, wie das Unternehmen seine Kosten gliedert, können Sie daraus direkt eine eigene Kategorieliste machen, statt sie abzutippen. **Kategorieliste erstellen** liest bis zu zwanzig Seiten und schlägt eine vor.
 
-Angelegt wird nichts, bevor Sie es sagen. Jedes Feld ist bearbeitbar, Kategorien lassen sich auslassen, und der letzte Schritt zeigt genau, was entstehen wird. Eine Kostenstellenrichtlinie, ein Kontenrahmen, eine Abteilungsliste und ein Förderbudget sind gute Kandidaten; die meisten anderen Dokumente enthalten nichts dergleichen, und der Bildschirm sagt das offen, statt eines zu erfinden.
+Dafür braucht es die Berechtigung **„Stammdaten bearbeiten“**, nicht die, die die Seite öffnet. Die Schaltfläche wird auf jedem Dokument allen gezeigt, die überhaupt bis hierher kommen. Bringt ein Klick darauf Sie zurück zur Übersicht des Arbeitsbereichs, ist das die Berechtigung, die Ihnen fehlt.
 
-Sobald die Liste existiert, wendet die KI sie auf Rechnungen und Banktransaktionen an, und Berichte lassen sich danach aufschlüsseln. Das ganze Bild steht unter [Eigene Kategorien](/custom-categories), das Lesen eines aufgeschlüsselten Berichts unter [Berichte](/reports).
+Danach wählen Sie das **Ziel**: **eine neue Liste aus diesem Dokument** oder **eine bestehende**, in die dann nur hinzugefügt wird, was fehlt. Bei einer neuen Liste können Sie den **Namen der Liste** und den **KI-Hinweis** bearbeiten und festlegen, für was sie **gilt**: für Rechnungen, für Transaktionen oder für beides.
 
-Unter **Daraus entstanden** zeigt ein Dokument, welche Listen aus ihm gebaut wurden. Woher ein Satz Codes stammt, bleibt so auch viel später nachvollziehbar.
+**Die Kategorien selbst sind zum Mitnehmen oder Liegenlassen.** Jede Zeile lässt sich **übernehmen** oder **auslassen**, und das ist alles: Code, Name und Beschreibung kommen so, wie die KI sie gelesen hat, und sind hier nicht korrigierbar. Richten Sie das später in der Liste selbst. Eine Kategorie, die das Dokument als geschlossen oder ausgelaufen kennzeichnet, wird inaktiv angelegt, und die Zeile sagt es: **Wird als inaktiv angelegt**.
+
+Der letzte Schritt ist ein echter Probelauf. Er sagt Ihnen, wie viele Kategorien angelegt werden, wie viele schon da sind, wie viele Zeilen nicht verwendbar waren, und er hat noch nichts geschrieben: **Probelauf. Es wurde noch nichts geschrieben.**
+
+Eine Kostenstellenrichtlinie, ein Kontenrahmen, eine Abteilungsliste oder ein Förderbudget sind gute Kandidaten. Die meisten anderen Dokumente enthalten nichts dergleichen, und der Bildschirm sagt das offen, statt eines zu erfinden.
+
+Danach zeigt das Dokument unter **Daraus entstanden**, was aus ihm hervorgegangen ist, sodass die Herkunft eines Satzes Codes nachvollziehbar bleibt. Was eine Liste dann tut, steht unter [Eigene Kategorien](/custom-categories), und wie sich ein Bericht nach so einer Liste aufgeschlüsselt lesen lässt, unter [Berichte](/reports).
+
+## Was diese Seite nicht berührt
+
+Von hier fließt nichts in die Checkliste zum Periodenabschluss oder ins **Cockpit**. Die Abschlussprüfungen schauen zwar auf eingehende Unterlagen, aber nur auf Rechnungen, Belege, Gutschriften und Kontoauszüge, also genau auf die Arten, die diese Seite ausschließt. Ein Rückstau ungelesener Verträge kann einen Monat niemals offen halten.
+
+## Verwandte Artikel
+
+- [Dokumente per E-Mail weiterleiten](/email-forwarding)
+- [Eigene Kategorien](/custom-categories)
+- [Berichte](/reports) - einen Bericht nach einer hier gebauten Liste aufschlüsseln

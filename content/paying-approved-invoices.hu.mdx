@@ -14,7 +14,7 @@ Egy számla akkor számít kifizetettnek, amikor a banki tranzakció megérkezik
 
 ## Hol található
 
-Nyissa meg az oldalsávban az **Utalási fájl** menüpontot, közvetlenül a **Jóváhagyások** alatt. A jóváhagyások áttekintésén is van egy **Utalási fájl** gomb. Ehhez az „Utalási fájl exportálása” jogosultság kell; alapértelmezés szerint a pénzügyi vezető és a könyvelő adminisztrátor rendelkezik vele, a munkaterület adminisztrátora pedig szerepkörön vagy tagonkénti kivételen keresztül bárkinek megadhatja. Lásd: [Szerepek és jogosultságok](/roles-and-permissions).
+Nyissa meg az oldalsávban az **Utalási fájl** menüpontot, közvetlenül a **Jóváhagyások** alatt. A **Jóváhagyások → Áttekintés** oldalon is van egy **Utalási fájl** gomb, azoknak, akiknek megvan a „Jóváhagyások kezelése” joguk. Ehhez az „Utalási fájl exportálása” jogosultság kell; alapértelmezés szerint a könyvelő admin, a pénzügyi vezető és a pénzügyi adminisztrátor rendelkezik vele, a munkaterület adminisztrátora pedig szerepkörön vagy tagonkénti kivételen keresztül mindenkinek megadhatja, akinek a „Számlák és banki tranzakciók megtekintése” is megvan - az utalási fájl azon jogosultságok egyike, amelyekhez ez kell. Lásd: [Szerepek és jogosultságok](/roles-and-permissions).
 
 Az oldal csak akkor működik, ha a cégnél be van kapcsolva a kifizetések jóváhagyása. Ellenkező esetben ezt írja: **A kifizetések jóváhagyása ki van kapcsolva**; lásd: [A kifizetések jóváhagyásának beállítása](/setting-up-approvals).
 
@@ -117,6 +117,8 @@ A „banki dokumentáció” azt jelenti, hogy a bank közzéteszi a formátumot
 ## Gyakori kérdések
 
 **Kifizethetek egy nem jóváhagyott számlát?** Erről az oldalról nem: csak jóváhagyott számlákat sorol fel. A jóváhagyást nem igénylőnek jelölt számlák sem jelennek meg; azokat a szokásos módon a netbankban fizesse ki.
+
+**Mindenki jóváhagyta a számlát, mégsem szerepel itt.** Egy jóváhagyási lépés *még azelőtt* visszatarthatja, hogy a kifizetés jóváhagyója egyáltalán látná: ahol az iktatási vagy a könyvelési jóváhagyás be van kapcsolva, a „Kifizetés jóváhagyása” kártyán az **Iktatásra vár** vagy a **Könyvelésre vár** felirat áll a **Jóváhagyom** gomb helyett. Az ilyen számla még nincs jóváhagyva kifizetésre, ezért ezen az oldalon sehol nem jelenik meg, még a „Még nem kerülhet be” csoportban sem. Lásd: [Iktatási és könyvelési jóváhagyás](/filing-and-bookkeeping-approval).
 
 **Az oldal azt írja, hogy „A kifizetések jóváhagyása ki van kapcsolva”.** A lista a jóváhagyásokból épül, ezért üres marad, amíg a cégnél be nem kapcsolják a kifizetések jóváhagyását a Beállítások, Jóváhagyási szabályok alatt. Lásd: [A kifizetések jóváhagyásának beállítása](/setting-up-approvals).
 

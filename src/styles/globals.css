@@ -75,6 +75,31 @@
   /* Exactly the app's value: aift-web maps font-mono to var(--font-geist-mono). */
   font-family: var(--font-geist-mono);
 }
+.app-screen .font-sans {
+  /* Likewise: aift-web maps font-sans to var(--font-geist-sans). The screen's
+     body text is Arial (aift-web's own body rule beats Tailwind's base), but an
+     element that asks for font-sans explicitly gets Geist there. */
+  font-family: var(--font-geist-sans);
+}
+
+/* A native <select> inside an app screen, exactly as aift-web styles it.
+   aift-web's globals.css gives every plain select the Catalyst control's own
+   chevron and reserves 2.5em on the right (PRD: native-select-chevron), and
+   that rule is DELIBERATELY UNLAYERED there so the reserved space beats the
+   element's own `px-2`. Without it a rebuilt screen's selects carry Chrome's
+   arrow and Chrome's own line-height, which the CSS diff reports as
+   `paddingRight: app=30px help=8px` and `lineHeight: app=16px help=normal`.
+   Scoped to .app-screen so the help site's own selects are untouched.
+   Excluded, as in the app: selects that draw their own chevron and list boxes. */
+.app-screen select:not([multiple]):not([size]):not(.appearance-none) {
+  appearance: none;
+  print-color-adjust: exact;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%2371717a' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M5.75 10.75L8 13L10.25 10.75'/%3e%3cpath d='M10.25 5.25L8 3L5.75 5.25'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.875em center;
+  background-size: 1.125em 1.125em;
+  padding-inline-end: 2.5em;
+}
 
 @theme inline {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;

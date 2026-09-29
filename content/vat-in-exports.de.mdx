@@ -1,32 +1,104 @@
 # USt in Exporten
 
-Sobald Ihre USt-Einrichtung steht und die Rechnungen ihre USt-Codes tragen, enthalten die Ledger-Explorer-Exporte (Exporte → **Hauptbuch**) alles, was ein Buchhaltungssystem braucht, um die USt korrekt zu verbuchen. Dieser Artikel behandelt die USt-Spalten, die Modi zur Behandlung der Nichtabziehbarkeit und das Export-Gate.
+AI Finance Team hat vier Exportziele, und **sie behandeln die USt nicht gleich.** Das Meiste im Folgenden betrifft den **Hauptbuch**-Export, denn nur er trägt das vollständige USt-Bild. Beginnen Sie mit der Tabelle, dann überrascht Sie weiter unten nichts.
 
-## Was die Exporte enthalten
+| | Hauptbuch | RLB | HessynKettős | Business Central |
+|---|---|---|---|---|
+| Einstellung zur Nichtabziehbarkeit greift | **ja** | nein, rechnet sie immer ein | nicht zutreffend, nur Ausgangsrechnungen | nein |
+| Rechnungen mit unvollständiger USt werden zurückgehalten | **ja** | nein | nein | nein |
+| Der USt-Code in der Datei | Ihrer, genau wie angelegt | Ihrer, aber bei zwei Pseudo-Codes geleert, dazu ein aus dem Satz abgeleiteter RLB-Code | von AI Finance Team abgeleitet, nicht Ihrer | Business Centrals eigener Code |
 
-- **Rechnungsköpfe** - die USt-Gruppe des Partners und die USt-Zusammenfassung auf Kopfebene neben den bestehenden Spalten.
-- **Rechnungszeilen** - die vollständige Zerlegung in fünf Elemente pro Zeile (Partnergruppe, Produkt-/Leistungsgruppe, Satz, Richtung, Berechnungsmethode), der aufgelöste **USt-Code** (sowohl Buchhaltungscode als auch AIFT-Code), Netto-/USt-/Bruttobeträge, die Aufteilung des nicht abziehbaren Anteils, die Fremdwährungs-USt-Felder und ein `vat_consistent`-Flag, das anzeigt, ob die Zeile manuell übersteuert wurde.
-- **Partner** - die USt-Gruppe jedes Partners, damit der Partnerstamm des Zielsystems synchron bleibt.
-- **Unternehmen** - die USt-relevanten Attribute Ihrer eigenen Firmen (USt-Meldewährung, Steuernummern), exportiert aus einem eigenen Blatt.
+## Was der Hauptbuch-Export enthält
 
-Codes erscheinen exakt so, wie Sie sie in Ihren [USt-Stammdaten](/vat-master-data) angelegt haben - AI Finance Team erfindet oder formatiert sie nie um.
+Zwei Formen: eine **Excel-Arbeitsmappe** oder ein **CSV-Paket** als Zip. In beiden Fällen dieselben fünf Datensätze: Rechnungsköpfe, Rechnungspositionen, Banktransaktionen, Partner und Unternehmen. Sie können das gesamte Hauptbuch exportieren oder nur den Tab, den Sie gerade ansehen.
 
-## Behandlung der Nichtabziehbarkeit - drei Modi
+Wo die USt tatsächlich steckt:
 
-Manche USt ist nicht (vollständig) abziehbar - 50% bei Pkw-Kosten, 100% bei Repräsentation und so weiter. Buchhaltungssysteme unterscheiden sich darin, wie sie das ausgedrückt haben wollen; deshalb wählt jeder Arbeitsbereich einen von drei Modi (Einstellungen → **USt.-Einstellungen**):
+- **Rechnungspositionen** tragen die Produkt-/Leistungsgruppe, den Satz und die Berechnungsmethode sowie die Richtung. **Die USt-Gruppe des Partners steht nicht hier**: sie steht auf dem Kopf- und dem Partnerblatt. Eine Position zeigt also vier der fünf Elemente.
+- **Rechnungsköpfe** tragen das USt-Datum, das Buchungsdatum, die USt-Gruppe des Partners, die USt-Erfassungsmethode und die USt-Meldewährung. Eine USt-Summenspalte auf Kopfebene gibt es nicht.
+- **Partner** tragen die USt-Gruppe und die Steuernummer jedes Partners.
+- **Unternehmen** tragen die USt-Erfassungsmethode, die USt-Meldewährung, die Befreiungsdaten und den Pro-rata-Prozentsatz. Keine Steuernummer. Beachten Sie: das Blatt selbst heißt **Entities**, obwohl der Tab, aus dem Sie exportiert haben, Unternehmen heißt.
+- **Banktransaktionen** liegen in derselben Datei und tragen überhaupt keine USt.
 
-- **Nativ - Zielsystem behandelt alle Nichtabziehbarkeit** - der Export trägt den nicht abziehbaren Prozentsatz auf jeder Zeile und überlässt die Aufteilung dem Zielsystem. Für Systeme, die teilweise Abziehbarkeit selbst behandeln.
-- **Nativ nur für 100%** *(Standard)* - vollständig nicht abziehbare Zeilen werden nativ durchgereicht; teilweise abziehbare Zeilen werden vorab in einen abziehbaren und einen nicht abziehbaren Teil aufgeteilt. Funktioniert für die gängigen ungarischen Zielsysteme.
-- **Immer einrechnen** - AI Finance Team teilt die Beträge immer auf; das Zielsystem erhält buchungsfertige abziehbare und nicht abziehbare Werte.
+Es gibt ein Flag namens **VAT Consistent**, und es bedeutet das Gegenteil dessen, was Sie vermuten würden. Es ist **false**, wenn noch ein Code zugewiesen ist, die Elemente der Zeile aber nicht mehr darauf auflösen. Eine von Hand korrigierte Zeile kommt als **true** heraus, denn die Korrektur schreibt die Elemente passend um. Leer gilt als true.
 
-Wenn Sie unsicher sind, welchen Modus Ihre Buchhaltungssoftware braucht, beginnen Sie mit dem Standard und prüfen Sie den ersten Import mit dem USt-Bericht Ihrer Software.
+Über 50 000 Zeilen fragt der Export nach einer Bestätigung; über 200 000 verweigert er und bittet Sie, die Filter einzuschränken.
 
-## Das Export-Gate - „USt-Codes unvollständig"
+### Der USt-Code ist nicht überall dieselbe Zeichenfolge
 
-Eine Rechnung, deren Zeilen USt-Codes fehlen, würde in Ihrem Buchhaltungssystem als unverbuchbares Fragment landen. Exporte **schließen Rechnungen mit unvollständigen USt-Codes** deshalb aus und informieren Sie darüber: Nach dem Export sehen Sie, wie viele Rechnungen exportiert und wie viele ausgeschlossen wurden - mit einem Ein-Klick-Link **Ausgeschlossene prüfen**, der die Liste exakt auf die betroffenen Rechnungen filtert.
+Der **Hauptbuch**-Export schreibt Ihren Code genau so, wie Sie ihn angelegt haben. Die anderen nicht:
 
-Um eine ausgeschlossene Rechnung zu beheben, öffnen Sie sie und lösen Sie die Zeilen mit fehlendem Code auf - siehe [USt-Codes auf Rechnungen](/vat-codes-on-invoices). Meist genügt es, eine fehlende Kombination in Ihre USt-Codetabelle aufzunehmen; danach erneut exportieren.
+- **RLB** leert zwei Pseudo-Codes. Wenn Ihre Tabelle `NL` oder `-` verwendet, um „vollständig nicht abziehbar“ oder „nicht in der Erklärung“ auszudrücken, kommt die Zelle der Erklärungszeile **leer** heraus. Daneben schreibt RLB seinen eigenen, aus dem Satz abgeleiteten Code, und das ist eine RLB-Paketnummer und nichts aus Ihrer Tabelle.
+- **HessynKettős** liest Ihre Codes nie. Es leitet seinen eigenen aus dem Satz-Element ab: steuerfrei, kleinunternehmerbefreit, Reverse Charge, grenzüberschreitende Leistung oder der reine Satz.
+- **Business Central** sendet einen Code aus seiner eigenen gespiegelten Zuordnung.
 
-## Universelles AIFT-Format
+Die Spalte **AIFT VAT Code** erscheint nur, wenn der Arbeitsbereich AIFT-interne Codes verwendet. In diesem Modus wird der Buchhaltungscode optional, die einfache Spalte **VAT Code** darf also legitim leer sein, während die AIFT-Spalte den Wert trägt.
 
-Die Exportspalten bilden ein stabiles, dokumentiertes Format - dieselben Spalten in derselben Reihenfolge bei jedem Export -, sodass ein einmal in Ihrer Buchhaltungssoftware eingerichtetes Import-Mapping weiter funktioniert. Neue Spalten kommen ans Ende des Blatts, nie in die Mitte.
+## Nicht abziehbare USt
+
+Manche USt ist nicht vollständig abziehbar: die Hälfte bei Pkw-Kosten, die gesamte bei Repräsentation. Buchhaltungssysteme sind sich nicht einig, wie sie das ausgedrückt haben wollen, deshalb bietet **Einstellungen → USt.-Einstellungen** drei Behandlungen an. Sie gelten **nur für den Hauptbuch-Export**.
+
+- **Nativ nur für 100%** *(der Standard)*. Eine vollständig nicht abziehbare Zeile wird unverändert durchgereicht, damit das Zielsystem sie über das Sachkonto steuert. Bei einer **teilweise** nicht abziehbaren Zeile wird die nicht abziehbare USt in den Nettobetrag eingerechnet.
+- **Nativ, das Zielsystem behandelt die gesamte Nichtabziehbarkeit.** Es wird nichts eingerechnet; der Prozentsatz läuft mit und das Zielsystem teilt ihn auf. Für Systeme, die das können, etwa Business Central mit der Funktion für nicht abziehbare USt oder DATEV.
+- **Immer einrechnen.** Alles wird eingerechnet, auch der 100%-Fall, den der Standard unangetastet lässt. Für Systeme, die Nichtabziehbarkeit überhaupt nicht ausdrücken können.
+
+**„Eingerechnet“ heißt, dass das exportierte Netto größer ist als das Netto der Rechnung.** Genau das ist der Sinn, und es ist das Eine, was Sie wissen müssen, bevor Sie ein Import-Mapping bauen: die nicht abziehbare USt wandert in den Nettobetrag und wird nicht bloß daneben ausgewiesen.
+
+<FoldedVatFigure>
+Was „Eingerechnet“ mit einer einzelnen Zeile macht. Die Beträge sind ein Beispiel.
+</FoldedVatFigure>
+
+Das Ändern der Einstellung erfordert die Berechtigung **„Stammdaten bearbeiten“**. Um überhaupt zu den Exporten zu gelangen, brauchen Sie **„Buchhaltungsexporte ausführen“**, eine andere Berechtigung.
+
+### Zwei Spaltensätze, die sich widersprechen
+
+Das Blatt mit den Rechnungspositionen trägt die Beträge zweimal, aus zwei verschiedenen Engines, und bei der Standardeinstellung liefern sie unterschiedliche Antworten.
+
+Für eine vollständig nicht abziehbare Zeile mit 100 netto plus 27 USt:
+
+| | Netto | Abziehbare USt | Nicht abziehbare USt |
+|---|---|---|---|
+| **Net Amount Exported** / **VAT Amount Deductible** / **VAT Amount Non-Deductible** | 100 | 27 | 0 |
+| **Booking Net Amount** / **Booking VAT Amount** | 127 | 0 | 27 |
+
+Der erste Satz folgt der obigen Einstellung und ist das, was Ihr Buchhaltungssystem lesen sollte. Der zweite rechnet immer ein und ist das, was die Bildschirme und Berichte der App selbst verwenden. Nehmen Sie für ein Import-Mapping den ersten Satz und mischen Sie die beiden nicht.
+
+**Vorsteuer-Pro-rata %** wird als Spalte auf dem Blatt Unternehmen exportiert und ändert nirgends einen Betrag. Die App sagt das selbst am Feld.
+
+## Wegen fehlender USt-Codes zurückgehaltene Rechnungen
+
+Der **Hauptbuch**-Export lässt jede Rechnung weg, die eine Zeile ohne USt-Code hat, denn sie würde als unverbuchbares Fragment importiert. **RLB und Hessyn nicht**: sie liefern eine nicht codierte Rechnung mit einer leeren Zelle für die Erklärungszeile aus.
+
+Die Datei wird trotzdem heruntergeladen. Danach sagt Ihnen ein Hinweis, wie viele Rechnungen mitgegangen und wie viele weggelassen wurden, mit einem Link, der Sie auf den eigenen Tab **Rechnungsköpfe** des Exports führt, genau auf diese Rechnungen gefiltert. Er führt Sie nicht zur Rechnungsliste.
+
+Eines fängt das Gate nicht ab: eine **standard-codierte** Zeile hat einen Code, ihre Rechnung wird also normal exportiert und trägt den Ersatzcode mit. Die Rechnungsliste kennzeichnet diese separat als **USt: standard-codiert**.
+
+Um sie ohne einen Export zu finden, filtern Sie die Rechnungsliste nach **USt-Codes unvollständig**.
+
+### Einen Stapel beheben
+
+1. Nutzen Sie den Link nach dem Export, um zu sehen, welche Rechnungen zurückgehalten wurden.
+2. Öffnen Sie eine davon und sehen Sie sich auf ihrem Tab **Positionen & USt.** die Zeile an, in der `- fehlt -` steht.
+3. Legen Sie die fehlende Kombination unter **Stammdaten → USt.-Codes** an.
+4. Führen Sie aus der Rechnungsliste **USt-Codierung erneut ausführen** aus; das füllt nur die Zeilen, deren Code fehlt.
+5. Exportieren Sie erneut.
+
+Was bei einer einzelnen Rechnung zu tun ist, steht unter [USt-Codes auf Rechnungen](/vat-codes-on-invoices).
+
+## Wie stabil ist das Format
+
+Stabil genug, um es einmal zu mappen, mit zwei ehrlichen Ausnahmen, beide auf dem Blatt mit den Rechnungspositionen und beide **in der Mitte** statt am Ende:
+
+- die Spalte **AIFT VAT Code** erscheint und verschwindet mit der Einstellung des Arbeitsbereichs, und
+- für jeden in Ihrem Arbeitsbereich definierten Bericht gibt es eine Spalte **Reporting Line**, sodass ein zusätzlicher Bericht die Spalten verschiebt.
+
+Zwei Arbeitsbereiche erhalten deshalb nicht identische Spalten. Ordnen Sie über den Spaltentitel zu, nicht über die Spaltenposition.
+
+CSV-Details, falls Sie dagegen skripten: UTF-8 mit Byte Order Mark, kommasepariert, gequotet nach RFC 4180, Punkt als Dezimaltrennzeichen, ISO-Daten.
+
+## Verwandte Artikel
+
+- [USt-Stammdaten](/vat-master-data)
+- [USt-Codes auf Rechnungen](/vat-codes-on-invoices)
+- [Kleinunternehmerbefreiung](/small-business-exemption) - wie sich steuerfreie und Reverse-Charge-Positionen je Format unterscheiden
+- [Business Central](/business-central)

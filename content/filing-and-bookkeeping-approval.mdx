@@ -77,6 +77,15 @@ When somebody edits an invoice, the withdrawn approval appears there too, in the
 
 The **Approvals** card on the invoice shows all three checkpoints in the order the invoice passes them, with who signed and when. In the invoice list an amber marker shows when an invoice is still waiting for a checkpoint, and you can filter on it.
 
+## Emails
+
+Filing and bookkeeping approvers get the same two emails as payment approvers, each with its own switch under **Account**, **Notifications**, in the **Approvals** section:
+
+- **New items to approve**: when a wave of invoices becomes ready, or is returned, in a queue you hold the key for, one email once the wave ends (the queue has been quiet for 5 minutes, or the oldest unsent item has waited 30 minutes). Filing and bookkeeping items appear as counts per company with a button to the queue, not as a list of invoices.
+- **Daily digest**: on working days at the time you choose (08:00 Budapest time by default), the counts of ready, returned with a note, and blocked items per company, with a button to the queue. Nothing waiting, no email. Items that are only blocked do not trigger it.
+
+The **Due-soon reminder** is for payment only: filing and bookkeeping have no due date. Nothing is sent for a checkpoint that is switched off. Every email in detail, and how to change the times: [Approving invoices for payment](/approving-invoices#emails).
+
 ## Permissions
 
 Two new permissions under **Settings**, **Team**:

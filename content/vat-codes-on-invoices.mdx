@@ -1,38 +1,101 @@
 # VAT Codes on Invoices
 
-Every invoice line in AI Finance Team carries five VAT fields: **Partner VAT Group** (on the invoice header), **Product / Service VAT Group**, **VAT Rate**, **Calculation Method**, and the resolved **VAT code**. This article explains how they are filled automatically, what the indicators mean, and how corrections work.
+A VAT code is not a field someone types. It is **resolved from five elements**, and that resolution happens on an invoice's **Lines & VAT** tab. The elements themselves, and the tables behind them, are in [VAT master data](/vat-master-data); this article is about what happens to them on a real invoice.
 
-The five tables behind these fields are described in [VAT master data](/vat-master-data).
+## How A Line Gets Coded
 
-## Automatic Assignment During Extraction
+Coding runs **after extraction, as part of categorisation**, in the same AI call that picks the category. It is not part of reading the document.
 
-When an invoice is extracted (upload, e-mail, or NAV Online), AI Finance Team classifies each line's VAT elements alongside its category:
+Several things get a say, most specific first:
 
-- The **Partner VAT Group** is taken from the partner when the partner is already tagged with one; otherwise it is inferred from the partner's country (domestic / EU / third country).
-- **Product / Service VAT Group**, **VAT Rate**, and **Calculation Method** are classified per line from the document - the rate from the printed VAT percentage, reverse charge from the invoice's wording, and so on.
-- With all five elements in place, the matching **VAT code** from your workspace's code table is assigned automatically for the invoice's VAT date.
+1. **NAV data**, on a Hungarian invoice. NAV fixes the **rate** and the **calculation method**, nothing else: it carries no product or service classification. The whole code is settled without asking the AI only when exactly one of your active codes carries a matching NAV mapping code; otherwise the product/service question still goes to the model.
+2. **A learned correction.** When you have corrected a similar line before, what gets replayed is the **product/service group**, not the code. That is deliberate, so a code learned before a rate change is not applied after it. A match therefore does not skip the AI call: the rate and the method still have to come from somewhere.
+3. **A partner default.** "Always sells", on the partner's Rules tab, fixes the product/service group for every line from that supplier and outranks the AI's own guess. It sets that one element and nothing else.
+4. **The AI's own reading** of the line.
+5. **The workspace default code**, if all of that still leaves the line unresolved. See below.
 
-Hungarian invoices arriving via **NAV Online** have machine-readable VAT data, which maps deterministically - no guessing involved.
+Two things the article used to promise and the product does not do. A partner with no VAT group is **not** inferred from its country at this point: the country guess happens once, when the counterparty is first created, so the second and every later invoice from an untagged counterparty simply arrives without that element. And the NAV rate is matched to your nearest configured rate within half a percentage point, refusing to choose on a tie, which is a good heuristic rather than a deterministic mapping.
 
-## The Two Indicators
+Resolution keys on the **VAT date**. With no VAT date on the invoice it silently uses today's date, which is worth knowing before you wonder why an old invoice took a current code. Only the code's own validity dates are consulted, not the individual elements'.
 
-- **Missing VAT code** - the line's elements don't match any code in your table (or an element couldn't be determined). Invoices with such lines show a **"VAT codes incomplete"** status in lists and a banner on the invoice ("Missing VAT codes on N lines"). Add the missing code to your table - the fastest way is the **add VAT code** shortcut offered right there - or correct the line's elements.
-- **Mismatch** - the line has a code assigned, but its current elements no longer agree with that code's combination (typically after a manual override). This is a soft warning, not an error: the assigned code wins, and the icon just tells you the line was overridden.
+### The workspace default code
 
-## Correcting VAT Fields
+You can set one default VAT code per direction. A line whose elements cannot be fully determined takes it, and the cell then reads the code with a **Default** badge beside it.
 
-Accountants can correct any of the five fields on the invoice:
+It is narrower than a guess. A default that contradicts an element the system did identify is refused, a fully identified line never takes it at all, and an identified partner group that disagrees with the default disqualifies the whole invoice from the fallback.
 
-- **Change an element** (group, rate, method) - the VAT code re-resolves automatically from the new combination.
-- **Pick a VAT code directly** - the line's elements are back-filled from the chosen code's combination and the line is marked consistent.
-- **Change the header's Partner VAT Group or the VAT date** - every line on the invoice re-resolves.
+**A default-coded line counts as coded.** The invoice is export-eligible and shows no "incomplete" warning; what it carries instead is a **VAT: default-coded** marker on the invoice list. Review is advisory by design. When you have looked at them, the toolbar's **VAT coding OK** button clears the flag on all of them at once.
 
-Corrections are remembered per workspace: if the same document is ever re-extracted, your manual VAT corrections survive and are not overwritten by the AI.
+## Reading The VAT Code Cell
 
-## Partner VAT Group on Partners
+Four things you will see:
 
-The durable home of the Partner VAT Group is the **partner**, not the invoice. When creating or verifying a partner (Master data → **Partners**), set its VAT group once - every future invoice from that partner starts with the right group. An invoice-level override remains available for one-off cases (a normally-domestic partner invoicing from abroad, for example).
+- **A code, plain.** Resolved and consistent.
+- **A code with a Default badge.** The workspace default, review advised.
+- **`- missing -`.** Nothing resolved.
+- **A code with a warning triangle.** The code is still assigned, but the line's current elements no longer resolve to it. This is not a record of someone overriding the line: a rate change, a partner VAT group change or a VAT date change will all trip it. The assigned code still wins.
+
+<VatLinesGridFigure>
+Four lines, one in each of the four states. The numbers match the list below. The invoice and its amounts are examples.
+</VatLinesGridFigure>
+
+1. **Add missing VAT codes** and **VAT coding OK**, the two bulk actions, with the line and missing-code count on the right.
+2. **P/S · Rate · Method**, the three elements. Only the unresolved line shows them here.
+3. **VAT code**, in all four states: plain, **Default**, `- missing -` beside **+ Add**, and a code with the warning triangle.
+
+The three element dropdowns are only shown inline **while the line is unresolved**. Once a code resolves, the cell reads **Resolved - see Advanced** and they move into the row's **Advanced** expander. That is the single most confusing behaviour on this screen, and it is deliberate: a finished line takes less room.
+
+Advanced also holds the non-deductible percentage override. Where a non-deductible share has been folded in, the row shows a **Booked** figure underneath, which is the gross treated as net.
+
+## When Nothing Resolves
+
+An un-coded line reads **`- missing -`**, and the invoice picks up a **VAT codes incomplete** marker on the list. You will also see a to-do on the invoice's Overview and an amber dot on the **Lines & VAT** tab. There is no banner on the invoice, whatever you may have been told.
+
+Two ways forward, and they are not the same thing:
+
+- **The `+ Add` link beside the missing code creates a brand-new VAT code** in your master data for that combination of elements. Use it when the combination is genuinely missing from your table.
+- **To assign a code you already have**, open the row's **Advanced** expander and pick it there.
+
+Two traps worth knowing. An invoice with **no lines at all** reads as complete, because completeness means "no line is missing a code" and there are no lines to check. And **re-extracting a document does not preserve your VAT corrections**: re-extraction deletes the line rows and inserts fresh ones. What is protected is an AI re-run over the existing rows, which leaves anything you set by hand alone.
+
+## Correcting A Code Or An Element
+
+Four moves, each with a different reach:
+
+- **Change an element** on the line, and the code re-resolves from the new combination.
+- **Pick a code directly**, and the line's elements are back-filled from that code and marked consistent.
+- **Change the partner VAT group**, at the top of the **Lines & VAT** tab. This is an override: left alone it reads "Use partner default" and follows the partner. Changing it re-resolves **every** line on the invoice.
+- **Change the VAT date**, in the Dates row on the **Overview** tab. This also re-resolves every line.
+
+The durable home of a partner's VAT group is the partner itself, under **Master data → Partners**. Set it once and every future invoice starts with the right group; the invoice-level override is for the one-off case.
+
+## Fixing A Backlog In One Go
+
+Adding the missing code to your table does not retro-fill the invoices that were waiting for it. The invoice list has a **Re-run VAT coding** action for that.
+
+It only ever fills lines whose code is **missing**: coded lines, anything you set by hand, and categories are never touched. Note that it runs over the **whole workspace** rather than your selection, and it caps at 2000 invoices, so a large backlog takes more than one run.
+
+## Who Can Do This
+
+Correcting VAT on a line needs the **"Edit invoices"** permission, which is firm-side only: a client-side user can never hold it. They still see the Lines & VAT grid in full, read-only, with the dropdowns disabled and the add and toolbar controls hidden.
+
+Among accountants it is a permission rather than a job title, so a custom role or a per-member denial can make the grid read-only for someone on the accounting side too.
 
 ## Foreign-Currency VAT
 
-For invoices in a currency other than the company's VAT-reporting currency, lines carry a **VAT exchange rate** and a **VAT amount in reporting currency**. Editing either recalculates the other, and both are available in exports.
+Where the invoice is in a currency other than the workspace's base currency, the row's **Advanced** expander holds a **VAT exchange rate** and the VAT amount in the reporting currency. Editing either recalculates the other, and both reach the Ledger export as their own columns.
+
+These are **what the supplier printed**, recorded for the VAT return. Nothing is converted here: see [Multi-Currency & Exchange Rates](/currency-exchange) for the rates that do convert.
+
+## When The AI Cannot Decide
+
+Unlike a category, a VAT element has no "the AI declined" state. An element it cannot determine is simply left empty, because recording a verdict there would claim one that was never usable. What you see instead is the invoice's confidence dropping, which can be enough to flag it for review.
+
+A company on the small-business exemption is a special case, and two situations there are left uncoded on purpose rather than given a plausible-looking zero rate. See [Small business VAT exemption](/small-business-exemption).
+
+## Related Articles
+
+- [VAT master data](/vat-master-data) - the five elements and the tables behind them
+- [VAT in exports](/vat-in-exports) - which codes reach which export, and the export gate
+- [Small business VAT exemption](/small-business-exemption)
+- [Working with Invoices](/invoices)

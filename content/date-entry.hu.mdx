@@ -4,7 +4,7 @@ Az AIFT dátummezői értik a rövid, billentyűzetről gyorsan beírható form�
 
 A rövid formák minden dátummezőben működnek: a listaoldalak dátumszűrőiben (Számlák, Banki tranzakciók, Párosítás, az exportoldalak), valamint a rekordok dátummezőiben, például a számla dátumainál vagy a bankszámlakivonat-szerkesztő soraiban.
 
-A bevitelt az **Enter** vagy a **Tab** rögzíti. A mező ezután a teljes dátumot mutatja (például 2026. dec. 31.), így mindig látja, mivé vált a beírt érték. Ha a beírt szöveg nem olvasható valódi dátumként, a mező egyszerűen visszaáll az előző értékére; semmi nem törlődik.
+A bevitelt az **Enter** vagy a **Tab** rögzíti. A mező ezután a teljes dátumot év-hónap-nap formában mutatja (például 2026-12-31), ahogyan az AIFT minden dátumot megjelenít, így mindig látja, mivé vált a beírt érték. Ha a beírt szöveg nem olvasható valódi dátumként, a mező egyszerűen visszaáll az előző értékére; semmi nem törlődik.
 
 ## Csak számjegyek: a kompakt formák
 
@@ -15,8 +15,8 @@ A kompakt bevitel elválasztó nélküli számjegysor. Mindig **év, hónap, nap
 | 15 | a folyó hónap 15-e |
 | 05 | a folyó hónap 5-e |
 | 1231 | az idei év december 31-e |
-| 260101 | 2026. jan. 1. |
-| 20260101 | 2026. jan. 1. |
+| 260101 | 2026-01-01 |
+| 20260101 | 2026-01-01 |
 
 Három szabály:
 
@@ -31,10 +31,10 @@ A kétjegyű év 00 és 68 között 20xx-ként értendő.
 A megszokott írásmódok is működnek. Elválasztóval (pont, perjel, kötőjel vagy szóköz) a teljes, négyjegyű évet írja ki; a sorrend a magyar szokást követi:
 
 - 2026.12.31 vagy 2026. 12. 31. (záró ponttal is)
-- 2026.9.5 (pongyolán, vezető nullák nélkül is: 2026. szept. 5.)
+- 2026.9.5 (pongyolán, vezető nullák nélkül is: 2026-09-05)
 - 2026-12-31 (ISO)
 
-A hónapnév évszámmal együtt működik, rövidítve és ékezetek nélkül is: a 2026 dec 15, a 2026. dec. 15. és a 2026 junius 15 egyaránt érvényes.
+A hónapnév évszámmal együtt működik, rövidítve és ékezetek nélkül is: a 2026 dec 15, a 2026. dec. 15. és a 2026 junius 15 egyaránt érvényes. Rögzítés után a mező ezeket is év-hónap-nap formában mutatja (2026-12-15).
 
 ## Egy egész időszak egyetlen bevitellel
 
@@ -44,7 +44,7 @@ A listaoldalakon nyissa meg a dátumszűrőt, és váltson az **Egyedi** fülre.
 |-------------|-----------|
 | 15..20 | a folyó hónap 15. és 20. közötti időszak |
 | 0901..0915 | az idei szeptember 1. és 15. közötti időszak |
-| 260101..260630 | a 2026. jan. 1. és 2026. jún. 30. közötti időszak |
+| 260101..260630 | a 2026-01-01 és 2026-06-30 közötti időszak |
 
 A két pont két oldalán bármelyik dátumforma állhat, akár vegyesen is. Két szabály:
 
@@ -60,5 +60,5 @@ A szűrő dátummezői mellett egy kis **i** ikon (**Dátumformátumok**) mutatj
 ## Tippek
 
 - Rögzítés után nézzen a mezőre: a megjelenő teljes dátum az, amit a rendszer használ, így egy elütés azonnal látszik.
-- Az üres mező szürke példája (2026. dec. 31.) a megjelenítési forma, és ez a forma mindig beírható: amit egy mező mutat, azt vissza is gépelheti.
+- Az üres mező szürke példája (2026-12-31) a megjelenítési forma, és ez a forma mindig beírható: amit egy mező mutat, azt vissza is gépelheti.
 - Több oldalt szűr ugyanarra az időszakra? Állítsa be egyszer, az oldalsáv **Fókuszált időszak** kapcsolójával: lásd [Fókuszált időszak](/focused-period).

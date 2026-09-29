@@ -108,7 +108,10 @@ export function PartnerRulesFigure({ locale, children }: FigureProps) {
                       <Description data-testid="fixed-payment-method-forward-only">
                         {f('forward_only_help')}
                       </Description>
-                      <Pin n={2} at="right" cancel="" />
+                      {/* `below`, not `right`: the pin's own box is zero-sized
+                          on the Field's bottom edge, so a centred marker
+                          straddles it and covers the help text's last line. */}
+                      <Pin n={2} at="below" cancel="" />
                     </Field>
 
                     <div className="flex items-center justify-end gap-2">

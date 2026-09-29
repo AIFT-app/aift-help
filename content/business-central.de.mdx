@@ -6,15 +6,18 @@ AI Finance Team verbindet sich mit Microsoft Dynamics 365 Business Central: Es o
 
 ## Was gelesen und was geschrieben wird
 
-AI Finance Team **liest** die Firmen in Ihrem Business Central und zu jeder zugeordneten Firma deren Sachkonten, MwSt.- und Buchungsgruppen, Mengeneinheiten, Währungen, Bankkonten, Zahlungsformen und Zahlungsbedingungen, Dimensionen und Dimensionswerte sowie Kreditoren. **Es werden keine Buchungen, Rechnungen oder Salden gelesen.**
+AI Finance Team **liest** die Firmen in Ihrem Business Central und zu jeder zugeordneten Firma deren Sachkonten, MwSt.- und Buchungsgruppen, Mengeneinheiten, Währungen, Bankkonten, Zahlungsformen und Zahlungsbedingungen, Dimensionen und Dimensionswerte sowie Kreditoren. **Es werden keine Buchungen und keine Salden gelesen.** Die einzigen Belege, die überhaupt zurückgelesen werden, sind Einkaufsrechnungen, die wir womöglich selbst angelegt haben, wenn wir herausfinden müssen, was aus einer davon geworden ist.
 
-Genau eines **schreibt** AI Finance Team: einen **Kreditorenstammsatz**, angelegt aus einem Ihrer Partner, wenn jemand auf dem Übertragungsbildschirm die Schaltfläche drückt. Auch das ist aus, solange wir es nicht zusätzlich für Ihren Arbeitsbereich freischalten.
+AI Finance Team **schreibt** zwei Arten von Datensatz, beide hinter einem zweiten Schalter, den nur wir einschalten können:
+
+- einen **Kreditorenstammsatz**, angelegt aus einem Ihrer Partner;
+- eine **Einkaufsrechnung**, angelegt aus einer Ihrer Eingangsrechnungen.
 
 Und selbst dann:
 
-- **Es wird nie etwas gebucht.** Kein Journal, keine Buchung, kein Beleg.
-- **Ein vorhandener Kreditorenstammsatz wird nie überschrieben.** Ein Stammsatz mit derselben Steuernummer wird stattdessen mit Ihrem Partner verknüpft.
-- **Es wird nie etwas gelöscht.**
+- **Es wird nie etwas gebucht.** Die Einkaufsrechnung wird als **Entwurf** angelegt und bleibt es. Buchen wäre über die Schnittstelle möglich, und wir nutzen das bewusst nicht: Ein aus falschen Daten gebuchter Beleg muss storniert werden, was dauerhafte Spuren im Hauptbuch hinterlässt, während ein Entwurf mit einem Klick gelöscht ist. Das Buchen bleibt Sache der Buchhaltung, in Business Central.
+- **Ein vorhandener Datensatz wird nie überschrieben.** Ein Kreditorenstammsatz mit derselben Steuernummer wird stattdessen mit Ihrem Partner verknüpft, und ein vorhandener Beleg wird nie angerührt.
+- **Wir löschen nur, was wir selbst angelegt haben.** Zwei Bedienelemente löschen, beide auf dem Übergabebildschirm: Die Sonde entfernt den Wegwerf-Entwurf, den sie soeben erstellt hat, und die Bereinigung entfernt Entwürfe, deren Übergabe AI Finance Team erfasst, aber nie verknüpft hat. Sonst wird nie etwas gelöscht, und nichts, was Business Central nicht als Entwurf führt.
 
 ## Die Verbindung einrichten
 
@@ -126,7 +129,7 @@ Lesen Sie die Zahlen genau. Eine leere Zelle kann dreierlei bedeuten: **nicht zu
 
 Über die API von Business Central lässt sich kein Sachkonto anlegen, der Kontenplan bleibt also der des Mandanten. Damit eine Kategorie auf ein Sachkonto verweisen kann, übernehmen Sie die Sachkonten als Kategorien.
 
-Öffnen Sie **Stammdaten → Buchhaltungskategorien** und wählen Sie **Konten aus Business Central importieren**. Die Schaltfläche finden Sie auf der Registerkarte **Rechnung** und auf der Registerkarte **Cashflow**.
+Öffnen Sie **Stammdaten → Buchhaltungskategorien** und wählen Sie **Importieren**, dann **Konten aus Business Central importieren**. Das Aufklappmenü finden Sie auf der Registerkarte **Rechnung** und auf der Registerkarte **Cashflow**.
 
 **Anlegen als** legt fest, was aus jedem angehakten Sachkonto wird: **Rechnungskategorien**, **Cashflow-Kategorien** oder **Beides**, was je eine von beiden mit derselben Kontonummer anlegt. Danach bleiben sie getrennt, eine Umbenennung der einen benennt die andere nicht um.
 
@@ -140,7 +143,7 @@ Auf der Registerkarte **Cashflow** legt **Aus Rechnungskategorien kopieren** fü
 
 ## Kreditoren als Partner
 
-**Aus Business Central hinzufügen** unter **Stammdaten → Partner** und auf der Registerkarte Unterschiede holt Kreditorenstammsätze als Partner herein. Sie werden über die Steuernummer zugeordnet, ein hier bereits vorhandener Kreditor wird also als solcher angezeigt und kann nicht zweimal hinzugefügt werden. Kreditorenstammsätze ohne Steuernummer lassen sich ebenfalls hinzufügen, danach kann sie aber nichts mehr automatisch zuordnen.
+**Importieren → Aus Business Central** unter **Stammdaten → Partner** und **Aus Business Central hinzufügen** auf der Registerkarte Unterschiede holt Kreditorenstammsätze als Partner herein. Sie werden über die Steuernummer zugeordnet, ein hier bereits vorhandener Kreditor wird also als solcher angezeigt und kann nicht zweimal hinzugefügt werden. Kreditorenstammsätze ohne Steuernummer lassen sich ebenfalls hinzufügen, danach kann sie aber nichts mehr automatisch zuordnen.
 
 ## USt-Zuordnung
 
@@ -148,7 +151,7 @@ Auf der Registerkarte **Cashflow** legt **Aus Rechnungskategorien kopieren** fü
 
 ## Partner als Kreditoren übertragen
 
-**Stammdaten → Business Central → Übertragen** legt aus Ihren Partnern Kreditorenstammsätze in Business Central an. Nur hier schreibt AI Finance Team in Ihr Buchhaltungssystem, und dafür braucht es dreierlei:
+**Stammdaten → Business Central → Übertragen** legt aus Ihren Partnern Kreditorenstammsätze in Business Central an. Das ist eine der beiden Stellen, an denen AI Finance Team in Ihr Buchhaltungssystem schreibt; die andere ist das Übergeben von Rechnungen, weiter unten. Dafür braucht es dreierlei:
 
 - die Schreibseite für den Arbeitsbereich eingeschaltet, was nur wir tun können;
 - die Berechtigung „In das Buchhaltungssystem übertragen“, die der Buchhalter-Admin standardmäßig hat;
@@ -158,12 +161,47 @@ Sie wählen die Partner, dann die Firmen, in denen der jeweilige Partner angeleg
 
 Eine zurückgemeldete Kreditorennummer erscheint auf der Partnerseite unter dessen AI-Finance-Team-Code, eine Zeile je Firma. Diese Nummer gehört zu einer Firma in Business Central, tragen Sie sie also nicht in das eigene Codefeld des Partners ein.
 
+## Rechnungen übergeben
+
+**Exporte → Business Central** ist die Stelle, an der Eingangsrechnungen übergeben werden, als Einkaufsrechnungen im Entwurf. Das ist ein anderer Bildschirm als die Kreditorenübertragung, in einem anderen Menü und hinter einer anderen Berechtigung.
+
+Die obere Hälfte ist ein reiner Lesetrichter: wie viele **übergabebereite Rechnungen** es gibt, wie viele **Rechnungen im Zeitraum** liegen und **was die übrigen aufhält**. Neun Dinge können eine Rechnung aufhalten, und gezeigt wird immer nur das zuerst gefundene: keine Firma auf der Rechnung, die Firma nicht zugeordnet, die Stammdaten der Firma nie gelesen, der Partner nicht geprüft, kein Kreditorenstammsatz für diesen Partner in dieser Firma, eine Zeile ohne Kategorie, das Sachkonto der Kategorie fehlt in dieser Firma, keine Rechnungsnummer oder kein Leistungsdatum, und **die Buchhaltungsfreigabe fehlt** (siehe [Erfassungs- und Buchungsfreigabe](/filing-and-bookkeeping-approval)). Jeder Punkt lässt sich zu den dahinterliegenden Rechnungen aufklappen, mit einem Link dorthin, wo sich das beheben lässt. Zwei weitere sind Hinweise und keine Blocker: eine Steuerkombination ohne Zuordnung und eine Währung, die diese Firma nicht führt.
+
+Nur Eingangsrechnungen kommen infrage, und nie eine doppelte oder archivierte. **Das PDF der Rechnung selbst geht nicht mit**, und ein fehlender Beleg hält eine Übergabe nie auf.
+
+### Was Sie wissen sollten, bevor Sie auf Übergeben klicken
+
+- **Pro Klick gehen höchstens 25 Rechnungen.**
+- **Nach drei Fehlern hintereinander bricht der Lauf ab** und markiert den Rest als *Nicht versucht*, damit eine einzige falsche Einstellung nicht den ganzen Stapel verbrennt.
+- Jede Rechnung kommt mit ihrem eigenen Ergebnis zurück: **Angelegt**, **Fehlgeschlagen**, **Wir wissen es nicht**, **Nicht gestartet** oder **Nicht versucht**.
+
+**Auf „Wir wissen es nicht“ kommt es an.** Es bedeutet, dass die Anfrage hinausging und die Antwort nicht zurückkam. Senden Sie sie nicht einfach erneut: Business Central weist eine zweite Einkaufsrechnung mit derselben Lieferantenrechnungsnummer **nicht** zurück, ein blinder zweiter Versuch kann also zwei Entwürfe für eine Rechnung hinterlassen. Nutzen Sie **Abgebrochene Übergaben klären**: Das fragt Business Central, was tatsächlich geschehen ist, und sendet selbst nichts.
+
+Eine Rechnung, die bereits dort liegt, verlässt die Zahl der übergabebereiten, und der Bildschirm nennt, wie viele Ihrer Auswahl schon in Business Central sind.
+
+### Die Wartungsschaltflächen
+
+Neben **Übergeben** stehen vier Schaltflächen, und sie bleiben auch dann sichtbar, wenn nichts übergabebereit ist: Ein liegengebliebener Entwurf im Hauptbuch des Mandanten ist für alle unsichtbar, die keinen Business-Central-Zugang haben.
+
+- **Sonde** legt aus einer echten Rechnung einen echten Wegwerf-Entwurf an und löscht ihn wieder. Sie beantwortet, ob dieses Business Central dieselbe Lieferantenrechnungsnummer ein zweites Mal annimmt, und zeigt nebeneinander, was wir gesendet haben und was Business Central gespeichert hat.
+- **Was BC über einen Kreditor liefert** liest einen Kreditorenstammsatz und schreibt nichts.
+- **Abgebrochene Übergaben klären** fragt nach, was aus einer Übergabe wurde, deren Antwort verloren ging. Es sendet nichts und löscht nichts.
+- **Nach zurückgebliebenen Entwürfen suchen** findet Entwürfe, deren Übergabe wir erfasst, aber nie verknüpft haben. Das Löschen ist eine eigene, rote Schaltfläche **Aus Business Central löschen**: Prüfen und Löschen sind bewusst zwei Schritte.
+
+## Zahlungsarten
+
+**Stammdaten → Business Central → Zahlungsarten** ordnet jede Zahlungsart von AI Finance Team (Überweisung, Bargeld, Karte, Gutschein, Sonstige) genau einem Business-Central-Code zu, als Vorgabe für den Arbeitsbereich oder je Firma. Ein Code wird nur dort vorgeschlagen, wo genau ein Business-Central-Code zu dieser Zahlungsart passt.
+
+Die Zuordnung wird dem Entwurf unmittelbar nach dem Anlegen zugewiesen, denn die Schnittstelle kennt am Beleg selbst kein Feld für die Zahlungsart. **Eine fehlende Zuordnung ist kein Fehler** und hält eine Übergabe nie auf. Eine einzelne Rechnung kann die Zuordnung auf ihrem eigenen Zahlungs-Reiter überschreiben, und die Übergabeliste zeigt, mit welchem Code jede Rechnung übergeben wird.
+
 ## Wer was darf
 
-Verbinden, Trennen und Zuordnen erfordern die Berechtigung „Verbindungen verwalten“, die standardmäßig beim Buchhalter-Admin und bei der Finanzleitung liegt. Eine eigene Rolle oder eine Ausnahme kann das ändern. Alle übrigen sehen den Status und können ihn nicht ändern. Das Übertragen erfordert wie oben eine eigene Berechtigung.
+Verbinden, Trennen und Zuordnen erfordern die Berechtigung „Verbindungen verwalten“, die standardmäßig beim Buchhalter-Admin und bei der Finanzleitung liegt. Eine eigene Rolle oder eine Ausnahme kann das ändern. Alle übrigen sehen den Status und können ihn nicht ändern.
+
+Damit überhaupt etwas nach Business Central geht, sind **zwei** Berechtigungen nötig: „Buchhaltungsexporte ausführen“, um den Übergabebildschirm überhaupt zu erreichen, die beim Buchhalter-Admin und beim Buchhalter liegt, und „In das Buchhaltungssystem übertragen“ für das tatsächliche Übergeben, die nur der Buchhalter-Admin hat. Ein Buchhalter ohne die zweite kann den Bildschirm öffnen und lesen, und jede schreibende Schaltfläche verweigert den Dienst.
 
 ## Die Verbindung trennen
 
-**Verbindung trennen** unter **Einstellungen → Business Central Verbindung**. Die Bestätigung nennt, was verschwindet: Die Zuordnungen, die kopierten Stammdaten und die USt-Zuordnungen werden gelöscht, während Ihre Unternehmen, Kategorien, Partner und die Verknüpfungen zu Kreditorenstammsätzen erhalten bleiben.
+**Verbindung trennen** unter **Einstellungen → Business Central Verbindung**. Die Bestätigung nennt, was verschwindet: Die Zuordnungen, die kopierten Stammdaten und die USt-Zuordnungen werden gelöscht. **Die Zuordnung der Zahlungsarten verschwindet ebenfalls**, was der Dialog nicht erwähnt. Ihre Unternehmen, Kategorien, Partner, die Verknüpfungen zu Kreditorenstammsätzen und der Nachweis, welche Rechnungen übergeben wurden, bleiben alle erhalten.
 
 Eine erneute Verbindung erfordert danach **beide Genehmigungen erneut**, und jede Firma muss neu zugeordnet werden. Ihre Microsoft-Administration kann die Genehmigung außerdem in Ihrem eigenen Microsoft 365 widerrufen, ohne es uns zu sagen.

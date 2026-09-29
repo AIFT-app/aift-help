@@ -17,29 +17,36 @@ export function formatAmount(amount: number, currency: string, locale: Locale): 
   } as Intl.NumberFormatOptions).format(amount)
 }
 
-/** An ISO date (YYYY-MM-DD) the way the app's formatDate renders it. */
+/**
+ * A date the way the app's formatDate renders it: `YYYY-MM-DD` in every locale
+ * since iso-date-display (2026-09-28). `locale` stays so call sites keep
+ * mirroring the app's signature.
+ */
 export function formatDate(iso: string, locale: Locale): string {
-  const [y, m, d] = iso.split('-').map(Number)
-  return new Date(Date.UTC(y, m - 1, d)).toLocaleDateString(BCP47[locale], {
-    day: 'numeric',
-    month: 'short',
-    year: 'numeric',
-    timeZone: 'UTC',
-  })
+  void locale
+  return iso.slice(0, 10)
 }
 
 /**
- * A timestamp the way the app's formatDateTime renders it. The app formats in
- * the viewer's timezone; the help pages are rendered at build time, so the
- * illustrations pin the office's timezone to stay the same wherever they build.
+ * A timestamp the way the app's formatDateTime renders it: `YYYY-MM-DD HH:mm`,
+ * 24-hour. The app formats in the viewer's timezone; the help pages are
+ * rendered at build time, so the illustrations pin the office's timezone to
+ * stay the same wherever they build.
  */
 export function formatDateTime(iso: string, locale: Locale): string {
-  return new Date(iso).toLocaleString(BCP47[locale], {
-    day: 'numeric',
-    month: 'short',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-    timeZone: 'Europe/Budapest',
-  })
+  void locale
+  const parts = Object.fromEntries(
+    new Intl.DateTimeFormat('en-GB', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      hourCycle: 'h23',
+      timeZone: 'Europe/Budapest',
+    })
+      .formatToParts(new Date(iso))
+      .map((p) => [p.type, p.value]),
+  )
+  return `${parts.year}-${parts.month}-${parts.day} ${parts.hour}:${parts.minute}`
 }

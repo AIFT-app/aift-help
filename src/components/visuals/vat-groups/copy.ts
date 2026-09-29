@@ -47,7 +47,7 @@ const en: Copy = {
     'master_data.vat_groups.step_routing_waiting': "{count} decisions waiting for you",
   },
   rendered: {
-    "lastSync": "Last sync: 23 Sept 2026, 08:40",
+    "lastSync": "Last sync: 2026-09-23 08:40",
     "membersSummary": "5 members · 2 paired · 1 not members",
     "membersWaiting": "2 members waiting to be paired",
     "routingInvoices": "18 invoices waiting to be filed",
@@ -70,7 +70,7 @@ const hu: Copy = {
     'master_data.vat_groups.step_routing_waiting': "{count} döntés vár rád",
   },
   rendered: {
-    "lastSync": "Utolsó szinkron: 2026. szept. 23. 08:40",
+    "lastSync": "Utolsó szinkron: 2026-09-23 08:40",
     "membersSummary": "5 tag · 2 párosítva · 1 nem tag",
     "membersWaiting": "2 tag vár párosításra",
     "routingInvoices": "18 számla vár besorolásra",
@@ -93,7 +93,7 @@ const de: Copy = {
     'master_data.vat_groups.step_routing_waiting': "{count} Entscheidungen warten auf Sie",
   },
   rendered: {
-    "lastSync": "Letzte Synchronisierung: 23. Sept. 2026, 08:40",
+    "lastSync": "Letzte Synchronisierung: 2026-09-23 08:40",
     "membersSummary": "5 Mitglieder · 2 zugeordnet · 1 keine Mitglieder",
     "membersWaiting": "2 Mitglieder warten auf Zuordnung",
     "routingInvoices": "18 Rechnungen warten auf Zuordnung",

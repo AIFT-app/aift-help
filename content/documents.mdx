@@ -2,54 +2,109 @@
 
 **Documents** is where contracts and other paperwork live: everything that matters to the books but is not an invoice or a bank statement. A lease, a loan agreement, a costing manual, a chart of accounts, a grant decision.
 
-You will find it in the workspace sidebar as **Documents**. It is an accountant's page; clients do not see it.
+## What Lands Here, And What Does Not
+
+This page holds exactly three kinds: **contracts**, **other**, and anything the first pass could not place at all.
+
+Everything classified as an **invoice**, a **receipt**, a **credit note** or a **bank statement** goes elsewhere and never appears here. Invoices and receipts go to [Invoices](/invoices), a bank statement waits to be uploaded on **Bank transactions** (see [Uploading Bank Statements](/bank-statement-upload)), and anything arriving by email is logged in Intake first (see [Forwarding Documents by Email](/email-forwarding)).
+
+So an empty Documents page does not mean nothing arrived. It means nothing arrived that was not a financial record.
+
+## Who Can Open It
+
+Firm-side members holding the "Edit invoices" permission. A client-side member can never reach it, whatever role they are given: the permission is firm-only, and no exception can grant it.
+
+> If you are on the accounting side and the page bounces you back to the workspace overview without a message, your role is missing **Edit invoices**. The sidebar link is shown to every firm-side member regardless, which is why the dead end is silent.
+
+Note that building a category list from a document, below, needs a **different** permission again.
 
 ## Getting Documents In
 
-Two ways, and the first needs no effort:
+- **Forward them by email.** Anything sent to the workspace address that is not an invoice or a statement ends up here on its own.
+- **Upload them.** Click **Upload**, then drag files in or browse.
 
-- **Forward them by email.** Anything sent to the workspace email address that is not an invoice or a statement lands here on its own. See [Forwarding Documents by Email](/email-forwarding).
-- **Upload them.** Click **Upload**, then drag files in or browse. PDF, JPG or PNG, up to 20 MB each.
+The dialog says PDF, JPG or PNG up to 20 MB, and that is good advice rather than an enforced rule: nothing actually rejects a larger file or another image format. Stay within it anyway, because what the reader can handle is what the hint describes.
 
-## What Happens on Arrival
+## What Happens On Arrival
 
-Every document is read once, briefly, so the list is useful without opening anything:
+Every document is read once, briefly, so the list is useful without opening anything. It gets a one or two sentence **summary** with a confidence figure, its language is detected, and it is given a type.
 
-- It is classified as **Contract** or **Other**.
-- It gets a one or two sentence **summary**, shown on the card with how confident the AI is.
-- Its language is detected.
-- If the same file is already in the workspace, the copy is marked **Duplicate** and set aside rather than processed again.
+**The type badge shows whatever the AI called it**, but only for a document that is not a contract. The first pass writes two things: a coarse kind, and a finer label in its own words. A **contract** always shows the translated word **Contract**, and its finer label (`lease`, `nda`) is never displayed anywhere. Everything else shows the finer label if there is one, and those free-text labels are not translated, so `Kontenrahmen` reads as `Kontenrahmen` whatever your interface language is.
+
+If the same file is already in the workspace, the copy is marked **Duplicate**. It still appears in the list, filed under the original's type, with the summary replaced by a line naming what it duplicates.
+
+<DocumentsListFigure>
+The Documents list with five documents. The numbers match the list below. The documents and companies are examples.
+</DocumentsListFigure>
+
+1. **Upload**, beside the heading. The only other way in is email.
+2. **Duplicates** is the one filter that carries a count, and only when there are some.
+3. **The type badge in the document's own words.** This chart of accounts is not a contract, so the badge prints what the AI called it, untranslated, whatever your interface language is.
+4. **A duplicate is filed here**, under the kind of the original, with the line naming what it duplicates in place of the summary.
+5. **A PDF holding several documents** keeps the **Processing** badge for good. Nothing further happens to it.
 
 This first pass is deliberately shallow. It reads the opening of the document to route and describe it, not to extract its contents.
 
 ## Finding Things
 
-The filters above the list are **All**, **Contracts**, **Other**, **Needs review**, and **Duplicates**. Each document also carries a status:
+The filters are **All**, **Contracts**, **Other**, **Needs review** and **Duplicates**. Only **Duplicates** carries a count badge, and only when there are some.
+
+There is no search, no sorting and no paging: the list is everything in the workspace, newest first, in one go. And the empty state says the same sentence whichever filter you are on, so "no documents yet" on the Duplicates filter usually means no duplicates, not no documents.
 
 | Status | What it means |
 |--------|---------------|
 | **Ready** | Classified, with a summary |
-| **Review** | The AI was not confident enough; check the type yourself |
-| **Processing** | Still being read |
+| **Review** | The first pass was not confident enough; check the type yourself |
+| **Processing** | Still being read, **or** stuck: see below |
 | **Failed** | The file could not be read, for example an encrypted PDF |
+
+**Processing** is the catch-all, and one case never leaves it. A PDF holding several documents scanned together is rejected rather than read, and it keeps the **Processing** badge for good. If something has sat there since the day it arrived, that is what happened: split it into one document per item and send the pieces.
 
 Supporting documents such as timesheets, performance certificates and delivery notes are recognised as invoice attachments and never processed as invoices. Those not yet linked to an invoice wait under the **Unlinked attachments** filter, where you can link them. See [Invoice Attachments](/invoice-attachments).
 
-## Working with One Document
+## Working With One Document
 
-Open a document to see its summary, type, language, file and source, with a preview beside them. From here you can:
+Open a document to see its summary, type, language, file and source.
+
+**A PDF is previewed beside them; a JPG or PNG is not.** For an image you get a link to open the file instead, which is worth knowing given the upload dialog invites you to send images.
 
 - **Download** or open the original file.
-- **Re-classify** it. If something was routed here that is really an invoice, a bank statement or a receipt, send it where it belongs and it is processed properly.
-- **Mark irrelevant** to archive it, for anything that does not need to be kept in view.
-- **Not a duplicate**, on a document set aside as a copy, to restore it for review.
+- **Change its type**, using the dropdown in the footer. If something landed here that is really an invoice, a bank statement or a receipt, this sends it where it belongs, and it leaves this page. It also teaches the app: the sender's domain is nudged towards that type for next time.
+- **Mark irrelevant**, for anything not worth keeping in view.
+- **Not a duplicate**, on a copy, which restores it to **Needs review** and un-flags any invoice that was created from it.
 
-## Building a Category List from a Document
+Two of those are worth a warning.
 
-If a document describes how the business divides its costs, you can turn it straight into a custom category list instead of typing it in. Click **Create category list**, and the AI reads up to twenty pages and proposes the list: a title, the guidance text, and the categories with codes and descriptions.
+**Mark irrelevant cannot be undone.** There is no restore, and no filter that will show you an archived document again. Treat it as deletion from the page.
 
-Nothing is created until you say so. Every field is editable, categories can be excluded, and the last step shows exactly what will be created before you commit. A costing manual, a chart of accounts, a department list and a grant budget are all good candidates; most other documents contain nothing of the sort, and the screen says so plainly rather than inventing one.
+**Changing the type only re-runs the reading for a document that is still in the first pass.** From **Failed**, or from a document already finished, it changes the label and removes the document from this page without sending it anywhere. A Failed contract that is really an invoice therefore needs re-uploading, not reclassifying.
 
-Once the list exists, the AI applies it to invoices and bank transactions, and reports can be broken down by it. See [Custom Categories](/custom-categories) for the whole picture, and [Reports](/reports) for reading a broken-down report.
+### Why the same file shows up as a duplicate
 
-A document shows which lists were built from it under **Produced from this**, so the origin of a set of codes stays traceable long after the fact.
+Duplicates are matched on the file's contents, so two genuinely identical files are caught however they are named. Older documents were matched by a weaker rule, on file size and name, which is why an occasional false positive turns up in the list. That is what **Not a duplicate** is for.
+
+## Building A Category List From A Document
+
+If a document describes how the business divides its costs, you can turn it straight into a custom category list instead of typing it in. **Create category list** reads up to twenty pages and proposes one.
+
+This needs the **"Edit master data"** permission, which is not the one that opens the page. The button is shown on every document to everyone who can get this far, so if pressing it returns you to the workspace overview, that is the permission you are missing.
+
+You then choose where it goes: a **new list**, or an **existing one**, in which case only what is missing is added. For a new list you can edit the **name**, the **AI guidance** and whether it **applies to** invoices, bank transactions or both.
+
+**The categories themselves are take-it-or-leave-it.** Each row can be included or excluded, and that is all: the code, name and description come as the AI read them, and cannot be corrected here. Fix those afterwards on the list itself. A category the document marks as closed or retired is created inactive, and the row says so.
+
+The last step is a genuine dry run. It tells you how many categories will be created, how many are already there, how many rows it could not use, and it has written nothing yet.
+
+A costing manual, a chart of accounts, a department list or a grant budget are all good candidates. Most other documents contain nothing of the sort, and the screen says so plainly rather than inventing one.
+
+Afterwards, the document lists what came from it under **Produced from this**, so the origin of a set of codes stays traceable. See [Custom Categories](/custom-categories) for what a list then does, and [Reports](/reports) for reading a report broken down by one.
+
+## What This Page Does Not Touch
+
+Nothing here feeds the period-closing checklist or Mission Control. The closing checks do look at arriving paperwork, but only at invoices, receipts, credit notes and bank statements, which are exactly the kinds this page excludes. A backlog of unread contracts can never hold a month open.
+
+## Related Articles
+
+- [Forwarding Documents by Email](/email-forwarding)
+- [Custom Categories](/custom-categories)
+- [Reports](/reports) - breaking a report down by a list built here

@@ -19,7 +19,7 @@ On a partner with no bank account on file, the section says **Found in the regis
 
 - **On a supplier invoice**, on the payment approval card, under the payee account.
 - **On the payment file page**, on each candidate line.
-- **On a verified partner**, in the **Company register** section: what the register says, what it filled in, the differences, and a **Company details** block with the legal form, registration number, main activity, and the figures from the last filed report.
+- **On a verified partner**, in the **Company register** section: the decisions waiting for you, your data and the register's side by side under **Compared with the register**, what the register filled in, and a folded **Company details** block with the legal form, registration number, main activity, and the figures from the last filed report.
 - **In the verify dialog**, when you turn a counterparty into a partner: if the register knows the company, its legal name, tax number, registered address and main activity are offered, and **Use these details** fills them in.
 
 ## What Starts a Check
@@ -37,20 +37,38 @@ Each check uses one of the month's register lookups. **Searching the register by
 
 The register's own data is refreshed at most every 90 days. After that the section marks the answer **Out of date** and waits for you: age alone never spends a lookup.
 
-## Differences to Look At
+## Differences, and What to Do With Them
 
-Where your data and the register disagree, the section lists it rather than changing anything. Each difference is badged by how much it matters: **Check**, **Review** or **Info**.
+Where your data and the register disagree, nothing changes on its own. The section says how many decisions are waiting, shows each one as a card, and puts both values side by side in the **Compared with the register** table below. Each card is badged by how much it matters: **Check**, **Review** or **Info**.
 
-- The company is no longer active, for example under liquidation.
-- The tax number differs.
-- The account you hold is not listed for this company.
-- The account belongs to no known bank branch.
-- The name or the postal code differs. Addresses are compared on the postal code only, because free-text addresses vary too much to compare honestly.
-- The register lists accounts you do not hold, shown as one line with a count.
+<RegistryPanelFigure>
+A partner whose seat and tax number both moved, and one account only the register holds. The numbers match the list below. The partner and its numbers are examples.
+</RegistryPanelFigure>
+
+1. **How many decisions are waiting**, above the cards.
+2. **The badge** says how much the difference matters: **Check**, **Review** or **Info**.
+3. **Two buttons per card.** The left one acts; **Leave as is** changes nothing and is not a rejection.
+4. **The same difference again in the table**, with its own action per row. The amber rows are the ones that differ; the tax number highlights only the digits that changed.
+
+| The difference | What you can do |
+| --- | --- |
+| The tax number differs | **Take over** writes the register's tax number onto the partner. Only the last three digits can differ, because the check is made on the first eight. |
+| The seat differs (the postal code, since free-text addresses vary too much to compare honestly) | **Take over** writes the register's registered address onto the partner. |
+| Both of the above, and the last two digits of the tax number changed | One card, **It looks like the company has moved**, with **Take over both**. When a company moves its seat to another county, the last two digits of its tax number (the tax office code) change with it. |
+| The register lists accounts you do not hold | One card for all of them, with **Add all**, or **Add** on a single row. |
+| The company is no longer active, for example under liquidation | A warning only. **Noted** hides the card. |
+| An account you hold is not listed for this company, or belongs to no known bank branch | **Go to bank accounts** to check it there. |
+| The name differs | Shown in the table only. The partner is never renamed from the register. |
+
+**An account you add stays unconfirmed.** It is marked "added from the company register" on the partner's bank accounts, and it can only go into a payment file after someone with "Manage approvals" confirms it, the same as any other account. See [Paying Approved Invoices](/paying-approved-invoices).
+
+**Leave as is** (or **Not now** on the accounts card) hides a card and marks the row **Left as is**. It stays that way until the register reports a different value, and then the card comes back on its own. **Undo** in the row takes it back. Leaving something as it is only changes what this section shows: it does not confirm an account, and it does not change what a payment file allows.
+
+Every take over, add and leave as is appears on the partner's history.
 
 ## What the Register Fills In
 
-When the register knows something you do not, exactly four things are filled in, and only while they are empty: the **address**, the **country**, the full **tax number** where you already hold its first eight digits, and the **VAT group identifier**. The name and the bank accounts are never written by the register. Nothing at all is filled in for a sole trader.
+When the register knows something you do not, exactly four things are filled in, and only while they are empty: the **address**, the **country**, the full **tax number** where you already hold its first eight digits, and the **VAT group identifier**. The register never writes the name or the bank accounts on its own. An account it lists reaches the partner only when a person adds it, as described above. Nothing at all is filled in for a sole trader.
 
 ## Accounts Confirmed Automatically
 
@@ -82,7 +100,7 @@ A sole trader's tax number is sent to the register, and the answer is that they 
 
 ## Who Can See and Use It
 
-Seeing the register's answers needs "View invoices and bank transactions". Pressing **Check now**, **Revalidate** or **Use this tax number** needs "Edit master data". See [Roles and Permissions](/roles-and-permissions).
+Seeing the register's answers needs "View invoices and bank transactions". Pressing **Check now**, **Revalidate** or **Use this tax number**, and taking over a value, adding an account or leaving a difference as it is, needs "Edit master data". Confirming an account you added needs "Manage approvals". See [Roles and Permissions](/roles-and-permissions).
 
 ## Where the Data Goes
 

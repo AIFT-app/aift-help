@@ -6,9 +6,11 @@ Payment approvals let a client company decide, invoice by invoice, whether a sup
 
 Open the client workspace, go to **Settings**, then **Approval rules** (the page itself is titled **Approvals**), and switch **Payment approvals are switched on**. Only people holding "Manage approvals" see this page.
 
+The switch is the **second** block on that page. The first is **Checkpoints**, which is a different subject: filing and bookkeeping approval, covered in [Filing and Bookkeeping Approval](/filing-and-bookkeeping-approval).
+
 Set up the rules and the approvers first, and switch approvals on last. The rules, the descriptions and the fallback can all be edited while approvals are off, and switching on admits every unpaid supplier invoice at once, oldest due date first.
 
-What starts an approval? A supplier invoice enters the flow as soon as it is booked: the extraction and the AI categorisation have finished, it is an expense, it is open or partially paid, and it is not a duplicate or rejected. An invoice without line items enters 15 minutes after it arrived. The system checks once a minute, so a new invoice usually reaches its approver within a minute or two, and approvers see their queue under **Approvals** in the sidebar. Invoices that were already paid are left alone.
+What starts an approval? A supplier invoice enters the flow as soon as it is booked: the extraction and the AI categorisation have finished, it is an expense, it is open or partially paid, and it is not a duplicate or rejected. An invoice without line items enters 15 minutes after it arrived. Where a checkpoint gates payment, the invoice also needs that approval first: with **Filing before payment** on, a filing decision; with **Bookkeeping before payment** on, a bookkeeping one. Invoices that existed before the checkpoint's start date are exempt, and switching a checkpoint on never pulls an invoice back out of the payment queue. The system checks once a minute, so a new invoice usually reaches its approver within a minute or two, and approvers see their queue under **Approvals** in the sidebar. Invoices that were already paid are left alone.
 
 Switching it off stops new invoices from entering and pauses the invoices already waiting: nobody can approve, decline or assign them until it is on again, the queue says **Payment approvals are not switched on yet**, and no approval emails are sent. Decisions already made stay on the invoices.
 
@@ -18,17 +20,17 @@ The defaults: approvals off, **Everything needs approval unless a rule says othe
 
 Three permissions make up payment approvals:
 
-- **Approve invoices for payment**: sees the queue and can approve or decline. Needs "View invoices and bank transactions" as well.
+- **Approve invoices for payment**: sees the queue and can approve or decline. It does **not** need "View invoices and bank transactions": an approver without that permission simply sees only the invoices routed to them, and their own uploads. "Manage approvals" and "Export payment file" do need it, and the role editor keeps them switched off until it is on.
 - **Manage approvals**: sees the whole flow on the Overview, assigns invoices, reopens decisions, confirms supplier bank accounts and edits the rules and the policy.
 - **Export payment file**: downloads the payment file for approved invoices. See [Paying approved invoices](/paying-approved-invoices).
 
-By default the accountant admin and the finance lead hold all three, and the **Finance admin** system role holds "Manage approvals" and "Export payment file" without deciding invoices. For anyone else, create a role under **Settings**, **Team management**, **Roles** (this needs "Manage members and roles"), for example "Approver only" holding just the first one, and assign it. See [Roles and Permissions](/roles-and-permissions).
+By default the accountant admin and the finance lead hold all three, and the **Finance admin** system role holds "Manage approvals" and "Export payment file" without deciding invoices for payment (it does hold "Approve filing"). For anyone else, create a role under **Settings**, **Team management**, **Roles** (this needs "Manage members and roles"), for example "Approver only" holding just the first one, and assign it. See [Roles and Permissions](/roles-and-permissions).
 
 ## The settings page
 
 Settings reads in the order the flow runs: switch it on, say who may approve, say what goes to whom, then say what their queue looks like.
 
-**Payment approvals** is the switch above. **Approvers** lists everyone who holds both "Approve invoices for payment" and "View invoices and bank transactions", with a description of what each of them decides. Someone with "Manage approvals" writes the descriptions (up to 600 characters, saved when you leave the field). When nobody holds the permission, an amber warning says so.
+**Payment approvals** is the switch above. **Approvers** lists everyone who holds "Approve invoices for payment", with a description of what each of them decides. Someone with "Manage approvals" writes the descriptions (up to 600 characters, saved when you leave the field). When nobody holds the permission, an amber warning says so.
 
 **Routing** holds the rules, and directly beneath them, **When no rule matches**:
 
@@ -41,6 +43,8 @@ Settings reads in the order the flow runs: switch it on, say who may approve, sa
 - **Bulk approval**: whether approvers may approve several invoices with one confirmation. Declining is always one at a time.
 - **Unassigned invoices are visible to every approver**: when off, only people with "Manage approvals" see and decide unrouted invoices; they appear in no list for anyone else.
 - **Invoices flagged "needs review" by extraction**: **Hold until reviewed** (the default: held invoices cannot be approved until the accountant checks the extraction), or **Show with a warning**.
+
+The **needs review** row above disappears once filing approval is switched on, because the filing checkpoint then decides what reaches the payment queue. Whatever it was last set to keeps applying.
 
 ## Rules
 
@@ -92,15 +96,15 @@ The AI picks the person whose description covers the invoice, or nobody when no 
 
 ## The Overview
 
-The **Overview** page is for whoever manages approvals: its link sits at the top right of **Approvals**, and only someone with the right to manage approvals sees it. Approvers land on their own desk instead. Its header has a **Routing rules** button, which opens the settings page, and a **Payment file** button.
+The **Overview** page is for whoever manages approvals: its link sits at the top right of **Approvals**, and only someone with the right to manage approvals sees it. Approvers land on their own desk instead. Its header has a **Routing rules** button, which opens the settings page, and, for anyone holding "Export payment file", a **Payment file** button.
 
-A table at the top shows each step on one line: **Filing**, **Bookkeeping** (when they are switched on) and **Payment**, with how many invoices are in the queue, how many are blocked and how many were sent back or declined. Under it, the page answers two questions, in that order.
+A table at the top shows each step on one line: **Filing**, **Bookkeeping** and **Payment**, with how many invoices are in the queue, how many are blocked and how many were sent back or declined. A checkpoint row appears only when that checkpoint is switched on **and you hold its own permission**, so a manager who does not decide filing or bookkeeping themselves sees the Payment row alone. Under it, the page answers two questions, in that order.
 
 **Needs you** is one list of everything waiting on you: invoices no rule placed, invoices an approver declined, and proposed rules. Overdue first, each with an amber edge, and each with its own buttons: **Assign** an approver, **Reopen** a declined invoice, **Mark not required**, or accept a proposed rule. When there are more than 10 rows, **Show all** opens the rest and **Open the unassigned list** opens the full list of unassigned invoices.
 
 **In flight** is not your work, it is the answer to "is anything stuck": one row per approver with how many invoices are waiting, how many are overdue, and how long the oldest has been with them. A click on a name opens the list of everything awaiting approval, where you can reassign an invoice. Underneath, approved and unpaid, with the total per currency and a link to the payment file.
 
-Above both, two figures: the money in the flow, and the median time to a decision over the last 30 days. A line under them says how many invoices are held because the extraction flagged them "needs review".
+Above both, two figures: the money in the flow, and the median time to a decision over the last 30 days. At the very foot of the page, under **In flight**, a line says how many invoices are held because the extraction flagged them "needs review".
 
 ## What the accountant sees
 
@@ -110,4 +114,4 @@ If an accountant rejects an invoice, any approval is cancelled and the invoice s
 
 ## Emails
 
-Approvers receive four emails: new invoices to approve (at the earliest 30 minutes after the first one, at most 2 a day), a morning list on working days at 08:00, a due-soon reminder on working days at 15:00 for invoices due within 2 days, and a declined notice with the approver's note, which goes to everyone holding "Manage approvals" except the person who declined. Working days are Monday to Friday, Budapest time. Each email has its own switch on the person's Notifications page, under **Payment approvals**. The **Monday summary** to the accountants gains a line per company with approvals on: waiting, overdue, declined, approved and unpaid. Nothing is sent for a company where approvals are switched off.
+Approvers receive three approval emails, each with its own switch on their Notifications page under **Approvals**: **New items to approve**, one email when a wave of new items ends (the queue has been quiet for 5 minutes, or the oldest unsent item has waited 30 minutes), covering payment invoices assigned to them and filing or bookkeeping items in a queue they hold the key for; a **Daily digest** on working days at a time they choose (08:00 Budapest time by default), one email across all their companies, with nothing sent when nothing is waiting; and a **Due-soon reminder** on working days at a time they choose (14:00 by default) for payment invoices due within 2 days. A declined notice with the approver's note goes at once to everyone holding "Manage approvals" except the person who declined. Working days are Monday to Friday, Budapest time. The **Monday summary** to the accountants gains a line per company with approvals on: waiting, overdue, declined, approved and unpaid. Nothing is sent for a company where approvals are switched off. What each email contains and how to change the times: [Approving invoices for payment](/approving-invoices#emails).

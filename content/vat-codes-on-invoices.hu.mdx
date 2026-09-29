@@ -1,38 +1,101 @@
 # ÁFA-kódok a számlákon
 
-Az AI Finance Teamben minden számlasor öt ÁFA-mezőt hordoz: **Partner ÁFA-csoport** (a számla fejlécén), **Termék / Szolgáltatás ÁFA-csoport**, **ÁFA-kulcs**, **Számítási mód**, valamint a feloldott **ÁFA-kód**. Ez a cikk azt mutatja be, hogyan töltődnek ki automatikusan, mit jelentenek a jelzések, és hogyan működnek a javítások.
+Az ÁFA-kód nem olyan mező, amelyet valaki beír. **Öt elemből oldódik fel**, és ez a feloldás a számla **Tételek & ÁFA** fülén történik. Magukat az elemeket és a mögöttük álló táblákat az [ÁFA-törzsadatok](/vat-master-data) cikk írja le; ez a cikk arról szól, mi történik velük egy valódi számlán.
 
-A mezők mögött álló öt táblát az [ÁFA-törzsadatok](/vat-master-data) cikk írja le.
+## Hogyan kap kódot egy sor
 
-## Automatikus hozzárendelés a kinyerés során
+A kódolás **a kinyerés után, a kategorizálás részeként** fut, ugyanabban az AI-hívásban, amely a kategóriát is kiválasztja. Nem a dokumentum beolvasásának a része.
 
-Amikor egy számla kinyerése megtörténik (feltöltés, e-mail vagy NAV Online), az AI Finance Team a kategória mellett minden sor ÁFA-elemeit is besorolja:
+Több dolognak van beleszólása, a legspecifikusabbal kezdve:
 
-- A **Partner ÁFA-csoport** a partnertől érkezik, ha a partnerhez már tartozik ilyen; egyébként a partner országa alapján következtetjük ki (belföldi / EU / harmadik ország).
-- A **Termék / Szolgáltatás ÁFA-csoportot**, az **ÁFA-kulcsot** és a **Számítási módot** soronként, a dokumentum alapján soroljuk be - a kulcsot a feltüntetett ÁFA-százalékból, a fordított adózást a számla szövegezéséből, és így tovább.
-- Ha mind az öt elem megvan, a munkaterület kódtáblájából automatikusan hozzárendelődik a számla ÁFA-teljesítési dátumára illeszkedő **ÁFA-kód**.
+1. **A NAV-adatok**, magyar számla esetén. A NAV a **kulcsot** és a **számítási módot** rögzíti, semmi mást: termék- vagy szolgáltatásbesorolást nem hordoz. A teljes kód csak akkor rendeződik el AI nélkül, ha pontosan egy aktív kódja hordoz illeszkedő NAV megfeleltetési kódot; egyébként a termék/szolgáltatás kérdés továbbra is a modellhez kerül.
+2. **Egy megtanult javítás.** Ha korábban már javított hasonló sort, amit a rendszer visszajátszik, az a **termék/szolgáltatás csoport**, nem a kód. Ez szándékos, hogy egy kulcsváltozás előtt megtanult kód ne kerüljön alkalmazásra utána. A találat ezért nem spórolja meg az AI-hívást: a kulcsnak és a módnak továbbra is jönnie kell valahonnan.
+3. **Egy partner-alapértelmezés.** A **Mindig ezt értékesíti**, a partner **Szabályok** fülén, a szállító minden sorára rögzíti a termék/szolgáltatás csoportot, és megelőzi az AI saját tippjét. Ezt az egy elemet állítja be, semmi mást.
+4. **Az AI saját olvasata** a sorról.
+5. **A munkaterület alapértelmezett kódja**, ha mindezek után a sor még feloldatlan. Lásd alább.
 
-A **NAV Online**-on érkező magyar számlák géppel olvasható ÁFA-adatokat hordoznak, amelyek determinisztikusan képeződnek le - találgatás nélkül.
+Két dolog, amit a cikk korábban ígért, és a termék nem tesz meg. Az ÁFA-csoport nélküli partnert ezen a ponton **nem** következtetjük ki az országából: az országra alapozott tipp egyszer, a partner létrehozásakor születik meg, így egy címke nélküli partner második és minden későbbi számlája egyszerűen enélkül az elem nélkül érkezik. A NAV-kulcsot pedig fél százalékpontos tűréssel illesztjük a legközelebbi beállított kulcsához, holtverseny esetén a választástól elállva, ami inkább jó heurisztika, mint determinisztikus megfeleltetés.
 
-## A két jelzés
+A feloldás az **ÁFA-dátum**ra épül. Ha a számlán nincs ÁFA-dátum, a rendszer csendben a mai napot használja, amit érdemes tudni, mielőtt azon kezd tűnődni, miért kapott egy régi számla aktuális kódot. Csak magának a kódnak az érvényességi dátumait vizsgálja a rendszer, az egyes elemekéit nem.
 
-- **Hiányzó ÁFA-kód** - a sor elemei egyetlen kódra sem illeszkednek a tábládban (vagy valamelyik elemet nem sikerült meghatározni). Az ilyen sorokat tartalmazó számlák a listákban **„Hiányos ÁFA-kódok”** státusszal jelennek meg, a számlán pedig figyelmeztető sáv látszik („Hiányzó ÁFA-kód N soron”). Vedd fel a hiányzó kódot a tábládba - a leggyorsabb az ott helyben felkínált **Hiányzó ÁFA-kódok hozzáadása** gyorsművelet -, vagy javítsd a sor elemeit.
-- **Eltérés** - a sorhoz tartozik kód, de az aktuális elemei már nem egyeznek a kód kombinációjával (jellemzően kézi felülírás után). Ez puha figyelmeztetés, nem hiba: a hozzárendelt kód érvényesül, az ikon csak azt jelzi, hogy a sort felülírták.
+### A munkaterület alapértelmezett kódja
 
-## Az ÁFA-mezők javítása
+Irányonként egy alapértelmezett ÁFA-kódot állíthat be. Az a sor, amelynek az elemei nem határozhatók meg teljesen, ezt kapja meg, és a cella ilyenkor a kódot mutatja, mellette **Alapért.** jelvénnyel.
 
-A könyvelők a számlán mind az öt mezőt javíthatják:
+Ez szűkebb, mint egy találgatás. Azt az alapértelmezést, amely ellentmond egy olyan elemnek, amelyet a rendszer azonosított, elutasítja, a teljesen azonosított sor pedig egyáltalán nem kapja meg, egy azonosított partnercsoport pedig, amely nem egyezik az alapértelmezéssel, az egész számlát kizárja a tartalékkódolásból.
 
-- **Elem módosítása** (csoport, kulcs, mód) - az ÁFA-kód automatikusan újra feloldódik az új kombinációból.
-- **ÁFA-kód közvetlen kiválasztása** - a sor elemei a választott kód kombinációjából töltődnek vissza, és a sor konzisztensként jelölődik meg.
-- **A fejléc Partner ÁFA-csoportjának vagy az ÁFA-teljesítési dátumnak a módosítása** - a számla minden sora újra feloldódik.
+**Az alapértelmezéssel kódolt sor kódoltnak számít.** A számla exportálható, és nem mutat „hiányos” figyelmeztetést; helyette **Áfa: alapértelmezéssel kódolt** jelölést kap a számlalistán. Az ellenőrzés szándékosan csak javaslat. Ha átnézte őket, az eszköztár **Áfakódolás rendben** gombja egyszerre törli mindegyikről a jelölést.
 
-A javításokat munkaterületenként megjegyezzük: ha ugyanazt a dokumentumot valaha újra kinyerjük, a kézi ÁFA-javításaid megmaradnak, az AI nem írja felül őket.
+## Az ÁFA-kód cella olvasása
 
-## Partner ÁFA-csoport a partnereken
+Négy dolgot fog látni:
 
-A Partner ÁFA-csoport tartós helye a **partner**, nem a számla. A partner létrehozásakor vagy ellenőrzésekor (Törzsadatok → **Partnerek**) állítsd be egyszer az ÁFA-csoportját - a partnertől érkező minden későbbi számla eleve a helyes csoporttal indul. Egyedi esetekre továbbra is elérhető a számlaszintű felülírás (például ha egy egyébként belföldi partner külföldről számláz).
+- **Egy kód, önmagában.** Feloldva és konzisztensen.
+- **Egy kód Alapért. jelvénnyel.** A munkaterület alapértelmezése, ellenőrzés ajánlott.
+- **`- hiányzik -`.** Semmi nem oldódott fel.
+- **Egy kód figyelmeztető háromszöggel.** A kód továbbra is hozzá van rendelve, de a sor jelenlegi elemei már nem oldódnak fel rá. Ez nem annak a nyoma, hogy valaki felülírta a sort: kulcsváltozás, a partner ÁFA-csoportjának módosítása vagy az ÁFA-dátum módosítása egyaránt kiváltja. A hozzárendelt kód akkor is érvényesül.
+
+<VatLinesGridFigure>
+Négy tétel, mindegyik a négy állapot egyikében. A számok az alábbi lista pontjainak felelnek meg. A számla és az összegei példák.
+</VatLinesGridFigure>
+
+1. A **Hiányzó ÁFA-kódok hozzáadása** és az **Áfakódolás rendben**, a két tömeges művelet, jobbra a tételek és a hiányzó kódok számával.
+2. A **T/Sz · Kulcs · Mód**, vagyis a három elem. Itt csak a feloldatlan sornál látszanak.
+3. Az **ÁFA-kód** mind a négy állapotban: sima kód, **Alapért.**, `- hiányzik -` a **+ Hozzáad** mellett, és egy kód figyelmeztető háromszöggel.
+
+A három elemválasztó csak addig látszik magában a sorban, **amíg a sor feloldatlan**. Ha egyszer feloldódik egy kód, a cellában **Feloldva - lásd Speciális** szerepel, a választók pedig átkerülnek a sor **Speciális** részébe. Ez a képernyő legfélrevezetőbb viselkedése, és szándékos: a kész sor kevesebb helyet foglal.
+
+A Speciális rész tartalmazza a le nem vonható százalék felülírását is (**Le nem vonható % felülírás**). Ahol le nem vonható rész is beépült, a sor alatt egy **Könyvelendő** összeg jelenik meg, ami a nettóként kezelt bruttó.
+
+## Amikor semmi nem oldódik fel
+
+A kód nélküli sorban **`- hiányzik -`** szerepel, a számla pedig **Hiányos ÁFA-kódok** jelölést kap a listán. Ezen kívül tennivalót lát a számla **Áttekintés** fülén, és sárga pontot a **Tételek & ÁFA** fülön. A számlán nincs figyelmeztető sáv, bármit is mondtak eddig.
+
+Két út vezet előre, és nem ugyanazt jelentik:
+
+- **A hiányzó kód mellett álló `+ Hozzáad` link vadonatúj ÁFA-kódot hoz létre** a törzsadataiban, arra az elemkombinációra. Akkor használja, ha a kombináció valóban hiányzik a táblájából.
+- **Ha olyan kódot szeretne hozzárendelni, amely már megvan**, nyissa ki a sor **Speciális** részét, és ott válassza ki.
+
+Két csapdát érdemes ismerni. Az a számla, amelynek **egyáltalán nincsenek sorai**, teljesnek olvasódik, mert a teljesség azt jelenti, hogy „egyetlen sorból sem hiányzik kód”, ellenőrizendő sor viszont nincs. A **dokumentum újrakinyerése pedig nem őrzi meg az ÁFA-javításait**: az újrakinyerés törli a sorokat, és újakat szúr be. Ami védett, az a meglévő sorokon futó AI-újrafuttatás, amely érintetlenül hagyja mindazt, amit Ön kézzel állított be.
+
+## Kód vagy elem javítása
+
+Négy lépés, mindegyik más hatókörrel:
+
+- **Módosítson egy elemet** a soron, és a kód újra feloldódik az új kombinációból.
+- **Válasszon közvetlenül kódot**, és a sor elemei visszatöltődnek abból a kódból, a sor pedig konzisztensként jelölődik meg.
+- **Módosítsa a partner ÁFA-csoportját** a **Tételek & ÁFA** fül tetején. Ez felülírás: magára hagyva **Partner alapértelmezés** olvasható benne, és a partnert követi. A módosítása a számla **minden** sorát újra feloldja.
+- **Módosítsa az ÁFA-dátumot** az **Áttekintés** fül dátumsorában. Ez is újra feloldja az összes sort.
+
+A partner ÁFA-csoportjának tartós helye maga a partner, a **Törzsadatok → Partnerek** alatt. Állítsa be egyszer, és minden későbbi számla a helyes csoporttal indul; a számlaszintű felülírás az egyszeri esetre való.
+
+## Lemaradás behozása egy lépésben
+
+A hiányzó kód felvétele a táblájába nem tölti vissza utólag azokat a számlákat, amelyek rá vártak. Erre a számlalista **Áfakódolás újrafuttatása** művelete szolgál.
+
+Csak azokat a sorokat tölti ki, amelyek kódja **hiányzik**: a kódolt sorokhoz, bármihez, amit Ön kézzel állított be, és a kategóriákhoz soha nem nyúl. Vegye figyelembe, hogy a kijelölése helyett **az egész munkaterületen** fut le, és 2000 számlánál megáll, így egy nagy lemaradás egynél több futást igényel.
+
+## Ki teheti meg
+
+Egy sor ÁFA-jának javításához **„Számlák szerkesztése”** jogosultság kell, amely kizárólag irodai oldali: ügyféloldali felhasználó soha nem kaphatja meg. Ők a Tételek & ÁFA rácsot továbbra is teljes egészében látják, csak olvashatóan, letiltott választókkal, és a hozzáadás, illetve az eszköztár kezelőelemei nélkül.
+
+A könyvelők között ez jogosultság kérdése, nem beosztásé, így egyedi szerepkör vagy tagonkénti megvonás a könyvelői oldalon is csak olvashatóvá teheti valakinek a rácsot.
 
 ## Devizás ÁFA
 
-Ha a számla pénzneme eltér a cég ÁFA-bevallási pénznemétől, a sorok **ÁFA-árfolyamot** és **bevallási pénznemben kifejezett ÁFA-összeget** hordoznak. Bármelyik szerkesztése újraszámolja a másikat, és mindkettő elérhető az exportokban.
+Ha a számla pénzneme eltér a munkaterület bázis pénznemétől, a sor **Speciális** része **ÁFA árfolyamot** és a bevallási pénznemben kifejezett ÁFA-összeget tartalmaz. Bármelyik szerkesztése újraszámolja a másikat, és mindkettő önálló oszlopként jut el a főkönyvi exportba.
+
+Ezek **azt tartalmazzák, amit a szállító kinyomtatott**, az áfabevallás céljára rögzítve. Itt semmi nem kerül átváltásra: az átváltó árfolyamokról a [Több pénznem és árfolyamok](/currency-exchange) cikk szól.
+
+## Amikor az AI nem tud dönteni
+
+A kategóriával ellentétben az ÁFA-elemeknek nincs „az AI nem vállalta” állapota. Azt az elemet, amelyet nem tud meghatározni, a rendszer egyszerűen üresen hagyja, mert egy ide rögzített verdikt olyat állítana, ami soha nem volt használható. Ehelyett azt látja, hogy a számla megbízhatósága csökken, ami már elég lehet ahhoz, hogy a számla ellenőrzésre kerüljön.
+
+Az alanyi adómentes cég külön eset, és ott két helyzet szándékosan kódolatlan marad, ahelyett hogy elfogadhatónak tűnő nulla kulcsot kapna. Lásd [Alanyi adómentesség](/small-business-exemption).
+
+## Kapcsolódó cikkek
+
+- [ÁFA-törzsadatok](/vat-master-data) - az öt elem és a mögöttük álló táblák
+- [ÁFA az exportokban](/vat-in-exports) - melyik kód melyik exportba jut el, és az exportkapu
+- [Alanyi adómentesség](/small-business-exemption)
+- [Számlák kezelése](/invoices)

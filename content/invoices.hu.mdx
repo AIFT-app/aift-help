@@ -20,7 +20,7 @@ A Claude elolvassa a számlát, és kinyeri a fejlécet, a feleket, az összegek
 
 Ha egy olyan fájlt tölt fel, amely azonos egy, a munkaterületen már meglévővel, az AI Finance Team létrehozza a számlát, de az eredeti duplikációjaként jelöli meg, és nem nyeri ki újra. A feltöltési panel ezt mutatja: **Már létezik**, és egy kattintás megnyitja az eredetit. A kinyerés után az a számla is duplikációnak minősül, amelynek számlaszáma, kiállítási dátuma, bruttó összege és pénzneme egy másikéval megegyezik.
 
-A duplikációk rejtve vannak a listában: az eredeti alatt lenyitható **kapcsolódó** sorként, és a **Duplikáció** szűrő bekapcsolásával jelennek meg. Ha két számla valóban különböző (egy szállító két számlához ugyanazt a PDF-et használta), nyissa meg a duplikációt, és kattintson a sávján a **Mark as not a duplicate** gombra.
+A duplikációk rejtve vannak a listában: az eredeti alatt lenyitható **kapcsolódó** sorként, és a **Duplikáció** szűrő bekapcsolásával jelennek meg. Ha két számla valóban különböző (egy szállító két számlához ugyanazt a PDF-et használta), nyissa meg a duplikációt, és kattintson a sávján a **Nem duplikátum** gombra.
 
 ## A számlalista
 
@@ -28,11 +28,12 @@ A duplikációk rejtve vannak a listában: az eredeti alatt lenyitható **kapcso
 A számlalista négy számlával. A számok az alábbi listának felelnek meg. A cégek és az összegek példák.
 </InvoiceListFigure>
 
-1. **Partner**, alatta a számlaszámmal. A sorra bárhol kattintva megnyílik a számla.
-2. **Címkék**: legfeljebb három címke arról, mire van szüksége a számlának, továbbiak esetén **+N**.
-3. **Összeg**: a bruttó végösszeg a számla pénznemében, bevételnél zöld, felfelé mutató nyíllal, kiadásnál piros, lefelé mutató nyíllal.
+1. **Dátum**, alatta az AI Finance Team saját azonosítójával, ha a munkaterület mutatja az azonosítókat. Az azonosítóra kattintva kimásolhatja.
+2. **Partner**, alatta a számlaszámmal. A hosszú név második sorba törik. A sorra bárhol kattintva megnyílik a számla.
+3. **Címkék**: elöl az, amire a számlának szüksége van, hátul az, honnan érkezett (**NAV**, **Nincs PDF**). Legfeljebb három címke látszik, a többit a **+N** jelöli: teendőt jelző címke soha nem kerül mögé, és ha fölé viszi az egeret, megmutatja, mit takar.
+4. **Összeg**: a bruttó végösszeg a számla pénznemében, bevételnél zöld, felfelé mutató nyíllal, kiadásnál piros, lefelé mutató nyíllal.
 
-Kattintson az oldalsávban a **Számlák** menüpontra. A lista oszlopai: **Azonosító** (az AI Finance Team saját sorszáma, ha a munkaterület mutatja; kattintásra másolható), **Dátum** (a kiállítás dátuma), **Partner**, **Címkék** és **Összeg**. Oldalanként 50 számlát mutat, és azonosító, dátum vagy összeg szerint rendezhető. A bal oldali borostyánsárga szegély teendőt igénylő számlát jelöl.
+Kattintson az oldalsávban a **Számlák** menüpontra. A lista oszlopai: **Dátum** (a kiállítás dátuma), alatta az **Azonosító** (az AI Finance Team saját sorszáma, ha a munkaterület mutatja; kattintásra másolható), **Partner**, **Címkék**, **Cég** (csak ha a munkaterületen egynél több cég van: melyik cégéhez tartozik a számla, vagy kötőjel, ha az AI Finance Team még nem rendelte céghez) és **Összeg**. Oldalanként 50 számlát mutat, és dátum, azonosító (a dátum fejlécének második sora) vagy összeg szerint rendezhető. A bal oldali borostyánsárga szegély teendőt igénylő számlát jelöl. A lista az ablak teljes szélességét kitölti. Keskeny ablakban oldalra görgethető, és az **Összeg** oszlop jobb oldalt végig látható marad.
 
 A leggyakoribb címkék:
 
@@ -47,6 +48,7 @@ A leggyakoribb címkék:
 | **Hiányos ÁFA-kódok** / **Alapért. kódolt** | ÁFA-kód nélküli tételek / alapértelmezett kóddal kódolt tételek |
 | **Duplikáció**, **Sztornózva** | Egy másik számla duplikációja / sztornószámlával érvénytelenítve |
 | **Jóváhagyásra vár**, **Jóváhagyva**, **Elutasítva** | A kifizetés jóváhagyásának állapota, ahol a jóváhagyás be van kapcsolva (lásd: [Számlák jóváhagyása kifizetésre](/approving-invoices)) |
+| **Iktatásra vár**, **Könyvelésre vár**, **Iktatás visszaküldve**, **Könyvelés visszaküldve** | Egy jóváhagyási lépés még döntésre vár, ahol az iktatási vagy a könyvelési jóváhagyás be van kapcsolva (lásd: [Iktatási és könyvelési jóváhagyás](/filing-and-bookkeeping-approval)) |
 
 ### Számlák keresése
 
@@ -60,7 +62,7 @@ Kattintson egy számlára az oldala megnyitásához. A felső kártya mutatja a 
 
 Az oldalnak hét füle van:
 
-- **Áttekintés**: a **Felek** (eladó és vevő, az Ön oldala megjelölve), az **Összegek** (nettó, ÁFA és bruttó, eltérés esetén az alappénznemű összegekkel) és a **Dátumok** (kiállítás, teljesítés, fizetési határidő, ÁFA- és könyvelési dátum), valamint az egyéni kategóriák és a kifizetés jóváhagyásának kártyája, ahol ezek érvényesek.
+- **Áttekintés**: a **Felek** (eladó és vevő, az Ön oldala megjelölve), az **Összegek** (nettó, ÁFA és bruttó, eltérés esetén az alappénznemű összegekkel) és a **Dátumok** (kiállítás, teljesítés, fizetési határidő, ÁFA- és könyvelési dátum), valamint az egyéni kategóriák, ahol ezek érvényesek. A kifizetés jóváhagyásának kártyája felett egy **Jóváhagyások** kártya áll: felsorolja azokat a jóváhagyási lépéseket, amelyeken a számla végigmegy (iktatás, könyvelés és kifizetés), mindegyiket az állapotával és azzal, hogy ki döntött róla. Akkor is megjelenik, ha csak a kifizetések jóváhagyása van bekapcsolva. Lásd: [Iktatási és könyvelési jóváhagyás](/filing-and-bookkeeping-approval).
 - **Tételek & ÁFA**: a számlatételek leírással és mennyiséggel, nettó összeggel, ÁFA-kulccsal, bruttó összeggel, kategóriával és ÁFA-kóddal.
 - **Dokumentum**: az eredeti fájl, NAV-számlánál a NAV-megjelenítés.
 - **Mellékletek**: az alátámasztó dokumentumok, például teljesítésigazolás, munkaidő-kimutatás vagy szállítólevél, amelyeket itt megtekinthet, letölthet vagy hozzáadhat. Lásd: [Számlamellékletek](/invoice-attachments).
@@ -83,7 +85,7 @@ Egy értékre kattintva szerkesztheti; Enter lenyomására vagy máshová kattin
 
 ## Egy számla elutasítása
 
-Ha egy számla egyik cégéhez sem tartozik, nyissa meg a számlán a cég kiválasztását, kattintson az **Ez a számla nem egyik cégünké sem** hivatkozásra, és adjon meg egy okot. A számla az **Elutasítva** szűrő alá kerül, a hozzá tartozó párosítási javaslatok törlődnek, a meglévő párosítások megmaradnak és megjelölődnek. A sávja felajánlja az **Undo rejection** lehetőséget. Számlát törölni nem lehet.
+Ha egy számla egyik cégéhez sem tartozik, nyissa meg a számlán a cég kiválasztását, kattintson az **Ez a számla nem egyik cégünké sem** hivatkozásra, és adjon meg egy okot. A számla az **Elutasítva** szűrő alá kerül, a hozzá tartozó párosítási javaslatok törlődnek, a meglévő párosítások megmaradnak és megjelölődnek. A sávja felajánlja az **Elutasítás visszavonása** lehetőséget. Számlát törölni nem lehet.
 
 ## Egy számla letöltése
 
@@ -106,7 +108,9 @@ Az **Ellenőrzés** címke azt jelenti, hogy a kinyerés teljessége 80% alatt m
 
 ## Ki mit tehet
 
-A számlák megtekintéséhez a számlák és banki tranzakciók megtekintésére vonatkozó jogosultság kell. A szerkesztéshez, az elutasításhoz és a csoportos műveletekhez a számlák szerkesztésére vonatkozó jogosultság, amely alapértelmezés szerint a könyvelőknél van; az ügyfél felhasználói megtekinthetik a számlákat, megnyithatják a dokumentumot és feltölthetnek. Lásd: [Szerepek és jogosultságok](/roles-and-permissions).
+A munkaterület számláinak megtekintéséhez a számlák és banki tranzakciók megtekintésére vonatkozó jogosultság kell. Az a tag, akinek ez nincs meg, továbbra is látja az általa feltöltött számlákat és minden olyan számlát, amelyet jóváhagyásra hozzá irányítottak: hat fül helyett négyet, címkék, fizetési állapot és teendők nélkül, a listán pedig egy megjegyzéssel, amely szerint csak a saját számlái látszanak.
+
+A szerkesztéshez, az elutasításhoz, a duplikáció megjelöléséhez és a megjelölés visszavonásához, valamint a csoportos műveletekhez a számlák szerkesztésére vonatkozó jogosultság kell, amely alapértelmezés szerint a könyvelőknél van; az ügyfél felhasználói megtekinthetik a számlákat, megnyithatják a dokumentumot és feltölthetnek. Lásd: [Szerepek és jogosultságok](/roles-and-permissions).
 
 ## Tippek
 
