@@ -140,10 +140,12 @@ function Card({
               <span className="text-xs text-zinc-400">{ui['approvals.slip.payee_account']}</span>
               {row.account.status === 'confirmed' ? (
                 <>
-                  {/* Outside the span, not in it: `truncate` is overflow-hidden,
-                      which clips the marker to a sliver. */}
+                  {/* Outside the span, not in it: the span wraps a long
+                      account number, and a marker inside would wrap with it. */}
                   {annotate ? <Pin n={7} at="left" cancel="-mr-2" /> : null}
-                  <span className="min-w-0 truncate text-right text-xs tabular-nums text-zinc-600 dark:text-zinc-300">
+                  {/* aift-web ApprovalQueue.tsx, class for class: the payee
+                      account wraps, never truncates (bank-account-full-number). */}
+                  <span className="min-w-0 break-words text-right text-xs tabular-nums text-zinc-600 dark:text-zinc-300">
                     {row.account.display}
                   </span>
                 </>
