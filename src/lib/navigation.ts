@@ -110,6 +110,10 @@ export const navigation: NavItem[] = [
     title: { en: 'Uploading Bank Statements', hu: 'Bankszámlakivonatok feltöltése', de: 'Kontoauszüge hochladen' },
   },
   {
+    slug: 'bank-transactions',
+    title: { en: 'Bank Transactions', hu: 'Banki tranzakciók', de: 'Banktransaktionen' },
+  },
+  {
     slug: 'transaction-types',
     title: { en: 'Transaction Types & No Invoice Needed', hu: 'Tranzakciótípusok és „nem kell számla”', de: 'Transaktionstypen & „Keine Rechnung nötig“' },
   },

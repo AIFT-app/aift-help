@@ -1,0 +1,73 @@
+# Banktransaktionen
+
+Die Seite **Banktransaktionen** listet jede Bewegung auf den Bankkonten Ihrer Unternehmen. AI Finance Team schlägt für jede Transaktion eine Kategorie vor und ordnet sie ihrer Rechnung zu, und die Liste zeigt, wo jede Transaktion steht.
+
+Transaktionen kommen auf zwei Wegen:
+
+- **Von einem verbundenen Bankkonto**, zweimal am Tag. Siehe [Bankkonten verbinden](/bank-accounts).
+- **Aus einem hochgeladenen Kontoauszug** (PDF), mit **Kontoauszug hochladen** oben rechts auf der Seite. Siehe [Kontoauszüge hochladen](/bank-statement-upload).
+
+Ist eine Auszugszeile dieselbe Bewegung, die die Bankverbindung schon gebracht hat, werden beide zu einer Transaktion mit beiden Quellen.
+
+## Die Transaktionsliste
+
+<BankTransactionListFigure>
+Die Transaktionsliste mit fünf Transaktionen. Die Nummern entsprechen der Liste darunter. Die Unternehmen und Beträge sind Beispiele.
+</BankTransactionListFigure>
+
+1. **Datum**: das Buchungsdatum, darunter die eigene ID von AI Finance Team, wenn Ihr Arbeitsbereich IDs anzeigt. Ein Klick auf die ID kopiert sie.
+2. **Partner**, darunter die Beschreibung der Bank auf bis zu zwei Zeilen. Ein Klick irgendwo auf die Zeile öffnet die Transaktion.
+3. **Labels**: zuerst, was die Transaktion braucht (**Nicht zugeordnet**, **Duplikat**), dann **Zugeordnet** oder **Keine Rechnung**, und zuletzt die Herkunft (**Bank-Feed**, **Auszug**).
+4. **Kategorie**: der Name der Kategorie, darunter ihr Sachkonto.
+5. **Betrag**: in der Währung des Kontos, grün mit Pfeil nach oben für Geldeingang, rot mit Pfeil nach unten für Geldausgang.
+
+Klicken Sie in der Seitenleiste auf **Banktransaktionen**. Die Liste hat diese Spalten: **Datum** mit der **ID** darunter (wenn Ihr Arbeitsbereich sie anzeigt), **Partner**, **Labels**, **Unternehmen**, **Kategorie** und **Betrag**. **Unternehmen** erscheint nur, wenn Ihr Arbeitsbereich mehr als ein Unternehmen hat. Es ist der Inhaber des Bankkontos, oder, bei einem Konto, das sich mehrere Unternehmen teilen (ein [Cash-Pool](/cash-pool)), das Unternehmen der zugeordneten Rechnung.
+
+Die Liste zeigt 50 Transaktionen pro Seite, die neueste zuerst, und lässt sich nach Datum, ID, Partner oder Betrag sortieren. Ein gelber linker Rand markiert eine Transaktion, die eine Aktion braucht. Die Liste nutzt die volle Breite des Fensters. In einem schmalen Fenster scrollt sie seitwärts, und die Spalte **Betrag** bleibt rechts sichtbar.
+
+Die Zelle **Kategorie** ist leer, wenn unter **Einstellungen → Buchungs-Standardwerte** die Option **Zahlungsstrom-Kategorien nur für die Buchhaltung verwenden** eingeschaltet ist und die Transaktion noch eine Rechnung erwartet. Mit dieser Einstellung kommt das Sachkonto einer solchen Transaktion aus ihrer Rechnung, nicht aus der Kategorie. Siehe [Rechnungen & Transaktionen kategorisieren](/categorization).
+
+### Labels
+
+| Label | Farbe | Bedeutung |
+|-------|-------|-----------|
+| **Nicht zugeordnet** | gelb | Noch keine Rechnung zugeordnet und nicht als ohne Rechnung markiert |
+| **Duplikat** | gelb | Als Kopie einer anderen Transaktion auf demselben Konto markiert, mit demselben Buchungsdatum und Betrag. Sie bleibt in der Liste, der Abgleich lässt sie aus |
+| **Zugeordnet** | grün | Einer oder mehreren Rechnungen zugeordnet, automatisch oder von Hand |
+| **Keine Rechnung** | blau | Als ohne Rechnung markiert, durch einen Transaktionstyp oder eine Person |
+| **Bank-Feed** | grau | Kam von einem verbundenen Bankkonto |
+| **Auszug** | grau | Kam aus einem hochgeladenen Kontoauszug |
+
+Wie eine Transaktion zugeordnet wird, steht unter [Rechnungsabgleich](/invoice-matching). Bankgebühren, Steuern und Umbuchungen zwischen eigenen Konten brauchen keine Rechnung: siehe [Transaktionstypen & „Keine Rechnung nötig“](/transaction-types).
+
+### Transaktionen finden
+
+Suchen Sie nach Partner, Beschreibung, Verwendungszweck oder AI-Finance-Team-ID. Die Partnersuche umfasst den Namen, den die Bank geschickt hat, und den verknüpften Partner.
+
+Über der Liste filtern Sie nach Zeitraum, **Unternehmen** (wenn Sie mehrere haben), **Konto** und **Richtung** (**Geldeingang** oder **Geldausgang**). Hat ein Konto noch kein Unternehmen, bietet der Filter **Unternehmen** auch **Keinem Unternehmen zugeordnet** an.
+
+Die Filter-Pills filtern nach Label: **Bank-Feed**, **Auszug**, **Duplikat**, **Nicht zugeordnet**, **Zugeordnet** und **Keine Rechnung**. Mehrere können gleichzeitig an sein:
+
+- Unter **Bank-Feed**, **Auszug** und **Duplikat** genügt eines davon.
+- Unter **Nicht zugeordnet**, **Zugeordnet** und **Keine Rechnung** ebenso.
+- Zwischen den beiden Gruppen muss beides zutreffen. **Auszug** mit **Nicht zugeordnet** listet die nicht zugeordneten Transaktionen, die aus einem Auszug kamen.
+
+**Eigene Kategorie fehlt** listet die Transaktionen, bei denen eine verpflichtende [eigene Kategorieliste](/custom-categories) noch leer ist. Arbeiten Sie in einem [fokussierten Zeitraum](/focused-period), folgt die Liste diesem.
+
+Mit der Berechtigung „Banktransaktionen bearbeiten“ können Sie Zeilen anhaken und **Neu kategorisieren** wählen. Transaktionen, die die KI kategorisiert hat oder die keine Kategorie haben, werden anhand Ihrer aktuellen Kategorien neu eingeordnet. Von Hand gesetzte Kategorien bleiben unverändert.
+
+## Eine Transaktion öffnen
+
+Klicken Sie auf eine Zeile, um die Transaktion zu öffnen. Auf ihrer Seite springt **j** oder der Pfeil nach unten zur nächsten Transaktion der Liste, **k** oder der Pfeil nach oben zur vorherigen, mit Ihren Filtern und Ihrer Sortierung. Die Karte **Zuordnung & Zahlung** zeigt die zugeordneten Rechnungen und die Aktionen für den Abgleich; siehe [Rechnungsabgleich](/invoice-matching).
+
+## Kontoauszüge
+
+Der Tab **Kontoauszüge** neben der Liste zeigt jeden hochgeladenen Kontoauszug mit seinem Status. Siehe [Kontoauszüge hochladen](/bank-statement-upload).
+
+## Wer was sieht
+
+- **„Rechnungen und Banktransaktionen ansehen“** zeigt die ganze Liste. Jede Rolle hat sie standardmäßig; siehe [Rollen & Berechtigungen](/roles-and-permissions).
+- **Ohne sie** sieht ein Mitglied, das Kontoauszüge hochgeladen hat, nur die Transaktionen dieser Auszüge, mit einem Hinweis über der Liste. Es sieht keine Filter-Pills, keine Kategorien und keine Zuordnungs-Labels: nur **Bank-Feed** und **Auszug**.
+- **„Banktransaktionen bearbeiten“** braucht es, um neu zu kategorisieren, eine Transaktion zu ändern und sie als ohne Rechnung zu markieren. Standardmäßig haben sie nur die beiden Buchhalterrollen.
+
+Solange der Arbeitsbereich kein Bankkonto hat, zeigt die Seite **Noch keine Bankkonten**, mit dem Hinweis, ein Konto zu verbinden oder einen Auszug hochzuladen.
