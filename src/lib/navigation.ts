@@ -19,6 +19,13 @@ export const navigation: NavItem[] = [
     title: { en: 'Forwarding Documents by Email', hu: 'Dokumentumok továbbítása e-mailben', de: 'Dokumente per E-Mail weiterleiten' },
   },
   { slug: 'documents', title: { en: 'Documents', hu: 'Dokumentumok', de: 'Dokumente' } },
+  // Invoice attachments (invoice-attachments): supporting documents on an invoice.
+  // The app's tab is "Attachments" / "Mellékletek" / "Anhänge"; the Documents page
+  // filter is "Unlinked attachments" / "Nem kapcsolt mellékletek" / "Nicht verknüpfte Anhänge".
+  {
+    slug: 'invoice-attachments',
+    title: { en: 'Invoice Attachments', hu: 'Számlamellékletek', de: 'Rechnungsanhänge' },
+  },
   // The sidebar entry lagged the article and the app: both already say Missing
   // receipts / Hiányzó bizonylatok (nav.workspace.documents_needed).
   {
