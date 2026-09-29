@@ -1,11 +1,12 @@
 // The Lines & VAT grid, for the vat-codes-on-invoices article.
 //
 // Rebuilt 1:1 from aift-web (branch feat/page-layout-sweep, 2026-09-29, PRD
-// page-layout-sweep, up to commit 4af4ca73), class for class:
+// page-layout-sweep, up to commit 868033b0), class for class:
 //   src/app/(app)/workspaces/[workspaceId]/invoices/[invoiceId]/(tabs)/
 //     _components/MergedLinesVatGrid.tsx: the toolbar, the table head, the row
-//     cells, CategoryCell's resting state, ElementSelects (inline, auto-fit:
-//     side by side with room, 2 + 1 or stacked without) and SELECT_CLASS.
+//     cells, CategoryCell's resting state, ElementSelects (inline, flex-wrap:
+//     side by side with room, 2 + 1 or stacked without) and SELECT_CLASS with
+//     its inline twins.
 //
 // WHY THIS SCREEN
 //
@@ -21,28 +22,31 @@
 //
 // WHY THE TABLE IS SHOWN SCROLLED TO ITS RIGHT END
 //
-//   With this figure's fixture the grid is 836px wide at its narrowest (en;
-//   hu 882, de 853; measured 2026-09-29 on commit 4af4ca73, element selects
+//   With this figure's fixture the grid is 812px wide at its narrowest (en;
+//   hu 858, de 829; measured 2026-09-29 on commit 868033b0, element selects
 //   stacked). The widest cell floors are the nowrap "DOM-21-GOODS · Default"
-//   chip and the 12.25rem elements cell. In the app the lines tab lifts the
+//   chip and the 10.75rem elements cell. In the app the lines tab lifts the
 //   page's width cap and the table fits from about a 1280px window; in an
-//   article column (816px at most, a 784px scroll box) it cannot, and in the
-//   app at that width the scroll box scrolls sideways. Zooming a desktop screen to fit is ruled out (see the
+//   article column (816px at most, a 784px scroll box inside the page's own
+//   16px padding) it cannot, and in the app at that width the scroll box
+//   scrolls sideways. Zooming a desktop screen to fit is ruled out (see the
 //   aift-help CLAUDE.md), so the figure shows the app at the figure's width
 //   with the table scrolled to its right end: the columns the article is
 //   about (category, elements, VAT code, the Advanced arrow) at 100%, the
 //   line number and the start of each description off to the left, exactly
-//   as a user who scrolled right sees them. Re-measure when the component or
-//   the fixture changes: if the narrowest table fits the 784px box in every
-//   locale, drop the two `dir` attributes and the caption's sentence about
-//   scrolling. That is the ONLY deviation from the app's
-//   markup: `dir="rtl"` on the scroll box (which puts its initial scroll
-//   position at the right end) and `dir="ltr"` on the table (so nothing
-//   inside changes). Neither is a CSS property the diff compares, and the
-//   computed style of every element matches the app's.
+//   as a user who scrolled right sees them.
+//
+//   That is the ONLY deviation from the app's markup: `dir="rtl"` on the
+//   scroll box (which puts its initial scroll position at the right end) and
+//   `dir="ltr"` on the table (so nothing inside changes). Neither is a CSS
+//   property the diff compares, and the computed style of every element
+//   matches the app's. Re-measure when the component or the fixture changes:
+//   if the narrowest table fits the 784px box in every locale, drop the two
+//   `dir` attributes and the caption's sentence about scrolling.
+//
 //   On phones the Enlarge view is ENLARGE_WIDTH wide, which fits the whole
-//   table in every locale (hu needs 914px), with the selects 2 + 1 as in the
-//   app at common window widths, so there the reader sees every column.
+//   table in every locale (hu needs 890px), with the selects on two rows as
+//   in the app at common window widths, so there the reader sees every column.
 //
 // MARKERS
 //
@@ -69,15 +73,18 @@ import { CURRENCY, INVOICE_ID, LINES, vatLinesCopy } from './copy'
 
 /** Below this figure width (phones) the screen is laid out here and zoomed. */
 const SCREEN_MIN_WIDTH = 760
-/** The Enlarge view's width: the whole table fits in every locale (hu needs 914). */
+/** The Enlarge view's width: the whole table fits in every locale (hu needs 890). */
 const ENLARGE_WIDTH = 1000
 
 /** The app's empty-value placeholder, an em dash, built from its code point. */
 const EMPTY = String.fromCharCode(0x2014)
 
-/** MergedLinesVatGrid.tsx SELECT_CLASS, verbatim. */
+/** MergedLinesVatGrid.tsx SELECT_CLASS, INLINE_SELECT, INLINE_WIDE and INLINE_NARROW, verbatim. */
 const SELECT_CLASS =
   'block w-full rounded-md border border-zinc-300 bg-white px-2 py-1 text-xs text-zinc-900 disabled:opacity-60 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100'
+const INLINE_SELECT = SELECT_CLASS.replace('block w-full ', 'block w-0 ')
+const INLINE_WIDE = 'min-w-[10rem] flex-[1.4_1_0%]'
+const INLINE_NARROW = 'min-w-[7.25rem] flex-[1_1_0%]'
 
 const TH = 'pb-2 pr-3 text-xs font-medium uppercase tracking-wide text-zinc-500'
 const TH_RIGHT = 'pb-2 pr-3 text-right text-xs font-medium uppercase tracking-wide text-zinc-500'
@@ -148,7 +155,7 @@ export function VatLinesGridFigure({
                       </th>
                       {/* Below, not above: above is outside the scroll box,
                           which clips it (see the header). */}
-                      <th className={`w-[23rem] ${TH}`}>
+                      <th className={`w-[26rem] ${TH}`}>
                         <Pin n={2} at="below" cancel="" />
                         {ui['invoices.detail.lines.col_vat_elements']}
                       </th>
@@ -234,34 +241,34 @@ export function VatLinesGridFigure({
                             </div>
                           </td>
 
-                          {/* VAT elements: inline while unresolved (auto-fit, so
+                          {/* VAT elements: inline while unresolved (flex-wrap, so
                               they wrap in a narrow column); gone into Advanced
                               once resolved. */}
-                          <td className="min-w-[12.25rem] py-3 pr-3">
+                          <td className="min-w-[10.75rem] py-3 pr-3">
                             {resolved ? (
                               <span className="text-xs text-zinc-400">
                                 {ui['invoices.detail.lines.elements_collapsed']}
                               </span>
                             ) : (
-                              <div className="grid grid-cols-[repeat(auto-fit,minmax(7.25rem,1fr))] gap-1">
+                              <div className="flex flex-wrap gap-1">
                                 <select
                                   aria-label={ui['invoices.vat_panel.product_group']}
                                   defaultValue=""
-                                  className={SELECT_CLASS}
+                                  className={`${INLINE_SELECT} ${INLINE_WIDE}`}
                                 >
                                   <option value="">{ui['invoices.vat_panel.product_group']}</option>
                                 </select>
                                 <select
                                   aria-label={ui['invoices.vat_panel.rate']}
                                   defaultValue=""
-                                  className={SELECT_CLASS}
+                                  className={`${INLINE_SELECT} ${INLINE_NARROW}`}
                                 >
                                   <option value="">{ui['invoices.vat_panel.rate']}</option>
                                 </select>
                                 <select
                                   aria-label={ui['invoices.vat_panel.method']}
                                   defaultValue=""
-                                  className={SELECT_CLASS}
+                                  className={`${INLINE_SELECT} ${INLINE_NARROW}`}
                                 >
                                   <option value="">{ui['invoices.vat_panel.method']}</option>
                                 </select>
