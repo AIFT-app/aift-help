@@ -48,9 +48,19 @@ Die Zahlung auf ein falsches Konto ist der häufigste Rechnungsbetrug, deshalb m
 - **Konto geändert**: Das Konto auf dieser Rechnung weicht vom zuvor bestätigten ab. Die Position bleibt gesperrt, bis jemand das neue Konto bestätigt. Rufen Sie den Lieferanten vorher unter einer Nummer an, die Sie bereits kennen.
 - **Kein Konto**, **Ungültiges Konto**, **Kein verifizierter Partner**: Die Position kann noch nicht bezahlt werden; der Grund und der nächste Schritt stehen darunter.
 
-Gesperrte Positionen stehen in einer eigenen Gruppe, **Noch nicht aufnehmbar**, mit Links zum Partner und zur Rechnung. Zwei weitere Gründe können eine Position dorthin bringen: Das zahlende Unternehmen hat kein Bankkonto in dieser Währung (hinterlegen Sie eines unter Stammdaten, Unternehmen), oder auf der Rechnung ist nichts mehr zu zahlen. Nur jemand mit „Freigaben verwalten“ kann ein Konto bestätigen; wer nur exportieren darf, bittet diese Person darum.
+Gesperrte Positionen stehen in einer eigenen Gruppe, **Noch nicht aufnehmbar**, mit Links zum Partner und zur Rechnung. Drei weitere Gründe können eine Position dorthin bringen: Das zahlende Unternehmen hat kein Bankkonto in dieser Währung (hinterlegen Sie eines unter Stammdaten, Unternehmen), auf der Rechnung ist nichts mehr zu zahlen, oder die Rechnung wird nicht per Überweisung bezahlt (siehe Zahlungsart unten). Nur jemand mit „Freigaben verwalten“ kann ein Konto bestätigen; wer nur exportieren darf, bittet diese Person darum.
 
 Wo die Firmenregisterprüfung eingeschaltet ist, zeigt jede Position auch, was das Register zum Konto sagt: geführt seit einem Datum, nicht geführt, oder nicht prüfbar und warum, mit dem Datum der letzten Prüfung. Ein geändertes Konto wird vom Register nie bestätigt: Es wartet immer auf eine Person, und die Antwort des Registers steht daneben, damit die Entscheidung informiert fällt. „Nicht geführt“ ist kein Beweis für Betrug: Eine Bank hat acht Tage Zeit, ein neues Konto zu melden. Siehe [Lieferanten im Firmenregister prüfen](/company-register-check).
+
+## Zahlungskonto und Verwendungszweck
+
+Jede noch zu zahlende Lieferantenrechnung hat oben auf ihrem Reiter **Zuordnung & Zahlung** die Karte **Zahlungsangaben**. Sie können sie beim Prüfen der Rechnung ausfüllen, vor oder nach der Freigabe.
+
+- **Zahlen von**: das Bankkonto, das die Rechnung bezahlt. Voreingestellt ist das **Standardkonto für Zahlungen** des Unternehmens für die Währung (auf dem Reiter Erkennung des Unternehmens festgelegt), ohne Standard das älteste Konto in dieser Währung. Wählen Sie ein anderes Konto, um nur diese Rechnung davon zu bezahlen; die Rechnung erscheint dann hier in der Gruppe dieses Kontos.
+- **Verwendungszweck**: der Text, der mit der Überweisung an die Bank geht. Er wird automatisch mit der Rechnungsnummer befüllt, und Sie können ihn ändern; ein Zeichenzähler zeigt die Länge, und **Auf automatisch zurücksetzen** stellt die Rechnungsnummer wieder her.
+- **Zahlungsart**: Eine Rechnung, die per Karte, Gutschein oder auf andere Weise ohne Überweisung bezahlt wird, bleibt aus Zahlungsdateien heraus und erscheint unter „Noch nicht aufnehmbar“. Aktivieren Sie **Trotzdem aufnehmen**, wenn sie doch überwiesen werden muss. Eine Rechnung ohne angegebene Zahlungsart gilt als Überweisung.
+
+Änderungen werden mit **Speichern** übernommen und erscheinen im Verlauf der Rechnung. Sie können sie jederzeit ändern: Eine bereits erstellte Datei behält, womit sie geschrieben wurde, und die Karte zeigt es an, wenn beides abweicht. Damit der neue Verwendungszweck zur Bank gelangt, nehmen Sie die Position zurück und nehmen Sie die Rechnung in eine neue Datei auf.
 
 ## Die Liste herunterladen
 
@@ -67,8 +77,8 @@ Wo die Firmenregisterprüfung eingeschaltet ist, zeigt jede Position auch, was d
 AI Finance Team legt eine nummerierte Zahlungsdatei an, meldet **Zahlungsdatei #N erstellt**, markiert jede Rechnung mit **In Zahlungsdatei #N** und dem Datum und lädt die Datei herunter.
 
 - **Die Tabelle** beginnt mit einem Kopfblock (zahlendes Konto, Kontoinhaber, Währung, Summe) und hat je Zahlung eine Zeile mit Empfänger, Konto, Betrag, Ausführungsdatum und Rechnungsnummer, unter englischen und ungarischen Spaltenköpfen. Erfassen Sie sie in jedem Onlinebanking, oder nutzen Sie den Import Ihrer Bank, falls er eine Tabelle annimmt.
-- **Die Bankdatei** ist pain.001.001.03 XML im ungarischen HCT-Profil: Importieren Sie sie im Datei-Upload des Onlinebankings, prüfen Sie die Positionen und signieren Sie dort. Der Verwendungszweck jeder Position ist die Rechnungsnummer, gefolgt von der AI-Finance-Team-ID der Rechnung.
-- **Die Electra-Datei** ist der Datensatz „Forint átutalási megbízás“ mit fester Feldlänge. K&H nimmt höchstens 40 Positionen je Datei an; darüber ist die Schaltfläche zum Herunterladen deaktiviert.
+- **Die Bankdatei** ist pain.001.001.03 XML im ungarischen HCT-Profil: Importieren Sie sie im Datei-Upload des Onlinebankings, prüfen Sie die Positionen und signieren Sie dort. Der Verwendungszweck jeder Position ist ihr Verwendungszweck von der Rechnung: die Rechnungsnummer, sofern niemand ihn geändert hat. Bei EUR-Überweisungen (SEPA) werden Buchstaben mit Akzent ersetzt (aus á wird a), weil SEPA nur Buchstaben ohne Akzent annimmt.
+- **Die Electra-Datei** ist der Datensatz „Forint átutalási megbízás“ mit fester Feldlänge. K&H nimmt höchstens 40 Positionen je Datei an; darüber ist die Schaltfläche zum Herunterladen deaktiviert. Die Datei fasst einen Verwendungszweck von höchstens 96 Zeichen; ein längerer wird mit Begründung abgelehnt, nie gekürzt.
 
 Das Ausführungsdatum ist das Fälligkeitsdatum, oder der nächste Bankarbeitstag, wenn das Fälligkeitsdatum auf ein Wochenende, einen Feiertag, einen per Verordnung festgelegten Ruhetag oder in die Vergangenheit fällt. Alle drei Formate verwenden dieselben Daten.
 
@@ -88,9 +98,9 @@ Wenn die Banktransaktion eintrifft, sucht AI Finance Team zuerst unter den Posit
 
 - der Betrag darf höchstens 10 Ft (in anderen Währungen 0,05) von der Position abweichen;
 - das Buchungsdatum muss zwischen 1 Tag vor und 10 Tagen nach dem Ausführungsdatum liegen;
-- trägt die Bankzeile kein Empfängerkonto, tritt die Rechnungs-ID im Banktext oder ein übereinstimmender Empfängername an seine Stelle.
+- trägt die Bankzeile kein Empfängerkonto, tritt der Verwendungszweck im Banktext (bei älteren Dateien die Rechnungs-ID) oder ein übereinstimmender Empfängername an seine Stelle.
 
-Passen zwei exportierte Positionen zur selben Zahlung, entscheidet die Rechnungs-ID im Banktext; entscheidet auch sie nicht, übernimmt der normale Abgleich. Auf der Detailseite der Zuordnung steht **Zugeordnet aus Zahlungsdatei #N**, und auf der Rechnung zeigt die Zeile zur Zahlungsdatei, dass die Zahlung eingegangen und zugeordnet ist. Auch eine von Hand ausgeführte und normal zugeordnete Überweisung erledigt ihre Position. Siehe [Rechnungsabgleich](/invoice-matching).
+Passen zwei exportierte Positionen zur selben Zahlung, entscheidet der Verwendungszweck im Banktext; entscheidet auch sie nicht, übernimmt der normale Abgleich. Auf der Detailseite der Zuordnung steht **Zugeordnet aus Zahlungsdatei #N**, und auf der Rechnung zeigt die Zeile zur Zahlungsdatei, dass die Zahlung eingegangen und zugeordnet ist. Auch eine von Hand ausgeführte und normal zugeordnete Überweisung erledigt ihre Position. Siehe [Rechnungsabgleich](/invoice-matching).
 
 Alles andere auf dem Auszug (Kundenzahlungen, Steuern, Bankgebühren, von Hand ausgeführte Überweisungen) wird genau wie bisher zugeordnet.
 
