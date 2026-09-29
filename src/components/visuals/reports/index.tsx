@@ -101,7 +101,10 @@ function ReportPage({ locale }: { locale: Locale }) {
           </div>
 
           <div className="ml-auto flex items-center gap-2">
-            <Pin n={5} at="left" cancel="-mr-2" />
+            {/* Below, not left: in Geist the Hungarian "Szűrés" button ends
+                less than 28px from this button, and a left pin covered it
+                (help-marker-audit, 2026-09-29, PRD app-typeface-geist). */}
+            <Pin n={5} at="below" cancel="-mr-2" />
             <Button>
               <PencilSquareIcon />
               {ui['reports.toolbar.edit_report']}

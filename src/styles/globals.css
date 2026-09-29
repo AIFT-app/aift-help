@@ -54,13 +54,18 @@
 }
 
 /* App screens rebuilt in articles (src/components/visuals) render in the app's
-   fonts, not the help site's. aift-web's globals.css sets `body` to Arial after
-   Tailwind's base layer, so the app's text is Arial (verified on the live app,
-   2026-09-21); `font-mono` there is Geist Mono (--font-geist-mono comes from
-   src/components/visuals/fonts.ts). Screens render at 100%, so these values
-   reach the reader's screen exactly as the app's do. */
+   fonts, not the help site's. The app's text is Geist (aift-web maps
+   --font-sans to --font-geist-sans and Tailwind's preflight puts it on <html>),
+   and `font-mono` there is Geist Mono. Both variables come from
+   src/components/visuals/fonts.ts, set on the .app-screen element itself.
+   Screens render at 100%, so these values reach the reader's screen exactly as
+   the app's do.
+   ⚠️ Until 2026-09-29 the app rendered Arial: a create-next-app default in
+   aift-web's globals.css overrode Geist on <body>, and these screens copied
+   it. PRD app-typeface-geist removed that rule; keep this value in step with
+   whatever aift-web's <html> computes. */
 .app-screen {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans);
   /* What the app's text inherits (Tailwind preflight + aift-web's --foreground).
      Needed because an article is `.prose`: `not-prose` stops prose's rules from
      reaching descendants, but ordinary inheritance still carries the article's
@@ -76,9 +81,9 @@
   font-family: var(--font-geist-mono);
 }
 .app-screen .font-sans {
-  /* Likewise: aift-web maps font-sans to var(--font-geist-sans). The screen's
-     body text is Arial (aift-web's own body rule beats Tailwind's base), but an
-     element that asks for font-sans explicitly gets Geist there. */
+  /* Likewise: aift-web maps font-sans to var(--font-geist-sans). The screen
+     already inherits Geist, but without this rule the help site's own
+     `font-sans` (Inter, @theme below) would win on elements that ask for it. */
   font-family: var(--font-geist-sans);
 }
 
