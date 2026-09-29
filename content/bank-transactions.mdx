@@ -1,0 +1,73 @@
+# Bank Transactions
+
+The **Bank transactions** page lists every movement on your companies' bank accounts. AI Finance Team suggests a category for each transaction and matches it to its invoice, and the list shows where each one stands.
+
+Transactions arrive in two ways:
+
+- **From a connected bank account**, twice a day. See [Connecting Bank Accounts](/bank-accounts).
+- **From an uploaded bank statement** (PDF), with **Upload statement** at the top right of the page. See [Uploading Bank Statements](/bank-statement-upload).
+
+When a statement line is the same movement the bank connection already brought in, the two become one transaction with both sources.
+
+## The transaction list
+
+<BankTransactionListFigure>
+The transaction list with five transactions. The numbers match the list below. The companies and amounts are examples.
+</BankTransactionListFigure>
+
+1. **Date**: the booking date, with AI Finance Team's own ID underneath when your workspace shows IDs. Click the ID to copy it.
+2. **Partner**, with the bank's description underneath on up to two lines. A click anywhere on the row opens the transaction.
+3. **Labels**: what the transaction needs comes first (**Unmatched**, **Duplicate**), then **Matched** or **No invoice**, and where it came from (**Bank feed**, **Statement**) last.
+4. **Category**: the category's name, with its ledger code underneath.
+5. **Amount**: in the account's currency, green with an up arrow for money in, red with a down arrow for money out.
+
+Click **Bank transactions** in the sidebar. The list has these columns: **Date** with the **ID** under it (when your workspace shows it), **Partner**, **Labels**, **Company**, **Category** and **Amount**. **Company** appears only when your workspace has more than one company. It is the holder of the bank account, or, on an account several companies share (a [cash pool](/cash-pool)), the company of the matched invoice.
+
+The list shows 50 transactions per page, newest first, and can be sorted by date, ID, partner or amount. An amber left edge marks a transaction that needs action. The list uses the full width of the window. In a narrow window it scrolls sideways, and the **Amount** column stays in view on the right.
+
+The **Category** cell is empty when **Use cash-flow categories for bookkeeping only** is on in **Settings → Ledger defaults** and the transaction still expects an invoice. With that setting the ledger account of such a transaction comes from its invoice, not from the category. See [Categorising Invoices & Transactions](/categorization).
+
+### Labels
+
+| Label | Colour | Meaning |
+|-------|--------|---------|
+| **Unmatched** | amber | No invoice matched yet, and not marked as needing none |
+| **Duplicate** | amber | Flagged as a copy of another transaction on the same account, with the same booking date and amount. It stays on the list, and matching leaves it out |
+| **Matched** | green | Matched to one or more invoices, automatically or by hand |
+| **No invoice** | blue | Marked as needing no invoice, by a transaction type or by a person |
+| **Bank feed** | grey | Came from a connected bank account |
+| **Statement** | grey | Came from an uploaded bank statement |
+
+How a transaction gets matched is in [Invoice Matching](/invoice-matching). Bank fees, taxes and transfers between your own accounts need no invoice: see [Transaction Types & No Invoice Needed](/transaction-types).
+
+### Finding transactions
+
+Search by partner, description, reference or AI Finance Team ID. The partner search covers both the name the bank sent and the partner it is linked to.
+
+Above the list you can filter by date range, **Company** (when you have more than one), **Account** and **Direction** (**Money in** or **Money out**). When an account has no company yet, the **Company** filter also offers **No company assigned**.
+
+The pills filter by label: **Bank feed**, **Statement**, **Duplicate**, **Unmatched**, **Matched** and **No invoice**. Several can be on at once:
+
+- Within **Bank feed**, **Statement** and **Duplicate**, a transaction needs any one of them.
+- Within **Unmatched**, **Matched** and **No invoice**, the same.
+- Across the two groups it needs both. **Statement** with **Unmatched** lists the unmatched transactions that came from a statement.
+
+**Custom category missing** lists the transactions where a mandatory [custom category list](/custom-categories) is still empty. If you work in a [focused period](/focused-period), the list follows it.
+
+With the permission "Edit bank transactions" you can tick rows and **Re-categorize** them. Transactions the AI categorised, or that have no category, are categorised again against your current categories. Categories set by hand stay as they are.
+
+## Opening a transaction
+
+Click a row to open the transaction. On its page, **j** or the down arrow goes to the next transaction of the list, **k** or the up arrow to the previous one, with your filters and sort order kept. The **Matching & payment** card shows the matched invoices and the actions for matching; see [Invoice Matching](/invoice-matching).
+
+## Statements
+
+The **Statements** tab next to the list shows every uploaded bank statement with its status. See [Uploading Bank Statements](/bank-statement-upload).
+
+## Who sees what
+
+- **"View invoices and bank transactions"** shows the whole list. Every role has it by default; see [Roles & Permissions](/roles-and-permissions).
+- **Without it**, a member who uploaded bank statements sees only the transactions of those statements, with a note above the list. They see no filter pills, no categories and no matching labels: only **Bank feed** and **Statement**.
+- **"Edit bank transactions"** is needed to re-categorise, to change a transaction and to mark it as needing no invoice. By default only the two accountant roles have it.
+
+Until the workspace has a bank account, the page shows **No bank accounts yet**, with a prompt to connect an account or upload a statement.

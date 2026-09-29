@@ -1,0 +1,73 @@
+# Banki tranzakciók
+
+A **Banki tranzakciók** oldal a cégei bankszámláinak minden mozgását felsorolja. Az AI Finance Team minden tranzakcióhoz kategóriát javasol, és párosítja a számlájával, a lista pedig megmutatja, hol tart egy-egy tétel.
+
+A tranzakciók kétféleképpen érkeznek:
+
+- **Csatlakoztatott bankszámlából**, naponta kétszer. Lásd: [Bankszámlák csatlakoztatása](/bank-accounts).
+- **Feltöltött bankkivonatból** (PDF), az oldal jobb felső sarkában lévő **Bankkivonat feltöltése** gombbal. Lásd: [Bankszámlakivonatok feltöltése](/bank-statement-upload).
+
+Ha egy kivonatsor ugyanaz a mozgás, amelyet a bankkapcsolat már behozott, a kettőből egy tranzakció lesz, mindkét forrással.
+
+## A tranzakciólista
+
+<BankTransactionListFigure>
+A tranzakciólista öt tranzakcióval. A számok az alábbi listának felelnek meg. A cégek és az összegek példák.
+</BankTransactionListFigure>
+
+1. **Dátum**: a könyvelés dátuma, alatta az AI Finance Team saját azonosítójával, ha a munkaterület mutatja az azonosítókat. Az azonosítóra kattintva kimásolhatja.
+2. **Partner**, alatta a bank leírásával, legfeljebb két sorban. A sorra bárhol kattintva megnyílik a tranzakció.
+3. **Címkék**: elöl az, amivel teendő van (**Nem párosított**, **Duplikáció**), utána a **Párosítva** vagy a **Nincs számla**, a végén pedig a forrás (**Banki forrás**, **Bankkivonat**).
+4. **Kategória**: a kategória neve, alatta a főkönyvi számával.
+5. **Összeg**: a számla pénznemében, bejövő pénznél zöld, felfelé mutató nyíllal, kimenőnél piros, lefelé mutató nyíllal.
+
+Kattintson az oldalsávban a **Banki tranzakciók** menüpontra. A lista oszlopai: **Dátum**, alatta az **Azonosító** (ha a munkaterület mutatja), **Partner**, **Címkék**, **Cég**, **Kategória** és **Összeg**. A **Cég** oszlop csak akkor jelenik meg, ha a munkaterületen több cég van. Ez a bankszámla tulajdonosa, vagy olyan számlánál, amelyen több cég osztozik ([cash pool](/cash-pool)), a párosított számla cége.
+
+A lista oldalanként 50 tranzakciót mutat, a legújabbal kezdve, és rendezhető dátum, azonosító, partner vagy összeg szerint. A borostyánsárga bal szegély azt a tranzakciót jelöli, amellyel teendő van. A lista az ablak teljes szélességét kitölti. Keskeny ablakban oldalra görgethető, és az **Összeg** oszlop jobb oldalt látható marad.
+
+A **Kategória** cella üres, ha a **Beállítások → Könyvelési alapértelmezések** alatt be van kapcsolva **A pénzforgalmi kategóriák csak könyvelési célra**, és a tranzakcióhoz még számla kell. Ezzel a beállítással az ilyen tranzakció főkönyvi számát a számlája adja, nem a kategória. Lásd: [Számlák és tranzakciók kategorizálása](/categorization).
+
+### Címkék
+
+| Címke | Szín | Jelentés |
+|-------|------|----------|
+| **Nem párosított** | borostyánsárga | Még nincs hozzá párosított számla, és nincs megjelölve, hogy nem kell hozzá |
+| **Duplikáció** | borostyánsárga | Ugyanazon a számlán egy másik tranzakció másolataként jelölt tétel, azonos könyvelési dátummal és összeggel. A listán marad, a párosítás kihagyja |
+| **Párosítva** | zöld | Egy vagy több számlához párosítva, automatikusan vagy kézzel |
+| **Nincs számla** | kék | Megjelölve, hogy nem kell hozzá számla, tranzakciótípus vagy egy felhasználó által |
+| **Banki forrás** | szürke | Csatlakoztatott bankszámlából érkezett |
+| **Bankkivonat** | szürke | Feltöltött bankkivonatból érkezett |
+
+A párosítás menetét a [Számlák párosítása](/invoice-matching) írja le. A banki díjakhoz, az adókhoz és a saját számlák közötti átvezetésekhez nem kell számla: lásd [Tranzakciótípusok és „nem kell számla”](/transaction-types).
+
+### Tranzakciók keresése
+
+Kereshet partner, leírás, közlemény vagy AI Finance Team-azonosító szerint. A partnerre keresés a bank által küldött nevet és a hozzárendelt partnert is nézi.
+
+A lista felett szűrhet időszakra, **Cég** szerint (ha több cége van), valamint **Számla** (a bankszámla) és **Irány** (**Bevétel** vagy **Kiadás**) szerint. Ha valamelyik bankszámlához még nincs cég rendelve, a **Cég** szűrőben a **Nincs céghez rendelve** lehetőség is megjelenik.
+
+A szűrőcímkék a címkék szerint szűrnek: **Banki forrás**, **Bankkivonat**, **Duplikáció**, **Nem párosított**, **Párosítva** és **Nincs számla**. Egyszerre több is bekapcsolható:
+
+- A **Banki forrás**, a **Bankkivonat** és a **Duplikáció** közül elég, ha a tranzakcióra az egyik igaz.
+- A **Nem párosított**, a **Párosítva** és a **Nincs számla** közül ugyanígy.
+- A két csoport között mindkettőnek teljesülnie kell. A **Bankkivonat** és a **Nem párosított** együtt a bankkivonatból érkezett, nem párosított tranzakciókat listázza.
+
+A **Hiányzó egyéni kategória** azokat a tranzakciókat listázza, amelyeken egy kötelező [egyéni kategórialista](/custom-categories) még üres. Ha [fókuszált időszakban](/focused-period) dolgozik, a lista azt követi.
+
+A „Banki tranzakciók szerkesztése” jogosultsággal sorokat jelölhet ki, és választhatja az **Újrakategorizálás** műveletet. Az AI által kategorizált és a kategória nélküli tranzakciókat a rendszer a jelenlegi kategóriák szerint újra besorolja. A kézzel beállított kategóriák változatlanok maradnak.
+
+## Egy tranzakció megnyitása
+
+A tranzakció megnyitásához kattintson a sorára. A tranzakció oldalán a **j** vagy a lefelé nyíl a lista következő tranzakciójára lép, a **k** vagy a felfelé nyíl az előzőre, a szűrők és a rendezés megtartásával. A **Párosítás & fizetés** kártya mutatja a párosított számlákat és a párosítás műveleteit; lásd: [Számlák párosítása](/invoice-matching).
+
+## Bankkivonatok
+
+A lista melletti **Bankkivonatok** fül minden feltöltött bankkivonatot mutat az állapotával. Lásd: [Bankszámlakivonatok feltöltése](/bank-statement-upload).
+
+## Ki mit lát
+
+- **„Számlák és banki tranzakciók megtekintése”**: ezzel a teljes lista látható. Alapértelmezés szerint minden szerepkörnek megvan; lásd: [Szerepek és jogosultságok](/roles-and-permissions).
+- **Enélkül** az a tag, aki bankkivonatokat töltött fel, csak ezeknek a kivonatoknak a tranzakcióit látja, a lista felett egy megjegyzéssel. Nem lát szűrőcímkéket, kategóriákat és párosítási címkéket: csak a **Banki forrás** és a **Bankkivonat** címke jelenik meg.
+- **„Banki tranzakciók szerkesztése”**: ez kell az újrakategorizáláshoz, egy tranzakció módosításához, és ahhoz, hogy megjelölje: nem kell hozzá számla. Alapértelmezés szerint csak a két könyvelői szerepkörnek van meg.
+
+Amíg a munkaterületen nincs bankszámla, az oldal a **Még nincsenek bankszámlák** üzenetet mutatja, és egy bankszámla csatlakoztatását vagy egy bankkivonat feltöltését javasolja.
