@@ -113,8 +113,10 @@ function ReportPage({ locale }: { locale: Locale }) {
         </div>
       </div>
 
-      <div className="mt-6 flex gap-6">
-        <div className="min-w-0 flex-1">
+      {/* ReportPage.tsx since page-layout-sweep (2026-09-29): the drill-down
+          panel is an overlay, so the table wrapper is a plain block. */}
+      <div className="mt-6">
+        <div className="min-w-0">
           <div className="mb-2 flex flex-wrap items-center justify-end gap-x-3 gap-y-1 text-xs text-zinc-500 dark:text-zinc-400">
             <label className="flex items-center gap-1.5">
               <span>{ui['reports.display.label']}</span>

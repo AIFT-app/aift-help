@@ -24,7 +24,7 @@ There is no turnkey country code list: the code table is yours to author, becaus
 
 ### When the elements do not resolve
 
-You can set one **default VAT code per direction**. A line whose factors cannot be fully determined gets that code, marked for review, as long as nothing identified actually contradicts it. On the VAT codes tab a **Default** badge marks them, and **Set default** assigns one; clicking it again clears it.
+You can set one **default VAT code per direction**. A line whose factors cannot be fully determined gets that code, marked for review, as long as nothing identified actually contradicts it. On the VAT codes tab a **Default** badge next to the code marks them. **Set as default** in the row's **⋯** menu assigns one, and **Clear default** in the same menu removes it.
 
 Setting a default does not touch invoices you already have. For those, the invoice list has a **Re-run VAT coding** action, which only fills in lines whose code is missing and never touches coded lines, manual work or categories.
 
@@ -39,10 +39,12 @@ Two things to know about them:
 
 ## The VAT Codes Tab
 
-**How many code columns you see depends on a setting.** Under **Settings → VAT settings** you choose whether accounting-system codes or AIFT codes must be unique among active codes.
+**Which code leads the first column depends on a setting.** Under **Settings → VAT settings** you choose whether accounting-system codes or AIFT codes must be unique among active codes.
 
-- Leave it on accounting codes, the default, and there is a single **Accounting code** column, required.
-- Switch it to AIFT codes and an **AIFT code** column appears, required, and the accounting code becomes optional. Use this when several AIFT-side distinctions deliberately map to one accounting code.
+- Leave it on accounting codes, the default, and the first column shows the **Accounting code**, required.
+- Switch it to AIFT codes and the first column shows the **AIFT code** on top, required, with the accounting code under it, now optional. Use this when several AIFT-side distinctions deliberately map to one accounting code.
+
+A code is never cut off: when the column is narrow, it breaks onto a second line after a `/`. Partner group and product or service group share one column, the partner group on top. Click a row to edit it; **Deactivate** is in the **⋯** menu at the end of the row.
 
 Hungarian workspaces have a third field, the **NAV mapping code**, which is the NAV Online VAT classification used for inbound mapping.
 
