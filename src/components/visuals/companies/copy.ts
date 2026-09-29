@@ -74,8 +74,14 @@ type Copy = {
   }
 }
 
-// aift-web src/lib/countries.ts names countries in English in every locale.
-const COMPANY = { name: 'Halvorn Trading Ltd.', countryCode: 'HU', countryName: 'Hungary', flag: '🇭🇺' }
+// aift-web names a country in the reader's language, as Intl.DisplayNames
+// answers for 'HU' (countryName in src/lib/countries.ts; country-name-locale).
+const COMPANY = (countryName: string) => ({
+  name: 'Halvorn Trading Ltd.',
+  countryCode: 'HU',
+  countryName,
+  flag: '🇭🇺',
+})
 
 const ACCOUNTS = (main: string, eur: string): CompanyAccount[] => [
   { name: main, iban: 'HU16103000022039154800000000', domestic: '10300002-20391548', currency: 'HUF' },
@@ -117,7 +123,7 @@ const en: Copy = {
     'master_data.invoice_categories.form.direction_expense': 'Expense',
   },
   rendered: { statusBankAccounts: '2 bank accounts' },
-  company: COMPANY,
+  company: COMPANY('Hungary'),
   accounts: ACCOUNTS('Main account', 'EUR account'),
   altNames: ALT_NAMES,
   matchingContext:
@@ -178,7 +184,7 @@ const hu: Copy = {
     'master_data.invoice_categories.form.direction_expense': 'Kiadás',
   },
   rendered: { statusBankAccounts: '2 bankszámla' },
-  company: COMPANY,
+  company: COMPANY('Magyarország'),
   accounts: ACCOUNTS('Fő számla', 'EUR számla'),
   altNames: ALT_NAMES,
   matchingContext:
@@ -239,7 +245,7 @@ const de: Copy = {
     'master_data.invoice_categories.form.direction_expense': 'Ausgabe',
   },
   rendered: { statusBankAccounts: '2 Bankkonten' },
-  company: COMPANY,
+  company: COMPANY('Ungarn'),
   accounts: ACCOUNTS('Hauptkonto', 'EUR-Konto'),
   altNames: ALT_NAMES,
   matchingContext:
