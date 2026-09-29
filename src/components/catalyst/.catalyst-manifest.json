@@ -20,7 +20,7 @@
     "src/components/catalyst/link.tsx": "2bb3f26a21dc85e319f72a3e8edd5ce6eb9c88dab310d84df5e379f33df054f7",
     "src/components/catalyst/navbar.tsx": "32d2dea4bc2309fc9bf1245d3383f29ed1fd9d44ba7ed387bc9ce97e44049ca6",
     "src/components/catalyst/select.tsx": "5cc120be8a56a3da134f033c1dea4260f399354993181c3f624cbe41efbce2c3",
-    "src/components/catalyst/sidebar.tsx": "1913b3da58383ddc49523c668734753d54629c21aade2b588d60c9131353c94b",
+    "src/components/catalyst/sidebar.tsx": "a089750b80714f69cb1780db969122461e787440934e9d04b0d9185ddb352439",
     "src/components/catalyst/stacked-layout.tsx": "680b3f236c2ab9aee6d20b52f971c6760abdd3a7ec663b1ca59e4fce1eb66317",
     "src/components/catalyst/switch.tsx": "a1f329a0642a1db9673bb8eb72239fa048d220f3c00756ea0ee87ee85674603a",
     "src/components/catalyst/table.tsx": "ccb557e62207dd49e5a611d17aa6fcd32e0893ac2b0d44dfdef3c22e1ca32dfc",
