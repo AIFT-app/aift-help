@@ -10,7 +10,9 @@
 //                     RouteReason from src/components/approvals/RouteReason.tsx)
 //   ReasonPanel       Slip.tsx ReasonPanel, open on the card being declined
 //   Emails figure     src/app/(app)/account/notifications/NotificationsForm.tsx
-//                     (approvals section, ToggleRow) + src/components/settings/SettingsPanel.tsx
+//                     (approvals section as of approver-digest: ToggleRow, and
+//                     under the digest and due-soon rows the Catalyst Select time
+//                     picker) + src/components/settings/SettingsPanel.tsx
 // When one of those files changes, re-copy the markup here. Data comes from
 // ./copy.ts and is fictional.
 
@@ -19,12 +21,13 @@ import type { Locale } from '@/lib/i18n'
 import { Button } from '@/components/catalyst/button'
 import { Checkbox } from '@/components/catalyst/checkbox'
 import { Heading } from '@/components/catalyst/heading'
+import { Select } from '@/components/catalyst/select'
 import { Switch } from '@/components/catalyst/switch'
 import { Text } from '@/components/catalyst/text'
 import { formatAmount, formatDate } from '../format'
 import { AppScreen, Figure, Pill, Pin } from '../kit'
 import { StateFlow } from '../StateFlow'
-import { approvalsCopy, STATE_TONE, whyText, type QueueRow } from './copy'
+import { approvalsCopy, STATE_TONE, whyText, type QueueRow, type UiKey } from './copy'
 import sl from './slip.module.css'
 
 type FigureProps = { locale: Locale; children?: React.ReactNode }
@@ -140,10 +143,12 @@ function Card({
               <span className="text-xs text-zinc-400">{ui['approvals.slip.payee_account']}</span>
               {row.account.status === 'confirmed' ? (
                 <>
-                  {/* Outside the span, not in it: `truncate` is overflow-hidden,
-                      which clips the marker to a sliver. */}
+                  {/* Outside the span, not in it: the span wraps a long
+                      account number, and a marker inside would wrap with it. */}
                   {annotate ? <Pin n={7} at="left" cancel="-mr-2" /> : null}
-                  <span className="min-w-0 truncate text-right text-xs tabular-nums text-zinc-600 dark:text-zinc-300">
+                  {/* aift-web ApprovalQueue.tsx, class for class: the payee
+                      account wraps, never truncates (bank-account-full-number). */}
+                  <span className="min-w-0 break-words text-right text-xs tabular-nums text-zinc-600 dark:text-zinc-300">
                     {row.account.display}
                   </span>
                 </>
@@ -450,12 +455,23 @@ export function ApprovalLifecycleFigure({ locale, children }: FigureProps) {
 
 // ── Emails (Account, Notifications: the approvals section) ──────────────────
 
-const EMAIL_ROWS = [
-  ['settings.notifications.approval_new_items_row_title', 'settings.notifications.approval_new_items_row_desc'],
-  ['settings.notifications.approval_morning_row_title', 'settings.notifications.approval_morning_row_desc'],
-  ['settings.notifications.approval_due_soon_row_title', 'settings.notifications.approval_due_soon_row_desc'],
-  ['settings.notifications.approval_declined_row_title', 'settings.notifications.approval_declined_row_desc'],
-] as const
+// Row order as on the page since approver-digest: declined, new items, daily
+// digest, due-soon. The last two carry a time picker (the person's send time,
+// Budapest time, quarter-hour steps) under the description; the value is the
+// page's default for that email.
+const EMAIL_ROWS: ReadonlyArray<readonly [UiKey, UiKey, string | null]> = [
+  ['settings.notifications.approval_declined_row_title', 'settings.notifications.approval_declined_row_desc', null],
+  ['settings.notifications.approval_new_items_row_title', 'settings.notifications.approval_new_items_row_desc', null],
+  ['settings.notifications.approval_morning_row_title', 'settings.notifications.approval_morning_row_desc', '08:00'],
+  ['settings.notifications.approval_due_soon_row_title', 'settings.notifications.approval_due_soon_row_desc', '14:00'],
+]
+
+/** The 96 quarter-hours of a day, "00:00" to "23:45": the picker's options. */
+const QUARTER_HOURS = Array.from({ length: 96 }, (_, i) => {
+  const h = String(Math.floor(i / 4)).padStart(2, '0')
+  const m = String((i % 4) * 15).padStart(2, '0')
+  return `${h}:${m}`
+})
 
 export function ApprovalEmailsFigure({ locale, children }: FigureProps) {
   const ui = approvalsCopy[locale].ui
@@ -477,11 +493,26 @@ export function ApprovalEmailsFigure({ locale, children }: FigureProps) {
               <Text className="mt-1">{ui['settings.notifications.approvals_section_desc']}</Text>
               <div className="mt-4">
                 <div className="divide-y divide-zinc-100 overflow-hidden rounded-xl border border-zinc-200 dark:divide-zinc-800 dark:border-zinc-700">
-                  {EMAIL_ROWS.map(([title, desc]) => (
+                  {EMAIL_ROWS.map(([title, desc, time]) => (
                     <div key={title} className="flex items-start gap-4 px-6 py-4">
                       <div className="min-w-0 flex-1">
                         <p className="text-sm font-medium text-zinc-950 dark:text-white">{ui[title]}</p>
                         <p className="mt-0.5 text-[13px] text-zinc-500 dark:text-zinc-400">{ui[desc]}</p>
+                        {time ? (
+                          <div className="mt-2 w-36">
+                            <Select
+                              aria-label={ui['settings.notifications.approval_time_label']}
+                              defaultValue={time}
+                              tabIndex={-1}
+                            >
+                              {QUARTER_HOURS.map((t) => (
+                                <option key={t} value={t}>
+                                  {t}
+                                </option>
+                              ))}
+                            </Select>
+                          </div>
+                        ) : null}
                       </div>
                       <Switch defaultChecked className="mt-0.5" />
                     </div>
