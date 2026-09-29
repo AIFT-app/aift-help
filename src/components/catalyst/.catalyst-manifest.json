@@ -23,7 +23,7 @@
     "src/components/catalyst/sidebar.tsx": "a089750b80714f69cb1780db969122461e787440934e9d04b0d9185ddb352439",
     "src/components/catalyst/stacked-layout.tsx": "680b3f236c2ab9aee6d20b52f971c6760abdd3a7ec663b1ca59e4fce1eb66317",
     "src/components/catalyst/switch.tsx": "a1f329a0642a1db9673bb8eb72239fa048d220f3c00756ea0ee87ee85674603a",
-    "src/components/catalyst/table.tsx": "ccb557e62207dd49e5a611d17aa6fcd32e0893ac2b0d44dfdef3c22e1ca32dfc",
+    "src/components/catalyst/table.tsx": "1d111388eaab83fdf9d14da0a1ace01a5920f754dcfcd6070f294a1202f96726",
     "src/components/catalyst/text.tsx": "698c201c294268790cc13a5e0832ad1e19c98447f6ec3f49892dea1328180e5c",
     "src/hooks/useSidebarState.ts": "879da85b2e0c9b554e62664bf95622638b77d83c532aff89f54f6578c1e1661b"
   }
