@@ -404,8 +404,12 @@ export function CreateFileDialogFigure({ locale, children }: FigureProps) {
           <div className="flex items-center justify-center bg-white p-4">
             {/* The Dialog panel without the backdrop. Its DialogTitle is
                 Headless UI's, which throws outside a Dialog, so the title is
-                the h2 Headless renders, class for class. */}
-            <div className="flex max-h-[calc(100vh-2rem)] w-full flex-col rounded-2xl bg-white p-6 shadow-xl dark:bg-zinc-900 dark:ring-1 dark:ring-white/10 sm:max-w-2xl">
+                the h2 Headless renders, class for class. ONE deliberate
+                difference: the app's max-h-[calc(100vh-2rem)] is swapped for
+                max-h-none, because 100vh here is the READER's window, and on a
+                short one the body would scroll and cut the Execution date
+                off. The figure shows the panel as a tall screen does. */}
+            <div className="flex max-h-none w-full flex-col rounded-2xl bg-white p-6 shadow-xl dark:bg-zinc-900 dark:ring-1 dark:ring-white/10 sm:max-w-2xl">
               <h2 className="shrink-0 text-base/6 font-semibold text-zinc-950 dark:text-white">{c.rendered.title_one}</h2>
               <DialogBody className="space-y-6">
                 <Text>{w('intro')}</Text>
@@ -544,8 +548,11 @@ export function PaymentFileDetailFigure({ locale, children }: FigureProps) {
                 </div>
                 <div className="flex flex-wrap gap-2">
                   <Button plain>{fl('download_again')}</Button>
+                  {/* Between the buttons, pointing into the gap above the
+                      lines: after them it hangs past the screen's right edge,
+                      and before them it leaves the screen when the row wraps. */}
+                  <Pin n={2} at="below" cancel="-mr-2" />
                   <Button plain>{fl('release_file')}</Button>
-                  <Pin n={2} at="right" cancel="-ml-2" />
                 </div>
               </div>
 
