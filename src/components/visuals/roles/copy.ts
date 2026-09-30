@@ -7,15 +7,6 @@
 // in Hungarian like every aift-help article.
 //
 // The member counts and the custom role are FICTIONAL.
-
-// ⚠️ DELIBERATE DIVERGENCE FROM THE APP, and the one entry here that is not
-// verbatim: `settings.team.roles.description` still says "four system roles"
-// in all three locales on prod, while the tab lists five since
-// [PRD: financial-admin-role]. The screen would otherwise contradict its own
-// rows. The app fix is logged in notes/backlog as
-// role-rename-left-old-labels-in-four-places; when it lands, take the string
-// verbatim again. scratchpad/drift-any.py reports these three as drift on
-// purpose.
 import type { Locale } from '@/lib/i18n'
 
 export const UI_KEYS = [
@@ -114,7 +105,7 @@ const en: Copy = {
     'settings.team.pending_requests_heading': 'Pending requests',
     'settings.team.pending_invitations_heading': 'Pending invitations',
     'settings.team.roles_heading': 'Roles',
-    'settings.team.roles.description': 'A role is a set of permissions. The five system roles are what every workspace uses today. Duplicate one to make a custom role for this workspace.',
+    'settings.team.roles.description': 'A role is a set of permissions. The system roles are what every workspace uses today. Duplicate one to make a custom role for this workspace.',
     'settings.team.roles.unconverted_note': 'Parts of the app that have not yet moved to permissions still behave like the base role. The permission list shows what is already enforced by permission.',
     'settings.team.roles.add_role': 'Add role',
     'settings.team.roles.col_role': 'Role',
@@ -178,7 +169,7 @@ const hu: Copy = {
     'settings.team.pending_requests_heading': 'Függőben lévő kérelmek',
     'settings.team.pending_invitations_heading': 'Függőben lévő meghívók',
     'settings.team.roles_heading': 'Szerepkörök',
-    'settings.team.roles.description': 'A szerepkör jogosultságok együttese. Az öt rendszerszerepkört használja ma minden munkaterület. Másolj le egyet, hogy egyedi szerepkört hozz létre ehhez a munkaterülethez.',
+    'settings.team.roles.description': 'A szerepkör jogosultságok együttese. A rendszerszerepköröket használja ma minden munkaterület. Másolj le egyet, hogy egyedi szerepkört hozz létre ehhez a munkaterülethez.',
     'settings.team.roles.unconverted_note': 'Az alkalmazás azon részei, amelyek még nem álltak át a jogosultságokra, továbbra is az alapszerepkör szerint működnek. A lista azt mutatja, amit már jogosultság szabályoz.',
     'settings.team.roles.add_role': 'Új szerepkör',
     'settings.team.roles.col_role': 'Szerepkör',
@@ -242,7 +233,7 @@ const de: Copy = {
     'settings.team.pending_requests_heading': 'Ausstehende Anfragen',
     'settings.team.pending_invitations_heading': 'Ausstehende Einladungen',
     'settings.team.roles_heading': 'Rollen',
-    'settings.team.roles.description': 'Eine Rolle ist ein Satz von Berechtigungen. Die fünf Systemrollen nutzt heute jeder Arbeitsbereich. Duplizieren Sie eine, um eine eigene Rolle für diesen Arbeitsbereich anzulegen.',
+    'settings.team.roles.description': 'Eine Rolle ist ein Satz von Berechtigungen. Die Systemrollen nutzt heute jeder Arbeitsbereich. Duplizieren Sie eine, um eine eigene Rolle für diesen Arbeitsbereich anzulegen.',
     'settings.team.roles.unconverted_note': 'Teile der Anwendung, die noch nicht auf Berechtigungen umgestellt sind, verhalten sich weiterhin wie die Basisrolle. Die Liste zeigt, was bereits per Berechtigung durchgesetzt wird.',
     'settings.team.roles.add_role': 'Rolle hinzufügen',
     'settings.team.roles.col_role': 'Rolle',
