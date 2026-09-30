@@ -4,37 +4,10 @@ import { useState } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import clsx from 'clsx'
-import {
-  BanknotesIcon,
-  BoltIcon,
-  BuildingOfficeIcon,
-  ChartBarIcon,
-  ChevronRightIcon,
-  ClipboardDocumentCheckIcon,
-  DocumentTextIcon,
-  HomeIcon,
-  ReceiptPercentIcon,
-  Squares2X2Icon,
-  TagIcon,
-} from '@heroicons/react/20/solid'
+import { ChevronRightIcon } from '@heroicons/react/20/solid'
 import { SidebarItem, SidebarLabel } from '@/components/catalyst/sidebar'
 import { groupOf, groupTitle, navGroups, navTitle } from '@/lib/navigation'
 import { splitLocale, localizeHref, ui } from '@/lib/i18n'
-
-// One icon per group, the app's own sidebar icon for that area where it has
-// one (aift-web AppSidebar: Invoices, Bank transactions, Approvals, Master
-// data, Reports, the workspace picker).
-const GROUP_ICONS: Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>> = {
-  'getting-started': Squares2X2Icon,
-  'invoices-and-documents': DocumentTextIcon,
-  'bank-and-matching': BanknotesIcon,
-  'approvals-and-payment': ClipboardDocumentCheckIcon,
-  categories: TagIcon,
-  vat: ReceiptPercentIcon,
-  'master-data': BuildingOfficeIcon,
-  'reports-and-exports': ChartBarIcon,
-  'working-faster': BoltIcon,
-}
 
 /** The group whose articles the current page belongs to, if any. */
 function currentGroupId(rest: string): string | undefined {
@@ -43,7 +16,8 @@ function currentGroupId(rest: string): string | undefined {
   return first ? groupOf(first)?.id : undefined
 }
 
-// Built like the app's sidebar: a Catalyst SidebarItem per area, and the
+// Built like the app's sidebar, without its icons (Tamás, 2026-09-30): a
+// Catalyst SidebarItem per area, and the
 // area's pages as the app's sub-menu leaves (aift-web AppSidebar NavLeafGroup
 // and NavLeaf, class for class). Unlike the app, every group can be opened and
 // closed: the group of the page being read starts open and follows the reader
@@ -63,13 +37,11 @@ export function DocsSidebar({ onNavigate }: { onNavigate?: () => void }) {
   return (
     <nav className="flex flex-col gap-0.5 overflow-y-auto px-3 py-6">
       <SidebarItem href={localizeHref('/', locale)} current={rest === '/'} onClick={onNavigate}>
-        <HomeIcon data-slot="icon" />
         <SidebarLabel>{t.home}</SidebarLabel>
       </SidebarItem>
 
       {navGroups.map((group) => {
         const open = toggled[group.id] ?? group.id === current
-        const Icon = GROUP_ICONS[group.id] ?? DocumentTextIcon
         return (
           <div key={group.id} className="flex flex-col gap-0.5">
             <SidebarItem
@@ -77,7 +49,6 @@ export function DocsSidebar({ onNavigate }: { onNavigate?: () => void }) {
               aria-expanded={open}
               onClick={() => setToggled((prev) => ({ ...prev, [group.id]: !open }))}
             >
-              <Icon data-slot="icon" />
               {/* Not SidebarLabel: it truncates, and the longer HU/DE group
                   names would lose their end in a 256px column. */}
               <span className="min-w-0 flex-1">{groupTitle(group, locale)}</span>
