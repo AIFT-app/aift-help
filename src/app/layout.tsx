@@ -1,15 +1,9 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import '../styles/globals.css'
 import { DocsHeader } from '@/components/DocsHeader'
 import { DocsSidebar } from '@/components/DocsSidebar'
 import { Footer } from '@/components/Footer'
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-})
+import { appMono, appSans } from '@/components/visuals/fonts'
 
 export const metadata: Metadata = {
   title: {
@@ -26,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     // screen readers pick their voice from it, browsers their translation
     // offer, and `hyphens: auto` its dictionary. Articles also carry their own
     // `lang` (ArticleLayout) for readers without JavaScript.
-    <html lang="en" className={inter.variable} suppressHydrationWarning>
+    <html lang="en" className={`${appSans.variable} ${appMono.variable}`} suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{

@@ -53,6 +53,13 @@ export function localizeHref(href: string, locale: Locale): string {
 // these are the surrounding labels).
 export const ui: Record<Locale, Record<string, string>> = {
   en: {
+    home: 'Home',
+    forClients: 'For clients',
+    forClientsHint: 'Written for the client side too',
+    previous: 'Previous',
+    next: 'Next',
+    articleOne: 'article',
+    articleMany: 'articles',
     helpSuffix: 'Help',
     backToApp: 'Back to app',
     onThisPage: 'On this page',
@@ -77,6 +84,13 @@ export const ui: Record<Locale, Record<string, string>> = {
     enlargeClose: 'Close',
   },
   hu: {
+    home: 'Kezdőlap',
+    forClients: 'Ügyfeleknek',
+    forClientsHint: 'Az ügyfél oldalának is szól',
+    previous: 'Előző',
+    next: 'Következő',
+    articleOne: 'cikk',
+    articleMany: 'cikk',
     helpSuffix: 'Súgó',
     backToApp: 'Vissza az alkalmazáshoz',
     onThisPage: 'Ezen az oldalon',
@@ -101,6 +115,13 @@ export const ui: Record<Locale, Record<string, string>> = {
     enlargeClose: 'Bezárás',
   },
   de: {
+    home: 'Startseite',
+    forClients: 'Für Mandanten',
+    forClientsHint: 'Auch für die Mandantenseite geschrieben',
+    previous: 'Zurück',
+    next: 'Weiter',
+    articleOne: 'Artikel',
+    articleMany: 'Artikel',
     helpSuffix: 'Hilfe',
     backToApp: 'Zurück zur App',
     onThisPage: 'Auf dieser Seite',

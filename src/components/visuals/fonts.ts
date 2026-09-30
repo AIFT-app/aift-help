@@ -1,7 +1,10 @@
-// The app's monospace face, for IDs inside rebuilt app screens. aift-web loads
-// Geist Mono the same way (src/app/layout.tsx) and maps `font-mono` to it.
-// Declared here rather than in the help layout so only pages with app screens
-// pay for it.
+// The app's two faces. aift-web loads them the same way (src/app/layout.tsx).
+// Since 2026-09-30 they are also the help site's own type: layout.tsx sets
+// both variables on <html> and globals.css maps font-sans / font-mono to them
+// (PRD help-home-and-navigation D1). AppScreen sets them on .app-screen too,
+// which is harmless now and keeps a screen right if the site font changes.
+//
+// The monospace face, for IDs inside rebuilt app screens and for code.
 import { Geist, Geist_Mono } from 'next/font/google'
 
 export const appMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono' })
