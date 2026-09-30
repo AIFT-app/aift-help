@@ -194,6 +194,14 @@ Neben **Übergeben** stehen vier Schaltflächen, und sie bleiben auch dann sicht
 
 Die Zuordnung wird dem Entwurf unmittelbar nach dem Anlegen zugewiesen, denn die Schnittstelle kennt am Beleg selbst kein Feld für die Zahlungsart. **Eine fehlende Zuordnung ist kein Fehler** und hält eine Übergabe nie auf. Eine einzelne Rechnung kann die Zuordnung auf ihrem eigenen Zahlungs-Reiter überschreiben, und die Übergabeliste zeigt, mit welchem Code jede Rechnung übergeben wird.
 
+## Buchungsbeschreibung
+
+Im selben Schritt wie die Zahlungsart erhält jeder Entwurf auch seine **Buchungsbeschreibung**: die Zusammenfassung der Rechnung aus AI Finance Team, damit Kreditorenposten und Sachposten zeigen, worum es in der Rechnung geht, und nicht nur „Rechnung“ und eine Nummer. Business Central erlaubt dort 100 Zeichen. Eine längere Zusammenfassung wird am letzten ganzen Wort gekürzt und endet mit „…“. Der Text bleibt in der Sprache der Rechnung, und zum Kürzen wird keine KI verwendet.
+
+Die Übergabeliste zeigt den Text unter jeder Rechnung, bevor Sie sie übergeben. Eine Rechnung ohne Zusammenfassung behält den Standardtext von Business Central, und das hält eine Übergabe nie auf. Der Entwurf bleibt in Business Central bearbeitbar, sodass Sie den Text vor dem Buchen ändern können.
+
+Ob der Text auch auf den Aufwandszeilen der Sachposten erscheint, hängt von einer Einstellung in Business Central ab: Ist in **Purchases & Payables Setup** die Option **Copy Line Descr. to G/L Entry** (Zeilenbeschreibung in den Sachposten kopieren) aktiviert, tragen diese Zeilen den Text der jeweiligen Rechnungszeile, und die Buchungsbeschreibung bleibt auf der Kreditorenseite.
+
 ## Wer was darf
 
 Verbinden, Trennen und Zuordnen erfordern die Berechtigung „Verbindungen verwalten“, die standardmäßig beim Buchhalter-Admin und bei der Finanzleitung liegt. Eine eigene Rolle oder eine Ausnahme kann das ändern. Alle übrigen sehen den Status und können ihn nicht ändern.

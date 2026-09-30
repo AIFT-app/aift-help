@@ -194,6 +194,14 @@ A **Törzsadatok → Business Central → Fizetési módok** oldal az AI Finance
 
 A hozzárendelést közvetlenül a piszkozat létrehozása után írjuk rá, mert a felületen magán a bizonylaton nincs fizetésimód-mező. **A hiányzó hozzárendelés nem hiba**, és soha nem akadályozza a feladást. Egy-egy számla a saját fizetési fülén felülírhatja a hozzárendelést, a feladási lista pedig megmutatja, melyik számla milyen kóddal megy fel.
 
+## Könyvelési szöveg
+
+A fizetési móddal egy lépésben minden piszkozat megkapja a **könyvelési szövegét** is: a számla AI Finance Team-beli összefoglalóját, így a szállítói folyószámlán és a főkönyvben az látszik, miről szól a számla, és nem csak a „Számla” szó egy számmal. A Business Central ide 100 karaktert enged. A hosszabb összefoglalót az utolsó egész szónál vágjuk el, és „…” jelet teszünk a végére. A szöveg a számla saját nyelvén marad, a rövidítéshez nem használunk AI-t.
+
+A feladási lista minden számla alatt megmutatja a szöveget, mielőtt elküldené. Az összefoglaló nélküli számla megtartja a Business Central saját alapértelmezett szövegét, és ez soha nem akadályozza a feladást. A piszkozat a Business Centralban szerkeszthető marad, így könyvelés előtt átírhatja a szöveget.
+
+Hogy a szöveg a főkönyv költségsorain is megjelenik-e, az egy Business Central-beállításon múlik: ha a **Purchases & Payables Setup** oldalon a **Copy Line Descr. to G/L Entry** (a sorleírás másolása a főkönyvi tételbe) be van kapcsolva, ezek a sorok a számlasorok saját szövegét kapják, a könyvelési szöveg pedig a szállítói oldalon marad.
+
 ## Ki mit tehet
 
 Az összekötéshez, a szétkapcsoláshoz és a párosításhoz a „Kapcsolatok kezelése” jogosultság kell, amely alapból a Könyvelő adminé és a Pénzügyi vezetőé. Egyéni szerepkör vagy kivétel ezen változtathat. Mindenki más látja az állapotot, de nem tudja módosítani.
