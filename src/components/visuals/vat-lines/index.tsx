@@ -1,7 +1,7 @@
 // The Lines & VAT grid, for the vat-codes-on-invoices article.
 //
 // Rebuilt 1:1 from aift-web (branch feat/page-layout-sweep, 2026-09-29, PRD
-// page-layout-sweep, up to commit 868033b0), class for class:
+// page-layout-sweep, up to commit 18de3d20 of 2026-09-30), class for class:
 //   src/app/(app)/workspaces/[workspaceId]/invoices/[invoiceId]/(tabs)/
 //     _components/MergedLinesVatGrid.tsx: the toolbar, the table head, the row
 //     cells, CategoryCell's resting state, ElementSelects (inline, flex-wrap:
@@ -23,7 +23,7 @@
 // WHY THE TABLE IS SHOWN SCROLLED TO ITS RIGHT END
 //
 //   With this figure's fixture the grid is 812px wide at its narrowest (en;
-//   hu 858, de 829; measured 2026-09-29 on commit 868033b0, element selects
+//   hu 858, de 829; measured 2026-09-30 on commit 73eebb7f, element selects
 //   stacked). The widest cell floors are the nowrap "DOM-21-GOODS · Default"
 //   chip and the 10.75rem elements cell. In the app the lines tab lifts the
 //   page's width cap and the table fits from about a 1280px window; in an
@@ -89,9 +89,19 @@ const INLINE_NARROW = 'min-w-[7.25rem] flex-[1_1_0%]'
 const TH = 'pb-2 pr-3 text-xs font-medium uppercase tracking-wide text-zinc-500'
 const TH_RIGHT = 'pb-2 pr-3 text-right text-xs font-medium uppercase tracking-wide text-zinc-500'
 
-/** CategoryCell's `label`, for a category a person or the AI has confirmed. */
-function CategoryLabel({ name }: { name: string }) {
-  return <span className="line-clamp-2 min-w-0 wrap-anywhere text-xs text-zinc-900 dark:text-zinc-100">{name}</span>
+/**
+ * CategoryCell's `label`, for a category a person or the AI has confirmed:
+ * the Code first, then the name, in one flow that wraps onto a second line.
+ * The Code is followed by a real space inside its span (the app's codeLead),
+ * not a margin, so the name breaks at word boundaries.
+ */
+function CategoryLabel({ code, name }: { code: string; name: string }) {
+  return (
+    <span className="min-w-0 wrap-anywhere text-xs">
+      <span className="font-mono tabular-nums text-zinc-400 dark:text-zinc-500">{`${code} `}</span>
+      <span className="text-zinc-900 dark:text-zinc-100">{name}</span>
+    </span>
+  )
 }
 
 export function VatLinesGridFigure({
@@ -199,8 +209,8 @@ export function VatLinesGridFigure({
                             {formatAmount(line.gross, CURRENCY, locale)}
                           </td>
 
-                          {/* CategoryCell, resting state: the name, then a row
-                              with the Code, the confidence, Edited and the pencil. */}
+                          {/* CategoryCell, resting state: Code and name, then a
+                              row with the confidence, Edited and the pencil. */}
                           <td className="min-w-[8rem] py-3 pr-3">
                             <div className="flex flex-col gap-1">
                               {/* CategoryCell wraps the label in VerifyOnInteract
@@ -208,15 +218,12 @@ export function VatLinesGridFigure({
                                   span that only attaches handlers. */}
                               {line.confidence ? (
                                 <span data-field-path={`line_items.l${line.n}.category`} data-breathing="false">
-                                  <CategoryLabel name={name} />
+                                  <CategoryLabel code={line.catCode} name={name} />
                                 </span>
                               ) : (
-                                <CategoryLabel name={name} />
+                                <CategoryLabel code={line.catCode} name={name} />
                               )}
                               <div className="flex flex-wrap items-center gap-1.5">
-                                <span className="font-mono text-xs tabular-nums text-zinc-400 dark:text-zinc-500">
-                                  {line.catCode}
-                                </span>
                                 {line.confidence === 'medium' && (
                                   <Badge color="yellow" className="text-xs">
                                     {ui['invoices.line_items_table.confidence_medium']}

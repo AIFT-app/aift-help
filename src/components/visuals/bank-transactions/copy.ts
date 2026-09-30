@@ -149,7 +149,7 @@ const en: Copy = {
   ]),
   help: {
     alt:
-      'The bank transaction list with five transactions, newest first: the booking date, the partner with the bank description under it on up to two lines, label pills with the ones that need action first, the category name with its ledger code under it, and the amount, green with an up arrow for money in and red with a down arrow for money out. Two rows have an amber left edge. Numbered markers point to the parts described in the list below.',
+      'The bank transaction list with five transactions, newest first: the booking date, the partner with the bank description under it on up to two lines, label pills with the ones that need action first, the ledger code of the category followed by its name, and the amount, green with an up arrow for money in and red with a down arrow for money out. Two rows have an amber left edge. Numbered markers point to the parts described in the list below.',
   },
 }
 
@@ -178,7 +178,7 @@ const hu: Copy = {
   ]),
   help: {
     alt:
-      'A banki tranzakciók listája öt tranzakcióval, a legújabb elöl: a könyvelés dátuma, a partner alatta a bank leírásával legfeljebb két sorban, a címkék elöl a teendőt jelzőkkel, a kategória neve alatta a főkönyvi számmal, és az összeg, bejövő pénznél zöld, felfelé mutató nyíllal, kimenőnél piros, lefelé mutató nyíllal. Két sor bal szélén borostyánsárga szegély van. A számozott jelölők az alábbi listában leírt részekre mutatnak.',
+      'A banki tranzakciók listája öt tranzakcióval, a legújabb elöl: a könyvelés dátuma, a partner alatta a bank leírásával legfeljebb két sorban, a címkék elöl a teendőt jelzőkkel, a kategória főkönyvi száma, utána a neve, és az összeg, bejövő pénznél zöld, felfelé mutató nyíllal, kimenőnél piros, lefelé mutató nyíllal. Két sor bal szélén borostyánsárga szegély van. A számozott jelölők az alábbi listában leírt részekre mutatnak.',
   },
 }
 
@@ -207,7 +207,7 @@ const de: Copy = {
   ]),
   help: {
     alt:
-      'Die Liste der Banktransaktionen mit fünf Transaktionen, die neueste zuerst: das Buchungsdatum, der Partner mit der Beschreibung der Bank darunter auf bis zu zwei Zeilen, Labels mit denen zuerst, die eine Aktion brauchen, der Kategoriename mit dem Sachkonto darunter und der Betrag, grün mit Pfeil nach oben für Geldeingang und rot mit Pfeil nach unten für Geldausgang. Zwei Zeilen haben einen gelben linken Rand. Nummerierte Markierungen zeigen auf die Teile, die in der Liste darunter beschrieben sind.',
+      'Die Liste der Banktransaktionen mit fünf Transaktionen, die neueste zuerst: das Buchungsdatum, der Partner mit der Beschreibung der Bank darunter auf bis zu zwei Zeilen, Labels mit denen zuerst, die eine Aktion brauchen, das Sachkonto der Kategorie, gefolgt von ihrem Namen, und der Betrag, grün mit Pfeil nach oben für Geldeingang und rot mit Pfeil nach unten für Geldausgang. Zwei Zeilen haben einen gelben linken Rand. Nummerierte Markierungen zeigen auf die Teile, die in der Liste darunter beschrieben sind.',
   },
 }
 
