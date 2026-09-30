@@ -32,7 +32,7 @@ type Copy = {
 const en: Copy = {
   ui: {
     'focus.basis_on': "on",
-    'focus.period_readonly': "Set in the sidebar - one period for every page",
+    'focus.period_readonly': "Set in the sidebar: one period for every page",
     'date_filter.basis_short_delivery': "Fulfillment",
     'nav.workspace.invoices': "Invoices",
     'nav.workspace.transactions': "Bank transactions",
@@ -44,7 +44,7 @@ const en: Copy = {
 const hu: Copy = {
   ui: {
     'focus.basis_on': "ezen:",
-    'focus.period_readonly': "Az oldalsávban állítható - egy időszak minden oldalra",
+    'focus.period_readonly': "Az oldalsávban állítható: egy időszak minden oldalra",
     'date_filter.basis_short_delivery': "Teljesítés",
     'nav.workspace.invoices': "Számlák",
     'nav.workspace.transactions': "Banki tranzakciók",
@@ -56,7 +56,7 @@ const hu: Copy = {
 const de: Copy = {
   ui: {
     'focus.basis_on': "nach",
-    'focus.period_readonly': "In der Seitenleiste einstellbar - ein Zeitraum für alle Seiten",
+    'focus.period_readonly': "In der Seitenleiste einstellbar: ein Zeitraum für alle Seiten",
     'date_filter.basis_short_delivery': "Leistung",
     'nav.workspace.invoices': "Rechnungen",
     'nav.workspace.transactions': "Banktransaktionen",
