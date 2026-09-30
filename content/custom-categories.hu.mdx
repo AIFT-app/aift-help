@@ -65,15 +65,35 @@ Egy érdesség: azon a tételen, amelynek a kategóriáját archiválták, a né
 
 ## Hogyan alkalmazza az AI
 
-Miután egy számla vagy tranzakció végzett a normál kategorizálással, egy külön menet elolvassa az aktív listáit, és listánként egy kategóriát rendel hozzá. A duplikált és az elutasított számlákat kihagyja.
+Miután egy számla vagy tranzakció végzett a normál kategorizálással, egy külön menet elolvassa az aktív listáit. A duplikált és az elutasított számlákat kihagyja.
 
-- A magabiztos hozzárendelést (**0.70** vagy afölött) a rendszer alkalmazza, és AI-jelvénnyel meg a pontszámmal mutatja, például **AI 0.87**.
-- Ez alatt nem ír ki semmit.
-- **Kötelező** listán az üres hozzárendelés megjelöli a tételt: a számlákon borostyánsárga teendőcímke jelenik meg, és a tétel beleszámít a havi zárási ellenőrzésekbe; a banki tranzakcióknál a címke a részletoldalon látszik, a tranzakciólistán pedig ott a **Hiányzó egyéni kategória** szűrő.
+- **Banki tranzakción** listánként egy kategóriát rendel hozzá.
+- **Számlán** **minden sorra külön** válaszol, így ugyanazon a számlán egy laptop és egy repülőjegy más-más költséghelyre kerülhet.
+- A magabiztos választ (**0.70** vagy afölött) a rendszer alkalmazza, és **Magas** vagy **Közepes** jelvénnyel mutatja, ugyanazzal a kettővel, amelyet a könyvelési kategória is használ.
+- Ha az AI egy sornál bizonytalan, a sor az egész számlára adott választ kapja, amennyiben az magabiztos. Különben a sor üres marad.
+- **Kötelező** listán az üres érték megjelöli a tételt: azon a számlán, amelynek akár egyetlen sora üres, borostyánsárga teendőcímke jelenik meg, és a számla beleszámít a havi zárási ellenőrzésekbe; a banki tranzakcióknál a címke a részletoldalon látszik, a tranzakciólistán pedig ott a **Hiányzó egyéni kategória** szűrő.
+
+**A partner rögzített értéke az első.** Ha a partnernek egy listához van rögzített egyéni kategóriája (lásd lejjebb), minden sor azt kapja, még mielőtt a rendszer az AI-t megkérdezné, és az AI-t arról a listáról meg sem kérdezi.
 
 **Az AI három próbálkozás után feladja** ugyanazon a tételen és listán, és onnantól békén hagyja. Két dolog kérdezi meg újra: ha módosítja a lista kategóriáit vagy az útmutatóját, illetve ha lefuttatja az **Alkalmazás meglévő tételekre** műveletet.
 
-A kézzel választott kategória mindig erősebb, és az AI soha nem ír felül meglévő hozzárendelést. Számlán az Ön választása az egész számlára vonatkozik; ahol a sorok eltérnek, a kártyán érték helyett **Soronként eltérő** áll.
+A kézzel választott kategória mindig erősebb, és az AI soha nem ír felül meglévő értéket.
+
+## Érték beállítása kézzel
+
+**Több sorból álló számlán** nyissa meg a **Tételek & ÁFA** fület. Minden sor alatt ott van a sor értéke mindegyik listához, a listák neve pedig a fejléc második sorában áll:
+
+- Kattintson az érték melletti ceruzára, ha azon a soron módosítani szeretné. A törléshez válassza a **Nincs megadva** lehetőséget.
+- A lista neve melletti kis nyíl **a még üres sorokra** állít be egy kategóriát. Meglévő értéket soha nem cserél le, és eltűnik, amint nincs több üres sor.
+- A lila **Partnerszabály** jelvény azt jelzi, hogy az érték a partner rögzített egyéni kategóriájából származik. A jelvény nélküli értéket ember állította be.
+
+Az **Áttekintés** fül összefoglalja a számlát: azt az egy értéket mutatja, amely minden soron közös, vagy a megoszlást, kategóriánként a sorok számával és a nettó összeggel. Választó itt nincs. Ha egy partner számláinak minden sorára ugyanazt az értéket szeretné, azt a partnernél rögzítse.
+
+**Egysoros számlán és banki tranzakción** a választó magán a kártyán található.
+
+## Érték rögzítése egy partnerhez
+
+Ha egy partnertől minden ugyanarra a költséghelyre vagy projektre tartozik, elég egyszer beállítani. A partner oldalán a **Szabályok** fülön található a **Rögzített egyéni kategóriák** szakasz, listánként egy választóval. Az érték ezután a partner számláinak minden sorára és a banki tranzakcióira rákerül, amint megérkeznek, a **Futtatás a meglévő tételeken** pedig a már meglévőkre is alkalmazza. Lásd: [Partnerek](/partners).
 
 ## Meglévő tételek lefedése
 
@@ -87,7 +107,9 @@ A háromszori próbálkozás korlátját is törli azon, amihez hozzányúl, íg
 
 ## Ki módosíthatja
 
-A listák létrehozásához és szerkesztéséhez, a kategóriák felvételéhez, importálásához és archiválásához, valamint a visszamenőleges futtatáshoz a „Törzsadatok szerkesztése” jogosultság kell, amellyel a könyvelők rendelkeznek. Ugyanez kell ahhoz is, hogy valaki kézzel állítson be egyéni kategóriát egy számlán vagy tranzakción; ez sokakat meglep, mert törzsadat, nem a tétel szerkesztése.
+A listák létrehozásához és szerkesztéséhez, a kategóriák felvételéhez, importálásához és archiválásához, valamint a visszamenőleges futtatáshoz a „Törzsadatok szerkesztése” jogosultság kell, amellyel a könyvelők rendelkeznek. Ugyanez kell ahhoz is, hogy valaki egy partnerhez egyéni kategóriát rögzítsen.
+
+Az egyéni kategória kézi beállítása egy tételen a tétel szerkesztésének számít: számlán a „Számlák szerkesztése”, banki tranzakción a „Banki tranzakciók szerkesztése” jogosultság kell hozzá.
 
 Az ügyféloldali tagok a listákat és a kategóriáikat csak olvasni tudják.
 
