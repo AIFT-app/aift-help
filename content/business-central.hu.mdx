@@ -17,7 +17,7 @@ De még akkor is:
 
 - **Semmit nem könyvelünk le.** A bejövő számla **piszkozatként** jön létre, és ott is marad. A könyvelés elérhető a felületen, és szándékosan nem élünk vele: a rossz adatból lekönyvelt bizonylatot sztornózni kell, ami végleges nyomot hagy a főkönyvben, a piszkozat viszont egyetlen kattintással törölhető. A könyvelés a könyvelő dolga marad, a Business Centralon belül.
 - **Meglévő rekordot soha nem írunk felül.** Az azonos adószámú szállítókartont inkább összekötjük az Ön partnerével, meglévő bizonylathoz pedig soha nem nyúlunk.
-- **Csak azt töröljük, amit mi hoztunk létre.** Két funkció töröl, mindkettő a feladási képernyőn: a szonda eltávolítja az éppen létrehozott, eldobható piszkozatot, a takarítás pedig azokat a piszkozatokat, amelyek feladását az AI Finance Team feljegyezte, de összekötni soha nem sikerült. Semmi mást nem törlünk, és semmi olyat, amit a Business Central nem piszkozatnak tart.
+- **Csak azt töröljük, amit mi hoztunk létre.** Három funkció töröl, mindhárom a feladási képernyőn: a szonda eltávolítja az éppen létrehozott, eldobható piszkozatot, a számozási próba a saját kitalált, AIFT-TESZT kezdetű piszkozatát (és egy korábbi próba bent maradt piszkozatát), a takarítás pedig azokat a piszkozatokat, amelyek feladását az AI Finance Team feljegyezte, de összekötni soha nem sikerült. Semmi mást nem törlünk, és semmi olyat, amit a Business Central nem piszkozatnak tart.
 
 ## A kapcsolat beállítása
 
@@ -181,10 +181,11 @@ Ami már fent van, kikerül a feladható számlák közül, és a képernyő meg
 
 ### A karbantartó gombok
 
-A **Feladás** mellett négy gomb áll. Ezek akkor is látszanak, ha éppen semmi nem feladható: az ügyfél főkönyvében bent felejtett piszkozatot ugyanis nem látja senki, akinek nincs Business Central-belépése.
+A **Feladás** mellett öt gomb áll. Ezek akkor is látszanak, ha éppen semmi nem feladható: az ügyfél főkönyvében bent felejtett piszkozatot ugyanis nem látja senki, akinek nincs Business Central-belépése.
 
 - A **Szonda** valódi, eldobható piszkozatot hoz létre egy valódi számlából, majd törli is. Megválaszolja, hogy ez a Business Central elfogadja-e ugyanazt a szállítói számlaszámot másodszor is, és megmutatja egymás mellett, mit küldtünk és mit tárolt el a Business Central.
 - A **Mit ad a BC a szállítóról** beolvas egy szállítókartont, és semmit nem ír.
+- A **Számozási próba (kitalált számla)** létrehoz egy kitalált, AIFT-TESZT-… számú szállítói számla piszkozatot, kiüríti a könyvelési számkörét, felvesz rá egy sort, majd törli. Megmutatja, hogy ez a Business Central elfogadja-e a saját számunkat számlaszámként (lásd lent: Az AIFT azonosító mint számlaszám). Indítás előtt megerősítést kér.
 - A **Félbemaradt küldések rendezése** megkérdezi, mi lett azzal a küldéssel, amelynek a válasza elveszett. Sem nem küld, sem nem töröl.
 - A **Bent maradt piszkozatok keresése** megtalálja azokat a piszkozatokat, amelyek feladását feljegyeztük, de összekötni soha nem sikerült. A törlésük külön, piros **Törlés a Business Centralból** gomb: az ellenőrzés és a törlés szándékosan két lépés.
 

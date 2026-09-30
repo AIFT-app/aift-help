@@ -17,7 +17,7 @@ Even then:
 
 - **Nothing is ever posted.** The purchase invoice is created as a **draft** and left there. Posting is available over the interface and we deliberately do not use it: a document posted from wrong data has to be reversed, which marks the ledger for good, while a draft is deleted in one click. Posting stays the bookkeeper's act, inside Business Central.
 - **An existing record is never rewritten.** A vendor card with the same tax number is linked to your partner instead, and an existing document is never touched.
-- **We only ever delete what we created.** Two controls delete, both on the send screen: the probe removes the throwaway draft it just made, and the cleanup removes drafts AI Finance Team recorded sending but never managed to link. Nothing else is ever deleted, and nothing Business Central does not call a draft.
+- **We only ever delete what we created.** Three controls delete, all on the send screen: the probe removes the throwaway draft it just made, the numbering trial removes its made-up AIFT-TESZT draft (and one an earlier trial left behind), and the cleanup removes drafts AI Finance Team recorded sending but never managed to link. Nothing else is ever deleted, and nothing Business Central does not call a draft.
 
 ## Setting Up the Connection
 
@@ -181,10 +181,11 @@ An invoice already up there leaves the sendable count, and the screen says how m
 
 ### The maintenance buttons
 
-Four buttons sit beside Send, and they stay visible even when nothing is sendable, because a stray draft in the client's ledger is invisible to anyone without a Business Central login.
+Five buttons sit beside Send, and they stay visible even when nothing is sendable, because a stray draft in the client's ledger is invisible to anyone without a Business Central login.
 
 - **Probe** creates a real throwaway draft from a real invoice and deletes it again. It answers whether this tenant accepts a duplicate supplier invoice number, and shows what we sent beside what Business Central stored.
 - **What BC exposes about a vendor** reads a vendor card and writes nothing.
+- **Numbering trial (made-up invoice)** creates one made-up purchase invoice draft numbered AIFT-TESZT-…, clears its posting number series, adds a line and deletes it again. It shows whether this Business Central accepts our own number as the invoice number (see The AIFT Id as the Invoice Number below). It asks for confirmation first.
 - **Resolve interrupted sends** asks what happened to a send whose answer was lost. It neither sends nor deletes.
 - **Look for drafts left behind** finds drafts we recorded but never linked. Deleting them is a separate, red **Delete from Business Central** button: the check and the delete are two steps on purpose.
 
