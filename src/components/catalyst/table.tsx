@@ -11,8 +11,12 @@ export function Table({
   className?: string
   children: React.ReactNode
 }) {
+  // `relative` makes the scroll box the containing block of anything absolutely
+  // positioned inside the table (an sr-only header label, above all). Without
+  // it that element escapes the box, is not clipped by it, and widens the whole
+  // page on a phone (PRD scroll-box-positioning).
   return (
-    <div className={clsx('w-full overflow-x-auto', className)}>
+    <div className={clsx('relative w-full overflow-x-auto', className)}>
       <table className="min-w-full text-sm text-zinc-950 dark:text-zinc-100">{children}</table>
     </div>
   )
