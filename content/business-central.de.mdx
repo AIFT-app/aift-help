@@ -202,6 +202,38 @@ Die Übergabeliste zeigt den Text unter jeder Rechnung, bevor Sie sie übergeben
 
 Ob der Text auch auf den Aufwandszeilen der Sachposten erscheint, hängt von einer Einstellung in Business Central ab: Ist in **Purchases & Payables Setup** die Option **Copy Line Descr. to G/L Entry** (Zeilenbeschreibung in den Sachposten kopieren) aktiviert, tragen diese Zeilen den Text der jeweiligen Rechnungszeile, und die Buchungsbeschreibung bleibt auf der Kreditorenseite.
 
+## Die AIFT-Kennung als Rechnungsnummer
+
+Ein Schalter unter **Einstellungen → Nummerierung** sorgt dafür, dass aus AI Finance Team übergebene Rechnungen in Business Central ihre AIFT-Kennung als Nummer erhalten (zum Beispiel AH2-INV-2026-0295) statt der nächsten Nummer aus der eigenen Nummernserie des Unternehmens. Sie wird zur Nummer des Entwurfs und nach dem Buchen auch zur Nummer der gebuchten Rechnung. In Business Central erfasste Rechnungen behalten ihre eigene Nummerierung.
+
+Zwei Dinge sollten Sie vorab wissen:
+
+- **Die Nummerierung hat Lücken, und zwei Formate laufen nebeneinander.** Die AIFT-Folge läuft über alle Unternehmen des Arbeitsbereichs und über Verkaufs- und Einkaufsrechnungen, daher folgen die AIFT-nummerierten Rechnungen innerhalb eines Unternehmens nicht lückenlos aufeinander. Die Jahreszahl ist das Ausstellungsjahr der Rechnung.
+- **Die AIFT-Kennung ersetzt nicht die Rechnungsnummer des Lieferanten.** Diese steht weiterhin im Feld für die Kreditorenrechnungsnummer.
+
+Damit die Nummer nach dem Buchen erhalten bleibt, entfernen wir am Entwurf die Nummernserie für gebuchte Rechnungen. Business Central übernimmt dann die Nummer des Entwurfs für die gebuchte Rechnung.
+
+### Was in Business Central eingerichtet werden muss
+
+Der Schalter funktioniert nur, wenn AI Finance Team lesen kann, aus welcher Nummernserie Einkaufsrechnungen ihre Nummern erhalten und ob diese manuelle Nummern zulässt. Dafür veröffentlicht der Business-Central-Administrator zwei Seiten als Webdienste, auf der Seite **Web Services** (Alt+Q):
+
+| Object Type | Object ID | Service Name | Published |
+|---|---|---|---|
+| Page | 460 | PurchasesPayablesSetup | angehakt |
+| Page | 456 | NoSeries | angehakt |
+
+Beide werden nur gelesen. Außerdem muss für die Nummernserie der Einkaufsrechnungen (**Invoice Nos.**) **Manual Nos.** eingeschaltet sein. In Business Central erfasste Rechnungen erhalten ihre Nummern weiterhin automatisch.
+
+**Schritte kopieren** auf der Seite Nummerierung legt diese Anleitung in die Zwischenablage, damit Sie sie an den Administrator weiterleiten können.
+
+### Prüfung und Ablehnung
+
+Beim Einschalten prüft AI Finance Team sofort alle zugeordneten Unternehmen und zeigt je Unternehmen: **Bereit**, **Nicht bereit** oder **Nicht prüfbar**. Bei den letzten beiden zeigt es auch den Schritt in Business Central, der das Problem löst.
+
+Vor jeder Übergabe wird erneut geprüft. **Ist ein Unternehmen nicht bereit oder nicht prüfbar, werden seine Rechnungen nicht übergeben**, und die Übergabeliste nennt den Grund. Mit einer Business-Central-Nummer geht dann auch nichts hinaus, weil eine bereits übergebene Rechnung nicht umnummeriert werden kann.
+
+Für den Schalter ist die Berechtigung „In das Buchhaltungssystem übertragen“ nötig.
+
 ## Wer was darf
 
 Verbinden, Trennen und Zuordnen erfordern die Berechtigung „Verbindungen verwalten“, die standardmäßig beim Buchhalter-Admin und bei der Finanzleitung liegt. Eine eigene Rolle oder eine Ausnahme kann das ändern. Alle übrigen sehen den Status und können ihn nicht ändern.
