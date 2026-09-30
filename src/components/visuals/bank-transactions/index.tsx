@@ -2,12 +2,17 @@
 //
 // The screen is rebuilt 1:1 from aift-web (origin/main, 2026-09-29,
 // list-table-layout), class for class, with the real Catalyst table from the
-// help mirror:
+// help mirror. Re-copied on 2026-09-30 from branch feat/page-layout-sweep
+// (commit 6fbf3325, PRD page-layout-sweep): the Category column renders
+// through the shared CategoryCell, the GL code first and then the name in one
+// flow ("Mindig a kód legyen elöl", Balázs 2026-09-30); until then it was
+// TextCell, the name over the code. The Party floor follows column-sizes.ts
+// too (10.5rem since app-typeface-geist).
 //   TransactionTable src/app/(app)/workspaces/[workspaceId]/transactions/_components/TransactionListShell.tsx
 //                    (the columns and the amber rail) rendered by
 //                    src/components/list-view/sortable-table.tsx (tableLayout
 //                    fluid) + sortable-header.tsx, text-cell.tsx (DateIdCell,
-//                    TextCell), party-cell.tsx, label-pills.tsx and
+//                    CategoryCell), party-cell.tsx, label-pills.tsx and
 //                    label-tones.ts (orderLabelsForDisplay), amount-cell.tsx,
 //                    amount-width.ts and column-sizes.ts
 // It is the list of someone who can view but not edit bank transactions, so it
@@ -49,7 +54,7 @@ const TONE_PRIORITY: readonly Tone[] = ['amber', 'emerald', 'blue', 'zinc']
 
 // column-sizes.ts LIST_COLUMNS: the Party floor, the transaction Status and
 // the Category shares and floors.
-const PARTY_FLOOR = '11.5rem'
+const PARTY_FLOOR = '10.5rem'
 const STATUS_SHARE = '16%'
 const STATUS_FLOOR = '7.5rem'
 const CATEGORY_SHARE = '14%'
@@ -155,10 +160,14 @@ function Row({ row, locale, marker }: { row: ListRow; locale: Locale; marker?: n
       </TableCell>
       <TableCell>
         <div style={{ minWidth: CATEGORY_FLOOR }}>
-          {/* text-cell.tsx TextCell with the code as a monospace second line */}
-          <div className="min-w-0" title={`${row.code} · ${row.category}`}>
-            <div className="line-clamp-2 wrap-anywhere text-sm text-zinc-700 dark:text-zinc-300">{row.category}</div>
-            <div className="mt-0.5 truncate text-xs text-zinc-500 dark:text-zinc-400 font-mono tabular-nums">{row.code}</div>
+          {/* text-cell.tsx CategoryCell: the GL code first, then the name, in
+              one flow of up to two lines */}
+          <div
+            className="line-clamp-2 min-w-0 wrap-anywhere text-sm text-zinc-700 dark:text-zinc-300"
+            title={`${row.code} · ${row.category}`}
+          >
+            <span className="mr-1.5 font-mono text-xs tabular-nums text-zinc-500 dark:text-zinc-400">{row.code}</span>
+            {row.category}
           </div>
         </div>
       </TableCell>
@@ -223,9 +232,10 @@ function TransactionTable({ locale }: { locale: Locale }) {
 }
 
 // The table's floor (column-sizes.ts) with the longest of these amounts (the
-// HUF ones, a 12rem Amount column) is 51rem, plus the page's 2rem padding.
-// Below that the app scrolls the table sideways; the figure is laid out at
-// this width instead and zoomed on phones.
+// HUF ones, a 12rem Amount column) is 50rem, plus the page's 2rem padding:
+// 832px. Below that the app scrolls the table sideways. The figure is laid
+// out at 848px, its own width on a desktop window, so phones (zoomed, and the
+// Enlarge view) show the same layout a desktop reader sees.
 const LIST_MIN_WIDTH = 848
 
 export function BankTransactionListFigure({ locale, children }: FigureProps) {
