@@ -17,7 +17,7 @@ De még akkor is:
 
 - **Semmit nem könyvelünk le.** A bejövő számla **piszkozatként** jön létre, és ott is marad. A könyvelés elérhető a felületen, és szándékosan nem élünk vele: a rossz adatból lekönyvelt bizonylatot sztornózni kell, ami végleges nyomot hagy a főkönyvben, a piszkozat viszont egyetlen kattintással törölhető. A könyvelés a könyvelő dolga marad, a Business Centralon belül.
 - **Meglévő rekordot soha nem írunk felül.** Az azonos adószámú szállítókartont inkább összekötjük az Ön partnerével, meglévő bizonylathoz pedig soha nem nyúlunk.
-- **Csak azt töröljük, amit mi hoztunk létre.** Két funkció töröl, mindkettő a feladási képernyőn: a szonda eltávolítja az éppen létrehozott, eldobható piszkozatot, a takarítás pedig azokat a piszkozatokat, amelyek feladását az AI Finance Team feljegyezte, de összekötni soha nem sikerült. Semmi mást nem törlünk, és semmi olyat, amit a Business Central nem piszkozatnak tart.
+- **Csak azt töröljük, amit mi hoztunk létre.** Három funkció töröl, mindhárom a feladási képernyőn: a szonda eltávolítja az éppen létrehozott, eldobható piszkozatot, a számozási próba a saját kitalált, AIFT-TESZT kezdetű piszkozatát (és egy korábbi próba bent maradt piszkozatát), a takarítás pedig azokat a piszkozatokat, amelyek feladását az AI Finance Team feljegyezte, de összekötni soha nem sikerült. Semmi mást nem törlünk, és semmi olyat, amit a Business Central nem piszkozatnak tart.
 
 ## A kapcsolat beállítása
 
@@ -181,10 +181,11 @@ Ami már fent van, kikerül a feladható számlák közül, és a képernyő meg
 
 ### A karbantartó gombok
 
-A **Feladás** mellett négy gomb áll. Ezek akkor is látszanak, ha éppen semmi nem feladható: az ügyfél főkönyvében bent felejtett piszkozatot ugyanis nem látja senki, akinek nincs Business Central-belépése.
+A **Feladás** mellett öt gomb áll. Ezek akkor is látszanak, ha éppen semmi nem feladható: az ügyfél főkönyvében bent felejtett piszkozatot ugyanis nem látja senki, akinek nincs Business Central-belépése.
 
 - A **Szonda** valódi, eldobható piszkozatot hoz létre egy valódi számlából, majd törli is. Megválaszolja, hogy ez a Business Central elfogadja-e ugyanazt a szállítói számlaszámot másodszor is, és megmutatja egymás mellett, mit küldtünk és mit tárolt el a Business Central.
 - A **Mit ad a BC a szállítóról** beolvas egy szállítókartont, és semmit nem ír.
+- A **Számozási próba (kitalált számla)** létrehoz egy kitalált, AIFT-TESZT-… számú szállítói számla piszkozatot, kiüríti a könyvelési számkörét, felvesz rá egy sort, majd törli. Megmutatja, hogy ez a Business Central elfogadja-e a saját számunkat számlaszámként (lásd lent: Az AIFT azonosító mint számlaszám). Indítás előtt megerősítést kér.
 - A **Félbemaradt küldések rendezése** megkérdezi, mi lett azzal a küldéssel, amelynek a válasza elveszett. Sem nem küld, sem nem töröl.
 - A **Bent maradt piszkozatok keresése** megtalálja azokat a piszkozatokat, amelyek feladását feljegyeztük, de összekötni soha nem sikerült. A törlésük külön, piros **Törlés a Business Centralból** gomb: az ellenőrzés és a törlés szándékosan két lépés.
 
@@ -201,6 +202,38 @@ A fizetési móddal egy lépésben minden piszkozat megkapja a **könyvelési sz
 A feladási lista minden számla alatt megmutatja a szöveget, mielőtt elküldené. Az összefoglaló nélküli számla megtartja a Business Central saját alapértelmezett szövegét, és ez soha nem akadályozza a feladást. A piszkozat a Business Centralban szerkeszthető marad, így könyvelés előtt átírhatja a szöveget.
 
 Hogy a szöveg a főkönyv költségsorain is megjelenik-e, az egy Business Central-beállításon múlik: ha a **Purchases & Payables Setup** oldalon a **Copy Line Descr. to G/L Entry** (a sorleírás másolása a főkönyvi tételbe) be van kapcsolva, ezek a sorok a számlasorok saját szövegét kapják, a könyvelési szöveg pedig a szállítói oldalon marad.
+
+## Az AIFT azonosító mint számlaszám
+
+A **Beállítások → Számozás** oldalon egy kapcsolóval kérheti, hogy az AI Finance Team-ből feladott számlák a Business Centralban az AIFT azonosítót kapják számként (például AH2-INV-2026-0295), ne a cég saját számkörének következő számát. Ez lesz a piszkozat száma, és könyvelés után a könyvelt számláé is. A Business Centralban rögzített számlák megtartják a saját számozásukat.
+
+Két dolgot érdemes előre tudni:
+
+- **A számozásban hézagok lesznek, és két formátum fut egymás mellett.** Az AIFT sorszám a munkaterület összes cégén, a vevő- és a szállítói számlákon is átfut, így egy cégen belül az AIFT-számú számlák nem követik egymást folyamatosan. Az évszám a számla kiállítási éve.
+- **Az AIFT azonosító nem helyettesíti a szállító számlaszámát.** Az továbbra is a szállítói számlaszám mezőbe kerül.
+
+Hogy könyvelés után is megmaradjon a szám, a piszkozatról levesszük a könyvelt számlák számkörét. A Business Central ilyenkor a piszkozat számát viszi tovább a könyvelt számlára.
+
+### Amit a Business Centralban be kell állítani
+
+A kapcsoló csak akkor működik, ha az AI Finance Team ki tudja olvasni, melyik számkörből kapnak számot a szállítói számlák, és azon engedélyezve van-e a kézi számozás. Ehhez a Business Central rendszergazdájának két oldalt kell közzétennie webszolgáltatásként, a **Web Services** oldalon (Alt+Q):
+
+| Object Type | Object ID | Service Name | Published |
+|---|---|---|---|
+| Page | 460 | PurchasesPayablesSetup | bepipálva |
+| Page | 456 | NoSeries | bepipálva |
+
+Mindkettőt csak olvassuk. Ezen felül a szállítói számlák számkörén (**Invoice Nos.**) be kell kapcsolni a **Manual Nos.** beállítást. A Business Centralban rögzített számlák ettől ugyanúgy automatikusan kapják a számukat.
+
+A Számozás oldal **Lépések másolása** gombja ezt az útmutatót a vágólapra teszi, hogy továbbküldhesse a rendszergazdának.
+
+### Ellenőrzés és elutasítás
+
+Bekapcsoláskor az AI Finance Team azonnal ellenőrzi az összes párosított céget, és cégenként kiírja: **Kész**, **Nincs kész** vagy **Nem ellenőrizhető**. Az utóbbi kettőnél azt a Business Central-lépést is megmutatja, amely megoldja.
+
+Minden feladás előtt újra ellenőriz. **Ha egy cég nem áll készen, vagy nem ellenőrizhető, az oda szánt számlákat nem adjuk fel**, és a feladási lista megmondja, miért. Business Central-számmal ilyenkor sem megy fel semmi, mert egy már feladott számlát utólag nem lehet átszámozni.
+
+A kapcsolóhoz a „Feladás a könyvelőprogramba” jogosultság kell.
 
 ## Ki mit tehet
 

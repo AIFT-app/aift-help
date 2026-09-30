@@ -17,7 +17,7 @@ Und selbst dann:
 
 - **Es wird nie etwas gebucht.** Die Einkaufsrechnung wird als **Entwurf** angelegt und bleibt es. Buchen wäre über die Schnittstelle möglich, und wir nutzen das bewusst nicht: Ein aus falschen Daten gebuchter Beleg muss storniert werden, was dauerhafte Spuren im Hauptbuch hinterlässt, während ein Entwurf mit einem Klick gelöscht ist. Das Buchen bleibt Sache der Buchhaltung, in Business Central.
 - **Ein vorhandener Datensatz wird nie überschrieben.** Ein Kreditorenstammsatz mit derselben Steuernummer wird stattdessen mit Ihrem Partner verknüpft, und ein vorhandener Beleg wird nie angerührt.
-- **Wir löschen nur, was wir selbst angelegt haben.** Zwei Bedienelemente löschen, beide auf dem Übergabebildschirm: Die Sonde entfernt den Wegwerf-Entwurf, den sie soeben erstellt hat, und die Bereinigung entfernt Entwürfe, deren Übergabe AI Finance Team erfasst, aber nie verknüpft hat. Sonst wird nie etwas gelöscht, und nichts, was Business Central nicht als Entwurf führt.
+- **Wir löschen nur, was wir selbst angelegt haben.** Drei Bedienelemente löschen, alle auf dem Übergabebildschirm: Die Sonde entfernt den Wegwerf-Entwurf, den sie soeben erstellt hat, der Nummerierungstest entfernt seinen erfundenen AIFT-TESZT-Entwurf (und einen, den ein früherer Test zurückgelassen hat), und die Bereinigung entfernt Entwürfe, deren Übergabe AI Finance Team erfasst, aber nie verknüpft hat. Sonst wird nie etwas gelöscht, und nichts, was Business Central nicht als Entwurf führt.
 
 ## Die Verbindung einrichten
 
@@ -181,10 +181,11 @@ Eine Rechnung, die bereits dort liegt, verlässt die Zahl der übergabebereiten,
 
 ### Die Wartungsschaltflächen
 
-Neben **Übergeben** stehen vier Schaltflächen, und sie bleiben auch dann sichtbar, wenn nichts übergabebereit ist: Ein liegengebliebener Entwurf im Hauptbuch des Mandanten ist für alle unsichtbar, die keinen Business-Central-Zugang haben.
+Neben **Übergeben** stehen fünf Schaltflächen, und sie bleiben auch dann sichtbar, wenn nichts übergabebereit ist: Ein liegengebliebener Entwurf im Hauptbuch des Mandanten ist für alle unsichtbar, die keinen Business-Central-Zugang haben.
 
 - **Sonde** legt aus einer echten Rechnung einen echten Wegwerf-Entwurf an und löscht ihn wieder. Sie beantwortet, ob dieses Business Central dieselbe Lieferantenrechnungsnummer ein zweites Mal annimmt, und zeigt nebeneinander, was wir gesendet haben und was Business Central gespeichert hat.
 - **Was BC über einen Kreditor liefert** liest einen Kreditorenstammsatz und schreibt nichts.
+- **Nummerierungstest (erfundene Rechnung)** legt einen erfundenen Einkaufsrechnungsentwurf mit der Nummer AIFT-TESZT-… an, leert seine Buchungsnummernserie, fügt eine Zeile hinzu und löscht ihn wieder. Er zeigt, ob dieses Business Central unsere eigene Nummer als Rechnungsnummer annimmt (siehe unten: Die AIFT-Kennung als Rechnungsnummer). Vorher fragt er nach einer Bestätigung.
 - **Abgebrochene Übergaben klären** fragt nach, was aus einer Übergabe wurde, deren Antwort verloren ging. Es sendet nichts und löscht nichts.
 - **Nach zurückgebliebenen Entwürfen suchen** findet Entwürfe, deren Übergabe wir erfasst, aber nie verknüpft haben. Das Löschen ist eine eigene, rote Schaltfläche **Aus Business Central löschen**: Prüfen und Löschen sind bewusst zwei Schritte.
 
@@ -201,6 +202,38 @@ Im selben Schritt wie die Zahlungsart erhält jeder Entwurf auch seine **Buchung
 Die Übergabeliste zeigt den Text unter jeder Rechnung, bevor Sie sie übergeben. Eine Rechnung ohne Zusammenfassung behält den Standardtext von Business Central, und das hält eine Übergabe nie auf. Der Entwurf bleibt in Business Central bearbeitbar, sodass Sie den Text vor dem Buchen ändern können.
 
 Ob der Text auch auf den Aufwandszeilen der Sachposten erscheint, hängt von einer Einstellung in Business Central ab: Ist in **Purchases & Payables Setup** die Option **Copy Line Descr. to G/L Entry** (Zeilenbeschreibung in den Sachposten kopieren) aktiviert, tragen diese Zeilen den Text der jeweiligen Rechnungszeile, und die Buchungsbeschreibung bleibt auf der Kreditorenseite.
+
+## Die AIFT-Kennung als Rechnungsnummer
+
+Ein Schalter unter **Einstellungen → Nummerierung** sorgt dafür, dass aus AI Finance Team übergebene Rechnungen in Business Central ihre AIFT-Kennung als Nummer erhalten (zum Beispiel AH2-INV-2026-0295) statt der nächsten Nummer aus der eigenen Nummernserie des Unternehmens. Sie wird zur Nummer des Entwurfs und nach dem Buchen auch zur Nummer der gebuchten Rechnung. In Business Central erfasste Rechnungen behalten ihre eigene Nummerierung.
+
+Zwei Dinge sollten Sie vorab wissen:
+
+- **Die Nummerierung hat Lücken, und zwei Formate laufen nebeneinander.** Die AIFT-Folge läuft über alle Unternehmen des Arbeitsbereichs und über Verkaufs- und Einkaufsrechnungen, daher folgen die AIFT-nummerierten Rechnungen innerhalb eines Unternehmens nicht lückenlos aufeinander. Die Jahreszahl ist das Ausstellungsjahr der Rechnung.
+- **Die AIFT-Kennung ersetzt nicht die Rechnungsnummer des Lieferanten.** Diese steht weiterhin im Feld für die Kreditorenrechnungsnummer.
+
+Damit die Nummer nach dem Buchen erhalten bleibt, entfernen wir am Entwurf die Nummernserie für gebuchte Rechnungen. Business Central übernimmt dann die Nummer des Entwurfs für die gebuchte Rechnung.
+
+### Was in Business Central eingerichtet werden muss
+
+Der Schalter funktioniert nur, wenn AI Finance Team lesen kann, aus welcher Nummernserie Einkaufsrechnungen ihre Nummern erhalten und ob diese manuelle Nummern zulässt. Dafür veröffentlicht der Business-Central-Administrator zwei Seiten als Webdienste, auf der Seite **Web Services** (Alt+Q):
+
+| Object Type | Object ID | Service Name | Published |
+|---|---|---|---|
+| Page | 460 | PurchasesPayablesSetup | angehakt |
+| Page | 456 | NoSeries | angehakt |
+
+Beide werden nur gelesen. Außerdem muss für die Nummernserie der Einkaufsrechnungen (**Invoice Nos.**) **Manual Nos.** eingeschaltet sein. In Business Central erfasste Rechnungen erhalten ihre Nummern weiterhin automatisch.
+
+**Schritte kopieren** auf der Seite Nummerierung legt diese Anleitung in die Zwischenablage, damit Sie sie an den Administrator weiterleiten können.
+
+### Prüfung und Ablehnung
+
+Beim Einschalten prüft AI Finance Team sofort alle zugeordneten Unternehmen und zeigt je Unternehmen: **Bereit**, **Nicht bereit** oder **Nicht prüfbar**. Bei den letzten beiden zeigt es auch den Schritt in Business Central, der das Problem löst.
+
+Vor jeder Übergabe wird erneut geprüft. **Ist ein Unternehmen nicht bereit oder nicht prüfbar, werden seine Rechnungen nicht übergeben**, und die Übergabeliste nennt den Grund. Mit einer Business-Central-Nummer geht dann auch nichts hinaus, weil eine bereits übergebene Rechnung nicht umnummeriert werden kann.
+
+Für den Schalter ist die Berechtigung „In das Buchhaltungssystem übertragen“ nötig.
 
 ## Wer was darf
 
