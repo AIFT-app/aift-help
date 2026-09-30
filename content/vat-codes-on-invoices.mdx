@@ -36,14 +36,14 @@ Four things you will see:
 - **A code with a warning triangle.** The code is still assigned, but the line's current elements no longer resolve to it. This is not a record of someone overriding the line: a rate change, a partner VAT group change or a VAT date change will all trip it. The assigned code still wins.
 
 <VatLinesGridFigure>
-Four lines, one in each of the four states. The numbers match the list below. The invoice and its amounts are examples.
+Four lines, one in each of the four states. The table is scrolled all the way to the right, so the line numbers and the start of each description are out of view on the left. The numbers match the list below. The invoice and its amounts are examples.
 </VatLinesGridFigure>
 
 1. **Add missing VAT codes** and **VAT coding OK**, the two bulk actions, with the line and missing-code count on the right.
 2. **P/S · Rate · Method**, the three elements. Only the unresolved line shows them here.
 3. **VAT code**, in all four states: plain, **Default**, `- missing -` beside **+ Add**, and a code with the warning triangle.
 
-The three element dropdowns are only shown inline **while the line is unresolved**. Once a code resolves, the cell reads **Resolved - see Advanced** and they move into the row's **Advanced** expander. That is the single most confusing behaviour on this screen, and it is deliberate: a finished line takes less room.
+The three element dropdowns are only shown inline **while the line is unresolved**. Once a code resolves, the cell reads **Resolved: see Advanced** and they move into the row's **Advanced** expander, which the arrow at the end of the row opens (its tooltip reads **Advanced**). That is the single most confusing behaviour on this screen, and it is deliberate: a finished line takes less room.
 
 Advanced also holds the non-deductible percentage override. Where a non-deductible share has been folded in, the row shows a **Booked** figure underneath, which is the gross treated as net.
 
@@ -54,7 +54,7 @@ An un-coded line reads **`- missing -`**, and the invoice picks up a **VAT codes
 Two ways forward, and they are not the same thing:
 
 - **The `+ Add` link beside the missing code creates a brand-new VAT code** in your master data for that combination of elements. Use it when the combination is genuinely missing from your table.
-- **To assign a code you already have**, open the row's **Advanced** expander and pick it there.
+- **To assign a code you already have**, open the row's **Advanced** expander with the arrow at the end of the row and pick it there.
 
 Two traps worth knowing. An invoice with **no lines at all** reads as complete, because completeness means "no line is missing a code" and there are no lines to check. And **re-extracting a document does not preserve your VAT corrections**: re-extraction deletes the line rows and inserts fresh ones. What is protected is an AI re-run over the existing rows, which leaves anything you set by hand alone.
 

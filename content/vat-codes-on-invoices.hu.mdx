@@ -36,14 +36,14 @@ Négy dolgot fog látni:
 - **Egy kód figyelmeztető háromszöggel.** A kód továbbra is hozzá van rendelve, de a sor jelenlegi elemei már nem oldódnak fel rá. Ez nem annak a nyoma, hogy valaki felülírta a sort: kulcsváltozás, a partner ÁFA-csoportjának módosítása vagy az ÁFA-dátum módosítása egyaránt kiváltja. A hozzárendelt kód akkor is érvényesül.
 
 <VatLinesGridFigure>
-Négy tétel, mindegyik a négy állapot egyikében. A számok az alábbi lista pontjainak felelnek meg. A számla és az összegei példák.
+Négy tétel, mindegyik a négy állapot egyikében. A táblázat a jobb széléig van görgetve, így a sorszámok és a leírások eleje balra kívül esik a képen. A számok az alábbi lista pontjainak felelnek meg. A számla és az összegei példák.
 </VatLinesGridFigure>
 
 1. A **Hiányzó ÁFA-kódok hozzáadása** és az **Áfakódolás rendben**, a két tömeges művelet, jobbra a tételek és a hiányzó kódok számával.
 2. A **T/Sz · Kulcs · Mód**, vagyis a három elem. Itt csak a feloldatlan sornál látszanak.
 3. Az **ÁFA-kód** mind a négy állapotban: sima kód, **Alapért.**, `- hiányzik -` a **+ Hozzáad** mellett, és egy kód figyelmeztető háromszöggel.
 
-A három elemválasztó csak addig látszik magában a sorban, **amíg a sor feloldatlan**. Ha egyszer feloldódik egy kód, a cellában **Feloldva - lásd Speciális** szerepel, a választók pedig átkerülnek a sor **Speciális** részébe. Ez a képernyő legfélrevezetőbb viselkedése, és szándékos: a kész sor kevesebb helyet foglal.
+A három elemválasztó csak addig látszik magában a sorban, **amíg a sor feloldatlan**. Ha egyszer feloldódik egy kód, a cellában **Feloldva: lásd Speciális** szerepel, a választók pedig átkerülnek a sor **Speciális** részébe, amelyet a sor végén álló nyíl nyit ki (ha fölé viszi az egeret, a **Speciális** felirat jelenik meg). Ez a képernyő legfélrevezetőbb viselkedése, és szándékos: a kész sor kevesebb helyet foglal.
 
 A Speciális rész tartalmazza a le nem vonható százalék felülírását is (**Le nem vonható % felülírás**). Ahol le nem vonható rész is beépült, a sor alatt egy **Könyvelendő** összeg jelenik meg, ami a nettóként kezelt bruttó.
 
@@ -54,7 +54,7 @@ A kód nélküli sorban **`- hiányzik -`** szerepel, a számla pedig **Hiányos
 Két út vezet előre, és nem ugyanazt jelentik:
 
 - **A hiányzó kód mellett álló `+ Hozzáad` link vadonatúj ÁFA-kódot hoz létre** a törzsadataiban, arra az elemkombinációra. Akkor használja, ha a kombináció valóban hiányzik a táblájából.
-- **Ha olyan kódot szeretne hozzárendelni, amely már megvan**, nyissa ki a sor **Speciális** részét, és ott válassza ki.
+- **Ha olyan kódot szeretne hozzárendelni, amely már megvan**, nyissa ki a sor **Speciális** részét a sor végén álló nyíllal, és ott válassza ki.
 
 Két csapdát érdemes ismerni. Az a számla, amelynek **egyáltalán nincsenek sorai**, teljesnek olvasódik, mert a teljesség azt jelenti, hogy „egyetlen sorból sem hiányzik kód”, ellenőrizendő sor viszont nincs. A **dokumentum újrakinyerése pedig nem őrzi meg az ÁFA-javításait**: az újrakinyerés törli a sorokat, és újakat szúr be. Ami védett, az a meglévő sorokon futó AI-újrafuttatás, amely érintetlenül hagyja mindazt, amit Ön kézzel állított be.
 
