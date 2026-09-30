@@ -65,15 +65,35 @@ Eine Unschönheit: Bei einem Beleg, dessen Kategorie archiviert wurde, steht der
 
 ## Wie die KI sie anwendet
 
-Sobald eine Rechnung oder Transaktion ihre normale Kategorisierung abgeschlossen hat, liest ein separater Lauf Ihre aktiven Listen und ordnet pro anwendbarer Liste eine Kategorie zu. Duplikate und abgelehnte Rechnungen werden übersprungen.
+Sobald eine Rechnung oder Transaktion ihre normale Kategorisierung abgeschlossen hat, liest ein separater Lauf Ihre aktiven Listen. Duplikate und abgelehnte Rechnungen werden übersprungen.
 
-- Eine sichere Zuordnung (**0.70** oder besser) wird übernommen und mit einem KI-Abzeichen und ihrem Wert angezeigt, zum Beispiel **KI 0.87**.
-- Darunter wird nichts geschrieben.
-- Auf einer **Pflichtliste** markiert eine leere Zuordnung den Beleg: Rechnungen zeigen einen bernsteinfarbenen Aufgaben-Chip und zählen in die Monatsabschluss-Prüfungen, und Banktransaktionen zeigen den Chip auf ihrer Detailseite, mit dem Filter **Eigene Kategorie fehlt** in der Transaktionsliste.
+- **Bei einer Banktransaktion** ordnet er pro anwendbarer Liste eine Kategorie zu.
+- **Bei einer Rechnung** antwortet er für **jede Position einzeln**, sodass ein Laptop und ein Flugticket auf derselben Rechnung auf verschiedenen Kostenstellen landen können.
+- Eine sichere Antwort (**0.70** oder besser) wird übernommen und mit dem Abzeichen **Hoch** oder **Mittel** angezeigt, denselben beiden, die auch die Buchungskategorie verwendet.
+- Ist die KI bei einer einzelnen Position unsicher, erhält die Position die Antwort der KI für die Rechnung als Ganzes, sofern diese sicher ist. Andernfalls bleibt die Position leer.
+- Auf einer **Pflichtliste** markiert ein leerer Wert den Beleg: Eine Rechnung mit auch nur einer leeren Position zeigt einen bernsteinfarbenen Aufgaben-Chip und zählt in die Monatsabschluss-Prüfungen, und Banktransaktionen zeigen den Chip auf ihrer Detailseite, mit dem Filter **Eigene Kategorie fehlt** in der Transaktionsliste.
+
+**Der feste Wert eines Partners kommt zuerst.** Hat der Partner für eine Liste eine feste eigene Kategorie (siehe unten), erhält jede Position diesen Wert, bevor die KI gefragt wird, und zu dieser Liste wird die KI gar nicht gefragt.
 
 **Nach drei Versuchen gibt die KI auf**, beim selben Beleg und derselben Liste, und lässt es dann sein. Zwei Dinge fragen sie erneut: eine Änderung an den Kategorien der Liste oder an ihrem Hinweistext, und der Lauf **Auf bestehende Belege anwenden**.
 
-Eine von Hand gewählte Kategorie gewinnt immer, und die KI überschreibt nie eine bestehende Zuordnung. Bei einer Rechnung gilt Ihre Wahl für die ganze Rechnung; wo die Zeilen voneinander abweichen, zeigt die Karte statt eines Werts **Je Zeile unterschiedlich**.
+Eine von Hand gewählte Kategorie gewinnt immer, und die KI überschreibt nie einen bestehenden Wert.
+
+## Einen Wert von Hand setzen
+
+**Bei einer Rechnung mit mehreren Positionen** öffnen Sie den Reiter **Positionen & USt.** Unter jeder Position steht ihr Wert für jede Liste, die Listennamen stehen in einer zweiten Kopfzeile:
+
+- Klicken Sie auf den Stift neben einem Wert, um ihn für diese Position zu ändern. Mit **Nicht gesetzt** löschen Sie ihn.
+- Der kleine Pfeil neben einem Listennamen setzt eine Kategorie auf **die Positionen, die noch leer sind**. Er ersetzt nie einen vorhandenen Wert und verschwindet, sobald keine Position mehr leer ist.
+- Ein violettes Abzeichen **Partnerregel** kennzeichnet einen Wert, der aus der festen eigenen Kategorie des Partners stammt. Ein Wert ohne Abzeichen wurde von einer Person gesetzt.
+
+Der Reiter **Übersicht** fasst die Rechnung zusammen: den einen Wert, den alle Positionen teilen, oder die Aufteilung mit der Anzahl der Positionen und dem Nettobetrag je Kategorie. Ein Auswahlfeld gibt es dort nicht. Soll jede Position der Rechnungen eines Partners denselben Wert erhalten, legen Sie ihn stattdessen beim Partner fest.
+
+**Bei einer Rechnung mit einer einzigen Position und bei einer Banktransaktion** befindet sich das Auswahlfeld auf der Karte selbst.
+
+## Einen Wert für einen Partner festlegen
+
+Gehört alles von einem Partner zur selben Kostenstelle oder zum selben Projekt, genügt es, das einmal einzustellen. Auf der Seite des Partners enthält der Reiter **Regeln** den Abschnitt **Feste eigene Kategorien** mit einem Auswahlfeld je Liste. Der Wert landet dann auf jeder Position der Rechnungen dieses Partners und auf seinen Banktransaktionen, sobald sie eintreffen, und **Auf vorhandene Datensätze anwenden** überträgt ihn auf den Bestand. Siehe [Partner](/partners).
 
 ## Bestehende Belege abdecken
 
@@ -87,7 +107,9 @@ Er hebt außerdem das Limit von drei Versuchen für alles auf, was er anfasst, s
 
 ## Wer sie ändern darf
 
-Listen anlegen und bearbeiten, Kategorien hinzufügen, importieren und archivieren sowie den Lauf über den Bestand starten: all das braucht die Berechtigung „Stammdaten bearbeiten“, die die Buchhaltung hat. Dasselbe gilt dafür, an einer Rechnung oder Transaktion eine eigene Kategorie von Hand zu setzen, was viele überrascht: Es sind Stammdaten, keine Belegbearbeitung.
+Listen anlegen und bearbeiten, Kategorien hinzufügen, importieren und archivieren sowie den Lauf über den Bestand starten: all das braucht die Berechtigung „Stammdaten bearbeiten“, die die Buchhaltung hat. Dasselbe gilt dafür, für einen Partner eine eigene Kategorie festzulegen.
+
+Eine eigene Kategorie von Hand an einem Beleg zu setzen ist eine Bearbeitung dieses Belegs: Bei einer Rechnung braucht es „Rechnungen bearbeiten“, bei einer Banktransaktion „Banktransaktionen bearbeiten“.
 
 Mandantenseitige Mitglieder sehen die Listen und ihre Kategorien, nur lesend.
 
