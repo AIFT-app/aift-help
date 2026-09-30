@@ -1,7 +1,8 @@
 // An app screen and a diagram for the roles-and-permissions article.
 //
-// The screen is rebuilt 1:1 from aift-web (origin/main, 2026-09-22), class for
-// class, with the real Catalyst components from the help mirror:
+// The screen is rebuilt 1:1 from aift-web (branch feat/roles-table-row-menu,
+// 2026-09-30), class for class, with the real Catalyst components from the
+// help mirror:
 //   the column    src/app/(app)/workspaces/[workspaceId]/settings/layout.tsx (max-w-3xl)
 //   Team layout   settings/team/layout.tsx + src/components/settings/SettingsPageHeader.tsx
 //                 + settings/team/_components/WorkspaceTeamTabs.tsx (all five
@@ -9,17 +10,27 @@
 //   Roles tab     settings/team/roles/page.tsx + roles/_components/RolesTable.tsx
 // When one of those files changes, re-copy the markup here. Data comes from
 // ./copy.ts and is fictional.
+//
+// The table has four columns: Role, Side, Members and an sr-only Actions
+// header. Each row ends with the app's own menu button (the real Catalyst
+// Dropdown, closed: the figure is inert, so the menu never opens and its items
+// are not in the DOM, exactly as in the app before a click). In the app a click
+// on a row opens the read-only View drawer, so its TableRow has an onClick and
+// renders `cursor-pointer`; ./ClickableRow.tsx gives the figure the same row.
 
 import clsx from 'clsx'
+import { EllipsisHorizontalIcon } from '@heroicons/react/20/solid'
 import type { Locale } from '@/lib/i18n'
 import { Badge } from '@/components/catalyst/badge'
 import { Button } from '@/components/catalyst/button'
 import { Divider } from '@/components/catalyst/divider'
+import { Dropdown, DropdownButton, DropdownItem, DropdownMenu } from '@/components/catalyst/dropdown'
 import { Heading } from '@/components/catalyst/heading'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/catalyst/table'
 import { Text } from '@/components/catalyst/text'
 import { AppScreen, Figure, Pin } from '../kit'
 import { StepList } from '../StepList'
+import { ClickableRow } from './ClickableRow'
 import { roleRows, rolesCopy } from './copy'
 
 type FigureProps = { locale: Locale; children?: React.ReactNode }
@@ -85,56 +96,66 @@ function RolesTab({ locale }: { locale: Locale }) {
               <TableRow>
                 <TableHeader>{r('col_role')}</TableHeader>
                 <TableHeader>{r('col_side')}</TableHeader>
-                <TableHeader>{r('col_based_on')}</TableHeader>
-                <TableHeader className="text-right">{r('col_members')}</TableHeader>
-                <TableHeader className="text-right">
+                <TableHeader className="pl-0 text-right">{r('col_members')}</TableHeader>
+                <TableHeader className="w-px pl-0 pr-2 text-right">
                   <span className="sr-only">{r('col_actions')}</span>
                 </TableHeader>
               </TableRow>
             </TableHead>
             <TableBody>
-              {roleRows(c.customRole).map((role, i) => (
-                <TableRow key={role.system ? role.key : role.name}>
-                  <TableCell>
-                    <div className="font-medium text-zinc-950 dark:text-white">
-                      {role.system ? systemLabel(role.key) : role.name}
-                      {i === 0 ? <Pin n={2} at="right" cancel="" /> : null}
-                      {!role.system ? <Pin n={3} at="right" cancel="" /> : null}
-                    </div>
-                    <div className="text-sm text-zinc-500 dark:text-zinc-400">
-                      {role.system ? r('system_role') : r('custom_role')}
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <Badge color="zinc">{ui[`permissions.side.${role.side}`]}</Badge>
-                  </TableCell>
-                  <TableCell className="text-zinc-500 dark:text-zinc-400">
-                    {role.system ? r('based_on_system') : systemLabel(role.base)}
-                  </TableCell>
-                  <TableCell className="text-right tabular-nums">{role.members}</TableCell>
-                  <TableCell className="text-right">
-                    <div className="flex justify-end gap-2">
-                      <Button plain type="button">
-                        {r('view')}
-                      </Button>
-                      {role.system ? (
-                        <Button plain type="button">
-                          {r('duplicate')}
-                        </Button>
-                      ) : (
-                        <>
-                          <Button plain type="button">
-                            {r('edit')}
-                          </Button>
-                          <Button plain type="button">
-                            {r('archive')}
-                          </Button>
-                        </>
-                      )}
-                    </div>
-                  </TableCell>
-                </TableRow>
-              ))}
+              {roleRows(c.customRole).map((role, i) => {
+                const name = role.system ? systemLabel(role.key) : role.name
+                return (
+                  <ClickableRow key={role.system ? role.key : role.name}>
+                    <TableCell>
+                      <div className="font-medium text-zinc-950 dark:text-white">
+                        {name}
+                        {i === 0 ? <Pin n={2} at="right" cancel="" /> : null}
+                        {!role.system ? <Pin n={3} at="right" cancel="" /> : null}
+                      </div>
+                      <div className="text-sm text-zinc-500 dark:text-zinc-400">
+                        {role.system ? (
+                          r('system_role')
+                        ) : (
+                          <>
+                            {r('custom_role')}
+                            <span aria-hidden="true">{' · '}</span>
+                            {r('view_based_on').replace('{base}', systemLabel(role.base))}
+                          </>
+                        )}
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <Badge color="zinc">{ui[`permissions.side.${role.side}`]}</Badge>
+                    </TableCell>
+                    <TableCell className="pl-0 text-right tabular-nums">{role.members}</TableCell>
+                    <TableCell className="w-px pl-0 pr-2 text-right">
+                      <div className="flex justify-end">
+                        <Dropdown>
+                          <DropdownButton
+                            as="button"
+                            aria-label={`${r('col_actions')}: ${name}`}
+                            className="rounded-md p-1 text-zinc-400 hover:bg-zinc-100 hover:text-zinc-600 focus:outline-none dark:hover:bg-zinc-800 dark:hover:text-zinc-300"
+                          >
+                            <EllipsisHorizontalIcon className="size-5" />
+                          </DropdownButton>
+                          <DropdownMenu anchor="bottom end">
+                            <DropdownItem>{r('view')}</DropdownItem>
+                            {role.system ? (
+                              <DropdownItem>{r('duplicate')}</DropdownItem>
+                            ) : (
+                              <>
+                                <DropdownItem>{r('edit')}</DropdownItem>
+                                <DropdownItem>{r('archive')}</DropdownItem>
+                              </>
+                            )}
+                          </DropdownMenu>
+                        </Dropdown>
+                      </div>
+                    </TableCell>
+                  </ClickableRow>
+                )
+              })}
             </TableBody>
           </Table>
         </div>
