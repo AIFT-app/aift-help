@@ -194,6 +194,14 @@ Four buttons sit beside Send, and they stay visible even when nothing is sendabl
 
 The mapping is applied to the draft immediately after it is created, because the interface has no payment-method field on the document itself. **A missing mapping is not an error** and never blocks a send. An individual invoice can override the mapping on its own payment tab, and the send list shows the code each invoice will go up with.
 
+## Posting Description
+
+In the same step as the payment method, each draft also gets its **Posting Description**: the invoice summary from AI Finance Team, so the vendor ledger entry and the general ledger show what the invoice is about instead of just "Invoice" and a number. Business Central allows 100 characters there. A longer summary is cut at the last whole word and ends with "…". The text keeps the invoice's own language, and no AI is used to shorten it.
+
+The send list shows the text under each invoice before you send it. An invoice without a summary keeps Business Central's own default text, and that never blocks a send. The draft stays editable in Business Central, so you can change the text before you post.
+
+Whether the text also appears on the expense lines of the general ledger depends on a Business Central setting: with **Copy Line Descr. to G/L Entry** switched on in Purchases & Payables Setup, those lines carry each invoice line's own text instead, and the Posting Description stays on the vendor side.
+
 ## Who Can Do What
 
 Connecting, disconnecting and pairing need the permission "Manage connections", held by default by the accountant admin and the finance lead. A custom role or an exception can change that. Everyone else sees the status and cannot change it.
