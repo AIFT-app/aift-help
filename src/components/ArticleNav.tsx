@@ -64,14 +64,14 @@ function PagerLink({
     <Link
       href={localizeHref(`/${slug}`, locale)}
       className={
-        'flex flex-col gap-0.5 rounded-xl border border-zinc-950/10 px-4 py-3 transition-colors hover:border-zinc-950/20 hover:bg-zinc-50 ' +
+        'flex flex-col gap-0.5 rounded-xl border border-zinc-950/10 px-4 py-3 transition-colors hover:border-zinc-950/20 hover:bg-zinc-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 ' +
         (dir === 'next' ? 'sm:items-end sm:text-right' : '')
       }
     >
       <span className="flex items-center gap-1 text-xs text-zinc-500">
         {dir === 'prev' && <Icon aria-hidden="true" className="size-3.5" />}
         {label}
-        {group && <span className="text-zinc-400">· {groupTitle(group, locale)}</span>}
+        {group && <span className="text-zinc-500">· {groupTitle(group, locale)}</span>}
         {dir === 'next' && <Icon aria-hidden="true" className="size-3.5" />}
       </span>
       <span className="text-sm font-medium text-zinc-950">{title}</span>

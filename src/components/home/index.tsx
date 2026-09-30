@@ -36,13 +36,13 @@ function TopicGrid({ locale }: { locale: Locale }) {
         <Link
           key={group.id}
           href={localizeHref(groupHref(group), locale)}
-          className="flex flex-col gap-1 rounded-xl border border-zinc-950/10 px-4 py-3 transition-colors hover:border-zinc-950/20 hover:bg-zinc-50"
+          className="flex flex-col gap-1 rounded-xl border border-zinc-950/10 px-4 py-3 transition-colors hover:border-zinc-950/20 hover:bg-zinc-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
         >
           <span className="flex items-baseline justify-between gap-2">
             <span className="text-sm font-semibold text-zinc-950">{groupTitle(group, locale)}</span>
-            <span className="shrink-0 text-xs text-zinc-400">{articleCount(group.items.length, locale)}</span>
+            <span className="shrink-0 text-xs text-zinc-500">{articleCount(group.items.length, locale)}</span>
           </span>
-          <span className="text-sm/5 text-zinc-500">{groupDescription(group, locale)}</span>
+          <span className="text-sm/5 text-zinc-600">{groupDescription(group, locale)}</span>
         </Link>
       ))}
     </div>
