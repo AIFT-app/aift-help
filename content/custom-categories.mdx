@@ -75,7 +75,7 @@ After an invoice or transaction has finished its normal categorisation, a separa
 
 **A partner's fixed value comes first.** If the partner has a fixed custom category for a list (see below), every line gets it before the AI is asked, and the AI is not asked about that list at all.
 
-**The AI gives up after three tries** on the same record and list, and then leaves it alone. Two things ask it again: changing the list's categories or its guidance, and running **Apply to existing items**.
+**The AI asks once** per record and list. What it leaves empty stays empty until a person fills it, because asking the same question again gives the same answer. Two things ask it again: changing the list's categories or its guidance, and running **Apply to existing items**.
 
 A category you pick by hand always wins, and the AI never overwrites an existing value.
 
@@ -103,7 +103,7 @@ A new list only applies to items that arrive after it. To cover history, use **A
 - It covers **every list that is still missing on an item**, not only one.
 - One run processes up to 2,000 records in total, invoices first. Run it again for the rest.
 
-It also clears the three-attempt limit for what it touches, so records the AI had given up on are asked again.
+It also asks again about records the AI had already left empty.
 
 ## Who Can Change Them
 
