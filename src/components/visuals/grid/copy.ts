@@ -59,8 +59,6 @@ type Copy = {
     'selection_grid.find_next': string
     'selection_grid.find_clear': string
     'selection_grid.select_all': string
-    'selection_grid.cancel': string
-    'selection_grid.review': string
     'selection_grid.hint_move': string
     'selection_grid.hint_more_rows': string
     'selection_grid.hint_tick': string
@@ -84,6 +82,8 @@ type Copy = {
     'master_data_import.action.create': string
     'master_data_import.action.skip_exact': string
     'master_data_import.reason.code_exists': string
+    'master_data_import.back': string
+    'master_data_import.grid.create': string
   }
   /** Strings the app builds from an ICU pattern, rendered out. */
   rendered: {
@@ -109,8 +109,8 @@ const en: Copy = {
     'selection_grid.find_next': 'Next match',
     'selection_grid.find_clear': 'Clear the search',
     'selection_grid.select_all': 'Select all',
-    'selection_grid.cancel': 'Cancel',
-    'selection_grid.review': 'Review',
+    'master_data_import.back': 'Back',
+    'master_data_import.grid.create': 'Create',
     'selection_grid.hint_move': 'move',
     'selection_grid.hint_more_rows': 'more rows',
     'selection_grid.hint_tick': 'tick',
@@ -167,8 +167,8 @@ const hu: Copy = {
     'selection_grid.find_next': 'Következő találat',
     'selection_grid.find_clear': 'Keresés törlése',
     'selection_grid.select_all': 'Mindet kijelölöm',
-    'selection_grid.cancel': 'Mégse',
-    'selection_grid.review': 'Átnézem',
+    'master_data_import.back': 'Vissza',
+    'master_data_import.grid.create': 'Létrehozom',
     'selection_grid.hint_move': 'mozgás',
     'selection_grid.hint_more_rows': 'több sor',
     'selection_grid.hint_tick': 'pipa',
@@ -225,8 +225,8 @@ const de: Copy = {
     'selection_grid.find_next': 'Nächster Treffer',
     'selection_grid.find_clear': 'Suche löschen',
     'selection_grid.select_all': 'Alle auswählen',
-    'selection_grid.cancel': 'Abbrechen',
-    'selection_grid.review': 'Prüfen',
+    'master_data_import.back': 'Zurück',
+    'master_data_import.grid.create': 'Anlegen',
     'selection_grid.hint_move': 'bewegen',
     'selection_grid.hint_more_rows': 'mehrere Zeilen',
     'selection_grid.hint_tick': 'Haken',
