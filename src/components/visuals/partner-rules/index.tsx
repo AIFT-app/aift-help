@@ -61,8 +61,9 @@ export function PartnerRulesFigure({ locale, children }: FigureProps) {
                 </span>
               </div>
 
-              <div className="flex items-start justify-between gap-4">
-                <div>
+              {/* aift-web PageTitleRow (components/layout), class for class. */}
+              <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-3">
+                <div className="min-w-0 flex-1 basis-56">
                   <div className="flex flex-wrap items-center gap-3">
                     <Heading>{PARTNER}</Heading>
                   </div>
