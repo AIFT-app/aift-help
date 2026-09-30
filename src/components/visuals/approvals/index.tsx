@@ -58,12 +58,12 @@ function ApprovalsPage({ locale, children }: { locale: Locale; children: React.R
       <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
         <Heading>{ui['approvals.title']}</Heading>
         {/* An approver has no Overview link (it is shown to manage_approvals only). */}
-        <nav className="flex items-baseline gap-5">
+        <nav className="flex items-baseline flex-wrap gap-x-5 gap-y-1">
           <span className="text-sm text-zinc-500">{ui['approvals.tabs.decided']}</span>
         </nav>
       </div>
       {/* The checkpoints are off in this workspace, so Payment is the only queue. */}
-      <nav className="mt-4 flex gap-1 border-b border-zinc-200 dark:border-zinc-700">
+      <nav className="mt-4 flex flex-wrap gap-1 border-b border-zinc-200 dark:border-zinc-700">
         <span aria-current="page" className="-mb-px border-b-2 border-zinc-950 px-3 py-2 text-sm font-medium text-zinc-950 dark:border-white dark:text-white">
           {ui['approvals.tabs.queue']} <span className="tabular-nums opacity-60">{c.counts.mine}</span>
         </span>

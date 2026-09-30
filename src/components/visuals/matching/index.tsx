@@ -211,9 +211,12 @@ function MatchingPage({ locale }: { locale: Locale }) {
   const groups = c.queue.groups
   return (
     <div className="px-4 py-8 sm:px-6 lg:px-8">
-      <div className="flex items-center justify-between">
-        <Heading>{ui['matching.page.title']}</Heading>
-        <div className="flex items-center gap-2">
+      {/* aift-web PageTitleRow (components/layout), class for class. */}
+      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
+        <div className="min-w-0 flex-1 basis-56">
+          <Heading>{ui['matching.page.title']}</Heading>
+        </div>
+        <div className="flex max-w-full flex-wrap items-center gap-2">
           <Pin n={2} at="left" cancel="-mr-2" />
           <div className="relative">
             <Button outline>
@@ -228,7 +231,7 @@ function MatchingPage({ locale }: { locale: Locale }) {
         </div>
       </div>
 
-      <div className="mt-6 flex gap-1 border-b border-zinc-200 dark:border-zinc-700">
+      <div className="mt-6 flex flex-wrap gap-1 border-b border-zinc-200 dark:border-zinc-700">
         <span className={tabClass(false)}>{ui['matching.page.tab_overview']}</span>
         <span className={tabClass(true)}>
           <Pin n={1} at="above" cancel="" />
