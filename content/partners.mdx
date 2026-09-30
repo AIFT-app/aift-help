@@ -81,7 +81,7 @@ The **Recognition** tab of a partner. The numbers match the list below. The part
 
 ### Rules tab
 
-**VAT group** (the partner's VAT classification, used to resolve the VAT codes on its invoices) and **Always sells** (the product or service VAT group this supplier always invoices) set its VAT defaults; see [VAT Master Data](/vat-master-data). Below them are three rules that take a decision away from the AI for a partner whose bookings never vary.
+**VAT group** (the partner's VAT classification, used to resolve the VAT codes on its invoices) and **Always sells** (the product or service VAT group this supplier always invoices) set its VAT defaults; see [VAT Master Data](/vat-master-data). Below them are four rules that take a decision away from the AI for a partner whose bookings never vary.
 
 #### Fixed invoice category
 
@@ -93,13 +93,19 @@ The category must be an active invoice category whose direction fits the invoice
 
 Every bank transaction from this partner is booked to this category **when it has none**. Unlike the invoice rule, it does not overrule a category that is already there. It only sets the category; whether a transaction needs an invoice is decided by [Transaction types](/transaction-types), which the tab links to.
 
+#### Fixed custom categories
+
+Shown once the workspace has an active [custom category list](/custom-categories), with one picker per list. Every line of this partner's invoices, and every bank transaction from it, gets the picked value **before the AI is asked**, and the record shows it with a purple **Partner rule** badge. A list that applies to invoices only, or to bank transactions only, says so under its name and does nothing on the other side.
+
+Like the transaction rule, it fills what is empty and does not replace a value that is already there. A value that was switched off makes the rule inactive, with an amber note under the picker until you choose another.
+
 #### Fixed payment method
 
 For partners whose invoices state the wrong payment method, most often a card payment reported as cash, which closes the invoice and keeps it out of matching. Unlike the categories it is **forward-only**, with no run on existing records. See [Fixing a Partner's Payment Method](/fixed-payment-method).
 
 #### Your own edits always win
 
-Neither category rule overwrites a category a person set by hand, neither automatically nor in the run on existing records below.
+None of the category rules overwrites a value a person set by hand, neither automatically nor in the run on existing records below.
 
 ### Applying a category rule to records you already have
 
@@ -118,6 +124,8 @@ Worth knowing:
 - **Which date decides the period.** Invoices use the date your workspace's default date basis names (under **Settings → Ledger defaults**; the fulfilment date unless you changed it), falling back to the issue date. Bank transactions use their booking date.
 - **Invoices already exported.** If an invoice in range was already included in an RLB export, the dialog says so. It is still re-booked; check with the office before re-booking a closed period.
 - **There is no undo**, and the run is capped at 2000 records; above that, narrow the period.
+
+**Fixed custom categories** have the same button and the same dialog, with three differences. One run covers the partner's invoices and its bank transactions together. It replaces values the AI set and leaves hand-set values alone, line by line. And its button reads **Apply**, because a custom category is a label and not a booking.
 
 ## Duplicate partners
 
@@ -142,6 +150,7 @@ When partner A is merged into partner B:
 - every name, alternative name and name pattern linked to A moves to B, and A's name becomes an alternative name of B;
 - B's empty tax number, country and address are filled in from A; if the two have different tax numbers, you are asked which to keep;
 - A's bank accounts are **not** copied: check B's **Recognition** tab afterwards;
+- A's fixed custom categories move to B; where both have one for the same list, B's stays;
 - A is archived with a reference to B, and all pending duplicate suggestions involving A are dismissed.
 
 A partner with a special role cannot be merged. The merge is one-way and cannot be undone.

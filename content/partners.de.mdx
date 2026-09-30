@@ -81,7 +81,7 @@ Der Reiter **Erkennung** eines Partners. Die Nummern entsprechen der Liste darun
 
 ### Reiter Regeln
 
-**USt-Gruppe** (die USt-Einstufung des Partners, mit der die USt-Codes auf seinen Rechnungen ermittelt werden) und **Verkauft immer** (die Produkt- oder Leistungs-USt-Gruppe, die dieser Lieferant immer in Rechnung stellt) legen seine USt-Standardwerte fest; siehe [USt-Stammdaten](/vat-master-data). Darunter stehen drei Regeln, die der KI bei einem Partner, dessen Buchungen sich nie ändern, eine Entscheidung abnehmen.
+**USt-Gruppe** (die USt-Einstufung des Partners, mit der die USt-Codes auf seinen Rechnungen ermittelt werden) und **Verkauft immer** (die Produkt- oder Leistungs-USt-Gruppe, die dieser Lieferant immer in Rechnung stellt) legen seine USt-Standardwerte fest; siehe [USt-Stammdaten](/vat-master-data). Darunter stehen vier Regeln, die der KI bei einem Partner, dessen Buchungen sich nie ändern, eine Entscheidung abnehmen.
 
 #### Feste Rechnungskategorie
 
@@ -93,13 +93,19 @@ Die Kategorie muss eine aktive Rechnungskategorie sein, deren Richtung zur Rechn
 
 Jede Banktransaktion dieses Partners wird dieser Kategorie zugeordnet, **wenn sie noch keine hat**. Anders als die Rechnungsregel setzt sie sich nicht über eine bereits vorhandene Kategorie hinweg. Sie setzt nur die Kategorie; ob eine Transaktion eine Rechnung braucht, entscheiden die [Transaktionstypen](/transaction-types), auf die der Reiter verweist.
 
+#### Feste eigene Kategorien
+
+Erscheint, sobald der Arbeitsbereich eine aktive [eigene Kategorieliste](/custom-categories) hat, mit einem Auswahlfeld je Liste. Jede Position der Rechnungen dieses Partners und jede seiner Banktransaktionen erhält den gewählten Wert, **bevor die KI gefragt wird**, und der Beleg zeigt ihn mit einem violetten Abzeichen **Partnerregel**. Eine Liste, die nur für Rechnungen oder nur für Banktransaktionen gilt, sagt das unter ihrem Namen und bewirkt auf der anderen Seite nichts.
+
+Wie die Transaktionsregel füllt sie, was leer ist, und ersetzt keinen bereits vorhandenen Wert. Wird der gewählte Wert deaktiviert, wird die Regel inaktiv, und unter dem Auswahlfeld steht ein gelber Hinweis, bis Sie einen anderen wählen.
+
 #### Feste Zahlungsart
 
 Für Partner, deren Rechnungen die falsche Zahlungsart nennen, meist eine als Barzahlung gemeldete Kartenzahlung, was die Rechnung schließt und von der Zuordnung ausnimmt. Anders als die Kategorien wirkt sie **nur nach vorn**, ohne Lauf auf vorhandene Datensätze. Siehe [Die Zahlungsart eines Partners festlegen](/fixed-payment-method).
 
 #### Ihre eigenen Änderungen haben immer Vorrang
 
-Keine der beiden Kategorieregeln überschreibt eine von Hand gesetzte Kategorie, weder automatisch noch beim Lauf auf vorhandene Datensätze unten.
+Keine der Kategorieregeln überschreibt einen von Hand gesetzten Wert, weder automatisch noch beim Lauf auf vorhandene Datensätze unten.
 
 ### Eine Kategorieregel auf bereits vorhandene Datensätze anwenden
 
@@ -118,6 +124,8 @@ Gut zu wissen:
 - **Welches Datum über den Zeitraum entscheidet.** Rechnungen verwenden das Datum, das der Standard-Datumsbezug Ihres Arbeitsbereichs benennt (unter **Einstellungen → Buchungs-Standardwerte**; das Leistungsdatum, sofern Sie es nicht geändert haben), ersatzweise das Rechnungsdatum. Banktransaktionen verwenden ihr Buchungsdatum.
 - **Bereits exportierte Rechnungen.** War eine Rechnung im Zeitraum bereits in einem RLB-Export enthalten, weist der Dialog darauf hin. Sie wird trotzdem neu gebucht; stimmen Sie sich mit der Kanzlei ab, bevor Sie einen abgeschlossenen Zeitraum neu buchen.
 - **Es gibt kein Rückgängig**, und der Lauf ist auf 2000 Datensätze begrenzt; darüber grenzen Sie den Zeitraum ein.
+
+Die **Festen eigenen Kategorien** haben dieselbe Schaltfläche und denselben Dialog, mit drei Unterschieden. Ein Lauf umfasst die Rechnungen und die Banktransaktionen des Partners zusammen. Er ersetzt Werte, die die KI gesetzt hat, und lässt von Hand gesetzte Werte Position für Position unberührt. Und seine Schaltfläche heißt **Anwenden**, weil eine eigene Kategorie ein Etikett ist und keine Buchung.
 
 ## Doppelte Partner
 
@@ -142,6 +150,7 @@ Wenn Partner A mit Partner B zusammengeführt wird und B bestehen bleibt:
 - jeder mit A verknüpfte Name, alternative Name und jedes Namensmuster geht auf B über, und der Name von A wird ein alternativer Name von B;
 - eine leere Steuernummer, ein leeres Land und eine leere Adresse von B werden aus A ergänzt; haben die beiden unterschiedliche Steuernummern, werden Sie gefragt, welche Sie behalten;
 - die Bankkonten von A werden **nicht** kopiert: Prüfen Sie danach den Reiter **Erkennung** von B;
+- die festen eigenen Kategorien von A gehen auf B über; haben beide eine für dieselbe Liste, bleibt die von B;
 - A wird mit einem Verweis auf B archiviert, und alle ausstehenden Duplikatvorschläge, die A betreffen, werden verworfen.
 
 Ein Partner mit einer Sonderrolle kann nicht zusammengeführt werden. Die Zusammenführung erfolgt in eine Richtung und kann nicht rückgängig gemacht werden.

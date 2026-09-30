@@ -81,7 +81,7 @@ A **Bankszámlák** azok a bankszámlák, amelyekre a partnernek utalnak. A szá
 
 ### Szabályok fül
 
-Az **ÁFA-csoport** (a partner ÁFA-besorolása, amely alapján a rendszer meghatározza a számláin szereplő ÁFA-kódokat) és a **Mindig ezt értékesíti** (az a termék- vagy szolgáltatás-ÁFA-csoport, amelyet ez a szállító mindig számláz) adja meg a partner ÁFA-alapértelmezéseit; lásd: [ÁFA-törzsadatok](/vat-master-data). Alattuk három szabály található, amelyek egy döntést levesznek az AI válláról olyan partnernél, amelynek könyvelése soha nem változik.
+Az **ÁFA-csoport** (a partner ÁFA-besorolása, amely alapján a rendszer meghatározza a számláin szereplő ÁFA-kódokat) és a **Mindig ezt értékesíti** (az a termék- vagy szolgáltatás-ÁFA-csoport, amelyet ez a szállító mindig számláz) adja meg a partner ÁFA-alapértelmezéseit; lásd: [ÁFA-törzsadatok](/vat-master-data). Alattuk négy szabály található, amelyek egy döntést levesznek az AI válláról olyan partnernél, amelynek könyvelése soha nem változik.
 
 #### Rögzített számlakategória
 
@@ -93,13 +93,19 @@ A kategóriának aktív számlakategóriának kell lennie, amelynek iránya illi
 
 A partner minden banki tranzakciója ebbe a kategóriába kerül, **ha még nincs kategóriája**. A számlaszabállyal ellentétben nem írja felül a már meglévő kategóriát. Csak a kategóriát állítja be; arról, hogy egy tranzakcióhoz kell-e számla, a [Tranzakciótípusok](/transaction-types) döntenek, amelyekre a fül hivatkozást is tartalmaz.
 
+#### Rögzített egyéni kategóriák
+
+Akkor jelenik meg, ha a munkaterületen van aktív [egyéni kategórialista](/custom-categories), listánként egy választóval. A partner számláinak minden sora és minden banki tranzakciója a kiválasztott értéket kapja, **még mielőtt a rendszer az AI-t megkérdezné**, a tételen pedig lila **Partnerszabály** jelvény jelzi. Az a lista, amely csak számlákra vagy csak banki tranzakciókra vonatkozik, ezt a neve alatt jelzi, és a másik oldalon nem tesz semmit.
+
+A tranzakciószabályhoz hasonlóan azt tölti ki, ami üres, és a már meglévő értéket nem cseréli le. Ha a kiválasztott értéket kikapcsolják, a szabály inaktívvá válik, és a választó alatt borostyánsárga megjegyzés áll, amíg másikat nem választ.
+
 #### Rögzített fizetési mód
 
 Azokra a partnerekre való, amelyek számlái rossz fizetési módot tüntetnek fel, leggyakrabban készpénzesként jelentett kártyás fizetést, ami lezárja a számlát, és kihagyja a párosításból. A kategóriákkal ellentétben **csak előre hat**, a meglévő tételeken nem futtatható. Lásd: [A partner fizetési módjának rögzítése](/fixed-payment-method).
 
 #### A saját szerkesztései mindig elsőbbséget élveznek
 
-Egyik kategóriaszabály sem írja felül a kézzel beállított kategóriát, sem automatikusan, sem az alábbi, meglévő tételeken végzett futtatásban.
+Egyik kategóriaszabály sem írja felül a kézzel beállított értéket, sem automatikusan, sem az alábbi, meglévő tételeken végzett futtatásban.
 
 ### Kategóriaszabály alkalmazása a már meglévő tételekre
 
@@ -118,6 +124,8 @@ Mindkét kategóriaszabály azt könyveli, ami a mentésük után érkezik. A **
 - **Melyik dátum dönt az időszakról.** A számláknál a munkaterület alapértelmezett dátumalapja szerinti dátum számít (a **Beállítások → Könyvelési alapértelmezések** alatt; a teljesítés dátuma, ha nem módosította), ennek hiányában a kiállítás dátuma. A banki tranzakcióknál a könyvelési dátum számít.
 - **Már exportált számlák.** Ha az időszakban van olyan számla, amely már szerepelt RLB-exportban, a párbeszédablak jelzi. Ezt is újrakönyveli a rendszer; lezárt időszak újrakönyvelése előtt egyeztessen az irodával.
 - **Visszavonás nincs**, és a futtatás legfeljebb 2000 tételre terjed ki; ennél több esetén szűkítse az időszakot.
+
+A **Rögzített egyéni kategóriák** szakaszban ugyanez a gomb és ugyanez a párbeszédablak található, három különbséggel. Egy futtatás a partner számláira és banki tranzakcióira együtt terjed ki. Az AI által beállított értékeket lecseréli, a kézzel beállítottakat soronként érintetlenül hagyja. A gombján pedig **Alkalmazás** áll, mert az egyéni kategória címke, nem könyvelés.
 
 ## Duplikált partnerek
 
@@ -142,6 +150,7 @@ Amikor az A partnert a B partnerbe vonja össze:
 - az A-hoz kapcsolt minden név, alternatív név és névminta átkerül a B-hez, az A neve pedig a B alternatív neve lesz;
 - a B üres adószáma, országa és címe az A adataiból töltődik ki; ha a kettőnek eltérő az adószáma, a rendszer megkérdezi, melyiket tartsa meg;
 - az A bankszámlái **nem** másolódnak át: utána ellenőrizze a B **Felismerés** fülét;
+- az A rögzített egyéni kategóriái átkerülnek a B-hez; ha ugyanahhoz a listához mindkettőnek van, a B-é marad;
 - az A archiválódik, a B-re mutató hivatkozással, és az A-t érintő összes függőben lévő duplikációs javaslat elvetésre kerül.
 
 Különleges szerepű partner nem vonható össze. Az összevonás egyirányú, és nem vonható vissza.

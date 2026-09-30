@@ -65,15 +65,37 @@ One rough edge: on a record whose category was archived, the name still shows bu
 
 ## How the AI Applies Them
 
-After an invoice or transaction has finished its normal categorisation, a separate pass reads your active lists and assigns one category per applicable list. Duplicates and rejected invoices are skipped.
+After an invoice or transaction has finished its normal categorisation, a separate pass reads your active lists. Duplicates and rejected invoices are skipped.
 
-- A confident assignment (**0.70** or better) is applied and shown with an AI badge and its score, for example **AI 0.87**.
-- Below that, nothing is written.
-- On a **mandatory** list, an empty assignment flags the item: invoices show an amber to-do chip and count into the monthly closing checks, and bank transactions show the chip on their detail page, with a **Custom category missing** filter on the list.
+- **On a bank transaction** it assigns one category per applicable list.
+- **On an invoice** it answers for **every line separately**, so a laptop and a plane ticket on the same invoice can land in different cost centres.
+- A confident answer (**0.70** or better) is applied and shown with a **High** or **Medium** badge, the same two the accounting category uses.
+- When the AI is unsure about a single line, that line takes the AI's answer for the invoice as a whole, if that answer is confident. Otherwise the line stays empty.
+- On a **mandatory** list, an empty value flags the item: an invoice with even one empty line shows an amber to-do chip and counts into the monthly closing checks, and bank transactions show the chip on their detail page, with a **Custom category missing** filter on the list.
 
-**The AI gives up after three tries** on the same record and list, and then leaves it alone. Two things ask it again: changing the list's categories or its guidance, and running **Apply to existing items**.
+**A partner's fixed value comes first.** If the partner has a fixed custom category for a list (see below), every line gets it before the AI is asked, and the AI is not asked about that list at all.
 
-A category you pick by hand always wins, and the AI never overwrites an existing assignment. On an invoice, your choice applies to the whole invoice; where lines disagree, the card shows **Mixed per line** instead of a value.
+**The AI asks once** per record and list. What it leaves empty stays empty until a person fills it, because asking the same question again gives the same answer. Two things ask it again: changing the list's categories or its guidance, and running **Apply to existing items**.
+
+A category you pick by hand always wins, and the AI never overwrites an existing value.
+
+## Setting a Value by Hand
+
+**On an invoice with several lines**, open the **Lines & VAT** tab. Under each line sits its value for every list, with the list names in a second header row:
+
+- Click the pencil beside a value to change it for that line. Pick **Not set** to clear it.
+- The small arrow beside a list name sets one category on **the lines that are still empty**. It never replaces a value that is already there, and it disappears once no line is empty.
+- A purple **Partner rule** badge marks a value that came from the partner's fixed custom category. A value with no badge was set by a person.
+
+The **Overview** tab summarises the invoice: the one value every line shares, or the split, with the number of lines and the net amount per category. There is no picker on it. To give every line of a partner's invoices the same value, fix it on the partner instead.
+
+**On an invoice with a single line, and on a bank transaction**, the picker is on the card itself.
+
+## Fixing a Value for a Partner
+
+When everything from one partner belongs to the same cost centre or project, set it once. On the partner's page, the **Rules** tab has a **Fixed custom categories** section with one picker per list. The value then lands on every line of that partner's invoices and on its bank transactions as they arrive, and **Run on existing records** applies it to what you already have. See [Partners](/partners).
+
+The same rules are on the list's own page, in the **Fixed value per partner** section: every partner with a value for that list, and who set it when. **Add partner** picks a partner and a value. Each row's menu changes the value, runs it on existing records (for that list only) or removes it. Both places change the same rule. A client-side member with the permission "Edit custom categories" sets it here, because the partner page is for the accounting firm.
 
 ## Covering Items You Already Have
 
@@ -83,13 +105,17 @@ A new list only applies to items that arrive after it. To cover history, use **A
 - It covers **every list that is still missing on an item**, not only one.
 - One run processes up to 2,000 records in total, invoices first. Run it again for the rest.
 
-It also clears the three-attempt limit for what it touches, so records the AI had given up on are asked again.
+It also asks again about records the AI had already left empty.
 
 ## Who Can Change Them
 
-Creating and editing lists, adding, importing and archiving categories, and running the backfill all need the permission "Edit master data", which accountants hold. So does setting a custom category by hand on an invoice or transaction, which surprises people: it is master data, not a record edit.
+Creating and editing lists, adding, importing and archiving categories, and running the backfill all need the permission "Edit master data", which accountants hold. Fixing a custom category for a partner needs "Edit master data" or "Edit custom categories".
 
-Client-side members see the lists and their categories, read-only.
+Setting a custom category by hand on a record needs the permission "Edit custom categories". Both accountant roles hold it, and on the client side the Finance lead and the Finance admin hold it by default. A Team member does not. A member who can edit the record itself ("Edit invoices" on an invoice, "Edit bank transactions" on a bank transaction) can set it without that permission.
+
+Client-side members see the lists and their categories, read-only. A client-side member with "Edit custom categories" can also set a category on an invoice line or a bank transaction, and can change one the accountant set by hand.
+
+Every change made by hand is on the record's **History** tab: who changed which list, on which line, from what to what.
 
 ## Using a List in Reports
 
