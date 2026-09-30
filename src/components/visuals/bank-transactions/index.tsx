@@ -3,11 +3,11 @@
 // The screen is rebuilt 1:1 from aift-web (origin/main, 2026-09-29,
 // list-table-layout), class for class, with the real Catalyst table from the
 // help mirror. Re-copied on 2026-09-30 from branch feat/page-layout-sweep
-// (commit 6fbf3325, PRD page-layout-sweep): the Category column renders
-// through the shared CategoryCell, the GL code first and then the name in one
-// flow ("Mindig a kód legyen elöl", Balázs 2026-09-30); until then it was
-// TextCell, the name over the code. The Party floor follows column-sizes.ts
-// too (10.5rem since app-typeface-geist).
+// (commits 6fbf3325 and 18de3d20, PRD page-layout-sweep): the Category column
+// renders through the shared CategoryCell, the GL code first and then the
+// name in one flow of up to three lines ("Mindig a kód legyen elöl", Balázs
+// 2026-09-30); until then it was TextCell, the name over the code. The Party
+// floor follows column-sizes.ts too (10.5rem since app-typeface-geist).
 //   TransactionTable src/app/(app)/workspaces/[workspaceId]/transactions/_components/TransactionListShell.tsx
 //                    (the columns and the amber rail) rendered by
 //                    src/components/list-view/sortable-table.tsx (tableLayout
@@ -161,12 +161,14 @@ function Row({ row, locale, marker }: { row: ListRow; locale: Locale; marker?: n
       <TableCell>
         <div style={{ minWidth: CATEGORY_FLOOR }}>
           {/* text-cell.tsx CategoryCell: the GL code first, then the name, in
-              one flow of up to two lines */}
+              one flow of up to three lines. The code is followed by a real
+              space inside its span (codeLead), not a margin, so the name
+              breaks at word boundaries. */}
           <div
-            className="line-clamp-2 min-w-0 wrap-anywhere text-sm text-zinc-700 dark:text-zinc-300"
+            className="line-clamp-3 min-w-0 wrap-anywhere text-sm text-zinc-700 dark:text-zinc-300"
             title={`${row.code} · ${row.category}`}
           >
-            <span className="mr-1.5 font-mono text-xs tabular-nums text-zinc-500 dark:text-zinc-400">{row.code}</span>
+            <span className="font-mono text-xs tabular-nums text-zinc-500 dark:text-zinc-400">{`${row.code} `}</span>
             {row.category}
           </div>
         </div>
