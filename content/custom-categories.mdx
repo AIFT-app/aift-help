@@ -95,6 +95,8 @@ The **Overview** tab summarises the invoice: the one value every line shares, or
 
 When everything from one partner belongs to the same cost centre or project, set it once. On the partner's page, the **Rules** tab has a **Fixed custom categories** section with one picker per list. The value then lands on every line of that partner's invoices and on its bank transactions as they arrive, and **Run on existing records** applies it to what you already have. See [Partners](/partners).
 
+The same rules are on the list's own page, in the **Fixed value per partner** section: every partner with a value for that list, and who set it when. **Add partner** picks a partner and a value. Each row's menu changes the value, runs it on existing records (for that list only) or removes it. Both places change the same rule. A client-side member with the permission "Edit custom categories" sets it here, because the partner page is for the accounting firm.
+
 ## Covering Items You Already Have
 
 A new list only applies to items that arrive after it. To cover history, use **Apply to existing items** on the **Custom Categories** page itself, next to **+ New List**. It appears once the workspace has at least one list.
@@ -107,7 +109,7 @@ It also asks again about records the AI had already left empty.
 
 ## Who Can Change Them
 
-Creating and editing lists, adding, importing and archiving categories, and running the backfill all need the permission "Edit master data", which accountants hold. So does fixing a custom category for a partner.
+Creating and editing lists, adding, importing and archiving categories, and running the backfill all need the permission "Edit master data", which accountants hold. Fixing a custom category for a partner needs "Edit master data" or "Edit custom categories".
 
 Setting a custom category by hand on a record needs the permission "Edit custom categories". Both accountant roles hold it, and on the client side the Finance lead and the Finance admin hold it by default. A Team member does not. A member who can edit the record itself ("Edit invoices" on an invoice, "Edit bank transactions" on a bank transaction) can set it without that permission.
 
