@@ -202,6 +202,38 @@ A feladási lista minden számla alatt megmutatja a szöveget, mielőtt elkülde
 
 Hogy a szöveg a főkönyv költségsorain is megjelenik-e, az egy Business Central-beállításon múlik: ha a **Purchases & Payables Setup** oldalon a **Copy Line Descr. to G/L Entry** (a sorleírás másolása a főkönyvi tételbe) be van kapcsolva, ezek a sorok a számlasorok saját szövegét kapják, a könyvelési szöveg pedig a szállítói oldalon marad.
 
+## Az AIFT azonosító mint számlaszám
+
+A **Beállítások → Számozás** oldalon egy kapcsolóval kérheti, hogy az AI Finance Team-ből feladott számlák a Business Centralban az AIFT azonosítót kapják számként (például AH2-INV-2026-0295), ne a cég saját számkörének következő számát. Ez lesz a piszkozat száma, és könyvelés után a könyvelt számláé is. A Business Centralban rögzített számlák megtartják a saját számozásukat.
+
+Két dolgot érdemes előre tudni:
+
+- **A számozásban hézagok lesznek, és két formátum fut egymás mellett.** Az AIFT sorszám a munkaterület összes cégén, a vevő- és a szállítói számlákon is átfut, így egy cégen belül az AIFT-számú számlák nem követik egymást folyamatosan. Az évszám a számla kiállítási éve.
+- **Az AIFT azonosító nem helyettesíti a szállító számlaszámát.** Az továbbra is a szállítói számlaszám mezőbe kerül.
+
+Hogy könyvelés után is megmaradjon a szám, a piszkozatról levesszük a könyvelt számlák számkörét. A Business Central ilyenkor a piszkozat számát viszi tovább a könyvelt számlára.
+
+### Amit a Business Centralban be kell állítani
+
+A kapcsoló csak akkor működik, ha az AI Finance Team ki tudja olvasni, melyik számkörből kapnak számot a szállítói számlák, és azon engedélyezve van-e a kézi számozás. Ehhez a Business Central rendszergazdájának két oldalt kell közzétennie webszolgáltatásként, a **Web Services** oldalon (Alt+Q):
+
+| Object Type | Object ID | Service Name | Published |
+|---|---|---|---|
+| Page | 460 | PurchasesPayablesSetup | bepipálva |
+| Page | 456 | NoSeries | bepipálva |
+
+Mindkettőt csak olvassuk. Ezen felül a szállítói számlák számkörén (**Invoice Nos.**) be kell kapcsolni a **Manual Nos.** beállítást. A Business Centralban rögzített számlák ettől ugyanúgy automatikusan kapják a számukat.
+
+A Számozás oldal **Lépések másolása** gombja ezt az útmutatót a vágólapra teszi, hogy továbbküldhesse a rendszergazdának.
+
+### Ellenőrzés és elutasítás
+
+Bekapcsoláskor az AI Finance Team azonnal ellenőrzi az összes párosított céget, és cégenként kiírja: **Kész**, **Nincs kész** vagy **Nem ellenőrizhető**. Az utóbbi kettőnél azt a Business Central-lépést is megmutatja, amely megoldja.
+
+Minden feladás előtt újra ellenőriz. **Ha egy cég nem áll készen, vagy nem ellenőrizhető, az oda szánt számlákat nem adjuk fel**, és a feladási lista megmondja, miért. Business Central-számmal ilyenkor sem megy fel semmi, mert egy már feladott számlát utólag nem lehet átszámozni.
+
+A kapcsolóhoz a „Feladás a könyvelőprogramba” jogosultság kell.
+
 ## Ki mit tehet
 
 Az összekötéshez, a szétkapcsoláshoz és a párosításhoz a „Kapcsolatok kezelése” jogosultság kell, amely alapból a Könyvelő adminé és a Pénzügyi vezetőé. Egyéni szerepkör vagy kivétel ezen változtathat. Mindenki más látja az állapotot, de nem tudja módosítani.

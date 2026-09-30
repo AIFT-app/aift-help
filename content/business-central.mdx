@@ -202,6 +202,38 @@ The send list shows the text under each invoice before you send it. An invoice w
 
 Whether the text also appears on the expense lines of the general ledger depends on a Business Central setting: with **Copy Line Descr. to G/L Entry** switched on in Purchases & Payables Setup, those lines carry each invoice line's own text instead, and the Posting Description stays on the vendor side.
 
+## The AIFT Id as the Invoice Number
+
+A switch under **Settings → Numbering** makes invoices sent from AI Finance Team take their AIFT id as their number in Business Central (for example AH2-INV-2026-0295), instead of the next number of the company's own series. It becomes the draft's number and, once posted, the posted invoice's number too. Invoices typed into Business Central keep their own numbering.
+
+Two things to know first:
+
+- **The numbering will have gaps, and two formats run side by side.** The AIFT sequence runs across every company in the workspace and across sales and purchase invoices, so within one company the AIFT-numbered invoices are not consecutive. The year is the invoice's issue year.
+- **The AIFT id does not replace the supplier's invoice number.** That still goes into the vendor invoice number field.
+
+To keep the number after posting, we clear the posted-invoice number series on the draft. Business Central then carries the draft's number over to the posted invoice.
+
+### What has to be set in Business Central
+
+The switch works only if AI Finance Team can read which number series purchase invoices use, and whether it accepts manual numbers. For that, the Business Central administrator publishes two pages as web services, on the **Web Services** page (Alt+Q):
+
+| Object Type | Object ID | Service Name | Published |
+|---|---|---|---|
+| Page | 460 | PurchasesPayablesSetup | ticked |
+| Page | 456 | NoSeries | ticked |
+
+Both are read only. On top of that, **Manual Nos.** must be switched on for the purchase invoice number series (**Invoice Nos.**). Invoices typed into Business Central still get their numbers automatically.
+
+**Copy these steps** on the Numbering page puts these instructions on your clipboard, ready to forward to the administrator.
+
+### Checking and refusing
+
+When you switch it on, AI Finance Team checks every paired company at once and shows, per company: **Ready**, **Not ready** or **Cannot check**. For the last two it also shows the Business Central step that fixes it.
+
+Every send checks again. **If a company is not ready, or cannot be checked, its invoices are not sent**, and the send list says why. Nothing goes out with a Business Central number instead, because an invoice already sent cannot be renumbered.
+
+The switch needs the "Push into the accounting system" permission.
+
 ## Who Can Do What
 
 Connecting, disconnecting and pairing need the permission "Manage connections", held by default by the accountant admin and the finance lead. A custom role or an exception can change that. Everyone else sees the status and cannot change it.
