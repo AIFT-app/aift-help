@@ -17,7 +17,7 @@ Und selbst dann:
 
 - **Es wird nie etwas gebucht.** Die Einkaufsrechnung wird als **Entwurf** angelegt und bleibt es. Buchen wäre über die Schnittstelle möglich, und wir nutzen das bewusst nicht: Ein aus falschen Daten gebuchter Beleg muss storniert werden, was dauerhafte Spuren im Hauptbuch hinterlässt, während ein Entwurf mit einem Klick gelöscht ist. Das Buchen bleibt Sache der Buchhaltung, in Business Central.
 - **Ein vorhandener Datensatz wird nie überschrieben.** Ein Kreditorenstammsatz mit derselben Steuernummer wird stattdessen mit Ihrem Partner verknüpft, und ein vorhandener Beleg wird nie angerührt.
-- **Wir löschen nur, was wir selbst angelegt haben.** Zwei Bedienelemente löschen, beide auf dem Übergabebildschirm: Die Sonde entfernt den Wegwerf-Entwurf, den sie soeben erstellt hat, und die Bereinigung entfernt Entwürfe, deren Übergabe AI Finance Team erfasst, aber nie verknüpft hat. Sonst wird nie etwas gelöscht, und nichts, was Business Central nicht als Entwurf führt.
+- **Wir löschen nur, was wir selbst angelegt haben.** Drei Bedienelemente löschen, alle auf dem Übergabebildschirm: Die Sonde entfernt den Wegwerf-Entwurf, den sie soeben erstellt hat, der Nummerierungstest entfernt seinen erfundenen AIFT-TESZT-Entwurf (und einen, den ein früherer Test zurückgelassen hat), und die Bereinigung entfernt Entwürfe, deren Übergabe AI Finance Team erfasst, aber nie verknüpft hat. Sonst wird nie etwas gelöscht, und nichts, was Business Central nicht als Entwurf führt.
 
 ## Die Verbindung einrichten
 
@@ -181,10 +181,11 @@ Eine Rechnung, die bereits dort liegt, verlässt die Zahl der übergabebereiten,
 
 ### Die Wartungsschaltflächen
 
-Neben **Übergeben** stehen vier Schaltflächen, und sie bleiben auch dann sichtbar, wenn nichts übergabebereit ist: Ein liegengebliebener Entwurf im Hauptbuch des Mandanten ist für alle unsichtbar, die keinen Business-Central-Zugang haben.
+Neben **Übergeben** stehen fünf Schaltflächen, und sie bleiben auch dann sichtbar, wenn nichts übergabebereit ist: Ein liegengebliebener Entwurf im Hauptbuch des Mandanten ist für alle unsichtbar, die keinen Business-Central-Zugang haben.
 
 - **Sonde** legt aus einer echten Rechnung einen echten Wegwerf-Entwurf an und löscht ihn wieder. Sie beantwortet, ob dieses Business Central dieselbe Lieferantenrechnungsnummer ein zweites Mal annimmt, und zeigt nebeneinander, was wir gesendet haben und was Business Central gespeichert hat.
 - **Was BC über einen Kreditor liefert** liest einen Kreditorenstammsatz und schreibt nichts.
+- **Nummerierungstest (erfundene Rechnung)** legt einen erfundenen Einkaufsrechnungsentwurf mit der Nummer AIFT-TESZT-… an, leert seine Buchungsnummernserie, fügt eine Zeile hinzu und löscht ihn wieder. Er zeigt, ob dieses Business Central unsere eigene Nummer als Rechnungsnummer annimmt (siehe unten: Die AIFT-Kennung als Rechnungsnummer). Vorher fragt er nach einer Bestätigung.
 - **Abgebrochene Übergaben klären** fragt nach, was aus einer Übergabe wurde, deren Antwort verloren ging. Es sendet nichts und löscht nichts.
 - **Nach zurückgebliebenen Entwürfen suchen** findet Entwürfe, deren Übergabe wir erfasst, aber nie verknüpft haben. Das Löschen ist eine eigene, rote Schaltfläche **Aus Business Central löschen**: Prüfen und Löschen sind bewusst zwei Schritte.
 
