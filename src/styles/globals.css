@@ -82,8 +82,8 @@
 }
 .app-screen .font-sans {
   /* Likewise: aift-web maps font-sans to var(--font-geist-sans). The screen
-     already inherits Geist, but without this rule the help site's own
-     `font-sans` (Inter, @theme below) would win on elements that ask for it. */
+     inherits Geist, and the site's own `font-sans` is Geist too since
+     2026-09-30; the rule stays so a later site font cannot reach a screen. */
   font-family: var(--font-geist-sans);
 }
 
@@ -106,9 +106,13 @@
   padding-inline-end: 2.5em;
 }
 
+/* The site's own type is the app's: Geist for text, Geist Mono for code
+   (PRD help-home-and-navigation D1, 2026-09-30; the app switched to Geist on
+   2026-09-29). Both come from src/components/visuals/fonts.ts, set on <html>
+   in layout.tsx, so the site and the app-screen figures load one font. */
 @theme inline {
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
 body {

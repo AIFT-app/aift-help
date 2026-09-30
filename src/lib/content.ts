@@ -68,3 +68,27 @@ export function extractHeadings(content: string): Heading[] {
   }
   return headings
 }
+
+/**
+ * An article's opening paragraph as plain text, for the topic pages: the
+ * first prose paragraph after the H1, with links, emphasis and code markers
+ * dropped. Illustration tags and import lines are skipped. Long intros are cut
+ * at a word boundary.
+ */
+export async function getArticleIntro(slug: string, locale: Locale, maxLength = 220): Promise<string> {
+  const { content } = await getArticle(slug, locale)
+  const paragraphs = stripCodeFences(content).split(/\n\s*\n/)
+  const prose = paragraphs
+    .map((block) => block.trim())
+    .find((block) => block && !/^(#|<|import |export |\||>|[-*+] |\d+\. )/.test(block))
+  if (!prose) return ''
+  const text = prose
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+    .replace(/`([^`]*)`/g, '$1')
+    .replace(/\*\*|__|\*/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+  if (text.length <= maxLength) return text
+  const cut = text.slice(0, maxLength)
+  return `${cut.slice(0, cut.lastIndexOf(' '))}…`
+}
