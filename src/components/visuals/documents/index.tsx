@@ -71,12 +71,17 @@ export function DocumentsListFigure({
         <AppScreen minWidth={SCREEN_MIN_WIDTH}>
           <div className="bg-white p-4">
             <div>
-              <div className="flex items-start justify-between gap-4">
-                <Heading>{ui['documents.title']}</Heading>
+              {/* aift-web PageTitleRow (components/layout), class for class. */}
+              <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-3">
+                <div className="min-w-0 flex-1 basis-56">
+                  <Heading>{ui['documents.title']}</Heading>
+                </div>
                 {/* `above` would put the marker outside the screen's top edge,
                     which AppScreen clips; `left` drops it into the flex gap. */}
                 <Pin n={1} at="left" cancel="-mr-4" />
-                <Button>{ui['documents.upload']}</Button>
+                <div className="flex max-w-full flex-wrap items-center gap-2">
+                  <Button>{ui['documents.upload']}</Button>
+                </div>
               </div>
               <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">
                 {ui['documents.description']}

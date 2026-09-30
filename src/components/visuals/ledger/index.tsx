@@ -115,12 +115,12 @@ export function LedgerFiltersFigure({
                 <Pin n={1} at="right" cancel="" />
               </div>
               <div className={clsx(
-                  'flex items-center gap-2 rounded-lg border bg-white px-3 py-2 shadow-sm transition-colors',
+                  'flex flex-wrap items-center gap-2 rounded-lg border bg-white px-3 py-2 shadow-sm transition-colors',
                   'dark:bg-zinc-900',
                   'border-zinc-300 dark:border-zinc-700',
                 )}>
                 <SparkleIcon />
-                <span className="flex-1 text-sm text-zinc-400">
+                <span className="min-w-0 flex-1 basis-48 text-sm text-zinc-400">
                   {ui['ledger_nl.placeholder_default']}
                 </span>
                 <SubmitHint />
@@ -208,7 +208,7 @@ export function LedgerFiltersFigure({
             </div>
 
             {/* ── the five tabs ──────────────────────────────────────────── */}
-            <div role="tablist" className="flex border-b border-zinc-200 dark:border-zinc-700">
+            <div role="tablist" className="flex flex-wrap border-b border-zinc-200 dark:border-zinc-700">
               {TABS.map((t) => {
                 const isActive = t.key === ACTIVE_TAB
                 return (

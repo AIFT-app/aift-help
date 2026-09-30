@@ -114,8 +114,9 @@ function PartnerPage({ locale }: { locale: Locale }) {
         </a>
       </div>
 
-      <div className="flex items-start justify-between gap-4">
-        <div>
+      {/* aift-web PageTitleRow (components/layout), class for class. */}
+      <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-3">
+        <div className="min-w-0 flex-1 basis-56">
           <div className="flex flex-wrap items-center gap-3">
             <Heading>{PARTNER}</Heading>
           </div>
@@ -123,7 +124,7 @@ function PartnerPage({ locale }: { locale: Locale }) {
             <Badge color="zinc">{ui['master_data.partners.detail.chip_fixed_invoice_category']}</Badge>
           </div>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex max-w-full flex-wrap items-center gap-2">
           <Button plain>{ui['master_data.partners.detail.merge_into']}</Button>
         </div>
       </div>
