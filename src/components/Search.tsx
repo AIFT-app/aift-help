@@ -48,6 +48,9 @@ function KeyHint({ children }: { children: React.ReactNode }) {
   )
 }
 
+/** Dispatched on `window` by any control that should open the search dialog. */
+export const OPEN_SEARCH_EVENT = 'aift-help:open-search'
+
 export function Search() {
   const [open, setOpen] = useState(false)
   const [query, setQuery] = useState('')
@@ -89,6 +92,13 @@ export function Search() {
     }
     window.addEventListener('keydown', onKeyDown)
     return () => window.removeEventListener('keydown', onKeyDown)
+  }, [])
+
+  // The home page's search box opens this same dialog.
+  useEffect(() => {
+    const onOpen = () => setOpen(true)
+    window.addEventListener(OPEN_SEARCH_EVENT, onOpen)
+    return () => window.removeEventListener(OPEN_SEARCH_EVENT, onOpen)
   }, [])
 
   const ensureIndex = useCallback(() => {
