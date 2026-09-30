@@ -109,9 +109,11 @@ It also asks again about records the AI had already left empty.
 
 Creating and editing lists, adding, importing and archiving categories, and running the backfill all need the permission "Edit master data", which accountants hold. So does fixing a custom category for a partner.
 
-Setting a custom category by hand on a record is an edit of that record: it needs "Edit invoices" on an invoice and "Edit bank transactions" on a bank transaction.
+Setting a custom category by hand on a record needs the permission "Edit custom categories". Both accountant roles hold it, and on the client side the Finance lead and the Finance admin hold it by default. A Team member does not. A member who can edit the record itself ("Edit invoices" on an invoice, "Edit bank transactions" on a bank transaction) can set it without that permission.
 
-Client-side members see the lists and their categories, read-only.
+Client-side members see the lists and their categories, read-only. A client-side member with "Edit custom categories" can also set a category on an invoice line or a bank transaction, and can change one the accountant set by hand.
+
+Every change made by hand is on the record's **History** tab: who changed which list, on which line, from what to what.
 
 ## Using a List in Reports
 
