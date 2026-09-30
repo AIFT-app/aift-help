@@ -1,7 +1,7 @@
 // The Lines & VAT grid, for the vat-codes-on-invoices article.
 //
 // Rebuilt 1:1 from aift-web (branch feat/page-layout-sweep, 2026-09-29, PRD
-// page-layout-sweep, up to commit 73eebb7f of 2026-09-30), class for class:
+// page-layout-sweep, up to commit 18de3d20 of 2026-09-30), class for class:
 //   src/app/(app)/workspaces/[workspaceId]/invoices/[invoiceId]/(tabs)/
 //     _components/MergedLinesVatGrid.tsx: the toolbar, the table head, the row
 //     cells, CategoryCell's resting state, ElementSelects (inline, flex-wrap:
@@ -92,11 +92,13 @@ const TH_RIGHT = 'pb-2 pr-3 text-right text-xs font-medium uppercase tracking-wi
 /**
  * CategoryCell's `label`, for a category a person or the AI has confirmed:
  * the Code first, then the name, in one flow that wraps onto a second line.
+ * The Code is followed by a real space inside its span (the app's codeLead),
+ * not a margin, so the name breaks at word boundaries.
  */
 function CategoryLabel({ code, name }: { code: string; name: string }) {
   return (
     <span className="min-w-0 wrap-anywhere text-xs">
-      <span className="mr-1 font-mono tabular-nums text-zinc-400 dark:text-zinc-500">{code}</span>
+      <span className="font-mono tabular-nums text-zinc-400 dark:text-zinc-500">{`${code} `}</span>
       <span className="text-zinc-900 dark:text-zinc-100">{name}</span>
     </span>
   )
