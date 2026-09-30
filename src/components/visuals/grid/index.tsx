@@ -4,7 +4,8 @@
 //   src/components/selection-grid/SelectionGrid.tsx — the subtitle row, the
 //     search box, the match counter and its buttons, the Matches only switch,
 //     the grid frame, the sticky header, the group rows, RowViewInner and its
-//     four states, the amber match marks, the status line and the footer.
+//     four states, the amber match marks, the status line and the footer
+//     (its button group re-copied 2026-09-30, phone-width-header-rows).
 //   src/components/master-data-import/import-grid/ImportGrid.tsx — the column
 //     set of the accounting-categories import (code / name / direction /
 //     status / note) and its 900px minWidth.
@@ -399,14 +400,23 @@ export function SelectionGridFigure({ locale, children }: { locale: Locale; chil
               </div>
 
               {/* The footer is the grid root's FOURTH child, separated by its
-                  gap-3.5 — not a sibling of the root. */}
+                  gap-3.5, not a sibling of the root. The two buttons are ONE
+                  group carrying ml-auto (phone-width-header-rows), so on a
+                  phone they drop to a second line together, on the right. */}
               <div className="flex flex-none flex-wrap items-center gap-x-3 gap-y-2">
-                <span className="mr-auto text-sm text-zinc-500 dark:text-zinc-400">{c.rendered.tickedSummary}</span>
-                {/* On the footer, not on the status line above: that line's key
-                    hints fill its whole width in all three locales. */}
-                <Pin n={7} at="left" cancel="-mr-3" />
-                <Button plain>{ui['selection_grid.cancel']}</Button>
-                <Button>{ui['selection_grid.review']}</Button>
+                <span className="text-sm text-zinc-500 dark:text-zinc-400">{c.rendered.tickedSummary}</span>
+                {/* Right after the count it numbers, and on the footer, not on
+                    the status line above: that line's key hints fill its whole
+                    width in all three locales. Before the group, never in it:
+                    the group's ml-auto takes the free space, so the marker
+                    stays beside the count. */}
+                <Pin n={7} at="right" cancel="-mr-3" />
+                <div className="ml-auto flex flex-wrap justify-end gap-x-3 gap-y-2">
+                  {/* The import's own labels (ImportGrid cancelLabel /
+                      reviewLabel), not the grid's defaults. */}
+                  <Button plain>{ui['master_data_import.back']}</Button>
+                  <Button>{ui['master_data_import.grid.create']}</Button>
+                </div>
               </div>
             </div>
           </div>
