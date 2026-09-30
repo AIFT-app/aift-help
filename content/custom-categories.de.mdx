@@ -75,7 +75,7 @@ Sobald eine Rechnung oder Transaktion ihre normale Kategorisierung abgeschlossen
 
 **Der feste Wert eines Partners kommt zuerst.** Hat der Partner für eine Liste eine feste eigene Kategorie (siehe unten), erhält jede Position diesen Wert, bevor die KI gefragt wird, und zu dieser Liste wird die KI gar nicht gefragt.
 
-**Nach drei Versuchen gibt die KI auf**, beim selben Beleg und derselben Liste, und lässt es dann sein. Zwei Dinge fragen sie erneut: eine Änderung an den Kategorien der Liste oder an ihrem Hinweistext, und der Lauf **Auf bestehende Belege anwenden**.
+**Die KI fragt einmal** je Beleg und Liste. Was sie leer lässt, bleibt leer, bis eine Person es ausfüllt, denn dieselbe Frage erneut zu stellen ergibt dieselbe Antwort. Zwei Dinge fragen sie erneut: eine Änderung an den Kategorien der Liste oder an ihrem Hinweistext, und der Lauf **Auf bestehende Belege anwenden**.
 
 Eine von Hand gewählte Kategorie gewinnt immer, und die KI überschreibt nie einen bestehenden Wert.
 
@@ -103,7 +103,7 @@ Eine neue Liste gilt nur für Belege, die nach ihr eintreffen. Für die Historie
 - Der Lauf deckt **jede Liste ab, die an einem Beleg noch fehlt**, nicht nur eine.
 - Ein Lauf verarbeitet insgesamt bis zu 2.000 Belege, Rechnungen zuerst. Für den Rest führen Sie ihn erneut aus.
 
-Er hebt außerdem das Limit von drei Versuchen für alles auf, was er anfasst, sodass Belege, bei denen die KI aufgegeben hatte, erneut gefragt werden.
+Er fragt außerdem erneut zu Belegen, die die KI bereits leer gelassen hatte.
 
 ## Wer sie ändern darf
 

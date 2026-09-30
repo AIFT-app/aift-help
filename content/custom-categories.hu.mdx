@@ -75,7 +75,7 @@ Miután egy számla vagy tranzakció végzett a normál kategorizálással, egy 
 
 **A partner rögzített értéke az első.** Ha a partnernek egy listához van rögzített egyéni kategóriája (lásd lejjebb), minden sor azt kapja, még mielőtt a rendszer az AI-t megkérdezné, és az AI-t arról a listáról meg sem kérdezi.
 
-**Az AI három próbálkozás után feladja** ugyanazon a tételen és listán, és onnantól békén hagyja. Két dolog kérdezi meg újra: ha módosítja a lista kategóriáit vagy az útmutatóját, illetve ha lefuttatja az **Alkalmazás meglévő tételekre** műveletet.
+**Az AI egyszer kérdez** tételenként és listánként. Amit üresen hagy, az üres marad, amíg egy ember ki nem tölti, mert ugyanarra a kérdésre újra ugyanazt a választ adná. Két dolog kérdezi meg újra: ha módosítja a lista kategóriáit vagy az útmutatóját, illetve ha lefuttatja az **Alkalmazás meglévő tételekre** műveletet.
 
 A kézzel választott kategória mindig erősebb, és az AI soha nem ír felül meglévő értéket.
 
@@ -103,7 +103,7 @@ Az új lista csak az utána érkező tételekre vonatkozik. A múlt lefedéséhe
 - **Minden olyan listát lefed, amely egy tételről még hiányzik**, nem csak egyet.
 - Egy futtatás összesen legfeljebb 2000 tételt dolgoz fel, előbb a számlákat. A maradékhoz futtassa újra.
 
-A háromszori próbálkozás korlátját is törli azon, amihez hozzányúl, így az AI azokkal a tételekkel is újra megpróbálkozik, amelyeket korábban feladott.
+Azokról a tételekről is újra megkérdezi az AI-t, amelyeket az korábban üresen hagyott.
 
 ## Ki módosíthatja
 
