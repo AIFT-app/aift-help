@@ -30,8 +30,12 @@ export function DocsHeader() {
             </button>
             {/* One line at every width: below 360px (small phones) the "| Help"
                 suffix goes, so the brand never wraps under the header icons. */}
+            {/* The app's own brand row (aift-web AppSidebar / MobileNavbar): the
+                logo, then the lowercase wordmark in bold. */}
             <a href={localizeHref('/', locale)} className="flex items-center gap-2.5 whitespace-nowrap">
-              <span className="text-sm font-semibold text-zinc-950">AI Finance Team</span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/logo.avif" alt="" className="size-6 shrink-0" />
+              <span className="text-sm font-bold text-zinc-950">ai finance team</span>
               <span className="text-zinc-200 max-[360px]:hidden">|</span>
               <span className="text-sm text-zinc-500 max-[360px]:hidden">{t.helpSuffix}</span>
             </a>

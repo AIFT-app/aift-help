@@ -22,10 +22,10 @@ export function SearchHero({ locale }: { locale: Locale }) {
       <button
         type="button"
         onClick={() => window.dispatchEvent(new Event(OPEN_SEARCH_EVENT))}
-        className="flex w-full items-center gap-3 rounded-xl border border-zinc-950/10 bg-white px-4 py-3 text-left text-base text-zinc-500 shadow-sm transition-colors hover:border-zinc-950/20 sm:text-sm"
+        className="flex w-full items-center gap-3 rounded-xl border border-zinc-950/10 bg-white px-4 py-3 text-left text-base text-zinc-500 shadow-sm transition-colors hover:border-zinc-950/20 sm:text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
       >
         <MagnifyingGlassIcon aria-hidden="true" className="size-5 shrink-0 text-zinc-400" />
-        <span className="min-w-0 flex-1 truncate">{t.searchPlaceholder}</span>
+        <span className="min-w-0 flex-1 truncate text-zinc-500">{t.searchPlaceholder}</span>
         <kbd className="hidden shrink-0 rounded border border-zinc-950/10 px-1.5 font-sans text-xs text-zinc-400 sm:inline">
           {isMac ? '⌘K' : 'Ctrl K'}
         </kbd>

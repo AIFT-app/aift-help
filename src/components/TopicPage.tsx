@@ -23,18 +23,18 @@ export async function TopicPage({ group, locale }: { group: NavGroup; locale: Lo
             {t.home}
           </Link>
           <ChevronRightIcon aria-hidden="true" className="size-4 text-zinc-300" />
-          <span>{t.topics}</span>
+          <span aria-current="page">{groupTitle(group, locale)}</span>
         </nav>
         <h1 className="text-3xl font-bold tracking-tight text-zinc-950 max-sm:text-[30px]">{groupTitle(group, locale)}</h1>
         <p className="mt-3 text-lg/7 text-zinc-600">{groupDescription(group, locale)}</p>
-        <p className="mt-1 text-sm text-zinc-400">{articleCount(group.items.length, locale)}</p>
+        <p className="mt-1 text-sm text-zinc-500">{articleCount(group.items.length, locale)}</p>
 
         <ul className="mt-8 flex flex-col gap-3">
           {group.items.map((item, i) => (
             <li key={item.slug}>
               <Link
                 href={localizeHref(`/${item.slug}`, locale)}
-                className="flex flex-col gap-1 rounded-xl border border-zinc-950/10 px-5 py-4 transition-colors hover:border-zinc-950/20 hover:bg-zinc-50"
+                className="flex flex-col gap-1 rounded-xl border border-zinc-950/10 px-5 py-4 transition-colors hover:border-zinc-950/20 hover:bg-zinc-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
               >
                 <span className="flex flex-wrap items-center gap-2">
                   <span className="text-base font-semibold text-zinc-950">{navTitle(item, locale)}</span>
