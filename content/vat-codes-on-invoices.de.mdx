@@ -36,14 +36,14 @@ Vier Dinge, die Sie sehen werden:
 - **Ein Code mit einem Warndreieck.** Der Code bleibt zugewiesen, aber die aktuellen Elemente der Position lösen sich nicht mehr zu ihm auf. Das ist kein Nachweis dafür, dass jemand die Position übersteuert hat: Eine Satzänderung, eine Änderung der Partner-USt-Gruppe und eine Änderung des USt-Datums lösen es alle aus. Der zugewiesene Code gilt weiterhin.
 
 <VatLinesGridFigure>
-Vier Positionen, jede in einem der vier Zustände. Die Nummern entsprechen der Liste darunter. Die Rechnung und ihre Beträge sind Beispiele.
+Vier Positionen, jede in einem der vier Zustände. Die Tabelle ist ganz nach rechts gescrollt, sodass die Positionsnummern und der Anfang der Beschreibungen links außerhalb des Bildes liegen. Die Nummern entsprechen der Liste darunter. Die Rechnung und ihre Beträge sind Beispiele.
 </VatLinesGridFigure>
 
 1. **Fehlende USt-Codes hinzufügen** und **USt-Codierung OK**, die beiden Sammelaktionen, rechts die Zahl der Positionen und der fehlenden Codes.
 2. **P/D · Satz · Methode**, die drei Elemente. Nur die nicht aufgelöste Position zeigt sie hier.
 3. Der **USt-Code** in allen vier Zuständen: schlicht, **Standard**, `- fehlt -` neben **+ Hinzufügen**, und ein Code mit dem Warndreieck.
 
-Die drei Element-Auswahlfelder erscheinen nur direkt in der Zeile, **solange die Position nicht aufgelöst ist**. Sobald ein Code aufgelöst ist, zeigt die Zelle **Aufgelöst - siehe Erweitert**, und sie wandern in den Bereich **Erweitert** der Zeile. Das ist das verwirrendste Verhalten auf diesem Bildschirm, und es ist Absicht: Eine fertige Position braucht weniger Platz.
+Die drei Element-Auswahlfelder erscheinen nur direkt in der Zeile, **solange die Position nicht aufgelöst ist**. Sobald ein Code aufgelöst ist, zeigt die Zelle **Aufgelöst: siehe Erweitert**, und sie wandern in den Bereich **Erweitert** der Zeile, den der Pfeil am Ende der Zeile öffnet (sein Tooltip lautet **Erweitert**). Das ist das verwirrendste Verhalten auf diesem Bildschirm, und es ist Absicht: Eine fertige Position braucht weniger Platz.
 
 Erweitert enthält auch die Überschreibung des nicht abziehbaren Prozentsatzes (**Nicht abziehbar %-Überschreibung**). Wo ein nicht abziehbarer Anteil eingerechnet wurde, zeigt die Zeile darunter einen Betrag **Gebucht**, also den Bruttobetrag, der als Netto behandelt wird.
 
@@ -54,7 +54,7 @@ Eine nicht codierte Position zeigt **`- fehlt -`**, und die Rechnung erhält in 
 Zwei Wege nach vorn, und sie sind nicht dasselbe:
 
 - **Der Link `+ Hinzufügen` neben dem fehlenden Code legt einen ganz neuen USt-Code** in Ihren Stammdaten für diese Elementkombination an. Nutzen Sie ihn, wenn die Kombination in Ihrer Tabelle wirklich fehlt.
-- **Um einen Code zuzuweisen, den Sie schon haben**, öffnen Sie den Bereich **Erweitert** der Zeile und wählen ihn dort aus.
+- **Um einen Code zuzuweisen, den Sie schon haben**, öffnen Sie den Bereich **Erweitert** der Zeile mit dem Pfeil am Ende der Zeile und wählen ihn dort aus.
 
 Zwei Fallen, die man kennen sollte. Eine Rechnung **ohne jede Position** liest sich als vollständig, denn Vollständigkeit heißt „keiner Position fehlt ein Code“, und es gibt keine Position zu prüfen. Und **eine erneute Extraktion des Dokuments erhält Ihre USt-Korrekturen nicht**: Die erneute Extraktion löscht die Positionszeilen und fügt neue ein. Geschützt ist ein erneuter KI-Lauf über die vorhandenen Zeilen, der alles unberührt lässt, was Sie von Hand gesetzt haben.
 

@@ -1,9 +1,11 @@
 // Labels for the Lines & VAT grid figure, keyed by aift-web message key so a
 // drift check can compare them to messages/<locale>.json directly.
 //
-// Rebuilt 1:1 from aift-web (origin/main, 2026-09-28):
+// Rebuilt 1:1 from aift-web (branch feat/page-layout-sweep, 2026-09-29):
 //   src/app/(app)/workspaces/[workspaceId]/invoices/[invoiceId]/(tabs)/
 //     _components/MergedLinesVatGrid.tsx
+// The `ui` values are copied from that branch's messages/<locale>.json by
+// script, never retyped.
 import type { Locale } from '@/lib/i18n'
 
 export const UI_KEYS = [
@@ -15,6 +17,7 @@ export const UI_KEYS = [
   'invoices.line_items_table.category',
   'invoices.line_items_table.edited',
   'invoices.line_items_table.confidence_medium',
+  'invoices.line_items_table.override_category',
   'invoices.detail.lines.col_vat_elements',
   'invoices.detail.lines.col_vat_code',
   'invoices.detail.lines.elements_collapsed',
@@ -22,6 +25,8 @@ export const UI_KEYS = [
   'invoices.detail.lines.toolbar_summary',
   'invoices.vat_panel.missing_code',
   'invoices.vat_panel.default_fallback_badge',
+  'invoices.vat_panel.default_fallback_tooltip',
+  'invoices.vat_panel.mismatch_tooltip',
   'invoices.vat_panel.add_code',
   'invoices.vat_panel.product_group',
   'invoices.vat_panel.rate',
@@ -32,7 +37,7 @@ export const UI_KEYS = [
 
 export type UiKey = (typeof UI_KEYS)[number]
 
-/** The invoice the lines belong to, for the row's sub-id. */
+/** The invoice the lines belong to: the line number's hover title is `<id>/<nn>`. */
 export const INVOICE_ID = 'GRM-INV-2026-0042'
 export const CURRENCY = 'EUR'
 
@@ -56,11 +61,14 @@ export type Line = {
   /** VAT rate percent, or null for a line with no rate resolved. */
   ratePct: number | null
   gross: number
-  /** Accounting category code, then name. */
+  /** Accounting category code (the category's Code, secondary_value), then name. */
   catCode: string
   /** True where a person overrode the AI's category. */
   edited?: boolean
-  /** Shown under the category when the AI proposed it: 'medium' only here. */
+  /**
+   * The AI's confidence where it proposed the category: 'medium' only here
+   * (ai_confidence 0.7). Such a line also carries the breathing wrapper.
+   */
   confidence?: 'medium'
   /** The resolved VAT code's label, where there is one. */
   code?: string
@@ -94,13 +102,16 @@ const en: Copy = {
     'invoices.line_items_table.category': "Category",
     'invoices.line_items_table.edited': "Edited",
     'invoices.line_items_table.confidence_medium': "Medium",
+    'invoices.line_items_table.override_category': "Override category",
     'invoices.detail.lines.col_vat_elements': "P/S · Rate · Method",
     'invoices.detail.lines.col_vat_code': "VAT code",
-    'invoices.detail.lines.elements_collapsed': "Resolved - see Advanced",
+    'invoices.detail.lines.elements_collapsed': "Resolved: see Advanced",
     'invoices.detail.lines.toolbar_add_missing': "Add missing VAT codes ({count})",
     'invoices.detail.lines.toolbar_summary': "{lines, plural, =1 {# line} other {# lines}} · {missing, plural, =0 {all VAT codes set} =1 {# VAT code missing} other {# VAT codes missing}}",
     'invoices.vat_panel.missing_code': "- missing -",
     'invoices.vat_panel.default_fallback_badge': "Default",
+    'invoices.vat_panel.default_fallback_tooltip': "Coded with the workspace default VAT code. Review advised.",
+    'invoices.vat_panel.mismatch_tooltip': "This code's elements no longer match the line. Review or re-pick the code.",
     'invoices.vat_panel.add_code': "+ Add",
     'invoices.vat_panel.product_group': "Product / Service",
     'invoices.vat_panel.rate': "Rate",
@@ -121,7 +132,7 @@ const en: Copy = {
     summary: "4 lines · 1 VAT code missing",
     codingOk: "VAT coding OK (1)",
   },
-  help: { alt: "The Lines & VAT grid with four invoice lines. The first carries a plain code and says its elements moved into Advanced; the second carries an amber code ending in Default; the third reads dash missing dash with an Add link and its three element dropdowns shown inline; the fourth carries a code with a warning triangle beside it. Above the table, buttons to add the missing codes and to mark the VAT coding reviewed." },
+  help: { alt: "The Lines & VAT grid with four invoice lines, shown scrolled to the right end of the table. The first line carries a plain code and says its elements are resolved and in Advanced; the second carries an amber code ending in Default; the third reads dash missing dash with an Add link, and its three element dropdowns are shown in the row; the fourth carries a code with a warning triangle beside it. Each row ends in an arrow that opens its Advanced part. Above the table, buttons to add the missing codes and to mark the VAT coding reviewed." },
 }
 
 const hu: Copy = {
@@ -134,13 +145,16 @@ const hu: Copy = {
     'invoices.line_items_table.category': "Kategória",
     'invoices.line_items_table.edited': "Szerkesztve",
     'invoices.line_items_table.confidence_medium': "Közepes",
+    'invoices.line_items_table.override_category': "Kategória felülírása",
     'invoices.detail.lines.col_vat_elements': "T/Sz · Kulcs · Mód",
     'invoices.detail.lines.col_vat_code': "ÁFA-kód",
-    'invoices.detail.lines.elements_collapsed': "Feloldva - lásd Speciális",
+    'invoices.detail.lines.elements_collapsed': "Feloldva: lásd Speciális",
     'invoices.detail.lines.toolbar_add_missing': "Hiányzó ÁFA-kódok hozzáadása ({count})",
     'invoices.detail.lines.toolbar_summary': "{lines, plural, =1 {# tétel} other {# tétel}} · {missing, plural, =0 {minden ÁFA-kód beállítva} =1 {# ÁFA-kód hiányzik} other {# ÁFA-kód hiányzik}}",
     'invoices.vat_panel.missing_code': "- hiányzik -",
     'invoices.vat_panel.default_fallback_badge': "Alapért.",
+    'invoices.vat_panel.default_fallback_tooltip': "A munkaterület alapértelmezett áfakódjával kódolva. Ellenőrzés ajánlott.",
+    'invoices.vat_panel.mismatch_tooltip': "A kód elemei már nem illeszkednek a sorhoz. Ellenőrizd vagy válassz újra.",
     'invoices.vat_panel.add_code': "+ Hozzáad",
     'invoices.vat_panel.product_group': "Termék / Szolgáltatás",
     'invoices.vat_panel.rate': "Kulcs",
@@ -161,7 +175,7 @@ const hu: Copy = {
     summary: "4 tétel · 1 ÁFA-kód hiányzik",
     codingOk: "Áfakódolás rendben (1)",
   },
-  help: { alt: "A Tételek és ÁFA rács négy számlasorral. Az elsőn sima kód áll, és a cella jelzi, hogy az elemek átkerültek a Speciális alá; a másodikon borostyánszínű kód, a végén az Alapért. szóval; a harmadikon a - hiányzik - felirat, mellette a Hozzáad hivatkozás, és a három elemválasztó a sorban látszik; a negyediken a kód mellett figyelmeztető háromszög. A táblázat fölött gomb a hiányzó kódok hozzáadására és egy másik az áfakódolás ellenőrzöttre jelölésére." },
+  help: { alt: "A Tételek és ÁFA rács négy számlasorral, a táblázat jobb széléig görgetve. Az első soron sima kód áll, és a cella jelzi, hogy az elemek feloldva a Speciális alatt vannak; a másodikon borostyánszínű kód, a végén az Alapért. szóval; a harmadikon a - hiányzik - felirat, mellette a Hozzáad hivatkozás, és a három elemválasztó a sorban látszik; a negyediken a kód mellett figyelmeztető háromszög. Minden sor végén egy nyíl nyitja ki a sor Speciális részét. A táblázat fölött gomb a hiányzó kódok hozzáadására és egy másik az áfakódolás ellenőrzöttre jelölésére." },
 }
 
 const de: Copy = {
@@ -174,13 +188,16 @@ const de: Copy = {
     'invoices.line_items_table.category': "Kategorie",
     'invoices.line_items_table.edited': "Bearbeitet",
     'invoices.line_items_table.confidence_medium': "Mittel",
+    'invoices.line_items_table.override_category': "Kategorie überschreiben",
     'invoices.detail.lines.col_vat_elements': "P/D · Satz · Methode",
     'invoices.detail.lines.col_vat_code': "USt-Code",
-    'invoices.detail.lines.elements_collapsed': "Aufgelöst - siehe Erweitert",
+    'invoices.detail.lines.elements_collapsed': "Aufgelöst: siehe Erweitert",
     'invoices.detail.lines.toolbar_add_missing': "Fehlende USt-Codes hinzufügen ({count})",
     'invoices.detail.lines.toolbar_summary': "{lines, plural, =1 {# Position} other {# Positionen}} · {missing, plural, =0 {alle USt-Codes gesetzt} =1 {# USt-Code fehlt} other {# USt-Codes fehlen}}",
     'invoices.vat_panel.missing_code': "- fehlt -",
     'invoices.vat_panel.default_fallback_badge': "Standard",
+    'invoices.vat_panel.default_fallback_tooltip': "Mit dem Standard-USt-Code des Arbeitsbereichs codiert. Prüfung empfohlen.",
+    'invoices.vat_panel.mismatch_tooltip': "Die Elemente dieses Codes passen nicht mehr zur Zeile. Prüfen oder neu wählen.",
     'invoices.vat_panel.add_code': "+ Hinzufügen",
     'invoices.vat_panel.product_group': "Produkt / Leistung",
     'invoices.vat_panel.rate': "Satz",
@@ -201,7 +218,7 @@ const de: Copy = {
     summary: "4 Positionen · 1 USt-Code fehlt",
     codingOk: "USt-Codierung OK (1)",
   },
-  help: { alt: "Das Raster Positionen & USt. mit vier Rechnungspositionen. Die erste trägt einen einfachen Code und den Hinweis, dass ihre Elemente unter Erweitert liegen; die zweite einen bernsteinfarbenen Code, der auf Standard endet; die dritte liest sich als - fehlt - mit einem Hinzufügen-Link und ihren drei Elementauswahlen direkt in der Zeile; die vierte trägt neben dem Code ein Warndreieck. Über der Tabelle Schaltflächen, um die fehlenden Codes hinzuzufügen und die USt-Codierung als geprüft zu markieren." },
+  help: { alt: "Das Raster Positionen & USt. mit vier Rechnungspositionen, bis zum rechten Ende der Tabelle gescrollt. Die erste trägt einen einfachen Code und den Hinweis, dass ihre Elemente aufgelöst sind und unter Erweitert liegen; die zweite einen bernsteinfarbenen Code, der auf Standard endet; die dritte liest sich als - fehlt - mit einem Hinzufügen-Link, und ihre drei Elementauswahlen stehen direkt in der Zeile; die vierte trägt neben dem Code ein Warndreieck. Jede Zeile endet mit einem Pfeil, der ihren Bereich Erweitert öffnet. Über der Tabelle Schaltflächen, um die fehlenden Codes hinzuzufügen und die USt-Codierung als geprüft zu markieren." },
 }
 
 export const vatLinesCopy: Record<Locale, Copy> = { en, hu, de }
