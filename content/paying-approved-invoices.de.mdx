@@ -97,6 +97,8 @@ Je Zahlungskonto und Währung entsteht eine Datei, weil Ihre Bank jedes Konto ei
 
 AI Finance Team legt eine nummerierte Zahlungsdatei an, markiert jede Rechnung mit **In Zahlungsdatei #N** und dem Datum und lädt die Datei herunter. Das Fenster zeigt dann **Zahlungsdatei erstellt** und erinnert daran, dass die Rechnungen erst bezahlt sind, wenn die Bank die Überweisungen bucht.
 
+Die Datei ist nach dem zahlenden Konto, dem Datum und der Nummer der Datei benannt, zum Beispiel `Hauptkonto-HUF_2026-10-01_0003.xml`, sodass sich die Dateien verschiedener Konten im Onlinebanking leicht unterscheiden lassen. Umlaute, Akzente und Leerzeichen werden im Namen weggelassen.
+
 - **Die Tabelle** beginnt mit einem Kopfblock (zahlendes Konto, Kontoinhaber, Währung, Summe) und hat je Zahlung eine Zeile mit Empfänger, Konto, Betrag, Ausführungsdatum und Rechnungsnummer, unter englischen und ungarischen Spaltenköpfen. Erfassen Sie sie in jedem Onlinebanking, oder nutzen Sie den Import Ihrer Bank, falls er eine Tabelle annimmt.
 - **Die Bankdatei** ist pain.001.001.03 XML im ungarischen HCT-Profil: Importieren Sie sie im Datei-Upload des Onlinebankings, prüfen Sie die Positionen und signieren Sie dort. Der Verwendungszweck jeder Position ist ihr Verwendungszweck von der Rechnung: die Rechnungsnummer, sofern niemand ihn geändert hat. Bei EUR-Überweisungen (SEPA) werden Buchstaben mit Akzent ersetzt (aus á wird a), weil SEPA nur Buchstaben ohne Akzent annimmt.
 - **Die Electra-Datei** ist der Datensatz „Forint átutalási megbízás“ mit fester Feldlänge. K&H nimmt höchstens 40 Positionen je Datei an; darüber ist die Schaltfläche zum Herunterladen deaktiviert. Die Datei fasst einen Verwendungszweck von höchstens 96 Zeichen; ein längerer wird mit Begründung abgelehnt, nie gekürzt.
@@ -175,6 +177,8 @@ Die Tabelle funktioniert mit jeder Bank, weil eine Person sie erfasst oder die B
 **Eine Rechnung ist von allen freigegeben und steht trotzdem nicht hier.** Ein Prüfschritt kann sie zurückhalten, *bevor* der Zahlungsfreigeber sie überhaupt sieht: Wo die Erfassungs- oder die Buchungsfreigabe eingeschaltet ist, steht auf der Zahlungsfreigabe-Karte **Wartet auf Erfassung** oder **Wartet auf Buchung**, statt dass sie **Freigeben** anbietet. Eine solche Rechnung ist noch nicht zur Zahlung freigegeben und erscheint deshalb nirgendwo auf dieser Seite, auch nicht unter „Noch nicht aufnehmbar“. Siehe [Erfassungs- und Buchungsfreigabe](/filing-and-bookkeeping-approval).
 
 **Die Seite zeigt „Zahlungsfreigaben sind ausgeschaltet“.** Die Liste entsteht aus Freigaben und bleibt deshalb leer, bis die Zahlungsfreigabe für das Unternehmen unter Einstellungen, Freigaberegeln eingeschaltet ist. Siehe [Zahlungsfreigaben einrichten](/setting-up-approvals).
+
+**Ich habe eine Rechnung schon von Hand im Onlinebanking bezahlt.** Schließen Sie sie im Tab **Zuordnung & Zahlung** der Rechnung mit **Als abgeschlossen markieren** und einer Begründung ab, damit sie die Liste verlässt und in keine Datei gelangt. Trifft die Abbuchung ein, wird sie der Rechnung automatisch zugeordnet. Siehe [Rechnungsabgleich](/invoice-matching#eine-rechnung-ohne-ausgleich-abschließen).
 
 **Ich habe versehentlich eine Datei erzeugt.** In der Bank ist nichts passiert. Importieren Sie sie einfach nicht, und nehmen Sie die Datei zurück (siehe „Eine Position zurücknehmen“), damit die Rechnungen sofort wieder auf der Liste stehen.
 

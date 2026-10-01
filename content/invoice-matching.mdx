@@ -233,6 +233,16 @@ On the invoice's **Matching & payment** tab, the menu next to the payment status
 
 An invoice whose payment method is cash, on the document or in the NAV data, is closed as **Cash** automatically, unless its partner has a fixed payment method (see [Fixing a partner's payment method](/fixed-payment-method)).
 
+## Closing an invoice that needs no settlement
+
+When an open supplier invoice will not be paid through AI Finance Team, typically because you transferred it by hand in the netbank, close it before its bank data arrives, so it cannot end up in a payment file. On the invoice's **Matching & payment** tab, open the menu next to the payment status, choose **Mark as closed**, write the reason (it is required, up to 500 characters) and click **Close**.
+
+The invoice then reads **Closed, no settlement needed** with its reason under the status. It leaves the **To pay** list of [Paying Approved Invoices](/paying-approved-invoices) and cannot be put into a payment file, and an approval still waiting for a decision is no longer needed. An invoice that is waiting in a payment file cannot be closed: take it out of the file first.
+
+There are no loose ends: when the bank debit arrives later, it is paired with the closed invoice automatically, without AI, if it is in the invoice's currency, its amount matches what was still owed (within 10 Ft, or 0.05 in other currencies), it is booked between 7 days before and 30 days after the closing, and either its counterparty account is the invoice's payee account or its bank text contains the invoice number. Only a debit that fits exactly one closed invoice, and a closed invoice that fits exactly one debit, is paired. The invoice then reads **Paid**, and the reason stays visible. If the debit is not found this way, link it by hand with **Find transaction**.
+
+**Mark as open** reopens a closed invoice and clears its reason; it then goes back into the approval flow.
+
 ## Match statuses
 
 Every row in **Bank transactions** shows its status in the **Labels** column:
