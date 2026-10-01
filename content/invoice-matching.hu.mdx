@@ -233,6 +233,16 @@ A számla **Párosítás & fizetés** fülén a fizetési állapot melletti men�
 
 Ha egy számla fizetési módja készpénz, akár a dokumentumon, akár a NAV-adatokban, automatikusan **Készpénzes** állapotba kerül, kivéve ha a partnerének rögzített fizetési módja van (lásd: [A partner fizetési módjának rögzítése](/fixed-payment-method)).
 
+## Kiegyenlítést nem igénylő számla lezárása
+
+Ha egy nyitott szállítói számlát nem az AI Finance Teamen keresztül fizet ki, jellemzően mert kézzel utalta a netbankban, zárja le, mielőtt a banki adat megérkezik, így nem kerülhet utalási fájlba. A számla **Párosítás & fizetés** fülén nyissa meg a fizetési állapot melletti menüt, válassza a **Megjelölés lezártként** pontot, írja be az indoklást (kötelező, legfeljebb 500 karakter), és kattintson a **Lezárás** gombra.
+
+A számla ezután **Lezárva, nem igényel kiegyenlítést** állapotú, az állapot alatt az indoklással. Kikerül a [Jóváhagyott számlák kifizetése](/paying-approved-invoices) oldal **Fizetendő** listájából, utalási fájlba nem tehető, és a még döntésre váró jóváhagyásra sincs többé szükség. Utalási fájlban váró számla nem zárható le: előbb vegye ki a fájlból.
+
+Nem marad elvarratlan szál: amikor később megérkezik a banki terhelés, az AI Finance Team mesterséges intelligencia nélkül, automatikusan párosítja a lezárt számlával, ha a terhelés a számla devizájában van, összege megegyezik a még fennálló összeggel (legfeljebb 10 Ft, más devizában 0,05 eltéréssel), a lezárás előtti 7. és utáni 30. nap között könyvelték, és vagy a partner számlaszáma a számla kedvezményezetti számlaszáma, vagy a banki közlemény tartalmazza a számlaszámot. Csak az a terhelés párosul, amelyre pontosan egy lezárt számla illik, és amely lezárt számlára pontosan egy terhelés illik. A számla ezután **Fizetve** állapotú, és az indoklás látható marad. Ha a terhelés így nem kerül elő, párosítsa kézzel a **Tranzakció keresése** gombbal.
+
+A **Megjelölés nyitottként** újranyitja a lezárt számlát és törli az indoklását; a számla ezután visszakerül a jóváhagyási folyamatba.
+
 ## Párosítási állapotok
 
 A **Banki tranzakciók** lista minden sora a **Címkék** oszlopban mutatja az állapotát:
