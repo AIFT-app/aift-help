@@ -39,7 +39,7 @@ Die Seite listet die Lieferantenrechnungen, die freigegeben und noch unbezahlt s
 
 Die Seite hat zwei Reiter: **Zu zahlen** (diese Liste) und **Zahlungsdateien** (jede erstellte Datei, siehe unten). Positionen, die schon in einer Datei stehen, sind auf **Zu zahlen** ausgeblendet; wählen Sie den Status **In einer Datei**, um sie zu sehen, markiert mit **In Datei #N**. Eine zurückgenommene Position kommt ohne diese Markierung zurück, und nach einer Teilzahlung kommt die Rechnung mit dem Rest zurück.
 
-Die Filterleiste über der Liste grenzt nach **Fällig** ein (**Überfällig**, **Nächste 7 Tage**, **Nächste 30 Tage**, ein Monat oder ein eigener Zeitraum), nach **Zahlungskonto**, **Unternehmen** und **Zahlungsart**, und sucht nach Empfänger, Rechnungsnummer und Verwendungszweck. Der Fälligkeitsfilter dient der Liquiditätsplanung: Sie können bezahlen, was diese Woche fällig ist, und den Rest später. Er folgt nicht dem fokussierten Zeitraum in der Seitenleiste, weil Fälligkeiten nach vorne schauen.
+Die Filterleiste über der Liste grenzt nach **Fällig** ein (**Überfällig**, **Nächste 7 Tage**, **Nächste 30 Tage**, ein Monat, ein eigener Zeitraum, oder **Bis zu einem Datum** für alles, was bis zu einem Tag fällig ist, Überfälliges eingeschlossen), nach **Zahlungskonto**, **Unternehmen** und **Zahlungsart**, und sucht nach Empfänger, Rechnungsnummer und Verwendungszweck. Der Fälligkeitsfilter dient der Liquiditätsplanung: Sie können bezahlen, was diese Woche fällig ist, und den Rest später. Er folgt nicht dem fokussierten Zeitraum in der Seitenleiste, weil Fälligkeiten nach vorne schauen.
 
 ## Die Kontoprüfung
 
@@ -71,7 +71,7 @@ Jede noch zu zahlende Lieferantenrechnung hat unten auf ihrem Reiter **Zuordnung
 3. Prüfen Sie im sich öffnenden Fenster jede Datei:
    - **Zahlen von**: das Zahlungskonto, aus der Gruppe vorausgewählt, darunter die vollständige Kontonummer.
    - **Positionen und Verwendungszwecke**: was in die Datei kommt und welchen Verwendungszweck die Bank erhält.
-   - **Format**: vorausgewählt ist das, das dieses Konto zuletzt verwendet hat.
+   - **Format**: vorausgewählt ist das, das dieses Konto zuletzt verwendet hat. Beim ersten Mal ist es die Bankdatei, wenn die Bank einen Import dafür hat, sonst die Tabelle.
      - **Tabelle (XLSX), für jede Bank** funktioniert mit jeder Bank.
      - **Bankdatei (pain.001 XML)** wird angeboten, wenn die Bank des zahlenden Kontos erkannt wird und einen Dateiimport hat (nicht bei OTP, MagNet, Revolut und Wise).
      - **Electra-Datei (.HUF)** wird bei Forint-Gruppen der Banken angeboten, die ein Electra-basiertes Onlinebanking betreiben: K&H, Erste, MBH und Gránit.
@@ -86,7 +86,7 @@ Das Fenster **Zahlungsdatei erstellen** für die zwei ausgewählten Rechnungen. 
 
 1. **Zahlen von**, darunter die vollständige Kontonummer.
 2. Das **Format**: vorausgewählt ist das, das dieses Konto zuletzt verwendet hat, darunter der Hinweis zum Import der Bank.
-3. **Positionen und Verwendungszwecke**: jeder Empfänger mit dem Verwendungszweck, den die Bank erhält.
+3. **Positionen und Verwendungszwecke**: jeder Empfänger mit dem Verwendungszweck, den die Bank erhält, und dem angeforderten Ausführungsdatum.
 4. Das **Ausführungsdatum**.
 5. **Erstellen und herunterladen**.
 
@@ -98,7 +98,7 @@ AI Finance Team legt eine nummerierte Zahlungsdatei an, markiert jede Rechnung m
 - **Die Bankdatei** ist pain.001.001.03 XML im ungarischen HCT-Profil: Importieren Sie sie im Datei-Upload des Onlinebankings, prüfen Sie die Positionen und signieren Sie dort. Der Verwendungszweck jeder Position ist ihr Verwendungszweck von der Rechnung: die Rechnungsnummer, sofern niemand ihn geändert hat. Bei EUR-Überweisungen (SEPA) werden Buchstaben mit Akzent ersetzt (aus á wird a), weil SEPA nur Buchstaben ohne Akzent annimmt.
 - **Die Electra-Datei** ist der Datensatz „Forint átutalási megbízás“ mit fester Feldlänge. K&H nimmt höchstens 40 Positionen je Datei an; darüber ist die Schaltfläche zum Herunterladen deaktiviert. Die Datei fasst einen Verwendungszweck von höchstens 96 Zeichen; ein längerer wird mit Begründung abgelehnt, nie gekürzt.
 
-Bei **Am Fälligkeitstag** ist das Ausführungsdatum das Fälligkeitsdatum, oder der nächste Bankarbeitstag, wenn das Fälligkeitsdatum auf ein Wochenende, einen Feiertag, einen per Verordnung festgelegten Ruhetag oder in die Vergangenheit fällt; so wird nichts zu früh bezahlt. Bei **So bald wie möglich** wird jede Überweisung zum nächsten Bankarbeitstag angefordert. Alle drei Formate verwenden dieselben Daten; die Bankdatei übermittelt sie der Bank, in der Tabelle sind sie für die Person gedacht, die die Überweisungen erfasst.
+Bei **Am Fälligkeitstag** ist das Ausführungsdatum das Fälligkeitsdatum, oder der nächste Bankarbeitstag, wenn das Fälligkeitsdatum auf ein Wochenende, einen Feiertag, einen per Verordnung festgelegten Ruhetag oder in die Vergangenheit fällt; so wird nichts zu früh bezahlt. Bei **So bald wie möglich** wird jede Überweisung zum nächsten Bankarbeitstag angefordert. Eine Bank akzeptiert kein Datum in der Vergangenheit, deshalb wird eine bereits überfällige Rechnung in beiden Fällen zum nächsten Bankarbeitstag angefordert; wenn Sie solche Rechnungen auswählen, nennt das Fenster ihre Anzahl und das Datum. Alle drei Formate verwenden dieselben Daten; die Bankdatei übermittelt sie der Bank, in der Tabelle sind sie für die Person gedacht, die die Überweisungen erfasst.
 
 ## Eine Datei verfolgen
 
@@ -117,13 +117,15 @@ Die Seite der Zahlungsdatei #3: eine ihrer drei Positionen ist bezahlt. Die Numm
 </PaymentFileDetailFigure>
 
 1. Der Status der Datei und wie viele ihrer Positionen bezahlt sind.
-2. **Erneut herunterladen** und **Datei zurücknehmen**.
+2. **Erneut herunterladen** und **Ganze Datei zurücknehmen**.
 3. Eine bezahlte Position mit dem Link zur Banktransaktion, die sie belegt.
-4. Eine wartende Position mit ihrem Link **Zurücknehmen**.
+4. Eine wartende Position mit ihrem Link **Aus der Datei nehmen**.
 
 ## Eine Position zurücknehmen
 
-Eine Zahlungsdatei ist ein Vorschlag, deshalb kommt die Überweisung manchmal nicht zustande: Die Datei wurde nie hochgeladen, die Bank hat den Import abgelehnt, oder niemand hat unterschrieben. Öffnen Sie die Datei auf dem Reiter **Zahlungsdateien**, suchen Sie die Position und klicken Sie auf **Zurücknehmen**. Wählen Sie einen Grund (**Nicht hochgeladen**, **Von der Bank abgelehnt**, **Nicht unterschrieben** oder **Sonstiges**), fügen Sie bei Bedarf eine Notiz hinzu, und die Rechnung steht sofort wieder auf der Liste der zu zahlenden Rechnungen. **Datei zurücknehmen** auf der Seite der Datei macht dasselbe für jede noch wartende Position einer Datei; bereits bezahlte Positionen bleiben.
+Eine Zahlungsdatei ist ein Vorschlag, deshalb kommt die Überweisung manchmal nicht zustande: Die Datei wurde nie hochgeladen, die Bank hat den Import abgelehnt, oder niemand hat unterschrieben. Öffnen Sie die Datei auf dem Reiter **Zahlungsdateien**, suchen Sie die Position und klicken Sie auf **Aus der Datei nehmen**. Wählen Sie einen Grund (**Nicht hochgeladen**, **Von der Bank abgelehnt**, **Nicht unterschrieben** oder **Sonstiges**), fügen Sie bei Bedarf eine Notiz hinzu, und die Rechnung steht sofort wieder auf der Liste der zu zahlenden Rechnungen. **Ganze Datei zurücknehmen** auf der Seite der Datei macht dasselbe für jede noch wartende Position einer Datei; bereits bezahlte Positionen bleiben.
+
+Eine Position hier herauszunehmen ändert die bereits heruntergeladene Datei nicht. Wenn Sie diese Datei schon in Ihr Online-Banking eingelesen haben, löschen Sie die Position auch dort, oder löschen Sie dort die Datei und erstellen Sie eine neue ohne sie. Sonst kann die Rechnung doppelt bezahlt werden.
 
 Eine Position, deren Zahlung schon bei der Bank eingegangen ist, lässt sich nicht zurücknehmen, und das Zurücknehmen ändert nie die Freigabe. Auf der Rechnung steht in der Zeile zur Zahlungsdatei dann **Aus Zahlungsdatei #N zurückgenommen**, mit Datum und Grund. Wird eine zugeordnete Zahlung später wieder getrennt, wartet ihre Position wieder und kann erneut zurückgenommen werden.
 
@@ -148,7 +150,7 @@ Die Tabelle funktioniert mit jeder Bank, weil eine Person sie erfasst oder die B
 | Bank | Tabellenliste | Bank-Importdatei | Wie weit verifiziert |
 |---|---|---|---|
 | OTP Business-Onlinebanking | Ja | Im Onlinebanking gibt es keinen Dateiimport (geprüft am 2026-09-13) | im Produkt verifiziert |
-| K&H | Ja | pain.001 XML für Electra und web Electra (für HUF als .HCT, für EUR als .SCT speichern); Electra-Datei (.HUF, höchstens 40 Positionen je Datei), die auch das e-bank annimmt | Bankdokumentation, noch nicht mit einer echten Datei getestet |
+| K&H | Ja | pain.001 XML für Electra und web Electra (wird für HUF als .HCT, für EUR als .SCT heruntergeladen); Electra-Datei (.HUF, höchstens 40 Positionen je Datei), die auch das e-bank annimmt | Bankdokumentation, noch nicht mit einer echten Datei getestet |
 | MBH Vállalati Netbank | Ja | pain.001 XML; Electra-Datei (.HUF) | Bankdokumentation, noch nicht mit einer echten Datei getestet |
 | Erste Vállalati NetBank | Ja | pain.001 XML; Electra-Datei (.HUF) | Bankdokumentation, noch nicht mit einer echten Datei getestet |
 | CIB Business Online | Ja | pain.001 XML (GIRO-HCT) | Bankdokumentation, noch nicht mit einer echten Datei getestet |
