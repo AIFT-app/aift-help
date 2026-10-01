@@ -465,6 +465,7 @@ export function CreateFileDialogFigure({ locale, children }: FigureProps) {
                       <li key={l.invoiceNumber} className="flex flex-wrap items-baseline justify-between gap-x-3 px-3 py-1.5">
                         <span className="min-w-0 truncate text-zinc-900 dark:text-zinc-100">{l.payee}</span>
                         <span className="font-mono text-zinc-600 dark:text-zinc-400">{l.invoiceNumber}</span>
+                        <span className="tabular-nums text-zinc-600 dark:text-zinc-400">{formatDate(l.executionDate, locale)}</span>
                         <span className="tabular-nums text-zinc-900 dark:text-zinc-100">{formatAmount(l.amount, l.currency, locale)}</span>
                       </li>
                     ))}
