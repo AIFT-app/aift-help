@@ -39,7 +39,7 @@ Az oldal a jóváhagyott és még kifizetetlen (nyitott vagy részben fizetett) 
 
 Az oldalnak két füle van: **Fizetendő** (ez a lista) és **Utalási fájlok** (minden elkészült fájl, lásd lent). A már fájlba írt sorok a **Fizetendő** fülön rejtve vannak; jelölje be a **Fájlban** állapotot, hogy lássa őket, **#N fájlban** jelöléssel. A visszavont sor jelölés nélkül tér vissza, részleges kifizetés után pedig a számla a maradékkal kerül vissza.
 
-A lista feletti szűrősáv szűkíthet **Határidő** szerint (**Lejárt**, **Következő 7 nap**, **Következő 30 nap**, egy hónap vagy saját időszak), **Fizető számla**, **Cég**, **Fizetési mód** szerint, és kereshet a kedvezményezettre, a számlaszámra és a közleményre. A határidő-szűrő a pénzügyi tervezést szolgálja: kifizetheti, ami ezen a héten esedékes, a többit pedig később. Nem követi az oldalsáv fókuszált időszakát, mert a határidők előre mutatnak.
+A lista feletti szűrősáv szűkíthet **Határidő** szerint (**Lejárt**, **Következő 7 nap**, **Következő 30 nap**, egy hónap, saját időszak, vagy **Eddig a napig**, amely minden egy adott napig esedékes számlát mutat, a lejártakat is), **Fizető számla**, **Cég**, **Fizetési mód** szerint, és kereshet a kedvezményezettre, a számlaszámra és a közleményre. A határidő-szűrő a pénzügyi tervezést szolgálja: kifizetheti, ami ezen a héten esedékes, a többit pedig később. Nem követi az oldalsáv fókuszált időszakát, mert a határidők előre mutatnak.
 
 ## A számlaszám ellenőrzése
 
@@ -71,7 +71,7 @@ A módosításokat a **Mentés** gomb rögzíti, és megjelennek a számla előz
 3. A megnyíló ablakban ellenőrizze az egyes fájlokat:
    - **Fizető számla**: a csoportból előre kiválasztva, alatta a teljes számlaszámmal.
    - **Tételek és közlemények**: mi kerül a fájlba, és milyen közleményt kap a bank.
-   - **Formátum**: amit ez a számla legutóbb használt, az van előre kiválasztva.
+   - **Formátum**: amit ez a számla legutóbb használt, az van előre kiválasztva. Első alkalommal a banki fájl, ha a banknak van ilyen importja, különben a táblázat.
      - **Táblázat (XLSX), bármelyik bankhoz**: minden bankkal működik.
      - **Banki fájl (pain.001 XML)**: akkor jelenik meg, ha a fizető számla bankját felismerjük, és van fájlimportja (az OTP, a MagNet, a Revolut és a Wise esetén nincs).
      - **Electra fájl (.HUF)**: forintos csoportoknál jelenik meg azoknál a bankoknál, amelyek Electra-alapú netbankot használnak: K&H, Erste, MBH és Gránit.
@@ -86,7 +86,7 @@ Az **Utalási fájl készítése** ablak a két kijelölt számlával. A számok
 
 1. **Fizető számla**, alatta a teljes számlaszámmal.
 2. A **Formátum**: amit ez a számla legutóbb használt, az van előre kiválasztva, alatta a bank importjáról szóló tájékoztatóval.
-3. **Tételek és közlemények**: minden kedvezményezett azzal a közleménnyel, amelyet a bank megkap.
+3. **Tételek és közlemények**: minden kedvezményezett azzal a közleménnyel, amelyet a bank megkap, és a kért terhelési nappal.
 4. A **Terhelés napja**.
 5. **Elkészítés és letöltés**.
 
@@ -98,7 +98,7 @@ Az AI Finance Team egy sorszámozott utalási fájlt rögzít, minden számlát 
 - **A banki fájl** pain.001.001.03 XML a magyar HCT-profilban: importálja a netbank fájlfeltöltésében, ellenőrizze a sorokat, és ott írja alá. Minden sor közleménye a hozzá tartozó utalási közlemény: a számlaszám, ha senki nem írta át. EUR (SEPA) utalásnál az ékezetes betűk ékezet nélkül kerülnek bele (az á-ból a lesz), mert a SEPA csak ékezet nélküli betűket fogad el.
 - **Az Electra fájl** a fix hosszúságú „Forint átutalási megbízás” rekord. A K&H fájlonként legfeljebb 40 sort fogad el; e fölött a letöltés gombja inaktív. A fájlba legfeljebb 96 karakteres közlemény fér; a hosszabbat a rendszer indoklással visszautasítja, soha nem vágja le.
 
-**A határidő napján** esetén a terhelés napja a fizetési határidő, vagy a következő banki nap, ha a határidő hétvégére, munkaszüneti napra, rendeletben meghatározott pihenőnapra vagy a múltba esik, így semmi nem fizetődik ki korábban. **A lehető leghamarabb** esetén minden utalás a következő banki napra szól. Mindhárom formátum ugyanezeket a dátumokat használja; a banki fájl el is juttatja őket a bankba, a táblázatban pedig annak szólnak, aki az utalásokat rögzíti.
+**A határidő napján** esetén a terhelés napja a fizetési határidő, vagy a következő banki nap, ha a határidő hétvégére, munkaszüneti napra, rendeletben meghatározott pihenőnapra vagy a múltba esik, így semmi nem fizetődik ki korábban. **A lehető leghamarabb** esetén minden utalás a következő banki napra szól. A bank múltbeli dátumot nem fogad el, ezért a már lejárt számla mindkét esetben a következő banki napra szól; ha ilyen számlákat választ, az ablak kiírja, hány ilyen van, és melyik napra szólnak. Mindhárom formátum ugyanezeket a dátumokat használja; a banki fájl el is juttatja őket a bankba, a táblázatban pedig annak szólnak, aki az utalásokat rögzíti.
 
 ## Egy fájl nyomon követése
 
@@ -117,13 +117,15 @@ A 3. utalási fájl oldala: a három sorából egy ki van fizetve. A számok az 
 </PaymentFileDetailFigure>
 
 1. A fájl állapota, és hogy a sorai közül hány van kifizetve.
-2. **Újra letöltés** és **Fájl visszavonása**.
+2. **Újra letöltés** és **A teljes fájl visszavonása**.
 3. Egy kifizetett sor, amely az őt bizonyító banki tranzakcióra mutat.
-4. Egy várakozó sor a **Visszavonás** linkkel.
+4. Egy várakozó sor a **Kivétel a fájlból** linkkel.
 
 ## Egy tétel visszavonása
 
-Az utalási fájl javaslat, ezért előfordul, hogy az utalás nem történik meg: a fájlt nem töltötték fel, a bank visszautasította az importot, vagy senki nem írta alá. Nyissa meg a fájlt az **Utalási fájlok** fülön, keresse meg a sort, és kattintson a **Visszavonás** gombra. Válasszon okot (**Nem töltötték fel**, **A bank visszautasította**, **Nem írták alá** vagy **Egyéb**), ha szeretné, írjon megjegyzést, és a számla azonnal visszakerül a kifizetendő számlák listájára. A fájl oldalán a **Fájl visszavonása** ugyanezt teszi egy fájl minden még várakozó sorával; a már kifizetett sorok megmaradnak.
+Az utalási fájl javaslat, ezért előfordul, hogy az utalás nem történik meg: a fájlt nem töltötték fel, a bank visszautasította az importot, vagy senki nem írta alá. Nyissa meg a fájlt az **Utalási fájlok** fülön, keresse meg a sort, és kattintson a **Kivétel a fájlból** gombra. Válasszon okot (**Nem töltötték fel**, **A bank visszautasította**, **Nem írták alá** vagy **Egyéb**), ha szeretné, írjon megjegyzést, és a számla azonnal visszakerül a kifizetendő számlák listájára. A fájl oldalán **A teljes fájl visszavonása** gomb ugyanezt teszi egy fájl minden még várakozó sorával; a már kifizetett sorok megmaradnak.
+
+A tétel kivétele itt nem módosítja a már letöltött fájlt. Ha azt már beolvasta a netbankba, ott is törölje a tételt, vagy törölje a fájlt, és készítsen újat nélküle. Különben a számlát kétszer is kifizethetik.
 
 Az a sor, amelynek kifizetése már megérkezett a bankba, nem vonható vissza, és a visszavonás soha nem módosítja a jóváhagyást. A számlán ezután az utalási fájl sora ezt mutatja: **Visszavonva a(z) #N utalási fájlból**, a dátummal és az okkal. Ha egy párosított kifizetés párosítását később megszüntetik, a sora visszakerül várakozó állapotba, és újra visszavonható.
 
@@ -148,7 +150,7 @@ A táblázat minden bankkal működik, mert valaki begépeli, vagy a bank import
 | Bank | Táblázatos lista | Banki importfájl | Mennyire ellenőrzött |
 |---|---|---|---|
 | OTP üzleti netbank | Igen | A netbankban nincs fájlimport (ellenőrizve: 2026-09-13) | a termékben ellenőrizve |
-| K&H | Igen | pain.001 XML az Electrához és a web Electrához (HUF esetén .HCT, EUR esetén .SCT kiterjesztéssel mentse); Electra fájl (.HUF, fájlonként legfeljebb 40 sor), amelyet az e-bank is fogad | banki dokumentáció, valódi fájllal még nem teszteltük |
+| K&H | Igen | pain.001 XML az Electrához és a web Electrához (HUF esetén .HCT, EUR esetén .SCT kiterjesztéssel töltődik le); Electra fájl (.HUF, fájlonként legfeljebb 40 sor), amelyet az e-bank is fogad | banki dokumentáció, valódi fájllal még nem teszteltük |
 | MBH Vállalati Netbank | Igen | pain.001 XML; Electra fájl (.HUF) | banki dokumentáció, valódi fájllal még nem teszteltük |
 | Erste Vállalati NetBank | Igen | pain.001 XML; Electra fájl (.HUF) | banki dokumentáció, valódi fájllal még nem teszteltük |
 | CIB Business Online | Igen | pain.001 XML (GIRO-HCT) | banki dokumentáció, valódi fájllal még nem teszteltük |
