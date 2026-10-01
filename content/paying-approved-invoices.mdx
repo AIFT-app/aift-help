@@ -97,6 +97,8 @@ One file is made per paying account and currency, because your bank signs each a
 
 AI Finance Team records a numbered payment file, marks each invoice **In payment file #N** with the date, and downloads the file. The window then shows **Payment file ready** and reminds you that the invoices are not paid until the bank books the transfers.
 
+The file is named after the paying account, the date and the file's number, for example `Main-account-HUF_2026-10-01_0003.xml`, so the files of different accounts are easy to tell apart in the netbank. Accents and spaces are left out of the name.
+
 - **The spreadsheet** has a header block (paying account, account holder, currency, total) and one row per payment with the payee, the account, the amount, the execution date and the invoice number, under English and Hungarian column headers. Key it into any netbank, or use your bank's own import if it accepts a spreadsheet.
 - **The bank file** is pain.001.001.03 XML in the Hungarian HCT profile: import it in the netbank's file upload, check the lines and sign there. The remittance text of each line is its payment reference: the invoice number unless someone changed it. In EUR (SEPA) transfers accented letters are replaced (á becomes a), because SEPA accepts only unaccented letters.
 - **The Electra file** is the fixed-width "Forint átutalási megbízás" record. K&H accepts at most 40 lines per file; above that the download button is disabled. The file holds a payment reference of at most 96 characters; a longer one is refused with a reason, never cut.
@@ -175,6 +177,8 @@ The spreadsheet works with every bank, because a person keys it in or the bank i
 **An invoice is approved by everyone and still is not here.** A checkpoint can hold it *before* the payment approver ever sees it: where filing or bookkeeping approval is switched on, the payment card reads **Waiting for filing** or **Waiting for bookkeeping** instead of offering Approve. Such an invoice is not yet approved for payment, so it appears nowhere on this page, not even under "Cannot be included yet". See [Filing and Bookkeeping Approval](/filing-and-bookkeeping-approval).
 
 **The page says "Payment approvals are switched off".** The list is built from approvals, so it stays empty until payment approvals are switched on for the company under Settings, Approval rules. See [Setting up approvals](/setting-up-approvals).
+
+**I already paid an invoice by hand in the netbank.** Close it on the invoice's **Matching & payment** tab with **Mark as closed** and a reason, so it leaves the list and cannot be put into a file. When the bank debit arrives, it is matched to the invoice automatically. See [Invoice matching](/invoice-matching#closing-an-invoice-that-needs-no-settlement).
 
 **I generated a file by mistake.** Nothing happened in the bank. Simply do not import it, and release the file (see "Taking a line back") so the invoices return to the list at once.
 

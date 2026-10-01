@@ -97,6 +97,8 @@ Fizető számlánként és pénznemenként egy fájl készül, mert a bank minde
 
 Az AI Finance Team egy sorszámozott utalási fájlt rögzít, minden számlát **A(z) #N utalási fájlban** jelöléssel lát el a dátummal, és letölti a fájlt. Az ablak ezután **Az utalási fájl elkészült** üzenetet mutat, és emlékeztet, hogy a számlák addig nincsenek kifizetve, amíg a bank nem könyveli az utalásokat.
 
+A fájl neve a fizető számlát, a dátumot és a fájl sorszámát tartalmazza, például `Fo-szamla-HUF_2026-10-01_0003.xml`, így a netbankban a különböző számlák fájljai könnyen megkülönböztethetők. Az ékezetek és a szóközök kimaradnak a névből.
+
 - **A táblázat** egy fejlécblokkal kezdődik (fizető számla, számlatulajdonos, pénznem, összesen), majd kifizetésenként egy sorban szerepel a kedvezményezett, a számlaszám, az összeg, a terhelés napja és a számlaszám, angol és magyar oszlopfejlécekkel. Bármelyik netbankba begépelheti, vagy használhatja a bank saját importját, ha az elfogad táblázatot.
 - **A banki fájl** pain.001.001.03 XML a magyar HCT-profilban: importálja a netbank fájlfeltöltésében, ellenőrizze a sorokat, és ott írja alá. Minden sor közleménye a hozzá tartozó utalási közlemény: a számlaszám, ha senki nem írta át. EUR (SEPA) utalásnál az ékezetes betűk ékezet nélkül kerülnek bele (az á-ból a lesz), mert a SEPA csak ékezet nélküli betűket fogad el.
 - **Az Electra fájl** a fix hosszúságú „Forint átutalási megbízás” rekord. A K&H fájlonként legfeljebb 40 sort fogad el; e fölött a letöltés gombja inaktív. A fájlba legfeljebb 96 karakteres közlemény fér; a hosszabbat a rendszer indoklással visszautasítja, soha nem vágja le.
@@ -175,6 +177,8 @@ A „banki dokumentáció” azt jelenti, hogy a bank közzéteszi a formátumot
 **Mindenki jóváhagyta a számlát, mégsem szerepel itt.** Egy jóváhagyási lépés *még azelőtt* visszatarthatja, hogy a kifizetés jóváhagyója egyáltalán látná: ahol az iktatási vagy a könyvelési jóváhagyás be van kapcsolva, a „Kifizetés jóváhagyása” kártyán az **Iktatásra vár** vagy a **Könyvelésre vár** felirat áll a **Jóváhagyom** gomb helyett. Az ilyen számla még nincs jóváhagyva kifizetésre, ezért ezen az oldalon sehol nem jelenik meg, még a „Még nem kerülhet be” csoportban sem. Lásd: [Iktatási és könyvelési jóváhagyás](/filing-and-bookkeeping-approval).
 
 **Az oldal azt írja, hogy „A kifizetések jóváhagyása ki van kapcsolva”.** A lista a jóváhagyásokból épül, ezért üres marad, amíg a cégnél be nem kapcsolják a kifizetések jóváhagyását a Beállítások, Jóváhagyási szabályok alatt. Lásd: [A kifizetések jóváhagyásának beállítása](/setting-up-approvals).
+
+**Egy számlát már kézzel kifizettem a netbankban.** Zárja le a számla **Párosítás & fizetés** fülén a **Megjelölés lezártként** ponttal és egy indoklással, így kikerül a listából, és fájlba sem tehető. Amikor a banki terhelés megérkezik, automatikusan párosul a számlával. Lásd: [Számlák párosítása](/invoice-matching#kiegyenlítést-nem-igénylő-számla-lezárása).
 
 **Tévedésből készítettem egy fájlt.** A bankban semmi nem történt. Egyszerűen ne importálja, és vonja vissza a fájlt (lásd: „Egy tétel visszavonása”), hogy a számlák azonnal visszakerüljenek a listára.
 

@@ -233,6 +233,16 @@ Im Tab **Zuordnung & Zahlung** der Rechnung bietet das Menü neben dem Zahlungss
 
 Eine Rechnung, deren Zahlungsart laut Dokument oder NAV-Daten Barzahlung ist, wird automatisch als **Bar** geschlossen, es sei denn, ihr Partner hat eine feste Zahlungsart (siehe [Die Zahlungsart eines Partners festlegen](/fixed-payment-method)).
 
+## Eine Rechnung ohne Ausgleich abschließen
+
+Wird eine offene Lieferantenrechnung nicht über AI Finance Team bezahlt, typischerweise weil Sie sie von Hand im Onlinebanking überwiesen haben, schließen Sie sie ab, bevor die Bankdaten eintreffen, damit sie in keine Zahlungsdatei gelangt. Öffnen Sie im Tab **Zuordnung & Zahlung** der Rechnung das Menü neben dem Zahlungsstatus, wählen Sie **Als abgeschlossen markieren**, geben Sie die Begründung ein (Pflicht, höchstens 500 Zeichen) und klicken Sie auf **Abschließen**.
+
+Die Rechnung zeigt dann **Abgeschlossen, kein Ausgleich nötig** mit der Begründung unter dem Status. Sie verlässt die Liste **Zu zahlen** unter [Freigegebene Rechnungen bezahlen](/paying-approved-invoices), kann in keine Zahlungsdatei aufgenommen werden, und eine Freigabe, die noch auf eine Entscheidung wartet, wird nicht mehr benötigt. Eine Rechnung, die in einer Zahlungsdatei wartet, kann nicht abgeschlossen werden: Nehmen Sie sie zuerst aus der Datei.
+
+Es bleibt nichts offen: Trifft die Abbuchung später ein, wird sie automatisch und ohne KI der abgeschlossenen Rechnung zugeordnet, wenn sie in der Währung der Rechnung ist, ihr Betrag dem noch offenen Betrag entspricht (bis 10 Ft, in anderen Währungen 0,05 Abweichung), sie zwischen 7 Tagen vor und 30 Tagen nach dem Abschluss gebucht wurde und entweder das Gegenkonto das Empfängerkonto der Rechnung ist oder der Banktext die Rechnungsnummer enthält. Zugeordnet wird nur eine Abbuchung, auf die genau eine abgeschlossene Rechnung passt, und umgekehrt. Die Rechnung zeigt dann **Bezahlt**, und die Begründung bleibt sichtbar. Findet sich die Abbuchung so nicht, ordnen Sie sie von Hand über **Transaktion finden** zu.
+
+**Als offen markieren** öffnet eine abgeschlossene Rechnung wieder und löscht die Begründung; sie kehrt dann in den Freigabeablauf zurück.
+
 ## Zuordnungsstatus
 
 Jede Zeile in **Banktransaktionen** zeigt ihren Status in der Spalte **Labels**:
