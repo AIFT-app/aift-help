@@ -43,7 +43,7 @@ The filter bar above the list narrows it by **Due** date (**Overdue**, **Next 7 
 
 ## The account check
 
-Paying the wrong account is the most common invoice fraud, so every payee account has to be confirmed before it can go into a file. A person holding "Manage approvals" confirms it on the partner page. Where the company register check is switched on for your workspace, the register can also confirm an account the first time it is seen: for an invoice that arrived after the check was switched on, from an active company that is not a sole trader, when the names agree.
+Paying the wrong account is the most common invoice fraud, so every payee account has to be confirmed before it can go into a file. A person holding "Manage approvals" confirms it on the partner page. An account that someone types in by hand is confirmed by somebody else, never by the person who typed it. Where the company register check is switched on for your workspace, the register can also confirm an account the first time it is seen: for an invoice that arrived after the check was switched on, from an active company that is not a sole trader, when the names agree.
 
 - **Confirmed**: the line can be paid. Under the account the page says who confirmed it, or on which date the register listed it. The downloaded spreadsheet shows who confirmed it and when in its last column.
 - **First time seen**: this supplier's account has not been confirmed yet. Open the partner and confirm it after you checked it with the supplier.
@@ -60,6 +60,7 @@ Where the company register check is on, every line also shows what the register 
 
 Every supplier invoice that can still be paid has a **Payment instructions** card at the bottom of its **Matching & payment** tab, below the payment status and the matched transactions. You can fill it in while you review the invoice, before or after it is approved.
 
+- **Supplier's account (payee)**: where the money goes, with its state and, where the company register check is on, what the register says about it. If the invoice was read wrong, for example the euro account was taken from an invoice that also prints a forint account, pick the right one: the list holds the supplier's accounts and the ones printed on the invoice. You can also type a new number; it is added to the partner unconfirmed, and somebody else holding "Manage approvals" confirms it before the invoice can be paid. **Back to automatic** drops your choice. **Show the invoice beside** puts the invoice image next to the card on a wide screen, so you can compare the number with the document.
 - **Pay from**: the bank account that pays the invoice. It starts as the company's **Default for payments** for the currency (set on the company's Recognition tab), or its oldest account in that currency when there is no default. Pick another account to pay this one invoice from it; the invoice then appears in that account's group here.
 - **Payment reference**: the text (közlemény) that goes to the bank with the transfer. It is filled in automatically with the invoice number, and you can change it; a character counter shows how long it is, and **Reset to automatic** brings the invoice number back.
 - **Payment method**: an invoice paid by card, voucher or another non-transfer method is left out of payment files, and shows under "Cannot be included yet". Switch on **Include anyway** if it has to be paid by transfer after all. An invoice without a stated payment method is treated as a bank transfer.
@@ -126,6 +127,8 @@ The page of payment file #3: one of its three lines is paid. The numbers match t
 ## Taking a line back
 
 A payment file is a proposal, so sometimes the transfer does not happen: the file was never uploaded, the bank rejected the import, or nobody signed it. Open the file on the **Payment files** tab, find the line and click **Remove from file**. Choose a reason (**Not uploaded**, **Rejected by the bank**, **Not signed** or **Other**), add a note if you like, and the invoice goes straight back to the list of invoices to pay. **Release the whole file**, on the file's page, does the same for every line of a file that is still waiting; lines that were already paid are kept.
+
+You can also take a line out from the invoice itself: under **Payment status** on its **Matching & payment** tab, the **Payment file:** row names the file and offers **Remove from file**.
 
 Removing a line here does not change the file you already downloaded. If you imported that file into your netbank, delete the line there too, or delete the file there and make a new one without it. Otherwise the invoice can be paid twice.
 

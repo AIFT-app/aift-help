@@ -17,7 +17,6 @@ import { ArrowLeftIcon, CheckIcon, XMarkIcon } from '@heroicons/react/20/solid'
 import type { Locale } from '@/lib/i18n'
 import { Badge } from '@/components/catalyst/badge'
 import { Button } from '@/components/catalyst/button'
-import { Checkbox, CheckboxField } from '@/components/catalyst/checkbox'
 import { Divider } from '@/components/catalyst/divider'
 import { Field, Fieldset, Label } from '@/components/catalyst/fieldset'
 import { Heading, Subheading } from '@/components/catalyst/heading'
@@ -238,10 +237,7 @@ function PartnerPage({ locale }: { locale: Locale }) {
                 <Label>{b('currency_label')}</Label>
                 <Input readOnly value="" placeholder={b('currency_placeholder')} maxLength={3} />
               </Field>
-              <CheckboxField>
-                <Checkbox />
-                <Label>{b('confirm_on_add')}</Label>
-              </CheckboxField>
+              <Text className="text-xs">{b('four_eyes_note')}</Text>
               <div className="flex justify-end">
                 <Button disabled>{b('add')}</Button>
               </div>
