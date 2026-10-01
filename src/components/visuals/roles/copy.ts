@@ -23,12 +23,11 @@ export const UI_KEYS = [
   'settings.team.roles.add_role',
   'settings.team.roles.col_role',
   'settings.team.roles.col_side',
-  'settings.team.roles.col_based_on',
   'settings.team.roles.col_members',
   'settings.team.roles.col_actions',
   'settings.team.roles.system_role',
   'settings.team.roles.custom_role',
-  'settings.team.roles.based_on_system',
+  'settings.team.roles.view_based_on',
   'settings.team.roles.view',
   'settings.team.roles.duplicate',
   'settings.team.roles.edit',
@@ -110,12 +109,11 @@ const en: Copy = {
     'settings.team.roles.add_role': 'Add role',
     'settings.team.roles.col_role': 'Role',
     'settings.team.roles.col_side': 'Side',
-    'settings.team.roles.col_based_on': 'Based on',
     'settings.team.roles.col_members': 'Members',
     'settings.team.roles.col_actions': 'Actions',
     'settings.team.roles.system_role': 'System role',
     'settings.team.roles.custom_role': 'Custom role',
-    'settings.team.roles.based_on_system': 'System',
+    'settings.team.roles.view_based_on': 'Based on {base}',
     'settings.team.roles.view': 'View',
     'settings.team.roles.duplicate': 'Duplicate',
     'settings.team.roles.edit': 'Edit',
@@ -152,7 +150,7 @@ const en: Copy = {
       decision:
         "Diagram of how AI Finance Team decides whether a member may do something: first membership, then the fixed rules for bank connections and NAV credentials, then the side (firm-only permissions are never available on the client side), then the member's exceptions, and last the role.",
       roles:
-        'The Roles tab of Team management: the five system roles, Accountant Admin, Accountant, Finance lead, Finance admin and Team member, with their side, member count and the View and Duplicate buttons, a custom role Approver only based on Team member with View, Edit and Archive, and the Add role button. Numbered markers point to the parts described in the list below.',
+        'The Roles tab of Team management: a table of roles with their side and member count. The five system roles are Accountant Admin, Accountant, Finance lead, Finance admin and Team member. A custom role, Approver only, shows Based on Team member under its name. Each row ends with a three-dot menu button that holds its actions: View and Duplicate for a system role, View, Edit and Archive for a custom role. The Add role button is above the table. Numbered markers point to the parts described in the list below.',
     },
   },
 }
@@ -174,12 +172,11 @@ const hu: Copy = {
     'settings.team.roles.add_role': 'Új szerepkör',
     'settings.team.roles.col_role': 'Szerepkör',
     'settings.team.roles.col_side': 'Oldal',
-    'settings.team.roles.col_based_on': 'Alapja',
     'settings.team.roles.col_members': 'Tagok',
     'settings.team.roles.col_actions': 'Műveletek',
     'settings.team.roles.system_role': 'Rendszerszerepkör',
     'settings.team.roles.custom_role': 'Egyedi szerepkör',
-    'settings.team.roles.based_on_system': 'Rendszer',
+    'settings.team.roles.view_based_on': 'Alap: {base}',
     'settings.team.roles.view': 'Megtekintés',
     'settings.team.roles.duplicate': 'Másolás',
     'settings.team.roles.edit': 'Szerkesztés',
@@ -216,7 +213,7 @@ const hu: Copy = {
       decision:
         'Ábra arról, hogyan dönti el az AI Finance Team, hogy egy tag megtehet-e valamit: először a tagság, aztán a bankkapcsolatra és a NAV-hozzáférésre vonatkozó rögzített szabályok, aztán az oldal (irodai jogosultság soha nem érhető el az ügyféloldalon), aztán a tag kivételei, végül a szerepkör.',
       roles:
-        'A Csapatkezelés Szerepkörök füle: az öt rendszerszerepkör, a Könyvelő admin, a Könyvelő, a Pénzügyi vezető, a Pénzügyi adminisztrátor és a Munkatárs, az oldalukkal, a tagok számával, valamint a Megtekintés és a Másolás gombbal, egy Munkatárs alapú Csak jóváhagyó egyedi szerepkör a Megtekintés, Szerkesztés és Archiválás gombbal, és az Új szerepkör gomb. A számozott jelölők az alábbi listában leírt részekre mutatnak.',
+        'A Csapatkezelés Szerepkörök füle: a szerepkörök táblázata az oldalukkal és a tagok számával. Az öt rendszerszerepkör a Könyvelő admin, a Könyvelő, a Pénzügyi vezető, a Pénzügyi adminisztrátor és a Munkatárs. A Csak jóváhagyó egyedi szerepkör neve alatt az Alap: Munkatárs felirat áll. Minden sor végén hárompontos menügomb található, amely a sor műveleteit tartalmazza: rendszerszerepkörnél a Megtekintés és a Másolás, egyedi szerepkörnél a Megtekintés, a Szerkesztés és az Archiválás. A táblázat fölött az Új szerepkör gomb látható. A számozott jelölők az alábbi listában leírt részekre mutatnak.',
     },
   },
 }
@@ -238,12 +235,11 @@ const de: Copy = {
     'settings.team.roles.add_role': 'Rolle hinzufügen',
     'settings.team.roles.col_role': 'Rolle',
     'settings.team.roles.col_side': 'Seite',
-    'settings.team.roles.col_based_on': 'Basiert auf',
     'settings.team.roles.col_members': 'Mitglieder',
     'settings.team.roles.col_actions': 'Aktionen',
     'settings.team.roles.system_role': 'Systemrolle',
     'settings.team.roles.custom_role': 'Eigene Rolle',
-    'settings.team.roles.based_on_system': 'System',
+    'settings.team.roles.view_based_on': 'Basiert auf {base}',
     'settings.team.roles.view': 'Anzeigen',
     'settings.team.roles.duplicate': 'Duplizieren',
     'settings.team.roles.edit': 'Bearbeiten',
@@ -280,7 +276,7 @@ const de: Copy = {
       decision:
         'Diagramm, wie AI Finance Team entscheidet, ob ein Mitglied etwas darf: zuerst die Mitgliedschaft, dann die festen Regeln für Bankverbindungen und NAV-Zugangsdaten, dann die Seite (Kanzlei-Berechtigungen sind auf Mandantenseite nie verfügbar), dann die Ausnahmen des Mitglieds und zuletzt die Rolle.',
       roles:
-        'Der Tab Rollen der Teamverwaltung: die fünf Systemrollen Buchhalter-Admin, Buchhalter, Finanzleitung, Finanzadmin und Teammitglied mit ihrer Seite, der Zahl der Mitglieder und den Schaltflächen Anzeigen und Duplizieren, eine eigene Rolle Nur Freigeber auf Basis von Teammitglied mit Anzeigen, Bearbeiten und Archivieren, und die Schaltfläche Rolle hinzufügen. Nummerierte Markierungen zeigen auf die Teile, die in der Liste darunter beschrieben sind.',
+        'Der Tab Rollen der Teamverwaltung: eine Tabelle der Rollen mit ihrer Seite und der Zahl der Mitglieder. Die fünf Systemrollen sind Buchhalter-Admin, Buchhalter, Finanzleitung, Finanzadmin und Teammitglied. Bei der eigenen Rolle Nur Freigeber steht unter dem Namen Basiert auf Teammitglied. Jede Zeile endet mit einer Menüschaltfläche mit drei Punkten, die ihre Aktionen enthält: Anzeigen und Duplizieren bei einer Systemrolle, Anzeigen, Bearbeiten und Archivieren bei einer eigenen Rolle. Über der Tabelle steht die Schaltfläche Rolle hinzufügen. Nummerierte Markierungen zeigen auf die Teile, die in der Liste darunter beschrieben sind.',
     },
   },
 }
