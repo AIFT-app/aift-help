@@ -39,7 +39,7 @@ The page lists the supplier invoices that were approved and are still unpaid (op
 
 The page has two tabs: **To pay** (this list) and **Payment files** (every file you made, see below). Lines already written into a file are hidden on **To pay**; tick the **In a file** status to see them, marked **In file #N**. A released line comes back without the mark, and after a partial payment the invoice comes back for the rest.
 
-The filter bar above the list narrows it by **Due** date (**Overdue**, **Next 7 days**, **Next 30 days**, a month or your own range), **Paying account**, **Company**, **Payment method** and a search on the payee, the invoice number and the reference. The due-date filter is there for cash flow: you can pay what is due this week and leave the rest for later. It does not follow the focused period in the sidebar, because due dates look ahead.
+The filter bar above the list narrows it by **Due** date (**Overdue**, **Next 7 days**, **Next 30 days**, a month, your own range, or **Until a date** for everything due by a day, overdue included), **Paying account**, **Company**, **Payment method** and a search on the payee, the invoice number and the reference. The due-date filter is there for cash flow: you can pay what is due this week and leave the rest for later. It does not follow the focused period in the sidebar, because due dates look ahead.
 
 ## The account check
 
@@ -71,7 +71,7 @@ Changes are saved with **Save** and appear on the invoice's history. You can cha
 3. In the window that opens, check each file:
    - **Pay from**: the paying account, preselected from the group. The full account number is shown under it.
    - **Lines and payment references**: what goes into the file and the reference the bank will get.
-   - **Format**: the one this account used last time is preselected.
+   - **Format**: the one this account used last time is preselected. The first time, it is the bank file where the bank has one, otherwise the spreadsheet.
      - **Spreadsheet (XLSX), any bank** works with every bank.
      - **Bank file (pain.001 XML)** is offered when the paying account's bank is recognised and has a file import (not at OTP, MagNet, Revolut or Wise).
      - **Electra file (.HUF)** is offered on HUF groups at the banks that run an Electra-based netbank: K&H, Erste, MBH and Gránit.
@@ -86,7 +86,7 @@ The **Create payment file** window for the two ticked invoices. The numbers matc
 
 1. **Pay from**, with the full account number under it.
 2. The **Format**: the one this account used last time is preselected, with the note on the bank's import under it.
-3. **Lines and payment references**: each payee with the reference the bank will get.
+3. **Lines and payment references**: each payee with the reference the bank will get and the date the transfer is requested for.
 4. The **Execution date**.
 5. **Generate and download**.
 
@@ -98,7 +98,7 @@ AI Finance Team records a numbered payment file, marks each invoice **In payment
 - **The bank file** is pain.001.001.03 XML in the Hungarian HCT profile: import it in the netbank's file upload, check the lines and sign there. The remittance text of each line is its payment reference: the invoice number unless someone changed it. In EUR (SEPA) transfers accented letters are replaced (á becomes a), because SEPA accepts only unaccented letters.
 - **The Electra file** is the fixed-width "Forint átutalási megbízás" record. K&H accepts at most 40 lines per file; above that the download button is disabled. The file holds a payment reference of at most 96 characters; a longer one is refused with a reason, never cut.
 
-With **On the due date**, the execution date is the due date, or the next banking day when the due date falls on a weekend, a public holiday, a rest day set by decree or in the past, so nothing is paid early. With **As soon as possible**, every transfer is requested for the next banking day. All three formats use the same dates; the bank file carries them to the bank, while in the spreadsheet they are for whoever keys the transfers in.
+With **On the due date**, the execution date is the due date, or the next banking day when the due date falls on a weekend, a public holiday, a rest day set by decree or in the past, so nothing is paid early. With **As soon as possible**, every transfer is requested for the next banking day. A bank does not accept a date in the past, so an invoice that is already overdue is requested for the next banking day either way; when you pick invoices like that, the window says how many there are and the date. All three formats use the same dates; the bank file carries them to the bank, while in the spreadsheet they are for whoever keys the transfers in.
 
 ## Following up on a file
 
@@ -117,13 +117,15 @@ The page of payment file #3: one of its three lines is paid. The numbers match t
 </PaymentFileDetailFigure>
 
 1. The file's state, and how many of its lines are paid.
-2. **Download again** and **Release file**.
+2. **Download again** and **Release the whole file**.
 3. A paid line, linked to the bank transaction that proves it.
-4. A waiting line and its **Release** link.
+4. A waiting line and its **Remove from file** link.
 
 ## Taking a line back
 
-A payment file is a proposal, so sometimes the transfer does not happen: the file was never uploaded, the bank rejected the import, or nobody signed it. Open the file on the **Payment files** tab, find the line and click **Release**. Choose a reason (**Not uploaded**, **Rejected by the bank**, **Not signed** or **Other**), add a note if you like, and the invoice goes straight back to the list of invoices to pay. **Release file**, on the file's page, does the same for every line of a file that is still waiting; lines that were already paid are kept.
+A payment file is a proposal, so sometimes the transfer does not happen: the file was never uploaded, the bank rejected the import, or nobody signed it. Open the file on the **Payment files** tab, find the line and click **Remove from file**. Choose a reason (**Not uploaded**, **Rejected by the bank**, **Not signed** or **Other**), add a note if you like, and the invoice goes straight back to the list of invoices to pay. **Release the whole file**, on the file's page, does the same for every line of a file that is still waiting; lines that were already paid are kept.
+
+Removing a line here does not change the file you already downloaded. If you imported that file into your netbank, delete the line there too, or delete the file there and make a new one without it. Otherwise the invoice can be paid twice.
 
 A line whose payment already arrived at the bank cannot be released, and releasing never changes the approval. On the invoice, the payment file row then reads **Released from payment file #N** with the date and the reason. If a matched payment is later unmatched, its line goes back to waiting and can be released again.
 
@@ -148,7 +150,7 @@ The spreadsheet works with every bank, because a person keys it in or the bank i
 | Bank | Spreadsheet list | Bank import file | How far it is verified |
 |---|---|---|---|
 | OTP business netbank | Yes | No file import exists in the netbank (checked on 2026-09-13) | verified in the product |
-| K&H | Yes | pain.001 XML for Electra and web Electra (save it as .HCT for HUF, .SCT for EUR); Electra file (.HUF, at most 40 lines per file), which the e-bank also takes | bank documentation, not yet tested with a real file |
+| K&H | Yes | pain.001 XML for Electra and web Electra (it downloads as .HCT for HUF and .SCT for EUR); Electra file (.HUF, at most 40 lines per file), which the e-bank also takes | bank documentation, not yet tested with a real file |
 | MBH Vállalati Netbank | Yes | pain.001 XML; Electra file (.HUF) | bank documentation, not yet tested with a real file |
 | Erste Vállalati NetBank | Yes | pain.001 XML; Electra file (.HUF) | bank documentation, not yet tested with a real file |
 | CIB Business Online | Yes | pain.001 XML (GIRO-HCT) | bank documentation, not yet tested with a real file |
