@@ -43,7 +43,7 @@ A lista feletti szűrősáv szűkíthet **Határidő** szerint (**Lejárt**, **K
 
 ## A számlaszám ellenőrzése
 
-A leggyakoribb számlacsalás a rossz számlaszámra utalás, ezért minden kedvezményezetti számlaszámot meg kell erősíteni, mielőtt fájlba kerülhet. Ezt a „Jóváhagyások kezelése” joggal rendelkező személy teszi meg a partner oldalán. Ahol a munkaterületen be van kapcsolva a cégjegyzék-ellenőrzés, ott az először látott számlaszámot a cégjegyzék is megerősítheti: olyan számlánál, amely az ellenőrzés bekapcsolása után érkezett, működő, nem egyéni vállalkozó cégtől, ha a nevek egyeznek.
+A leggyakoribb számlacsalás a rossz számlaszámra utalás, ezért minden kedvezményezetti számlaszámot meg kell erősíteni, mielőtt fájlba kerülhet. Ezt a „Jóváhagyások kezelése” joggal rendelkező személy teszi meg a partner oldalán. A kézzel beírt számlaszámot mindig más erősíti meg, nem az, aki beírta. Ahol a munkaterületen be van kapcsolva a cégjegyzék-ellenőrzés, ott az először látott számlaszámot a cégjegyzék is megerősítheti: olyan számlánál, amely az ellenőrzés bekapcsolása után érkezett, működő, nem egyéni vállalkozó cégtől, ha a nevek egyeznek.
 
 - **Megerősítve**: a sor kifizethető. A számlaszám alatt az oldal kiírja, ki erősítette meg, vagy melyik napon listázta a cégjegyzék. A letöltött táblázat utolsó oszlopa mutatja, ki és mikor erősítette meg.
 - **Először látott**: a szállító számlaszámát még nem erősítették meg. Nyissa meg a partnert, és erősítse meg, miután egyeztette a szállítóval.
@@ -60,6 +60,7 @@ Ahol a cégjegyzék-ellenőrzés be van kapcsolva, minden sor azt is mutatja, mi
 
 Minden még kifizethető szállítói számla **Párosítás & fizetés** fülének alján, a fizetési állapot és a párosított tranzakciók alatt megtalálja az **Utalási adatok** kártyát. A számla átnézésekor kitöltheti, jóváhagyás előtt vagy után is.
 
+- **Kedvezményezett számlaszáma**: ahová a pénz megy, az állapotával, és ahol be van kapcsolva a cégjegyzék-ellenőrzés, a cégjegyzék adataival. Ha a számlát rosszul olvastuk ki, például a forintos mellett szereplő eurós számlaszámot vettük át, válassza ki a helyeset: a listában a szállító számlaszámai és a számlán szereplők állnak. Új számlaszámot is beírhat; ez megerősítetlenül kerül a partnerhez, és egy másik, „Jóváhagyások kezelése” joggal rendelkező személy erősíti meg, mielőtt a számlát ki lehet fizetni. A **Vissza automatikusra** elveti a választását. A **Számlakép mellé** széles képernyőn a kártya mellé teszi a számlaképet, így a számlaszámot a dokumentummal vetheti össze.
 - **Fizető számla**: az a bankszámla, amelyről a számlát fizetjük. Alapból a cég adott devizára beállított **Alapértelmezett fizetési számla** értéke (a cég Felismerés fülén állítható be), ennek hiányában a cég legrégebben rögzített bankszámlája abban a devizában. Ha ezt az egy számlát másik bankszámláról fizetné, válassza ki azt; a számla ekkor itt annak a bankszámlának a csoportjában jelenik meg.
 - **Utalási közlemény**: az utalással együtt a bankba kerülő szöveg. Automatikusan a számlaszám kerül bele, de átírhatja; a karakterszámláló mutatja a hosszát, a **Vissza automatikusra** pedig visszaállítja a számlaszámot.
 - **Fizetési mód**: a kártyával, utalvánnyal vagy egyéb, nem átutalásos módon fizetendő számla kimarad az utalási fájlokból, és a „Még nem kerülhet be” csoportban jelenik meg. Ha mégis átutalással kell fizetni, kapcsolja be a **Mégis kerüljön bele** opciót. A fizetési mód nélküli számlát átutalásnak tekintjük.
@@ -126,6 +127,8 @@ A 3. utalási fájl oldala: a három sorából egy ki van fizetve. A számok az 
 ## Egy tétel visszavonása
 
 Az utalási fájl javaslat, ezért előfordul, hogy az utalás nem történik meg: a fájlt nem töltötték fel, a bank visszautasította az importot, vagy senki nem írta alá. Nyissa meg a fájlt az **Utalási fájlok** fülön, keresse meg a sort, és kattintson a **Kivétel a fájlból** gombra. Válasszon okot (**Nem töltötték fel**, **A bank visszautasította**, **Nem írták alá** vagy **Egyéb**), ha szeretné, írjon megjegyzést, és a számla azonnal visszakerül a kifizetendő számlák listájára. A fájl oldalán **A teljes fájl visszavonása** gomb ugyanezt teszi egy fájl minden még várakozó sorával; a már kifizetett sorok megmaradnak.
+
+A tételt magáról a számláról is kiveheti: a **Párosítás & fizetés** fülön a **Fizetési állapot** alatt az **Utalási fájl:** sor megnevezi a fájlt, és felajánlja a **Kivétel a fájlból** lehetőséget.
 
 A tétel kivétele itt nem módosítja a már letöltött fájlt. Ha azt már beolvasta a netbankba, ott is törölje a tételt, vagy törölje a fájlt, és készítsen újat nélküle. Különben a számlát kétszer is kifizethetik.
 
