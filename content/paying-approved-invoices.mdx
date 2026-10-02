@@ -43,11 +43,13 @@ The filter bar above the list narrows it by **Due** date (**Overdue**, **Next 7 
 
 ## The account check
 
-Paying the wrong account is the most common invoice fraud, so every payee account has to be confirmed before it can go into a file. A person holding "Manage approvals" confirms it on the partner page. Where the company register check is switched on for your workspace, the register can also confirm an account the first time it is seen: for an invoice that arrived after the check was switched on, from an active company that is not a sole trader, when the names agree.
+Paying the wrong account is the most common invoice fraud, so every payee account has to be confirmed before it can go into a file. A person holding "Manage approvals" confirms it on the partner page. An account that someone types in by hand is confirmed by somebody else, never by the person who typed it. Where the company register check is switched on for your workspace, the register can also confirm an account the first time it is seen: for an invoice that arrived after the check was switched on, from an active company that is not a sole trader, when the names agree.
 
 - **Confirmed**: the line can be paid. Under the account the page says who confirmed it, or on which date the register listed it. The downloaded spreadsheet shows who confirmed it and when in its last column.
 - **First time seen**: this supplier's account has not been confirmed yet. Open the partner and confirm it after you checked it with the supplier.
 - **Account changed**: the account on this invoice differs from the one confirmed before. The line stays blocked until someone confirms the new account. Call the supplier on a number you already know before you do.
+- **Several accounts on the invoice**: the invoice prints more than one bank account and marks none of them for payment, so nobody can tell which one it asks for. Open the invoice and pick the right one, or confirm it on the partner page.
+- **Account currency unclear**: the account may not be in the invoice's currency. Either it is held in another currency, or the supplier has a confirmed account in the invoice's currency and this is a different one. Check the invoice before you pay; this is how a forint invoice gets paid to a euro account.
 - **No account**, **Invalid account**, **No verified partner**: the line cannot be paid yet; the reason and the next step are shown under it.
 
 Blocked lines sit in their own group, **Cannot be included yet**, with links to the partner and the invoice. Three more reasons can put a line there: the paying company has no bank account in that currency (add one under Master data, Companies), nothing is left to pay on the invoice, or the invoice is not paid by bank transfer (see Payment method below). Only someone holding "Manage approvals" can confirm an account, so a payer who can only export files asks them.
@@ -58,6 +60,7 @@ Where the company register check is on, every line also shows what the register 
 
 Every supplier invoice that can still be paid has a **Payment instructions** card at the bottom of its **Matching & payment** tab, below the payment status and the matched transactions. You can fill it in while you review the invoice, before or after it is approved.
 
+- **Supplier's account (payee)**: where the money goes, with its state and, where the company register check is on, what the register says about it. If the invoice was read wrong, for example the euro account was taken from an invoice that also prints a forint account, pick the right one: the list holds the supplier's accounts and the ones printed on the invoice. You can also type a new number; it is added to the partner unconfirmed, and somebody else holding "Manage approvals" confirms it before the invoice can be paid. **Back to automatic** drops your choice. **Show the invoice beside** puts the invoice image next to the card on a wide screen, so you can compare the number with the document.
 - **Pay from**: the bank account that pays the invoice. It starts as the company's **Default for payments** for the currency (set on the company's Recognition tab), or its oldest account in that currency when there is no default. Pick another account to pay this one invoice from it; the invoice then appears in that account's group here.
 - **Payment reference**: the text (közlemény) that goes to the bank with the transfer. It is filled in automatically with the invoice number, and you can change it; a character counter shows how long it is, and **Reset to automatic** brings the invoice number back.
 - **Payment method**: an invoice paid by card, voucher or another non-transfer method is left out of payment files, and shows under "Cannot be included yet". Switch on **Include anyway** if it has to be paid by transfer after all. An invoice without a stated payment method is treated as a bank transfer.
@@ -94,6 +97,8 @@ One file is made per paying account and currency, because your bank signs each a
 
 AI Finance Team records a numbered payment file, marks each invoice **In payment file #N** with the date, and downloads the file. The window then shows **Payment file ready** and reminds you that the invoices are not paid until the bank books the transfers.
 
+The file is named after the paying account, the date and the file's number, for example `Main-account-HUF_2026-10-01_0003.xml`, so the files of different accounts are easy to tell apart in the netbank. Accents and spaces are left out of the name.
+
 - **The spreadsheet** has a header block (paying account, account holder, currency, total) and one row per payment with the payee, the account, the amount, the execution date and the invoice number, under English and Hungarian column headers. Key it into any netbank, or use your bank's own import if it accepts a spreadsheet.
 - **The bank file** is pain.001.001.03 XML in the Hungarian HCT profile: import it in the netbank's file upload, check the lines and sign there. The remittance text of each line is its payment reference: the invoice number unless someone changed it. In EUR (SEPA) transfers accented letters are replaced (á becomes a), because SEPA accepts only unaccented letters.
 - **The Electra file** is the fixed-width "Forint átutalási megbízás" record. K&H accepts at most 40 lines per file; above that the download button is disabled. The file holds a payment reference of at most 96 characters; a longer one is refused with a reason, never cut.
@@ -124,6 +129,8 @@ The page of payment file #3: one of its three lines is paid. The numbers match t
 ## Taking a line back
 
 A payment file is a proposal, so sometimes the transfer does not happen: the file was never uploaded, the bank rejected the import, or nobody signed it. Open the file on the **Payment files** tab, find the line and click **Remove from file**. Choose a reason (**Not uploaded**, **Rejected by the bank**, **Not signed** or **Other**), add a note if you like, and the invoice goes straight back to the list of invoices to pay. **Release the whole file**, on the file's page, does the same for every line of a file that is still waiting; lines that were already paid are kept.
+
+You can also take a line out from the invoice itself: under **Payment status** on its **Matching & payment** tab, the **Payment file:** row names the file and offers **Remove from file**.
 
 Removing a line here does not change the file you already downloaded. If you imported that file into your netbank, delete the line there too, or delete the file there and make a new one without it. Otherwise the invoice can be paid twice.
 
@@ -170,6 +177,8 @@ The spreadsheet works with every bank, because a person keys it in or the bank i
 **An invoice is approved by everyone and still is not here.** A checkpoint can hold it *before* the payment approver ever sees it: where filing or bookkeeping approval is switched on, the payment card reads **Waiting for filing** or **Waiting for bookkeeping** instead of offering Approve. Such an invoice is not yet approved for payment, so it appears nowhere on this page, not even under "Cannot be included yet". See [Filing and Bookkeeping Approval](/filing-and-bookkeeping-approval).
 
 **The page says "Payment approvals are switched off".** The list is built from approvals, so it stays empty until payment approvals are switched on for the company under Settings, Approval rules. See [Setting up approvals](/setting-up-approvals).
+
+**I already paid an invoice by hand in the netbank.** Close it on the invoice's **Matching & payment** tab with **Mark as closed** and a reason, so it leaves the list and cannot be put into a file. When the bank debit arrives, it is matched to the invoice automatically. See [Invoice matching](/invoice-matching#closing-an-invoice-that-needs-no-settlement).
 
 **I generated a file by mistake.** Nothing happened in the bank. Simply do not import it, and release the file (see "Taking a line back") so the invoices return to the list at once.
 

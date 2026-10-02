@@ -43,11 +43,13 @@ A lista feletti szűrősáv szűkíthet **Határidő** szerint (**Lejárt**, **K
 
 ## A számlaszám ellenőrzése
 
-A leggyakoribb számlacsalás a rossz számlaszámra utalás, ezért minden kedvezményezetti számlaszámot meg kell erősíteni, mielőtt fájlba kerülhet. Ezt a „Jóváhagyások kezelése” joggal rendelkező személy teszi meg a partner oldalán. Ahol a munkaterületen be van kapcsolva a cégjegyzék-ellenőrzés, ott az először látott számlaszámot a cégjegyzék is megerősítheti: olyan számlánál, amely az ellenőrzés bekapcsolása után érkezett, működő, nem egyéni vállalkozó cégtől, ha a nevek egyeznek.
+A leggyakoribb számlacsalás a rossz számlaszámra utalás, ezért minden kedvezményezetti számlaszámot meg kell erősíteni, mielőtt fájlba kerülhet. Ezt a „Jóváhagyások kezelése” joggal rendelkező személy teszi meg a partner oldalán. A kézzel beírt számlaszámot mindig más erősíti meg, nem az, aki beírta. Ahol a munkaterületen be van kapcsolva a cégjegyzék-ellenőrzés, ott az először látott számlaszámot a cégjegyzék is megerősítheti: olyan számlánál, amely az ellenőrzés bekapcsolása után érkezett, működő, nem egyéni vállalkozó cégtől, ha a nevek egyeznek.
 
 - **Megerősítve**: a sor kifizethető. A számlaszám alatt az oldal kiírja, ki erősítette meg, vagy melyik napon listázta a cégjegyzék. A letöltött táblázat utolsó oszlopa mutatja, ki és mikor erősítette meg.
 - **Először látott**: a szállító számlaszámát még nem erősítették meg. Nyissa meg a partnert, és erősítse meg, miután egyeztette a szállítóval.
 - **Számlaszám változott**: a számlán szereplő számlaszám eltér a korábban megerősítettől. A sor zárolva marad, amíg valaki meg nem erősíti az újat. Előtte hívja fel a szállítót egy már ismert telefonszámon.
+- **Több számlaszám a számlán**: a számlán több bankszámlaszám szerepel, és egyik sincs megjelölve utalásra, így nem dönthető el, melyikre kéri a fizetést. Nyissa meg a számlát, és válassza ki a helyeset, vagy erősítse meg a partner oldalán.
+- **Bizonytalan devizanem**: lehet, hogy a számlaszám nem a számla devizanemében van. Vagy más devizájú, vagy a szállítónak van megerősített számlája a számla devizanemében, és ez egy másik. Fizetés előtt nézze meg a számlát: így kerülhet egy forintos számla kifizetése eurós számlára.
 - **Nincs számlaszám**, **Érvénytelen számlaszám**, **Nincs ellenőrzött partner**: a sor még nem fizethető ki; az ok és a következő lépés alatta látható.
 
 A zárolt sorok külön csoportban vannak, **Még nem kerülhet be** címmel, a partnerre és a számlára mutató hivatkozással. Három további ok is ide sorolhat egy tételt: a fizető cégnek nincs bankszámlája az adott pénznemben (adja meg a Törzsadatok, Cégek alatt), a számlán már nincs mit fizetni, vagy a számla nem átutalással fizetendő (lásd lent a Fizetési módot). Számlaszámot csak a „Jóváhagyások kezelése” joggal rendelkező személy erősíthet meg, ezért aki csak exportálni tud, őt kéri meg.
@@ -58,6 +60,7 @@ Ahol a cégjegyzék-ellenőrzés be van kapcsolva, minden sor azt is mutatja, mi
 
 Minden még kifizethető szállítói számla **Párosítás & fizetés** fülének alján, a fizetési állapot és a párosított tranzakciók alatt megtalálja az **Utalási adatok** kártyát. A számla átnézésekor kitöltheti, jóváhagyás előtt vagy után is.
 
+- **Kedvezményezett számlaszáma**: ahová a pénz megy, az állapotával, és ahol be van kapcsolva a cégjegyzék-ellenőrzés, a cégjegyzék adataival. Ha a számlát rosszul olvastuk ki, például a forintos mellett szereplő eurós számlaszámot vettük át, válassza ki a helyeset: a listában a szállító számlaszámai és a számlán szereplők állnak. Új számlaszámot is beírhat; ez megerősítetlenül kerül a partnerhez, és egy másik, „Jóváhagyások kezelése” joggal rendelkező személy erősíti meg, mielőtt a számlát ki lehet fizetni. A **Vissza automatikusra** elveti a választását. A **Számlakép mellé** széles képernyőn a kártya mellé teszi a számlaképet, így a számlaszámot a dokumentummal vetheti össze.
 - **Fizető számla**: az a bankszámla, amelyről a számlát fizetjük. Alapból a cég adott devizára beállított **Alapértelmezett fizetési számla** értéke (a cég Felismerés fülén állítható be), ennek hiányában a cég legrégebben rögzített bankszámlája abban a devizában. Ha ezt az egy számlát másik bankszámláról fizetné, válassza ki azt; a számla ekkor itt annak a bankszámlának a csoportjában jelenik meg.
 - **Utalási közlemény**: az utalással együtt a bankba kerülő szöveg. Automatikusan a számlaszám kerül bele, de átírhatja; a karakterszámláló mutatja a hosszát, a **Vissza automatikusra** pedig visszaállítja a számlaszámot.
 - **Fizetési mód**: a kártyával, utalvánnyal vagy egyéb, nem átutalásos módon fizetendő számla kimarad az utalási fájlokból, és a „Még nem kerülhet be” csoportban jelenik meg. Ha mégis átutalással kell fizetni, kapcsolja be a **Mégis kerüljön bele** opciót. A fizetési mód nélküli számlát átutalásnak tekintjük.
@@ -94,6 +97,8 @@ Fizető számlánként és pénznemenként egy fájl készül, mert a bank minde
 
 Az AI Finance Team egy sorszámozott utalási fájlt rögzít, minden számlát **A(z) #N utalási fájlban** jelöléssel lát el a dátummal, és letölti a fájlt. Az ablak ezután **Az utalási fájl elkészült** üzenetet mutat, és emlékeztet, hogy a számlák addig nincsenek kifizetve, amíg a bank nem könyveli az utalásokat.
 
+A fájl neve a fizető számlát, a dátumot és a fájl sorszámát tartalmazza, például `Fo-szamla-HUF_2026-10-01_0003.xml`, így a netbankban a különböző számlák fájljai könnyen megkülönböztethetők. Az ékezetek és a szóközök kimaradnak a névből.
+
 - **A táblázat** egy fejlécblokkal kezdődik (fizető számla, számlatulajdonos, pénznem, összesen), majd kifizetésenként egy sorban szerepel a kedvezményezett, a számlaszám, az összeg, a terhelés napja és a számlaszám, angol és magyar oszlopfejlécekkel. Bármelyik netbankba begépelheti, vagy használhatja a bank saját importját, ha az elfogad táblázatot.
 - **A banki fájl** pain.001.001.03 XML a magyar HCT-profilban: importálja a netbank fájlfeltöltésében, ellenőrizze a sorokat, és ott írja alá. Minden sor közleménye a hozzá tartozó utalási közlemény: a számlaszám, ha senki nem írta át. EUR (SEPA) utalásnál az ékezetes betűk ékezet nélkül kerülnek bele (az á-ból a lesz), mert a SEPA csak ékezet nélküli betűket fogad el.
 - **Az Electra fájl** a fix hosszúságú „Forint átutalási megbízás” rekord. A K&H fájlonként legfeljebb 40 sort fogad el; e fölött a letöltés gombja inaktív. A fájlba legfeljebb 96 karakteres közlemény fér; a hosszabbat a rendszer indoklással visszautasítja, soha nem vágja le.
@@ -124,6 +129,8 @@ A 3. utalási fájl oldala: a három sorából egy ki van fizetve. A számok az 
 ## Egy tétel visszavonása
 
 Az utalási fájl javaslat, ezért előfordul, hogy az utalás nem történik meg: a fájlt nem töltötték fel, a bank visszautasította az importot, vagy senki nem írta alá. Nyissa meg a fájlt az **Utalási fájlok** fülön, keresse meg a sort, és kattintson a **Kivétel a fájlból** gombra. Válasszon okot (**Nem töltötték fel**, **A bank visszautasította**, **Nem írták alá** vagy **Egyéb**), ha szeretné, írjon megjegyzést, és a számla azonnal visszakerül a kifizetendő számlák listájára. A fájl oldalán **A teljes fájl visszavonása** gomb ugyanezt teszi egy fájl minden még várakozó sorával; a már kifizetett sorok megmaradnak.
+
+A tételt magáról a számláról is kiveheti: a **Párosítás & fizetés** fülön a **Fizetési állapot** alatt az **Utalási fájl:** sor megnevezi a fájlt, és felajánlja a **Kivétel a fájlból** lehetőséget.
 
 A tétel kivétele itt nem módosítja a már letöltött fájlt. Ha azt már beolvasta a netbankba, ott is törölje a tételt, vagy törölje a fájlt, és készítsen újat nélküle. Különben a számlát kétszer is kifizethetik.
 
@@ -170,6 +177,8 @@ A „banki dokumentáció” azt jelenti, hogy a bank közzéteszi a formátumot
 **Mindenki jóváhagyta a számlát, mégsem szerepel itt.** Egy jóváhagyási lépés *még azelőtt* visszatarthatja, hogy a kifizetés jóváhagyója egyáltalán látná: ahol az iktatási vagy a könyvelési jóváhagyás be van kapcsolva, a „Kifizetés jóváhagyása” kártyán az **Iktatásra vár** vagy a **Könyvelésre vár** felirat áll a **Jóváhagyom** gomb helyett. Az ilyen számla még nincs jóváhagyva kifizetésre, ezért ezen az oldalon sehol nem jelenik meg, még a „Még nem kerülhet be” csoportban sem. Lásd: [Iktatási és könyvelési jóváhagyás](/filing-and-bookkeeping-approval).
 
 **Az oldal azt írja, hogy „A kifizetések jóváhagyása ki van kapcsolva”.** A lista a jóváhagyásokból épül, ezért üres marad, amíg a cégnél be nem kapcsolják a kifizetések jóváhagyását a Beállítások, Jóváhagyási szabályok alatt. Lásd: [A kifizetések jóváhagyásának beállítása](/setting-up-approvals).
+
+**Egy számlát már kézzel kifizettem a netbankban.** Zárja le a számla **Párosítás & fizetés** fülén a **Megjelölés lezártként** ponttal és egy indoklással, így kikerül a listából, és fájlba sem tehető. Amikor a banki terhelés megérkezik, automatikusan párosul a számlával. Lásd: [Számlák párosítása](/invoice-matching#kiegyenlítést-nem-igénylő-számla-lezárása).
 
 **Tévedésből készítettem egy fájlt.** A bankban semmi nem történt. Egyszerűen ne importálja, és vonja vissza a fájlt (lásd: „Egy tétel visszavonása”), hogy a számlák azonnal visszakerüljenek a listára.
 
