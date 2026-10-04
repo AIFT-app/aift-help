@@ -50,3 +50,19 @@ export function formatDateTime(iso: string, locale: Locale): string {
   )
   return `${parts.year}-${parts.month}-${parts.day} ${parts.hour}:${parts.minute}`
 }
+
+/** aift-web formatPrice: a whole plan price, no decimals ("27 000 Ft", "€75"). */
+export function formatPrice(amount: number, currency: string, locale: Locale): string {
+  return new Intl.NumberFormat(BCP47[locale], {
+    style: 'currency',
+    currency,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+    useGrouping: 'always',
+  } as Intl.NumberFormatOptions).format(amount)
+}
+
+/** aift-web formatCount: an integer count with grouping ("1 840"). */
+export function formatCount(count: number, locale: Locale): string {
+  return new Intl.NumberFormat(BCP47[locale], { maximumFractionDigits: 0, useGrouping: 'always' } as Intl.NumberFormatOptions).format(count)
+}
