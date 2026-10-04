@@ -43,6 +43,7 @@ import { SelectionGridFigure } from './grid'
 import { LanguageLadderFigure } from './language'
 import { RegistryPanelFigure } from './registry-panel'
 import { FoldedVatFigure } from './folded-vat'
+import { BillingDetailsDialogFigure, PlanPickerFigure } from './billing'
 
 type WithLocale = { locale: Locale; children?: React.ReactNode }
 
@@ -98,6 +99,8 @@ const FIGURES: Record<string, (props: WithLocale) => React.ReactNode> = {
   LanguageLadderFigure,
   RegistryPanelFigure,
   FoldedVatFigure,
+  PlanPickerFigure,
+  BillingDetailsDialogFigure,
 }
 
 export function visualComponents(locale: Locale) {
