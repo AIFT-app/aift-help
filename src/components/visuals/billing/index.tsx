@@ -1,7 +1,7 @@
 // App screens for the billing article.
 //
 // Rebuilt 1:1 from aift-web (origin/staging 2026-10-04, after
-// billing-checkout-hu-tax-id, aift-web#1619), class for class, with the real
+// billing-checkout-hu-tax-id, aift-web#1619, and the card-width price sizing), class for class, with the real
 // Catalyst components from the help mirror:
 //   page shell   src/app/(app)/organization-settings/layout.tsx (max-w-5xl
 //                px-4 py-12) + _components/OrgPageHeader.tsx
@@ -14,6 +14,7 @@
 // ./copy.ts. Verified against the real components rendered with the same data
 // (aift-ops/scripts/help-screen-css-diff.mjs).
 
+import clsx from 'clsx'
 import { Fragment } from 'react'
 import type { Locale } from '@/lib/i18n'
 import { Button } from '@/components/catalyst/button'
@@ -54,6 +55,19 @@ const strong = (chunk: string, key: number) => (
     {chunk}
   </strong>
 )
+
+// BillingSection PRICE_SIZE / priceSize, verbatim: the price steps down with
+// the card's width, keyed by currency, then for the forint by language.
+const PRICE_SIZE = {
+  eur: 'text-2xl @[9rem]:text-3xl @[10.25rem]:text-4xl',
+  huf_hu: 'text-xl @[10rem]:text-2xl @[12rem]:text-3xl @[14rem]:text-4xl',
+  huf_other: 'text-lg @[10.25rem]:text-xl @[11.5rem]:text-2xl @[13.5rem]:text-3xl @[15.5rem]:text-4xl',
+} as const
+
+function priceSize(currency: string, locale: string): string {
+  if (currency.toLowerCase() !== 'huf') return PRICE_SIZE.eur
+  return locale === 'hu' ? PRICE_SIZE.huf_hu : PRICE_SIZE.huf_other
+}
 
 /** aift-web lib/billing-projection: base + every entry above the allowance. */
 function projected(plan: Plan, entries: number, overage: number): number {
@@ -148,8 +162,8 @@ export function PlanPickerFigure({ locale, children }: FigureProps) {
                         key={p.key}
                         className={
                           isRecommended
-                            ? 'relative flex flex-col rounded-2xl p-6 ring-2 ring-indigo-600 shadow-xl shadow-indigo-600/10 dark:bg-white/5'
-                            : 'relative flex flex-col rounded-2xl p-6 ring-1 ring-gray-200 dark:ring-white/10'
+                            ? '@container relative flex flex-col rounded-2xl p-6 ring-2 ring-indigo-600 shadow-xl shadow-indigo-600/10 dark:bg-white/5'
+                            : '@container relative flex flex-col rounded-2xl p-6 ring-1 ring-gray-200 dark:ring-white/10'
                         }
                       >
                         {isRecommended && (
@@ -165,7 +179,7 @@ export function PlanPickerFigure({ locale, children }: FigureProps) {
                         <p className="mt-0.5 min-h-9 text-xs text-gray-500 dark:text-gray-400">{b(`plan_desc_${p.key}`)}</p>
 
                         <p className="mt-4 flex items-baseline gap-1.5">
-                          <span className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white">{price(p.month)}</span>
+                          <span className={clsx(priceSize(c.currency, locale), 'font-semibold tracking-tight text-gray-900 dark:text-white')}>{price(p.month)}</span>
                           <span className="text-sm font-semibold text-gray-500 dark:text-gray-400">{b('price_suffix')}</span>
                         </p>
                         <p className="mt-0.5 min-h-5 text-xs text-gray-500 dark:text-gray-400"></p>
