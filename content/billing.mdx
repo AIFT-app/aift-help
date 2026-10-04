@@ -1,0 +1,103 @@
+# Subscription & Billing
+
+One subscription covers your whole accounting office: every client workspace and every user, with no limit on either. You choose a plan, try it free for 14 days, and manage the subscription afterwards on the same page.
+
+The page is under **Organization**, **Billing** in the sidebar. Only an organization admin sees it, and only once AI Finance Team has switched billing on for your office. If you are an admin and the menu item is missing, write to us and we will switch it on.
+
+## What a plan counts
+
+A plan is sized in **entries**. Every invoice and every bank transaction processed for one of your clients is one entry, and it counts once, the first time it is processed. Re-running categorization, matching it again or editing it later costs nothing extra.
+
+Each plan includes a number of entries a month. Above that, every extra entry is charged at the price shown on the plan, and nothing stops: no client is cut off when you go over.
+
+## Choosing a plan
+
+<PlanPickerFigure>
+The Billing page of an office that has not subscribed yet. The numbers match the list below. The office and its 1,840 entries are an example; the prices are the current list prices.
+</PlanPickerFigure>
+
+1. **Monthly** or **Annual**. An annual plan costs less (the badge shows the largest saving, up to 15%), and its allowance is **pooled for the year**: Squirrel's 500 entries a month become 6,000 for the year, to use in any month.
+2. The basis of the recommendation: your office's **busiest recent month**, not the latest one, so a quiet month between VAT returns does not undersize the plan.
+3. **Best for you** marks the plan that would cost your office least at that volume. This is not always the smallest plan: because extra entries are charged one by one, a bigger plan can be cheaper outright.
+4. What this plan would cost your office in a month like your busiest one, extra entries included. A brand-new office with no history yet sees no recommendation and no cost line.
+5. Start the subscription. The button reads **Start 14-day free trial** when the trial is available to you, and **Subscribe** when it is not.
+
+Prices exclude VAT. A Hungarian office is charged 27% Hungarian VAT. An office outside Hungary gives its VAT ID at checkout and is invoiced without VAT under the reverse charge.
+
+The currency follows **your office's country**, not your language: a Hungarian office sees forint prices whatever language its admin uses, every other office sees euro. The full price list is in the [Price List](https://aift.aifinance.team/legal/pricing), part of the Terms of Service.
+
+If we agreed a discount with your office, the page says so under the plan heading (**Agreed discount**). It is applied automatically at checkout; you do not need a code.
+
+## The 14-day free trial
+
+The trial is **once per office**. You give a card at checkout, nothing is charged during the 14 days, and the first payment is taken automatically when the trial ends, unless you cancel before that.
+
+An office that has subscribed before does not get a second trial. For that office the page promises no trial and the button reads **Subscribe**: the first payment is taken at checkout.
+
+If you leave the payment page without finishing, you return to Billing with the note *"Checkout cancelled. Nothing was charged, and you can subscribe whenever you are ready."*
+
+## Billing details for Hungarian offices
+
+A Hungarian office gives its company name and Hungarian tax number in AI Finance Team before the payment page opens. These are the details that go on your invoice.
+
+<BillingDetailsDialogFigure>
+The **Billing details** window, with an EU VAT number typed into the tax number field. The numbers match the list below.
+</BillingDetailsDialogFigure>
+
+1. **Company name**: filled in with your office's name the first time, and with the name already on file when you subscribe again. Correct it if your invoices should carry your full legal name.
+2. **Tax number (adószám)**: your Hungarian tax number, 11 digits, in the form `12345678-1-23`. Type the digits; the hyphens appear on their own. The number is checked as you type: its 8th digit is a check digit, and the 9th must be between 1 and 5, so a typo is caught here rather than on the invoice.
+3. **Continue to payment** stays greyed out until both fields are valid.
+
+### Why the EU VAT number is refused
+
+The field refuses an EU VAT number such as `HU12345678` and says so straight away. The two numbers do different jobs. The **EU VAT number** (közösségi adószám) identifies your company in trade with other EU countries. A Hungarian invoice from a Hungarian supplier to a Hungarian company carries the buyer's **Hungarian tax number** (adószám), so that is the one we need. If only the EU number were on file, your invoice could not be issued correctly.
+
+### The payment page
+
+**Continue to payment** opens Stripe's secure payment page, where you give:
+
+- your **card**;
+- your **full billing address**: street, city, postcode and country. The Hungarian invoice must carry the buyer's full address, so the address is required;
+- your acceptance of the **Terms of Service**.
+
+The payment page does not ask for the tax number again: the one you gave is already saved. If Stripe does not accept it, you are not sent on; the window shows *"Stripe did not accept this tax number. Check it again, or contact us."*
+
+### Offices outside Hungary
+
+There is no Billing details window. Stripe's payment page asks for the card, the full billing address and your **VAT ID**, which is required, because AI Finance Team sells only to businesses and the VAT ID is what lets us invoice under the reverse charge.
+
+## After you subscribe
+
+The plan picker gives way to a short summary: **Your subscription**, a status badge (**Trial**, **Active**, **Past due** and so on) and the date that matters next: when the trial ends, when the plan renews, or, after you cancel, when it ends.
+
+Under it, a usage panel shows the entries used **in the current billing period**, what the period is projected to cost, and the split by client. A second line gives the calendar month for your own records. When your usage has grown past the point where the next plan up would cost less, the panel says so.
+
+## Managing billing
+
+**Manage billing** opens Stripe's customer portal for your office. There you can:
+
+- change the card;
+- see and download your Stripe invoices and receipts;
+- update the billing details: company name, email, address, phone and tax ID;
+- cancel the subscription.
+
+A cancellation takes effect **at the end of the current billing period**. Until then everything keeps working, and the Billing page shows the end date (**Your subscription cancels on**). Nothing is refunded for the part of the period already started.
+
+Two things to know:
+
+- **Changing plan is not possible in the portal.** To move to a bigger or smaller plan, write to us and we will change it for you. Starting a second plan on the Billing page is refused on purpose, because it would bill you twice.
+- **Hungarian offices: keep the Hungarian tax number.** The portal lets you edit the tax ID. If you do, keep the 11-digit Hungarian tax number; do not replace it with the EU VAT number, for the reason above.
+
+## Invoices
+
+The documents in the portal are Stripe's payment invoices and receipts. A Hungarian office receives its Hungarian invoice (számla) by email, separately from these.
+
+## Common questions
+
+**I do not see Billing in the menu.** Either you are not an organization admin (ask one of your admins, or see [Roles & Permissions](/roles-and-permissions)), or billing has not been switched on for your office yet. Write to us.
+
+**The page says "Plans are not available yet."** Your account works and usage is being recorded; the plans for your region are not ready. We will be in touch before anything is charged.
+
+**"You already have a plan covering this work."** Your office already has a subscription. Write to us to change it rather than starting a second one.
+
+**I typed the tax number and the button stays grey.** Read the red message under the field: it says whether it is the EU VAT number, the format, the check digit or the 9th digit. If you pasted the number, check for a missing digit.

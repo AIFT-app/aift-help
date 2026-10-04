@@ -49,6 +49,12 @@ export const navGroups: NavGroup[] = [
         title: { en: 'Where Your Data Goes', hu: 'Hová kerülnek az adatai', de: 'Wohin Ihre Daten gehen' },
         audience: 'client',
       },
+      // Billing (billing-checkout-hu-tax-id): the office's subscription page,
+      // Organization > Billing / Szervezet > Számlázás / Organisation > Abrechnung.
+      {
+        slug: 'billing',
+        title: { en: 'Subscription & Billing', hu: 'Előfizetés és számlázás', de: 'Abonnement & Abrechnung' },
+      },
     ],
   },
   {

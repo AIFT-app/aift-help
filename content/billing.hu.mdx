@@ -1,0 +1,103 @@
+# Előfizetés és számlázás
+
+Egy előfizetés lefedi a teljes könyvelőirodát: minden ügyfél-munkaterületet és minden felhasználót, egyiknek sincs felső korlátja. Kiválaszt egy csomagot, 14 napig ingyen kipróbálja, utána pedig ugyanazon az oldalon kezeli az előfizetést.
+
+Az oldalt az oldalsávban a **Szervezet**, **Számlázás** menüpont alatt találja. Csak a szervezet adminisztrátora látja, és csak azután, hogy az AI Finance Team bekapcsolta a számlázást az irodájának. Ha Ön adminisztrátor, és mégsem látja a menüpontot, írjon nekünk, és bekapcsoljuk.
+
+## Mit számol a csomag
+
+A csomagok mérete **tételben** van megadva. Minden számla és minden banki tranzakció, amelyet valamelyik ügyfelének feldolgozunk, egy tétel, és csak egyszer számít: az első feldolgozáskor. Az újrakategorizálás, az ismételt párosítás vagy egy későbbi javítás nem kerül többe.
+
+Minden csomagban havonta adott számú tétel szerepel. Efölött minden további tétel a csomagnál feltüntetett tételáron számlázódik, és semmi nem áll le: egyetlen ügyfél sem marad ki, ha túllépi a keretet.
+
+## Csomag kiválasztása
+
+<PlanPickerFigure>
+Egy még elő nem fizetett iroda Számlázás oldala. A számok az alábbi lista elemeinek felelnek meg. Az iroda és az 1 840 tétel példa, az árak a jelenlegi listaárak.
+</PlanPickerFigure>
+
+1. **Havi** vagy **Éves**. Az éves csomag olcsóbb (a címke a legnagyobb megtakarítást mutatja, akár 15%-ot), és a kerete **egész évre közös**: a Mókus havi 500 tétele egy évre 6 000 tétel, amelyet bármelyik hónapban felhasználhat.
+2. Az ajánlat alapja: az iroda **legforgalmasabb utóbbi hónapja**, nem a legutóbbi, így egy két áfabevallás közötti csendesebb hónap miatt nem kap túl kicsi csomagot.
+3. A **Neked ajánlott** jelölés azon a csomagon áll, amelyik ennél a forgalomnál a legkevesebbe kerülne az irodának. Ez nem mindig a legkisebb csomag: mivel a kereten felüli tételek darabonként számlázódnak, egy nagyobb csomag összességében olcsóbb is lehet.
+4. Ennyibe kerülne ez a csomag az irodának egy olyan hónapban, mint a legforgalmasabb, a kereten felüli tételekkel együtt. Egy teljesen új iroda, amelynek még nincs forgalma, sem ajánlatot, sem költségsort nem lát.
+5. Az előfizetés indítása. A gomb felirata **14 napos ingyenes próba**, ha a próbaidőszak Önnek jár, és **Előfizetés**, ha nem.
+
+Az árak áfa nélkül értendők. A magyarországi iroda számláján 27% magyar áfa szerepel. A Magyarországon kívüli iroda a fizetéskor megadja a közösségi adószámát, és fordított adózással, áfa nélkül számlázunk neki.
+
+A pénznem **az iroda országát** követi, nem a nyelvet: a magyarországi iroda forintban látja az árakat, bármilyen nyelven használja is az adminisztrátora az alkalmazást, minden más iroda euróban. A teljes árlistát a [Díjszabás](https://aift.aifinance.team/legal/pricing) tartalmazza, amely az ÁSZF része.
+
+Ha kedvezményben állapodtunk meg az irodájával, azt az oldal a csomagválasztó címe alatt jelzi (**Megállapodott kedvezmény**). A fizetéskor magától érvényesül, kódot nem kell megadnia.
+
+## A 14 napos ingyenes próbaidőszak
+
+A próbaidőszak **irodánként egyszer** jár. A fizetéskor megad egy bankkártyát, a 14 nap alatt nem terhelünk semmit, az első díjat pedig a próbaidőszak végén automatikusan levonjuk, hacsak előtte le nem mondja.
+
+Az az iroda, amely korábban már előfizetett, nem kap újabb próbaidőszakot. Ennek az irodának az oldal nem ígér próbát, a gomb felirata **Előfizetés**, és az első díjat a fizetéskor terheljük.
+
+Ha a fizetési oldalt befejezés nélkül elhagyja, visszakerül a Számlázás oldalra ezzel az üzenettel: *„A fizetés megszakadt. Nem történt terhelés; akkor fizetsz elő, amikor készen állsz.”*
+
+## Számlázási adatok magyarországi irodáknak
+
+A magyarországi iroda a cégnevét és a magyar adószámát még a fizetési oldal megnyílása előtt, az AI Finance Teamben adja meg. Ezek az adatok kerülnek a számlájára.
+
+<BillingDetailsDialogFigure>
+A **Számlázási adatok** ablak, az adószám mezőben egy közösségi adószámmal. A számok az alábbi lista elemeinek felelnek meg.
+</BillingDetailsDialogFigure>
+
+1. **Cégnév**: első alkalommal az iroda nevével töltjük ki, újabb előfizetésnél a már elmentett névvel. Javítsa ki, ha a számláján a teljes, hivatalos cégnévnek kell szerepelnie.
+2. **Adószám**: a magyar adószám, 11 számjegy, `12345678-1-23` formában. Elég a számjegyeket beírnia, a kötőjelek maguktól megjelennek. A számot gépelés közben ellenőrizzük: a 8. számjegy ellenőrző számjegy, a 9. pedig 1 és 5 közötti szám lehet, így egy elírás már itt kiderül, nem a számlán.
+3. A **Tovább a fizetéshez** gomb addig szürke, amíg mindkét mező helyes nem lesz.
+
+### Miért nem fogadjuk el a közösségi adószámot
+
+A mező nem fogadja el a közösségi adószámot, például a `HU12345678` formát, és ezt azonnal jelzi is. A két szám mást szolgál. A **közösségi adószám** a cégét a más uniós országokkal folytatott kereskedelemben azonosítja. Egy magyar szállító magyar cégnek kiállított számláján a vevő **magyar adószáma** szerepel, ezért erre van szükségünk. Ha csak a közösségi adószám lenne meg, a számláját nem lehetne helyesen kiállítani.
+
+### A fizetési oldal
+
+A **Tovább a fizetéshez** gomb megnyitja a Stripe biztonságos fizetési oldalát, ahol megadja:
+
+- a **bankkártyáját**;
+- a **teljes számlázási címét**: utca, település, irányítószám és ország. A magyar számlán a vevő teljes címének szerepelnie kell, ezért a cím kötelező;
+- hogy elfogadja az **ÁSZF**-et.
+
+Az adószámot a fizetési oldal nem kéri újra: amit megadott, az már el van mentve. Ha a Stripe nem fogadja el, nem jut tovább, az ablakban pedig ez áll: *„A Stripe nem fogadta el ezt az adószámot. Nézd meg még egyszer, vagy írj nekünk.”*
+
+### Magyarországon kívüli irodák
+
+Ők nem látják a Számlázási adatok ablakot. A Stripe fizetési oldala kéri a bankkártyát, a teljes számlázási címet és a **közösségi adószámot**, amely kötelező, mert az AI Finance Team csak vállalkozásoknak értékesít, és a közösségi adószám teszi lehetővé a fordított adózású számlát.
+
+## Az előfizetés után
+
+A csomagválasztó helyén egy rövid összegzés jelenik meg: **Az előfizetésed**, egy állapotjelölés (**Próbaidőszak**, **Aktív**, **Lejárt** és így tovább), valamint a következő fontos dátum: mikor ér véget a próbaidőszak, mikor újul meg a csomag, lemondás után pedig mikor szűnik meg.
+
+Alatta a felhasználási panel mutatja, hány tételt használt el **a jelenlegi számlázási időszakban**, mennyibe kerül várhatóan az időszak, és hogyan oszlik meg ügyfelenként. Egy második sor a naptári hónapot adja meg a saját nyilvántartásához. Ha a forgalma már akkora, hogy a következő nagyobb csomag olcsóbb lenne, a panel ezt is jelzi.
+
+## Az előfizetés kezelése
+
+A **Számlázás kezelése** gomb megnyitja az iroda Stripe ügyfélportálját. Itt:
+
+- lecserélheti a bankkártyát;
+- megnézheti és letöltheti a Stripe számláit és nyugtáit;
+- módosíthatja a számlázási adatokat: cégnév, e-mail-cím, cím, telefonszám és adószám;
+- lemondhatja az előfizetést.
+
+A lemondás **a jelenlegi számlázási időszak végén** lép életbe. Addig minden működik tovább, a Számlázás oldal pedig mutatja a megszűnés dátumát (**Megszűnik**). A már megkezdett időszakra nem térítünk vissza díjat.
+
+Két dolgot érdemes tudnia:
+
+- **Csomagot a portálon nem lehet váltani.** Ha nagyobb vagy kisebb csomagra váltana, írjon nekünk, és átállítjuk. Egy második csomag indítását a Számlázás oldal szándékosan nem engedi, mert az duplán terhelné.
+- **Magyarországi irodák: tartsák meg a magyar adószámot.** A portálon az adószám is módosítható. Ha módosítja, a 11 számjegyű magyar adószám maradjon; ne cserélje le a közösségi adószámra, a fent leírt okból.
+
+## Számlák
+
+A portálon látható dokumentumok a Stripe fizetési számlái és nyugtái. A magyarországi iroda a magyar számláját ezektől külön, e-mailben kapja meg.
+
+## Gyakori kérdések
+
+**Nem látom a Számlázás menüpontot.** Vagy nem szervezeti adminisztrátor (kérdezze meg valamelyik adminisztrátorukat, vagy lásd: [Szerepek és jogosultságok](/roles-and-permissions)), vagy az irodájának még nincs bekapcsolva a számlázás. Írjon nekünk.
+
+**Az oldalon ez áll: „A csomagok még nem elérhetők.”** A fiókja működik, a felhasználást mérjük, csak a régiójára vonatkozó csomagok nincsenek még készen. Jelentkezünk, mielőtt bármilyen díj felmerülne.
+
+**„Már van egy csomagod, ami ugyanezt fedi le.”** Az irodájának már van előfizetése. A váltáshoz írjon nekünk, ne indítson másodikat.
+
+**Beírtam az adószámot, de a gomb szürke maradt.** Olvassa el a mező alatti piros üzenetet: megmondja, hogy közösségi adószámot írt-e be, vagy a formátummal, az ellenőrző számjeggyel, illetve a 9. számjeggyel van gond. Ha bemásolta a számot, nézze meg, nem maradt-e ki egy számjegy.
