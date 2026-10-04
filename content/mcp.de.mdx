@@ -129,6 +129,12 @@ Zwei Details zum Lesen, die leicht übersehen werden: die Mitgliederlisten entha
 
 Trennen Sie die Verbindung und verbinden Sie erneut, um das Erteilte zu ändern.
 
+## Grenzen
+
+Ein Assistent darf pro Minute und pro Stunde eine festgelegte Zahl von Aufrufen machen, getrennt gezählt für Lesen und für Änderungen. Änderungen haben zusätzlich ein Tageslimit pro Benutzer. Die Grenzen liegen deutlich über dem, was ein Mensch bei der Arbeit mit einem Assistenten braucht. Sie sind dazu da, einen Assistenten zu stoppen, der in einer Schleife hängt.
+
+Ist eine Grenze erreicht, wird der Aufruf abgelehnt und nichts geändert. Der Assistent erfährt, wie viele Sekunden er warten soll. Ein gut funktionierender Assistent wartet und macht weiter, eine lange Aufgabe dauert dann einfach länger. Jeder verbundene Assistent wird getrennt gezählt, sodass einer, der außer Kontrolle gerät, die anderen nicht sofort blockiert.
+
 ## Wenn es nicht funktioniert
 
 Der Assistent zeigt die Meldung, die er erhalten hat. Jede bedeutet etwas anderes:
@@ -139,6 +145,7 @@ Der Assistent zeigt die Meldung, die er erhalten hat. Jede bedeutet etwas andere
 | Your account does not belong to an organization that can use MCP | Wenden Sie sich an uns. Das ist eine Lücke in der Einrichtung, nicht der Schalter. |
 | Your sign-in for this connection is no longer valid | Trennen Sie den Konnektor und fügen Sie ihn erneut hinzu. |
 | Access could not be verified, try again shortly | Eine vorübergehende Störung. Versuchen Sie es erneut, und nennen Sie uns den Zeitpunkt, falls es bleibt. |
+| Rate limit reached, wait … seconds | Nichts. Der Assistent wartet und macht weiter. Passiert es immer wieder, hängt der Assistent vielleicht in einer Schleife: Halten Sie ihn an, und sagen Sie uns Bescheid, wenn Sie den Grund nicht kennen. |
 
 Zwei weitere Fälle haben keine eigene Meldung:
 
@@ -147,9 +154,9 @@ Zwei weitere Fälle haben keine eigene Meldung:
 
 ## Was protokolliert wird
 
-Jeder Aufruf schreibt eine Zeile ins Prüfprotokoll: wer ihn ausgelöst hat, welches Werkzeug, wann, wie lange er gedauert hat, wie viele Datensätze zurückkamen und ob er fehlgeschlagen ist. Bei einer Änderung werden zusätzlich der berührte Datensatz und seine Werte vorher und nachher gespeichert.
+Jeder ausgeführte Aufruf schreibt eine Zeile ins Prüfprotokoll: wer ihn ausgelöst hat, welches Werkzeug, wann, wie lange er gedauert hat, wie viele Datensätze zurückkamen und ob er fehlgeschlagen ist. Bei einer Änderung werden zusätzlich der berührte Datensatz und seine Werte vorher und nachher gespeichert. Ein wegen einer Grenze abgelehnter Aufruf wird pro verbundenem Assistenten einmal pro Stunde protokolliert, nicht jedes Mal.
 
-Zwei Grenzen sind wichtig zu verstehen:
+Zwei Dinge sind wichtig zu wissen:
 
 - **Die Argumente werden ausgewählt protokolliert.** Die Namen der erwarteten Argumente bleiben erhalten; alles andere, einschließlich jedes langen oder freien Textwerts, wird ersetzt. Suchbegriffe werden nicht gespeichert.
 - **Ergebnisse werden nie gespeichert.** Das Protokoll hält die Form des Aufrufs fest, nicht die Daten, die der Assistent gesehen hat.

@@ -129,6 +129,12 @@ A „törzsadat” itt egyetlen eszköz tíz fajtával: cégek, partnerek, banks
 
 A megadott hozzáférés módosításához csatlakozzon le, majd újra.
 
+## Korlátok
+
+Egy asszisztens percenként és óránként meghatározott számú hívást indíthat, az olvasást és a módosítást külön számolva. A módosításoknak felhasználónként napi korlátja is van. A korlátok jóval afölött vannak, amire egy asszisztenssel dolgozó embernek szüksége van. Arra valók, hogy megállítsák a hurokba került asszisztenst.
+
+Ha egy korlát betelik, a hívást elutasítjuk, és semmi nem változik. Az asszisztens megkapja, hány másodpercet várjon. Egy rendesen működő asszisztens kivár és folytatja, így egy hosszú feladat egyszerűen tovább tart. Minden csatlakoztatott asszisztenst külön számolunk, így ha az egyik elszabadul, a többit nem állítja le azonnal.
+
 ## Ha nem működik
 
 Az asszisztens megmutatja a kapott üzenetet. Mindegyik mást jelent:
@@ -139,6 +145,7 @@ Az asszisztens megmutatja a kapott üzenetet. Mindegyik mást jelent:
 | Your account does not belong to an organization that can use MCP | Forduljon hozzánk. Ez beállítási hiányosság, nem a kapcsoló. |
 | Your sign-in for this connection is no longer valid | Csatlakoztassa le a konnektort, és adja hozzá újra. |
 | Access could not be verified, try again shortly | Átmeneti hiba. Próbálja újra, és ha tartósan fennáll, írja meg nekünk az időpontot. |
+| Rate limit reached, wait … seconds | Semmi teendő. Az asszisztens kivár és folytatja. Ha újra és újra előfordul, lehet, hogy az asszisztens hurokba került: állítsa le, és ha nem tudja, miért történt, jelezze nekünk. |
 
 Két további esetnek nincs saját üzenete:
 
@@ -147,9 +154,9 @@ Két további esetnek nincs saját üzenete:
 
 ## Mit rögzítünk
 
-Minden hívás egy sort ír az auditnaplóba: ki indította, melyik eszközt, mikor, meddig tartott, hány rekord érkezett vissza, és hibára futott-e. Módosításnál az érintett rekord, valamint az előtte és utána értékei is eltárolódnak.
+Minden lefutó hívás egy sort ír az auditnaplóba: ki indította, melyik eszközt, mikor, meddig tartott, hány rekord érkezett vissza, és hibára futott-e. Módosításnál az érintett rekord, valamint az előtte és utána értékei is eltárolódnak. A korlát miatt elutasított hívás csatlakoztatott asszisztensenként óránként egyszer kerül a naplóba, nem minden alkalommal.
 
-Két korlátot érdemes érteni:
+Két dolgot érdemes tudni:
 
 - **Az argumentumok válogatva rögzülnek.** A várt argumentumok neve megmarad; minden más, köztük minden hosszú vagy szabad szöveges érték, lecserélődik. A keresőkifejezések nem tárolódnak.
 - **Az eredmények soha nem tárolódnak.** A napló a hívás alakját őrzi meg, nem azokat az adatokat, amelyeket az asszisztens látott.
