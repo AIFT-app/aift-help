@@ -68,16 +68,16 @@ There is no Billing details window. Stripe's payment page asks for the card, the
 
 ## After you subscribe
 
-The plan picker gives way to a short summary: **Your subscription**, a status badge (**Trial**, **Active**, **Past due** and so on) and the date that matters next: when the trial ends, when the plan renews, or, after you cancel, when it ends. **Past due** means the last payment did not go through: change the card under **Manage billing**.
+The Billing page now has two tabs: **Subscription** and **Invoices**. On **Subscription**, the plan picker gives way to a short summary: **Your subscription**, a status badge (**Trial**, **Active**, **Past due** and so on) and the date that matters next: when the trial ends, when the plan renews, or, after you cancel, when it ends. **Past due** means the last payment did not go through: change the card under **Manage subscription**.
 
 Under it, a usage panel shows the entries used **in the current billing period**, what the period is projected to cost, and the split by client. A second line gives the calendar month for your own records. When your usage has grown past the point where the next plan up would cost less, the panel says so.
 
-## Managing billing
+## Managing the subscription
 
-**Manage billing** opens Stripe's customer portal for your office. There you can:
+**Manage subscription** opens Stripe's customer portal for your office. There you can:
 
 - change the card;
-- see and download your Stripe invoices and receipts;
+- see Stripe's payment records and receipts (these are not invoices, see below);
 - update the billing details: company name, email, address and phone, and the VAT ID if your office is outside Hungary;
 - cancel the subscription.
 
@@ -90,7 +90,13 @@ Two things to know:
 
 ## Invoices
 
-The documents in the portal are Stripe's payment invoices and receipts. A Hungarian office receives its Hungarian invoice (számla) by email, separately from these.
+The **Invoices** tab lists every invoice (számla) AIFT has issued to your office: the supply date, the invoice number, the line and the gross amount. The **PDF** button downloads the invoice from Számlázz.hu. The invoice for a period you have just paid shows **Being issued** until it is ready.
+
+The amount is the amount on the invoice. Számlázz.hu rounds every line to a whole forint, so it can differ by at most 1 forint per line from what was charged to the card.
+
+You also receive each invoice by email. Choose who receives it on the same tab, under **Invoice recipients**.
+
+The documents in the Stripe portal are payment records, not invoices. The invoice to book is the one on the Invoices tab.
 
 ## Common questions
 
