@@ -22,7 +22,7 @@ Three permissions make up payment approvals:
 
 - **Approve invoices for payment**: sees the queue and can approve or decline. It does **not** need "View invoices and bank transactions": an approver without that permission simply sees only the invoices routed to them, and their own uploads. "Manage approvals" and "Export payment file" do need it, and the role editor keeps them switched off until it is on.
 - **Manage approvals**: sees the whole flow on the Overview, assigns invoices, reopens decisions, confirms supplier bank accounts and edits the rules and the policy.
-- **Export payment file**: downloads the payment file for approved invoices. See [Paying approved invoices](/paying-approved-invoices).
+- **Export payment file**: downloads the payment file for approved invoices and invoices that need no approval. See [Paying approved invoices](/paying-approved-invoices).
 
 By default the accountant admin and the finance lead hold all three, and the **Finance admin** system role holds "Manage approvals" and "Export payment file" without deciding invoices for payment (it does hold "Approve filing"). For anyone else, create a role under **Settings**, **Team management**, **Roles** (this needs "Manage members and roles"), for example "Approver only" holding just the first one, and assign it. See [Roles and Permissions](/roles-and-permissions).
 
