@@ -129,6 +129,12 @@ Two details about reading that are easy to miss: the member lists include collea
 
 Disconnect and connect again to change what you granted.
 
+## Limits
+
+An assistant can make a set number of calls per minute and per hour, counted separately for reading and for changes. Changes also have a daily limit per user. The limits are well above what a person working with an assistant needs. They are there to stop an assistant that is stuck in a loop.
+
+When a limit is reached, the call is refused and nothing is changed. The assistant is told how many seconds to wait. A well-behaved assistant waits and carries on, so a long job simply takes longer. Each connected assistant is counted separately, so one that runs away does not stop the others straight away.
+
 ## When It Does Not Work
 
 The assistant shows the message it received. Each one means something different:
@@ -139,6 +145,7 @@ The assistant shows the message it received. Each one means something different:
 | Your account does not belong to an organization that can use MCP | Contact us. This is a setup gap, not the switch. |
 | Your sign-in for this connection is no longer valid | Disconnect the connector and add it again. |
 | Access could not be verified, try again shortly | A temporary fault. Try again, and tell us the time if it persists. |
+| Rate limit reached, wait … seconds | Nothing. The assistant waits and continues. If it happens again and again, the assistant may be stuck in a loop: stop it, and tell us if you do not know why. |
 
 Two more cases have no message of their own:
 
@@ -147,9 +154,9 @@ Two more cases have no message of their own:
 
 ## What Is Recorded
 
-Every call writes one row to the audit log: who made it, which tool, when, how long it took, how many records came back, and whether it failed. For a change, the record that was touched and its values before and after are stored as well.
+Every call that runs writes one row to the audit log: who made it, which tool, when, how long it took, how many records came back, and whether it failed. For a change, the record that was touched and its values before and after are stored as well. A call refused by a rate limit is recorded once an hour for each connected assistant, not every time.
 
-Two limits are worth understanding:
+Two things are worth knowing:
 
 - **The arguments are recorded selectively.** Names of the expected arguments are kept; anything else, including any long or free-text value, is replaced. Search terms are not stored.
 - **Results are never stored.** The log holds the shape of the call, not the data the assistant saw.
