@@ -34,9 +34,11 @@ Claiming and retiring need the "Manage connections" permission, which accountant
 
 ## What You Can Send
 
-Accepted attachments: **PDF, PNG, JPEG, WEBP and HEIC**. ZIP archives are opened and their supported contents ingested as separate documents.
+Accepted attachments: **PDF, PNG, JPEG, WEBP and HEIC**, plus **Excel, Word and CSV files** (`.xlsx`, `.xls`, `.csv`, `.docx`, `.doc`). ZIP archives are opened and their supported contents ingested as separate documents.
 
-**Everything else is dropped silently.** A `.docx`, `.xlsx`, `.csv` or `.txt` attachment is discarded with no warning, and the email still shows as completed with a lower attachment count. The count you see is what was kept, not what was sent, so if a number looks low, something was dropped.
+Excel, Word and CSV files are never read as invoices. They are kept as supporting documents, such as a timesheet sent with an invoice: see [Invoices and their supporting documents](#invoices-and-their-supporting-documents) below.
+
+**Everything else is dropped silently.** A `.txt` attachment, for example, is discarded with no warning, and the email still shows as completed with a lower attachment count. The count you see is what was kept, not what was sent, so if a number looks low, something was dropped.
 
 Limits: 10 MB per attachment, 20 attachments per email, 25 MB for the whole email, and 200 emails per workspace per day.
 
@@ -52,14 +54,15 @@ Forwarding the same file twice costs nothing: the second copy is recognised by i
 ## What Happens Next
 
 1. The email arrives and a row appears in **Intake**.
-2. Each attachment is classified: invoice, receipt, credit note, bank statement, contract, or something else.
-3. **Invoices, receipts and credit notes** go into extraction and appear on the **Invoices** page like any other upload.
-4. **A bank statement is not extracted this way.** It waits in Intake marked **Awaiting extractor**, and it appears in no queue and carries no badge, so nothing will remind you. Upload it on the **Bank transactions** page instead: see [Uploading Bank Statements](/bank-statement-upload).
-5. **A contract or anything unrecognised** goes to the **Documents** page, which is accountant-side only. It does not appear under Needs review.
-6. **Anything classified with low confidence** is flagged under **Needs review**, whether or not it also went on to extraction.
+2. Each attachment is classified: invoice, receipt, credit note, bank statement, contract, supporting document, or something else.
+3. **Invoices, receipts and credit notes** go into extraction and appear on the **Invoices** page like any other upload. A shop or restaurant receipt that states VAT counts as a receipt here.
+4. **Supporting documents** (a performance certificate, a timesheet, a delivery note, a handover record, or a card-terminal slip that only proves a payment) are never turned into invoices. They become invoice attachments: see [below](#invoices-and-their-supporting-documents).
+5. **A bank statement is not extracted this way.** It waits in Intake marked **Awaiting extractor**, and it appears in no queue and carries no badge, so nothing will remind you. Upload it on the **Bank transactions** page instead: see [Uploading Bank Statements](/bank-statement-upload).
+6. **A contract or anything unrecognised** goes to the **Documents** page, which is accountant-side only. It does not appear under Needs review.
+7. **Anything classified with low confidence** is flagged under **Needs review**, whether or not it also went on to extraction.
 
 <TriageDestinationsFigure>
-Four destinations, and only the first is the one people expect. The middle two are where forwarded documents go quiet.
+Five destinations. The first two are the ones people expect; the third and fourth are where forwarded documents go quiet.
 </TriageDestinationsFigure>
 
 Nothing is ever sent back to the sender: no reply, no bounce, no confirmation, for success or failure. The only way to know an email arrived is to look at Intake.
@@ -67,6 +70,16 @@ Nothing is ever sent back to the sender: no reply, no bounce, no confirmation, f
 The email itself is never billed to you as a document; only the attachments that become invoices count.
 
 The app also learns from who sends what. Once a sender's domain has produced a few confident classifications, later documents from that domain are classified better, so the tenth invoice from a supplier lands more reliably than the first.
+
+### Invoices and their supporting documents
+
+Suppliers often send an invoice together with its timesheet or certificate. What happens to the supporting documents depends on how many invoices the email carries:
+
+- **Exactly one invoice:** the supporting documents are linked to it automatically and show **Linked automatically** on the invoice's **Attachments** tab.
+- **Several invoices:** nothing is linked automatically. The supporting documents wait under the **Unlinked attachments** filter on the **Documents** page, with the invoices from the same email offered as suggestions.
+- **No invoice:** the supporting documents wait there unlinked.
+
+See [Invoice Attachments](/invoice-attachments).
 
 ## The Intake Page
 
@@ -92,7 +105,7 @@ Seeing any of it needs the "View invoices and bank transactions" permission. A m
 | **Multi-document** | One PDF held several documents |
 | **No attachments** | Nothing supported to ingest |
 
-**No attachments** is worth reading carefully: it means no *supported* attachments. An email carrying only a Word file shows up this way.
+**No attachments** is worth reading carefully: it means no *supported* attachments. An email carrying only a `.txt` file shows up this way.
 
 **A typo in the address leaves no trace at all.** Mail to an address that does not exist is dropped without a row, without a bounce and without an error. If you forwarded something and Intake is empty, check the address first.
 

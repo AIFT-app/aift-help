@@ -82,6 +82,11 @@ export const navGroups: NavGroup[] = [
         title: { en: 'NAV Online Számla (Hungary)', hu: 'NAV Online Számla (Magyarország)', de: 'NAV Online Számla (Ungarn)' },
       },
       { slug: 'documents', title: { en: 'Documents', hu: 'Dokumentumok', de: 'Dokumente' } },
+      // Invoice attachments (invoice-attachments): supporting documents on an invoice.
+      {
+        slug: 'invoice-attachments',
+        title: { en: 'Invoice Attachments', hu: 'Számlamellékletek', de: 'Rechnungsanhänge' },
+      },
       // The sidebar entry lagged the article and the app: both already say Missing
       // receipts / Hiányzó bizonylatok (nav.workspace.documents_needed).
       {
