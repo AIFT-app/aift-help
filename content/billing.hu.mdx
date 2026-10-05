@@ -68,16 +68,16 @@ Az adószámot a fizetési oldal nem kéri újra: amit megadott, az már el van 
 
 ## Az előfizetés után
 
-A csomagválasztó helyén egy rövid összegzés jelenik meg: **Az előfizetésed**, egy állapotjelölés (**Próbaidőszak**, **Aktív**, **Fizetés elmaradt** és így tovább), valamint a következő fontos dátum: mikor ér véget a próbaidőszak, mikor újul meg a csomag, lemondás után pedig mikor szűnik meg. A **Fizetés elmaradt** azt jelenti, hogy a legutóbbi díjat nem sikerült levonni: cserélje le a bankkártyát a **Számlázás kezelése** alatt.
+A Számlázás oldal ekkor két fülre oszlik: **Előfizetés** és **Számlák**. Az **Előfizetés** fülön a csomagválasztó helyén egy rövid összegzés jelenik meg: **Az előfizetésed**, egy állapotjelölés (**Próbaidőszak**, **Aktív**, **Fizetés elmaradt** és így tovább), valamint a következő fontos dátum: mikor ér véget a próbaidőszak, mikor újul meg a csomag, lemondás után pedig mikor szűnik meg. A **Fizetés elmaradt** azt jelenti, hogy a legutóbbi díjat nem sikerült levonni: cserélje le a bankkártyát az **Előfizetés kezelése** alatt.
 
 Alatta a felhasználási panel mutatja, hány tételt használt el **a jelenlegi számlázási időszakban**, mennyibe kerül várhatóan az időszak, és hogyan oszlik meg ügyfelenként. Egy második sor a naptári hónapot adja meg a saját nyilvántartásához. Ha a forgalma már akkora, hogy a következő nagyobb csomag olcsóbb lenne, a panel ezt is jelzi.
 
 ## Az előfizetés kezelése
 
-A **Számlázás kezelése** gomb megnyitja az iroda Stripe ügyfélportálját. Itt:
+Az **Előfizetés kezelése** gomb megnyitja az iroda Stripe ügyfélportálját. Itt:
 
 - lecserélheti a bankkártyát;
-- megnézheti és letöltheti a Stripe számláit és nyugtáit;
+- megnézheti a Stripe fizetési bizonylatait és nyugtáit (ezek nem számlák, lásd lent);
 - módosíthatja a számlázási adatokat: cégnév, e-mail-cím, cím és telefonszám, a Magyarországon kívüli iroda pedig a közösségi adószámát is;
 - lemondhatja az előfizetést.
 
@@ -90,7 +90,13 @@ Két dolgot érdemes tudnia:
 
 ## Számlák
 
-A portálon látható dokumentumok a Stripe fizetési számlái és nyugtái. A magyarországi iroda a magyar számláját ezektől külön, e-mailben kapja meg.
+A **Számlák** fülön az összes számla látható, amelyet az AIFT az irodának kiállított: a teljesítés dátuma, a számlaszám, a tétel és a bruttó összeg. A **PDF** gomb a számlát a Számlázz.hu-ból tölti le. Egy frissen kifizetett időszak számlája addig **Kiállítás folyamatban** állapotú, amíg el nem készül.
+
+Az összeg a számlán szereplő összeg. A Számlázz.hu soronként egész forintra kerekít, ezért tételenként legfeljebb 1 forinttal eltérhet attól, amit a bankkártyáról levontunk.
+
+A számlát e-mailben is megkapja. Hogy ki kapja, azt ugyanezen a fülön, a **Számlák címzettjei** alatt állíthatja be.
+
+A Stripe portálon látható dokumentumok fizetési bizonylatok, nem számlák. Könyvelni a Számlák fülön látható számlát kell.
 
 ## Gyakori kérdések
 

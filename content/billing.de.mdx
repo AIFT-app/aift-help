@@ -68,16 +68,16 @@ Es gibt kein Fenster Rechnungsdaten. Die Zahlungsseite von Stripe fragt nach der
 
 ## Nach dem Abonnieren
 
-An die Stelle der Tarifauswahl tritt eine kurze Übersicht: **Ihr Abonnement**, eine Statusplakette (**Testphase**, **Aktiv**, **Überfällig** und so weiter) und das Datum, auf das es als Nächstes ankommt: wann die Testphase endet, wann sich der Tarif verlängert oder, nach einer Kündigung, wann er endet. **Überfällig** heißt, dass die letzte Zahlung nicht durchging: Wechseln Sie die Karte unter **Abrechnung verwalten**.
+Die Seite Abrechnung hat dann zwei Tabs: **Abonnement** und **Rechnungen**. Im Tab **Abonnement** tritt an die Stelle der Tarifauswahl tritt eine kurze Übersicht: **Ihr Abonnement**, eine Statusplakette (**Testphase**, **Aktiv**, **Überfällig** und so weiter) und das Datum, auf das es als Nächstes ankommt: wann die Testphase endet, wann sich der Tarif verlängert oder, nach einer Kündigung, wann er endet. **Überfällig** heißt, dass die letzte Zahlung nicht durchging: Wechseln Sie die Karte unter **Abonnement verwalten**.
 
 Darunter zeigt eine Übersicht die verbrauchten Belege **im aktuellen Abrechnungszeitraum**, was der Zeitraum voraussichtlich kostet, und die Aufteilung nach Klienten. Eine zweite Zeile nennt den Kalendermonat für Ihre eigenen Unterlagen. Ist Ihr Volumen so weit gewachsen, dass der nächstgrößere Tarif günstiger wäre, sagt Ihnen die Übersicht das.
 
-## Die Abrechnung verwalten
+## Das Abonnement verwalten
 
-**Abrechnung verwalten** öffnet das Stripe-Kundenportal Ihrer Kanzlei. Dort können Sie:
+**Abonnement verwalten** öffnet das Stripe-Kundenportal Ihrer Kanzlei. Dort können Sie:
 
 - die Karte wechseln;
-- Ihre Stripe-Rechnungen und Belege ansehen und herunterladen;
+- die Zahlungsbelege und Quittungen von Stripe ansehen (das sind keine Rechnungen, siehe unten);
 - die Rechnungsdaten ändern: Firmenname, E-Mail, Adresse und Telefon, und die USt-IdNr., wenn Ihre Kanzlei außerhalb Ungarns sitzt;
 - das Abonnement kündigen.
 
@@ -90,7 +90,13 @@ Zwei Dinge sollten Sie wissen:
 
 ## Rechnungen
 
-Die Dokumente im Portal sind die Zahlungsrechnungen und Belege von Stripe. Eine Kanzlei in Ungarn erhält ihre ungarische Rechnung (számla) getrennt davon per E-Mail.
+Im Tab **Rechnungen** stehen alle Rechnungen (számla), die AIFT Ihrer Kanzlei ausgestellt hat: Leistungsdatum, Rechnungsnummer, Position und Bruttobetrag. Die Schaltfläche **PDF** lädt die Rechnung von Számlázz.hu herunter. Die Rechnung für einen gerade bezahlten Zeitraum steht auf **Wird ausgestellt**, bis sie fertig ist.
+
+Der Betrag ist der Betrag auf der Rechnung. Számlázz.hu rundet jede Position auf ganze Forint, daher kann er je Position um höchstens 1 Forint von der Kartenbelastung abweichen.
+
+Jede Rechnung erhalten Sie auch per E-Mail. Wer sie erhält, legen Sie im selben Tab unter **Rechnungsempfänger** fest.
+
+Die Dokumente im Stripe-Portal sind Zahlungsbelege, keine Rechnungen. Zu buchen ist die Rechnung im Tab Rechnungen.
 
 ## Häufige Fragen
 
