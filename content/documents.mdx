@@ -1,10 +1,10 @@
 # Documents
 
-**Documents** is where contracts and other paperwork live: everything that matters to the books but is not an invoice or a bank statement. A lease, a loan agreement, a costing manual, a chart of accounts, a grant decision.
+**Documents** is where contracts, invoice attachments and other paperwork live: everything that matters to the books but is not an invoice or a bank statement. A lease, a loan agreement, a costing manual, a chart of accounts, a grant decision.
 
 ## What Lands Here, And What Does Not
 
-This page holds exactly three kinds: **contracts**, **other**, and anything the first pass could not place at all.
+This page holds **contracts**, **other** documents, **invoice attachments** (timesheets, certificates, delivery notes and the like), and anything the first pass could not place at all.
 
 Everything classified as an **invoice**, a **receipt**, a **credit note** or a **bank statement** goes elsewhere and never appears here. Invoices and receipts go to [Invoices](/invoices), a bank statement waits to be uploaded on **Bank transactions** (see [Uploading Bank Statements](/bank-statement-upload)), and anything arriving by email is logged in Intake first (see [Forwarding Documents by Email](/email-forwarding)).
 
@@ -12,9 +12,12 @@ So an empty Documents page does not mean nothing arrived. It means nothing arriv
 
 ## Who Can Open It
 
-Firm-side members holding the "Edit invoices" permission. A client-side member can never reach it, whatever role they are given: the permission is firm-only, and no exception can grant it.
+Everyone who can see the workspace's records (the "View invoices and bank transactions" permission), on the firm side and on the client side. Without that permission the page is not in the menu, and opening it by link returns to the workspace overview.
 
-> If you are on the accounting side and the page bounces you back to the workspace overview without a message, your role is missing **Edit invoices**. The sidebar link is shown to every firm-side member regardless, which is why the dead end is silent.
+What you can do on it depends on two further permissions:
+
+- **Upload documents** lets you link, retype and remove attachments, and use **Mark as attachment**. By default every built-in role has it, client-side roles included.
+- **Edit invoices**, which only firm-side members can hold, adds the accountant work: the **Upload** button, the **Needs review** filter, changing a document's type, **Mark irrelevant**, **Not a duplicate** and building a category list. A client-side member does not see these.
 
 Note that building a category list from a document, below, needs a **different** permission again.
 
@@ -29,7 +32,7 @@ The dialog says PDF, JPG or PNG up to 20 MB, and that is good advice rather than
 
 Every document is read once, briefly, so the list is useful without opening anything. It gets a one or two sentence **summary** with a confidence figure, its language is detected, and it is given a type.
 
-**The type badge shows whatever the AI called it**, but only for a document that is not a contract. The first pass writes two things: a coarse kind, and a finer label in its own words. A **contract** always shows the translated word **Contract**, and its finer label (`lease`, `nda`) is never displayed anywhere. Everything else shows the finer label if there is one, and those free-text labels are not translated, so `Kontenrahmen` reads as `Kontenrahmen` whatever your interface language is.
+**The type badge shows whatever the AI called it**, but only for a document that is neither a contract nor an invoice attachment; an attachment always shows **Attachment**. The first pass writes two things: a coarse kind, and a finer label in its own words. A **contract** always shows the translated word **Contract**, and its finer label (`lease`, `nda`) is never displayed anywhere. Everything else shows the finer label if there is one, and those free-text labels are not translated, so `Kontenrahmen` reads as `Kontenrahmen` whatever your interface language is.
 
 If the same file is already in the workspace, the copy is marked **Duplicate**. It still appears in the list, filed under the original's type, with the summary replaced by a line naming what it duplicates.
 
@@ -38,7 +41,7 @@ The Documents list with five documents. The numbers match the list below. The do
 </DocumentsListFigure>
 
 1. **Upload**, beside the heading. The only other way in is email.
-2. **Duplicates** is the one filter that carries a count, and only when there are some.
+2. **Duplicates** carries a count, and only when there are some. **Unlinked attachments**, the last filter, does the same.
 3. **The type badge in the document's own words.** This chart of accounts is not a contract, so the badge prints what the AI called it, untranslated, whatever your interface language is.
 4. **A duplicate is filed here**, under the kind of the original, with the line naming what it duplicates in place of the summary.
 5. **A PDF holding several documents** keeps the **Processing** badge for good. Nothing further happens to it.
@@ -47,7 +50,7 @@ This first pass is deliberately shallow. It reads the opening of the document to
 
 ## Finding Things
 
-The filters are **All**, **Contracts**, **Other**, **Needs review** and **Duplicates**. Only **Duplicates** carries a count badge, and only when there are some.
+The filters are **All**, **Contracts**, **Other**, **Needs review**, **Duplicates** and **Unlinked attachments**; **Needs review** is shown to accountants only. **Duplicates** and **Unlinked attachments** carry a count badge, and only when there are some. An attachment that is linked to an invoice is listed under **All**; an attachment e-mailed a second time is listed under **Duplicates**.
 
 There is no search, no sorting and no paging: the list is everything in the workspace, newest first, in one go. And the empty state says the same sentence whichever filter you are on, so "no documents yet" on the Duplicates filter usually means no duplicates, not no documents.
 
@@ -60,7 +63,9 @@ There is no search, no sorting and no paging: the list is everything in the work
 
 **Processing** is the catch-all, and one case never leaves it. A PDF holding several documents scanned together is rejected rather than read, and it keeps the **Processing** badge for good. If something has sat there since the day it arrived, that is what happened: split it into one document per item and send the pieces.
 
-Supporting documents such as timesheets, performance certificates and delivery notes are recognised as invoice attachments and never processed as invoices. Those not yet linked to an invoice wait under the **Unlinked attachments** filter, where you can link them. See [Invoice Attachments](/invoice-attachments).
+Supporting documents such as timesheets, performance certificates and delivery notes are recognised as invoice attachments and never processed as invoices. Those not yet linked to an invoice wait under the **Unlinked attachments** filter, where you can link them.
+
+If triage filed a timesheet or a delivery note under **Other**, use **Mark as attachment** on its row: choose the type, and the document becomes an invoice attachment waiting under **Unlinked attachments**. It works only on a document that is no longer being read, and not on one that has already become an invoice. Opening an attachment here shows its details and a download; you link, retype or remove it on its invoice or in the tray. See [Invoice Attachments](/invoice-attachments).
 
 ## Working With One Document
 
