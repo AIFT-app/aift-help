@@ -17,7 +17,7 @@ De még akkor is:
 
 - **Semmit nem könyvelünk le.** A bejövő számla **piszkozatként** jön létre, és ott is marad. A könyvelés elérhető a felületen, és szándékosan nem élünk vele: a rossz adatból lekönyvelt bizonylatot sztornózni kell, ami végleges nyomot hagy a főkönyvben, a piszkozat viszont egyetlen kattintással törölhető. A könyvelés a könyvelő dolga marad, a Business Centralon belül.
 - **Meglévő rekordot soha nem írunk felül.** Az azonos adószámú szállítókartont inkább összekötjük az Ön partnerével, meglévő bizonylathoz pedig soha nem nyúlunk.
-- **Csak azt töröljük, amit mi hoztunk létre.** Három funkció töröl, mindhárom a feladási képernyőn: a szonda eltávolítja az éppen létrehozott, eldobható piszkozatot, a számozási próba a saját kitalált, AIFT-TESZT kezdetű piszkozatát (és egy korábbi próba bent maradt piszkozatát), a takarítás pedig azokat a piszkozatokat, amelyek feladását az AI Finance Team feljegyezte, de összekötni soha nem sikerült. Semmi mást nem törlünk, és semmi olyat, amit a Business Central nem piszkozatnak tart.
+- **Csak azt töröljük, amit mi hoztunk létre.** Három funkció töröl, mindhárom a feladási képernyőn: a szonda eltávolítja az éppen létrehozott, eldobható piszkozatot, a számozási próba a saját kitalált, AIFT-TESZT kezdetű piszkozatát (és egy korábbi próba bent maradt piszkozatát), a takarítás pedig azokat a piszkozatokat, amelyek feladását az AI Finance Team feljegyezte, de összekötni soha nem sikerült. Ezeken kívül a PDF feltöltése törli azt az üres mellékletsort, amelyet ő maga hozott létre az imént (lásd: A PDF). Semmi mást nem törlünk, és semmi olyat, amit a Business Central nem piszkozatnak tart.
 
 ## A kapcsolat beállítása
 
@@ -167,23 +167,39 @@ Az **Exportok → Business Central** oldalról mennek fel a bejövő számlák, 
 
 A felső fele csak olvasható tölcsér: hány a **feladható számla**, hány a **számla az időszakban**, és **mi akasztja meg a többit**. Kilenc dolog akaszthatja meg a számlát, és mindig csak az elsőként megtalált látszik: nincs cég a számlán, a cég nincs párosítva, a cég adatai nincsenek beolvasva, a partner nincs ellenőrizve, a partnernek nincs szállítókartonja abban a cégben, van kategória nélküli sor, a sor kategóriájához tartozó főkönyvi szám hiányzik a cégből, hiányzik a számlaszám vagy a teljesítés dátuma, és **a könyvelési jóváhagyás nincs meg** (lásd: [Iktatási és könyvelési jóváhagyás](/filing-and-bookkeeping-approval)). Mindegyik lenyitható a mögötte álló számlákra, egy linkkel, amely oda visz, ahol javítani lehet. Kettő inkább figyelmeztetés, mint akadály: a megfeleltetés nélküli áfapár, és az a deviza, amelyet az adott cég nem tart nyilván.
 
-Csak bejövő számlákat veszünk figyelembe, duplikátumot és archiváltat soha. **A számla saját PDF-je nem megy fel**, és a hiányzó dokumentum soha nem akadályozza a feladást.
+Csak bejövő számlákat veszünk figyelembe, duplikátumot és archiváltat soha. **A számla saját PDF-je vele megy** (lásd lent: A PDF), és a hiányzó PDF soha nem akadályozza a feladást.
 
 ### Amit a feladás előtt tudni kell
 
-- **Egy gombnyomással legfeljebb 25 számla megy.**
-- **Három egymás utáni hiba után a futás leáll**, a maradékot pedig *Nem próbáltuk meg* jelöléssel hagyja, így egyetlen rossz beállítás nem égeti el az egész köteget.
-- Minden számla a saját eredményével jön vissza: **Létrejött**, **Nem sikerült**, **Nem tudjuk**, **Nem indult el** vagy **Nem próbáltuk meg**.
+- **Egy gombnyomással legfeljebb 200 számla megy.**
+- **A feladás a háttérben fut.** A **Feladás** gomb azonnal visszatér, a lista felett pedig egy blokk mutatja, hol tart: egy sáv, a számok, és számlánként egy sor. Az oldalt bezárhatja, a feladás nem áll le. A jobb alsó sarokban lévő **Feltöltések** panel a munkaterület minden oldalán mutatja.
+- **Egy munkaterületen egyszerre egy feladás fut.** Amíg fut, a **Feladás** gomb nem nyomható, és odaírja, miért. A benne várakozó számlák kikerülnek a listából, így semmit nem lehet kétszer kijelölni. A **Feladható számla** szám alatt egy sor megmondja, ebből mennyi megy éppen.
+- A **Leállítás** megállítja azokat a számlákat, amelyek még nem indultak el. Amelyik éppen megy, az befejeződik.
+- **Három egymás utáni hiba után a feladás leáll**, a maradékot pedig *Nem indult el* jelöléssel hagyja, így egyetlen rossz beállítás nem égeti el az egész köteget.
+- Minden számla mutatja az állapotát: **Sorban áll**, **Küldés alatt**, **Létrejött**, **Nem sikerült**, **Nem tudjuk** vagy **Nem indult el**. A sikertelen sor a Business Central saját szavait mutatja, a nem elindult sor pedig megmondja, miért.
+- A befejezett feladás újratöltés után is a képernyőn marad, amíg meg nem nyomja a **Bezárás** gombot.
 
-**A „Nem tudjuk” az, ami számít.** Azt jelenti, hogy a kérés elment, a válasz pedig nem jött vissza. Ne küldje egyszerűen újra: a Business Central **nem** utasítja vissza a második bejövő számlát ugyanazzal a szállítói számlaszámmal, így a vaktában indított újraküldés két piszkozatot hagyhat egyetlen számla után. Használja a **Félbemaradt küldések rendezése** gombot: az megkérdezi a Business Centraltól, mi történt valójában, és nem küld semmit.
+Minden számlát a küldés pillanatában újra ellenőrzünk, annak a jogosultságaival, aki a **Feladás** gombot megnyomta. Amelyik számla a várakozás közben elakadt, az nem megy fel, és a sora megnevezi, mi akasztja meg.
+
+**A „Nem tudjuk” az, ami számít.** Azt jelenti, hogy a kérés elment, a válasz pedig nem jött vissza. Ne rögzítse a számlát kézzel újra: a Business Central **nem** utasítja vissza a második bejövő számlát ugyanazzal a szállítói számlaszámmal, így egy második példány két piszkozatot hagy egyetlen számla után. Az AI Finance Team sem küldi újra, amíg ez nincs rendezve. Használja a **Hibakeresés** részben a **Félbemaradt küldések rendezése** gombot: az megkérdezi a Business Centraltól, mi történt valójában, és nem küld semmit.
 
 Ami már fent van, kikerül a feladható számlák közül, és a képernyő megmondja, a kijelöléséből mennyi van már bent a Business Centralban.
 
+### A PDF
+
+A számla saját PDF-je a piszkozat mellékleteként megy fel, a **Mellékletek** dobozba. Könyveléskor a Business Central átmásolja a lekönyvelt számlára.
+
+- A lista minden sora megmondja, megy-e vele PDF: **PDF** vagy **Nincs PDF**. A NAV-ból érkezett számlának nincs fájlja. Ez nem hiba, és soha nem akadályozza a feladást.
+- Amikor a számla létrejött, a sora mutatja a PDF-et: **PDF feltöltés alatt**, majd **PDF csatolva**, vagy **A PDF nem ment fel.** a Business Central saját szavaival és egy **Újraküldöm a PDF-et** gombbal.
+- Csak a számla saját PDF-je megy. A számlához az AI Finance Teamben csatolt egyéb dokumentumok ott maradnak.
+- Ha egy fájl tartalma nem megy fel, töröljük az üres mellékletsort, amelyet az imént hoztunk létre, mert a Business Central nem enged lekönyvelni olyan számlát, amelyen üres melléklet van.
+- Ha korábban feladott számláknál nincs PDF a Business Centralban, a lista felett egy sor megmondja, hánynál, egy **PDF-ek pótlása (N)** gombbal. Előbb rákérdez, aztán a háttérben feltölti őket. Ha egy számlához a feladása után érkezik PDF, az csak így megy fel: magától semmi nem töltődik fel.
+
 ### A karbantartó gombok
 
-A **Feladás** mellett öt gomb áll. Ezek akkor is látszanak, ha éppen semmi nem feladható: az ügyfél főkönyvében bent felejtett piszkozatot ugyanis nem látja senki, akinek nincs Business Central-belépése.
+Öt gomb a lista alatt van, a **Hibakeresés** részben, amely csukva van, amíg ki nem nyitja. Ez a rész akkor is ott van, ha éppen semmi nem feladható: az ügyfél főkönyvében bent felejtett piszkozatot ugyanis nem látja senki, akinek nincs Business Central-belépése.
 
-- A **Szonda** valódi, eldobható piszkozatot hoz létre egy valódi számlából, majd törli is. Megválaszolja, hogy ez a Business Central elfogadja-e ugyanazt a szállítói számlaszámot másodszor is, és megmutatja egymás mellett, mit küldtünk és mit tárolt el a Business Central.
+- A **Szonda** valódi, eldobható piszkozatot hoz létre egy valódi számlából, majd törli is. Megválaszolja, hogy ez a Business Central elfogadja-e ugyanazt a szállítói számlaszámot másodszor is, és megmutatja egymás mellett, mit küldtünk és mit tárolt el a Business Central. Az eldobható piszkozatra a számla PDF-jét is felteszi, hogy kiderüljön, fogad-e mellékletet ez a Business Central.
 - A **Mit ad a BC a szállítóról** beolvas egy szállítókartont, és semmit nem ír.
 - A **Számozási próba (kitalált számla)** létrehoz egy kitalált, AIFT-TESZT-… számú szállítói számla piszkozatot, kiüríti a könyvelési számkörét, felvesz rá egy sort, majd törli. Megmutatja, hogy ez a Business Central elfogadja-e a saját számunkat számlaszámként (lásd lent: Az AIFT azonosító mint számlaszám). Indítás előtt megerősítést kér.
 - A **Félbemaradt küldések rendezése** megkérdezi, mi lett azzal a küldéssel, amelynek a válasza elveszett. Sem nem küld, sem nem töröl.

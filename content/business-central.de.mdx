@@ -17,7 +17,7 @@ Und selbst dann:
 
 - **Es wird nie etwas gebucht.** Die Einkaufsrechnung wird als **Entwurf** angelegt und bleibt es. Buchen wäre über die Schnittstelle möglich, und wir nutzen das bewusst nicht: Ein aus falschen Daten gebuchter Beleg muss storniert werden, was dauerhafte Spuren im Hauptbuch hinterlässt, während ein Entwurf mit einem Klick gelöscht ist. Das Buchen bleibt Sache der Buchhaltung, in Business Central.
 - **Ein vorhandener Datensatz wird nie überschrieben.** Ein Kreditorenstammsatz mit derselben Steuernummer wird stattdessen mit Ihrem Partner verknüpft, und ein vorhandener Beleg wird nie angerührt.
-- **Wir löschen nur, was wir selbst angelegt haben.** Drei Bedienelemente löschen, alle auf dem Übergabebildschirm: Die Sonde entfernt den Wegwerf-Entwurf, den sie soeben erstellt hat, der Nummerierungstest entfernt seinen erfundenen AIFT-TESZT-Entwurf (und einen, den ein früherer Test zurückgelassen hat), und die Bereinigung entfernt Entwürfe, deren Übergabe AI Finance Team erfasst, aber nie verknüpft hat. Sonst wird nie etwas gelöscht, und nichts, was Business Central nicht als Entwurf führt.
+- **Wir löschen nur, was wir selbst angelegt haben.** Drei Bedienelemente löschen, alle auf dem Übergabebildschirm: Die Sonde entfernt den Wegwerf-Entwurf, den sie soeben erstellt hat, der Nummerierungstest entfernt seinen erfundenen AIFT-TESZT-Entwurf (und einen, den ein früherer Test zurückgelassen hat), und die Bereinigung entfernt Entwürfe, deren Übergabe AI Finance Team erfasst, aber nie verknüpft hat. Darüber hinaus löscht der PDF-Upload eine leere Anhangzeile, die er selbst gerade angelegt hat (siehe Das PDF). Sonst wird nie etwas gelöscht, und nichts, was Business Central nicht als Entwurf führt.
 
 ## Die Verbindung einrichten
 
@@ -167,23 +167,39 @@ Eine zurückgemeldete Kreditorennummer erscheint auf der Partnerseite unter dess
 
 Die obere Hälfte ist ein reiner Lesetrichter: wie viele **übergabebereite Rechnungen** es gibt, wie viele **Rechnungen im Zeitraum** liegen und **was die übrigen aufhält**. Neun Dinge können eine Rechnung aufhalten, und gezeigt wird immer nur das zuerst gefundene: keine Firma auf der Rechnung, die Firma nicht zugeordnet, die Stammdaten der Firma nie gelesen, der Partner nicht geprüft, kein Kreditorenstammsatz für diesen Partner in dieser Firma, eine Zeile ohne Kategorie, das Sachkonto der Kategorie fehlt in dieser Firma, keine Rechnungsnummer oder kein Leistungsdatum, und **die Buchhaltungsfreigabe fehlt** (siehe [Erfassungs- und Buchungsfreigabe](/filing-and-bookkeeping-approval)). Jeder Punkt lässt sich zu den dahinterliegenden Rechnungen aufklappen, mit einem Link dorthin, wo sich das beheben lässt. Zwei weitere sind Hinweise und keine Blocker: eine Steuerkombination ohne Zuordnung und eine Währung, die diese Firma nicht führt.
 
-Nur Eingangsrechnungen kommen infrage, und nie eine doppelte oder archivierte. **Das PDF der Rechnung selbst geht nicht mit**, und ein fehlender Beleg hält eine Übergabe nie auf.
+Nur Eingangsrechnungen kommen infrage, und nie eine doppelte oder archivierte. **Das eigene PDF der Rechnung geht mit** (siehe unten: Das PDF), und ein fehlendes PDF hält eine Übergabe nie auf.
 
 ### Was Sie wissen sollten, bevor Sie auf Übergeben klicken
 
-- **Pro Klick gehen höchstens 25 Rechnungen.**
-- **Nach drei Fehlern hintereinander bricht der Lauf ab** und markiert den Rest als *Nicht versucht*, damit eine einzige falsche Einstellung nicht den ganzen Stapel verbrennt.
-- Jede Rechnung kommt mit ihrem eigenen Ergebnis zurück: **Angelegt**, **Fehlgeschlagen**, **Wir wissen es nicht**, **Nicht gestartet** oder **Nicht versucht**.
+- **Pro Klick gehen höchstens 200 Rechnungen.**
+- **Die Übergabe läuft im Hintergrund.** **Übergeben** kehrt sofort zurück, und ein Block über der Liste zeigt den Fortschritt: einen Balken, die Zahlen und eine Zeile pro Rechnung. Sie können die Seite schließen, die Übergabe läuft weiter. Das Panel **Uploads** unten rechts zeigt sie auf jeder Seite des Arbeitsbereichs.
+- **In einem Arbeitsbereich läuft eine Übergabe zur Zeit.** Solange sie läuft, ist **Übergeben** gesperrt und sagt, warum, und die Rechnungen, die darin warten, verlassen die Liste, damit nichts doppelt ausgewählt wird. Unter **Übergabebereite Rechnungen** sagt eine Zeile, wie viele davon gerade übergeben werden.
+- **Anhalten** hält die Rechnungen an, die noch nicht begonnen haben. Die gerade laufende wird fertig.
+- **Nach drei Fehlern hintereinander hält die Übergabe an** und markiert den Rest als *Nicht übergeben*, damit eine einzige falsche Einstellung nicht den ganzen Stapel verbrennt.
+- Jede Rechnung zeigt ihren Stand: **In der Warteschlange**, **Wird übergeben**, **Angelegt**, **Fehlgeschlagen**, **Wir wissen es nicht** oder **Nicht übergeben**. Eine fehlgeschlagene Zeile zeigt die Worte von Business Central, eine nicht übergebene sagt, warum.
+- Eine abgeschlossene Übergabe bleibt auf dem Bildschirm, auch nach dem Neuladen, bis Sie auf **Schließen** klicken.
 
-**Auf „Wir wissen es nicht“ kommt es an.** Es bedeutet, dass die Anfrage hinausging und die Antwort nicht zurückkam. Senden Sie sie nicht einfach erneut: Business Central weist eine zweite Einkaufsrechnung mit derselben Lieferantenrechnungsnummer **nicht** zurück, ein blinder zweiter Versuch kann also zwei Entwürfe für eine Rechnung hinterlassen. Nutzen Sie **Abgebrochene Übergaben klären**: Das fragt Business Central, was tatsächlich geschehen ist, und sendet selbst nichts.
+Jede Rechnung wird im Moment der Übergabe erneut geprüft, mit den Berechtigungen der Person, die auf **Übergeben** geklickt hat. Eine Rechnung, die während des Wartens blockiert wurde, wird nicht übergeben, und ihre Zeile nennt, was sie aufhält.
+
+**Auf „Wir wissen es nicht“ kommt es an.** Es bedeutet, dass die Anfrage hinausging und die Antwort nicht zurückkam. Legen Sie die Rechnung nicht von Hand erneut an: Business Central weist eine zweite Einkaufsrechnung mit derselben Lieferantenrechnungsnummer **nicht** zurück, eine zweite hinterlässt also zwei Entwürfe für eine Rechnung. AI Finance Team übergibt sie ebenfalls nicht erneut, solange das nicht geklärt ist. Nutzen Sie unter **Fehlersuche** die Schaltfläche **Abgebrochene Übergaben klären**: Das fragt Business Central, was tatsächlich geschehen ist, und sendet selbst nichts.
 
 Eine Rechnung, die bereits dort liegt, verlässt die Zahl der übergabebereiten, und der Bildschirm nennt, wie viele Ihrer Auswahl schon in Business Central sind.
 
+### Das PDF
+
+Das eigene PDF der Rechnung geht als Anhang des Entwurfs hoch, in dessen Infobox **Anhänge**. Beim Buchen übernimmt Business Central es in die gebuchte Rechnung.
+
+- Jede Zeile der Liste sagt, ob ein PDF mitgeht: **PDF** oder **Kein PDF**. Eine Rechnung aus NAV hat keine Datei. Das ist kein Fehler und hält eine Übergabe nie auf.
+- Sobald die Rechnung angelegt ist, zeigt ihre Zeile das PDF: **PDF wird hochgeladen**, dann **PDF angehängt**, oder **Das PDF wurde nicht hochgeladen.** mit den Worten von Business Central und der Schaltfläche **PDF erneut senden**.
+- Nur das eigene PDF der Rechnung geht mit. Weitere Dokumente, die in AI Finance Team an der Rechnung hängen, bleiben dort.
+- Wenn der Inhalt einer Datei nicht hochgeladen werden kann, löschen wir die leere Anhangzeile, die wir gerade angelegt haben, denn Business Central bucht keine Rechnung mit einem leeren Anhang.
+- Fehlt bei früher übergebenen Rechnungen das PDF in Business Central, sagt eine Zeile über der Liste, bei wie vielen, mit der Schaltfläche **PDFs nachreichen (N)**. Sie fragt zuerst und lädt die PDFs dann im Hintergrund hoch. Ein PDF, das nach der Übergabe an eine Rechnung kommt, geht nur so hoch: Von selbst wird nichts hochgeladen.
+
 ### Die Wartungsschaltflächen
 
-Neben **Übergeben** stehen fünf Schaltflächen, und sie bleiben auch dann sichtbar, wenn nichts übergabebereit ist: Ein liegengebliebener Entwurf im Hauptbuch des Mandanten ist für alle unsichtbar, die keinen Business-Central-Zugang haben.
+Fünf Schaltflächen stehen unter der Liste, im Abschnitt **Fehlersuche**, der geschlossen ist, bis Sie ihn öffnen. Der Abschnitt ist auch dann da, wenn nichts übergabebereit ist: Ein liegengebliebener Entwurf im Hauptbuch des Mandanten ist für alle unsichtbar, die keinen Business-Central-Zugang haben.
 
-- **Sonde** legt aus einer echten Rechnung einen echten Wegwerf-Entwurf an und löscht ihn wieder. Sie beantwortet, ob dieses Business Central dieselbe Lieferantenrechnungsnummer ein zweites Mal annimmt, und zeigt nebeneinander, was wir gesendet haben und was Business Central gespeichert hat.
+- **Sonde** legt aus einer echten Rechnung einen echten Wegwerf-Entwurf an und löscht ihn wieder. Sie beantwortet, ob dieses Business Central dieselbe Lieferantenrechnungsnummer ein zweites Mal annimmt, und zeigt nebeneinander, was wir gesendet haben und was Business Central gespeichert hat. Sie hängt auch das PDF der Rechnung an den Wegwerf-Entwurf, um zu zeigen, ob dieses Business Central Anhänge annimmt.
 - **Was BC über einen Kreditor liefert** liest einen Kreditorenstammsatz und schreibt nichts.
 - **Nummerierungstest (erfundene Rechnung)** legt einen erfundenen Einkaufsrechnungsentwurf mit der Nummer AIFT-TESZT-… an, leert seine Buchungsnummernserie, fügt eine Zeile hinzu und löscht ihn wieder. Er zeigt, ob dieses Business Central unsere eigene Nummer als Rechnungsnummer annimmt (siehe unten: Die AIFT-Kennung als Rechnungsnummer). Vorher fragt er nach einer Bestätigung.
 - **Abgebrochene Übergaben klären** fragt nach, was aus einer Übergabe wurde, deren Antwort verloren ging. Es sendet nichts und löscht nichts.
