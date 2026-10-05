@@ -1,5 +1,6 @@
 // Labels for the MCP consent screen, verbatim from aift-web messages/<locale>.json
-// (mcp_consent.*, origin/main 2026-09-22), keyed by message key so
+// (mcp_consent.*, origin/main 2026-09-22; scope_write_desc updated 2026-10-05
+// by mcp-consent-write-scope-copy), keyed by message key so
 // scratchpad/drift-any.py catches a change in the app. `rendered` holds the two
 // strings the page fills in at run time. `help` is this article's own text.
 import type { Locale } from '@/lib/i18n'
@@ -36,7 +37,7 @@ const en: Copy = {
     'mcp_consent.scope_read_label': 'Read your books',
     'mcp_consent.scope_read_desc': 'View workspaces, invoices, bank transactions, categories, reports, partners, and companies. No changes are made.',
     'mcp_consent.scope_write_label': 'Make changes',
-    'mcp_consent.scope_write_desc': 'Categorize transactions, accept matches, mark items as no-invoice-needed, post comments, and similar bookkeeping actions. Every change is recorded with before/after values so it can be reversed.',
+    'mcp_consent.scope_write_desc': "Mark and unmark bank transactions as “no invoice needed”, categorize invoices and transactions, confirm and undo matches, edit an invoice's direction, partner or company, and link or verify partners. Every change is logged with its before and after values.",
     'mcp_consent.no_money_movement': 'This connection cannot move money, transfer funds, or change account credentials. Only bookkeeping data.',
     'mcp_consent.signed_in_as': 'Signed in as {email}',
     'mcp_consent.approve': 'Allow',
@@ -56,7 +57,7 @@ const hu: Copy = {
     'mcp_consent.scope_read_label': 'Adatok olvasása',
     'mcp_consent.scope_read_desc': 'Munkaterületek, számlák, banki tételek, kategóriák, riportok, partnerek és cégek megtekintése. Módosítás nem történik.',
     'mcp_consent.scope_write_label': 'Módosítások végrehajtása',
-    'mcp_consent.scope_write_desc': 'Tételek kategorizálása, párosítások elfogadása, „nem kell számla” jelölés, kommentek küldése és hasonló könyvelési műveletek. Minden változás eltárolódik a változás előtti és utáni értékkel együtt, így visszafordítható.',
+    'mcp_consent.scope_write_desc': 'Banki tételek „nem kell számla” jelölése és a jelölés visszavonása, számlák és banki tételek kategorizálása, párosítások megerősítése és visszavonása, a számla irányának, partnerének vagy cégének szerkesztése, valamint partnerek összekötése vagy ellenőrzése. Minden módosítás a módosítás előtti és utáni értékkel együtt naplóba kerül.',
     'mcp_consent.no_money_movement': 'Ez a kapcsolat nem mozgathat pénzt, nem indíthat utalást és nem módosíthat banki hozzáférési adatokat. Csak könyvelési adatokon dolgozik.',
     'mcp_consent.signed_in_as': 'Bejelentkezve: {email}',
     'mcp_consent.approve': 'Engedélyezés',
@@ -76,7 +77,7 @@ const de: Copy = {
     'mcp_consent.scope_read_label': 'Daten lesen',
     'mcp_consent.scope_read_desc': 'Arbeitsbereiche, Rechnungen, Banktransaktionen, Kategorien, Berichte, Partner und Unternehmen ansehen. Keine Änderungen.',
     'mcp_consent.scope_write_label': 'Änderungen vornehmen',
-    'mcp_consent.scope_write_desc': 'Transaktionen kategorisieren, Zuordnungen akzeptieren, „Keine Rechnung erforderlich“ markieren, Kommentare posten und ähnliche Buchhaltungsaktionen. Jede Änderung wird mit Vorher-/Nachher-Werten protokolliert und kann rückgängig gemacht werden.',
+    'mcp_consent.scope_write_desc': 'Banktransaktionen als „Keine Rechnung erforderlich“ markieren und die Markierung aufheben, Rechnungen und Banktransaktionen kategorisieren, Zuordnungen bestätigen und rückgängig machen, Richtung, Partner oder Unternehmen einer Rechnung bearbeiten sowie Partner verknüpfen oder verifizieren. Jede Änderung wird mit ihren Werten vorher und nachher protokolliert.',
     'mcp_consent.no_money_movement': 'Diese Verbindung kann kein Geld bewegen, keine Überweisungen tätigen und keine Bank-Zugangsdaten ändern. Nur Buchhaltungsdaten.',
     'mcp_consent.signed_in_as': 'Angemeldet als {email}',
     'mcp_consent.approve': 'Erlauben',
