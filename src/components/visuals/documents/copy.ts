@@ -1,7 +1,8 @@
 // Labels for the Documents list figure, keyed by aift-web message key so a
 // drift check can compare them to messages/<locale>.json directly.
 //
-// Rebuilt 1:1 from aift-web (origin/main, 2026-09-28):
+// Rebuilt 1:1 from aift-web (origin/main, 2026-09-28); filters and description
+// re-synced 2026-10-05 (invoice-attachments-review-fixes):
 //   src/app/(app)/workspaces/[workspaceId]/documents/_components/DocumentsList.tsx
 import type { Locale } from '@/lib/i18n'
 
@@ -14,6 +15,7 @@ export const UI_KEYS = [
   'documents.filter.other',
   'documents.filter.review',
   'documents.filter.duplicates',
+  'documents.filter.attachments',
   'documents.status.ready',
   'documents.status.review',
   'documents.status.processing',
@@ -27,7 +29,7 @@ export const UI_KEYS = [
 
 export type UiKey = (typeof UI_KEYS)[number]
 
-export const FILTERS = ['all', 'contracts', 'other', 'review', 'duplicates'] as const
+export const FILTERS = ['all', 'contracts', 'other', 'review', 'duplicates', 'attachments'] as const
 export const ACTIVE_FILTER = 'all'
 export const DUPLICATE_COUNT = 1
 
@@ -141,13 +143,14 @@ type Copy = {
 const en: Copy = {
   ui: {
     'documents.title': "Documents",
-    'documents.description': "Contracts and other documents that aren't invoices or bank statements. Forward them by email, or upload them here.",
+    'documents.description': "Contracts, invoice attachments and other documents that aren't invoices or bank statements. Forward them by email, or upload them here.",
     'documents.upload': "Upload",
     'documents.filter.all': "All",
     'documents.filter.contracts': "Contracts",
     'documents.filter.other': "Other",
     'documents.filter.review': "Needs review",
     'documents.filter.duplicates': "Duplicates",
+    'documents.filter.attachments': "Unlinked attachments",
     'documents.status.ready': "Ready",
     'documents.status.review': "Review",
     'documents.status.processing': "Processing",
@@ -164,19 +167,20 @@ const en: Copy = {
     'GRM-DOC-2026-0116': "A services agreement; the parties and the term are stated, the fee schedule is an annex.",
   },
   rendered: { duplicateOf: "Duplicate of GRM-DOC-2026-0118" },
-  help: { alt: "The Documents list: five filters with a count on Duplicates, then five rows, each with its reference, file name, one-line summary, source and size, a type badge, a confidence percentage and a status badge. One badge reads Kontenrahmen, in the document's own language; the contracts read Contract. One row is marked a duplicate of an earlier one, and the last row sits on Processing." },
+  help: { alt: "The Documents list: six filters with a count on Duplicates, then five rows, each with its reference, file name, one-line summary, source and size, a type badge, a confidence percentage and a status badge. One badge reads Kontenrahmen, in the document's own language; the contracts read Contract. One row is marked a duplicate of an earlier one, and the last row sits on Processing." },
 }
 
 const hu: Copy = {
   ui: {
     'documents.title': "Dokumentumok",
-    'documents.description': "Szerződések és egyéb dokumentumok, amelyek nem számlák vagy bankkivonatok. Továbbítsd őket e-mailben, vagy töltsd fel itt.",
+    'documents.description': "Szerződések, számlamellékletek és egyéb dokumentumok, amelyek nem számlák vagy bankkivonatok. Továbbítsd őket e-mailben, vagy töltsd fel itt.",
     'documents.upload': "Feltöltés",
     'documents.filter.all': "Mind",
     'documents.filter.contracts': "Szerződések",
     'documents.filter.other': "Egyéb",
     'documents.filter.review': "Ellenőrzendő",
     'documents.filter.duplicates': "Duplikátumok",
+    'documents.filter.attachments': "Nem kapcsolt mellékletek",
     'documents.status.ready': "Kész",
     'documents.status.review': "Ellenőrzés",
     'documents.status.processing': "Feldolgozás",
@@ -193,19 +197,20 @@ const hu: Copy = {
     'GRM-DOC-2026-0116': "Szolgáltatási szerződés; a felek és a futamidő szerepel benne, a díjszabás melléklet.",
   },
   rendered: { duplicateOf: "GRM-DOC-2026-0118 duplikátuma" },
-  help: { alt: "A Dokumentumok lista: öt szűrő, a Duplikátumokon darabszámmal, majd öt sor, mindegyikben a hivatkozási szám, a fájlnév, egy egysoros összefoglaló, a forrás és a méret, egy típuscímke, egy magabiztossági százalék és egy állapotcímke. Az egyik címke Kontenrahmen, a dokumentum saját nyelvén; a szerződéseken Szerződés áll. Egy sor egy korábbi duplikátumaként van megjelölve, az utolsó sor pedig Feldolgozás állapotban áll." },
+  help: { alt: "A Dokumentumok lista: hat szűrő, a Duplikátumokon darabszámmal, majd öt sor, mindegyikben a hivatkozási szám, a fájlnév, egy egysoros összefoglaló, a forrás és a méret, egy típuscímke, egy magabiztossági százalék és egy állapotcímke. Az egyik címke Kontenrahmen, a dokumentum saját nyelvén; a szerződéseken Szerződés áll. Egy sor egy korábbi duplikátumaként van megjelölve, az utolsó sor pedig Feldolgozás állapotban áll." },
 }
 
 const de: Copy = {
   ui: {
     'documents.title': "Dokumente",
-    'documents.description': "Verträge und andere Dokumente, die keine Rechnungen oder Kontoauszüge sind. Leiten Sie sie per E-Mail weiter oder laden Sie sie hier hoch.",
+    'documents.description': "Verträge, Rechnungsanhänge und andere Dokumente, die keine Rechnungen oder Kontoauszüge sind. Leiten Sie sie per E-Mail weiter oder laden Sie sie hier hoch.",
     'documents.upload': "Hochladen",
     'documents.filter.all': "Alle",
     'documents.filter.contracts': "Verträge",
     'documents.filter.other': "Andere",
     'documents.filter.review': "Zu prüfen",
     'documents.filter.duplicates': "Duplikate",
+    'documents.filter.attachments': "Nicht verknüpfte Anhänge",
     'documents.status.ready': "Bereit",
     'documents.status.review': "Prüfen",
     'documents.status.processing': "Verarbeitung",
@@ -222,7 +227,7 @@ const de: Copy = {
     'GRM-DOC-2026-0116': "Ein Dienstleistungsvertrag; Parteien und Laufzeit sind genannt, die Preisliste ist eine Anlage.",
   },
   rendered: { duplicateOf: "Duplikat von GRM-DOC-2026-0118" },
-  help: { alt: "Die Dokumentenliste: fünf Filter, bei Duplikate mit einer Anzahl, darunter fünf Zeilen mit Referenz, Dateiname, einer einzeiligen Zusammenfassung, Quelle und Größe, einem Typ-Badge, einem Konfidenzwert in Prozent und einem Status-Badge. Ein Badge steht in der Sprache des Dokuments, Kontenrahmen; bei den Verträgen steht Vertrag. Eine Zeile ist als Duplikat einer früheren markiert, und die letzte Zeile steht auf Verarbeitung." },
+  help: { alt: "Die Dokumentenliste: sechs Filter, bei Duplikate mit einer Anzahl, darunter fünf Zeilen mit Referenz, Dateiname, einer einzeiligen Zusammenfassung, Quelle und Größe, einem Typ-Badge, einem Konfidenzwert in Prozent und einem Status-Badge. Ein Badge steht in der Sprache des Dokuments, Kontenrahmen; bei den Verträgen steht Vertrag. Eine Zeile ist als Duplikat einer früheren markiert, und die letzte Zeile steht auf Verarbeitung." },
 }
 
 export const documentsCopy: Record<Locale, Copy> = { en, hu, de }

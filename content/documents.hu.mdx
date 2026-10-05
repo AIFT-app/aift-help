@@ -1,10 +1,10 @@
 # Dokumentumok
 
-A **Dokumentumok** oldal a szerződések és az egyéb papírmunka helye: minden, ami számít a könyvelésben, de nem számla és nem bankkivonat. Bérleti szerződés, hitelszerződés, költséghely-szabályzat, számlatükör, támogatói döntés.
+A **Dokumentumok** oldal a szerződések, a számlamellékletek és az egyéb papírmunka helye: minden, ami számít a könyvelésben, de nem számla és nem bankkivonat. Bérleti szerződés, hitelszerződés, költséghely-szabályzat, számlatükör, támogatói döntés.
 
 ## Mi kerül ide, és mi nem
 
-Ez az oldal pontosan háromféle dokumentumot tartalmaz: a **szerződéseket**, az **egyéb** dokumentumokat, és mindent, amit az első menet egyáltalán nem tudott elhelyezni.
+Ez az oldal a **szerződéseket**, az **egyéb** dokumentumokat, a **számlamellékleteket** (munkaidő-kimutatás, teljesítésigazolás, szállítólevél és hasonlók) és mindent tartalmaz, amit az első menet egyáltalán nem tudott elhelyezni.
 
 Minden, amit a rendszer **számlának**, **nyugtának**, **sztornó számlának** vagy **bankkivonatnak** sorol be, máshová kerül, és itt soha nem jelenik meg. A számlák és a nyugták a [Számlák](/invoices) oldalra kerülnek, a bankkivonat a **Banki tranzakciók** oldalon várja a feltöltést (lásd [Bankszámlakivonatok feltöltése](/bank-statement-upload)), az e-mailben érkező küldeményeket pedig előbb a **Gyűjtő** naplózza (lásd [Dokumentumok továbbítása e-mailben](/email-forwarding)).
 
@@ -12,9 +12,12 @@ Az üres Dokumentumok oldal tehát nem azt jelenti, hogy semmi nem érkezett. Az
 
 ## Ki nyithatja meg
 
-Azok az irodai oldali tagok, akiknek megvan a „Számlák szerkesztése” jogosultsága. Ügyféloldali tag soha nem érheti el, bármilyen szerepkört is kap: a jogosultság csak irodai oldali, és kivétellel sem adható meg.
+Mindenki, aki látja a munkaterület rekordjait (a „Számlák és banki tranzakciók megtekintése” jogosultsággal), irodai és ügyféloldalon egyaránt. E jogosultság nélkül a menüpont nem jelenik meg, és ha valaki linkkel nyitja meg, a munkaterület áttekintésére kerül vissza.
 
-> Ha Ön a könyvelői oldalon áll, és az oldal üzenet nélkül visszaviszi a munkaterület áttekintésére, akkor a szerepköréből hiányzik a **Számlák szerkesztése**. Az oldalsávban a menüpont ettől függetlenül minden irodai oldali tagnak megjelenik, ezért néma a zsákutca.
+Hogy mit tehet az oldalon, az két további jogosultságon múlik:
+
+- A **Dokumentumok feltöltése** jogosultsággal mellékletet kapcsolhat, típusát módosíthatja, eltávolíthatja, és használhatja a **Megjelölés mellékletként** gombot. Alapértelmezés szerint minden beépített szerepkörben benne van, az ügyféloldaliakban is.
+- A **Számlák szerkesztése**, amely csak irodai oldali tagé lehet, hozzáadja a könyvelői munkát: a **Feltöltés** gombot, az **Ellenőrzendő** szűrőt, a dokumentum típusának módosítását, a megjelölést nem relevánsként, a duplikátum-jelzés visszavonását és a kategórialista készítését. Ügyféloldali tag ezeket nem látja.
 
 Vegye figyelembe, hogy a kategórialista készítése dokumentumból, lentebb, ismét **más** jogosultságot kíván.
 
@@ -29,7 +32,7 @@ A párbeszédpanel szerint PDF, JPG vagy PNG, egyenként max. 20 MB, és ez ink�
 
 Minden dokumentumot elolvasunk egyszer, röviden, hogy a lista megnyitás nélkül is használható legyen. Kap egy egy-két mondatos **összefoglalót** egy magabiztossági értékkel, a rendszer felismeri a nyelvét, és típust ad neki.
 
-**A típusjelvényen az áll, aminek az AI nevezte**, de csak azoknál a dokumentumoknál, amelyek nem szerződések. Az első olvasás két dolgot ír fel: egy durva fajtát, és egy finomabb címkét a saját szavaival. A **szerződéseken** mindig a lefordított **Szerződés** szó áll, a finomabb címkéjük (`lease`, `nda`) pedig sehol nem jelenik meg. A többinél a finomabb címke látszik, ha van, és ezek a szabad szöveges címkék nincsenek lefordítva, tehát a `Kontenrahmen` `Kontenrahmen` marad, bármi is a felület nyelve.
+**A típusjelvényen az áll, aminek az AI nevezte**, de csak azoknál a dokumentumoknál, amelyek nem szerződések és nem számlamellékletek; a mellékleteken mindig **Melléklet** áll. Az első olvasás két dolgot ír fel: egy durva fajtát, és egy finomabb címkét a saját szavaival. A **szerződéseken** mindig a lefordított **Szerződés** szó áll, a finomabb címkéjük (`lease`, `nda`) pedig sehol nem jelenik meg. A többinél a finomabb címke látszik, ha van, és ezek a szabad szöveges címkék nincsenek lefordítva, tehát a `Kontenrahmen` `Kontenrahmen` marad, bármi is a felület nyelve.
 
 Ha ugyanaz a fájl már szerepel a munkaterületen, a másolat **Duplikátum** jelölést kap. A listában ettől függetlenül megjelenik, az eredeti típusa alá sorolva, az összefoglaló helyén pedig egy sor áll, amely megnevezi, minek a duplikátuma.
 
@@ -38,7 +41,7 @@ A Dokumentumok lista öt dokumentummal. A számok az alábbi lista pontjainak fe
 </DocumentsListFigure>
 
 1. A **Feltöltés**, a címsor mellett. Az egyetlen másik út ide az e-mail.
-2. A **Duplikátumok** az egyetlen szűrő, amely darabszámot is mutat, és azt is csak akkor, ha van ilyen.
+2. A **Duplikátumok** darabszámot is mutat, de csak akkor, ha van ilyen. Ugyanígy működik az utolsó szűrő, a **Nem kapcsolt mellékletek** is.
 3. **A típusjelvény a dokumentum saját szavaival.** Ez a számlatükör nem szerződés, ezért a jelvényen az áll, aminek az AI nevezte, lefordítatlanul, bármi is a felület nyelve.
 4. **A duplikátum itt marad**, az eredeti fajtája alatt, és az összefoglaló helyén az a sor áll, amely megnevezi, minek a duplikátuma.
 5. **A több dokumentumot tartalmazó PDF** véglegesen a **Feldolgozás** jelölésen marad. Semmi más nem történik vele.
@@ -47,7 +50,7 @@ Ez az első menet szándékosan felületes. A dokumentum elejét olvassa, hogy b
 
 ## Hogyan talál meg valamit
 
-A szűrők: **Mind**, **Szerződések**, **Egyéb**, **Ellenőrzendő** és **Duplikátumok**. Darabszámot csak a **Duplikátumok** mutat, és csak akkor, ha van.
+A szűrők: **Mind**, **Szerződések**, **Egyéb**, **Ellenőrzendő**, **Duplikátumok** és **Nem kapcsolt mellékletek**; az **Ellenőrzendő** csak a könyvelőknek jelenik meg. Darabszámot a **Duplikátumok** és a **Nem kapcsolt mellékletek** mutat, és csak akkor, ha van. A számlához kapcsolt melléklet a **Mind** alatt szerepel, a másodszor e-mailben érkezett melléklet pedig a **Duplikátumok** alatt.
 
 Nincs keresés, nincs rendezés és nincs oldalazás: a lista egyszerre mutatja a munkaterület összes dokumentumát, a legújabbal kezdve. Az üres állapot pedig ugyanazt a mondatot írja ki, bármelyik szűrőn áll, tehát a Duplikátumok szűrőn a „Még nincs dokumentum” jellemzően azt jelenti, hogy nincs duplikátum, nem azt, hogy nincs dokumentum.
 
@@ -60,7 +63,9 @@ Nincs keresés, nincs rendezés és nincs oldalazás: a lista egyszerre mutatja 
 
 A **Feldolgozás** a gyűjtőállapot, és van egy eset, amely soha nem jut ki belőle. Azt a PDF-et, amelyben több dokumentum van egybeszkennelve, a rendszer elutasítja, nem elolvassa, és a **Feldolgozás** jelvény véglegesen rajta marad. Ha valami az érkezése napja óta ott áll, ez történt: szedje szét dokumentumonként egy-egy fájlra, és a darabokat küldje be.
 
-Az alátámasztó dokumentumokat, például a munkaidő-kimutatásokat, a teljesítésigazolásokat és a szállítóleveleket a rendszer számlamellékletként ismeri fel, és soha nem dolgozza fel számlaként. Amelyik még nem kapcsolódik számlához, a **Nem kapcsolt mellékletek** szűrő alatt várakozik, ahol számlához kapcsolhatja. Lásd: [Számlamellékletek](/invoice-attachments).
+Az alátámasztó dokumentumokat, például a munkaidő-kimutatásokat, a teljesítésigazolásokat és a szállítóleveleket a rendszer számlamellékletként ismeri fel, és soha nem dolgozza fel számlaként. Amelyik még nem kapcsolódik számlához, a **Nem kapcsolt mellékletek** szűrő alatt várakozik, ahol számlához kapcsolhatja.
+
+Ha a rendszer egy munkaidő-kimutatást vagy szállítólevelet az **Egyéb** alá sorolt, használja a sorában a **Megjelölés mellékletként** gombot: válassza ki a típust, és a dokumentum számlamelléklet lesz, amely a **Nem kapcsolt mellékletek** között várakozik. Csak olyan dokumentumon működik, amelynek a beolvasása már lezárult, és amelyből még nem lett számla. Ha itt megnyit egy mellékletet, az adatait és a letöltést látja; kapcsolni, a típusát módosítani vagy eltávolítani a számlán vagy a tálcán tudja. Lásd: [Számlamellékletek](/invoice-attachments).
 
 ## Egy dokumentum kezelése
 
