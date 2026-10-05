@@ -51,11 +51,12 @@ export function formatDateTime(iso: string, locale: Locale): string {
   return `${parts.year}-${parts.month}-${parts.day} ${parts.hour}:${parts.minute}`
 }
 
-/** aift-web formatPrice: a whole plan price, no decimals ("27 000 Ft", "€75"). */
+/** aift-web formatPrice: a whole plan price, no decimals, the currency's own sign ("27 000 Ft", "Ft 27,000", "€75"). */
 export function formatPrice(amount: number, currency: string, locale: Locale): string {
   return new Intl.NumberFormat(BCP47[locale], {
     style: 'currency',
     currency,
+    currencyDisplay: 'narrowSymbol',
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
     useGrouping: 'always',
