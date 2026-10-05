@@ -17,7 +17,7 @@ Even then:
 
 - **Nothing is ever posted.** The purchase invoice is created as a **draft** and left there. Posting is available over the interface and we deliberately do not use it: a document posted from wrong data has to be reversed, which marks the ledger for good, while a draft is deleted in one click. Posting stays the bookkeeper's act, inside Business Central.
 - **An existing record is never rewritten.** A vendor card with the same tax number is linked to your partner instead, and an existing document is never touched.
-- **We only ever delete what we created.** Three controls delete, all on the send screen: the probe removes the throwaway draft it just made, the numbering trial removes its made-up AIFT-TESZT draft (and one an earlier trial left behind), and the cleanup removes drafts AI Finance Team recorded sending but never managed to link. Nothing else is ever deleted, and nothing Business Central does not call a draft.
+- **We only ever delete what we created.** Three controls delete, all on the send screen: the probe removes the throwaway draft it just made, the numbering trial removes its made-up AIFT-TESZT draft (and one an earlier trial left behind), and the cleanup removes drafts AI Finance Team recorded sending but never managed to link. Apart from these, the PDF upload deletes an empty attachment row it has just made itself (see The PDF). Nothing else is ever deleted, and nothing Business Central does not call a draft.
 
 ## Setting Up the Connection
 
@@ -167,23 +167,39 @@ A vendor number that comes back is shown on the partner's page under its AI Fina
 
 The top half is a read-only funnel: how many invoices are **ready to send**, how many are **in the period**, and what stops the rest. Nine things can stop an invoice, and only the first one found is shown: no company on the invoice, the company not paired, the company not read yet, the partner not verified, no vendor card for that partner in that company, a line with no category, the category's ledger account missing from that company, no invoice number or delivery date, and **bookkeeping approval missing** (see [Filing and Bookkeeping Approval](/filing-and-bookkeeping-approval)). Each one expands to the invoices behind it with a link that takes you where it is fixed. Two more are warnings rather than blockers: an unmapped VAT pair, and a currency that company does not hold.
 
-Only expense invoices are considered, and never a duplicate or an archived one. **The invoice's own PDF is not sent**, and a missing document never blocks a send.
+Only expense invoices are considered, and never a duplicate or an archived one. **The invoice's own PDF goes with it** (see The PDF below), and a missing PDF never blocks a send.
 
 ### What to know before you press Send
 
-- **At most 25 invoices go per press.**
-- **The run stops after three failures in a row** and marks the remainder *Not attempted*, so one broken setting cannot burn the whole batch.
-- Each invoice comes back with its own outcome: **Created**, **Failed**, **We do not know**, **Did not start** or **Not attempted**.
+- **At most 200 invoices go per press.**
+- **The send runs in the background.** Pressing **Send** returns at once, and a block above the list shows the progress: a bar, the counts, and one row per invoice. You can close the page, the send keeps going. The **Uploads** panel in the bottom-right corner shows it on every page of the workspace.
+- **One send runs at a time in a workspace.** While it runs, **Send** is disabled and says why, and the invoices waiting in it leave the list, so nothing is picked twice. Under **Invoices ready to send** a line says how many of them are being sent right now.
+- **Stop** stops the invoices that have not started. The one being sent finishes.
+- **The send stops after three failures in a row** and marks the rest *Not sent*, so one broken setting cannot burn the whole batch.
+- Each invoice shows its state: **Queued**, **Sending**, **Created**, **Failed**, **We do not know** or **Not sent**. A failed row shows Business Central's own words, and a row that was not sent says why.
+- A finished send stays on the screen, also after a reload, until you press **Close**.
 
-**"We do not know" is the one that matters.** It means the request went and the answer did not come back. Do not simply send it again: Business Central does **not** refuse a second purchase invoice carrying the same supplier invoice number, so a blind retry can leave two drafts for one invoice. Use **Resolve interrupted sends**, which asks Business Central what actually happened and sends nothing.
+Each invoice is checked again at the moment it is sent, with the permissions of the person who pressed **Send**. An invoice that became blocked while it waited is not sent, and its row names what blocks it.
+
+**"We do not know" is the one that matters.** It means the request went and the answer did not come back. Do not create the invoice again by hand: Business Central does **not** refuse a second purchase invoice carrying the same supplier invoice number, so a second one leaves two drafts for one invoice. AI Finance Team does not send it again either until it is resolved. Use **Resolve interrupted sends** under **Troubleshooting**, which asks Business Central what actually happened and sends nothing.
 
 An invoice already up there leaves the sendable count, and the screen says how many of your selection are already in Business Central.
 
+### The PDF
+
+The invoice's own PDF goes up as an attachment of the draft, in its **Attachments** box. Business Central copies it to the posted invoice when you post.
+
+- Each row of the list says whether a PDF goes with it: **PDF** or **No PDF**. An invoice that came from NAV has no file. That is not an error, and it never blocks a send.
+- Once the invoice is created, its row shows the PDF: **Uploading the PDF**, then **PDF attached**, or **The PDF did not upload.** with Business Central's own words and a **Send the PDF again** button.
+- Only the invoice's own PDF goes. Other documents attached to the invoice in AI Finance Team stay there.
+- If the content of a file fails to upload, we delete the empty attachment row we have just made, because Business Central refuses to post an invoice that carries an empty attachment.
+- When invoices sent earlier have no PDF in Business Central, a line above the list says how many, with an **Add the PDFs (N)** button. It asks first, then uploads them in the background. A PDF that reaches an invoice after it was sent goes up only this way: nothing uploads by itself.
+
 ### The maintenance buttons
 
-Five buttons sit beside Send, and they stay visible even when nothing is sendable, because a stray draft in the client's ledger is invisible to anyone without a Business Central login.
+Five buttons sit under the list, in the **Troubleshooting** section, which is closed until you open it. The section is there even when nothing is sendable, because a stray draft in the client's ledger is invisible to anyone without a Business Central login.
 
-- **Probe** creates a real throwaway draft from a real invoice and deletes it again. It answers whether this tenant accepts a duplicate supplier invoice number, and shows what we sent beside what Business Central stored.
+- **Probe** creates a real throwaway draft from a real invoice and deletes it again. It answers whether this tenant accepts a duplicate supplier invoice number, and shows what we sent beside what Business Central stored. It also puts the invoice's PDF on the throwaway draft, to show whether this tenant takes attachments.
 - **What BC exposes about a vendor** reads a vendor card and writes nothing.
 - **Numbering trial (made-up invoice)** creates one made-up purchase invoice draft numbered AIFT-TESZT-…, clears its posting number series, adds a line and deletes it again. It shows whether this Business Central accepts our own number as the invoice number (see The AIFT Id as the Invoice Number below). It asks for confirmation first.
 - **Resolve interrupted sends** asks what happened to a send whose answer was lost. It neither sends nor deletes.
