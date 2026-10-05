@@ -1,10 +1,10 @@
 # Dokumente
 
-Unter **Dokumente** haben Verträge und sonstige Unterlagen ihren Platz: alles, was für die Buchhaltung zählt, aber weder Rechnung noch Kontoauszug ist. Ein Mietvertrag, ein Darlehensvertrag, eine Kostenstellenrichtlinie, ein Kontenrahmen, ein Förderbescheid.
+Unter **Dokumente** haben Verträge, Rechnungsanhänge und sonstige Unterlagen ihren Platz: alles, was für die Buchhaltung zählt, aber weder Rechnung noch Kontoauszug ist. Ein Mietvertrag, ein Darlehensvertrag, eine Kostenstellenrichtlinie, ein Kontenrahmen, ein Förderbescheid.
 
 ## Was hier landet und was nicht
 
-Diese Seite enthält genau drei Arten: **Verträge**, **Andere** und alles, was der erste Durchgang überhaupt nicht einordnen konnte.
+Diese Seite enthält **Verträge**, **Andere**, **Rechnungsanhänge** (Stundenzettel, Leistungsnachweise, Lieferscheine und Ähnliches) und alles, was der erste Durchgang überhaupt nicht einordnen konnte.
 
 Alles, was als **Rechnung**, **Beleg**, **Gutschrift** oder **Kontoauszug** klassifiziert wird, geht anderswohin und erscheint hier nie. Rechnungen und Belege gehen zu [Rechnungen](/invoices), ein Kontoauszug wartet auf der Seite **Banktransaktionen** darauf, hochgeladen zu werden (siehe [Kontoauszüge hochladen](/bank-statement-upload)), und was per E-Mail eintrifft, wird zuerst in der **Sammelstelle** protokolliert (siehe [Dokumente per E-Mail weiterleiten](/email-forwarding)).
 
@@ -12,9 +12,12 @@ Ist die Seite Dokumente leer, bedeutet das also nicht, dass nichts eingetroffen 
 
 ## Wer sie öffnen kann
 
-Mitglieder auf der Kanzleiseite mit der Berechtigung „Rechnungen bearbeiten“. Ein Mitglied auf der Mandantenseite erreicht sie nie, welche Rolle es auch bekommt: Die Berechtigung gibt es nur für die Kanzleiseite, und keine Ausnahme kann sie vergeben.
+Jeder, der die Datensätze des Arbeitsbereichs sehen darf (Berechtigung „Rechnungen und Banktransaktionen ansehen“), auf der Kanzleiseite wie auf der Mandantenseite. Ohne diese Berechtigung steht die Seite nicht im Menü, und ein Link führt zurück zur Übersicht des Arbeitsbereichs.
 
-> Wenn Sie auf der Seite der Buchhaltung stehen und die Seite Sie ohne Meldung zurück zur Übersicht des Arbeitsbereichs bringt, fehlt Ihrer Rolle **Rechnungen bearbeiten**. Der Eintrag in der Seitenleiste wird trotzdem jedem Mitglied auf der Kanzleiseite gezeigt, deshalb ist die Sackgasse stumm.
+Was Sie dort tun können, hängt an zwei weiteren Berechtigungen:
+
+- **Dokumente hochladen** erlaubt, Anhänge zu verknüpfen, ihren Typ zu ändern, sie zu entfernen und **Als Anhang markieren** zu nutzen. Standardmäßig haben sie alle eingebauten Rollen, auch die auf der Mandantenseite.
+- **Rechnungen bearbeiten**, das nur Mitglieder der Kanzleiseite haben können, fügt die Arbeit der Buchhaltung hinzu: die Schaltfläche **Hochladen**, den Filter **Zu prüfen**, das Ändern des Dokumenttyps, das Markieren als irrelevant, das Aufheben einer Duplikat-Markierung und das Erstellen einer Kategorieliste. Ein Mitglied der Mandantenseite sieht diese nicht.
 
 Beachten Sie: Eine Kategorieliste aus einem Dokument zu bauen, weiter unten, braucht noch einmal eine **andere** Berechtigung.
 
@@ -29,7 +32,7 @@ Im Dialog steht PDF, JPG oder PNG, je bis zu 20 MB, und das ist ein guter Rat un
 
 Jedes Dokument wird einmal kurz gelesen, damit die Liste brauchbar ist, ohne dass Sie etwas öffnen müssen. Es bekommt eine **Zusammenfassung** in ein bis zwei Sätzen samt einem Sicherheitswert, seine Sprache wird erkannt, und es erhält einen Typ.
 
-**Auf dem Typ-Abzeichen steht, wie die KI es genannt hat**, aber nur bei Dokumenten, die keine Verträge sind. Der erste Durchgang schreibt zweierlei: eine grobe Art und eine feinere Bezeichnung in eigenen Worten. Bei einem **Vertrag** steht immer das übersetzte Wort **Vertrag**, und seine feinere Bezeichnung (`lease`, `nda`) wird nirgends angezeigt. Bei allem anderen erscheint die feinere Bezeichnung, sofern es eine gibt, und diese Freitext-Bezeichnungen werden nicht übersetzt: `Kontenrahmen` bleibt `Kontenrahmen`, welche Oberflächensprache Sie auch gewählt haben.
+**Auf dem Typ-Abzeichen steht, wie die KI es genannt hat**, aber nur bei Dokumenten, die weder Verträge noch Rechnungsanhänge sind; auf einem Anhang steht immer **Anhang**. Der erste Durchgang schreibt zweierlei: eine grobe Art und eine feinere Bezeichnung in eigenen Worten. Bei einem **Vertrag** steht immer das übersetzte Wort **Vertrag**, und seine feinere Bezeichnung (`lease`, `nda`) wird nirgends angezeigt. Bei allem anderen erscheint die feinere Bezeichnung, sofern es eine gibt, und diese Freitext-Bezeichnungen werden nicht übersetzt: `Kontenrahmen` bleibt `Kontenrahmen`, welche Oberflächensprache Sie auch gewählt haben.
 
 Liegt dieselbe Datei bereits im Arbeitsbereich, wird die Kopie als **Duplikat** markiert. Sie erscheint dennoch in der Liste, unter dem Typ des Originals eingeordnet, und an der Stelle der Zusammenfassung steht eine Zeile, die nennt, wovon sie ein Duplikat ist.
 
@@ -38,7 +41,7 @@ Die Dokumentenliste mit fünf Dokumenten. Die Nummern entsprechen der Liste daru
 </DocumentsListFigure>
 
 1. **Hochladen**, neben der Überschrift. Der einzige andere Weg hierher ist die E-Mail.
-2. **Duplikate** ist der einzige Filter mit einer Anzahl, und auch nur, wenn es welche gibt.
+2. **Duplikate** trägt eine Anzahl, und nur, wenn es welche gibt. Der letzte Filter, **Nicht verknüpfte Anhänge**, ebenso.
 3. **Das Typ-Abzeichen in den Worten des Dokuments.** Dieser Kontenrahmen ist kein Vertrag, also steht auf dem Abzeichen, wie die KI ihn genannt hat, unübersetzt, welche Oberflächensprache Sie auch gewählt haben.
 4. **Ein Duplikat bleibt hier**, unter der Art des Originals, und an der Stelle der Zusammenfassung steht die Zeile, die nennt, wovon es ein Duplikat ist.
 5. **Ein PDF mit mehreren Dokumenten** behält das Kennzeichen **Verarbeitung** dauerhaft. Weiter passiert damit nichts.
@@ -47,7 +50,7 @@ Dieser erste Durchgang ist bewusst flach. Er liest den Anfang des Dokuments, um 
 
 ## Etwas wiederfinden
 
-Die Filter sind **Alle**, **Verträge**, **Andere**, **Zu prüfen** und **Duplikate**. Nur **Duplikate** trägt eine Zahl, und nur, wenn es welche gibt.
+Die Filter sind **Alle**, **Verträge**, **Andere**, **Zu prüfen**, **Duplikate** und **Nicht verknüpfte Anhänge**; **Zu prüfen** sieht nur die Buchhaltung. **Duplikate** und **Nicht verknüpfte Anhänge** tragen eine Zahl, und nur, wenn es welche gibt. Ein mit einer Rechnung verknüpfter Anhang steht unter **Alle**, ein zum zweiten Mal per E-Mail geschickter Anhang unter **Duplikate**.
 
 Es gibt keine Suche, keine Sortierung und kein Blättern: Die Liste ist alles im Arbeitsbereich, das Neueste zuerst, auf einmal. Und der leere Zustand sagt denselben Satz, auf welchem Filter Sie auch stehen, „Noch keine Dokumente“ auf dem Filter Duplikate heißt also meist, dass es keine Duplikate gibt, und nicht, dass es keine Dokumente gibt.
 
@@ -60,7 +63,9 @@ Es gibt keine Suche, keine Sortierung und kein Blättern: Die Liste ist alles im
 
 **Verarbeitung** ist der Sammelstatus, und es gibt einen Fall, der ihn nie verlässt. Ein PDF, in dem mehrere Dokumente zusammen eingescannt sind, wird abgewiesen statt gelesen, und es behält das Abzeichen **Verarbeitung** für immer. Steht etwas seit dem Tag seiner Ankunft dort, ist genau das passiert: Teilen Sie es in ein Dokument je Vorgang auf und senden Sie die Teile.
 
-Nachweisdokumente wie Stundenzettel, Leistungsnachweise und Lieferscheine werden als Rechnungsanhänge erkannt und nie als Rechnung verarbeitet. Solche, die noch mit keiner Rechnung verknüpft sind, warten unter dem Filter **Nicht verknüpfte Anhänge**, wo Sie sie verknüpfen können. Siehe [Rechnungsanhänge](/invoice-attachments).
+Nachweisdokumente wie Stundenzettel, Leistungsnachweise und Lieferscheine werden als Rechnungsanhänge erkannt und nie als Rechnung verarbeitet. Solche, die noch mit keiner Rechnung verknüpft sind, warten unter dem Filter **Nicht verknüpfte Anhänge**, wo Sie sie verknüpfen können.
+
+Hat die Einordnung einen Stundenzettel oder Lieferschein unter **Andere** abgelegt, nutzen Sie in seiner Zeile **Als Anhang markieren**: Wählen Sie den Typ, und das Dokument wird ein Rechnungsanhang, der unter **Nicht verknüpfte Anhänge** wartet. Das geht nur bei einem Dokument, dessen Einlesen abgeschlossen ist und aus dem noch keine Rechnung wurde. Öffnen Sie hier einen Anhang, sehen Sie seine Angaben und einen Download; verknüpfen, Typ ändern oder entfernen können Sie ihn an der Rechnung oder in der Ablage. Siehe [Rechnungsanhänge](/invoice-attachments).
 
 ## Mit einem Dokument arbeiten
 
