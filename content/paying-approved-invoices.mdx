@@ -30,7 +30,7 @@ The **To pay** tab with two invoices ticked in one group and a line that cannot 
 4. The line's account check, its **Due** and **Execution** dates, and its **Reference**.
 5. A line that cannot go into a file yet, with the reason and the next step.
 
-The page lists the supplier invoices that were approved and are still unpaid (open or partially paid), grouped by the bank account that will pay them: one group per paying account and currency, so a shared cash-pool account is one group for every company that uses it. Invoices marked as not needing approval never appear here, and neither do rejected invoices or duplicates. Each line shows:
+The page lists the supplier invoices that are still unpaid (open or partially paid) and were approved, or need no approval (a rule or a person marked them **No approval needed**; their line says so), grouped by the bank account that will pay them: one group per paying account and currency, so a shared cash-pool account is one group for every company that uses it. Invoices waiting for a decision or declined never appear here, and neither do rejected invoices or duplicates. Each line shows:
 
 - **Payee** and the invoice number, with a link to the invoice.
 - **Payee account**: the account the money goes to, and its check state.
@@ -43,7 +43,7 @@ The filter bar above the list narrows it by **Due** date (**Overdue**, **Next 7 
 
 ## The account check
 
-Paying the wrong account is the most common invoice fraud, so every payee account has to be confirmed before it can go into a file. A person holding "Manage approvals" confirms it on the partner page. An account that someone types in by hand is confirmed by somebody else, never by the person who typed it. Where the company register check is switched on for your workspace, the register can also confirm an account the first time it is seen: for an invoice that arrived after the check was switched on, from an active company that is not a sole trader, when the names agree.
+Paying the wrong account is the most common invoice fraud, so every payee account has to be confirmed before it can go into a file. A person holding "Manage approvals" confirms it on the partner page. An account typed in by a person holding "Manage approvals" is confirmed in the same step, with no second person; its line is marked **Typed by hand**, and when you make a payment file, the window lists these accounts and asks you to tick **I checked these accounts** before it can make the file. Where the company register check is switched on for your workspace, the register can also confirm an account the first time it is seen: for an invoice that arrived after the check was switched on, from an active company that is not a sole trader, when the names agree.
 
 - **Confirmed**: the line can be paid. Under the account the page says who confirmed it, or on which date the register listed it. The downloaded spreadsheet shows who confirmed it and when in its last column.
 - **First time seen**: this supplier's account has not been confirmed yet. Open the partner and confirm it after you checked it with the supplier.
@@ -60,7 +60,7 @@ Where the company register check is on, every line also shows what the register 
 
 Every supplier invoice that can still be paid has a **Payment instructions** card at the bottom of its **Matching & payment** tab, below the payment status and the matched transactions. You can fill it in while you review the invoice, before or after it is approved.
 
-- **Supplier's account (payee)**: where the money goes, with its state and, where the company register check is on, what the register says about it. If the invoice was read wrong, for example the euro account was taken from an invoice that also prints a forint account, pick the right one: the list holds the supplier's accounts and the ones printed on the invoice. You can also type a new number; it is added to the partner unconfirmed, and somebody else holding "Manage approvals" confirms it before the invoice can be paid. **Back to automatic** drops your choice. **Show the invoice beside** puts the invoice image next to the card on a wide screen, so you can compare the number with the document.
+- **Supplier's account (payee)**: where the money goes, with its state and, where the company register check is on, what the register says about it. If the invoice was read wrong, for example the euro account was taken from an invoice that also prints a forint account, pick the right one: the list holds the supplier's accounts and the ones printed on the invoice. You can also type a new number. If you hold "Manage approvals", it is confirmed when you save it and marked as typed by hand; otherwise it is added to the partner unconfirmed until someone who holds it confirms it. **Back to automatic** drops your choice. **Show the invoice beside** puts the invoice image next to the card on a wide screen, so you can compare the number with the document.
 - **Pay from**: the bank account that pays the invoice. It starts as the company's **Default for payments** for the currency (set on the company's Recognition tab), or its oldest account in that currency when there is no default. Pick another account to pay this one invoice from it; the invoice then appears in that account's group here.
 - **Payment reference**: the text (közlemény) that goes to the bank with the transfer. It is filled in automatically with the invoice number, and you can change it; a character counter shows how long it is, and **Reset to automatic** brings the invoice number back.
 - **Payment method**: an invoice paid by card, voucher or another non-transfer method is left out of payment files, and shows under "Cannot be included yet". Switch on **Include anyway** if it has to be paid by transfer after all. An invoice without a stated payment method is treated as a bank transfer.
@@ -172,7 +172,7 @@ The spreadsheet works with every bank, because a person keys it in or the bank i
 
 ## Questions people ask
 
-**Can I pay an invoice that is not approved?** Not from this page: it lists approved invoices only. Invoices marked as not needing approval do not appear either; pay those in the netbank as usual.
+**Can I pay an invoice that is not approved?** Only if it needs no approval: an invoice a rule or a person marked as not needing approval appears here like an approved one. An invoice still waiting for a decision, or declined, does not.
 
 **An invoice is approved by everyone and still is not here.** A checkpoint can hold it *before* the payment approver ever sees it: where filing or bookkeeping approval is switched on, the payment card reads **Waiting for filing** or **Waiting for bookkeeping** instead of offering Approve. Such an invoice is not yet approved for payment, so it appears nowhere on this page, not even under "Cannot be included yet". See [Filing and Bookkeeping Approval](/filing-and-bookkeeping-approval).
 
