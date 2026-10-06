@@ -13,11 +13,11 @@ How a bank transaction gets its type: your patterns first, then the partner, the
 3. **The AI.** For what is still unmarked, the AI reads the transaction, your type descriptions and the examples you taught it. When it is at least 60% sure, it marks the transaction itself. It looks at each transaction once; below that confidence it leaves the transaction alone.
 4. **A person** can mark or undo any time on the transaction's page.
 
-The transaction's page says which of these marked it: **Matched by pattern rule**, **Matched by AI** with the confidence, or **Marked manually**.
+The transaction's page says which of these marked it: **Matched by pattern rule** (also shown for a partner-bound type or a transfer between your own accounts), **Matched by AI** with the confidence, or **Marked manually**.
 
 ## Setting up transaction types
 
-Open **Master data**, then **Transaction Types**. The page has two tabs, **Types** and **Examples**. Members of the accounting firm can open it; creating and changing types needs the permission "Edit master data".
+Open **Master data**, then **Bank Transaction Types**. The page has two tabs, **Types** and **Examples**. Members of the accounting firm can open it; creating and changing types needs the permission "Edit master data".
 
 <TransactionTypeEditorFigure>
 Editing the **Bank Fee** type. The numbers match the list below. The patterns and counts are examples.
@@ -52,7 +52,7 @@ The default types come with patterns for typical bank wording, such as `BANK FEE
 1. Click **+ New Type**, or **Edit** on a type's row.
 2. Enter a **Name**.
 3. Write a **Description**. This is not a private note: the AI reads it to decide which transactions belong to the type, so describe them plainly.
-4. Leave **Active** on.
+4. Leave **Active** ticked.
 5. Set a partner if the type has one (see below).
 6. Add one or more patterns with **+ Add pattern**.
 7. Click **Create type**, or **Save changes** for an existing type. Saving replaces all the patterns of the type.
@@ -66,7 +66,7 @@ A transaction matches a type if **any** of its patterns match. A pattern is a fi
 | Field | What it checks |
 |-------|---------------|
 | **Description** | The transaction's free-text description from the bank |
-| **Partner name** | The name of the other party on the transaction |
+| **Partner name** | The other party's name as it appears on the bank line |
 | **Reference** | The payment reference |
 
 | Mode | Behaviour |
@@ -81,24 +81,26 @@ As you type, the editor shows how many existing transactions the patterns match.
 
 ## Partner binding: who the transaction is with
 
-Bank fees, interest, tax payments and card-acquirer payouts have a real party: the bank that runs the account, the tax authority or the payment provider. A type can set that party, so these transactions carry a proper partner into the ledger and the exports instead of a name scraped from the statement.
+Bank fees, interest, tax payments and card-acquirer payouts have a real party: the bank that runs the account, the tax authority or the payment provider. A type can set that party, so these transactions reach the exports with the right party instead of a name scraped from the statement.
 
-In the editor, turn on **Set the partner from this type** and pick a mode:
+In the editor, tick **Set the partner from this type** and pick a mode:
 
 | Mode | The party is… | Use it for |
 |------|---------------|-----------|
 | **Bank** | The bank that runs the account, taken from the account itself | Bank fees, interest, cash withdrawals, card reserves |
 | **Specific partner** | One verified partner you pick | A tax authority, or a card acquirer: always the same party |
 
-With the switch off, the type sets no partner and the partner comes from the transaction itself. If the partner you need does not exist yet, **+ Create partner** creates it right in the editor.
+With the box unticked, the type sets no partner and the partner comes from the transaction itself. If the partner you need does not exist yet, **+ Create partner** creates it right in the editor.
 
 ### Bank: set each account's bank
 
 A **Bank** type takes its party from the bank account. Set it under **Master data → Bank accounts**: open the account with **Edit** (or when adding one) and fill in **Bank** and **Bank tax ID**, so bank charges always export with a party.
 
-### Specific partner: fires on identity, never on look-alikes
+### Specific partner: the rule fires on identity
 
-A **Specific partner** type applies when the transaction's partner is the partner you picked, never because the text merely looks similar, and it always marks the transaction **No invoice needed**. Its patterns are not used. For example, a type bound to a card acquirer classifies that acquirer's payouts but leaves a look-alike from another company untouched, because that is a different party that may well need an invoice. Create one type per partner: one for the VAT account of the tax authority and a separate one for personal income tax, because tax sub-accounts are not the same party.
+A **Specific partner** type applies when the transaction's partner is the partner you picked, never because the text merely looks similar, and it marks a transaction that is still unmatched **No invoice needed**. Its patterns are not used. For example, a type bound to a card acquirer classifies that acquirer's payouts, but the rule leaves a look-alike from another company untouched, because that is a different party that may well need an invoice. Create one type per partner: one for the VAT account of the tax authority and a separate one for personal income tax, because tax sub-accounts are not the same party.
+
+The rule itself only looks at the partner. The AI also sees the type's name and description and can suggest it for other transactions, so name the partner in the description. The steps do not always run in the order above; whichever marks the transaction first wins, and a later step never replaces the type.
 
 > **The category belongs to the partner.** To book a partner's transactions to a fixed category, set **Fixed transaction category** on the partner's **Rules** tab (see [Managing Partners](/partners)). It only sets the category; whether a transaction needs an invoice is decided here.
 
@@ -118,7 +120,7 @@ Keep each company's bank accounts up to date under **Master data → Companies**
 
 Patterns are not the only way to teach. When you mark a transaction **No invoice needed** with a type, or undo such a mark, AI Finance Team remembers the decision as an **example** and shows it to the AI the next time something similar arrives. A mark with **No specific type** teaches nothing, because it says nothing about which type applies.
 
-Examples live on the **Examples** tab of Transaction Types.
+Examples live on the **Examples** tab of Bank Transaction Types.
 
 ### Examples are not rules
 
@@ -146,11 +148,11 @@ If a **pattern** made the wrong mark, undoing it is not enough: the pattern mark
 | **Verdict** | **No invoice needed** (with the type) or **Needs an invoice** |
 | **Transaction type** | The type to apply; blank for a *Needs an invoice* example |
 | **Source** | **Auto-learned** (from your mark) or **Manual** (you added it) |
-| **Times seen** | How many transactions you have decided this way |
+| **Times seen** | How many transactions you have decided this way; an example you add by hand starts at 3 |
 
 Repeated decisions about the same partner collapse into one example with a rising **Times seen** count. **+ Add example** teaches something before AI Finance Team has seen it, which helps when you take on a client whose recurring items you already know. Your most recent decision wins, and a new or changed example affects transactions from then on; it does not revisit transactions already processed.
 
-**AI learning**, in the tab's settings, sets how many learned examples AI Finance Team shows the AI, from **Low** to **High**; **Off** stops using them. Changing it needs the permission "Edit workspace settings". Examples belong to one client workspace and are never shared between clients.
+**AI learning**, under **Settings** on the tab, is a slider for how many learned examples AI Finance Team shows the AI, from **Low** to **High** (30 by default); **Off** stops using them. It is one setting for the whole workspace, shared with the category examples. Changing it needs the permission "Edit workspace settings". Examples belong to one client workspace and are never shared between clients.
 
 ## Marking a transaction by hand
 
@@ -178,4 +180,4 @@ The pills above the list filter by the same states: **Bank feed**, **Statement**
 
 ## Exports
 
-A transaction marked **No invoice needed** still needs a transaction category with a ledger code before it can be exported; the RLB export flags it otherwise. Transactions of a **Bank** type export with the bank name and tax ID from the bank account.
+A transaction marked **No invoice needed** still needs a transaction category with a **Code**; without one the RLB export warns, and the ledger account stays empty. Transactions of a **Bank** type export with the bank name and tax ID from the bank account.
