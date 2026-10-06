@@ -1,6 +1,6 @@
 # AI-asszisztens csatlakoztatása MCP-n keresztül
 
-Az AI Finance Teamnek beépített **MCP-kiszolgálója** van: ez egy szabványos felület, amelyen keresztül az olyan AI-asszisztensek, mint a Claude, a Mistral Le Chat vagy a ChatGPT, olvashatják a könyvelési adatait, és az Ön engedélyével módosíthatják is. Ugyanaz a termék, csak beszélgetve elérve.
+Az AI Finance Teamnek beépített **MCP-kiszolgálója** van: ez egy szabványos felület, amelyen keresztül az olyan AI-asszisztensek, mint a Claude, a Mistral Vibe vagy a ChatGPT, olvashatják a könyvelési adatait, és az Ön engedélyével módosíthatják is. Ugyanaz a termék, csak beszélgetve elérve.
 
 A csatlakoztatás után hétköznapi nyelven kérdezhet („Mely számlák igénylik a figyelmemet a Quillmoor Software-ben?”), az asszisztens pedig élő adatot húz le a munkaterületéről.
 
@@ -90,13 +90,19 @@ A hozzájárulási képernyő bepipált **Adatok olvasása** jelöléssel; a **M
 
 Lecsatlakoztatás: Beállítások → Konnektorok → AI Finance Team → **Eltávolítás**.
 
-### Mistral Le Chat
+### Mistral Vibe (korábban Le Chat)
 
-Free és Pro csomagon érhető el.
+A Mistral Le Chat nevű asszisztense ma már Vibe néven fut. A csatlakoztatás a csevegőalkalmazásban, a **Vibe for work** felületén történik. Egyéni konnektort minden csomag használhat: Free, Pro, Team és Enterprise. Free és Pro csomagon Ön maga adhatja hozzá. Team és Enterprise csomagon ezt csak az Ön Mistral-szervezetének adminisztrátora teheti meg. A menüpontokat a Mistral angol nyelvű dokumentációja szerint idézzük.
 
-1. **Beállítások → MCP-konnektorok → Konnektor hozzáadása**.
-2. Illessze be az URL-t. A bejelentkezést a rendszer automatikusan felismeri.
-3. Jelentkezzen be, és adja meg a hozzájárulást a fentiek szerint.
+1. Nyissa meg az oldalsávon a **Connectors** oldalt.
+2. Kattintson a **+ Add Connector** gombra, és váltson a **Custom MCP Connector** fülre.
+3. Adjon meg egy szóköz nélküli nevet, például `AIFinanceTeam`, és illessze be az URL-t a **Server URL** mezőbe.
+4. Kattintson a **Connect** gombra. A Vibe felismeri, hogy a kiszolgáló bejelentkezést kér.
+5. Jelentkezzen be, és adja meg a hozzájárulást a fentiek szerint.
+
+A Vibe akkor használja a konnektort, amikor a kérdéséhez szükség van rá. Egy beszélgetésre külön is bekapcsolhatja: kattintson az üzenetmező **+** jelére (vagy írjon be egy **/** jelet), válassza a **Tools** pontot, és kapcsolja be az `AIFinanceTeam` konnektort. A Vibe minden hívás előtt engedélyt kér, kivéve azokat a funkciókat, amelyeknél a **Connectors → My Connectors → AIFinanceTeam → Functions** alatt bekapcsolta az **Always allow** lehetőséget. A módosító funkcióknál érdemes meghagyni az engedélykérést.
+
+A parancssori programozóeszköz, a **Vibe for code**, egyelőre nem tud csatlakozni. A Mistral szerint a saját MCP-beállításai nem kezelik az OAuth-bejelentkezést kérő kiszolgálókat, a miénk pedig ilyen.
 
 ### ChatGPT
 
