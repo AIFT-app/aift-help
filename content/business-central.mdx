@@ -228,12 +228,14 @@ Not sent, and the tab says why:
 
 - a line that is neither matched to an invoice nor marked "No invoice needed";
 - a payment whose invoice is not posted in Business Central yet, because a payment cannot be applied to a draft;
+- a payment whose invoice is already paid in Business Central: someone has recorded it already, and it would go in twice;
 - a single transfer that pays several invoices: for now this is booked in Business Central by hand;
 - a line that pays another company's invoice, from a cash pool for example.
 
 ### Before You Send
 
 - **One press sends at most 500 lines**, in the background, with the same bar and list as the invoice send. One send runs in a workspace at a time, invoices or bank lines.
+- **The "Feladás" (Send) button in the page title** is on both tabs and sends everything sendable in the period and company set on the page, without picking rows: everything, only the invoices, or only the bank lines. With everything it is one send, invoices first, then bank lines. A payment whose invoice goes in the same send waits until the invoice is posted in Business Central, and goes with the next send.
 - **Nothing goes twice.** Business Central does not refuse a second identical payment, so before every write we ask it whether a line with the same AI Finance Team id is already in the journal or among the posted entries. If it is, we do not write it again.
 - **Every line written is read back.** If Business Central recorded it differently from what we sent (a VAT group on a G/L line, for example), the line is deleted and its row says why.
 - A line that went is marked **"In Business Central already"** and no longer counts as sendable.

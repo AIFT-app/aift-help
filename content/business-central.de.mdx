@@ -228,12 +228,14 @@ Nicht gesendet wird, und der Reiter sagt warum:
 
 - eine Buchung, die weder einer Rechnung zugeordnet noch als „Keine Rechnung nötig“ markiert ist;
 - eine Zahlung, deren Rechnung in Business Central noch nicht gebucht ist, weil eine Zahlung nicht mit einem Entwurf ausgeglichen werden kann;
+- eine Zahlung, deren Rechnung in Business Central bereits ausgeglichen ist: Jemand hat sie schon erfasst, und sie käme doppelt hinein;
 - eine einzelne Überweisung, die mehrere Rechnungen bezahlt: Diese buchen Sie vorerst in Business Central von Hand;
 - eine Buchung, die die Rechnung einer anderen Firma bezahlt, zum Beispiel aus einem Cash Pool.
 
 ### Vor der Übergabe
 
 - **Ein Klick übergibt höchstens 500 Buchungen**, im Hintergrund, mit demselben Balken und derselben Liste wie die Rechnungsübergabe. In einem Arbeitsbereich läuft jeweils eine Übergabe, Rechnungen oder Bankbuchungen.
+- **Die Schaltfläche „Übertragen“ im Seitentitel** steht auf beiden Reitern und überträgt alles Übertragbare aus dem eingestellten Zeitraum und der Firma, ohne Auswahl: alles, nur die Rechnungen oder nur die Bankbuchungen. Bei „Alles“ ist es eine Übergabe, zuerst die Rechnungen, dann die Bankbuchungen. Eine Zahlung, deren Rechnung in derselben Übergabe übertragen wird, wartet, bis die Rechnung in Business Central gebucht ist, und geht mit der nächsten Übergabe.
 - **Nichts geht zweimal.** Business Central lehnt eine zweite gleiche Zahlung nicht ab, daher fragen wir vor jedem Schreiben, ob eine Zeile mit derselben Kennung von AI Finance Team bereits im Buch.-Blatt oder unter den gebuchten Posten ist. Wenn ja, schreiben wir sie nicht noch einmal.
 - **Jede geschriebene Zeile wird zurückgelesen.** Hat Business Central sie anders erfasst als gesendet (zum Beispiel mit einer MwSt.-Gruppe auf einer Sachkontozeile), wird die Zeile gelöscht, und ihre Zeile in der Liste sagt warum.
 - Eine übergebene Buchung erhält **„Bereits in Business Central“** und zählt nicht mehr als übertragbar.
