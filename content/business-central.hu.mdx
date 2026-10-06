@@ -6,18 +6,19 @@ Az AI Finance Team összekapcsolható a Microsoft Dynamics 365 Business Centrall
 
 ## Mit olvasunk ki, és mit írunk be
 
-Az AI Finance Team **kiolvassa** a Business Centralban lévő cégeket, és minden párosított cégnél a főkönyvi számait, áfa- és könyvelési csoportjait, mennyiségi egységeit, pénznemeit, bankszámláit, fizetési módjait és fizetési feltételeit, dimenzióit és dimenzióértékeit, valamint a szállítóit. **Könyvelési tételt és egyenleget nem olvasunk.** Bizonylatot egyetlen esetben olvasunk vissza: azokat a bejövő számlákat, amelyeket esetleg mi magunk hoztunk létre, amikor meg kell tudnunk, mi lett az egyikkel.
+Az AI Finance Team **kiolvassa** a Business Centralban lévő cégeket, és minden párosított cégnél a főkönyvi számait, áfa- és könyvelési csoportjait, mennyiségi egységeit, pénznemeit, bankszámláit, fizetési módjait és fizetési feltételeit, dimenzióit és dimenzióértékeit, valamint a szállítóit és a vevőit. **Könyvelési tételt és egyenleget nem olvasunk.** Bizonylatot egyetlen esetben olvasunk vissza: azokat a bejövő számlákat, amelyeket esetleg mi magunk hoztunk létre, amikor meg kell tudnunk, mi lett az egyikkel.
 
-Az AI Finance Team kétféle rekordot **ír be**, és mindkettő egy második kapcsoló mögött van, amelyet csak mi tudunk bekapcsolni:
+Az AI Finance Team háromféle rekordot **ír be**, és mindhárom egy második kapcsoló mögött van, amelyet csak mi tudunk bekapcsolni:
 
 - egy **szállítókarton**, az Ön egyik partneréből;
-- egy **bejövő számla**, az Ön egyik itteni bejövő számlájából.
+- egy **bejövő számla**, az Ön egyik itteni bejövő számlájából;
+- egy **banki naplósor**, az Ön egyik banki tételéből, a főkönyvi naplóba.
 
 De még akkor is:
 
-- **Semmit nem könyvelünk le.** A bejövő számla **piszkozatként** jön létre, és ott is marad. A könyvelés elérhető a felületen, és szándékosan nem élünk vele: a rossz adatból lekönyvelt bizonylatot sztornózni kell, ami végleges nyomot hagy a főkönyvben, a piszkozat viszont egyetlen kattintással törölhető. A könyvelés a könyvelő dolga marad, a Business Centralon belül.
+- **Semmit nem könyvelünk le.** A bejövő számla **piszkozatként** jön létre, a banki tétel **lekönyveletlen naplósorként**, és ott is maradnak. A könyvelés elérhető a felületen, és szándékosan nem élünk vele: a rossz adatból lekönyvelt bizonylatot sztornózni kell, ami végleges nyomot hagy a főkönyvben, a piszkozat viszont egyetlen kattintással törölhető. A könyvelés a könyvelő dolga marad, a Business Centralon belül.
 - **Meglévő rekordot soha nem írunk felül.** Az azonos adószámú szállítókartont inkább összekötjük az Ön partnerével, meglévő bizonylathoz pedig soha nem nyúlunk.
-- **Csak azt töröljük, amit mi hoztunk létre.** Három funkció töröl, mindhárom a feladási képernyőn: a szonda eltávolítja az éppen létrehozott, eldobható piszkozatot, a számozási próba a saját kitalált, AIFT-TESZT kezdetű piszkozatát (és egy korábbi próba bent maradt piszkozatát), a takarítás pedig azokat a piszkozatokat, amelyek feladását az AI Finance Team feljegyezte, de összekötni soha nem sikerült. Ezeken kívül a PDF feltöltése törli azt az üres mellékletsort, amelyet ő maga hozott létre az imént (lásd: A PDF). Semmi mást nem törlünk, és semmi olyat, amit a Business Central nem piszkozatnak tart.
+- **Csak azt töröljük, amit mi hoztunk létre.** Három funkció töröl, mindhárom a feladási képernyőn: a szonda eltávolítja az éppen létrehozott, eldobható piszkozatot, a számozási próba a saját kitalált, AIFT-TESZT kezdetű piszkozatát (és egy korábbi próba bent maradt piszkozatát), a takarítás pedig azokat a piszkozatokat, amelyek feladását az AI Finance Team feljegyezte, de összekötni soha nem sikerült. Ezeken kívül a PDF feltöltése törli azt az üres mellékletsort, amelyet ő maga hozott létre az imént (lásd: A PDF), a banki feladás pedig azt a naplósort, amelyet az imént írt be, ha a Business Central nem úgy rögzítette, ahogy küldtük (lásd: Banki tételek feladása). Semmi mást nem törlünk, és semmi olyat, amit a Business Central nem piszkozatnak tart.
 
 ## A kapcsolat beállítása
 
@@ -205,6 +206,39 @@ A számla saját PDF-je a piszkozat mellékleteként megy fel, a **Mellékletek*
 - A **Félbemaradt küldések rendezése** megkérdezi, mi lett azzal a küldéssel, amelynek a válasza elveszett. Sem nem küld, sem nem töröl.
 - A **Bent maradt piszkozatok keresése** megtalálja azokat a piszkozatokat, amelyek feladását feljegyeztük, de összekötni soha nem sikerült. A törlésük külön, piros **Törlés a Business Centralból** gomb: az ellenőrzés és a törlés szándékosan két lépés.
 
+## Banki tételek feladása
+
+Az **Exportok → Business Central → Banki tételek** fül a banki tételeket viszi a Business Central főkönyvi naplójába, **lekönyveletlen sorként**. Lekönyvelni a könyvelő könyveli le őket, a Business Centralban.
+
+Előtte a **Törzsadatok → Business Central → Bankszámlák** oldalon be kell állítani:
+
+- a **naplót**: a naplósablon nevét (a magyar Business Centralban általában „ÁLTALÁNOS”) és a köteget. Javasoljuk, hogy az AI Finance Team saját köteget kapjon, így a sorai nem keverednek a kézzel írtakkal. Ha a köteg egy cégben még nincs meg, az első feladás létrehozza, számsorozat nélkül;
+- minden bankszámlához a **Business Central bankszámlát**, amellyel szemben a tételei könyvelődnek. Ha az IBAN egyezik, felajánljuk, de csak az Ön mentése után él;
+- minden bankszámlához a **kezdő dátumot**. Az előtte lévő tételeket nem küldjük, mert azokat a könyvelés már rögzítette. **Kezdő dátum nélkül a bankszámlából egy tétel sem megy.** Annak a napnak a másnapját válassza, ameddig a bankot kézzel könyvelték.
+
+Háromféle tétel megy:
+
+- a **számla nélküli** tétel (például bankköltség) főkönyvi sorként, a kategóriája főkönyvi számára, **áfa nélkül**;
+- a bejövő számlához párosított tétel **szállítói kifizetésként**, a számlára pontozva;
+- a kimenő számlához párosított tétel **vevői befizetésként**, a számlára pontozva.
+
+A könyvelési dátum az értéknap, a bizonylatszám az AI Finance Team azonosítója (például AH2-TXN-2026-0412). A külső bizonylatszám a kivonat sorszáma lenne, de a bankkapcsolaton érkező tételeknek ilyen nincs, ezért náluk üres. Az összeg az eredeti pénznemben megy, az átváltást a Business Central végzi a saját árfolyamtáblájával.
+
+Nem megy fel, és a fül meg is mondja, miért:
+
+- ami se nem számlához párosított, se nem kapott „Nem kell számla” jelölést;
+- az a kifizetés, amelynek a számlája a Business Centralban még nincs lekönyvelve, mert piszkozatra nem lehet pontozni;
+- ami egyetlen utalással több számlát fizet: ezt egyelőre a Business Centralban kell rögzíteni;
+- ami egy másik cég számláját fizeti, például cash poolból.
+
+### Amit a feladás előtt tudni kell
+
+- **Egy gombnyomással legfeljebb 500 tétel megy**, a háttérben, ugyanazzal a sávval és listával, mint a számlák feladása. Egy munkaterületen egyszerre egy feladás fut, akár számla, akár banki tétel.
+- **Semmi nem megy kétszer.** A Business Central nem utasítja vissza a második ugyanolyan kifizetést, ezért minden beírás előtt megkérdezzük tőle, van-e már ugyanazzal az AI Finance Team azonosítóval sor a naplóban vagy a lekönyvelt tételek között. Ha van, nem írjuk be újra.
+- **Minden beírt sort visszaolvasunk.** Ha a Business Central nem úgy rögzítette, ahogy küldtük (például áfacsoport került egy főkönyvi sorra), a sort töröljük, és a tétel sora megmondja, miért.
+- A feladott tétel ezután **„Már bent van a BC-ben”** jelölést kap, és nem számít a feladhatók közé.
+- A **„Nem tudjuk”** itt is azt jelenti, hogy a kérés elment, a válasz nem jött vissza. Ne rögzítse a tételt kézzel: a következő feladás megkérdezi a Business Centralt, és ha a sor bent van, nem írja be újra.
+
 ## Fizetési módok
 
 A **Törzsadatok → Business Central → Fizetési módok** oldal az AI Finance Team minden fizetési módját (átutalás, készpénz, kártya, utalvány, egyéb) egyetlen Business Central-kódhoz rendeli, munkaterületi alapértelmezésként vagy cégenként. Kódot csak ott javasolunk, ahol pontosan egy Business Central-kód illeszkedik az adott fizetési módra.
@@ -255,7 +289,7 @@ A kapcsolóhoz a „Feladás a könyvelőprogramba” jogosultság kell.
 
 Az összekötéshez, a szétkapcsoláshoz és a párosításhoz a „Kapcsolatok kezelése” jogosultság kell, amely alapból a Könyvelő adminé és a Pénzügyi vezetőé. Egyéni szerepkör vagy kivétel ezen változtathat. Mindenki más látja az állapotot, de nem tudja módosítani.
 
-Ahhoz, hogy bármi bekerüljön a Business Centralba, **két** jogosultság kell: a „Könyvelési exportok futtatása”, hogy egyáltalán elérje a feladási képernyőt, ez a Könyvelő adminnak és a Könyvelőnek van meg, és a „Feladás a könyvelőprogramba” a tényleges feladáshoz, ez pedig csak a Könyvelő adminnak. Az a könyvelő, akinek a második nincs meg, meg tudja nyitni és el tudja olvasni a képernyőt, de minden író gomb elutasítja.
+Ahhoz, hogy bármi bekerüljön a Business Centralba, **két** jogosultság kell: a „Könyvelési exportok futtatása”, hogy egyáltalán elérje a feladási képernyőt, ez a Könyvelő adminnak és a Könyvelőnek van meg, és a „Feladás a könyvelőprogramba” a tényleges feladáshoz, ez pedig csak a Könyvelő adminnak. Az a könyvelő, akinek a második nincs meg, meg tudja nyitni és el tudja olvasni a képernyőt, de minden író gomb elutasítja. A **Bankszámlák** oldal mentéséhez a „Törzsadatok szerkesztése” jogosultság kell.
 
 ## Szétkapcsolás
 

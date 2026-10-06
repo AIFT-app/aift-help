@@ -6,18 +6,19 @@ AI Finance Team verbindet sich mit Microsoft Dynamics 365 Business Central: Es o
 
 ## Was gelesen und was geschrieben wird
 
-AI Finance Team **liest** die Firmen in Ihrem Business Central und zu jeder zugeordneten Firma deren Sachkonten, MwSt.- und Buchungsgruppen, Mengeneinheiten, Währungen, Bankkonten, Zahlungsformen und Zahlungsbedingungen, Dimensionen und Dimensionswerte sowie Kreditoren. **Es werden keine Buchungen und keine Salden gelesen.** Die einzigen Belege, die überhaupt zurückgelesen werden, sind Einkaufsrechnungen, die wir womöglich selbst angelegt haben, wenn wir herausfinden müssen, was aus einer davon geworden ist.
+AI Finance Team **liest** die Firmen in Ihrem Business Central und zu jeder zugeordneten Firma deren Sachkonten, MwSt.- und Buchungsgruppen, Mengeneinheiten, Währungen, Bankkonten, Zahlungsformen und Zahlungsbedingungen, Dimensionen und Dimensionswerte sowie Kreditoren und Debitoren. **Es werden keine Buchungen und keine Salden gelesen.** Die einzigen Belege, die überhaupt zurückgelesen werden, sind Einkaufsrechnungen, die wir womöglich selbst angelegt haben, wenn wir herausfinden müssen, was aus einer davon geworden ist.
 
-AI Finance Team **schreibt** zwei Arten von Datensatz, beide hinter einem zweiten Schalter, den nur wir einschalten können:
+AI Finance Team **schreibt** drei Arten von Datensatz, alle hinter einem zweiten Schalter, den nur wir einschalten können:
 
 - einen **Kreditorenstammsatz**, angelegt aus einem Ihrer Partner;
-- eine **Einkaufsrechnung**, angelegt aus einer Ihrer Eingangsrechnungen.
+- eine **Einkaufsrechnung**, angelegt aus einer Ihrer Eingangsrechnungen;
+- eine **Fibu Buch.-Blattzeile**, angelegt aus einer Ihrer Bankbuchungen.
 
 Und selbst dann:
 
-- **Es wird nie etwas gebucht.** Die Einkaufsrechnung wird als **Entwurf** angelegt und bleibt es. Buchen wäre über die Schnittstelle möglich, und wir nutzen das bewusst nicht: Ein aus falschen Daten gebuchter Beleg muss storniert werden, was dauerhafte Spuren im Hauptbuch hinterlässt, während ein Entwurf mit einem Klick gelöscht ist. Das Buchen bleibt Sache der Buchhaltung, in Business Central.
+- **Es wird nie etwas gebucht.** Die Einkaufsrechnung wird als **Entwurf** angelegt, die Bankbuchung als **ungebuchte Buch.-Blattzeile**, und beide bleiben es. Buchen wäre über die Schnittstelle möglich, und wir nutzen das bewusst nicht: Ein aus falschen Daten gebuchter Beleg muss storniert werden, was dauerhafte Spuren im Hauptbuch hinterlässt, während ein Entwurf mit einem Klick gelöscht ist. Das Buchen bleibt Sache der Buchhaltung, in Business Central.
 - **Ein vorhandener Datensatz wird nie überschrieben.** Ein Kreditorenstammsatz mit derselben Steuernummer wird stattdessen mit Ihrem Partner verknüpft, und ein vorhandener Beleg wird nie angerührt.
-- **Wir löschen nur, was wir selbst angelegt haben.** Drei Bedienelemente löschen, alle auf dem Übergabebildschirm: Die Sonde entfernt den Wegwerf-Entwurf, den sie soeben erstellt hat, der Nummerierungstest entfernt seinen erfundenen AIFT-TESZT-Entwurf (und einen, den ein früherer Test zurückgelassen hat), und die Bereinigung entfernt Entwürfe, deren Übergabe AI Finance Team erfasst, aber nie verknüpft hat. Darüber hinaus löscht der PDF-Upload eine leere Anhangzeile, die er selbst gerade angelegt hat (siehe Das PDF). Sonst wird nie etwas gelöscht, und nichts, was Business Central nicht als Entwurf führt.
+- **Wir löschen nur, was wir selbst angelegt haben.** Drei Bedienelemente löschen, alle auf dem Übergabebildschirm: Die Sonde entfernt den Wegwerf-Entwurf, den sie soeben erstellt hat, der Nummerierungstest entfernt seinen erfundenen AIFT-TESZT-Entwurf (und einen, den ein früherer Test zurückgelassen hat), und die Bereinigung entfernt Entwürfe, deren Übergabe AI Finance Team erfasst, aber nie verknüpft hat. Darüber hinaus löscht der PDF-Upload eine leere Anhangzeile, die er selbst gerade angelegt hat (siehe Das PDF), und die Bankübergabe eine Buch.-Blattzeile, die sie gerade geschrieben hat, wenn Business Central sie anders erfasst hat als gesendet (siehe Bankbuchungen übergeben). Sonst wird nie etwas gelöscht, und nichts, was Business Central nicht als Entwurf führt.
 
 ## Die Verbindung einrichten
 
@@ -205,6 +206,39 @@ Fünf Schaltflächen stehen unter der Liste, im Abschnitt **Fehlersuche**, der g
 - **Abgebrochene Übergaben klären** fragt nach, was aus einer Übergabe wurde, deren Antwort verloren ging. Es sendet nichts und löscht nichts.
 - **Nach zurückgebliebenen Entwürfen suchen** findet Entwürfe, deren Übergabe wir erfasst, aber nie verknüpft haben. Das Löschen ist eine eigene, rote Schaltfläche **Aus Business Central löschen**: Prüfen und Löschen sind bewusst zwei Schritte.
 
+## Bankbuchungen übergeben
+
+Der Reiter **Exporte → Business Central → Bankbuchungen** übergibt Bankbuchungen als **ungebuchte Zeilen** in das Fibu Buch.-Blatt von Business Central. Gebucht werden sie von der Buchhaltung, in Business Central.
+
+Vorher legen Sie unter **Stammdaten → Business Central → Bankkonten** fest:
+
+- das **Buch.-Blatt**: den Namen der Buch.-Blattvorlage (in einem ungarischen Business Central meist „ÁLTALÁNOS“) und den Buch.-Blattnamen. Wir empfehlen einen eigenen Namen für AI Finance Team, damit seine Zeilen sich nie mit von Hand erfassten mischen. Gibt es ihn in einer Firma noch nicht, legt ihn die erste Übergabe an, ohne Nummernserie;
+- für jedes Bankkonto das **Business Central Bankkonto**, gegen das seine Buchungen laufen. Stimmt die IBAN überein, schlagen wir es vor, es gilt aber erst, wenn Sie speichern;
+- für jedes Bankkonto das **Startdatum**. Buchungen davor werden nicht gesendet, weil die Buchhaltung sie bereits erfasst hat. **Ohne Startdatum wird keine Buchung dieses Kontos gesendet.** Wählen Sie den Tag nach dem letzten Tag, an dem die Bank von Hand gebucht wurde.
+
+Drei Arten von Zeilen gehen:
+
+- eine Buchung **ohne Rechnung** (zum Beispiel eine Bankgebühr) als Sachkontozeile auf die Kontonummer ihrer Kategorie, **ohne MwSt.**;
+- eine einer Eingangsrechnung zugeordnete Buchung als **Kreditorenzahlung**, mit dieser Rechnung ausgeglichen;
+- eine einer Ausgangsrechnung zugeordnete Buchung als **Debitorenzahlung**, mit dieser Rechnung ausgeglichen.
+
+Das Buchungsdatum ist die Wertstellung, die Belegnummer die Kennung von AI Finance Team (zum Beispiel AH2-TXN-2026-0412). Die externe Belegnummer wäre die Auszugsnummer, aber Buchungen aus der Bankverbindung haben keine, daher bleibt sie bei ihnen leer. Der Betrag geht in der Originalwährung; Business Central rechnet mit den eigenen Wechselkursen um.
+
+Nicht gesendet wird, und der Reiter sagt warum:
+
+- eine Buchung, die weder einer Rechnung zugeordnet noch als „Keine Rechnung nötig“ markiert ist;
+- eine Zahlung, deren Rechnung in Business Central noch nicht gebucht ist, weil eine Zahlung nicht mit einem Entwurf ausgeglichen werden kann;
+- eine einzelne Überweisung, die mehrere Rechnungen bezahlt: Diese buchen Sie vorerst in Business Central von Hand;
+- eine Buchung, die die Rechnung einer anderen Firma bezahlt, zum Beispiel aus einem Cash Pool.
+
+### Vor der Übergabe
+
+- **Ein Klick übergibt höchstens 500 Buchungen**, im Hintergrund, mit demselben Balken und derselben Liste wie die Rechnungsübergabe. In einem Arbeitsbereich läuft jeweils eine Übergabe, Rechnungen oder Bankbuchungen.
+- **Nichts geht zweimal.** Business Central lehnt eine zweite gleiche Zahlung nicht ab, daher fragen wir vor jedem Schreiben, ob eine Zeile mit derselben Kennung von AI Finance Team bereits im Buch.-Blatt oder unter den gebuchten Posten ist. Wenn ja, schreiben wir sie nicht noch einmal.
+- **Jede geschriebene Zeile wird zurückgelesen.** Hat Business Central sie anders erfasst als gesendet (zum Beispiel mit einer MwSt.-Gruppe auf einer Sachkontozeile), wird die Zeile gelöscht, und ihre Zeile in der Liste sagt warum.
+- Eine übergebene Buchung erhält **„Bereits in Business Central“** und zählt nicht mehr als übertragbar.
+- **„Wir wissen es nicht“** heißt auch hier: Die Anfrage ging hinaus, die Antwort kam nicht zurück. Erfassen Sie die Buchung nicht von Hand: Die nächste Übergabe fragt zuerst Business Central und schreibt keine Zeile, die schon da ist.
+
 ## Zahlungsarten
 
 **Stammdaten → Business Central → Zahlungsarten** ordnet jede Zahlungsart von AI Finance Team (Überweisung, Bargeld, Karte, Gutschein, Sonstige) genau einem Business-Central-Code zu, als Vorgabe für den Arbeitsbereich oder je Firma. Ein Code wird nur dort vorgeschlagen, wo genau ein Business-Central-Code zu dieser Zahlungsart passt.
@@ -255,7 +289,7 @@ Für den Schalter ist die Berechtigung „In das Buchhaltungssystem übertragen�
 
 Verbinden, Trennen und Zuordnen erfordern die Berechtigung „Verbindungen verwalten“, die standardmäßig beim Buchhalter-Admin und bei der Finanzleitung liegt. Eine eigene Rolle oder eine Ausnahme kann das ändern. Alle übrigen sehen den Status und können ihn nicht ändern.
 
-Damit überhaupt etwas nach Business Central geht, sind **zwei** Berechtigungen nötig: „Buchhaltungsexporte ausführen“, um den Übergabebildschirm überhaupt zu erreichen, die beim Buchhalter-Admin und beim Buchhalter liegt, und „In das Buchhaltungssystem übertragen“ für das tatsächliche Übergeben, die nur der Buchhalter-Admin hat. Ein Buchhalter ohne die zweite kann den Bildschirm öffnen und lesen, und jede schreibende Schaltfläche verweigert den Dienst.
+Damit überhaupt etwas nach Business Central geht, sind **zwei** Berechtigungen nötig: „Buchhaltungsexporte ausführen“, um den Übergabebildschirm überhaupt zu erreichen, die beim Buchhalter-Admin und beim Buchhalter liegt, und „In das Buchhaltungssystem übertragen“ für das tatsächliche Übergeben, die nur der Buchhalter-Admin hat. Ein Buchhalter ohne die zweite kann den Bildschirm öffnen und lesen, und jede schreibende Schaltfläche verweigert den Dienst. Zum Speichern der Seite **Bankkonten** braucht es die Berechtigung „Stammdaten bearbeiten“.
 
 ## Die Verbindung trennen
 

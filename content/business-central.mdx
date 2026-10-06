@@ -6,18 +6,19 @@ AI Finance Team connects to Microsoft Dynamics 365 Business Central: it pairs yo
 
 ## What Is Read, and What Is Written
 
-AI Finance Team **reads** the companies in your Business Central, and for each paired company its accounts, VAT and posting groups, units of measure, currencies, bank accounts, payment methods and terms, dimensions and dimension values, and vendors. **No ledger entries and no balances are read.** The only documents ever read back are purchase invoices we may have created ourselves, when we need to find out what became of one.
+AI Finance Team **reads** the companies in your Business Central, and for each paired company its accounts, VAT and posting groups, units of measure, currencies, bank accounts, payment methods and terms, dimensions and dimension values, vendors and customers. **No ledger entries and no balances are read.** The only documents ever read back are purchase invoices we may have created ourselves, when we need to find out what became of one.
 
-AI Finance Team **writes** two kinds of record, both behind a second switch that only we can turn on:
+AI Finance Team **writes** three kinds of record, all behind a second switch that only we can turn on:
 
 - a **vendor card**, created from one of your partners;
-- a **purchase invoice**, created from one of your expense invoices.
+- a **purchase invoice**, created from one of your expense invoices;
+- a **general journal line**, created from one of your bank lines.
 
 Even then:
 
-- **Nothing is ever posted.** The purchase invoice is created as a **draft** and left there. Posting is available over the interface and we deliberately do not use it: a document posted from wrong data has to be reversed, which marks the ledger for good, while a draft is deleted in one click. Posting stays the bookkeeper's act, inside Business Central.
+- **Nothing is ever posted.** The purchase invoice is created as a **draft**, the bank line as an **unposted journal line**, and both are left there. Posting is available over the interface and we deliberately do not use it: a document posted from wrong data has to be reversed, which marks the ledger for good, while a draft is deleted in one click. Posting stays the bookkeeper's act, inside Business Central.
 - **An existing record is never rewritten.** A vendor card with the same tax number is linked to your partner instead, and an existing document is never touched.
-- **We only ever delete what we created.** Three controls delete, all on the send screen: the probe removes the throwaway draft it just made, the numbering trial removes its made-up AIFT-TESZT draft (and one an earlier trial left behind), and the cleanup removes drafts AI Finance Team recorded sending but never managed to link. Apart from these, the PDF upload deletes an empty attachment row it has just made itself (see The PDF). Nothing else is ever deleted, and nothing Business Central does not call a draft.
+- **We only ever delete what we created.** Three controls delete, all on the send screen: the probe removes the throwaway draft it just made, the numbering trial removes its made-up AIFT-TESZT draft (and one an earlier trial left behind), and the cleanup removes drafts AI Finance Team recorded sending but never managed to link. Apart from these, the PDF upload deletes an empty attachment row it has just made itself (see The PDF), and the bank send deletes a journal line it has just written when Business Central recorded it differently from what we sent (see Sending Bank Lines). Nothing else is ever deleted, and nothing Business Central does not call a draft.
 
 ## Setting Up the Connection
 
@@ -205,6 +206,39 @@ Five buttons sit under the list, in the **Troubleshooting** section, which is cl
 - **Resolve interrupted sends** asks what happened to a send whose answer was lost. It neither sends nor deletes.
 - **Look for drafts left behind** finds drafts we recorded but never linked. Deleting them is a separate, red **Delete from Business Central** button: the check and the delete are two steps on purpose.
 
+## Sending Bank Lines
+
+The **Exports → Business Central → Bank lines** tab sends bank lines into the Business Central general journal as **unposted lines**. The bookkeeper posts them, in Business Central.
+
+First, on **Master data → Business Central → Bank accounts**, set:
+
+- the **journal**: the journal template name (in a Hungarian Business Central usually "ÁLTALÁNOS") and the batch. We recommend a batch of AI Finance Team's own, so its lines never mix with lines typed by hand. If the batch does not exist in a company yet, the first send creates it, without a number series;
+- for each bank account, the **Business Central bank account** its lines balance against. When the IBAN matches we propose it, but it only takes effect once you save it;
+- for each bank account, the **start date**. Lines before it are not sent, because the bookkeeping has recorded them already. **Without a start date no line of that account is sent.** Pick the day after the last day the bank was booked by hand.
+
+Three kinds of line go:
+
+- a **no-invoice** line (a bank fee, for example) as a G/L line on its category's account number, **without VAT**;
+- a line matched to an expense invoice as a **vendor payment**, applied to that invoice;
+- a line matched to a sales invoice as a **customer receipt**, applied to that invoice.
+
+The posting date is the value date and the document number is AI Finance Team's id (for example AH2-TXN-2026-0412). The external document number would be the statement number, but lines that arrive over the bank connection have none, so it stays empty for them. The amount goes in its original currency; Business Central converts it with its own exchange rates.
+
+Not sent, and the tab says why:
+
+- a line that is neither matched to an invoice nor marked "No invoice needed";
+- a payment whose invoice is not posted in Business Central yet, because a payment cannot be applied to a draft;
+- a single transfer that pays several invoices: for now this is booked in Business Central by hand;
+- a line that pays another company's invoice, from a cash pool for example.
+
+### Before You Send
+
+- **One press sends at most 500 lines**, in the background, with the same bar and list as the invoice send. One send runs in a workspace at a time, invoices or bank lines.
+- **Nothing goes twice.** Business Central does not refuse a second identical payment, so before every write we ask it whether a line with the same AI Finance Team id is already in the journal or among the posted entries. If it is, we do not write it again.
+- **Every line written is read back.** If Business Central recorded it differently from what we sent (a VAT group on a G/L line, for example), the line is deleted and its row says why.
+- A line that went is marked **"In Business Central already"** and no longer counts as sendable.
+- **"We don't know"** means here too that the request went out and no answer came back. Do not book the line by hand: the next send asks Business Central first and does not write a line that is already there.
+
 ## Payment Methods
 
 **Master data → Business Central → Payment methods** maps each AI Finance Team payment method (transfer, cash, card, voucher, other) onto one Business Central code, as a workspace default or per company. A code is proposed only where exactly one Business Central code reads as that method.
@@ -255,7 +289,7 @@ The switch needs the "Push into the accounting system" permission.
 
 Connecting, disconnecting and pairing need the permission "Manage connections", held by default by the accountant admin and the finance lead. A custom role or an exception can change that. Everyone else sees the status and cannot change it.
 
-Sending anything into Business Central needs **two** permissions: "Run accounting exports" to reach the send screen at all, which the accountant admin and the accountant hold, and "Push into the accounting system" to actually send, which only the accountant admin holds. An accountant without the second one can open the screen and read it, and every button that writes will refuse.
+Sending anything into Business Central needs **two** permissions: "Run accounting exports" to reach the send screen at all, which the accountant admin and the accountant hold, and "Push into the accounting system" to actually send, which only the accountant admin holds. An accountant without the second one can open the screen and read it, and every button that writes will refuse. Saving the **Bank accounts** page needs the "Edit master data" permission.
 
 ## Disconnecting
 
