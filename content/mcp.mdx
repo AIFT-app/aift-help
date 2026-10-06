@@ -1,6 +1,6 @@
 # Connecting an AI assistant via MCP
 
-AI Finance Team has a built-in **MCP server**, a standard interface that lets AI assistants such as Claude, Mistral Le Chat or ChatGPT read your bookkeeping data, and with your permission change it. It is the same product, reached by conversation.
+AI Finance Team has a built-in **MCP server**, a standard interface that lets AI assistants such as Claude, Mistral Vibe or ChatGPT read your bookkeeping data, and with your permission change it. It is the same product, reached by conversation.
 
 Once connected, you can ask in plain language ("Which invoices in Quillmoor Software need my attention?") and the assistant pulls live data from your workspace.
 
@@ -90,13 +90,19 @@ The consent screen, with **Read your books** ticked and **Make changes** left fo
 
 To disconnect: Settings → Connectors → AI Finance Team → **Remove**.
 
-### Mistral Le Chat
+### Mistral Vibe (formerly Le Chat)
 
-Available on Free and Pro.
+Mistral's assistant Le Chat is now called Vibe. You connect in the chat app, **Vibe for work**. Custom connectors are available on every plan: Free, Pro, Team and Enterprise. On Free and Pro you add one yourself. On Team and Enterprise only an administrator of your Mistral organization can.
 
-1. **Settings → MCP Connectors → Add Connector**.
-2. Paste the URL. The sign-in is detected automatically.
-3. Sign in and give consent as above.
+1. Open **Connectors** in the sidebar.
+2. Click **+ Add Connector** and switch to the **Custom MCP Connector** tab.
+3. Enter a name without spaces, for example `AIFinanceTeam`, and paste the URL into **Server URL**.
+4. Click **Connect**. Vibe recognises that the server asks you to sign in.
+5. Sign in and give consent as above.
+
+Vibe uses the connector when your question needs it. To switch it on for one conversation, click **+** in the message box (or type **/**), choose **Tools** and turn on `AIFinanceTeam`. Vibe asks before each call, except for functions you set to **Always allow** under **Connectors → My Connectors → AIFinanceTeam → Functions**. For functions that change something, keep the approval prompt on.
+
+The command-line coding tool, **Vibe for code**, cannot connect yet. Mistral states that its own MCP settings do not support servers that require an OAuth sign-in, and ours does.
 
 ### ChatGPT
 
