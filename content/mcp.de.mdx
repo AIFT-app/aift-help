@@ -1,6 +1,6 @@
 # Einen KI-Assistenten über MCP verbinden
 
-AI Finance Team hat einen eingebauten **MCP-Server**: eine Standardschnittstelle, über die KI-Assistenten wie Claude, Mistral Le Chat oder ChatGPT Ihre Buchhaltungsdaten lesen und, mit Ihrer Erlaubnis, auch ändern können. Es ist dasselbe Produkt, nur im Gespräch bedient.
+AI Finance Team hat einen eingebauten **MCP-Server**: eine Standardschnittstelle, über die KI-Assistenten wie Claude, Mistral Vibe oder ChatGPT Ihre Buchhaltungsdaten lesen und, mit Ihrer Erlaubnis, auch ändern können. Es ist dasselbe Produkt, nur im Gespräch bedient.
 
 Nach dem Verbinden fragen Sie in normaler Sprache („Welche Rechnungen bei Quillmoor Software brauchen meine Aufmerksamkeit?“), und der Assistent holt Live-Daten aus Ihrem Arbeitsbereich.
 
@@ -90,13 +90,19 @@ Der Zustimmungsbildschirm mit gesetztem Haken bei **Daten lesen**; **Änderungen
 
 Zum Trennen: Einstellungen → Konnektoren → AI Finance Team → **Entfernen**.
 
-### Mistral Le Chat
+### Mistral Vibe (früher Le Chat)
 
-Verfügbar in Free und Pro.
+Der Assistent Le Chat von Mistral heißt jetzt Vibe. Sie verbinden ihn in der Chat-App **Vibe for work**. Eigene Konnektoren gibt es in allen Tarifen: Free, Pro, Team und Enterprise. In Free und Pro fügen Sie ihn selbst hinzu. In Team und Enterprise kann das nur ein Administrator Ihrer Mistral-Organisation. Die Menübezeichnungen zitieren wir nach der englischen Dokumentation von Mistral.
 
-1. **Einstellungen → MCP-Konnektoren → Konnektor hinzufügen**.
-2. Fügen Sie die URL ein. Die Anmeldung wird automatisch erkannt.
-3. Melden Sie sich an und erteilen Sie die Zustimmung wie oben.
+1. Öffnen Sie in der Seitenleiste die Seite **Connectors**.
+2. Klicken Sie auf **+ Add Connector** und wechseln Sie zum Tab **Custom MCP Connector**.
+3. Geben Sie einen Namen ohne Leerzeichen ein, zum Beispiel `AIFinanceTeam`, und fügen Sie die URL in das Feld **Server URL** ein.
+4. Klicken Sie auf **Connect**. Vibe erkennt, dass der Server eine Anmeldung verlangt.
+5. Melden Sie sich an und erteilen Sie die Zustimmung wie oben.
+
+Vibe nutzt den Konnektor, sobald Ihre Frage ihn braucht. Für ein einzelnes Gespräch können Sie ihn gezielt einschalten: Klicken Sie im Eingabefeld auf **+** (oder tippen Sie **/**), wählen Sie **Tools** und schalten Sie `AIFinanceTeam` ein. Vibe fragt vor jedem Aufruf nach, außer bei Funktionen, für die Sie unter **Connectors → My Connectors → AIFinanceTeam → Functions** die Option **Always allow** eingeschaltet haben. Bei Funktionen, die etwas ändern, sollten Sie die Nachfrage beibehalten.
+
+Das Kommandozeilen-Werkzeug zum Programmieren, **Vibe for code**, kann sich noch nicht verbinden. Laut Mistral unterstützen seine eigenen MCP-Einstellungen keine Server, die eine OAuth-Anmeldung verlangen, und unserer verlangt eine.
 
 ### ChatGPT
 
