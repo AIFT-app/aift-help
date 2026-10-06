@@ -13,7 +13,7 @@ Hogyan kap típust egy banki tranzakció: először az Ön mintái, aztán a par
 3. **Az AI.** A még jelöletlen tranzakcióknál az AI elolvassa a tranzakciót, a típusleírásokat és az Ön által tanított példákat. Ha legalább 60%-ban biztos a dolgában, maga jelöli meg a tranzakciót. Minden tranzakciót egyszer vizsgál meg; ennél kisebb bizonyosság esetén nem nyúl hozzá.
 4. **Egy személy** bármikor megjelölheti a tranzakciót, vagy visszavonhatja a jelölést a tranzakció oldalán.
 
-A tranzakció oldala mutatja, melyikük jelölte meg: **Minta szerint párosítva**, **AI által párosítva** a bizonyosság értékével, vagy **Manuálisan megjelölve**.
+A tranzakció oldala mutatja, melyikük jelölte meg: **Minta szerint párosítva** (partnerhez kötött típusnál és a saját számlái közötti átvezetésnél is ez jelenik meg), **AI által párosítva** a bizonyosság értékével, vagy **Manuálisan megjelölve**.
 
 ## Tranzakciótípusok beállítása
 
@@ -52,7 +52,7 @@ Az alapértelmezett típusok a jellemző banki megfogalmazásokra szóló mintá
 1. Kattintson a **+ Új típus** gombra, vagy egy típus sorában a **Szerkesztés** gombra.
 2. Töltse ki a **Név** mezőt.
 3. Töltse ki a **Leírás** mezőt. Ez nem magánjegyzet: az AI ebből dönti el, mely tranzakciók tartoznak a típushoz, ezért írja le őket egyszerűen, érthetően.
-4. Hagyja bekapcsolva az **Aktív** kapcsolót.
+4. Hagyja bejelölve az **Aktív** négyzetet.
 5. Ha a típusnak van partnere, állítsa be (lásd lentebb).
 6. Adjon hozzá egy vagy több mintát a **+ Minta hozzáadása** gombbal.
 7. Kattintson a **Típus létrehozása** gombra, meglévő típusnál pedig a **Módosítások mentése** gombra. A mentés a típus összes mintáját lecseréli.
@@ -66,7 +66,7 @@ Egy tranzakció akkor illeszkedik egy típusra, ha a típus **bármelyik** mint�
 | Mező | Mit vizsgál |
 |-------|---------------|
 | **Leírás** | A tranzakció banktól kapott, szabad szöveges leírása |
-| **Partner neve** | A tranzakció másik felének neve |
+| **Partner neve** | A másik fél neve, ahogy a banki tételen szerepel |
 | **Hivatkozás** | A fizetés közleménye |
 
 | Mód | Működés |
@@ -81,24 +81,26 @@ Gépelés közben a szerkesztő mutatja, hány meglévő tranzakcióra illeszked
 
 ## Partnerkötés: ki a tranzakció másik fele
 
-A banki díjaknak, kamatoknak, adófizetéseknek és kártyaelfogadói kifizetéseknek valódi másik fele van: a számlát vezető bank, az adóhatóság vagy a fizetési szolgáltató. Egy típus beállíthatja ezt a felet, így ezek a tranzakciók rendes partnerrel kerülnek a főkönyvbe és az exportokba, nem a kivonatból kiszedett névvel.
+A banki díjaknak, kamatoknak, adófizetéseknek és kártyaelfogadói kifizetéseknek valódi másik fele van: a számlát vezető bank, az adóhatóság vagy a fizetési szolgáltató. Egy típus beállíthatja ezt a felet, így ezek a tranzakciók a megfelelő féllel kerülnek az exportokba, nem a kivonatból kiszedett névvel.
 
-A szerkesztőben kapcsolja be **A partnert a típus állítsa be** kapcsolót, és válasszon módot:
+A szerkesztőben jelölje be **A partnert a típus állítsa be** négyzetet, és válasszon módot:
 
 | Mód | A másik fél… | Mire használja |
 |------|---------------|-----------|
 | **Bank** | A számlát vezető bank, magáról a számláról véve | Banki díjak, kamat, készpénzfelvétel, kártyafedezetek |
 | **Konkrét partner** | Egy Ön által választott hitelesített partner | Adóhatóság vagy kártyaelfogadó: mindig ugyanaz a fél |
 
-Kikapcsolt kapcsolónál a típus nem állít be partnert, és a partner magából a tranzakcióból jön. Ha a szükséges partner még nem létezik, a **+ Partner létrehozása** gombbal közvetlenül a szerkesztőben létrehozhatja.
+Bejelöletlen négyzetnél a típus nem állít be partnert, és a partner magából a tranzakcióból jön. Ha a szükséges partner még nem létezik, a **+ Partner létrehozása** gombbal közvetlenül a szerkesztőben létrehozhatja.
 
 ### Bank: adja meg minden számla bankját
 
 A **Bank** típus a másik felet a bankszámláról veszi. Ezt a **Törzsadatok → Bankszámlák** alatt adhatja meg: nyissa meg a számlát a **Szerkesztés** gombbal (vagy új számla hozzáadásakor), és töltse ki a **Bank** és a **Bank adószáma** mezőt, hogy a banki költségek mindig a másik féllel együtt kerüljenek az exportba.
 
-### Konkrét partner: az azonosságra reagál, soha nem a hasonló szövegre
+### Konkrét partner: a szabály az azonosságra reagál
 
-A **Konkrét partner** típus akkor érvényesül, ha a tranzakció partnere az Ön által kiválasztott partner, soha nem pusztán azért, mert a szöveg hasonlónak tűnik, és mindig **Nem kell számla** jelölést ad a tranzakciónak. A mintáit nem használja. Például egy kártyaelfogadóhoz kötött típus besorolja az adott kártyaelfogadó kifizetéseit, de egy másik cég hasonló kinézetű tételét érintetlenül hagyja, mert az egy másik fél, amelyhez könnyen lehet, hogy kell számla. Partnerenként hozzon létre egy típust: egyet az adóhatóság ÁFA-számlájára, és egy külön típust a személyi jövedelemadóra, mert az adó-alszámlák nem ugyanaz a fél.
+A **Konkrét partner** típus akkor érvényesül, ha a tranzakció partnere az Ön által kiválasztott partner, soha nem pusztán azért, mert a szöveg hasonlónak tűnik, és a még párosítatlan tranzakciónak **Nem kell számla** jelölést ad. A mintáit nem használja. Például egy kártyaelfogadóhoz kötött típus besorolja az adott kártyaelfogadó kifizetéseit, de a szabály egy másik cég hasonló kinézetű tételét érintetlenül hagyja, mert az egy másik fél, amelyhez könnyen lehet, hogy kell számla. Partnerenként hozzon létre egy típust: egyet az adóhatóság ÁFA-számlájára, és egy külön típust a személyi jövedelemadóra, mert az adó-alszámlák nem ugyanaz a fél.
+
+Maga a szabály csak a partnert nézi. Az AI viszont látja a típus nevét és leírását, és más tranzakcióra is javasolhatja, ezért a leírásban nevezze meg a partnert. A lépések nem mindig a fenti sorrendben futnak; amelyik előbb jelöl, az érvényes, és egy későbbi lépés nem írja felül a típust.
 
 > **A kategória a partnerhez tartozik.** Ha egy partner tranzakcióit rögzített kategóriára szeretné könyvelni, állítsa be a partner **Szabályok** fülén, a **Rögzített tranzakciókategória** résznél (lásd: [Partnerek kezelése](/partners)). Ez csak a kategóriát állítja be; azt, hogy egy tranzakcióhoz kell-e számla, itt dönti el.
 
@@ -146,11 +148,11 @@ Ha egy **minta** tette a téves jelölést, a visszavonás nem elég: a minta a 
 | **Döntés** | **Nem kell számla** (a típussal) vagy **Számla szükséges** |
 | **Tranzakciótípus** | Az alkalmazandó típus; *Számla szükséges* példánál üres |
 | **Forrás** | **Automatikusan tanult** (az Ön jelöléséből) vagy **Kézi** (Ön vette fel) |
-| **Előfordulások** | Hány tranzakcióról döntött így |
+| **Előfordulások** | Hány tranzakcióról döntött így; a kézzel felvett példa 3-ról indul |
 
 Az ugyanarra a partnerre vonatkozó ismételt döntések egyetlen példába olvadnak össze, egyre nagyobb **Előfordulások** értékkel. A **+ Példa hozzáadása** gombbal még azelőtt megtaníthat valamit, hogy az AI Finance Team találkozott volna vele; ez akkor hasznos, ha olyan ügyfelet vesz át, akinek a visszatérő tételeit már ismeri. Mindig a legutóbbi döntése érvényes, és az új vagy módosított példa attól kezdve hat a tranzakciókra; a már feldolgozott tranzakciókat nem vizsgálja újra.
 
-A fül beállításai között az **AI-tanulás** határozza meg, hány tanult példát mutat meg az AI Finance Team az AI-nak, az **Alacsony** értéktől a **Magas** értékig; a **Ki** leállítja a használatukat. A módosításához a „Munkaterület-beállítások szerkesztése” jogosultság kell. Minden példa egyetlen ügyfél munkaterületéhez tartozik, és az ügyfelek között soha nem kerül megosztásra.
+Az **AI-tanulás** a fül **Beállítások** gombja alatt egy csúszka, amely azt adja meg, hány tanult példát mutat meg az AI Finance Team az AI-nak, az **Alacsony** értéktől a **Magas** értékig (alapértelmezés szerint 30); a **Ki** leállítja a használatukat. Ez egyetlen, az egész munkaterületre érvényes beállítás, a kategóriapéldákkal közös. A módosításához a „Munkaterület-beállítások szerkesztése” jogosultság kell. Minden példa egyetlen ügyfél munkaterületéhez tartozik, és az ügyfelek között soha nem kerül megosztásra.
 
 ## Tranzakció megjelölése kézzel
 
@@ -178,4 +180,4 @@ A lista feletti szűrőgombok ugyanezekre az állapotokra szűrnek: **Banki forr
 
 ## Exportok
 
-A **Nem kell számla** jelölésű tranzakcióhoz is kell főkönyvi számmal rendelkező tranzakciókategória, mielőtt exportálható lenne; ennek hiányában az RLB-export jelzi. A **Bank** típusú tranzakciók a bankszámláról vett banknévvel és adószámmal kerülnek az exportba.
+A **Nem kell számla** jelölésű tranzakcióhoz is kell **Kód** mezővel rendelkező tranzakciókategória; ennek hiányában az RLB-export figyelmeztet, és a főkönyvi szám üres marad. A **Bank** típusú tranzakciók a bankszámláról vett banknévvel és adószámmal kerülnek az exportba.
