@@ -13,11 +13,11 @@ Wie eine Banktransaktion ihren Typ erhält: zuerst Ihre Muster, dann der Partner
 3. **Die KI.** Für alles, was noch nicht markiert ist, liest die KI die Transaktion, Ihre Typbeschreibungen und die Beispiele, die Sie ihr beigebracht haben. Ist sie zu mindestens 60 % sicher, markiert sie die Transaktion selbst. Sie prüft jede Transaktion einmal; unterhalb dieser Konfidenz lässt sie die Transaktion in Ruhe.
 4. **Eine Person** kann jederzeit auf der Seite der Transaktion markieren oder die Markierung zurücknehmen.
 
-Die Seite der Transaktion zeigt, wer sie markiert hat: **Per Musterregel zugeordnet**, **Per KI zugeordnet** mit der Konfidenz oder **Manuell markiert**.
+Die Seite der Transaktion zeigt, wer sie markiert hat: **Per Musterregel zugeordnet** (auch bei einem an einen Partner gebundenen Typ und bei einer Umbuchung zwischen eigenen Konten), **Per KI zugeordnet** mit der Konfidenz oder **Manuell markiert**.
 
 ## Transaktionstypen einrichten
 
-Öffnen Sie **Stammdaten** und dann **Transaktionstypen**. Die Seite hat zwei Reiter, **Typen** und **Beispiele**. Mitglieder der Kanzlei können sie öffnen; zum Anlegen und Ändern von Typen brauchen Sie die Berechtigung „Stammdaten bearbeiten“.
+Öffnen Sie **Stammdaten** und dann **Banktransaktionstypen**. Die Seite hat zwei Reiter, **Typen** und **Beispiele**. Mitglieder der Kanzlei können sie öffnen; zum Anlegen und Ändern von Typen brauchen Sie die Berechtigung „Stammdaten bearbeiten“.
 
 <TransactionTypeEditorFigure>
 Bearbeitung des Standardtyps **Bankgebühr** (Bank Fee). Die Nummern entsprechen der Liste darunter. Muster und Zahlen sind Beispiele.
@@ -52,7 +52,7 @@ Die Standardtypen bringen Muster für typische Formulierungen der Banken mit, et
 1. Klicken Sie auf **+ Neuer Typ** oder in der Zeile eines Typs auf **Bearbeiten**.
 2. Geben Sie unter **Name** einen Namen ein.
 3. Schreiben Sie eine **Beschreibung**. Das ist keine private Notiz: Die KI liest sie, um zu entscheiden, welche Transaktionen zum Typ gehören, beschreiben Sie diese also klar und einfach.
-4. Lassen Sie **Aktiv** eingeschaltet.
+4. Lassen Sie das Kästchen **Aktiv** aktiviert.
 5. Legen Sie einen Partner fest, wenn der Typ einen hat (siehe unten).
 6. Fügen Sie mit **+ Muster hinzufügen** ein oder mehrere Muster hinzu.
 7. Klicken Sie auf **Typ erstellen** bzw. bei einem bestehenden Typ auf **Änderungen speichern**. Das Speichern ersetzt alle Muster des Typs.
@@ -66,7 +66,7 @@ Eine Transaktion passt zu einem Typ, wenn **irgendeines** seiner Muster passt. E
 | Feld | Was es prüft |
 |-------|---------------|
 | **Beschreibung** | Der freie Beschreibungstext der Bank zur Transaktion |
-| **Name des Partners** | Der Name der anderen Partei der Transaktion |
+| **Name des Partners** | Der Name der anderen Partei, wie er in der Bankbuchung steht |
 | **Verwendungszweck** | Der Verwendungszweck der Zahlung |
 
 | Modus | Verhalten |
@@ -81,24 +81,26 @@ Während Sie tippen, zeigt der Editor, wie viele bestehende Transaktionen die Mu
 
 ## Partnerbindung: mit wem die Transaktion ist
 
-Bankgebühren, Zinsen, Steuerzahlungen und Auszahlungen von Kartenacquirern haben eine echte Partei: die kontoführende Bank, die Steuerbehörde oder den Zahlungsdienstleister. Ein Typ kann diese Partei setzen, sodass diese Transaktionen einen richtigen Partner ins Hauptbuch und in die Exporte mitnehmen statt eines aus dem Auszug herausgelesenen Namens.
+Bankgebühren, Zinsen, Steuerzahlungen und Auszahlungen von Kartenacquirern haben eine echte Partei: die kontoführende Bank, die Steuerbehörde oder den Zahlungsdienstleister. Ein Typ kann diese Partei setzen, sodass diese Transaktionen mit der richtigen Partei exportiert werden statt mit einem aus dem Auszug herausgelesenen Namen.
 
-Schalten Sie im Editor **Partner durch diesen Typ setzen** ein und wählen Sie einen Modus:
+Aktivieren Sie im Editor das Kästchen **Partner durch diesen Typ setzen** und wählen Sie einen Modus:
 
 | Modus | Die Partei ist… | Wofür |
 |------|---------------|-----------|
 | **Bank** | Die kontoführende Bank, vom Konto selbst übernommen | Bankgebühren, Zinsen, Barabhebungen, Kartenreservierungen |
 | **Bestimmter Partner** | Ein von Ihnen gewählter verifizierter Partner | Eine Steuerbehörde oder ein Kartenacquirer: immer dieselbe Partei |
 
-Ist der Schalter aus, setzt der Typ keinen Partner, und der Partner kommt aus der Transaktion selbst. Existiert der benötigte Partner noch nicht, legt **+ Partner anlegen** ihn direkt im Editor an.
+Ist das Kästchen leer, setzt der Typ keinen Partner, und der Partner kommt aus der Transaktion selbst. Existiert der benötigte Partner noch nicht, legt **+ Partner anlegen** ihn direkt im Editor an.
 
 ### Bank: die Bank jedes Kontos festlegen
 
 Ein Typ **Bank** übernimmt seine Partei vom Bankkonto. Legen Sie sie unter **Stammdaten → Bankkonten** fest: Öffnen Sie das Konto mit **Bearbeiten** (oder beim Hinzufügen) und füllen Sie **Bank** und **Steuernummer der Bank** aus, damit Bankgebühren immer mit einer Partei exportiert werden.
 
-### Bestimmter Partner: greift bei Identität, nie bei Ähnlichem
+### Bestimmter Partner: die Regel greift bei Identität
 
-Ein Typ **Bestimmter Partner** greift, wenn der Partner der Transaktion der von Ihnen gewählte Partner ist, nie nur, weil der Text ähnlich aussieht, und er markiert die Transaktion immer als **Keine Rechnung erforderlich**. Seine Muster werden nicht verwendet. Ein an einen Kartenacquirer gebundener Typ klassifiziert zum Beispiel dessen Auszahlungen, lässt aber einen ähnlich aussehenden Posten eines anderen Unternehmens unberührt, denn das ist eine andere Partei, die durchaus eine Rechnung brauchen kann. Legen Sie einen Typ pro Partner an: einen für das USt-Konto der Steuerbehörde und einen separaten für die Einkommensteuer, denn Steuer-Unterkonten sind nicht dieselbe Partei.
+Ein Typ **Bestimmter Partner** greift, wenn der Partner der Transaktion der von Ihnen gewählte Partner ist, nie nur, weil der Text ähnlich aussieht, und er markiert eine noch nicht zugeordnete Transaktion als **Keine Rechnung erforderlich**. Seine Muster werden nicht verwendet. Ein an einen Kartenacquirer gebundener Typ klassifiziert zum Beispiel dessen Auszahlungen, die Regel lässt aber einen ähnlich aussehenden Posten eines anderen Unternehmens unberührt, denn das ist eine andere Partei, die durchaus eine Rechnung brauchen kann. Legen Sie einen Typ pro Partner an: einen für das USt-Konto der Steuerbehörde und einen separaten für die Einkommensteuer, denn Steuer-Unterkonten sind nicht dieselbe Partei.
+
+Die Regel selbst prüft nur den Partner. Die KI sieht aber Name und Beschreibung des Typs und kann ihn auch für andere Transaktionen vorschlagen; nennen Sie den Partner daher in der Beschreibung. Die Schritte laufen nicht immer in der obigen Reihenfolge; wer zuerst markiert, gilt, und ein späterer Schritt ersetzt den Typ nicht.
 
 > **Die Kategorie gehört zum Partner.** Um die Transaktionen eines Partners auf eine feste Kategorie zu buchen, legen Sie auf dem Reiter **Regeln** des Partners die **Feste Transaktionskategorie** fest (siehe [Partner verwalten](/partners)). Sie setzt nur die Kategorie; ob eine Transaktion eine Rechnung braucht, wird hier entschieden.
 
@@ -118,7 +120,7 @@ Halten Sie die Bankkonten jedes Unternehmens unter **Stammdaten → Unternehmen*
 
 Muster sind nicht der einzige Weg, etwas beizubringen. Wenn Sie eine Transaktion mit einem Typ als **Keine Rechnung erforderlich** markieren oder eine solche Markierung zurücknehmen, merkt sich AI Finance Team die Entscheidung als **Beispiel** und zeigt sie der KI, wenn das nächste Mal etwas Ähnliches eintrifft. Eine Markierung mit **Kein bestimmter Typ** bringt nichts bei, weil sie nichts darüber aussagt, welcher Typ zutrifft.
 
-Beispiele finden Sie auf dem Reiter **Beispiele** der Seite Transaktionstypen.
+Beispiele finden Sie auf dem Reiter **Beispiele** der Seite Banktransaktionstypen.
 
 ### Beispiele sind keine Regeln
 
@@ -146,11 +148,11 @@ Hat ein **Muster** die falsche Markierung gesetzt, reicht die Rücknahme nicht: 
 | **Entscheidung** | **Keine Rechnung nötig** (mit dem Typ) oder **Rechnung erforderlich** |
 | **Transaktionstyp** | Der anzuwendende Typ; leer bei einem Beispiel *Rechnung erforderlich* |
 | **Quelle** | **Automatisch gelernt** (aus Ihrer Markierung) oder **Manuell** (von Ihnen angelegt) |
-| **Vorkommen** | Wie viele Transaktionen Sie so entschieden haben |
+| **Vorkommen** | Wie viele Transaktionen Sie so entschieden haben; ein manuell angelegtes Beispiel beginnt bei 3 |
 
 Wiederholte Entscheidungen zum selben Partner fallen zu einem Beispiel mit steigendem **Vorkommen**-Zähler zusammen. Mit **+ Beispiel hinzufügen** bringen Sie etwas bei, bevor AI Finance Team es gesehen hat; das hilft, wenn Sie einen Mandanten übernehmen, dessen wiederkehrende Posten Sie schon kennen. Ihre jüngste Entscheidung gilt, und ein neues oder geändertes Beispiel wirkt sich ab dann auf Transaktionen aus; bereits verarbeitete Transaktionen werden nicht erneut geprüft.
 
-**KI-Lernen** in den Einstellungen des Reiters legt fest, wie viele gelernte Beispiele AI Finance Team der KI zeigt, von **Niedrig** bis **Hoch**; **Aus** beendet ihre Verwendung. Zum Ändern brauchen Sie die Berechtigung „Arbeitsbereich-Einstellungen bearbeiten“. Beispiele gehören zu einem einzelnen Mandanten-Arbeitsbereich und werden nie zwischen Mandanten geteilt.
+**KI-Lernen** unter **Einstellungen** auf dem Reiter ist ein Schieberegler dafür, wie viele gelernte Beispiele AI Finance Team der KI zeigt, von **Niedrig** bis **Hoch** (standardmäßig 30); **Aus** beendet ihre Verwendung. Es ist eine Einstellung für den ganzen Arbeitsbereich, gemeinsam mit den Kategoriebeispielen. Zum Ändern brauchen Sie die Berechtigung „Arbeitsbereich-Einstellungen bearbeiten“. Beispiele gehören zu einem einzelnen Mandanten-Arbeitsbereich und werden nie zwischen Mandanten geteilt.
 
 ## Eine Transaktion von Hand markieren
 
@@ -178,4 +180,4 @@ Die Filter-Pills über der Liste filtern nach denselben Zuständen: **Bank-Feed*
 
 ## Exporte
 
-Eine als **Keine Rechnung erforderlich** markierte Transaktion braucht trotzdem eine Transaktionskategorie mit Sachkontonummer, bevor sie exportiert werden kann; andernfalls weist der RLB-Export darauf hin. Transaktionen eines Typs **Bank** werden mit Banknamen und Steuernummer aus dem Bankkonto exportiert.
+Eine als **Keine Rechnung erforderlich** markierte Transaktion braucht trotzdem eine Transaktionskategorie mit **Code**; fehlt er, warnt der RLB-Export, und das Sachkonto bleibt leer. Transaktionen eines Typs **Bank** werden mit Banknamen und Steuernummer aus dem Bankkonto exportiert.
