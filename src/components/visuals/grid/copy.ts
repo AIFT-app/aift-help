@@ -46,10 +46,6 @@ export const GROUPS: Record<string, { on: number; of: number }> = {
   '91': { on: 1, of: 1 },
 }
 
-export const TICKED = 5
-export const MATCHES = 3
-export const TOTAL_ROWS = 6
-
 type Copy = {
   /** Verbatim from messages/<locale>.json, by key. */
   ui: {
