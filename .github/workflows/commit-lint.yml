@@ -29,6 +29,11 @@ jobs:
   prd-slug-advisory:
     name: PRD-slug advisory comment
     runs-on: ubuntu-latest
+    # Not on a promote PR (promote/* carries commits that were already linted
+    # on their own PRs) and not on the aift-db types-sync bot PRs (one
+    # generated commit whose subject the scan skips anyway). Together those
+    # were 1,104 billed minutes a month saying nothing. PRD: ci-minutes-diet
+    if: ${{ !startsWith(github.head_ref, 'promote/') && !startsWith(github.head_ref, 'chore/sync-types-') }}
     steps:
       - name: Checkout PR branch
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
