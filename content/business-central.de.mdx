@@ -6,7 +6,7 @@ AI Finance Team verbindet sich mit Microsoft Dynamics 365 Business Central: Es o
 
 ## Was gelesen und was geschrieben wird
 
-AI Finance Team **liest** die Firmen in Ihrem Business Central und zu jeder zugeordneten Firma deren Sachkonten, MwSt.- und Buchungsgruppen, Mengeneinheiten, Währungen, Bankkonten, Zahlungsformen und Zahlungsbedingungen, Dimensionen und Dimensionswerte sowie Kreditoren. **Es werden keine Buchungen und keine Salden gelesen.** Die einzigen Belege, die überhaupt zurückgelesen werden, sind Einkaufsrechnungen, die wir womöglich selbst angelegt haben, wenn wir herausfinden müssen, was aus einer davon geworden ist.
+AI Finance Team **liest** die Firmen in Ihrem Business Central und zu jeder zugeordneten Firma deren Sachkonten, MwSt.- und Buchungsgruppen, Mengeneinheiten, Währungen, Bankkonten, Zahlungsformen und Zahlungsbedingungen, Dimensionen und Dimensionswerte sowie Kreditoren und Debitoren. **Es werden keine Buchungen und keine Salden gelesen.** Die einzigen Belege, die überhaupt zurückgelesen werden, sind Einkaufsrechnungen, die wir womöglich selbst angelegt haben, wenn wir herausfinden müssen, was aus einer davon geworden ist.
 
 AI Finance Team **schreibt** zwei Arten von Datensatz, beide hinter einem zweiten Schalter, den nur wir einschalten können:
 
@@ -113,7 +113,7 @@ Bei der Zuordnung zu einem vorhandenen Unternehmen können Sie Adresse und Steue
 
 ### Eine Zuordnung aufheben
 
-**Zuordnung aufheben** in der Zeile oder auf der Seite des Unternehmens. Das entfernt die Zuordnung und **löscht die kopierten Stammdaten dieser Firma** samt den Verknüpfungen zu allen Kreditorenstammsätzen. Die USt-Zuordnung und der Nachweis des bereits Übertragenen bleiben erhalten, und in Business Central ändert sich nichts.
+**Zuordnung aufheben** in der Zeile oder auf der Seite des Unternehmens. Das entfernt die Zuordnung und **löscht die kopierten Stammdaten dieser Firma** samt den Verknüpfungen zu allen Kreditoren- und Debitorenstammsätzen. Die USt-Zuordnung und der Nachweis des bereits Übertragenen bleiben erhalten, und in Business Central ändert sich nichts.
 
 ## Die Kopie aktuell halten
 
@@ -141,9 +141,13 @@ Der Prüfschritt ist ein tabellenartiges Raster, keine Liste von Kontrollkästch
 
 Auf der Registerkarte **Cashflow** legt **Aus Rechnungskategorien kopieren** für jede Rechnungskategorie, die auf der Cashflow-Seite fehlt, eine Cashflow-Kategorie mit derselben Kontonummer, Bezeichnung und Richtung an. Sie sehen zuerst die Anzahl, und nichts Bestehendes wird geändert. Integrierte Kategorien werden nicht kopiert.
 
-## Kreditoren als Partner
+## Kreditoren und Debitoren als Partner
 
-**Importieren → Aus Business Central** unter **Stammdaten → Partner** und **Aus Business Central hinzufügen** auf der Registerkarte Unterschiede holt Kreditorenstammsätze als Partner herein. Sie werden über die Steuernummer zugeordnet, ein hier bereits vorhandener Kreditor wird also als solcher angezeigt und kann nicht zweimal hinzugefügt werden. Kreditorenstammsätze ohne Steuernummer lassen sich ebenfalls hinzufügen, danach kann sie aber nichts mehr automatisch zuordnen.
+**Importieren → Kreditoren aus Business Central** unter **Stammdaten → Partner** und **Aus Business Central hinzufügen** auf der Registerkarte Unterschiede holt Kreditorenstammsätze als Partner herein. Sie werden über die Steuernummer zugeordnet, ein hier bereits vorhandener Kreditor wird also als solcher angezeigt und kann nicht zweimal hinzugefügt werden. Kreditorenstammsätze ohne Steuernummer lassen sich ebenfalls hinzufügen, danach kann sie aber nichts mehr automatisch zuordnen.
+
+**Importieren → Debitoren aus Business Central** macht dasselbe mit Debitorenstammsätzen. Business Central führt ein Unternehmen, an das Sie verkaufen, als Debitor und eines, bei dem Sie einkaufen, als Kreditor, jeweils mit eigener Nummer. In AI Finance Team sind beide derselbe Partner. Gehört die Steuernummer eines Debitors hier bereits zu einem Partner, wird daher kein neuer angelegt: Seine Debitorenstammsätze werden mit diesem Partner **verknüpft**, und der Partner selbst bleibt unverändert. Der Debitorenstammsatz eines Ihrer eigenen Unternehmen (einer Konzerngesellschaft, die einer Schwestergesellschaft Rechnungen stellt) wird mit dem Partner dieses Unternehmens verknüpft. Stammsätze ohne Steuernummer werden aufgeführt, aber nicht vorab angehakt.
+
+Die Partnerseite listet je Firma den Kreditoren- und den Debitorenstammsatz mit Nummer und Art auf, und dieselben Nummern erscheinen unter dem AI-Finance-Team-Code des Partners.
 
 ## USt-Zuordnung
 
