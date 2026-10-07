@@ -10,6 +10,10 @@ reference/
 # magnet on every content change.
 public/search/
 
+# TypeScript's incremental build cache. tsc and next build rewrite it on every
+# run, so committing it only adds noise to unrelated PRs.
+*.tsbuildinfo
+
 # env files — local secrets, never committed. No slash in the pattern, so it
 # matches at any depth (unlike an anchored one like `supabase/.temp/`).
 # The negation keeps a future committed template working: `.env*` would
