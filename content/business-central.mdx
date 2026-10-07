@@ -114,7 +114,7 @@ When you pair with an existing company you can copy the address and the tax numb
 
 ### Unpairing
 
-**Unlink** on the row, or on the company's own page. It removes the pairing and **deletes the copied master data of that company** along with the links to any vendor cards. The VAT mapping and the record of what was pushed are kept, and nothing changes in Business Central.
+**Unlink** on the row, or on the company's own page. It removes the pairing and **deletes the copied master data of that company** along with the links to any vendor and customer cards. The VAT mapping and the record of what was pushed are kept, and nothing changes in Business Central.
 
 ## Keeping the Copy Fresh
 
@@ -142,9 +142,13 @@ The review step is a spreadsheet-style grid, not a list of tick boxes. You can e
 
 On the **Cash** tab, **Copy from invoice categories** creates a cash category for every invoice category the cash side lacks, with the same account number, name and direction. It shows the counts first and changes nothing that exists. Built-in categories are not copied.
 
-## Vendors as Partners
+## Vendors and Customers as Partners
 
-**Import → From Business Central** on **Master data → Partners**, and **Add from Business Central** on the Differences tab, brings vendor cards in as partners. They are matched on the tax number, so a vendor that already exists here is shown as such and cannot be added twice. Vendor cards without a tax number can still be added, but nothing can match them automatically afterwards.
+**Import → Vendors from Business Central** on **Master data → Partners**, and **Add from Business Central** on the Differences tab, brings vendor cards in as partners. They are matched on the tax number, so a vendor that already exists here is shown as such and cannot be added twice. Vendor cards without a tax number can still be added, but nothing can match them automatically afterwards.
+
+**Import → Customers from Business Central** does the same for customer cards. Business Central keeps a company you sell to as a customer card and a company you buy from as a vendor card, each with its own number. In AI Finance Team both are the same partner. So when a customer's tax number already belongs to a partner here, no new partner is created: its customer cards are **linked** to that partner, and the partner itself is not changed. The customer card of one of your own companies (a group company that invoices a sister company) is linked to that company's partner. Cards without a tax number are listed but never ticked in advance.
+
+The partner's page lists, per company, its vendor card and its customer card, each with its number and its kind, and the same numbers appear under the partner's AI Finance Team code.
 
 ## VAT Mapping
 

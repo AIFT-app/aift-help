@@ -114,7 +114,7 @@ Meglévő céggel való párosításkor a címet és az adószámot át tudja ve
 
 ### A párosítás bontása
 
-A soron vagy a cég saját oldalán a **Szétválasztás**. Megszünteti a párosítást, és **törli az adott cég lemásolt törzsadatait**, a szállítókartonokra mutató kapcsolatokkal együtt. Az ÁFA-hozzárendelés és a feladások nyilvántartása megmarad, a Business Centralban pedig semmi nem változik.
+A soron vagy a cég saját oldalán a **Szétválasztás**. Megszünteti a párosítást, és **törli az adott cég lemásolt törzsadatait**, a szállító- és vevőkartonokra mutató kapcsolatokkal együtt. Az ÁFA-hozzárendelés és a feladások nyilvántartása megmarad, a Business Centralban pedig semmi nem változik.
 
 ## A másolat frissen tartása
 
@@ -142,9 +142,13 @@ Az átnézés táblázatszerű rács, nem jelölőnégyzetek listája. Átírhat
 
 A **Pénzforgalmi** fülön a **Másolás a számla kategóriákból** gomb minden olyan számla kategóriából pénzforgalmi kategóriát készít, amely a pénzforgalmi oldalon még nincs meg, ugyanazzal a főkönyvi számmal, megnevezéssel és iránnyal. Először a darabszámokat mutatja, és semmi meglévőt nem módosít. A beépített kategóriákat nem másolja.
 
-## Szállítókból partnerek
+## Szállítókból és vevőkből partnerek
 
-A **Törzsadatok → Partnerek** oldalon az **Importálás → Business Centralból**, az Eltérések fülön pedig a **Hozzáadás a Business Centralból** hozza be a szállítókartonokat partnerként. Az adószám alapján párosítjuk őket, így az itt már meglévő szállítót ilyenként mutatjuk, és nem lehet kétszer hozzáadni. Az adószám nélküli szállítókartonokat is hozzá lehet adni, de utána semmi nem tudja őket automatikusan párosítani.
+A **Törzsadatok → Partnerek** oldalon az **Importálás → Szállítók a Business Centralból**, az Eltérések fülön pedig a **Hozzáadás a Business Centralból** hozza be a szállítókartonokat partnerként. Az adószám alapján párosítjuk őket, így az itt már meglévő szállítót ilyenként mutatjuk, és nem lehet kétszer hozzáadni. Az adószám nélküli szállítókartonokat is hozzá lehet adni, de utána semmi nem tudja őket automatikusan párosítani.
+
+Az **Importálás → Vevők a Business Centralból** ugyanezt teszi a vevőkartonokkal. A Business Central külön kartont vezet arról a cégről, amelynek Ön értékesít (vevő), és arról, amelytől vásárol (szállító), mindkettőt saját számmal. Az AI Finance Teamben mindkettő ugyanaz a partner. Ezért ha egy vevő adószámához itt már tartozik partner, nem jön létre új: a vevőkartonjait ahhoz a partnerhez **kötjük**, magát a partnert nem módosítjuk. Az Ön valamelyik saját cégének vevőkartonját (egy csoporttagét, amely egy testvércégének számláz) annak a cégnek a partneréhez kötjük. Az adószám nélküli kartonok megjelennek a listában, de alapból nincsenek bepipálva.
+
+A partner oldala cégenként felsorolja a szállító- és a vevőkartonját, a számával és a fajtájával együtt, és ugyanezek a számok a partner AI Finance Team-beli azonosítója alatt is megjelennek.
 
 ## ÁFA-hozzárendelés
 
