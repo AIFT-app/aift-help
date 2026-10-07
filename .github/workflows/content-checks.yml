@@ -24,6 +24,9 @@ permissions:
 jobs:
   no-em-dash:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write   # the PRD-slug advisory step posts a PR comment
     steps:
       - name: Checkout aift-help
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
@@ -32,3 +35,61 @@ jobs:
 
       - name: No em dashes in article copy
         run: node scripts/check-no-em-dash.mjs
+      - name: PRD-slug advisory comment
+        if: always() && github.event_name == 'pull_request' && !startsWith(github.head_ref, 'promote/') && !startsWith(github.head_ref, 'chore/sync-types-')
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -uo pipefail
+          SLUG_RE='\[PRD:[[:space:]]*[[:alnum:]_-]+[[:space:]]*\]'
+          SKIP_RE='^(promote|chore\(deps\)|chore: sync database types|Revert |Merge (branch|pull request))'
+          MARKER='<!-- shiplog-commit-lint -->'
+          MISSING_FILE="$(mktemp)"
+          # Non-merge commits of the PR (parents <= 1), oldest first. The API
+          # pages at 250 commits, far beyond any PR here.
+          gh api "repos/$REPO/pulls/$PR_NUMBER/commits" --paginate \
+            --jq '.[] | select((.parents | length) <= 1) | "\(.sha)\t\(.commit.message | split("\n")[0])"' \
+            > "$MISSING_FILE.all" || { echo "::warning::could not list PR commits; advisory skipped"; exit 0; }
+          while IFS=$'\t' read -r sha subj; do
+            [ -n "$sha" ] || continue
+            echo "$subj" | grep -Eq "$SKIP_RE" && continue
+            echo "$subj" | grep -Eq "$SLUG_RE" && continue
+            printf -- '- `%s` %s\n' "${sha:0:7}" "$subj" >> "$MISSING_FILE"
+          done < "$MISSING_FILE.all"
+          missing_count=$(wc -l < "$MISSING_FILE" | tr -d ' ')
+          COMMENT_ID=$(gh api "repos/$REPO/issues/$PR_NUMBER/comments" --paginate \
+            --jq ".[] | select(.body | contains(\"$MARKER\")) | .id" | head -n1 || true)
+          if [ "$missing_count" = "0" ]; then
+            echo "every commit carries a [PRD: <slug>] trailer (or is on the skip list)."
+            if [ -n "${COMMENT_ID:-}" ]; then
+              gh api -X DELETE "repos/$REPO/issues/comments/$COMMENT_ID" >/dev/null && echo "removed the stale advisory comment"
+            fi
+            exit 0
+          fi
+          BODY_FILE="$(mktemp)"
+          {
+            echo "$MARKER"
+            echo
+            echo 'The following commits on this PR don'"'"'t carry a `[PRD: <slug>]` trailer:'
+            echo
+            cat "$MISSING_FILE"
+            echo
+            echo '**Why this matters:** shiplog-digest v2 clusters merges by PRD slug. Slug-less commits surface as stand-alone bullets (if `feature`/`fix`) or in the "+N small changes" tail (if `internal`/`chore`/`infra`), not grouped with sibling-repo PRs.'
+            echo
+            echo '**What to do:**'
+            echo '- PRD-worthy change: add `[PRD: <slug>]` to the commit subject (slug = the PRD filename in `aift-ops/specs/` without `.md`).'
+            echo '- Hotfix or pure-mechanical change: no action required. Leave a note in the PR description for the reviewer if it is not obvious.'
+            echo
+            echo 'Full convention: [`aift-ops/docs/commit-conventions.md`](https://github.com/AIFT-app/aift-ops/blob/main/docs/commit-conventions.md).'
+            echo
+            echo '*This check is advisory only and never blocks merges.*'
+          } > "$BODY_FILE"
+          if [ -n "${COMMENT_ID:-}" ]; then
+            gh api -X PATCH "repos/$REPO/issues/comments/$COMMENT_ID" -F body=@"$BODY_FILE" >/dev/null && echo "updated advisory comment ($missing_count commit(s) without a slug)"
+          else
+            gh api -X POST "repos/$REPO/issues/$PR_NUMBER/comments" -F body=@"$BODY_FILE" >/dev/null && echo "posted advisory comment ($missing_count commit(s) without a slug)"
+          fi
+          exit 0
