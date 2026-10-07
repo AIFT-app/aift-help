@@ -1,6 +1,6 @@
 // Labels for the settlement netting figure. `ui` is the app's own strip label,
 // verbatim from aift-web messages/<locale>.json (matching.settlement.*,
-// origin/main 2026-09-23), keyed by message key so drift-any.py catches a
+// origin/main 2026-09-23), keyed by message key so aift-ops/scripts/help-figure-copy-drift.py catches a
 // change. `help` is this article's own text: HU is formal.
 import type { Locale } from '@/lib/i18n'
 

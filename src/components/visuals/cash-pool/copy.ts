@@ -1,6 +1,6 @@
 // Labels for the cash pool section screen, verbatim from aift-web
 // messages/<locale>.json (master_data.bank_accounts.cash_pool.*, origin/main
-// 2026-09-23), keyed by message key so scratchpad/drift-any.py catches a
+// 2026-09-23), keyed by message key so aift-ops/scripts/help-figure-copy-drift.py catches a
 // change. `rendered` holds the holder line the app fills in. `help` is this
 // article's own text.
 import type { Locale } from '@/lib/i18n'

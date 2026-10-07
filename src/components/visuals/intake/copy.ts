@@ -3,7 +3,7 @@
 //
 // Destination names are verbatim from aift-web messages/<locale>.json
 // (origin/main 2026-09-23; the two attachment labels from aift-web
-// feat/invoice-attachments, PRD invoice-attachments), keyed by message key so scratchpad/drift-any.py
+// feat/invoice-attachments, PRD invoice-attachments), keyed by message key so aift-ops/scripts/help-figure-copy-drift.py
 // catches a change. The kind names and the notes are this article's own text:
 // the classifier's categories have no user-facing label of their own outside
 // the reclassify control, and the notes describe behaviour, not UI.

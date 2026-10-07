@@ -1,7 +1,7 @@
 // Labels for the MCP consent screen, verbatim from aift-web messages/<locale>.json
 // (mcp_consent.*, origin/main 2026-09-22; scope_write_desc updated 2026-10-05
 // by mcp-consent-write-scope-copy), keyed by message key so
-// scratchpad/drift-any.py catches a change in the app. `rendered` holds the two
+// aift-ops/scripts/help-figure-copy-drift.py catches a change in the app. `rendered` holds the two
 // strings the page fills in at run time. `help` is this article's own text.
 import type { Locale } from '@/lib/i18n'
 

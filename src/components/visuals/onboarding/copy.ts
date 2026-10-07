@@ -1,6 +1,6 @@
 // Labels for the guided new-client walk's itinerary, verbatim from aift-web
 // messages/<locale>.json (dashboard.guided.*, feat/guided-walk-tax-id-first 2026-09-24), keyed by
-// message key so scratchpad/drift-any.py catches a change. `help` is this
+// message key so aift-ops/scripts/help-figure-copy-drift.py catches a change. `help` is this
 // article's own text.
 import type { Locale } from '@/lib/i18n'
 
