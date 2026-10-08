@@ -31,6 +31,7 @@ import { OnboardingStepMapFigure } from './onboarding'
 import { VatGroupStepsFigure } from './vat-groups'
 import { StatementsTabFigure } from './statements'
 import { BankTransactionListFigure } from './bank-transactions'
+import { TransactionPartiesFigure } from './transaction-parties'
 import { TriageDestinationsFigure } from './intake'
 import { PartnerRulesFigure } from './partner-rules'
 import { VatSetupActionsFigure, VatSetupPreviewFigure } from './vat-setup'
@@ -86,6 +87,7 @@ const FIGURES: Record<string, (props: WithLocale) => React.ReactNode> = {
   VatGroupStepsFigure,
   StatementsTabFigure,
   BankTransactionListFigure,
+  TransactionPartiesFigure,
   TriageDestinationsFigure,
   PartnerRulesFigure,
   VatSetupActionsFigure,
