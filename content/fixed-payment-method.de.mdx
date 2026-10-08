@@ -4,7 +4,7 @@ Manche Lieferanten geben auf ihren Rechnungen die falsche Zahlungsart an. Der h�
 
 Mit der **festen Zahlungsart** teilen Sie dem System einmalig die Wahrheit über einen Partner mit. Ab dann gilt immer dann, wenn dessen Rechnungen eine Zahlungsart nennen, die von Ihnen gesetzte statt der angegebenen.
 
-Diese letzte Bedingung ist wichtig: Die Regel ersetzt nur eine Zahlungsart, die der Beleg tatsächlich nennt. NAV lässt die Zahlungsart bei rund einem Drittel der Rechnungen weg, und diese gehen ganz ohne Zahlungsart ein statt mit Ihrer. Das ist unschädlich, denn eine Rechnung ohne Zahlungsart wird nie als bar bezahlt geschlossen. Wenn Sie aber eine Regel setzen und sich scheinbar nichts ändert, liegt es meist daran.
+Diese letzte Bedingung ist wichtig: Die Regel ersetzt nur eine Zahlungsart, die der Beleg tatsächlich nennt. NAV lässt die Zahlungsart bei rund einem Drittel der Rechnungen weg, und diese gehen ganz ohne Zahlungsart ein statt mit Ihrer. Das ist unschädlich, denn eine Rechnung ohne Zahlungsart wird nie als bar bezahlt geschlossen. Wenn Sie aber eine Regel setzen und sich scheinbar nichts ändert, liegt es meist daran. Wird das PDF einer solchen Rechnung später hochgeladen, übernehmen wir die darauf gedruckte Zahlungsart, und Ihre Regel gilt dafür wie für jede andere genannte Zahlungsart.
 
 ## Warum das wichtig ist
 
@@ -74,19 +74,21 @@ Setzen Sie sie zurück auf **Keine**, endet die Regel für künftige Rechnungen 
 Die Rechnungen, die bereits als **Bar** feststecken, korrigieren Sie einzeln:
 
 1. Öffnen Sie die Rechnung.
-2. Öffnen Sie im Reiter **Zuordnung & Zahlung** das kleine Menü neben dem Zahlungsstatus und wählen Sie **Als offen markieren**.
+2. Im Reiter **Zuordnung & Zahlung** steht die Zahlungsart direkt neben dem Zahlungsstatus. Öffnen Sie sie und wählen Sie die Zahlungsart, mit der Sie tatsächlich bezahlt haben, zum Beispiel **Karte**.
+
+Wählen Sie eine andere Zahlungsart als bar, wird eine automatisch als bar abgeschlossene Rechnung wieder geöffnet und geht zurück in den Abgleich. Zwei Fälle bleiben bewusst unberührt: eine Rechnung, deren Status jemand von Hand gesetzt hat, und eine, zu der bereits eine zugeordnete Zahlung gehört. Für diese, oder wenn Sie die Rechnung nur wieder öffnen möchten, ohne die Zahlungsart zu ändern, nutzen Sie das kleine Pfeilmenü am Ende derselben Zeile und wählen **Als offen markieren**.
 
 Eine wieder geöffnete Rechnung geht zurück in den Abgleich. Liegt die Banktransaktion bereits im System, finden die beiden in der Regel innerhalb einer Minute zueinander, entweder als fertige Zuordnung oder als Vorschlag, den Sie bestätigen, je nachdem, wie sicher die Zuordnung ist.
 
-Die Zahlungs*art* einer einzelnen Rechnung lässt sich von Hand nicht korrigieren, nur ihr Status. Den Status auf **Offen** zu setzen ist das, was die Rechnung zurück in den Abgleich bringt, und genau darum geht es.
+Eine auf der Rechnung gewählte Zahlungsart trägt den Hinweis **manuell festgelegt** und ist für diese Rechnung endgültig: Weder die feste Zahlungsart des Partners noch eine spätere Aktualisierung aus NAV ändert sie. Jede Änderung erscheint im Reiter **Verlauf** der Rechnung.
 
-Zum Wiederöffnen brauchen Sie die Berechtigung „Rechnungen bearbeiten“, eine andere als für das Setzen der Regel.
+Für das Wählen der Zahlungsart wie für das Wiederöffnen brauchen Sie die Berechtigung „Rechnungen bearbeiten“, eine andere als für das Setzen der Regel.
 
 Hat ein Partner mehr als eine Handvoll feststeckender Rechnungen, setzen Sie zuerst die feste Zahlungsart, denn das stoppt das Anwachsen der Liste, und arbeiten Sie danach die vorhandenen ab.
 
 ## Was Sie danach sehen
 
-Auf einer Rechnung, bei der die Regel gegriffen hat, zeigt der Reiter **Zuordnung & Zahlung** die von Ihnen gesetzte Zahlungsart, daneben einen Hinweis, dass sie aus der festen Zahlungsart des Partners stammt. Dieser Hinweis steht dort, damit die Zahlungsart nicht wie ein Fehler wirkt: Bei einer NAV-Rechnung kann dort durchaus **Karte** stehen, während der Beleg selbst Barzahlung nennt.
+Auf einer Rechnung, bei der die Regel gegriffen hat, zeigt der Reiter **Zuordnung & Zahlung** die von Ihnen gesetzte Zahlungsart, daneben einen Hinweis, dass sie aus der festen Zahlungsart des Partners stammt. Dieser Hinweis steht dort, damit die Zahlungsart nicht wie ein Fehler wirkt: Bei einer NAV-Rechnung kann dort durchaus **Karte** stehen, während der Beleg selbst Barzahlung nennt. Wählt später jemand auf dieser Rechnung von Hand eine andere Zahlungsart, wechselt der Hinweis zu **manuell festgelegt**, und diese Wahl hat Vorrang vor der Regel.
 
 Die Bezeichnungen auf der Rechnung sind kürzer als die in der Auswahlliste beim Partner, die als **Bankkarte** gesetzte Regel liest sich auf der Rechnung also als **Karte**. Gemeint ist dasselbe.
 
@@ -98,7 +100,7 @@ An eine Stelle gelangt die Zahlungsart allerdings doch: nach **Business Central*
 
 ## Ihre eigenen Entscheidungen gewinnen immer
 
-Haben Sie den Zahlungsstatus einer Rechnung von Hand gesetzt, ist diese Entscheidung endgültig. Nichts in der automatischen Verarbeitung setzt sie zurück, weder die Partnerregel noch eine spätere Aktualisierung der Rechnung aus NAV.
+Haben Sie den Zahlungsstatus oder die Zahlungsart einer Rechnung von Hand gesetzt, ist diese Entscheidung endgültig. Nichts in der automatischen Verarbeitung setzt sie zurück, weder die Partnerregel noch eine spätere Aktualisierung der Rechnung aus NAV.
 
 > **Damit ist auch ein älteres Ärgernis erledigt.** Vor dieser Funktion konnte das Wiederöffnen einer NAV-Bar-Rechnung bei der nächsten Aktualisierung aus NAV unbemerkt rückgängig gemacht werden, und die Rechnung schloss sich stillschweigend erneut. Ihre Entscheidung bleibt jetzt bestehen.
 
