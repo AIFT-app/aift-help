@@ -4,7 +4,7 @@ Egyes szállítók rossz fizetési módot tüntetnek fel a számláikon. Magyaro
 
 A **rögzített fizetési móddal** egyszer megmondhatja a rendszernek az igazságot egy partnerről. Ettől kezdve, valahányszor a partner számlái fizetési módot közölnek, a beállított mód lép a helyükbe.
 
-Ez az utolsó feltétel lényeges: a szabály csak olyan fizetési módot vált ki, amelyet a dokumentum ténylegesen közöl. A NAV a számlák nagyjából harmadánál elhagyja a fizetési módot, és ezek fizetési mód nélkül érkeznek be, nem pedig az Önével. Ártalmatlanok, mert fizetési mód nélküli számla soha nem zárul le készpénzesként, de ha beállít egy szabályt, és látszólag semmi nem változik, rendszerint ez az ok.
+Ez az utolsó feltétel lényeges: a szabály csak olyan fizetési módot vált ki, amelyet a dokumentum ténylegesen közöl. A NAV a számlák nagyjából harmadánál elhagyja a fizetési módot, és ezek fizetési mód nélkül érkeznek be, nem pedig az Önével. Ártalmatlanok, mert fizetési mód nélküli számla soha nem zárul le készpénzesként, de ha beállít egy szabályt, és látszólag semmi nem változik, rendszerint ez az ok. Ha egy ilyen számla PDF-jét később feltöltik, a PDF-en szereplő fizetési módot átvesszük, és az Ön szabálya ugyanúgy érvényes rá, mint bármely közölt fizetési módra.
 
 ## Miért fontos ez
 
@@ -74,19 +74,21 @@ Ha visszaállítja **Nincs** értékre, a szabály a jövőbeli számlákra néz
 A **Készpénzes** állapotban ragadt számlákat egyesével javítsa:
 
 1. Nyissa meg a számlát.
-2. A **Párosítás & fizetés** fülön nyissa meg a fizetési állapot melletti kis menüt, és válassza a **Megjelölés nyitottként** lehetőséget.
+2. A **Párosítás & fizetés** fülön a fizetési mód közvetlenül a fizetési állapot mellett van. Nyissa meg, és válassza azt a módot, amellyel ténylegesen fizetett, például a **Kártya** lehetőséget.
+
+Ha nem készpénzes módot választ, az automatikusan készpénzesként lezárt számla újra megnyílik, és visszakerül a párosításba. Két esetet szándékosan érintetlenül hagyunk: azt a számlát, amelynek állapotát valaki kézzel állította be, és azt, amelyhez már tartozik párosított kifizetés. Ezeknél, vagy ha csak újra szeretné nyitni a számlát a fizetési mód módosítása nélkül, használja ugyanannak a sornak a végén a kis nyíl menüt, és válassza a **Megjelölés nyitottként** lehetőséget.
 
 A számla újranyitása visszateszi azt a párosításba. Ha a banki tranzakció már a rendszerben van, a kettő jellemzően egy percen belül egymásra talál, vagy kész párosításként, vagy megerősítésre váró javaslatként, attól függően, mennyire biztos a találat.
 
-Egy számla fizetési *módját* kézzel nem lehet javítani, csak az állapotát. Az állapot **Nyitott** értékre állítása az, ami visszateszi a számlát a párosítási körbe, és valójában éppen erre van szüksége.
+A számlán kiválasztott fizetési mód mellett a **kézzel beállítva** felirat jelenik meg, és az adott számlára nézve végleges: sem a partner rögzített fizetési módja, sem a számla későbbi NAV-frissítése nem módosítja. Minden változtatás megjelenik a számla **Előzmények** fülén.
 
-Az újranyitáshoz a „Számlák szerkesztése” jogosultság kell, ami más, mint a szabály beállításához szükséges.
+A fizetési mód kiválasztásához és az újranyitáshoz is a „Számlák szerkesztése” jogosultság kell, ami más, mint a szabály beállításához szükséges.
 
 Ha egy partnernél néhánynál több ragadt számla van, először a rögzített fizetési módot állítsa be, mert ez megállítja a lista növekedését, és utána vegye végig a meglévőket.
 
 ## Mit fog látni utána
 
-Azon a számlán, ahol a szabály érvényesült, a **Párosítás & fizetés** fülön a beállított fizetési mód jelenik meg, mellette egy megjegyzéssel, amely szerint az a partner rögzített fizetési módjából származik. Ez azért van ott, hogy a fizetési mód ne tűnjön hibának: egy NAV-os számlánál könnyen előfordulhat, hogy **Kártya** szerepel ott, miközben maga a dokumentum készpénzt ír.
+Azon a számlán, ahol a szabály érvényesült, a **Párosítás & fizetés** fülön a beállított fizetési mód jelenik meg, mellette egy megjegyzéssel, amely szerint az a partner rögzített fizetési módjából származik. Ez azért van ott, hogy a fizetési mód ne tűnjön hibának: egy NAV-os számlánál könnyen előfordulhat, hogy **Kártya** szerepel ott, miközben maga a dokumentum készpénzt ír. Ha később valaki kézzel más fizetési módot választ az adott számlán, a megjegyzés **kézzel beállítva** feliratra vált, és ez a választás erősebb a szabálynál.
 
 A számla saját címkéi rövidebbek, mint a partner legördülő listájában szereplők, így a **Bankkártya** értékkel beállított szabály a számlán **Kártya** néven olvasható. Ugyanarról van szó.
 
@@ -98,7 +100,7 @@ Egy helyre viszont eljut a fizetési mód: a **Business Centralba**. Ahol ez a k
 
 ## Az Ön döntése mindig erősebb
 
-Ha egy számla fizetési állapotát kézzel állította be, az a döntés végleges. Az automatikus feldolgozásban semmi nem állítja vissza, sem a partnerszabály, sem a számla későbbi NAV-frissítése.
+Ha egy számla fizetési állapotát vagy fizetési módját kézzel állította be, az a döntés végleges. Az automatikus feldolgozásban semmi nem állítja vissza, sem a partnerszabály, sem a számla későbbi NAV-frissítése.
 
 > **Ez egy régebbi bosszúságot is megszüntet.** A funkció előtt egy NAV-os készpénzes számla újranyitását észrevétlenül visszavonhatta a számla következő NAV-frissítése, és a számla csendben újra lezárta magát. Mostantól az Ön döntése megmarad.
 

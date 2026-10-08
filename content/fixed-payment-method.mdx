@@ -4,7 +4,7 @@ Some suppliers report the wrong payment method on their invoices. The most commo
 
 **Fixed payment method** lets you tell the system the truth about one partner, once. From then on, whenever their invoices state a payment method, the one you set is used instead.
 
-That last condition matters: the rule only replaces a method the document actually states. NAV leaves the payment method out of roughly a third of invoices, and those arrive with no method at all rather than with yours. They are harmless, because an invoice with no method is never closed as cash, but if you set a rule and nothing seems to change, this is usually why.
+That last condition matters: the rule only replaces a method the document actually states. NAV leaves the payment method out of roughly a third of invoices, and those arrive with no method at all rather than with yours. They are harmless, because an invoice with no method is never closed as cash, but if you set a rule and nothing seems to change, this is usually why. If the PDF of such an invoice is uploaded later, the method printed on the PDF is taken over, and your rule applies to it like to any other stated method.
 
 ## Why This Matters
 
@@ -74,19 +74,21 @@ Clearing it back to **None** stops the rule for future invoices and leaves every
 For the invoices that are already stuck as **Cash**, correct them one at a time:
 
 1. Open the invoice.
-2. On the **Matching & payment** tab, open the small menu beside the payment status and choose **Mark as open**.
+2. On the **Matching & payment** tab, the payment method sits right beside the payment status. Open it and choose the method you actually used, for example **Card**.
+
+Choosing a method other than cash re-opens an invoice that was closed as cash automatically, and puts it back into matching. Two cases are left alone on purpose: an invoice whose status a person set, and one that already has a matched payment. For those, or if you only want to re-open the invoice without touching its method, use the small arrow menu at the end of the same row and choose **Mark as open**.
 
 Re-opening an invoice puts it back into matching. If the bank transaction is already in the system the two usually meet within a minute or so, either as a finished match or as a suggestion for you to confirm, depending on how confident the match is.
 
-There is no way to correct one invoice's payment *method* by hand; only its status. Changing the status to **Open** is what puts it back in the matching pool, which is what you actually want.
+A method you choose on the invoice shows **set by hand** beside it, and it is final for that invoice: neither the partner's fixed payment method nor a later refresh from NAV changes it. Every change appears on the invoice's **History** tab.
 
-Re-opening needs the "Edit invoices" permission, which is a different one from setting the rule.
+Choosing the method and re-opening both need the "Edit invoices" permission, which is a different one from setting the rule.
 
 If a partner has more than a handful of stuck invoices, set the fixed payment method first, which stops the list growing, and then work through the existing ones.
 
 ## What You Will See Afterwards
 
-On an invoice where the rule applied, the **Matching & payment** tab shows the method you set, with a note beside it saying it came from the partner's fixed payment method. The note is there so the method does not look like a bug: on a NAV invoice you may well see **Card** there while the document itself says cash.
+On an invoice where the rule applied, the **Matching & payment** tab shows the method you set, with a note beside it saying it came from the partner's fixed payment method. The note is there so the method does not look like a bug: on a NAV invoice you may well see **Card** there while the document itself says cash. If someone later chooses a different method on that invoice by hand, the note changes to **set by hand** and that choice wins over the rule.
 
 The invoice's own labels are shorter than the ones on the partner dropdown, so the rule you set as **Bank card** reads as **Card** on the invoice. Same thing.
 
@@ -98,7 +100,7 @@ There is one place the method does travel: **Business Central**. Where that conn
 
 ## Your Own Decisions Always Win
 
-If you have set an invoice's payment status by hand, that decision is permanent. Nothing in the automatic pipeline will change it back, not the partner rule and not a later refresh of the invoice from NAV.
+If you have set an invoice's payment status or its payment method by hand, that decision is permanent. Nothing in the automatic pipeline will change it back, not the partner rule and not a later refresh of the invoice from NAV.
 
 > **This also fixes an older annoyance.** Before this feature, re-opening a NAV cash invoice could be silently undone the next time that invoice was refreshed from NAV, and it would quietly close itself again. Your override now sticks.
 
