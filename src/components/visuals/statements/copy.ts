@@ -1,6 +1,6 @@
 // Labels for the Statements tab screen, verbatim from aift-web
 // messages/<locale>.json (transactions.statements.*, origin/main 2026-09-23),
-// keyed by message key so scratchpad/drift-any.py catches a change.
+// keyed by message key so aift-ops/scripts/help-figure-copy-drift.py catches a change.
 // `rendered` holds the lines the app fills placeholders into; `help` is this
 // article's own text.
 import type { Locale } from '@/lib/i18n'
@@ -50,7 +50,6 @@ type Copy = {
 }
 
 /** Fictional statements, as the house rule requires. */
-export const ACCOUNT_UNMATCHED = '99999999-11111111-22222222'
 export const FILES = {
   completed: 'Reamwell-2026-08.pdf',
   extracting: 'Slatebridge-2026-08.pdf',

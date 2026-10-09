@@ -83,11 +83,8 @@ export const DRY_RUN: Record<
   vat_codes: { new: 7, updated: 4, unchanged: 11, errors: 1 },
 }
 
-export const OVERLAP_ROW = 19
 export const OVERLAP_SHEET = 'VAT Codes'
 export const OVERLAP_COLUMN = 'Valid from'
-/** Fictional code, in the house naming style rather than a real customer's. */
-export const OVERLAP_DETAIL = 'DOM-27-SERV'
 
 type Copy = {
   ui: Record<UiKey, string>
