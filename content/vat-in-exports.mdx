@@ -39,7 +39,7 @@ The **AIFT VAT Code** column appears only when the workspace uses AIFT-internal 
 Some VAT is not fully deductible: half on passenger-car costs, all of it on representation. Accounting systems disagree on how they want that expressed, so **Settings → VAT settings** offers three handlings. They apply to the **Ledger export only**.
 
 - **Native for 100% only** *(the default)*. A fully non-deductible line is passed through as it is, for the target to route by GL account. A **partly** non-deductible line has its non-deductible VAT folded into the net.
-- **Native, target system handles all non-deductibility.** Nothing is folded in; the percentage rides along and the target splits it. For systems that can, such as Business Central with the non-deductible VAT feature, or DATEV.
+- **Native: target system handles all non-deductibility.** Nothing is folded in; the percentage rides along and the target splits it. For systems that can, such as Business Central with the non-deductible VAT feature, or DATEV.
 - **Pre-roll always.** Everything is folded in, including the 100% case that the default leaves alone. For systems that cannot express non-deductibility at all.
 
 **"Folded in" means the exported net is larger than the invoice's net.** That is the whole point, and it is the one thing to know before you build an import mapping: the non-deductible VAT is moved into the net figure, not merely reported beside it.

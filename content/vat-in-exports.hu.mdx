@@ -39,7 +39,7 @@ Az **AIFT VAT Code** oszlop csak akkor jelenik meg, ha a munkaterület AIFT-bels
 Egyes ÁFA-tételek nem vonhatók le teljesen: a személygépkocsi-költségeknél a fele, a reprezentációnál az egésze. A könyvelőprogramok nem egyeznek abban, hogyan szeretnék ezt kifejezve látni, ezért a **Beállítások → ÁFA-beállítások** három kezelési módot ajánl. Ezek **csak a Főkönyv exportra** érvényesek.
 
 - **Natív csak 100%-ra** *(az alapértelmezett)*. A teljesen le nem vonható sor változatlanul megy át, hogy a célrendszer főkönyvi számla szerint irányítsa. A **részben** le nem vonható sor le nem vonható ÁFÁ-ja beforgatódik a nettóba.
-- **Natív, a célrendszer kezeli az összes le nem vonhatóságot.** Semmi nem forgatódik be; a százalék végigmegy a soron, és a célrendszer bontja meg. Azoknak a rendszereknek, amelyek erre képesek: ilyen a Business Central a le nem vonható ÁFA funkcióval, vagy a DATEV.
+- **Natív: a célrendszer kezeli az összes le nem vonhatóságot.** Semmi nem forgatódik be; a százalék végigmegy a soron, és a célrendszer bontja meg. Azoknak a rendszereknek, amelyek erre képesek: ilyen a Business Central a le nem vonható ÁFA funkcióval, vagy a DATEV.
 - **Mindig beforgatás.** Minden beforgatódik, az a 100%-os eset is, amelyet az alapértelmezett érintetlenül hagy. Azoknak a rendszereknek, amelyek a le nem vonhatóságot egyáltalán nem tudják kifejezni.
 
 **A „beforgatás” azt jelenti, hogy az exportált nettó nagyobb, mint a számla nettója.** Épp ez a lényege, és ezt az egy dolgot érdemes tudni, mielőtt importleképezést épít: a le nem vonható ÁFA a nettó összegbe kerül át, nem csupán mellette jelenik meg.

@@ -39,7 +39,7 @@ Die Spalte **AIFT VAT Code** erscheint nur, wenn der Arbeitsbereich AIFT-interne
 Manche USt ist nicht vollständig abziehbar: die Hälfte bei Pkw-Kosten, die gesamte bei Repräsentation. Buchhaltungssysteme sind sich nicht einig, wie sie das ausgedrückt haben wollen, deshalb bietet **Einstellungen → USt.-Einstellungen** drei Behandlungen an. Sie gelten **nur für den Hauptbuch-Export**.
 
 - **Nativ nur für 100%** *(der Standard)*. Eine vollständig nicht abziehbare Zeile wird unverändert durchgereicht, damit das Zielsystem sie über das Sachkonto steuert. Bei einer **teilweise** nicht abziehbaren Zeile wird die nicht abziehbare USt in den Nettobetrag eingerechnet.
-- **Nativ, das Zielsystem behandelt die gesamte Nichtabziehbarkeit.** Es wird nichts eingerechnet; der Prozentsatz läuft mit und das Zielsystem teilt ihn auf. Für Systeme, die das können, etwa Business Central mit der Funktion für nicht abziehbare USt oder DATEV.
+- **Nativ: Zielsystem behandelt alle Nichtabziehbarkeit.** Es wird nichts eingerechnet; der Prozentsatz läuft mit und das Zielsystem teilt ihn auf. Für Systeme, die das können, etwa Business Central mit der Funktion für nicht abziehbare USt oder DATEV.
 - **Immer einrechnen.** Alles wird eingerechnet, auch der 100%-Fall, den der Standard unangetastet lässt. Für Systeme, die Nichtabziehbarkeit überhaupt nicht ausdrücken können.
 
 **„Eingerechnet“ heißt, dass das exportierte Netto größer ist als das Netto der Rechnung.** Genau das ist der Sinn, und es ist das Eine, was Sie wissen müssen, bevor Sie ein Import-Mapping bauen: die nicht abziehbare USt wandert in den Nettobetrag und wird nicht bloß daneben ausgewiesen.
