@@ -295,9 +295,9 @@ export const navGroups: NavGroup[] = [
     id: 'reports-and-exports',
     title: { en: 'Reports & Exports', hu: 'Jelentések és exportok', de: 'Berichte & Exporte' },
     description: {
-      en: 'Reports, the Ledger, Business Central, and AI assistants that read your books.',
-      hu: 'Jelentések, a Főkönyv, a Business Central, és a könyveket olvasó AI-asszisztensek.',
-      de: 'Berichte, das Hauptbuch, Business Central und KI-Assistenten, die Ihre Bücher lesen.',
+      en: 'Reports, the Ledger, monthly closing, Business Central, and AI assistants that read your books.',
+      hu: 'Jelentések, a Főkönyv, a havi zárás, a Business Central, és a könyveket olvasó AI-asszisztensek.',
+      de: 'Berichte, das Hauptbuch, der Monatsabschluss, Business Central und KI-Assistenten, die Ihre Bücher lesen.',
     },
     items: [
       // "Riportok" is the help centre's term. The app's own sidebar says "Jelentések"
@@ -305,6 +305,8 @@ export const navGroups: NavGroup[] = [
       // tells the reader which menu item to click.
       { slug: 'reports', title: { en: 'Reports', hu: 'Jelentések', de: 'Berichte' } },
       { slug: 'ledger', title: { en: 'Ledger', hu: 'Főkönyv', de: 'Hauptbuch' } },
+      // closing-ux-rework-2: the Closing page (labels from aift-web closing.*).
+      { slug: 'closing', title: { en: 'Monthly Closing', hu: 'Havi zárás', de: 'Monatsabschluss' } },
       {
         slug: 'business-central',
         title: {

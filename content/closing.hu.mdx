@@ -1,0 +1,78 @@
+# Havi zárás
+
+A **Zárás** az a hely, ahol egy ügyfél hónapját átnézi és lezárja. Az AIFT tizenhat ellenőrzést futtat a hónapon, Ön kipipálja a saját kézi ellenőrzőlistáját, és ha nem maradt blokkoló ellenőrzés, lezárja a hónapot. A zárás rögzíti az ellenőrzések pillanatképét; a hónapot később indoklással újranyithatja.
+
+A Zárás csak a könyvelői oldalon létezik, és az **„Időszakok zárása”** jogosultság kell hozzá. A könyvelők és a könyvelő adminisztrátorok alapértelmezés szerint rendelkeznek vele. Enélkül a **Zárás** nem jelenik meg az oldalsávban, és a Zárás oldalai sem érhetők el (lásd: [Szerepek és jogosultságok](/roles-and-permissions)).
+
+## Melyik hónapon nyílik meg
+
+A **Zárás** tetején lévő kártya a **legutóbbi olyan hónapot** mutatja, **amely már véget ért, de még nincs lezárva**. Októberben ez a szeptember: a havi áfabevalló a szeptemberi bevallást október 20-ig adja be, így a szeptember az a hónap, amelyen dolgozik. Ha minden lejárt hónap le van zárva, a kártya felirata **Nincs lezárandó hónap.**
+
+Az alatta lévő hónaplista a cím alatti **Zárás kezdete:** sorban megadott hónappal kezdődik. Ez alapértelmezés szerint a munkaterület létrehozásának hónapja, így egy új ügyfélnél nem jelenik meg évnyi üres hónap. A **Módosítás** gombbal korábbi első zárandó hónapot választhat, például ha év közben veszi át az ügyfelet, és a korábbi hónapokat is le szeretné zárni. A **Visszaállítás az alapértelmezettre** visszaáll a létrehozás hónapjára. A már lezárt hónapok bármilyen beállítás mellett a listában maradnak.
+
+A folyó hónap is szerepel a listán, **a hónap még tart** jelzéssel: megnézheti, de a kártya nem ezt a hónapot ajánlja.
+
+A **Teendők** oldal ugyanazt a hónapot nevezi meg: a **Zárás** sora és a **Zárási elmaradás** csempe ugyanazt a szabályt olvassa.
+
+## Az ellenőrzések
+
+Nyisson meg egy hónapot a listából, vagy kattintson a kártyán a **Zárás folytatása** gombra. Az oldal mindent a számlák **teljesítési dátuma** és a banki tranzakciók könyvelési dátuma szerint mér.
+
+Elöl a **Teendők** kártya áll. Ez csak a nem teljesülő ellenőrzéseket sorolja fel: előbb a **Blokkoló**, majd a **Figyelmeztetés** jelzésűeket. Minden sor mutatja a számot a mértékegységével (például „96 számla”), egy sort arról, mit talált az ellenőrzés, és a **Megnyitás** hivatkozást, amely a szám mögötti listára visz.
+
+Az **Ellenőrzések** kártya a többit sorolja fel, soronként egyet. A pipa azt jelenti, hogy az ellenőrzés rendben van. A **Nem alkalmazható** azt jelenti, hogy az ellenőrzés erre a munkaterületre nem vonatkozik, és az alatta lévő sor megmondja, miért: nincs bankszámla, nincs NAV-kapcsolat, nincs ÁFA-kód beállítva, vagy az ellenőrzés mögötti AI-munka (kategorizálás vagy áfakódolás) ki van kapcsolva ebben a munkaterületen.
+
+<ClosingPeriodFigure>
+A Zárás oldal egy hónapra. A számok az alábbi lista pontjainak felelnek meg. Az adatok példák.
+</ClosingPeriodFigure>
+
+1. A **Teendők** csak a nem teljesülő ellenőrzéseket sorolja fel, elöl a blokkolókkal.
+2. A jelzés megmondja, mennyire fontos az ellenőrzés: a **Blokkoló** megakadályozza a zárást, a **Figyelmeztetés** nem.
+3. A szám mellett ott a mértékegysége, alatta pedig egy sor arról, mit talált az ellenőrzés. Itt a csak fizetésre váró számlák kimaradnak a számból.
+4. A **Megnyitás** a szám mögötti listára visz.
+5. A **Zárás állapota** megmondja, zárható-e a hónap, és a gomb alatt szavakban azt is, mi hiányzik még.
+
+Két dolgot érdemes tudni:
+
+- **A fizetetlen számla nem akadályozza a hónap zárását.** Hónap végén egy ki nem fizetett szállítói vagy vevői számla nyitott tétel, amely átkerül a következő hónapba, nem pedig hiba a hónap könyvelésében. A **Problémás számlák rendezve** ellenőrzés ezért nem számolja azokat a számlákat, amelyeknek egyetlen problémája, hogy még nincsenek kifizetve. A banki oldalnak viszont teljesnek kell lennie: a **Minden tranzakció rendezve** megköveteli, hogy a hónap minden banki tranzakciója párosítva vagy megmagyarázva legyen.
+- **A figyelmeztetések soha nem akadályozzák a zárást.** A lezáráskor tudomásul veszi őket.
+
+### Hová visz a „Megnyitás”
+
+| Ellenőrzés | Mit nyit meg |
+|---|---|
+| Bankkivonatok lefedik az időszakot, Kivonategyenlegek egyeznek | A **Bankkivonatok** fület, csak az adott hónap kivonataival |
+| Problémás számlák rendezve | A számlalistát, pontosan azokkal a számlákkal, amelyeket az ellenőrzés számolt |
+| Tranzakciók kategorizálva | A tranzakciólistát a **Kategória nélkül** szűrővel |
+| Nincs függő párosítási javaslat | A **Párosítás** oldalt, a függő listán csak az adott hónap javaslataival |
+| NAV Online Számla szinkronizálva | Annak a cégnek a **Csatlakozások** fülét, amelynek a szinkronja elmaradt |
+| Az exportellenőrzések | A hónap **RLB** exportoldalát |
+
+A szűkített lista fölött egy címke megnevezi a hónapot, mellette a **Szűrő törlése** hivatkozással. A Párosításon csak ilyenkor szűkül a függő lista: bármilyen más úton megnyitva mindig az összes függő javaslatot mutatja (lásd: [Fókuszált időszak](/focused-period)).
+
+A számlaszűrő legfeljebb 200 számlát mutat. Ha az ellenőrzés ennél többet számolt, a lista fölötti sor megmondja, hányat mutat hányból.
+
+## A hónap lezárása
+
+A **Zárás állapota** kártya széles képernyőn az ellenőrzések mellett, telefonon közvetlenül a cím alatt áll. Kiírja, hogy **Még nem zárható** vagy **Zárásra kész**, megszámolja a blokkoló ellenőrzéseket, a figyelmeztetéseket és a kézi ellenőrzőlistát, az **Időszak lezárása** gomb alatt pedig szavakban is megmondja, mi hiányzik még.
+
+Az **Időszak lezárása** egy megerősítő ablakot nyit, amely összefoglalja, mit hagy jóvá: hány ellenőrzés van rendben, a kézi ellenőrzőlistát, és név szerint a tudomásul vett figyelmeztetéseket. Megadhat egy **Megjegyzés (nem kötelező)** szöveget is. A **Lezárás** minden ellenőrzésről pillanatképet rögzít. Egy lezárt hónap mindig ezt a pillanatképet mutatja, soha nem számolja újra.
+
+## A kézi ellenőrzőlista
+
+A **Kézi ellenőrzőlista** az iroda saját hó végi lépéseit tartalmazza. Tételt a **Hozzáadás** gombbal vehet fel, a **Minden hónapban** vagy a **Csak ebben a hónapban** lehetőséget választva. A kipipálás rögzíti, ki és mikor pipálta ki. A hónap csak akkor zárható, ha minden tétel ki van pipálva.
+
+Egy tétel eltávolítása előtt az alkalmazás rákérdez, és a megerősítő ablak **Eltávolítás** gombja távolítja el. A **Minden hónapban** tétel minden nyitott és jövőbeli hónap ellenőrzőlistájáról lekerül; a lezárt hónapok pillanatképe nem változik. A **Csak ebben a hónapban** tétel csak erről a hónapról kerül le.
+
+## A zárás után
+
+A zárás után érkező, de a lezárt hónaphoz tartozó számlák és banki tranzakciók az adott hónapnál a **Késői tételek** között jelennek meg, a hónaplista pedig jelzi őket. A pillanatkép nem változik.
+
+Egy lezárt hónap módosításához kattintson az **Újranyitás** gombra, és adja meg az indoklást. Az indoklás kötelező és megmarad: a hónap ezután mutatja, ki, mikor és miért nyitotta újra, akkor is, ha később ismét lezárja.
+
+## Kapcsolódó
+
+- [Fókuszált időszak](/focused-period): ha a Zárásban megnyit egy hónapot, az oldalsáv fókuszált időszaka arra a hónapra áll
+- [Számlák párosítása](/invoice-matching)
+- [Bankszámlakivonatok feltöltése](/bank-statement-upload)
+- [Szerepek és jogosultságok](/roles-and-permissions)

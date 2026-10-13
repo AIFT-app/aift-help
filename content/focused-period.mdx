@@ -36,7 +36,7 @@ So if you have never touched the switch, look at July's Closing and then open In
 
 Two entries there are worth reading twice, because the sidebar switch does not tell you about either.
 
-**On Matching, the pending queue is never narrowed.** The **Overview** tab follows the period, and on the **Matches** tab only the approved section does. The pending suggestion queue at the top of the page is deliberately never filtered: it is your action queue, and a July invoice may legitimately settle against an August payment. So the count at the top does not shrink when you focus a month.
+**On Matching, the pending queue is never narrowed.** The **Overview** tab follows the period, and on the **Matches** tab only the approved section does. The pending suggestion queue at the top of the page is deliberately never filtered: it is your action queue, and a July invoice may legitimately settle against an August payment. So the count at the top does not shrink when you focus a month. The one exception is the **Open** link of the Closing check **No pending match suggestions**: it narrows the pending list to that month's suggestions, says so in a label above the list, and **Clear filter** brings the full list back.
 
 **Two of the four export pages ignore the period entirely.** The Ledger and the RLB export follow it. **HessynKettős** and **Business Central** each keep their own date control, which starts at all time - yet the switch still says **Filtering this page** while you are on them. Set the range on the page itself there, and do not trust the switch.
 
@@ -90,8 +90,8 @@ Besides the period picker, the panel holds two sections.
 **This period** shows where the month's closing stands, and is the narrowest part of the feature:
 
 - It only works for a focused **month**. With a quarter or a year focused it reads **Not calculated**, there is no count, and the row does not jump to that period's Closing.
-- It needs the **"Close periods"** permission. Without it the row reads **Not calculated** for ever, and clicking it returns you to the workspace overview.
-- The count is of failing **blocking checks**, not of records. "3 items to resolve" can mean three thousand invoices or one missing setting. It also leaves out advisory checks and the manual checklist, both of which can still stand between you and a close.
+- It needs the **"Close periods"** permission. Without it the section is not shown, just as **Closing** is not in the sidebar.
+- The count is of failing **blocking checks**, not of records: "3 blocking checks" can mean three thousand invoices or one missing setting. It also leaves out advisory checks and the manual checklist, both of which can still stand between you and a close.
 - It is always measured on the **fulfillment date**, whatever basis your lists are set to.
 
 **Master data** is a grid of shortcuts to the pages that have no period at all.

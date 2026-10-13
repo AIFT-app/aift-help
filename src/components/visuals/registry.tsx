@@ -38,6 +38,7 @@ import { VatSetupActionsFigure, VatSetupPreviewFigure } from './vat-setup'
 import { DocumentsListFigure } from './documents'
 import { VatLinesGridFigure } from './vat-lines'
 import { FocusChipFigure } from './focus'
+import { ClosingPeriodFigure } from './closing'
 import { MessageComposerFigure } from './composer'
 import { LedgerFiltersFigure } from './ledger'
 import { SelectionGridFigure } from './grid'
@@ -95,6 +96,7 @@ const FIGURES: Record<string, (props: WithLocale) => React.ReactNode> = {
   DocumentsListFigure,
   VatLinesGridFigure,
   FocusChipFigure,
+  ClosingPeriodFigure,
   MessageComposerFigure,
   LedgerFiltersFigure,
   SelectionGridFigure,

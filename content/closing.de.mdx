@@ -1,0 +1,78 @@
+# Monatsabschluss
+
+Im **Abschluss** prüfen Sie den Monat eines Mandanten und schließen ihn ab. AIFT führt sechzehn Prüfungen für den Monat aus, Sie haken Ihre eigene manuelle Checkliste ab, und wenn nichts Blockierendes mehr offen ist, schließen Sie den Monat. Der Abschluss friert eine Momentaufnahme der Prüfungen ein; Sie können den Monat später mit einer Begründung wiedereröffnen.
+
+Den Abschluss gibt es nur auf der Kanzleiseite und braucht die Berechtigung **„Perioden abschließen“**. Buchhalter und Buchhalter-Administratoren haben sie standardmäßig. Ohne sie steht **Abschluss** nicht in der Seitenleiste, und die Abschlussseiten sind nicht erreichbar (siehe [Rollen und Berechtigungen](/roles-and-permissions)).
+
+## Welcher Monat geöffnet wird
+
+Die Karte oben im **Abschluss** nennt den **letzten Monat, der bereits zu Ende ist und noch nicht abgeschlossen wurde**. Im Oktober ist das der September: Wer die Umsatzsteuer monatlich erklärt, reicht die Septembererklärung in Ungarn bis zum 20. Oktober ein, also ist der September der Monat, an dem Sie arbeiten. Wenn alle vergangenen Monate abgeschlossen sind, steht auf der Karte **Kein Monat abzuschließen.**
+
+Die Monatsliste darunter beginnt mit dem Monat in der Zeile **Abschluss ab:** unter dem Seitentitel. Standardmäßig ist das der Monat, in dem der Arbeitsbereich erstellt wurde, damit ein neuer Mandant nicht Jahre leerer Monate zeigt. Mit **Ändern** wählen Sie einen früheren ersten abzuschließenden Monat, zum Beispiel wenn Sie einen Mandanten im laufenden Jahr übernehmen und die Monate davor ebenfalls abschließen wollen. **Auf Standard zurücksetzen** kehrt zum Erstellungsmonat zurück. Bereits abgeschlossene Monate bleiben in jedem Fall in der Liste.
+
+Der laufende Monat steht ebenfalls in der Liste, mit dem Hinweis **Monat läuft noch**: Sie können ihn ansehen, aber die Karte bietet ihn nicht an.
+
+Das **Cockpit** nennt denselben Monat: seine Zeile **Abschluss** und die Kachel **Abschlussrückstand** lesen dieselbe Regel.
+
+## Die Prüfungen
+
+Öffnen Sie einen Monat aus der Liste, oder klicken Sie auf der Karte auf **Abschluss fortsetzen**. Die Seite misst alles am **Leistungsdatum** der Rechnungen und am Buchungsdatum der Banktransaktionen.
+
+Zuerst kommt **Zu erledigen**. Dort stehen nur die Prüfungen, die nicht bestanden sind: zuerst die **Blockierend** markierten, dann die **Hinweis** markierten. Jede Zeile zeigt die Zahl mit ihrer Einheit (zum Beispiel „96 Rechnungen“), eine Zeile dazu, was die Prüfung gefunden hat, und **Öffnen**, das Sie zur Liste hinter der Zahl bringt.
+
+**Prüfungen** listet den Rest, eine Zeile je Prüfung. Ein Haken bedeutet, dass die Prüfung bestanden ist. **Nicht anwendbar** bedeutet, dass die Prüfung für diesen Arbeitsbereich nicht gilt, und die Zeile darunter sagt, warum: Es gibt kein Bankkonto, keine NAV-Verbindung, keine eingerichteten USt-Codes, oder die KI-Arbeit hinter der Prüfung (Kategorisierung oder USt-Codierung) ist in diesem Arbeitsbereich ausgeschaltet.
+
+<ClosingPeriodFigure>
+Die Abschlussseite für einen Monat. Die Zahlen entsprechen der Liste darunter. Die Daten sind ein Beispiel.
+</ClosingPeriodFigure>
+
+1. **Zu erledigen** listet nur die nicht bestandenen Prüfungen, die blockierenden zuerst.
+2. Das Etikett sagt, wie wichtig eine Prüfung ist: **Blockierend** verhindert den Abschluss, **Hinweis** nicht.
+3. Die Zahl steht mit ihrer Einheit, und die Zeile darunter sagt, was die Prüfung gefunden hat. Hier zählen Rechnungen, die nur auf Zahlung warten, nicht mit.
+4. **Öffnen** führt zur Liste hinter der Zahl.
+5. **Abschlussstatus** sagt, ob der Monat abgeschlossen werden kann, und unter der Schaltfläche in Worten, was noch fehlt.
+
+Zwei Dinge sind wichtig:
+
+- **Eine unbezahlte Rechnung blockiert den Monat nicht.** Am Monatsende ist eine unbezahlte Lieferanten- oder Kundenrechnung ein offener Posten, der in den nächsten Monat übergeht, kein Fehler in der Buchhaltung des Monats. **Problemrechnungen geklärt** zählt deshalb keine Rechnungen, deren einziges Problem ist, dass sie noch nicht bezahlt sind. Die Bankseite muss dagegen vollständig sein: **Alle Transaktionen geklärt** verlangt, dass jede Banktransaktion des Monats zugeordnet oder erklärt ist.
+- **Hinweise blockieren den Abschluss nie.** Sie nehmen sie beim Abschließen zur Kenntnis.
+
+### Wohin „Öffnen“ führt
+
+| Prüfung | Öffnet |
+|---|---|
+| Kontoauszüge decken den Zeitraum ab, Auszugssalden stimmen überein | Den Reiter **Kontoauszüge**, nur mit den Auszügen dieses Monats |
+| Problemrechnungen geklärt | Die Rechnungsliste, mit genau den Rechnungen, die die Prüfung gezählt hat |
+| Transaktionen kategorisiert | Die Transaktionsliste mit dem Filter **Nicht kategorisiert** |
+| Keine offenen Zuordnungsvorschläge | Die **Zuordnung**, mit der Liste der offenen Vorschläge nur für diesen Monat |
+| NAV Online Számla synchronisiert | Den Reiter **Verbindungen** des Unternehmens, dessen Synchronisierung zurückliegt |
+| Die Exportprüfungen | Die **RLB**-Exportseite des Monats |
+
+Über einer eingegrenzten Liste nennt ein Etikett den Monat, daneben steht **Filter entfernen**. In der Zuordnung ist dies der einzige Fall, in dem die Liste der offenen Vorschläge eingegrenzt wird: Auf jedem anderen Weg geöffnet zeigt sie immer alle offenen Vorschläge (siehe [Fokussierter Zeitraum](/focused-period)).
+
+Der Rechnungsfilter zeigt höchstens 200 Rechnungen. Hat die Prüfung mehr gezählt, sagt eine Zeile über der Liste, wie viele von wie vielen angezeigt werden.
+
+## Den Monat abschließen
+
+Die Karte **Abschlussstatus** steht auf einem breiten Bildschirm neben den Prüfungen und auf dem Telefon direkt unter dem Titel. Sie zeigt **Noch nicht abschließbar** oder **Abschlussbereit**, zählt die blockierenden Prüfungen, die Hinweise und die manuelle Checkliste und sagt unter der Schaltfläche **Zeitraum abschließen** in Worten, was noch fehlt.
+
+**Zeitraum abschließen** öffnet eine Bestätigung, die zusammenfasst, was Sie freigeben: wie viele Prüfungen bestanden sind, die manuelle Checkliste und die Hinweise, die Sie namentlich zur Kenntnis nehmen. Sie können eine **Notiz (optional)** hinzufügen. **Abschließen** friert eine Momentaufnahme aller Prüfungen ein. Ein abgeschlossener Monat zeigt immer diese Momentaufnahme und rechnet nie neu.
+
+## Die manuelle Checkliste
+
+Die **Manuelle Checkliste** enthält die eigenen Monatsendschritte Ihrer Kanzlei. Fügen Sie einen Punkt mit **Hinzufügen** hinzu und wählen Sie **Jeden Monat** oder **Nur diesen Monat**. Das Abhaken hält fest, wer abgehakt hat und wann. Jeder Punkt muss abgehakt sein, bevor der Monat abgeschlossen werden kann.
+
+Vor dem Entfernen eines Punkts fragt die Anwendung nach, und **Entfernen** in diesem Dialog entfernt ihn. Ein Punkt **Jeden Monat** wird aus der Checkliste aller offenen und künftigen Monate entfernt; abgeschlossene Monate behalten ihre Momentaufnahme unverändert. Ein Punkt **Nur diesen Monat** wird nur aus diesem Monat entfernt.
+
+## Nach dem Abschluss
+
+Rechnungen oder Banktransaktionen, die nach dem Abschluss eintreffen, aber zum abgeschlossenen Monat gehören, stehen bei diesem Monat unter **Nachzügler**, und die Monatsliste markiert den Monat. Die Momentaufnahme ändert sich nicht.
+
+Um einen abgeschlossenen Monat zu ändern, klicken Sie auf **Wiedereröffnen** und geben eine Begründung an. Die Begründung ist Pflicht und bleibt erhalten: Der Monat zeigt danach, wer ihn wann und warum wiedereröffnet hat, auch nachdem Sie ihn erneut abschließen.
+
+## Verwandte Themen
+
+- [Fokussierter Zeitraum](/focused-period): Wenn Sie im Abschluss einen Monat öffnen, stellt sich der fokussierte Zeitraum der Seitenleiste auf diesen Monat
+- [Rechnungsabgleich](/invoice-matching)
+- [Kontoauszüge hochladen](/bank-statement-upload)
+- [Rollen und Berechtigungen](/roles-and-permissions)
