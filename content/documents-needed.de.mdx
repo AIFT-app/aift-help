@@ -8,7 +8,7 @@ Mandanten und Buchhalter sehen dieselbe Liste, sodass nie unklar ist, was noch o
 
 Die Seite wird je Arbeitsbereich freigeschaltet und bleibt aus, bis Ihre Kanzlei sie bei uns anfragt. Ist sie nicht aktiv, fehlt der Eintrag schlicht in der Seitenleiste, und die Adresse bringt Sie zurück zur Übersicht des Arbeitsbereichs.
 
-Alle im Arbeitsbereich sehen sie, auch Mitglieder, die Rechnungen und Banktransaktionen nicht sehen dürfen.
+Alle im Arbeitsbereich sehen sie, auch Mitglieder, die Rechnungen und Banktransaktionen nicht sehen dürfen. Solange etwas offen ist, zeigt der Eintrag in der Seitenleiste die Zahl der offenen Positionen, sodass ein Blick genügt, ohne die Seite zu öffnen.
 
 ## Warum eine Position erscheint
 
@@ -28,7 +28,7 @@ Diese Seite ist außerdem nicht dieselbe Zahl, die Ihre Buchhaltung in der Über
 
 ## Was eine Karte zeigt
 
-Den Partner, den Betrag und wie lange er schon wartet. Darunter den Verwendungszweck der Transaktion oder die Rechnungsnummer.
+Den Partner, den Betrag und wie lange er schon wartet; eine heute aufgenommene Position sagt statt einer Tageszahl **heute angefragt**. Darunter den Verwendungszweck der Transaktion oder die Rechnungsnummer, daneben das Buchungsdatum. Für Buchhalter sind der Partnername und diese Zeile Links auf den Datensatz selbst.
 
 Zwei Details lohnt es sich zu kennen. Der Betrag einer Zahlung wird **mit Vorzeichen** gezeigt, ausgehendes Geld trägt also ein Minus, während der Betrag einer Rechnung ohne Vorzeichen erscheint. Und eine Karte **Aus NAV**, die nie eine Zahlung war, trägt **kein Datum**, denn das Datum auf einer Karte stammt aus der Banktransaktion.
 
@@ -40,9 +40,11 @@ Die Liste zeigt alles Offene auf einer Seite, das Älteste zuerst. Es gibt keine
 
 ## Direkt zur Position hochladen
 
-Jede Karte hat eine Schaltfläche **Hochladen**. Nutzen Sie sie statt eines allgemeinen Uploads: Die Datei wird mit der Position verknüpft, auf die sie antwortet, und genau das sagt Ihrer Buchhaltung, warum sie gekommen ist.
+Jede Karte hat eine Schaltfläche **Hochladen**. Nutzen Sie sie statt eines allgemeinen Uploads: Die Datei wird mit der Position verknüpft, auf die sie antwortet, und genau das sagt Ihrer Buchhaltung, warum sie gekommen ist. Ein PDF oder ein Foto bis 50 MB genügt; eine zu große Datei wird sofort abgewiesen, noch bevor etwas gesendet wird.
 
-Danach durchläuft sie genau dieselbe Auslesung und Zuordnung wie jeder andere Upload, sie ist also weder sofort fertig noch garantiert. Die Karte verschwindet, wenn die Arbeit tatsächlich ankommt:
+Sobald die Datei angekommen ist, steht an der Stelle der Schaltfläche **Hochgeladen, wird verarbeitet.**, und auf der Karte erscheint die Zeile „Ihre Buchhaltung ordnet sie diesem Posten zu.“ Dieser Zustand liegt auf dem Server, nicht in Ihrem Browser, und bleibt darum auch nach einem Neuladen erhalten.
+
+Die Datei durchläuft dann genau dieselbe Auslesung und Zuordnung wie jeder andere Upload, sie ist also weder sofort fertig noch garantiert. Die Karte verschwindet, wenn die Arbeit tatsächlich ankommt:
 
 - **die Karte einer Zahlung** verschwindet, sobald das Dokument ausgelesen und gegen diese Zahlung bestätigt wurde;
 - **eine Karte Aus NAV** verschwindet, sobald das Dokument an diese NAV-Rechnung angehängt ist.
@@ -53,7 +55,7 @@ Gehören zu einem Kauf mehrere Seiten oder Fotos, laden Sie sie nach Möglichkei
 
 ## Wenn keine Rechnung existiert
 
-Zu manchen Zahlungen gibt es tatsächlich keine Rechnung: eine Bankgebühr, eine Steuerzahlung, eine Kaution. Auf diesen Karten hält **Keine Rechnung vorhanden** Ihre Antwort fest und übergibt sie Ihrer Buchhaltung, die sie bestätigt und die Position schließt.
+Zu manchen Zahlungen gibt es tatsächlich keine Rechnung: eine Bankgebühr, eine Steuerzahlung, eine Kaution. Auf diesen Karten steht **Keine Rechnung vorhanden** neben **Hochladen**: Es hält Ihre Antwort fest und übergibt sie Ihrer Buchhaltung, die sie bestätigt und die Position schließt.
 
 Die Schaltfläche gibt es nur auf Karten zu Zahlungen. Eine Karte **Aus NAV** hat sie nie, denn die NAV-Meldung ist der Beleg dafür, dass die Rechnung existiert.
 
@@ -73,10 +75,11 @@ Unter **Konto → Benachrichtigungen** gibt es eine Zeile **Fehlende Belege**, i
 
 ## Für Buchhalter
 
-Zwei zusätzliche Bedienelemente erscheinen auf jeder Karte für alle, die „Banktransaktionen bearbeiten“ haben; das ist eine Berechtigung und keine Funktionsbezeichnung: Ein Mitglied auf Mandantenseite, dessen Rolle sie enthält, bekommt sie ebenfalls. Siehe [Rollen & Berechtigungen](/roles-and-permissions).
+Ein zusätzliches Bedienelement erscheint auf jeder Karte für alle, die „Banktransaktionen bearbeiten“ haben; das ist eine Berechtigung und keine Funktionsbezeichnung: Ein Mitglied auf Mandantenseite, dessen Rolle sie enthält, bekommt es ebenfalls. Siehe [Rollen & Berechtigungen](/roles-and-permissions). Es ist das Menü **Weitere Aktionen**, die Schaltfläche ··· neben **Hochladen**, mit drei Einträgen.
 
-- **Nicht anfragen** zieht eine Anfrage zurück. Sie verlässt die Seite des Mandanten, und die Position wird nie wieder angefragt: Von der Seite aus gibt es keinen Weg zurück. Die automatische Nachricht bleibt als Verlauf im Thread, und der Rückzug wird mit Person und Zeitpunkt festgehalten.
-- **Notiz** hängt eine kurze Erklärung an, die auf der Karte des Mandanten erscheint; nützlich, um dem Mandanten zu sagen, wo er nachsehen soll.
+- **Keine Rechnung vorhanden** ist dieselbe Antwort, die auch der Mandant geben kann, und steht nur auf Karten zu Zahlungen.
+- **Notiz** hängt eine kurze Erklärung an, die auf der Karte des Mandanten unter **Nachricht Ihrer Buchhaltung:** erscheint; nützlich, um dem Mandanten zu sagen, wo er nachsehen soll. Auf Ihrer eigenen Karte steht derselbe Text unter **Ihre Notiz an den Kunden:**.
+- **Nicht anfragen** zieht eine Anfrage zurück, nach einer Bestätigungsfrage: **Diesen Beleg nicht mehr anfragen?** Die Position verlässt die Seite des Mandanten, auch keine E-Mail fragt danach, die automatische Nachricht bleibt als Verlauf im Thread, und der Rückzug wird mit Person und Zeitpunkt festgehalten. Auf dieser Seite gibt es kein Bedienelement, um sie zurückzuholen; stellt sich heraus, dass das Dokument doch gebraucht wird, kann die Anfrage später wieder geöffnet werden.
 
 Anfragen öffnen und schließen sich von selbst. Von hier fließt nichts in die Checkliste zum Periodenabschluss oder ins **Cockpit**, eine leere Seite ist also kein Zeichen dafür, dass der Monat fertig ist.
 
