@@ -216,7 +216,7 @@ The **Exports → Business Central → Bank lines** tab sends bank lines into th
 
 First, on **Master data → Business Central → Bank accounts**, set:
 
-- the **journal**: the journal template name (in a Hungarian Business Central usually "ÁLTALÁNOS") and the batch. We recommend a batch of AI Finance Team's own, so its lines never mix with lines typed by hand. If the batch does not exist in a company yet, the first send creates it, without a number series;
+- the **journal**: the journal template and the batch, picked from the list AI Finance Team reads from Business Central (every batch of every template, per company; refresh it on Master data → Business Central). This is the workspace default; a bank account whose company books the bank in another batch gets its own choice in the **Journal** column of its row. We recommend a batch of AI Finance Team's own, so its lines never mix with lines typed by hand. If the chosen batch is under the default general template and does not exist in a company yet, the first send creates it, without a number series. If Business Central does not publish the batch list, the two fields stay typed;
 - for each bank account, the **Business Central bank account** its lines balance against. When the IBAN matches we propose it, but it only takes effect once you save it;
 - for each bank account, the **start date**. Lines before it are not sent, because the bookkeeping has recorded them already. **Without a start date no line of that account is sent.** Pick the day after the last day the bank was booked by hand.
 
