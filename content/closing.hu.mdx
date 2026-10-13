@@ -22,6 +22,16 @@ Elöl a **Teendők** kártya áll. Ez csak a nem teljesülő ellenőrzéseket so
 
 Az **Ellenőrzések** kártya a többit sorolja fel, soronként egyet. A pipa azt jelenti, hogy az ellenőrzés rendben van. A **Nem alkalmazható** azt jelenti, hogy az ellenőrzés erre a munkaterületre nem vonatkozik, és az alatta lévő sor megmondja, miért: nincs bankszámla, nincs NAV-kapcsolat, nincs ÁFA-kód beállítva, vagy az ellenőrzés mögötti AI-munka (kategorizálás vagy áfakódolás) ki van kapcsolva ebben a munkaterületen.
 
+<ClosingPeriodFigure>
+A Zárás oldal egy hónapra. A számok az alábbi lista pontjainak felelnek meg. Az adatok példák.
+</ClosingPeriodFigure>
+
+1. A **Teendők** csak a nem teljesülő ellenőrzéseket sorolja fel, elöl a blokkolókkal.
+2. A jelzés megmondja, mennyire fontos az ellenőrzés: a **Blokkoló** megakadályozza a zárást, a **Figyelmeztetés** nem.
+3. A szám mellett ott a mértékegysége, alatta pedig egy sor arról, mit talált az ellenőrzés. Itt a csak fizetésre váró számlák kimaradnak a számból.
+4. A **Megnyitás** a szám mögötti listára visz.
+5. A **Zárás állapota** megmondja, zárható-e a hónap, és a gomb alatt szavakban azt is, mi hiányzik még.
+
 Két dolgot érdemes tudni:
 
 - **A fizetetlen számla nem akadályozza a hónap zárását.** Hónap végén egy ki nem fizetett szállítói vagy vevői számla nyitott tétel, amely átkerül a következő hónapba, nem pedig hiba a hónap könyvelésében. A **Problémás számlák rendezve** ellenőrzés ezért nem számolja azokat a számlákat, amelyeknek egyetlen problémája, hogy még nincsenek kifizetve. A banki oldalnak viszont teljesnek kell lennie: a **Minden tranzakció rendezve** megköveteli, hogy a hónap minden banki tranzakciója párosítva vagy megmagyarázva legyen.
