@@ -8,7 +8,7 @@ Az ügyfelek és a könyvelők ugyanazt a listát látják, így sosem kérdés,
 
 Az oldal munkaterületenként kapcsolható be, és addig ki van kapcsolva, amíg a könyvelőiroda nem kéri tőlünk. Ha nincs bekapcsolva, a menüpont egyszerűen nincs ott az oldalsávban, a cím pedig visszaviszi a munkaterület áttekintésére.
 
-A munkaterületen mindenki látja, azok a tagok is, akik a számlákat és a banki tranzakciókat nem láthatják.
+A munkaterületen mindenki látja, azok a tagok is, akik a számlákat és a banki tranzakciókat nem láthatják. Amíg van nyitott tétel, az oldalsáv menüpontján a nyitott tételek száma is látszik, így az oldal megnyitása nélkül is kiderül, hogy vár-e valami.
 
 ## Miért jelenik meg egy tétel
 
@@ -28,7 +28,7 @@ Ez az oldal ráadásul nem ugyanaz a szám, amelyet a könyvelő a munkaterület
 
 ## Mit mutat egy kártya
 
-A partnert, az összeget, és hogy mióta vár. Alatta a tranzakció közleményét vagy a számla sorszámát.
+A partnert, az összeget, és hogy mióta vár; az aznap bekerült tételen napszám helyett az áll, hogy **ma kértük**. Alatta a tranzakció közleménye vagy a számla sorszáma, mellette a könyvelési dátum. Könyvelőknek a partnernév és ez a sor hivatkozás, amely magára a tételre mutat.
 
 Két részlet, amit érdemes tudni. Egy kifizetés összege **előjelesen** látszik, tehát a kimenő pénz mínuszt kap, míg egy számla összege előjel nélkül jelenik meg. Egy olyan **NAV-ból** kártyán pedig, amely sosem volt kifizetés, **nincs dátum**, mert a kártya dátuma a banki tranzakcióból származik.
 
@@ -40,9 +40,11 @@ A lista egy oldalon mutatja az összes nyitott tételt, a legrégebbivel kezdve.
 
 ## Feltöltés közvetlenül a tételhez
 
-Minden kártyán van egy **Feltöltés** gomb. Ezt használja az általános feltöltés helyett: a fájl megjelölve kapcsolódik ahhoz a tételhez, amelyre válaszol, és épp ez mondja meg a könyvelőnek, miért érkezett.
+Minden kártyán van egy **Feltöltés** gomb. Ezt használja az általános feltöltés helyett: a fájl megjelölve kapcsolódik ahhoz a tételhez, amelyre válaszol, és épp ez mondja meg a könyvelőnek, miért érkezett. PDF vagy fotó megfelel, legfeljebb 50 MB méretig; a túl nagy fájlt az oldal azonnal, még a küldés előtt visszautasítja.
 
-Innentől pontosan ugyanazon a beolvasáson és párosításon megy át, mint bármely más feltöltés, tehát nem azonnali és nem garantált. A kártya akkor tűnik el, amikor a munka valóban a helyére kerül:
+Amint a fájl beérkezett, a gomb helyén a **Feltöltve, feldolgozás alatt.** felirat áll, a kártyán pedig megjelenik: „A könyvelőd párosítja ehhez a tételhez.” Ezt az állapotot a szerver tárolja, nem a böngészője, így az oldal újratöltése után is megmarad.
+
+A fájl innentől pontosan ugyanazon a beolvasáson és párosításon megy át, mint bármely más feltöltés, tehát nem azonnali és nem garantált. A kártya akkor tűnik el, amikor a munka valóban a helyére kerül:
 
 - **egy kifizetés kártyája** akkor, ha a dokumentumot beolvastuk és megerősítettük az adott kifizetéshez;
 - **egy NAV-ból kártya** akkor, ha a dokumentum az adott NAV-számlához csatolva van.
@@ -53,7 +55,7 @@ Ha egy vásárláshoz több oldal vagy fotó tartozik, lehetőség szerint egy f
 
 ## Ha nincs számla
 
-Egyes kifizetésekhez valóban nem tartozik számla: banki díj, adóbefizetés, óvadék. Ezeken a kártyákon a **Nincs hozzá számla** rögzíti a válaszát, és továbbadja a könyvelőnek, aki megerősíti és lezárja a tételt.
+Egyes kifizetésekhez valóban nem tartozik számla: banki díj, adóbefizetés, óvadék. Ezeken a kártyákon a **Feltöltés** mellett ott a **Nincs hozzá számla**: ez rögzíti a válaszát, és továbbadja a könyvelőnek, aki megerősíti és lezárja a tételt.
 
 A gomb csak a kifizetéses kártyákon van. Egy **NAV-ból** kártyán soha, mert a NAV-bejelentés bizonyítja, hogy a számla létezik.
 
@@ -73,10 +75,11 @@ A **Fiók → Értesítések** alatt, az ügyfelekkel folytatott beszélgetések
 
 ## Könyvelőknek
 
-Minden kártyán két további vezérlő jelenik meg annak, akinél a „Banki tranzakciók szerkesztése” jogosultság megvan; ez jogosultság, nem beosztás: egy ügyféloldali tag is megkapja, ha a szerepköre tartalmazza. Lásd: [Szerepek és jogosultságok](/roles-and-permissions).
+Minden kártyán egy további vezérlő jelenik meg annak, akinél a „Banki tranzakciók szerkesztése” jogosultság megvan; ez jogosultság, nem beosztás: egy ügyféloldali tag is megkapja, ha a szerepköre tartalmazza. Lásd: [Szerepek és jogosultságok](/roles-and-permissions). Ez a **További műveletek** menü, a **Feltöltés** melletti ··· gomb, benne három művelettel.
 
-- A **Ne kérjük ezt** visszavonja a kérést. A tétel lekerül az ügyfél oldaláról, és többé nem kérjük: az oldalról nincs mód visszatenni. Az automatikus üzenet előzményként az üzenetszálon marad, a visszavonásról pedig rögzül, hogy ki és mikor tette.
-- A **Megjegyzés** rövid magyarázatot fűz a kártyához, amely az ügyfél kártyáján megjelenik; hasznos, ha meg szeretné mondani az ügyfélnek, hol keresse.
+- A **Nincs hozzá számla** ugyanaz a válasz, amelyet az ügyfél is megadhat, és csak a kifizetéses kártyákon van ott.
+- A **Megjegyzés** rövid magyarázatot fűz a kártyához, amely az ügyfél kártyáján **A könyvelőd üzenete:** felirattal jelenik meg; hasznos, ha meg szeretné mondani az ügyfélnek, hol keresse. A saját kártyáján ugyanez **Megjegyzésed az ügyfélnek:** felirattal látszik.
+- A **Ne kérjük ezt** visszavonja a kérést, egy megerősítő kérdés után: **Ne kérjük ezt a bizonylatot?** A tétel lekerül az ügyfél oldaláról, e-mail sem kéri, az automatikus üzenet előzményként az üzenetszálon marad, a visszavonásról pedig rögzül, hogy ki és mikor tette. Az oldalon nincs vezérlő a visszatételére; ha a dokumentum mégis kell, a kérés később újra megnyitható.
 
 A kérések maguktól nyílnak és záródnak. Innen semmi nem kerül be a zárási ellenőrzőlistába vagy a **Teendők** közé, tehát az üres oldal nem jele annak, hogy a hónap kész van.
 
