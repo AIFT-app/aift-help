@@ -49,8 +49,6 @@ A few consequences of that table:
 - **Transaction types have no direct route at all.** The deterministic layer there is the separate pattern list on the transaction type itself, not these examples.
 - **VAT examples supply one element out of five.** The rate and the calculation method still have to come from somewhere, so the AI is always called. What gets replayed is the **group**, not the resolved code, deliberately, so a code learned before a rate change is not applied after it.
 
-> **Hand-added VAT examples do not work yet.** You can create one, it is stored, and it appears in the list, but the AI never reads it. Correcting an example the system learned by itself does work. We are fixing the hand-added case.
-
 Custom category lists are **not** a fifth surface. Corrections there are recorded but nothing reads them.
 
 ## Reading The List
