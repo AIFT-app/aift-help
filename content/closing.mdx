@@ -1,0 +1,68 @@
+# Monthly Closing
+
+**Closing** is where you check a client's month and sign it off. AIFT runs sixteen checks on the month, you tick your own manual checklist, and when nothing blocking is left you close the month. Closing freezes a snapshot of the checks; you can reopen the month later with a reason.
+
+Closing is on the accountant side only and needs the **"Close periods"** permission. Accountants and accountant admins have it by default. Without it, **Closing** is not in the sidebar and the Closing pages are not available (see [Roles and permissions](/roles-and-permissions)).
+
+## Which month it opens on
+
+The card at the top of **Closing** names the **latest month that has ended and is not closed yet**. In October that is September: a monthly VAT filer in Hungary files the September return by 20 October, so September is the month you are working on. When every ended month is closed, the card says **No month to close.**
+
+The month list under it starts at the line **Closing starts:**, under the page title. By default that is the month the workspace was created in, so a new client does not show years of empty months. Click **Change** to pick an earlier first month to close, for example when you take over a client mid-year and want to close the months before you joined. **Reset to default** goes back to the creation month. Months that were already closed stay listed whatever you choose.
+
+The current month is listed too, marked **month still running**: you can look at it, but it is not the month the card offers.
+
+**Mission control** names the same month: its **Closing** row and the **Closing backlog** tile read the same rule.
+
+## The checks
+
+Open a month from the list, or click **Continue closing** on the card. The page measures everything on the **delivery date** of invoices and the booking date of bank transactions.
+
+**To do** comes first. It lists only the checks that are failing: **Blocking** ones first, then **Advisory** ones. Each row shows the number with its unit (for example "96 invoices"), one line that says what the check found, and **Open**, which takes you to the list behind the number.
+
+**Checks** lists the rest, one line each. A tick means the check passes. **Not applicable** means the check does not apply to this workspace, and the line under it says why: there is no bank account, no NAV connection, no VAT code set up, or the AI work behind the check (categorization or VAT coding) is switched off for this workspace.
+
+Two things worth knowing:
+
+- **An unpaid invoice does not block the month.** At month end an unpaid supplier or customer invoice is an open item that carries into the next month, not a fault in the month's books. **Problem invoices resolved** therefore does not count invoices whose only problem is that they are not paid yet. The bank side still has to be complete: **All transactions resolved** requires every bank transaction of the month to be matched or explained.
+- **Advisory checks never block.** You acknowledge them when you close.
+
+### Where "Open" takes you
+
+| Check | Opens |
+|---|---|
+| Statements cover the period, Statement balances reconcile | The **Statements** tab, showing only the statements of that month |
+| Problem invoices resolved | The invoice list, showing exactly the invoices the check counted |
+| Transactions categorized | The transaction list on the **Uncategorized** filter |
+| No pending match suggestions | **Matching**, with the pending list showing only that month's suggestions |
+| NAV Online Számla synced | The **Connections** tab of the company whose sync is behind |
+| The export checks | The **RLB** export page for the month |
+
+A narrowed list shows a label above it that names the month, with **Clear filter** next to it. On Matching this is the only time the pending list is narrowed: opened any other way it always shows every pending suggestion (see [Focused Period](/focused-period)).
+
+The invoice filter shows at most 200 invoices. When the check counted more, a line above the list says how many are shown out of how many.
+
+## Closing the month
+
+The **Closing status** card sits next to the checks on a wide screen, and right under the title on a phone. It says **Not ready to close** or **Ready to close**, counts the blocking checks, the advisories and the manual checklist, and under the **Close period** button it says in words what is still missing.
+
+**Close period** opens a confirmation that restates what you sign: how many checks pass, the manual checklist, and the advisories you acknowledge by name. You can add a **Note (optional)**. **Close** freezes a snapshot of every check. A closed month always shows that snapshot, never a recalculation.
+
+## The manual checklist
+
+The **Manual checklist** holds your office's own month-end steps. Add an item with **Add**, choosing **Every month** or **This month only**. Ticking an item records who ticked it and when. Every item must be ticked before the month can close.
+
+Removing an item asks first. An **Every month** item leaves the checklist of every open and future month; closed months keep their snapshot unchanged. A **This month only** item leaves this month only.
+
+## After the close
+
+Invoices or bank transactions that arrive after the close but belong to the closed month are listed on that month as **Late arrivals**, and the month list marks the month. The snapshot does not change.
+
+To change a closed month, click **Reopen** and give a reason. The reason is required and kept: the month then shows who reopened it, when, and why, also after you close it again.
+
+## Related
+
+- [Focused Period](/focused-period): opening a month in Closing sets the sidebar's focused period
+- [Invoice Matching](/invoice-matching)
+- [Uploading Bank Statements](/bank-statement-upload)
+- [Roles and permissions](/roles-and-permissions)
