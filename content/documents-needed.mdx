@@ -8,7 +8,7 @@ Both clients and accountants see the same list, so there is never a question abo
 
 The page is switched on per workspace, and off until your accounting firm asks us for it. If it is not on, the entry is simply not in the sidebar and the address takes you back to the workspace overview.
 
-Everyone in the workspace can see it, including members who cannot see invoices and bank transactions.
+Everyone in the workspace can see it, including members who cannot see invoices and bank transactions. While anything is open, the page's entry in the sidebar carries the number of open items, so a glance tells you whether something is waiting without opening the page.
 
 ## Why An Item Appears
 
@@ -28,7 +28,7 @@ This page is also not the same number your accountant sees as missing documents 
 
 ## What A Card Shows
 
-The partner, the amount, and how long it has been waiting. Underneath, the transaction's reference or the invoice number.
+The partner, the amount, and how long it has been waiting; an item added today says **asked today** instead of a day count. Underneath, the transaction's reference or the invoice number, with the booking date next to it. For accountants, the partner name and that line are links to the record itself.
 
 Two details worth knowing. A payment's amount is shown **signed**, so money out carries a minus, while an invoice's amount is shown without one. And a **From NAV** card that was never a payment has **no date on it**, because the date on a card comes from the bank transaction.
 
@@ -40,9 +40,11 @@ The list shows everything open, oldest first, on one page. There is no search, n
 
 ## Uploading Against The Record
 
-Every card has an **Upload** button. Use it rather than a general upload: the file is tagged with the item it answers, which is what tells your accountant why it arrived.
+Every card has an **Upload** button. Use it rather than a general upload: the file is tagged with the item it answers, which is what tells your accountant why it arrived. A PDF or a photo up to 50 MB works; a file that does not fit is refused on the spot, before anything is sent.
 
-It then goes through exactly the same reading and matching as any other upload, so it is not instant and it is not guaranteed. The card clears when the work actually lands:
+Once the file has arrived, the button's place shows **Uploaded, processing.** and the card gains the line "Your accountant will match it to this item." That state is stored on the server, not in your browser, so it is still there after a reload.
+
+The file then goes through exactly the same reading and matching as any other upload, so it is not instant and it is not guaranteed. The card clears when the work actually lands:
 
 - **a payment's card** clears once the document has been read and confirmed against that payment;
 - **a From NAV card** clears once the document is attached to that NAV invoice.
@@ -53,7 +55,7 @@ If one purchase produced several pages or photos, upload them as one file if you
 
 ## When No Invoice Exists
 
-Some payments genuinely have no invoice: a bank fee, a tax payment, a deposit. On those cards, **No invoice exists** records your answer and hands it to your accountant, who confirms it and closes the item.
+Some payments genuinely have no invoice: a bank fee, a tax payment, a deposit. On those cards, **No invoice exists** sits next to **Upload**: it records your answer and hands it to your accountant, who confirms it and closes the item.
 
 The button is only on payment cards. A **From NAV** card never has it, because NAV reporting is proof the invoice exists.
 
@@ -73,10 +75,11 @@ There is a **Missing receipts** row under **Account → Notifications**, in the 
 
 ## For Accountants
 
-Two extra controls appear on each card for anyone holding "Edit bank transactions", which is a permission rather than a job title: a client-side member whose role includes it gets them too. See [Roles and Permissions](/roles-and-permissions).
+One extra control appears on each card for anyone holding "Edit bank transactions", which is a permission rather than a job title: a client-side member whose role includes it gets it too. See [Roles and Permissions](/roles-and-permissions). It is the **More actions** menu, the ··· button next to **Upload**, and it holds three entries.
 
-- **Don't ask for this** withdraws a request. It leaves the client's page, and the item is never asked for again: there is no way to put it back from the page. The automatic message stays in the thread as history, and the withdrawal records who did it and when.
-- **Add note** attaches a short explanation that renders on the client's card, useful for telling the client where to look.
+- **No invoice exists** is the same answer the client can give, on payment cards only.
+- **Add note** attaches a short explanation that renders on the client's card under **Your accountant added:**, useful for telling the client where to look. On your own card the same text reads **Your note to the client:**.
+- **Don't ask for this** withdraws a request, after a confirmation step titled **Stop asking for this receipt?**. The item leaves the client's page, no email will ask for it, the automatic message stays in the thread as history, and the withdrawal records who did it and when. There is no control on this page to put it back; if the document turns out to be needed after all, the request can be reopened later.
 
 Requests open and close on their own. Nothing here feeds the period-closing checklist or Mission Control, so an empty page is not a sign that the month is finished.
 
