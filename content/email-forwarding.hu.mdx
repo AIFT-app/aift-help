@@ -18,7 +18,7 @@ A cím **munkaterületenként** egyedi, nem cégenként vagy személyenként, é
 
 ### Ki küldhet rá
 
-**Bárki, aki ismeri a címet.** Nincs engedélyezett feladókat tartalmazó lista. Az egyetlen ellenőrzés az, hogy a küldő tartomány átmegy-e a saját hitelesítésén, ami azt bizonyítja, hogy a levél valóban arról a tartományról érkezett, nem pedig azt, hogy a feladó bárki is volna.
+**Bárki, aki ismeri a címet.** Nincs engedélyezett feladókat tartalmazó lista. A rendszer csak akkor utasítja el az e-mailt, ha a küldő tartomány kifejezetten **elbukik** a saját hitelesítésén (SPF vagy DKIM), ami hamisított feladóra utal. Ha a tartomány semmilyen hitelesítési eredményt nem ad, az e-mailt a rendszer elfogadja, és **Nem ellenőrzött feladó** jelzéssel látja el. A hitelesítés azt bizonyítja, hogy a levél valóban arról a tartományról érkezett, azt nem, hogy a feladó egy bizonyos személy.
 
 Így a cím maga a titok. Ezért áll nyolc véletlenszerű karakterből a cégneve helyett: senki nem tudja kitalálni, és egyetlen címből senki nem tudja kikövetkeztetni a többi munkaterülete címét. Úgy kezelje, ahogy egy privát feltöltési hivatkozást kezelne. Ossza meg azokkal a személyekkel és számlázási rendszerekkel, amelyeknek dokumentumokat kell Önnek küldeniük, ennél szélesebb körben viszont ne.
 
@@ -38,7 +38,7 @@ Elfogadott mellékletek: **PDF, PNG, JPEG, WEBP és HEIC**, valamint **Excel-, W
 
 Az Excel-, Word- és CSV-fájlokat a rendszer soha nem olvassa be számlaként. Alátámasztó dokumentumként őrzi meg őket, például a számlával együtt küldött munkaidő-kimutatást: lásd lent, [Számlák és alátámasztó dokumentumaik](#számlák-és-alátámasztó-dokumentumaik).
 
-**Minden mást némán eldob.** Például egy `.txt` mellékletet figyelmeztetés nélkül elvet, az e-mail pedig továbbra is késznek látszik, csak alacsonyabb melléklet-darabszámmal. A látható darabszám azt mutatja, mi maradt meg, nem azt, mit küldtek, tehát ha egy szám alacsonynak tűnik, valamit eldobott a rendszer.
+**Minden mást a rendszer nem dolgoz fel, és ezt az e-mailen jelzi.** Egy `.txt` mellékletet például nem olvas be: ha megnyitja az e-mailt, a fel nem dolgozott mellékletek között látja, az okkal együtt. A listában látható darabszám azt mutatja, mi maradt meg, nem azt, mit küldtek.
 
 Korlátok: mellékletenként 10 MB, e-mailenként 20 melléklet, a teljes e-mailre 25 MB, és munkaterületenként naponta 200 e-mail.
 
@@ -46,8 +46,9 @@ Két dolog, amin sokan fennakadnak:
 
 - **Az e-mail törzsébe beillesztett számla elvész.** A törzset a rendszer eltárolja, és el tudja olvasni az e-mailen, de sosem kezeli dokumentumként. Dokumentumnak csak a mellékletek számítanak.
 - **A 10 KB alatti képeket a rendszer aláírásként és logóként eldobja.** Egy nyugtáról készült apró képernyőkép így tud eltűnni. A levélbe ágyazott nagyobb képeket a rendszer ugyanúgy beolvassa, mint bármely mellékletet.
+- **A letöltési link nem melléklet.** Egyes számlázó szolgáltatások, például a Billingo, a PDF helyett „Számla letöltése” gombot küldenek. Az ilyen e-mail **Nincs mit feldolgozni** állapotú lesz. Töltse le a számlát, és továbbítsa mellékletként, vagy töltse fel a Dokumentumok oldalon.
 
-> **Az iPhone-fotók figyelmet igényelnek.** A HEIC-fotót a postafiók elfogadja, majd a beolvasása elhasal, a dokumentum **Sikertelen** állapotban marad, az e-mail pedig beragad **Feldolgozás** állapotban. Ahol teheti, az eredeti PDF-et küldje, vagy állítsa a telefonját JPEG-fotókra.
+> **Az iPhone-fotók figyelmet igényelnek.** A HEIC-fotót a postafiók elfogadja, de beolvasni nem tudja: a dokumentum **Sikertelen** állapotú lesz az okkal együtt, és az e-mail is. Ahol teheti, az eredeti PDF-et küldje, vagy állítsa a telefonját JPEG-fotókra.
 
 Ugyanazt a fájlt kétszer továbbítani nem kerül semmibe: a második példányt a rendszer a tartalma alapján felismeri, duplikátumként megjelöli, és soha nem dolgozza fel újra.
 
@@ -98,14 +99,14 @@ Bármelyikük megtekintéséhez a „Számlák és banki tranzakciók megtekint�
 | **Feldolgozás** | Még olvasás alatt |
 | **Sikertelen** | Valami hiba történt az e-mail kezelése közben |
 | **Visszavont cím** | Visszavont aliasra küldve |
-| **Hitelesítés sikertelen** | A küldő tartományt nem sikerült ellenőrizni |
+| **Hitelesítés sikertelen** | A küldő tartomány elbukott a saját hitelesítésén (SPF vagy DKIM) |
 | **Túl nagy** | A 25 MB-os korlát felett |
 | **Korlátozva** | Naponta több mint 200 e-mail |
 | **Próbaidőszaki keret betelt** | A levéllel nem volt baj, a próbacsomag dokumentumkerete utasította el |
 | **Több dokumentum** | Egyetlen PDF több dokumentumot tartalmazott |
-| **Nincs melléklet** | Nincs beolvasható támogatott tartalom |
+| **Nincs mit feldolgozni** | Nincs melléklet, vagy egyik sem olvasható be |
 
-A **Nincs melléklet** figyelmes olvasást érdemel: azt jelenti, hogy nincs *támogatott* melléklet. Egy csak `.txt` fájlt hordozó e-mail így jelenik meg.
+A **Nincs mit feldolgozni** két esetet fed le: az e-mailnek nincs melléklete (például egy letöltési linket tartalmazó e-mail), vagy minden melléklete nem támogatott típusú. Nyissa meg: az okot és a fájlokat ott látja.
 
 **Az elgépelt cím semmilyen nyomot nem hagy.** A nem létező címre küldött levelet a rendszer sor, visszapattanó levél és hibaüzenet nélkül eldobja. Ha továbbított valamit, és a Gyűjtő üres, először a címet ellenőrizze.
 
@@ -116,12 +117,13 @@ Nyissa meg egy e-mail sorát, hogy lássa a mellékleteit és a törzsét.
 - **Egy mellékletet nem sikerült menteni.** A darabszám borostyánsárgára vált, és szalagcím jelzi. Töltse fel azt a fájlt kézzel a Számlák oldalról. A könyvelők a nyers e-mailt is letölthetik, hogy pontosan lássák, mi érkezett.
 - **Egy PDF több dokumentumot tartalmazott.** A rendszer **Több dokumentum** jelöléssel látja el, és semmit nem nyer ki belőle. Bontsa számlánként egy dokumentumra, és továbbítsa a darabokat.
 - **Az alkalmazás nem volt biztos abban, mi a fájl.** Az **Áttekintés szükséges** alá kerül a legjobb tippjével. Nyissa meg, és az újraosztályozás vezérlővel állítsa be a helyes típust: **Számla**, **Bankkivonat**, **Nyugta**, **Sztornó számla**, **Szerződés** vagy **Egyéb**. Ezt bármelyik tag megteheti, és a javítás megtanítja az alkalmazást az adott feladó tartományára.
+- **Egy fájlt nem sikerült beolvasni.** **Sikertelen** jelzést kap, mellette érthetően az ok, például jelszóval védett PDF vagy nem támogatott fájltípus. Javítsa a fájlt, majd továbbítsa vagy töltse fel újra.
 
 ## Tippek
 
 - **Az eredetit továbbítsa.** A szállító PDF-jéből sokkal jobban kinyerhetők az adatok, mint egy képernyőről készült fotóból, és így a HEIC-probléma is teljesen elkerülhető.
 - **Ideális az e-mailenként egy számla**, de több támogatott melléklet is rendben van egyetlen e-mailen: mindegyikből saját dokumentum lesz.
-- **Ellenőrizze a mellékletek számát**, miután valami szokatlant továbbított. Ez a leggyorsabb módja annak, hogy észrevegye, ha a rendszer némán eldobott egy fájlt.
+- **Nyissa meg az e-mailt**, miután valami szokatlant továbbított. A fel nem dolgozott mellékleteket ott látja, az okkal együtt.
 - **Tartsa félig privátban az elsődleges címet**, és csak ott igényeljen egyéni aliast, ahol egy szállító rendszere rákényszeríti.
 
 ## Kapcsolódó cikkek

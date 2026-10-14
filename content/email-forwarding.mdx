@@ -18,7 +18,7 @@ The address is **per workspace**, not per company or per person, and it cannot b
 
 ### Who can send to it
 
-**Anyone who knows the address.** There is no list of permitted senders. The only check is that the sending domain passes its own authentication, which proves the mail really came from that domain, not that the person is anyone in particular.
+**Anyone who knows the address.** There is no list of permitted senders. An email is turned away only when its sending domain explicitly **fails** its own authentication (SPF or DKIM), which points to a forged sender. An email whose domain gives no authentication result at all is accepted and marked **Sender not verified**. Authentication proves the mail came from that domain, not that the person is anyone in particular.
 
 So the address is the secret. That is why it is eight random characters rather than your company name: nobody can guess it, and nobody can work out your other workspaces' addresses from one of them. Treat it the way you would treat a private upload link. Share it with the people and the billing systems that should be sending you documents, and not more widely.
 
@@ -38,7 +38,7 @@ Accepted attachments: **PDF, PNG, JPEG, WEBP and HEIC**, plus **Excel, Word and 
 
 Excel, Word and CSV files are never read as invoices. They are kept as supporting documents, such as a timesheet sent with an invoice: see [Invoices and their supporting documents](#invoices-and-their-supporting-documents) below.
 
-**Everything else is dropped silently.** A `.txt` attachment, for example, is discarded with no warning, and the email still shows as completed with a lower attachment count. The count you see is what was kept, not what was sent, so if a number looks low, something was dropped.
+**Everything else is not processed, and the email says so.** A `.txt` attachment, for example, is not read: open the email and it is listed under the attachments that were not processed, with the reason. The count in the list is what was kept, not what was sent.
 
 Limits: 10 MB per attachment, 20 attachments per email, 25 MB for the whole email, and 200 emails per workspace per day.
 
@@ -46,8 +46,9 @@ Two things that catch people out:
 
 - **An invoice pasted into the email body is lost.** The body is stored and you can read it on the email, but it is never treated as a document. Only attachments are.
 - **Images under 10 KB are dropped as signatures and logos.** A small screenshot of a receipt can disappear this way. Larger images embedded in the message are ingested like any attachment.
+- **A download link is not an attachment.** Some invoicing services, such as Billingo, email a "download invoice" button instead of the PDF. That email shows **Nothing to process**. Download the invoice and forward it as an attachment, or upload it on the Documents page.
 
-> **iPhone photos need care.** A HEIC photo is accepted by the mailbox and then fails when it is read, leaving the document as **Failed** and the email stuck on **Processing**. Send the original PDF where you can, or set your phone to take photos in JPEG.
+> **iPhone photos need care.** A HEIC photo is accepted by the mailbox but cannot be read: the document shows **Failed** with the reason, and so does the email. Send the original PDF where you can, or set your phone to take photos in JPEG.
 
 Forwarding the same file twice costs nothing: the second copy is recognised by its contents, marked as a duplicate and never processed again.
 
@@ -98,14 +99,14 @@ Seeing any of it needs the "View invoices and bank transactions" permission. A m
 | **Processing** | Still being read |
 | **Failed** | Something went wrong handling the email |
 | **Retired address** | Sent to an alias that was retired |
-| **Auth failed** | The sending domain could not be verified |
+| **Auth failed** | The sending domain failed its own authentication (SPF or DKIM) |
 | **Too large** | Over the 25 MB limit |
 | **Rate limited** | More than 200 emails in a day |
 | **Trial limit reached** | The mail was fine; the trial plan's document allowance refused it |
 | **Multi-document** | One PDF held several documents |
-| **No attachments** | Nothing supported to ingest |
+| **Nothing to process** | No attachment, or none that could be read |
 
-**No attachments** is worth reading carefully: it means no *supported* attachments. An email carrying only a `.txt` file shows up this way.
+**Nothing to process** covers two cases: an email with no attachment (a download-link email, for example) and one whose attachments are all unsupported. Open it: the reason and the files are listed.
 
 **A typo in the address leaves no trace at all.** Mail to an address that does not exist is dropped without a row, without a bounce and without an error. If you forwarded something and Intake is empty, check the address first.
 
@@ -116,12 +117,13 @@ Open an email's row to see its attachments and the body.
 - **An attachment could not be saved.** The count turns amber with a banner saying so. Upload that file manually from the Invoices page. Accountants can also download the raw email to see exactly what arrived.
 - **A PDF held several documents.** It is flagged **Multi-document** and nothing is extracted from it. Split it into one document per invoice and forward the pieces.
 - **The app was not sure what a file was.** It lands under **Needs review** with its best guess. Open it and use the reclassify control to set the right type: **Invoice**, **Bank statement**, **Receipt**, **Credit note**, **Contract** or **Other**. Any member can do this, and correcting it teaches the app for that sender's domain.
+- **A file could not be read.** It shows **Failed** with the reason in plain words, for example a password-protected PDF or an unsupported file type. Fix the file, then forward or upload it again.
 
 ## Tips
 
 - **Forward the original.** The supplier's PDF extracts far better than a photo of a screen, and it avoids the HEIC problem entirely.
 - **One invoice per email is ideal**, but several supported attachments on one email are fine: each becomes its own document.
-- **Check the attachment count** after forwarding something unusual. It is the quickest way to notice that a file was silently dropped.
+- **Open the email** after forwarding something unusual. Attachments that were not processed are listed there with the reason.
 - **Keep the primary address semi-private**, and claim a custom alias only where a supplier's system forces you to.
 
 ## Related
