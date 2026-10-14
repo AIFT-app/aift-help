@@ -44,6 +44,8 @@ If anyone changes the amount, one of the dates, the partner, the company, or any
 
 That is deliberate. Bookkeeping approval is a statement about what goes into the export. If the data changed, the earlier approval was about a different invoice.
 
+The **filing approval** is withdrawn the same way when the amount, the issue, delivery or due date, the partner, the company, the currency or the direction changes, and also when the extraction flags an already filed invoice **needs review** again. Filing says the document was read correctly, and a new low-confidence reading contradicts that. So the invoice goes back to the filing queue, where approving it also clears the flag.
+
 For the same reason, the automatic overnight re-categorisation **leaves bookkeeping-approved invoices alone**. If an accountant explicitly asks for a re-run, it runs and withdraws the approval. That is correct: they asked for it.
 
 ## Chaining
