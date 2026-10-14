@@ -4,11 +4,11 @@ Payment approvals let a client company decide, invoice by invoice, whether a sup
 
 ## Switching it on
 
-Open the client workspace, go to **Settings**, then **Approval rules** (the page itself is titled **Approvals**), and switch **Payment approvals are switched on**. Only people holding "Manage approvals" see this page.
+Open the client workspace, go to **Settings**, then **Approval rules** (the page itself is titled **Approvals**), and switch on **Payment approvals** (the text beside the switch then reads **On**). Only people holding "Manage approvals" see this page.
 
 The switch is the **second** block on that page. The first is **Checkpoints**, which is a different subject: filing and bookkeeping approval, covered in [Filing and Bookkeeping Approval](/filing-and-bookkeeping-approval).
 
-Set up the rules and the approvers first, and switch approvals on last. The rules, the descriptions and the fallback can all be edited while approvals are off, and switching on admits every unpaid supplier invoice at once, oldest due date first.
+Set up the rules and the approvers first, and switch approvals on last. The rules, the descriptions and the fallback can all be edited while approvals are off, and switching on starts admitting every unpaid supplier invoice within minutes, oldest due date first.
 
 What starts an approval? A supplier invoice enters the flow as soon as it is booked: the extraction and the AI categorisation have finished, it is an expense, it is open or partially paid, and it is not a duplicate or rejected. An invoice without line items enters 15 minutes after it arrived. Where a checkpoint gates payment, the invoice also needs that approval first: with **Filing before payment** on, a filing decision; with **Bookkeeping before payment** on, a bookkeeping one. Invoices that existed before the checkpoint's start date are exempt, and switching a checkpoint on never pulls an invoice back out of the payment queue. The system checks once a minute, so a new invoice usually reaches its approver within a minute or two, and approvers see their queue under **Approvals** in the sidebar. Invoices that were already paid are left alone.
 
@@ -30,7 +30,7 @@ By default the accountant admin and the finance lead hold all three, and the **F
 
 Settings reads in the order the flow runs: switch it on, say who may approve, say what goes to whom, then say what their queue looks like.
 
-**Payment approvals** is the switch above. **Approvers** lists everyone who holds "Approve invoices for payment", with a description of what each of them decides. Each approver takes one line: the name, the first line of the description and **Edit**. Someone with "Manage approvals" clicks **Edit** to write the description (up to 600 characters, saved when you leave the field). When nobody holds the permission, an amber warning says so.
+**Payment approvals** is the switch above. **Approvers** lists everyone who holds "Approve invoices for payment", with a description of what each of them decides. Each approver takes one line: the name with the email address under it, the first line of the description and **Edit**. Someone with "Manage approvals" clicks **Edit** to write the description (up to 600 characters, saved when you leave the field). When nobody holds the permission, an amber warning says so.
 
 **Routing** holds the rules, and directly beneath them, **When no rule matches**:
 
@@ -98,11 +98,11 @@ The AI picks the person whose description covers the invoice, or nobody when no 
 
 The **Overview** page is for whoever manages approvals: its link sits at the top right of **Approvals**, and only someone with the right to manage approvals sees it. Approvers land on their own desk instead. Its header has a **Routing rules** button, which opens the settings page, and, for anyone holding "Export payment file", a **Payment file** button.
 
-A table at the top shows each step on one line: **Filing**, **Bookkeeping** and **Payment**, with how many invoices are in the queue, how many are blocked and how many were sent back or declined. A checkpoint row appears only when that checkpoint is switched on **and you hold its own permission**, so a manager who does not decide filing or bookkeeping themselves sees the Payment row alone. Under it, the page answers two questions, in that order.
+A table at the top shows each step on one line: **Filing**, **Bookkeeping** and **Payment**, with how many invoices are in the queue and two counts of what needs attention: blocked and sent back for a checkpoint, unassigned and declined for Payment. A checkpoint row appears only when that checkpoint is switched on **and you hold its own permission**, so a manager who does not decide filing or bookkeeping themselves sees the Payment row alone. Under it, the page answers two questions, in that order.
 
 **Needs you** is one list of everything waiting on you: invoices no rule placed, invoices an approver declined, and proposed rules. Overdue first, each with an amber edge, and each with its own buttons: **Assign** an approver, **Reopen** a declined invoice, **Mark not required**, or accept a proposed rule. When there are more than 10 rows, **Show all** opens the rest and **Open the unassigned list** opens the full list of unassigned invoices.
 
-**In flight** is not your work, it is the answer to "is anything stuck": one row per approver with how many invoices are waiting, how many are overdue, and how long the oldest has been with them. A click on a name opens the list of everything awaiting approval, where you can reassign an invoice. Underneath, approved and unpaid, with the total per currency and a link to the payment file.
+**In flight** is not your work, it is the answer to "is anything stuck": one row per approver with how many invoices are waiting, how many are overdue, and how long the oldest has been with them. A click on a name opens the list of everything awaiting approval, where you can reassign an invoice. Underneath, approved and unpaid, with the total per currency and, for someone who may export payment files, a link to them.
 
 Above both, two figures: the money in the flow, and the median time to a decision over the last 30 days. At the very foot of the page, under **In flight**, a line says how many invoices are held because the extraction flagged them "needs review".
 

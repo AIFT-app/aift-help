@@ -4,11 +4,11 @@ Mit Zahlungsfreigaben entscheidet ein Kundenunternehmen Rechnung für Rechnung, 
 
 ## Einschalten
 
-Öffnen Sie den Arbeitsbereich des Kunden, gehen Sie zu **Einstellungen**, dann **Freigaberegeln** (die Seite selbst heißt **Freigaben**), und schalten Sie **Die Zahlungsfreigabe ist eingeschaltet** ein. Diese Seite sehen nur Personen mit „Freigaben verwalten“.
+Öffnen Sie den Arbeitsbereich des Kunden, gehen Sie zu **Einstellungen**, dann **Freigaberegeln** (die Seite selbst heißt **Freigaben**), und schalten Sie **Zahlungsfreigabe** ein (neben dem Schalter steht dann **Eingeschaltet**). Diese Seite sehen nur Personen mit „Freigaben verwalten“.
 
 Der Schalter ist der **zweite** Block auf dieser Seite. Der erste ist **Prüfschritte**, ein anderes Thema: die Erfassungs- und Buchungsfreigabe, beschrieben in [Erfassungs- und Buchungsfreigabe](/filing-and-bookkeeping-approval).
 
-Richten Sie zuerst die Regeln und die Freigeber ein und schalten Sie die Freigabe zuletzt ein. Regeln, Beschreibungen und der Standard-Freigeber lassen sich auch im ausgeschalteten Zustand bearbeiten, und das Einschalten lässt alle unbezahlten Lieferantenrechnungen auf einmal herein, die mit dem frühesten Fälligkeitsdatum zuerst.
+Richten Sie zuerst die Regeln und die Freigeber ein und schalten Sie die Freigabe zuletzt ein. Regeln, Beschreibungen und der Standard-Freigeber lassen sich auch im ausgeschalteten Zustand bearbeiten, und nach dem Einschalten kommen alle unbezahlten Lieferantenrechnungen innerhalb weniger Minuten herein, die mit dem frühesten Fälligkeitsdatum zuerst.
 
 Was startet eine Freigabe? Eine Lieferantenrechnung tritt in den Ablauf ein, sobald sie gebucht ist: Extraktion und KI-Kategorisierung sind abgeschlossen, sie ist eine Ausgabe, sie ist offen oder teilweise bezahlt, und sie ist kein Duplikat und nicht abgelehnt. Eine Rechnung ohne Positionen tritt 15 Minuten nach ihrem Eingang ein. Wo ein Prüfschritt die Zahlung absichert, braucht die Rechnung zuerst auch diese Freigabe: bei eingeschaltetem **Erfassung vor Zahlung** eine Erfassungsentscheidung, bei eingeschaltetem **Buchung vor Zahlung** eine Buchungsentscheidung. Rechnungen, die vor dem Startdatum des Prüfschritts schon vorhanden waren, sind ausgenommen, und das Einschalten eines Prüfschritts holt eine Rechnung nie wieder aus der Zahlungs-Warteschlange heraus. Das System prüft einmal pro Minute, sodass eine neue Rechnung ihren Freigeber meist innerhalb von ein bis zwei Minuten erreicht; die Freigeber sehen ihre Liste unter **Freigaben** in der Seitenleiste. Bereits bezahlte Rechnungen bleiben unberührt.
 
@@ -30,7 +30,7 @@ Standardmäßig haben der Buchhalter-Admin und die Finanzleitung alle drei, und 
 
 Die Einstellungen folgen der Reihenfolge des Ablaufs: einschalten, festlegen, wer freigeben darf, festlegen, was an wen geht, und dann, wie deren Liste aussieht.
 
-**Zahlungsfreigabe** ist der Schalter oben. **Freigeber** listet alle, die „Rechnungen zur Zahlung freigeben“ haben, mit einer Beschreibung, worüber jede Person entscheidet. Jede Person steht in einer Zeile: der Name, die erste Zeile der Beschreibung und **Bearbeiten**. Die Beschreibung schreibt jemand mit „Freigaben verwalten“ über **Bearbeiten** (höchstens 600 Zeichen, gespeichert beim Verlassen des Feldes). Hat niemand die Berechtigung, weist ein gelber Hinweis darauf hin.
+**Zahlungsfreigabe** ist der Schalter oben. **Freigeber** listet alle, die „Rechnungen zur Zahlung freigeben“ haben, mit einer Beschreibung, worüber jede Person entscheidet. Jede Person steht in einer Zeile: der Name mit der E-Mail-Adresse darunter, die erste Zeile der Beschreibung und **Bearbeiten**. Die Beschreibung schreibt jemand mit „Freigaben verwalten“ über **Bearbeiten** (höchstens 600 Zeichen, gespeichert beim Verlassen des Feldes). Hat niemand die Berechtigung, weist ein gelber Hinweis darauf hin.
 
 **Zuordnung** enthält die Regeln und direkt darunter **Wenn keine Regel greift**:
 
@@ -98,11 +98,11 @@ Die KI wählt die Person, deren Beschreibung die Rechnung abdeckt, oder niemande
 
 Die Seite **Übersicht** ist für die Person, die Freigaben verwaltet: Ihr Link steht oben rechts unter **Freigaben**, und nur wer Freigaben verwalten darf, sieht ihn. Freigebende landen stattdessen auf ihrem eigenen Schreibtisch. Ihre Kopfzeile hat die Schaltfläche **Zuordnungsregeln**, die die Einstellungsseite öffnet, und, für alle mit „Zahlungsdatei exportieren“, die Schaltfläche **Zahlungsdatei**.
 
-Eine Tabelle oben zeigt jeden Schritt in einer Zeile: **Erfassung**, **Buchung** und **Zahlung**, mit der Zahl der Rechnungen in der Warteschlange, der blockierten und der zurückgegebenen oder abgelehnten. Die Zeile eines Prüfschritts erscheint nur, wenn dieser Prüfschritt eingeschaltet ist **und Sie dessen eigene Berechtigung haben**; wer Erfassung oder Buchung also nicht selbst entscheidet, sieht allein die Zeile Zahlung. Darunter beantwortet die Seite zwei Fragen, in dieser Reihenfolge.
+Eine Tabelle oben zeigt jeden Schritt in einer Zeile: **Erfassung**, **Buchung** und **Zahlung**, mit der Zahl der Rechnungen in der Warteschlange und zwei Zahlen zu dem, was Aufmerksamkeit braucht: bei einem Prüfschritt blockiert und zurückgegeben, bei Zahlung nicht zugewiesen und abgelehnt. Die Zeile eines Prüfschritts erscheint nur, wenn dieser Prüfschritt eingeschaltet ist **und Sie dessen eigene Berechtigung haben**; wer Erfassung oder Buchung also nicht selbst entscheidet, sieht allein die Zeile Zahlung. Darunter beantwortet die Seite zwei Fragen, in dieser Reihenfolge.
 
 **Braucht Sie** ist eine Liste von allem, was auf Sie wartet: Rechnungen, die keine Regel zugeordnet hat, Rechnungen, die ein Freigeber abgelehnt hat, und vorgeschlagene Regeln. Überfällige zuerst, jede mit einem gelben Rand und eigenen Schaltflächen: **Zuweisen** an einen Freigeber, **Erneut öffnen** bei einer abgelehnten Rechnung, **Keine Freigabe nötig**, oder eine vorgeschlagene Regel annehmen. Bei mehr als 10 Zeilen öffnet **Alle anzeigen** den Rest, und **Nicht zugewiesene öffnen** öffnet die vollständige Liste der nicht zugewiesenen Rechnungen.
 
-**Im Ablauf** ist nicht Ihre Arbeit, sondern die Antwort auf „hängt etwas fest“: eine Zeile pro Freigeber mit der Anzahl wartender und überfälliger Rechnungen und wie lange die älteste schon dort liegt. Ein Klick auf einen Namen öffnet die Liste aller Rechnungen, die auf Freigabe warten, wo Sie eine Rechnung neu zuweisen können. Darunter freigegeben und unbezahlt, mit der Summe je Währung und einem Link zur Zahlungsdatei.
+**Im Ablauf** ist nicht Ihre Arbeit, sondern die Antwort auf „hängt etwas fest“: eine Zeile pro Freigeber mit der Anzahl wartender und überfälliger Rechnungen und wie lange die älteste schon dort liegt. Ein Klick auf einen Namen öffnet die Liste aller Rechnungen, die auf Freigabe warten, wo Sie eine Rechnung neu zuweisen können. Darunter freigegeben und unbezahlt, mit der Summe je Währung und, für Personen, die Zahldateien erstellen dürfen, einem Link dorthin.
 
 Über beiden stehen zwei Zahlen: das Geld im Ablauf und die mittlere Zeit bis zur Entscheidung in den letzten 30 Tagen. Ganz unten auf der Seite, unter **Im Ablauf**, sagt eine Zeile, wie viele Rechnungen zurückgehalten werden, weil die Extraktion sie als „prüfen“ markiert hat.
 

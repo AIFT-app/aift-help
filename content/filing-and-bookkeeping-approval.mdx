@@ -14,7 +14,7 @@ The third one, payment approval, means something else entirely: that the invoice
 
 Open the workspace, go to **Settings**, then **Approval rules**. The **Checkpoints** section is at the top. Only people holding "Manage approvals" see this page.
 
-The switch does not turn on straight away. A dialog asks for a start date and tells you how many invoices will go into the queue and how many older ones stay out. That is deliberate: a larger workspace holds tens of thousands of older invoices, and letting them all in at once would create a queue nobody would ever work through.
+The switch does not turn on straight away. A dialog asks for a start date and tells you how many invoices will go into the queue and how many older ones stay out. That is deliberate: a larger workspace can hold close to twenty thousand older invoices, and letting them all in at once would create a queue nobody would ever work through.
 
 **The start date is final.** Invoices before it never enter the queue, not even later. If you want them, switch the checkpoint off and on again with an earlier date.
 
@@ -22,9 +22,9 @@ The switch does not turn on straight away. A dialog asks for a start date and te
 
 Approvers find their queue under **Approvals** in the sidebar. The **Filing** and **Bookkeeping** tabs appear only for someone who holds that permission in a workspace where the checkpoint is on.
 
-Every invoice is a card with its partner, summary and gross amount, and amber markers for whatever is still open on that invoice: a missing VAT code, an uncategorised line, extracted data to check. You can work the queue without opening each invoice. To look at one, click its summary: the invoice opens in a preview over the queue, where **Approve** (when nothing is blocking) and **Return** work as on the card. See [Approving invoices for payment](/approving-invoices#looking-at-an-invoice-without-leaving-the-list).
+Every invoice is a card with its partner, summary and gross amount, and amber markers for whatever is still open on that invoice: a missing VAT code, an uncategorised line, extracted data to check. You can work the queue without opening each invoice. To look at one, click its partner name at the top of the card: the invoice opens in a preview over the queue, where **Approve** (when nothing is blocking) and **Return** work as on the card. See [Approving invoices for payment](/approving-invoices#looking-at-an-invoice-without-leaving-the-list).
 
-Three filters sit above the list:
+Above the list, **All** shows every invoice with the total, and three filters split it:
 
 - **Ready**: nothing open, it can be approved.
 - **Blocked**: something open is refusing the approval.
@@ -50,7 +50,7 @@ For the same reason, the automatic overnight re-categorisation **leaves bookkeep
 
 ## Chaining
 
-Two more switches appear once filing is on:
+Two more switches appear: the first once filing is on, the second once filing and bookkeeping are both on.
 
 - **Filing before payment**: an invoice with no filing approval never reaches a payment approver.
 - **Filing before bookkeeping**: bookkeeping approval waits for filing approval.
@@ -90,7 +90,7 @@ The **Due-soon reminder** is for payment only: filing and bookkeeping have no du
 
 ## Permissions
 
-Two new permissions under **Settings**, **Team**:
+Two new permissions under **Settings**, **Team management**:
 
 - **Approve filing**: can be given to a client-side member, because the client's finance admin usually does the filing.
 - **Approve bookkeeping**: firm side only. A client-side member cannot certify the coding.
