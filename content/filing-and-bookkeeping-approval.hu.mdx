@@ -14,7 +14,7 @@ A harmadik, a kifizetés jóváhagyása, egészen mást jelent: azt, hogy a szá
 
 Nyissa meg a munkaterületet, lépjen a **Beállítások**, majd a **Jóváhagyási szabályok** menüpontra. Legfelül találja a **Jóváhagyási lépések** szakaszt. Ezt az oldalt csak a „Jóváhagyások kezelése” joggal rendelkezők látják.
 
-A kapcsoló nem azonnal kapcsol be. Megnyílik egy ablak, amely egy kezdő dátumot kér, és megmondja, hány számla kerül a listára és hány marad ki. Ez szándékos: egy nagyobb munkaterületen több tízezer korábbi számla van, és ezek egyszerre a listára engedve olyan sort hoznának létre, amit senki nem dolgozna fel.
+A kapcsoló nem azonnal kapcsol be. Megnyílik egy ablak, amely egy kezdő dátumot kér, és megmondja, hány számla kerül a listára és hány marad ki. Ez szándékos: egy nagyobb munkaterületen közel húszezer korábbi számla is lehet, és ezek egyszerre a listára engedve olyan sort hoznának létre, amit senki nem dolgozna fel.
 
 **A kezdő dátum végleges.** Az annál korábbi számlák soha nem kerülnek a listára, később sem. Ha korábbról is szeretné őket, kapcsolja ki a lépést, és kapcsolja be újra egy korábbi dátummal.
 
@@ -22,9 +22,9 @@ A kapcsoló nem azonnal kapcsol be. Megnyílik egy ablak, amely egy kezdő dátu
 
 A jóváhagyók az oldalsáv **Jóváhagyások** menüpontja alatt találják a listájukat. Az **Iktatás** és a **Könyvelés** fül csak annak jelenik meg, aki az adott joggal rendelkezik és akinél a lépés be van kapcsolva.
 
-Minden számla egy kártya a partnerrel, az összefoglalóval és a bruttó összeggel, és sárga jelölők mutatják, mi van még nyitva a számlán: hiányzó áfakód, kategorizálatlan sor, ellenőrizendő kinyert adat. Így a listát anélkül is végig lehet nézni, hogy minden számlát megnyitna. Ha mégis megnézne egyet, kattintson az összefoglalójára: a számla előnézetben nyílik meg a lista fölött, ahol a **Jóváhagyom** (ha semmi sem akadályozza) és a **Visszaküldöm** ugyanúgy működik, mint a kártyán. Lásd: [Számlák jóváhagyása kifizetésre](/approving-invoices#számla-megtekintése-a-lista-elhagyása-nélkül).
+Minden számla egy kártya a partnerrel, az összefoglalóval és a bruttó összeggel, és sárga jelölők mutatják, mi van még nyitva a számlán: hiányzó áfakód, kategorizálatlan sor, ellenőrizendő kinyert adat. Így a listát anélkül is végig lehet nézni, hogy minden számlát megnyitna. Ha mégis megnézne egyet, kattintson a kártya tetején a partner nevére: a számla előnézetben nyílik meg a lista fölött, ahol a **Jóváhagyom** (ha semmi sem akadályozza) és a **Visszaküldöm** ugyanúgy működik, mint a kártyán. Lásd: [Számlák jóváhagyása kifizetésre](/approving-invoices#számla-megtekintése-a-lista-elhagyása-nélkül).
 
-A lista tetején három szűrő:
+A lista tetején a **Mind** az összes számlát mutatja a teljes számmal, és három szűrő bontja szét:
 
 - **Kész**: nincs nyitott akadály, jóváhagyható.
 - **Akadályozott**: van olyan nyitott tétel, ami megakadályozza a jóváhagyást.
@@ -44,11 +44,13 @@ Ha egy jóváhagyott számlán bárki módosítja az összeget, valamelyik dátu
 
 Ez szándékos. A könyvelési jóváhagyás arról szól, hogy mi kerül az exportba. Ha az adat megváltozott, a korábbi jóváhagyás már nem arról a számláról szól.
 
+Az **iktatási jóváhagyás** ugyanígy visszavonódik, ha az összeg, a kiállítás, a teljesítés vagy a fizetési határidő dátuma, a partner, a cég, a pénznem vagy az irány megváltozik, és akkor is, ha a kinyerés egy már iktatott számlát újra **„ellenőrizendőnek”** jelöl. Az iktatás azt igazolja, hogy a számlát helyesen olvastuk ki, és egy új, bizonytalan kiolvasás ennek ellentmond. Ezért a számla visszakerül az iktatási listára, ahol a jóváhagyás a jelölést is leveszi róla.
+
 Ugyanezért az automatikus, éjszakai újrakategorizálás **nem nyúl** a könyvelésileg jóváhagyott számlákhoz. Ha egy könyvelő kifejezetten kér újrakategorizálást, az lefut, és a jóváhagyást visszavonja. Ez így helyes: ő kérte.
 
 ## Láncolás
 
-Két további kapcsoló jelenik meg, miután bekapcsolta az iktatást:
+Két további kapcsoló jelenik meg: az első, miután bekapcsolta az iktatást, a második, ha az iktatás és a könyvelés is be van kapcsolva.
 
 - **Iktatás a kifizetés előtt**: iktatási jóváhagyás nélkül a számla nem kerül a kifizetés jóváhagyójához.
 - **Iktatás a könyvelés előtt**: a könyvelési jóváhagyás megvárja az iktatásit.
@@ -88,7 +90,7 @@ A **Határidő-emlékeztető** csak a kifizetésre vonatkozik: az iktatásnak é
 
 ## Jogosultságok
 
-Két új jogosultság a **Beállítások**, **Csapat** alatt:
+Két új jogosultság a **Beállítások**, **Csapatkezelés** alatt:
 
 - **Iktatási jóváhagyás**: adható ügyféloldali tagnak is, mert jellemzően az ügyfél pénzügyi adminisztrátora iktat.
 - **Könyvelési jóváhagyás**: csak irodai oldalon adható. Ügyféloldali tag nem igazolhatja a könyvelési adatokat.

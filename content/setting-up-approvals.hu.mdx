@@ -4,11 +4,11 @@ A kifizetések jóváhagyásával egy ügyfélcég számláról számlára eldö
 
 ## Bekapcsolás
 
-Nyissa meg az ügyfél munkaterületét, lépjen a **Beállítások**, majd a **Jóváhagyási szabályok** menüpontra (maga az oldal a **Jóváhagyások** címet viseli), és kapcsolja be **A kifizetések jóváhagyása be van kapcsolva** kapcsolót. Ezt az oldalt csak a „Jóváhagyások kezelése” joggal rendelkezők látják.
+Nyissa meg az ügyfél munkaterületét, lépjen a **Beállítások**, majd a **Jóváhagyási szabályok** menüpontra (maga az oldal a **Jóváhagyások** címet viseli), és kapcsolja be a **Kifizetések jóváhagyása** kapcsolót (mellette ekkor a **Bekapcsolva** felirat áll). Ezt az oldalt csak a „Jóváhagyások kezelése” joggal rendelkezők látják.
 
 Ez a kapcsoló az oldal **második** blokkja. Az első a **Jóváhagyási lépések**, amely más témáról szól: az iktatási és könyvelési jóváhagyásról, erről lásd: [Iktatási és könyvelési jóváhagyás](/filing-and-bookkeeping-approval).
 
-Először állítsa be a szabályokat és a jóváhagyókat, a jóváhagyást pedig utoljára kapcsolja be. A szabályok, a leírások és az alapértelmezett jóváhagyó kikapcsolt állapotban is szerkeszthetők, a bekapcsolás pedig egyszerre beenged minden kifizetetlen szállítói számlát, a legkorábbi fizetési határidővel kezdve.
+Először állítsa be a szabályokat és a jóváhagyókat, a jóváhagyást pedig utoljára kapcsolja be. A szabályok, a leírások és az alapértelmezett jóváhagyó kikapcsolt állapotban is szerkeszthetők, a bekapcsolás után pedig percek alatt bekerül minden kifizetetlen szállítói számla, a legkorábbi fizetési határidővel kezdve.
 
 Mi indít el egy jóváhagyást? Egy szállítói számla abban a pillanatban lép be a folyamatba, amikor le van könyvelve: befejeződött a kinyerés és az AI kategorizálás, kiadás, nyitott vagy részben fizetett, és nem duplikáció vagy elutasított. A számlatételek nélküli számla 15 perccel az érkezése után lép be. Ahol egy jóváhagyási lépés kapuzza a kifizetést, a számlának előbb azt a jóváhagyást is meg kell kapnia: bekapcsolt **Iktatás a kifizetés előtt** mellett egy iktatási döntést, bekapcsolt **Könyvelés a kifizetés előtt** mellett egy könyvelésit. A jóváhagyási lépés kezdődátuma előtt már meglévő számlák kivételt képeznek, és egy jóváhagyási lépés bekapcsolása soha nem vesz ki egy számlát a kifizetési sorból. A rendszer percenként ellenőriz, így egy új számla általában egy-két percen belül eljut a jóváhagyójához, a jóváhagyók pedig az oldalsáv **Jóváhagyások** menüpontja alatt látják a listájukat. A már kifizetett számlákhoz nem nyúl.
 
@@ -30,7 +30,7 @@ Alapértelmezés szerint a könyvelő admin és a pénzügyi vezető rendelkezik
 
 A beállítások abban a sorrendben követik egymást, ahogy a folyamat fut: bekapcsolás, ki hagyhat jóvá, mi kihez kerül, végül milyen a listájuk.
 
-A **Kifizetések jóváhagyása** a fenti kapcsoló. A **Jóváhagyók** mindenkit felsorol, akinek megvan a „Számlák jóváhagyása kifizetésre” jogosultsága, egy leírással arról, ki miről dönt. Minden jóváhagyó egy sort kap: a nevét, a leírás első sorát és a **Szerkesztés** gombot. A leírást a „Jóváhagyások kezelése” joggal rendelkező a **Szerkesztés** gombbal írja meg (legfeljebb 600 karakter, a mezőből kilépve mentődik). Ha senkinek nincs meg a jogosultság, egy borostyánsárga figyelmeztetés jelzi.
+A **Kifizetések jóváhagyása** a fenti kapcsoló. A **Jóváhagyók** mindenkit felsorol, akinek megvan a „Számlák jóváhagyása kifizetésre” jogosultsága, egy leírással arról, ki miről dönt. Minden jóváhagyó egy sort kap: a nevét, alatta az e-mail-címét, a leírás első sorát és a **Szerkesztés** gombot. A leírást a „Jóváhagyások kezelése” joggal rendelkező a **Szerkesztés** gombbal írja meg (legfeljebb 600 karakter, a mezőből kilépve mentődik). Ha senkinek nincs meg a jogosultság, egy borostyánsárga figyelmeztetés jelzi.
 
 Az **Irányítás** tartalmazza a szabályokat, közvetlenül alattuk pedig a **Ha egyetlen szabály sem illeszkedik** részt:
 
@@ -44,7 +44,7 @@ Az **Irányítás** tartalmazza a szabályokat, közvetlenül alattuk pedig a **
 - **A kiosztatlan számlákat minden jóváhagyó látja**: kikapcsolva csak a „Jóváhagyások kezelése” joggal rendelkezők látják és döntik el a kiosztatlan számlákat; másnak egyik listában sem jelennek meg.
 - **A kinyerés által „ellenőrizendő” számlák**: **Visszatartás az ellenőrzésig** (az alapértelmezés: a visszatartott számlák nem hagyhatók jóvá, amíg a könyvelő nem ellenőrzi a kinyerést), vagy **Megjelenítés figyelmeztetéssel**.
 
-A fenti **„ellenőrizendő”** sor eltűnik, amint az iktatási jóváhagyást bekapcsolják, mert onnantól az iktatási lépés dönti el, mi jut el a kifizetési sorba. Amire utoljára állították, az továbbra is érvényes.
+Ha az iktatási jóváhagyás be van kapcsolva, a fenti **„ellenőrizendő”** sor megmarad, de csak azokra a számlákra vonatkozik, amelyek nem várnak iktatásra. Az iktatásra váró számlát a beállítás nem tartja vissza: azon **Iktatásra vár** látszik, mert az iktatás ugyanezt ellenőrzi, és a számla kifizetésre amúgy sem hagyható jóvá iktatás előtt. Minden más megjelölt számlát továbbra is ez a beállítás tart vissza: a kezdő dátum előtt létrejötteket, és bármelyiket, ha az **Iktatás a kifizetés előtt** ki van kapcsolva.
 
 ## Szabályok
 
@@ -98,11 +98,11 @@ Az AI azt a személyt választja, akinek a leírása lefedi a számlát, vagy se
 
 Az **Áttekintés** oldal a jóváhagyások kezelőjének szól: a linkje a **Jóváhagyások** jobb felső sarkában van, és csak az látja, akinek joga van kezelni a jóváhagyásokat. A jóváhagyók a saját asztalukra érkeznek. A fejlécében a **Szabályok** gomb a beállítások oldalt nyitja meg, mellette pedig az „Utalási fájl exportálása” joggal rendelkezőknek az **Utalási fájl** gomb.
 
-A tetején egy táblázat soronként mutatja a lépéseket: **Iktatás**, **Könyvelés** és **Kifizetés**, azzal, hány számla van a sorban, hány akadályozott, és hányat küldtek vissza vagy utasítottak el. Egy jóváhagyási lépés sora csak akkor jelenik meg, ha az a lépés be van kapcsolva, **és Önnek megvan a hozzá tartozó jogosultsága**, így az a kezelő, aki maga nem dönt iktatásról vagy könyvelésről, egyedül a Kifizetés sort látja. Alatta az oldal két kérdésre válaszol, ebben a sorrendben.
+A tetején egy táblázat soronként mutatja a lépéseket: **Iktatás**, **Könyvelés** és **Kifizetés**, azzal, hány számla van a sorban, és két számmal arról, mire kell figyelni: egy jóváhagyási lépésnél az akadályozott és a visszaküldött, a Kifizetésnél a kiosztatlan és az elutasított számlák számával. Egy jóváhagyási lépés sora csak akkor jelenik meg, ha az a lépés be van kapcsolva, **és Önnek megvan a hozzá tartozó jogosultsága**, így az a kezelő, aki maga nem dönt iktatásról vagy könyvelésről, egyedül a Kifizetés sort látja. Alatta az oldal két kérdésre válaszol, ebben a sorrendben.
 
 A **Rád vár** egyetlen lista mindarról, ami Önre vár: a szabály nélkül maradt számlák, a jóváhagyó által elutasított számlák és a javasolt szabályok. Elöl a lejártak, mindegyik borostyánsárga szegéllyel és saját gombokkal: **Kiosztás** egy jóváhagyónak, **Újranyitás** egy elutasított számlánál, **Nem kell jóváhagyás**, vagy egy javasolt szabály elfogadása. Ha 10-nél több sor van, a megjelenítés gomb a többit is megnyitja, a **Kiosztatlanok megnyitása** pedig a kiosztatlan számlák teljes listáját.
 
-A **Folyamatban lévők** nem az Ön munkája, hanem a válasz arra, hogy „elakadt-e valami”: jóváhagyónként egy sor azzal, hány számla vár, hány lejárt, és mióta van nála a legrégebbi. Egy névre kattintva megnyílik minden jóváhagyásra váró számla listája, ahol egy számlát másnak oszthat ki. Alatta a jóváhagyott, de kifizetetlen számlák, pénznemenkénti összeggel és az utalási fájlra mutató hivatkozással.
+A **Folyamatban lévők** nem az Ön munkája, hanem a válasz arra, hogy „elakadt-e valami”: jóváhagyónként egy sor azzal, hány számla vár, hány lejárt, és mióta van nála a legrégebbi. Egy névre kattintva megnyílik minden jóváhagyásra váró számla listája, ahol egy számlát másnak oszthat ki. Alatta a jóváhagyott, de kifizetetlen számlák, pénznemenkénti összeggel, és annak, aki utalási fájlt készíthet, az utalásokra mutató hivatkozással.
 
 Mindkettő felett két szám áll: a folyamatban lévő összeg, és az utolsó 30 nap döntési idejének mediánja. Az oldal legalján, a **Folyamatban lévők** alatt egy sor mutatja, hány számlát tart vissza a könyvelő, mert a kinyerés „ellenőrizendőnek” jelölte.
 
