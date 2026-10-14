@@ -44,7 +44,7 @@ Settings reads in the order the flow runs: switch it on, say who may approve, sa
 - **Unassigned invoices are visible to every approver**: when off, only people with "Manage approvals" see and decide unrouted invoices; they appear in no list for anyone else.
 - **Invoices flagged "needs review" by extraction**: **Hold until reviewed** (the default: held invoices cannot be approved until the accountant checks the extraction), or **Show with a warning**.
 
-The **needs review** row above disappears once filing approval is switched on, because the filing checkpoint then decides what reaches the payment queue. Whatever it was last set to keeps applying.
+With filing approval switched on, the **needs review** row stays, and it applies only to invoices that are not waiting for filing. An invoice waiting for filing shows **Waiting for filing** instead of being held, because filing checks the same thing and the invoice cannot be approved for payment before filing anyway. Every other flagged invoice is still held by this setting: one created before the filing start date, or any invoice when **Filing before payment** is off.
 
 ## Rules
 
