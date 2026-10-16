@@ -31,7 +31,7 @@ Every workspace has a setting at **Settings ▸ AI & data** that decides where A
 
 | Option | Where it runs | Who can see the request |
 |---|---|---|
-| **European Union** (default) | AWS Bedrock, Frankfurt region | Nobody. Bedrock stores no inputs or outputs and passes nothing to the model provider. |
+| **European Union** (default) | AWS Bedrock, EU regions only (requests enter through Frankfurt) | Nobody. Bedrock stores no inputs or outputs and passes nothing to the model provider. |
 | **United States** | Anthropic's own API | Anthropic receives the request and may keep it for up to 30 days for abuse monitoring. It is never used for training. |
 
 New workspaces start on the European Union option. An **office administrator** can change it; everyone else in the workspace, including client users, can see which one is in force.
