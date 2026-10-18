@@ -192,6 +192,10 @@ Jede Rechnung wird im Moment der Übergabe erneut geprüft, mit den Berechtigung
 
 Eine Rechnung, die bereits dort liegt, verlässt die Zahl der übergabebereiten, und der Bildschirm nennt, wie viele Ihrer Auswahl schon in Business Central sind.
 
+### Eine Rechnung erneut senden
+
+Eine Rechnung, die bereits in Business Central liegt, lässt sich von ihrer eigenen Seite erneut senden: Registerkarte **Zuordnung & Zahlung**, Schaltfläche **Erneut an Business Central senden** unter der Business-Central-Karte. Das ist für den Fall gedacht, dass der erste Entwurf unvollständig hinaufging, etwa weil die USt-Zuordnung erst danach vervollständigt wurde. Die Schaltfläche sendet nicht sofort: AI Finance Team fragt zuerst Business Central, was aus dem angelegten Beleg geworden ist, und tut nur, was die Antwort erlaubt. Ist der Beleg noch ein **Entwurf**, wird er gelöscht und aus der Rechnung in ihrem jetzigen Stand ein neuer angelegt (mit der AIFT-Kennung als Nummer, wenn diese Einstellung eingeschaltet ist); was an diesem Entwurf in Business Central von Hand geändert wurde, geht verloren, und die Bestätigung sagt das. Ist er **gebucht**, wird nichts gesendet: Eine gebuchte Rechnung wird in Business Central korrigiert, mit einer Gutschrift oder einer Korrektur. Ist er **nicht mehr vorhanden**, geht die Rechnung als neue hinauf. Tragen **mehrere** Belege die Lieferantenrechnungsnummer, oder ist Business Central nicht erreichbar, ändert sich nichts, und der Bildschirm sagt, warum. Der abgelöste Beleg bleibt in der Registerkarte **Verlauf** der Rechnung, sodass zwei „gesendet“-Zeilen an einer Rechnung sich selbst erklären, und das PDF geht mit dem neuen Beleg erneut hinauf.
+
 ### Das PDF
 
 Das eigene PDF der Rechnung geht als Anhang des Entwurfs hoch, in dessen Infobox **Anhänge**. Beim Buchen übernimmt Business Central es in die gebuchte Rechnung.

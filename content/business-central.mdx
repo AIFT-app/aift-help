@@ -192,6 +192,10 @@ Each invoice is checked again at the moment it is sent, with the permissions of 
 
 An invoice already up there leaves the sendable count, and the screen says how many of your selection are already in Business Central.
 
+### Sending an invoice again
+
+An invoice that is already in Business Central can be sent again from its own page: the **Matching & payment** tab, the **Send again to Business Central** button under the Business Central card. It is for the case where the first draft went up with something missing, for example a VAT mapping that was completed only afterwards. Pressing it sends nothing yet: AI Finance Team first asks Business Central what happened to the document it created, and does only what the answer allows. If the document is still a **draft**, it is deleted and a new one is created from the invoice as it is now (with the AIFT id as its number when that setting is on); anything edited by hand on that draft in Business Central is lost, and the confirmation says so. If it has been **posted**, nothing is sent: a posted invoice is corrected in Business Central, with a credit memo or a correction. If it is **no longer there**, the invoice goes up as new. If **several** documents carry the supplier's invoice number, or Business Central cannot be reached, nothing changes and the screen says why. The retired document stays in the invoice's **History** tab, so two "sent" rows on one invoice explain themselves, and the PDF goes up again with the new document.
+
 ### The PDF
 
 The invoice's own PDF goes up as an attachment of the draft, in its **Attachments** box. Business Central copies it to the posted invoice when you post.
