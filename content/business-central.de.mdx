@@ -170,7 +170,7 @@ Eine zurückgemeldete Kreditorennummer erscheint auf der Partnerseite unter dess
 
 **Exporte → Business Central** ist die Stelle, an der Eingangsrechnungen übergeben werden, als Einkaufsrechnungen im Entwurf. Das ist ein anderer Bildschirm als die Kreditorenübertragung, in einem anderen Menü und hinter einer anderen Berechtigung.
 
-Die obere Hälfte ist ein reiner Lesetrichter: wie viele **übergabebereite Rechnungen** es gibt, wie viele **Rechnungen im Zeitraum** liegen und **was die übrigen aufhält**. Neun Dinge können eine Rechnung aufhalten, und gezeigt wird immer nur das zuerst gefundene: keine Firma auf der Rechnung, die Firma nicht zugeordnet, die Stammdaten der Firma nie gelesen, der Partner nicht geprüft, kein Kreditorenstammsatz für diesen Partner in dieser Firma, eine Zeile ohne Kategorie, das Sachkonto der Kategorie fehlt in dieser Firma, keine Rechnungsnummer oder kein Leistungsdatum, und **die Buchhaltungsfreigabe fehlt** (siehe [Erfassungs- und Buchungsfreigabe](/filing-and-bookkeeping-approval)). Jeder Punkt lässt sich zu den dahinterliegenden Rechnungen aufklappen, mit einem Link dorthin, wo sich das beheben lässt. Zwei weitere sind Hinweise und keine Blocker: eine Steuerkombination ohne Zuordnung und eine Währung, die diese Firma nicht führt.
+Die obere Hälfte ist ein reiner Lesetrichter: wie viele **übergabebereite Rechnungen** es gibt, wie viele **Rechnungen im Zeitraum** liegen und **was die übrigen aufhält**. Zehn Dinge können eine Rechnung aufhalten, und gezeigt wird immer nur das zuerst gefundene: keine Firma auf der Rechnung, die Firma nicht zugeordnet, die Stammdaten der Firma nie gelesen, der Partner nicht geprüft, kein Kreditorenstammsatz für diesen Partner in dieser Firma, die Kreditorenkarte des Partners in Business Central gesperrt, eine Zeile ohne Kategorie, das Sachkonto der Kategorie fehlt in dieser Firma, keine Rechnungsnummer oder kein Leistungsdatum, und **die Buchhaltungsfreigabe fehlt** (siehe [Erfassungs- und Buchungsfreigabe](/filing-and-bookkeeping-approval)). Jeder Punkt lässt sich zu den dahinterliegenden Rechnungen aufklappen, mit einem Link dorthin, wo sich das beheben lässt. Zwei weitere sind Hinweise und keine Blocker: eine Steuerkombination ohne Zuordnung und eine Währung, die diese Firma nicht führt.
 
 Nur Eingangsrechnungen kommen infrage, und nie eine doppelte oder archivierte. **Das eigene PDF der Rechnung geht mit** (siehe unten: Das PDF), und ein fehlendes PDF hält eine Übergabe nie auf.
 
@@ -183,12 +183,18 @@ Nur Eingangsrechnungen kommen infrage, und nie eine doppelte oder archivierte. *
 - **Nach drei Fehlern hintereinander hält die Übergabe an** und markiert den Rest als *Nicht übergeben*, damit eine einzige falsche Einstellung nicht den ganzen Stapel verbrennt.
 - Jede Rechnung zeigt ihren Stand: **In der Warteschlange**, **Wird übergeben**, **Angelegt**, **Fehlgeschlagen**, **Wir wissen es nicht** oder **Nicht übergeben**. Eine fehlgeschlagene Zeile zeigt die Worte von Business Central, eine nicht übergebene sagt, warum.
 - Eine abgeschlossene Übergabe bleibt auf dem Bildschirm, auch nach dem Neuladen, bis Sie auf **Schließen** klicken.
+- **Das Buchungsdatum des Entwurfs ist das eigene Buchungsdatum der Rechnung in AI Finance Team**, das **Buchungsdatum** auf der Rechnung. Standardmäßig ist das das Leistungsdatum (**Leistungsdatum** auf der Rechnung); haben Sie es auf der Rechnung geändert, bekommt Business Central das geänderte Datum. Eine Rechnung, die nie ein Buchungsdatum erhalten hat, geht mit ihrem Leistungsdatum.
+- **Hat ein Partner in einer Firma mehrere Kreditorenkarten**, geht die Rechnung auf eine Karte, die Business Central annimmt: zuerst eine mit dem Partner verknüpfte Karte, sonst eine über die Steuernummer passende, immer die mit der niedrigsten Kartennummer, sodass derselbe Partner immer dieselbe Karte bekommt.
 
 Jede Rechnung wird im Moment der Übergabe erneut geprüft, mit den Berechtigungen der Person, die auf **Übergeben** geklickt hat. Eine Rechnung, die während des Wartens blockiert wurde, wird nicht übergeben, und ihre Zeile nennt, was sie aufhält.
 
 **Auf „Wir wissen es nicht“ kommt es an.** Es bedeutet, dass die Anfrage hinausging und die Antwort nicht zurückkam. Legen Sie die Rechnung nicht von Hand erneut an: Business Central weist eine zweite Einkaufsrechnung mit derselben Lieferantenrechnungsnummer **nicht** zurück, eine zweite hinterlässt also zwei Entwürfe für eine Rechnung. AI Finance Team übergibt sie ebenfalls nicht erneut, solange das nicht geklärt ist. Nutzen Sie unter **Fehlersuche** die Schaltfläche **Abgebrochene Übergaben klären**: Das fragt Business Central, was tatsächlich geschehen ist, und sendet selbst nichts.
 
 Eine Rechnung, die bereits dort liegt, verlässt die Zahl der übergabebereiten, und der Bildschirm nennt, wie viele Ihrer Auswahl schon in Business Central sind.
+
+### Eine Rechnung erneut senden
+
+Eine Rechnung, die bereits in Business Central liegt, lässt sich von ihrer eigenen Seite erneut senden: Registerkarte **Zuordnung & Zahlung**, Schaltfläche **Erneut an Business Central senden** unter der Business-Central-Karte. Das ist für den Fall gedacht, dass der erste Entwurf unvollständig hinaufging, etwa weil die USt-Zuordnung erst danach vervollständigt wurde. Die Schaltfläche sendet nicht sofort: AI Finance Team fragt zuerst Business Central, was aus dem angelegten Beleg geworden ist, und tut nur, was die Antwort erlaubt. Ist der Beleg noch ein **Entwurf**, wird er gelöscht und aus der Rechnung in ihrem jetzigen Stand ein neuer angelegt (mit der AIFT-Kennung als Nummer, wenn diese Einstellung eingeschaltet ist); was an diesem Entwurf in Business Central von Hand geändert wurde, geht verloren, und die Bestätigung sagt das. Ist er **gebucht**, wird nichts gesendet: Eine gebuchte Rechnung wird in Business Central korrigiert, mit einer Gutschrift oder einer Korrektur. Ist er **nicht mehr vorhanden**, geht die Rechnung als neue hinauf. Tragen **mehrere** Belege die Lieferantenrechnungsnummer, oder ist Business Central nicht erreichbar, ändert sich nichts, und der Bildschirm sagt, warum. Der abgelöste Beleg bleibt in der Registerkarte **Verlauf** der Rechnung, sodass zwei „gesendet“-Zeilen an einer Rechnung sich selbst erklären, und das PDF geht mit dem neuen Beleg erneut hinauf.
 
 ### Das PDF
 
@@ -234,7 +240,9 @@ Nicht gesendet wird, und der Reiter sagt warum:
 - eine Zahlung, deren Rechnung in Business Central noch nicht gebucht ist, weil eine Zahlung nicht mit einem Entwurf ausgeglichen werden kann;
 - eine Zahlung, deren Rechnung in Business Central bereits ausgeglichen ist: Jemand hat sie schon erfasst, und sie käme doppelt hinein;
 - eine einzelne Überweisung, die mehrere Rechnungen bezahlt: Diese buchen Sie vorerst in Business Central von Hand;
-- eine Buchung, die die Rechnung einer anderen Firma bezahlt, zum Beispiel aus einem Cash Pool.
+- eine Buchung, die die Rechnung einer anderen Firma bezahlt, zum Beispiel aus einem Cash Pool;
+- eine Kreditorenzahlung auf eine Kreditorenkarte, die in Business Central für Zahlungen gesperrt ist (ganz oder nur für Zahlungen);
+- eine Debitorenzahlung auf eine Debitorenkarte, die in Business Central gesperrt ist.
 
 ### Vor der Übergabe
 
