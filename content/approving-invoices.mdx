@@ -4,25 +4,27 @@ If your company uses payment approvals, the supplier invoices that need your yes
 
 ## What you see
 
-**Approvals** opens on your desk: one tile for each list you decide in, showing how many you can decide now, and a short list of what is waiting for you. The **Payment** tile, or the **Payment** tab, opens the payment list. It starts on the invoices due in the next 14 days that are assigned to you, earliest due date first, each on its own card. You do not need to filter anything. The number next to **Approvals** in the sidebar is how many invoices are assigned to you.
+**Approvals** opens on your desk: one tile for each list you decide in, showing how many you can decide now, and a short list of what is waiting for you. The **Payment** tile opens the payment list (on a list page, so does the **Payment** tab). It starts on the invoices assigned to you that are overdue, have no due date, or are due within the next 14 days (your finance admin can change the 14), earliest due date first, each on its own card. You do not need to filter anything. The number next to **Approvals** in the sidebar is how many you can decide now, the numbers on your tiles added up. A payment invoice that still waits for filing or bookkeeping is not counted. The **Payment** tile shows those on a separate line, and they stay in the payment list.
 
 <ApprovalQueueFigure>
 The **Payment** list with four invoices waiting. The numbers match the list below. The companies and amounts are examples.
 </ApprovalQueueFigure>
 
-1. **Views**: switch between **Assigned to me**, **Unassigned** (invoices no rule could place, visible to every approver), **All awaiting** and **Due this week**.
-2. **What you are approving**: the AI's one-line summary of the invoice. Click it to open the invoice in a preview over the list (see [below](#looking-at-an-invoice-without-leaving-the-list)).
-3. **Supplier and invoice ID**: who is asking to be paid, and the invoice's ID in AI Finance Team.
+1. **Views**: switch between **Assigned to me**, **Unassigned** (invoices no rule could place, visible to every approver unless your finance admin switched that off, and then the views are not shown), **All awaiting** and **Due this week**.
+2. **What you are approving**: the AI's one-line summary of the invoice.
+3. **Supplier and invoice ID**: who is asking to be paid, and the invoice's ID in AI Finance Team. Click the supplier's name to open the invoice in a preview over the list (see [below](#looking-at-an-invoice-without-leaving-the-list)).
 4. **Due**: the payment date and how many days are left, or how many days it is overdue. An overdue date is red, and a date within the next 7 days is amber.
-5. **Why you**: at the foot of the card, who holds the invoice and the reason it landed with you. It is a rule your finance admin set up, a pattern learned from where earlier invoices of the same supplier went, the AI's pick, or the fallback approver when nothing else applies.
+5. **Why you**: at the foot of the card, who holds the invoice and the reason it landed with you. It is a rule your finance admin set up, a pattern learned from where earlier invoices of the same supplier went, the AI's pick, the fallback approver when nothing else applies, or a person: **Assigned by** a colleague, or **Handed back by** one.
 6. **Amount**: the gross amount in the invoice's currency.
-7. **Bank account**: where the money will go. A confirmed account shows its number. An amber label means someone has to look before paying: **First time seen** (nobody has confirmed an account for this supplier yet), **Account changed** (the invoice names a different account than the confirmed one), **Several accounts on the invoice** (more than one is printed and none is marked for payment), **Account currency unclear** (the account may not be in the invoice's currency) or **Invalid account**. When the account changed, check it with the supplier on a phone number you already know, not one printed on the invoice. If the account is changed after you approved, the card says what changed, who changed it and when; your approval stands.
+7. **Bank account**: where the money will go. A confirmed account shows its number. An amber label means someone has to look before paying: **First time seen** (nobody has confirmed an account for this supplier yet), **Account changed** (the invoice names a different account than the confirmed one), **Several accounts on the invoice** (more than one is printed and none is marked for payment), **Account currency unclear** (the account may not be in the invoice's currency) or **Invalid account**. When the account changed, check it with the supplier on a phone number you already know, not one printed on the invoice. If the account is changed after you approved, the payment approval panel on the invoice says what changed, who changed it and when. Your approval stands.
 
 ## Approving
 
 Click **Approve** on a card. That is the whole decision. A green **Approved** stamp lands on the card and it leaves the list. AI Finance Team records who approved, when, and exactly which amount to which payee, so a later change to the invoice cannot be mistaken for what you agreed to.
 
 To approve several at once, tick the cards. A bar shows how many you picked and their total in each currency; click **Approve selected**. The confirmation lists every supplier and the totals per currency before anything happens. Approving in bulk is available only if your finance admin left it switched on.
+
+While an invoice still waits for its filing or bookkeeping approval, its card shows **Waiting for filing** (or **Waiting for bookkeeping**) instead of **Approve**, and it cannot be ticked. You can still decline it.
 
 <ApprovalBulkBarFigure>
 Two invoices selected. Different currencies are totalled separately, never converted.
@@ -40,13 +42,13 @@ Declining does not delete or reject the invoice in the books. It only says the p
 
 ## Not mine
 
-If an invoice reached you by mistake, click **Not mine**. It goes back to the finance admin's unrouted tray, and the routing learns from it.
+If an invoice reached you by mistake, click **Not mine**. It goes back to the finance admin's unrouted tray, and the routing forgets where this invoice went. It learns again when the finance admin assigns the invoice to the right person.
 
 ## Looking at an invoice without leaving the list
 
-Click the summary on a card and the invoice opens in a preview over the list. Close the preview and you are back at the same card, with the list as you left it.
+Click the supplier's name on a card and the invoice opens in a preview over the list. Close the preview and you are back at the same card, with the list as you left it.
 
-The preview shows what a decision needs: the amounts and dates, the supplier and your company, the bank account, the invoice lines, the matched payments and where each approval stands. **Document** shows the original invoice. The history, the messages and the booking details stay on the full invoice page.
+The preview shows what a decision needs: the amounts and dates, the supplier and your company, the bank account, the invoice lines, the matched payments and where each approval stands. The original invoice shows beside the details, or under **Document** on a narrow screen. The history, the messages and the booking details stay on the full invoice page.
 
 If the invoice has supporting documents, such as a performance certificate or a timesheet, the preview shows them under **Attachments**, and you can open and download them even if you see only the invoices assigned to you. See [Invoice Attachments](/invoice-attachments).
 
@@ -62,7 +64,7 @@ The invoice links on your desk and on **Decisions** open the same preview, witho
 ## What happens after your decision
 
 <ApprovalLifecycleFigure>
-Each button leads somewhere different. Only an approved invoice moves on to payment; the other two come back for a new decision.
+Each button leads somewhere different. Only an approved invoice moves on to payment. A declined one waits until the finance admin reopens it, and one marked **Not mine** goes back to the finance admin.
 </ApprovalLifecycleFigure>
 
 - **Approved** and **Declined** invoices show the matching pill in the invoice list and on the invoice itself.
@@ -73,9 +75,11 @@ Each button leads somewhere different. Only an approved invoice moves on to paym
 
 Invoices the extraction flagged as doubtful are held by the accountant until the numbers are checked. They are not shown to approvers, so you are never asked to approve a number nobody has verified.
 
+When your company uses filing approval, a flagged invoice that is waiting for filing is the exception: it appears in the payment list labelled **Waiting for filing**, because filing checks the same numbers. You can approve it only after it has been filed.
+
 ## Who can approve
 
-Approving needs the permission "Approve invoices for payment" plus the right to view invoices. By default the finance lead and the accountant admin have it. Your workspace admin can give it to anyone through a role or a per-member exception. See [Roles and Permissions](/roles-and-permissions).
+Approving needs the permission "Approve invoices for payment". Without the right to view invoices, an approver sees only the invoices assigned to them. By default the finance lead and the accountant admin have it. Your workspace admin can give it to anyone through a role or a per-member exception. See [Roles and Permissions](/roles-and-permissions).
 
 ## Emails
 

@@ -4,25 +4,27 @@ Wenn Ihr Unternehmen Zahlungsfreigaben nutzt, warten die Lieferantenrechnungen, 
 
 ## Was Sie sehen
 
-**Freigaben** öffnet mit Ihrem Schreibtisch: eine Kachel für jede Liste, in der Sie entscheiden, mit der Zahl, über die Sie jetzt entscheiden können, und darunter eine kurze Liste dessen, was auf Sie wartet. Die Kachel **Zahlung** oder der Reiter **Zahlung** öffnet die Zahlungsliste. Sie beginnt mit den Rechnungen, die in den nächsten 14 Tagen fällig und Ihnen zugewiesen sind, die früheste Fälligkeit zuerst, jede auf einer eigenen Karte. Sie müssen nichts filtern. Die Zahl neben **Freigaben** in der Seitenleiste zeigt, wie viele Rechnungen Ihnen zugewiesen sind.
+**Freigaben** öffnet mit Ihrem Schreibtisch: eine Kachel für jede Liste, in der Sie entscheiden, mit der Zahl, über die Sie jetzt entscheiden können, und darunter eine kurze Liste dessen, was auf Sie wartet. Die Kachel **Zahlung** öffnet die Zahlungsliste (auf einer Listenseite auch der Reiter **Zahlung**). Sie beginnt mit den Ihnen zugewiesenen Rechnungen, die überfällig sind, kein Fälligkeitsdatum haben oder in den nächsten 14 Tagen fällig werden (die 14 kann Ihr Finanzadmin ändern), die früheste Fälligkeit zuerst, jede auf einer eigenen Karte. Sie müssen nichts filtern. Die Zahl neben **Freigaben** in der Seitenleiste zeigt, worüber Sie jetzt entscheiden können: die Zahlen Ihrer Kacheln zusammengezählt. Zahlungsrechnungen, die noch auf die Erfassung oder die Buchung warten, zählen nicht mit. Die Kachel **Zahlung** zeigt sie in einer eigenen Zeile, und sie bleiben in der Zahlungsliste.
 
 <ApprovalQueueFigure>
 Die Liste **Zahlung** mit vier wartenden Rechnungen. Die Nummern entsprechen der Liste darunter. Unternehmen und Beträge sind Beispiele.
 </ApprovalQueueFigure>
 
-1. **Ansichten**: Wechsel zwischen **Mir zugewiesen**, **Nicht zugewiesen** (Rechnungen, die keine Regel zuordnen konnte, sichtbar für alle Freigeber), **Alle ausstehenden** und **Diese Woche fällig**.
-2. **Was Sie freigeben**: die einzeilige KI-Zusammenfassung der Rechnung. Ein Klick darauf öffnet die Rechnung in einer Vorschau über der Liste (siehe [unten](#eine-rechnung-ansehen-ohne-die-liste-zu-verlassen)).
-3. **Lieferant und Rechnungs-ID**: wer bezahlt werden möchte, und die ID der Rechnung in AI Finance Team.
+1. **Ansichten**: Wechsel zwischen **Mir zugewiesen**, **Nicht zugewiesen** (Rechnungen, die keine Regel zuordnen konnte, sichtbar für alle Freigeber, außer Ihr Finanzadmin hat das ausgeschaltet, dann werden die Ansichten nicht angezeigt), **Alle ausstehenden** und **Diese Woche fällig**.
+2. **Was Sie freigeben**: die einzeilige KI-Zusammenfassung der Rechnung.
+3. **Lieferant und Rechnungs-ID**: wer bezahlt werden möchte, und die ID der Rechnung in AI Finance Team. Ein Klick auf den Namen des Lieferanten öffnet die Rechnung in einer Vorschau über der Liste (siehe [unten](#eine-rechnung-ansehen-ohne-die-liste-zu-verlassen)).
 4. **Fällig**: das Zahlungsdatum und wie viele Tage noch bleiben, oder wie viele Tage es überfällig ist. Ein überfälliges Datum ist rot, eines innerhalb der nächsten 7 Tage bernsteinfarben.
-5. **Warum Sie**: unten auf der Karte, bei wem die Rechnung liegt und warum sie bei Ihnen gelandet ist. Das ist eine Regel Ihres Finanzadmins, ein Muster, gelernt daraus, wohin frühere Rechnungen desselben Lieferanten gingen, die Wahl der KI oder der Standard-Freigeber, wenn nichts anderes passt.
+5. **Warum Sie**: unten auf der Karte, bei wem die Rechnung liegt und warum sie bei Ihnen gelandet ist. Das ist eine Regel Ihres Finanzadmins, ein Muster, gelernt daraus, wohin frühere Rechnungen desselben Lieferanten gingen, die Wahl der KI, der Standard-Freigeber, wenn nichts anderes passt, oder ein Mensch: **Zugewiesen von** einer Kollegin oder einem Kollegen, oder **Zurückgegeben von**.
 6. **Betrag**: der Bruttobetrag in der Währung der Rechnung.
-7. **Bankkonto**: wohin das Geld geht. Ein bestätigtes Konto zeigt seine Nummer. Ein bernsteinfarbenes Etikett heißt, dass vor der Zahlung jemand hinsehen muss: **Zum ersten Mal gesehen** (für diesen Lieferanten hat noch niemand ein Konto bestätigt), **Konto geändert** (die Rechnung nennt ein anderes Konto als das bestätigte), **Mehrere Konten auf der Rechnung** (mehrere sind gedruckt, keines ist für die Zahlung markiert), **Kontowährung unklar** (das Konto wird möglicherweise nicht in der Rechnungswährung geführt) oder **Ungültiges Konto**. Wenn sich das Konto geändert hat, fragen Sie beim Lieferanten unter einer Telefonnummer nach, die Sie bereits kennen, nicht unter der auf der Rechnung. Wird das Konto nach Ihrer Freigabe geändert, nennt die Karte, was sich geändert hat, wer es geändert hat und wann; Ihre Freigabe bleibt bestehen.
+7. **Bankkonto**: wohin das Geld geht. Ein bestätigtes Konto zeigt seine Nummer. Ein bernsteinfarbenes Etikett heißt, dass vor der Zahlung jemand hinsehen muss: **Zum ersten Mal gesehen** (für diesen Lieferanten hat noch niemand ein Konto bestätigt), **Konto geändert** (die Rechnung nennt ein anderes Konto als das bestätigte), **Mehrere Konten auf der Rechnung** (mehrere sind gedruckt, keines ist für die Zahlung markiert), **Kontowährung unklar** (das Konto wird möglicherweise nicht in der Rechnungswährung geführt) oder **Ungültiges Konto**. Wenn sich das Konto geändert hat, fragen Sie beim Lieferanten unter einer Telefonnummer nach, die Sie bereits kennen, nicht unter der auf der Rechnung. Wird das Konto nach Ihrer Freigabe geändert, nennt das Feld Zahlungsfreigabe auf der Rechnung, was sich geändert hat, wer es geändert hat und wann. Ihre Freigabe bleibt bestehen.
 
 ## Freigeben
 
 Klicken Sie auf der Karte auf **Freigeben**. Das ist die ganze Entscheidung. Ein grüner Stempel **Freigegeben** landet auf der Karte, und sie verlässt die Liste. AI Finance Team hält fest, wer wann freigegeben hat und genau welchen Betrag an welchen Empfänger, damit eine spätere Änderung der Rechnung nicht mit dem verwechselt werden kann, dem Sie zugestimmt haben.
 
 Um mehrere auf einmal freizugeben, markieren Sie die Karten. Eine Leiste zeigt, wie viele Sie ausgewählt haben und ihre Summe je Währung; klicken Sie auf **Auswahl freigeben**. Die Bestätigung listet jeden Lieferanten und die Summen je Währung, bevor etwas passiert. Die Sammelfreigabe steht nur zur Verfügung, wenn Ihr Finanzadmin sie eingeschaltet gelassen hat.
+
+Solange eine Rechnung noch auf ihre Erfassungs- oder Buchungsfreigabe wartet, zeigt ihre Karte statt **Freigeben** den Hinweis **Wartet auf Erfassung** (oder **Wartet auf Buchung**), und sie lässt sich nicht ankreuzen. Ablehnen können Sie sie trotzdem.
 
 <ApprovalBulkBarFigure>
 Zwei Rechnungen ausgewählt. Verschiedene Währungen werden getrennt summiert, nie umgerechnet.
@@ -40,13 +42,13 @@ Ablehnen löscht die Rechnung nicht und lehnt sie auch nicht buchhalterisch ab. 
 
 ## Nicht meins
 
-Ist eine Rechnung versehentlich bei Ihnen gelandet, klicken Sie auf **Nicht meins**. Sie geht zurück in die Ablage des Finanzadmins, und die Zuordnung lernt daraus.
+Ist eine Rechnung versehentlich bei Ihnen gelandet, klicken Sie auf **Nicht meins**. Sie geht zurück in die Ablage des Finanzadmins, und die Zuordnung vergisst, wohin diese Rechnung gegangen ist. Sie lernt wieder, wenn der Finanzadmin die Rechnung der richtigen Person zuweist.
 
 ## Eine Rechnung ansehen, ohne die Liste zu verlassen
 
-Klicken Sie auf der Karte auf die Zusammenfassung, und die Rechnung öffnet sich in einer Vorschau über der Liste. Schließen Sie die Vorschau, sind Sie wieder bei derselben Karte, und die Liste ist so, wie Sie sie verlassen haben.
+Klicken Sie auf der Karte auf den Namen des Lieferanten, und die Rechnung öffnet sich in einer Vorschau über der Liste. Schließen Sie die Vorschau, sind Sie wieder bei derselben Karte, und die Liste ist so, wie Sie sie verlassen haben.
 
-Die Vorschau zeigt, was eine Entscheidung braucht: Beträge und Daten, den Lieferanten und Ihr Unternehmen, das Bankkonto, die Rechnungspositionen, die zugeordneten Zahlungen und den Stand jeder Freigabe. **Dokument** zeigt die Originalrechnung. Verlauf, Nachrichten und Buchungsdetails bleiben auf der vollständigen Rechnungsseite.
+Die Vorschau zeigt, was eine Entscheidung braucht: Beträge und Daten, den Lieferanten und Ihr Unternehmen, das Bankkonto, die Rechnungspositionen, die zugeordneten Zahlungen und den Stand jeder Freigabe. Die Originalrechnung steht neben den Angaben, auf einem schmalen Bildschirm unter **Dokument**. Verlauf, Nachrichten und Buchungsdetails bleiben auf der vollständigen Rechnungsseite.
 
 Hat die Rechnung Nachweisdokumente, etwa einen Leistungsnachweis oder einen Stundenzettel, zeigt die Vorschau sie unter **Anhänge**, und Sie können sie öffnen und herunterladen, auch wenn Sie nur die Ihnen zugewiesenen Rechnungen sehen. Siehe [Rechnungsanhänge](/invoice-attachments).
 
@@ -62,7 +64,7 @@ Die Rechnungslinks auf Ihrem Schreibtisch und unter **Entscheidungen** öffnen d
 ## Was nach Ihrer Entscheidung passiert
 
 <ApprovalLifecycleFigure>
-Jede Schaltfläche führt woanders hin. Nur eine freigegebene Rechnung geht weiter zur Zahlung; die anderen beiden kommen für eine neue Entscheidung zurück.
+Jede Schaltfläche führt woanders hin. Nur eine freigegebene Rechnung geht weiter zur Zahlung. Eine abgelehnte wartet, bis der Finanzadmin sie wieder öffnet, und eine mit **Nicht meins** zurückgegebene geht an den Finanzadmin.
 </ApprovalLifecycleFigure>
 
 - **Freigegebene** und **abgelehnte** Rechnungen tragen das passende Kennzeichen in der Rechnungsliste und auf der Rechnung selbst.
@@ -73,9 +75,11 @@ Jede Schaltfläche führt woanders hin. Nur eine freigegebene Rechnung geht weit
 
 Rechnungen, die die Extraktion als zweifelhaft markiert hat, hält die Buchhaltung zurück, bis die Zahlen geprüft sind. Sie werden Freigebern nicht gezeigt, damit Sie nie eine Zahl freigeben sollen, die niemand geprüft hat.
 
+Nutzt Ihr Unternehmen die Erfassungsfreigabe, gilt für eine markierte Rechnung, die auf die Erfassung wartet, eine Ausnahme: Sie erscheint in der Zahlungsliste mit **Wartet auf Erfassung**, denn die Erfassung prüft dieselben Zahlen. Freigeben können Sie sie erst nach der Erfassung.
+
 ## Wer freigeben darf
 
-Freigeben braucht die Berechtigung "Rechnungen zur Zahlung freigeben" sowie das Recht, Rechnungen zu sehen. Standardmäßig haben die Finanzleitung und der Buchhaltungsadmin sie. Ihr Arbeitsbereichsadmin kann sie jedem über eine Rolle oder eine Ausnahme je Mitglied geben. Siehe [Rollen und Berechtigungen](/roles-and-permissions).
+Freigeben braucht die Berechtigung "Rechnungen zur Zahlung freigeben". Ohne das Recht, Rechnungen zu sehen, sieht ein Freigeber nur die ihm zugewiesenen Rechnungen. Standardmäßig haben die Finanzleitung und der Buchhaltungsadmin sie. Ihr Arbeitsbereichsadmin kann sie jedem über eine Rolle oder eine Ausnahme je Mitglied geben. Siehe [Rollen und Berechtigungen](/roles-and-permissions).
 
 ## E-Mails
 
