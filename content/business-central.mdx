@@ -170,7 +170,7 @@ A vendor number that comes back is shown on the partner's page under its AI Fina
 
 **Exports → Business Central** is where expense invoices go up, as draft purchase invoices. It is a different screen from the vendor push, under a different menu, behind a different permission.
 
-The top half is a read-only funnel: how many invoices are **ready to send**, how many are **in the period**, and what stops the rest. Nine things can stop an invoice, and only the first one found is shown: no company on the invoice, the company not paired, the company not read yet, the partner not verified, no vendor card for that partner in that company, a line with no category, the category's ledger account missing from that company, no invoice number or delivery date, and **bookkeeping approval missing** (see [Filing and Bookkeeping Approval](/filing-and-bookkeeping-approval)). Each one expands to the invoices behind it with a link that takes you where it is fixed. Two more are warnings rather than blockers: an unmapped VAT pair, and a currency that company does not hold.
+The top half is a read-only funnel: how many invoices are **ready to send**, how many are **in the period**, and what stops the rest. Ten things can stop an invoice, and only the first one found is shown: no company on the invoice, the company not paired, the company not read yet, the partner not verified, no vendor card for that partner in that company, the partner's vendor card blocked in Business Central, a line with no category, the category's ledger account missing from that company, no invoice number or delivery date, and **bookkeeping approval missing** (see [Filing and Bookkeeping Approval](/filing-and-bookkeeping-approval)). Each one expands to the invoices behind it with a link that takes you where it is fixed. Two more are warnings rather than blockers: an unmapped VAT pair, and a currency that company does not hold.
 
 Only expense invoices are considered, and never a duplicate or an archived one. **The invoice's own PDF goes with it** (see The PDF below), and a missing PDF never blocks a send.
 
@@ -183,6 +183,8 @@ Only expense invoices are considered, and never a duplicate or an archived one. 
 - **The send stops after three failures in a row** and marks the rest *Not sent*, so one broken setting cannot burn the whole batch.
 - Each invoice shows its state: **Queued**, **Sending**, **Created**, **Failed**, **We do not know** or **Not sent**. A failed row shows Business Central's own words, and a row that was not sent says why.
 - A finished send stays on the screen, also after a reload, until you press **Close**.
+- **The draft's posting date is the invoice's own posting date in AI Finance Team**, the **Posting date** you see on the invoice. By default that is the delivery date (**Fulfillment date** on the invoice); if you changed it on the invoice, the changed date is what Business Central gets. An invoice that never received a posting date goes with its delivery date.
+- **A partner with several vendor cards in one company** goes to a card Business Central accepts: a card linked to the partner first, otherwise one matched by tax number, the lowest card number first, so the same partner always gets the same card.
 
 Each invoice is checked again at the moment it is sent, with the permissions of the person who pressed **Send**. An invoice that became blocked while it waited is not sent, and its row names what blocks it.
 
@@ -234,7 +236,9 @@ Not sent, and the tab says why:
 - a payment whose invoice is not posted in Business Central yet, because a payment cannot be applied to a draft;
 - a payment whose invoice is already paid in Business Central: someone has recorded it already, and it would go in twice;
 - a single transfer that pays several invoices: for now this is booked in Business Central by hand;
-- a line that pays another company's invoice, from a cash pool for example.
+- a line that pays another company's invoice, from a cash pool for example;
+- a vendor payment to a vendor card that is blocked for payments in Business Central (blocked entirely or for payments);
+- a customer receipt to a customer card that is blocked in Business Central.
 
 ### Before You Send
 

@@ -170,7 +170,7 @@ A visszakapott szállítószám a partner oldalán, az AI Finance Team-beli azon
 
 Az **Exportok → Business Central** oldalról mennek fel a bejövő számlák, piszkozat bejövő számlaként. Ez más képernyő, mint a szállítói feladás: másik menüben van, és másik jogosultság kell hozzá.
 
-A felső fele csak olvasható tölcsér: hány a **feladható számla**, hány a **számla az időszakban**, és **mi akasztja meg a többit**. Kilenc dolog akaszthatja meg a számlát, és mindig csak az elsőként megtalált látszik: nincs cég a számlán, a cég nincs párosítva, a cég adatai nincsenek beolvasva, a partner nincs ellenőrizve, a partnernek nincs szállítókartonja abban a cégben, van kategória nélküli sor, a sor kategóriájához tartozó főkönyvi szám hiányzik a cégből, hiányzik a számlaszám vagy a teljesítés dátuma, és **a könyvelési jóváhagyás nincs meg** (lásd: [Iktatási és könyvelési jóváhagyás](/filing-and-bookkeeping-approval)). Mindegyik lenyitható a mögötte álló számlákra, egy linkkel, amely oda visz, ahol javítani lehet. Kettő inkább figyelmeztetés, mint akadály: a megfeleltetés nélküli áfapár, és az a deviza, amelyet az adott cég nem tart nyilván.
+A felső fele csak olvasható tölcsér: hány a **feladható számla**, hány a **számla az időszakban**, és **mi akasztja meg a többit**. Tíz dolog akaszthatja meg a számlát, és mindig csak az elsőként megtalált látszik: nincs cég a számlán, a cég nincs párosítva, a cég adatai nincsenek beolvasva, a partner nincs ellenőrizve, a partnernek nincs szállítókartonja abban a cégben, a partner szállítókartonja zárolva van a Business Centralban, van kategória nélküli sor, a sor kategóriájához tartozó főkönyvi szám hiányzik a cégből, hiányzik a számlaszám vagy a teljesítés dátuma, és **a könyvelési jóváhagyás nincs meg** (lásd: [Iktatási és könyvelési jóváhagyás](/filing-and-bookkeeping-approval)). Mindegyik lenyitható a mögötte álló számlákra, egy linkkel, amely oda visz, ahol javítani lehet. Kettő inkább figyelmeztetés, mint akadály: a megfeleltetés nélküli áfapár, és az a deviza, amelyet az adott cég nem tart nyilván.
 
 Csak bejövő számlákat veszünk figyelembe, duplikátumot és archiváltat soha. **A számla saját PDF-je vele megy** (lásd lent: A PDF), és a hiányzó PDF soha nem akadályozza a feladást.
 
@@ -183,6 +183,8 @@ Csak bejövő számlákat veszünk figyelembe, duplikátumot és archiváltat so
 - **Három egymás utáni hiba után a feladás leáll**, a maradékot pedig *Nem indult el* jelöléssel hagyja, így egyetlen rossz beállítás nem égeti el az egész köteget.
 - Minden számla mutatja az állapotát: **Sorban áll**, **Küldés alatt**, **Létrejött**, **Nem sikerült**, **Nem tudjuk** vagy **Nem indult el**. A sikertelen sor a Business Central saját szavait mutatja, a nem elindult sor pedig megmondja, miért.
 - A befejezett feladás újratöltés után is a képernyőn marad, amíg meg nem nyomja a **Bezárás** gombot.
+- **A piszkozat könyvelési dátuma a számla AI Finance Team-beli könyvelési dátuma**, a számlán látható **Könyvelési dátum**. Alapértelmezés szerint ez a teljesítés dátuma (a számlán **Teljesítés dátuma**); ha a számlán átírta, az átírt dátumot kapja a Business Central. Amelyik számla soha nem kapott könyvelési dátumot, az a teljesítés dátumával megy.
+- **Ha egy partnernek egy cégben több szállítókartonja van**, a számla olyan kartonra megy, amelyet a Business Central elfogad: először a partnerhez kapcsolt karton, különben az adószám alapján egyező, mindig a legkisebb kartonszámú, így ugyanaz a partner mindig ugyanarra a kartonra kerül.
 
 Minden számlát a küldés pillanatában újra ellenőrzünk, annak a jogosultságaival, aki a **Feladás** gombot megnyomta. Amelyik számla a várakozás közben elakadt, az nem megy fel, és a sora megnevezi, mi akasztja meg.
 
@@ -234,7 +236,9 @@ Nem megy fel, és a fül meg is mondja, miért:
 - az a kifizetés, amelynek a számlája a Business Centralban még nincs lekönyvelve, mert piszkozatra nem lehet pontozni;
 - az a kifizetés, amelynek a számlája a Business Centralban már ki van egyenlítve: ezt valaki már rögzítette, és kétszer kerülne be;
 - ami egyetlen utalással több számlát fizet: ezt egyelőre a Business Centralban kell rögzíteni;
-- ami egy másik cég számláját fizeti, például cash poolból.
+- ami egy másik cég számláját fizeti, például cash poolból;
+- az a szállítói kifizetés, amelynek a szállítói kartonja a Business Centralban fizetésre zárolva van (teljesen vagy csak fizetésre);
+- az a vevői befizetés, amelynek a vevői kartonja a Business Centralban zárolva van.
 
 ### Amit a feladás előtt tudni kell
 
