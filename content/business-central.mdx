@@ -6,7 +6,7 @@ AI Finance Team connects to Microsoft Dynamics 365 Business Central: it pairs yo
 
 ## What Is Read, and What Is Written
 
-AI Finance Team **reads** the companies in your Business Central, and for each paired company its accounts, VAT and posting groups, units of measure, currencies, bank accounts, payment methods and terms, dimensions and dimension values, vendors and customers. **No ledger entries and no balances are read.** The only documents ever read back are purchase invoices we may have created ourselves, when we need to find out what became of one.
+AI Finance Team **reads** the companies in your Business Central, and for each paired company its accounts, VAT and posting groups, units of measure, currencies, bank accounts, payment methods and terms, dimensions and dimension values, vendors and customers. **No balances are read.** Documents and ledger entries are read only to answer a specific question: what became of an invoice or a journal line we created (still a draft, posted, or gone); whether the invoice a bank payment pays is posted and still open in Business Central; and, in the troubleshooting checks, which customers and outgoing invoices exist and which fields Business Central exposes.
 
 AI Finance Team **writes** three kinds of record, all behind a second switch that only we can turn on:
 
@@ -17,8 +17,8 @@ AI Finance Team **writes** three kinds of record, all behind a second switch tha
 Even then:
 
 - **Nothing is ever posted.** The purchase invoice is created as a **draft**, the bank line as an **unposted journal line**, and both are left there. Posting is available over the interface and we deliberately do not use it: a document posted from wrong data has to be reversed, which marks the ledger for good, while a draft is deleted in one click. Posting stays the bookkeeper's act, inside Business Central.
-- **An existing record is never rewritten.** A vendor card with the same tax number is linked to your partner instead, and an existing document is never touched.
-- **We only ever delete what we created.** Three controls delete, all on the send screen: the probe removes the throwaway draft it just made, the numbering trial removes its made-up AIFT-TESZT draft (and one an earlier trial left behind), and the cleanup removes drafts AI Finance Team recorded sending but never managed to link. Apart from these, the PDF upload deletes an empty attachment row it has just made itself (see The PDF), and the bank send deletes a journal line it has just written when Business Central recorded it differently from what we sent (see Sending Bank Lines). Nothing else is ever deleted, and nothing Business Central does not call a draft.
+- **An existing record is never rewritten.** A vendor card with the same tax number is linked to your partner instead, and an existing document is never edited. Sending an invoice again replaces a draft we created by deleting it, never a posted invoice (see Sending an invoice again).
+- **We only ever delete what we created.** Four controls on the send screen delete: the probe removes the throwaway draft it just made, the bank journal probe removes its made-up lines and the AIFTSZONDA batch it created for them, the numbering trial removes its made-up AIFT-TESZT draft (and one an earlier trial left behind), and the cleanup removes drafts AI Finance Team recorded sending but never managed to link. Sending an invoice again, from its own page, deletes the draft it replaces. Apart from these, the PDF upload deletes an empty attachment row it has just made itself (see The PDF), and the bank send deletes a journal line it has just written when Business Central recorded it differently from what we sent (see Sending Bank Lines). Nothing else is ever deleted, and nothing Business Central does not call a draft.
 
 ## Setting Up the Connection
 
@@ -184,6 +184,7 @@ Only expense invoices are considered, and never a duplicate or an archived one. 
 - Each invoice shows its state: **Queued**, **Sending**, **Created**, **Failed**, **We do not know** or **Not sent**. A failed row shows Business Central's own words, and a row that was not sent says why.
 - A finished send stays on the screen, also after a reload, until you press **Close**.
 - **The draft's posting date is the invoice's own posting date in AI Finance Team**, the **Posting date** you see on the invoice. By default that is the delivery date (**Fulfillment date** on the invoice); if you changed it on the invoice, the changed date is what Business Central gets. An invoice that never received a posting date goes with its delivery date.
+- **Each line goes up with the quantity and unit price printed on the invoice** when the two give the line's net amount to the cent, for example 102 hours at 15,000 Ft. Otherwise the line goes up as quantity 1 with its net amount as the unit price, as before, so the amount booked is the same either way. The line also carries its unit of measure, translated to the code that Business Central company has (DB, ÓRA, HÓ, KG and so on). A unit the company does not have, such as kWh, is left empty and never stops a send. Under each invoice in the list, **Lines:** shows how its lines will go up.
 - **A partner with several vendor cards in one company** goes to a card Business Central accepts: a card linked to the partner first, otherwise one matched by tax number, the lowest card number first, so the same partner always gets the same card.
 
 Each invoice is checked again at the moment it is sent, with the permissions of the person who pressed **Send**. An invoice that became blocked while it waited is not sent, and its row names what blocks it.
@@ -208,11 +209,13 @@ The invoice's own PDF goes up as an attachment of the draft, in its **Attachment
 
 ### The maintenance buttons
 
-Five buttons sit under the list, in the **Troubleshooting** section, which is closed until you open it. The section is there even when nothing is sendable, because a stray draft in the client's ledger is invisible to anyone without a Business Central login.
+Seven buttons sit under the list, in the **Troubleshooting** section, in two groups, **Check** and **Resolve**, which is closed until you open it. The section is there even when nothing is sendable, because a stray draft in the client's ledger is invisible to anyone without a Business Central login.
 
-- **Probe** creates a real throwaway draft from a real invoice and deletes it again. It answers whether this tenant accepts a duplicate supplier invoice number, and shows what we sent beside what Business Central stored. It also puts the invoice's PDF on the throwaway draft, to show whether this tenant takes attachments.
+- **Probe** creates a real throwaway draft from a real invoice and deletes it again. It answers whether this tenant accepts a duplicate supplier invoice number, and shows what we sent beside what Business Central stored. It also puts the invoice's PDF on the throwaway draft, to show whether this tenant takes attachments. Its source is the invoice you tick in the list (exactly one); with none ticked it uses the first invoice ready to send in the workspace, or one already sent. A line under the button names the source, so tick one whose lines carry what you want to test.
 - **What BC exposes about a vendor** reads a vendor card and writes nothing.
+- **What BC holds about customers and outgoing invoices** reads the customer cards and where each outgoing invoice stands in Business Central, and writes nothing.
 - **Numbering trial (made-up invoice)** creates one made-up purchase invoice draft numbered AIFT-TESZT-…, clears its posting number series, adds a line and deletes it again. It shows whether this Business Central accepts our own number as the invoice number (see The AIFT Id as the Invoice Number below). It asks for confirmation first.
+- **Bank journal probe (made-up lines)** creates a journal batch named AIFTSZONDA and writes four made-up lines of 1 into it (two G/L lines, a supplier payment and a customer receipt applied to an open invoice), reads each one back, then deletes the lines and the batch. Nothing is posted. It asks for confirmation first.
 - **Resolve interrupted sends** asks what happened to a send whose answer was lost. It neither sends nor deletes.
 - **Look for drafts left behind** finds drafts we recorded but never linked. Deleting them is a separate, red **Delete from Business Central** button: the check and the delete are two steps on purpose.
 
