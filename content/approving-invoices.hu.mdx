@@ -4,25 +4,27 @@ Ha a cég a kifizetések jóváhagyását használja, a döntésre váró száll
 
 ## Mit lát
 
-A **Jóváhagyások** az Ön asztalával nyílik meg: minden listához, amelyben dönt, egy csempe azzal a számmal, amelyről most dönthet, alatta pedig egy rövid lista arról, mi vár Önre. A **Kifizetés** csempe vagy a **Kifizetés** fül nyitja meg a kifizetési listát. Ez a következő 14 napban esedékes, Önnek kiosztott számlákkal indul, a legkorábbi határidővel kezdve, minden számla egy külön kártyán. Nem kell szűrnie semmit. Az oldalsávban a **Jóváhagyások** melletti szám azt mutatja, hány számla van Önnek kiosztva.
+A **Jóváhagyások** az Ön asztalával nyílik meg: minden listához, amelyben dönt, egy csempe azzal a számmal, amelyről most dönthet, alatta pedig egy rövid lista arról, mi vár Önre. A **Kifizetés** csempe nyitja meg a kifizetési listát (egy listaoldalon a **Kifizetés** fül is). Ez az Önnek kiosztott számlákkal indul, amelyek lejártak, nincs határidejük, vagy a következő 14 napban esedékesek (a 14-et a pénzügyi adminisztrátor módosíthatja), a legkorábbi határidővel kezdve, minden számla egy külön kártyán. Nem kell szűrnie semmit. Az oldalsávban a **Jóváhagyások** melletti szám azt mutatja, hányról dönthet most: a csempék számainak összegét. Az iktatásra vagy könyvelésre még váró kifizetési számlák nem számítanak bele. Ezeket a **Kifizetés** csempe külön sorban mutatja, és a kifizetési listában is ott maradnak.
 
 <ApprovalQueueFigure>
 A **Kifizetés** lista négy várakozó számlával. A számok az alábbi lista pontjainak felelnek meg. A cégek és az összegek csak példák.
 </ApprovalQueueFigure>
 
-1. **Nézetek**: váltás a **Nekem kiosztva**, a **Kiosztatlan** (számlák, amelyeket egyik szabály sem tudott elhelyezni, minden jóváhagyó látja őket), a **Minden várakozó** és az **Ezen a héten esedékes** között.
-2. **Amit jóváhagy**: a számla AI által írt egysoros összefoglalója. Rákattintva a számla előnézetben nyílik meg a lista fölött (lásd [lent](#számla-megtekintése-a-lista-elhagyása-nélkül)).
-3. **Szállító és számlaazonosító**: ki kéri a kifizetést, és a számla azonosítója az AI Finance Teamben.
+1. **Nézetek**: váltás a **Nekem kiosztva**, a **Kiosztatlan** (számlák, amelyeket egyik szabály sem tudott elhelyezni; minden jóváhagyó látja őket, hacsak a pénzügyi adminisztrátor ki nem kapcsolta, ilyenkor a nézetek nem jelennek meg), a **Minden várakozó** és az **Ezen a héten esedékes** között.
+2. **Amit jóváhagy**: a számla AI által írt egysoros összefoglalója.
+3. **Szállító és számlaazonosító**: ki kéri a kifizetést, és a számla azonosítója az AI Finance Teamben. A szállító nevére kattintva a számla előnézetben nyílik meg a lista fölött (lásd [lent](#számla-megtekintése-a-lista-elhagyása-nélkül)).
 4. **Esedékes**: a fizetési határidő, és hány nap van hátra, vagy hány napja lejárt. A lejárt határidő piros, a következő 7 napon belüli borostyánsárga.
-5. **Miért Ön**: a kártya alján látja, kinél van a számla, és miért került Önhöz. Ez lehet a pénzügyi adminisztrátor által beállított szabály, egy minta, amelyet a rendszer abból tanult, hova kerültek ugyanannak a szállítónak a korábbi számlái, az AI választása, vagy az alapértelmezett jóváhagyó, ha semmi más nem illik rá.
+5. **Miért Ön**: a kártya alján látja, kinél van a számla, és miért került Önhöz. Ez lehet a pénzügyi adminisztrátor által beállított szabály, egy minta, amelyet a rendszer abból tanult, hova kerültek ugyanannak a szállítónak a korábbi számlái, az AI választása, az alapértelmezett jóváhagyó, ha semmi más nem illik rá, vagy egy ember: ilyenkor a kártya azt írja, ki osztotta ki vagy ki adta vissza.
 6. **Összeg**: a bruttó összeg a számla pénznemében.
-7. **Bankszámla**: ahová a pénz megy. A megerősített számlaszám számként látszik. A borostyánsárga címke azt jelenti, hogy fizetés előtt valakinek meg kell néznie: **Először látott** (ennek a szállítónak még senki nem erősített meg számlaszámot), **Számlaszám változott** (a számlán más számlaszám áll, mint a megerősített), **Több számlaszám a számlán** (több szerepel rajta, és egyik sincs megjelölve utalásra), **Bizonytalan devizanem** (lehet, hogy a számlaszám nem a számla devizanemében van) vagy **Érvénytelen számlaszám**. Ha a számlaszám változott, egy már ismert telefonszámon kérdezzen rá a szállítónál, ne a számlán szereplőn. Ha a számlaszámot a jóváhagyása után módosítják, a kártya kiírja, mi változott, ki és mikor módosította; a jóváhagyása érvényes marad.
+7. **Bankszámla**: ahová a pénz megy. A megerősített számlaszám számként látszik. A borostyánsárga címke azt jelenti, hogy fizetés előtt valakinek meg kell néznie: **Először látott** (ennek a szállítónak még senki nem erősített meg számlaszámot), **Számlaszám változott** (a számlán más számlaszám áll, mint a megerősített), **Több számlaszám a számlán** (több szerepel rajta, és egyik sincs megjelölve utalásra), **Bizonytalan devizanem** (lehet, hogy a számlaszám nem a számla devizanemében van) vagy **Érvénytelen számlaszám**. Ha a számlaszám változott, egy már ismert telefonszámon kérdezzen rá a szállítónál, ne a számlán szereplőn. Ha a számlaszámot a jóváhagyása után módosítják, a számlán a kifizetési jóváhagyás panelje kiírja, mi változott, ki és mikor módosította. A jóváhagyása érvényes marad.
 
 ## Jóváhagyás
 
 Kattintson a kártya **Jóváhagyom** gombjára. Ennyi a döntés. Zöld **Jóváhagyva** pecsét kerül a kártyára, és az lekerül a listáról. Az AI Finance Team rögzíti, ki hagyta jóvá, mikor, és pontosan mekkora összeget kinek, így a számla későbbi módosítása nem keverhető össze azzal, amibe Ön beleegyezett.
 
 Ha több számlát egyszerre hagyna jóvá, jelölje ki a kártyákat. Egy sáv mutatja, hányat választott ki, és mennyi az összegük pénznemenként; kattintson a **Kijelöltek jóváhagyása** gombra. A megerősítés felsorol minden szállítót és a pénznemenkénti összegeket, mielőtt bármi történne. A csoportos jóváhagyás csak akkor elérhető, ha a pénzügyi adminisztrátor bekapcsolva hagyta.
+
+Amíg egy számla még az iktatási vagy könyvelési jóváhagyására vár, a kártyáján a **Jóváhagyom** helyett **Iktatásra vár** (vagy **Könyvelésre vár**) áll, és nem jelölhető ki. Elutasítani ilyenkor is lehet.
 
 <ApprovalBulkBarFigure>
 Két kijelölt számla. A különböző pénznemeket külön összesíti, soha nem váltja át.
@@ -40,13 +42,13 @@ Az elutasítás nem törli és nem utasítja el a számlát a könyvelésben. Cs
 
 ## Nem az enyém
 
-Ha egy számla tévedésből került Önhöz, kattintson a **Nem az enyém** gombra. Visszakerül a pénzügyi adminisztrátor kiosztatlan tálcájába, és az irányítás tanul belőle.
+Ha egy számla tévedésből került Önhöz, kattintson a **Nem az enyém** gombra. Visszakerül a pénzügyi adminisztrátor kiosztatlan tálcájába, az irányítás pedig elfelejti, hová került ez a számla. Akkor tanul újra, amikor a pénzügyi adminisztrátor a megfelelő emberhez osztja ki.
 
 ## Számla megtekintése a lista elhagyása nélkül
 
-Kattintson a kártyán az összefoglalóra, és a számla előnézetben nyílik meg a lista fölött. Ha bezárja az előnézetet, ugyanannál a kártyánál folytatja, a lista pedig olyan, ahogy hagyta.
+Kattintson a kártyán a szállító nevére, és a számla előnézetben nyílik meg a lista fölött. Ha bezárja az előnézetet, ugyanannál a kártyánál folytatja, a lista pedig olyan, ahogy hagyta.
 
-Az előnézet azt mutatja, ami a döntéshez kell: az összegeket és a dátumokat, a szállítót és az Ön cégét, a bankszámlát, a számla tételeit, a párosított fizetéseket és azt, hol tart az egyes jóváhagyás. A **Dokumentum** az eredeti számlát mutatja. Az előzmények, az üzenetek és a könyvelési adatok a teljes számlaoldalon maradnak.
+Az előnézet azt mutatja, ami a döntéshez kell: az összegeket és a dátumokat, a szállítót és az Ön cégét, a bankszámlát, a számla tételeit, a párosított fizetéseket és azt, hol tart az egyes jóváhagyás. Az eredeti számla az adatok mellett látszik, keskeny képernyőn a **Dokumentum** alatt. Az előzmények, az üzenetek és a könyvelési adatok a teljes számlaoldalon maradnak.
 
 Ha a számlához alátámasztó dokumentumok tartoznak, például teljesítésigazolás vagy munkaidő-kimutatás, az előnézet a **Mellékletek** alatt mutatja őket, és Ön akkor is megnyithatja és letöltheti őket, ha csak az Önnek kiosztott számlákat látja. Lásd: [Számlamellékletek](/invoice-attachments).
 
@@ -62,7 +64,7 @@ Az asztalán és a **Döntések** alatt a számlák linkje ugyanezt az előnéze
 ## Mi történik a döntés után
 
 <ApprovalLifecycleFigure>
-Mindegyik gomb máshová vezet. Csak a jóváhagyott számla megy tovább a kifizetés felé; a másik kettő új döntésre tér vissza.
+Mindegyik gomb máshová vezet. Csak a jóváhagyott számla megy tovább a kifizetés felé. Az elutasított addig vár, amíg a pénzügyi adminisztrátor újra nem nyitja, a **Nem az enyém** gombbal visszaadott pedig a pénzügyi adminisztrátorhoz kerül.
 </ApprovalLifecycleFigure>
 
 - A **jóváhagyott** és az **elutasított** számlák a megfelelő címkét kapják a számlalistában és magán a számlán.
@@ -73,9 +75,11 @@ Mindegyik gomb máshová vezet. Csak a jóváhagyott számla megy tovább a kifi
 
 Azokat a számlákat, amelyeket a kinyerés kétesnek jelölt, a könyvelő tartja vissza, amíg a számokat nem ellenőrzi. A jóváhagyók nem látják őket, így Önt soha nem kérik olyan szám jóváhagyására, amelyet senki nem ellenőrzött.
 
+Ha a cég iktatási jóváhagyást is használ, kivétel az iktatásra váró megjelölt számla: **Iktatásra vár** címkével megjelenik a kifizetési listában, mert az iktatás ugyanezeket a számokat ellenőrzi. Jóváhagyni csak az iktatás után tudja.
+
 ## Ki hagyhat jóvá
 
-A jóváhagyáshoz a "Számlák jóváhagyása kifizetésre" jog kell, a számlák megtekintésének joga mellett. Alapértelmezés szerint a pénzügyi vezető és a könyvelő admin rendelkezik vele. A munkaterület adminja bárkinek megadhatja szereppel vagy tagonkénti kivétellel. Lásd: [Szerepek és jogosultságok](/roles-and-permissions).
+A jóváhagyáshoz a "Számlák jóváhagyása kifizetésre" jog kell. A számlák megtekintésének joga nélkül a jóváhagyó csak a neki kiosztott számlákat látja. Alapértelmezés szerint a pénzügyi vezető és a könyvelő admin rendelkezik vele. A munkaterület adminja bárkinek megadhatja szereppel vagy tagonkénti kivétellel. Lásd: [Szerepek és jogosultságok](/roles-and-permissions).
 
 ## E-mailek
 
