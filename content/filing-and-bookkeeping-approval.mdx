@@ -22,7 +22,7 @@ The switch does not turn on straight away. A dialog asks for a start date and te
 
 Approvers find their queue under **Approvals** in the sidebar. The **Filing** and **Bookkeeping** tabs appear only for someone who holds that permission in a workspace where the checkpoint is on.
 
-Every invoice is a card with its partner, summary and gross amount, and amber markers for whatever is still open on that invoice: a missing VAT code, an uncategorised line, extracted data to check. You can work the queue without opening each invoice. To look at one, click its partner name at the top of the card: the invoice opens in a preview over the queue, where **Approve** (when nothing is blocking) and **Return** work as on the card. See [Approving invoices for payment](/approving-invoices#looking-at-an-invoice-without-leaving-the-list).
+Every invoice is a card with its partner, summary and gross amount, and amber markers for whatever is still open on that invoice: a missing VAT code, an uncategorised line, extracted data to check. You can work the queue without opening each invoice. To look at one, click its partner name at the top of the card: the invoice opens in a preview over the queue, where **Approve** (when nothing is blocking), **Return** and, on the Bookkeeping queue, **Not to be booked** work as on the card. See [Approving invoices for payment](/approving-invoices#looking-at-an-invoice-without-leaving-the-list).
 
 Above the list, **All** shows every invoice with the total, and three filters split it:
 
@@ -38,11 +38,30 @@ A card shows **Approve** only when nothing is blocking. A blocked card says how 
 
 **Return** asks why on the card itself, with three quick reasons for that checkpoint, and the note is required. The card is stamped **Sent back** in amber and leaves the list. The invoice comes back on the queue under **Returned** with the note on its card. There is no separate recipient: the queue is the recipient.
 
+## "Not to be booked": checked but not booked
+
+Beside **Approve** and **Return**, the **Bookkeeping** queue has a third action: **Not to be booked**. It says the accountant has checked the document and it must not be booked from here. The card asks why, and one of four reasons has to be chosen:
+
+- **Proforma**: a request for payment, not an invoice to book.
+- **Already booked**: a real cost, booked by hand in the accounting program.
+- **Cancelled (storno)**: the invoice has been cancelled.
+- **Other**: anything else, and the note is required.
+
+Unlike **Approve**, it is available on a blocked card too. An uncategorised line or a missing VAT code does not stop it, because a document that is not booked has no coding to certify. It does wait for filing approval when **Filing before bookkeeping** is on, like any other bookkeeping decision. Anyone who may approve bookkeeping may set an invoice aside: it is the same permission.
+
+What happens next depends on the reason in one respect only. With **Proforma**, **Cancelled (storno)** or **Other**, the invoice leaves the books: it is not in the RLB-60 file, the HessynKettős file, the universal export, the Ledger explorer, the reports, the closing checks or the partner ledger, and the Business Central funnel lists it under its own line, **Not to be booked**, with no fix link. With **Already booked**, the invoice stays in AI Finance Team's own reports, the closing figures and the partner ledger, because the cost is real and was booked, just not from here; it is only kept out of every export and of the Ledger explorer that previews them.
+
+In every case the invoice keeps the accountant's sign-off, who, when and why, on the **Approvals** card, in **Decisions** and on the invoice timeline. On the card the row reads **Approved, not booked** with the reason, and one line under it says whether the invoice is out of the export only or out of the reports too. The invoice stays a document: it is in the invoice list, it opens, it can be matched to a bank payment, and it still goes to the payment approver, because a proforma is exactly the thing that gets paid. The overnight re-categorisation leaves it alone, the problem list stops asking for its coding, and the monthly close no longer counts its open items.
+
+Changing the amount, a date or the partner does not withdraw this decision, unlike a normal bookkeeping approval: it says what the document is, not what its figures are. To put the invoice back, open it and click **Book after all** on the **Approvals** card. It returns to the **Bookkeeping** queue, to the books and to the next export.
+
+Under **Settings**, **Approval rules**, a line under the **Bookkeeping** switch counts the invoices set aside. It is shown even when the checkpoint is off, because the decision outlives the switch, and undoing it needs the checkpoint on.
+
 ## When somebody edits the invoice
 
 If anyone changes the amount, one of the dates, the partner, the company, or any line's category or VAT code on an approved invoice, the **bookkeeping approval is withdrawn automatically**. The invoice returns to the queue, and the timeline records what changed and to what.
 
-That is deliberate. Bookkeeping approval is a statement about what goes into the export. If the data changed, the earlier approval was about a different invoice.
+That is deliberate. Bookkeeping approval is a statement about what goes into the export. If the data changed, the earlier approval was about a different invoice. A **Not to be booked** decision is the exception: an edit does not withdraw it, because it says what the document is, not what its figures are.
 
 The **filing approval** is withdrawn the same way when the amount, the issue, delivery or due date, the partner, the company, the currency or the direction changes, and also when the extraction flags an already filed invoice **needs review** again. Filing says the document was read correctly, and a new low-confidence reading contradicts that. So the invoice goes back to the filing queue, where approving it also clears the flag.
 
@@ -77,7 +96,7 @@ When somebody edits an invoice, the withdrawn approval appears there too, in the
 
 ## On the invoice
 
-The **Approvals** card on the invoice shows all three checkpoints in the order the invoice passes them, with who signed and when. In the invoice list an amber marker shows when an invoice is still waiting for a checkpoint, and you can filter on it.
+The **Approvals** card on the invoice shows all three checkpoints in the order the invoice passes them, with who signed and when. In the invoice list an amber marker shows when an invoice is still waiting for a checkpoint, and you can filter on it. An invoice set aside with **Not to be booked** shows a grey pill naming the reason instead, and the filter value **Not to be booked** lists them all.
 
 ## Emails
 
