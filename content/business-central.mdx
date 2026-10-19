@@ -255,7 +255,7 @@ Not sent, and the tab says why:
 - **Nothing goes twice.** Business Central does not refuse a second identical payment, so before every write we ask it whether a line with the same AI Finance Team id is already in that bank account's journal batch or among the posted entries. If it is, we do not write it again.
 - **Every line written is read back.** If Business Central recorded it differently from what we sent (a VAT group on a G/L line, for example), the line is deleted and its row says why.
 - A line that went is marked **"In Business Central already"** and no longer counts as sendable.
-- **We do not know** means here too that the request went out and no answer came back. Do not book the line by hand. Such a line is not sent again: later sends skip it and say that an earlier send lost its answer. **Resolve interrupted sends** handles invoices only, so for a bank line ask us to resolve it.
+- **We do not know** means here too that the request went out and no answer came back. Do not book the line by hand. Such a line is not sent again until it is resolved: later sends skip it and say that an earlier send lost its answer. Use **Resolve interrupted sends** under **Troubleshooting** on the **Invoices** tab. It asks Business Central whether the line is in the journal batch or already posted, and it sends nothing. If the line is there, it is recorded as sent. If it is nowhere, it can be sent again.
 
 ## Payment Methods
 
