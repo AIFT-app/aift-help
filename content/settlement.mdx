@@ -35,9 +35,9 @@ The two sides of the workbench are deliberately not symmetric: the period bounds
 
 ## Reading the Panes
 
-The number on a row is not always the document's amount. It is **what this settlement could allocate**: what is still open, plus whatever an automatic match is holding that this session may break. A payment whose bank amount is fully consumed by a wrong automatic match can still show its whole value, and the row says so with **incl. … to re-allocate**.
+The number on a row is not always the document's amount. It is **what a settlement you put together could allocate**: what is still open, plus whatever the existing matches on it hold, because committing your group removes those matches. A payment whose bank amount is fully consumed by a wrong match can still show its whole value, and the row says so with **incl. … to re-allocate**.
 
-That is the point of the workbench: pulling such a document into a group breaks the automatic match in the same act. A match a person approved is never counted as free capacity by the AI, and you can still break it yourself, with a confirmation.
+That is the point of the workbench: pulling such a document into a group you build replaces its existing matches in the same act, and when one of them was approved by a person you confirm it first. The AI works the other way round: it never counts a match a person approved as free capacity, and a settlement it proposes never removes one.
 
 Other badges you will meet: **Already matched** on a payment or an invoice that is fully settled (they stay listed so a wrong allocation can be undone), **Partly paid** on an invoice, and **No invoice needed** on a payment.
 
@@ -81,7 +81,7 @@ A group shows both sides of what it leaves behind, deliberately: **Leaves … un
 
 Each proposed settlement has its own **Commit**. Committing writes ordinary matches, exactly as if you had matched each invoice to its payment by hand, so the invoices become paid and the partner ledger updates.
 
-If a settlement would replace pairings that already exist, the group says **Breaks N existing**, and when one of them was approved by a person, you are asked to confirm and shown what will be removed.
+If a settlement would replace pairings that already exist, the group says **Breaks N existing**. A settlement you built yourself replaces every pairing on its documents, and when one of them was approved by a person, you are asked to confirm and shown what will be removed. A settlement the AI proposed only replaces automatic pairings.
 
 Committing also clears any pending match **suggestions** that name the records it allocated. Confirmed matches are never removed this way.
 
