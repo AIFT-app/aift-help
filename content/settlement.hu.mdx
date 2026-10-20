@@ -35,9 +35,9 @@ A munkafelület két oldala szándékosan nem szimmetrikus: az időszak a **kifi
 
 ## A két lista olvasása
 
-A sorban látható összeg nem mindig a bizonylat végösszege. Az az összeg, **amit ez a kiegyenlítés feloszthat**: ami még nyitva van, plusz amit egy automatikus párosítás tart, de ez a munkamenet felbonthatja. Az a kifizetés, amelynek a banki összegét egy téves automatikus párosítás teljesen lekötötte, így is a teljes értékét mutathatja, a sor pedig az **ebből … újraosztható** felirattal jelzi ezt.
+A sorban látható összeg nem mindig a bizonylat végösszege. Az az összeg, **amit egy Ön által összeállított kiegyenlítés feloszthat**: ami még nyitva van, plusz amit a rajta lévő párosítások tartanak, mert a csoport rögzítése ezeket a párosításokat megszünteti. Az a kifizetés, amelynek a banki összegét egy téves párosítás teljesen lekötötte, így is a teljes értékét mutathatja, a sor pedig az **ebből … újraosztható** felirattal jelzi ezt.
 
-Éppen ez a munkafelület lényege: ha egy ilyen bizonylatot behúz egy csoportba, ugyanazzal a mozdulattal felbontja az automatikus párosítást. Az ember által jóváhagyott párosítást az AI soha nem számolja szabad kapacitásnak, Ön viszont továbbra is felbonthatja, megerősítés után.
+Éppen ez a munkafelület lényege: ha egy ilyen bizonylatot behúz egy saját csoportba, ugyanazzal a mozdulattal felbontja a meglévő párosításait, és ha valamelyiket ember hagyta jóvá, az alkalmazás előbb megerősítést kér. Az AI fordítva dolgozik: az ember által jóváhagyott párosítást soha nem számolja szabad kapacitásnak, és az általa javasolt kiegyenlítés ilyet soha nem bont fel.
 
 További jelzések, amelyekkel találkozni fog: **Már párosítva** a teljesen rendezett kifizetésen vagy számlán (ezek azért maradnak a listában, hogy egy rossz felosztást vissza lehessen vonni), **Részben fizetve** a számlán, és **Nem kell számla** a kifizetésen.
 
@@ -81,7 +81,7 @@ A csoport szándékosan mindkét oldalon megmutatja, mi marad utána: a kifizet�
 
 Minden javasolt kiegyenlítésnek saját **Rögzítés** gombja van. A rögzítés a szokásos párosításokat hozza létre, pontosan úgy, mintha kézzel párosította volna a számlákat a kifizetésükhöz: a számlák kiegyenlítetté válnak, a folyószámla pedig frissül.
 
-Ha a kiegyenlítés már meglévő párosításokat cserélne le, a csoporton az **N meglévő párosítást bont** felirat jelenik meg, és ha valamelyiket ember hagyta jóvá, az alkalmazás megerősítést kér, és megmutatja, mi fog törlődni.
+Ha a kiegyenlítés már meglévő párosításokat cserélne le, a csoporton az **N meglévő párosítást bont** felirat jelenik meg. Az Ön által összeállított kiegyenlítés a bizonylatain lévő összes párosítást lecseréli, és ha valamelyiket ember hagyta jóvá, az alkalmazás megerősítést kér, és megmutatja, mi fog törlődni. Az AI által javasolt kiegyenlítés csak az automatikus párosításokat cseréli le.
 
 A rögzítés emellett törli a függőben lévő párosítási **javaslatokat** is, amelyek a felosztott tételekre vonatkoznak. A megerősített párosításokat ez soha nem távolítja el.
 

@@ -35,9 +35,9 @@ Die beiden Seiten der Arbeitsfläche sind bewusst nicht symmetrisch: der Zeitrau
 
 ## Die Listen lesen
 
-Der Betrag in einer Zeile ist nicht immer der Betrag des Belegs. Es ist das, **was dieser Ausgleich zuordnen könnte**: was noch offen ist, plus das, was eine automatische Zuordnung hält und diese Sitzung lösen darf. Eine Zahlung, deren Bankbetrag von einer falschen automatischen Zuordnung vollständig aufgebraucht ist, kann trotzdem ihren ganzen Wert zeigen, und die Zeile sagt das mit **davon … neu zuzuordnen**.
+Der Betrag in einer Zeile ist nicht immer der Betrag des Belegs. Es ist das, **was ein von Ihnen zusammengestellter Ausgleich zuordnen könnte**: was noch offen ist, plus das, was die bestehenden Zuordnungen darauf halten, denn das Buchen Ihrer Gruppe löst diese Zuordnungen. Eine Zahlung, deren Bankbetrag von einer falschen Zuordnung vollständig aufgebraucht ist, kann trotzdem ihren ganzen Wert zeigen, und die Zeile sagt das mit **davon … neu zuzuordnen**.
 
-Genau darum geht es auf der Arbeitsfläche: einen solchen Beleg in eine Gruppe zu ziehen löst im selben Zug die automatische Zuordnung. Eine von einem Menschen bestätigte Zuordnung zählt die KI nie als freie Kapazität, und Sie können sie trotzdem selbst lösen, nach einer Rückfrage.
+Genau darum geht es auf der Arbeitsfläche: einen solchen Beleg in eine eigene Gruppe zu ziehen löst im selben Zug seine bestehenden Zuordnungen, und wurde eine davon von einem Menschen bestätigt, fragt die App vorher nach. Die KI arbeitet umgekehrt: Eine von einem Menschen bestätigte Zuordnung zählt sie nie als freie Kapazität, und ein von ihr vorgeschlagener Ausgleich löst nie eine solche.
 
 Weitere Kennzeichen, die Ihnen begegnen: **Bereits zugeordnet** an einer vollständig ausgeglichenen Zahlung oder Rechnung (sie bleiben gelistet, damit eine falsche Zuordnung rückgängig gemacht werden kann), **Teilweise bezahlt** an einer Rechnung und **Keine Rechnung nötig** an einer Zahlung.
 
@@ -81,7 +81,7 @@ Eine Gruppe zeigt bewusst beide Seiten dessen, was sie zurücklässt: **… blei
 
 Jeder vorgeschlagene Ausgleich hat sein eigenes **Buchen**. Das Buchen erzeugt gewöhnliche Zuordnungen, genau so, als hätten Sie jede Rechnung von Hand ihrer Zahlung zugeordnet: die Rechnungen gelten als bezahlt, und das Partnerkonto wird aktualisiert.
 
-Würde ein Ausgleich bestehende Zuordnungen ersetzen, steht an der Gruppe **Löst N bestehende**, und wurde eine davon von einem Menschen bestätigt, werden Sie um Bestätigung gebeten und sehen vorher, was entfernt wird.
+Würde ein Ausgleich bestehende Zuordnungen ersetzen, steht an der Gruppe **Löst N bestehende**. Ein Ausgleich, den Sie selbst zusammengestellt haben, ersetzt alle Zuordnungen auf seinen Belegen, und wurde eine davon von einem Menschen bestätigt, werden Sie um Bestätigung gebeten und sehen vorher, was entfernt wird. Ein von der KI vorgeschlagener Ausgleich ersetzt nur automatische Zuordnungen.
 
 Das Buchen räumt außerdem alle offenen **Zuordnungsvorschläge** weg, die die zugeordneten Belege nennen. Bestätigte Zuordnungen werden auf diesem Weg nie entfernt.
 
