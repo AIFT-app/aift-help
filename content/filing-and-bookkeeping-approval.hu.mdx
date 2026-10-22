@@ -22,7 +22,7 @@ A kapcsoló nem azonnal kapcsol be. Megnyílik egy ablak, amely egy kezdő dátu
 
 A jóváhagyók az oldalsáv **Jóváhagyások** menüpontja alatt találják a listájukat. Az **Iktatás** és a **Könyvelés** fül csak annak jelenik meg, aki az adott joggal rendelkezik és akinél a lépés be van kapcsolva.
 
-Minden számla egy kártya a partnerrel, az összefoglalóval és a bruttó összeggel, és sárga jelölők mutatják, mi van még nyitva a számlán: hiányzó áfakód, kategorizálatlan sor, ellenőrizendő kinyert adat. Így a listát anélkül is végig lehet nézni, hogy minden számlát megnyitna. Ha mégis megnézne egyet, kattintson a kártya tetején a partner nevére: a számla előnézetben nyílik meg a lista fölött, ahol a **Jóváhagyom** (ha semmi sem akadályozza) és a **Visszaküldöm** ugyanúgy működik, mint a kártyán. Lásd: [Számlák jóváhagyása kifizetésre](/approving-invoices#számla-megtekintése-a-lista-elhagyása-nélkül).
+Minden számla egy kártya a partnerrel, az összefoglalóval és a bruttó összeggel, és sárga jelölők mutatják, mi van még nyitva a számlán: hiányzó áfakód, kategorizálatlan sor, ellenőrizendő kinyert adat. Így a listát anélkül is végig lehet nézni, hogy minden számlát megnyitna. Ha mégis megnézne egyet, kattintson a kártya tetején a partner nevére: a számla előnézetben nyílik meg a lista fölött, ahol a **Jóváhagyom** (ha semmi sem akadályozza), a **Visszaküldöm** és a Könyvelés listán a **Nem könyvelendő** ugyanúgy működik, mint a kártyán. Lásd: [Számlák jóváhagyása kifizetésre](/approving-invoices#számla-megtekintése-a-lista-elhagyása-nélkül).
 
 A lista tetején a **Mind** az összes számlát mutatja a teljes számmal, és három szűrő bontja szét:
 
@@ -38,11 +38,30 @@ A kártyán csak akkor van **Jóváhagyom** gomb, ha nincs nyitott akadály. Az 
 
 A **Visszaküldöm** gomb magán a kártyán kérdezi meg, miért, az adott lépéshez illő három gyors indokkal, és a megjegyzés kötelező. A kártyára borostyánsárga **Visszaküldve** pecsét kerül, és lekerül a listáról. A számla a **Visszaküldve** szűrő alatt kerül vissza a listára, a megjegyzéssel a kártyáján. Nincs külön címzett: a lista maga a címzett.
 
+## „Nem könyvelendő”: ellenőrizve, de nem könyvelve
+
+A **Könyvelés** listán a **Jóváhagyom** és a **Visszaküldöm** mellett egy harmadik gomb is van: **Nem könyvelendő**. Azt mondja ki, hogy a könyvelő ellenőrizte a bizonylatot, és innen nem szabad lekönyvelni. A kártya megkérdezi, miért, és a négy indok közül egyet kötelező választani:
+
+- **Díjbekérő**: fizetési felhívás, nem könyvelendő számla.
+- **Már könyvelve**: valódi költség, amelyet a könyvelőprogramban kézzel már lekönyveltek.
+- **Sztornózott**: a számlát sztornózták. Ha a sztornószámla is megérkezik, az AI Finance Team összekapcsolja a kettőt, és a kapcsolt oldalt is félreteszi, így Önnek csak egyszer kell döntenie; a másik számla **Jóváhagyások** kártyája jelzi, hogy ezzel együtt tették félre. Ha a nullára kifutó párt mégis könyvelni szeretné, válassza mindkettőn a **Mégis könyvelendő** gombot, és adja meg a teljes könyvelési jóváhagyást.
+- **Egyéb**: minden más, és ilyenkor a megjegyzés kötelező.
+
+A **Jóváhagyom** gombbal ellentétben akadályozott kártyán is elérhető. Egy kategorizálatlan sor vagy egy hiányzó áfakód nem állítja meg, mert annak a bizonylatnak, amelyet nem könyvelnek le, nincs igazolandó kódolása. Az iktatási jóváhagyást viszont megvárja, ha az **Iktatás a könyvelés előtt** be van kapcsolva, mint minden más könyvelési döntés. Számlát félretenni bárki tud, aki könyvelést hagyhat jóvá: ugyanaz a jogosultság.
+
+Hogy mi történik ezután, egyetlen szempontból függ az indoktól. **Díjbekérő**, **Sztornózott** vagy **Egyéb** esetén a számla kikerül a könyvekből: nincs benne az RLB-60 fájlban, a HessynKettős fájlban, az univerzális exportban, a Főkönyvben, a riportokban, a zárási ellenőrzésekben és a folyószámlán, a Business Central feladási oldala pedig saját sorban, **Nem könyvelendő** alatt mutatja, javítási link nélkül. **Már könyvelve** esetén a számla benne marad az AI Finance Team saját riportjaiban, a zárási számokban és a folyószámlán, mert a költség valódi, és le is könyvelték, csak nem innen; csak az exportokból és az azokat előnézetben mutató Főkönyvből marad ki.
+
+A számla minden esetben megőrzi a könyvelő aláírását, hogy ki, mikor és miért döntött, a **Jóváhagyások** kártyán, a **Döntések** listában és a számla idővonalán. A kártyán a sor **Jóváhagyva, nem könyvelendő** az indokkal, alatta pedig egy sor megmondja, hogy a számla csak az exportból marad ki, vagy a riportokból is. A számla bizonylat marad: ott van a számlalistán, megnyitható, párosítható banki kifizetéshez, és továbbra is eljut a kifizetés jóváhagyójához, mert a díjbekérő pontosan az, amit kifizetnek. Az éjszakai újrakategorizálás nem nyúl hozzá, a problémás számlák listája nem kéri többé a kódolását, és a havi zárás nem számolja többé a nyitott tételeit.
+
+Az összeg, egy dátum vagy a partner módosítása nem vonja vissza ezt a döntést, a rendes könyvelési jóváhagyással ellentétben: ez arról szól, mi a bizonylat, nem arról, mik a számai. Ha mégis vissza szeretné tenni, nyissa meg a számlát, és kattintson a **Jóváhagyások** kártyán a **Mégis könyvelendő** gombra. A számla visszakerül a **Könyvelés** listára, a könyvekbe és a következő exportba.
+
+A **Beállítások**, **Jóváhagyási szabályok** oldalon a **Könyvelés** kapcsoló alatt egy sor számolja a félretett számlákat. Akkor is látszik, ha a lépés ki van kapcsolva, mert a döntés túléli a kapcsolót, a visszavonásához viszont a lépésnek bekapcsolva kell lennie.
+
 ## Ha valaki módosítja a számlát
 
 Ha egy jóváhagyott számlán bárki módosítja az összeget, valamelyik dátumot, a partnert, a céget, vagy bármely sor kategóriáját vagy áfakódját, a **könyvelési jóváhagyás automatikusan visszavonódik**. A számla visszakerül a listára, az idővonalon pedig megjelenik, mi változott és mire.
 
-Ez szándékos. A könyvelési jóváhagyás arról szól, hogy mi kerül az exportba. Ha az adat megváltozott, a korábbi jóváhagyás már nem arról a számláról szól.
+Ez szándékos. A könyvelési jóváhagyás arról szól, hogy mi kerül az exportba. Ha az adat megváltozott, a korábbi jóváhagyás már nem arról a számláról szól. A **Nem könyvelendő** döntés ez alól kivétel: a módosítás nem vonja vissza, mert arról szól, mi a bizonylat, nem arról, mik a számai.
 
 Az **iktatási jóváhagyás** ugyanígy visszavonódik, ha az összeg, a kiállítás, a teljesítés vagy a fizetési határidő dátuma, a partner, a cég, a pénznem vagy az irány megváltozik, és akkor is, ha a kinyerés egy már iktatott számlát újra **„ellenőrizendőnek”** jelöl. Az iktatás azt igazolja, hogy a számlát helyesen olvastuk ki, és egy új, bizonytalan kiolvasás ennek ellentmond. Ezért a számla visszakerül az iktatási listára, ahol a jóváhagyás a jelölést is leveszi róla.
 
@@ -77,7 +96,7 @@ Ha valaki módosít egy számlát, a visszavont jóváhagyás is megjelenik itt,
 
 ## A számlán
 
-A számla oldalán a **Jóváhagyások** kártya mind a három lépést mutatja, abban a sorrendben, ahogy a számla áthalad rajtuk, azzal együtt, ki és mikor adta meg. A számlalistán sárga jelölő mutatja, ha valamelyik lépésre még vár a számla, és a szűrőben is rá lehet szűrni.
+A számla oldalán a **Jóváhagyások** kártya mind a három lépést mutatja, abban a sorrendben, ahogy a számla áthalad rajtuk, azzal együtt, ki és mikor adta meg. A számlalistán sárga jelölő mutatja, ha valamelyik lépésre még vár a számla, és a szűrőben is rá lehet szűrni. A **Nem könyvelendő** döntéssel félretett számlán ehelyett szürke címke mutatja az indokot, és a **Nem könyvelendő** szűrőérték mindet listázza.
 
 ## E-mailek
 

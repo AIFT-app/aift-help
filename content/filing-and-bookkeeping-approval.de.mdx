@@ -22,7 +22,7 @@ Der Schalter schaltet nicht sofort ein. Ein Dialog fragt nach einem Startdatum u
 
 Freigebende finden ihre Liste unter **Freigaben** in der Seitenleiste. Die Reiter **Erfassung** und **Buchung** erscheinen nur für jemanden mit dem passenden Recht in einem Arbeitsbereich, in dem der Prüfschritt eingeschaltet ist.
 
-Jede Rechnung ist eine Karte mit Partner, Zusammenfassung und Bruttobetrag, und bernsteinfarbene Marker zeigen für alles, was an der Rechnung noch offen ist: ein fehlender Steuersatz, eine nicht kategorisierte Position, zu prüfende ausgelesene Daten. So können Sie die Liste abarbeiten, ohne jede Rechnung zu öffnen. Um eine anzusehen, klicken Sie oben auf der Karte auf den Partnernamen: Die Rechnung öffnet sich in einer Vorschau über der Liste, und **Freigeben** (wenn nichts blockiert) und **Zurückgeben** funktionieren dort wie auf der Karte. Siehe [Rechnungen zur Zahlung freigeben](/approving-invoices#eine-rechnung-ansehen-ohne-die-liste-zu-verlassen).
+Jede Rechnung ist eine Karte mit Partner, Zusammenfassung und Bruttobetrag, und bernsteinfarbene Marker zeigen für alles, was an der Rechnung noch offen ist: ein fehlender Steuersatz, eine nicht kategorisierte Position, zu prüfende ausgelesene Daten. So können Sie die Liste abarbeiten, ohne jede Rechnung zu öffnen. Um eine anzusehen, klicken Sie oben auf der Karte auf den Partnernamen: Die Rechnung öffnet sich in einer Vorschau über der Liste, und **Freigeben** (wenn nichts blockiert), **Zurückgeben** und in der Buchungs-Warteschlange **Nicht zu buchen** funktionieren dort wie auf der Karte. Siehe [Rechnungen zur Zahlung freigeben](/approving-invoices#eine-rechnung-ansehen-ohne-die-liste-zu-verlassen).
 
 Über der Liste zeigt **Alle** jede Rechnung mit der Gesamtzahl, und drei Filter teilen sie auf:
 
@@ -38,11 +38,30 @@ Eine Karte zeigt **Freigeben** nur, wenn nichts blockiert. Eine blockierte Karte
 
 **Zurückgeben** fragt direkt auf der Karte nach dem Grund, mit drei Schnellgründen für diesen Prüfschritt, und die Notiz ist Pflicht. Die Karte bekommt einen bernsteinfarbenen Stempel **Zurückgegeben** und verlässt die Liste. Die Rechnung erscheint wieder in der Liste unter **Zurückgegeben**, mit der Notiz auf ihrer Karte. Es gibt keinen eigenen Empfänger: die Liste ist der Empfänger.
 
+## „Nicht zu buchen“: geprüft, aber nicht gebucht
+
+Neben **Freigeben** und **Zurückgeben** hat die Liste **Buchung** eine dritte Aktion: **Nicht zu buchen**. Sie besagt, dass die Buchhaltung den Beleg geprüft hat und er von hier aus nicht gebucht werden darf. Die Karte fragt nach dem Grund, und einer von vier Gründen muss gewählt werden:
+
+- **Proforma**: eine Zahlungsaufforderung, keine zu buchende Rechnung.
+- **Bereits gebucht**: ein echter Aufwand, von Hand im Buchhaltungsprogramm gebucht.
+- **Storniert**: die Rechnung wurde storniert. Trifft auch der Stornobeleg ein, verknüpft AI Finance Team das Paar und legt die verknüpfte Seite ebenfalls beiseite, sodass Sie nur einmal entscheiden; die Karte **Freigaben** der anderen Rechnung sagt, dass sie zusammen mit dieser beiseitegelegt wurde. Wenn Sie das sich aufhebende Paar doch buchen möchten, wählen Sie auf beiden **Doch buchen** und erteilen Sie die vollständige Buchungsfreigabe.
+- **Sonstiges**: alles andere, und die Notiz ist Pflicht.
+
+Anders als **Freigeben** steht sie auch auf einer blockierten Karte zur Verfügung. Eine nicht kategorisierte Position oder ein fehlender Steuersatz hält sie nicht auf, denn ein Beleg, der nicht gebucht wird, hat keine Kontierung, die zu bestätigen wäre. Auf die Erfassungsfreigabe wartet sie aber, wenn **Erfassung vor Buchung** an ist, wie jede andere Buchungsentscheidung. Wer die Buchung freigeben darf, darf auch eine Rechnung beiseitelegen: Es ist dieselbe Berechtigung.
+
+Was danach geschieht, hängt in einer einzigen Hinsicht vom Grund ab. Bei **Proforma**, **Storniert** und **Sonstiges** verlässt die Rechnung die Bücher: Sie steht nicht in der RLB-60-Datei, der HessynKettős-Datei, dem universellen Export, dem Hauptbuch, den Berichten, den Abschlussprüfungen und dem Partnerkonto, und die Übergabeliste für Business Central führt sie unter einer eigenen Zeile, **Nicht zu buchen**, ohne Korrekturlink. Bei **Bereits gebucht** bleibt die Rechnung in den eigenen Berichten von AI Finance Team, in den Abschlusszahlen und im Partnerkonto, denn der Aufwand ist echt und wurde gebucht, nur nicht von hier; sie bleibt lediglich aus jedem Export und aus dem Hauptbuch heraus, das die Exporte vorab zeigt.
+
+In jedem Fall behält die Rechnung die Unterschrift der Buchhaltung, wer, wann und warum, auf der Karte **Freigaben**, unter **Entscheidungen** und auf dem Zeitstrahl der Rechnung. Auf der Karte lautet die Zeile **Freigegeben, nicht gebucht** mit dem Grund, und eine Zeile darunter sagt, ob die Rechnung nur aus dem Export oder auch aus den Berichten heraus ist. Die Rechnung bleibt ein Beleg: Sie steht in der Rechnungsliste, lässt sich öffnen, kann einer Bankzahlung zugeordnet werden und erreicht weiterhin den Zahlungsfreigeber, denn eine Proforma ist genau das, was bezahlt wird. Die nächtliche Neukategorisierung lässt sie unberührt, die Liste der Problemrechnungen fragt nicht mehr nach ihrer Kontierung, und der Monatsabschluss zählt ihre offenen Posten nicht mehr.
+
+Eine Änderung des Betrags, eines Datums oder des Partners zieht diese Entscheidung nicht zurück, anders als eine gewöhnliche Buchungsfreigabe: Sie sagt, was der Beleg ist, nicht, welche Zahlen er trägt. Um die Rechnung zurückzuholen, öffnen Sie sie und klicken Sie auf der Karte **Freigaben** auf **Doch buchen**. Sie kehrt in die Liste **Buchung** zurück, in die Bücher und in den nächsten Export.
+
+Unter **Einstellungen**, **Freigaberegeln** zählt eine Zeile unter dem Schalter **Buchung** die beiseitegelegten Rechnungen. Sie wird auch angezeigt, wenn der Prüfschritt aus ist, denn die Entscheidung überdauert den Schalter, und um sie rückgängig zu machen, muss der Prüfschritt an sein.
+
 ## Wenn jemand die Rechnung ändert
 
 Ändert jemand an einer freigegebenen Rechnung den Betrag, eines der Daten, den Partner, das Unternehmen oder die Kategorie beziehungsweise den Steuersatz einer Position, wird die **Buchungsfreigabe automatisch zurückgezogen**. Die Rechnung kehrt in die Liste zurück, und der Zeitstrahl hält fest, was sich wie geändert hat.
 
-Das ist Absicht. Die Buchungsfreigabe ist eine Aussage darüber, was in den Export geht. Haben sich die Daten geändert, galt die frühere Freigabe einer anderen Rechnung.
+Das ist Absicht. Die Buchungsfreigabe ist eine Aussage darüber, was in den Export geht. Haben sich die Daten geändert, galt die frühere Freigabe einer anderen Rechnung. Eine Entscheidung **Nicht zu buchen** ist die Ausnahme: Eine Änderung zieht sie nicht zurück, denn sie sagt, was der Beleg ist, nicht, welche Zahlen er trägt.
 
 Die **Erfassungsfreigabe** wird auf dieselbe Weise zurückgezogen, wenn sich der Betrag, das Rechnungs-, Leistungs- oder Fälligkeitsdatum, der Partner, das Unternehmen, die Währung oder die Richtung ändert, und auch dann, wenn die Extraktion eine bereits erfasste Rechnung erneut als **„prüfen“** markiert. Die Erfassung bestätigt, dass die Rechnung richtig gelesen wurde, und eine neue, unsichere Lesung widerspricht dem. Deshalb kehrt die Rechnung in die Erfassungsliste zurück, wo die Freigabe auch die Markierung entfernt.
 
@@ -77,7 +96,7 @@ Um diese Liste zu öffnen, brauchen Sie „Rechnungen und Banktransaktionen anse
 
 ## Auf der Rechnung
 
-Die Karte **Freigaben** auf der Rechnung zeigt alle drei Prüfschritte in der Reihenfolge, in der die Rechnung sie durchläuft, mit Name und Zeitpunkt. In der Rechnungsliste zeigt ein bernsteinfarbener Marker, dass eine Rechnung noch auf einen Prüfschritt wartet, und Sie können danach filtern.
+Die Karte **Freigaben** auf der Rechnung zeigt alle drei Prüfschritte in der Reihenfolge, in der die Rechnung sie durchläuft, mit Name und Zeitpunkt. In der Rechnungsliste zeigt ein bernsteinfarbener Marker, dass eine Rechnung noch auf einen Prüfschritt wartet, und Sie können danach filtern. Eine mit **Nicht zu buchen** beiseitegelegte Rechnung zeigt stattdessen eine graue Pill mit dem Grund, und der Filterwert **Nicht zu buchen** listet sie alle.
 
 ## E-Mails
 
