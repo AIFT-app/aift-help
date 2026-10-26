@@ -64,7 +64,7 @@ Von sich aus verknüpft der automatische Abgleich eine Transaktion mit höchsten
 
 ## Die Seite Zuordnung
 
-**Zuordnung** steht für Buchhalter in der Seitenleiste des Arbeitsbereichs. Die Seite hat vier Tabs: **Übersicht**, **Zuordnungen**, **Partner** und **Ausgleich**. Die Vorschläge und die bestätigten Zuordnungen liegen im Tab **Zuordnungen**.
+**Zuordnung** steht für Buchhalter in der Seitenleiste des Arbeitsbereichs. Die Seite hat vier Tabs: **Übersicht**, **Zuordnungen**, **Partner** und **Ausgleich**. Die Vorschläge und die bestätigten Zuordnungen liegen im Tab **Zuordnungen**. Die Tabs [Übersicht](#der-tab-übersicht) und [Partner](#der-tab-partner) sind weiter unten beschrieben, **Ausgleich** hat einen eigenen Artikel ([Partnersalden ausgleichen](/settlement)).
 
 <MatchingQueueFigure>
 Der Tab **Zuordnungen** mit drei wartenden Vorschlägen. Die Nummern entsprechen der Liste darunter. Die Unternehmen und Beträge sind Beispiele.
@@ -122,6 +122,74 @@ Bei einer Rechnung zeigt die Vorschau Beträge und Daten, die Parteien, die Posi
 Um die Vorschau zu überspringen, halten Sie beim Klicken **Cmd** (unter Windows **Strg**) gedrückt oder klicken Sie mit der mittleren Maustaste. Die vollständige Seite öffnet sich in einem neuen Tab.
 
 Dieselbe Vorschau öffnet sich über die Rechnungsnummer und den Verwendungszweck auf den Seiten eines Vorschlags und einer Zuordnung, über die Zeilen des Partnerkontos im Tab **Partner**, über die Belege in einem [Ausgleich](/settlement) und über die Rechnung in der Karte **Zuordnung & Zahlung** auf der Seite einer Transaktion. Dort hat sie unten keine Schaltflächen.
+
+## Der Tab Übersicht
+
+Die Seite Zuordnung öffnet sich mit dem Tab **Übersicht**. Er zeigt, wie die Zuordnung im gewählten Zeitraum steht: fünf Kacheln und darunter ein Diagramm, was wann zugeordnet wurde. Solange eine [Ausgleichssitzung](/settlement) offen ist, nennt ein bernsteinfarbener Hinweis über den Kacheln sie und sagt, wie viele Datensätze sie aus dem automatischen Abgleich heraushält.
+
+Der Datumsfilter oben wählt den Zeitraum: Monat, Quartal, Jahr, eigener Zeitraum, rollierender Zeitraum oder **Gesamter Zeitraum**. Arbeiten Sie in einem [fokussierten Zeitraum](/focused-period), folgt der Tab ihm.
+
+<MatchingOverviewFigure>
+Der Tab Übersicht für dieses Jahr. Die Nummern beziehen sich auf die Liste darunter. Die Daten sind ein Beispiel.
+</MatchingOverviewFigure>
+
+1. Der Zeitraum. Die Kacheln und das Diagramm folgen ihm.
+2. **Rechnungen ohne Zahlung**: im Zeitraum ausgestellt und noch offen.
+3. **Nicht zugeordnete Zahlungen** zählt den ganzen Arbeitsbereich, nicht nur den Zeitraum.
+4. Die Überschrift des Diagramms nennt die Breite der Balken, hier einen Monat.
+5. **Offener Bestand am Periodenende** ist die rote Linie. Bernsteinfarben oben auf den letzten Balken ist, was aus diesen Monaten noch offen ist.
+
+### Die Kacheln
+
+Jede Kachel ist eine Anzahl mit einem Betrag darunter, in der Basiswährung des Arbeitsbereichs. Ein Klick auf eine Kachel öffnet die Liste dahinter, auf denselben Zeitraum eingegrenzt.
+
+| Kachel | Was sie zählt | Öffnet |
+|---|---|---|
+| **Rechnungen ohne Zahlung** | Im Zeitraum ausgestellte Rechnungen, die noch offen oder teilweise bezahlt sind. Der Betrag ist ihre Bruttosumme. | Die Rechnungsliste, unbezahlte Rechnungen |
+| **Nicht zugeordnete Buchungen** | Im Zeitraum gebuchte Banktransaktionen ohne Rechnung und ohne die Markierung „Keine Rechnung nötig“. Umbuchungen zwischen Ihren eigenen Konten zählen nicht. | Die Liste der Banktransaktionen, nicht zugeordnet |
+| **Zugeordnet** | Zuordnungen, deren Banktransaktion im Zeitraum gebucht wurde. Darunter der automatisch erstellte Anteil, zum Beispiel „83% automatisch“. | Die Liste der Banktransaktionen, zugeordnet |
+| **Nicht zugeordnete Zahlungen** | Zahlungen, die einem geprüften Partner zugeordnet, aber keiner Rechnung zugeordnet sind, oder nur teilweise. Diese Kachel zählt den ganzen Arbeitsbereich, **nicht nur den Zeitraum**. | Die Liste der Banktransaktionen, nicht zugeordnet |
+| **Kein Beleg nötig** | Im Zeitraum gebuchte Banktransaktionen, die als „Keine Rechnung nötig“ markiert wurden (siehe [Transaktionstypen & „Keine Rechnung nötig“](/transaction-types)). | Die Liste der Banktransaktionen, keine Rechnung nötig |
+
+Rechnungen zählen nach ihrem Ausstellungsdatum, Banktransaktionen nach ihrem Buchungsdatum.
+
+### Das Diagramm
+
+Das Diagramm zeigt, was zugeordnet wurde, als Balken pro Tag, Woche oder Monat. Die Breite folgt dem Zeitraum: bis 24 Tage Tage, bis 120 Tage Wochen, darüber Monate. Die Überschrift nennt sie (zum Beispiel **Zuordnung pro Monat**). **Betrag** und **Zuordnungen** über dem Diagramm wechseln zwischen dem zugeordneten Betrag und der Zahl der Zuordnungen.
+
+Jeder Balken ist geteilt in **Automatisch zugeordnet** (blau) und **Manuell bestätigt** (grau). Einige Ebenen erscheinen nur, wenn es etwas zu zeigen gibt:
+
+- **Aus diesem Zeitraum noch offen** (bernsteinfarben, oben auf dem Balken): Banktransaktionen aus der Zeit des Balkens, die heute noch nicht zugeordnet sind.
+- **Offener Bestand am Periodenende** (eine rote Linie): wie viel am Ende der Zeit jedes Balkens nicht zugeordnet war, egal wann es gebucht wurde. Steigt die Linie, wächst der Rückstand schneller, als er abgebaut wird.
+- **Vorheriger Zeitraum** (ein heller Balken hinter jedem Balken): dasselbe für den Zeitraum davor, zum Beispiel Juni hinter Juli. Der gesamte Zeitraum hat keinen Vorgänger, dort erscheint er nie.
+- **Zuordnungslauf** (eine türkise Markierung unter dem Balken): in dieser Zeit wurde ein Zuordnungslauf abgeschlossen.
+
+Fahren Sie mit der Maus über einen Balken, um seine Zahlen zu sehen. Ein Klick auf einen Balken grenzt den ganzen Tab auf diesen Monat oder diese Woche ein; der Balken eines Tages öffnet stattdessen die zugeordneten Banktransaktionen dieses Tages. **Export** lädt die Zahlen des Zeitraums als XLSX-Datei herunter.
+
+## Der Tab Partner
+
+Der Tab **Partner** ist das Kontokorrent: für jeden geprüften Partner, was er Ihnen schuldet, was Sie ihm schulden, und die Zahlungen, die noch keiner Rechnung zugeordnet sind. Er zeigt immer den aktuellen Stand und folgt dem Datumsfilter nicht.
+
+Die Liste hat eine Zeile je Partner und Währung:
+
+- **Partner**, mit einem Etikett: **Kunde**, **Lieferant**, **Kunde & Lieferant** oder **Sonstige**, nach den offenen Posten.
+- **Forderung**: was auf seinen offenen Ausgangsrechnungen noch unbezahlt ist.
+- **Verbindlichkeit**: was auf seinen offenen Eingangsrechnungen noch unbezahlt ist.
+- **Nicht zugeordnet**: seine Banktransaktionen, die keiner Rechnung zugeordnet sind, oder der nicht zugeordnete Teil einer teilweise zugeordneten.
+- **Offene Posten**: wie viele Rechnungen und Transaktionen offen sind.
+- **Saldo**: Forderung minus Verbindlichkeit. Nicht zugeordnete Zahlungen sind nicht enthalten. Auf einem schmalen Bildschirm bleibt diese Spalte sichtbar, während der Rest scrollt.
+
+**Mit offenen Posten** zeigt Partner, bei denen etwas offen ist; **Alle Partner** fügt die vollständig ausgeglichenen hinzu, markiert mit **Ausgeglichen**. Die Suche grenzt die Liste nach Partnernamen ein, die Spaltenköpfe sortieren sie, und **Export** lädt sie als XLSX-Datei herunter. Es erscheinen nur geprüfte Partner, Ihre eigenen Unternehmen nie (siehe [Partner verwalten](/partners)).
+
+### Das Kontokorrent eines Partners
+
+Ein Klick auf eine Zeile öffnet die Kontokorrentseite des Partners:
+
+- die Summen je Währung: Forderung, Verbindlichkeit und nicht zugeordnet;
+- **Fälligkeit**: die offenen Beträge danach, wie weit sie überfällig sind: **Aktuell** (noch nicht fällig), 1-30, 31-60, 61-90 und 90+ Tage. Eine Rechnung zählt ab ihrem Fälligkeitsdatum, ohne eines ab dem Ausstellungsdatum; eine Zahlung ab ihrem Buchungsdatum;
+- **Offene Posten**: jede offene Rechnung und Zahlung mit ID, Rechnungsnummer, Typ (**Forderung**, **Verbindlichkeit** oder **Nicht zugeordnet**), Datum, Fälligkeit und offenem Betrag. Ein Klick auf eine Zeile öffnet den Datensatz in einer Vorschau. **Alle Belege** fügt darunter die ausgeglichenen hinzu, unter **Abgeschlossene Belege**.
+
+**Export** auf der Seite lädt den Kontoauszug des Partners als XLSX-Datei herunter. **← Partner** führt zurück zur Liste.
 
 ## Die Detailseite des Vorschlags
 
