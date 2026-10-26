@@ -28,9 +28,10 @@
 
 import { ArrowDownTrayIcon } from '@heroicons/react/20/solid'
 import type { Locale } from '@/lib/i18n'
-import { Subheading } from '@/components/catalyst/heading'
+import { Heading, Subheading } from '@/components/catalyst/heading'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/catalyst/table'
 import { AppScreen, Figure, Pin } from '../kit'
-import { matchingOverviewCopy, SERIES, type Tile } from './copy'
+import { LEDGER_PARTNER, matchingOverviewCopy, partnerLedgerCopy, SERIES, type Tile } from './copy'
 
 const SCREEN_MIN_WIDTH = 760
 
@@ -326,6 +327,122 @@ export function MatchingOverviewFigure({ locale, children }: FigureProps) {
       art={
         <AppScreen minWidth={SCREEN_MIN_WIDTH}>
           <MatchingOverviewScreen locale={locale} />
+        </AppScreen>
+      }
+    >
+      {children}
+    </Figure>
+  )
+}
+
+// ── A partner's ledger page ─────────────────────────────────────────────────
+//
+// Rebuilt 1:1 from aift-web (origin/main, 2026-10-26), class for class:
+//   src/app/(app)/workspaces/[workspaceId]/matching/partners/[partnerId]/page.tsx
+//   src/components/layout/PageTitleRow.tsx (align center)
+//   src/app/(app)/workspaces/[workspaceId]/matching/_components/ExportButton.tsx
+//
+// ⚠️ CROPPED UNDER THE OPEN ITEMS / ALL DOCUMENTS TABS. The Open items table
+// below them needs 795px (de) at its natural width against the 704px the help
+// column gives the page at 100%, so every ID and date wraps onto two lines.
+// The article's list describes that table instead.
+//
+// MARKERS: 1 right of the back link, 2 left of Export, 3 right of the net
+// balance, 4 right of the Aging heading, 5 right of the second tab.
+
+function PartnerLedgerScreen({ locale }: { locale: Locale }) {
+  const c = partnerLedgerCopy[locale]
+  return (
+    <div className="bg-white p-6">
+      <div className="px-4 py-8 sm:px-6 lg:px-8">
+        <a href="#" className="text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400">
+          {c.back}
+        </a>
+        <Pin n={1} at="right" cancel="" />
+        <div className="mt-2 flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
+          <div className="min-w-0 flex-1 basis-56">
+            <Heading>{LEDGER_PARTNER}</Heading>
+          </div>
+          <div className="flex max-w-full flex-wrap items-center gap-2">
+            <Pin n={2} at="left" cancel="-mr-2" />
+            <button
+              type="button"
+              className="inline-flex items-center gap-1 rounded-md border border-zinc-300 px-2.5 py-1.5 text-xs font-medium text-zinc-700 hover:bg-zinc-50 disabled:opacity-50 dark:border-zinc-600 dark:text-zinc-200 dark:hover:bg-zinc-800"
+            >
+              <ArrowDownTrayIcon className="size-4" />
+              {c.exportLabel}
+            </button>
+          </div>
+        </div>
+
+        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="rounded-xl border border-zinc-200 p-4 dark:border-zinc-700">
+            <p className="text-xs font-medium uppercase tracking-wide text-zinc-500">EUR</p>
+            <p className="mt-2 text-2xl font-semibold text-zinc-900 dark:text-white">
+              {c.net}
+              <Pin n={3} at="right" cancel="" />
+            </p>
+            <dl className="mt-3 space-y-1 text-xs text-zinc-500">
+              {c.totals.map(([label, value]) => (
+                <div key={label} className="flex justify-between"><dt>{label}</dt><dd>{value}</dd></div>
+              ))}
+            </dl>
+          </div>
+        </div>
+
+        <Subheading className="mt-8">
+          {c.agingTitle}
+          <Pin n={4} at="right" cancel="" />
+        </Subheading>
+        <div className="mt-3">
+          <Table>
+            <TableHead>
+              <TableRow>
+                {c.agingHead.map((h, i) => (
+                  <TableHeader key={h} className={i === 0 ? undefined : 'text-right'}>{h}</TableHeader>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow>
+                {c.agingRow.map((v, i) => (
+                  <TableCell key={i} className={i === 0 ? 'font-medium' : 'text-right'}>{v}</TableCell>
+                ))}
+              </TableRow>
+            </TableBody>
+          </Table>
+        </div>
+
+        <div className="mt-8 flex flex-wrap items-center gap-1 border-b border-zinc-200 dark:border-zinc-700">
+          {c.tabs.map((label, i) => (
+            <a
+              key={label}
+              href="#"
+              className={`-mb-px border-b-2 px-3 py-2 text-sm font-medium ${
+                i === 0
+                  ? 'border-blue-600 text-blue-600 dark:text-blue-400'
+                  : 'border-transparent text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300'
+              }`}
+            >
+              {label}
+            </a>
+          ))}
+          <Pin n={5} at="right" cancel="-ml-1" />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export function PartnerLedgerFigure({ locale, children }: FigureProps) {
+  return (
+    <Figure
+      alt={partnerLedgerCopy[locale].alt}
+      wide
+      zoomable={locale}
+      art={
+        <AppScreen>
+          <PartnerLedgerScreen locale={locale} />
         </AppScreen>
       }
     >

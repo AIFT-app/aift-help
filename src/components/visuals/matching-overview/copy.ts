@@ -178,3 +178,63 @@ export const SERIES: { matched: number; auto: number; open: number; backlog: num
   { matched: 7050000, auto: 5820000, open: 680000, backlog: 2050000, runs: 12 },
   { matched: 3100000, auto: 2450000, open: 1260000, backlog: 2610000, runs: 7 },
 ]
+
+// ── A partner's ledger page (PartnerLedgerFigure) ───────────────────────────
+//
+// Read off aift-web matching/partners/[partnerId]/page.tsx rendered with the
+// fixture below (origin/main messages, 2026-10-26). One partner, one currency
+// (EUR, so the aging row fits the help column at 100%: the same row in
+// five-digit HUF needs 720px against 704). Fictional and consistent: the card's
+// receivable 9,600 = 5,400 + 4,200, payable 4,130 = 1,840 + 2,290, unapplied
+// 1,200, net = 9,600 - 4,130; the aging buckets add up the same five open
+// items, receivable, payable and unapplied together, as the RPC does.
+
+type LedgerCopy = {
+  back: string
+  exportLabel: string
+  net: string
+  totals: [string, string][]
+  agingTitle: string
+  agingHead: string[]
+  agingRow: string[]
+  tabs: [string, string]
+  alt: string
+}
+
+export const LEDGER_PARTNER = 'Reamwell Kft.'
+
+export const partnerLedgerCopy: Record<Locale, LedgerCopy> = {
+  en: {
+    back: '← Partners',
+    exportLabel: 'Export',
+    net: '€5,470.00',
+    totals: [['Receivable', '€9,600.00'], ['Payable', '€4,130.00'], ['Unapplied', '€1,200.00']],
+    agingTitle: 'Aging',
+    agingHead: ['Currency', 'Current', '1-30', '31-60', '61-90', '90+'],
+    agingRow: ['EUR', '€2,290.00', '€6,040.00', '€1,200.00', '€5,400.00', '€0.00'],
+    tabs: ['Open items', 'All documents'],
+    alt: "A partner's ledger page for Reamwell Kft.: the EUR card with a net balance of €5,470.00 (receivable €9,600.00, payable €4,130.00, unapplied €1,200.00), the Aging table with €2,290.00 current, €6,040.00 at 1-30 days, €1,200.00 at 31-60, €5,400.00 at 61-90 and nothing over 90, and the Open items and All documents tabs.",
+  },
+  hu: {
+    back: '← Partnerek',
+    exportLabel: 'Exportálás',
+    net: '5 470,00 EUR',
+    totals: [['Követelés', '9 600,00 EUR'], ['Kötelezettség', '4 130,00 EUR'], ['Nem rendezett', '1 200,00 EUR']],
+    agingTitle: 'Korosítás',
+    agingHead: ['Pénznem', 'Aktuális', '1-30', '31-60', '61-90', '90+'],
+    agingRow: ['EUR', '2 290,00 EUR', '6 040,00 EUR', '1 200,00 EUR', '5 400,00 EUR', '0,00 EUR'],
+    tabs: ['Nyitott tételek', 'Összes bizonylat'],
+    alt: 'A Reamwell Kft. folyószámla-oldala: az EUR kártya 5 470,00 EUR nettó egyenleggel (követelés 9 600,00 EUR, kötelezettség 4 130,00 EUR, nem rendezett 1 200,00 EUR), a Korosítás táblázat 2 290,00 EUR aktuális, 6 040,00 EUR 1-30 napos, 1 200,00 EUR 31-60 napos, 5 400,00 EUR 61-90 napos és 0 EUR 90 napon túli összeggel, alatta a Nyitott tételek és az Összes bizonylat fül.',
+  },
+  de: {
+    back: '← Partner',
+    exportLabel: 'Export',
+    net: '5.470,00 €',
+    totals: [['Forderung', '9.600,00 €'], ['Verbindlichkeit', '4.130,00 €'], ['Nicht zugeordnet', '1.200,00 €']],
+    agingTitle: 'Fälligkeit',
+    agingHead: ['Währung', 'Aktuell', '1-30', '31-60', '61-90', '90+'],
+    agingRow: ['EUR', '2.290,00 €', '6.040,00 €', '1.200,00 €', '5.400,00 €', '0,00 €'],
+    tabs: ['Offene Posten', 'Alle Belege'],
+    alt: 'Die Kontokorrentseite von Reamwell Kft.: die EUR-Karte mit einem Saldo von 5.470,00 € (Forderung 9.600,00 €, Verbindlichkeit 4.130,00 €, nicht zugeordnet 1.200,00 €), die Tabelle Fälligkeit mit 2.290,00 € aktuell, 6.040,00 € bei 1-30 Tagen, 1.200,00 € bei 31-60, 5.400,00 € bei 61-90 und nichts über 90 Tage, darunter die Tabs Offene Posten und Alle Belege.',
+  },
+}

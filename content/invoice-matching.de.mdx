@@ -183,13 +183,23 @@ Die Liste hat eine Zeile je Partner und Währung:
 
 ### Das Kontokorrent eines Partners
 
-Ein Klick auf eine Zeile öffnet die Kontokorrentseite des Partners:
+Ein Klick auf eine Zeile öffnet die Kontokorrentseite des Partners.
 
-- die Summen je Währung: Forderung, Verbindlichkeit und nicht zugeordnet;
-- **Fälligkeit**: die offenen Beträge danach, wie weit sie überfällig sind: **Aktuell** (noch nicht fällig), 1-30, 31-60, 61-90 und 90+ Tage. Eine Rechnung zählt ab ihrem Fälligkeitsdatum, ohne eines ab dem Ausstellungsdatum; eine Zahlung ab ihrem Buchungsdatum;
+<PartnerLedgerFigure>
+Die Kontokorrentseite eines Partners, bis zu den Tabs über den offenen Posten. Die Nummern entsprechen der Liste darunter. Das Unternehmen und die Beträge sind Beispiele.
+</PartnerLedgerFigure>
+
+1. **← Partner** führt zurück zur Liste.
+2. **Export** lädt den Kontoauszug des Partners als XLSX-Datei herunter.
+3. Der Saldo je Währung: Forderung minus Verbindlichkeit. Darunter die drei Summen.
+4. **Fälligkeit** addiert alle offenen Posten, Forderungen, Verbindlichkeiten und nicht zugeordnete Beträge gleichermaßen, danach, wie weit sie überfällig sind.
+5. **Offene Posten** listet die offenen Rechnungen und Zahlungen; **Alle Belege** fügt die ausgeglichenen hinzu.
+
+Im Einzelnen:
+
+- eine Karte je Währung: groß der Saldo, darunter Forderung, Verbindlichkeit und nicht zugeordnet;
+- **Fälligkeit**: die offenen Beträge danach, wie weit sie überfällig sind: **Aktuell** (noch nicht fällig), 1-30, 31-60, 61-90 und 90+ Tage. Forderungen, Verbindlichkeiten und nicht zugeordnete Zahlungen werden hier addiert, nicht saldiert. Eine Rechnung zählt ab ihrem Fälligkeitsdatum, ohne eines ab dem Ausstellungsdatum; eine Zahlung ab ihrem Buchungsdatum;
 - **Offene Posten**: jede offene Rechnung und Zahlung mit ID, Rechnungsnummer, Typ (**Forderung**, **Verbindlichkeit** oder **Nicht zugeordnet**), Datum, Fälligkeit und offenem Betrag. Ein Klick auf eine Zeile öffnet den Datensatz in einer Vorschau. **Alle Belege** fügt darunter die ausgeglichenen hinzu, unter **Abgeschlossene Belege**.
-
-**Export** auf der Seite lädt den Kontoauszug des Partners als XLSX-Datei herunter. **← Partner** führt zurück zur Liste.
 
 ## Die Detailseite des Vorschlags
 

@@ -183,13 +183,23 @@ A **Nyitott tételekkel** azokat a partnereket mutatja, akiknél van nyitott té
 
 ### Egy partner folyószámlája
 
-Egy sorra kattintva megnyílik a partner folyószámla-oldala:
+Egy sorra kattintva megnyílik a partner folyószámla-oldala.
 
-- a pénznemenkénti összesítés: követelés, kötelezettség és nem rendezett;
-- **Korosítás**: a nyitott összegek aszerint, mennyire késnek: **Aktuális** (még nem esedékes), 1-30, 31-60, 61-90 és 90+ nap. Egy számla a fizetési határidőtől számít, ha nincs ilyen, a kiállítás dátumától; egy fizetés a könyvelés dátumától;
+<PartnerLedgerFigure>
+Egy partner folyószámla-oldala a nyitott tételek feletti fülekig. A számok az alábbi listának felelnek meg. A cég és az összegek példák.
+</PartnerLedgerFigure>
+
+1. A **← Partnerek** visszavisz a listához.
+2. Az **Exportálás** XLSX fájlként tölti le a partner folyószámla-kivonatát.
+3. A nettó egyenleg pénznemenként: követelés mínusz kötelezettség. Alatta a három összeg.
+4. A **Korosítás** minden nyitott tételt összead, követelést, kötelezettséget és nem rendezett összeget egyaránt, aszerint, mennyire késik.
+5. A **Nyitott tételek** a nyitott számlákat és fizetéseket sorolja fel; az **Összes bizonylat** a rendezetteket is hozzáadja.
+
+Részletesen:
+
+- pénznemenként egy kártya: nagy betűvel a nettó egyenleg, alatta a követelés, a kötelezettség és a nem rendezett összeg;
+- **Korosítás**: a nyitott összegek aszerint, mennyire késnek: **Aktuális** (még nem esedékes), 1-30, 31-60, 61-90 és 90+ nap. A követelések, a kötelezettségek és a nem rendezett fizetések itt összeadódnak, nem nettósítódnak. Egy számla a fizetési határidőtől számít, ha nincs ilyen, a kiállítás dátumától; egy fizetés a könyvelés dátumától;
 - **Nyitott tételek**: minden nyitott számla és fizetés az azonosítójával, számlaszámával, típusával (**Követelés**, **Kötelezettség** vagy **Nem rendezett**), dátumával, korosításával és nyitott összegével. Egy sorra kattintva a tétel előnézetben nyílik meg. Az **Összes bizonylat** alatta a rendezetteket is mutatja, **Rendezett bizonylatok** címmel.
-
-Az oldalon az **Exportálás** XLSX fájlként tölti le a partner folyószámla-kivonatát. A **← Partnerek** visszavisz a listához.
 
 ## A javaslat részletei oldal
 

@@ -183,13 +183,23 @@ The list has one row per partner and currency:
 
 ### A partner's ledger
 
-Click a row to open the partner's ledger page:
+Click a row to open the partner's ledger page.
 
-- the totals per currency: receivable, payable and unapplied;
-- **Aging**: the open amounts by how overdue they are, as **Current** (not yet due), 1-30, 31-60, 61-90 and 90+ days. An invoice counts from its due date, or its issue date when it has none; a payment counts from its booking date;
+<PartnerLedgerFigure>
+A partner's ledger page, down to the tabs above the open items. The numbers match the list below. The company and amounts are examples.
+</PartnerLedgerFigure>
+
+1. **← Partners** returns to the list.
+2. **Export** downloads the partner's statement as an XLSX file.
+3. The net balance in each currency: receivable minus payable. The three totals are under it.
+4. **Aging** adds up every open item, receivable, payable and unapplied alike, by how overdue it is.
+5. **Open items** lists the open invoices and payments; **All documents** adds the settled ones.
+
+In detail:
+
+- one card per currency: the net balance in large type, with receivable, payable and unapplied under it;
+- **Aging**: the open amounts by how overdue they are, as **Current** (not yet due), 1-30, 31-60, 61-90 and 90+ days. Receivables, payables and unapplied payments are added together here, not netted. An invoice counts from its due date, or its issue date when it has none; a payment counts from its booking date;
 - **Open items**: every open invoice and payment with its ID, invoice number, type (**Receivable**, **Payable** or **Unapplied**), date, aging and open amount. Click a row to open the record in a preview. **All documents** adds the settled ones underneath, under **Settled documents**.
-
-**Export** on the page downloads the partner's statement as an XLSX file. **← Partners** returns to the list.
 
 ## The suggestion detail page
 
