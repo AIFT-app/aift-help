@@ -15,7 +15,7 @@ Every workspace member is on the **firm side** (they work for the accounting fir
 
 Members of an accounting firm have an organization role, **Admin** or **Member**. When no workspace is open, the sidebar shows **Organization** with these pages:
 
-- **General**, **Manage workspaces**, **Team**, **AI access** and **Support access**, for every member of the firm;
+- **General**, **Manage workspaces**, **Team**, **AI access** and **Support access** (see [Support access](#support-access)), for every member of the firm;
 - **Billing**, for admins, where billing is switched on.
 
 Admins invite people to the firm, make a member an admin or an admin a member, and remove people. Removing someone from the firm also removes them from every workspace of the firm; the last admin cannot be removed. Members see the firm's team but cannot change it.
@@ -223,3 +223,24 @@ There are three ways into a workspace:
 ### Removing a member
 
 A member holding "Manage members and roles" can remove a member on their own side from the **Team members** tab: by default, the accountant admin removes firm-side members and the finance lead removes client-side members. Any member can leave a workspace themselves, except the last accountant admin and the last finance lead. Removed people keep their account; they only lose access to that workspace. Removing someone from the organization (on its **Team** page) removes them from every workspace of the firm.
+
+## Support access
+
+**Organization → Support access** decides whether AI Finance Team's support staff can open your clients' workspaces to look into a problem. Every member of the firm can open the page and see who has been in; only organization admins can change it. Client users never see it.
+
+<SupportAccessFigure>
+The **Support access** page while access is granted, with one session in progress. The numbers match the list below. The names, dates and reason are examples.
+</SupportAccessFigure>
+
+1. Whether support access is granted, until when, and who granted it. Organization admins get **Close support access** beside it, or **Grant support access** when there is none.
+2. A session in progress: who, in which workspace, with which access, when it started and when it ends, and why. **End session** ends that one session at once.
+3. **History**: every session, including the ones that have ended, and how each ended.
+
+**Granting.** **Grant support access** opens the window for one year. The page then shows **Granted**, the end date, and who granted it. When the year is up it shows **Expired**, so a window that ran out does not look like one nobody opened. With access **Not granted**, our staff cannot open your workspaces at all, and cannot look at a record you ask us about.
+
+**Closing.** **Close support access** asks for confirmation first. Sessions in progress end immediately, and nobody can open a new one until you grant access again.
+
+**A session** is opened by one of our staff in one workspace, for a stated reason, and ends by itself after 1, 4, 8 or 24 hours, as they chose (8 to start with). They work under their own name, so every change they make is recorded against them in each record's history, as anyone else's would be. They get one of the workspace's roles, or **acting with** a member's access: a copy of that person's role and exceptions, taken when the session starts, so they see exactly what that person sees. A session never sends anyone an email; this page is the record.
+
+**History** says how each session ended: **Ended automatically**, **Ended by your organization** or **Ended by AIFT**.
+

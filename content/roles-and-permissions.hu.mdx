@@ -15,7 +15,7 @@ A munkaterület minden tagja vagy az **irodai oldalon** áll (a könyvelőirodá
 
 A könyvelőiroda tagjainak szervezeti szerepköre van: **Admin** vagy **Tag**. Ha nincs megnyitva munkaterület, az oldalsáv a **Szervezet** szakaszt mutatja, a következő oldalakkal:
 
-- **Általános**, **Munkaterületek kezelése**, **Csapat**, **AI-hozzáférés** és **Ügyfélszolgálati hozzáférés**: az iroda minden tagjának;
+- **Általános**, **Munkaterületek kezelése**, **Csapat**, **AI-hozzáférés** és **Ügyfélszolgálati hozzáférés** (lásd [Ügyfélszolgálati hozzáférés](#ügyfélszolgálati-hozzáférés)): az iroda minden tagjának;
 - **Számlázás**: az adminoknak, ahol a számlázás be van kapcsolva.
 
 Az adminok meghívhatnak embereket az irodába, egy tagot adminná, egy admint taggá tehetnek, és eltávolíthatnak embereket. Ha valakit eltávolítanak az irodából, az iroda minden munkaterületéről is kikerül; az utolsó admin nem távolítható el. A tagok látják az iroda csapatát, de nem módosíthatják.
@@ -223,3 +223,24 @@ Háromféleképpen lehet bekerülni egy munkaterületre:
 ### Tag eltávolítása
 
 A „Tagok és szerepkörök kezelése” jogosultsággal rendelkező tag a **Csapattagok** fülön eltávolíthat egy saját oldalán álló tagot: alapértelmezés szerint a könyvelő admin az irodai oldali, a pénzügyi vezető az ügyféloldali tagokat távolítja el. Bármely tag maga is kiléphet egy munkaterületről, kivéve az utolsó könyvelő admint és az utolsó pénzügyi vezetőt. Az eltávolított felhasználók megtartják a fiókjukat; csak az adott munkaterülethez veszítik el a hozzáférést. Ha valakit a szervezetből távolítanak el (annak **Csapat** oldalán), az iroda minden munkaterületéről kikerül.
+
+## Ügyfélszolgálati hozzáférés
+
+A **Szervezet → Ügyfélszolgálati hozzáférés** oldalon dől el, hogy az AI Finance Team ügyfélszolgálati munkatársai megnyithatják-e az ügyfelei munkaterületeit egy probléma kivizsgálására. Az oldalt az iroda minden tagja megnyithatja, és látja, ki járt bent; módosítani csak a szervezet adminisztrátorai tudják. Az ügyféloldali felhasználók nem látják.
+
+<SupportAccessFigure>
+Az **Ügyfélszolgálati hozzáférés** oldal engedélyezett hozzáféréssel és egy folyamatban lévő munkamenettel. A számok az alábbi listának felelnek meg. A nevek, a dátumok és az indoklás példák.
+</SupportAccessFigure>
+
+1. Engedélyezve van-e a hozzáférés, meddig, és ki engedélyezte. A szervezet adminisztrátorai mellette a **Hozzáférés lezárása** gombot látják, hozzáférés nélkül a **Hozzáférés engedélyezése** gombot.
+2. Egy folyamatban lévő munkamenet: ki, melyik munkaterületen, milyen hozzáféréssel, mikor kezdődött, mikor ér véget, és miért. A **Munkamenet lezárása** azonnal lezárja azt az egy munkamenetet.
+3. **Előzmények**: minden munkamenet, a lezártak is, és hogy mindegyik hogyan ért véget.
+
+**Engedélyezés.** A **Hozzáférés engedélyezése** egy évre nyitja meg az ablakot. Az oldal ezután **Engedélyezve** állapotot, a lejárat dátumát és az engedélyezőt mutatja. Ha az év letelt, **Lejárt** áll ott, így egy lejárt ablak nem tűnik olyannak, amelyet soha senki nem nyitott meg. **Nincs engedélyezve** állapotban munkatársaink egyáltalán nem nyithatják meg a munkaterületeit, és egy olyan tételt sem nézhetnek meg, amelyről kérdez minket.
+
+**Lezárás.** A **Hozzáférés lezárása** előbb megerősítést kér. A folyamatban lévő munkamenetek azonnal véget érnek, és senki nem nyithat újat, amíg ismét nem engedélyezi a hozzáférést.
+
+**Egy munkamenetet** valamelyik munkatársunk nyit meg egy munkaterületen, megadott indokkal, és magától véget ér 1, 4, 8 vagy 24 óra után, ahogyan választotta (kezdetben 8). A saját nevükön dolgoznak, így minden módosításuk az ő nevükön szerepel az egyes tételek előzményeiben, ahogyan bárki másé. A munkaterület egyik szerepét kapják, vagy egy tag hozzáférésével dolgoznak (**… hozzáférésével**): ez az illető szerepének és kivételeinek a munkamenet kezdetekor készült másolata, így pontosan azt látják, amit ő. Egy munkamenet senkinek nem küld e-mailt; ez az oldal a nyilvántartás.
+
+Az **Előzmények** megmutatja, hogyan ért véget egy munkamenet: **Automatikusan lezárult**, **A szervezet zárta le** vagy **Az AIFT zárta le**.
+
