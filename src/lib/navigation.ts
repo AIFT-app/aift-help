@@ -39,6 +39,9 @@ export const navGroups: NavGroup[] = [
     },
     items: [
       { slug: 'workspaces', title: { en: 'Workspaces', hu: 'Munkaterületek', de: 'Arbeitsbereiche' } },
+      // Mission control (mission-control): the accountant's cross-client to-do page,
+      // nav.mission_control in the app: Mission control / Teendők / Cockpit.
+      { slug: 'mission-control', title: { en: 'Mission Control', hu: 'Teendők', de: 'Cockpit' } },
       {
         slug: 'roles-and-permissions',
         title: { en: 'Roles & Permissions', hu: 'Szerepek és jogosultságok', de: 'Rollen & Berechtigungen' },
