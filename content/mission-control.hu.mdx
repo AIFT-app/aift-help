@@ -1,0 +1,109 @@
+# Teendők
+
+A **Teendők** egyetlen oldal mindazzal, ami az összes ügyfelénél Önre vár: a problémás számlákkal, az átnézendő párosítási javaslatokkal, a hiányzó bankszámlakivonatokkal, a zárással lemaradó hónapokkal és az olvasatlan üzenetekkel. A [Munkaterületek áttekintő](/workspaces) azt mutatja, hogyan áll egy-egy ügyfél; a Teendők azt, hogy mi a következő lépés.
+
+A Teendők csak a könyvelői oldalon létezik. Az oldalsávban, a **Minden munkaterület** alatt jelenik meg mindenkinek, aki legalább egy munkaterületen a könyvelői oldalon van, és minden olyan munkaterületet lefed, ahol Ön a könyvelői oldalon van. Az ügyféloldali felhasználók nem látják. A mellette álló borostyánszínű szám azt mutatja, hány tétel vár az Ön tudására (lásd az első csempét lent).
+
+## A csempék
+
+A felső öt csempe megszámolja, mi vár. Egy csempére kattintva az alatta lévő lista csak az adott fajta tételeket mutatja; a kiválasztott csempe kék keretet kap.
+
+| Csempe | Mit számol |
+|---|---|
+| **A tudásodra vár** | A lista számlaproblémákról, párosítási javaslatokról és zárásról szóló sorait. A hiányzó kivonatok és az üzenetek nem számítanak bele. Az alatta lévő sor megmondja, hány ügyfélnél. Rákattintva minden sor látszik. Az oldalsáv borostyánszínű száma ugyanez a szám. |
+| **Párosítási javaslatok** | A döntésre váró párosítási javaslatok az összes ügyfélnél. Az alatta lévő sor a teljes összeget mutatja, ha minden javaslat egy pénznemben van, különben az érintett számlák számát. |
+| **Dokumentumra várunk** | Azok a bankszámlák, amelyeknél hiányzik a múlt havi kivonat, és hogy hány ügyfélnél. |
+| **Zárási elmaradás** | A még le nem zárt hónapok azoknál az ügyfeleknél, amelyek két vagy több hónappal le vannak maradva. Az alatta lévő sor a legkorábbi zárandó hónapot nevezi meg, vagy azt írja: **nincs elmaradt hónap**. |
+| **Olvasatlan üzenetek** | Mások üzenetei, amelyeket még nem olvasott el, és hogy hány beszélgetésben vannak. |
+
+A csempék fölött egy sor összegzi a helyzetet: hány teendő vár hány ügyfélnél, ebből hány sürgős, és hány ráér a hét folyamán. Ez a sor nem jelenik meg, ha semmi sem vár az Ön tudására.
+
+## Ma intézd és Ráér a hét folyamán
+
+A lista két részből áll, **Ma intézd** és **Ráér a hét folyamán**, mindkettő a sorai számával. Hogy egy sor hova kerül, rögzített szabályok döntik el.
+
+A **Ma intézd** részbe kerül:
+
+- a **magas** prioritású számlaprobléma, mindig;
+- a **közepes** prioritású számlaprobléma, ha a legrégebbi számlája **legalább 7 napja** vár;
+- egy ügyfél párosítási javaslatai, ha **legalább 5** van belőlük, vagy a legrégebbi legalább 7 napja vár;
+- minden hiányzó kivonat;
+- minden zárási sor;
+- minden beszélgetés, amelyben olvasatlan üzenet van.
+
+A **Ráér a hét folyamán** részbe kerül minden más: a 7 napnál fiatalabb közepes prioritású számlaproblémák, az alacsony prioritású számlaproblémák, és azok a párosítási javaslatok, amelyek se nem sokak, se nem régiek.
+
+Egy részen belül elöl állnak a zárási sorok és a magas prioritású számlaproblémák, utánuk a hiányzó kivonatok, majd a közepes prioritású problémák és a párosítási javaslatok, aztán az üzenetek, végül az alacsony prioritású problémák. Ezeken belül a legrégebben váró sor áll elöl.
+
+## Mit mutat egy sor
+
+Minden sor egy ügyfél és egy fajta munka.
+
+1. **Az ügyfél**, ugyanazzal a színes pöttyel, mint a [Munkaterületek áttekintőn](/workspaces#állapotpöttyök).
+2. **Egy címke és egy sor arról, mi vár**, például **Áfakódok** és „4 számláról hiányzik áfakód”. Az alatta lévő szürke sor példákat hoz: a legnagyobb számlák partnereit, a kivonat nélküli bankszámlákat, a legnagyobb párosítási javaslatot vagy az üzenet elejét.
+3. **Mióta vár**, a legrégebbi tételtől számolva: **ma**, vagy napok száma. 7 naptól a szám borostyánszínű és félkövér.
+4. **Az összeg**: a sorban szereplő számlák vagy párosítási javaslatok bruttó összege, ha mind egy pénznemben vannak. Egyébként üres.
+5. **Egy gomb**, amely a munkához visz, például **Áfakódok pótlása →**.
+
+A ma intézendő, számlákról, párosításról és zárásról szóló sorok borostyánszínűek, bal oldalukon borostyánszínű csíkkal. A hiányzó kivonatok kékek, az üzenetek és a **Ráér a hét folyamán** sorai szürkék.
+
+## Számlaproblémák
+
+Egy számla egyszer számít, mégpedig az alábbi sorrendben az első problémájánál, így egy számla sosem jelenik meg két sorban. A duplikációk nem számítanak, egy elutasított számla pedig csak akkor jelenik meg, ha még párosítva van egy fizetéssel.
+
+| Címke | Mit jelent | Prioritás |
+|---|---|---|
+| **Készpénzes ütközés** | Egy készpénzes számlához banki tétel párosult | Magas |
+| **Elutasított párosítással** | Egy elutasított számla még párosítva van egy fizetéssel | Magas |
+| **Feldolgozás** | A számla beolvasása elakadt vagy sikertelen | Magas |
+| **Cég megerősítése** | Nem ismert, hogy az ügyfél melyik cégéhez tartozik a számla | Magas |
+| **Kategorizálás hibás** | Legalább egy tétel kategorizálása sikertelen | Magas |
+| **Kategorizálatlan** | Legalább egy tételnek nincs kategóriája | Közepes |
+| **Áfakódok** | Legalább egy tételről hiányzik az áfakód | Közepes |
+| **Kinyert adatok** | A számláról beolvasott adatokat érdemes ellenőrizni | Közepes |
+| **Partnerek** | A számla partnere nincs ellenőrizve | Alacsony |
+| **Párosítatlan** | A számla fizetési párosításra vár | Alacsony |
+| **Bizonytalan párosítás** | Egy alacsony pontszámú párosítás megerősítésre vár | Alacsony |
+| **Tételösszegek** | A tételek összege nem egyezik a számla végösszegeivel | Alacsony |
+| **Egyéni kategóriák** | Egy tételről hiányzik egy kötelező egyéni kategória (lásd: [Egyéni kategóriák](/custom-categories)) | Közepes |
+| **Mentes: fizetendő ÁFA** | Egy alanyi mentes cégnek ÁFA-t kell fizetnie egy beszerzés után (lásd: [Alanyi adómentesség](/small-business-exemption)) | Közepes |
+| **Mentes: ÁFA-s eladás** | Egy alanyi mentes cég eladásán ÁFA szerepel | Közepes |
+
+Ügyfelenként legfeljebb **három** számlaprobléma-sor látszik: elöl a legmagasabb prioritású, azon belül a legtöbb számlát érintő.
+
+## Hova visz egy sor
+
+| Sor | Mit nyit meg |
+|---|---|
+| Számlaprobléma | Az ügyfél **Számlák** listáját, csak a sorban szereplő számlákkal. A lista fölötti címke megnevezi a problémát, például „Teendők: Áfakódok”, mellette a **Szűrő törlése**. A szűrő csak az első 200 problémás számlát nézi; ha több van, a lista fölötti sor ezt jelzi. |
+| **Párosítás** | Az ügyfél **Párosítás** oldalát |
+| **Dokumentumra várunk** | Az ügyfél **Banki tranzakciók** oldalát, ahol feltöltheti a kivonatot (lásd: [Bankszámlakivonatok feltöltése](/bank-statement-upload)) |
+| **Zárás** | Az ügyfél **Zárás** oldalát a zárandó hónapra (lásd: [Havi zárás](/closing)) |
+| **Üzenet** | Azt a számlát, tranzakciót vagy más rekordot, amelyről a beszélgetés szól, vagy az **Üzenetek** oldalt |
+
+## Szűrés és keresés
+
+A lista fölött:
+
+- a **Mind**, **Számlák**, **Párosítások**, **Dokumentumok**, **Zárás** és **Üzenetek** gomb egy fajta sort mutat. A csempék ugyanezt teszik.
+- a **Minden ügyfél** választóval egy ügyfélre szűkítheti a listát.
+- a keresőmező megtalálja az ügyfél nevét, egy soron látható partnernevet vagy egy üzenet szövegét. Az ékezeteket figyelmen kívül hagyja.
+
+A szűrők az oldal címében vannak, így egy kimásolt hivatkozás ugyanazt a nézetet nyitja meg. Ha a szűrőkre semmi sem illik, az oldal felirata **Nincs találat a szűrőkre**, és felajánlja a **Szűrők törlése** lehetőséget. Ha egyáltalán semmi sem vár, a felirat **Minden naprakész**.
+
+## Jó tudni
+
+- **Egyes sorok rejtve maradhatnak.** A három számlaprobléma-soron kívül ügyfelenként egy sor jut a párosítási javaslatokra, egy a hiányzó kivonatokra, egy a zárásra és legfeljebb három a beszélgetésekre. Ha sorok kimaradnak, a lista alatti sor megmondja, hány; ezeket az ügyfél saját oldalain találja. **A tudásodra vár** csak a látható sorokat számolja.
+- **A számok az oldal megnyitásának pillanatából valók.** Töltse újra az oldalt, hogy a legutóbbi munkája is látsszon. Az oldalsáv száma is oldalbetöltéskor frissül.
+- **A hiányzó kivonatok csak a múlt hónapot nézik**, és csak azokat a bankszámlákat, amelyeknek nincs élő bankkapcsolata: egy csatlakoztatott számla magától hozza a tranzakcióit. Ha a múlt hónap a **Zárás** oldalon már le van zárva, az ügyfél nem szerepel.
+- **Zárási sor két hónap lemaradástól jelenik meg.** Egy nyitott hónap természetes: az az a hónap, amelyen dolgozik. A megnevezett hónap ugyanaz, amelyet a **Zárás** ajánl (lásd: [Havi zárás](/closing)), az alatta lévő sor pedig megmondja, hány hónap a lemaradás.
+- **Problémaként csak számlák jelennek meg.** A banki tranzakciók a párosítási javaslatokon és a hiányzó kivonatokon keresztül kerülnek ide; a kategorizálatlan tranzakciókat az ügyfél **Banki tranzakciók** oldalán és a **Zárás** oldalon találja.
+
+## Kapcsolódó
+
+- [Munkaterületek](/workspaces): az áttekintő minden ügyfél állapotával
+- [Számlák kezelése](/invoices)
+- [Számlák párosítása](/invoice-matching)
+- [Havi zárás](/closing)
+- [Üzenetek](/messages)
+- [Szerepek és jogosultságok](/roles-and-permissions)

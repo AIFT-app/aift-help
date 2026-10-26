@@ -1,0 +1,109 @@
+# Cockpit
+
+Das **Cockpit** ist eine einzige Seite mit allem, was bei all Ihren Mandanten auf Sie wartet: Rechnungen mit einem Problem, zu prüfende Zuordnungsvorschläge, fehlende Kontoauszüge, Monate, die beim Abschluss in Rückstand geraten, und ungelesene Nachrichten. Das [Arbeitsbereiche-Dashboard](/workspaces) zeigt, wie es um jeden Mandanten steht; das Cockpit zeigt, was als Nächstes zu tun ist.
+
+Das Cockpit gibt es nur auf der Kanzleiseite. Es steht in der Seitenleiste unter **Alle Arbeitsbereiche** für alle, die in mindestens einem Arbeitsbereich auf der Kanzleiseite sind, und umfasst jeden Arbeitsbereich, in dem Sie das sind. Benutzer auf der Mandantenseite sehen es nie. Eine bernsteinfarbene Zahl daneben zeigt, wie viele Punkte auf Ihr Wissen warten (siehe die erste Kachel unten).
+
+## Die Kacheln
+
+Die fünf Kacheln oben zählen, was wartet. Ein Klick auf eine Kachel zeigt in der Liste darunter nur diese Art von Punkten; die gewählte Kachel bekommt einen blauen Rahmen.
+
+| Kachel | Was sie zählt |
+|---|---|
+| **Wartet auf Ihr Wissen** | Die Zeilen der Liste zu Rechnungsproblemen, Zuordnungsvorschlägen und zum Abschluss. Fehlende Kontoauszüge und Nachrichten zählen nicht mit. Die Zeile darunter sagt, bei wie vielen Mandanten. Ein Klick zeigt alle Zeilen. Die bernsteinfarbene Zahl in der Seitenleiste ist dieselbe Zahl. |
+| **Zuordnungsvorschläge** | Zuordnungsvorschläge, die auf eine Entscheidung warten, über alle Mandanten. Die Zeile darunter nennt den Gesamtbetrag, wenn alle Vorschläge in einer Währung sind, sonst die Zahl der betroffenen Rechnungen. |
+| **Warten auf Belege** | Bankkonten, denen der Kontoauszug des Vormonats fehlt, und bei wie vielen Mandanten. |
+| **Abschlussrückstand** | Noch nicht abgeschlossene Monate, gezählt bei den Mandanten, die zwei oder mehr Monate im Rückstand sind. Die Zeile darunter nennt den frühesten abzuschließenden Monat oder lautet **kein Monat im Rückstand**. |
+| **Ungelesene Nachrichten** | Nachrichten anderer Personen, die Sie noch nicht gelesen haben, und in wie vielen Unterhaltungen sie stehen. |
+
+Über den Kacheln fasst eine Zeile zusammen, wie viele Aufgaben bei wie vielen Mandanten warten, wie viele davon dringend sind und wie viele bis Ende der Woche Zeit haben. Sie fehlt, wenn nichts auf Ihr Wissen wartet.
+
+## Heute erledigen und Kann später diese Woche warten
+
+Die Liste hat zwei Abschnitte, **Heute erledigen** und **Kann später diese Woche warten**, jeweils mit der Zahl ihrer Zeilen. Wohin eine Zeile kommt, entscheiden feste Regeln.
+
+In **Heute erledigen** stehen:
+
+- Rechnungsprobleme mit **hoher** Priorität, immer;
+- Rechnungsprobleme mit **mittlerer** Priorität, deren älteste Rechnung seit **mindestens 7 Tagen** wartet;
+- die Zuordnungsvorschläge eines Mandanten, wenn es **5 oder mehr** sind oder der älteste seit mindestens 7 Tagen wartet;
+- jeder fehlende Kontoauszug;
+- jede Abschlusszeile;
+- jede Unterhaltung mit ungelesenen Nachrichten.
+
+In **Kann später diese Woche warten** steht alles andere: Rechnungsprobleme mittlerer Priorität, die jünger als 7 Tage sind, Rechnungsprobleme niedriger Priorität und Zuordnungsvorschläge, die weder zahlreich noch alt sind.
+
+Innerhalb eines Abschnitts kommen zuerst die Abschlusszeilen und die Rechnungsprobleme hoher Priorität, dann die fehlenden Kontoauszüge, dann die Probleme mittlerer Priorität und die Zuordnungsvorschläge, dann die Nachrichten, zuletzt die Probleme niedriger Priorität. Innerhalb davon steht die am längsten wartende Zeile vorn.
+
+## Was eine Zeile zeigt
+
+Jede Zeile ist ein Mandant und eine Art von Arbeit.
+
+1. **Der Mandant**, mit demselben farbigen Punkt wie auf dem [Arbeitsbereiche-Dashboard](/workspaces#statuspunkte).
+2. **Ein Etikett und eine Zeile dazu, was wartet**, zum Beispiel **USt-Codes** und „USt-Codes fehlen auf 4 Rechnungen“. Die graue Zeile darunter nennt Beispiele: die Partner der größten Rechnungen, die Bankkonten ohne Kontoauszug, den größten Zuordnungsvorschlag oder den Anfang der Nachricht.
+3. **Wie lange es schon wartet**, gerechnet ab dem ältesten Punkt: **heute** oder eine Zahl von Tagen. Ab 7 Tagen wird die Zahl bernsteinfarben und fett.
+4. **Der Betrag**: die Bruttosumme der Rechnungen oder Zuordnungsvorschläge der Zeile, wenn alle in einer Währung sind. Sonst leer.
+5. **Eine Schaltfläche**, die Sie zur Arbeit führt, zum Beispiel **USt-Codes ergänzen →**.
+
+Zeilen zu Rechnungen, Zuordnungen und Abschluss, die heute erledigt werden sollen, sind bernsteinfarben, mit einem bernsteinfarbenen Rand links. Fehlende Kontoauszüge sind blau, Nachrichten und die Zeilen in **Kann später diese Woche warten** grau.
+
+## Rechnungsprobleme
+
+Eine Rechnung zählt einmal, und zwar beim ersten Problem, das sie in der folgenden Reihenfolge hat. Eine Rechnung erscheint also nie in zwei Zeilen. Duplikate zählen nicht, und eine abgelehnte Rechnung erscheint nur, wenn sie noch einer Zahlung zugeordnet ist.
+
+| Etikett | Was es bedeutet | Priorität |
+|---|---|---|
+| **Barzahlungs-Konflikt** | Einer Barrechnung ist eine Banktransaktion zugeordnet | Hoch |
+| **Abgelehnt mit Zuordnung** | Eine abgelehnte Rechnung ist noch einer Zahlung zugeordnet | Hoch |
+| **Extraktion** | Das Auslesen der Rechnung hängt oder ist fehlgeschlagen | Hoch |
+| **Firma bestätigen** | Es ist nicht bekannt, zu welcher Firma des Mandanten die Rechnung gehört | Hoch |
+| **Kategorisierung fehlgeschlagen** | Die Kategorisierung mindestens einer Position ist fehlgeschlagen | Hoch |
+| **Unkategorisiert** | Mindestens eine Position hat keine Kategorie | Mittel |
+| **USt-Codes** | Mindestens einer Position fehlt der USt-Code | Mittel |
+| **Ausgelesene Daten** | Die aus der Rechnung gelesenen Daten sollten geprüft werden | Mittel |
+| **Partner** | Der Partner der Rechnung ist nicht geprüft | Niedrig |
+| **Ohne Zahlung** | Die Rechnung wartet auf eine Zahlungszuordnung | Niedrig |
+| **Unsichere Zuordnung** | Eine Zuordnung mit niedrigem Score wartet auf Bestätigung | Niedrig |
+| **Positionssummen** | Die Positionen ergeben nicht die Summen der Rechnung | Niedrig |
+| **Eigene Kategorien** | Einer Position fehlt eine Pflichtkategorie aus einer eigenen Liste (siehe [Eigene Kategorien](/custom-categories)) | Mittel |
+| **Befreit: geschuldete USt** | Eine befreite Gesellschaft schuldet auf einen Einkauf USt (siehe [Kleinunternehmerbefreiung](/small-business-exemption)) | Mittel |
+| **Befreit: steuerpflichtiger Umsatz** | Auf dem Umsatz einer befreiten Gesellschaft ist USt ausgewiesen | Mittel |
+
+Pro Mandant werden höchstens **drei** Zeilen mit Rechnungsproblemen gezeigt: zuerst die höchste Priorität, darin die mit den meisten Rechnungen.
+
+## Wohin eine Zeile führt
+
+| Zeile | Öffnet |
+|---|---|
+| Ein Rechnungsproblem | Die Liste **Rechnungen** des Mandanten, nur mit den Rechnungen dieser Zeile. Ein Etikett über der Liste nennt das Problem, zum Beispiel „Cockpit: USt-Codes“, daneben **Filter entfernen**. Der Filter berücksichtigt nur die ersten 200 Problemrechnungen; gibt es mehr, sagt eine Zeile über der Liste das. |
+| **Zuordnung** | Die Seite **Zuordnung** des Mandanten |
+| **Warten auf Belege** | Die Seite **Banktransaktionen** des Mandanten, wo Sie den Kontoauszug hochladen (siehe [Kontoauszüge hochladen](/bank-statement-upload)) |
+| **Abschluss** | Die Seite **Abschluss** des Mandanten für den abzuschließenden Monat (siehe [Monatsabschluss](/closing)) |
+| **Nachricht** | Die Rechnung, Transaktion oder den anderen Datensatz, um den es in der Unterhaltung geht, oder die Seite **Nachrichten** |
+
+## Filtern und suchen
+
+Über der Liste:
+
+- **Alle**, **Rechnungen**, **Zuordnungen**, **Belege**, **Abschluss** und **Nachrichten** zeigen eine Art von Zeilen. Die Kacheln tun dasselbe.
+- **Alle Kunden** grenzt die Liste auf einen Mandanten ein.
+- Das Suchfeld findet einen Mandantennamen, einen in einer Zeile gezeigten Partnernamen oder den Text einer Nachricht. Akzente werden dabei ignoriert.
+
+Die Filter stehen in der Adresse der Seite, ein kopierter Link öffnet also dieselbe Ansicht. Passt nichts zu den Filtern, steht auf der Seite **Keine Treffer für die Filter**, mit **Filter zurücksetzen**. Wartet überhaupt nichts, steht dort **Alles erledigt**.
+
+## Gut zu wissen
+
+- **Manche Zeilen können ausgeblendet sein.** Neben den drei Zeilen mit Rechnungsproblemen zeigt jeder Mandant eine Zeile für Zuordnungsvorschläge, eine für fehlende Kontoauszüge, eine für den Abschluss und bis zu drei Unterhaltungen. Fallen Zeilen weg, sagt eine Zeile unter der Liste, wie viele; Sie finden sie auf den Seiten des Mandanten. **Wartet auf Ihr Wissen** zählt nur die gezeigten Zeilen.
+- **Die Zahlen stammen aus dem Moment, in dem Sie die Seite geöffnet haben.** Laden Sie sie neu, damit Ihre letzte Arbeit berücksichtigt wird. Auch die Zahl in der Seitenleiste wird beim Laden einer Seite gelesen.
+- **Fehlende Kontoauszüge betreffen nur den Vormonat** und nur Bankkonten ohne aktive Bankverbindung: Ein verbundenes Konto bringt seine Transaktionen selbst. Ist der Vormonat im **Abschluss** bereits abgeschlossen, wird der Mandant nicht aufgeführt.
+- **Eine Abschlusszeile erscheint ab zwei Monaten Rückstand.** Ein offener Monat ist normal: Es ist der Monat, an dem Sie arbeiten. Der genannte Monat ist derselbe, den der **Abschluss** anbietet (siehe [Monatsabschluss](/closing)), und die Zeile darunter sagt, wie viele Monate im Rückstand sind.
+- **Als Probleme erscheinen nur Rechnungen.** Banktransaktionen tauchen über Zuordnungsvorschläge und fehlende Kontoauszüge auf; unkategorisierte Transaktionen finden Sie auf der Seite **Banktransaktionen** des Mandanten und im **Abschluss**.
+
+## Verwandte Themen
+
+- [Arbeitsbereiche](/workspaces): das Dashboard mit dem Stand jedes Mandanten
+- [Arbeiten mit Rechnungen](/invoices)
+- [Rechnungsabgleich](/invoice-matching)
+- [Monatsabschluss](/closing)
+- [Nachrichten](/messages)
+- [Rollen & Berechtigungen](/roles-and-permissions)

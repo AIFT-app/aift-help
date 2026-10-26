@@ -1,0 +1,109 @@
+# Mission Control
+
+**Mission control** is one page with everything that is waiting on you across all your clients: invoices with a problem, match suggestions to review, bank statements that are missing, months that are falling behind on closing, and unread messages. The [Workspaces dashboard](/workspaces) tells you how each client is doing; Mission control tells you what to do next.
+
+Mission control is on the accountant side only. It appears in the sidebar, under **All workspaces**, for anyone who is on the accountant side of at least one workspace, and it covers every workspace where you are. Client users never see it. An amber number next to it shows how many items need your knowledge (see the first tile below).
+
+## The tiles
+
+The five tiles at the top count what is waiting. Click a tile to show only that kind of item in the list below; the selected tile gets a blue frame.
+
+| Tile | What it counts |
+|---|---|
+| **Needs your knowledge** | The rows in the list about invoice problems, match suggestions and closing. Missing statements and messages are not counted. The line under it says across how many clients. Clicking it shows every row. The amber number in the sidebar is the same number. |
+| **Match suggestions** | Match suggestions waiting for a decision, across all clients. The line under it gives the total amount when all suggestions are in one currency, otherwise the number of invoices involved. |
+| **Waiting on documents** | Bank accounts whose statement for last month is missing, and at how many clients. |
+| **Closing backlog** | Months not yet closed, counted for the clients that are two or more months behind. The line under it names the earliest month to close, or says **no month behind**. |
+| **Unread messages** | Messages from other people that you have not read yet, and how many conversations they are in. |
+
+Above the tiles, one line sums it up: how many to-dos are waiting at how many clients, how many are urgent and how many can wait for the week. It is hidden when nothing needs your knowledge.
+
+## Do today and Later this week
+
+The list has two sections, **Do today** and **Later this week**, each with its number of rows. Where a row goes is decided by fixed rules:
+
+**Do today** holds:
+
+- invoice problems of **high** priority, always;
+- invoice problems of **medium** priority whose oldest invoice has waited **7 days or more**;
+- a client's match suggestions when there are **5 or more**, or the oldest has waited 7 days or more;
+- every missing statement;
+- every closing row;
+- every conversation with unread messages.
+
+**Later this week** holds everything else: medium-priority invoice problems younger than 7 days, low-priority invoice problems, and match suggestions that are neither many nor old.
+
+Inside a section, closing and high-priority invoice problems come first, then missing statements, then medium-priority problems and match suggestions, then messages, then low-priority problems. Within each, the longest-waiting row comes first.
+
+## What a row shows
+
+Each row is one client and one kind of work.
+
+1. **The client**, with the same coloured dot as on the [Workspaces dashboard](/workspaces#status-dots).
+2. **A label and one line on what is waiting**, for example **VAT codes** and "VAT codes missing on 4 invoices". The grey line under it gives examples: the partners on the largest invoices, the bank accounts without a statement, the largest match suggestion, or the start of the message.
+3. **How long it has waited**, counted from the oldest item: **today**, or a number of days. From 7 days the number turns amber and bold.
+4. **The amount**: the gross total of the invoices in the row, or of the match suggestions, when they are all in one currency. Empty otherwise.
+5. **A button** that takes you to the work, for example **Add VAT codes →**.
+
+Rows that need you today about invoices, matches and closing are amber, with an amber edge on the left. Missing statements are blue, messages and the rows in **Later this week** are grey.
+
+## Invoice problems
+
+An invoice is counted once, under the first problem it has in the order below, so one invoice never appears in two rows. Duplicates are not counted, and a rejected invoice only appears when it is still matched to a payment.
+
+| Label | What it means | Priority |
+|---|---|---|
+| **Cash conflict** | A cash invoice has a matched bank transaction | High |
+| **Rejected with match** | A rejected invoice is still matched to a payment | High |
+| **Extraction** | The invoice is stuck in reading or reading failed | High |
+| **Company needed** | It is not known which of the client's companies the invoice belongs to | High |
+| **Categorization failed** | Categorizing at least one line failed | High |
+| **Uncategorized** | At least one line has no category | Medium |
+| **VAT codes** | At least one line has no VAT code | Medium |
+| **Extracted data** | The data read from the invoice should be checked | Medium |
+| **Partners** | The invoice's partner is not verified | Low |
+| **Unmatched** | The invoice waits for a payment match | Low |
+| **Low-confidence match** | A match with a low score waits for confirmation | Low |
+| **Line totals** | The lines do not add up to the invoice's totals | Low |
+| **Custom categories** | A mandatory custom category is missing on a line (see [Custom Categories](/custom-categories)) | Medium |
+| **Exempt: self-assessed VAT** | An exempt company must self-assess VAT on a purchase (see [Small Business VAT Exemption](/small-business-exemption)) | Medium |
+| **Exempt: taxable sale** | An exempt company's sale carries VAT | Medium |
+
+Each client shows at most **three** invoice-problem rows: the highest priority first, then the one with the most invoices.
+
+## Where a row takes you
+
+| Row | Opens |
+|---|---|
+| An invoice problem | The client's **Invoices** list, showing only the invoices in that row. A label above the list names the problem, for example "Mission control: VAT codes", with **Clear filter** next to it. The filter looks at the first 200 problem invoices only; when there are more, a line above the list says so. |
+| **Matches** | The client's **Matching** page |
+| **Waiting on documents** | The client's **Bank transactions** page, where you upload the statement (see [Uploading Bank Statements](/bank-statement-upload)) |
+| **Closing** | The client's **Closing** page for the month to close (see [Monthly Closing](/closing)) |
+| **Message** | The invoice, transaction or other record the conversation is about, or the **Messages** page |
+
+## Filtering and searching
+
+Above the list:
+
+- **All**, **Invoices**, **Matches**, **Documents**, **Closing** and **Messages** show one kind of row. The tiles do the same.
+- **All clients** narrows the list to one client.
+- The search box finds a client name, a partner name shown on a row, or the text of a message. It ignores accents.
+
+The filters are part of the page address, so a copied link opens the same view. When the filters match nothing, the page says **No matches for the filters** and offers **Clear filters**. When nothing is waiting at all, it says **All caught up**.
+
+## Good to know
+
+- **Some rows can be hidden.** Besides the three invoice-problem rows, each client shows one row for match suggestions, one for missing statements, one for closing and up to three conversations. When rows are left out, a line under the list says how many; you find them on the client's own pages. **Needs your knowledge** counts only the rows shown.
+- **The figures are from the moment you opened the page.** Reload it to see your latest work reflected. The sidebar number is also read when a page loads.
+- **Missing statements look at last month only**, and only at bank accounts without a live bank connection: a connected account brings its transactions by itself. When last month is already closed in **Closing**, the client is not listed.
+- **A closing row appears from two months behind.** One open month is normal: it is the month you are working on. The month named is the same one **Closing** offers (see [Monthly Closing](/closing)), and the line under it says how many months are behind.
+- **Only invoices appear as problems.** Bank transactions show up through match suggestions and missing statements; uncategorized transactions are on the client's **Bank transactions** page and in **Closing**.
+
+## Related
+
+- [Workspaces](/workspaces): the dashboard with every client's health
+- [Working with Invoices](/invoices)
+- [Invoice Matching](/invoice-matching)
+- [Monthly Closing](/closing)
+- [Messages](/messages)
+- [Roles & Permissions](/roles-and-permissions)
