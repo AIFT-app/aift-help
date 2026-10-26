@@ -15,7 +15,7 @@ Jedes Mitglied eines Arbeitsbereichs steht auf der **Kanzleiseite** (es arbeitet
 
 Mitglieder einer Kanzlei haben eine Organisationsrolle, **Admin** oder **Mitglied**. Wenn kein Arbeitsbereich geöffnet ist, zeigt die Seitenleiste **Organisation** mit diesen Seiten:
 
-- **Allgemein**, **Arbeitsbereiche verwalten**, **Team**, **KI-Zugriff** und **Support-Zugriff** für jedes Mitglied der Kanzlei;
+- **Allgemein**, **Arbeitsbereiche verwalten**, **Team**, **KI-Zugriff** und **Support-Zugriff** (siehe [Support-Zugriff](#support-zugriff)) für jedes Mitglied der Kanzlei;
 - **Abrechnung** für Admins, sofern die Abrechnung aktiviert ist.
 
 Admins laden Personen in die Kanzlei ein, machen ein Mitglied zum Admin oder einen Admin zum Mitglied und entfernen Personen. Wer aus der Kanzlei entfernt wird, wird auch aus jedem Arbeitsbereich der Kanzlei entfernt; der letzte Admin kann nicht entfernt werden. Mitglieder sehen das Team der Kanzlei, können es aber nicht ändern.
@@ -223,3 +223,24 @@ Es gibt drei Wege in einen Arbeitsbereich:
 ### Ein Mitglied entfernen
 
 Ein Mitglied mit „Mitglieder und Rollen verwalten“ kann auf dem Reiter **Teammitglieder** ein Mitglied der eigenen Seite entfernen: Voreingestellt entfernt der Buchhalter-Admin kanzleiseitige Mitglieder und die Finanzleitung mandantenseitige Mitglieder. Jedes Mitglied kann einen Arbeitsbereich selbst verlassen; ausgenommen sind der letzte Buchhalter-Admin und die letzte Finanzleitung. Entfernte Personen behalten ihr Konto; sie verlieren nur den Zugriff auf diesen Arbeitsbereich. Wer aus der Organisation entfernt wird (auf ihrer Seite **Team**), wird aus jedem Arbeitsbereich der Kanzlei entfernt.
+
+## Support-Zugriff
+
+**Organisation → Support-Zugriff** entscheidet, ob die Support-Mitarbeiter von AI Finance Team die Arbeitsbereiche Ihrer Mandanten öffnen dürfen, um einem Problem nachzugehen. Jedes Mitglied der Kanzlei kann die Seite öffnen und sehen, wer drin war; ändern können sie nur Organisations-Admins. Benutzer auf Mandantenseite sehen sie nie.
+
+<SupportAccessFigure>
+Die Seite **Support-Zugriff** bei erteiltem Zugriff mit einer laufenden Sitzung. Die Nummern entsprechen der Liste darunter. Namen, Daten und Begründung sind Beispiele.
+</SupportAccessFigure>
+
+1. Ob der Support-Zugriff erteilt ist, bis wann und von wem. Organisations-Admins sehen daneben **Support-Zugriff beenden**, ohne Zugriff **Support-Zugriff erteilen**.
+2. Eine laufende Sitzung: wer, in welchem Arbeitsbereich, mit welchem Zugriff, wann sie begann, wann sie endet und warum. **Sitzung beenden** beendet diese eine Sitzung sofort.
+3. **Verlauf**: jede Sitzung, auch die beendeten, und wie jede endete.
+
+**Erteilen.** **Support-Zugriff erteilen** öffnet das Fenster für ein Jahr. Die Seite zeigt dann **Erteilt**, das Ablaufdatum und wer ihn erteilt hat. Ist das Jahr um, steht dort **Abgelaufen**, damit ein abgelaufenes Fenster nicht wie eines aussieht, das nie jemand geöffnet hat. Bei **Nicht erteilt** können unsere Mitarbeiter Ihre Arbeitsbereiche gar nicht öffnen und auch keinen Datensatz ansehen, nach dem Sie uns fragen.
+
+**Beenden.** **Support-Zugriff beenden** fragt zuerst nach. Laufende Sitzungen enden sofort, und niemand kann eine neue öffnen, bis Sie den Zugriff wieder erteilen.
+
+**Eine Sitzung** öffnet einer unserer Mitarbeiter in einem Arbeitsbereich, mit einer angegebenen Begründung, und sie endet von selbst nach 1, 4, 8 oder 24 Stunden, je nach Wahl (anfangs 8). Sie arbeiten unter ihrem eigenen Namen, sodass jede ihrer Änderungen im Verlauf des jeweiligen Datensatzes unter ihrem Namen steht, wie bei allen anderen. Sie erhalten eine der Rollen des Arbeitsbereichs oder arbeiten **mit den Rechten** eines Mitglieds: einer Kopie seiner Rolle und Ausnahmen zum Start der Sitzung, damit sie genau sehen, was diese Person sieht. Eine Sitzung verschickt keine E-Mail; diese Seite ist der Nachweis.
+
+**Verlauf** zeigt, wie jede Sitzung endete: **Automatisch beendet**, **Von Ihrer Organisation beendet** oder **Von AIFT beendet**.
+
