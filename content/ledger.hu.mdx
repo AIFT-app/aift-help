@@ -2,7 +2,7 @@
 
 A Főkönyv az a hely, ahol az adataival válaszol meg egy kérdést: az előző negyedév összes EUR-kiadása, egyetlen bankszámla összes márciusi tranzakciója, egyetlen szállító összes idei számlája. Egyszerre böngészi a számláit és a banki tranzakcióit, szűri őket, majd exportálja az eredményt.
 
-Az oldalsávban az **Exportok → Főkönyv** alatt találja, és az **Exportok** menüpontra kattintva közvetlenül ide jut. Az ügyféloldali felhasználók egyáltalán nem látják.
+Az oldalsávban az **Exportok → Főkönyv** alatt találja, és az **Exportok** menüpontra kattintva közvetlenül ide jut. Az ügyféloldali felhasználók egyáltalán nem látják. Ugyanebben a menüben vannak az iroda programjainak szóló fájlok, az **RLB** és a **HessynKettős**, valamint a **Business Central**; lásd [További exportok](#további-exportok).
 
 A megnyitásához a **„Könyvelési exportok futtatása”** jogosultság kell. Ez jogosultság kérdése, nem beosztás, így egy könyvelőnél is előfordulhat, hogy nincs meg - az oldalsáv pedig ettől is mutatja a hivatkozást: megnyomva minden üzenet nélkül visszakerül a munkaterület áttekintőjére. Ha Önnel ez történik, ez a jogosultság hiányzik.
 
@@ -92,6 +92,82 @@ Két korlát és egy csendes kivonás:
 
 A fájl neve az exportált időszakra utal.
 
+## További exportok
+
+Az **Exportok** menüben a Főkönyv mellett még három oldal van. Mindegyik egyetlen könyvelőprogramnak szól:
+
+| Oldal | Mit küld | Hová |
+|---|---|---|
+| **RLB** | kimenő és bejövő számlákat és banki mozgásokat, egy CSV fájlban | az iroda RLB-60 programjába |
+| **HessynKettős** | csak a kimenő számlákat, egy CSV fájlban | a HessynKettősbe, a Számlázz.hu importján át |
+| **Business Central** | a bejövő számlákat piszkozatként, a banki tételeket könyveletlen naplósorként, közvetlenül beírva | az ügyfél Business Centraljába |
+
+Mindháromhoz ugyanaz a **„Könyvelési exportok futtatása”** jogosultság kell, mint a Főkönyvhöz, és az ügyféloldali felhasználók nem látják őket. A két fájl a felület nyelvétől függetlenül magyar, mert az őket beolvasó programok ezt várják. A Business Central csak a csatlakoztatása után jelenik meg, és saját cikke van: [Business Central](/business-central).
+
+### RLB
+
+Az **RLB** oldal a Főkönyv arra szűkítve, amit az iroda az RLB-60-ban könyvel: ugyanaz a **Kérdezd a Főkönyvet** sáv, szűrősáv és chipek, és az első három fül (**Számla fejlécek**, **Számlatételek**, **Banki tranzakciók**), ugyanazokkal az alapértelmezésekkel (az utolsó 30 nap, a munkaterület dátumtípusa). **Amit a fülek mutatnak, az kerül a fájlba**: az export pontosan a beállított szűrőket veszi át. A [havi zárás](/closing) oldala az adott hónapra ide visz a **RLB export erre az időszakra →** hivatkozással.
+
+Az oldal címe melletti **Exportálás** megkérdezi, mi kerüljön a fájlba: **Vegyes (bank + számlák)**, **Csak bank** vagy **Csak számlák**. Egyetlen TÖBBSOROS CSV fájlt kap, az RLB által várt Windows-1250 kódolásban, `rlb_tobbsoros_<tól>_<ig>.csv` néven. A Főkönyv korlátai érvényesek, számlánként és banki tranzakciónként egy tétellel számolva: 50 000 felett megerősítést kér, 200 000 felett elutasítja az exportot. Az oldal alján a **Legutóbbi exportok** az utolsó tíz fájlt mutatja, az időszakukkal és a tételszámukkal.
+
+Hogyan könyvelődnek a sorok:
+
+- **Egy számla** a bevételét vagy ráfordítását az egyes tételsorok kategóriájának **Kódjára** könyveli, az áfát és a vevő- vagy szállítóoldalt pedig a **Főkönyvi számok beállítása** alatti ellenszámlákra. A tételsorok kategória, áfakulcs és fordított adózás szerint csoportosulnak. A devizás számla a saját összegeit és a forintösszegeket is viszi, a HUF könyvelési árfolyamán (lásd [Több pénznem és árfolyamok](/currency-exchange)).
+- **Egy számlához párosított banki tranzakció** a vevő- vagy szállítói számlával szemben könyvelődik, hivatkozásként a számla számával, a számla partnerének nevével. Egy több számlát kiegyenlítő fizetés számlánként egy sort ír, és egy sort a maradékra (lásd [Folyószámla kiegyenlítése](/settlement)).
+- **A Nincs szükség számlára jelölésű tranzakció** a tranzakciós kategóriájának **Kódjára** könyvelődik.
+- **A párosítatlan tranzakció** folyószámlára könyvelődik: a befolyó pénz a vevői, a kimenő a szállítói számlára.
+
+**Semmi sem marad ki azért, mert korábban már exportálták.** Ha ugyanazt az időszakot kétszer exportálja, ugyanazok a sorok kétszer jönnek ki, ezért tartsa számon, mit olvasott már be az iroda; ebben a **Legutóbbi exportok** segít. Azok a számlák, amelyeket az RLB közvetlenül a NAV-tól kap meg, kihagyhatók: a **További szűrők** alatt állítsa a **NAV / OSA számlák** szűrőt **Kihagyás** értékre. Az őket kiegyenlítő banki sorok továbbra is hivatkoznak rájuk.
+
+#### Amit az RLB nem tud beolvasni
+
+A keresősáv felett az oldal vagy zölden azt írja, **Exportálásra kész**, vagy sárgán azt, hány tételt kell javítani, **Áttekintés és javítás** hivatkozással. A szám négyféle hibát ad össze:
+
+- főkönyvi szám nélküli tételsor: a számlának nincs tételsora, a tételsornak nincs kategóriája, vagy a kategóriájának nincs **Kódja**;
+- **Nincs szükség számlára** jelölésű banki tranzakció, amelynek nincs kategóriája, vagy a kategóriájának nincs **Kódja**;
+- devizás számla, amelynek még nincs HUF árfolyama;
+- számla, amelynek tételsoraiban az áfa nem adja ki a számla áfaösszegét.
+
+Az **Áttekintés és javítás** egy panelt nyit, amely felsorolja őket, és a legtöbbjük ott helyben javítható.
+
+<RlbFixPanelFigure>
+A **Javítás exportálás előtt** panel mindegyik hibafajtából eggyel. A számok az alábbi listának felelnek meg. A cégek és az összegek példák.
+</RlbFixPanelFigure>
+
+1. Hány tétel van már javítva, és hány van hátra.
+2. Főkönyvi szám nélküli tételsor. Válasszon **Kóddal** rendelkező kategóriát, vagy a hivatkozással adjon kódot a tételsor jelenlegi kategóriájának.
+3. **Nincs szükség számlára** jelölésű banki tranzakció: válasszon **Kóddal** rendelkező tranzakciós kategóriát.
+4. Devizás számla HUF árfolyam nélkül. Amíg **Árfolyam függőben** áll rajta, az árfolyam magától megérkezik; be is írhatja, majd **Mentés**.
+5. Számla, amelynek tételsor-áfája nem egyezik az összesítővel: az **Áfa újraszámítása a kulcsból** minden tételsor áfáját a kulcsából számolja újra.
+6. Az **Exportálás most** akkor működik, ha már nem maradt semmi. Addig az **Exportálás** menüből exportáljon.
+
+A javított sor azonnal eltűnik a listából. Minden szakasz legfeljebb 100 sort mutat, és jelzi, ha több van; a többi a javítások után jön. A panel soha nem állítja meg az exportot: ha maradt javítandó, az **Exportálás** figyelmeztet, hogy ezek nem importálódnak hibátlanul, és rákérdez, mielőtt folytatja.
+
+#### Az ellenszámlák
+
+A **Főkönyvi számok beállítása**, egy csukott panel a fülek felett, hat főkönyvi számot tárol: **Vevő (követelés)**, **Szállító (kötelezettség)**, **Bankszámla**, **Pénztár**, **Fizetendő áfa** és **Előzetes áfa**. Kezdetben 311, 4541, 3841, 3811, 467 és 466; írja át őket az iroda számlatükrére, majd nyomja meg a **Számok mentése** gombot. A **Pénztár** mentődik, de az export ma nem használja.
+
+Ha több bankszámla van, a **Bankszámla (alapértelmezett)** gombbá válik, például *2 számla · 2 főkönyvi szám* felirattal, és a **Bankszámlák → főkönyvi szám** szerkesztőt nyitja: minden számlának saját főkönyvi szám adható, üresen hagyva az alapértelmezettet kapja.
+
+### HessynKettős
+
+A **HessynKettős** oldal a kimenő számláit abban a Számlázz.hu CSV formában írja ki, amelyet a HessynKettős beolvas. Nincsenek fülei és szűrői, csak a főkönyvi számlák és egy dátumtartomány.
+
+<HessynExportFigure>
+A HessynKettős oldal egy export után. A számok az alábbi listának felelnek meg. A darabszámok példák.
+</HessynExportFigure>
+
+1. **Főkönyvi számlák**: a vevő gyűjtőszámla és a fizetendő áfa számla, amelyre a HessynKettős könyvel. Amíg itt nem menti őket, az RLB oldal vevő- és fizetendőáfa-számláját veszi át (ha azok sincsenek megadva, 311 és 467). Az egyes tételsorok árbevétel-számlája a kategóriájuk **Kódja**.
+2. A dátumtartomány, a számla kiállítási dátuma szerint, majd a **CSV export**. A tartomány kezdetben **Teljes időszak**, és nem követi a [fókuszált időszakot](/focused-period). A fájl neve `hessyn_kettos_<tól>_<ig>.csv`.
+3. Mi került a fájlba, és sárgával, mi nem.
+
+Néhány számla kimarad, és az oldal minden export után megmondja, hány:
+
+- **a készpénzes számlák**: ez a verzió csak az átutalásos számlákat exportálja;
+- **a helyesbítő számlák**: ezeket kézzel könyvelje a HessynKettősben.
+
+Az a tételsor, amelynek kategóriájának nincs **Kódja**, bekerül, és a HessynKettős a napló alapértelmezett számlájára könyveli; ezeket is megszámolja az oldal. Duplikátum és elutasított számla soha nem kerül bele. A fájlba került minden számla előzményeiben megjelenik egy bejegyzés, de semmi nem akadályozza meg, hogy újra exportálja. Egy export legfeljebb 50 000 számlát vesz fel.
+
 ## Tippek
 
 - **Először a dátumtartományt szélesítse ki.** A „hol vannak az adataim” pillanatok többsége a 30 napos alapértelmezés.
@@ -103,5 +179,6 @@ A fájl neve az exportált időszakra utal.
 
 - [Jelentések](/reports) - mentett, kategóriaalapú összesítések, szemben a Főkönyv eseti böngészésével
 - [ÁFA az exportokban](/vat-in-exports) - miért maradhat ki egy számla az exportból
+- [Business Central](/business-central) - a harmadik export, közvetlenül az ügyfél Business Centraljába
 - [Számlák kezelése](/invoices)
 - [Számlák párosítása](/invoice-matching)

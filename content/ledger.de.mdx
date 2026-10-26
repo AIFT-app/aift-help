@@ -2,7 +2,7 @@
 
 Im Hauptbuch beantworten Sie eine Frage mit Ihren Daten: jede Ausgabe in EUR im letzten Quartal, jede Transaktion auf einem Bankkonto im März, jede Rechnung eines Lieferanten in diesem Jahr. Es durchsucht Ihre Rechnungen und Banktransaktionen gemeinsam, filtert sie und exportiert das Ergebnis.
 
-Es liegt in der Seitenleiste unter **Exporte → Hauptbuch**, und ein Klick auf **Exporte** führt Sie direkt hierher. Benutzer auf Mandantenseite sehen es nie.
+Es liegt in der Seitenleiste unter **Exporte → Hauptbuch**, und ein Klick auf **Exporte** führt Sie direkt hierher. Benutzer auf Mandantenseite sehen es nie. Im selben Menü liegen die Dateien für die Programme des Büros, **RLB** und **HessynKettős**, sowie **Business Central**; siehe [Weitere Exporte](#weitere-exporte).
 
 Zum Öffnen brauchen Sie die Berechtigung **„Buchhaltungsexporte ausführen“**. Das ist eine Berechtigung und keine Rollenbezeichnung, ein Buchhalter kann sie also auch nicht haben, und die Seitenleiste zeigt den Link trotzdem: ein Klick darauf bringt Sie zurück zur Arbeitsbereichsübersicht, ohne Meldung. Wenn Ihnen das passiert, fehlt Ihnen genau diese Berechtigung.
 
@@ -92,6 +92,82 @@ Zwei Grenzen und eine stille Subtraktion:
 
 Die Datei ist nach dem exportierten Zeitraum benannt.
 
+## Weitere Exporte
+
+Unter **Exporte** liegen neben dem Hauptbuch drei weitere Seiten. Jede ist für ein bestimmtes Buchhaltungsprogramm:
+
+| Seite | Was sie sendet | Wohin |
+|---|---|---|
+| **RLB** | Ausgangs- und Eingangsrechnungen und Bankbewegungen, in einer CSV-Datei | in das RLB-60 des Büros |
+| **HessynKettős** | nur ausgehende Rechnungen, in einer CSV-Datei | in HessynKettős, über dessen Számlázz.hu-Import |
+| **Business Central** | Eingangsrechnungen als Entwürfe und Bankzeilen als ungebuchte Erfassungszeilen, direkt geschrieben | in das Business Central des Mandanten |
+
+Alle drei brauchen dieselbe Berechtigung **„Buchhaltungsexporte ausführen“** wie das Hauptbuch, und Benutzer auf Mandantenseite sehen sie nicht. Die beiden Dateien sind unabhängig von Ihrer Oberflächensprache ungarisch, weil die Programme, die sie einlesen, das erwarten. Business Central erscheint erst, wenn es verbunden ist, und hat einen eigenen Artikel: [Business Central](/business-central).
+
+### RLB
+
+Die Seite **RLB** ist das Hauptbuch, eingeschränkt auf das, was das Büro in RLB-60 bucht: dieselbe Leiste **Frag das Hauptbuch**, dieselbe Filterleiste und dieselben Chips und die ersten drei Reiter (**Rechnungsköpfe**, **Rechnungspositionen**, **Banktransaktionen**), mit denselben Vorgaben (die letzten 30 Tage, der Datumstyp des Arbeitsbereichs). **Was die Reiter zeigen, steht in der Datei**: Der Export übernimmt genau die Filter, die Sie gesetzt haben. Die Seite [Monatsabschluss](/closing) führt mit **RLB-Export für diesen Zeitraum →** für ihren Monat hierher.
+
+**Exportieren** neben dem Seitentitel fragt, was in die Datei kommt: **Gemischt (Bank + Rechnungen)**, **Nur Bank** oder **Nur Rechnungen**. Sie erhalten eine TÖBBSOROS-CSV-Datei, in Windows-1250 kodiert, wie RLB es erwartet, mit dem Namen `rlb_tobbsoros_<von>_<bis>.csv`. Es gelten die Grenzen des Hauptbuchs, gezählt mit einem Eintrag je Rechnung und je Banktransaktion: über 50.000 werden Sie um Bestätigung gebeten, über 200.000 wird der Export abgelehnt. **Letzte Exporte** unten auf der Seite listet die letzten zehn Dateien mit Zeitraum und Anzahl der Einträge.
+
+Wie die Zeilen gebucht werden:
+
+- **Eine Rechnung** bucht Erlös oder Aufwand auf den **Code** der Kategorie jeder Position, USt. und Kunden- oder Lieferantenseite auf die Gegenkonten unter **Sachkonten einrichten**. Positionen werden nach Kategorie, Steuersatz und Reverse Charge gruppiert. Eine Fremdwährungsrechnung enthält ihre eigenen Beträge und die HUF-Beträge, zu ihrem HUF-Buchungskurs (siehe [Mehrwährung & Wechselkurse](/currency-exchange)).
+- **Eine einer Rechnung zugeordnete Banktransaktion** bucht gegen das Kunden- oder Lieferantenkonto, mit der Rechnungsnummer als Verweis und dem Partnernamen der Rechnung. Eine Zahlung, die mehrere Rechnungen ausgleicht, schreibt eine Zeile je Rechnung und eine Zeile für einen Rest (siehe [Partnersalden ausgleichen](/settlement)).
+- **Eine als Keine Rechnung nötig markierte Transaktion** bucht auf den **Code** ihrer Transaktionskategorie.
+- **Eine nicht zugeordnete Transaktion** bucht als Akontozahlung: Geldeingang auf das Kundenkonto, Geldausgang auf das Lieferantenkonto.
+
+**Nichts wird ausgelassen, weil es schon einmal exportiert wurde.** Exportieren Sie denselben Zeitraum zweimal, kommen dieselben Zeilen zweimal heraus; halten Sie also fest, was das Büro bereits eingelesen hat, **Letzte Exporte** hilft dabei. Rechnungen, die RLB direkt von der NAV erhält, lassen sich weglassen: Stellen Sie unter **Weitere Filter** den Filter **NAV- / OSA-Rechnungen** auf **Ausschließen**. Bankzeilen, die sie bezahlen, verweisen weiterhin auf sie.
+
+#### Was RLB nicht einlesen kann
+
+Über der Suchleiste zeigt die Seite entweder grün **Bereit zum Export** oder gelb, wie viele Einträge zu beheben sind, mit **Prüfen & beheben**. Die Zahl fasst vier Arten von Problemen zusammen:
+
+- eine Rechnungsposition ohne Sachkonto: Die Rechnung hat keine Positionen, die Position hat keine Kategorie, oder ihre Kategorie hat keinen **Code**;
+- eine als **Keine Rechnung nötig** markierte Banktransaktion, deren Kategorie fehlt oder keinen **Code** hat;
+- eine Fremdwährungsrechnung noch ohne HUF-Kurs;
+- eine Rechnung, deren Positions-USt. nicht ihre USt.-Summe ergibt.
+
+**Prüfen & beheben** öffnet ein Fenster, das sie auflistet, und die meisten lassen sich dort direkt beheben.
+
+<RlbFixPanelFigure>
+Das Fenster **Vor dem Export beheben** mit je einem Problem jeder Art. Die Nummern entsprechen der Liste darunter. Die Unternehmen und Beträge sind Beispiele.
+</RlbFixPanelFigure>
+
+1. Wie viele schon behoben sind und wie viele noch übrig sind.
+2. Eine Rechnungsposition ohne Sachkonto. Wählen Sie eine Kategorie mit **Code**, oder geben Sie über den Link der aktuellen Kategorie der Position einen.
+3. Eine als **Keine Rechnung nötig** markierte Banktransaktion: Wählen Sie eine Transaktionskategorie mit **Code**.
+4. Eine Fremdwährungsrechnung ohne HUF-Kurs. Solange **Kurs ausstehend** dasteht, kommt der Kurs von selbst; Sie können ihn auch eintragen und **Speichern**.
+5. Eine Rechnung, deren Positions-USt. nicht zur Summe passt: **USt. aus Satz neu berechnen** setzt die USt. jeder Position aus ihrem Satz.
+6. **Jetzt exportieren** funktioniert, sobald nichts mehr übrig ist. Bis dahin exportieren Sie über das Menü **Exportieren**.
+
+Eine behobene Zeile verschwindet sofort aus der Liste. Jeder Abschnitt zeigt bis zu 100 Zeilen und sagt es, wenn es mehr gibt; der Rest folgt, während Sie diese beheben. Das Fenster hält einen Export nie auf: Sind noch Einträge übrig, warnt **Exportieren**, dass sie nicht sauber importiert werden, und fragt nach, bevor es weitermacht.
+
+#### Die Gegenkonten
+
+**Sachkonten einrichten**, ein geschlossenes Feld über den Reitern, enthält sechs Kontonummern: **Kunde (Forderung)**, **Lieferant (Verbindlichkeit)**, **Bankkonto**, **Kasse**, **USt. (Ausgang)** und **Vorsteuer (Eingang)**. Sie beginnen bei 311, 4541, 3841, 3811, 467 und 466; tragen Sie den Kontenplan des Büros ein und drücken Sie **Konten speichern**. **Kasse** wird gespeichert, aber der Export verwendet es heute nicht.
+
+Bei mehr als einem Bankkonto wird **Bankkonto (Standard)** zu einer Schaltfläche, etwa *2 Konten · 2 Sachkonten*, die **Bankkonten → Sachkonto** öffnet: Geben Sie jedem Konto eine eigene Nummer, oder lassen Sie das Feld leer, um den Standard zu verwenden.
+
+### HessynKettős
+
+Die Seite **HessynKettős** schreibt Ihre ausgehenden Rechnungen als die Számlázz.hu-CSV, die HessynKettős einliest. Sie hat keine Reiter und keine Filter, nur die Sachkonten und einen Zeitraum.
+
+<HessynExportFigure>
+Die Seite HessynKettős nach einem Export. Die Nummern entsprechen der Liste darunter. Die Anzahlen sind Beispiele.
+</HessynExportFigure>
+
+1. **Sachkonten**: das Debitoren-Sammelkonto und das Umsatzsteuerkonto, auf die HessynKettős bucht. Bis Sie sie hier speichern, werden das Kunden- und das USt.-Konto der RLB-Seite übernommen (311 und 467, wenn diese nie gesetzt wurden). Das Erlöskonto jeder Position ist der **Code** ihrer Kategorie.
+2. Der Zeitraum, nach dem Rechnungsdatum, dann **CSV exportieren**. Der Zeitraum beginnt bei **Gesamter Zeitraum** und folgt nicht dem [fokussierten Zeitraum](/focused-period). Die Datei heißt `hessyn_kettos_<von>_<bis>.csv`.
+3. Was in die Datei kam, und gelb, was nicht.
+
+Einige Rechnungen bleiben draußen, und die Seite sagt nach jedem Export, wie viele:
+
+- **Barrechnungen**: Diese Version exportiert nur Überweisungsrechnungen;
+- **Korrekturrechnungen (helyesbítő)**: Buchen Sie diese von Hand in HessynKettős.
+
+Eine Position, deren Kategorie keinen **Code** hat, kommt trotzdem hinein, und HessynKettős bucht sie auf das Standardkonto des Journals; auch diese zählt die Seite. Duplikate und abgelehnte Rechnungen kommen nie hinein. Jede Rechnung in der Datei erhält einen Eintrag in ihrem Verlauf, aber nichts hindert Sie, sie erneut zu exportieren. Ein Export nimmt höchstens 50.000 Rechnungen auf.
+
 ## Tipps
 
 - **Erweitern Sie zuerst den Zeitraum.** Die meisten „wo sind meine Daten“-Momente sind die 30-Tage-Voreinstellung.
@@ -103,5 +179,6 @@ Die Datei ist nach dem exportierten Zeitraum benannt.
 
 - [Berichte](/reports) - gespeicherte, kategoriebasierte Auswertungen, im Gegensatz zum spontanen Stöbern im Hauptbuch
 - [USt in Exporten](/vat-in-exports) - warum eine Rechnung aus einem Export wegfallen kann
+- [Business Central](/business-central) - der dritte Export, direkt in das Business Central des Mandanten
 - [Arbeiten mit Rechnungen](/invoices)
 - [Rechnungsabgleich](/invoice-matching)
