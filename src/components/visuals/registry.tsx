@@ -11,6 +11,7 @@ import {
   DeclineDialogFigure,
 } from './approvals'
 import { MatchingOutcomeFigure, MatchingQueueFigure, TransactionMatchFigure } from './matching'
+import { MatchingOverviewFigure, PartnerLedgerFigure } from './matching-overview'
 import { CreateFileDialogFigure, PaymentFileDetailFigure, PaymentFileFigure, PaymentFlowFigure } from './payments'
 import { ApprovalRulesFigure, RoutingLadderFigure } from './approval-setup'
 import { InvoiceLifecycleFigure, InvoiceListFigure } from './invoices'
@@ -59,6 +60,8 @@ const FIGURES: Record<string, (props: WithLocale) => React.ReactNode> = {
   MatchingOutcomeFigure,
   MatchingQueueFigure,
   TransactionMatchFigure,
+  MatchingOverviewFigure,
+  PartnerLedgerFigure,
   PaymentFlowFigure,
   PaymentFileFigure,
   CreateFileDialogFigure,

@@ -64,7 +64,7 @@ On its own, automatic matching links a transaction to one invoice at most. An in
 
 ## The Matching page
 
-**Matching** is in the workspace sidebar for accountants. The page has four tabs: **Overview**, **Matches**, **Partners** and **Settlement**. The suggestions and the confirmed matches are on the **Matches** tab.
+**Matching** is in the workspace sidebar for accountants. The page has four tabs: **Overview**, **Matches**, **Partners** and **Settlement**. The suggestions and the confirmed matches are on the **Matches** tab. The [Overview](#the-overview-tab) and [Partners](#the-partners-tab) tabs are described further down, and **Settlement** has an article of its own ([Settling Partner Balances](/settlement)).
 
 <MatchingQueueFigure>
 The **Matches** tab with three suggestions waiting. The numbers match the list below. The companies and amounts are examples.
@@ -122,6 +122,84 @@ For an invoice, the preview shows the amounts and dates, the parties, the lines 
 To skip the preview, hold **Cmd** (**Ctrl** on Windows) while you click, or click with the middle mouse button. The full page opens in a new tab.
 
 The same preview opens from the invoice number and the transaction reference on the suggestion and match pages, from the rows of a partner's ledger on the **Partners** tab, from the records in a [settlement](/settlement), and from the invoice in the **Matching & payment** card on a transaction's page. In those places it has no buttons at the bottom.
+
+## The Overview tab
+
+**Overview** is the tab the Matching page opens on. It shows how matching stands for the period you choose: five tiles, then a chart of what was matched over time. While a [settlement](/settlement) session is open, an amber notice above the tiles names it and says how many records it holds out of automatic matching.
+
+The date filter at the top picks the period: a month, a quarter, a year, a custom range, a rolling period or **All time**. If you work in a [focused period](/focused-period), the tab follows it.
+
+<MatchingOverviewFigure>
+The Overview tab for this year. The numbers match the list below. The data is an example.
+</MatchingOverviewFigure>
+
+1. The period. The tiles and the chart follow it.
+2. **Invoices without payment**: issued in the period and still open.
+3. **Unapplied payments** counts the whole workspace, not only the period.
+4. The chart's heading names the bar width, here a month.
+5. **Outstanding at period end** is the red line. Amber on top of the latest bars is what is still open from those months.
+
+### The tiles
+
+Each tile is a count with an amount under it, in the workspace's base currency. Click a tile to open the list behind it, narrowed to the same period.
+
+| Tile | What it counts | Opens |
+|---|---|---|
+| **Invoices without payment** | Invoices issued in the period that are still open or partially paid. The amount is their gross total. | The invoice list, unpaid invoices |
+| **Unmatched transactions** | Bank transactions booked in the period with no invoice and no "no invoice needed" mark. Transfers between your own accounts are left out. | The bank transaction list, unmatched |
+| **Matched** | Matches whose bank transaction was booked in the period. Under it, the share made automatically, for example "83% auto-matched". | The bank transaction list, matched |
+| **Unapplied payments** | Payments linked to a verified partner that are not matched to an invoice, or only partly. This tile counts the whole workspace, **not only the period**. | The bank transaction list, unmatched |
+| **No invoice needed** | Bank transactions booked in the period that were marked as needing no invoice (see [Transaction Types](/transaction-types)). | The bank transaction list, no invoice needed |
+
+Invoices count by their issue date, bank transactions by their booking date.
+
+### The chart
+
+The chart shows what was matched, one bar per day, week or month. The width follows the period: up to 24 days you get days, up to 120 days weeks, beyond that months. The heading says which (**Matched per month**, for example). **Amount** and **Matches** above the chart switch between the matched amount and the number of matches.
+
+Each bar is split into **Auto-matched** (blue) and **Confirmed by hand** (grey). Some layers appear only when there is something to show:
+
+- **Still open from this period** (amber, on top of the bar): bank transactions booked in that bar's time that are still unmatched today.
+- **Outstanding at period end** (a red line): how much was unmatched at the end of each bar's time, whenever it was booked. A rising line means the backlog grows faster than it is cleared.
+- **Previous period** (a pale bar behind each bar): the same measure for the period before, for example June behind July. All time has no previous period, so it never shows one.
+- **Matching run** (a teal mark under the bar): a matching run finished in that time.
+
+Hover over a bar for its figures. Click a bar to narrow the whole tab to that month or week; a day's bar opens the matched bank transactions of that day instead. **Export** downloads the figures for the period as an XLSX file.
+
+## The Partners tab
+
+**Partners** is the partner ledger (folyószámla): for every verified partner, what they owe you, what you owe them, and the payments not yet applied to an invoice. It always shows the current state and does not follow the date filter.
+
+The list has one row per partner and currency:
+
+- **Partner**, with a label: **Customer**, **Supplier**, **Customer & Supplier**, or **Other**, from the open items.
+- **Receivable**: what is still unpaid on their open sales invoices.
+- **Payable**: what is still unpaid on their open purchase invoices.
+- **Unapplied**: their bank transactions not matched to an invoice, or the unmatched part of a partly matched one.
+- **Open items**: how many invoices and transactions are open.
+- **Net**: receivable minus payable. Unapplied payments are not in it. On a narrow screen this column stays in view while the rest scrolls.
+
+**With open items** shows partners that have something open; **All partners** adds those that are fully settled, marked **Settled**. Search narrows the list by partner name, the column headers sort it, and **Export** downloads it as an XLSX file. Only verified partners appear, and your own companies never do (see [Managing Partners](/partners)).
+
+### A partner's ledger
+
+Click a row to open the partner's ledger page.
+
+<PartnerLedgerFigure>
+A partner's ledger page, down to the tabs above the open items. The numbers match the list below. The company and amounts are examples.
+</PartnerLedgerFigure>
+
+1. **← Partners** returns to the list.
+2. **Export** downloads the partner's statement as an XLSX file.
+3. The net balance in each currency: receivable minus payable. The three totals are under it.
+4. **Aging** adds up every open item, receivable, payable and unapplied alike, by how overdue it is.
+5. **Open items** lists the open invoices and payments; **All documents** adds the settled ones.
+
+In detail:
+
+- one card per currency: the net balance in large type, with receivable, payable and unapplied under it;
+- **Aging**: the open amounts by how overdue they are, as **Current** (not yet due), 1-30, 31-60, 61-90 and 90+ days. Receivables, payables and unapplied payments are added together here, not netted. An invoice counts from its due date, or its issue date when it has none; a payment counts from its booking date;
+- **Open items**: every open invoice and payment with its ID, invoice number, type (**Receivable**, **Payable** or **Unapplied**), date, aging and open amount. Click a row to open the record in a preview. **All documents** adds the settled ones underneath, under **Settled documents**.
 
 ## The suggestion detail page
 

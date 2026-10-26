@@ -64,7 +64,7 @@ Magától az automatikus párosítás egy tranzakciót legfeljebb egy számláho
 
 ## A Párosítás oldal
 
-A **Párosítás** a munkaterület oldalsávjában található, a könyvelők számára. Az oldalnak négy füle van: **Áttekintés**, **Párosítások**, **Partnerek** és **Kiegyenlítés**. A javaslatok és a megerősített párosítások a **Párosítások** fülön vannak.
+A **Párosítás** a munkaterület oldalsávjában található, a könyvelők számára. Az oldalnak négy füle van: **Áttekintés**, **Párosítások**, **Partnerek** és **Kiegyenlítés**. A javaslatok és a megerősített párosítások a **Párosítások** fülön vannak. Az [Áttekintés](#az-áttekintés-fül) és a [Partnerek](#a-partnerek-fül) fület lejjebb ismertetjük, a **Kiegyenlítés** fülnek saját cikke van ([Folyószámla kiegyenlítése](/settlement)).
 
 <MatchingQueueFigure>
 A **Párosítások** fül három várakozó javaslattal. A számok az alábbi listának felelnek meg. A cégek és az összegek példák.
@@ -122,6 +122,84 @@ Számlánál az előnézet az összegeket, a dátumokat, a feleket, a tételeket
 Ha az előnézet nélkül szeretné megnyitni, kattintás közben tartsa lenyomva a **Cmd** (Windowson a **Ctrl**) billentyűt, vagy kattintson a középső egérgombbal. A teljes oldal új lapon nyílik meg.
 
 Ugyanez az előnézet nyílik meg a javaslat és a párosítás oldalán a számlaszámra és a tranzakció hivatkozására kattintva, a **Partnerek** fülön egy partner folyószámlájának soraiból, egy [kiegyenlítés](/settlement) tételeiből, és egy tranzakció oldalán a **Párosítás & fizetés** kártya számlájából. Ezeken a helyeken az előnézet alján nincsenek gombok.
+
+## Az Áttekintés fül
+
+A Párosítás oldal az **Áttekintés** füllel nyílik meg. Azt mutatja, hogyan áll a párosítás a választott időszakban: öt csempét, alattuk pedig egy diagramot arról, mi mikor párosult. Amíg egy [kiegyenlítési](/settlement) munkamenet nyitva van, a csempék fölött egy borostyánszínű értesítés megnevezi, és megmondja, hány tételt tart vissza az automatikus párosítástól.
+
+A fül tetején lévő dátumszűrő választja ki az időszakot: hónap, negyedév, év, egyéni tartomány, gördülő időszak vagy **Teljes időszak**. Ha [fókuszált időszakban](/focused-period) dolgozik, a fül azt követi.
+
+<MatchingOverviewFigure>
+Az Áttekintés fül az idei évre. A számok az alábbi listára utalnak. Az adatok példák.
+</MatchingOverviewFigure>
+
+1. Az időszak. A csempék és a diagram ezt követik.
+2. **Számlák fizetés nélkül**: az időszakban kiállított, még nyitott számlák.
+3. A **Nem rendezett befizetések** a teljes munkaterületet számolja, nem csak az időszakot.
+4. A diagram címe megnevezi az oszlop szélességét, itt egy hónapot.
+5. A **Nyitott állomány az időszak végén** a piros vonal. A legutóbbi oszlopok tetején a borostyánszínű rész az, ami azokból a hónapokból még nyitott.
+
+### A csempék
+
+Minden csempe egy darabszám, alatta egy összeg a munkaterület alap pénznemében. Egy csempére kattintva megnyílik a mögötte lévő lista, ugyanarra az időszakra szűkítve.
+
+| Csempe | Mit számol | Mit nyit meg |
+|---|---|---|
+| **Számlák fizetés nélkül** | Az időszakban kiállított számlák, amelyek még nyitottak vagy részben fizetettek. Az összeg a bruttó végösszegük. | A számlalistát, a kifizetetlen számlákkal |
+| **Párosítatlan tételek** | Az időszakban könyvelt banki tranzakciók, amelyekhez nincs számla és „nem kell számla” jelölés sem. A saját számlák közötti átvezetések nem számítanak bele. | A banki tranzakciók listáját, a párosítatlanokkal |
+| **Párosítva** | Azok a párosítások, amelyek banki tranzakcióját az időszakban könyvelték. Alatta az automatikusan készültek aránya, például „83% automatikus”. | A banki tranzakciók listáját, a párosítottakkal |
+| **Nem rendezett befizetések** | Ellenőrzött partnerhez kötött fizetések, amelyek nincsenek számlához párosítva, vagy csak részben. Ez a csempe a teljes munkaterületet számolja, **nem csak az időszakot**. | A banki tranzakciók listáját, a párosítatlanokkal |
+| **Nem igényel számlát** | Az időszakban könyvelt banki tranzakciók, amelyeket „nem kell számla” jelöléssel láttak el (lásd: [Tranzakciótípusok és „nem kell számla”](/transaction-types)). | A banki tranzakciók listáját, a „nem kell számla” tételekkel |
+
+A számlák a kiállítás dátuma, a banki tranzakciók a könyvelés dátuma szerint számítanak.
+
+### A diagram
+
+A diagram a párosított forgalmat mutatja, napi, heti vagy havi oszlopokban. Az oszlop szélessége az időszakhoz igazodik: 24 napig napi, 120 napig heti, azon túl havi. A cím megmondja, melyik (például **Havi párosítás**). A diagram fölötti **Összeg** és **Párosítások** gomb a párosított összeg és a párosítások száma között vált.
+
+Minden oszlop két részből áll: **Automatikus** (kék) és **Kézzel jóváhagyva** (szürke). Néhány réteg csak akkor jelenik meg, ha van mit mutatnia:
+
+- **Ebből még nyitott** (borostyánszínű, az oszlop tetején): az oszlop idején könyvelt banki tranzakciók, amelyek ma is párosítatlanok.
+- **Nyitott állomány az időszak végén** (piros vonal): mennyi volt párosítatlan az oszlop idejének végén, bármikor könyvelték is. Ha a vonal emelkedik, a hátralék gyorsabban nő, mint ahogy fogy.
+- **Előző időszak** (halvány oszlop minden oszlop mögött): ugyanez az előző időszakra, például június a július mögött. A Teljes időszaknak nincs előzménye, ezért ott nem jelenik meg.
+- **Párosítás futtatva** (türkiz jel az oszlop alatt): abban az időben lefutott egy párosítás.
+
+Vigye az egeret egy oszlop fölé a számaiért. Egy oszlopra kattintva az egész fül arra a hónapra vagy hétre szűkül; egy napi oszlop ehelyett az aznapi párosított banki tranzakciókat nyitja meg. Az **Exportálás** XLSX fájlként tölti le az időszak adatait.
+
+## A Partnerek fül
+
+A **Partnerek** fül a folyószámla: minden ellenőrzött partnerre megmutatja, mennyivel tartozik Önnek, mennyivel tartozik Ön neki, és mely fizetései nincsenek még számlához rendelve. Mindig az aktuális állapotot mutatja, a dátumszűrőt nem követi.
+
+A listában partnerenként és pénznemenként egy sor van:
+
+- **Partner**, egy címkével: **Vevő**, **Szállító**, **Vevő és szállító** vagy **Egyéb**, a nyitott tételei alapján.
+- **Követelés**: a nyitott kimenő számláiból még kifizetetlen összeg.
+- **Kötelezettség**: a nyitott bejövő számláiból még kifizetetlen összeg.
+- **Nem rendezett**: a banki tranzakciói, amelyek nincsenek számlához párosítva, illetve egy részben párosított tranzakció párosítatlan része.
+- **Nyitott tétel**: hány számla és tranzakció nyitott.
+- **Egyenleg**: követelés mínusz kötelezettség. A nem rendezett fizetések nincsenek benne. Keskeny képernyőn ez az oszlop látható marad, amíg a többi görgethető.
+
+A **Nyitott tételekkel** azokat a partnereket mutatja, akiknél van nyitott tétel; az **Összes partner** a teljesen rendezetteket is hozzáadja, **Rendezett** jelöléssel. A keresés partnernévre szűkít, az oszlopfejlécek rendeznek, az **Exportálás** XLSX fájlként tölti le a listát. Csak az ellenőrzött partnerek jelennek meg, a saját cégei soha (lásd: [Partnerek kezelése](/partners)).
+
+### Egy partner folyószámlája
+
+Egy sorra kattintva megnyílik a partner folyószámla-oldala.
+
+<PartnerLedgerFigure>
+Egy partner folyószámla-oldala a nyitott tételek feletti fülekig. A számok az alábbi listának felelnek meg. A cég és az összegek példák.
+</PartnerLedgerFigure>
+
+1. A **← Partnerek** visszavisz a listához.
+2. Az **Exportálás** XLSX fájlként tölti le a partner folyószámla-kivonatát.
+3. A nettó egyenleg pénznemenként: követelés mínusz kötelezettség. Alatta a három összeg.
+4. A **Korosítás** minden nyitott tételt összead, követelést, kötelezettséget és nem rendezett összeget egyaránt, aszerint, mennyire késik.
+5. A **Nyitott tételek** a nyitott számlákat és fizetéseket sorolja fel; az **Összes bizonylat** a rendezetteket is hozzáadja.
+
+Részletesen:
+
+- pénznemenként egy kártya: nagy betűvel a nettó egyenleg, alatta a követelés, a kötelezettség és a nem rendezett összeg;
+- **Korosítás**: a nyitott összegek aszerint, mennyire késnek: **Aktuális** (még nem esedékes), 1-30, 31-60, 61-90 és 90+ nap. A követelések, a kötelezettségek és a nem rendezett fizetések itt összeadódnak, nem nettósítódnak. Egy számla a fizetési határidőtől számít, ha nincs ilyen, a kiállítás dátumától; egy fizetés a könyvelés dátumától;
+- **Nyitott tételek**: minden nyitott számla és fizetés az azonosítójával, számlaszámával, típusával (**Követelés**, **Kötelezettség** vagy **Nem rendezett**), dátumával, korosításával és nyitott összegével. Egy sorra kattintva a tétel előnézetben nyílik meg. Az **Összes bizonylat** alatta a rendezetteket is mutatja, **Rendezett bizonylatok** címmel.
 
 ## A javaslat részletei oldal
 
