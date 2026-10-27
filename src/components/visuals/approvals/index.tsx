@@ -232,8 +232,8 @@ function QueueBody({
               <input
                 type="search"
                 readOnly
-                placeholder={ui['approvals.queue.col_what']}
-                aria-label={ui['approvals.queue.col_what']}
+                placeholder={ui['approvals.queue.search_placeholder']}
+                aria-label={ui['approvals.queue.search_placeholder']}
                 className="w-56 rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-sm dark:border-zinc-600 dark:bg-zinc-900"
               />
             </form>

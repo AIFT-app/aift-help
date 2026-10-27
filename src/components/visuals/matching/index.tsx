@@ -146,6 +146,14 @@ function tabClass(active: boolean) {
   }`
 }
 
+// Mirrors aift-web src/lib/confidence-tier.ts (CONFIDENCE_BADGE_COLOR + scoreTier):
+// high green, medium zinc, low amber. Red is reserved for money out in the app.
+function scoreBadgeColor(score: number): 'green' | 'zinc' | 'amber' {
+  if (score >= 85) return 'green'
+  if (score >= 60) return 'zinc'
+  return 'amber'
+}
+
 function QueueRow({ group, locale, markers }: { group: QueueGroup; locale: Locale; markers: number[] }) {
   const c = matchingCopy[locale]
   const isMulti = group.scores.length > 1
@@ -154,7 +162,7 @@ function QueueRow({ group, locale, markers }: { group: QueueGroup; locale: Local
       <td className="py-3 pr-4 align-top">
         <div className="flex flex-wrap items-center gap-1">
           {group.scores.map((score, idx) => (
-            <Badge key={idx} color={score >= 85 ? 'green' : score >= 60 ? 'yellow' : 'red'}>
+            <Badge key={idx} color={scoreBadgeColor(score)}>
               {score}
             </Badge>
           ))}

@@ -69,7 +69,7 @@ The registration is **per environment**. Doing it in Production does not cover a
 
 | Status | What it means | Who acts next |
 |---|---|---|
-| Not connected | No approval link has been created yet. | You. |
+| Not connected | No approval link is waiting: none has been created yet, or the last one expired (links last 7 days) or was cancelled. | You. |
 | Waiting for Microsoft approval | The link exists but nobody has approved it. | Your Microsoft administrator. |
 | Waiting for Business Central registration | Our sign-in works; Business Central is still refusing, so step 2 is not done. | Your Business Central administrator. |
 | Connected | We can read your companies. | Nobody. |
@@ -118,13 +118,13 @@ When you pair with an existing company you can copy the address and the tax numb
 
 ## Keeping the Copy Fresh
 
-The copied master data refreshes itself: anything older than a day is read again during the next hourly check. You do not need to ask for it.
+The copied master data refreshes itself: once a company's copy is more than 20 hours old, an hourly check reads it again, a few companies per run, oldest first. You do not need to ask for it.
 
 ## Where the Two Systems Differ
 
-**Master data → Business Central → Differences** compares four kinds of record, in both directions: accounts, VAT, custom category lists and partners. Each cell offers what makes sense there, such as importing what is missing or opening the record.
+**Master data → Business Central → Differences** compares five kinds of record: **Accounts and invoice categories**, **VAT mapping**, **VAT product and service groups**, **Custom category lists** and **Partners**. Accounts and partners are compared in both directions; the other three exist only in AI Finance Team, so their Business Central side reads **not applicable**. Each cell offers what makes sense there, such as importing what is missing or opening the record.
 
-Read the counts carefully. An empty cell can mean three different things: **not applicable**, **not read yet**, or a genuine zero. The tab says which.
+Read the counts carefully. A count can read **not applicable** (there is nothing to compare on that side) or **not read** (the copy has not been read yet), and neither of those means zero. A genuine zero shows as 0.
 
 ## Accounts as Categories
 
@@ -144,7 +144,7 @@ On the **Cash** tab, **Copy from invoice categories** creates a cash category fo
 
 ## Vendors and Customers as Partners
 
-**Import → Vendors from Business Central** on **Master data → Partners**, and **Add from Business Central** on the Differences tab, brings vendor cards in as partners. They are matched on the tax number, so a vendor that already exists here is shown as such and cannot be added twice. Vendor cards without a tax number can still be added, but nothing can match them automatically afterwards.
+**Import → Vendors from Business Central** on **Master data → Partners**, and **Import** on the Partners row of the Differences tab, brings vendor cards in as partners. They are matched on the tax number, and a card without a tax number on its name, so a vendor that already exists here is shown as such and cannot be added twice. Vendor cards without a tax number can still be added, but only the name can match them afterwards.
 
 **Import → Customers from Business Central** does the same for customer cards. Business Central keeps a company you sell to as a customer card and a company you buy from as a vendor card, each with its own number. In AI Finance Team both are the same partner. So when a customer's tax number already belongs to a partner here, no new partner is created: its customer cards are **linked** to that partner, and the partner itself is not changed. The customer card of one of your own companies (a group company that invoices a sister company) is linked to that company's partner. Cards without a tax number are listed but never ticked in advance.
 
@@ -156,13 +156,13 @@ The partner's page lists, per company, its vendor card and its customer card, ea
 
 ## Pushing Partners as Vendors
 
-**Master data → Business Central → Push** creates vendor cards in Business Central from your partners. This is one of the two places AI Finance Team writes into your accounting system; the other is sending invoices, below. It needs three things:
+**Master data → Business Central → Push** creates vendor cards in Business Central from your partners. This is one of the places AI Finance Team writes into your accounting system; the others are sending invoices (with their PDF) and sending bank lines, below. It needs three things:
 
 - the write side switched on for the workspace, which only we can do;
 - the permission "Push into the accounting system", which the accountant admin holds by default;
 - **posting groups for each paired company**, which the screen asks for first and pre-fills from your own vendor cards.
 
-You choose the partners, then the companies each one should be created in, and review the list before it runs. At most 200 are pushed in one run. Afterwards each row says what happened: created, linked to an existing card with the same tax number, or failed with a reason.
+You choose the partners, then the companies each one should be created in, and review the list before it runs. At most 200 partner and company pairs go in one run. Afterwards each row says what happened: **Created**; **Already there**, when a card with the same tax number and a matching name exists and is linked instead; **Refused**, when a card with the same tax number has a different name; **Unknown**, when Business Central's answer was lost (the next run looks the card up by tax number before creating anything); or **Failed**, with Business Central's own words.
 
 A vendor number that comes back is shown on the partner's page under its AI Finance Team code, one line per company. That number belongs to a company in Business Central, so do not type it into the partner's own code field.
 
@@ -170,7 +170,7 @@ A vendor number that comes back is shown on the partner's page under its AI Fina
 
 **Exports → Business Central** is where expense invoices go up, as draft purchase invoices. It is a different screen from the vendor push, under a different menu, behind a different permission.
 
-The top half is a read-only funnel: how many invoices are **ready to send**, how many are **in the period**, and what stops the rest. Ten things can stop an invoice, and only the first one found is shown: no company on the invoice, the company not paired, the company not read yet, the partner not verified, no vendor card for that partner in that company, the partner's vendor card blocked in Business Central, a line with no category, the category's ledger account missing from that company, no invoice number or delivery date, and **bookkeeping approval missing** (see [Filing and Bookkeeping Approval](/filing-and-bookkeeping-approval)). Each one expands to the invoices behind it with a link that takes you where it is fixed. Two more are warnings rather than blockers: an unmapped VAT pair, and a currency that company does not hold.
+The top half is a read-only funnel: how many invoices are **ready to send**, how many are **in the period**, and what stops the rest. Eleven things can stop an invoice, and only the first one found is shown: no company on the invoice, the company not paired, the company not read yet, the partner not verified, no vendor card for that partner in that company, the partner's vendor card blocked in Business Central, a line with no category, the category's ledger account missing from that company, **a line's unit has no Business Central code** (see Units of Measure below), no invoice number or delivery date, and **bookkeeping approval missing** (see [Filing and Bookkeeping Approval](/filing-and-bookkeeping-approval)). Each one expands to the invoices behind it with a link that takes you where it is fixed. Two more are warnings rather than blockers: an unmapped VAT pair, and a currency that company does not hold.
 
 Only expense invoices are considered, and never a duplicate or an archived one. **The invoice's own PDF goes with it** (see The PDF below), and a missing PDF never blocks a send.
 
@@ -184,7 +184,7 @@ Only expense invoices are considered, and never a duplicate or an archived one. 
 - Each invoice shows its state: **Queued**, **Sending**, **Created**, **Failed**, **We do not know** or **Not sent**. A failed row shows Business Central's own words, and a row that was not sent says why.
 - A finished send stays on the screen, also after a reload, until you press **Close**.
 - **The draft's posting date is the invoice's own posting date in AI Finance Team**, the **Posting date** you see on the invoice. By default that is the delivery date (**Fulfillment date** on the invoice); if you changed it on the invoice, the changed date is what Business Central gets. An invoice that never received a posting date goes with its delivery date.
-- **Each line goes up with the quantity and unit price printed on the invoice** when the two give the line's net amount to the cent, for example 102 hours at 15,000 Ft. Otherwise the line goes up as quantity 1 with its net amount as the unit price, as before, so the amount booked is the same either way. The line also carries its unit of measure, translated to the code that Business Central company has (DB, ÓRA, HÓ, KG and so on). A unit the company does not have, such as kWh, is left empty and never stops a send. Under each invoice in the list, **Lines:** shows how its lines will go up.
+- **Each line goes up with the quantity and unit price printed on the invoice** when the two give the line's net amount to the cent, for example 102 hours at 15,000 Ft. Otherwise the line goes up as quantity 1 with its net amount as the unit price, as before, so the amount booked is the same either way. The line also carries its unit of measure, translated to the code that Business Central company has (DB, ÓRA, HÓ, KG and so on). **A line is never sent with an empty unit.** If a line goes up with its own quantity and that company has no code for its unit, the invoice waits until you map the unit or correct the line (see Units of Measure below). A line that goes up as quantity 1 carries no unit, so it never waits for one. Under each invoice in the list, **Lines:** shows how its lines will go up.
 - **A partner with several vendor cards in one company** goes to a card Business Central accepts: a card linked to the partner first, otherwise one matched by tax number, the lowest card number first, so the same partner always gets the same card.
 
 Each invoice is checked again at the moment it is sent, with the permissions of the person who pressed **Send**. An invoice that became blocked while it waited is not sent, and its row names what blocks it.
@@ -195,7 +195,7 @@ An invoice already up there leaves the sendable count, and the screen says how m
 
 ### Sending an invoice again
 
-An invoice that is already in Business Central can be sent again from its own page: the **Matching & payment** tab, the **Send again to Business Central** button under the Business Central card. It is for the case where the first draft went up with something missing, for example a VAT mapping that was completed only afterwards. Pressing it sends nothing yet: AI Finance Team first asks Business Central what happened to the document it created, and does only what the answer allows. If the document is still a **draft**, it is deleted and a new one is created from the invoice as it is now (with the AIFT id as its number when that setting is on); anything edited by hand on that draft in Business Central is lost, and the confirmation says so. If it has been **posted**, nothing is sent: a posted invoice is corrected in Business Central, with a credit memo or a correction. If it is **no longer there**, the invoice goes up as new. If **several** documents carry the supplier's invoice number, or Business Central cannot be reached, nothing changes and the screen says why. The retired document stays in the invoice's **History** tab, so two "sent" rows on one invoice explain themselves, and the PDF goes up again with the new document.
+An invoice that is already in Business Central can be sent again from its own page: on the **Overview** tab, in the **Business Central** section, the **Send again to Business Central** button. It is for the case where the first draft went up with something missing, for example a VAT mapping that was completed only afterwards. Pressing it sends nothing yet: AI Finance Team first asks Business Central what happened to the document it created, and does only what the answer allows. If the document is still a **draft**, it is deleted and a new one is created from the invoice as it is now (with the AIFT id as its number when that setting is on); anything edited by hand on that draft in Business Central is lost, and the confirmation says so. If it has been **posted**, nothing is sent: a posted invoice is corrected in Business Central, with a credit memo or a correction. If it is **no longer there**, the invoice goes up as new. If **several** documents carry the supplier's invoice number, or Business Central cannot be reached, nothing changes and the screen says why. The retired document stays in the invoice's **History** tab, so two "sent" rows on one invoice explain themselves, and the PDF goes up again with the new document.
 
 ### The PDF
 
@@ -235,7 +235,7 @@ Three kinds of line go:
 - a line matched to an expense invoice as a **vendor payment**, applied to that invoice;
 - a line matched to a sales invoice as a **customer receipt**, applied to that invoice.
 
-The posting date is the value date and the document number is AI Finance Team's id (for example AH2-TXN-2026-0412). The external document number would be the statement number, but lines that arrive over the bank connection have none, so it stays empty for them. The amount goes in its original currency; Business Central converts it with its own exchange rates.
+The posting date is the value date and the document number is AI Finance Team's id (for example AH2-TXN-2026-0412). The external document number is left empty, because none of the sources carries a statement number today. The amount goes in its original currency; Business Central converts it with its own exchange rates.
 
 Not sent, and the tab says why:
 
@@ -250,18 +250,26 @@ Not sent, and the tab says why:
 ### Before You Send
 
 - **One press sends at most 500 lines**, in the background, with the same bar and list as the invoice send. One send runs in a workspace at a time, invoices or bank lines.
-- **A payment only goes to a posted, open invoice.** Before sending, the tab asks Business Central (read only) whether each payment's invoice is posted and not yet paid. It does so by itself when the page opens, and **Frissítés** (Refresh) asks again, for example after you have posted the invoices. Until there is such an answer the payment does not count as sendable, and the "Mi akasztja meg a többit" list says why: not posted yet, not found (the line shows which Business Central partner was searched), already paid, several open invoices match, or not asked yet.
-- **The "Feladás" (Send) button in the page title** is on both tabs and sends everything sendable in the period and company set on the page, without picking rows: everything, only the invoices, or only the bank lines. With everything it is one send, invoices first, then bank lines. A payment whose invoice goes in the same send waits until the invoice is posted in Business Central, and goes with the next send.
-- **Nothing goes twice.** Business Central does not refuse a second identical payment, so before every write we ask it whether a line with the same AI Finance Team id is already in the journal or among the posted entries. If it is, we do not write it again.
+- **A payment only goes to a posted, open invoice.** Before sending, the tab asks Business Central (read only) whether each payment's invoice is posted and not yet paid. When someone who may send opens the page, it asks for the payments that are due an answer, and **Refresh** asks again, for example after you have posted the invoices. Until there is such an answer the payment does not count as sendable, and the **What holds the rest back** list says why: not posted yet, not found (the line shows which Business Central partner was searched), already paid, several open invoices match, or not asked yet.
+- **The Send button in the page title** is on both tabs and sends everything sendable in the period and company set on the page, without picking rows: **Everything**, **Invoices only** or **Bank lines only**. With everything it is one send, invoices first, then bank lines. A payment whose invoice goes in the same send waits until the invoice is posted in Business Central, and goes with the next send.
+- **Nothing goes twice.** Business Central does not refuse a second identical payment, so before every write we ask it whether a line with the same AI Finance Team id is already in that bank account's journal batch or among the posted entries. If it is, we do not write it again.
 - **Every line written is read back.** If Business Central recorded it differently from what we sent (a VAT group on a G/L line, for example), the line is deleted and its row says why.
 - A line that went is marked **"In Business Central already"** and no longer counts as sendable.
-- **"We don't know"** means here too that the request went out and no answer came back. Do not book the line by hand: the next send asks Business Central first and does not write a line that is already there.
+- **We do not know** means here too that the request went out and no answer came back. Do not book the line by hand. Such a line is not sent again until it is resolved: later sends skip it and say that an earlier send lost its answer. Use **Resolve interrupted sends** under **Troubleshooting** on the **Invoices** tab. It asks Business Central whether the line is in the journal batch or already posted, and it sends nothing. If the line is there, it is recorded as sent. If it is nowhere, it can be sent again.
 
 ## Payment Methods
 
 **Master data → Business Central → Payment methods** maps each AI Finance Team payment method (transfer, cash, card, voucher, other) onto one Business Central code, as a workspace default or per company. A code is proposed only where exactly one Business Central code reads as that method.
 
 The mapping is applied to the draft immediately after it is created, because the interface has no payment-method field on the document itself. **A missing mapping is not an error** and never blocks a send. An individual invoice can override the mapping on its own payment tab, and the send list shows the code each invoice will go up with.
+
+## Units of Measure
+
+**Master data → Business Central → Units** lists every unit found on the invoices that can be sent, with the Business Central code it goes up as. Most units match by themselves: the unit is the code, the code's name, or a common spelling of it (darab and PIECE are DB, óra and HOUR are ÓRA). The units that hold invoices are at the top, with the number of lines and invoices waiting on them.
+
+For a unit with no match, choose a code from the list of codes your companies have. **One choice applies to every line with that unit**, now and later, in every company that has the code. A company that does not have the chosen code is named on the row: create the unit in Business Central, and it is read with the next refresh. **OWN** (the seller's own unit, with no text) cannot be mapped, because it means something different on every invoice.
+
+On the invoice's **Lines & VAT** tab, each line shows what it goes up as: the quantity, the unit price and the unit code, or quantity 1 with the net amount and the reason. Someone who may edit invoices can press **Correct quantity and unit** and change the **Quantity**, the **Unit** and the **Unit price** together. The net amount never changes, so quantity times unit price must give the net to the cent, and the form shows whether it does before you save. The previous values stay in the invoice's history. An invoice already posted in Business Central cannot be corrected here; a draft that was already sent goes up corrected when you send it again.
 
 ## Posting Description
 
@@ -307,10 +315,10 @@ The switch needs the "Push into the accounting system" permission.
 
 Connecting, disconnecting and pairing need the permission "Manage connections", held by default by the accountant admin and the finance lead. A custom role or an exception can change that. Everyone else sees the status and cannot change it.
 
-Sending anything into Business Central needs **two** permissions: "Run accounting exports" to reach the send screen at all, which the accountant admin and the accountant hold, and "Push into the accounting system" to actually send, which only the accountant admin holds. An accountant without the second one can open the screen and read it, and every button that writes will refuse. Saving the **Bank accounts** page needs the "Edit master data" permission.
+Sending anything into Business Central needs **two** permissions: "Run accounting exports" to reach the send screen at all, which the accountant admin and the accountant hold, and "Push into the accounting system" to actually send, which only the accountant admin holds. An accountant without the second one can open the screen and read it, but the send buttons and **Refresh** are not shown, and the invoice check says that someone with the send permission can ask. Saving the **Bank accounts** page needs the "Edit master data" permission.
 
 ## Disconnecting
 
-**Disconnect** on **Settings → Business Central Connection**. The confirmation says what goes: the pairings, the copied master data and the VAT mappings are deleted. The **payment method mapping goes too**, which the dialog does not mention. Your companies, categories, partners, the links to vendor cards and the record of which invoices were sent are all kept.
+**Disconnect** on **Settings → Business Central Connection**. The confirmation says what goes: the pairings, the copied master data and the VAT mappings are deleted. The **payment method mapping goes too**, which the dialog does not mention. Your companies, categories, partners, the links to vendor cards, the bank account settings (Business Central bank account, start date, journal) and the record of which invoices and bank lines were sent are all kept.
 
 Reconnecting afterwards needs **both approvals again**, and every company paired again. Your Microsoft administrator can also revoke the approval in your own Microsoft 365 without telling us.

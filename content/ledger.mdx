@@ -2,7 +2,7 @@
 
 The Ledger is where you answer a question with your data: every expense in EUR last quarter, every transaction on one bank account in March, every invoice from one supplier this year. It browses your invoices and bank transactions together, filters them, and exports the result.
 
-It lives under **Exports → Ledger** in the sidebar, and clicking **Exports** lands you here directly. Client-side users never see it.
+It lives under **Exports → Ledger** in the sidebar, and clicking **Exports** lands you here directly. Client-side users never see it. The same menu holds the files for the office's own programs, **RLB** and **HessynKettős**, and **Business Central**; see [Other exports](#other-exports).
 
 Opening it needs the **"Run exports"** permission. That is a permission rather than a job title, so an accountant can be without it, and the sidebar still shows the link: pressing it returns you to the workspace overview with no message. If that happens to you, that is the permission you are missing.
 
@@ -92,6 +92,82 @@ Two limits and one silent subtraction:
 
 The file is named for the period you exported.
 
+## Other exports
+
+**Exports** holds three more pages beside the Ledger. Each one is for a single accounting program:
+
+| Page | What it sends | To |
+|---|---|---|
+| **RLB** | sales and purchase invoices and bank movements, in one CSV file | the office's RLB-60 |
+| **HessynKettős** | outgoing sales invoices only, in one CSV file | HessynKettős, through its Számlázz.hu import |
+| **Business Central** | expense invoices as drafts and bank lines as unposted journal lines, written straight in | the client's Business Central |
+
+All three need the same **"Run exports"** permission as the Ledger, and client-side users never see them. The two files are in Hungarian whatever your interface language, because the programs that read them expect it. Business Central appears only once it is connected, and has its own article: [Business Central](/business-central).
+
+### RLB
+
+The **RLB** page is the Ledger narrowed to what the office books in RLB-60: the same **Ask the Ledger** bar, filter strip and chips, and the first three tabs (**Invoice Headers**, **Invoice Lines**, **Bank Transactions**), with the same defaults (the last 30 days, the workspace's date type). **What the tabs show is what the file contains**: the export takes exactly the filters you set. The [monthly closing](/closing) page links here for its month with **RLB export for this period →**.
+
+**Export**, beside the page title, asks what goes in the file: **Mixed (bank + invoices)**, **Bank only** or **Invoice only**. You get one TÖBBSOROS CSV file, encoded in Windows-1250 as RLB expects, named `rlb_tobbsoros_<from>_<to>.csv`. The Ledger's limits apply, counting one item per invoice and one per bank transaction: above 50,000 you are asked to confirm, above 200,000 the export is refused. **Recent exports**, at the bottom of the page, lists the last ten files with their period and item count.
+
+How the rows are booked:
+
+- **An invoice** books its income or expense to the **Code** of each line's category, and its VAT and customer or supplier side to the counter accounts under **Set up GL accounts**. Lines are grouped by category, VAT rate and reverse charge. A foreign-currency invoice carries both its own amounts and the HUF amounts, at its HUF booking rate (see [Multi-Currency & Exchange Rates](/currency-exchange)).
+- **A bank transaction matched to an invoice** books against the customer or supplier account, with the invoice number as its reference and the invoice's partner name. A payment that settles several invoices writes one row per invoice, plus a row for any remainder (see [Settling Partner Balances](/settlement)).
+- **A transaction marked No invoice needed** books to its transaction category's **Code**.
+- **An unmatched transaction** books on account: to the customer account for money in, the supplier account for money out.
+
+**Nothing is skipped because it was exported before.** Export the same period twice and the same rows come out twice, so keep track of what the office has already imported; **Recent exports** helps. Invoices RLB already receives straight from NAV can be left out: under **More filters**, set **NAV / OSA invoices** to **Exclude**. Bank lines that pay them still refer to them.
+
+#### Fixing what RLB cannot import
+
+Above the search bar the page says either **Ready to export** in green, or, in amber, how many items need fixing, with **Review & fix**. The count adds up four kinds of problem:
+
+- an invoice line with no GL account: the invoice has no line items, the line has no category, or its category has no **Code**;
+- a bank transaction marked **No invoice needed** whose category is missing or has no **Code**;
+- a foreign-currency invoice with no HUF rate yet;
+- an invoice whose line VAT does not add up to its VAT total.
+
+**Review & fix** opens a panel listing them, where most can be fixed on the spot.
+
+<RlbFixPanelFigure>
+The **Fix before export** panel with one problem of each kind. The numbers match the list below. The companies and amounts are examples.
+</RlbFixPanelFigure>
+
+1. How many are fixed so far, and how many remain.
+2. An invoice line with no GL account. Pick a category that has a **Code**, or follow the link to give the line's current category one.
+3. A bank transaction marked **No invoice needed**: pick a transaction category with a **Code**.
+4. A foreign-currency invoice with no HUF rate. While it reads **Rate pending** the rate will arrive by itself; you can also type it and **Save**.
+5. An invoice whose line VAT does not match its total: **Recompute VAT from rate** sets each line's VAT from its rate.
+6. **Export now** works once nothing is left. Until then, export from the **Export** menu instead.
+
+A fixed row leaves the list at once. Each section shows up to 100 rows and says so when there are more; the rest come in as you fix these. The panel never stops an export: with items left, **Export** warns that they will not import cleanly and asks before it goes ahead.
+
+#### The counter accounts
+
+**Set up GL accounts**, a closed panel above the tabs, holds six account numbers: **Customer (receivable)**, **Supplier (payable)**, **Bank account**, **Cash**, **Sales VAT (output)** and **Purchase VAT (input)**. They start at 311, 4541, 3841, 3811, 467 and 466; change them to the office's chart and press **Save accounts**. **Cash** is saved but the export does not use it today.
+
+With more than one bank account, **Bank account (default)** becomes a button, for example *2 accounts · 2 GL numbers*, that opens **Bank accounts → GL number**: give each account its own number, or leave it blank to use the default.
+
+### HessynKettős
+
+The **HessynKettős** page writes your outgoing sales invoices as the Számlázz.hu CSV that HessynKettős imports. It has no tabs and no filters, only the accounts and a date range.
+
+<HessynExportFigure>
+The HessynKettős page after an export. The numbers match the list below. The counts are examples.
+</HessynExportFigure>
+
+1. **GL accounts**: the customer control account and the sales VAT account HessynKettős books against. Until you save them here, they are copied from the RLB page's customer and sales VAT accounts (311 and 467 if those were never set). Each line's revenue account is its category's **Code**.
+2. The date range, on the invoice's issue date, then **Export CSV**. The range starts at **All time** and does not follow the [focused period](/focused-period). The file is named `hessyn_kettos_<from>_<to>.csv`.
+3. What went into the file, and in amber what did not.
+
+Some invoices are left out, and the page says how many after each export:
+
+- **cash invoices**: this version exports transfer invoices only;
+- **corrective (helyesbítő) invoices**: book these by hand in HessynKettős.
+
+A line whose category has no **Code** still goes in, and HessynKettős books it to the journal's default account; the page counts those too. Duplicates and rejected invoices never go in. Every invoice in the file gets an entry in its **History**, but nothing stops you exporting it again. One export takes at most 50,000 invoices.
+
 ## Tips
 
 - **Widen the date range first.** Most "where is my data" moments are the 30-day default.
@@ -103,5 +179,6 @@ The file is named for the period you exported.
 
 - [Reports](/reports) - saved, category-based summaries, as against the Ledger's ad-hoc browsing
 - [VAT in exports](/vat-in-exports) - why an invoice can be left out of an export
+- [Business Central](/business-central) - the third export, written straight into the client's Business Central
 - [Working with Invoices](/invoices)
 - [Invoice Matching](/invoice-matching)

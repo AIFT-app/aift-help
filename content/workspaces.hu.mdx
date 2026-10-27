@@ -4,9 +4,21 @@ A munkaterület egy ügyfélmegbízás. A könyvelőirodájához tartozik, és *
 
 A könyvelők sok munkaterületen dolgoznak. Az ügyfélfelhasználók csak a sajátjukat látják.
 
+Három fogalom szerepel mindenütt az AI Finance Teamben, és mindhárom mást jelent:
+
+| | Mi ez | Hány van belőle |
+|---|---|---|
+| **Szervezet** | Az Ön irodája az AI Finance Teamben: a könyvelőiroda vagy a belső pénzügyi csapat, amely a terméket használja. Itt él a csapat, a számlázás, az AI- és az ügyfélszolgálati hozzáférés, valamint az iroda sablonjai. | Irodánként egy |
+| **Munkaterület** | Egy ügyfél könyvelése: számlák, banki tranzakciók, törzsadatok, exportok és az ügyfél saját felhasználói. | Ügyfelenként egy |
+| **Cég** | Adószámos vállalkozás egy munkaterületen belül. | Munkaterületenként egy vagy több |
+
+Ha egy iroda a saját cégét könyveli, egy szervezete és egy munkaterülete van, és a kettő viselheti ugyanazt a nevet.
+
 ## A Munkaterületek áttekintő
 
 Bejelentkezés után rendszerint a **Munkaterületek** áttekintőre érkezik: ez a reggeli összkép arról, hol tart a munka az összes ügyfélnél. Nem mindig, persze: ha pontosan egy munkaterülethez tartozik, és nem szervezeti adminisztrátor, akkor egyenesen abba lép be, ha pedig az irodájának még nincs munkaterülete, az alkalmazás helyett az új ügyfelet végigvezető folyamat fogadja.
+
+Az áttekintő azt mutatja, hogyan áll egy-egy ügyfél. Azt, hogy mi vár Önre az összesnél, a [Teendők](/mission-control) oldalon találja, az oldalsávban közvetlenül a **Minden munkaterület** alatt.
 
 ### Állapotpöttyök
 
@@ -45,6 +57,8 @@ Munkaterületet csak **szervezeti adminisztrátorok** hozhatnak létre. Ha Önne
 
 Az áttekintőn az **Új munkaterület** gomb egy hat képernyőből álló, végigvezetett folyamatot nyit meg. Ebből kettő kötelező, négy pedig kihagyható.
 
+Az iroda legelső ügyfele gomb nélkül indítja ugyanezt a folyamatot: a regisztráció után az alkalmazás teljes képernyőn nyitja meg. Ha a szervezete még azt a nevet viseli, amelyet a regisztrációkor adtunk neki (például „Anna's Firm”), előbb egy rövid képernyő jön: **Mi a szervezeted neve?**. Ez az Ön irodáját nevezi el, nem az ügyfelet, és nem tartozik a hat képernyő közé. Ha a név megvan, többé nem jelenik meg.
+
 <OnboardingStepMapFigure>
 Az útiterv az első képernyőn. Ez az egyetlen hely, ahol az egész út egyszerre látszik.
 </OnboardingStepMapFigure>
@@ -56,10 +70,11 @@ Az útiterv az első képernyőn. Ez az egyetlen hely, ahol az egész út egysze
 5. **Export.** Csak magyar munkaterületeken: azok a főkönyvi számok, amelyekre az exportfájloknak szükségük van.
 6. **Emberek.** Hívja meg az ügyfelet, és pipálja ki a saját irodájából azokat a kollégákat, akiknek részt kell venniük ebben a megbízásban. A kollégák azonnal bekerülnek azzal a szerepkörrel, amellyel már rendelkeznek; az ügyfél meghívót kap e-mailben, alapértelmezetten **Pénzügyi vezető** szerepkörre. Minden sornak saját nyelve van, így a meghívó a címzett saját nyelvén érkezik. A végén kattintson a **Kész vagyok** gombra.
 
-Két dolgot érdemes tudni a folyamatról:
+Három dolgot érdemes tudni a folyamatról:
 
 - **A munkaterület a 2. képernyőt (Bankszámlák) elhagyva válik valóságossá**, nem a végén. Onnantól létezik, megjelenik az áttekintőjén, és az oldalsávja zárva marad, amíg be nem fejezi a folyamatot. A lap bezárásával semmi nem vész el.
 - **Egyszerre egy beállítás.** Ha egy befejezetlen mellett új ügyfélbe kezdene, a rendszer visszaviszi a befejezetlenhez.
+- **Minden képernyőn kéznél van a segítség.** A bal oldali panelen ott az e-mail-címünk és a telefonszámunk, a **Foglalj egy 30 perces beszélgetést**, valamint a **Vagy add meg a számod, és felhívunk.** mező: írja be a telefonszámát, nyomja meg a **Hívjatok fel** gombot, és egy munkanapon belül felhívjuk. A számot csak ehhez az egy híváshoz használjuk, és 90 nap után töröljük.
 
 Minden munkaterületnek, amelyet létrehoz, **Könyvelő admin**ja lesz. A válaszain túl az új munkaterület kap egy alapértelmezett tranzakciótípus-készletet, a szükséges ÁFA-törzsadatokat, és egy saját e-mail-címet a számlák fogadására.
 
@@ -81,6 +96,8 @@ A teljes képet a [Szerepek és jogosultságok](/roles-and-permissions) adja: az
 ## Szervezeti beállítások
 
 Az oldalsáv **Szervezet** szakasza a könyvelőirodájában mindenki előtt nyitva áll: az iroda adatai, a **Munkaterületek kezelése**, az iroda csapata és annak meghívói, az AI-hozzáférés és az ügyfélszolgálati hozzáférés. Egyedül a **Számlázás** érhető el kizárólag adminisztrátoroknak.
+
+A szervezet nevét a szervezeti adminisztrátorok módosíthatják a **Szervezet → Általános** oldalon. Az országot csak mi tudjuk megváltoztatni, ezért ha hibás, írjon nekünk.
 
 ## Korlátok
 

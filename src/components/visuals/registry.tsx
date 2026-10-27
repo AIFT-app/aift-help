@@ -11,6 +11,9 @@ import {
   DeclineDialogFigure,
 } from './approvals'
 import { MatchingOutcomeFigure, MatchingQueueFigure, TransactionMatchFigure } from './matching'
+import { MatchingOverviewFigure, PartnerLedgerFigure } from './matching-overview'
+import { HessynExportFigure, RlbFixPanelFigure } from './exports'
+import { AccountNotificationsFigure, AccountProfileFigure, SupportAccessFigure } from './account'
 import { CreateFileDialogFigure, PaymentFileDetailFigure, PaymentFileFigure, PaymentFlowFigure } from './payments'
 import { ApprovalRulesFigure, RoutingLadderFigure } from './approval-setup'
 import { InvoiceLifecycleFigure, InvoiceListFigure } from './invoices'
@@ -46,6 +49,7 @@ import { LanguageLadderFigure } from './language'
 import { RegistryPanelFigure } from './registry-panel'
 import { FoldedVatFigure } from './folded-vat'
 import { BillingDetailsDialogFigure, PlanPickerFigure } from './billing'
+import { MissionControlRulesFigure, MissionControlTopFigure } from './mission-control'
 
 type WithLocale = { locale: Locale; children?: React.ReactNode }
 
@@ -58,6 +62,13 @@ const FIGURES: Record<string, (props: WithLocale) => React.ReactNode> = {
   MatchingOutcomeFigure,
   MatchingQueueFigure,
   TransactionMatchFigure,
+  MatchingOverviewFigure,
+  PartnerLedgerFigure,
+  RlbFixPanelFigure,
+  HessynExportFigure,
+  AccountProfileFigure,
+  AccountNotificationsFigure,
+  SupportAccessFigure,
   PaymentFlowFigure,
   PaymentFileFigure,
   CreateFileDialogFigure,
@@ -105,6 +116,8 @@ const FIGURES: Record<string, (props: WithLocale) => React.ReactNode> = {
   FoldedVatFigure,
   PlanPickerFigure,
   BillingDetailsDialogFigure,
+  MissionControlTopFigure,
+  MissionControlRulesFigure,
 }
 
 export function visualComponents(locale: Locale) {
