@@ -22,7 +22,7 @@ You can also start it yourself with **Run Matching** (see [Running matching manu
 
 A transaction is only compared with invoices it could plausibly pay:
 
-- **Direction**: an income invoice with money coming in, an expense invoice with money going out.
+- **Direction**: an income invoice with money coming in, an expense invoice with money going out. The exception is a credit note that is refunded: money comes back against a supplier's credit note (see [Refunds](#refunds)).
 - **Currency**: the same currency. For a foreign card payment, also the currency the purchase was made in (see [Cross-currency matching](#cross-currency-matching)). For an invoice with nothing paid on it yet, also any currency, when both amounts converted to your base currency are within 3% of each other.
 - **Amount**: the payment is at least 1% and at most three times the invoice's open balance.
 - **Date**: the payment is within 180 days of the invoice's due date, or of its issue date when it has no due date.
@@ -61,6 +61,15 @@ An automatic match becomes a suggestion for you to review instead when something
 When one payment adds up to 2 to 6 open invoices of the same partner, or 2 to 6 payments add up to one invoice, matching suggests them together as a **combination**. A combination is always a suggestion, never an automatic match, and approving it books every invoice in it. For any other split, use the **Settlement** tab (see [Settling partner balances](/settlement)).
 
 On its own, automatic matching links a transaction to one invoice at most. An invoice can be paid by several transactions.
+
+### Refunds
+
+When a supplier pays money back to you against a credit note, or you pay a customer back against your own credit note, the money moves the opposite way to the invoice it settles. Matching pairs these too, by fixed rules and without AI:
+
+- the amount is exactly the credit note's open balance, and either both sides are the same partner or the bank reference names the credit note's number; or
+- the amount is less than the open balance and the bank reference names the credit note's number (a partial refund).
+
+A refund is always a suggestion, never an automatic match, whatever its score. It carries a **Refund** badge on the **Matching** page, on the suggestion page and on the transaction's **Matching & payment** card, and its score (60 to 90) only orders the list. Approving it books a negative amount against the credit note, which then reads **Paid**. A credit note that the supplier deducts from a later payment is not a refund: settle it together with that payment (see [Settling partner balances](/settlement)).
 
 ## The Matching page
 

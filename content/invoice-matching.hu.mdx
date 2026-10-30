@@ -22,7 +22,7 @@ Kézzel is elindíthatja a **Párosítás futtatása** gombbal (lásd: [A páros
 
 Egy tranzakció csak olyan számlákkal kerül összevetésre, amelyeket reálisan kifizethet:
 
-- **Irány**: bevételi számla bejövő pénzzel, kiadási számla kimenő pénzzel.
+- **Irány**: bevételi számla bejövő pénzzel, kiadási számla kimenő pénzzel. Kivétel a jóváíró számla visszatérítése: a szállító a jóváíró számlája alapján pénzt utal vissza (lásd: [Visszatérítések](#visszatérítések)).
 - **Pénznem**: azonos pénznem. Devizás kártyás fizetésnél a vásárlás eredeti pénzneme is (lásd: [Keresztdevizás párosítás](#keresztdevizás-párosítás)). Olyan számlánál, amelyre még semmit nem fizettek, bármilyen pénznem, ha a két összeg az alappénznemre átszámítva legfeljebb 3%-kal tér el.
 - **Összeg**: a fizetés a számla fennmaradó egyenlegének legalább 1%-a és legfeljebb háromszorosa.
 - **Dátum**: a fizetés a számla fizetési határidejétől, ennek hiányában a kiállítás dátumától számított 180 napon belül van.
@@ -61,6 +61,15 @@ Egy automatikus párosításból inkább javaslat lesz, amelyet Ön néz át, ha
 Ha egy fizetés ugyanazon partner 2-6 nyitott számlájának összegével egyezik, vagy 2-6 fizetés együtt ad ki egy számlát, a párosítás ezeket együtt, **kombinációként** javasolja. A kombináció mindig javaslat, sosem automatikus párosítás, és a megerősítése minden benne lévő számlát lekönyvel. Minden más megosztáshoz használja a **Kiegyenlítés** fület (lásd: [Folyószámla kiegyenlítése](/settlement)).
 
 Magától az automatikus párosítás egy tranzakciót legfeljebb egy számlához kapcsol. Egy számlát viszont több tranzakció is fizethet.
+
+### Visszatérítések
+
+Ha egy szállító jóváíró számla alapján pénzt utal vissza Önnek, vagy Ön utal vissza egy vevőnek a saját jóváíró számlája alapján, a pénz a számlával ellentétes irányba mozog. A párosítás ezeket is összeköti, rögzített szabályok alapján, AI nélkül:
+
+- az összeg pontosan a jóváíró számla fennmaradó egyenlege, és vagy mindkét oldalon ugyanaz a partner, vagy a közlemény a jóváíró számla sorszámát nevezi meg; vagy
+- az összeg kisebb a fennmaradó egyenlegnél, és a közlemény a jóváíró számla sorszámát nevezi meg (részleges visszatérítés).
+
+A visszatérítés a pontszámától függetlenül mindig javaslat, sosem automatikus párosítás. **Visszatérítés** jelvény jelöli a **Párosítás** oldalon, a javaslat oldalán és a tranzakció **Párosítás & fizetés** kártyáján, a pontszáma (60-90) pedig csak a sorrendet adja. Megerősítéskor negatív összeg kerül a jóváíró számlára, amely ezután **Fizetve** állapotú lesz. Az a jóváíró számla, amelyet a szállító egy későbbi fizetésből von le, nem visszatérítés: azt a fizetéssel együtt egyenlítse ki (lásd: [Folyószámla kiegyenlítése](/settlement)).
 
 ## A Párosítás oldal
 
