@@ -22,7 +22,7 @@ Sie können ihn auch selbst mit **Zuordnung starten** anstoßen (siehe [Abgleich
 
 Eine Transaktion wird nur mit Rechnungen verglichen, die sie plausibel bezahlen kann:
 
-- **Richtung**: eine Einnahmenrechnung mit eingehendem Geld, eine Ausgabenrechnung mit ausgehendem Geld.
+- **Richtung**: eine Einnahmenrechnung mit eingehendem Geld, eine Ausgabenrechnung mit ausgehendem Geld. Die Ausnahme ist eine erstattete Gutschrift: Ein Lieferant zahlt Geld zu einer Gutschrift zurück (siehe [Erstattungen](#erstattungen)).
 - **Währung**: dieselbe Währung. Bei einer Kartenzahlung in Fremdwährung auch die Währung, in der gekauft wurde (siehe [Währungsübergreifender Abgleich](#währungsübergreifender-abgleich)). Bei einer Rechnung, auf die noch nichts gezahlt wurde, auch jede andere Währung, wenn beide Beträge in Ihre Basiswährung umgerechnet höchstens 3 % voneinander abweichen.
 - **Betrag**: Die Zahlung beträgt mindestens 1 % und höchstens das Dreifache des offenen Saldos der Rechnung.
 - **Datum**: Die Zahlung liegt innerhalb von 180 Tagen um das Fälligkeitsdatum der Rechnung, ohne Fälligkeitsdatum um das Rechnungsdatum.
@@ -61,6 +61,15 @@ Eine automatische Zuordnung wird stattdessen zu einem Vorschlag, den Sie prüfen
 Ergibt eine Zahlung die Summe von 2 bis 6 offenen Rechnungen desselben Partners, oder ergeben 2 bis 6 Zahlungen zusammen eine Rechnung, schlägt der Abgleich sie gemeinsam als **Kombination** vor. Eine Kombination ist immer ein Vorschlag, nie eine automatische Zuordnung, und ihre Bestätigung bucht alle enthaltenen Rechnungen. Für jede andere Aufteilung nutzen Sie den Tab **Ausgleich** (siehe [Partnersalden ausgleichen](/settlement)).
 
 Von sich aus verknüpft der automatische Abgleich eine Transaktion mit höchstens einer Rechnung. Eine Rechnung kann dagegen von mehreren Transaktionen bezahlt werden.
+
+### Erstattungen
+
+Zahlt Ihnen ein Lieferant Geld zu einer Gutschrift zurück, oder zahlen Sie einem Kunden Geld zu Ihrer eigenen Gutschrift zurück, fließt das Geld in die Gegenrichtung der Rechnung, die es ausgleicht. Der Abgleich verknüpft auch diese, nach festen Regeln und ohne KI:
+
+- der Betrag entspricht genau dem offenen Saldo der Gutschrift, und entweder sind beide Seiten derselbe Partner, oder der Verwendungszweck nennt die Nummer der Gutschrift; oder
+- der Betrag ist kleiner als der offene Saldo, und der Verwendungszweck nennt die Nummer der Gutschrift (eine Teilerstattung).
+
+Eine Erstattung ist unabhängig von ihrem Score immer ein Vorschlag, nie eine automatische Zuordnung. Sie trägt das Abzeichen **Erstattung** auf der Seite **Zuordnung**, auf der Vorschlagsseite und auf der Karte **Zuordnung & Zahlung** der Transaktion, und ihr Score (60 bis 90) bestimmt nur die Reihenfolge. Ihre Bestätigung bucht einen negativen Betrag auf die Gutschrift, die danach **Bezahlt** ist. Eine Gutschrift, die der Lieferant von einer späteren Zahlung abzieht, ist keine Erstattung: Gleichen Sie sie zusammen mit dieser Zahlung aus (siehe [Partnersalden ausgleichen](/settlement)).
 
 ## Die Seite Zuordnung
 
