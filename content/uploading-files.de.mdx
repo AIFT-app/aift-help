@@ -52,6 +52,8 @@ Sobald ein Upload beginnt, erscheint in der **unteren rechten Ecke** ein Fenster
 | **Seite X / Y extrahieren** | Ein Kontoauszug wird Seite für Seite gelesen. |
 | **Kategorisieren…** | Den Transaktionen des Kontoauszugs werden Kategorien zugewiesen. |
 | **Extrahiert** | Eine Rechnung ist fertig. Klicken Sie auf die Zeile, um sie zu öffnen. |
+| **Datei wird auf weitere Rechnungen geprüft…** | Die erste Rechnung ist gelesen, und die Datei enthält offenbar weitere. Sie wird ein zweites Mal gelesen. Siehe [Mehrere Rechnungen in einer Datei](#mehrere-rechnungen-in-einer-datei). |
+| **Extrahiert, dazu N weitere Rechnungen aus dieser Datei** | Die Datei enthielt mehr als eine Rechnung, und jede ist jetzt eine eigene Rechnung. Die weiteren Rechnungen erscheinen auch als eigene Zeilen. |
 | **Fertig · N Transaktionen (M zusammengeführt)** | Ein Kontoauszug ist fertig. Klicken Sie auf die Zeile, um ihn zu öffnen. |
 | **Fertig mit Fehlern · Details prüfen** | Ein Kontoauszug ist fertig geworden, einzelne Seiten aber nicht. Öffnen Sie ihn, um zu sehen, welche. |
 | **Bereits vorhanden** | Genau diese Datei liegt bereits im Arbeitsbereich. Klicken Sie auf die Zeile, um das Original zu öffnen. |
@@ -77,7 +79,7 @@ Es gibt zwei Arten von Fehlern, und sie verhalten sich unterschiedlich.
 
 **Das Lesen des Dokuments ist fehlgeschlagen.** Die Datei liegt im Arbeitsbereich, aber die KI konnte sie nicht lesen. Diese Zeilen zeigen **Fehlgeschlagen:** mit dem Grund und bieten **Erneut versuchen** an.
 
-Erneut versuchen hilft bei einem vorübergehenden Problem. Es hilft nicht, wenn der Grund das Dokument selbst ist: mehr als 10 Seiten, ein nicht unterstützter Typ, ein passwortgeschütztes PDF oder ein Dokument, das zu komplex zum Lesen ist. Dann gilt:
+Erneut versuchen hilft bei einem vorübergehenden Problem. Es hilft nicht, wenn der Grund das Dokument selbst ist: mehr als 10 Seiten, ein nicht unterstützter Typ, ein passwortgeschütztes PDF, ein Dokument, das zu komplex zum Lesen ist, oder eine Datei, deren Dokumente sich nicht trennen ließen (siehe [Mehrere Rechnungen in einer Datei](#mehrere-rechnungen-in-einer-datei)). Dann gilt:
 
 - **Machen Sie es kleiner oder einfacher.** Exportieren Sie das PDF mit geringerer Größe neu, oder teilen Sie ein Bündel in einzelne Rechnungen auf.
 - **Wandeln Sie es um.** Ein Bild, das scheitert, funktioniert oft als PDF, und umgekehrt.
@@ -90,6 +92,35 @@ Wenn Sie eine Rechnung hochladen, vergleicht AI Finance Team die Datei mit dem, 
 Verglichen wird die Datei selbst, nicht ihr Inhalt. Ein zweiter Scan oder ein erneuter Export derselben Rechnung wird hier also nicht erkannt. Solche Fälle werden später an der Rechnung als mögliche Duplikate gefunden. Kontoauszüge werden beim Upload überhaupt nicht geprüft.
 
 Liegt dieselbe Datei in einem Vorgang zweimal vor, wird die zweite Kopie stillschweigend verworfen.
+
+Eine Datei mit mehreren Rechnungen zählt hier als eine Datei: Laden Sie sie erneut hoch, erhalten Sie eine Zeile **Bereits vorhanden** und keinen zweiten Satz Rechnungen.
+
+## Mehrere Rechnungen in einer Datei
+
+Ein Scan oder ein Foto enthält manchmal mehr als eine Rechnung: zwei Tankbelege nebeneinander oder einen Stapel Kartenbelege. Sie müssen die Datei nicht vorher aufteilen. Das gilt ebenso für hochgeladene Dateien wie für [per E-Mail weitergeleitete](/email-forwarding).
+
+1. Die erste Rechnung der Datei wird wie gewohnt gelesen.
+2. Enthält die Datei weitere Rechnungen, zeigt ihre Zeile **Datei wird auf weitere Rechnungen geprüft…**, während die Datei ein zweites Mal gelesen wird.
+3. Jede weitere Rechnung wird eine eigene Rechnung, und die Zeile endet mit **Extrahiert, dazu N weitere Rechnungen aus dieser Datei**.
+
+Jede so entstandene Rechnung, und auch die erste, erhält **Prüfung erforderlich**, damit jemand sie prüft, bevor sie abgelegt oder gebucht wird. Auf jeder steht über der Kopfzeile, woher sie stammt:
+
+- **Diese Rechnung ist eines von N Dokumenten in der hochgeladenen Datei.**
+- wo sie in der Datei steht, zum Beispiel **Position in der Datei: Seite 1, rechts.**
+- **Weitere Rechnungen aus dieser Datei:** mit einem Link zu jeder.
+
+Alle öffnen dieselbe, unveränderte hochgeladene Datei.
+
+Nachweisdokumente in derselben Datei, etwa ein Lieferschein, ein Kartenzahlungsbeleg, ein Leistungsnachweis oder eine zweite Kopie einer Rechnung, werden nie zu Rechnungen. Der Hinweis führt sie unter **Außerdem in dieser Datei, keine Rechnung:** auf.
+
+Ist eine Rechnung aus der Datei bereits über NAV im Arbeitsbereich, wird die Datei dieser Rechnung zugeordnet, statt eine zweite anzulegen.
+
+Zwei Fälle brauchen weiterhin Sie:
+
+- **Die Rechnungen ließen sich nicht sicher trennen.** Auf der Rechnung steht **Diese Datei enthält möglicherweise weitere Rechnungen, die nicht einzeln gelesen werden konnten. Prüfen Sie die Datei und laden Sie fehlende Rechnungen einzeln hoch.** Tun Sie genau das: Laden Sie jede fehlende Rechnung als eigene Datei hoch.
+- **Mehr als 10 Rechnungen in einer Datei, oder keine, die die KI sicher lesen kann.** Die Zeile endet mit **Fehlgeschlagen: This file contains several separate documents. Split it and upload each document on its own.** (diese Meldung erscheint in jeder Sprache auf Englisch). Teilen Sie die Datei auf und laden Sie die Teile hoch.
+
+Eine Rechnung pro Datei bleibt am schnellsten: kein zweites Lesen und keine zusätzliche Prüfung.
 
 ## ZIP-Archive
 
@@ -128,3 +159,4 @@ Nicht jede Datei gehört in die Warteschlange für Rechnungen oder Kontoauszüge
 - **Lassen Sie es laufen.** Uploads laufen weiter, während Sie an anderer Stelle im Arbeitsbereich arbeiten.
 - **Senden Sie Rechnungen und Kontoauszüge von ihren eigenen Seiten.** Einen gemischten Modus gibt es nicht.
 - **Prüfen Sie das Fenster, bevor Sie für heute Schluss machen.** Eine rote Zeile braucht eine korrigierte Datei, kein zweites Warten.
+- **Wo möglich, eine Rechnung pro Datei.** Eine Datei mit mehreren Rechnungen wird für Sie aufgeteilt, aber jeder Teil wartet dann auf eine Prüfung.
