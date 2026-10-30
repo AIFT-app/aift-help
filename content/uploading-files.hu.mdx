@@ -52,6 +52,8 @@ Amint egy feltöltés elindul, a **jobb alsó sarokban** megjelenik egy panel, f
 | **X. / Y. Oldal kinyerése** | Egy kivonat oldalanként olvasódik be. |
 | **Kategorizálás…** | A kivonat tranzakciói kategóriát kapnak. |
 | **Kinyerve** | Egy számla elkészült. Kattintson a sorra a megnyitásához. |
+| **További számlák keresése a fájlban…** | Az első számlát már kiolvastuk, és a fájl alapján több is lehet benne. A rendszer még egyszer elolvassa. Lásd: [Több számla egy fájlban](#több-számla-egy-fájlban). |
+| **Kinyerve, és még N számla ebből a fájlból** | A fájlban több számla volt, és mindegyik külön számla lett. A további számlák saját sorként is megjelennek. |
 | **Kész · N tranzakció (M egyesítve)** | Egy kivonat elkészült. Kattintson a sorra a megnyitásához. |
 | **Kész hibákkal · részletek megtekintése** | A kivonat elkészült, de néhány oldala nem. Nyissa meg, hogy lássa, melyek azok. |
 | **Már létezik** | Pontosan ez a fájl már a munkaterületen van. Kattintson a sorra az eredeti megnyitásához. |
@@ -77,7 +79,7 @@ Kétféle hiba van, és másképp viselkednek.
 
 **A dokumentum beolvasása hiúsult meg.** A fájl ott van a munkaterületen, de az AI nem tudta elolvasni. Ezek a sorok **Sikertelen:** feliratot mutatnak az okkal együtt, és **Újra** gombot kínálnak.
 
-Az Újra átmeneti hiba esetén segít. Nem segít, ha az ok maga a dokumentum: 10 oldalnál több, nem támogatott típus, jelszóval védett PDF vagy olvasásra túl összetett dokumentum. Ilyenkor:
+Az Újra átmeneti hiba esetén segít. Nem segít, ha az ok maga a dokumentum: 10 oldalnál több, nem támogatott típus, jelszóval védett PDF, olvasásra túl összetett dokumentum, vagy olyan fájl, amelynek több dokumentumát nem lehetett szétválasztani (lásd: [Több számla egy fájlban](#több-számla-egy-fájlban)). Ilyenkor:
 
 - **Tegye kisebbé vagy egyszerűbbé.** Exportálja újra a PDF-et kisebb méretben, vagy bontsa a köteget külön számlákra.
 - **Alakítsa át.** Egy kép, amellyel nem boldogul, PDF-ként gyakran működik, és fordítva.
@@ -90,6 +92,35 @@ Amikor feltölt egy számlát, az AI Finance Team összeveti a fájlt azzal, ami
 Magát a fájlt hasonlítja össze, nem a tartalmát, így ugyanannak a számlának egy újabb szkennelését vagy újraexportálását itt nem fogja meg. Azokat később, a számlán találja meg lehetséges duplikátumként. A bankszámlakivonatokat feltöltéskor egyáltalán nem ellenőrzi.
 
 Ha ugyanaz a fájl kétszer szerepel egy ejtésben, a második példány csendben kimarad.
+
+A több számlát tartalmazó fájl itt egy fájlnak számít: ha újra feltölti, egyetlen **Már létezik** sort kap, és nem jön létre második számlasor.
+
+## Több számla egy fájlban
+
+Egy szkennelt lap vagy fotó néha több számlát is tartalmaz: két tankolási bizonylatot egymás mellett, vagy egy köteg kártyás vásárlást. Nem kell előre szétbontania. Ugyanez történik a feltöltött és az [e-mailben továbbított](/email-forwarding) fájlokkal is.
+
+1. A fájl első számláját a szokásos módon kiolvassuk.
+2. Ha a fájlban több számla is van, a sorában ez áll: **További számlák keresése a fájlban…**, amíg a rendszer még egyszer elolvassa.
+3. Minden további számla önálló számla lesz, a sor pedig így zárul: **Kinyerve, és még N számla ebből a fájlból**.
+
+Az így létrejött számlák, és az első is, **Áttekintés szükséges** jelölést kapnak, hogy iktatás vagy könyvelés előtt valaki átnézze őket. Mindegyiken a fejléc fölötti megjegyzés mutatja, honnan származik:
+
+- **Ez a számla a feltöltött fájl N dokumentumának egyike.**
+- hol van a fájlban, például **Helye a fájlban: 1. oldal, jobb oldalt.**
+- **A fájl többi számlája:** mindegyikre mutató hivatkozással.
+
+Mindegyik ugyanazt, változatlan feltöltött fájlt nyitja meg.
+
+Az ugyanabban a fájlban lévő alátámasztó dokumentumokból, például szállítólevélből, kártyás bizonylatból, teljesítésigazolásból vagy egy számla másolatából soha nem lesz számla. A megjegyzés ezeket így sorolja fel: **A fájlban ezek is vannak, de nem számlák:**.
+
+Ha a fájl valamelyik számlája a NAV-ból már megvan a munkaterületen, a fájl ahhoz a számlához kapcsolódik, és nem jön létre második példány.
+
+Két esetben továbbra is Önre van szükség:
+
+- **A számlákat nem lehetett biztosan szétválasztani.** A számlán ez áll: **A fájlban lehetnek további számlák, amelyeket nem tudtunk külön kiolvasni. Nézd át a fájlt, és a hiányzó számlákat töltsd fel külön.** Tegyen pontosan így: a hiányzó számlákat töltse fel egyenként.
+- **Egy fájlban 10-nél több számla van, vagy egyiket sem tudja az AI biztosan kiolvasni.** A sor ezzel áll le: **Sikertelen: This file contains several separate documents. Split it and upload each document on its own.** (ez az üzenet minden nyelven angolul jelenik meg). Bontsa szét a fájlt, és töltse fel a részeit.
+
+Továbbra is az a leggyorsabb, ha egy fájlban egy számla van: nincs második kiolvasás, és nincs külön áttekintés.
 
 ## ZIP-archívumok
 
@@ -128,3 +159,4 @@ Nem minden fájlnak a számla- vagy kivonatsorban a helye:
 - **Hagyja futni.** A feltöltések folytatódnak, miközben Ön máshol dolgozik a munkaterületen.
 - **A számlákat és a kivonatokat a saját oldalukról küldje.** Nincs vegyes mód.
 - **Nézze meg a panelt, mielőtt végez a nappal.** Egy piros sorhoz javított fájl kell, nem újabb várakozás.
+- **Ahol lehet, egy fájlban egy számla legyen.** A több számlát tartalmazó fájlt a rendszer szétbontja, de minden része áttekintésre vár.
