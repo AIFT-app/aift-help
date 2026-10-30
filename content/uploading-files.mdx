@@ -52,6 +52,8 @@ A panel appears in the **bottom-right corner** as soon as an upload starts, with
 | **Extracting page X / Y** | A statement is being read page by page. |
 | **Categorizing…** | The statement's transactions are being given categories. |
 | **Extracted** | An invoice is done. Click the row to open it. |
+| **Checking the file for more invoices…** | The first invoice is read, and the file looks like it holds more. It is being read once more. See [Several invoices in one file](#several-invoices-in-one-file). |
+| **Extracted, plus N more invoices from this file** | The file held more than one invoice, and each one is now its own invoice. The extra invoices also show as rows of their own. |
 | **Done · N transactions (M merged)** | A statement is done. Click the row to open it. |
 | **Done with errors · see detail** | A statement finished, but some pages did not. Open it to see which. |
 | **Already exists** | This exact file is already in the workspace. Click the row to open the original. |
@@ -77,7 +79,7 @@ There are two kinds of failure, and they behave differently.
 
 **Reading the document failed.** The file is in the workspace but the AI could not read it. These rows say **Failed:** with the reason, and offer **Retry**.
 
-Retry helps with a temporary problem. It cannot help when the reason is the document itself: more than 10 pages, an unsupported type, a password-protected PDF, or a document too complex to read. For those:
+Retry helps with a temporary problem. It cannot help when the reason is the document itself: more than 10 pages, an unsupported type, a password-protected PDF, a document too complex to read, or a file whose several documents could not be told apart (see [Several invoices in one file](#several-invoices-in-one-file)). For those:
 
 - **Make it smaller or simpler.** Re-export the PDF at a lower size, or split a bundle into single invoices.
 - **Convert it.** An image that fails often works as a PDF, and the other way round.
@@ -90,6 +92,35 @@ When you upload an invoice, AI Finance Team compares the file with what the work
 It compares the file itself, not its content, so a second scan or a re-export of the same invoice is not caught here. Those are found later, on the invoice, as possible duplicates. Bank statements are not checked on upload at all.
 
 If the same file is in one drop twice, the second copy is dropped silently.
+
+A file that held several invoices counts as one file here: uploading it again gives one **Already exists** row, and no second set of invoices.
+
+## Several Invoices in One File
+
+A scan or a photo sometimes holds more than one invoice: two fuel receipts side by side, or a bundle of card receipts. You do not need to split it first. This works the same for files you upload and for files [forwarded by email](/email-forwarding).
+
+1. The first invoice in the file is read as usual.
+2. If the file holds more invoices, its row says **Checking the file for more invoices…** while the file is read once more.
+3. Each further invoice becomes an invoice of its own, and the row ends as **Extracted, plus N more invoices from this file**.
+
+Every invoice made this way, and the first one too, is marked **Needs review**, so a person checks it before it is filed or booked. On each of them a note above the header says where it came from:
+
+- **This invoice is one of N documents in the uploaded file.**
+- where in the file it sits, for example **Where in the file: page 1, right side.**
+- **Other invoices from this file:** with a link to each.
+
+All of them open the same uploaded file, unchanged.
+
+Supporting papers in the same file, such as a delivery note, a card terminal slip, a completion certificate or a second copy of an invoice, never become invoices. The note lists them under **Also in this file, not an invoice:**.
+
+If an invoice from the file is already in the workspace from NAV, the file is attached to that invoice instead of creating a second one.
+
+Two cases still need you:
+
+- **The invoices could not be told apart reliably.** The invoice says **This file may hold more invoices that could not be read on their own. Check the file and upload any missing invoice separately.** Do exactly that: upload each missing invoice as its own file.
+- **More than 10 invoices in one file, or none the AI can read with confidence.** The row fails with **Failed: This file contains several separate documents. Split it and upload each document on its own.** (this message is in English in every language). Split the file and upload the parts.
+
+One invoice per file is still the quickest: it needs no second reading and no extra review.
 
 ## ZIP Archives
 
@@ -128,3 +159,4 @@ Not every file belongs in the invoice or statement queue:
 - **Let it run.** Uploads continue while you work elsewhere in the workspace.
 - **Send invoices and statements from their own pages.** There is no mixed mode.
 - **Check the panel before you finish for the day.** A red row needs a fixed file, not a second wait.
+- **One invoice per file where you can.** A file with several invoices is split for you, but every part then waits for a review.
