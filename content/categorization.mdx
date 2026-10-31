@@ -95,11 +95,17 @@ Two details worth knowing: a correction is also recorded when you fill in a cate
 
 Accountants can see, edit and pre-load what the AI has learned on the **Examples** tab. See [How AIFT Learns Your Categories](/categorization-examples).
 
+### Accepting a suggestion
+
+A suggestion the AI was not sure enough to book shows on the invoice's lines with an amber **Suggestion · 72%** pill and an **Accept** button beside it; the toolbar's **Accept suggestions (n)** takes all of them at once, after a short confirmation. Once a person accepts or sets a category, the line reads **Verified** instead of a confidence word; **Edited** stays only where the person chose something other than the AI's pick. The same three states appear in a transaction's **Category** field.
+
+Accepting teaches exactly as correcting does: each accepted line is recorded as an example for that workspace, so the next invoice with the same line is categorised by itself. While an invoice's bookkeeping approval stands, the accept buttons are absent, because changing a category would withdraw that approval; the pencil still works.
+
 ## Where the Work Shows Up
 
-- **On an invoice line**: a status badge while the AI is working (**Pending**, **Processing**, **Failed**), the suggested category where nothing was booked, and the confidence.
+- **On an invoice line**: a status badge while the AI is working (**Pending**, **Processing**, **Failed**), an amber **Suggestion** pill with its **Accept** button where nothing was booked, **Verified** once a person decided, and otherwise the confidence.
 - **On the invoice**: a **Review** label when the invoice needs attention, whether that came from categorisation, extraction or VAT.
-- **On a transaction**: the category with its confidence in the detail panel, and **Edited** when a person set it.
+- **On a transaction**: the category in the detail panel: **Suggestion** with **Accept** while only the AI's proposal exists, **Verified** when a person set it (**Edited** too when it differs from the AI's pick), otherwise the confidence.
 - **In Mission Control**: a rung for invoices with uncategorised lines, and one for categorisation that failed, with a retry.
 
 ## Re-categorising in Bulk
