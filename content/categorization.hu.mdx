@@ -95,11 +95,17 @@ Két részlet, amit érdemes tudni: javítás akkor is rögzül, ha olyan kateg�
 
 A könyvelők a **Példák** fülön megnézhetik, szerkeszthetik és előre feltölthetik, amit az AI megtanult. Lásd: [Hogyan tanulja meg az AIFT a kategóriáit](/categorization-examples).
 
+### Javaslat elfogadása
+
+Azt a javaslatot, amelyet az AI nem mert magától lekönyvelni, a számla tételein borostyánsárga **Javaslat · 72%** jelvény és mellette az **Elfogadom** gomb mutatja; az eszköztár **Javaslatok elfogadása (n)** gombja egy rövid megerősítés után az összeset egyszerre fogadja el. Ha egy személy elfogadja vagy beállítja a kategóriát, a tétel a megbízhatósági szó helyett **Ellenőrzött** jelzést kap; a **Szerkesztve** csak ott marad, ahol a személy mást választott, mint amit az AI javasolt. Ugyanez a három állapot jelenik meg a tranzakció **Kategória** mezőjében is.
+
+Az elfogadás ugyanúgy tanít, mint a javítás: minden elfogadott tétel példaként rögzül az adott munkaterületen, így a következő, ugyanilyen tételt tartalmazó számla már magától kategorizálódik. Amíg a számla könyvelési jóváhagyása érvényes, az elfogadó gombok nem jelennek meg, mert egy kategóriaváltás visszavonná a jóváhagyást; a ceruza ilyenkor is működik.
+
 ## Hol látszik a munka
 
-- **A számla tételén**: állapotjelvény, amíg az AI dolgozik (**Függőben**, **Feldolgozás**, **Sikertelen**), a javasolt kategória ott, ahol semmi nem könyvelődött, és a megbízhatóság.
+- **A számla tételén**: állapotjelvény, amíg az AI dolgozik (**Függőben**, **Feldolgozás**, **Sikertelen**), borostyánsárga **Javaslat** jelvény az **Elfogadom** gombbal ott, ahol semmi nem könyvelődött, **Ellenőrzött**, ha már ember döntött, egyébként a megbízhatóság.
 - **A számlán**: **Ellenőrzés** címke, ha a számla figyelmet igényel, akár a kategorizálásból, akár a kinyerésből, akár az áfából ered.
-- **A tranzakción**: a kategória a megbízhatóságával a részletező panelen, és **Szerkesztve**, ha ember állította be.
+- **A tranzakción**: a kategória a részletező panelen: **Javaslat** és **Elfogadom**, amíg csak az AI javaslata van, **Ellenőrzött**, ha ember állította be (és **Szerkesztve**, ha az eltér az AI javaslatától), egyébként a megbízhatóság.
 - **A Teendők oldalon**: egy fok a kategorizálatlan tételsorokat tartalmazó számláknak, és egy a sikertelen kategorizálásnak, újrapróbálkozással.
 
 ## Tömeges újrakategorizálás

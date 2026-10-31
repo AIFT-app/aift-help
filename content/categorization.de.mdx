@@ -95,11 +95,17 @@ Zwei Details lohnen sich zu wissen: Eine Korrektur wird auch dann festgehalten, 
 
 Buchhalter können auf dem Reiter **Beispiele** einsehen, bearbeiten und vorab hinterlegen, was die KI gelernt hat. Siehe [Wie AIFT Ihre Kategorien lernt](/categorization-examples).
 
+### Einen Vorschlag übernehmen
+
+Einen Vorschlag, den die KI nicht sicher genug für eine Buchung fand, zeigen die Rechnungspositionen mit einem bernsteinfarbenen **Vorschlag · 72%**-Abzeichen und der Schaltfläche **Übernehmen** daneben; **Vorschläge übernehmen (n)** in der Werkzeugleiste übernimmt nach einer kurzen Bestätigung alle auf einmal. Sobald eine Person eine Kategorie übernimmt oder setzt, steht an der Position **Geprüft** statt eines Konfidenzwortes; **Bearbeitet** bleibt nur dort, wo die Person etwas anderes gewählt hat als den Vorschlag der KI. Dieselben drei Zustände erscheinen im Feld **Kategorie** einer Transaktion.
+
+Übernehmen lehrt genauso wie Korrigieren: Jede übernommene Position wird als Beispiel für diesen Arbeitsbereich festgehalten, sodass die nächste Rechnung mit derselben Position von selbst kategorisiert wird. Solange die Buchungsfreigabe einer Rechnung besteht, fehlen die Übernehmen-Schaltflächen, weil ein Kategoriewechsel die Freigabe zurückziehen würde; der Stift funktioniert weiterhin.
+
 ## Wo die Arbeit sichtbar wird
 
-- **Auf einer Rechnungsposition**: ein Status-Abzeichen, während die KI arbeitet (**Ausstehend**, **Wird verarbeitet**, **Fehlgeschlagen**), die vorgeschlagene Kategorie dort, wo nichts gebucht wurde, und die Konfidenz.
+- **Auf einer Rechnungsposition**: ein Status-Abzeichen, während die KI arbeitet (**Ausstehend**, **Wird verarbeitet**, **Fehlgeschlagen**), ein bernsteinfarbenes **Vorschlag**-Abzeichen mit **Übernehmen** dort, wo nichts gebucht wurde, **Geprüft**, sobald eine Person entschieden hat, sonst die Konfidenz.
 - **Auf der Rechnung**: ein **Prüfen**-Label, wenn die Rechnung Aufmerksamkeit braucht, ob das nun aus der Kategorisierung, der Extraktion oder der USt kommt.
-- **Auf einer Transaktion**: die Kategorie mit ihrer Konfidenz im Detailbereich, und **Bearbeitet**, wenn ein Mensch sie gesetzt hat.
+- **Auf einer Transaktion**: die Kategorie im Detailbereich: **Vorschlag** mit **Übernehmen**, solange nur der Vorschlag der KI vorliegt, **Geprüft**, wenn ein Mensch sie gesetzt hat (und **Bearbeitet**, wenn sie vom Vorschlag der KI abweicht), sonst die Konfidenz.
 - **Im Cockpit**: eine Stufe für Rechnungen mit nicht kategorisierten Positionen und eine für fehlgeschlagene Kategorisierung, mit Wiederholung.
 
 ## Sammelweise neu kategorisieren
