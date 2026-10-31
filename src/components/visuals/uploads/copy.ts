@@ -55,7 +55,7 @@ const hu: Copy = {
   rendered: {
     header: 'Feltöltések · 2 uploading',
     page: '4. / 12. Oldal kinyerése',
-    failed: 'Sikertelen: Unsupported file type: image/heic',
+    failed: 'Sikertelen: Nem támogatott fájltípus: image/heic',
   },
   help: { alt: 'A feltöltési panel hat fájllal: kettő olvasás alatt, egy kész, egy már a munkaterületen van, egyet a böngésző utasított vissza, egynek pedig nem sikerült az olvasása, és Újra gombot kínál.' },
 }
@@ -74,7 +74,7 @@ const de: Copy = {
   rendered: {
     header: 'Uploads · 2 uploading',
     page: 'Seite 4 / 12 extrahieren',
-    failed: 'Fehlgeschlagen: Unsupported file type: image/heic',
+    failed: 'Fehlgeschlagen: Nicht unterstützter Dateityp: image/heic',
   },
   help: { alt: 'Das Upload-Fenster mit sechs Dateien: zwei werden gelesen, eine ist fertig, eine liegt bereits im Arbeitsbereich, eine hat der Browser abgelehnt, und eine konnte nicht gelesen werden und bietet Erneut versuchen an.' },
 }
