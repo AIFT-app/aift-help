@@ -16,8 +16,8 @@ Everyone who can see the workspace's records (the "View invoices and bank transa
 
 What you can do on it depends on two further permissions:
 
-- **Upload documents** lets you link, retype and remove attachments, and use **Mark as attachment**. By default every built-in role has it, client-side roles included.
-- **Edit invoices**, which only firm-side members can hold, adds the accountant work: the **Upload** button, the **Needs review** filter, changing a document's type, **Mark irrelevant**, **Not a duplicate** and building a category list. A client-side member does not see these.
+- **Upload documents** lets you link, retype and archive attachments, and use **Mark as attachment**. By default every built-in role has it, client-side roles included.
+- **Edit invoices**, which only firm-side members can hold, adds the accountant work: the **Upload** button, the **Needs review** filter, changing a document's type, **Archive** and its **Restore**, **Not a duplicate** and building a category list. A client-side member does not see these.
 
 Note that building a category list from a document, below, needs a **different** permission again.
 
@@ -41,7 +41,7 @@ The Documents list with five documents. The numbers match the list below. The do
 </DocumentsListFigure>
 
 1. **Upload**, beside the heading. The only other way in is email.
-2. **Duplicates** carries a count, and only when there are some. **Unlinked attachments**, the last filter, does the same.
+2. **Duplicates** carries a count, and only when there are some. **Unlinked attachments** does the same.
 3. **The type badge in the document's own words.** This chart of accounts is not a contract, so the badge prints what the AI called it, untranslated, whatever your interface language is.
 4. **A duplicate is filed here**, under the kind of the original, with the line naming what it duplicates in place of the summary.
 5. **A PDF holding several documents** keeps the **Processing** badge for good. Nothing further happens to it.
@@ -50,7 +50,7 @@ This first pass is deliberately shallow. It reads the opening of the document to
 
 ## Finding Things
 
-The filters are **All**, **Contracts**, **Other**, **Needs review**, **Duplicates** and **Unlinked attachments**; **Needs review** is shown to accountants only. **Duplicates** and **Unlinked attachments** carry a count badge, and only when there are some. An attachment that is linked to an invoice is listed under **All**; an attachment e-mailed a second time is listed under **Duplicates**.
+The filters are **All**, **Contracts**, **Other**, **Needs review**, **Duplicates**, **Unlinked attachments** and **Archived**; **Needs review** is shown to accountants only, and **Archived** lists what has been archived, with the reason, who did it and when, and a **Restore** on each row. **Duplicates** and **Unlinked attachments** carry a count badge, and only when there are some. An attachment that is linked to an invoice is listed under **All**; an attachment e-mailed a second time is listed under **Duplicates**.
 
 There is no search, no sorting and no paging: the list is everything in the workspace, newest first, in one go. And the empty state says the same sentence whichever filter you are on, so "no documents yet" on the Duplicates filter usually means no duplicates, not no documents.
 
@@ -65,7 +65,7 @@ There is no search, no sorting and no paging: the list is everything in the work
 
 Supporting documents such as timesheets, performance certificates and delivery notes are recognised as invoice attachments and never processed as invoices. Those not yet linked to an invoice wait under the **Unlinked attachments** filter, where you can link them.
 
-If triage filed a timesheet or a delivery note under **Other**, use **Mark as attachment** on its row: choose the type, and the document becomes an invoice attachment waiting under **Unlinked attachments**. It works only on a document that is no longer being read, and not on one that has already become an invoice. Opening an attachment here shows its details and a download; you link, retype or remove it on its invoice or in the tray. See [Invoice Attachments](/invoice-attachments).
+If triage filed a timesheet or a delivery note under **Other**, use **Mark as attachment** on its row: choose the type, and the document becomes an invoice attachment waiting under **Unlinked attachments**. It works only on a document that is no longer being read, and not on one that has already become an invoice. Opening an attachment here shows its details and a download; you link, retype or archive it on its invoice or in the tray. See [Invoice Attachments](/invoice-attachments).
 
 ## Working With One Document
 
@@ -75,12 +75,10 @@ Open a document to see its summary, type, language, file and source.
 
 - **Download** or open the original file.
 - **Change its type**, using the dropdown in the footer. If something landed here that is really an invoice, a bank statement or a receipt, this sends it where it belongs, and it leaves this page. It also teaches the app: the sender's domain is nudged towards that type for next time.
-- **Mark irrelevant**, for anything not worth keeping in view.
+- **Archive**, with a reason, for anything not worth keeping in view. The document moves to the **Archived** filter, where its row shows the reason, who archived it and when, and offers **Restore**; restoring puts it back exactly where it was.
 - **Not a duplicate**, on a copy, which restores it to **Needs review** and un-flags any invoice that was created from it.
 
-Two of those are worth a warning.
-
-**Mark irrelevant cannot be undone.** There is no restore, and no filter that will show you an archived document again. Treat it as deletion from the page.
+One of those is worth a warning.
 
 **Changing the type only re-runs the reading for a document that is still in the first pass.** From **Failed**, or from a document already finished, it changes the label and removes the document from this page without sending it anywhere. A Failed contract that is really an invoice therefore needs re-uploading, not reclassifying.
 
