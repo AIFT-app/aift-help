@@ -16,8 +16,8 @@ Jeder, der die Datensätze des Arbeitsbereichs sehen darf (Berechtigung „Rechn
 
 Was Sie dort tun können, hängt an zwei weiteren Berechtigungen:
 
-- **Dokumente hochladen** erlaubt, Anhänge zu verknüpfen, ihren Typ zu ändern, sie zu entfernen und **Als Anhang markieren** zu nutzen. Standardmäßig haben sie alle eingebauten Rollen, auch die auf der Mandantenseite.
-- **Rechnungen bearbeiten**, das nur Mitglieder der Kanzleiseite haben können, fügt die Arbeit der Buchhaltung hinzu: die Schaltfläche **Hochladen**, den Filter **Zu prüfen**, das Ändern des Dokumenttyps, das Markieren als irrelevant, das Aufheben einer Duplikat-Markierung und das Erstellen einer Kategorieliste. Ein Mitglied der Mandantenseite sieht diese nicht.
+- **Dokumente hochladen** erlaubt, Anhänge zu verknüpfen, ihren Typ zu ändern, sie zu archivieren und **Als Anhang markieren** zu nutzen. Standardmäßig haben sie alle eingebauten Rollen, auch die auf der Mandantenseite.
+- **Rechnungen bearbeiten**, das nur Mitglieder der Kanzleiseite haben können, fügt die Arbeit der Buchhaltung hinzu: die Schaltfläche **Hochladen**, den Filter **Zu prüfen**, das Ändern des Dokumenttyps, **Archivieren** und **Wiederherstellen**, das Aufheben einer Duplikat-Markierung und das Erstellen einer Kategorieliste. Ein Mitglied der Mandantenseite sieht diese nicht.
 
 Beachten Sie: Eine Kategorieliste aus einem Dokument zu bauen, weiter unten, braucht noch einmal eine **andere** Berechtigung.
 
@@ -41,7 +41,7 @@ Die Dokumentenliste mit fünf Dokumenten. Die Nummern entsprechen der Liste daru
 </DocumentsListFigure>
 
 1. **Hochladen**, neben der Überschrift. Der einzige andere Weg hierher ist die E-Mail.
-2. **Duplikate** trägt eine Anzahl, und nur, wenn es welche gibt. Der letzte Filter, **Nicht verknüpfte Anhänge**, ebenso.
+2. **Duplikate** trägt eine Anzahl, und nur, wenn es welche gibt. **Nicht verknüpfte Anhänge** ebenso.
 3. **Das Typ-Abzeichen in den Worten des Dokuments.** Dieser Kontenrahmen ist kein Vertrag, also steht auf dem Abzeichen, wie die KI ihn genannt hat, unübersetzt, welche Oberflächensprache Sie auch gewählt haben.
 4. **Ein Duplikat bleibt hier**, unter der Art des Originals, und an der Stelle der Zusammenfassung steht die Zeile, die nennt, wovon es ein Duplikat ist.
 5. **Ein PDF mit mehreren Dokumenten** behält das Kennzeichen **Verarbeitung** dauerhaft. Weiter passiert damit nichts.
@@ -50,7 +50,7 @@ Dieser erste Durchgang ist bewusst flach. Er liest den Anfang des Dokuments, um 
 
 ## Etwas wiederfinden
 
-Die Filter sind **Alle**, **Verträge**, **Andere**, **Zu prüfen**, **Duplikate** und **Nicht verknüpfte Anhänge**; **Zu prüfen** sieht nur die Buchhaltung. **Duplikate** und **Nicht verknüpfte Anhänge** tragen eine Zahl, und nur, wenn es welche gibt. Ein mit einer Rechnung verknüpfter Anhang steht unter **Alle**, ein zum zweiten Mal per E-Mail geschickter Anhang unter **Duplikate**.
+Die Filter sind **Alle**, **Verträge**, **Andere**, **Zu prüfen**, **Duplikate**, **Nicht verknüpfte Anhänge** und **Archiviert**; **Zu prüfen** sieht nur die Buchhaltung, und **Archiviert** listet die archivierten Dokumente mit Begründung, wer sie wann archiviert hat und einem **Wiederherstellen** in jeder Zeile. **Duplikate** und **Nicht verknüpfte Anhänge** tragen eine Zahl, und nur, wenn es welche gibt. Ein mit einer Rechnung verknüpfter Anhang steht unter **Alle**, ein zum zweiten Mal per E-Mail geschickter Anhang unter **Duplikate**.
 
 Es gibt keine Suche, keine Sortierung und kein Blättern: Die Liste ist alles im Arbeitsbereich, das Neueste zuerst, auf einmal. Und der leere Zustand sagt denselben Satz, auf welchem Filter Sie auch stehen, „Noch keine Dokumente“ auf dem Filter Duplikate heißt also meist, dass es keine Duplikate gibt, und nicht, dass es keine Dokumente gibt.
 
@@ -65,7 +65,7 @@ Es gibt keine Suche, keine Sortierung und kein Blättern: Die Liste ist alles im
 
 Nachweisdokumente wie Stundenzettel, Leistungsnachweise und Lieferscheine werden als Rechnungsanhänge erkannt und nie als Rechnung verarbeitet. Solche, die noch mit keiner Rechnung verknüpft sind, warten unter dem Filter **Nicht verknüpfte Anhänge**, wo Sie sie verknüpfen können.
 
-Hat die Einordnung einen Stundenzettel oder Lieferschein unter **Andere** abgelegt, nutzen Sie in seiner Zeile **Als Anhang markieren**: Wählen Sie den Typ, und das Dokument wird ein Rechnungsanhang, der unter **Nicht verknüpfte Anhänge** wartet. Das geht nur bei einem Dokument, dessen Einlesen abgeschlossen ist und aus dem noch keine Rechnung wurde. Öffnen Sie hier einen Anhang, sehen Sie seine Angaben und einen Download; verknüpfen, Typ ändern oder entfernen können Sie ihn an der Rechnung oder in der Ablage. Siehe [Rechnungsanhänge](/invoice-attachments).
+Hat die Einordnung einen Stundenzettel oder Lieferschein unter **Andere** abgelegt, nutzen Sie in seiner Zeile **Als Anhang markieren**: Wählen Sie den Typ, und das Dokument wird ein Rechnungsanhang, der unter **Nicht verknüpfte Anhänge** wartet. Das geht nur bei einem Dokument, dessen Einlesen abgeschlossen ist und aus dem noch keine Rechnung wurde. Öffnen Sie hier einen Anhang, sehen Sie seine Angaben und einen Download; verknüpfen, Typ ändern oder archivieren können Sie ihn an der Rechnung oder in der Ablage. Siehe [Rechnungsanhänge](/invoice-attachments).
 
 ## Mit einem Dokument arbeiten
 
@@ -75,12 +75,10 @@ Hat die Einordnung einen Stundenzettel oder Lieferschein unter **Andere** abgele
 
 - **Herunterladen**, oder die Originaldatei öffnen.
 - **Seinen Typ ändern**, über die Auswahlliste in der Fußzeile. Ist hier etwas gelandet, das in Wahrheit eine Rechnung, ein Kontoauszug oder ein Beleg ist, geht es damit dorthin, wo es hingehört, und verlässt diese Seite. Es bringt der App außerdem etwas bei: Die Domain des Absenders wird für das nächste Mal in Richtung dieses Typs geschoben.
-- **Als irrelevant markieren**, für alles, was nicht im Blick bleiben muss.
+- **Archivieren**, mit Begründung, für alles, was nicht im Blick bleiben muss. Das Dokument wandert unter den Filter **Archiviert**, wo seine Zeile die Begründung zeigt und wer es wann archiviert hat, mit **Wiederherstellen**; das Wiederherstellen setzt es genau dorthin zurück, wo es war.
 - **Kein Duplikat**, bei einer Kopie, was sie zurück nach **Zu prüfen** holt und die Markierung an jeder Rechnung aufhebt, die aus ihr entstanden ist.
 
-Zwei davon verdienen eine Warnung.
-
-**„Als irrelevant markieren“ lässt sich nicht widerrufen.** Es gibt keine Wiederherstellung und keinen Filter, der Ihnen ein archiviertes Dokument wieder zeigt. Behandeln Sie es als Löschen von dieser Seite.
+Eine davon verdient eine Warnung.
 
 **Den Typ zu ändern startet das Lesen nur bei einem Dokument neu, das noch im ersten Durchgang steckt.** Aus **Fehlgeschlagen**, oder bei einem schon fertigen Dokument, ändert es die Bezeichnung und nimmt das Dokument von dieser Seite, ohne es irgendwohin zu schicken. Ein fehlgeschlagener Vertrag, der in Wahrheit eine Rechnung ist, muss deshalb neu hochgeladen und nicht neu klassifiziert werden.
 

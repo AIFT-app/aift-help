@@ -28,7 +28,7 @@ PDFs and JPEG, PNG and WebP images open in a preview. Every attachment can be do
 ## Who can add and who can see
 
 - **Seeing and downloading:** anyone who can see the invoice can open and download its attachments. This includes an approver who sees only the invoices assigned to them.
-- **Adding, changing the type, linking and removing:** these need the permission to upload documents. By default the accountants have it, and on the client side the finance lead, the finance admin and team members. Whether an approver who sees only their assigned invoices can change attachments depends on that upload permission too. The built-in roles include it, so to make such an approver view-only, take the upload permission away as well.
+- **Adding, changing the type, linking and archiving:** these need the permission to upload documents. By default the accountants have it, and on the client side the finance lead, the finance admin and team members. Whether an approver who sees only their assigned invoices can change attachments depends on that upload permission too. The built-in roles include it, so to make such an approver view-only, take the upload permission away as well.
 
 See [Roles and Permissions](/roles-and-permissions).
 
@@ -62,7 +62,7 @@ Excel, Word and CSV files sent by email are kept as attachments as well. When th
 
 ## Unlinked attachments
 
-On the **Documents** page, the **Unlinked attachments** filter lists every attachment that is not linked to any invoice yet, with its type and where it came from (the sender and subject of the email, or an upload). From there you can link it to an invoice, accept a suggested invoice, set its type or remove it. Everyone who can see the workspace's records opens the Documents page, client-side members too, so an attachment unlinked by anyone can be found here; see [Documents](/documents).
+On the **Documents** page, the **Unlinked attachments** filter lists every attachment that is not linked to any invoice yet, with its type and where it came from (the sender and subject of the email, or an upload). From there you can link it to an invoice, accept a suggested invoice, set its type or archive it. Everyone who can see the workspace's records opens the Documents page, client-side members too, so an attachment unlinked by anyone can be found here; see [Documents](/documents).
 
 ## One attachment, several invoices
 
@@ -70,15 +70,17 @@ Usually an attachment belongs to one invoice. Sometimes one certificate covers s
 
 You can also unlink an attachment from an invoice (**Unlink** in the same menu). The attachment is kept, and if it is no longer linked anywhere, it appears among the unlinked attachments.
 
-## Removing an attachment
+## Archiving an attachment
 
-Open the attachment's **⋯** menu, choose **Remove** and confirm. The attachment disappears from every invoice it is linked to, so the confirmation names each of them you can see, and says how many more there are that you cannot see.
+Open the attachment's **⋯** menu, choose **Archive**, give a reason of at least three characters and confirm. The attachment disappears from every invoice it is linked to, so the confirmation names each of them you can see, and says how many more there are that you cannot see.
 
-Removing hides the attachment, but the document itself is kept. Supporting documents are accounting evidence and have to be retained, so nothing is ever permanently deleted. The removal is recorded on the **History** tab of each invoice, with who removed it and when.
+Archiving hides the attachment, but the document itself is kept. Supporting documents are accounting evidence and have to be retained, so nothing is ever permanently deleted. The archive is recorded on the **History** tab of each invoice, with who archived it, when and why.
+
+The **Attachments** tab lists the invoice's archived attachments in a collapsed **Archived attachments** row at the bottom, each with its reason, who archived it and when, and a **Restore** button. Restoring brings the attachment back to every invoice it was linked to when it was archived. The same attachments are listed under the **Archived** filter of the **Documents** page.
 
 ## History
 
-Every change to attachments appears on the invoice's **History** tab: added, linked, unlinked, type changed and removed, each with who did it and when. An automatic link from an email shows as done by the system.
+Every change to attachments appears on the invoice's **History** tab: added, linked, unlinked, type changed, archived and restored, each with who did it and when. An automatic link from an email shows as done by the system.
 
 ## What attachments do not affect
 
