@@ -1,6 +1,6 @@
 # Arbeiten mit Rechnungen
 
-AI Finance Team liest jede Rechnung für Sie: Es extrahiert die Daten, erkennt, zu welchem Ihrer Unternehmen die Rechnung gehört und ob sie eine Einnahme oder eine Ausgabe ist, findet den Partner und schlägt Kategorien und USt-Codes vor. Dieser Artikel erklärt, wie Rechnungen eintreffen, wie Sie sie finden und prüfen, und wie Sie sie korrigieren, ablehnen und herunterladen.
+AI Finance Team liest jede Rechnung für Sie: Es extrahiert die Daten, erkennt, zu welchem Ihrer Unternehmen die Rechnung gehört und ob sie eine Einnahme oder eine Ausgabe ist, findet den Partner und schlägt Kategorien und USt-Codes vor. Dieser Artikel erklärt, wie Rechnungen eintreffen, wie Sie sie finden und prüfen, und wie Sie sie korrigieren, archivieren und herunterladen.
 
 <InvoiceLifecycleFigure>
 Der Weg einer Rechnung durch AI Finance Team, vom Eingang bis zur Zahlung. Die Pills sind die Labels und Status, die die App bei jedem Schritt zeigt.
@@ -52,13 +52,13 @@ Die Labels, die Ihnen am häufigsten begegnen:
 
 ### Rechnungen finden
 
-Suchen Sie nach Rechnungsnummer, AI-Finance-Team-ID, Verkäufer- oder Käufername oder Partner. Über der Liste filtern Sie nach Zeitraum, **Unternehmen** (wenn Sie mehrere haben), **Richtung**, **Quelle** (NAV oder hochgeladen), **Zahlung** und **Freigabe**, und schalten Filter-Pills ein: **Prüfung erforderlich**, **Unbezahlt**, **Unternehmen benötigt**, **FX ausstehend**, **Duplikat**, **Abgelehnt**, **Kein Dokument**, **USt-Codes unvollständig** und **USt: standard-codiert**. Abgelehnte Rechnungen, Duplikate und stornierte Paare bleiben ausgeblendet, bis ihre Pill eingeschaltet ist. Arbeiten Sie in einem [fokussierten Zeitraum](/focused-period), folgt die Liste diesem.
+Suchen Sie nach Rechnungsnummer, AI-Finance-Team-ID, Verkäufer- oder Käufername oder Partner. Über der Liste filtern Sie nach Zeitraum, **Unternehmen** (wenn Sie mehrere haben), **Richtung**, **Quelle** (NAV oder hochgeladen), **Zahlung** und **Freigabe**, und schalten Filter-Pills ein: **Prüfung erforderlich**, **Unbezahlt**, **Unternehmen benötigt**, **FX ausstehend**, **Duplikat**, **Kürzlich archiviert**, **Alle archivierten**, **Kein Dokument**, **USt-Codes unvollständig** und **USt: standard-codiert**. Archivierte Rechnungen, Duplikate und stornierte Paare bleiben ausgeblendet, bis ihre Pill eingeschaltet ist; **Kürzlich archiviert** zeigt die letzten 30 Tage, **Alle archivierten** jede archivierte Rechnung. Arbeiten Sie in einem [fokussierten Zeitraum](/focused-period), folgt die Liste diesem.
 
 Mit der Berechtigung, Rechnungen zu bearbeiten, können Sie Zeilen anhaken und **Neu kategorisieren**, **USt-Codierung erneut ausführen** oder **Geprüfte Einträge freigeben** wählen.
 
 ## Die Rechnungsseite
 
-Klicken Sie auf eine Rechnung, um ihre Seite zu öffnen. Die obere Karte zeigt die Rechnungsnummer, Badges wie **Duplikat**, **Abgelehnt**, **Prüfung erforderlich** und **Vollständigkeit**, den Zahlungsstatus sowie die Angaben **AIFT-Kennung** (die eigene Nummer von AI Finance Team für die Rechnung, hier immer sichtbar; Klick zum Kopieren), **Partner**, **Richtung**, **Brutto** und **Ausgestellt**, mit den Schaltflächen **Herunterladen** und **Bearbeiten**. Darunter stehen die KI-Zusammenfassung, die Sie bearbeiten können, und die **Aufgaben**, zum Beispiel ein fehlender USt-Code oder ein zu verifizierender Partner.
+Klicken Sie auf eine Rechnung, um ihre Seite zu öffnen. Die obere Karte zeigt die Rechnungsnummer, Badges wie **Duplikat**, **Archiviert**, **Prüfung erforderlich** und **Vollständigkeit**, den Zahlungsstatus sowie die Angaben **AIFT-Kennung** (die eigene Nummer von AI Finance Team für die Rechnung, hier immer sichtbar; Klick zum Kopieren), **Partner**, **Richtung**, **Brutto** und **Ausgestellt**, mit den Schaltflächen **Herunterladen** und **Bearbeiten**. Darunter stehen die KI-Zusammenfassung, die Sie bearbeiten können, und die **Aufgaben**, zum Beispiel ein fehlender USt-Code oder ein zu verifizierender Partner.
 
 Die Seite hat sieben Reiter:
 
@@ -84,9 +84,15 @@ Klicken Sie auf der Rechnungsseite auf **Bearbeiten**, oder drücken Sie `E`, we
 
 Klicken Sie auf einen Wert, um ihn zu bearbeiten; er wird gespeichert, wenn Sie Enter drücken oder woanders hinklicken. Eine Speichern-Schaltfläche gibt es nicht. Fahren Sie mit der Maus über ein Feld, wird der Wert im PDF gelb hervorgehoben, sodass Sie ihn mit der Quelle vergleichen können. Ein geändertes Feld zeigt beim Überfahren einen Pfeil zum Zurücksetzen, der den von der KI extrahierten Wert wiederherstellt. Mit `Esc` oder **×** schließen Sie den Editor.
 
-## Eine Rechnung ablehnen
+## Eine Rechnung archivieren
 
-Gehört eine Rechnung zu keinem Ihrer Unternehmen, öffnen Sie auf der Rechnung die Auswahl des Unternehmens, klicken Sie auf **Diese Rechnung ist für keines unserer Unternehmen** und geben Sie einen Grund an. Die Rechnung wandert unter den Filter **Abgelehnt**, Zuordnungsvorschläge zu ihr werden verworfen, bestehende Zuordnungen bleiben erhalten und werden markiert. Ihr Banner bietet **Ablehnung rückgängig machen** an. Rechnungen lassen sich nicht löschen.
+Eine Rechnung, die nicht in die Bücher gehört, weil sie privat ist, Ihnen versehentlich geschickt wurde oder zu keinem Ihrer Unternehmen gehört, wird **archiviert**, nie gelöscht. Klicken Sie in der oberen Karte der Rechnung auf **Archivieren** und geben Sie eine Begründung von mindestens drei Zeichen an: Wer sie wann und warum archiviert hat, bleibt an der Rechnung. Vor dem Bestätigen zählt der Dialog auf, was das Archivieren mit dieser Rechnung tut: Eine bestätigte Bankzuordnung wird gelöst und die Transaktion kehrt in ihre eigene Prüfung zurück, offene Zuordnungsvorschläge werden verworfen, eine schon auf einer Zahlungsdatei stehende Zeile wird zurückgezogen, die Rechnung verlässt ihre Ausgleichssitzung, eine offene Anfrage an den Mandanten wird geschlossen, und der Dialog warnt, wenn die Rechnung bereits an Business Central übergeben wurde oder einen konzerninternen Zwilling hat, denn das klären Sie dann von Hand.
+
+Ist der Grund, dass die Rechnung zu keinem Ihrer Unternehmen gehört, bietet die Auswahl des Unternehmens auf der Rechnung die Abkürzung **Archivieren: keinem unserer Unternehmen zuzuordnen**. Sie öffnet denselben Dialog mit ausgefüllter Begründung und löscht das Unternehmen.
+
+Eine archivierte Rechnung trägt ein graues Abzeichen **Archiviert**, und ihr Banner zeigt, wer sie wann und warum archiviert hat, mit der Schaltfläche **Wiederherstellen**. Bis zur Wiederherstellung steht sie außerhalb jeder Liste, jeder Zählung, jeder Prüfung, jeder Freigabewarteschlange und jedes Exports. Das Wiederherstellen bringt die Rechnung zurück und sonst nichts: Eine gelöste Bankzuordnung entsteht nicht neu; war sie richtig, ordnen Sie sie von Hand erneut zu.
+
+Das Archivieren einer Rechnung, deren Buchhaltungsfreigabe schon erteilt ist, braucht zusätzlich die Berechtigung zur Buchhaltungsfreigabe; der Dialog sagt es, und die Schaltfläche bleibt ohne sie gesperrt.
 
 ## Eine Rechnung herunterladen
 
@@ -111,7 +117,7 @@ Das Label **Prüfen** bedeutet, dass die Extraktion bei der Vollständigkeit unt
 
 Um die Rechnungen des Arbeitsbereichs zu sehen, braucht man die Berechtigung, Rechnungen und Banktransaktionen anzusehen. Ein Mitglied ohne sie sieht weiterhin die Rechnungen, die es selbst hochgeladen hat, und jede Rechnung, die ihm zur Freigabe zugewiesen wurde: vier Reiter statt sechs, keine Labels, keinen Zahlungsstatus und keine Aufgaben, dazu einen Hinweis in der Liste, dass nur die eigenen Rechnungen gezeigt werden.
 
-Bearbeiten, Ablehnen, das Markieren und das Aufheben der Markierung eines Duplikats sowie die Sammelaktionen brauchen alle die Berechtigung, Rechnungen zu bearbeiten, die standardmäßig die Buchhalter haben; Kundenbenutzer können Rechnungen ansehen, das Dokument öffnen und hochladen. Siehe [Rollen & Berechtigungen](/roles-and-permissions).
+Bearbeiten, Archivieren und Wiederherstellen, das Markieren und das Aufheben der Markierung eines Duplikats sowie die Sammelaktionen brauchen alle die Berechtigung, Rechnungen zu bearbeiten, die standardmäßig die Buchhalter haben (das Archivieren einer Rechnung, deren Buchhaltungsfreigabe schon erteilt ist, braucht zusätzlich die Berechtigung zur Buchhaltungsfreigabe); Kundenbenutzer können Rechnungen ansehen, das Dokument öffnen und hochladen. Siehe [Rollen & Berechtigungen](/roles-and-permissions).
 
 ## Tipps
 
