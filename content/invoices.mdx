@@ -1,6 +1,6 @@
 # Working with Invoices
 
-AI Finance Team reads every invoice for you: it extracts the data, works out which of your companies the invoice belongs to and whether it is income or an expense, finds the partner, and suggests categories and VAT codes. This article explains how invoices arrive, how to find and check them, and how to correct, reject and download them.
+AI Finance Team reads every invoice for you: it extracts the data, works out which of your companies the invoice belongs to and whether it is income or an expense, finds the partner, and suggests categories and VAT codes. This article explains how invoices arrive, how to find and check them, and how to correct, archive and download them.
 
 <InvoiceLifecycleFigure>
 The way of an invoice through AI Finance Team, from arrival to paid. The pills are the labels and states the app shows at each step.
@@ -52,13 +52,13 @@ The labels you meet most often:
 
 ### Finding invoices
 
-Search by invoice number, AI Finance Team ID, seller or buyer name, or partner. Above the list you can filter by date range, **Company** (when you have more than one), **Direction**, **Source** (NAV or uploaded), **Payment** and **Approval**, and switch on filter pills: **Needs review**, **Unpaid**, **Company needed**, **FX pending**, **Duplicate**, **Rejected**, **No document**, **VAT codes incomplete** and **VAT: default-coded**. Rejected invoices, duplicates and cancelled storno pairs stay hidden unless their pill is on. If you work in a [focused period](/focused-period), the list follows it.
+Search by invoice number, AI Finance Team ID, seller or buyer name, or partner. Above the list you can filter by date range, **Company** (when you have more than one), **Direction**, **Source** (NAV or uploaded), **Payment** and **Approval**, and switch on filter pills: **Needs review**, **Unpaid**, **Company needed**, **FX pending**, **Duplicate**, **Recently archived**, **All archived**, **No document**, **VAT codes incomplete** and **VAT: default-coded**. Archived invoices, duplicates and cancelled storno pairs stay hidden unless their pill is on; **Recently archived** shows the last 30 days, **All archived** every archived invoice. If you work in a [focused period](/focused-period), the list follows it.
 
 With permission to edit invoices you can tick rows and **Re-categorize** them, **Re-run VAT coding**, or **Approve reviewed items**.
 
 ## The invoice page
 
-Click an invoice to open its page. The top card shows the invoice number, badges such as **Duplicate**, **Rejected**, **Needs review** and **Completeness**, the payment status, and the facts **AIFT id** (AI Finance Team's own number for the invoice, always shown here; click to copy), **Partner**, **Direction**, **Gross** and **Issued**, with the **Download** and **Edit** buttons. Under it are the AI summary, which you can edit, and the **To-do** chips, for example a missing VAT code or a partner to verify.
+Click an invoice to open its page. The top card shows the invoice number, badges such as **Duplicate**, **Archived**, **Needs review** and **Completeness**, the payment status, and the facts **AIFT id** (AI Finance Team's own number for the invoice, always shown here; click to copy), **Partner**, **Direction**, **Gross** and **Issued**, with the **Download** and **Edit** buttons. Under it are the AI summary, which you can edit, and the **To-do** chips, for example a missing VAT code or a partner to verify.
 
 The page has seven tabs:
 
@@ -84,9 +84,15 @@ Click **Edit** on the invoice page, or press `E` when no field is focused. You n
 
 Click a value to edit it; it is saved when you press Enter or click away. There is no Save button. When you hover over a field, the value is highlighted in yellow in the PDF, so you can check it against the source. A field you changed shows a revert arrow on hover, which restores the value the AI extracted. Press `Esc` or click **×** to close the editor.
 
-## Rejecting an invoice
+## Archiving an invoice
 
-If an invoice does not belong to any of your companies, open the company choice on the invoice and click **This invoice isn't for any of our companies**, then give a reason. The invoice moves to the **Rejected** filter, matching suggestions for it are discarded, and existing matches are kept and flagged. Its banner offers **Undo rejection**. Invoices cannot be deleted.
+An invoice that should not be in the books, because it is private, was sent to you by mistake or belongs to none of your companies, is **archived**, never deleted. Click **Archive** in the top card of the invoice and give a reason of at least three characters: who archived it, when and why stay on the invoice. Before you confirm, the dialog lists what archiving will do to this invoice: a confirmed bank match is unlinked and the transaction returns to its own review, pending match suggestions are discarded, a line already on a payment file is withdrawn, the invoice leaves its settlement session, an open request to the client is closed, and the dialog warns when the invoice has already been pushed to Business Central or has an intercompany twin, which you then settle by hand.
+
+If the reason is that the invoice belongs to none of your companies, the company choice on the invoice offers the shortcut **Archive: no company of ours**. It opens the same dialog with the reason filled in and clears the company.
+
+An archived invoice carries a grey **Archived** badge, and its banner shows who archived it, when and why, with a **Restore** button. Until it is restored it stays outside every list, count, review, approval queue and export. Restoring brings back the invoice and nothing else: a bank match that was unlinked is not re-created; if it was right, match it again by hand.
+
+Archiving an invoice whose bookkeeping approval has already been given also needs the permission to approve bookkeeping; the dialog says so, and the button stays disabled without it.
 
 ## Downloading an invoice
 
@@ -111,7 +117,7 @@ The **Review** label means the extraction scored below 80% for completeness: the
 
 Seeing the workspace's invoices needs the permission to view invoices and bank transactions. A member without it still sees the invoices they uploaded themselves, and any invoice routed to them for approval: four tabs instead of six, no labels, no payment status and no to-dos, with a note on the list saying only their own invoices are shown.
 
-Editing, rejecting, marking or unmarking a duplicate, and the bulk actions all need the permission to edit invoices, which accountants hold by default; client users can view invoices, open the document and upload. See [Roles and Permissions](/roles-and-permissions).
+Editing, archiving and restoring, marking or unmarking a duplicate, and the bulk actions all need the permission to edit invoices, which accountants hold by default (archiving an invoice whose bookkeeping approval is already given also needs the permission to approve bookkeeping); client users can view invoices, open the document and upload. See [Roles and Permissions](/roles-and-permissions).
 
 ## Tips
 

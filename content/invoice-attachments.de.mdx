@@ -28,7 +28,7 @@ PDFs und JPEG-, PNG- und WebP-Bilder öffnen sich in einer Vorschau. Jeder Anhan
 ## Wer hinzufügen und wer sehen darf
 
 - **Ansehen und herunterladen:** Wer die Rechnung sehen kann, kann auch ihre Anhänge öffnen und herunterladen. Das gilt auch für Freigeber, die nur die ihnen zugewiesenen Rechnungen sehen.
-- **Hinzufügen, Typ ändern, verknüpfen und entfernen:** Dafür braucht es die Berechtigung, Dokumente hochzuladen. Standardmäßig haben sie die Buchhaltung und auf Mandantenseite die Finanzleitung, der Finanzadmin und die Teammitglieder. Ob ein Freigeber, der nur die ihm zugewiesenen Rechnungen sieht, Anhänge ändern kann, entscheidet ebenfalls diese Berechtigung. Die eingebauten Rollen enthalten sie; soll ein solcher Freigeber nur ansehen, entziehen Sie ihm auch die Berechtigung zum Hochladen.
+- **Hinzufügen, Typ ändern, verknüpfen und archivieren:** Dafür braucht es die Berechtigung, Dokumente hochzuladen. Standardmäßig haben sie die Buchhaltung und auf Mandantenseite die Finanzleitung, der Finanzadmin und die Teammitglieder. Ob ein Freigeber, der nur die ihm zugewiesenen Rechnungen sieht, Anhänge ändern kann, entscheidet ebenfalls diese Berechtigung. Die eingebauten Rollen enthalten sie; soll ein solcher Freigeber nur ansehen, entziehen Sie ihm auch die Berechtigung zum Hochladen.
 
 Siehe [Rollen und Berechtigungen](/roles-and-permissions).
 
@@ -62,7 +62,7 @@ Per E-Mail geschickte Excel-, Word- und CSV-Dateien werden ebenfalls als Anhäng
 
 ## Nicht verknüpfte Anhänge
 
-Auf der Seite **Dokumente** listet der Filter **Nicht verknüpfte Anhänge** jeden Anhang, der noch mit keiner Rechnung verknüpft ist, mit seinem Typ und seiner Herkunft (Absender und Betreff der E-Mail oder ein Upload). Von dort aus können Sie ihn mit einer Rechnung verknüpfen, eine vorgeschlagene Rechnung übernehmen, seinen Typ setzen oder ihn entfernen. Die Seite Dokumente öffnet jeder, der die Datensätze des Arbeitsbereichs sehen darf, auch auf Mandantenseite, sodass ein gelöster Anhang hier zu finden ist; siehe [Dokumente](/documents).
+Auf der Seite **Dokumente** listet der Filter **Nicht verknüpfte Anhänge** jeden Anhang, der noch mit keiner Rechnung verknüpft ist, mit seinem Typ und seiner Herkunft (Absender und Betreff der E-Mail oder ein Upload). Von dort aus können Sie ihn mit einer Rechnung verknüpfen, eine vorgeschlagene Rechnung übernehmen, seinen Typ setzen oder ihn archivieren. Die Seite Dokumente öffnet jeder, der die Datensätze des Arbeitsbereichs sehen darf, auch auf Mandantenseite, sodass ein gelöster Anhang hier zu finden ist; siehe [Dokumente](/documents).
 
 ## Ein Anhang, mehrere Rechnungen
 
@@ -70,15 +70,17 @@ Meist gehört ein Anhang zu einer Rechnung. Manchmal deckt ein Leistungsnachweis
 
 Sie können die Verknüpfung eines Anhangs mit einer Rechnung auch lösen (**Verknüpfung lösen** im selben Menü). Der Anhang bleibt erhalten, und ist er nirgends mehr verknüpft, erscheint er unter den nicht verknüpften Anhängen.
 
-## Einen Anhang entfernen
+## Einen Anhang archivieren
 
-Öffnen Sie das Menü **⋯** des Anhangs, wählen Sie **Entfernen** und bestätigen Sie. Der Anhang verschwindet von jeder Rechnung, mit der er verknüpft ist; die Bestätigung nennt deshalb jede, die Sie sehen, und sagt, wie viele weitere es gibt, die Sie nicht sehen.
+Öffnen Sie das Menü **⋯** des Anhangs, wählen Sie **Archivieren**, geben Sie eine Begründung von mindestens drei Zeichen an und bestätigen Sie. Der Anhang verschwindet von jeder Rechnung, mit der er verknüpft ist; die Bestätigung nennt deshalb jede, die Sie sehen, und sagt, wie viele weitere es gibt, die Sie nicht sehen.
 
-Entfernen blendet den Anhang aus, das Dokument selbst bleibt aber erhalten. Nachweisdokumente sind Buchungsbelege und müssen aufbewahrt werden, deshalb wird nichts endgültig gelöscht. Das Entfernen wird im Reiter **Verlauf** jeder betroffenen Rechnung festgehalten, mit wer und wann.
+Archivieren blendet den Anhang aus, das Dokument selbst bleibt aber erhalten. Nachweisdokumente sind Buchungsbelege und müssen aufbewahrt werden, deshalb wird nichts endgültig gelöscht. Das Archivieren wird im Reiter **Verlauf** jeder betroffenen Rechnung festgehalten, mit wer, wann und warum.
+
+Der Reiter **Anhänge** führt die archivierten Anhänge der Rechnung in einer eingeklappten Zeile **Archivierte Anhänge** am Ende auf, jeden mit Begründung, wer ihn wann archiviert hat und einer Schaltfläche **Wiederherstellen**. Das Wiederherstellen bringt den Anhang an jede Rechnung zurück, mit der er beim Archivieren verknüpft war. Dieselben Anhänge stehen auch unter dem Filter **Archiviert** der Seite **Dokumente**.
 
 ## Verlauf
 
-Jede Änderung an Anhängen erscheint im Reiter **Verlauf** der Rechnung: hinzugefügt, verknüpft, Verknüpfung gelöst, Typ geändert und entfernt, jeweils mit wer und wann. Eine automatische Verknüpfung aus einer E-Mail erscheint als vom System ausgeführt.
+Jede Änderung an Anhängen erscheint im Reiter **Verlauf** der Rechnung: hinzugefügt, verknüpft, Verknüpfung gelöst, Typ geändert, archiviert und wiederhergestellt, jeweils mit wer und wann. Eine automatische Verknüpfung aus einer E-Mail erscheint als vom System ausgeführt.
 
 ## Worauf Anhänge keinen Einfluss haben
 
