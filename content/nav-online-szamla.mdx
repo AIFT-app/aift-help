@@ -60,6 +60,18 @@ NAV carries the payment method the **supplier** claimed. When that says cash, AI
 
 The fix is a **fixed payment method on the partner**, which overrides the method the document states. NAV leaves the payment method out of roughly a third of invoices, and on those there is nothing to override, so they arrive with no method at all. It applies from the moment you set it, never to what is already booked: see [Fixing a Partner's Payment Method](/fixed-payment-method).
 
+### If you keep only purchase invoices here
+
+If you keep the sales side elsewhere, for example in a spreadsheet, choose **Purchases only** under **Settings ▸ AI & data ▸ Invoices processed**. Only a workspace admin can change it, and it asks for confirmation in both directions.
+
+- **Sales invoices are still downloaded from NAV and kept, but not processed.** They do not become invoices, are not categorized or matched, and do not count as usage.
+- **The setting applies from the moment it is saved.** Sales invoices already in the app stay as they are, in usage too, and a NAV cancellation or modification of one of them is still processed.
+- **Among uploaded and emailed invoices**, one that shows your company's tax number on the seller side is excluded after the upload; you find it in the invoice list under the **Excluded sales invoices** filter and can take it back with **Process anyway**. When the recognition is uncertain, the invoice is processed and its page asks whether to exclude it.
+- **Incoming bank payments** from card terminals, food platforms (Wolt, foodora), SZÉP card settlements, online payment providers, cash deposits and known customers are marked **no invoice needed**. No issued invoice is requested for them, and they do not count as usage. A payment from a partner that only sends you purchase invoices may be a refund: for that, the credit note is requested.
+- **Between two of your own companies**, the issuing company's sales invoice is left out and the receiving company's purchase invoice is processed.
+- **Pages that show the sales side** (customer receivables, the HessynKettős export, the ledger and profit exports) receive no new data from the switch date. A dated note on each says so.
+- **When you switch back**, you choose: the kept sales invoices stay unprocessed (**From now on only**), or they are processed from a date you pick. Those then count as usage.
+
 ## How a Group Invoice Finds Its Company
 
 Under a VAT group, one connection brings in invoices for every member, and each invoice has to be filed to the right company. AI Finance Team decides in this order:

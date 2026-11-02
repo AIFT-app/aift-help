@@ -60,6 +60,18 @@ Die NAV führt die Zahlungsart mit, die der **Lieferant** angegeben hat. Steht d
 
 Die Lösung ist eine **feste Zahlungsart am Partner**, die die im Beleg angegebene Zahlungsart überschreibt. Bei etwa einem Drittel der Rechnungen gibt die NAV keine Zahlungsart an; dort gibt es nichts zu überschreiben, sie kommen also ganz ohne Zahlungsart an. Sie gilt ab dem Moment, in dem Sie sie setzen, nie für bereits Gebuchtes: siehe [Die Zahlungsart eines Partners festlegen](/fixed-payment-method).
 
+### Wenn Sie hier nur Eingangsrechnungen führen
+
+Wenn Sie die Verkaufsseite anderswo führen, etwa in einer Tabelle, wählen Sie unter **Einstellungen ▸ KI & Daten ▸ Verarbeitete Rechnungen** die Option **Nur Eingangsrechnungen**. Nur ein Administrator des Arbeitsbereichs kann sie ändern, und sie verlangt in beiden Richtungen eine Bestätigung.
+
+- **Ausgangsrechnungen werden weiterhin von NAV heruntergeladen und aufbewahrt, aber nicht verarbeitet.** Sie werden nicht zu Rechnungen, nicht kategorisiert oder zugeordnet und zählen nicht zur Nutzung.
+- **Die Einstellung gilt ab dem Speichern.** Ausgangsrechnungen, die bereits in der App sind, bleiben unverändert, auch in der Nutzung, und eine Stornierung oder Änderung einer solchen Rechnung in NAV wird weiterhin verarbeitet.
+- **Von hochgeladenen und per E-Mail eingegangenen Rechnungen** wird eine, auf der die Steuernummer Ihres Unternehmens auf der Verkäuferseite steht, nach dem Hochladen ausgeschlossen. Sie finden sie in der Rechnungsliste unter dem Filter **Ausgeschlossene Ausgangsrechnungen** und können sie mit **Trotzdem verarbeiten** zurückholen. Ist die Erkennung unsicher, wird die Rechnung verarbeitet, und ihre Seite fragt, ob sie ausgeschlossen werden soll.
+- **Eingehende Bankzahlungen** von Kartenterminals, Essensplattformen (Wolt, foodora), SZÉP-Karten-Abrechnungen, Online-Zahlungsanbietern, Bareinzahlungen und bekannten Kunden werden als **keine Rechnung nötig** markiert. Für sie wird keine ausgestellte Rechnung angefordert, und sie zählen nicht zur Nutzung. Eine Zahlung von einem Partner, der Ihnen nur Eingangsrechnungen schickt, kann eine Erstattung sein: Dafür wird die Gutschrift angefordert.
+- **Zwischen zwei eigenen Unternehmen** bleibt die Ausgangsrechnung des ausstellenden Unternehmens außen vor, die Eingangsrechnung des empfangenden Unternehmens wird verarbeitet.
+- **Seiten, die die Verkaufsseite zeigen** (Kundenforderungen, der HessynKettős-Export, Hauptbuch- und Ergebnisexport), erhalten ab dem Umstellungsdatum keine neuen Daten. Ein datierter Hinweis auf jeder dieser Seiten zeigt das an.
+- **Beim Zurückschalten** wählen Sie: Die aufbewahrten Ausgangsrechnungen bleiben unverarbeitet (**Nur ab jetzt**), oder sie werden ab einem gewählten Datum verarbeitet. Diese zählen dann zur Nutzung.
+
 ## Wie eine Gruppenrechnung zu ihrem Unternehmen findet
 
 In einer USt-Gruppe holt eine einzige Verbindung die Rechnungen aller Mitglieder herein, und jede Rechnung muss dem richtigen Unternehmen zugeordnet werden. AI Finance Team entscheidet in dieser Reihenfolge:
