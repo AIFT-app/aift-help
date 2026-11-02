@@ -104,6 +104,23 @@ Az **Exportok** menüben a Főkönyv mellett még három oldal van. Mindegyik eg
 
 Mindháromhoz ugyanaz a **„Könyvelési exportok futtatása”** jogosultság kell, mint a Főkönyvhöz, és az ügyféloldali felhasználók nem látják őket. A két fájl a felület nyelvétől függetlenül magyar, mert az őket beolvasó programok ezt várják. A Business Central csak a csatlakoztatása után jelenik meg, és saját cikke van: [Business Central](/business-central).
 
+### A könyvelőprogram és az átadás
+
+A **Beállítások → Könyvelési alapértelmezések → Könyvelőprogram** alatt adja meg, melyik programba adja át a munkaterület a számláit: **RLB**, **Eurosoft Profit**, **HessynKettős** vagy **Business Central**. Munkaterületenként egyet, mert egy munkaterület egy ügyfél. Üresen is hagyhatja, ilyenkor az alábbiak közül semmi nem jelenik meg, és az exportok a régi módon működnek. Amikor először választ programot, a párbeszédablak mentés előtt megmondja, hány számla jelenik meg **Átadandóként**.
+
+Beállított programnál a számla minden átadást megjegyez: minden RLB és Profit exportot (egy időszak újbóli exportját is), minden HessynKettős fájlt és minden Business Central feladást. A számlalistán ekkor megjelenik az **Átadandó a könyvelőprogramnak** teendő, a **Munkafolyamat** szűrőben pedig az **Átadás** csoport:
+
+| Érték | Jelentése |
+|---|---|
+| **Átadandó** | Bekapcsolt könyvelési jóváhagyásnál: könyvelésre jóváhagyva, és a jóváhagyás óta nem adták át. Kikapcsoltnál: minden tételsora kódolt, és még nem adták át, vagy azóta módosult |
+| **Átadva** | Átadták, és azóta nem módosult |
+| **Átadás után módosult** | Az utolsó átadás után megváltozott az összeg, egy dátum, a partner vagy egy tételsor kategóriája vagy ÁFA-kódja, ezért újra át kell adni |
+| **Visszaigazolva** | A program visszajelezte a könyvelést: az RLB, amikor az OSA-nyilvántartása összeköti a számlát és naplósorszámot ad neki, a Business Central, amikor egy újraküldés lekönyvelve találja a bizonylatot. A HessynKettős és a Profit soha nem igazol vissza |
+
+Az AI Finance Team azt tudja, mit adott át, azt nem, mi van lekönyvelve, ezért egyetlen számla sem „Könyvelve”. A Business Central az AI Finance Teamtől csak bejövő számlát kap, a HessynKettős fájlba pedig csak kimenő kerül, ezért ennél a kettőnél csak az adott irány lehet Átadandó. A számla **Jóváhagyások** kártyája mutatja az utolsó átadást, azt, hogy módosult-e azóta, és a visszaigazolást a bizonyítékával.
+
+A más úton átadott számlát a saját oldalán veheti le a listáról: a **Teendők elfogadása** alatt jelölje be a **Kézzel átadva** sort, ha szeretné, írjon megjegyzést, és fogadja el; ehhez a **„Könyvelési exportok futtatása”** jogosultság kell. Az előzményekben megjelenik. Bekapcsolt könyvelési jóváhagyásnál a **Nem könyvelendő: Már könyvelve** ugyanezt teszi. A nyilvántartás indulása előtti átadásokat az exportok előzményeiből olvassuk ki, a HessynKettősnél azonban csak 2026. október 12-től; a korábbiakat ugyanígy veheti le.
+
 ### RLB
 
 Az **RLB** oldal a Főkönyv arra szűkítve, amit az iroda az RLB-60-ban könyvel: ugyanaz a **Kérdezd a Főkönyvet** sáv, szűrősáv és chipek, és az első három fül (**Számla fejlécek**, **Számlatételek**, **Banki tranzakciók**), ugyanazokkal az alapértelmezésekkel (az utolsó 30 nap, a munkaterület dátumtípusa). **Amit a fülek mutatnak, az kerül a fájlba**: az export pontosan a beállított szűrőket veszi át. A [havi zárás](/closing) oldala az adott hónapra ide visz a **RLB export erre az időszakra →** hivatkozással.
