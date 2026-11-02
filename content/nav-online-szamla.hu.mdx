@@ -60,6 +60,18 @@ A NAV azt a fizetési módot hordozza, amit a **beszállító** állított. Ha e
 
 A megoldás a **partnerre beállított kötött fizetési mód**, amely felülírja a dokumentumon szereplő fizetési módot. A NAV a számlák nagyjából harmadánál nem ad meg fizetési módot, ilyenkor nincs mit felülírni, így ezek fizetési mód nélkül érkeznek. A beállítás pillanatától érvényes, a már lekönyveltekre soha: lásd [A partner fizetési módjának rögzítése](/fixed-payment-method).
 
+### Ha csak a bejövő (szállítói) számlákat kezeli itt
+
+Ha a kimenő (vevői) oldalt máshol vezeti, például táblázatban, a **Beállítások ▸ AI és adatok ▸ Feldolgozott számlák** alatt válassza a **Csak bejövő (szállítói) számlák** lehetőséget. Ezt csak a munkaterület adminisztrátora állíthatja át, és mindkét irányban megerősítést kér.
+
+- **A kimenő számlákat a NAV-ból továbbra is letöltjük és megőrizzük, de nem dolgozzuk fel.** Nem lesz belőlük számla, nem kategorizáljuk és nem párosítjuk őket, és nem számítanak bele a felhasználásba.
+- **A beállítás a mentés pillanatától érvényes.** A már bent lévő kimenő számlák változatlanok maradnak, a felhasználásban is, és ha egy ilyen számlát a NAV-ban stornóznak vagy módosítanak, azt továbbra is feldolgozzuk.
+- **A feltöltött vagy e-mailben érkezett számlák közül** azt, amelyen a cége adószámmal az eladó oldalán szerepel, a feltöltés után kizárjuk, és a számlalistában a **Kizárt kimenő számlák** szűrő alatt találja. Innen a **Feldolgozás mégis** gombbal visszaveheti. Ha a felismerés bizonytalan, a számlát feldolgozzuk, és a számla oldalán megkérdezzük, hogy kizárja-e.
+- **A beérkező banki jóváírások** közül a kártyaterminálos, ételplatformos (Wolt, foodora), SZÉP-kártyás és online fizetési elszámolásokat, a készpénzbefizetéseket és az ismert vevőktől érkező összegeket **nincs szükség számlára** jelöléssel látjuk el. Ezekhez nem kérünk kiállított számlát, és nem számítanak bele a felhasználásba. Ha egy jóváírás olyan partnertől jön, akinek csak bejövő számlái vannak, az lehet visszatérítés: ehhez a jóváíró számlát kérjük.
+- **Két saját cég között** a kiállító cég kimenő számlája kimarad, a befogadó cég bejövő számlája feldolgozásra kerül.
+- **A kimenő oldalt mutató oldalak** (vevői kintlévőségek, HessynKettős export, főkönyvi és eredmény export) a váltás dátumától nem kapnak új adatot. Ezt minden ilyen oldalon egy dátumozott megjegyzés jelzi.
+- **Visszakapcsoláskor** választhat: a megőrzött kimenő számlák maradnak feldolgozatlanul (**Csak mostantól**), vagy egy választott dátumtól feldolgozzuk őket. Ez utóbbiak ekkor számítanak bele a felhasználásba.
+
 ## Hogyan kerül egy csoportos számla a megfelelő céghez
 
 Áfacsoport esetén egyetlen kapcsolat hozza be minden tag számláit, és mindegyik számlát a megfelelő céghez kell besorolni. Az AI Finance Team ebben a sorrendben dönt:
