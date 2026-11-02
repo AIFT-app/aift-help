@@ -3,7 +3,7 @@
 // Rebuilt 1:1 from aift-web (origin/staging 2026-10-04, after
 // billing-checkout-hu-tax-id, aift-web#1619, and the card-width price sizing;
 // the picker re-copied 2026-11-02 for billing-single-package: one card in a
-// max-w-sm column, no interval toggle, graduated band lines, the long_term
+// max-w-sm column without the Best for you badge, no interval toggle, graduated band lines, the long_term
 // line), class for class, with the real
 // Catalyst components from the help mirror:
 //   page shell   src/app/(app)/organization-settings/layout.tsx (max-w-5xl
@@ -97,7 +97,8 @@ export function PlanPickerFigure({ locale, children }: FigureProps) {
   const money = (n: number) => formatAmount(n, c.currency, locale)
   const price = (n: number) => formatPrice(n, c.currency, locale)
   const invoices = c.busiestMonth
-  // cheapestTierAt over one card is that card, so it carries the badge.
+  // One card: the app recommends nothing (shown.length > 1), so no badge and
+  // the plain ring.
   const p = c.plan
 
   return (
@@ -134,11 +135,7 @@ export function PlanPickerFigure({ locale, children }: FigureProps) {
                 </p>
 
                 <div className="mt-5 grid grid-cols-1 gap-5 max-w-sm">
-                  <article className="@container relative flex flex-col rounded-2xl p-6 ring-2 ring-indigo-600 shadow-xl shadow-indigo-600/10 dark:bg-white/5">
-                    <span className="absolute top-0 left-6 inline-flex -translate-y-1/2 items-center rounded-full bg-indigo-600 px-3 py-1 text-xs font-semibold text-white">
-                      {b('recommended')}
-                    </span>
-
+                  <article className="@container relative flex flex-col rounded-2xl p-6 ring-1 ring-gray-200 dark:ring-white/10">
                     <h3 className="text-base font-semibold text-indigo-600 dark:text-indigo-400">{b(`plan_name_${p.key}`)}</h3>
                     <p className="mt-0.5 min-h-9 text-xs text-gray-500 dark:text-gray-400">{b(`plan_desc_${p.key}`)}</p>
 

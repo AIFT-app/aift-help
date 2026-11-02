@@ -25,7 +25,6 @@ export const UI_KEYS = [
   "org.settings.billing.picker_intro",
   "org.settings.billing.trial_offer",
   "org.settings.billing.recommendation_basis",
-  "org.settings.billing.recommended",
   "org.settings.billing.plan_name_assistant_500",
   "org.settings.billing.plan_desc_assistant_500",
   "org.settings.billing.price_suffix",
@@ -72,7 +71,7 @@ type Copy = {
   ui: Record<UiKey, string>
   currency: 'HUF' | 'EUR'
   plan: Plan
-  /** The office's busiest recent month, drives the recommendation. */
+  /** The office's busiest recent month, drives the estimate. */
   busiestMonth: number
   office: string
   help: { altPicker: string; altDialog: string }
@@ -108,7 +107,6 @@ const en: Copy = {
     "org.settings.billing.picker_intro": "One plan for your whole office, with unlimited clients and users.",
     "org.settings.billing.trial_offer": "The plan starts with a 14-day free trial.",
     "org.settings.billing.recommendation_basis": "Estimated from your busiest recent month: <strong>{documents} invoices</strong>.",
-    "org.settings.billing.recommended": "Best for you",
     "org.settings.billing.plan_name_assistant_500": "Squirrel",
     "org.settings.billing.plan_desc_assistant_500": "Solo bookkeepers & small firms",
     "org.settings.billing.price_suffix": "/ month",
@@ -138,7 +136,7 @@ const en: Copy = {
   busiestMonth: 620,
   office: 'Tarvesz Könyvelő Kft.',
   help: {
-    altPicker: "The Billing page of an office that has not subscribed yet, with euro prices: the Choose your plan heading, the line saying the estimate is based on the busiest recent month of 620 invoices, and one package card, Squirrel, with the Best for you badge. The card shows EUR 75 a month, 400 invoices a month included, the three bands above that (up to 1,500 invoices at EUR 0.24, up to 3,000 at EUR 0.23 and above 3,000 at EUR 0.21 per invoice), the cost at 620 invoices a month, and the Start 14-day free trial button. Numbered markers point at the parts the list below describes.",
+    altPicker: "The Billing page of an office that has not subscribed yet, with euro prices: the Choose your plan heading, the line saying the estimate is based on the busiest recent month of 620 invoices, and one package card, Squirrel. The card shows EUR 75 a month, 400 invoices a month included, the three bands above that (up to 1,500 invoices at EUR 0.24, up to 3,000 at EUR 0.23 and above 3,000 at EUR 0.21 per invoice), the cost at 620 invoices a month, and the Start 14-day free trial button. Numbered markers point at the parts the list below describes.",
     altDialog: "The Billing details window a Hungarian office sees before payment: Squirrel plan, HUF 27,000 a month plus VAT; Company name filled in as Tarvesz Könyvelő Kft.; in the Tax number field an EU VAT number, HU12345678, with the red message saying this is the EU VAT number and the 11-digit Hungarian tax number is needed. The Continue to payment button is greyed out. Numbered markers point at the parts the list below describes.",
   },
 }
@@ -152,7 +150,6 @@ const hu: Copy = {
     "org.settings.billing.picker_intro": "Egy csomag az egész irodának, korlátlan ügyfél- és felhasználószámmal.",
     "org.settings.billing.trial_offer": "A csomag 14 napos ingyenes próbával indul.",
     "org.settings.billing.recommendation_basis": "A becslés a legforgalmasabb utóbbi hónapod alapján: <strong>{documents} számla</strong>.",
-    "org.settings.billing.recommended": "Neked ajánlott",
     "org.settings.billing.plan_name_assistant_500": "Mókus",
     "org.settings.billing.plan_desc_assistant_500": "Egyéni könyvelők és kis irodák",
     "org.settings.billing.price_suffix": "/ hó",
@@ -182,7 +179,7 @@ const hu: Copy = {
   busiestMonth: 620,
   office: 'Tarvesz Könyvelő Kft.',
   help: {
-    altPicker: "Egy még elő nem fizetett iroda Számlázás oldala: a Válassz csomagot cím, a sor, amely szerint a becslés a legforgalmasabb utóbbi hónap 620 számláján alapul, és egyetlen csomag, a Mókus, a Neked ajánlott jelöléssel. A kártyán látszik a havi 27 000 Ft, a havonta benne foglalt 400 számla, az e fölötti három sáv (1 500 számláig 88 Ft, 3 000 számláig 81 Ft, 3 000 számla felett 74 Ft számlánként), a költség havi 620 számlánál, és a 14 napos ingyenes próba gomb. A számozott jelölők az alábbi lista elemeire mutatnak.",
+    altPicker: "Egy még elő nem fizetett iroda Számlázás oldala: a Válassz csomagot cím, a sor, amely szerint a becslés a legforgalmasabb utóbbi hónap 620 számláján alapul, és egyetlen csomag, a Mókus. A kártyán látszik a havi 27 000 Ft, a havonta benne foglalt 400 számla, az e fölötti három sáv (1 500 számláig 88 Ft, 3 000 számláig 81 Ft, 3 000 számla felett 74 Ft számlánként), a költség havi 620 számlánál, és a 14 napos ingyenes próba gomb. A számozott jelölők az alábbi lista elemeire mutatnak.",
     altDialog: "A Számlázási adatok ablak, amelyet egy magyarországi iroda a fizetés előtt lát: Mókus csomag, 27 000 Ft / hó + áfa; a Cégnév mezőben Tarvesz Könyvelő Kft.; az Adószám mezőben a HU12345678 közösségi adószám, alatta piros üzenet, hogy ez a közösségi adószám, és a 11 számjegyű magyar adószámot kell megadni. A Tovább a fizetéshez gomb szürke. A számozott jelölők az alábbi lista elemeire mutatnak.",
   },
 }
@@ -196,7 +193,6 @@ const de: Copy = {
     "org.settings.billing.picker_intro": "Ein Tarif für Ihre ganze Kanzlei, mit unbegrenzt vielen Klienten und Benutzern.",
     "org.settings.billing.trial_offer": "Der Tarif startet mit einer 14-tägigen kostenlosen Testphase.",
     "org.settings.billing.recommendation_basis": "Geschätzt auf Basis Ihres stärksten Monats der letzten Zeit: <strong>{documents} Rechnungen</strong>.",
-    "org.settings.billing.recommended": "Für Sie am besten",
     "org.settings.billing.plan_name_assistant_500": "Eichhörnchen",
     "org.settings.billing.plan_desc_assistant_500": "Einzelbuchhalter & kleine Kanzleien",
     "org.settings.billing.price_suffix": "/ Monat",
@@ -226,7 +222,7 @@ const de: Copy = {
   busiestMonth: 620,
   office: 'Tarvesz Könyvelő Kft.',
   help: {
-    altPicker: "Die Seite Abrechnung einer Kanzlei ohne Abonnement, mit Euro-Preisen: die Überschrift Wählen Sie Ihren Tarif, die Zeile, nach der die Schätzung auf dem stärksten Monat der letzten Zeit mit 620 Rechnungen beruht, und ein Tarif, Eichhörnchen, mit der Markierung Für Sie am besten. Die Karte zeigt 75 EUR pro Monat, 400 enthaltene Rechnungen pro Monat, die drei Stufen darüber (bis 1.500 Rechnungen 0,24 EUR, bis 3.000 Rechnungen 0,23 EUR und über 3.000 Rechnungen 0,21 EUR pro Rechnung), die Kosten bei 620 Rechnungen im Monat und die Schaltfläche 14 Tage kostenlos testen. Nummerierte Markierungen zeigen auf die Teile, die die Liste darunter beschreibt.",
+    altPicker: "Die Seite Abrechnung einer Kanzlei ohne Abonnement, mit Euro-Preisen: die Überschrift Wählen Sie Ihren Tarif, die Zeile, nach der die Schätzung auf dem stärksten Monat der letzten Zeit mit 620 Rechnungen beruht, und ein Tarif, Eichhörnchen. Die Karte zeigt 75 EUR pro Monat, 400 enthaltene Rechnungen pro Monat, die drei Stufen darüber (bis 1.500 Rechnungen 0,24 EUR, bis 3.000 Rechnungen 0,23 EUR und über 3.000 Rechnungen 0,21 EUR pro Rechnung), die Kosten bei 620 Rechnungen im Monat und die Schaltfläche 14 Tage kostenlos testen. Nummerierte Markierungen zeigen auf die Teile, die die Liste darunter beschreibt.",
     altDialog: "Das Fenster Rechnungsdaten, das eine Kanzlei in Ungarn vor der Zahlung sieht: Tarif Eichhörnchen, 27.000 HUF pro Monat zzgl. MwSt.; Firmenname Tarvesz Könyvelő Kft.; im Feld Steuernummer die EU-USt-IdNr. HU12345678 mit der roten Meldung, dass dies die EU-USt-IdNr. ist und die 11-stellige ungarische Steuernummer verlangt wird. Die Schaltfläche Weiter zur Zahlung ist ausgegraut. Nummerierte Markierungen zeigen auf die Teile, die die Liste darunter beschreibt.",
   },
 }
