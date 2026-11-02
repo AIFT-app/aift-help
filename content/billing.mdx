@@ -1,26 +1,42 @@
 # Subscription & Billing
 
-One subscription covers your whole accounting office: every client workspace and every user, with no limit on either. You choose a plan, try it free for 14 days, and manage the subscription afterwards on the same page.
+One subscription covers your whole accounting office: every client workspace and every user, with no limit on either. There is one package. You try it free for 14 days and manage the subscription afterwards on the same page.
 
 The page is under **Organization**, **Billing** in the sidebar. Only an organization admin sees it, and only once AI Finance Team has switched billing on for your office. If you are an admin and the menu item is missing, write to us at founders@aifinance.team and we will switch it on.
 
-## What a plan counts
+## What counts
 
-A plan is sized in **entries**. Every invoice and every bank transaction processed for one of your clients is one entry, and it counts once, the first time it is processed. Re-running categorization, matching it again or editing it later costs nothing extra.
+Billing counts **invoices**. One invoice is one incoming or outgoing invoice of one of your clients, correcting and cancelling invoices included. It counts once, the first time the AI processes it. An invoice that arrives from NAV Online Számla and its PDF copy count as one invoice. Re-running categorization, matching it again or editing it later costs nothing extra.
 
-Each plan includes a number of entries a month. Above that, every extra entry is charged at the price shown on the plan, and nothing stops: no client is cut off when you go over.
+Bank transactions, bank statements and other documents do not count. They are still processed and shown in the app.
 
-## Choosing a plan
+This rests on proportionate use. If, in two consecutive months, an office's bank transactions and other documents together come to more than three times its invoices and also more than 1,200, we may offer that office individual pricing. The rule is section 3.8 (Proportionate use) of the Terms of Service.
+
+## The package
+
+There is one package, **Squirrel**: HUF 27,000 + VAT a month for an office in Hungary, EUR 75 + VAT a month for an office outside Hungary. It includes **400 invoices a month**. Above 400, invoices are charged in bands, and each band's rate applies only to the invoices inside that band:
+
+| Invoices in the month | Price per invoice |
+| --- | --- |
+| The first 400 | Included in the package |
+| From 401 to 1,500 | HUF 88 (EUR 0.24) |
+| From 1,501 to 3,000 | HUF 81 (EUR 0.23) |
+| Above 3,000 | HUF 74 (EUR 0.21) |
+
+For example, an office with 1,501 invoices in a month pays HUF 27,000 for the package, 1,100 × HUF 88 for invoices 401 to 1,500, and HUF 81 for the 1,501st invoice: HUF 123,881 + VAT in all. Nothing stops when you go over 400: no client is cut off.
+
+The package is billed monthly. There is no annual billing. A longer commitment is possible on individual terms: write to us at founders@aifinance.team.
+
+## Starting the subscription
 
 <PlanPickerFigure>
-The Billing page of an office that has not subscribed yet. The numbers match the list below. The office and its 1,840 entries are an example; the prices are the current list prices.
+The Billing page of an office that has not subscribed yet. The numbers match the list below. The office and its 620 invoices are an example; the prices are the current list prices.
 </PlanPickerFigure>
 
-1. **Monthly** or **Annual**. An annual plan costs less (the badge shows the largest saving, up to 15%), and its allowance is **pooled for the year**: Squirrel's 500 entries a month become 6,000 for the year, to use in any month.
-2. The basis of the recommendation: your office's **busiest recent month**, not the latest one, so a quiet month between VAT returns does not undersize the plan.
-3. **Best for you** marks the plan that would cost your office least at that volume. This is not always the smallest plan: because extra entries are charged one by one, a bigger plan can be cheaper outright.
-4. What this plan would cost your office in a month like your busiest one, extra entries included. A brand-new office with no history yet sees no recommendation and no cost line.
-5. Start the subscription. The button reads **Start 14-day free trial** when the trial is available to you, and **Subscribe** when it is not.
+1. The basis of the estimate: your office's **busiest recent month**, counted in invoices, not the latest month, so a quiet month between VAT returns does not make the estimate too low.
+2. What the package includes, 400 invoices a month, and one line per band with its price per invoice.
+3. What the package would cost your office in a month like your busiest one, the bands included. A brand-new office with no history yet sees no estimate and no cost line.
+4. Start the subscription. The button reads **Start 14-day free trial** when the trial is available to you, and **Subscribe** when it is not.
 
 Prices exclude VAT. A Hungarian office is charged 27% Hungarian VAT. An office outside Hungary gives its VAT ID at checkout and is invoiced without VAT under the reverse charge.
 
@@ -70,7 +86,7 @@ There is no Billing details window. Stripe's payment page asks for the card, the
 
 The Billing page now has two tabs: **Subscription** and **Invoices**. On **Subscription**, the plan picker gives way to a short summary: **Your subscription**, a status badge (**Trial**, **Active**, **Past due** and so on) and the date that matters next: when the trial ends, when the plan renews, or, after you cancel, when it ends. **Past due** means the last payment did not go through: change the card under **Manage subscription**.
 
-Under it, a usage panel shows the entries used **in the current billing period**, what the period is projected to cost, and the split by client. A second line gives the calendar month for your own records. When your usage has grown past the point where the next plan up would cost less, the panel says so.
+Under it, a usage panel shows the invoices counted **in the current billing period** against the 400 included, what the period is projected to cost with the bands applied, and the split by client. The bank transactions of the period are listed next to the invoices, marked **(not counted)**. A second line gives the calendar month for your own records.
 
 ## Managing the subscription
 
@@ -85,7 +101,7 @@ A cancellation takes effect **at the end of the current billing period**. Until 
 
 Two things to know:
 
-- **Changing plan is not possible in the portal.** To move to a bigger or smaller plan, write to us at founders@aifinance.team and we will change it for you. Starting a second plan on the Billing page is refused on purpose, because it would bill you twice.
+- **Changing the subscription is not possible in the portal.** For a longer commitment on individual terms, write to us at founders@aifinance.team and we will change it for you. Starting a second subscription on the Billing page is refused on purpose, because it would bill you twice.
 - **Hungarian offices cannot change the tax number in the portal.** This keeps the Hungarian tax number on your invoices from being replaced by the EU VAT number. If your tax number has changed, write to us.
 
 ## Invoices
