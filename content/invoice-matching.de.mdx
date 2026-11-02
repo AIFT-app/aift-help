@@ -334,13 +334,15 @@ Es bleibt nichts offen: Trifft die Abbuchung später ein, wird sie automatisch u
 
 Jede Zeile in **Banktransaktionen** zeigt ihren Status in der Spalte **Labels**:
 
-| Pill | Farbe | Bedeutung |
-|------|--------|---------|
-| **Zugeordnet** | grün | Mit einer oder mehreren Rechnungen verknüpft, automatisch oder von Hand |
-| **Nicht zugeordnet** | gelb | Noch keine Rechnung verknüpft; die Zeile erhält zusätzlich einen gelben linken Rand |
-| **Keine Rechnung** | blau | Als ohne Rechnung markiert |
+| Label | Farbe | Bedeutung |
+|-------|-------|-----------|
+| **Nicht zugeordnet** | gelb | Eine Aufgabe: noch keine Rechnung verknüpft; die Zeile erhält zusätzlich einen gelben linken Rand |
+| **Teilweise zugeordnet** | gelb | Eine Aufgabe: ihre Rechnungen decken nur einen Teil des Betrags |
+| **Zugeordnet** | grau | Mit einer oder mehreren Rechnungen verknüpft, automatisch oder von Hand |
+| **Keine Rechnung** | grau | Als ohne Rechnung markiert |
+| **Abgeschlossen** | grau | Abgeschlossen: nichts mehr zuzuordnen |
 
-Daneben erscheinen bei Bedarf **Duplikat** (gelb), **Bank-Feed** und **Auszug** (grau). Die Schalter über der Liste filtern nach diesen Pills sowie nach **Eigene Kategorie fehlt**. Sie können mehrere gleichzeitig einschalten: Die Liste zeigt dann die Transaktionen, auf die einer der gewählten Status und eine der gewählten Quellen zutrifft. Die ganze Liste beschreibt [Banktransaktionen](/bank-transactions).
+**Bank-Feed** und **Auszug** (grau) zeigen die Herkunft. Die Aufgaben über der Liste und die Auswahlliste **Zuordnung** filtern nach diesen Zuständen. Die ganze Liste beschreibt [Banktransaktionen](/bank-transactions).
 
 ## Währungsübergreifender Abgleich
 
