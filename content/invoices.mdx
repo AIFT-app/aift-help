@@ -20,7 +20,7 @@ Claude reads the invoice and extracts the header, the parties, the amounts and t
 
 When you upload a file identical to one already in the workspace, AI Finance Team creates the invoice but marks it as a duplicate of the original and does not extract it again. The upload panel shows **Already exists**, and a click opens the original. After extraction, an invoice with the same invoice number, issue date, gross amount and currency as another one is marked a duplicate too.
 
-Duplicates are hidden from the list: they appear as a **related** row you can expand under the original, and with the **Duplicate** filter on. If two invoices really are different (a supplier reused a PDF for two bills), open the duplicate and click **Mark as not a duplicate** on its banner.
+Duplicates are hidden from the list: they appear as a **related** row you can expand under the original, and under **Record state: Duplicate**. If two invoices really are different (a supplier reused a PDF for two bills), open the duplicate and click **Mark as not a duplicate** on its banner.
 
 ## The invoice list
 
@@ -52,11 +52,16 @@ The labels you meet most often:
 | **NAV** / **No document** | The invoice came from NAV Online Számla / there is no document file. Amber where your workspace expects documents, grey elsewhere |
 | **Duplicate**, **Cancelled** | A duplicate of another invoice / cancelled by a storno invoice |
 | **Awaiting payment approval**, **Approved**, **Declined** | The payment approval state, where approvals are switched on (see [Approving Invoices for Payment](/approving-invoices)) |
-| **To file**, **To book**, **Filing returned**, **Bookkeeping returned** | A checkpoint still waiting, where filing or bookkeeping approval is switched on (see [Filing and Bookkeeping Approval](/filing-and-bookkeeping-approval)) |
+| **To file**, **To book** | A checkpoint still waiting, where filing or bookkeeping approval is switched on (see [Filing and Bookkeeping Approval](/filing-and-bookkeeping-approval)) |
+| **Sent back to filing** | The bookkeeper sent the invoice back to filing; point at the label to read the note |
 
 ### Finding invoices
 
-Search by invoice number, AI Finance Team ID, seller or buyer name, or partner. Above the list you can filter by date range, **Company** (when you have more than one), **Direction**, **Source** (NAV or uploaded), **Payment** and **Approval**, and switch on pills. Each to-do pill uses the same words as the label it filters, and shows how many invoices carry that to-do under your other filters; a to-do with nothing to count has no pill, and a step your workspace has switched off has none either. **Duplicate**, **Recently archived** and **All archived** show invoices the list hides. Archived invoices, duplicates and cancelled storno pairs stay hidden unless their pill is on; **Recently archived** shows the last 30 days, **All archived** every archived invoice. If you work in a [focused period](/focused-period), the list follows it.
+Search by invoice number, AI Finance Team ID, seller or buyer name, or partner. Above the list you can filter by date range, **Company** (when you have more than one), **Direction**, **Source** (NAV or uploaded), **Record state**, **Processing**, **Coding**, **Payment**, **Partner** and **Document**. Each dropdown offers every value of its own dimension and nothing from another one, and a step your workspace has switched off has no dropdown and no value. **Record state** opens on **Active**: archived invoices, duplicates and cancelled storno pairs stay hidden until you pick **Recently archived** (the last 30 days), **All archived**, **Duplicate** or **Cancelled**. Under **Payment**, **Overdue** lists unpaid invoices past their due date.
+
+Where an approval is switched on, the **Workflow** filter groups its values by step: **Filing**, **Bookkeeping** and **Payment approval**. Within a group any of the values you pick will do (or); across groups every one must hold (and), and the filter bar spells the condition out, for example: Filing: approved AND Bookkeeping: approved. With at least two steps on, **Approved in every step that is on** picks the invoices approved in each of them in one click. **No approval needed** lists the invoices that need no payment approval; the invoice says why. With payment approval on, the **Approver** filter narrows to a person: a colleague who is the approver of at least one invoice, yourself (**Me**), or **No approver assigned**. Together with **Payment approval: Awaiting approval** it shows what waits on someone.
+
+The pills above the list are the to-dos. Each to-do pill uses the same words as the label it filters, and shows how many invoices carry that to-do under your other filters; a to-do with nothing to count has no pill, and a step your workspace has switched off has none either. If you work in a [focused period](/focused-period), the list follows it. A link saved before these filters existed still opens the same invoices.
 
 With permission to edit invoices you can tick rows and **Re-categorize** them, **Re-run VAT coding**, or **Approve reviewed items**.
 
