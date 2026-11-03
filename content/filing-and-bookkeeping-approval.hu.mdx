@@ -22,15 +22,14 @@ A kapcsoló nem azonnal kapcsol be. Megnyílik egy ablak, amely egy kezdő dátu
 
 A jóváhagyók az oldalsáv **Jóváhagyások** menüpontja alatt találják a listájukat. Az **Iktatás** és a **Könyvelés** fül csak annak jelenik meg, aki az adott joggal rendelkezik és akinél a lépés be van kapcsolva.
 
-Minden számla egy kártya a partnerrel, az összefoglalóval és a bruttó összeggel, és sárga jelölők mutatják, mi van még nyitva a számlán: hiányzó áfakód, kategorizálatlan sor, ellenőrizendő kinyert adat. Így a listát anélkül is végig lehet nézni, hogy minden számlát megnyitna. Ha mégis megnézne egyet, kattintson a kártya tetején a partner nevére: a számla előnézetben nyílik meg a lista fölött, ahol a **Jóváhagyom** (ha semmi sem akadályozza), a **Visszaküldöm** és a Könyvelés listán a **Nem könyvelendő** ugyanúgy működik, mint a kártyán. Lásd: [Számlák jóváhagyása kifizetésre](/approving-invoices#számla-megtekintése-a-lista-elhagyása-nélkül).
+Minden számla egy kártya a partnerrel, az összefoglalóval és a bruttó összeggel, és sárga jelölők mutatják, mi van még nyitva a számlán: hiányzó áfakód, kategorizálatlan sor, ellenőrizendő kinyert adat. Így a listát anélkül is végig lehet nézni, hogy minden számlát megnyitna. Ha mégis megnézne egyet, kattintson a kártya tetején a partner nevére: a számla előnézetben nyílik meg a lista fölött, ahol a **Jóváhagyom** (ha semmi sem akadályozza), valamint a Könyvelés listán a **Visszaküldöm** és a **Nem könyvelendő** ugyanúgy működik, mint a kártyán. Lásd: [Számlák jóváhagyása kifizetésre](/approving-invoices#számla-megtekintése-a-lista-elhagyása-nélkül).
 
-A lista tetején a **Mind** az összes számlát mutatja a teljes számmal, és három szűrő bontja szét:
+A lista tetején a **Mind** az összes számlát mutatja a teljes számmal, és két szűrő bontja szét:
 
 - **Kész**: nincs nyitott akadály, jóváhagyható.
 - **Akadályozott**: van olyan nyitott tétel, ami megakadályozza a jóváhagyást.
-- **Visszaküldve**: valaki visszaküldte megjegyzéssel.
 
-Egy számla mindig pontosan egy szűrőbe tartozik, ezért a három szám összege a teljes darabszámot adja.
+Egy számla mindig pontosan egy szűrőbe tartozik, ezért a két szám összege a teljes darabszámot adja.
 
 ## Jóváhagyás és visszaküldés
 
@@ -38,7 +37,9 @@ A kártyán csak akkor van **Jóváhagyom** gomb, ha nincs nyitott akadály. Az 
 
 Két nyitott tétel nem akadályozza az iktatási jóváhagyást: az ellenőrizendő kinyert adat és a fejléctől eltérő tételösszeg. A jóváhagyás elfogadja őket, és a számla **Jóváhagyások** kártyája még a jóváhagyás előtt megnevezi őket. A könyvelési jóváhagyás ugyanígy megerősíti az alapértelmezett ÁFA-kóddal kódolt tételeket. A számla megőrzi, ki és mikor fogadta el őket.
 
-A **Visszaküldöm** gomb magán a kártyán kérdezi meg, miért, az adott lépéshez illő három gyors indokkal, és a megjegyzés kötelező. A kártyára borostyánsárga **Visszaküldve** pecsét kerül, és lekerül a listáról. A számla a **Visszaküldve** szűrő alatt kerül vissza a listára, a megjegyzéssel a kártyáján. Nincs külön címzett: a lista maga a címzett.
+Visszaküldeni csak a **Könyvelés** listáról lehet, és csak oda, ahonnan a számla érkezett: az iktatáshoz. Az iktatásnak nincs visszaküldése: az iktató maga javítja a számlát, és utána hagyja jóvá. A **Visszaküldöm** gomb magán a kártyán kérdezi meg, miért, három gyors indokkal (**Hiányzik a bizonylat**, **Rossz partner**, **Hibás kinyert adat**), és a megjegyzés kötelező. A kártyára borostyánsárga **Visszaküldve** pecsét kerül, és lekerül a listáról. Az iktatási jóváhagyás visszavonódik, a számla újra **Iktatásra vár**, és az **Iktatás** listán a kártyája szövegbuborékkal mutatja, ki és miért küldte vissza. A megjegyzés a számla **Jóváhagyások** kártyáján, az idővonalán és a számlalistán is látszik, amíg az iktatás újra nem dönt. Ha az **Iktatás a könyvelés előtt** be van kapcsolva, a könyvelési tétel megvárja az új iktatási jóváhagyást. Ahol az iktatás ki van kapcsolva, vagy nem vonatkozik a számlára, nincs **Visszaküldöm** gomb: a számlát a könyvelő javítja.
+
+Ha az **Iktatás a kifizetés előtt** be van kapcsolva, és a számla kifizetését már jóváhagyták, de a számla még nincs kifizetve és fizetési fájlban sem szerepel, a visszaküldés a kifizetési jóváhagyást is újranyitja: a jóváhagyó újra dönt, amint az iktatás újra megtörtént, és az idővonal mutatja, miért nyílt újra. A kifizetett vagy részben kifizetett számla megtartja a kifizetési jóváhagyását. A visszaküldés kérdése ezt még a megerősítés előtt kiírja.
 
 ## „Nem könyvelendő”: ellenőrizve, de nem könyvelve
 
@@ -69,7 +70,7 @@ Az **iktatási jóváhagyás** ugyanígy visszavonódik, ha az összeg, a kiáll
 
 Ugyanezért az automatikus, éjszakai újrakategorizálás **nem nyúl** a könyvelésileg jóváhagyott számlákhoz. Ha egy könyvelő kifejezetten kér újrakategorizálást, az lefut, és a jóváhagyást visszavonja. Ez így helyes: ő kérte.
 
-Mindkét jóváhagyás kézzel is visszavonható. Nyissa meg a számlát, és kattintson a **Jóváhagyások** kártyán a jóváhagyott sor alatti **Újranyitás** gombra; aki az adott lépést jóváhagyhatja, újra is nyithatja. A számla visszakerül a lépés listájára, és újra jóvá kell hagyni; az idővonal rögzíti, ki nyitotta újra és miért. A kifizetés jóváhagyásának saját **Újranyitás** gombja van a kártyáján, a jóváhagyásokat kezelők számára.
+Mindkét jóváhagyás kézzel is visszavonható. Nyissa meg a számlát, és kattintson a **Jóváhagyások** kártyán a jóváhagyott sor alatti **Újranyitás** gombra; aki az adott lépést jóváhagyhatja, újra is nyithatja. A számla visszakerül a lépés listájára, és újra jóvá kell hagyni; az idővonal rögzíti, ki nyitotta újra és miért. Az iktatási jóváhagyás újranyitása a kifizetésre ugyanúgy hat, mint a visszaküldés: ha az **Iktatás a kifizetés előtt** be van kapcsolva, a jóváhagyott, de még ki nem fizetett számla kifizetési jóváhagyása is újranyílik, és ezt az ablak kiírja. A kifizetés jóváhagyásának saját **Újranyitás** gombja van a kártyáján, a jóváhagyásokat kezelők számára.
 
 ## Láncolás
 
@@ -102,14 +103,14 @@ Ha valaki módosít egy számlát, a visszavont jóváhagyás is megjelenik itt,
 
 ## A számlán
 
-A számla oldalán a **Jóváhagyások** kártya mind a három lépést mutatja, abban a sorrendben, ahogy a számla áthalad rajtuk, azzal együtt, ki és mikor adta meg. A számlalistán sárga jelölő mutatja, ha valamelyik lépésre még vár a számla, és a szűrőben is rá lehet szűrni. A **Nem könyvelendő** döntéssel félretett számlán ehelyett szürke címke mutatja az indokot, és a **Nem könyvelendő** szűrőérték mindet listázza.
+A számla oldalán a **Jóváhagyások** kártya mind a három lépést mutatja, abban a sorrendben, ahogy a számla áthalad rajtuk, azzal együtt, ki és mikor adta meg. A számlalistán sárga jelölő mutatja, ha valamelyik lépésre még vár a számla, és a **Munkafolyamat** szűrőben lépésenként rá lehet szűrni, a jóváhagyott állapotokra is (lásd: [Számlák](/invoices)). A **Nem könyvelendő** döntéssel félretett számlán ehelyett szürke címke mutatja az indokot, és a **Munkafolyamat** szűrő **Könyvelés** csoportja indokonként listázza őket. A könyvelésből visszaküldött számlán kék **Visszaküldve iktatásra** címke áll; a megjegyzés a címkére mutatva olvasható.
 
 ## E-mailek
 
 Az iktatás és a könyvelés jóváhagyói ugyanazt a két e-mailt kapják, mint a kifizetés jóváhagyói, mindegyiknek saját kapcsolója van a **Fiók**, **Értesítések** oldal **Jóváhagyások** szakaszában:
 
-- **Új jóváhagyandó tételek**: ha egy Ön által jóváhagyható listában egy hullámnyi számla válik késszé vagy kerül visszaküldésre, egy e-mail, amikor a hullám véget ér (a lista 5 perce nem változott, vagy a legrégebbi el nem küldött tétel 30 perce vár). Az iktatási és könyvelési tételek cégenkénti darabszámként jelennek meg, a listára mutató gombbal, nem számlalistaként.
-- **Napi összefoglaló**: munkanapokon, az Ön által választott időpontban (alapértelmezés szerint budapesti idő szerint 8:00), a kész, a megjegyzéssel visszaküldött és az akadályozott tételek darabszáma cégenként, a listára mutató gombbal. Ha semmi nem vár Önre, nincs e-mail. A csak akadályozott tételek nem indítják el.
+- **Új jóváhagyandó tételek**: ha egy Ön által jóváhagyható listában egy hullámnyi számla válik késszé, egy e-mail, amikor a hullám véget ér (a lista 5 perce nem változott, vagy a legrégebbi el nem küldött tétel 30 perce vár). Az iktatási és könyvelési tételek cégenkénti darabszámként jelennek meg, a listára mutató gombbal, nem számlalistaként.
+- **Napi összefoglaló**: munkanapokon, az Ön által választott időpontban (alapértelmezés szerint budapesti idő szerint 8:00), a kész és az akadályozott tételek darabszáma cégenként, a listára mutató gombbal. Ha semmi nem vár Önre, nincs e-mail. A csak akadályozott tételek nem indítják el.
 
 A **Határidő-emlékeztető** csak a kifizetésre vonatkozik: az iktatásnak és a könyvelésnek nincs határideje. Kikapcsolt lépésről semmi nem megy ki. Minden e-mail részletesen, és az időpontok módosítása: [Számlák jóváhagyása kifizetésre](/approving-invoices#e-mailek).
 
