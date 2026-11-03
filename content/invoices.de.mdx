@@ -64,7 +64,7 @@ Manche Aufgaben sind so, wie sie sind, richtig: Die ausgelesenen Daten wurden ge
 
 ## Die Rechnungsseite
 
-Klicken Sie auf eine Rechnung, um ihre Seite zu öffnen. Die obere Karte zeigt die Rechnungsnummer, Badges wie **Duplikat**, **Archiviert**, **Prüfung erforderlich** und **Vollständigkeit**, den Zahlungsstatus sowie die Angaben **AIFT-Kennung** (die eigene Nummer von AI Finance Team für die Rechnung, hier immer sichtbar; Klick zum Kopieren), **Partner**, **Richtung**, **Brutto** und **Ausgestellt**, mit den Schaltflächen **Herunterladen** und **Bearbeiten**. Darunter stehen die KI-Zusammenfassung, die Sie bearbeiten können, und die **Aufgaben**, zum Beispiel ein fehlender USt-Code oder ein zu verifizierender Partner.
+Klicken Sie auf eine Rechnung, um ihre Seite zu öffnen. Die obere Karte zeigt die Rechnungsnummer, Badges wie **Duplikat**, **Archiviert**, **Prüfung erforderlich** und **Vollständigkeit**, den Zahlungsstatus sowie die Angaben **AIFT-Kennung** (die eigene Nummer von AI Finance Team für die Rechnung, hier immer sichtbar; Klick zum Kopieren), **Partner**, **Richtung**, **Brutto** und **Ausgestellt**, mit der Schaltfläche **Bearbeiten** und dem Menü **⋯**. Darunter stehen die KI-Zusammenfassung, die Sie bearbeiten können, und die **Aufgaben**, zum Beispiel ein fehlender USt-Code oder ein zu verifizierender Partner.
 
 Die Seite hat sieben Reiter:
 
@@ -92,7 +92,7 @@ Klicken Sie auf einen Wert, um ihn zu bearbeiten; er wird gespeichert, wenn Sie 
 
 ## Eine Rechnung archivieren
 
-Eine Rechnung, die nicht in die Bücher gehört, weil sie privat ist, Ihnen versehentlich geschickt wurde oder zu keinem Ihrer Unternehmen gehört, wird **archiviert**, nie gelöscht. Klicken Sie in der oberen Karte der Rechnung auf **Archivieren** und geben Sie eine Begründung von mindestens drei Zeichen an: Wer sie wann und warum archiviert hat, bleibt an der Rechnung. Vor dem Bestätigen zählt der Dialog auf, was das Archivieren mit dieser Rechnung tut: Eine bestätigte Bankzuordnung wird gelöst und die Transaktion kehrt in ihre eigene Prüfung zurück, offene Zuordnungsvorschläge werden verworfen, eine schon auf einer Zahlungsdatei stehende Zeile wird zurückgezogen, die Rechnung verlässt ihre Ausgleichssitzung, eine offene Anfrage an den Mandanten wird geschlossen, und der Dialog warnt, wenn die Rechnung bereits an Business Central übergeben wurde oder einen konzerninternen Zwilling hat, denn das klären Sie dann von Hand.
+Eine Rechnung, die nicht in die Bücher gehört, weil sie privat ist, Ihnen versehentlich geschickt wurde oder zu keinem Ihrer Unternehmen gehört, wird **archiviert**, nie gelöscht. Öffnen Sie in der oberen Karte der Rechnung das Menü **⋯**, klicken Sie auf **Rechnung archivieren** und geben Sie eine Begründung von mindestens drei Zeichen an: Wer sie wann und warum archiviert hat, bleibt an der Rechnung. Vor dem Bestätigen zählt der Dialog auf, was das Archivieren mit dieser Rechnung tut: Eine bestätigte Bankzuordnung wird gelöst und die Transaktion kehrt in ihre eigene Prüfung zurück, offene Zuordnungsvorschläge werden verworfen, eine schon auf einer Zahlungsdatei stehende Zeile wird zurückgezogen, die Rechnung verlässt ihre Ausgleichssitzung, eine offene Anfrage an den Mandanten wird geschlossen, und der Dialog warnt, wenn die Rechnung bereits an Business Central übergeben wurde oder einen konzerninternen Zwilling hat, denn das klären Sie dann von Hand.
 
 Ist der Grund, dass die Rechnung zu keinem Ihrer Unternehmen gehört, bietet die Auswahl des Unternehmens auf der Rechnung die Abkürzung **Archivieren: keinem unserer Unternehmen zuzuordnen**. Sie öffnet denselben Dialog mit ausgefüllter Begründung und löscht das Unternehmen.
 
@@ -102,16 +102,16 @@ Das Archivieren einer Rechnung, deren Buchhaltungsfreigabe schon erteilt ist, br
 
 ## Eine Rechnung herunterladen
 
-Klicken Sie auf der Rechnungsseite auf **Herunterladen**, um die Originaldatei zu erhalten, oder auf den Pfeil **▾**, um ein Format zu wählen:
+Öffnen Sie auf der Rechnungsseite in der oberen Karte das Menü **⋯** und wählen Sie unter **Herunterladen** ein Format:
 
 | Format | Inhalt |
 |--------|----------|
 | **PDF** | Das Originaldokument |
-| **XLSX** | Zwei Blätter: „Invoice“ mit der Übersicht und „Line Items“ mit jeder Position |
+| **Excel (XLSX)** | Zwei Blätter: „Invoice“ mit der Übersicht und „Line Items“ mit jeder Position |
 | **CSV** | Der Rechnungskopf in den ersten Zeilen, danach die Positionen |
 | **JSON** | Alle Rechnungsfelder und eine Liste `line_items` |
 
-Die Dateien tragen den Namen der Originaldatei. XLSX, CSV und JSON werden aus den aktuellen Daten erstellt und enthalten daher Ihre Korrekturen; ihre Spaltenköpfe sind englisch. Eine Rechnung ohne Dokumentdatei (zum Beispiel aus der NAV) hat keine Schaltfläche Herunterladen.
+Die Dateien tragen den Namen der Originaldatei oder, ohne diese, die Rechnungsnummer. XLSX, CSV und JSON werden aus den aktuellen Daten erstellt und enthalten daher Ihre Korrekturen; ihre Spaltenköpfe sind englisch. **PDF** steht nur im Menü, wenn die Rechnung eine Datei hat. XLSX, CSV und JSON sind auf jeder Rechnung verfügbar, auch auf solchen aus der NAV. Das PDF können Sie auch mit **Herunterladen** auf dem Reiter **Dokument** laden.
 
 ## Extraktion und Prüfung
 
