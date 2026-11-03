@@ -34,7 +34,7 @@ The rest of this article describes a company that files on its own; [VAT group f
 
 1. Open **Master data → Companies**, select the Hungarian company, and go to its **Connections** tab.
 2. Enter the tax number, the technical-user login, the password and the signing key.
-3. Click **Save & verify**. This checks the credentials against NAV and **downloads nothing**: no invoice arrives yet, and nothing counts against your allowance. You see straight away whether the connection works, or exactly what NAV rejected.
+3. Click **Save & verify**. This checks the credentials against NAV and **downloads nothing**: no invoice arrives yet, and nothing is counted for billing yet. Later, each NAV invoice counts once, and its PDF copy does not count again. You see straight away whether the connection works, or exactly what NAV rejected.
 4. Choose the **start date**, which is how far back to go. The default is three months and the furthest is **two years**. The end date is always today.
 5. Click **Estimate invoice count** to see roughly how many invoices that period holds. Nothing is priced until you ask.
 6. Click **Start sync**.
@@ -59,6 +59,18 @@ Nothing is downloaded until you press **Start sync**. From then on AI Finance Te
 NAV carries the payment method the **supplier** claimed. When that says cash, AI Finance Team closes the invoice as paid in cash, and a closed invoice is out of bank matching for good. A card payment that a shop reported as cash can therefore never meet its bank debit.
 
 The fix is a **fixed payment method on the partner**, which overrides the method the document states. NAV leaves the payment method out of roughly a third of invoices, and on those there is nothing to override, so they arrive with no method at all. It applies from the moment you set it, never to what is already booked: see [Fixing a Partner's Payment Method](/fixed-payment-method).
+
+### If you keep only purchase invoices here
+
+If you keep the sales side elsewhere, for example in a spreadsheet, choose **Purchases only** under **Settings ▸ AI & data ▸ Invoices processed**. Only a workspace admin can change it, and it asks for confirmation in both directions.
+
+- **Sales invoices are still downloaded from NAV and kept, but not processed.** They do not become invoices, are not categorized or matched, and do not count as usage.
+- **The setting applies from the moment it is saved.** Sales invoices already in the app stay as they are, in usage too, and a NAV cancellation or modification of one of them is still processed.
+- **Among uploaded and emailed invoices**, one that shows your company's tax number on the seller side is excluded after the upload; you find it in the invoice list under the **Excluded sales invoices** filter and can take it back with **Process anyway**. When the recognition is uncertain, the invoice is processed and its page asks whether to exclude it.
+- **Incoming bank payments** from card terminals, food platforms (Wolt, foodora), SZÉP card settlements, online payment providers, cash deposits and known customers are marked **no invoice needed**. No issued invoice is requested for them, and they do not count as usage. A payment from a partner that only sends you purchase invoices may be a refund: for that, the credit note is requested.
+- **Between two of your own companies**, the issuing company's sales invoice is left out and the receiving company's purchase invoice is processed.
+- **Pages that show the sales side** (customer receivables, the HessynKettős export, the ledger and profit exports) receive no new data from the switch date. A dated note on each says so.
+- **When you switch back**, you choose: the kept sales invoices stay unprocessed (**From now on only**), or they are processed from a date you pick. Those then count as usage.
 
 ## How a Group Invoice Finds Its Company
 
