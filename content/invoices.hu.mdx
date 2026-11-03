@@ -30,7 +30,7 @@ A számlalista négy számlával. A számok az alábbi listának felelnek meg. A
 
 1. **Dátum**, alatta az AI Finance Team saját azonosítójával, ha a munkaterület mutatja az azonosítókat. Az azonosítóra kattintva kimásolhatja.
 2. **Partner**, alatta a számlaszámmal. A hosszú név második sorba törik. A sorra bárhol kattintva megnyílik a számla.
-3. **Címkék**: elöl az, amire a számlának szüksége van, hátul az, honnan érkezett (**NAV**, **Nincs PDF**). Legfeljebb három címke látszik, a többit a **+N** jelöli: teendőt jelző címke soha nem kerül mögé, és ha fölé viszi az egeret, megmutatja, mit takar.
+3. **Címkék**: elöl az, amire a számlának szüksége van, hátul az, honnan érkezett (**NAV**, **Nincs dokumentum**). Legfeljebb három címke látszik, a többit a **+N** jelöli: teendőt jelző címke soha nem kerül mögé, és ha fölé viszi az egeret, megmutatja, mit takar.
 4. **Összeg**: a bruttó végösszeg a számla pénznemében, bevételnél zöld, felfelé mutató nyíllal, kiadásnál piros, lefelé mutató nyíllal.
 
 Kattintson az oldalsávban a **Számlák** menüpontra. A lista oszlopai: **Dátum** (a kiállítás dátuma), alatta az **Azonosító** (az AI Finance Team saját sorszáma, ha a munkaterület mutatja; kattintásra másolható), **Partner**, **Címkék**, **Cég** (csak ha a munkaterületen egynél több cég van: melyik cégéhez tartozik a számla, vagy kötőjel, ha az AI Finance Team még nem rendelte céghez) és **Összeg**. Oldalanként 50 számlát mutat, és dátum, azonosító (a dátum fejlécének második sora) vagy összeg szerint rendezhető. A bal oldali borostyánsárga szegély teendőt igénylő számlát jelöl. A lista az ablak teljes szélességét kitölti. Keskeny ablakban oldalra görgethető, és az **Összeg** oszlop jobb oldalt végig látható marad.
@@ -39,22 +39,28 @@ A leggyakoribb címkék:
 
 | Címke | Jelentés |
 |-------|---------|
-| **Ellenőrzés** | A kinyerés hiányos vagy sikertelen volt: vesse össze a számlát a dokumentummal |
+| **Sikertelen feldolgozás** / **Ellenőrizd a kinyert adatokat** | A dokumentumot nem sikerült beolvasni / a kinyert adatok alacsony pontszámot kaptak: vesse össze őket a dokumentummal |
 | **Cég szükséges** | Az AI Finance Team nem tudta megállapítani, melyik cégéhez tartozik a számla |
 | **Válassz irányt** | Nem dönthető el, hogy bevétel vagy kiadás; válassza ki a számlán |
-| **NAV** / **Nincs PDF** | A számla a NAV Online Számlából jött / nincs dokumentumfájl |
-| **Árfolyam függő** | Az alappénznemre váltás árfolyama még nem áll rendelkezésre |
-| **Nem ellenőrzött** | A partner még nem ellenőrzött partner (lásd: [Partnerek kezelése](/partners)) |
-| **Hiányos ÁFA-kódok** / **Alapért. kódolt** | ÁFA-kód nélküli tételek / alapértelmezett kóddal kódolt tételek |
+| **Hiányzó árfolyam** | Az alappénznemre váltás árfolyamát nem sikerült lekérni |
+| **Ellenőrizetlen partner** | A partner még nem ellenőrzött partner (lásd: [Partnerek kezelése](/partners)) |
+| **Hiányos kategorizálás** | Kategória nélküli tételek, azokkal együtt, ahol az AI javaslata vár Önre |
+| **Hiányos ÁFA-kódok** / **Alapértelmezéssel kódolt ÁFA** | ÁFA-kód nélküli tételek / alapértelmezett kóddal kódolt tételek |
+| **Tételösszeg eltér a fejléctől** | A tételek összege nem egyezik a számla végösszegeivel |
+| **Lejárt** | A fizetési határidő után sincs kifizetve. A még nem esedékes, ki nem fizetett számla nem teendő |
+| **Párosítási javaslat vár döntésre** | Az AI Finance Team banki tételt javasol hozzá; erősítse meg vagy utasítsa el |
+| **NAV** / **Nincs dokumentum** | A számla a NAV Online Számlából jött / nincs dokumentumfájl. Ahol a munkaterület dokumentumot vár, borostyánsárga, máshol szürke |
 | **Duplikáció**, **Sztornózva** | Egy másik számla duplikációja / sztornószámlával érvénytelenítve |
-| **Jóváhagyásra vár**, **Jóváhagyva**, **Elutasítva** | A kifizetés jóváhagyásának állapota, ahol a jóváhagyás be van kapcsolva (lásd: [Számlák jóváhagyása kifizetésre](/approving-invoices)) |
+| **Kifizetési jóváhagyásra vár**, **Jóváhagyva**, **Elutasítva** | A kifizetés jóváhagyásának állapota, ahol a jóváhagyás be van kapcsolva (lásd: [Számlák jóváhagyása kifizetésre](/approving-invoices)) |
 | **Iktatásra vár**, **Könyvelésre vár**, **Iktatás visszaküldve**, **Könyvelés visszaküldve** | Egy jóváhagyási lépés még döntésre vár, ahol az iktatási vagy a könyvelési jóváhagyás be van kapcsolva (lásd: [Iktatási és könyvelési jóváhagyás](/filing-and-bookkeeping-approval)) |
 
 ### Számlák keresése
 
-Kereshet számlaszám, AI Finance Team-azonosító, eladó vagy vevő neve, illetve partner szerint. A lista felett szűrhet időszakra, **Cég** szerint (ha több cége van), valamint **Irány**, **Forrás** (NAV vagy feltöltött), **Fizetés** és **Jóváhagyás** szerint, és bekapcsolhat szűrőcímkéket: **Áttekintés szükséges**, **Fizetésre vár**, **Cég szükséges**, **Árfolyam függő**, **Duplikáció**, **Nemrég archivált**, **Összes archivált**, **Nincs PDF**, **Hiányos ÁFA-kódok** és **Áfa: alapértelmezéssel kódolt**. Az archivált számlák, a duplikációk és a sztornózott párok rejtve maradnak, amíg a címkéjüket be nem kapcsolja; a **Nemrég archivált** az utolsó 30 napot mutatja, az **Összes archivált** minden archivált számlát. Ha [fókuszált időszakban](/focused-period) dolgozik, a lista azt követi.
+Kereshet számlaszám, AI Finance Team-azonosító, eladó vagy vevő neve, illetve partner szerint. A lista felett szűrhet időszakra, **Cég** szerint (ha több cége van), valamint **Irány**, **Forrás** (NAV vagy feltöltött), **Fizetés** és **Jóváhagyás** szerint, és bekapcsolhat szűrőcímkéket. A teendőt jelző címke ugyanazokkal a szavakkal szól, mint a sorban az a címke, amelyre szűr, és megmutatja, a többi szűrő mellett hány számlán van ilyen teendő. Amire nincs mit számolni, ahhoz nem jelenik meg címke, és annak a lépésnek sem, amelyet a munkaterület kikapcsolt. A **Duplikáció**, a **Nemrég archivált** és az **Összes archivált** a lista által elrejtett számlákat mutatja. Az archivált számlák, a duplikációk és a sztornózott párok rejtve maradnak, amíg a címkéjüket be nem kapcsolja; a **Nemrég archivált** az utolsó 30 napot mutatja, az **Összes archivált** minden archivált számlát. Ha [fókuszált időszakban](/focused-period) dolgozik, a lista azt követi.
 
 A számlák szerkesztésére vonatkozó jogosultsággal sorokat jelölhet ki, és választhatja az **Újrakategorizálás**, az **Áfakódolás újrafuttatása** vagy az **Ellenőrzött tételek jóváhagyása** műveletet.
+
+Néhány teendő így is rendben lehet: a kinyert adatokat ellenőrizték, a tételösszeg szándékosan tér el, dokumentum nem fog érkezni, vagy az alapértelmezett ÁFA-kód a helyes. Ilyenkor a számla oldalán megjelenik a **Teendők elfogadása**: jelölje be, ami rendben van, ha szeretné, írjon megjegyzést, és kattintson az **Elfogadom** gombra. A teendő eltűnik, a számla pedig megőrzi, ki fogadta el, mikor, és a megjegyzést. Ha az adat később megváltozik, a teendő visszajön. Ahol iktatási vagy könyvelési jóváhagyás vár a számlára, ezeket a teendőket a jóváhagyás fogadja el, és a **Jóváhagyások** kártya kiírja, melyeket.
 
 ## A számla oldala
 
