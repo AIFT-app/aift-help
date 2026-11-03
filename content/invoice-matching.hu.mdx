@@ -288,7 +288,7 @@ Párosított tranzakciónál a kártya a kapcsolt számlát mutatja: a számát 
 
 ### A tranzakció felől
 
-1. Nyissa meg a **Banki tranzakciók** listát. Ha csak azokat szeretné látni, amelyekhez még számla kell, kapcsolja be a **Nem párosított** szűrőt. Kattintson a tranzakcióra.
+1. Nyissa meg a **Banki tranzakciók** listát. Ha csak azokat szeretné látni, amelyekhez még számla kell, kapcsolja be a **Párosítatlan** teendőt. Kattintson a tranzakcióra.
 2. A **Párosítás & fizetés** kártyán kattintson a **Számla keresése ▾** hivatkozásra.
 3. A panel legfeljebb 20 nyitott számlát listáz, a legkorábbi fizetési határidővel kezdve. Gépeléssel kereshet szám vagy partner szerint. Összegre is kereshet, szóköz nélküli számjegyekkel, például `7573` vagy `19.59`.
 4. Kattintson a számlára. Azonnal összekapcsolódik, amit a **Számla párosítva.** üzenet jelez.
@@ -312,7 +312,7 @@ A kézi párosításhoz a banki tranzakciók (vagy a számlák) szerkesztésére
 - A számla **Párosítás & fizetés** fülén: kattintson az **Eltávolítás**, majd az **Igen** gombra.
 - A párosítás részletei oldalon: kattintson a **Párosítás megszüntetése**, majd az **Igen, eltávolítás** gombra.
 
-Ezután a számla fizetési állapota újraszámolódik: **Nyitott** lesz, ha semmi más nem fizeti, egyébként **Részben fizetve** vagy **Fizetve** marad. A tranzakció **Nem párosított** lesz, ha nincs más párosítása.
+Ezután a számla fizetési állapota újraszámolódik: **Nyitott** lesz, ha semmi más nem fizeti, egyébként **Részben fizetve** vagy **Fizetve** marad. A tranzakció **Párosítatlan** lesz, ha nincs más párosítása.
 
 ## Készpénzes és érvénytelen számlák
 
@@ -335,12 +335,14 @@ A **Megjelölés nyitottként** újranyitja a lezárt számlát és törli az in
 A **Banki tranzakciók** lista minden sora a **Címkék** oszlopban mutatja az állapotát:
 
 | Címke | Szín | Jelentés |
-|------|--------|---------|
-| **Párosítva** | zöld | Egy vagy több számlához kapcsolva, automatikusan vagy kézzel |
-| **Nem párosított** | borostyánsárga | Még nincs számla kapcsolva; a sor bal szélén borostyánsárga sáv is megjelenik |
-| **Nincs számla** | kék | Megjelölve, hogy nem kell hozzá számla |
+|-------|------|----------|
+| **Párosítatlan** | borostyánsárga | Teendő: még nincs számla kapcsolva; a sor bal szélén borostyánsárga sáv is megjelenik |
+| **Részben párosított** | borostyánsárga | Teendő: a számlái az összegnek csak egy részét fedik |
+| **Párosítva** | szürke | Egy vagy több számlához kapcsolva, automatikusan vagy kézzel |
+| **Nincs számla** | szürke | Megjelölve, hogy nem kell hozzá számla |
+| **Lezárva** | szürke | Lezárva: nincs hozzá több párosítanivaló |
 
-Mellette megjelenhet a **Duplikáció** (borostyánsárga), a **Banki forrás** és a **Bankkivonat** (szürke) címke is. A lista feletti kapcsolókkal ezekre a címkékre, valamint a **Hiányzó egyéni kategória** jelzésre szűrhet. Egyszerre többet is bekapcsolhat: a lista ekkor azokat a tranzakciókat mutatja, amelyekre bármelyik választott állapot és bármelyik választott forrás illik. A lista egészét a [Banki tranzakciók](/bank-transactions) cikk írja le.
+A **Banki forrás** és a **Bankkivonat** (szürke) azt mutatja, honnan érkezett. A lista feletti teendők és a **Párosítás** szűrő ezekre az állapotokra szűr. A lista egészét a [Banki tranzakciók](/bank-transactions) cikk írja le.
 
 ## Keresztdevizás párosítás
 
