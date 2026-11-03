@@ -334,13 +334,15 @@ There are no loose ends: when the bank debit arrives later, it is paired with th
 
 Every row in **Bank transactions** shows its status in the **Labels** column:
 
-| Pill | Colour | Meaning |
-|------|--------|---------|
-| **Matched** | green | Linked to one or more invoices, automatically or by hand |
-| **Unmatched** | amber | No invoice linked yet; the row also gets an amber left edge |
-| **No invoice** | blue | Marked as needing no invoice |
+| Label | Colour | Meaning |
+|-------|--------|---------|
+| **Unmatched** | amber | A to-do: no invoice linked yet; the row also gets an amber left edge |
+| **Partially matched** | amber | A to-do: its invoices cover only part of the amount |
+| **Matched** | grey | Linked to one or more invoices, automatically or by hand |
+| **No invoice** | grey | Marked as needing no invoice |
+| **Closed** | grey | Closed as needing no further matching |
 
-**Duplicate** (amber), **Bank feed** and **Statement** (grey) show next to it when they apply. The toggles above the list filter by these pills, and by **Custom category missing**. You can switch on several at once: the list then shows the transactions that match any chosen status and any chosen source. The whole list is described in [Bank Transactions](/bank-transactions).
+**Bank feed** and **Statement** (grey) show where it came from. The to-do chips above the list and the **Matching** dropdown filter by these states. The whole list is described in [Bank Transactions](/bank-transactions).
 
 ## Cross-currency matching
 

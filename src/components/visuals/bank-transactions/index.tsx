@@ -21,6 +21,9 @@
 // article. Only the table is shown, cropped out of the Bank transactions page.
 // When one of those files changes, re-copy the markup here. Data comes from
 // ./copy.ts and is fictional.
+// Re-copied 2026-11-02 for transaction-list-todos: the row labels are the
+// to-do catalogue's (amber) and grey information, and the amber rail follows
+// the to-dos only.
 
 import clsx from 'clsx'
 import { ChevronDownIcon } from '@heroicons/react/16/solid'
@@ -28,7 +31,11 @@ import type { Locale } from '@/lib/i18n'
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@/components/catalyst/table'
 import { formatAmount } from '../format'
 import { AppScreen, Figure, Pin, type Tone } from '../kit'
-import { bankTransactionsCopy, LABEL_TONE, type LabelKey, type ListRow } from './copy'
+import { bankTransactionsCopy, LABEL_TONE, type LabelKey, type ListRow, type UiKey } from './copy'
+
+/** The message key of a label: a to-do's own words, or the list's information label. */
+const labelKey = (k: LabelKey): UiKey =>
+  k === 'unmatched' ? 'transactions.todos.labels.txn_unmatched' : `transactions.list.status_${k}`
 
 type FigureProps = { locale: Locale; children?: React.ReactNode }
 
@@ -119,7 +126,7 @@ function Labels({ labels, locale }: { labels: LabelKey[]; locale: Locale }) {
             LABEL_TONE_CLASSES[LABEL_TONE[k]],
           )}
         >
-          {ui[`transactions.list.status_${k}`]}
+          {ui[labelKey(k)]}
         </span>
       ))}
     </div>

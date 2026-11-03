@@ -22,21 +22,24 @@ Der Schalter schaltet nicht sofort ein. Ein Dialog fragt nach einem Startdatum u
 
 Freigebende finden ihre Liste unter **Freigaben** in der Seitenleiste. Die Reiter **Erfassung** und **Buchung** erscheinen nur für jemanden mit dem passenden Recht in einem Arbeitsbereich, in dem der Prüfschritt eingeschaltet ist.
 
-Jede Rechnung ist eine Karte mit Partner, Zusammenfassung und Bruttobetrag, und bernsteinfarbene Marker zeigen für alles, was an der Rechnung noch offen ist: ein fehlender Steuersatz, eine nicht kategorisierte Position, zu prüfende ausgelesene Daten. So können Sie die Liste abarbeiten, ohne jede Rechnung zu öffnen. Um eine anzusehen, klicken Sie oben auf der Karte auf den Partnernamen: Die Rechnung öffnet sich in einer Vorschau über der Liste, und **Freigeben** (wenn nichts blockiert), **Zurückgeben** und in der Buchungs-Warteschlange **Nicht zu buchen** funktionieren dort wie auf der Karte. Siehe [Rechnungen zur Zahlung freigeben](/approving-invoices#eine-rechnung-ansehen-ohne-die-liste-zu-verlassen).
+Jede Rechnung ist eine Karte mit Partner, Zusammenfassung und Bruttobetrag, und bernsteinfarbene Marker zeigen für alles, was an der Rechnung noch offen ist: ein fehlender Steuersatz, eine nicht kategorisierte Position, zu prüfende ausgelesene Daten. So können Sie die Liste abarbeiten, ohne jede Rechnung zu öffnen. Um eine anzusehen, klicken Sie oben auf der Karte auf den Partnernamen: Die Rechnung öffnet sich in einer Vorschau über der Liste, und **Freigeben** (wenn nichts blockiert) sowie in der Buchungs-Warteschlange **Zurückgeben** und **Nicht zu buchen** funktionieren dort wie auf der Karte. Siehe [Rechnungen zur Zahlung freigeben](/approving-invoices#eine-rechnung-ansehen-ohne-die-liste-zu-verlassen).
 
-Über der Liste zeigt **Alle** jede Rechnung mit der Gesamtzahl, und drei Filter teilen sie auf:
+Über der Liste zeigt **Alle** jede Rechnung mit der Gesamtzahl, und zwei Filter teilen sie auf:
 
 - **Bereit**: nichts offen, kann freigegeben werden.
 - **Blockiert**: etwas Offenes verhindert die Freigabe.
-- **Zurückgegeben**: jemand hat sie mit einer Notiz zurückgegeben.
 
-Eine Rechnung ist immer in genau einem der drei, deshalb ergeben die drei Zahlen zusammen die Gesamtzahl.
+Eine Rechnung ist immer in genau einem der zwei, deshalb ergeben die zwei Zahlen zusammen die Gesamtzahl.
 
 ## Freigeben und zurückgeben
 
 Eine Karte zeigt **Freigeben** nur, wenn nichts blockiert. Eine blockierte Karte nennt stattdessen, wie viele Punkte noch offen sind. Beim Freigeben bekommt die Karte einen grünen Stempel **Freigegeben** und verlässt die Liste. Sie können mehrere auf einmal freigeben: auf **Bereit** filtern, alle auswählen, einmal bestätigen.
 
-**Zurückgeben** fragt direkt auf der Karte nach dem Grund, mit drei Schnellgründen für diesen Prüfschritt, und die Notiz ist Pflicht. Die Karte bekommt einen bernsteinfarbenen Stempel **Zurückgegeben** und verlässt die Liste. Die Rechnung erscheint wieder in der Liste unter **Zurückgegeben**, mit der Notiz auf ihrer Karte. Es gibt keinen eigenen Empfänger: die Liste ist der Empfänger.
+Zwei offene Punkte blockieren die Erfassungsfreigabe nicht: zu prüfende ausgelesene Daten und eine Positionssumme, die vom Kopf abweicht. Die Freigabe akzeptiert sie, und die Karte **Freigaben** der Rechnung nennt sie, bevor Sie freigeben. Die Buchungsfreigabe bestätigt ebenso die mit dem Standard-USt-Code codierten Positionen. Die Rechnung behält, wer sie wann akzeptiert hat.
+
+Zurückgeben kann nur die Liste **Buchung**, und nur dorthin, woher die Rechnung kam: zur Erfassung. Die Erfassung hat keine Rückgabe: Wer erfasst, korrigiert die Rechnung selbst und gibt sie dann frei. **Zurückgeben** fragt direkt auf der Karte nach dem Grund, mit drei Schnellgründen (**Beleg fehlt**, **Falscher Partner**, **Extrahierte Daten falsch**), und die Notiz ist Pflicht. Die Karte bekommt einen bernsteinfarbenen Stempel **Zurückgegeben** und verlässt die Liste. Die Erfassungsfreigabe wird zurückgezogen, die Rechnung wartet wieder auf die Erfassung, und in der Liste **Erfassung** zeigt ihre Karte in einer Sprechblase, wer sie warum zurückgegeben hat. Die Notiz steht auch auf der Karte **Freigaben** der Rechnung, in ihrem Zeitstrahl und in der Rechnungsliste, bis die Erfassung erneut entscheidet. Ist **Erfassung vor Buchung** eingeschaltet, wartet der Buchungsposten auf die neue Erfassungsfreigabe. Ist die Erfassung ausgeschaltet oder gilt sie für die Rechnung nicht, gibt es kein **Zurückgeben**: Die Buchhaltung korrigiert die Rechnung selbst.
+
+Ist **Erfassung vor Zahlung** eingeschaltet und die Zahlung der Rechnung bereits freigegeben, die Rechnung aber noch nicht bezahlt und in keiner Zahlungsdatei, öffnet die Rückgabe auch die Zahlungsfreigabe erneut: Die freigebende Person entscheidet erneut, sobald die Erfassung wieder freigegeben ist, und der Zeitstrahl nennt den Grund. Eine bezahlte oder teilweise bezahlte Rechnung behält ihre Zahlungsfreigabe. Die Frage zur Rückgabe sagt das, bevor Sie bestätigen.
 
 ## „Nicht zu buchen“: geprüft, aber nicht gebucht
 
@@ -67,7 +70,7 @@ Die **Erfassungsfreigabe** wird auf dieselbe Weise zurückgezogen, wenn sich der
 
 Aus demselben Grund lässt die automatische nächtliche Neukategorisierung **buchungsfreigegebene Rechnungen unberührt**. Bittet ein Buchhalter ausdrücklich um einen erneuten Lauf, läuft dieser und zieht die Freigabe zurück. Das ist richtig: er hat darum gebeten.
 
-Beide Freigaben lassen sich auch von Hand zurückziehen. Öffnen Sie die Rechnung und klicken Sie auf der Karte **Freigaben** unter der freigegebenen Zeile auf **Erneut öffnen**; wer den Prüfschritt freigeben darf, darf ihn auch erneut öffnen. Die Rechnung kehrt in die Liste dieses Prüfschritts zurück und muss erneut freigegeben werden; der Zeitstrahl hält fest, wer sie erneut geöffnet hat und warum. Die Zahlungsfreigabe hat auf ihrer Karte ein eigenes **Erneut öffnen** für diejenigen, die Freigaben verwalten.
+Beide Freigaben lassen sich auch von Hand zurückziehen. Öffnen Sie die Rechnung und klicken Sie auf der Karte **Freigaben** unter der freigegebenen Zeile auf **Erneut öffnen**; wer den Prüfschritt freigeben darf, darf ihn auch erneut öffnen. Die Rechnung kehrt in die Liste dieses Prüfschritts zurück und muss erneut freigegeben werden; der Zeitstrahl hält fest, wer sie erneut geöffnet hat und warum. Das erneute Öffnen der Erfassungsfreigabe wirkt auf die Zahlung wie eine Rückgabe: Ist **Erfassung vor Zahlung** eingeschaltet, wird bei einer freigegebenen, noch nicht bezahlten Rechnung auch die Zahlungsfreigabe erneut geöffnet, und der Dialog sagt das. Die Zahlungsfreigabe hat auf ihrer Karte ein eigenes **Erneut öffnen** für diejenigen, die Freigaben verwalten.
 
 ## Verkettung
 
@@ -100,14 +103,14 @@ Um diese Liste zu öffnen, brauchen Sie „Rechnungen und Banktransaktionen anse
 
 ## Auf der Rechnung
 
-Die Karte **Freigaben** auf der Rechnung zeigt alle drei Prüfschritte in der Reihenfolge, in der die Rechnung sie durchläuft, mit Name und Zeitpunkt. In der Rechnungsliste zeigt ein bernsteinfarbener Marker, dass eine Rechnung noch auf einen Prüfschritt wartet, und Sie können danach filtern. Eine mit **Nicht zu buchen** beiseitegelegte Rechnung zeigt stattdessen eine graue Pill mit dem Grund, und der Filterwert **Nicht zu buchen** listet sie alle.
+Die Karte **Freigaben** auf der Rechnung zeigt alle drei Prüfschritte in der Reihenfolge, in der die Rechnung sie durchläuft, mit Name und Zeitpunkt. In der Rechnungsliste zeigt ein bernsteinfarbener Marker, dass eine Rechnung noch auf einen Prüfschritt wartet, und der Filter **Workflow** filtert je Prüfschritt, die freigegebenen Zustände eingeschlossen (siehe [Rechnungen](/invoices)). Eine mit **Nicht zu buchen** beiseitegelegte Rechnung zeigt stattdessen eine graue Pill mit dem Grund, und die Gruppe **Buchung** des Filters **Workflow** listet sie nach Grund. Eine aus der Buchung zurückgegebene Rechnung trägt eine blaue Pill **Zur Erfassung zurückgegeben**; zeigen Sie darauf, um die Notiz zu lesen.
 
 ## E-Mails
 
 Erfassungs- und Buchungsfreigeber erhalten dieselben zwei E-Mails wie Zahlungsfreigeber, jede mit eigenem Schalter unter **Konto**, **Benachrichtigungen** im Abschnitt **Freigaben**:
 
-- **Neue Posten zur Freigabe**: Wird in einer Liste, für die Sie die Berechtigung halten, eine Welle von Rechnungen bereit oder zurückgegeben, kommt eine E-Mail, sobald die Welle endet (die Liste war 5 Minuten lang unverändert, oder der älteste unversandte Posten wartet seit 30 Minuten). Erfassungs- und Buchungsposten erscheinen als Zahlen je Unternehmen mit einer Schaltfläche zur Liste, nicht als Rechnungsliste.
-- **Tägliche Übersicht**: an Werktagen zur von Ihnen gewählten Zeit (standardmäßig 08:00 Budapester Zeit) die Zahl der bereiten, der mit Notiz zurückgegebenen und der blockierten Posten je Unternehmen, mit einer Schaltfläche zur Liste. Wartet nichts, kommt keine E-Mail. Posten, die nur blockiert sind, lösen sie nicht aus.
+- **Neue Posten zur Freigabe**: Wird in einer Liste, für die Sie die Berechtigung halten, eine Welle von Rechnungen bereit, kommt eine E-Mail, sobald die Welle endet (die Liste war 5 Minuten lang unverändert, oder der älteste unversandte Posten wartet seit 30 Minuten). Erfassungs- und Buchungsposten erscheinen als Zahlen je Unternehmen mit einer Schaltfläche zur Liste, nicht als Rechnungsliste.
+- **Tägliche Übersicht**: an Werktagen zur von Ihnen gewählten Zeit (standardmäßig 08:00 Budapester Zeit) die Zahl der bereiten und der blockierten Posten je Unternehmen, mit einer Schaltfläche zur Liste. Wartet nichts, kommt keine E-Mail. Posten, die nur blockiert sind, lösen sie nicht aus.
 
 Die **Fälligkeitserinnerung** gilt nur für die Zahlung: Erfassung und Buchung haben kein Fälligkeitsdatum. Für einen ausgeschalteten Prüfschritt wird nichts versendet. Jede E-Mail im Einzelnen, und wie Sie die Zeiten ändern: [Rechnungen zur Zahlung freigeben](/approving-invoices#e-mails).
 

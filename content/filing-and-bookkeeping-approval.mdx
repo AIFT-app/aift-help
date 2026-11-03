@@ -22,21 +22,24 @@ The switch does not turn on straight away. A dialog asks for a start date and te
 
 Approvers find their queue under **Approvals** in the sidebar. The **Filing** and **Bookkeeping** tabs appear only for someone who holds that permission in a workspace where the checkpoint is on.
 
-Every invoice is a card with its partner, summary and gross amount, and amber markers for whatever is still open on that invoice: a missing VAT code, an uncategorised line, extracted data to check. You can work the queue without opening each invoice. To look at one, click its partner name at the top of the card: the invoice opens in a preview over the queue, where **Approve** (when nothing is blocking), **Return** and, on the Bookkeeping queue, **Not to be booked** work as on the card. See [Approving invoices for payment](/approving-invoices#looking-at-an-invoice-without-leaving-the-list).
+Every invoice is a card with its partner, summary and gross amount, and amber markers for whatever is still open on that invoice: a missing VAT code, an uncategorised line, extracted data to check. You can work the queue without opening each invoice. To look at one, click its partner name at the top of the card: the invoice opens in a preview over the queue, where **Approve** (when nothing is blocking) and, on the Bookkeeping queue, **Return** and **Not to be booked** work as on the card. See [Approving invoices for payment](/approving-invoices#looking-at-an-invoice-without-leaving-the-list).
 
-Above the list, **All** shows every invoice with the total, and three filters split it:
+Above the list, **All** shows every invoice with the total, and two filters split it:
 
 - **Ready**: nothing open, it can be approved.
 - **Blocked**: something open is refusing the approval.
-- **Returned**: somebody sent it back with a note.
 
-An invoice is always in exactly one of the three, so the three numbers add up to the total.
+An invoice is always in exactly one of the two, so the two numbers add up to the total.
 
 ## Approving and returning
 
 A card shows **Approve** only when nothing is blocking. A blocked card says how many items are still open instead. Approving stamps the card with a green **Approved** and it leaves the list. You can approve many at once: filter to **Ready**, select them all, and confirm once.
 
-**Return** asks why on the card itself, with three quick reasons for that checkpoint, and the note is required. The card is stamped **Sent back** in amber and leaves the list. The invoice comes back on the queue under **Returned** with the note on its card. There is no separate recipient: the queue is the recipient.
+Two open items do not block filing approval: extracted data to check, and a line total that differs from the header. Approving accepts them, and on the invoice the **Approvals** card names them before you approve. Bookkeeping approval likewise confirms lines coded with the default VAT code. The invoice keeps who accepted them and when.
+
+Only the **Bookkeeping** queue returns, and only to where the invoice came from: filing. Filing has no return: the filer fixes the invoice and then approves it. **Return** asks why on the card itself, with three quick reasons (**Document missing**, **Wrong partner**, **Extracted data is wrong**), and the note is required. The card is stamped **Sent back** in amber and leaves the list. The filing approval is withdrawn, the invoice is **Awaiting filing** again, and on the **Filing** queue its card shows in a speech bubble who sent it back and why. The note also shows on the invoice's **Approvals** card, on its timeline and in the invoice list until filing decides again. With **Filing before bookkeeping** on, the bookkeeping item waits for the new filing approval. Where filing is switched off, or does not apply to the invoice, there is no **Return**: the bookkeeper fixes the invoice.
+
+With **Filing before payment** on, if the invoice's payment is already approved but the invoice is not paid yet and not in a payment file, the return also reopens the payment approval: the approver decides again once filing is approved again, and the timeline says why it reopened. A paid or partly paid invoice keeps its payment approval. The return question says so before you confirm.
 
 ## "Not to be booked": checked but not booked
 
@@ -67,7 +70,7 @@ The **filing approval** is withdrawn the same way when the amount, the issue, de
 
 For the same reason, the automatic overnight re-categorisation **leaves bookkeeping-approved invoices alone**. If an accountant explicitly asks for a re-run, it runs and withdraws the approval. That is correct: they asked for it.
 
-Both approvals can also be withdrawn by hand. Open the invoice and click **Reopen** under the approved row on the **Approvals** card; whoever may approve that checkpoint may also reopen it. The invoice returns to that checkpoint's queue and has to be approved again, and the timeline records who reopened it and why. The payment approval has its own **Reopen** on its card, for the people who manage approvals.
+Both approvals can also be withdrawn by hand. Open the invoice and click **Reopen** under the approved row on the **Approvals** card; whoever may approve that checkpoint may also reopen it. The invoice returns to that checkpoint's queue and has to be approved again, and the timeline records who reopened it and why. Reopening the filing approval affects the payment the same way a return does: with **Filing before payment** on, an approved invoice that is not paid yet has its payment approval reopened too, and the dialog says so. The payment approval has its own **Reopen** on its card, for the people who manage approvals.
 
 ## Chaining
 
@@ -100,14 +103,14 @@ When somebody edits an invoice, the withdrawn approval appears there too, in the
 
 ## On the invoice
 
-The **Approvals** card on the invoice shows all three checkpoints in the order the invoice passes them, with who signed and when. In the invoice list an amber marker shows when an invoice is still waiting for a checkpoint, and you can filter on it. An invoice set aside with **Not to be booked** shows a grey pill naming the reason instead, and the filter value **Not to be booked** lists them all.
+The **Approvals** card on the invoice shows all three checkpoints in the order the invoice passes them, with who signed and when. In the invoice list an amber marker shows when an invoice is still waiting for a checkpoint, and the **Workflow** filter filters on each checkpoint, its approved states included (see [Invoices](/invoices)). An invoice set aside with **Not to be booked** shows a grey pill naming the reason instead, and the **Bookkeeping** group of the **Workflow** filter lists them by reason. An invoice sent back from bookkeeping carries a blue **Sent back to filing** label; point at it to read the note.
 
 ## Emails
 
 Filing and bookkeeping approvers get the same two emails as payment approvers, each with its own switch under **Account**, **Notifications**, in the **Approvals** section:
 
-- **New items to approve**: when a wave of invoices becomes ready, or is returned, in a queue you hold the key for, one email once the wave ends (the queue has been quiet for 5 minutes, or the oldest unsent item has waited 30 minutes). Filing and bookkeeping items appear as counts per company with a button to the queue, not as a list of invoices.
-- **Daily digest**: on working days at the time you choose (08:00 Budapest time by default), the counts of ready, returned with a note, and blocked items per company, with a button to the queue. Nothing waiting, no email. Items that are only blocked do not trigger it.
+- **New items to approve**: when a wave of invoices becomes ready in a queue you hold the key for, one email once the wave ends (the queue has been quiet for 5 minutes, or the oldest unsent item has waited 30 minutes). Filing and bookkeeping items appear as counts per company with a button to the queue, not as a list of invoices.
+- **Daily digest**: on working days at the time you choose (08:00 Budapest time by default), the counts of ready and blocked items per company, with a button to the queue. Nothing waiting, no email. Items that are only blocked do not trigger it.
 
 The **Due-soon reminder** is for payment only: filing and bookkeeping have no due date. Nothing is sent for a checkpoint that is switched off. Every email in detail, and how to change the times: [Approving invoices for payment](/approving-invoices#emails).
 

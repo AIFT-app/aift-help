@@ -20,7 +20,7 @@ Claude reads the invoice and extracts the header, the parties, the amounts and t
 
 When you upload a file identical to one already in the workspace, AI Finance Team creates the invoice but marks it as a duplicate of the original and does not extract it again. The upload panel shows **Already exists**, and a click opens the original. After extraction, an invoice with the same invoice number, issue date, gross amount and currency as another one is marked a duplicate too.
 
-Duplicates are hidden from the list: they appear as a **related** row you can expand under the original, and with the **Duplicate** filter on. If two invoices really are different (a supplier reused a PDF for two bills), open the duplicate and click **Mark as not a duplicate** on its banner.
+Duplicates are hidden from the list: they appear as a **related** row you can expand under the original, and under **Record state: Duplicate**. If two invoices really are different (a supplier reused a PDF for two bills), open the duplicate and click **Mark as not a duplicate** on its banner.
 
 ## The invoice list
 
@@ -30,7 +30,7 @@ The invoice list with four invoices. The numbers match the list below. The compa
 
 1. **Date**, with AI Finance Team's own ID underneath when your workspace shows IDs. Click the ID to copy it.
 2. **Partner**, with the invoice number underneath. A long name wraps onto a second line. A click anywhere on the row opens the invoice.
-3. **Labels**: what the invoice needs comes first, where it came from (**NAV**, **No PDF**) last. Up to three pills show, and **+N** stands for the rest: never a label that needs action, and pointing at it lists what it stands for.
+3. **Labels**: what the invoice needs comes first, where it came from (**NAV**, **No document**) last. Up to three pills show, and **+N** stands for the rest: never a label that needs action, and pointing at it lists what it stands for.
 4. **Amount**: the gross total in the invoice currency, green with an up arrow for income, red with a down arrow for an expense.
 
 Click **Invoices** in the sidebar. The list has these columns: **Date** (the issue date) with the **ID** under it (AI Finance Team's own number, when your workspace shows it; click to copy), **Partner**, **Labels**, **Company** (only when your workspace has more than one company: which of your companies the invoice belongs to, or a dash if AI Finance Team has not assigned it yet) and **Amount**. It shows 50 invoices per page and can be sorted by date, by ID (the second line of the date header) or by amount. An amber left edge marks an invoice that needs action. The list uses the full width of the window. In a narrow window it scrolls sideways, and the **Amount** column stays in view on the right.
@@ -39,22 +39,34 @@ The labels you meet most often:
 
 | Label | Meaning |
 |-------|---------|
-| **Review** | The extraction is incomplete or failed: check the invoice against the document |
+| **Reading failed** / **Check the extracted data** | The document could not be read / the extracted data scored low: check it against the document |
 | **Company needed** | AI Finance Team could not tell which of your companies the invoice belongs to |
 | **Pick direction** | Income or expense could not be decided; choose it on the invoice |
-| **NAV** / **No PDF** | The invoice came from NAV Online Számla / there is no document file |
-| **FX pending** | The exchange rate to your base currency is not available yet |
-| **Unverified** | The partner is not a verified partner yet (see [Managing Partners](/partners)) |
-| **VAT codes incomplete** / **Default-coded** | Lines without a VAT code / lines coded with the default code |
+| **Exchange rate missing** | The rate to your base currency could not be fetched; enter it on the invoice |
+| **Unverified partner** | The partner is not a verified partner yet (see [Managing Partners](/partners)) |
+| **Incomplete categorization** | Lines without a category, including lines where the AI's suggestion waits for you |
+| **VAT codes incomplete** / **VAT coded by default** | Lines without a VAT code / lines coded with the default code |
+| **Line total differs from the header** | The line items do not add up to the invoice's totals |
+| **Overdue** | Unpaid after its due date. An unpaid invoice that is not yet due is no to-do. Shown only in a workspace with a bank account (a bank connection or uploaded statements), because without one nothing marks an invoice paid |
+| **Match suggestion awaiting a decision** | AI Finance Team suggests a bank transaction for it; confirm or reject it |
+| **NAV** / **No document** | The invoice came from NAV Online Számla / there is no document file. Amber where your workspace expects documents, grey elsewhere |
 | **Duplicate**, **Cancelled** | A duplicate of another invoice / cancelled by a storno invoice |
-| **Awaiting approval**, **Approved**, **Declined** | The payment approval state, where approvals are switched on (see [Approving Invoices for Payment](/approving-invoices)) |
-| **To file**, **To book**, **Filing returned**, **Bookkeeping returned** | A checkpoint still waiting, where filing or bookkeeping approval is switched on (see [Filing and Bookkeeping Approval](/filing-and-bookkeeping-approval)) |
+| **Awaiting payment approval**, **Approved**, **Declined** | The payment approval state, where approvals are switched on (see [Approving Invoices for Payment](/approving-invoices)) |
+| **To file**, **To book** | A checkpoint still waiting, where filing or bookkeeping approval is switched on (see [Filing and Bookkeeping Approval](/filing-and-bookkeeping-approval)) |
+| **Sent back to filing** | The bookkeeper sent the invoice back to filing; point at the label to read the note |
+| **To hand over to the accounting software** | Where the workspace names its accounting software: ready to go to it and not handed over yet, or changed since (see [Ledger](/ledger)) |
 
 ### Finding invoices
 
-Search by invoice number, AI Finance Team ID, seller or buyer name, or partner. Above the list you can filter by date range, **Company** (when you have more than one), **Direction**, **Source** (NAV or uploaded), **Payment** and **Approval**, and switch on filter pills: **Needs review**, **Unpaid**, **Company needed**, **FX pending**, **Duplicate**, **Recently archived**, **All archived**, **No PDF**, **VAT codes incomplete** and **VAT: default-coded**. Archived invoices, duplicates and cancelled storno pairs stay hidden unless their pill is on; **Recently archived** shows the last 30 days, **All archived** every archived invoice. If you work in a [focused period](/focused-period), the list follows it.
+Search by invoice number, AI Finance Team ID, seller or buyer name, or partner. Above the list you can filter by date range, **Company** (when you have more than one), **Direction**, **Coding**, **Payment**, **Document**, **Partner**, **Source** (NAV or uploaded), **Record state** and **Processing**. Each dropdown offers every value of its own dimension and nothing from another one, and a step your workspace has switched off has no dropdown and no value. **Record state** opens on **Active**: archived invoices, duplicates and cancelled storno pairs stay hidden until you pick **Recently archived** (the last 30 days), **All archived**, **Excluded sales invoices**, **Duplicate** or **Cancelled**. **Excluded sales invoices** shows the uploaded sales invoices that a workspace processing only purchase invoices left out. Under **Payment**, **Overdue** lists unpaid invoices past their due date.
+
+Where an approval is switched on, the **Workflow** filter groups its values by step: **Filing**, **Bookkeeping** and **Payment approval**. Within a group any of the values you pick will do (or); across groups every one must hold (and), and the filter bar spells the condition out, for example: Filing: approved AND Bookkeeping: approved. With at least two steps on, **Approved in every step that is on** picks the invoices approved in each of them in one click. **No approval needed** lists the invoices that need no payment approval; the invoice says why. With payment approval on, the **Approver** filter narrows to a person: a colleague who is the approver of at least one invoice, yourself (**Me**), or **No approver assigned**. Together with **Payment approval: Awaiting approval** it shows what waits on someone. Where the workspace names its accounting software, a **Handover** group joins them: **To hand over**, **Handed over**, **Changed after the handover** and, for RLB and Business Central, **Confirmed** (see [Ledger](/ledger)). **Bookkeeping: Approved for bookkeeping** together with **Handover: To hand over** lists what is approved and still to hand over.
+
+The pills above the list are the to-dos. Each to-do pill uses the same words as the label it filters, and shows how many invoices carry that to-do under your other filters; a to-do with nothing to count has no pill, and a step your workspace has switched off has none either. If you work in a [focused period](/focused-period), the list follows it. A link saved before these filters existed still opens the same invoices.
 
 With permission to edit invoices you can tick rows and **Re-categorize** them, **Re-run VAT coding**, or **Approve reviewed items**.
+
+Some to-dos are right as they are: the extracted data was checked, a line total differs on purpose, no document will come, the default VAT code is correct, the invoice was handed over to the accounting software another way (**Handed over manually**, which needs the **"Run exports"** permission). The invoice's page then shows **Accept to-dos**: tick what is right, add a note if you like, and click **Accept**. The to-do goes, and the invoice keeps who accepted it, when, and the note. If the data changes afterwards, the to-do comes back. Where filing or bookkeeping approval is waiting on the invoice, that approval accepts these to-dos instead, and the **Approvals** card says which ones.
 
 ## The invoice page
 

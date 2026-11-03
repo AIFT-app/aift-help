@@ -20,7 +20,7 @@ Claude liest die Rechnung und extrahiert den Kopf, die Parteien, die Beträge un
 
 Laden Sie eine Datei hoch, die mit einer bereits vorhandenen identisch ist, legt AI Finance Team die Rechnung an, markiert sie aber als Duplikat des Originals und extrahiert sie nicht erneut. Das Upload-Fenster zeigt **Bereits vorhanden**, und ein Klick öffnet das Original. Nach der Extraktion wird auch eine Rechnung mit derselben Rechnungsnummer, demselben Rechnungsdatum, demselben Bruttobetrag und derselben Währung wie eine andere als Duplikat markiert.
 
-Duplikate sind in der Liste ausgeblendet: Sie erscheinen als **verknüpft**-Zeile, die Sie unter dem Original aufklappen können, und bei eingeschaltetem Filter **Duplikat**. Sind zwei Rechnungen wirklich verschieden (ein Lieferant hat ein PDF für zwei Rechnungen verwendet), öffnen Sie das Duplikat und klicken Sie in seinem Banner auf **Kein Duplikat**.
+Duplikate sind in der Liste ausgeblendet: Sie erscheinen als **verknüpft**-Zeile, die Sie unter dem Original aufklappen können, und unter **Datensatzstatus: Duplikat**. Sind zwei Rechnungen wirklich verschieden (ein Lieferant hat ein PDF für zwei Rechnungen verwendet), öffnen Sie das Duplikat und klicken Sie in seinem Banner auf **Kein Duplikat**.
 
 ## Die Rechnungsliste
 
@@ -30,7 +30,7 @@ Die Rechnungsliste mit vier Rechnungen. Die Nummern entsprechen der Liste darunt
 
 1. **Datum**, darunter die eigene ID von AI Finance Team, wenn Ihr Arbeitsbereich IDs zeigt. Ein Klick auf die ID kopiert sie.
 2. **Partner**, darunter die Rechnungsnummer. Ein langer Name bricht in eine zweite Zeile um. Ein Klick irgendwo auf die Zeile öffnet die Rechnung.
-3. **Labels**: zuerst, was die Rechnung braucht, zuletzt, woher sie kam (**NAV**, **Kein PDF**). Bis zu drei Pills sind sichtbar, **+N** steht für den Rest: nie für ein Label, das eine Aktion braucht, und wenn Sie darauf zeigen, nennt es, wofür es steht.
+3. **Labels**: zuerst, was die Rechnung braucht, zuletzt, woher sie kam (**NAV**, **Kein Dokument**). Bis zu drei Pills sind sichtbar, **+N** steht für den Rest: nie für ein Label, das eine Aktion braucht, und wenn Sie darauf zeigen, nennt es, wofür es steht.
 4. **Betrag**: der Bruttobetrag in der Rechnungswährung, grün mit Pfeil nach oben für eine Einnahme, rot mit Pfeil nach unten für eine Ausgabe.
 
 Klicken Sie in der Seitenleiste auf **Rechnungen**. Die Liste hat diese Spalten: **Datum** (das Rechnungsdatum) mit der **ID** darunter (die eigene Nummer von AI Finance Team, wenn Ihr Arbeitsbereich sie zeigt; Klick zum Kopieren), **Partner**, **Labels**, **Unternehmen** (nur wenn Ihr Arbeitsbereich mehr als ein Unternehmen hat: zu welchem Ihrer Unternehmen die Rechnung gehört, oder ein Strich, wenn AI Finance Team sie noch keinem zugeordnet hat) und **Betrag**. Sie zeigt 50 Rechnungen pro Seite und lässt sich nach Datum, nach ID (die zweite Zeile der Datumsüberschrift) oder nach Betrag sortieren. Ein gelber linker Rand markiert eine Rechnung, die eine Aktion braucht. Die Liste nutzt die volle Breite des Fensters. In einem schmalen Fenster scrollt sie seitlich, und die Spalte **Betrag** bleibt rechts sichtbar.
@@ -39,22 +39,34 @@ Die Labels, die Ihnen am häufigsten begegnen:
 
 | Label | Bedeutung |
 |-------|---------|
-| **Prüfen** | Die Extraktion ist unvollständig oder fehlgeschlagen: Vergleichen Sie die Rechnung mit dem Dokument |
+| **Auslesen fehlgeschlagen** / **Ausgelesene Daten prüfen** | Das Dokument ließ sich nicht auslesen / die ausgelesenen Daten haben eine niedrige Bewertung: Vergleichen Sie sie mit dem Dokument |
 | **Unternehmen benötigt** | AI Finance Team konnte nicht erkennen, zu welchem Ihrer Unternehmen die Rechnung gehört |
 | **Richtung wählen** | Einnahme oder Ausgabe ließ sich nicht entscheiden; wählen Sie es auf der Rechnung |
-| **NAV** / **Kein PDF** | Die Rechnung kam aus NAV Online Számla / es gibt keine Dokumentdatei |
-| **FX ausstehend** | Der Wechselkurs zu Ihrer Basiswährung ist noch nicht verfügbar |
-| **Nicht verifiziert** | Der Partner ist noch kein verifizierter Partner (siehe [Partner verwalten](/partners)) |
-| **USt-Codes unvollständig** / **Standard-codiert** | Positionen ohne USt-Code / mit dem Standardcode codierte Positionen |
+| **Wechselkurs fehlt** | Der Kurs zu Ihrer Basiswährung ließ sich nicht abrufen |
+| **Partner nicht verifiziert** | Der Partner ist noch kein verifizierter Partner (siehe [Partner verwalten](/partners)) |
+| **Unvollständige Kategorisierung** | Positionen ohne Kategorie, auch solche, bei denen der Vorschlag der KI auf Sie wartet |
+| **USt-Codes unvollständig** / **USt: Standard-codiert** | Positionen ohne USt-Code / mit dem Standardcode codierte Positionen |
+| **Positionssumme weicht vom Kopf ab** | Die Positionen ergeben nicht die Summen der Rechnung |
+| **Überfällig** | Nach dem Fälligkeitsdatum unbezahlt. Eine noch nicht fällige unbezahlte Rechnung ist keine Aufgabe. Erscheint nur in einem Arbeitsbereich mit Bankkonto (Bankverbindung oder hochgeladene Kontoauszüge), weil sonst nichts eine Rechnung als bezahlt markiert |
+| **Zuordnungsvorschlag wartet auf eine Entscheidung** | AI Finance Team schlägt eine Banktransaktion vor; bestätigen oder verwerfen Sie sie |
+| **NAV** / **Kein Dokument** | Die Rechnung kam aus NAV Online Számla / es gibt keine Dokumentdatei. Bernsteinfarben, wo Ihr Arbeitsbereich Dokumente erwartet, sonst grau |
 | **Duplikat**, **Storniert** | Ein Duplikat einer anderen Rechnung / durch eine Stornorechnung aufgehoben |
-| **Freigabe ausstehend**, **Freigegeben**, **Abgelehnt** | Der Stand der Zahlungsfreigabe, wo Freigaben eingeschaltet sind (siehe [Rechnungen zur Zahlung freigeben](/approving-invoices)) |
-| **Zu erfassen**, **Zu buchen**, **Erfassung zurückgegeben**, **Buchung zurückgegeben** | Ein Prüfschritt wartet noch auf eine Entscheidung, wo die Erfassungs- oder Buchungsfreigabe eingeschaltet ist (siehe [Erfassungs- und Buchungsfreigabe](/filing-and-bookkeeping-approval)) |
+| **Zahlungsfreigabe ausstehend**, **Freigegeben**, **Abgelehnt** | Der Stand der Zahlungsfreigabe, wo Freigaben eingeschaltet sind (siehe [Rechnungen zur Zahlung freigeben](/approving-invoices)) |
+| **Zu erfassen**, **Zu buchen** | Ein Prüfschritt wartet noch auf eine Entscheidung, wo die Erfassungs- oder Buchungsfreigabe eingeschaltet ist (siehe [Erfassungs- und Buchungsfreigabe](/filing-and-bookkeeping-approval)) |
+| **Zur Erfassung zurückgegeben** | Die Buchhaltung hat die Rechnung zur Erfassung zurückgegeben; zeigen Sie auf das Label, um die Notiz zu lesen |
+| **An die Buchhaltungssoftware zu übergeben** | Wo der Arbeitsbereich seine Buchhaltungssoftware festgelegt hat: bereit zur Übergabe und noch nicht übergeben oder seitdem geändert (siehe [Hauptbuch](/ledger)) |
 
 ### Rechnungen finden
 
-Suchen Sie nach Rechnungsnummer, AI-Finance-Team-ID, Verkäufer- oder Käufername oder Partner. Über der Liste filtern Sie nach Zeitraum, **Unternehmen** (wenn Sie mehrere haben), **Richtung**, **Quelle** (NAV oder hochgeladen), **Zahlung** und **Freigabe**, und schalten Filter-Pills ein: **Prüfung erforderlich**, **Unbezahlt**, **Unternehmen benötigt**, **FX ausstehend**, **Duplikat**, **Kürzlich archiviert**, **Alle archivierten**, **Kein PDF**, **USt-Codes unvollständig** und **USt: standard-codiert**. Archivierte Rechnungen, Duplikate und stornierte Paare bleiben ausgeblendet, bis ihre Pill eingeschaltet ist; **Kürzlich archiviert** zeigt die letzten 30 Tage, **Alle archivierten** jede archivierte Rechnung. Arbeiten Sie in einem [fokussierten Zeitraum](/focused-period), folgt die Liste diesem.
+Suchen Sie nach Rechnungsnummer, AI-Finance-Team-ID, Verkäufer- oder Käufername oder Partner. Über der Liste filtern Sie nach Zeitraum, **Unternehmen** (wenn Sie mehrere haben), **Richtung**, **Kontierung**, **Zahlung**, **Dokument**, **Partner**, **Quelle** (NAV oder hochgeladen), **Datensatzstatus** und **Verarbeitung**. Jedes Auswahlfeld bietet alle Werte seiner eigenen Dimension und nichts aus einer anderen, und ein Schritt, den Ihr Arbeitsbereich ausgeschaltet hat, hat weder Auswahlfeld noch Wert. **Datensatzstatus** öffnet auf **Aktiv**: Archivierte Rechnungen, Duplikate und stornierte Paare bleiben ausgeblendet, bis Sie **Kürzlich archiviert** (die letzten 30 Tage), **Alle archivierten**, **Ausgeschlossene Ausgangsrechnungen**, **Duplikat** oder **Storniert** wählen. **Ausgeschlossene Ausgangsrechnungen** zeigt die hochgeladenen Ausgangsrechnungen, die ein Arbeitsbereich ausgeschlossen hat, der nur Eingangsrechnungen verarbeitet. Unter **Zahlung** listet **Überfällig** die unbezahlten Rechnungen nach Fälligkeit.
+
+Wo eine Freigabe eingeschaltet ist, gruppiert der Filter **Workflow** seine Werte nach Schritt: **Erfassung**, **Buchung** und **Zahlungsfreigabe**. Innerhalb einer Gruppe genügt einer der gewählten Werte (oder), über Gruppen hinweg muss jede gelten (und), und die Filterleiste schreibt die Bedingung aus, zum Beispiel: Erfassung: freigegeben UND Buchung: freigegeben. Sind mindestens zwei Schritte eingeschaltet, wählt **In jedem aktiven Schritt freigegeben** mit einem Klick die Rechnungen, die in jedem davon freigegeben sind. **Keine Freigabe nötig** listet die Rechnungen, die keine Zahlungsfreigabe brauchen; warum, sagt die Rechnung. Bei eingeschalteter Zahlungsfreigabe grenzt der Filter **Freigebende Person** auf eine Person ein: eine Kollegin oder einen Kollegen, die bei mindestens einer Rechnung freigeben, Sie selbst (**Ich**) oder **Keine freigebende Person zugewiesen**. Zusammen mit **Zahlungsfreigabe: Freigabe ausstehend** zeigt er, was auf jemanden wartet. Wo der Arbeitsbereich seine Buchhaltungssoftware festgelegt hat, kommt die Gruppe **Übergabe** hinzu: **Zu übergeben**, **Übergeben**, **Nach der Übergabe geändert** und bei RLB und Business Central **Vom Programm bestätigt** (siehe [Hauptbuch](/ledger)). **Buchung: Zur Buchung freigegeben** zusammen mit **Übergabe: Zu übergeben** listet, was freigegeben und noch zu übergeben ist.
+
+Die Pills über der Liste sind die Aufgaben. Jede Aufgaben-Pill trägt die Worte des Labels, nach dem sie filtert, und zeigt, wie viele Rechnungen unter Ihren übrigen Filtern diese Aufgabe haben; eine Aufgabe ohne Treffer hat keine Pill, ein Schritt, den Ihr Arbeitsbereich ausgeschaltet hat, ebenfalls nicht. Arbeiten Sie in einem [fokussierten Zeitraum](/focused-period), folgt die Liste diesem. Ein Link, der vor diesen Filtern gespeichert wurde, öffnet weiterhin dieselben Rechnungen.
 
 Mit der Berechtigung, Rechnungen zu bearbeiten, können Sie Zeilen anhaken und **Neu kategorisieren**, **USt-Codierung erneut ausführen** oder **Geprüfte Einträge freigeben** wählen.
+
+Manche Aufgaben sind so, wie sie sind, richtig: Die ausgelesenen Daten wurden geprüft, eine Positionssumme weicht bewusst ab, es kommt kein Dokument, der Standard-USt-Code stimmt, oder die Rechnung wurde auf anderem Weg an die Buchhaltungssoftware übergeben (**Manuell übergeben**, dafür braucht es die Berechtigung **„Buchhaltungsexporte ausführen“**). Die Seite der Rechnung zeigt dann **Aufgaben akzeptieren**: Haken Sie an, was stimmt, fügen Sie bei Bedarf eine Notiz hinzu und klicken Sie auf **Akzeptieren**. Die Aufgabe verschwindet, und die Rechnung behält, wer sie wann akzeptiert hat, und die Notiz. Ändern sich die Daten später, kommt die Aufgabe zurück. Wartet eine Erfassungs- oder Buchungsfreigabe auf die Rechnung, akzeptiert diese Freigabe die Aufgaben, und die Karte **Freigaben** nennt sie.
 
 ## Die Rechnungsseite
 

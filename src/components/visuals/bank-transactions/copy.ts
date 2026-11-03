@@ -22,8 +22,7 @@ export const UI_KEYS = [
   'list_view.col_category',
   'list_view.col_amount',
   'transactions.list.status_no_invoice',
-  'transactions.list.status_duplicate',
-  'transactions.list.status_unmatched',
+  'transactions.todos.labels.txn_unmatched',
   'transactions.list.status_matched',
   'transactions.list.status_bank_feed',
   'transactions.list.status_statement',
@@ -31,15 +30,16 @@ export const UI_KEYS = [
 
 export type UiKey = (typeof UI_KEYS)[number]
 
-export type LabelKey = 'no_invoice' | 'duplicate' | 'unmatched' | 'matched' | 'bank_feed' | 'statement'
+export type LabelKey = 'no_invoice' | 'unmatched' | 'matched' | 'bank_feed' | 'statement'
 
 // aift-web transactions/_components/TransactionListShell.tsx
-// resolveTransactionLabels tones.
+// resolveTransactionLabels tones (transaction-list-todos: a to-do is amber,
+// everything else is grey information, and a duplicate is off the default
+// list).
 export const LABEL_TONE: Record<LabelKey, Tone> = {
-  no_invoice: 'blue',
-  duplicate: 'amber',
+  no_invoice: 'zinc',
   unmatched: 'amber',
-  matched: 'emerald',
+  matched: 'zinc',
   bank_feed: 'zinc',
   statement: 'zinc',
 }
@@ -115,7 +115,7 @@ function rows(amounts: [number, number, number, number, number], currency: strin
       bookingDate: '2026-09-11',
       partner: 'Gearmont Fleet Services Ltd.',
       description: text[4].description,
-      labels: ['duplicate', 'unmatched', 'statement'],
+      labels: ['unmatched', 'statement'],
       amount: amounts[4],
       currency,
       category: text[4].category,
@@ -134,8 +134,7 @@ const en: Copy = {
     'list_view.col_category': 'Category',
     'list_view.col_amount': 'Amount',
     'transactions.list.status_no_invoice': 'No invoice',
-    'transactions.list.status_duplicate': 'Duplicate',
-    'transactions.list.status_unmatched': 'Unmatched',
+    'transactions.todos.labels.txn_unmatched': 'Unmatched',
     'transactions.list.status_matched': 'Matched',
     'transactions.list.status_bank_feed': 'Bank feed',
     'transactions.list.status_statement': 'Statement',
@@ -163,8 +162,7 @@ const hu: Copy = {
     'list_view.col_category': 'Kategória',
     'list_view.col_amount': 'Összeg',
     'transactions.list.status_no_invoice': 'Nincs számla',
-    'transactions.list.status_duplicate': 'Duplikáció',
-    'transactions.list.status_unmatched': 'Nem párosított',
+    'transactions.todos.labels.txn_unmatched': 'Párosítatlan',
     'transactions.list.status_matched': 'Párosítva',
     'transactions.list.status_bank_feed': 'Banki forrás',
     'transactions.list.status_statement': 'Bankkivonat',
@@ -192,8 +190,7 @@ const de: Copy = {
     'list_view.col_category': 'Kategorie',
     'list_view.col_amount': 'Betrag',
     'transactions.list.status_no_invoice': 'Keine Rechnung',
-    'transactions.list.status_duplicate': 'Duplikat',
-    'transactions.list.status_unmatched': 'Nicht zugeordnet',
+    'transactions.todos.labels.txn_unmatched': 'Nicht zugeordnet',
     'transactions.list.status_matched': 'Zugeordnet',
     'transactions.list.status_bank_feed': 'Bank-Feed',
     'transactions.list.status_statement': 'Auszug',

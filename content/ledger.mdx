@@ -104,6 +104,23 @@ The file is named for the period you exported.
 
 All three need the same **"Run exports"** permission as the Ledger, and client-side users never see them. The two files are in Hungarian whatever your interface language, because the programs that read them expect it. Business Central appears only once it is connected, and has its own article: [Business Central](/business-central).
 
+### The accounting software and the handover
+
+Under **Settings → Ledger defaults → Accounting software**, name the program this workspace hands its invoices over to: **RLB**, **Eurosoft Profit**, **HessynKettős** or **Business Central**. One per workspace, because a workspace is one client. It can stay empty, and then nothing below appears and the exports work as before. The first time you choose a program, the dialog says how many invoices will show as **To hand over** before you save.
+
+With a program set, every handover is recorded on the invoice: each RLB and Profit export (a period exported again included), each HessynKettős file, and each Business Central send. The invoice list then has the **To hand over to the accounting software** to-do and a **Handover** group in the **Workflow** filter:
+
+| Value | Meaning |
+|---|---|
+| **To hand over** | With bookkeeping approval on: approved for bookkeeping, and not handed over since the approval. With it off: every line coded, and never handed over, or changed since |
+| **Handed over** | Handed over, and nothing changed since |
+| **Changed after the handover** | The amounts, the dates, the partner or a line's category or VAT code changed after the last handover, so it is due again |
+| **Confirmed** | The program reported the booking back: RLB when its OSA register links the invoice and gives it a journal number, Business Central when a resend finds the document posted. HessynKettős and Profit never confirm |
+
+AI Finance Team knows what it handed over, never what is booked, so no invoice reads "booked". Business Central receives only expense invoices from AI Finance Team and the HessynKettős file carries only sales invoices. An invoice going the other way is still To hand over there, until you mark it handed over manually (see below). The invoice's **Approvals** card shows the last handover, whether the invoice changed since, and the confirmation with its evidence.
+
+An invoice handed over some other way is taken off the list on its page: under **Accept to-dos**, tick **Handed over manually**, add a note if you like, and accept; this needs the **"Run exports"** permission. Its history shows it. With bookkeeping approval on, **Not to be booked: Already booked** does the same. Handovers made before the record began are read from the export history, but only from 12 October 2026 for HessynKettős; older ones can be cleared the same way.
+
 ### RLB
 
 The **RLB** page is the Ledger narrowed to what the office books in RLB-60: the same **Ask the Ledger** bar, filter strip and chips, and the first three tabs (**Invoice Headers**, **Invoice Lines**, **Bank Transactions**), with the same defaults (the last 30 days, the workspace's date type). **What the tabs show is what the file contains**: the export takes exactly the filters you set. The [monthly closing](/closing) page links here for its month with **RLB export for this period →**.

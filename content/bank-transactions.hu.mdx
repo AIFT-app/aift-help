@@ -17,7 +17,7 @@ A tranzakciólista öt tranzakcióval. A számok az alábbi listának felelnek m
 
 1. **Dátum**: a könyvelés dátuma, alatta az AI Finance Team saját azonosítójával, ha a munkaterület mutatja az azonosítókat. Az azonosítóra kattintva kimásolhatja.
 2. **Partner**, alatta a bank leírásával, legfeljebb két sorban. A sorra bárhol kattintva megnyílik a tranzakció.
-3. **Címkék**: elöl az, amivel teendő van (**Nem párosított**, **Duplikáció**), utána a **Párosítva** vagy a **Nincs számla**, a végén pedig a forrás (**Banki forrás**, **Bankkivonat**).
+3. **Címkék**: elöl a teendők borostyánsárgával (itt **Párosítatlan**), utána a szürke tájékoztató címkék: **Párosítva**, **Nincs számla**, végül a forrás (**Banki forrás**, **Bankkivonat**).
 4. **Kategória**: elöl a kategória főkönyvi száma, utána a neve.
 5. **Összeg**: a számla pénznemében, bejövő pénznél zöld, felfelé mutató nyíllal, kimenőnél piros, lefelé mutató nyíllal.
 
@@ -27,16 +27,25 @@ A lista oldalanként 50 tranzakciót mutat, a legújabbal kezdve, és rendezhet�
 
 A **Kategória** cella üres, ha a **Beállítások → Könyvelési alapértelmezések** alatt be van kapcsolva **A pénzforgalmi kategóriák csak könyvelési célra**, és a tranzakcióhoz még számla kell. Ezzel a beállítással az ilyen tranzakció főkönyvi számát a számlája adja, nem a kategória. Lásd: [Számlák és tranzakciók kategorizálása](/categorization).
 
-### Címkék
+### Teendők és címkék
 
-| Címke | Szín | Jelentés |
-|-------|------|----------|
-| **Nem párosított** | borostyánsárga | Még nincs hozzá párosított számla, és nincs megjelölve, hogy nem kell hozzá |
-| **Duplikáció** | borostyánsárga | Ugyanazon a számlán egy másik tranzakció másolataként jelölt tétel, azonos könyvelési dátummal és összeggel. A listán marad, a párosítás kihagyja |
-| **Párosítva** | zöld | Egy vagy több számlához párosítva, automatikusan vagy kézzel |
-| **Nincs számla** | kék | Megjelölve, hogy nem kell hozzá számla, tranzakciótípus vagy egy felhasználó által |
-| **Banki forrás** | szürke | Csatlakoztatott bankszámlából érkezett |
-| **Bankkivonat** | szürke | Feltöltött bankkivonatból érkezett |
+A lista feletti címkék a teendők, mindegyik a darabszámával; amelyikhez nincs teendő, az nem jelenik meg. Egy teendőre kattintva a lista az érintett tranzakciókat mutatja, és ha több is be van kapcsolva, elég, ha a tranzakcióra az egyik igaz. A sorokon a teendők ugyanezekkel a szavakkal, borostyánsárgával látszanak, a tranzakció **Teendők** kártyája pedig mindegyikhez megmutatja a megoldást.
+
+| Teendő | Mikor | Hogyan tűnik el |
+|--------|-------|-----------------|
+| **Hiányos kategorizálás** | A tranzakciónak nincs kategóriája. A soron az oka is látszik: **javaslat vár** (az AI javaslata Önre vár), **sikertelen**, vagy semmi, ha nem készült javaslat. Csak bekapcsolt tranzakció-kategorizálásnál, és ha a munkaterületen vannak tranzakciókategóriák | Fogadja el a javaslatot, vagy válasszon kategóriát; a sikertelent kategorizáltassa újra |
+| **Hiányzó egyéni kategória** | Egy kötelező [egyéni kategórialista](/custom-categories) még üres | Töltse ki a listát a tranzakción |
+| **Párosítatlan** | Nincs hozzá párosított számla, nem belső átvezetés, és nincs megjelölve, hogy nem kell hozzá számla. A [Havi zárás](/closing) ezeket számolja megoldatlan tranzakcióként | Párosítsa, jelölje **Nincs számla**, vagy zárja le (lásd lent) |
+| **Részben párosított** | A számlái az összegének csak egy részét fedik | Fejezze be a kiegyenlítést, adjon hozzá számlát, vagy zárja le |
+| **Párosítási javaslat vár döntésre** | Egy párosítási javaslat döntésre vár | Fogadja el vagy utasítsa el a javaslatot, vagy zárja le a tranzakciót |
+| **Kiegyenlítés folyamatban** | Egy megnyitott kiegyenlítésben szerepel | Véglegesítse vagy dobja el a kiegyenlítést |
+| **Ellenőrizetlen partner** | A partnere még nincs hitelesítve | Hitelesítse a partnert, vagy válasszon másikat |
+| **Hiányzó árfolyam** | Az árfolyamát nem sikerült lekérni | Adja meg az árfolyamot a tranzakción (lásd lent) |
+| **Hiányzó főkönyvi ellenszámla** | Csak ha a könyvelőprogram a Business Central: egy számla nélküli tranzakció, amelynek a kategóriáján nincs főkönyvi szám | Adja meg a kategória kódját a törzsadatokban, vagy válasszon másik kategóriát |
+
+A szürke címkék tájékoztatnak: **Párosítva**, **Nincs számla**, **Lezárva**, **Belső átvezetés**, **Duplikáció**, **Banki forrás** és **Bankkivonat**.
+
+A teendők a könyvelőéi: aki csak a saját bankkivonatait látja, nem lát teendőt. A [Teendők](/mission-control) oldal minden munkaterület tranzakciós teendőit felsorolja, ugyanazokkal a számokkal, mint a lista.
 
 A párosítás menetét a [Számlák párosítása](/invoice-matching) írja le. A banki díjakhoz, az adókhoz és a saját számlák közötti átvezetésekhez nem kell számla: lásd [Tranzakciótípusok és „nem kell számla”](/transaction-types).
 
@@ -44,21 +53,28 @@ A párosítás menetét a [Számlák párosítása](/invoice-matching) írja le.
 
 Kereshet partner, leírás, közlemény vagy AI Finance Team-azonosító szerint. A partnerre keresés a bank által küldött nevet és a hozzárendelt partnert is nézi.
 
-A lista felett szűrhet időszakra, **Cég** szerint (ha több cége van), valamint **Számla** (a bankszámla) és **Irány** (**Bevétel** vagy **Kiadás**) szerint. Ha valamelyik bankszámlához még nincs cég rendelve, a **Cég** szűrőben a **Nincs céghez rendelve** lehetőség is megjelenik.
+A lista felett szűrhet időszakra és ezekkel a legördülő szűrőkkel. A tranzakciónak minden beállított szűrőnek meg kell felelnie, egy szűrőn belül pedig elég a kiválasztott értékek egyike:
 
-A szűrőcímkék a címkék szerint szűrnek: **Banki forrás**, **Bankkivonat**, **Duplikáció**, **Nem párosított**, **Párosítva** és **Nincs számla**. Egyszerre több is bekapcsolható:
+- **Cég** (ha több cége van; ha valamelyik bankszámlához még nincs cég rendelve, a **Nincs céghez rendelve** is), **Számla** és **Irány** (**Bevétel** vagy **Kiadás**).
+- **Rekord állapota**: alapértelmezés szerint **Aktív**, vagy **Duplikátum**, illetve **Mind**. A duplikátum ugyanazon a számlán egy másik tranzakció másolata, azonos könyvelési dátummal és összeggel; a párosítás kihagyja, és az oldalán a **Nem duplikátum** visszahozza.
+- **Forrás**: **Banki forrás** vagy **Bankkivonat**.
+- **Párosítás**: **Párosítatlan**, **Részben párosított**, **Párosítva automatikusan**, **Párosítva kézzel**, **Nincs számla**, **Lezárva**, **Belső átvezetés**, **Javaslat vár döntésre** és **Kiegyenlítés folyamatban**. A belső átvezetés mindig csak **Belső átvezetés**.
+- **Kódolás**: **Javaslat vár elfogadásra**, **Nincs kategória**, **Sikertelen kategorizálás**, **Hiányzó egyéni kategória** és **Teljes**.
+- **Kategória**, **Tranzakciótípus** (vagy **Nincs típus**) és **Partner** (**Ellenőrzött**, **Ellenőrizetlen** vagy **Nincs partner**).
 
-- A **Banki forrás**, a **Bankkivonat** és a **Duplikáció** közül elég, ha a tranzakcióra az egyik igaz.
-- A **Nem párosított**, a **Párosítva** és a **Nincs számla** közül ugyanígy.
-- A két csoport között mindkettőnek teljesülnie kell. A **Bankkivonat** és a **Nem párosított** együtt a bankkivonatból érkezett, nem párosított tranzakciókat listázza.
-
-A **Hiányzó egyéni kategória** azokat a tranzakciókat listázza, amelyeken egy kötelező [egyéni kategórialista](/custom-categories) még üres. Ha [fókuszált időszakban](/focused-period) dolgozik, a lista azt követi.
+A Havi zárás hivatkozásai úgy szűrve nyitják meg a listát, ahogy az ellenőrzés számol: a megoldatlan tranzakciókat a **Párosítatlan** teendőn, a kategória nélkülieket a **Hiányos kategorizálás** teendőn, a hiányzó árfolyamokat pedig a **Függő vagy sikertelen árfolyam** szűrővel. Ha [fókuszált időszakban](/focused-period) dolgozik, a lista azt követi.
 
 A „Banki tranzakciók szerkesztése” jogosultsággal sorokat jelölhet ki, és választhatja az **Újrakategorizálás** műveletet. Az AI által kategorizált és a kategória nélküli tranzakciókat a rendszer a jelenlegi kategóriák szerint újra besorolja. A kézzel beállított kategóriák változatlanok maradnak.
 
 ## Egy tranzakció megnyitása
 
 A tranzakció megnyitásához kattintson a sorára. A tranzakció oldalán a **j** vagy a lefelé nyíl a lista következő tranzakciójára lép, a **k** vagy a felfelé nyíl az előzőre, a szűrők és a rendezés megtartásával. A **Párosítás & fizetés** kártya mutatja a párosított számlákat és a párosítás műveleteit; lásd: [Számlák párosítása](/invoice-matching).
+
+Az összefoglaló alatti **Teendők** kártya a tranzakció teendőit sorolja fel, mindegyik a megoldásához vezet. Emellett itt érhető el:
+
+- A **Lezárás** egy párosítatlan vagy részben párosított tranzakciónál, amelyhez nincs több párosítanivaló, például egy banki díj maradékánál vagy egy visszautalás egyik felénél, nem kötelező megjegyzéssel. A párosítási teendők eltűnnek, a döntésre váró párosítási javaslatok elvetődnek, és az ügyfélnek szóló számlakérés lezárul; a kategória, a partner és az árfolyam teendői megmaradnak. A lezárt tranzakció a Havi zárásban megoldottnak számít, megtartja a párosított számláit, és nem megy a Business Centralba. Az **Újranyitás** visszahozza a párosítást, és a **Nincs számla** jelölés is véget vet a lezárásnak. Mindkettőhöz a „Banki tranzakciók szerkesztése” és a „Párosítás kezelése” jogosultság kell.
+- A **Nem duplikátum** egy duplikátumként jelölt tranzakciónál: visszakerül az aktív listába, és az előzményekben megjelenik.
+- A kézi árfolyam, ha az árfolyamot nem sikerült lekérni: a bázisdevizára szóló árfolyam, a beszámolási árfolyam, vagy mindkettő, amelyik hiányzik.
 
 A **Felek** kártya a pénz útja szerint mutatja a két oldalt: kimenő utalásnál felül a saját cégét (**Fizető**), alatta a partnert (**Kedvezményezett**), bejövőnél fordítva. A saját cége mellett a bankszámla teljes száma áll. Bármelyik oldal mezőjére kattintva (a **Részletek** jelzi) egy csak olvasható oldalpanel nyílik meg, ugyanazt, mint a számlán. Ha joga van módosítani, a **Módosítás** mutatja a partner kiválasztását, és ha a bankszámlán több cég osztozik, a cégét is. Egy még nem hitelesített vagy hiányzó partnernél a kártya eleve így nyílik meg, és ide vezet a **Partner hitelesítése** gomb és az ugyanilyen nevű teendő is.
 
@@ -77,7 +93,7 @@ A lista melletti **Bankkivonatok** fül minden feltöltött bankkivonatot mutat 
 ## Ki mit lát
 
 - **„Számlák és banki tranzakciók megtekintése”**: ezzel a teljes lista látható. Alapértelmezés szerint minden szerepkörnek megvan; lásd: [Szerepek és jogosultságok](/roles-and-permissions).
-- **Enélkül** az a tag, aki bankkivonatokat töltött fel, csak ezeknek a kivonatoknak a tranzakcióit látja, a lista felett egy megjegyzéssel. Nem lát szűrőcímkéket, kategóriákat és párosítási címkéket: csak a **Banki forrás** és a **Bankkivonat** címke jelenik meg.
+- **Enélkül** az a tag, aki bankkivonatokat töltött fel, csak ezeknek a kivonatoknak a tranzakcióit látja, a lista felett egy megjegyzéssel. Nem lát teendőket, kategóriákat és párosítási címkéket: csak a **Banki forrás** és a **Bankkivonat** címke jelenik meg.
 - **„Banki tranzakciók szerkesztése”**: ez kell az újrakategorizáláshoz, egy tranzakció módosításához, és ahhoz, hogy megjelölje: nem kell hozzá számla. Alapértelmezés szerint csak a két könyvelői szerepkörnek van meg.
 
 Amíg a munkaterületen nincs bankszámla, az oldal a **Még nincsenek bankszámlák** üzenetet mutatja, és egy bankszámla csatlakoztatását vagy egy bankkivonat feltöltését javasolja.

@@ -174,6 +174,8 @@ The top half is a read-only funnel: how many invoices are **ready to send**, how
 
 Only expense invoices are considered, and never a duplicate or an archived one. **The invoice's own PDF goes with it** (see The PDF below), and a missing PDF never blocks a send.
 
+Every send is recorded on the invoice as a handover. Where the workspace's accounting software is Business Central (see [Ledger](/ledger)), a sent invoice reads **Handed over**, and one changed afterwards **Changed after the handover**. Business Central does not tell AI Finance Team when a draft is posted; when **Send again to Business Central** finds it posted, the invoice reads **Confirmed**, with Business Central's status on its **Approvals** card.
+
 ### What to know before you press Send
 
 - **At most 200 invoices go per press.**
