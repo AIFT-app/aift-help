@@ -56,6 +56,8 @@ export const UI_KEYS = [
   "org.settings.billing.calc_col_amount",
   "org.settings.billing.calc_package_row",
   "org.settings.billing.calc_total",
+  "org.settings.billing.bands_heading",
+  "org.settings.billing.calc_slider",
 ] as const
 
 export type UiKey = (typeof UI_KEYS)[number]
@@ -146,6 +148,8 @@ const en: Copy = {
     "org.settings.billing.calc_col_amount": "Amount",
     "org.settings.billing.calc_package_row": "Package, first {count} invoices",
     "org.settings.billing.calc_total": "Monthly fee",
+    "org.settings.billing.bands_heading": "Above {count} invoices, per invoice:",
+    "org.settings.billing.calc_slider": "Invoices per month, slider",
   },
   currency: 'EUR',
   plan: EUR_PLAN,
@@ -197,6 +201,8 @@ const hu: Copy = {
     "org.settings.billing.calc_col_amount": "Összeg",
     "org.settings.billing.calc_package_row": "Csomag, az első {count} számla",
     "org.settings.billing.calc_total": "Havidíj",
+    "org.settings.billing.bands_heading": "{count} számla felett, darabonként:",
+    "org.settings.billing.calc_slider": "Számlák egy hónapban, csúszka",
   },
   currency: 'HUF',
   plan: HUF_PLAN,
@@ -248,6 +254,8 @@ const de: Copy = {
     "org.settings.billing.calc_col_amount": "Betrag",
     "org.settings.billing.calc_package_row": "Paket, erste {count} Rechnungen",
     "org.settings.billing.calc_total": "Monatsgebühr",
+    "org.settings.billing.bands_heading": "Über {count} Rechnungen, pro Rechnung:",
+    "org.settings.billing.calc_slider": "Rechnungen pro Monat, Schieberegler",
   },
   currency: 'EUR',
   plan: EUR_PLAN,
