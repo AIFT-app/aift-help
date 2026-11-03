@@ -4,7 +4,7 @@
 // billing-checkout-hu-tax-id, aift-web#1619, and the card-width price sizing;
 // the picker re-copied 2026-11-02 for billing-single-package: one card without
 // the Best for you badge, no interval toggle, graduated band lines, the long_term
-// line; re-copied 2026-11-03 for the pricing-page parity, aift-web#2005: band
+// line; re-copied 2026-11-03/04 for the pricing-page parity, aift-web#2005 to #2008: band
 // labels with start and end, bank line and band rule on the card, "+ áfa", and
 // the calculator beside the card in place of the "your cost at" row), class for
 // class, with the real
@@ -184,16 +184,21 @@ export function PlanPickerFigure({ locale, children }: FigureProps) {
                       {rich(fill(b('included_line_month'), { count: formatCount(p.included, locale) }), { strong })}
                       <Pin n={2} at="right" cancel="" />
                     </p>
-                    <p className="mt-0.5 text-xs text-gray-500 dark:text-gray-400">{b('bank_not_counted')}</p>
-                    <ul className="mt-2 space-y-0.5 text-xs text-gray-500 dark:text-gray-400">
-                      {cardBands.map((band) => (
-                        <li key={band.key} className="flex justify-between gap-3">
-                          <span>{band.label}</span>
-                          <span className="whitespace-nowrap tabular-nums">{fill(b('band_rate'), { price: unit(band.rate) })}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">{b('band_rule')}</p>
+                    <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">{b('bank_not_counted')}</p>
+                    <div className="mt-4 border-t border-gray-100 pt-4 dark:border-white/10">
+                      <p className="text-sm font-semibold text-gray-900 dark:text-white">
+                        {fill(b('bands_heading'), { count: formatCount(p.included, locale) })}
+                      </p>
+                      <ul className="mt-1 divide-y divide-gray-100 text-sm dark:divide-white/10">
+                        {cardBands.map((band) => (
+                          <li key={band.key} className="flex justify-between gap-3 py-2">
+                            <span className="text-gray-600 dark:text-gray-300">{band.label}</span>
+                            <span className="font-semibold whitespace-nowrap tabular-nums text-gray-900 dark:text-white">{unit(band.rate)}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">{b('band_rule')}</p>
+                    </div>
 
                     <dl className="mt-4 space-y-2 border-t border-gray-100 pt-3 text-xs dark:border-white/10">
                       <div className="flex justify-between gap-3">
@@ -217,7 +222,20 @@ export function PlanPickerFigure({ locale, children }: FigureProps) {
                     </h3>
                     <Field className="mt-3">
                       <Label>{b('calc_input')}</Label>
-                      <Input type="number" inputMode="numeric" min={0} step={1} defaultValue={String(invoices)} className="max-w-40" />
+                      <div className="mt-3 flex items-center gap-4">
+                        <input
+                          type="range"
+                          min={0}
+                          max={Math.max(4000, invoices)}
+                          step={1}
+                          defaultValue={invoices}
+                          aria-label={b('calc_slider')}
+                          className="min-w-0 flex-1 accent-indigo-600 dark:accent-indigo-400"
+                        />
+                        <div className="w-28 shrink-0">
+                          <Input type="number" inputMode="numeric" min={0} step={1} defaultValue={String(invoices)} />
+                        </div>
+                      </div>
                     </Field>
                     <table className="mt-5 w-full table-fixed text-sm">
                       <colgroup>
