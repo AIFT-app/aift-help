@@ -30,7 +30,7 @@ The invoice list with four invoices. The numbers match the list below. The compa
 
 1. **Date**, with AI Finance Team's own ID underneath when your workspace shows IDs. Click the ID to copy it.
 2. **Partner**, with the invoice number underneath. A long name wraps onto a second line. A click anywhere on the row opens the invoice.
-3. **Labels**: what the invoice needs comes first, where it came from (**NAV**, **No PDF**) last. Up to three pills show, and **+N** stands for the rest: never a label that needs action, and pointing at it lists what it stands for.
+3. **Labels**: what the invoice needs comes first, where it came from (**NAV**, **No document**) last. Up to three pills show, and **+N** stands for the rest: never a label that needs action, and pointing at it lists what it stands for.
 4. **Amount**: the gross total in the invoice currency, green with an up arrow for income, red with a down arrow for an expense.
 
 Click **Invoices** in the sidebar. The list has these columns: **Date** (the issue date) with the **ID** under it (AI Finance Team's own number, when your workspace shows it; click to copy), **Partner**, **Labels**, **Company** (only when your workspace has more than one company: which of your companies the invoice belongs to, or a dash if AI Finance Team has not assigned it yet) and **Amount**. It shows 50 invoices per page and can be sorted by date, by ID (the second line of the date header) or by amount. An amber left edge marks an invoice that needs action. The list uses the full width of the window. In a narrow window it scrolls sideways, and the **Amount** column stays in view on the right.
@@ -39,22 +39,28 @@ The labels you meet most often:
 
 | Label | Meaning |
 |-------|---------|
-| **Review** | The extraction is incomplete or failed: check the invoice against the document |
+| **Reading failed** / **Check the extracted data** | The document could not be read / the extracted data scored low: check it against the document |
 | **Company needed** | AI Finance Team could not tell which of your companies the invoice belongs to |
 | **Pick direction** | Income or expense could not be decided; choose it on the invoice |
-| **NAV** / **No PDF** | The invoice came from NAV Online Számla / there is no document file |
-| **FX pending** | The exchange rate to your base currency is not available yet |
-| **Unverified** | The partner is not a verified partner yet (see [Managing Partners](/partners)) |
-| **VAT codes incomplete** / **Default-coded** | Lines without a VAT code / lines coded with the default code |
+| **Exchange rate missing** | The rate to your base currency could not be fetched; enter it on the invoice |
+| **Unverified partner** | The partner is not a verified partner yet (see [Managing Partners](/partners)) |
+| **Incomplete categorization** | Lines without a category, including lines where the AI's suggestion waits for you |
+| **VAT codes incomplete** / **VAT coded by default** | Lines without a VAT code / lines coded with the default code |
+| **Line total differs from the header** | The line items do not add up to the invoice's totals |
+| **Overdue** | Unpaid after its due date. An unpaid invoice that is not yet due is no to-do |
+| **Match suggestion awaiting a decision** | AI Finance Team suggests a bank transaction for it; confirm or reject it |
+| **NAV** / **No document** | The invoice came from NAV Online Számla / there is no document file. Amber where your workspace expects documents, grey elsewhere |
 | **Duplicate**, **Cancelled** | A duplicate of another invoice / cancelled by a storno invoice |
-| **Awaiting approval**, **Approved**, **Declined** | The payment approval state, where approvals are switched on (see [Approving Invoices for Payment](/approving-invoices)) |
+| **Awaiting payment approval**, **Approved**, **Declined** | The payment approval state, where approvals are switched on (see [Approving Invoices for Payment](/approving-invoices)) |
 | **To file**, **To book**, **Filing returned**, **Bookkeeping returned** | A checkpoint still waiting, where filing or bookkeeping approval is switched on (see [Filing and Bookkeeping Approval](/filing-and-bookkeeping-approval)) |
 
 ### Finding invoices
 
-Search by invoice number, AI Finance Team ID, seller or buyer name, or partner. Above the list you can filter by date range, **Company** (when you have more than one), **Direction**, **Source** (NAV or uploaded), **Payment** and **Approval**, and switch on filter pills: **Needs review**, **Unpaid**, **Company needed**, **FX pending**, **Duplicate**, **Recently archived**, **All archived**, **No PDF**, **VAT codes incomplete** and **VAT: default-coded**. Archived invoices, duplicates and cancelled storno pairs stay hidden unless their pill is on; **Recently archived** shows the last 30 days, **All archived** every archived invoice. If you work in a [focused period](/focused-period), the list follows it.
+Search by invoice number, AI Finance Team ID, seller or buyer name, or partner. Above the list you can filter by date range, **Company** (when you have more than one), **Direction**, **Source** (NAV or uploaded), **Payment** and **Approval**, and switch on pills. Each to-do pill uses the same words as the label it filters, and shows how many invoices carry that to-do under your other filters; a to-do with nothing to count has no pill, and a step your workspace has switched off has none either. **Duplicate**, **Recently archived** and **All archived** show invoices the list hides. Archived invoices, duplicates and cancelled storno pairs stay hidden unless their pill is on; **Recently archived** shows the last 30 days, **All archived** every archived invoice. If you work in a [focused period](/focused-period), the list follows it.
 
 With permission to edit invoices you can tick rows and **Re-categorize** them, **Re-run VAT coding**, or **Approve reviewed items**.
+
+Some to-dos are right as they are: the extracted data was checked, a line total differs on purpose, no document will come, the default VAT code is correct. The invoice's page then shows **Accept to-dos**: tick what is right, add a note if you like, and click **Accept**. The to-do goes, and the invoice keeps who accepted it, when, and the note. If the data changes afterwards, the to-do comes back. Where filing or bookkeeping approval is waiting on the invoice, that approval accepts these to-dos instead, and the **Approvals** card says which ones.
 
 ## The invoice page
 
