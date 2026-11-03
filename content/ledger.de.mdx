@@ -104,6 +104,23 @@ Unter **Exporte** liegen neben dem Hauptbuch drei weitere Seiten. Jede ist für 
 
 Alle drei brauchen dieselbe Berechtigung **„Buchhaltungsexporte ausführen“** wie das Hauptbuch, und Benutzer auf Mandantenseite sehen sie nicht. Die beiden Dateien sind unabhängig von Ihrer Oberflächensprache ungarisch, weil die Programme, die sie einlesen, das erwarten. Business Central erscheint erst, wenn es verbunden ist, und hat einen eigenen Artikel: [Business Central](/business-central).
 
+### Die Buchhaltungssoftware und die Übergabe
+
+Unter **Einstellungen → Buchungs-Standardwerte → Buchhaltungssoftware** legen Sie fest, an welches Programm dieser Arbeitsbereich seine Rechnungen übergibt: **RLB**, **Eurosoft Profit**, **HessynKettős** oder **Business Central**. Eines pro Arbeitsbereich, denn ein Arbeitsbereich ist ein Mandant. Das Feld kann leer bleiben; dann erscheint nichts von dem Folgenden, und die Exporte funktionieren wie bisher. Wenn Sie zum ersten Mal ein Programm wählen, sagt der Dialog vor dem Speichern, wie viele Rechnungen als **Zu übergeben** erscheinen werden.
+
+Mit festgelegtem Programm merkt sich die Rechnung jede Übergabe: jeden RLB- und Profit-Export (auch den erneuten Export eines Zeitraums), jede HessynKettős-Datei und jede Übergabe an Business Central. Die Rechnungsliste hat dann die Aufgabe **An die Buchhaltungssoftware zu übergeben** und im Filter **Workflow** die Gruppe **Übergabe**:
+
+| Wert | Bedeutung |
+|---|---|
+| **Zu übergeben** | Mit eingeschalteter Buchungsfreigabe: zur Buchung freigegeben und seit der Freigabe nicht übergeben. Ohne sie: jede Position kontiert und noch nie übergeben oder seitdem geändert |
+| **Übergeben** | Übergeben und seitdem unverändert |
+| **Nach der Übergabe geändert** | Nach der letzten Übergabe haben sich der Betrag, ein Datum, der Partner oder die Kategorie oder der USt-Code einer Position geändert, daher ist sie erneut zu übergeben |
+| **Vom Programm bestätigt** | Das Programm hat die Buchung zurückgemeldet: RLB, wenn sein OSA-Register die Rechnung verknüpft und ihr eine Journalnummer gibt, Business Central, wenn ein erneutes Senden den Beleg gebucht vorfindet. HessynKettős und Profit bestätigen nie |
+
+AI Finance Team weiß, was es übergeben hat, nie, was gebucht ist, daher heißt keine Rechnung „gebucht“. Business Central erhält von AI Finance Team nur Eingangsrechnungen, und die HessynKettős-Datei enthält nur Ausgangsrechnungen. Eine Rechnung in die andere Richtung ist dort ebenfalls zu übergeben, bis Sie sie als manuell übergeben markieren (siehe unten). Die Karte **Freigaben** der Rechnung zeigt die letzte Übergabe, ob sich die Rechnung seitdem geändert hat, und die Bestätigung mit ihrem Nachweis.
+
+Eine auf anderem Weg übergebene Rechnung nehmen Sie auf ihrer Seite von der Liste: Haken Sie unter **Aufgaben akzeptieren** **Manuell übergeben** an, fügen Sie bei Bedarf eine Notiz hinzu und akzeptieren Sie; dafür braucht es die Berechtigung **„Buchhaltungsexporte ausführen“**. Der Verlauf zeigt es. Bei eingeschalteter Buchungsfreigabe tut **Nicht zu buchen: Bereits gebucht** dasselbe. Übergaben aus der Zeit vor der Aufzeichnung werden aus dem Exportverlauf gelesen, bei HessynKettős aber erst ab dem 12. Oktober 2026; ältere nehmen Sie auf dieselbe Weise von der Liste.
+
 ### RLB
 
 Die Seite **RLB** ist das Hauptbuch, eingeschränkt auf das, was das Büro in RLB-60 bucht: dieselbe Leiste **Frag das Hauptbuch**, dieselbe Filterleiste und dieselben Chips und die ersten drei Reiter (**Rechnungsköpfe**, **Rechnungspositionen**, **Banktransaktionen**), mit denselben Vorgaben (die letzten 30 Tage, der Datumstyp des Arbeitsbereichs). **Was die Reiter zeigen, steht in der Datei**: Der Export übernimmt genau die Filter, die Sie gesetzt haben. Die Seite [Monatsabschluss](/closing) führt mit **RLB-Export für diesen Zeitraum →** für ihren Monat hierher.
