@@ -17,26 +17,35 @@ The transaction list with five transactions. The numbers match the list below. T
 
 1. **Date**: the booking date, with AI Finance Team's own ID underneath when your workspace shows IDs. Click the ID to copy it.
 2. **Partner**, with the bank's description underneath on up to two lines. A click anywhere on the row opens the transaction.
-3. **Labels**: what the transaction needs comes first (**Unmatched**, **Duplicate**), then **Matched** or **No invoice**, and where it came from (**Bank feed**, **Statement**) last.
+3. **Labels**: the to-dos first, in amber (here **Unmatched**), then grey information: **Matched**, **No invoice**, and where it came from (**Bank feed**, **Statement**).
 4. **Category**: the category's ledger code first, then its name.
 5. **Amount**: in the account's currency, green with an up arrow for money in, red with a down arrow for money out.
 
 Click **Bank transactions** in the sidebar. The list has these columns: **Date** with the **ID** under it (when your workspace shows it), **Partner**, **Labels**, **Company**, **Category** and **Amount**. **Company** appears only when your workspace has more than one company. It is the holder of the bank account, or, on an account several companies share (a [cash pool](/cash-pool)), the company of the matched invoice.
 
-The list shows 50 transactions per page, newest first, and can be sorted by date, ID, partner or amount. An amber left edge marks a transaction that needs action. The list uses the full width of the window. In a narrow window it scrolls sideways, and the **Amount** column stays in view on the right.
+The list shows 50 transactions per page, newest first, and can be sorted by date, ID, partner or amount. An amber left edge marks a transaction with a to-do. The list uses the full width of the window. In a narrow window it scrolls sideways, and the **Amount** column stays in view on the right.
 
 The **Category** cell is empty when **Use cash-flow categories for bookkeeping only** is on in **Settings → Ledger defaults** and the transaction still expects an invoice. With that setting the ledger account of such a transaction comes from its invoice, not from the category. See [Categorising Invoices & Transactions](/categorization).
 
-### Labels
+### To-dos and labels
 
-| Label | Colour | Meaning |
-|-------|--------|---------|
-| **Unmatched** | amber | No invoice matched yet, and not marked as needing none |
-| **Duplicate** | amber | Flagged as a copy of another transaction on the same account, with the same booking date and amount. It stays on the list, and matching leaves it out |
-| **Matched** | green | Matched to one or more invoices, automatically or by hand |
-| **No invoice** | blue | Marked as needing no invoice, by a transaction type or by a person |
-| **Bank feed** | grey | Came from a connected bank account |
-| **Statement** | grey | Came from an uploaded bank statement |
+The chips above the list are the to-dos, each with its count; a chip with nothing to do is hidden. A chip lists its transactions, and with several chips on, a transaction needs any one of them. A row shows its to-dos in amber in the same words, and the transaction's **To do** card lists them with the way to clear each one.
+
+| To-do | When | How it clears |
+|-------|------|---------------|
+| **Incomplete categorization** | The transaction has no category. The row says why: **suggestion waiting** (the AI's suggestion waits for you), **failed**, or nothing more when no suggestion was made. Only while transaction categorization is on and the workspace has transaction categories | Accept the suggestion or choose a category; categorize a failed one again |
+| **Custom category missing** | A mandatory [custom category list](/custom-categories) is still empty | Fill in the list on the transaction |
+| **Unmatched** | No invoice is matched to it, it is not an internal transfer, and it is not marked as needing none. These are the transactions the [Monthly Closing](/closing) counts as unresolved | Match it, mark it **No invoice**, or close it (see below) |
+| **Partially matched** | Its invoices cover only part of its amount | Complete the settlement, add an invoice, or close it |
+| **Match suggestion awaiting a decision** | A match suggestion waits for a decision | Confirm or reject the suggestion, or close the transaction |
+| **Settlement in progress** | It is open in a settlement session | Commit or discard the session |
+| **Unverified partner** | Its partner is not verified yet | Verify the partner, or choose another |
+| **Exchange rate missing** | Its exchange rate could not be fetched | Enter the rate on the transaction (see below) |
+| **GL contra account missing** | Only when the accounting software is Business Central: a transaction needing no invoice whose category has no ledger code | Give the category its code in master data, or choose another category |
+
+The grey labels are information: **Matched**, **No invoice**, **Closed**, **Internal transfer**, **Duplicate**, **Bank feed** and **Statement**.
+
+The to-dos belong to the accountant: a member who sees only their own statements sees none. [Mission Control](/mission-control) lists every workspace's transaction to-dos with the same counts as the chips.
 
 How a transaction gets matched is in [Invoice Matching](/invoice-matching). Bank fees, taxes and transfers between your own accounts need no invoice: see [Transaction Types & No Invoice Needed](/transaction-types).
 
@@ -44,21 +53,28 @@ How a transaction gets matched is in [Invoice Matching](/invoice-matching). Bank
 
 Search by partner, description, reference or AI Finance Team ID. The partner search covers both the name the bank sent and the partner it is linked to.
 
-Above the list you can filter by date range, **Company** (when you have more than one), **Account** and **Direction** (**Money in** or **Money out**). When an account has no company yet, the **Company** filter also offers **No company assigned**.
+Above the list you can filter by date range and with these dropdowns. A transaction must meet every filter you set, and any one of the values you pick within a filter:
 
-The pills filter by label: **Bank feed**, **Statement**, **Duplicate**, **Unmatched**, **Matched** and **No invoice**. Several can be on at once:
+- **Company** (when you have more than one; **No company assigned** when an account has no company yet), **Account** and **Direction** (**Money in** or **Money out**).
+- **Record state**: **Active** by default, or **Duplicate** or **All**. A duplicate is a copy of another transaction on the same account, with the same booking date and amount; matching leaves it out, and **Not a duplicate** on its page brings it back.
+- **Source**: **Bank feed** or **Statement**.
+- **Matching**: **Unmatched**, **Partially matched**, **Matched automatically**, **Matched manually**, **No invoice**, **Closed**, **Internal transfer**, **Suggestion awaiting a decision** and **Settlement in progress**. An internal transfer is only ever **Internal transfer**.
+- **Coding**: **Suggestion awaiting acceptance**, **No category**, **Categorization failed**, **Custom category missing** and **Complete**.
+- **Category**, **Transaction type** (or **No type**) and **Partner** (**Verified**, **Unverified** or **No partner**).
 
-- Within **Bank feed**, **Statement** and **Duplicate**, a transaction needs any one of them.
-- Within **Unmatched**, **Matched** and **No invoice**, the same.
-- Across the two groups it needs both. **Statement** with **Unmatched** lists the unmatched transactions that came from a statement.
-
-**Custom category missing** lists the transactions where a mandatory [custom category list](/custom-categories) is still empty. If you work in a [focused period](/focused-period), the list follows it.
+The Monthly Closing's links open the list filtered the way its check counts: unresolved transactions on the **Unmatched** chip, uncategorized ones on **Incomplete categorization**, and missing exchange rates under **Exchange rate pending or failed**. If you work in a [focused period](/focused-period), the list follows it.
 
 With the permission "Edit bank transactions" you can tick rows and **Re-categorize** them. Transactions the AI categorised, or that have no category, are categorised again against your current categories. Categories set by hand stay as they are.
 
 ## Opening a transaction
 
 Click a row to open the transaction. On its page, **j** or the down arrow goes to the next transaction of the list, **k** or the up arrow to the previous one, with your filters and sort order kept. The **Matching & payment** card shows the matched invoices and the actions for matching; see [Invoice Matching](/invoice-matching).
+
+The **To do** card under the summary lists the transaction's to-dos, each leading to its fix. It also offers:
+
+- **Close**, on an unmatched or partially matched transaction that needs no further matching, for example the remainder of a bank fee or one half of a refund pair, with an optional note. Its matching to-dos clear, its waiting match suggestions are dismissed and the invoice request to the client is closed; its category, partner and exchange-rate to-dos stay. A closed transaction counts as resolved in the Monthly Closing, keeps its matched invoices and is not sent to Business Central. **Reopen** brings the matching back, and marking it **No invoice** ends the closure too. Both need "Edit bank transactions" and "Manage matching".
+- **Not a duplicate**, on a transaction marked as a duplicate: it returns to the active list, and its history shows it.
+- A manual exchange rate when the rate could not be fetched: the rate to the base currency, the reporting rate, or both, whichever failed.
 
 The **Parties** card shows both sides in the order the money moves: for a payment out, your company on top (**Payer**) and the partner below (**Payee**), the other way round for money in. Your company shows the full number of the bank account. Clicking either side's tile (it shows **Details**) opens a read-only side panel, the same one as on an invoice. If you may make changes, **Edit** shows the partner picker, and the company picker when several companies share the bank account. For a partner that is missing or not verified yet the card opens like that by itself, and the **Verify partner** button and the to-do of the same name lead there.
 
@@ -77,7 +93,7 @@ The **Statements** tab next to the list shows every uploaded bank statement with
 ## Who sees what
 
 - **"View invoices and bank transactions"** shows the whole list. Every role has it by default; see [Roles & Permissions](/roles-and-permissions).
-- **Without it**, a member who uploaded bank statements sees only the transactions of those statements, with a note above the list. They see no filter pills, no categories and no matching labels: only **Bank feed** and **Statement**.
+- **Without it**, a member who uploaded bank statements sees only the transactions of those statements, with a note above the list. They see no to-dos, no categories and no matching labels: only **Bank feed** and **Statement**.
 - **"Edit bank transactions"** is needed to re-categorise, to change a transaction and to mark it as needing no invoice. By default only the two accountant roles have it.
 
 Until the workspace has a bank account, the page shows **No bank accounts yet**, with a prompt to connect an account or upload a statement.
