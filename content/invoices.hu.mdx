@@ -70,7 +70,7 @@ Néhány teendő így is rendben lehet: a kinyert adatokat ellenőrizték, a té
 
 ## A számla oldala
 
-Kattintson egy számlára az oldala megnyitásához. A felső kártya mutatja a számlaszámot, az olyan jelvényeket, mint a **Duplikáció**, az **Archivált**, az **Áttekintés szükséges** és a **Teljesség**, a fizetési állapotot, valamint az **AIFT azonosító** (az AI Finance Team saját sorszáma a számlához, itt mindig látható; kattintásra másolható), **Partner**, **Irány**, **Bruttó** és **Kiállítva** adatokat, a **Letöltés** és a **Szerkesztés** gombbal. Alatta az AI-összefoglaló áll, amelyet szerkeszthet, és a **Teendők**, például egy hiányzó ÁFA-kód vagy egy ellenőrizendő partner.
+Kattintson egy számlára az oldala megnyitásához. A felső kártya mutatja a számlaszámot, az olyan jelvényeket, mint a **Duplikáció**, az **Archivált**, az **Áttekintés szükséges** és a **Teljesség**, a fizetési állapotot, valamint az **AIFT azonosító** (az AI Finance Team saját sorszáma a számlához, itt mindig látható; kattintásra másolható), **Partner**, **Irány**, **Bruttó** és **Kiállítva** adatokat, a **Szerkesztés** gombbal és a **⋯** menüvel. Alatta az AI-összefoglaló áll, amelyet szerkeszthet, és a **Teendők**, például egy hiányzó ÁFA-kód vagy egy ellenőrizendő partner.
 
 Az oldalnak hét füle van:
 
@@ -98,7 +98,7 @@ Egy értékre kattintva szerkesztheti; Enter lenyomására vagy máshová kattin
 
 ## Számla archiválása
 
-Azt a számlát, amelynek nincs helye a könyvelésben, mert magáncélú, tévedésből érkezett, vagy egyik cégéhez sem tartozik, **archiválja**, nem törli. Kattintson a számla felső kártyáján az **Archiválás** gombra, és adjon meg egy legalább három karakteres indoklást: hogy ki, mikor és miért archiválta, az a számlán marad. A megerősítés előtt a párbeszédablak felsorolja, mit tesz az archiválás ezzel a számlával: a megerősített banki párosítás felbomlik, és a tranzakció visszakerül a saját ellenőrzésébe, a függő párosítási javaslatok elvetődnek, az utalási listára már felkerült sor visszavonódik, a számla kikerül a kiegyenlítési munkamenetéből, az ügyfélnek küldött nyitott kérés lezárul, és az ablak figyelmeztet, ha a számla már átment a Business Centralba, vagy van cégcsoporton belüli párja, mert ezeket kézzel kell rendeznie.
+Azt a számlát, amelynek nincs helye a könyvelésben, mert magáncélú, tévedésből érkezett, vagy egyik cégéhez sem tartozik, **archiválja**, nem törli. Nyissa meg a számla felső kártyáján a **⋯** menüt, kattintson a **Számla archiválása** pontra, és adjon meg egy legalább három karakteres indoklást: hogy ki, mikor és miért archiválta, az a számlán marad. A megerősítés előtt a párbeszédablak felsorolja, mit tesz az archiválás ezzel a számlával: a megerősített banki párosítás felbomlik, és a tranzakció visszakerül a saját ellenőrzésébe, a függő párosítási javaslatok elvetődnek, az utalási listára már felkerült sor visszavonódik, a számla kikerül a kiegyenlítési munkamenetéből, az ügyfélnek küldött nyitott kérés lezárul, és az ablak figyelmeztet, ha a számla már átment a Business Centralba, vagy van cégcsoporton belüli párja, mert ezeket kézzel kell rendeznie.
 
 Ha az indok az, hogy a számla egyik cégéhez sem tartozik, a számla cégválasztója az **Archiválás: nem rendelhető céghez** gyorsgombot kínálja. Ugyanazt az ablakot nyitja meg előre kitöltött indoklással, és törli a céget.
 
@@ -108,16 +108,16 @@ Ha a számla könyvelési jóváhagyása már megtörtént, az archiváláshoz a
 
 ## Egy számla letöltése
 
-A számla oldalán a **Letöltés** gombbal az eredeti fájlt kapja meg, a **▾** nyíllal formátumot választhat:
+A számla oldalán a felső kártya **⋯** menüjében, a **Letöltés** alatt választhat formátumot:
 
 | Formátum | Tartalom |
 |--------|----------|
 | **PDF** | Az eredeti dokumentum |
-| **XLSX** | Két munkalap: „Invoice” az összesítővel és „Line Items” minden tétellel |
+| **Excel (XLSX)** | Két munkalap: „Invoice” az összesítővel és „Line Items” minden tétellel |
 | **CSV** | Az első sorokban a számla fejléce, utána a tételek |
 | **JSON** | A számla minden mezője és egy `line_items` lista |
 
-A fájlok neve az eredeti fájl neve. Az XLSX, a CSV és a JSON az aktuális adatokból készül, így tartalmazza a javításait; az oszlopfejlécek angolok. Dokumentumfájl nélküli számlánál (például NAV-ból) nincs Letöltés gomb.
+A fájlok neve az eredeti fájl neve, ennek hiányában a számlaszám. Az XLSX, a CSV és a JSON az aktuális adatokból készül, így tartalmazza a javításait; az oszlopfejlécek angolok. A **PDF** csak akkor szerepel a menüben, ha a számlának van fájlja. Az XLSX, a CSV és a JSON minden számlán elérhető, a NAV-ból érkezetteken is. A PDF a **Dokumentum** fül **Letöltés** gombjával is letölthető.
 
 ## Kinyerés és ellenőrzés
 
