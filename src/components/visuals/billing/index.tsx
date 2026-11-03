@@ -2,9 +2,12 @@
 //
 // Rebuilt 1:1 from aift-web (origin/staging 2026-10-04, after
 // billing-checkout-hu-tax-id, aift-web#1619, and the card-width price sizing;
-// the picker re-copied 2026-11-02 for billing-single-package: one card in a
-// max-w-sm column without the Best for you badge, no interval toggle, graduated band lines, the long_term
-// line), class for class, with the real
+// the picker re-copied 2026-11-02 for billing-single-package: one card without
+// the Best for you badge, no interval toggle, graduated band lines, the long_term
+// line; re-copied 2026-11-03 for the pricing-page parity, aift-web#2005: band
+// labels with start and end, bank line and band rule on the card, "+ áfa", and
+// the calculator beside the card in place of the "your cost at" row), class for
+// class, with the real
 // Catalyst components from the help mirror:
 //   page shell   src/app/(app)/organization-settings/layout.tsx (max-w-5xl
 //                px-4 py-12) + _components/OrgPageHeader.tsx
@@ -76,16 +79,30 @@ function priceSize(currency: string, locale: string): string {
  * aift-web lib/billing-projection projectedCents + overageCentsFor: the base,
  * plus each band's rate on the invoices inside that band only.
  */
-function projected(plan: Plan, invoices: number): number {
-  let total = plan.month
+function breakdown(plan: Plan, invoices: number) {
+  const lines: { from: number; upTo: number | null; count: number; rate: number; amount: number }[] = []
   let from = plan.included
   for (const band of plan.bands) {
     const to = band.upTo ?? Infinity
     if (invoices <= from) break
-    total += (Math.min(invoices, to) - from) * band.rate
+    const count = Math.min(invoices, to) - from
+    lines.push({ from: from + 1, upTo: band.upTo, count, rate: band.rate, amount: count * band.rate })
     from = to
   }
-  return total
+  return lines
+}
+
+/** BillingSection unitPrice: forint without fillér ("88 Ft", "67,5 Ft"), euro with cents. */
+function unitPrice(amount: number, currency: string, locale: Locale): string {
+  const huf = currency.toLowerCase() === 'huf'
+  return new Intl.NumberFormat({ en: 'en-GB', hu: 'hu-HU', de: 'de-DE' }[locale], {
+    style: 'currency',
+    currency,
+    currencyDisplay: 'narrowSymbol',
+    minimumFractionDigits: huf ? 0 : 2,
+    maximumFractionDigits: 2,
+    useGrouping: 'always',
+  } as Intl.NumberFormatOptions).format(amount)
 }
 
 // ── The plan picker (BillingSection, not yet subscribed) ────────────────────
@@ -100,6 +117,21 @@ export function PlanPickerFigure({ locale, children }: FigureProps) {
   // One card: the app recommends nothing (shown.length > 1), so no badge and
   // the plain ring.
   const p = c.plan
+  const unit = (n: number) => unitPrice(n, c.currency, locale)
+  // The calculator's sum(): whole forints via formatPrice, euro via formatAmount.
+  const sum = (n: number) => (c.currency === 'HUF' ? price(n) : money(n))
+  const bandLabel = (from: number, upTo: number | null) =>
+    upTo != null
+      ? fill(b('band_range'), { from: formatCount(from, locale), to: formatCount(upTo, locale) })
+      : fill(b('band_above'), { count: formatCount(from - 1, locale) })
+  const lines = breakdown(p, invoices)
+  const total = p.month + lines.reduce((a, l) => a + l.amount, 0)
+  let bandFrom = p.included + 1
+  const cardBands = p.bands.map((band) => {
+    const label = bandLabel(bandFrom, band.upTo)
+    if (band.upTo != null) bandFrom = band.upTo + 1
+    return { key: band.upTo ?? 'open', label, rate: band.rate }
+  })
 
   return (
     <Figure
@@ -134,14 +166,17 @@ export function PlanPickerFigure({ locale, children }: FigureProps) {
                   <Pin n={1} at="right" cancel="" />
                 </p>
 
-                <div className="mt-5 grid grid-cols-1 gap-5 max-w-sm">
+                <div className="mt-5 @container">
+                <div className="grid grid-cols-1 gap-5 max-w-sm items-start @3xl:max-w-4xl @3xl:grid-cols-[24rem_minmax(0,1fr)]">
                   <article className="@container relative flex flex-col rounded-2xl p-6 ring-1 ring-gray-200 dark:ring-white/10">
                     <h3 className="text-base font-semibold text-indigo-600 dark:text-indigo-400">{b(`plan_name_${p.key}`)}</h3>
                     <p className="mt-0.5 min-h-9 text-xs text-gray-500 dark:text-gray-400">{b(`plan_desc_${p.key}`)}</p>
 
-                    <p className="mt-4 flex items-baseline gap-1.5">
+                    <p className="mt-4 flex flex-wrap items-baseline gap-x-1.5">
                       <span className={clsx(priceSize(c.currency, locale), 'font-semibold tracking-tight text-gray-900 dark:text-white')}>{price(p.month)}</span>
-                      <span className="text-sm font-semibold text-gray-500 dark:text-gray-400">{b('price_suffix')}</span>
+                      <span className="text-sm font-semibold whitespace-nowrap text-gray-500 dark:text-gray-400">
+                        {b('price_suffix')} {b('vat_suffix')}
+                      </span>
                     </p>
                     <p className="mt-0.5 min-h-5 text-xs text-gray-500 dark:text-gray-400"></p>
 
@@ -149,32 +184,21 @@ export function PlanPickerFigure({ locale, children }: FigureProps) {
                       {rich(fill(b('included_line_month'), { count: formatCount(p.included, locale) }), { strong })}
                       <Pin n={2} at="right" cancel="" />
                     </p>
-                    <ul className="mt-0.5 space-y-0.5 text-xs text-gray-500 dark:text-gray-400">
-                      {p.bands.map((band, i) => (
-                        <li key={band.upTo ?? 'open'} className="flex justify-between gap-3">
-                          <span>
-                            {band.upTo != null
-                              ? fill(b('band_up_to'), { count: formatCount(band.upTo, locale) })
-                              : fill(b('band_above'), { count: formatCount(p.bands[i - 1]?.upTo ?? p.included, locale) })}
-                          </span>
-                          <span className="whitespace-nowrap tabular-nums">{fill(b('band_rate'), { price: money(band.rate) })}</span>
+                    <p className="mt-0.5 text-xs text-gray-500 dark:text-gray-400">{b('bank_not_counted')}</p>
+                    <ul className="mt-2 space-y-0.5 text-xs text-gray-500 dark:text-gray-400">
+                      {cardBands.map((band) => (
+                        <li key={band.key} className="flex justify-between gap-3">
+                          <span>{band.label}</span>
+                          <span className="whitespace-nowrap tabular-nums">{fill(b('band_rate'), { price: unit(band.rate) })}</span>
                         </li>
                       ))}
                     </ul>
+                    <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">{b('band_rule')}</p>
 
                     <dl className="mt-4 space-y-2 border-t border-gray-100 pt-3 text-xs dark:border-white/10">
                       <div className="flex justify-between gap-3">
                         <dt className="text-gray-500 dark:text-gray-400">{b('per_document')}</dt>
-                        <dd className="whitespace-nowrap tabular-nums text-gray-600 dark:text-gray-300">{money(p.month / p.included)}</dd>
-                      </div>
-                      <div>
-                        <dt className="text-gray-500 dark:text-gray-400">
-                          {fill(b('your_cost_at'), { documents: formatCount(invoices, locale) })}
-                          <Pin n={3} at="right" cancel="" />
-                        </dt>
-                        <dd className="mt-0.5 text-sm font-semibold whitespace-nowrap tabular-nums text-gray-900 dark:text-white">
-                          {fill(b('amount_per_month'), { amount: money(projected(p, invoices)) })}
-                        </dd>
+                        <dd className="whitespace-nowrap tabular-nums text-gray-600 dark:text-gray-300">{unit(p.month / p.included)}</dd>
                       </div>
                     </dl>
 
@@ -185,6 +209,65 @@ export function PlanPickerFigure({ locale, children }: FigureProps) {
                       </Button>
                     </div>
                   </article>
+                  {/* BillingSection PackageCalculator */}
+                  <div className="rounded-2xl p-6 ring-1 ring-gray-200 dark:ring-white/10">
+                    <h3 className="text-base font-semibold text-gray-900 dark:text-white">
+                      {b('calc_heading')}
+                      <Pin n={3} at="right" cancel="" />
+                    </h3>
+                    <Field className="mt-3">
+                      <Label>{b('calc_input')}</Label>
+                      <Input type="number" inputMode="numeric" min={0} step={1} defaultValue={String(invoices)} className="max-w-40" />
+                    </Field>
+                    <table className="mt-5 w-full table-fixed text-sm">
+                      <colgroup>
+                        <col />
+                        <col className="w-16" />
+                        <col className="w-28" />
+                      </colgroup>
+                      <thead>
+                        <tr className="border-b border-gray-200 text-xs text-gray-500 dark:border-white/10 dark:text-gray-400">
+                          <th className="pb-2 text-left font-medium">{b('calc_col_band')}</th>
+                          <th className="pb-2 pr-3 text-right font-medium">{b('calc_col_count')}</th>
+                          <th className="pb-2 text-right font-medium">{b('calc_col_amount')}</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-gray-100 dark:divide-white/5">
+                        <tr>
+                          <td className="py-2.5 pr-3 text-gray-600 dark:text-gray-300">
+                            {fill(b('calc_package_row'), { count: formatCount(p.included, locale) })}
+                          </td>
+                          <td className="py-2.5 pr-3 text-right whitespace-nowrap tabular-nums text-gray-900 dark:text-white">
+                            {formatCount(Math.min(invoices, p.included), locale)}
+                          </td>
+                          <td className="py-2.5 text-right whitespace-nowrap tabular-nums text-gray-900 dark:text-white">{sum(p.month)}</td>
+                        </tr>
+                        {lines.map((l) => (
+                          <tr key={l.from}>
+                            <td className="py-2.5 pr-3 text-gray-600 dark:text-gray-300">
+                              {bandLabel(l.from, l.upTo)}
+                              <span className="block text-xs text-gray-500 dark:text-gray-400">{fill(b('band_rate'), { price: unit(l.rate) })}</span>
+                            </td>
+                            <td className="py-2.5 pr-3 text-right whitespace-nowrap tabular-nums text-gray-900 dark:text-white">
+                              {formatCount(l.count, locale)}
+                            </td>
+                            <td className="py-2.5 text-right whitespace-nowrap tabular-nums text-gray-900 dark:text-white">{sum(l.amount)}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                      <tfoot>
+                        <tr className="border-t border-gray-200 dark:border-white/10">
+                          <td className="pt-3 font-semibold text-gray-900 dark:text-white">{b('calc_total')}</td>
+                          <td />
+                          <td className="pt-3 text-right whitespace-nowrap tabular-nums font-semibold text-gray-900 dark:text-white">
+                            {sum(total)}
+                            <span className="block text-xs font-normal text-gray-500 dark:text-gray-400">{b('vat_suffix')}</span>
+                          </td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                </div>
                 </div>
 
                 <p className="mt-5 text-xs text-gray-400 dark:text-gray-500">{`${b('trial_offer')} ${b('picker_footnote')}`}</p>
