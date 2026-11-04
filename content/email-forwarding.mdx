@@ -68,7 +68,7 @@ Five destinations. The first two are the ones people expect; the third and fourt
 
 Nothing is ever sent back to the sender: no reply, no bounce, no confirmation, for success or failure. The only way to know an email arrived is to look at Intake.
 
-The email itself is never billed to you as a document; only the attachments that become invoices count.
+The email itself is never billed to you. Only the attachments that become invoices count, each invoice once: a PDF of an invoice that already arrived from NAV Online Számla does not count again.
 
 The app also learns from who sends what. Once a sender's domain has produced a few confident classifications, later documents from that domain are classified better, so the tenth invoice from a supplier lands more reliably than the first.
 
@@ -102,7 +102,7 @@ Seeing any of it needs the "View invoices and bank transactions" permission. A m
 | **Auth failed** | The sending domain failed its own authentication (SPF or DKIM) |
 | **Too large** | Over the 25 MB limit |
 | **Rate limited** | More than 200 emails in a day |
-| **Trial limit reached** | The mail was fine; the trial plan's document allowance refused it |
+| **Trial limit reached** | The mail was fine; your office's trial limit (400 invoices; bank transactions do not count) refused it |
 | **Multi-document** | One PDF held several documents |
 | **Nothing to process** | No attachment, or none that could be read |
 

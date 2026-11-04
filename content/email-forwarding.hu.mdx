@@ -68,7 +68,7 @@ Ugyanazt a fájlt kétszer továbbítani nem kerül semmibe: a második példán
 
 A rendszer soha nem küld vissza semmit a feladónak: se választ, se visszapattanó levelet, se visszaigazolást, sem sikerről, sem hibáról. Csak a Gyűjtőből lehet megtudni, hogy megérkezett-e egy e-mail.
 
-Magát az e-mailt soha nem számlázzuk ki dokumentumként, csak azok a mellékletek számítanak, amelyekből számla lesz.
+Magát az e-mailt soha nem számlázzuk ki. Csak azok a mellékletek számítanak bele, amelyekből számla lesz, és minden számla csak egyszer: egy NAV Online Számlából már beérkezett számla PDF-je nem számít bele újra.
 
 Az alkalmazás abból is tanul, hogy ki mit küld. Ha egy feladó tartománya már néhány magabiztos besorolást eredményezett, az onnan érkező későbbi dokumentumokat jobban sorolja be, így egy szállító tizedik számlája megbízhatóbban landol, mint az első.
 
@@ -102,7 +102,7 @@ Bármelyikük megtekintéséhez a „Számlák és banki tranzakciók megtekint�
 | **Hitelesítés sikertelen** | A küldő tartomány elbukott a saját hitelesítésén (SPF vagy DKIM) |
 | **Túl nagy** | A 25 MB-os korlát felett |
 | **Korlátozva** | Naponta több mint 200 e-mail |
-| **Próbaidőszaki keret betelt** | A levéllel nem volt baj, a próbacsomag dokumentumkerete utasította el |
+| **Próbaidőszaki keret betelt** | A levéllel nem volt baj, az iroda próbaidőszaki kerete (400 számla; a banki tranzakciók nem számítanak bele) utasította el |
 | **Több dokumentum** | Egyetlen PDF több dokumentumot tartalmazott |
 | **Nincs mit feldolgozni** | Nincs melléklet, vagy egyik sem olvasható be |
 
