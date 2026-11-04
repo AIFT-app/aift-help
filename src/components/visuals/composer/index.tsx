@@ -3,6 +3,11 @@
 // Rebuilt 1:1 from aift-web (origin/main, 2026-09-28), class for class:
 //   src/app/(app)/_components/SubjectCommentsPanel.tsx:270-352 (the composer)
 //   src/app/(app)/_components/ChipEditor.tsx (the editor and CHIP_CLASS)
+// The recipient field ("To" / "Címzett") from aift-web origin/staging
+// bc0f137d, 2026-11-04 (PRD message-recipients): SubjectCommentsPanel.tsx,
+// the block under "Recipient field (PRD message-recipients)", class for
+// class. Headless UI's Popover renders a div and PopoverButton a button,
+// so both are written as those elements here; the picker panel stays closed.
 //
 // WHY THIS SCREEN
 //
@@ -23,7 +28,7 @@
 // div rather than contentEditable, and nothing is focusable inside an `inert`
 // screen anyway.
 
-import { SparklesIcon } from '@heroicons/react/20/solid'
+import { ChevronDownIcon, SparklesIcon, XMarkIcon } from '@heroicons/react/20/solid'
 import type { Locale } from '@/lib/i18n'
 import { Button } from '@/components/catalyst/button'
 import { Select } from '@/components/catalyst/select'
@@ -76,6 +81,40 @@ export function MessageComposerFigure({
                 </button>
               </div>
 
+              {/* The recipient field, holding one person (both sides get it). */}
+              <div>
+                <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:gap-2">
+                  <span className="text-sm font-medium text-zinc-700 after:content-[':'] sm:pt-3 dark:text-zinc-300">
+                    {ui['comments.thread.recipient_label']}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <div className="relative">
+                      <button
+                        type="button"
+                        className="absolute inset-0 flex items-center justify-between gap-2 rounded-lg border border-zinc-950/10 bg-white px-3 text-left text-sm text-zinc-500 hover:border-zinc-950/20 focus:outline-none data-focus:outline-2 data-focus:-outline-offset-1 data-focus:outline-blue-500 disabled:opacity-50 dark:border-white/10 dark:bg-white/5 dark:text-zinc-400 dark:hover:border-white/20"
+                      >
+                        <span className="truncate" />
+                        <ChevronDownIcon className="size-4 shrink-0" aria-hidden="true" />
+                      </button>
+                      <div className="pointer-events-none relative flex min-h-11 flex-wrap items-center gap-1.5 py-1.5 pl-2 pr-9">
+                        <span className="pointer-events-auto inline-flex max-w-full items-center gap-0.5 rounded-md bg-zinc-100 py-0.5 pl-2 pr-0.5 text-sm text-zinc-900 dark:bg-white/10 dark:text-white">
+                          <span className="truncate">{c.recipient}</span>
+                          <button
+                            type="button"
+                            aria-label={ui['comments.thread.recipient_remove'].replace('{name}', c.recipient)}
+                            className="relative rounded p-1 text-zinc-500 before:absolute before:-inset-2.5 hover:text-zinc-900 focus:outline-none focus-visible:outline-2 focus-visible:outline-blue-500 dark:text-zinc-400 dark:hover:text-white"
+                          >
+                            <XMarkIcon className="size-4" aria-hidden="true" />
+                          </button>
+                        </span>
+                        {/* Beside the token, in the field's empty middle; cancels the gap-1.5. */}
+                        <Pin n={2} at="right" cancel="-ml-1.5" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               {/* The plain picker (everyone) + the AI draft (accountant side). */}
               <div className="flex items-center gap-2">
                 <Select aria-label={ui['comments.thread.use_template']} className="flex-1" defaultValue="">
@@ -83,8 +122,8 @@ export function MessageComposerFigure({
                 </Select>
                 {/* `above` would put this on top of the Suggested: label in the
                     row above; `left` drops it into the select's empty right end. */}
-                <Pin n={2} at="left" cancel="-mr-2" />
-                <Pin n={3} at="above" cancel="-mr-2" />
+                <Pin n={3} at="left" cancel="-mr-2" />
+                <Pin n={4} at="above" cancel="-mr-2" />
                 <Button outline>
                   <SparklesIcon data-slot="icon" className="size-4" aria-hidden="true" />
                   {ui['comments.thread.draft_ai']}
