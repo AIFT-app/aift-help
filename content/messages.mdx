@@ -4,7 +4,7 @@ A message is a short note attached to a specific record: an invoice, a bank tran
 
 The conversation lives **on the record it is about**, so the context travels with it.
 
-> **A conversation is not private to your side.** Everyone in the workspace who can see the record can read it, on both sides. Two accountants can write to each other in a thread, and the client will see every word. Keep internal notes out of it.
+> **A conversation is not private to your side.** Everyone in the workspace who can see the record can read it, on both sides. Two accountants can write to each other in a thread, and the client will see every word. Naming someone in **To** does not change that: it decides who gets the email, not who can read. Keep internal notes out of it.
 
 ## Where the conversation lives
 
@@ -20,11 +20,24 @@ There is no longer a slide-over on bank transactions: clicking a row opens the f
 ## Writing one
 
 1. Type in the box at the foot of the panel. The placeholder reads **"Write a reply…"**.
-2. Click **Send**.
+2. If the message is for particular people, choose them in **To**. You can leave it empty.
+3. Click **Send**.
 
 The first message starts the conversation; everything later on the same record joins the same thread.
 
 Messages are meant to be short. The limit is 2,000 characters, and **Send** simply stops working above it, with no warning of its own.
+
+## Addressing a message to someone
+
+**To** sits above the template row. Left empty it reads **"Client side (everyone)"** (on the client side: **"Accountant side (everyone)"**), and the message behaves exactly as it always has.
+
+- **Who is in the list.** Everyone in the workspace who can open the record, the other side first, each with their role badge. You are never in it, and neither is anyone who cannot open the record.
+- **What naming someone does.** The people you name get the email about it, with wording that says it is for them, even when they are on your own side. The rest of the other side gets **no email** for that message, though they still see it as unread.
+- **Replying.** When you open a thread, **To** already holds the last person who wrote in it (other than you, and never an automatic request). Remove them with the ×, or add others.
+- **Your own side only.** If everyone you named is on your side, a line under the field says **"The client side sees this message too."** It is true: naming someone never makes a message private.
+- **"no email"** under a name means that person has switched these emails off for themselves. They still see the message as unread in AIFT.
+
+Every message that named someone shows **"To: …"** with their names under the sender.
 
 ## Most of what you see was not written by a person
 
@@ -34,7 +47,7 @@ A human reply to one of them behaves like any other message, email nudge include
 
 ## Templates, suggestions and Draft with AI
 
-Three things sit above the box, and they are easy to confuse because they look alike:
+Three more things sit above the box, and they are easy to confuse because they look alike:
 
 - **Use a template…** is a dropdown of pre-written messages ("Tax ID mismatch", "Date unclear"). It drops the plain text in **with every placeholder still to fill.** The hint underneath says *"Click each placeholder chip to replace it."* - do that, because nothing stops you sending the message with the bare placeholder names still in it. **Everyone gets this dropdown, on both sides.**
 - **Suggested:** chips appear above it when AIFT has spotted something specific about the record. These are the ones that arrive **already filled in** with that record's values, and they are one tap. Accounting side only.
@@ -43,12 +56,13 @@ Three things sit above the box, and they are easy to confuse because they look a
 You can browse every template from **Browse template library** at the top of the Messages page.
 
 <MessageComposerFigure>
-The composer with a template already dropped in. The numbers match the list below. The invoice details are examples.
+The composer with a recipient chosen and a template already dropped in. The numbers match the list below. The name and the invoice details are examples.
 </MessageComposerFigure>
 
 1. **Suggested:** chips, one tap, already filled in with this record's values. Accounting side only.
-2. **Use a template…** drops the plain text in with every placeholder still a chip. Everyone gets this, on both sides.
-3. **Draft with AI**, accounting side only.
+2. **To**, here holding one person. Everyone gets this, on both sides.
+3. **Use a template…** drops the plain text in with every placeholder still a chip. Everyone gets this, on both sides.
+4. **Draft with AI**, accounting side only.
 
 The two grey chips are unfilled placeholders showing their internal names. Click each one before sending, because nothing stops you sending them as they are.
 
@@ -65,10 +79,10 @@ Every message carries the sender's name and a role badge - **Accountant**, **Acc
 
 ## The email nudge
 
-When your message stays unread, the people on the **other** side get an email about it. Worth knowing what that email is and is not:
+When your message stays unread, the people on the **other** side get an email about it, or, if you named people in **To**, only those people. Worth knowing what that email is and is not:
 
 - It says a message is waiting and names the record. **It does not contain the message text**, and you cannot reply to it by email. It is a nudge to come and look.
-- It goes to the other side only. Your own side is never emailed.
+- Without a recipient it goes to the other side only, and your own side is never emailed. With recipients it goes to the people you named, on either side, and to nobody else.
 - At most **one per conversation per recipient every ten minutes**, so a flurry on one record does not become a flurry of email.
 - Automatic requests never send one.
 
@@ -83,7 +97,7 @@ Two things about it that look like faults and are not:
 - The **count** covers every workspace you belong to, while the **list** shows only the workspace you are in. A red badge over an empty list means the messages are in another workspace.
 - It refreshes about once a minute, so a brand-new message can take a moment to appear.
 
-**The Messages page** in the sidebar lists every conversation in the workspace, newest first, with the record, a preview, the time and who it is from. Click a row to jump to the record. Messages also surface on **Mission control**.
+**The Messages page** in the sidebar lists every conversation in the workspace, newest first, with the record, a preview, the time and who it is from. Click a row to jump to the record. The **Addressed to me** tab keeps only conversations where a message names you, and a **For you** badge marks those with an unread message to you. Messages also surface on **Mission control**.
 
 **Unread clears when the page loads, not when you read.** On a bank transaction, match or statement the thread is a card on the page, so simply opening the record marks the conversation read even if you never scroll down to it.
 
@@ -91,7 +105,7 @@ Two things about it that look like faults and are not:
 
 ## What Messages is not
 
-- **Not private.** Repeating it because it is the one that matters: the client sees everything written on the record.
+- **Not private.** Repeating it because it is the one that matters: the client sees everything written on the record, whoever you named in **To**.
 - **Not your incoming email.** Documents forwarded by email land in Intake, not here. See [Forwarding Documents by Email](/email-forwarding).
 - **Not a substitute for fixing the record.** If the answer is "change the category" or "set the partner", make the change. Use a message when you need the other side to do or confirm something.
 
