@@ -3,10 +3,14 @@
 // Rebuilt 1:1 from aift-web (origin/main, 2026-09-28):
 //   src/app/(app)/_components/SubjectCommentsPanel.tsx  (the composer block)
 //   src/app/(app)/_components/ChipEditor.tsx            (the editor + chips)
+// recipient_label / recipient_remove: aift-web origin/staging bc0f137d
+// (2026-11-04, PRD message-recipients).
 import type { Locale } from '@/lib/i18n'
 
 export const UI_KEYS = [
   'comments.thread.suggested_label',
+  'comments.thread.recipient_label',
+  'comments.thread.recipient_remove',
   'comments.thread.use_template',
   'comments.thread.draft_ai',
   'comments.thread.send',
@@ -28,6 +32,8 @@ export const CHIPS = ['tax_id_on_invoice', 'tax_id_on_file'] as const
 
 type Copy = {
   ui: Record<UiKey, string>
+  /** The one person in the recipient field. Fictional, the same in every locale. */
+  recipient: string
   /** The template body split around its two chips, as ChipEditor renders it. */
   body: { lead: string; mid: string; tail: string }
   help: { alt: string }
@@ -36,6 +42,8 @@ type Copy = {
 const en: Copy = {
   ui: {
     'comments.thread.suggested_label': "Suggested:",
+    'comments.thread.recipient_label': "To",
+    'comments.thread.recipient_remove': "Remove {name}",
     'comments.thread.use_template': "Use a template…",
     'comments.thread.draft_ai': "Draft with AI",
     'comments.thread.send': "Send",
@@ -44,17 +52,20 @@ const en: Copy = {
     'comments.templates.invoice.tax_id_mismatch.label': "Tax ID mismatch",
     'comments.templates.invoice.date_unclear.label': "Date unclear",
   },
+  recipient: "Emma Hart",
   body: {
     lead: "The tax ID on this invoice (",
     mid: ") doesn't match our file (",
     tail: "). Is this for the right company?",
   },
-  help: { alt: "The message composer. A row of blue Suggested chips sits above a dropdown reading Use a template and an outlined Draft with AI button. Below them the editor holds a template whose two placeholders are grey chips showing their token names, with the hint to click each one on the left and a dark Send button on the right." },
+  help: { alt: "The message composer. A row of blue Suggested chips sits above a To field holding one person, Emma Hart, and below that a dropdown reading Use a template and an outlined Draft with AI button. Below them the editor holds a template whose two placeholders are grey chips showing their token names, with the hint to click each one on the left and a dark Send button on the right." },
 }
 
 const hu: Copy = {
   ui: {
     'comments.thread.suggested_label': "Javasolt:",
+    'comments.thread.recipient_label': "Címzett",
+    'comments.thread.recipient_remove': "{name} eltávolítása",
     'comments.thread.use_template': "Sablon használata…",
     'comments.thread.draft_ai': "Fogalmazás AI-jal",
     'comments.thread.send': "Küldés",
@@ -63,17 +74,20 @@ const hu: Copy = {
     'comments.templates.invoice.tax_id_mismatch.label': "Adószám eltérés",
     'comments.templates.invoice.date_unclear.label': "Dátum nem egyértelmű",
   },
+  recipient: "Emma Hart",
   body: {
     lead: "A számlán szereplő adószám (",
     mid: ") nem egyezik az általunk nyilvántartott adatokkal (",
     tail: "). Ez a megfelelő céghez tartozik?",
   },
-  help: { alt: "Az üzenetszerkesztő. Fent kék Javasolt chipek sora, alattuk egy Sablon használata legördülő menü és egy körvonalas Fogalmazás AI-jal gomb. Ezek alatt a szerkesztőben egy sablon, amelynek két helyőrzője szürke chipként, a jelölő nevével látszik, balra a chipek cseréjére felszólító megjegyzés, jobbra a sötét Küldés gomb." },
+  help: { alt: "Az üzenetszerkesztő. Fent kék Javasolt chipek sora, alattuk egy Címzett mező egy emberrel, Emma Harttal, majd egy Sablon használata legördülő menü és egy körvonalas Fogalmazás AI-jal gomb. Ezek alatt a szerkesztőben egy sablon, amelynek két helyőrzője szürke chipként, a jelölő nevével látszik, balra a chipek cseréjére felszólító megjegyzés, jobbra a sötét Küldés gomb." },
 }
 
 const de: Copy = {
   ui: {
     'comments.thread.suggested_label': "Vorschlag:",
+    'comments.thread.recipient_label': "An",
+    'comments.thread.recipient_remove': "{name} entfernen",
     'comments.thread.use_template': "Vorlage verwenden…",
     'comments.thread.draft_ai': "Mit KI entwerfen",
     'comments.thread.send': "Senden",
@@ -82,12 +96,13 @@ const de: Copy = {
     'comments.templates.invoice.tax_id_mismatch.label': "Steuernummer stimmt nicht",
     'comments.templates.invoice.date_unclear.label': "Datum unklar",
   },
+  recipient: "Emma Hart",
   body: {
     lead: "Die Steuernummer auf dieser Rechnung (",
     mid: ") stimmt nicht mit unserer Datei (",
     tail: ") überein. Gehört das zum richtigen Unternehmen?",
   },
-  help: { alt: "Der Nachrichteneditor. Oben eine Reihe blauer Vorschlag-Chips, darunter ein Auswahlfeld Vorlage verwenden und eine umrandete Schaltfläche Mit KI entwerfen. Darunter enthält der Editor eine Vorlage, deren zwei Platzhalter als graue Chips mit ihren Token-Namen erscheinen, links der Hinweis, jeden Chip zu ersetzen, rechts die dunkle Schaltfläche Senden." },
+  help: { alt: "Der Nachrichteneditor. Oben eine Reihe blauer Vorschlag-Chips, darunter ein Feld An mit einer Person, Emma Hart, dann ein Auswahlfeld Vorlage verwenden und eine umrandete Schaltfläche Mit KI entwerfen. Darunter enthält der Editor eine Vorlage, deren zwei Platzhalter als graue Chips mit ihren Token-Namen erscheinen, links der Hinweis, jeden Chip zu ersetzen, rechts die dunkle Schaltfläche Senden." },
 }
 
 export const composerCopy: Record<Locale, Copy> = { en, hu, de }

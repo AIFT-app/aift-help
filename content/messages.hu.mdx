@@ -4,7 +4,7 @@ Az üzenet rövid megjegyzés, amely egy adott rekordhoz kapcsolódik: egy szám
 
 A beszélgetés **azon a rekordon él, amelyről szól**, így a kontextus vele utazik.
 
-> **A beszélgetés nem csak az Ön oldala számára látható.** A munkaterületen mindenki elolvashatja, aki látja a rekordot, mindkét oldalon. Két könyvelő írhat egymásnak egy szálban, és az ügyfél minden szót látni fog. A belső feljegyzéseket hagyja ki belőle.
+> **A beszélgetés nem csak az Ön oldala számára látható.** A munkaterületen mindenki elolvashatja, aki látja a rekordot, mindkét oldalon. Két könyvelő írhat egymásnak egy szálban, és az ügyfél minden szót látni fog. Ezen a **Címzett** mező sem változtat: azt dönti el, ki kap e-mailt, nem azt, ki olvashatja. A belső feljegyzéseket hagyja ki belőle.
 
 ## Hol él a beszélgetés
 
@@ -20,11 +20,24 @@ A banki tranzakcióknál már nincs oldalsó panel: egy sorra kattintva a teljes
 ## Üzenet írása
 
 1. Gépeljen a panel alján lévő mezőbe. A helyőrző szövege **„Írj választ…”**.
-2. Kattintson a **Küldés** gombra.
+2. Ha az üzenet meghatározott embereknek szól, válassza ki őket a **Címzett** mezőben. Üresen is hagyhatja.
+3. Kattintson a **Küldés** gombra.
 
 Az első üzenet elindítja a beszélgetést; ugyanazon a rekordon minden későbbi üzenet ugyanahhoz a szálhoz csatlakozik.
 
 Az üzenetek rövidre szántak. A korlát 2 000 karakter, és a **Küldés** e fölött egyszerűen nem működik, saját figyelmeztetés nélkül.
+
+## Üzenet címzése valakinek
+
+A **Címzett** mező a sablonsor fölött van. Üresen azt mutatja: **„Ügyféloldal (mindenki)”** (az ügyféloldalon: **„Könyvelői oldal (mindenki)”**), és az üzenet pontosan úgy működik, mint eddig.
+
+- **Kik szerepelnek a listában.** A munkaterületen mindenki, aki meg tudja nyitni a rekordot, elöl a másik oldal, mindenki a szerepkör-jelzésével. Ön soha nincs benne, és az sem, aki nem tudja megnyitni a rekordot.
+- **Mit jelent, ha valakit megnevez.** A megnevezett emberek kapnak róla e-mailt, olyan szöveggel, amely szerint nekik szól, akkor is, ha az Ön oldalán vannak. A másik oldal többi tagja erről az üzenetről **nem kap e-mailt**, de olvasatlanként látja.
+- **Válasz.** Amikor megnyit egy szálat, a **Címzett** mezőben már az áll, aki utoljára írt bele (Önön kívül, automatikus kérés soha). Az × jellel kiveheti, vagy másokat is hozzáadhat.
+- **Csak a saját oldala.** Ha mindenki, akit megnevezett, az Ön oldalán van, a mező alatt egy sor jelzi: **„Az ügyféloldal is látja ezt az üzenetet.”** Ez igaz: a címzés soha nem teszi privát üzenetté.
+- A név alatti **„nem kér e-mailt”** azt jelenti, hogy az illető kikapcsolta magának ezeket az e-maileket. Az AIFT-ben ő is olvasatlanként látja az üzenetet.
+
+Minden üzenet, amely megnevezett valakit, a feladó alatt mutatja: **„Címzett: …”**, a nevekkel.
 
 ## Amit lát, azt többnyire nem ember írta
 
@@ -43,12 +56,13 @@ Három dolog van a mező fölött, és könnyű összekeverni őket, mert hasonl
 Az összes sablont az Üzenetek oldal tetején lévő **Sablonok böngészése** hivatkozásból tallózhatja.
 
 <MessageComposerFigure>
-A szerkesztő egy már behelyezett sablonnal. A számok az alábbi lista pontjainak felelnek meg. A számlaadatok példák.
+A szerkesztő egy kiválasztott címzettel és egy már behelyezett sablonnal. A számok az alábbi lista pontjainak felelnek meg. A név és a számlaadatok példák.
 </MessageComposerFigure>
 
 1. A **Javasolt:** chipek egy koppintással, a rekord értékeivel már kitöltve. Csak a könyvelői oldalon.
-2. A **Sablon használata…** a sima szöveget teszi be, benne minden helyőrző chipként. Ezt mindenki megkapja, mindkét oldalon.
-3. A **Fogalmazás AI-jal**, szintén csak a könyvelői oldalon.
+2. A **Címzett** mező, itt egy emberrel. Ezt mindenki megkapja, mindkét oldalon.
+3. A **Sablon használata…** a sima szöveget teszi be, benne minden helyőrző chipként. Ezt mindenki megkapja, mindkét oldalon.
+4. A **Fogalmazás AI-jal**, szintén csak a könyvelői oldalon.
 
 A két szürke chip kitöltetlen helyőrző, a belső nevével. Küldés előtt cserélje ki mindegyiket, mert semmi nem akadályozza meg, hogy így küldje el őket.
 
@@ -65,10 +79,10 @@ Minden üzenet mutatja a feladó nevét és egy szerepkör-jelzést: **Könyvel�
 
 ## Az e-mailes emlékeztető
 
-Ha az üzenete olvasatlan marad, a **másik** oldalon lévők e-mailt kapnak róla. Érdemes tudni, mi ez az e-mail, és mi nem:
+Ha az üzenete olvasatlan marad, a **másik** oldalon lévők e-mailt kapnak róla, vagy ha a **Címzett** mezőben megnevezett valakit, csak ők. Érdemes tudni, mi ez az e-mail, és mi nem:
 
 - Azt írja, hogy üzenet várakozik, és megnevezi a rekordot. **Az üzenet szövegét nem tartalmazza**, és e-mailben nem lehet rá válaszolni. Csak emlékeztető, hogy jöjjön és nézze meg.
-- Csak a másik oldalra megy. A saját oldala soha nem kap e-mailt.
+- Címzett nélkül csak a másik oldalra megy, a saját oldala soha nem kap e-mailt. Címzettekkel azokhoz megy, akiket megnevezett, bármelyik oldalon, és senki máshoz.
 - Beszélgetésenként és címzettenként **tíz percenként legfeljebb egy**, így egy rekordon érkező üzenetdömping nem lesz e-maildömping.
 - Az automatikus kérések soha nem küldenek ilyet.
 
@@ -83,7 +97,7 @@ Két dolog, ami hibának tűnik, de nem az:
 - A **számláló** minden munkaterületet figyelembe vesz, amelyhez tartozik, míg a **lista** csak azt a munkaterületet mutatja, amelyben éppen van. Egy piros jelzés üres lista fölött azt jelenti, hogy az üzenetek egy másik munkaterületen vannak.
 - Körülbelül percenként egyszer frissül, így egy vadonatfriss üzenet megjelenése eltarthat egy pillanatig.
 
-**Az Üzenetek oldal** az oldalsávban felsorolja a munkaterület összes beszélgetését, a legújabbal az élen, a rekorddal, egy előnézettel, az időponttal és azzal, hogy kitől jött. Kattintson egy sorra, hogy a rekordra ugorjon. Az üzenetek a **Teendők** oldalon is megjelennek.
+**Az Üzenetek oldal** az oldalsávban felsorolja a munkaterület összes beszélgetését, a legújabbal az élen, a rekorddal, egy előnézettel, az időponttal és azzal, hogy kitől jött. Kattintson egy sorra, hogy a rekordra ugorjon. A **Nekem címzett** fül csak azokat a beszélgetéseket mutatja, amelyekben egy üzenet megnevezi Önt, és a **Neked címezve** jelzés azokat jelöli, amelyekben Önnek szóló olvasatlan üzenet van. Az üzenetek a **Teendők** oldalon is megjelennek.
 
 **Az olvasatlanság az oldal betöltésekor szűnik meg, nem akkor, amikor elolvassa.** Banki tranzakción, párosításon vagy kivonaton a szál egy kártya az oldalon, így a rekord puszta megnyitása olvasottnak jelöli a beszélgetést, akkor is, ha soha nem görget le hozzá.
 
@@ -91,7 +105,7 @@ Két dolog, ami hibának tűnik, de nem az:
 
 ## Mi nem az Üzenetek
 
-- **Nem privát.** Azért ismételjük meg, mert ez az, ami igazán számít: az ügyfél mindent lát, amit a rekordra írnak.
+- **Nem privát.** Azért ismételjük meg, mert ez az, ami igazán számít: az ügyfél mindent lát, amit a rekordra írnak, bárkit nevez meg a **Címzett** mezőben.
 - **Nem a bejövő e-mailje.** Az e-mailben továbbított dokumentumok a Gyűjtőbe érkeznek, nem ide. Lásd: [Dokumentumok továbbítása e-mailben](/email-forwarding).
 - **Nem a rekord javításának helyettesítője.** Ha a válasz az, hogy „változtassa meg a kategóriát” vagy „állítsa be a partnert”, végezze el a módosítást. Üzenetet akkor használjon, amikor azt szeretné, hogy a másik oldal tegyen vagy erősítsen meg valamit.
 
