@@ -113,11 +113,20 @@ export function TableCell({
   const href = useContext(TableRowHrefContext)
 
   if (href) {
+    // The Link box is only as tall as this cell's content, while the row is as
+    // tall as its tallest cell (e.g. stacked label chips). Without the overlay,
+    // the strip below short content was dead: clicking it did nothing.
+    // The Link's ::after spans the whole <td> (the td is its containing block),
+    // so the full cell height navigates. It sits at z-index -1 inside the td's
+    // own stacking context (`isolate`), so the cell's content (buttons, chips,
+    // the expand toggle) still paints and hit-tests above it, while the td
+    // background stays below. `sticky` (stickyEnd columns) wins over `relative`
+    // in Tailwind's output order and is a containing block too.
     return (
-      <td className={clsx('p-0 align-middle', className)}>
+      <td className={clsx('relative isolate p-0 align-middle', className)}>
         <Link
           href={href}
-          className="block px-4 py-3 text-sm text-zinc-700 dark:text-zinc-300 focus:outline-none focus:ring-1 focus:ring-inset focus:ring-blue-500"
+          className="block px-4 py-3 text-sm text-zinc-700 dark:text-zinc-300 focus:outline-none after:absolute after:inset-0 after:-z-10 focus:after:ring-1 focus:after:ring-inset focus:after:ring-blue-500"
         >
           {children}
         </Link>
