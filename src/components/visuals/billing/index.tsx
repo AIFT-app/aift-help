@@ -167,7 +167,7 @@ export function PlanPickerFigure({ locale, children }: FigureProps) {
                 </p>
 
                 <div className="mt-5 @container">
-                <div className="grid grid-cols-1 gap-5 max-w-sm items-start @3xl:max-w-4xl @3xl:grid-cols-[24rem_minmax(0,1fr)]">
+                <div className="grid grid-cols-1 gap-5 max-w-sm items-start @3xl:max-w-none @3xl:grid-cols-[24rem_minmax(0,1fr)]">
                   <article className="@container relative flex flex-col rounded-2xl p-6 ring-1 ring-gray-200 dark:ring-white/10">
                     <h3 className="text-base font-semibold text-indigo-600 dark:text-indigo-400">{b(`plan_name_${p.key}`)}</h3>
                     <p className="mt-0.5 min-h-9 text-xs text-gray-500 dark:text-gray-400">{b(`plan_desc_${p.key}`)}</p>
