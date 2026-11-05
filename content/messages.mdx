@@ -4,7 +4,7 @@ A message is a short note attached to a specific record: an invoice, a bank tran
 
 The conversation lives **on the record it is about**, so the context travels with it.
 
-> **A conversation is not private to your side.** Everyone in the workspace who can see the record can read it, on both sides. Two accountants can write to each other in a thread, and the client will see every word. Naming someone in **To** does not change that: it decides who gets the email, not who can read. Keep internal notes out of it.
+> **By default a message is readable by everyone who can see the record, on both sides.** Two accountants can write to each other in a thread, and the client will see every word. Naming someone in **To** does not change that on its own: it decides who gets the email. For an internal note, name the recipients and tick **Only the recipients can see it** (see [Private messages](#private-messages)).
 
 ## Where the conversation lives
 
@@ -32,12 +32,23 @@ Messages are meant to be short. The limit is 2,000 characters, and **Send** simp
 **To** sits above the template row. Left empty it reads **"Client side (everyone)"** (on the client side: **"Accountant side (everyone)"**), and the message behaves exactly as it always has.
 
 - **Who is in the list.** Everyone in the workspace who can open the record, the other side first, each with their role badge. You are never in it, and neither is anyone who cannot open the record.
+- **A whole side in one click.** At the top of the list, **"Everyone"** picks every member of both sides; at the head of each side, **"Client side (everyone)"** and **"Accountant side (everyone)"** pick everyone on that side (when the side has at least two people). A side where only some are picked shows a dash in its box. When you pick a whole side, the field shows it as one item with the head count.
 - **What naming someone does.** The people you name get the email about it, with wording that says it is for them, even when they are on your own side. The rest of the other side gets **no email** for that message, though they still see it as unread.
 - **Replying.** When you open a thread, **To** already holds the last person who wrote in it (other than you, and never an automatic request). Remove them with the ×, or add others.
-- **Your own side only.** If everyone you named is on your side, a line under the field says **"The client side sees this message too."** It is true: naming someone never makes a message private.
+- **Your own side only.** If everyone you named is on your side and you have not ticked **Only the recipients can see it**, a line under the field says **"Only the recipients get an email, but the client side sees this message too."** It is true: naming someone does not make a message private on its own.
 - **"no email"** under a name means that person has switched these emails off for themselves. They still see the message as unread in AIFT.
 
 Every message that named someone shows **"To: …"** with their names under the sender.
+
+## Private messages
+
+Once you have named at least one recipient, an **Only the recipients can see it** box appears under the field. Tick it and only you, the recipients and the accounting organisation's administrators (for audit) can read the message. The line under the field then says **"Only you and the recipients can see it."**
+
+- **Everyone else sees nothing of it.** Not in the thread, not as a preview on the Messages page, not as unread, and no email. They cannot tell that it exists.
+- **How to recognise one.** A private message has a dashed border, a **Private** badge with a lock next to the sender, and **"only they can see it"** after the recipients.
+- **Replying.** When you reply to a private message, **To** already holds its writer and its other recipients and the box is ticked, so the reply stays private too. Untick it if you mean it for everyone.
+- **It does not change later.** A message cannot be made private after it is sent, and a private message cannot be opened up to everyone. Someone who joins the workspace later does not see earlier private messages either.
+- If you pick everyone, the box disappears, because there is nobody left to hide the message from.
 
 ## Most of what you see was not written by a person
 
@@ -63,16 +74,17 @@ The composer with a recipient chosen and a template already dropped in. The numb
 2. **To**, here holding one person. Everyone gets this, on both sides.
 3. **Use a template…** drops the plain text in with every placeholder still a chip. Everyone gets this, on both sides.
 4. **Draft with AI**, accounting side only.
+5. The **Only the recipients can see it** box. It appears once you have named someone; ticked, the message is private.
 
 The two grey chips are unfilled placeholders showing their internal names. Click each one before sending, because nothing stops you sending them as they are.
 
 ## Who can read a thread
 
-There is no separate "messaging" permission. If you can see the record, you can read its thread and reply to it.
+There is no separate "messaging" permission. If you can see the record, you can read its thread and reply to it. The exception is a [private message](#private-messages): only its sender, its recipients and the accounting organisation's administrators read it.
 
 Two consequences:
 
-- **Your own side reads it too**, as above. Administrators of the accounting organisation can also read threads, for audit.
+- **Your own side reads it too**, as above. Administrators of the accounting organisation can also read threads, private messages included, for audit.
 - **A member whose access to the records has been withdrawn** sees a much smaller Messages page: only conversations about documents they uploaded themselves, or ones they have written in.
 
 Every message carries the sender's name and a role badge - **Accountant**, **Accountant admin**, **Finance lead**, **Finance admin** or **Team member**. Someone on a custom role shows the badge of the role it was based on.
@@ -82,7 +94,7 @@ Every message carries the sender's name and a role badge - **Accountant**, **Acc
 When your message stays unread, the people on the **other** side get an email about it, or, if you named people in **To**, only those people. Worth knowing what that email is and is not:
 
 - It says a message is waiting and names the record. **It does not contain the message text**, and you cannot reply to it by email. It is a nudge to come and look.
-- Without a recipient it goes to the other side only, and your own side is never emailed. With recipients it goes to the people you named, on either side, and to nobody else.
+- Without a recipient it goes to the other side only, and your own side is never emailed. With recipients it goes to the people you named, on either side, and to nobody else. A private message, too, emails only its recipients.
 - At most **one per conversation per recipient every ten minutes**, so a flurry on one record does not become a flurry of email.
 - Automatic requests never send one.
 
@@ -105,7 +117,7 @@ Two things about it that look like faults and are not:
 
 ## What Messages is not
 
-- **Not private.** Repeating it because it is the one that matters: the client sees everything written on the record, whoever you named in **To**.
+- **Not private by default.** Repeating it because it is the one that matters: the client sees everything written on the record, whoever you named in **To**, unless you tick **Only the recipients can see it**.
 - **Not your incoming email.** Documents forwarded by email land in Intake, not here. See [Forwarding Documents by Email](/email-forwarding).
 - **Not a substitute for fixing the record.** If the answer is "change the category" or "set the partner", make the change. Use a message when you need the other side to do or confirm something.
 

@@ -4,7 +4,7 @@ Eine Nachricht ist eine kurze Notiz, die an einem bestimmten Datensatz hängt: a
 
 Die Unterhaltung lebt **an dem Datensatz, um den es geht**, sodass der Kontext mit ihr wandert.
 
-> **Eine Unterhaltung ist nicht privat und nicht auf Ihre Seite beschränkt.** Jede Person im Arbeitsbereich, die den Datensatz sehen kann, kann sie lesen, auf beiden Seiten. Zwei Buchhalter können einander in einem Thread schreiben, und der Mandant liest jedes Wort mit. Das Feld **An** ändert daran nichts: Es entscheidet, wer eine E-Mail bekommt, nicht, wer mitliest. Halten Sie interne Notizen daraus heraus.
+> **Eine Nachricht kann standardmäßig jede Person lesen, die den Datensatz sehen kann, auf beiden Seiten.** Zwei Buchhalter können einander in einem Thread schreiben, und der Mandant liest jedes Wort mit. Das Feld **An** allein ändert daran nichts: Es entscheidet, wer eine E-Mail bekommt. Für eine interne Notiz nennen Sie die Empfänger und setzen das Häkchen bei **Nur die Empfänger sehen sie** (siehe [Private Nachrichten](#private-nachrichten)).
 
 ## Wo die Unterhaltung liegt
 
@@ -32,12 +32,23 @@ Nachrichten sind kurz gedacht. Die Grenze liegt bei 2.000 Zeichen, und darüber 
 Das Feld **An** steht über der Vorlagenzeile. Leer zeigt es **„Kundenseite (alle)“** (auf der Mandantenseite: **„Kanzleiseite (alle)“**), und die Nachricht verhält sich genau wie bisher.
 
 - **Wer in der Liste steht.** Alle im Arbeitsbereich, die den Datensatz öffnen können, die andere Seite zuerst, jeweils mit ihrem Rollen-Abzeichen. Sie selbst stehen nie darin, und auch niemand, der den Datensatz nicht öffnen kann.
+- **Eine ganze Seite mit einem Klick.** Oben in der Liste wählt **„Alle“** jede Person beider Seiten aus; am Anfang jeder Seite wählen **„Kundenseite (alle)“** und **„Kanzleiseite (alle)“** alle Personen dieser Seite aus (wenn die Seite mindestens zwei Personen hat). Sind nur einige einer Seite ausgewählt, zeigt ihr Kästchen einen Strich. Ist eine ganze Seite ausgewählt, zeigt das Feld sie als ein Element mit der Personenzahl.
 - **Was das Benennen bewirkt.** Die genannten Personen bekommen die E-Mail dazu, mit einem Text, der sagt, dass sie an sie gerichtet ist, auch wenn sie auf Ihrer eigenen Seite sind. Der Rest der anderen Seite bekommt für diese Nachricht **keine E-Mail**, sieht sie aber als ungelesen.
 - **Antworten.** Wenn Sie einen Thread öffnen, steht in **An** bereits die Person, die zuletzt darin geschrieben hat (außer Ihnen, nie eine automatische Anfrage). Mit dem × nehmen Sie sie heraus, oder Sie fügen weitere hinzu.
-- **Nur die eigene Seite.** Wenn alle Genannten auf Ihrer Seite sind, sagt eine Zeile unter dem Feld: **„Die Kundenseite sieht diese Nachricht auch.“** Das stimmt: Eine Nachricht wird durch das Benennen nie privat.
+- **Nur die eigene Seite.** Wenn alle Genannten auf Ihrer Seite sind und Sie **Nur die Empfänger sehen sie** nicht angehakt haben, sagt eine Zeile unter dem Feld: **„Nur die Empfänger bekommen eine E-Mail, aber die Kundenseite sieht diese Nachricht auch.“** Das stimmt: Durch das Benennen allein wird eine Nachricht nicht privat.
 - **„keine E-Mail“** unter einem Namen heißt, dass diese Person diese E-Mails für sich abgeschaltet hat. In AIFT sieht sie die Nachricht trotzdem als ungelesen.
 
 Jede Nachricht, die jemanden genannt hat, zeigt unter dem Absender **„An: …“** mit den Namen.
+
+## Private Nachrichten
+
+Sobald Sie mindestens einen Empfänger genannt haben, erscheint unter dem Feld das Kästchen **Nur die Empfänger sehen sie**. Haken Sie es an, können nur Sie, die Empfänger und die Administratoren der Buchhaltungsorganisation (zu Prüfzwecken) die Nachricht lesen. Unter dem Feld steht dann: **„Nur Sie und die Empfänger sehen sie.“**
+
+- **Alle anderen sehen nichts davon.** Nicht im Thread, nicht als Vorschau auf der Seite Nachrichten, nicht als ungelesen, und sie bekommen keine E-Mail. Sie können nicht erkennen, dass es sie gibt.
+- **So erkennen Sie sie.** Eine private Nachricht hat einen gestrichelten Rahmen, neben dem Absender das Abzeichen **Privat** mit einem Schloss und nach den Empfängern **„nur sie sehen sie“**.
+- **Antworten.** Wenn Sie auf eine private Nachricht antworten, stehen in **An** bereits ihr Absender und ihre anderen Empfänger, und das Kästchen ist angehakt, sodass auch die Antwort privat bleibt. Entfernen Sie das Häkchen, wenn sie für alle gedacht ist.
+- **Das ändert sich später nicht.** Eine Nachricht kann nach dem Senden nicht privat werden, und eine private Nachricht kann nicht für alle geöffnet werden. Wer dem Arbeitsbereich später beitritt, sieht frühere private Nachrichten ebenfalls nicht.
+- Wählen Sie alle aus, verschwindet das Kästchen, denn dann gibt es niemanden mehr, vor dem die Nachricht verborgen wäre.
 
 ## Das meiste, was Sie sehen, hat kein Mensch geschrieben
 
@@ -63,16 +74,17 @@ Der Editor mit einem gewählten Empfänger und einer bereits eingefügten Vorlag
 2. Das Feld **An**, hier mit einer Person. Das steht allen offen, auf beiden Seiten.
 3. **Vorlage verwenden…** fügt den einfachen Text ein, mit allen Platzhaltern noch als Chips. Das steht allen offen, auf beiden Seiten.
 4. **Mit KI entwerfen**, ebenfalls nur auf der Kanzleiseite.
+5. Das Kästchen **Nur die Empfänger sehen sie**. Es erscheint, sobald Sie jemanden genannt haben; angehakt ist die Nachricht privat.
 
 Die beiden grauen Chips sind unausgefüllte Platzhalter mit ihren internen Namen. Ersetzen Sie jeden davon vor dem Senden, denn nichts hindert Sie daran, sie so abzuschicken.
 
 ## Wer einen Thread lesen kann
 
-Es gibt keine eigene Berechtigung für Nachrichten. Wer den Datensatz sehen kann, kann seinen Thread lesen und darauf antworten.
+Es gibt keine eigene Berechtigung für Nachrichten. Wer den Datensatz sehen kann, kann seinen Thread lesen und darauf antworten. Die Ausnahme ist eine [private Nachricht](#private-nachrichten): Sie lesen nur ihr Absender, ihre Empfänger und die Administratoren der Buchhaltungsorganisation.
 
 Zwei Folgen davon:
 
-- **Ihre eigene Seite liest mit**, wie oben. Administratoren der Buchhaltungsorganisation können Threads ebenfalls lesen, zu Prüfzwecken.
+- **Ihre eigene Seite liest mit**, wie oben. Administratoren der Buchhaltungsorganisation können Threads ebenfalls lesen, private Nachrichten eingeschlossen, zu Prüfzwecken.
 - **Ein Mitglied, dem der Zugriff auf die Datensätze entzogen wurde**, sieht eine deutlich kleinere Seite **Nachrichten**: nur Unterhaltungen zu Dokumenten, die es selbst hochgeladen hat, oder solche, in denen es geschrieben hat.
 
 Jede Nachricht trägt den Namen des Absenders und ein Rollen-Abzeichen: **Buchhalter**, **Buchhalter-Admin**, **Finanzleitung**, **Finanzadmin** oder **Teammitglied**. Bei einer eigenen Rolle erscheint das Abzeichen der Basisrolle, auf der sie beruht.
@@ -82,7 +94,7 @@ Jede Nachricht trägt den Namen des Absenders und ein Rollen-Abzeichen: **Buchha
 Bleibt Ihre Nachricht ungelesen, bekommen die Personen auf der **anderen** Seite eine E-Mail dazu, oder, wenn Sie unter **An** Personen genannt haben, nur diese. Es lohnt sich zu wissen, was diese E-Mail ist und was nicht:
 
 - Sie sagt, dass eine Nachricht wartet, und nennt den Datensatz. **Den Nachrichtentext enthält sie nicht**, und man kann nicht per E-Mail darauf antworten. Sie ist ein Anstoß, nachzusehen.
-- Ohne Empfänger geht sie nur an die andere Seite, und die eigene Seite wird nie per E-Mail benachrichtigt. Mit Empfängern geht sie an die genannten Personen, auf beiden Seiten, und an niemanden sonst.
+- Ohne Empfänger geht sie nur an die andere Seite, und die eigene Seite wird nie per E-Mail benachrichtigt. Mit Empfängern geht sie an die genannten Personen, auf beiden Seiten, und an niemanden sonst. Auch über eine private Nachricht bekommen nur ihre Empfänger eine E-Mail.
 - Höchstens **eine pro Unterhaltung pro Empfänger alle zehn Minuten**, damit ein Schwung Nachrichten zu einem Datensatz nicht zu einem Schwung E-Mails wird.
 - Automatische Anfragen senden nie eine.
 
@@ -105,7 +117,7 @@ Zwei Dinge daran sehen wie Fehler aus und sind keine:
 
 ## Was Nachrichten nicht sind
 
-- **Nicht privat.** Noch einmal, weil es der Punkt ist, auf den es ankommt: Der Mandant sieht alles, was am Datensatz geschrieben wird, wen auch immer Sie unter **An** genannt haben.
+- **Standardmäßig nicht privat.** Noch einmal, weil es der Punkt ist, auf den es ankommt: Der Mandant sieht alles, was am Datensatz geschrieben wird, wen auch immer Sie unter **An** genannt haben, es sei denn, Sie haken **Nur die Empfänger sehen sie** an.
 - **Nicht Ihr E-Mail-Eingang.** Per E-Mail weitergeleitete Dokumente landen in der **Sammelstelle**, nicht hier. Siehe [Dokumente per E-Mail weiterleiten](/email-forwarding).
 - **Kein Ersatz dafür, den Datensatz zu korrigieren.** Wenn die Antwort „Kategorie ändern“ oder „Partner festlegen“ lautet, nehmen Sie die Änderung vor. Eine Nachricht ist dann richtig, wenn die andere Seite etwas tun oder bestätigen soll.
 
