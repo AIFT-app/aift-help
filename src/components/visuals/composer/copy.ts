@@ -5,12 +5,15 @@
 //   src/app/(app)/_components/ChipEditor.tsx            (the editor + chips)
 // recipient_label / recipient_remove: aift-web origin/staging bc0f137d
 // (2026-11-04, PRD message-recipients).
+// private_label: aift-web feat/message-groups-and-privacy (2026-11-05, PRD
+// message-groups-and-privacy).
 import type { Locale } from '@/lib/i18n'
 
 export const UI_KEYS = [
   'comments.thread.suggested_label',
   'comments.thread.recipient_label',
   'comments.thread.recipient_remove',
+  'comments.thread.private_label',
   'comments.thread.use_template',
   'comments.thread.draft_ai',
   'comments.thread.send',
@@ -44,6 +47,7 @@ const en: Copy = {
     'comments.thread.suggested_label': "Suggested:",
     'comments.thread.recipient_label': "To",
     'comments.thread.recipient_remove': "Remove {name}",
+    'comments.thread.private_label': "Only the recipients can see it",
     'comments.thread.use_template': "Use a template…",
     'comments.thread.draft_ai': "Draft with AI",
     'comments.thread.send': "Send",
@@ -58,7 +62,7 @@ const en: Copy = {
     mid: ") doesn't match our file (",
     tail: "). Is this for the right company?",
   },
-  help: { alt: "The message composer. A row of blue Suggested chips sits above a To field holding one person, Emma Hart, and below that a dropdown reading Use a template and an outlined Draft with AI button. Below them the editor holds a template whose two placeholders are grey chips showing their token names, with the hint to click each one on the left and a dark Send button on the right." },
+  help: { alt: "The message composer. A row of blue Suggested chips sits above a To field holding one person, Emma Hart, with an unticked Only the recipients can see it box under it, and below that a dropdown reading Use a template and an outlined Draft with AI button. Below them the editor holds a template whose two placeholders are grey chips showing their token names, with the hint to click each one on the left and a dark Send button on the right." },
 }
 
 const hu: Copy = {
@@ -66,6 +70,7 @@ const hu: Copy = {
     'comments.thread.suggested_label': "Javasolt:",
     'comments.thread.recipient_label': "Címzett",
     'comments.thread.recipient_remove': "{name} eltávolítása",
+    'comments.thread.private_label': "Csak a címzettek lássák",
     'comments.thread.use_template': "Sablon használata…",
     'comments.thread.draft_ai': "Fogalmazás AI-jal",
     'comments.thread.send': "Küldés",
@@ -80,7 +85,7 @@ const hu: Copy = {
     mid: ") nem egyezik az általunk nyilvántartott adatokkal (",
     tail: "). Ez a megfelelő céghez tartozik?",
   },
-  help: { alt: "Az üzenetszerkesztő. Fent kék Javasolt chipek sora, alattuk egy Címzett mező egy emberrel, Emma Harttal, majd egy Sablon használata legördülő menü és egy körvonalas Fogalmazás AI-jal gomb. Ezek alatt a szerkesztőben egy sablon, amelynek két helyőrzője szürke chipként, a jelölő nevével látszik, balra a chipek cseréjére felszólító megjegyzés, jobbra a sötét Küldés gomb." },
+  help: { alt: "Az üzenetszerkesztő. Fent kék Javasolt chipek sora, alattuk egy Címzett mező egy emberrel, Emma Harttal, alatta egy üres Csak a címzettek lássák jelölőnégyzet, majd egy Sablon használata legördülő menü és egy körvonalas Fogalmazás AI-jal gomb. Ezek alatt a szerkesztőben egy sablon, amelynek két helyőrzője szürke chipként, a jelölő nevével látszik, balra a chipek cseréjére felszólító megjegyzés, jobbra a sötét Küldés gomb." },
 }
 
 const de: Copy = {
@@ -88,6 +93,7 @@ const de: Copy = {
     'comments.thread.suggested_label': "Vorschlag:",
     'comments.thread.recipient_label': "An",
     'comments.thread.recipient_remove': "{name} entfernen",
+    'comments.thread.private_label': "Nur die Empfänger sehen sie",
     'comments.thread.use_template': "Vorlage verwenden…",
     'comments.thread.draft_ai': "Mit KI entwerfen",
     'comments.thread.send': "Senden",
@@ -102,7 +108,7 @@ const de: Copy = {
     mid: ") stimmt nicht mit unserer Datei (",
     tail: ") überein. Gehört das zum richtigen Unternehmen?",
   },
-  help: { alt: "Der Nachrichteneditor. Oben eine Reihe blauer Vorschlag-Chips, darunter ein Feld An mit einer Person, Emma Hart, dann ein Auswahlfeld Vorlage verwenden und eine umrandete Schaltfläche Mit KI entwerfen. Darunter enthält der Editor eine Vorlage, deren zwei Platzhalter als graue Chips mit ihren Token-Namen erscheinen, links der Hinweis, jeden Chip zu ersetzen, rechts die dunkle Schaltfläche Senden." },
+  help: { alt: "Der Nachrichteneditor. Oben eine Reihe blauer Vorschlag-Chips, darunter ein Feld An mit einer Person, Emma Hart, darunter ein leeres Kästchen Nur die Empfänger sehen sie, dann ein Auswahlfeld Vorlage verwenden und eine umrandete Schaltfläche Mit KI entwerfen. Darunter enthält der Editor eine Vorlage, deren zwei Platzhalter als graue Chips mit ihren Token-Namen erscheinen, links der Hinweis, jeden Chip zu ersetzen, rechts die dunkle Schaltfläche Senden." },
 }
 
 export const composerCopy: Record<Locale, Copy> = { en, hu, de }

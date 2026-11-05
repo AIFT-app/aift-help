@@ -8,6 +8,9 @@
 // the block under "Recipient field (PRD message-recipients)", class for
 // class. Headless UI's Popover renders a div and PopoverButton a button,
 // so both are written as those elements here; the picker panel stays closed.
+// The "only the recipients" box under the field from aift-web
+// feat/message-groups-and-privacy (2026-11-05, PRD message-groups-and-privacy):
+// the CheckboxField under the recipient field, unticked, class for class.
 //
 // WHY THIS SCREEN
 //
@@ -31,6 +34,8 @@
 import { ChevronDownIcon, SparklesIcon, XMarkIcon } from '@heroicons/react/20/solid'
 import type { Locale } from '@/lib/i18n'
 import { Button } from '@/components/catalyst/button'
+import { Checkbox, CheckboxField } from '@/components/catalyst/checkbox'
+import { Label } from '@/components/catalyst/fieldset'
 import { Select } from '@/components/catalyst/select'
 import { AppScreen, Figure, Pin } from '../kit'
 import { CHIPS, composerCopy } from './copy'
@@ -110,6 +115,14 @@ export function MessageComposerFigure({
                         {/* Beside the token, in the field's empty middle; cancels the gap-1.5. */}
                         <Pin n={2} at="right" cancel="-ml-1.5" />
                       </div>
+                    </div>
+                    {/* Shown once somebody is named; unticked, the message stays readable by everyone. */}
+                    <div className="flex items-center">
+                      <CheckboxField className="mt-2">
+                        <Checkbox checked={false} />
+                        <Label>{ui['comments.thread.private_label']}</Label>
+                      </CheckboxField>
+                      <Pin n={5} at="right" cancel="" />
                     </div>
                   </div>
                 </div>
