@@ -25,6 +25,8 @@ export const UI_KEYS = [
   'documents.duplicate_label',
   'documents.source.email',
   'documents.source.upload',
+  'document_kind.contract',
+  'document_kind.other',
 ] as const
 
 export type UiKey = (typeof UI_KEYS)[number]
@@ -160,6 +162,8 @@ const en: Copy = {
     'documents.duplicate_label': "Duplicate",
     'documents.source.email': "Email",
     'documents.source.upload': "Upload",
+    'document_kind.contract': 'Contract',
+    'document_kind.other': 'Other document',
   },
   summaries: {
     'GRM-DOC-2026-0118': "Five-year lease for the Dunham Street unit, with a rent review in year three.",
@@ -167,7 +171,7 @@ const en: Copy = {
     'GRM-DOC-2026-0116': "A services agreement; the parties and the term are stated, the fee schedule is an annex.",
   },
   rendered: { duplicateOf: "Duplicate of GRM-DOC-2026-0118" },
-  help: { alt: "The Documents list: six filters with a count on Duplicates, then five rows, each with its reference, file name, one-line summary, source and size, a type badge, a confidence percentage and a status badge. One badge reads Kontenrahmen, in the document's own language; the contracts read Contract. One row is marked a duplicate of an earlier one, and the last row sits on Processing." },
+  help: { alt: "The Documents list: six filters with a count on Duplicates, then five rows, each with a kind icon before its reference, file name, one-line summary, and a grey line with the source and size, then a confidence percentage and a status badge. One grey line opens with Kontenrahmen, in the document's own language; the contracts carry the contract icon. One row is marked a duplicate of an earlier one, and the last row sits on Processing." },
 }
 
 const hu: Copy = {
@@ -190,6 +194,8 @@ const hu: Copy = {
     'documents.duplicate_label': "Duplikátum",
     'documents.source.email': "E-mail",
     'documents.source.upload': "Feltöltés",
+    'document_kind.contract': 'Szerződés',
+    'document_kind.other': 'Egyéb dokumentum',
   },
   summaries: {
     'GRM-DOC-2026-0118': "Ötéves bérleti szerződés a Dunham Street-i egységre, a harmadik évben bérleti díj felülvizsgálattal.",
@@ -197,7 +203,7 @@ const hu: Copy = {
     'GRM-DOC-2026-0116': "Szolgáltatási szerződés; a felek és a futamidő szerepel benne, a díjszabás melléklet.",
   },
   rendered: { duplicateOf: "GRM-DOC-2026-0118 duplikátuma" },
-  help: { alt: "A Dokumentumok lista: hat szűrő, a Duplikátumokon darabszámmal, majd öt sor, mindegyikben a hivatkozási szám, a fájlnév, egy egysoros összefoglaló, a forrás és a méret, egy típuscímke, egy magabiztossági százalék és egy állapotcímke. Az egyik címke Kontenrahmen, a dokumentum saját nyelvén; a szerződéseken Szerződés áll. Egy sor egy korábbi duplikátumaként van megjelölve, az utolsó sor pedig Feldolgozás állapotban áll." },
+  help: { alt: "A Dokumentumok lista: hat szűrő, a Duplikátumokon darabszámmal, majd öt sor, mindegyikben a hivatkozási szám előtt a fajta ikonja, a fájlnév, egy egysoros összefoglaló, egy szürke sor a forrással és a mérettel, majd egy magabiztossági százalék és egy állapotcímke. Az egyik szürke sor a Kontenrahmen szóval kezdődik, a dokumentum saját nyelvén; a szerződéseken a szerződés ikonja áll. Egy sor egy korábbi duplikátumaként van megjelölve, az utolsó sor pedig Feldolgozás állapotban áll." },
 }
 
 const de: Copy = {
@@ -220,6 +226,8 @@ const de: Copy = {
     'documents.duplicate_label': "Duplikat",
     'documents.source.email': "E-Mail",
     'documents.source.upload': "Upload",
+    'document_kind.contract': 'Vertrag',
+    'document_kind.other': 'Sonstiges Dokument',
   },
   summaries: {
     'GRM-DOC-2026-0118': "Fünfjähriger Mietvertrag für die Einheit in der Dunham Street, mit Mietanpassung im dritten Jahr.",
@@ -227,7 +235,7 @@ const de: Copy = {
     'GRM-DOC-2026-0116': "Ein Dienstleistungsvertrag; Parteien und Laufzeit sind genannt, die Preisliste ist eine Anlage.",
   },
   rendered: { duplicateOf: "Duplikat von GRM-DOC-2026-0118" },
-  help: { alt: "Die Dokumentenliste: sechs Filter, bei Duplikate mit einer Anzahl, darunter fünf Zeilen mit Referenz, Dateiname, einer einzeiligen Zusammenfassung, Quelle und Größe, einem Typ-Badge, einem Konfidenzwert in Prozent und einem Status-Badge. Ein Badge steht in der Sprache des Dokuments, Kontenrahmen; bei den Verträgen steht Vertrag. Eine Zeile ist als Duplikat einer früheren markiert, und die letzte Zeile steht auf Verarbeitung." },
+  help: { alt: "Die Dokumentenliste: sechs Filter, bei Duplikate mit einer Anzahl, darunter fünf Zeilen mit einem Art-Symbol vor der Referenz, Dateiname, einer einzeiligen Zusammenfassung, einer grauen Zeile mit Quelle und Größe, dann einem Konfidenzwert in Prozent und einem Status-Badge. Eine graue Zeile beginnt in der Sprache des Dokuments mit Kontenrahmen; bei den Verträgen steht das Vertragssymbol. Eine Zeile ist als Duplikat einer früheren markiert, und die letzte Zeile steht auf Verarbeitung." },
 }
 
 export const documentsCopy: Record<Locale, Copy> = { en, hu, de }

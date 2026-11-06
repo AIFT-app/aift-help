@@ -34,6 +34,7 @@
 
 import type { Locale } from '@/lib/i18n'
 import { Badge } from '@/components/catalyst/badge'
+import { DocumentKindGlyph } from '../DocumentKindGlyph'
 import { Button } from '@/components/catalyst/button'
 import { Heading } from '@/components/catalyst/heading'
 import { AppScreen, Figure, Pin } from '../kit'
@@ -112,24 +113,26 @@ export function DocumentsListFigure({
                 <ul className="divide-y divide-zinc-200 overflow-hidden rounded-lg border border-zinc-200 dark:divide-zinc-800 dark:border-zinc-800">
                   {ROWS.map((d) => {
                     const isDup = !!d.duplicateOf
-                    // DocumentsList.tsx, verbatim: a CONTRACT always renders the
-                    // translated label and the AI's finer `document_type` is
-                    // dropped; only a non-contract shows the AI's own words.
-                    const typeLabel =
-                      d.kind === 'contract'
-                        ? ui['documents.type.contract']
-                        : d.type || ui['documents.type.other']
+                    // DocumentsList.tsx, verbatim (document-kind-icons): the kind
+                    // is the glyph before the name; the AI's finer `document_type`
+                    // opens the meta line for a non-contract, a contract's is dropped.
+                    const subtype = d.kind !== 'contract' && d.type && d.type !== d.kind ? d.type : null
                     const meta = [
+                      subtype,
                       ui[`documents.source.${d.source}` as keyof typeof ui],
                       d.mime,
                       d.size,
                       d.lang,
-                    ].join(' · ')
+                    ]
+                      .filter(Boolean)
+                      .join(' · ')
                     const pin = PIN_ON_ROW[d.internalId]
                     return (
                       <li key={d.internalId}>
-                        <a className="grid grid-cols-[1fr_88px_56px_72px] items-center gap-3 p-4">
-                          <div className="min-w-0">
+                        <a className="grid grid-cols-[1fr_56px_72px] items-center gap-3 p-4">
+                          <div className="flex min-w-0 items-center gap-3">
+                          <DocumentKindGlyph kind={d.kind} label={ui[`document_kind.${d.kind}`]} size={20} className="text-zinc-400 dark:text-zinc-500" />
+                          <div className="min-w-0 flex-1">
                             <div className="font-mono text-xs text-zinc-400 dark:text-zinc-500">
                               {d.internalId}
                               {pin ? <Pin n={pin} at="right" cancel="" /> : null}
@@ -150,10 +153,6 @@ export function DocumentsListFigure({
                               {meta}
                             </div>
                           </div>
-                          <div>
-                            <Badge color={d.kind === 'contract' ? 'purple' : 'zinc'}>
-                              {typeLabel}
-                            </Badge>
                           </div>
                           <div className="text-right text-sm tabular-nums text-zinc-600 dark:text-zinc-300">
                             {d.pct ?? '—'}
