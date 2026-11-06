@@ -12,13 +12,12 @@
 import clsx from 'clsx'
 import {
   ArrowPathIcon,
-  BanknotesIcon,
   CheckCircleIcon,
   ChevronDownIcon,
-  DocumentIcon,
   InformationCircleIcon,
   XCircleIcon,
 } from '@heroicons/react/24/outline'
+import { DocumentKindGlyph } from '../DocumentKindGlyph'
 import type { Locale } from '@/lib/i18n'
 import { AppScreen, Figure } from '../kit'
 import { UPLOAD_ROWS, uploadsCopy, type UploadRow } from './copy'
@@ -49,7 +48,8 @@ function Row({ row, locale }: { row: UploadRow; locale: Locale }) {
               ? 'Wrong file type'
               : c.rendered.failed
 
-  const KindIcon = row.kind === 'invoice' ? DocumentIcon : BanknotesIcon
+  // document-kind-icons: UploadQueueRow draws the kind glyph for a document row.
+  const documentKind = row.kind === 'invoice' ? 'invoice' : 'bank_statement'
 
   const containerClasses = [
     'flex items-center gap-3 px-3 py-2 border-b border-zinc-100 dark:border-zinc-800 last:border-b-0',
@@ -72,7 +72,7 @@ function Row({ row, locale }: { row: UploadRow; locale: Locale }) {
 
   const inner = (
     <>
-      <KindIcon className="h-5 w-5 shrink-0 text-zinc-400" />
+      <DocumentKindGlyph kind={documentKind} label={ui[`document_kind.${documentKind}`]} size={20} className="text-zinc-400 dark:text-zinc-500" />
       <div className="min-w-0 flex-1">
         <p className="truncate text-sm font-medium text-zinc-900 dark:text-zinc-100" title={row.file}>
           {row.file}

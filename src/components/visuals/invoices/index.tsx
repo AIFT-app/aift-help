@@ -17,6 +17,7 @@
 // from ./copy.ts and is fictional.
 
 import clsx from 'clsx'
+import { DocumentKindGlyph } from '../DocumentKindGlyph'
 import { ChevronDownIcon, ClipboardIcon } from '@heroicons/react/16/solid'
 import type { Locale } from '@/lib/i18n'
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@/components/catalyst/table'
@@ -159,6 +160,7 @@ function CopyableId({ value, locale }: { value: string; locale: Locale }) {
 }
 
 function Row({ row, locale, marker }: { row: ListRow; locale: Locale; marker?: number }) {
+  const ui = invoicesCopy[locale].ui
   const accent = row.labels.some((k) => LABEL_TONE[k] === 'amber')
   const flow = row.direction === 'income' ? 'in' : 'out'
   return (
@@ -177,13 +179,19 @@ function Row({ row, locale, marker }: { row: ListRow; locale: Locale; marker?: n
       </TableCell>
       <TableCell>
         <div style={{ minWidth: PARTY_FLOOR }}>
-          {/* party-cell.tsx PartyCell, invoice number on one line */}
-          <div className="min-w-0">
-            <div className="line-clamp-2 wrap-anywhere text-zinc-900 dark:text-zinc-100" title={row.partner}>
-              {row.partner}
-            </div>
-            <div className="mt-0.5 text-xs truncate font-medium text-blue-600 dark:text-blue-400" title={row.invoiceNumber}>
-              {row.invoiceNumber}
+          {/* party-cell.tsx PartyCell with `leading`: the document-kind glyph
+              (document-kind-icons), then the block, invoice number on one line */}
+          <div className="flex min-w-0 items-start gap-2">
+            <span className="mt-0.5 shrink-0 text-zinc-400 dark:text-zinc-500">
+              <DocumentKindGlyph kind="invoice" label={ui['document_kind.invoice']} size={16} />
+            </span>
+            <div className="min-w-0 flex-1">
+              <div className="line-clamp-2 wrap-anywhere text-zinc-900 dark:text-zinc-100" title={row.partner}>
+                {row.partner}
+              </div>
+              <div className="mt-0.5 text-xs truncate font-medium text-blue-600 dark:text-blue-400" title={row.invoiceNumber}>
+                {row.invoiceNumber}
+              </div>
             </div>
           </div>
         </div>
