@@ -32,7 +32,7 @@ The dialog says PDF, JPG or PNG up to 20 MB, and that is good advice rather than
 
 Every document is read once, briefly, so the list is useful without opening anything. It gets a one or two sentence **summary** with a confidence figure, its language is detected, and it is given a type.
 
-**The type badge shows whatever the AI called it**, but only for a document that is neither a contract nor an invoice attachment; an attachment always shows **Attachment**. The first pass writes two things: a coarse kind, and a finer label in its own words. A **contract** always shows the translated word **Contract**, and its finer label (`lease`, `nda`) is never displayed anywhere. Everything else shows the finer label if there is one, and those free-text labels are not translated, so `Kontenrahmen` reads as `Kontenrahmen` whatever your interface language is.
+**The icon before the file name says what kind of document it is**: a sheet with a signature and a seal for a contract, a paperclip for an invoice attachment, three dots for everything else; point at it to read the kind's name. The first pass writes two things: that coarse kind, and a finer label in its own words. A **contract**'s finer label (`lease`, `nda`) is never displayed anywhere. For everything else the finer label, if there is one, opens the grey line under the summary, before the source and the file size, and those free-text labels are not translated, so `Kontenrahmen` reads as `Kontenrahmen` whatever your interface language is.
 
 If the same file is already in the workspace, the copy is marked **Duplicate**. It still appears in the list, filed under the original's type, with the summary replaced by a line naming what it duplicates.
 
@@ -42,7 +42,7 @@ The Documents list with five documents. The numbers match the list below. The do
 
 1. **Upload**, beside the heading. The only other way in is email.
 2. **Duplicates** carries a count, and only when there are some. **Unlinked attachments** does the same.
-3. **The type badge in the document's own words.** This chart of accounts is not a contract, so the badge prints what the AI called it, untranslated, whatever your interface language is.
+3. **The finer label in the document's own words.** This chart of accounts is not a contract, so the grey line under its summary opens with what the AI called it, untranslated, whatever your interface language is.
 4. **A duplicate is filed here**, under the kind of the original, with the line naming what it duplicates in place of the summary.
 5. **A PDF holding several documents** keeps the **Processing** badge for good. Nothing further happens to it.
 

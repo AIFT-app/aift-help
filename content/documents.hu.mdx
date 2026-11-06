@@ -32,7 +32,7 @@ A párbeszédpanel szerint PDF, JPG vagy PNG, egyenként max. 20 MB, és ez ink�
 
 Minden dokumentumot elolvasunk egyszer, röviden, hogy a lista megnyitás nélkül is használható legyen. Kap egy egy-két mondatos **összefoglalót** egy magabiztossági értékkel, a rendszer felismeri a nyelvét, és típust ad neki.
 
-**A típusjelvényen az áll, aminek az AI nevezte**, de csak azoknál a dokumentumoknál, amelyek nem szerződések és nem számlamellékletek; a mellékleteken mindig **Melléklet** áll. Az első olvasás két dolgot ír fel: egy durva fajtát, és egy finomabb címkét a saját szavaival. A **szerződéseken** mindig a lefordított **Szerződés** szó áll, a finomabb címkéjük (`lease`, `nda`) pedig sehol nem jelenik meg. A többinél a finomabb címke látszik, ha van, és ezek a szabad szöveges címkék nincsenek lefordítva, tehát a `Kontenrahmen` `Kontenrahmen` marad, bármi is a felület nyelve.
+**A fájlnév előtti ikon mondja meg, milyen fajta a dokumentum**: aláírásos, pecsétes lap a szerződés, gemkapocs a számlamelléklet, három pont minden más; az ikon fölé vive az egeret a fajta neve is olvasható. Az első olvasás két dolgot ír fel: ezt a durva fajtát, és egy finomabb címkét a saját szavaival. A **szerződések** finomabb címkéje (`lease`, `nda`) sehol nem jelenik meg. A többinél a finomabb címke, ha van, az összefoglaló alatti szürke sor elejére kerül, a forrás és a fájlméret elé, és ezek a szabad szöveges címkék nincsenek lefordítva, tehát a `Kontenrahmen` `Kontenrahmen` marad, bármi is a felület nyelve.
 
 Ha ugyanaz a fájl már szerepel a munkaterületen, a másolat **Duplikátum** jelölést kap. A listában ettől függetlenül megjelenik, az eredeti típusa alá sorolva, az összefoglaló helyén pedig egy sor áll, amely megnevezi, minek a duplikátuma.
 
@@ -42,7 +42,7 @@ A Dokumentumok lista öt dokumentummal. A számok az alábbi lista pontjainak fe
 
 1. A **Feltöltés**, a címsor mellett. Az egyetlen másik út ide az e-mail.
 2. A **Duplikátumok** darabszámot is mutat, de csak akkor, ha van ilyen. Ugyanígy működik a **Nem kapcsolt mellékletek** is.
-3. **A típusjelvény a dokumentum saját szavaival.** Ez a számlatükör nem szerződés, ezért a jelvényen az áll, aminek az AI nevezte, lefordítatlanul, bármi is a felület nyelve.
+3. **A finomabb címke a dokumentum saját szavaival.** Ez a számlatükör nem szerződés, ezért az összefoglalója alatti szürke sor azzal kezdődik, aminek az AI nevezte, lefordítatlanul, bármi is a felület nyelve.
 4. **A duplikátum itt marad**, az eredeti fajtája alatt, és az összefoglaló helyén az a sor áll, amely megnevezi, minek a duplikátuma.
 5. **A több dokumentumot tartalmazó PDF** véglegesen a **Feldolgozás** jelölésen marad. Semmi más nem történik vele.
 

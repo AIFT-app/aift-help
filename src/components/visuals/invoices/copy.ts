@@ -35,6 +35,7 @@ export const UI_KEYS = [
   'invoices.labels.approved',
   'invoices.list.status_rejected',
   'invoices.matching.status_paid',
+  'document_kind.invoice',
 ] as const
 
 export type UiKey = (typeof UI_KEYS)[number]
@@ -181,6 +182,7 @@ const en: Copy = {
     'invoices.labels.approved': 'Approved',
     'invoices.list.status_rejected': 'Rejected',
     'invoices.matching.status_paid': 'Paid',
+    'document_kind.invoice': 'Invoice',
   },
   rows: rows([186690, 1524000, 2450000, 1240], 'HUF', 'EUR'),
   help: {
@@ -235,6 +237,7 @@ const hu: Copy = {
     'invoices.labels.approved': 'Jóváhagyva',
     'invoices.list.status_rejected': 'Elutasítva',
     'invoices.matching.status_paid': 'Fizetve',
+    'document_kind.invoice': 'Számla',
   },
   rows: rows([186690, 1524000, 2450000, 1240], 'HUF', 'EUR'),
   help: {
@@ -289,6 +292,7 @@ const de: Copy = {
     'invoices.labels.approved': 'Freigegeben',
     'invoices.list.status_rejected': 'Abgelehnt',
     'invoices.matching.status_paid': 'Bezahlt',
+    'document_kind.invoice': 'Rechnung',
   },
   rows: rows([412.8, 6480, 5400, 94615], 'EUR', 'HUF'),
   help: {
