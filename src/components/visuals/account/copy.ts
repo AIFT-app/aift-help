@@ -1,5 +1,6 @@
 // Strings for the account and support-access figures: what the app RENDERS,
-// read from aift-web messages (origin/main, 2026-10-26) and, for the strings it
+// read from aift-web messages (origin/main, 2026-10-26; the Account tabs from
+// origin/staging @ 08fb7e34, 2026-11-06, where two-factor-authentication added Security) and, for the strings it
 // builds from data (the name preview, dates, session lines), off throwaway
 // aift-web pages rendering the real components with the same fixtures.
 //
@@ -20,6 +21,7 @@ export const accountCopy = {
       "subtitle": "Manage your profile, language and email preferences.",
       "tabs": [
         "Profile",
+        "Security",
         "Language",
         "Notifications"
       ]
@@ -120,6 +122,7 @@ export const accountCopy = {
       "subtitle": "Kezeld a profilodat, a nyelvet és az e-mail-értesítéseket.",
       "tabs": [
         "Profil",
+        "Biztonság",
         "Nyelv",
         "Értesítések"
       ]
@@ -220,6 +223,7 @@ export const accountCopy = {
       "subtitle": "Verwalten Sie Ihr Profil, die Sprache und Ihre E-Mail-Benachrichtigungen.",
       "tabs": [
         "Profil",
+        "Sicherheit",
         "Sprache",
         "Benachrichtigungen"
       ]
