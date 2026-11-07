@@ -68,6 +68,20 @@ With permission to edit invoices you can tick rows and **Re-categorize** them, *
 
 Some to-dos are right as they are: the extracted data was checked, a line total differs on purpose, no document will come, the default VAT code is correct, the invoice was handed over to the accounting software another way (**Handed over manually**, which needs the **"Run exports"** permission). The invoice's page then shows **Accept to-dos**: tick what is right, add a note if you like, and click **Accept**. The to-do goes, and the invoice keeps who accepted it, when, and the note. If the data changes afterwards, the to-do comes back. Where filing or bookkeeping approval is waiting on the invoice, that approval accepts these to-dos instead, and the **Approvals** card says which ones.
 
+## Purchase tickets (felvásárlási jegy)
+
+A felvásárlási jegy is the document a buyer issues when it purchases produce from a mezőgazdasági őstermelő, a private person under Hungary's agricultural special scheme. It is not an invoice: NAV Online Számla never carries it, so it arrives only by upload or email, and the 12% (plant products) or 7% (animal products) printed on it is not VAT but a compensation surcharge (kompenzációs felár), which the buyer deducts like input VAT.
+
+AI Finance Team recognises it by the **FELVÁSÁRLÁSI JEGY** title and treats it as follows:
+
+- The **purchase ticket icon** (a sheet with a leaf on it) marks it in the list before the partner name and on the invoice header before the number; point at the icon to read its name. There is no separate menu; it lives under Invoices.
+- The issuing company is the **buyer** and the producer the **seller**, whatever the block on the document is called. The **Parties** card therefore reads **Producer** and **Purchaser**. In the buyer's own workspace the ticket is an expense.
+- The producer becomes a real partner, identified by the 10-digit personal tax identifier (adóazonosító jel). The partner page shows it as a **personal tax id**, not as a malformed tax number, and the company register check does not run on it.
+- The lines carry the 12% or 7% printed on the ticket. To receive a VAT code they need a 12% and a 7% rate element in the workspace's VAT master data (name them compensation surcharge). Until those exist, the tickets show the **VAT codes incomplete** label.
+- When the ticket prints them, the **Overview** tab shows **Withheld income tax**, **Rounding** and **Amount payable** under the totals. The gross stays the ticket's printed gross.
+- The producer's registration number and FELIR number are shown on the **Parties** card. The social security number, the mother's name and the birth data are never read.
+- If the recognition was wrong, the **Document kind** field on the edit page switches between Invoice and Purchase ticket. This changes the icon only: correct the direction and the partner in their own fields.
+
 ## The invoice page
 
 Click an invoice to open its page. The top card shows the invoice number, badges such as **Duplicate**, **Archived**, **Needs review** and **Completeness**, the payment status, and the facts **AIFT id** (AI Finance Team's own number for the invoice, always shown here; click to copy), **Partner**, **Direction**, **Gross** and **Issued**, with the **Edit** button and the **⋯** menu. Under it are the AI summary, which you can edit, and the **To-do** chips, for example a missing VAT code or a partner to verify.

@@ -11,6 +11,8 @@ const UI_KEYS = [
   'upload.queue_row.failed_prefix',
   'upload.queue_row.retry',
   'upload.queue_row.working_aria',
+  'document_kind.invoice',
+  'document_kind.bank_statement',
 ] as const
 
 export type UiKey = (typeof UI_KEYS)[number]
@@ -32,6 +34,8 @@ const en: Copy = {
     'upload.queue_row.failed_prefix': 'Failed: {message}',
     'upload.queue_row.retry': 'Retry',
     'upload.queue_row.working_aria': 'Working',
+    'document_kind.invoice': 'Invoice',
+    'document_kind.bank_statement': 'Bank statement',
   },
   rendered: {
     header: 'Uploads · 2 uploading',
@@ -51,6 +55,8 @@ const hu: Copy = {
     'upload.queue_row.failed_prefix': 'Sikertelen: {message}',
     'upload.queue_row.retry': 'Újra',
     'upload.queue_row.working_aria': 'Folyamatban',
+    'document_kind.invoice': 'Számla',
+    'document_kind.bank_statement': 'Bankkivonat',
   },
   rendered: {
     header: 'Feltöltések · 2 uploading',
@@ -70,6 +76,8 @@ const de: Copy = {
     'upload.queue_row.failed_prefix': 'Fehlgeschlagen: {message}',
     'upload.queue_row.retry': 'Erneut versuchen',
     'upload.queue_row.working_aria': 'In Bearbeitung',
+    'document_kind.invoice': 'Rechnung',
+    'document_kind.bank_statement': 'Kontoauszug',
   },
   rendered: {
     header: 'Uploads · 2 uploading',

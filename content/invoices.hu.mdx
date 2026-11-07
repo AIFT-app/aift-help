@@ -68,6 +68,20 @@ A számlák szerkesztésére vonatkozó jogosultsággal sorokat jelölhet ki, é
 
 Néhány teendő így is rendben lehet: a kinyert adatokat ellenőrizték, a tételösszeg szándékosan tér el, dokumentum nem fog érkezni, az alapértelmezett ÁFA-kód a helyes, vagy a számlát más úton adták át a könyvelőprogramnak (**Kézzel átadva**, ehhez a **„Könyvelési exportok futtatása”** jogosultság kell). Ilyenkor a számla oldalán megjelenik a **Teendők elfogadása**: jelölje be, ami rendben van, ha szeretné, írjon megjegyzést, és kattintson az **Elfogadom** gombra. A teendő eltűnik, a számla pedig megőrzi, ki fogadta el, mikor, és a megjegyzést. Ha az adat később megváltozik, a teendő visszajön. Ahol iktatási vagy könyvelési jóváhagyás vár a számlára, ezeket a teendőket a jóváhagyás fogadja el, és a **Jóváhagyások** kártya kiírja, melyeket.
 
+## Felvásárlási jegyek
+
+A felvásárlási jegy az a bizonylat, amelyet a felvásárló állít ki, amikor mezőgazdasági őstermelőtől (magánszemélytől) vásárol terméket. Nem számla: a NAV Online Számla rendszerében nincs, ezért csak feltöltéssel vagy e-mailben érkezik, és a rajta szereplő 12% (növényi termék) vagy 7% (állati termék) nem ÁFA, hanem kompenzációs felár, amelyet a felvásárló az előzetesen felszámított ÁFA-hoz hasonlóan von le.
+
+Az AI Finance Team a **FELVÁSÁRLÁSI JEGY** címről ismeri fel, és így kezeli:
+
+- A listában a partner neve előtt és a számla fejlécén a sorszám előtt a **felvásárlási jegy ikonja** (egy lap, rajta egy levél) jelöli; az ikon fölé vive az egér a nevét is kiírja. Külön menüpontja nincs, a Számlák között van.
+- A kiállító cég a **vevő**, az őstermelő az **eladó**, akkor is, ha a jegyen a blokk neve „Ügyfél”. A **Felek** kártya ezért **Őstermelő** és **Felvásárló** feliratot mutat. A felvásárló saját munkaterületén a jegy kiadás.
+- Az őstermelő valódi partner lesz, a 10 jegyű adóazonosító jelével azonosítva. A partner adatlapján ez **adóazonosító jel** jelöléssel látszik, nem hibás adószámként, és cégjegyzék-ellenőrzés nem fut rá.
+- A tételek a jegyen nyomtatott 12% vagy 7% kulccsal kerülnek be. Ahhoz, hogy ÁFA-kódot kapjanak, a munkaterület ÁFA-törzsadataiban kell lennie egy 12%-os és egy 7%-os kulcselemnek (nevezze el kompenzációs felárnak). Amíg ezek hiányoznak, a jegyeken a **Hiányos ÁFA-kódok** címke látszik.
+- Ha a jegy nyomtatja, az **Áttekintés** fül az összegek alatt mutatja a **Levont SZJA**, a **Kerekítés** és a **Kifizetendő** sort is. A bruttó a jegy bruttó összesene marad.
+- Az őstermelő őstermelői igazolvány- vagy regisztrációs számát és FELIR számát a **Felek** kártya mutatja. A TAJ számot, az anyja nevét és a születési adatokat az AI Finance Team nem olvassa ki.
+- Ha a felismerés tévedett, a szerkesztő oldalon a **Dokumentum fajtája** mezőben állítható át Számla és Felvásárlási jegy között. Ez csak az ikont változtatja: az irányt és a partnert a saját mezőjükben javítsa.
+
 ## A számla oldala
 
 Kattintson egy számlára az oldala megnyitásához. A felső kártya mutatja a számlaszámot, az olyan jelvényeket, mint a **Duplikáció**, az **Archivált**, az **Áttekintés szükséges** és a **Teljesség**, a fizetési állapotot, valamint az **AIFT azonosító** (az AI Finance Team saját sorszáma a számlához, itt mindig látható; kattintásra másolható), **Partner**, **Irány**, **Bruttó** és **Kiállítva** adatokat, a **Szerkesztés** gombbal és a **⋯** menüvel. Alatta az AI-összefoglaló áll, amelyet szerkeszthet, és a **Teendők**, például egy hiányzó ÁFA-kód vagy egy ellenőrizendő partner.

@@ -68,6 +68,20 @@ Mit der Berechtigung, Rechnungen zu bearbeiten, können Sie Zeilen anhaken und *
 
 Manche Aufgaben sind so, wie sie sind, richtig: Die ausgelesenen Daten wurden geprüft, eine Positionssumme weicht bewusst ab, es kommt kein Dokument, der Standard-USt-Code stimmt, oder die Rechnung wurde auf anderem Weg an die Buchhaltungssoftware übergeben (**Manuell übergeben**, dafür braucht es die Berechtigung **„Buchhaltungsexporte ausführen“**). Die Seite der Rechnung zeigt dann **Aufgaben akzeptieren**: Haken Sie an, was stimmt, fügen Sie bei Bedarf eine Notiz hinzu und klicken Sie auf **Akzeptieren**. Die Aufgabe verschwindet, und die Rechnung behält, wer sie wann akzeptiert hat, und die Notiz. Ändern sich die Daten später, kommt die Aufgabe zurück. Wartet eine Erfassungs- oder Buchungsfreigabe auf die Rechnung, akzeptiert diese Freigabe die Aufgaben, und die Karte **Freigaben** nennt sie.
 
+## Ankaufsbelege (felvásárlási jegy)
+
+Ein felvásárlási jegy ist der Beleg, den ein Aufkäufer ausstellt, wenn er Erzeugnisse von einem landwirtschaftlichen Urproduzenten (einer Privatperson unter der ungarischen Sonderregelung) kauft. Er ist keine Rechnung: NAV Online Számla führt ihn nicht, er kommt also nur per Upload oder E-Mail, und die aufgedruckten 12 % (pflanzliche Erzeugnisse) oder 7 % (tierische Erzeugnisse) sind keine USt, sondern ein Ausgleichszuschlag (kompenzációs felár), den der Aufkäufer wie Vorsteuer abzieht.
+
+AI Finance Team erkennt ihn am Titel **FELVÁSÁRLÁSI JEGY** und behandelt ihn so:
+
+- In der Liste vor dem Partnernamen und im Kopf der Rechnung vor der Nummer zeigt ihn das **Ankaufsbeleg-Symbol** (ein Blatt mit einem Laubblatt); beim Überfahren mit der Maus erscheint der Name. Es gibt keinen eigenen Menüpunkt; er steht unter Rechnungen.
+- Die ausstellende Firma ist der **Käufer**, der Erzeuger der **Verkäufer**, wie auch immer der Block auf dem Beleg heißt. Die Karte **Parteien** zeigt deshalb **Erzeuger** und **Aufkäufer**. Im eigenen Arbeitsbereich des Aufkäufers ist der Beleg ein Aufwand.
+- Der Erzeuger wird ein echter Partner, identifiziert über die zehnstellige persönliche Steuer-ID (adóazonosító jel). Die Partnerseite zeigt sie als **Steuer-ID (Privatperson)**, nicht als fehlerhafte Steuernummer, und die Handelsregisterprüfung läuft dafür nicht.
+- Die Positionen tragen die aufgedruckten 12 % oder 7 %. Damit sie einen USt-Code erhalten, braucht der Arbeitsbereich in den USt-Stammdaten ein Satzelement mit 12 % und eines mit 7 % (benennen Sie sie als Ausgleichszuschlag). Solange sie fehlen, zeigen die Belege das Label **USt-Codes unvollständig**.
+- Druckt der Beleg sie, zeigt der Reiter **Übersicht** unter den Summen auch **Einbehaltene Einkommensteuer**, **Rundung** und **Auszahlungsbetrag**. Der Bruttobetrag bleibt die aufgedruckte Bruttosumme.
+- Die Registriernummer und die FELIR-Nummer des Erzeugers stehen auf der Karte **Parteien**. Sozialversicherungsnummer, Name der Mutter und Geburtsdaten werden nie ausgelesen.
+- War die Erkennung falsch, lässt sich auf der Bearbeitungsseite im Feld **Dokumentart** zwischen Rechnung und Ankaufsbeleg umschalten. Das ändert nur das Symbol: Richtung und Partner korrigieren Sie in ihren eigenen Feldern.
+
 ## Die Rechnungsseite
 
 Klicken Sie auf eine Rechnung, um ihre Seite zu öffnen. Die obere Karte zeigt die Rechnungsnummer, Badges wie **Duplikat**, **Archiviert**, **Prüfung erforderlich** und **Vollständigkeit**, den Zahlungsstatus sowie die Angaben **AIFT-Kennung** (die eigene Nummer von AI Finance Team für die Rechnung, hier immer sichtbar; Klick zum Kopieren), **Partner**, **Richtung**, **Brutto** und **Ausgestellt**, mit der Schaltfläche **Bearbeiten** und dem Menü **⋯**. Darunter stehen die KI-Zusammenfassung, die Sie bearbeiten können, und die **Aufgaben**, zum Beispiel ein fehlender USt-Code oder ein zu verifizierender Partner.
