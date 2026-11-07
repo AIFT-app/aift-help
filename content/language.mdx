@@ -1,6 +1,6 @@
 # Your Account
 
-Everything about you, rather than about a workspace, is on the **Account** page: your profile, your language and the emails you get. Open the account menu at the foot of the sidebar and click **Account**. The page has three tabs: **Profile**, **Language** and **Notifications**.
+Everything about you, rather than about a workspace, is on the **Account** page: your profile, how you sign in, your language and the emails you get. Open the account menu at the foot of the sidebar and click **Account**. The page has four tabs: **Profile**, **Security**, **Language** and **Notifications**.
 
 These settings are yours alone. They are not per workspace: change one once and it applies in every workspace and every organisation. No permission is needed, and nobody else can change them for you.
 
@@ -8,7 +8,7 @@ These settings are yours alone. They are not per workspace: change one once and 
 The **Profile** tab, down to the job title. The numbers match the list below. The name is an example.
 </AccountProfileFigure>
 
-1. The three tabs. **Account** opens on **Profile**.
+1. The four tabs. **Account** opens on **Profile**.
 2. **Upload a picture**, then position it in the crop window.
 3. Your name, with a preview of how it is shown and how emails greet you.
 4. Your job title, shown next to your name.
@@ -29,9 +29,102 @@ Your picture is shown next to your name across AI Finance Team, for example in t
 
 Up to 80 characters, shown next to your name to everyone you work with, for example *Senior bookkeeper*.
 
+## Security
+
+The **Security** tab holds the three ways into your account: **Two-factor sign-in**, **Passkeys** and your **Password**. Nothing here is switched on for you. If you never open the tab, you sign in with your email and password as before.
+
+<AccountSecurityFigure>
+The **Security** tab with two-factor sign-in on and two passkeys. The numbers match the list below. Dates and passkey names are examples.
+</AccountSecurityFigure>
+
+1. The four tabs. **Security** is the second.
+2. **Two-factor sign-in**: the authenticator app, since when it is set up, and **Remove**.
+3. **Recovery codes**: how many are still unused, and **New codes**.
+4. **Passkeys**: one row per passkey, with when it was added and last used, then **Add a passkey**.
+5. **Password**: change it here.
+
+### Two-factor sign-in
+
+With two-factor sign-in on, a password alone is not enough to get into your account. After your password, AI Finance Team asks for a 6-digit code from an app on your phone. The code changes every 30 seconds, and only your phone has it. Microsoft Authenticator, Google Authenticator and password managers that show codes (1Password, Bitwarden and the like) all work.
+
+To turn it on:
+
+1. Install an authenticator app on your phone, if you do not have one yet.
+2. On the **Security** tab, click **Turn on**.
+3. Scan the QR code with the app. If you cannot scan it, type the key under the code into the app instead.
+4. Type the 6-digit code the app now shows into **The 6-digit code shown in the app**, then click **Turn on**.
+5. Save your recovery codes (below), tick **I have saved the codes**, and click **Done**.
+
+You stay signed in where you are. From your next sign-in on, the second step follows your password. If the app's code is refused, enter the newest one: a code is only valid for a short time.
+
+**Two phones, one account.** You can scan the same QR code with two apps, for example Microsoft Authenticator on your phone and Google Authenticator on a tablet, while the setup window is still open. Both then show the same code at the same moment. Afterwards the QR code is not shown again; to add a device later, remove the authenticator and set it up again.
+
+### Recovery codes
+
+Recovery codes are your way in if you lose your phone. Turning on two-factor sign-in creates 10 of them, and the window shows them once, never again.
+
+<RecoveryCodesFigure>
+The recovery codes window. The numbers match the list below. The codes are examples.
+</RecoveryCodesFigure>
+
+1. **Save your recovery codes**: 10 codes of two groups of five characters. Each works once.
+2. **Copy** puts them on the clipboard, **Download (.txt)** saves them as a text file. Keep them somewhere other than your phone: a password manager, or printed in a drawer.
+3. **I have saved the codes**: **Done** waits until you tick it, so the window cannot be closed by accident.
+
+The **Recovery codes** row shows how many are still unused, for example *9 of 10 unused*. **New codes** creates a fresh set of 10 and shows it the same way; your old codes stop working the moment you confirm. Do that when you are running low, or when you think someone else may have seen them.
+
+### Removing two-factor sign-in
+
+**Remove**, beside the authenticator app, asks once before it does anything. Afterwards a sign-in asks only for your password (or your passkey) again, your recovery codes are deleted, and your passkeys and password stay as they are. Changing phones? Remove the authenticator while you still have the old phone, then turn two-factor sign-in on again with the new one.
+
+### Passkeys
+
+A passkey lets you sign in with your fingerprint, your face or your device's PIN instead of typing a password. The key never leaves your device and cannot be guessed, phished or reused on another site.
+
+**Add a passkey** asks your browser or phone to create one; confirm with your fingerprint, face or PIN. You can add several, for example one in iCloud Keychain on your Mac and one in Google Password Manager on your phone. Each passkey is a row with when it was added and when it was last used. **Remove** deletes it from your account only; your device may still list it, and it no longer signs you in.
+
+A passkey saved in a password manager that syncs across your devices (iCloud Keychain, Google Password Manager, 1Password and the like) counts as both steps at once: it proves you have the device and that you unlocked it. Signing in with one skips the 6-digit code. A passkey that lives on a single piece of hardware, such as a USB security key, still asks for the code when two-factor sign-in is on.
+
 ### Password
 
 Type your **Current password**, then the **New password** twice. The new one must be at least 10 characters and different from the current one; a strength meter rates it as you type. A security check may appear before **Update password**. Once it is changed, AI Finance Team **signs you out on every other device** as a safety measure; you stay signed in where you are.
+
+### Security emails
+
+We email you when two-factor sign-in is turned on or removed, when a passkey is added, and when a recovery code is used to sign in. If you get one of these and did not do it yourself, change your password straight away and write to us. These emails are part of **Security** under **Always sent**, and they cannot be turned off.
+
+If you connected Claude or another AI assistant to AI Finance Team (see [AI Assistants (MCP)](/mcp)), turning on two-factor sign-in disconnects it. The next time it asks, connect it again and sign in with the second step.
+
+## Signing in
+
+The sign-in page offers three ways in. Which one you use is up to you, every time.
+
+- **Email** and **Password**, then **Sign in**.
+- **Sign in with a passkey**, under **Sign in**, or pick your passkey from the list your browser offers when you click into **Email**.
+- **Email me a sign-in code instead**, the last line on the page: type your email address and we send a 6-digit code. Type it in, or click the button in the email. A code works once.
+
+### The second step
+
+With two-factor sign-in on, a sign-in with your password or with an emailed code is followed by one more screen.
+
+<SecondStepFigure>
+The second step of a sign-in. The numbers match the list below.
+</SecondStepFigure>
+
+1. **One more step**: type the 6-digit code from your authenticator app and click **Verify**.
+2. **No phone with you? Use a recovery code** switches the field to a recovery code.
+
+After too many wrong codes in a row the page asks you to wait a few minutes. **Sign out**, under the links, takes you back to the sign-in page.
+
+### Lost your phone
+
+1. Sign in with your email and password, or with an emailed code.
+2. On **One more step**, click **No phone with you? Use a recovery code**.
+3. Type one of your recovery codes, with or without the space, in small or capital letters, and click **Sign in**.
+
+The code is used up. Because the phone is gone, the old authenticator app is removed from your account at the same moment, and you are signed out everywhere, including any device a thief may hold. Sign in once more: the page confirms the recovery code was accepted. Then turn two-factor sign-in on again on the **Security** tab with your new phone. Five wrong recovery codes lock the field for 15 minutes.
+
+No recovery codes and no phone? Write to [founders@aifinance.team](mailto:founders@aifinance.team) from the email address you sign in with, and we help you back in.
 
 ## Language
 

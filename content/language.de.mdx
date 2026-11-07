@@ -1,6 +1,6 @@
 # Ihr Konto
 
-Alles, was Sie betrifft und nicht einen Arbeitsbereich, steht auf der Seite **Konto**: Ihr Profil, Ihre Sprache und die E-Mails, die Sie bekommen. Öffnen Sie das Kontomenü unten in der Seitenleiste und klicken Sie auf **Konto**. Die Seite hat drei Reiter: **Profil**, **Sprache** und **Benachrichtigungen**.
+Alles, was Sie betrifft und nicht einen Arbeitsbereich, steht auf der Seite **Konto**: Ihr Profil, wie Sie sich anmelden, Ihre Sprache und die E-Mails, die Sie bekommen. Öffnen Sie das Kontomenü unten in der Seitenleiste und klicken Sie auf **Konto**. Die Seite hat vier Reiter: **Profil**, **Sicherheit**, **Sprache** und **Benachrichtigungen**.
 
 Diese Einstellungen gehören nur Ihnen. Sie gelten nicht je Arbeitsbereich: Einmal geändert, gelten sie in jedem Arbeitsbereich und jeder Organisation. Sie brauchen dafür keine Berechtigung, und niemand sonst kann sie für Sie ändern.
 
@@ -8,7 +8,7 @@ Diese Einstellungen gehören nur Ihnen. Sie gelten nicht je Arbeitsbereich: Einm
 Der Reiter **Profil** bis zur Position. Die Nummern entsprechen der Liste darunter. Der Name ist ein Beispiel.
 </AccountProfileFigure>
 
-1. Die drei Reiter. **Konto** öffnet sich auf **Profil**.
+1. Die vier Reiter. **Konto** öffnet sich auf **Profil**.
 2. **Bild hochladen**, dann das Bild im Zuschneidefenster ausrichten.
 3. Ihr Name, mit einer Vorschau, wie er angezeigt wird und wie E-Mails Sie anreden.
 4. Ihre Position, die neben Ihrem Namen steht.
@@ -29,9 +29,102 @@ Ihr Bild erscheint neben Ihrem Namen in AI Finance Team, etwa in der Seitenleist
 
 Bis zu 80 Zeichen, die neben Ihrem Namen für alle stehen, mit denen Sie arbeiten, etwa *Senior-Buchhalterin*.
 
+## Sicherheit
+
+Auf dem Reiter **Sicherheit** liegen die drei Wege in Ihr Konto: **Zwei-Faktor-Anmeldung**, **Passkeys** und Ihr **Passwort**. Nichts davon wird für Sie eingeschaltet. Wenn Sie den Reiter nie öffnen, melden Sie sich wie bisher mit E-Mail und Passwort an.
+
+<AccountSecurityFigure>
+Der Reiter **Sicherheit** mit aktiver Zwei-Faktor-Anmeldung und zwei Passkeys. Die Nummern entsprechen der Liste darunter. Daten und Passkey-Namen sind Beispiele.
+</AccountSecurityFigure>
+
+1. Die vier Reiter. **Sicherheit** ist der zweite.
+2. **Zwei-Faktor-Anmeldung**: die Authenticator-App, seit wann sie eingerichtet ist, und **Entfernen**.
+3. **Wiederherstellungscodes**: wie viele noch unbenutzt sind, und **Neue Codes**.
+4. **Passkeys**: eine Zeile je Passkey, mit dem Datum des Hinzufügens und der letzten Verwendung, darunter **Passkey hinzufügen**.
+5. **Passwort**: hier ändern Sie es.
+
+### Zwei-Faktor-Anmeldung
+
+Mit aktiver Zwei-Faktor-Anmeldung reicht ein Passwort allein nicht, um in Ihr Konto zu kommen. Nach dem Passwort fragt AI Finance Team einen 6-stelligen Code aus einer App auf Ihrem Telefon ab. Der Code wechselt alle 30 Sekunden, und nur Ihr Telefon kennt ihn. Microsoft Authenticator, Google Authenticator und Passwortmanager, die Codes anzeigen (etwa 1Password oder Bitwarden), funktionieren alle.
+
+So schalten Sie sie ein:
+
+1. Installieren Sie eine Authenticator-App auf Ihrem Telefon, falls Sie noch keine haben.
+2. Klicken Sie auf dem Reiter **Sicherheit** auf **Aktivieren**.
+3. Scannen Sie den QR-Code mit der App. Klappt das nicht, geben Sie stattdessen den Schlüssel unter dem Code in die App ein.
+4. Geben Sie den 6-stelligen Code, den die App jetzt zeigt, in **Der 6-stellige Code aus der App** ein und klicken Sie auf **Aktivieren**.
+5. Speichern Sie Ihre Wiederherstellungscodes (siehe unten), setzen Sie das Häkchen bei **Ich habe die Codes gespeichert** und klicken Sie auf **Fertig**.
+
+Dort, wo Sie gerade sind, bleiben Sie angemeldet. Ab der nächsten Anmeldung folgt auf das Passwort der zweite Schritt. Wird der Code abgelehnt, geben Sie den neuesten ein: ein Code gilt nur kurz.
+
+**Zwei Geräte, ein Konto.** Solange das Einrichtungsfenster offen ist, können Sie denselben QR-Code mit zwei Apps scannen, etwa mit Microsoft Authenticator auf dem Telefon und Google Authenticator auf einem Tablet. Beide zeigen dann im selben Moment denselben Code. Danach wird der QR-Code nicht mehr angezeigt; um später ein Gerät hinzuzufügen, entfernen Sie den Authenticator und richten ihn neu ein.
+
+### Wiederherstellungscodes
+
+Mit den Wiederherstellungscodes kommen Sie in Ihr Konto, wenn Sie Ihr Telefon verlieren. Beim Einschalten der Zwei-Faktor-Anmeldung entstehen 10 davon, und das Fenster zeigt sie einmal, danach nie wieder.
+
+<RecoveryCodesFigure>
+Das Fenster mit den Wiederherstellungscodes. Die Nummern entsprechen der Liste darunter. Die Codes sind Beispiele.
+</RecoveryCodesFigure>
+
+1. **Speichern Sie Ihre Wiederherstellungscodes**: 10 Codes aus je zwei Gruppen von fünf Zeichen. Jeder gilt einmal.
+2. **Kopieren** legt sie in die Zwischenablage, **Herunterladen (.txt)** speichert sie als Textdatei. Bewahren Sie sie nicht auf dem Telefon auf: in einem Passwortmanager oder ausgedruckt in einer Schublade.
+3. **Ich habe die Codes gespeichert**: **Fertig** wartet, bis Sie das Häkchen setzen, damit sich das Fenster nicht versehentlich schließt.
+
+Die Zeile **Wiederherstellungscodes** zeigt, wie viele noch unbenutzt sind, etwa *9 von 10 unbenutzt*. **Neue Codes** erzeugt 10 neue und zeigt sie genauso; Ihre alten Codes werden in dem Moment ungültig, in dem Sie bestätigen. Das lohnt sich, wenn sie zur Neige gehen oder wenn Sie glauben, dass jemand anderes sie gesehen hat.
+
+### Zwei-Faktor-Anmeldung entfernen
+
+**Entfernen** neben der Authenticator-App fragt einmal nach, bevor es etwas tut. Danach fragt eine Anmeldung wieder nur Ihr Passwort (oder Ihren Passkey) ab, Ihre Wiederherstellungscodes werden gelöscht, und Ihre Passkeys und Ihr Passwort bleiben, wie sie sind. Sie wechseln das Telefon? Entfernen Sie den Authenticator, solange Sie das alte Telefon noch haben, und schalten Sie die Zwei-Faktor-Anmeldung mit dem neuen wieder ein.
+
+### Passkeys
+
+Mit einem Passkey melden Sie sich mit Fingerabdruck, Gesicht oder der PIN Ihres Geräts an, statt ein Passwort zu tippen. Der Schlüssel verlässt Ihr Gerät nie und lässt sich weder erraten noch abfischen noch auf einer anderen Website verwenden.
+
+**Passkey hinzufügen** bittet Ihren Browser oder Ihr Telefon, einen zu erstellen; bestätigen Sie mit Fingerabdruck, Gesicht oder PIN. Sie können mehrere hinzufügen, etwa einen im iCloud-Schlüsselbund (iCloud Keychain) Ihres Mac und einen im Google Passwortmanager (Google Password Manager) Ihres Telefons; die Liste zeigt sie unter diesem Namen. Jeder Passkey ist eine Zeile mit dem Datum des Hinzufügens und der letzten Verwendung. **Entfernen** löscht ihn nur aus Ihrem Konto; Ihr Gerät führt ihn vielleicht noch auf, anmelden können Sie sich damit nicht mehr.
+
+Ein Passkey in einem Passwortmanager, der ihn zwischen Ihren Geräten synchronisiert (iCloud-Schlüsselbund, Google Passwortmanager, 1Password und ähnliche), zählt für beide Schritte zugleich: Er beweist, dass Sie das Gerät haben und es entsperrt haben. Mit ihm entfällt der 6-stellige Code. Ein Passkey, der an ein einzelnes Gerät gebunden ist, etwa ein USB-Sicherheitsschlüssel, fragt bei aktiver Zwei-Faktor-Anmeldung weiterhin den Code ab.
+
 ### Passwort
 
 Geben Sie das **Aktuelle Passwort** ein, dann zweimal das **Neue Passwort**. Das neue muss mindestens 10 Zeichen lang sein und sich vom aktuellen unterscheiden; eine Stärkeanzeige bewertet es beim Tippen. Vor **Passwort aktualisieren** kann eine Sicherheitsprüfung erscheinen. Nach der Änderung **meldet AI Finance Team Sie auf allen anderen Geräten ab**, zur Sicherheit; dort, wo Sie gerade sind, bleiben Sie angemeldet.
+
+### Sicherheits-E-Mails
+
+Wir schicken Ihnen eine E-Mail, wenn die Zwei-Faktor-Anmeldung eingeschaltet oder entfernt wird, wenn ein Passkey hinzukommt und wenn sich jemand mit einem Wiederherstellungscode anmeldet. Bekommen Sie eine davon, ohne es selbst getan zu haben, ändern Sie sofort Ihr Passwort und schreiben Sie uns. Diese E-Mails gehören zu **Sicherheit** unter **Immer zugestellt** und lassen sich nicht abschalten.
+
+Haben Sie Claude oder einen anderen KI-Assistenten mit AI Finance Team verbunden (siehe [KI-Assistenten (MCP)](/mcp)), trennt das Einschalten der Zwei-Faktor-Anmeldung diese Verbindung. Wenn er das nächste Mal fragt, verbinden Sie ihn erneut und melden sich mit dem zweiten Schritt an.
+
+## Anmelden
+
+Die Anmeldeseite bietet drei Wege. Welchen Sie nehmen, entscheiden Sie jedes Mal neu.
+
+- **E-Mail** und **Passwort**, dann **Anmelden**.
+- **Mit Passkey anmelden**, unter **Anmelden**, oder wählen Sie Ihren Passkey aus der Liste, die der Browser anbietet, wenn Sie in **E-Mail** klicken.
+- **Lieber einen Code per E-Mail erhalten**, die letzte Zeile der Seite: Geben Sie Ihre E-Mail-Adresse ein, und wir senden einen 6-stelligen Code. Tippen Sie ihn ein oder klicken Sie auf die Schaltfläche in der E-Mail. Ein Code gilt einmal.
+
+### Der zweite Schritt
+
+Mit aktiver Zwei-Faktor-Anmeldung folgt auf eine Anmeldung mit Passwort oder mit einem Code per E-Mail ein weiterer Bildschirm.
+
+<SecondStepFigure>
+Der zweite Schritt einer Anmeldung. Die Nummern entsprechen der Liste darunter.
+</SecondStepFigure>
+
+1. **Noch ein Schritt**: Geben Sie den 6-stelligen Code aus Ihrer Authenticator-App ein und klicken Sie auf **Prüfen**.
+2. **Telefon nicht dabei? Wiederherstellungscode verwenden** stellt das Feld auf einen Wiederherstellungscode um.
+
+Nach zu vielen falschen Codes hintereinander bittet die Seite Sie, ein paar Minuten zu warten. **Abmelden**, unter den Links, bringt Sie zurück zur Anmeldeseite.
+
+### Telefon verloren
+
+1. Melden Sie sich mit E-Mail und Passwort an oder mit einem Code per E-Mail.
+2. Klicken Sie im Schritt **Noch ein Schritt** auf **Telefon nicht dabei? Wiederherstellungscode verwenden**.
+3. Geben Sie einen Ihrer Wiederherstellungscodes ein, mit oder ohne Leerzeichen, in Klein- oder Großbuchstaben, und klicken Sie auf **Anmelden**.
+
+Der Code ist damit verbraucht. Weil das Telefon weg ist, wird im selben Moment die alte Authenticator-App aus Ihrem Konto entfernt, und Sie werden überall abgemeldet, auch auf einem Gerät, das vielleicht ein Dieb hat. Melden Sie sich noch einmal an: Die Seite bestätigt, dass der Wiederherstellungscode angenommen wurde. Schalten Sie danach auf dem Reiter **Sicherheit** die Zwei-Faktor-Anmeldung mit Ihrem neuen Telefon wieder ein. Nach fünf falschen Wiederherstellungscodes ist das Feld 15 Minuten lang gesperrt.
+
+Weder Wiederherstellungscodes noch Telefon? Schreiben Sie an [founders@aifinance.team](mailto:founders@aifinance.team), von der E-Mail-Adresse, mit der Sie sich anmelden, und wir helfen Ihnen zurück ins Konto.
 
 ## Sprache
 
