@@ -1,11 +1,12 @@
-// The Account page (Profile, Notifications) and the organization's Support
+// The Account page (Profile, Notifications; Security is in ./security.tsx) and the organization's Support
 // access page, for the language (Your Account) and roles-and-permissions
 // articles.
 //
 // Rebuilt 1:1 from aift-web (origin/main, 2026-10-26), class for class:
 //   account/layout.tsx + AccountSectionNav.tsx   the title, subtitle and tabs
 //   account/profile/page.tsx, AvatarForm.tsx, NameForm.tsx, JobTitleForm.tsx
-//     (the first three sections; the password section is left out)
+//     (all three sections; the password moved to the Security tab on
+//     origin/staging @ 08fb7e34, which added Security as the second tab)
 //   account/notifications/NotificationsForm.tsx + components/settings/SettingsPanel.tsx
 //     (the first three sections, everything switched on)
 //   organization-settings/layout.tsx + support-access/page.tsx, OrgPageHeader.tsx,
@@ -14,7 +15,7 @@
 //
 // WHY THESE SCREENS
 //
-//   Profile shows the Account page itself: its three tabs and what "you"
+//   Profile shows the Account page itself: its four tabs and what "you"
 //   means to the app (picture, name and greeting, job title). Notifications
 //   shows the shape every email setting has: a section, a row, a switch.
 //   Support access is a page about who can see a firm's data, and a picture of
@@ -166,9 +167,9 @@ function ProfileScreen({ locale }: { locale: Locale }) {
 }
 
 const PROFILE_ALT: Record<Locale, string> = {
-  en: 'The Profile tab of the Account page, with the tabs Profile, Language and Notifications. Profile picture shows the initials AK with Upload a picture; Name has First name Anna and Last name Kovács with the preview Display name: Anna Kovács · Greeting: Hi Anna; Job title reads Senior bookkeeper.',
-  hu: 'A Fiók oldal Profil füle, a Profil, Nyelv és Értesítések fülekkel. A Profilképnél az AK monogram és a Kép feltöltése gomb; a Névnél Vezetéknév Kovács, Keresztnév Anna, az előnézet: Megjelenő név: Kovács Anna · Megszólítás: Szia Anna!; a Beosztás: Senior könyvelő.',
-  de: 'Der Reiter Profil der Seite Konto, mit den Reitern Profil, Sprache und Benachrichtigungen. Beim Profilbild die Initialen AK mit Bild hochladen; beim Namen Vorname Anna und Nachname Kovács mit der Vorschau Anzeigename: Anna Kovács · Anrede: Hallo Anna; die Position lautet Senior-Buchhalterin.',
+  en: 'The Profile tab of the Account page, with the tabs Profile, Security, Language and Notifications. Profile picture shows the initials AK with Upload a picture; Name has First name Anna and Last name Kovács with the preview Display name: Anna Kovács · Greeting: Hi Anna; Job title reads Senior bookkeeper.',
+  hu: 'A Fiók oldal Profil füle, a Profil, Biztonság, Nyelv és Értesítések fülekkel. A Profilképnél az AK monogram és a Kép feltöltése gomb; a Névnél Vezetéknév Kovács, Keresztnév Anna, az előnézet: Megjelenő név: Kovács Anna · Megszólítás: Szia Anna!; a Beosztás: Senior könyvelő.',
+  de: 'Der Reiter Profil der Seite Konto, mit den Reitern Profil, Sicherheit, Sprache und Benachrichtigungen. Beim Profilbild die Initialen AK mit Bild hochladen; beim Namen Vorname Anna und Nachname Kovács mit der Vorschau Anzeigename: Anna Kovács · Anrede: Hallo Anna; die Position lautet Senior-Buchhalterin.',
 }
 
 export function AccountProfileFigure({ locale, children }: FigureProps) {
@@ -361,3 +362,7 @@ export function SupportAccessFigure({ locale, children }: FigureProps) {
     </Figure>
   )
 }
+
+// ── Security (two-factor-authentication) ────────────────────────────────────
+
+export { AccountSecurityFigure, RecoveryCodesFigure, SecondStepFigure } from './security'
