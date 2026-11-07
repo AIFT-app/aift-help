@@ -168,7 +168,7 @@ function FilterBar({ locale }: { locale: Locale }) {
             </svg>
           </button>
         </div>
-        <div className="relative max-w-[360px] flex-1 min-w-[220px]">
+        <div className="relative max-w-[640px] flex-1 min-w-[220px]">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"
