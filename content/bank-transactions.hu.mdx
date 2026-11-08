@@ -29,7 +29,9 @@ A **Kategória** cella üres, ha a **Beállítások → Könyvelési alapértelm
 
 ### Teendők és címkék
 
-A lista feletti címkék a teendők, mindegyik a darabszámával; amelyikhez nincs teendő, az nem jelenik meg. Egy teendőre kattintva a lista az érintett tranzakciókat mutatja, és ha több is be van kapcsolva, elég, ha a tranzakcióra az egyik igaz. A sorokon a teendők ugyanezekkel a szavakkal, borostyánsárgával látszanak, a tranzakció **Teendők** kártyája pedig mindegyikhez megmutatja a megoldást.
+A szűrősáv alatti címkék a teendők, mindegyik a darabszámával; amelyikhez nincs teendő, az nem jelenik meg. Egy teendőre kattintva a lista az érintett tranzakciókat mutatja, és ha több is be van kapcsolva, elég, ha a tranzakcióra az egyik igaz. A kiválasztott teendőt kék és ✕ jelöli. A sorokon a teendők ugyanezekkel a szavakkal, borostyánsárgával látszanak, a tranzakció **Teendők** kártyája pedig mindegyikhez megmutatja a megoldást.
+
+A teendők sora az **Összecsukás** gombbal egyetlen **Teendők** gombbá csukható a szűrősávban, amelyen egy szám mutatja, hány teendő van kiválasztva. Ha fölé viszi az egeret vagy rákattint, a teendők listaként jelennek meg a számukkal együtt, a lista alján pedig a **Teendők kinyitása** visszahozza a teljes sort. A választását a böngésző ennél a listánál külön megjegyzi Önnek, a Számlák listától függetlenül; alapértelmezésben a sor nyitva van.
 
 | Teendő | Mikor | Hogyan tűnik el |
 |--------|-------|-----------------|
@@ -53,14 +55,13 @@ A párosítás menetét a [Számlák párosítása](/invoice-matching) írja le.
 
 Kereshet partner, leírás, közlemény, AI Finance Team-azonosító, összeg vagy a partner bankszámlaszáma (IBAN, szóközzel vagy anélkül) szerint. A partnerre keresés a bank által küldött nevet és a hozzárendelt partnert is nézi. Ékezet nélkül is talál, az összeget pedig magyar számként olvassa: a „125 000” és a „125000,00” ugyanaz, bejövő és kimenő tételnél is. A talált szövegrész sárgán látszik. Ha a találat nem látszik a sorban (a közlemény, a bankszámlaszám vagy rejtett azonosítóknál az azonosító), a partner alatt egy **Találat:** sor mondja meg, miért került oda a tétel.
 
-A lista felett szűrhet időszakra és ezekkel a legördülő szűrőkkel. A tranzakciónak minden beállított szűrőnek meg kell felelnie, egy szűrőn belül pedig elég a kiválasztott értékek egyike:
+A lista feletti sávban időszakra, **Cég** szerint (ha több cége van; ha valamelyik bankszámlához még nincs cég rendelve, a **Nincs céghez rendelve** is) és **Számla** szerint (ha több bankszámlája van) szűrhet, az **Irány** kapcsolóval pedig a **Mind**, a **Bevétel** és a **Kiadás** között választhat egy kattintással. Ha legalább nyolc bankszámlája van, a **Számla** listában gépelve kereshet. A többi szűrő a **További szűrők** gomb mögött van, amely jobbról nyitja meg őket, és egy érték kiválasztása azonnal szűr. A gombon lévő szám mutatja, hány szűrő van ott beállítva, és a sáv alatt minden beállított szűrő látszik, a ✕-szel egyenként törölhető. Telefonon a **Cég**, a **Számla** és az **Irány** is a **További szűrők** mögé kerül. A tranzakciónak minden beállított szűrőnek meg kell felelnie, egy szűrőn belül pedig elég a kiválasztott értékek egyike. A **További szűrők** mögött, ebben a sorrendben:
 
-- **Cég** (ha több cége van; ha valamelyik bankszámlához még nincs cég rendelve, a **Nincs céghez rendelve** is), **Számla** és **Irány** (**Bevétel** vagy **Kiadás**).
-- **Rekord állapota**: alapértelmezés szerint **Aktív**, vagy **Duplikátum**, illetve **Mind**. A duplikátum ugyanazon a számlán egy másik tranzakció másolata, azonos könyvelési dátummal és összeggel; a párosítás kihagyja, és az oldalán a **Nem duplikátum** visszahozza.
-- **Forrás**: **Banki forrás** vagy **Bankkivonat**.
 - **Párosítás**: **Párosítatlan**, **Részben párosított**, **Párosítva automatikusan**, **Párosítva kézzel**, **Nincs számla**, **Lezárva**, **Belső átvezetés**, **Javaslat vár döntésre** és **Kiegyenlítés folyamatban**. A belső átvezetés mindig csak **Belső átvezetés**.
 - **Kódolás**: **Javaslat vár elfogadásra**, **Nincs kategória**, **Sikertelen kategorizálás**, **Hiányzó egyéni kategória** és **Teljes**.
 - **Kategória**, **Tranzakciótípus** (vagy **Nincs típus**) és **Partner** (**Ellenőrzött**, **Ellenőrizetlen** vagy **Nincs partner**).
+- **Forrás**: **Banki forrás** vagy **Bankkivonat**.
+- **Rekord állapota**: alapértelmezés szerint **Aktív**, vagy **Duplikátum**, illetve **Mind**. A duplikátum ugyanazon a számlán egy másik tranzakció másolata, azonos könyvelési dátummal és összeggel; a párosítás kihagyja, és az oldalán a **Nem duplikátum** visszahozza.
 
 A Havi zárás hivatkozásai úgy szűrve nyitják meg a listát, ahogy az ellenőrzés számol: a megoldatlan tranzakciókat a **Párosítatlan** teendőn, a kategória nélkülieket a **Hiányos kategorizálás** teendőn, a hiányzó árfolyamokat pedig a **Függő vagy sikertelen árfolyam** szűrővel. Ha [fókuszált időszakban](/focused-period) dolgozik, a lista azt követi.
 
