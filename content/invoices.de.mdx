@@ -63,6 +63,8 @@ Suchen Sie nach Rechnungsnummer, AI-Finance-Team-ID, Verkäufer- oder Käufernam
 - **Akzente sind optional**: „szolgaltato“ findet „Szolgáltató“.
 - **Betrag**: als ungarische Zahl gelesen, also sind „125000“, „125 000“, „125.000“ und „125 000,00 Ft“ derselbe Betrag. Er trifft den Brutto-, den Netto- oder den umgerechneten Betrag genau, auch bei Gutschriften.
 - **Steuernummer**: in jeder Form (12345678, 12345678-1-23, 12345678123).
+- **Betragsbereich**: zwei Beträge mit einem Bindestrich mit Leerzeichen oder zwei Punkten dazwischen, etwa „100 000 - 200 000“ oder „100000..200000“. Der Brutto-, Netto- oder umgerechnete Betrag muss dazwischen liegen (beide Grenzen eingeschlossen), auch bei Gutschriften. Ein Bindestrich ohne Leerzeichen („2026-0012“) wird als Rechnungsnummer gesucht.
+- **Kontonummer**: die Kontonummer des Lieferanten als IBAN oder im Inlandsformat, mit oder ohne Leerzeichen und Bindestriche (mindestens 12 Ziffern).
 - Der gefundene Text ist markiert. Ist der Treffer in der Zeile nicht sichtbar (zum Beispiel der Nettobetrag oder eine Steuernummer), sagt eine Zeile **Treffer:** unter dem Partner, warum die Rechnung erscheint.
 - Ohne Treffer zeigt die Liste, wie viele Rechnungen die Suche ohne Filter findet, und schlägt Partner mit ähnlichem Namen vor.
 - Die Taste **/** springt in die Suche. Leer zeigt die Suche die letzten vier Suchen in dieser Liste (nur in diesem Browser).
