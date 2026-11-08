@@ -63,6 +63,8 @@ Search by invoice number, AI Finance Team ID, seller or buyer name, partner, tax
 - **Accents are optional**: “szolgaltato” finds “Szolgáltató”.
 - **Amount**: read as a Hungarian number, so “125000”, “125 000”, “125.000” and “125 000,00 Ft” are the same. It matches the gross, the net or the converted amount exactly, credit notes included.
 - **Tax number**: in any form (12345678, 12345678-1-23, 12345678123).
+- **Amount range**: two amounts with a spaced hyphen or two dots between them, such as “100 000 - 200 000” or “100000..200000”. The gross, net or converted amount must fall between them (both ends included), credit notes too. A hyphen without spaces (“2026-0012”) is searched as an invoice number.
+- **Account number**: the supplier's account number as an IBAN or in domestic form, with or without spaces and hyphens (at least 12 digits).
 - The matching text is highlighted. When the match is not visible in the row (the net amount or a tax number, for example), a **Match:** line under the partner says why the invoice is there.
 - With no results, the list shows how many invoices the search finds without the filters and offers partners with a similar name.
 - The **/** key jumps to the search. Empty, the search shows the last four searches on this list (in this browser only).
