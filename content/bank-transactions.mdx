@@ -29,7 +29,9 @@ The **Category** cell is empty when **Use cash-flow categories for bookkeeping o
 
 ### To-dos and labels
 
-The chips above the list are the to-dos, each with its count; a chip with nothing to do is hidden. A chip lists its transactions, and with several chips on, a transaction needs any one of them. A row shows its to-dos in amber in the same words, and the transaction's **To do** card lists them with the way to clear each one.
+The chips under the filter strip are the to-dos, each with its count; a chip with nothing to do is hidden. A chip lists its transactions, and with several chips on, a transaction needs any one of them. A selected chip is blue with a ✕. A row shows its to-dos in amber in the same words, and the transaction's **To do** card lists them with the way to clear each one.
+
+**Collapse** folds the to-do row into one **To do** button in the filter strip, with a number for the to-dos you selected. Hover over it or click it to see the to-dos as a list with their counts; **Expand to-dos** at the bottom of the list brings the row back. Your browser remembers the choice for you on this list, separately from the Invoices list; the row is open by default.
 
 | To-do | When | How it clears |
 |-------|------|---------------|
@@ -53,14 +55,14 @@ How a transaction gets matched is in [Invoice Matching](/invoice-matching). Bank
 
 Search by partner, description, reference, AI Finance Team ID, amount or the partner's account number (IBAN, with or without spaces). The partner search covers both the name the bank sent and the partner it is linked to. Accents are optional, and the amount is read as a Hungarian number: “125 000” and “125000,00” are the same, for money in and money out.
 
-Above the list you can filter by date range and with these dropdowns. A transaction must meet every filter you set, and any one of the values you pick within a filter:
+In the strip above the list you filter by date range, by **Company** (when you have more than one; **No company assigned** when an account has no company yet) and by **Account** (when you have more than one bank account), and the **Direction** switch picks **All**, **Money in** or **Money out** in one click. With eight or more bank accounts you can type to search the **Account** list. The other filters are behind **More filters**, which opens them from the right; picking a value filters at once. The number on the button counts the filters set there, and every filter you set shows under the strip, where ✕ removes it. On a phone **Company**, **Account** and **Direction** move behind **More filters** too. A transaction must meet every filter you set, and any one of the values you pick within a filter. Behind **More filters**, in this order:
 
-- **Company** (when you have more than one; **No company assigned** when an account has no company yet), **Account** and **Direction** (**Money in** or **Money out**).
-- **Record state**: **Active** by default, or **Duplicate** or **All**. A duplicate is a copy of another transaction on the same account, with the same booking date and amount; matching leaves it out, and **Not a duplicate** on its page brings it back.
-- **Source**: **Bank feed** or **Statement**.
 - **Matching**: **Unmatched**, **Partially matched**, **Matched automatically**, **Matched manually**, **No invoice**, **Closed**, **Internal transfer**, **Suggestion awaiting a decision** and **Settlement in progress**. An internal transfer is only ever **Internal transfer**.
 - **Coding**: **Suggestion awaiting acceptance**, **No category**, **Categorization failed**, **Custom category missing** and **Complete**.
 - **Category**, **Transaction type** (or **No type**) and **Partner** (**Verified**, **Unverified** or **No partner**).
+- **Source**: **Bank feed** or **Statement**.
+- **Record state**: **Active** by default, or **Duplicate** or **All**. A duplicate is a copy of another transaction on the same account, with the same booking date and amount; matching leaves it out, and **Not a duplicate** on its page brings it back.
+
 
 The Monthly Closing's links open the list filtered the way its check counts: unresolved transactions on the **Unmatched** chip, uncategorized ones on **Incomplete categorization**, and missing exchange rates under **Exchange rate pending or failed**. If you work in a [focused period](/focused-period), the list follows it.
 
