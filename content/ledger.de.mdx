@@ -136,6 +136,8 @@ Wie die Zeilen gebucht werden:
 
 **Nichts wird ausgelassen, weil es schon einmal exportiert wurde.** Exportieren Sie denselben Zeitraum zweimal, kommen dieselben Zeilen zweimal heraus; halten Sie also fest, was das Büro bereits eingelesen hat, **Letzte Exporte** hilft dabei. Rechnungen, die RLB direkt von der NAV erhält, lassen sich weglassen: Stellen Sie unter **Weitere Filter** den Filter **NAV- / OSA-Rechnungen** auf **Ausschließen**. Bankzeilen, die sie bezahlen, verweisen weiterhin auf sie.
 
+**Lesen Sie dieselbe Datei zweimal nacheinander in RLB ein.** Der erste Lauf bucht die Rechnungen, der zweite die Bankzeilen, die sie ausgleichen: RLB kann einen Ausgleich nur gegen eine bereits gebuchte Rechnung buchen. Der zweite Lauf überspringt die bereits gebuchten Rechnungen. So arbeitet RLB, und der RLB-Support empfiehlt es.
+
 #### Was RLB nicht einlesen kann
 
 Über der Suchleiste zeigt die Seite entweder grün **Bereit zum Export** oder gelb, wie viele Einträge zu beheben sind, mit **Prüfen & beheben**. Die Zahl fasst vier Arten von Problemen zusammen:

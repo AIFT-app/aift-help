@@ -136,6 +136,8 @@ How the rows are booked:
 
 **Nothing is skipped because it was exported before.** Export the same period twice and the same rows come out twice, so keep track of what the office has already imported; **Recent exports** helps. Invoices RLB already receives straight from NAV can be left out: under **More filters**, set **NAV / OSA invoices** to **Exclude**. Bank lines that pay them still refer to them.
 
+**Import the same file into RLB twice, one run after the other.** The first run books the invoices, the second books the bank lines that settle them: RLB can only book a settlement against an invoice that is already booked. The second run skips the invoices it already booked. This is how RLB works, and RLB's support recommends it.
+
 #### Fixing what RLB cannot import
 
 Above the search bar the page says either **Ready to export** in green, or, in amber, how many items need fixing, with **Review & fix**. The count adds up four kinds of problem:
