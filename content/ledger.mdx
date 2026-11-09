@@ -138,6 +138,23 @@ How the rows are booked:
 
 **Import the same file into RLB twice, one run after the other.** The first run books the invoices, the second books the bank lines that settle them: RLB can only book a settlement against an invoice that is already booked. The second run skips the invoices it already booked. This is how RLB works, and RLB's support recommends it.
 
+#### Producers
+
+When the workspace has purchase tickets, the page has a fourth tab, **Producers**. It lists the producers whose tickets go into the posting file under the current filters, with their personal data (see [Purchase tickets](/invoices)). On this tab the button beside the page title becomes **Export partner file**: it gives a CSV file to import in RLB under **Alapadatok › Törzsadatok importálása csv-ből**, as partners. The file holds exactly the producers the table shows. AI Finance Team does not keep the file, because it contains social security numbers; it only records who was exported and when.
+
+**In RLB, import the partner file before the posting file.** If the posting file comes first, RLB creates the ticket's partner without the personal data.
+
+The filter above the table groups the producers by state:
+
+- **New**: not yet in a partner export. Shown by default.
+- **To check**: an amber line under the name says what is wrong: the social security number's check digit is wrong, the date of birth does not match the date in the tax identification number, two tickets printed different data, or the social security number, place of birth, date of birth or mother's name is missing. The export still runs.
+- **Update by hand**: exported before, changed since. RLB's import never updates an existing partner, so change these in RLB. On this filter the export button is off.
+- **Exported** and **All**.
+
+Click a row to open a side panel with all of the producer's data. Each field shows where it came from: **from ticket**, **by hand**, **proposed** or **default**. A value entered by hand survives every re-read. **Sex** is rarely printed, so it is proposed from the first name until someone confirms it. **Citizenship** defaults to HU for a valid Hungarian tax identification number. **Read the tickets again** reads the producer's tickets again.
+
+On the posting tabs, an amber notice says when the period has producers not yet exported to the partner master data. It does not stop the posting export either.
+
 #### Fixing what RLB cannot import
 
 Above the search bar the page says either **Ready to export** in green, or, in amber, how many items need fixing, with **Review & fix**. The count adds up four kinds of problem:

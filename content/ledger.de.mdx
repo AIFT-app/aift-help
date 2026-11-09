@@ -138,6 +138,23 @@ Wie die Zeilen gebucht werden:
 
 **Lesen Sie dieselbe Datei zweimal nacheinander in RLB ein.** Der erste Lauf bucht die Rechnungen, der zweite die Bankzeilen, die sie ausgleichen: RLB kann einen Ausgleich nur gegen eine bereits gebuchte Rechnung buchen. Der zweite Lauf überspringt die bereits gebuchten Rechnungen. So arbeitet RLB, und der RLB-Support empfiehlt es.
 
+#### Erzeuger
+
+Hat der Arbeitsbereich Ankaufsbelege, gibt es auf der Seite einen vierten Reiter, **Urproduzenten**. Er listet die Erzeuger, deren Belege mit den eingestellten Filtern in die Buchungsdatei gehen, mit ihren persönlichen Daten (siehe [Ankaufsbelege](/invoices)). Auf diesem Reiter heißt die Schaltfläche neben dem Seitentitel **Partnerdatei exportieren**: Sie liefert eine CSV-Datei, die in RLB unter **Alapadatok › Törzsadatok importálása csv-ből** als Partner eingelesen wird. Die Datei enthält genau die Erzeuger, die die Tabelle zeigt. AI Finance Team speichert die Datei nicht, weil sie Sozialversicherungsnummern enthält; es hält nur fest, wer wann exportiert wurde.
+
+**Lesen Sie in RLB den Partnerstamm vor der Buchungsdatei ein.** Kommt die Buchungsdatei zuerst, legt RLB den Partner des Belegs ohne die persönlichen Daten an.
+
+Der Filter über der Tabelle zeigt die Erzeuger nach Zustand:
+
+- **Neu**: noch in keinem Partnerexport. Standardmäßig ausgewählt.
+- **Zu prüfen**: eine gelbe Zeile unter dem Namen nennt das Problem: falsche Prüfziffer der Sozialversicherungsnummer, das Geburtsdatum passt nicht zum Datum in der Steueridentifikationsnummer, zwei Belege nennen verschiedene Daten, oder Sozialversicherungsnummer, Geburtsort, Geburtsdatum oder Name der Mutter fehlen. Der Export läuft trotzdem.
+- **Manuell aktualisieren**: schon exportiert, seitdem geändert. Der RLB-Import aktualisiert einen bestehenden Partner nie, ändern Sie diese also in RLB. Auf diesem Filter ist die Export-Schaltfläche aus.
+- **Exportiert** und **Alle**.
+
+Ein Klick auf eine Zeile öffnet ein Seitenpanel mit allen Daten des Erzeugers. Neben jedem Feld steht seine Herkunft: **vom Beleg**, **manuell**, **vorgeschlagen** oder **Standard**. Ein von Hand eingegebener Wert bleibt bei jedem erneuten Lesen erhalten. Das **Geschlecht** steht selten auf dem Beleg und wird aus dem Vornamen vorgeschlagen, bis jemand es bestätigt. Die **Staatsangehörigkeit** ist bei einer gültigen ungarischen Steueridentifikationsnummer standardmäßig HU. **Belege erneut lesen** liest die Belege des Erzeugers noch einmal.
+
+Auf den Buchungsreitern weist ein gelber Hinweis darauf hin, wenn der Zeitraum Erzeuger hat, die noch nicht in den Partnerstamm exportiert wurden. Auch er hält den Buchungsexport nicht auf.
+
 #### Was RLB nicht einlesen kann
 
 Über der Suchleiste zeigt die Seite entweder grün **Bereit zum Export** oder gelb, wie viele Einträge zu beheben sind, mit **Prüfen & beheben**. Die Zahl fasst vier Arten von Problemen zusammen:

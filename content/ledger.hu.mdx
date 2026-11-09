@@ -138,6 +138,23 @@ Hogyan könyvelődnek a sorok:
 
 **Ugyanazt a fájlt kétszer kell beolvasni az RLB-be, egymás után.** Az első beolvasás lekönyveli a számlákat, a második a banki sorokat, amelyek ezeket a számlákat kiegyenlítik: az RLB csak már lekönyvelt számlához tud kiegyenlítést könyvelni. A második beolvasás a már lekönyvelt számlákat kihagyja. Ez az RLB rendes működése, az RLB ügyfélszolgálata is így javasolja.
 
+#### Őstermelők
+
+Ha a munkaterületen van felvásárlási jegy, az oldalon egy negyedik fül is van, **Őstermelők**. Azokat az őstermelőket mutatja, akiknek a jegyei a beállított szűrőkkel a könyvelési fájlba kerülnek, a személyes adataikkal együtt (lásd [Felvásárlási jegyek](/invoices)). Ezen a fülön az oldal címe melletti gomb **Partnertörzs exportálása** feliratra vált: egy CSV fájlt ad, amelyet az RLB **Alapadatok › Törzsadatok importálása csv-ből** menüpontjában lehet beolvasni, partnerként. A fájlban pontosan a táblázatban látható őstermelők vannak. Az AI Finance Team a fájlt nem tárolja, mert TAJ számokat tartalmaz; csak azt jegyzi fel, kit és mikor exportált.
+
+**Az RLB-ben a partnertörzset a könyvelési fájl előtt olvassa be.** Ha a könyvelési fájl érkezik előbb, az RLB a jegy partnerét a személyes adatai nélkül veszi fel.
+
+A fül felett a szűrő az őstermelőket állapot szerint mutatja:
+
+- **Új**: még nem került partnertörzs exportba. Alapból ez látszik.
+- **Ellenőrizendő**: a név alatt sárgán áll, mi a gond: hibás a TAJ szám ellenőrző számjegye, a születési idő nem egyezik az adóazonosító jelben szereplő dátummal, két jegy mást írt, vagy hiányzik a TAJ szám, a születési hely, a születési idő vagy az anyja neve. Az export ettől nem áll le.
+- **Kézzel frissítendő**: már exportálták, de azóta változott egy adata. Az RLB a meglévő partnert importból nem frissíti, ezért ezeket az RLB-ben kell átírni. Ezen a szűrőn az export gomb nem aktív.
+- **Exportálva** és **Mind**.
+
+Egy sorra kattintva oldalpanel nyílik az őstermelő összes adatával. Minden mező mellett látszik, honnan származik: **jegyről**, **kézzel**, **javasolt** vagy **alapérték**. A kézzel beírt érték minden újraolvasás után megmarad. A **Neme** a jegyeken ritkán szerepel, ezért a keresztnévből javasolt érték, amíg valaki meg nem erősíti. Az **Állampolgárság** érvényes magyar adóazonosító jelnél alapból HU. Az **Újraolvasás a jegyekről** az őstermelő jegyeit újra kiolvastatja.
+
+A könyvelési füleken sárga jelzés figyelmeztet, ha az időszakban van még partnertörzsbe nem exportált őstermelő. A könyvelési exportot ez sem állítja meg.
+
 #### Amit az RLB nem tud beolvasni
 
 A keresősáv felett az oldal vagy zölden azt írja, **Exportálásra kész**, vagy sárgán azt, hány tételt kell javítani, **Áttekintés és javítás** hivatkozással. A szám négyféle hibát ad össze:
