@@ -32,10 +32,11 @@ Setting a default does not touch invoices you already have. For those, the invoi
 
 Each holds one dimension, and they all work the same way: a name, a code, a description, an AI explanation, country hints, an Active flag, and a validity range.
 
-Two things to know about them:
+Three things to know about them:
 
 - **Only the Rates tab shows the validity dates as columns.** They exist on all four, in the edit drawer.
 - **On the product/service tab, watch for the duplicate-code warning.** When two groups share a code, the app tells you plainly that it shows the AI both and asks it to choose, so its classification of those lines is effectively arbitrary. Fix the duplicate rather than living with it.
+- **The rate printed on the document decides the line's rate.** When a line of an uploaded invoice prints a rate above 0% and exactly one active rate element has that percent, the line gets that element and the AI does not choose. On invoices from NAV the rate comes from the NAV data. At 0%, and when two elements share a percent, the AI chooses, so the descriptions of your 0% elements matter.
 
 ## The VAT Codes Tab
 
