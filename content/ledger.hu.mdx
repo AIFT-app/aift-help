@@ -136,6 +136,8 @@ Hogyan könyvelődnek a sorok:
 
 **Semmi sem marad ki azért, mert korábban már exportálták.** Ha ugyanazt az időszakot kétszer exportálja, ugyanazok a sorok kétszer jönnek ki, ezért tartsa számon, mit olvasott már be az iroda; ebben a **Legutóbbi exportok** segít. Azok a számlák, amelyeket az RLB közvetlenül a NAV-tól kap meg, kihagyhatók: a **További szűrők** alatt állítsa a **NAV / OSA számlák** szűrőt **Kihagyás** értékre. Az őket kiegyenlítő banki sorok továbbra is hivatkoznak rájuk.
 
+**Ugyanazt a fájlt kétszer kell beolvasni az RLB-be, egymás után.** Az első beolvasás lekönyveli a számlákat, a második a banki sorokat, amelyek ezeket a számlákat kiegyenlítik: az RLB csak már lekönyvelt számlához tud kiegyenlítést könyvelni. A második beolvasás a már lekönyvelt számlákat kihagyja. Ez az RLB rendes működése, az RLB ügyfélszolgálata is így javasolja.
+
 #### Amit az RLB nem tud beolvasni
 
 A keresősáv felett az oldal vagy zölden azt írja, **Exportálásra kész**, vagy sárgán azt, hány tételt kell javítani, **Áttekintés és javítás** hivatkozással. A szám négyféle hibát ad össze:
