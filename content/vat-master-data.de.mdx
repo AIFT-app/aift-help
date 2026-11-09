@@ -32,10 +32,11 @@ Das Setzen eines Standards berührt bereits vorhandene Rechnungen nicht. Dafür 
 
 Jeder enthält eine Dimension, und alle funktionieren gleich: ein Name, ein Code, eine Beschreibung, eine KI-Erläuterung, Länderhinweise, ein Kennzeichen Aktiv und ein Gültigkeitszeitraum.
 
-Zwei Dinge sollten Sie dazu wissen:
+Drei Dinge sollten Sie dazu wissen:
 
 - **Nur der Tab USt-Sätze zeigt die Gültigkeitsdaten als Spalten.** Vorhanden sind sie auf allen vieren, im Bearbeitungspanel.
 - **Achten Sie im Tab Produkt/Leistung auf den Hinweis zu doppelten Codes.** Wenn zwei Gruppen sich einen Code teilen, sagt die Anwendung klar, dass sie der KI beide zeigt und sie wählen lässt, sodass die Einstufung dieser Zeilen faktisch willkürlich ist. Beheben Sie die Dopplung, statt damit zu leben.
+- **Der auf dem Beleg gedruckte Satz entscheidet über den Satz der Zeile.** Druckt eine Zeile einer hochgeladenen Rechnung einen Satz über 0 % und hat genau ein aktives Satzelement diesen Prozentsatz, erhält die Zeile dieses Element, und die KI wählt nicht. Bei Rechnungen aus NAV kommt der Satz aus den NAV-Daten. Bei 0 % und wenn zwei Elemente denselben Prozentsatz haben, wählt die KI, deshalb zählen die Beschreibungen Ihrer 0-%-Elemente.
 
 ## Der Tab USt-Codes
 
