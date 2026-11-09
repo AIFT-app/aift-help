@@ -32,10 +32,11 @@ Az alapértelmezés beállítása a már meglévő számlákhoz nem nyúl. Azokr
 
 Mindegyik egy-egy dimenziót tartalmaz, és mind ugyanúgy működik: név, kód, leírás, AI magyarázat, országtipp, Aktív jelölő és érvényességi tartomány.
 
-Két dolgot érdemes tudni róluk:
+Három dolgot érdemes tudni róluk:
 
 - **Csak az ÁFA-kulcsok fülön jelennek meg oszlopként az érvényességi dátumok.** Mind a négy fülön léteznek, a szerkesztőpanelen.
 - **A termék/szolgáltatás fülön figyeljen a duplikált kódra figyelmeztető sávra.** Ha két csoport ugyanazt a kódot használja, az alkalmazás nyíltan megírja, hogy az AI mindkettőt látja, és választania kell közülük, így ezeknek a soroknak a besorolása gyakorlatilag esetleges. Javítsa ki a duplikációt ahelyett, hogy együtt élne vele.
+- **A sor ÁFA-kulcsát a dokumentumra nyomtatott kulcs dönti el.** Ha egy feltöltött számla során a nyomtatott kulcs 0%-nál nagyobb, és pontosan egy aktív kulcselemnek ugyanennyi a kulcsa, a sor azt a kulcselemet kapja, az AI nem dönt róla. A NAV-ból érkező számláknál a kulcs a NAV-adatból jön. 0%-nál, és ha két kulcselemnek ugyanaz a kulcsa, az AI választ, ezért a 0%-os kulcselemek leírása számít.
 
 ## Az ÁFA-kódok fül
 
