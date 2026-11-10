@@ -15,8 +15,8 @@ A munkaterületen mindenki látja, azok a tagok is, akik a számlákat és a ban
 Senkinek nem kell Önt keresnie: a rendszer magától kér. Egy tétel háromféleképpen kerülhet a **Rád vár** szakaszba.
 
 1. **Egy kifizetéshez nincs számla.** Egy banki tranzakció feldolgozása lezárult, a rendszer kategorizálta és összevetette a munkaterület minden számlájával, és semmi nem illik rá.
-2. **A NAV tud egy számláról, de a dokumentum hiányzik** (magyar munkaterületeken). Az adat a NAV Online Számla rendszeréből érkezett, tehát a számla biztosan létezik, de a dokumentumot senki nem töltötte fel. Ezeken **NAV-ból** jelvény van.
-3. **Egy kifizetésről kiderült, hogy dokumentum nélküli NAV-számla.** Egy kártya, amely hiányzó kifizetési számlaként indult, helyben átalakulhat a második fajtává, és megtartja az addig várakozással töltött időt. Megkapja a **NAV-ból** jelvényt, és elveszíti a **Nincs hozzá számla** gombját.
+2. **A NAV tud egy számláról, de a dokumentum hiányzik** (magyar munkaterületeken). Az adat a NAV Online Számla rendszeréből érkezett, tehát a számla biztosan létezik, de a dokumentumot senki nem töltötte fel. Ezeken **NAV-ból** jelvény van. Csak ott kerül ide ilyen tétel, ahol a munkaterület vár dokumentumot a számlához: ezt a könyvelő a [Számladokumentumot várunk](/invoices#számladokumentumot-várunk) beállítással adja meg, amelynek az alapértéke **Nem**.
+3. **Egy kifizetésről kiderült, hogy dokumentum nélküli NAV-számla.** Egy kártya, amely hiányzó kifizetési számlaként indult, helyben átalakulhat a második fajtává, és megtartja az addig várakozással töltött időt. Megkapja a **NAV-ból** jelvényt, és elveszíti a **Nincs hozzá számla** gombját. Ahol a munkaterület ehhez a számlához nem vár dokumentumot, a kártya ilyenkor lezárul, mert a kifizetés megtalálta a számláját.
 
 ### Miért nincs itt egy kifizetés, amelyet várt
 
