@@ -154,6 +154,25 @@ The partner's page lists, per company, its vendor card and its customer card, ea
 
 **Master data → VAT codes → Business Central** maps each of your (product/service group, rate) pairs to one Business Central tax group code. It is saved a row at a time, and it survives unpairing.
 
+## Partner VAT Groups from the Cards
+
+Every vendor card and customer card in Business Central carries a VAT business posting group (for example BELFÖLD or EU SZÁLLÍTÓ). A partner that has a card takes its partner VAT group from it, so nobody has to set it by hand.
+
+The **Partner VAT groups** table on **Master data → VAT codes → Business Central** lists the codes found on the cards, and how many vendor cards and customer cards carry each. For every code, choose the partner VAT group it means. A code we recognise by its name shows a proposal, and **Accept proposals** saves them all at once. Two codes can mean the same group: EU SZÁLLÍTÓ and EU VEVŐ are both the EU group.
+
+Saving the mapping changes no partner yet. An amber box above the table shows how many partners would change VAT group, how many invoice lines would get a VAT code, and how many would change theirs. **Apply** writes them. If you do not press it, the next Business Central refresh does.
+
+From then on Business Central is the master:
+
+- **The VAT group of a partner that has a card cannot be changed in AI Finance Team.** It is read only on the **Rules** tab of the partner, with its cards and their codes under it. To change the group, change the card in Business Central. The next refresh of that company brings it over: once a day on its own, or at once with **Refresh all** on the Differences tab.
+- **When the cards of one partner disagree**, for example BELFÖLD in one company and IC in another, we do not pick one. The partner keeps what it had and is listed on the Differences tab. The place to correct it is Business Central.
+- **A code with no mapping** writes nothing, and the group of the partner can still be set by hand.
+- **A partner without a card** keeps the group you set.
+
+At the bottom of **Master data → Business Central → Differences**, the **Partner VAT groups** section appears only when it has something to show: cards with different groups (between companies, or between the vendor card and the customer card), codes without a mapping, and linked cards that carry no group.
+
+On an invoice the partner VAT group is decided in this order: what somebody chose by hand on that invoice, then the group of the partner, then what we infer from the country of the tax number on an invoice that came from NAV. A choice made on an invoice affects that one invoice only, never the group of the partner.
+
 ## Pushing Partners as Vendors
 
 **Master data → Business Central → Push** creates vendor cards in Business Central from your partners. This is one of the places AI Finance Team writes into your accounting system; the others are sending invoices (with their PDF) and sending bank lines, below. It needs three things:
