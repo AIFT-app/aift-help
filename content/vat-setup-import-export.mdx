@@ -99,7 +99,7 @@ The import now recognises these and writes them onto the system element. A row l
 
 The system element takes the template row's name, no second row is created, and the references on the VAT code sheet follow. Where the workspace does not have the system element yet (a new workspace starts without `EXEMPT` and `OUT_OF_SCOPE`), the row is created under the system code. The preview lists every mapping before anything is written.
 
-Two cases are errors and block the import: two rows that would land on the same system element, and a System element column that names something that is not a system element.
+Two cases are errors and block the import: two template rows that would land on the same system element, and a System element column that names something that is not a system element. A file that carries the system element's own row and another spelling of it is not an error: the system element's row counts, the other row is left out of the import, and the VAT codes that refer to it go onto the system element. A workspace's own export looks like that when both rows exist there.
 
 The preview warns about four things, and none of them stops the import:
 

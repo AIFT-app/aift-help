@@ -99,7 +99,7 @@ Az import felismeri ezeket, és a rendszerelemre írja őket. Egy sor akkor ker�
 
 A rendszerelem megkapja a sablonsor nevét, második sor nem jön létre, és az ÁFA-kód lap hivatkozásai követik. Ha a munkaterületen a rendszerelem még nincs meg (egy új munkaterület `EXEMPT` és `OUT_OF_SCOPE` nélkül indul), a sor a rendszerkóddal jön létre. Az előnézet minden megfeleltetést felsorol, mielőtt bármi beíródna.
 
-Két eset hiba, és az importot blokkolja: ha két sor ugyanarra a rendszerelemre kerülne, és ha a Rendszerelem oszlopban olyan érték áll, amely nem rendszerelem.
+Két eset hiba, és az importot blokkolja: ha két sablonsor ugyanarra a rendszerelemre kerülne, és ha a Rendszerelem oszlopban olyan érték áll, amely nem rendszerelem. Ha a fájlban a rendszerelem saját sora és annak egy másik írásmódja is szerepel, az nem hiba: a rendszerelem sora számít, a másik sor kimarad az importból, a rá hivatkozó ÁFA-kódok pedig a rendszerelemre kerülnek. Egy munkaterület saját exportja ilyen, ha ott mindkét sor megvan.
 
 Az előnézet négy dologra figyelmeztet, és egyik sem akadályozza az importot:
 
