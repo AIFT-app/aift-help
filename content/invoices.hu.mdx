@@ -50,12 +50,26 @@ A leggyakoribb címkék:
 | **Lejárt** | A fizetési határidő után sincs kifizetve. A még nem esedékes, ki nem fizetett számla nem teendő. Csak olyan munkaterületen jelenik meg, ahol van bankszámla (bankkapcsolat vagy feltöltött kivonat), mert enélkül semmi nem jelöli fizetettnek a számlát |
 | **Párosítási javaslat vár döntésre** | Az AI Finance Team banki tételt javasol hozzá; erősítse meg vagy utasítsa el |
 | **NAV** / **Nincs dokumentum** | A számla a NAV Online Számlából jött / nincs dokumentumfájl, de a munkaterület nem vár hozzá dokumentumot (szürke) |
-| **Dokumentum szükséges** | Nincs dokumentumfájl, és a munkaterület beállítása vagy egy nyitott dokumentumkérés szerint kellene (borostyánsárga teendő). A **Dokumentum** szűrő **Nincs** értéke mindkét címkét mutatja, ezért nagyobb számot adhat, mint ez a teendő |
+| **Dokumentum szükséges** | Nincs dokumentumfájl, és a munkaterület **Számladokumentumot várunk** beállítása szerint kellene (borostyánsárga teendő, lásd [lent](#számladokumentumot-várunk)). A **Dokumentum** szűrő **Nincs** értéke mindkét címkét mutatja, ezért nagyobb számot adhat, mint ez a teendő |
 | **Duplikáció**, **Sztornózva** | Egy másik számla duplikációja / sztornószámlával érvénytelenítve |
 | **Kifizetési jóváhagyásra vár**, **Jóváhagyva**, **Elutasítva** | A kifizetés jóváhagyásának állapota, ahol a jóváhagyás be van kapcsolva (lásd: [Számlák jóváhagyása kifizetésre](/approving-invoices)) |
 | **Iktatásra vár**, **Könyvelésre vár** | Egy jóváhagyási lépés még döntésre vár, ahol az iktatási vagy a könyvelési jóváhagyás be van kapcsolva (lásd: [Iktatási és könyvelési jóváhagyás](/filing-and-bookkeeping-approval)) |
 | **Visszaküldve iktatásra** | A könyvelő visszaküldte a számlát az iktatáshoz; a megjegyzése a címkére mutatva olvasható |
 | **Átadandó a könyvelőprogramnak** | Ahol a munkaterület megadta a könyvelőprogramját: átadható, és még nem adták át, vagy azóta módosult (lásd [Főkönyv](/ledger)) |
+
+### Számladokumentumot várunk
+
+A **Beállítások → Könyvelési alapértelmezések → Számladokumentumot várunk** alatt adja meg, hogy a munkaterület vár-e dokumentumot (PDF-et vagy képet) a számlái mögé:
+
+| Érték | Jelentése |
+|---|---|
+| **Nem** | Az alapérték. Egyetlen számlához sem várunk dokumentumot |
+| **Bejövő számlákhoz** | A bejövő (szállítói) számlákhoz várunk dokumentumot, a kimenőkhöz nem |
+| **Minden számlához** | A bejövő és a kimenő számlákhoz is |
+
+Ahol várunk dokumentumot, ott a dokumentum nélküli számla **Dokumentum szükséges** teendőt kap, és az ügyféltől is ott kérünk hozzá dokumentumot a [Hiányzó bizonylatok](/documents-needed) oldalon. Ahol nem várunk, ott egyik sem történik: a számlán csak a szürke **Nincs dokumentum** címke marad.
+
+Mentés előtt a párbeszédablak megmondja, hány számlán lesz teendő, és hány nyitott dokumentumkérés zárul le az ügyfélnél. Ha szűkíti a beállítást, a már nyitott kérések lezárulnak. Ha később újra bővíti, ugyanazok a kérések nyílnak meg újra, és az ügyfél nem kap róluk második üzenetet. A beállítást a **„Törzsadatok szerkesztése”** jogosultsággal lehet módosítani.
 
 ### Számlák keresése
 

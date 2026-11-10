@@ -15,8 +15,8 @@ Everyone in the workspace can see it, including members who cannot see invoices 
 Nobody has to chase you: the system asks on its own. An item lands in **Waiting for you** in one of three ways.
 
 1. **A payment has no invoice.** A bank transaction has been processed, categorised and checked against every invoice in the workspace, and nothing matches.
-2. **NAV knows about an invoice, but the document is missing** (Hungarian workspaces). The data arrived from NAV Online Számla, so the invoice certainly exists, but nobody uploaded the document. These carry a **From NAV** badge.
-3. **A payment turned out to be a NAV invoice with no document.** A card that started as a missing payment invoice can change into the second kind in place, keeping the time it has already been waiting. It gains the **From NAV** badge and loses its **No invoice exists** button.
+2. **NAV knows about an invoice, but the document is missing** (Hungarian workspaces). The data arrived from NAV Online Számla, so the invoice certainly exists, but nobody uploaded the document. These carry a **From NAV** badge. Such an item appears only where the workspace expects a document behind the invoice: the accountant sets that with [We expect an invoice document](/invoices#we-expect-an-invoice-document), which is **No** by default.
+3. **A payment turned out to be a NAV invoice with no document.** A card that started as a missing payment invoice can change into the second kind in place, keeping the time it has already been waiting. It gains the **From NAV** badge and loses its **No invoice exists** button. Where the workspace expects no document behind that invoice, the card closes at this point, because the payment has found its invoice.
 
 ### Why a payment you expected is not here
 
