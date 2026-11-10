@@ -37,6 +37,7 @@ Conventions inside the file:
 - Dates are `YYYY-MM-DD`, and on import `2026.01.31.`, `2026/01/31` and real Excel date cells are also accepted.
 - Percentages are plain numbers (`27`, not `27%`), and a decimal comma is fine.
 - Yes/no columns accept `yes` and `no`.
+- **The four dimension sheets have a `System element` column.** Export fills it on the rows the processor looks up by their code (`DOMESTIC`, `NORMAL`, `ZERO`, `EXEMPT`, `OUT_OF_SCOPE`, `REVERSE_CHARGE` and a few more) and leaves it empty on your own rows. When you write your own template, this is where you say which system element a row stands for.
 - **The second, translated header row only appears for a Hungarian or German workspace.** An English-locale workspace exports one header row. On import either vocabulary works, as long as you do not mix languages inside one sheet.
 
 > **The file carries the stored English names of seeded rows, not the translated labels you see on screen.** A Hungarian workspace's export says `Domestic`, not `Belföldi`. If you type the on-screen Hungarian name over it, you have renamed the row, which **detaches it from the system defaults**. Leave those names alone unless you mean to rename them.
@@ -70,8 +71,44 @@ Only `.xlsx`, up to 5 MB, up to 2,000 rows per sheet. There is no column-mapping
 Three things that catch people out:
 
 - **`Archived = no`, or an empty Archived cell, un-archives the row.** Clearing that cell is not "leave it as it is".
-- **Changing a code changes the identity.** Edit a code, an accounting code or an AIFT code and the row no longer matches anything, so it is created as a new row rather than updated.
+- **Changing a code changes the identity.** Edit a code, an accounting code or an AIFT code and the row no longer matches anything, so it is created as a new row rather than updated. The exception is the short list of template codes below, which land on the system element.
 - **Overlapping validity ranges are refused.** If a file row's five elements plus its validity period overlap an existing active row, or two rows in the file overlap each other, the import stops. This is the most common real blocker and it has nothing to do with typos.
+
+### System elements: a template's own codes
+
+The processor looks a few elements up by their code: a line that arrives from NAV gets the `NORMAL` calculation method, for instance, and its invoice the `DOMESTIC` partner group. When a template brought the same thing under another code (`NORMÁL`, `BELFÖLD`), the import used to create a new row beside the system element, and every VAT code pointed at an element no line ever received.
+
+The import now recognises these and writes them onto the system element. A row lands on a system element when:
+
+1. its **System element** column names one (`DOMESTIC`, `NORMAL` and so on), or
+2. its code is itself a system code, or
+3. its code is one of the template codes below, whatever the case and the accents.
+
+| Sheet | Template code | System element |
+|---|---|---|
+| `Partner VAT Groups` | `BELFÖLD` | `DOMESTIC` |
+| | `3. ORSZÁG` | `THIRD_COUNTRY` |
+| | `PÉNZFORG` | `CASH_METHOD` |
+| | `AAM` | `SMALL_BUSINESS_EXEMPT` |
+| `Calculation Methods` | `NORMÁL` | `NORMAL` |
+| | `FOA` | `REVERSE_CHARGE` |
+| | `CSAK_ÁFA` | `VAT_ONLY` |
+| `VAT Rates` | `TAM` | `EXEMPT` |
+| | `AKK` | `OUT_OF_SCOPE` |
+| | `NULLA` | `ZERO` |
+
+The system element takes the template row's name, no second row is created, and the references on the VAT code sheet follow. Where the workspace does not have the system element yet (a new workspace starts without `EXEMPT` and `OUT_OF_SCOPE`), the row is created under the system code. The preview lists every mapping before anything is written.
+
+Two cases are errors and block the import: two rows that would land on the same system element, and a System element column that names something that is not a system element.
+
+The preview warns about four things, and none of them stops the import:
+
+- **A new partner group, 0% rate or calculation method the list does not know.** No line gets it by itself, only when a person puts it there. The preview shows how many VAT codes in the file are built on it.
+- **A system element no active code uses.** Lines from NAV that receive it stay without a code.
+- **A twin of a system element**, an existing row whose code is another spelling of a system element. The import does not merge them. Re-importing the workspace's own export moves its codes onto the system element.
+- **A NAV mapping the processor cannot read.** Such a code finds no NAV line. See [VAT master data](/vat-master-data).
+
+The last three also show on **Master data → VAT codes** outside an import, for as long as they hold.
 
 ### Re-importing an export is not always a no-op
 

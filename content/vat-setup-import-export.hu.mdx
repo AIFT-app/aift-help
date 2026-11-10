@@ -37,6 +37,7 @@ Konvenciók a fájlban:
 - A dátumok `YYYY-MM-DD` formátumúak, importáláskor pedig a `2026.01.31.`, a `2026/01/31` és az igazi Excel-dátumcellák is elfogadottak.
 - A százalékok sima számok (`27`, nem `27%`), és a tizedesvessző is jó.
 - Az igen/nem oszlopok a `yes` és a `no` értéket fogadják el. Magyar munkaterület exportjában az Archived oszlop lefordított fejléce **Archivált**, a benne álló érték viszont minden nyelven `yes`.
+- **A négy dimenziólapon van egy `System element` oszlop, magyar fejléccel Rendszerelem.** Az export kitölti azoknál a soroknál, amelyeket a feldolgozó a kódjuk alapján keres (`DOMESTIC`, `NORMAL`, `ZERO`, `EXEMPT`, `OUT_OF_SCOPE`, `REVERSE_CHARGE` és még néhány), a saját soroknál üresen hagyja. Ha saját sablont ír, itt mondhatja meg, melyik rendszerelemnek felel meg egy sor.
 - **A második, lefordított fejlécsor csak magyar vagy német munkaterületnél jelenik meg.** Az angol nyelvű munkaterület egyetlen fejlécsort exportál. Importáláskor bármelyik szókincs működik, amíg egy munkalapon belül nem kever nyelveket.
 
 > **A fájl az előre feltöltött sorok eltárolt angol nevét hordozza, nem a képernyőn látott lefordított feliratot.** Egy magyar munkaterület exportjában `Domestic` áll, nem `Belföldi`. Ha a képernyőn látható magyar nevet írja a helyére, azzal átnevezte a sort, ami **leválasztja a rendszer-alapértelmezésekről**. Hagyja békén ezeket a neveket, kivéve, ha valóban át akarja nevezni őket.
@@ -70,8 +71,44 @@ Csak `.xlsx`, legfeljebb 5 MB, munkalaponként legfeljebb 2 000 sor. Nincs oszlo
 Három dolog, amin sokan elcsúsznak:
 
 - **Az `Archived = no`, vagy egy üres Archived cella, megszünteti a sor archiválását.** A cella kiürítése nem azt jelenti, hogy „maradjon, ahogy van”.
-- **A kód módosítása az azonosságot módosítja.** Ha átírja a kódot, a könyvelési kódot vagy az AIFT kódot, a sor már semmivel nem párosul, tehát nem frissül, hanem új sorként jön létre.
+- **A kód módosítása az azonosságot módosítja.** Ha átírja a kódot, a könyvelési kódot vagy az AIFT kódot, a sor már semmivel nem párosul, tehát nem frissül, hanem új sorként jön létre. Kivétel az alább felsorolt néhány sablonkód, amely a rendszerelemre kerül.
 - **Az átfedő érvényességi időszakokat elutasítjuk.** Ha egy fájlsor öt eleme és érvényességi időszaka átfed egy létező aktív sorral, vagy a fájl két sora fed át egymással, az import leáll. Ez a leggyakoribb valódi blokkoló, és semmi köze az elgépelésekhez.
+
+### Rendszerelemek: a sablon saját kódjai
+
+A feldolgozó néhány elemet a kódja alapján keres: egy NAV-ból érkező sor például a `NORMAL` számítási módot kapja, a számlája pedig a `DOMESTIC` partnercsoportot. Ha egy sablon ugyanezt más kóddal hozza (`NORMÁL`, `BELFÖLD`), az import régebben új sort hozott létre a rendszerelem mellé, és minden ÁFA-kód olyan elemre mutatott, amelyet sor sosem kapott meg.
+
+Az import felismeri ezeket, és a rendszerelemre írja őket. Egy sor akkor kerül rendszerelemre, ha:
+
+1. a **Rendszerelem** oszlopa megnevezi (`DOMESTIC`, `NORMAL` és így tovább), vagy
+2. a kódja maga egy rendszerkód, vagy
+3. a kódja az alábbi sablonkódok egyike, kis- és nagybetűtől, ékezettől függetlenül.
+
+| Munkalap | Sablonkód | Rendszerelem |
+|---|---|---|
+| `Partner VAT Groups` | `BELFÖLD` | `DOMESTIC` |
+| | `3. ORSZÁG` | `THIRD_COUNTRY` |
+| | `PÉNZFORG` | `CASH_METHOD` |
+| | `AAM` | `SMALL_BUSINESS_EXEMPT` |
+| `Calculation Methods` | `NORMÁL` | `NORMAL` |
+| | `FOA` | `REVERSE_CHARGE` |
+| | `CSAK_ÁFA` | `VAT_ONLY` |
+| `VAT Rates` | `TAM` | `EXEMPT` |
+| | `AKK` | `OUT_OF_SCOPE` |
+| | `NULLA` | `ZERO` |
+
+A rendszerelem megkapja a sablonsor nevét, második sor nem jön létre, és az ÁFA-kód lap hivatkozásai követik. Ha a munkaterületen a rendszerelem még nincs meg (egy új munkaterület `EXEMPT` és `OUT_OF_SCOPE` nélkül indul), a sor a rendszerkóddal jön létre. Az előnézet minden megfeleltetést felsorol, mielőtt bármi beíródna.
+
+Két eset hiba, és az importot blokkolja: ha két sor ugyanarra a rendszerelemre kerülne, és ha a Rendszerelem oszlopban olyan érték áll, amely nem rendszerelem.
+
+Az előnézet négy dologra figyelmeztet, és egyik sem akadályozza az importot:
+
+- **Új partnercsoport, 0%-os kulcs vagy számítási mód, amelyet a lista nem ismer.** Ilyet sor magától nem kap, csak ha valaki kézzel ráteszi. Az előnézet megmutatja, hány ÁFA-kód épül rá a fájlban.
+- **Rendszerelem, amelyet egy aktív kód sem használ.** A NAV-ból érkező sorok, amelyek ezt kapják, kód nélkül maradnak.
+- **Egy rendszerelem ikre**, vagyis olyan meglévő sor, amelynek a kódja egy rendszerelem másik írásmódja. Az import nem vonja össze őket. Ha a munkaterület saját exportját visszaimportálja, a kódok átkerülnek a rendszerelemre.
+- **NAV megfeleltetés, amelyet a feldolgozó nem tud értelmezni.** Az ilyen kód NAV-sorra nem talál rá. Lásd az [ÁFA-törzsadatok](/vat-master-data) cikket.
+
+Az utolsó három a **Törzsadatok → ÁFA-kódok** oldalon importálás nélkül is látszik, amíg fennáll.
 
 ### Egy export visszaimportálása nem mindig hatástalan
 

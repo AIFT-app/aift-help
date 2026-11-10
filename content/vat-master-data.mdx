@@ -47,7 +47,9 @@ Three things to know about them:
 
 A code is never cut off: when the column is narrow, it breaks onto a second line after a `/`. Partner group and product or service group share one column, the partner group on top. Click a row to edit it; **Deactivate** is in the **⋯** menu at the end of the row.
 
-Hungarian workspaces have a third field, the **NAV mapping code**, which is the NAV Online VAT classification used for inbound mapping.
+Hungarian workspaces have a third field, the **NAV mapping code**, which is the NAV Online VAT classification used for inbound mapping. It is stored in a short form: `27%`, `TAM`, `ATK`, `FAD`. You may type it the long way (`27`, `vatPercentage=0.27`, `vatExemption=TAM`) and it is converted on save. A value the processor cannot read is stored as you typed it and flagged next to the field, on the code list and in the import preview, because such a code finds no NAV line.
+
+**A few rows are system elements, and their code cannot be changed.** The processor looks them up by code: `DOMESTIC`, `EU`, `THIRD_COUNTRY`, `CASH_METHOD` and `SMALL_BUSINESS_EXEMPT` among the partner groups, `ZERO`, `EXEMPT`, `OUT_OF_SCOPE` and `SMALL_BUSINESS_EXEMPT` among the rates, `NORMAL`, `REVERSE_CHARGE` and `VAT_ONLY` among the calculation methods, `EXEMPT_ENTITY` among the product/service groups. Their names are yours to change. When no active code uses one of them while lines from NAV receive it, the page says so: those lines stay without a code.
 
 That settings page has a second half the rest of this article does not cover: **VAT export settings**, which decides how non-deductible VAT is handled in the export files.
 
