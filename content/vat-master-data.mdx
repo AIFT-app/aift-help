@@ -22,6 +22,14 @@ The **VAT codes** tab combines the five elements into the codes your accounting 
 
 There is no turnkey country code list: the code table is yours to author, because every firm and every target system names codes differently. The one exception is the small-business exemption template, which writes its own codes for you.
 
+### Where the partner VAT group comes from
+
+On an invoice, in this order: what somebody chose by hand on that invoice on the **Lines & VAT** tab, then the group of the partner, then what we infer from the country of the tax number on an invoice that came from NAV. So the inference only counts when the partner has no group.
+
+On an outgoing invoice it does not matter whether the buyer is a cash-method or a small-business-exempt taxpayer: a partner in the **Cash-method partner** or the **Small-business-exempt supplier** group is computed as domestic there. You do not change its group for that; the group still decides the invoices you receive from it. If one outgoing invoice needs something else, choose a group on that invoice.
+
+You set the group of a partner on its **Rules** tab. When the workspace is connected to Business Central and the partner has a card there, the group comes from the card and is read only here: see the [Business Central](/business-central) article.
+
 ### When the elements do not resolve
 
 You can set one **default VAT code per direction**. A line whose factors cannot be fully determined gets that code, marked for review, as long as nothing identified actually contradicts it. On the VAT codes tab a **Default** badge next to the code marks them. **Set as default** in the row's **⋯** menu assigns one, and **Clear default** in the same menu removes it.
