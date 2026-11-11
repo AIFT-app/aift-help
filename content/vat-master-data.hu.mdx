@@ -55,7 +55,9 @@ Három dolgot érdemes tudni róluk:
 
 A kód sosem vágódik le: ha az oszlop keskeny, egy `/` után a második sorban folytatódik. A partnercsoport és a termék- vagy szolgáltatáscsoport egy oszlopban áll, felül a partnercsoport. A sorra kattintva szerkesztheti, az **Inaktiválás** a sor végi **⋯** menüben van.
 
-A magyar munkaterületeknek van egy harmadik mezőjük, a **NAV megfeleltetési kód**, amely a beérkező megfeleltetéshez használt NAV Online ÁFA-besorolás.
+A magyar munkaterületeknek van egy harmadik mezőjük, a **NAV megfeleltetési kód**, amely a beérkező megfeleltetéshez használt NAV Online ÁFA-besorolás. Rövid formában tároljuk: `27%`, `TAM`, `ATK`, `FAD`. Beírhatja hosszabban is (`27`, `vatPercentage=0.27`, `vatExemption=TAM`), mentéskor átalakítjuk. Amit a feldolgozó nem tud értelmezni, azt úgy tároljuk, ahogy beírta, és jelezzük a mező mellett, a kódlistán és az import előnézetében is, mert az ilyen kód NAV-sorra nem talál rá.
+
+**Néhány sor rendszerelem, és a kódja nem módosítható.** A feldolgozó ezeket a kódjuk alapján keresi: `DOMESTIC`, `EU`, `THIRD_COUNTRY`, `CASH_METHOD` és `SMALL_BUSINESS_EXEMPT` a partnercsoportoknál, `ZERO`, `EXEMPT`, `OUT_OF_SCOPE` és `SMALL_BUSINESS_EXEMPT` a kulcsoknál, `NORMAL`, `REVERSE_CHARGE` és `VAT_ONLY` a számítási módoknál, `EXEMPT_ENTITY` a termék/szolgáltatás csoportoknál. A nevüket szabadon átírhatja. Ha egy ilyen elemet egy aktív kód sem használ, miközben a NAV-ból érkező sorok megkapják, az oldal figyelmeztet rá: azok a sorok kód nélkül maradnak.
 
 Ennek a beállítási oldalnak van egy második fele is, amellyel ez a cikk nem foglalkozik: az **ÁFA export beállítások**, amely azt dönti el, hogyan kezeli az exportfájlokban a le nem vonható ÁFA-t.
 
