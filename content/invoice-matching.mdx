@@ -144,7 +144,7 @@ The Overview tab for this year. The numbers match the list below. The data is an
 
 1. The period. The tiles and the chart follow it.
 2. **Invoices without payment**: issued in the period and still open.
-3. **Unapplied payments** counts the whole workspace, not only the period.
+3. **Unapplied partner payments** counts the whole workspace, not only the period.
 4. The chart's heading names the bar width, here a month.
 5. **Outstanding at period end** is the red line. Amber on top of the latest bars is what is still open from those months.
 
@@ -154,10 +154,10 @@ Each tile is a count with an amount under it, in the workspace's base currency. 
 
 | Tile | What it counts | Opens |
 |---|---|---|
-| **Invoices without payment** | Invoices issued in the period that are still open or partially paid. The amount is their gross total. | The invoice list, unpaid invoices |
+| **Invoices without payment** | Invoices issued in the period that are still open or partially paid. The amount is their gross total. Archived invoices are left out. When the workspace processes purchase invoices only, the tile reads **Purchase invoices without payment** and counts purchase invoices only. Earlier sales invoices are still in the invoice list. | The invoice list, unpaid invoices (purchase invoices only in a purchases-only workspace) |
 | **Unmatched transactions** | Bank transactions booked in the period with no invoice and no "no invoice needed" mark. Transfers between your own accounts are left out. | The bank transaction list, unmatched |
 | **Matched** | Matches whose bank transaction was booked in the period. Under it, the share made automatically, for example "83% auto-matched". | The bank transaction list, matched |
-| **Unapplied payments** | Payments linked to a verified partner that are not matched to an invoice, or only partly. This tile counts the whole workspace, **not only the period**. | The bank transaction list, unmatched |
+| **Unapplied partner payments** | Incoming and outgoing payments linked to a verified partner that are not matched to an invoice, or only partly. This tile counts the whole workspace, **not only the period**. | The bank transaction list, unmatched |
 | **No invoice needed** | Bank transactions booked in the period that were marked as needing no invoice (see [Transaction Types](/transaction-types)). | The bank transaction list, no invoice needed |
 
 Invoices count by their issue date, bank transactions by their booking date.
