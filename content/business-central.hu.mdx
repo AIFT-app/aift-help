@@ -154,6 +154,26 @@ A partner oldala cégenként felsorolja a szállító- és a vevőkartonját, a 
 
 A **Törzsadatok → ÁFA-kódok → Business Central** oldal minden (termék- vagy szolgáltatáscsoport, kulcs) párját egy Business Central-adócsoportkódhoz rendeli. Soronként mentjük, és a párosítás bontását is túléli.
 
+## Partner ÁFA-csoportok a kartonokról
+
+A Business Centralban minden szállító- és vevőkartonon van áfa ügyletkönyvelési csoport (például BELFÖLD vagy EU SZÁLLÍTÓ). Akinek van kartonja, annak a partner ÁFA-csoportja innen jön, nem kell kézzel beállítani.
+
+A **Törzsadatok → ÁFA-kódok → Business Central** oldal **Partner ÁFA-csoportok a kartonokról** táblája felsorolja a kartonokon talált kódokat, és azt, hány szállító- és hány vevőkarton hordozza őket. Minden kódhoz válassza ki, melyik partner ÁFA-csoportot jelenti. Amelyik kódot a nevéről felismerjük, ahhoz javaslatot mutatunk, és a **Javaslatok elfogadása** gomb egyszerre menti az összeset. Két kód jelentheti ugyanazt a csoportot: az EU SZÁLLÍTÓ és az EU VEVŐ egyaránt az EU csoport.
+
+A megfeleltetés mentése még egyetlen partnert sem módosít. A tábla fölött megjelenő sárga mező megmutatja, hány partner ÁFA-csoportja változna, hány számlasor kapna ÁFA-kódot, és hánynak változna meg a kódja. Az **Alkalmazás** gomb írja be őket. Ha nem nyomja meg, a Business Central következő frissítése megteszi.
+
+Ezután a Business Central az irányadó:
+
+- **A kartonos partner ÁFA-csoportja az AI Finance Teamben nem módosítható.** A partner **Szabályok** fülén csak olvasható, alatta a kartonjaival és azok kódjával. Ha más csoport kell, a kartont írja át a Business Centralban. A cég következő frissítése áthozza: naponta egyszer magától, vagy az Eltérések fülön az **Összes frissítése** gombbal azonnal.
+- **Ha egy partner kartonjai mást mondanak**, például az egyik cégben BELFÖLD, a másikban IC, nem választunk közülük. A partner megtartja, ami volt, és megjelenik az Eltérések fülön. A javítás helye a Business Central.
+- **A szállító- és a vevőkarton kódja eltérhet úgy, hogy közben egyeznek.** Kimenő számlán nem számít, hogy a vevő pénzforgalmi vagy alanyi mentes adózó: belföldi partnerként számolunk vele. Ezért ha a szállítókartonon PÉNZFORG vagy AAM áll, a vevőkartonon pedig BELFÖLD, az nem eltérés. A partner csoportja a szállítókarton szerinti lesz, a kimenő számláin pedig belföldiként számolunk vele.
+- **Amelyik kódhoz nincs megfeleltetés**, az semmit nem ír, és a partner csoportja kézzel állítható marad.
+- **A karton nélküli partner** csoportját továbbra is Ön állítja be.
+
+A **Törzsadatok → Business Central → Eltérések** fül alján a **Partner ÁFA-csoportok** rész csak akkor jelenik meg, ha van mit mutatnia: az eltérő csoportú kartonokat (cégek között, illetve a szállító- és a vevőkarton között), a megfeleltetés nélküli kódokat, és azokat az összekötött kartonokat, amelyeken nincs csoport.
+
+Egy számlán a partner ÁFA-csoportja ebben a sorrendben dől el: amit valaki azon a számlán kézzel választott, utána a partner csoportja, végül az, amit a NAV-ból érkező számlánál az adószám országából következtetünk. A kézi választás csak azt az egy számlát érinti, a partner csoportját nem. Kimenő számlán a pénzforgalmi és az alanyi mentes partner belföldinek számít, hacsak valaki azon a számlán mást nem választott.
+
 ## Partnerek feladása szállítóként
 
 A **Törzsadatok → Business Central → Feladás** oldal a partnereiből szállítókartonokat hoz létre a Business Centralban. Ez az egyik hely, ahol az AI Finance Team az Ön könyvelőrendszerébe ír; a többi a számlák feladása (a PDF-jükkel együtt) és a banki tételek feladása, lentebb. Ehhez három dolog kell:
