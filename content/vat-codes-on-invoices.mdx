@@ -14,6 +14,8 @@ Several things get a say, most specific first:
 4. **The AI's own reading** of the line.
 5. **The workspace default code**, if all of that still leaves the line unresolved. See below.
 
+**Domestic reverse charge (section 142 of the Hungarian VAT Act).** When NAV marks a line as domestic reverse charge, the model may only choose a product or service group that has a reverse-charge VAT code. Codes under the EU and the third-country partner group do not count, because those are cross-border reverse charge. An answer outside that set is dropped: the line keeps no group and shows as missing a code, instead of landing on a group that has no reverse-charge code. Where no group has such a code, nothing is limited. A learned correction and a partner default are not held to this limit: those are a person's decisions.
+
 Two things the article used to promise and the product does not do. A partner with no VAT group is **not** inferred from its country at this point: the country guess happens once, when the counterparty is first created, so the second and every later invoice from an untagged counterparty simply arrives without that element. And the NAV rate is matched to your nearest configured rate within half a percentage point, refusing to choose on a tie, which is a good heuristic rather than a deterministic mapping.
 
 Resolution keys on the **VAT date**. With no VAT date on the invoice it silently uses today's date, which is worth knowing before you wonder why an old invoice took a current code. Only the code's own validity dates are consulted, not the individual elements'.

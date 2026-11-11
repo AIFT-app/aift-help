@@ -83,7 +83,9 @@ export const DRY_RUN: Record<
   vat_codes: { new: 7, updated: 4, unchanged: 11, errors: 1 },
 }
 
-export const OVERLAP_SHEET = 'VAT Codes'
+// The error row names its sheet by the translated label since
+// vat-resolution-gaps (ui['master_data.vat_setup.sheet.vat_codes']). The column
+// below is a header the file itself wrote, which the app shows as given.
 export const OVERLAP_COLUMN = 'Valid from'
 
 type Copy = {

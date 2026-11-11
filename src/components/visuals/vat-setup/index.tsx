@@ -33,7 +33,7 @@ import { DialogActions, DialogBody } from '@/components/catalyst/dialog'
 import { Heading } from '@/components/catalyst/heading'
 import { Text } from '@/components/catalyst/text'
 import { AppScreen, Figure, Pin } from '../kit'
-import { ACTIVE_TAB, DRY_RUN, OVERLAP_COLUMN, OVERLAP_SHEET, SHEETS, TABS, vatSetupCopy } from './copy'
+import { ACTIVE_TAB, DRY_RUN, OVERLAP_COLUMN, SHEETS, TABS, vatSetupCopy } from './copy'
 
 type FigureProps = { locale: Locale; children?: React.ReactNode }
 
@@ -171,12 +171,18 @@ export function VatSetupPreviewFigure({ locale, children }: FigureProps) {
                   </div>
 
                   <div>
-                    <Text className="mb-1 font-medium text-red-600 dark:text-red-400">
+                    {/* A plain <p>, as in the app since vat-resolution-gaps:
+                        Catalyst <Text> brought a zinc colour that beat
+                        text-red-600, so the heading rendered grey. */}
+                    <p className="mb-1 text-base/6 font-medium text-red-600 sm:text-sm/6 dark:text-red-400">
                       {c.rendered.errorsBlock}
-                    </Text>
+                    </p>
                     <div className="max-h-56 overflow-y-auto rounded-lg border border-red-200 dark:border-red-900/60">
                       <div className="border-b border-red-100 px-3 py-1.5 text-sm last:border-0 dark:border-red-900/40">
-                        <span className="font-medium">{OVERLAP_SHEET}</span>
+                        {/* the app names the sheet by its translated label */}
+                        <span className="font-medium">
+                          {ui['master_data.vat_setup.sheet.vat_codes' as keyof typeof ui]}
+                        </span>
                         <span className="text-zinc-500"> · {c.rendered.row}</span>
                         <span className="text-zinc-500"> · {OVERLAP_COLUMN}</span>
                         <span className="ml-2 text-red-700 dark:text-red-400">

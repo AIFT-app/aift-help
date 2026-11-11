@@ -47,7 +47,9 @@ Drei Dinge sollten Sie dazu wissen:
 
 Ein Code wird nie abgeschnitten: Ist die Spalte schmal, bricht er nach einem `/` in eine zweite Zeile um. Partnergruppe und Produkt- oder Leistungsgruppe teilen sich eine Spalte, die Partnergruppe oben. Ein Klick auf die Zeile öffnet die Bearbeitung; **Deaktivieren** steht im Menü **⋯** am Zeilenende.
 
-Ungarische Arbeitsbereiche haben ein drittes Feld, den **NAV-Zuordnungscode**: die NAV-Online-USt-Klassifizierung für die eingehende Zuordnung.
+Ungarische Arbeitsbereiche haben ein drittes Feld, den **NAV-Zuordnungscode**: die NAV-Online-USt-Klassifizierung für die eingehende Zuordnung. Gespeichert wird er in Kurzform: `27%`, `TAM`, `ATK`, `FAD`. Sie können ihn auch ausführlich eingeben (`27`, `vatPercentage=0.27`, `vatExemption=TAM`), beim Speichern wird er umgewandelt. Einen Wert, den die Verarbeitung nicht lesen kann, speichern wir so, wie Sie ihn eingegeben haben, und kennzeichnen ihn neben dem Feld, in der Codeliste und in der Importvorschau, denn ein solcher Code findet keine NAV-Position.
+
+**Einige Zeilen sind Systemelemente, und ihr Code lässt sich nicht ändern.** Die Verarbeitung sucht sie über den Code: `DOMESTIC`, `EU`, `THIRD_COUNTRY`, `CASH_METHOD` und `SMALL_BUSINESS_EXEMPT` bei den Partnergruppen, `ZERO`, `EXEMPT`, `OUT_OF_SCOPE` und `SMALL_BUSINESS_EXEMPT` bei den Sätzen, `NORMAL`, `REVERSE_CHARGE` und `VAT_ONLY` bei den Berechnungsmethoden, `EXEMPT_ENTITY` bei den Produkt-/Leistungsgruppen. Die Namen dürfen Sie frei ändern. Verwendet kein aktiver Code eines dieser Elemente, während Positionen von NAV es erhalten, weist die Seite darauf hin: Diese Positionen bleiben ohne Code.
 
 Diese Einstellungsseite hat eine zweite Hälfte, die der Rest dieses Artikels nicht behandelt: die **USt-Exporteinstellungen**, die festlegen, wie nicht abziehbare USt in den Exportdateien behandelt wird.
 

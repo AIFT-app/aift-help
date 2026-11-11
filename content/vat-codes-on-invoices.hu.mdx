@@ -14,6 +14,8 @@ Több dolognak van beleszólása, a legspecifikusabbal kezdve:
 4. **Az AI saját olvasata** a sorról.
 5. **A munkaterület alapértelmezett kódja**, ha mindezek után a sor még feloldatlan. Lásd alább.
 
+**Belföldi fordított adózás (Áfa tv. 142. §).** Ha a NAV a sort belföldi fordított adózásúnak jelöli, a modell csak olyan termék- vagy szolgáltatáscsoportot választhat, amelyhez van fordított adózású ÁFA-kód. Az EU-s és a harmadik országos partnercsoport kódjai ebbe nem számítanak bele, mert azok a határon átnyúló fordított adózás kódjai. Ha a modell válasza ezen kívül esik, a sor csoport nélkül marad, és hiányzó kódként látszik, ahelyett hogy olyan csoportra kerülne, amelyhez nincs fordított adózású kód. Ahol egyetlen csoporthoz sincs ilyen kód, ott nincs korlátozás. A megtanult javítás és a partner-alapértelmezés erre a korlátra nem figyel: azok egy ember döntései.
+
 Két dolog, amit a cikk korábban ígért, és a termék nem tesz meg. Az ÁFA-csoport nélküli partnert ezen a ponton **nem** következtetjük ki az országából: az országra alapozott tipp egyszer, a partner létrehozásakor születik meg, így egy címke nélküli partner második és minden későbbi számlája egyszerűen enélkül az elem nélkül érkezik. A NAV-kulcsot pedig fél százalékpontos tűréssel illesztjük a legközelebbi beállított kulcsához, holtverseny esetén a választástól elállva, ami inkább jó heurisztika, mint determinisztikus megfeleltetés.
 
 A feloldás az **ÁFA-dátum**ra épül. Ha a számlán nincs ÁFA-dátum, a rendszer csendben a mai napot használja, amit érdemes tudni, mielőtt azon kezd tűnődni, miért kapott egy régi számla aktuális kódot. Csak magának a kódnak az érvényességi dátumait vizsgálja a rendszer, az egyes elemekéit nem.
