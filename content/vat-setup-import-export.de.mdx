@@ -37,6 +37,7 @@ Konventionen in der Datei:
 - Daten haben das Format `YYYY-MM-DD`, und beim Import werden auch `2026.01.31.`, `2026/01/31` und echte Excel-Datumszellen akzeptiert.
 - Prozentsätze sind reine Zahlen (`27`, nicht `27%`), und ein Dezimalkomma ist in Ordnung.
 - Ja/Nein-Spalten akzeptieren `yes` und `no`. Im Export eines deutschen Arbeitsbereichs lautet die übersetzte Kopfzeile der Archived-Spalte **Archiviert**, der Wert darin bleibt aber in jeder Sprache `yes`.
+- **Die vier Dimensionsblätter haben eine Spalte `System element`, mit deutscher Kopfzeile Systemelement.** Der Export füllt sie bei den Zeilen, die die Verarbeitung über ihren Code sucht (`DOMESTIC`, `NORMAL`, `ZERO`, `EXEMPT`, `OUT_OF_SCOPE`, `REVERSE_CHARGE` und einige weitere), und lässt sie bei Ihren eigenen Zeilen leer. Schreiben Sie eine eigene Vorlage, sagen Sie hier, für welches Systemelement eine Zeile steht.
 - **Die zweite, übersetzte Kopfzeile erscheint nur bei einem ungarischen oder deutschen Arbeitsbereich.** Ein englischsprachiger Arbeitsbereich exportiert eine einzige Kopfzeile. Beim Import funktioniert jedes der beiden Vokabulare, solange Sie innerhalb eines Blatts keine Sprachen mischen.
 
 > **Die Datei trägt die gespeicherten englischen Namen der vorbefüllten Zeilen, nicht die übersetzten Bezeichnungen, die Sie auf dem Bildschirm sehen.** Im Export eines deutschen Arbeitsbereichs steht `Domestic`, nicht `Inländisch`. Schreiben Sie den deutschen Namen vom Bildschirm darüber, haben Sie die Zeile umbenannt, und das **löst sie von den Systemstandards**. Lassen Sie diese Namen unberührt, sofern Sie nicht wirklich umbenennen wollen.
@@ -70,8 +71,44 @@ Nur `.xlsx`, bis 5 MB, bis zu 2.000 Zeilen pro Blatt. Es gibt keinen Schritt fü
 Drei Dinge, über die Leute stolpern:
 
 - **`Archived = no` oder eine leere Archived-Zelle hebt die Archivierung der Zeile auf.** Diese Zelle zu leeren heißt nicht „so lassen, wie es ist“.
-- **Einen Code zu ändern ändert die Identität.** Bearbeiten Sie einen Code, einen Buchhaltungscode oder einen AIFT-Code, passt die Zeile zu nichts mehr, sie wird also als neue Zeile angelegt statt aktualisiert.
+- **Einen Code zu ändern ändert die Identität.** Bearbeiten Sie einen Code, einen Buchhaltungscode oder einen AIFT-Code, passt die Zeile zu nichts mehr, sie wird also als neue Zeile angelegt statt aktualisiert. Die Ausnahme ist die kurze Liste von Vorlagencodes weiter unten, die auf dem Systemelement landen.
 - **Überlappende Gültigkeitszeiträume werden abgewiesen.** Überlappen die fünf Elemente einer Dateizeile samt ihrem Gültigkeitszeitraum eine bestehende aktive Zeile, oder überlappen zwei Zeilen der Datei einander, bricht der Import ab. Das ist der häufigste echte Blocker, und er hat nichts mit Tippfehlern zu tun.
+
+### Systemelemente: die eigenen Codes einer Vorlage
+
+Einige Elemente sucht die Verarbeitung über ihren Code: Eine Position, die von NAV kommt, erhält zum Beispiel die Berechnungsmethode `NORMAL`, ihre Rechnung die Partnergruppe `DOMESTIC`. Brachte eine Vorlage dasselbe unter einem anderen Code (`NORMÁL`, `BELFÖLD`), legte der Import früher eine neue Zeile neben dem Systemelement an, und jeder USt-Code zeigte auf ein Element, das keine Position je erhielt.
+
+Der Import erkennt solche Zeilen jetzt und schreibt sie auf das Systemelement. Eine Zeile landet auf einem Systemelement, wenn:
+
+1. ihre Spalte **Systemelement** eines nennt (`DOMESTIC`, `NORMAL` und so weiter), oder
+2. ihr Code selbst ein Systemcode ist, oder
+3. ihr Code einer der folgenden Vorlagencodes ist, unabhängig von Groß- und Kleinschreibung und von Akzenten.
+
+| Blatt | Vorlagencode | Systemelement |
+|---|---|---|
+| `Partner VAT Groups` | `BELFÖLD` | `DOMESTIC` |
+| | `3. ORSZÁG` | `THIRD_COUNTRY` |
+| | `PÉNZFORG` | `CASH_METHOD` |
+| | `AAM` | `SMALL_BUSINESS_EXEMPT` |
+| `Calculation Methods` | `NORMÁL` | `NORMAL` |
+| | `FOA` | `REVERSE_CHARGE` |
+| | `CSAK_ÁFA` | `VAT_ONLY` |
+| `VAT Rates` | `TAM` | `EXEMPT` |
+| | `AKK` | `OUT_OF_SCOPE` |
+| | `NULLA` | `ZERO` |
+
+Das Systemelement übernimmt den Namen der Vorlagenzeile, eine zweite Zeile entsteht nicht, und die Verweise auf dem USt-Code-Blatt folgen. Hat der Arbeitsbereich das Systemelement noch nicht (ein neuer Arbeitsbereich beginnt ohne `EXEMPT` und `OUT_OF_SCOPE`), wird die Zeile unter dem Systemcode angelegt. Die Vorschau listet jede Zuordnung auf, bevor etwas geschrieben wird.
+
+Zwei Fälle sind Fehler und blockieren den Import: zwei Vorlagenzeilen, die auf demselben Systemelement landen würden, und eine Spalte Systemelement, die etwas nennt, das kein Systemelement ist. Enthält eine Datei die eigene Zeile des Systemelements und eine andere Schreibweise davon, ist das kein Fehler: Die Zeile des Systemelements zählt, die andere Zeile bleibt beim Import außen vor, und die USt-Codes, die auf sie verweisen, gehen auf das Systemelement. So sieht der eigene Export eines Arbeitsbereichs aus, wenn dort beide Zeilen vorhanden sind.
+
+Die Vorschau warnt vor vier Dingen, und keines davon hält den Import auf:
+
+- **Eine neue Partnergruppe, ein 0%-Satz oder eine Berechnungsmethode, die die Liste nicht kennt.** Keine Position erhält sie von selbst, nur wenn jemand sie von Hand setzt. Die Vorschau zeigt, wie viele USt-Codes der Datei darauf aufbauen.
+- **Ein Systemelement, das kein aktiver Code verwendet.** Positionen von NAV, die es erhalten, bleiben ohne Code.
+- **Ein Doppelgänger eines Systemelements**, also eine vorhandene Zeile, deren Code eine andere Schreibweise eines Systemelements ist. Der Import führt sie nicht zusammen. Importieren Sie den eigenen Export des Arbeitsbereichs erneut, wandern seine Codes auf das Systemelement.
+- **Eine NAV-Zuordnung, die die Verarbeitung nicht lesen kann.** Ein solcher Code findet keine NAV-Position. Siehe [USt-Stammdaten](/vat-master-data).
+
+Die letzten drei erscheinen auch außerhalb eines Imports auf **Stammdaten → USt-Codes**, solange sie bestehen.
 
 ### Einen Export erneut zu importieren ist nicht immer ein No-op
 
