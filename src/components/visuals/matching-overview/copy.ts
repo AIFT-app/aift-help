@@ -39,7 +39,7 @@ const en: Copy = {
     { label: 'Invoices without payment', count: '14', sub: 'HUF\u00a03,920,000.00', tone: 'amber' },
     { label: 'Unmatched transactions', count: '19', sub: 'HUF\u00a02,610,000.00', tone: 'amber' },
     { label: 'Matched', count: '217', sub: '82% auto-matched', tone: 'green' },
-    { label: 'Unapplied payments', count: '4', sub: 'HUF\u00a0860,000.00', tone: 'zinc' },
+    { label: 'Unapplied partner payments', count: '4', sub: 'HUF\u00a0860,000.00', tone: 'zinc' },
     { label: 'No invoice needed', count: '63', sub: 'HUF\u00a01,450,000.00', tone: 'zinc' },
   ],
   heading: 'Matched per month',
@@ -72,7 +72,7 @@ const en: Copy = {
       ['October 2026', '12', '9', '3,100,000', '2,450,000'],
     ],
   },
-  alt: 'The Overview tab of the Matching page for this year: five tiles (Invoices without payment, Unmatched transactions, Matched, Unapplied payments, No invoice needed) and a bar chart of the amount matched per month, split into auto-matched and confirmed by hand, with the still-open part on top of the latest bars and a line for the amount outstanding at each month end. Numbered markers point to the date filter, two tiles, the chart heading and the outstanding line in the legend.',
+  alt: 'The Overview tab of the Matching page for this year: five tiles (Invoices without payment, Unmatched transactions, Matched, Unapplied partner payments, No invoice needed) and a bar chart of the amount matched per month, split into auto-matched and confirmed by hand, with the still-open part on top of the latest bars and a line for the amount outstanding at each month end. Numbered markers point to the date filter, two tiles, the chart heading and the outstanding line in the legend.',
 }
 
 const hu: Copy = {
@@ -81,7 +81,7 @@ const hu: Copy = {
     { label: 'Számlák fizetés nélkül', count: '14', sub: '3\u00a0920\u00a0000,00\u00a0Ft', tone: 'amber' },
     { label: 'Párosítatlan tételek', count: '19', sub: '2\u00a0610\u00a0000,00\u00a0Ft', tone: 'amber' },
     { label: 'Párosítva', count: '217', sub: '82% automatikus', tone: 'green' },
-    { label: 'Nem rendezett befizetések', count: '4', sub: '860\u00a0000,00\u00a0Ft', tone: 'zinc' },
+    { label: 'Nem rendezett partnerfizetések', count: '4', sub: '860\u00a0000,00\u00a0Ft', tone: 'zinc' },
     { label: 'Nem igényel számlát', count: '63', sub: '1\u00a0450\u00a0000,00\u00a0Ft', tone: 'zinc' },
   ],
   heading: 'Havi párosítás',
@@ -114,7 +114,7 @@ const hu: Copy = {
       ['2026. október', '12', '9', '3\u00a0100\u00a0000', '2\u00a0450\u00a0000'],
     ],
   },
-  alt: 'A Párosítás oldal Áttekintés füle az idei évre: öt csempe (Számlák fizetés nélkül, Párosítatlan tételek, Párosítva, Nem rendezett befizetések, Nem igényel számlát) és egy oszlopdiagram a havonta párosított összegről, automatikus és kézzel jóváhagyott részre bontva, a legutóbbi oszlopok tetején a még nyitott résszel, és egy vonallal a hónapvégi nyitott állományról. A számozott jelölők a dátumszűrőre, két csempére, a diagram címére és a jelmagyarázatban a nyitott állomány vonalára mutatnak.',
+  alt: 'A Párosítás oldal Áttekintés füle az idei évre: öt csempe (Számlák fizetés nélkül, Párosítatlan tételek, Párosítva, Nem rendezett partnerfizetések, Nem igényel számlát) és egy oszlopdiagram a havonta párosított összegről, automatikus és kézzel jóváhagyott részre bontva, a legutóbbi oszlopok tetején a még nyitott résszel, és egy vonallal a hónapvégi nyitott állományról. A számozott jelölők a dátumszűrőre, két csempére, a diagram címére és a jelmagyarázatban a nyitott állomány vonalára mutatnak.',
 }
 
 const de: Copy = {
@@ -123,7 +123,7 @@ const de: Copy = {
     { label: 'Rechnungen ohne Zahlung', count: '14', sub: '3.920.000,00\u00a0HUF', tone: 'amber' },
     { label: 'Nicht zugeordnete Buchungen', count: '19', sub: '2.610.000,00\u00a0HUF', tone: 'amber' },
     { label: 'Zugeordnet', count: '217', sub: '82% automatisch', tone: 'green' },
-    { label: 'Nicht zugeordnete Zahlungen', count: '4', sub: '860.000,00\u00a0HUF', tone: 'zinc' },
+    { label: 'Nicht zugeordnete Partnerzahlungen', count: '4', sub: '860.000,00\u00a0HUF', tone: 'zinc' },
     { label: 'Kein Beleg nötig', count: '63', sub: '1.450.000,00\u00a0HUF', tone: 'zinc' },
   ],
   heading: 'Zuordnung pro Monat',
@@ -156,7 +156,7 @@ const de: Copy = {
       ['Oktober 2026', '12', '9', '3.100.000', '2.450.000'],
     ],
   },
-  alt: 'Der Tab Übersicht der Seite Zuordnung für dieses Jahr: fünf Kacheln (Rechnungen ohne Zahlung, Nicht zugeordnete Buchungen, Zugeordnet, Nicht zugeordnete Zahlungen, Kein Beleg nötig) und ein Balkendiagramm des pro Monat zugeordneten Betrags, aufgeteilt in automatisch zugeordnet und manuell bestätigt, mit dem noch offenen Teil oben auf den letzten Balken und einer Linie für den offenen Bestand am Monatsende. Nummerierte Markierungen zeigen auf den Datumsfilter, zwei Kacheln, die Überschrift des Diagramms und die Linie des offenen Bestands in der Legende.',
+  alt: 'Der Tab Übersicht der Seite Zuordnung für dieses Jahr: fünf Kacheln (Rechnungen ohne Zahlung, Nicht zugeordnete Buchungen, Zugeordnet, Nicht zugeordnete Partnerzahlungen, Kein Beleg nötig) und ein Balkendiagramm des pro Monat zugeordneten Betrags, aufgeteilt in automatisch zugeordnet und manuell bestätigt, mit dem noch offenen Teil oben auf den letzten Balken und einer Linie für den offenen Bestand am Monatsende. Nummerierte Markierungen zeigen auf den Datumsfilter, zwei Kacheln, die Überschrift des Diagramms und die Linie des offenen Bestands in der Legende.',
 }
 
 export const matchingOverviewCopy: Record<Locale, Copy> = { en, hu, de }
