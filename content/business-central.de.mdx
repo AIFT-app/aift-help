@@ -154,6 +154,26 @@ Die Partnerseite listet je Firma den Kreditoren- und den Debitorenstammsatz mit 
 
 **Stammdaten → USt.-Codes → Business Central** ordnet jedes Ihrer Paare aus Produkt- oder Leistungsgruppe und Satz einem Business-Central-Steuergruppencode zu. Es wird zeilenweise gespeichert und überdauert das Aufheben einer Zuordnung.
 
+## Partner-USt-Gruppen von den Karten
+
+Jede Kreditoren- und Debitorenkarte in Business Central trägt eine MwSt.-Geschäftsbuchungsgruppe (zum Beispiel BELFÖLD oder EU SZÁLLÍTÓ). Ein Partner mit einer Karte übernimmt seine Partner-USt-Gruppe von dort, sie muss nicht von Hand gesetzt werden.
+
+Die Tabelle **Partner-USt-Gruppen von den Karten** unter **Stammdaten → USt.-Codes → Business Central** listet die auf den Karten gefundenen Codes und zeigt, wie viele Kreditoren- und Debitorenkarten sie jeweils tragen. Wählen Sie zu jedem Code die Partner-USt-Gruppe, die er bedeutet. Zu einem Code, den wir am Namen erkennen, zeigen wir einen Vorschlag, und **Vorschläge übernehmen** speichert alle auf einmal. Zwei Codes können dieselbe Gruppe bedeuten: EU SZÁLLÍTÓ und EU VEVŐ sind beide die Gruppe EU.
+
+Das Speichern der Zuordnung ändert noch keinen Partner. Ein gelbes Feld über der Tabelle zeigt, bei wie vielen Partnern sich die USt-Gruppe ändern würde, wie viele Rechnungszeilen einen USt-Code erhielten und bei wie vielen er sich änderte. **Anwenden** schreibt sie. Wird es nicht gedrückt, erledigt es die nächste Business Central Aktualisierung.
+
+Von da an ist Business Central maßgeblich:
+
+- **Die USt-Gruppe eines Partners mit Karte lässt sich in AI Finance Team nicht ändern.** Auf dem Tab **Regeln** des Partners ist sie nur lesbar, darunter stehen seine Karten mit ihren Codes. Soll die Gruppe anders sein, ändern Sie die Karte in Business Central. Die nächste Aktualisierung dieser Firma bringt sie herüber: einmal täglich von selbst, oder sofort mit **Alle aktualisieren** auf dem Tab Unterschiede.
+- **Nennen die Karten eines Partners Verschiedenes**, zum Beispiel BELFÖLD in einer Firma und IC in einer anderen, wählen wir nicht aus. Der Partner behält, was er hatte, und erscheint auf dem Tab Unterschiede. Korrigiert wird es in Business Central.
+- **Kreditoren- und Debitorenkarte können verschiedene Codes tragen und trotzdem übereinstimmen.** Auf einer Ausgangsrechnung spielt es keine Rolle, ob der Käufer die Ist-Versteuerung anwendet oder Kleinunternehmer ist: Er zählt als inländischer Partner. PÉNZFORG oder AAM auf der Kreditorenkarte neben BELFÖLD auf der Debitorenkarte ist deshalb kein Unterschied. Der Partner erhält die Gruppe der Kreditorenkarte, und seine Ausgangsrechnungen werden als inländisch berechnet.
+- **Ein Code ohne Zuordnung** schreibt nichts, und die Gruppe des Partners lässt sich weiter von Hand setzen.
+- **Ein Partner ohne Karte** behält die Gruppe, die Sie setzen.
+
+Unten auf **Stammdaten → Business Central → Unterschiede** erscheint der Abschnitt **Partner-USt-Gruppen** nur, wenn er etwas zu zeigen hat: Karten mit verschiedenen Gruppen (zwischen Firmen oder zwischen Kreditoren- und Debitorenkarte), Codes ohne Zuordnung und verknüpfte Karten ohne Gruppe.
+
+Auf einer Rechnung entscheidet sich die Partner-USt-Gruppe in dieser Reihenfolge: was jemand auf dieser Rechnung von Hand gewählt hat, dann die Gruppe des Partners, zuletzt das, was wir bei einer Rechnung aus NAV aus dem Land der Steuernummer ableiten. Eine Wahl auf einer Rechnung betrifft nur diese eine Rechnung, nie die Gruppe des Partners. Auf einer Ausgangsrechnung zählt ein Partner mit Ist-Versteuerung oder ein Kleinunternehmer als inländisch, sofern niemand auf dieser Rechnung etwas anderes gewählt hat.
+
 ## Partner als Kreditoren übertragen
 
 **Stammdaten → Business Central → Übertragen** legt aus Ihren Partnern Kreditorenstammsätze in Business Central an. Das ist eine der Stellen, an denen AI Finance Team in Ihr Buchhaltungssystem schreibt; die anderen sind das Übergeben von Rechnungen (mit ihrem PDF) und von Bankbuchungen, weiter unten. Dafür braucht es dreierlei:
