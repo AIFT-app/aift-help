@@ -166,12 +166,13 @@ Von da an ist Business Central maßgeblich:
 
 - **Die USt-Gruppe eines Partners mit Karte lässt sich in AI Finance Team nicht ändern.** Auf dem Tab **Regeln** des Partners ist sie nur lesbar, darunter stehen seine Karten mit ihren Codes. Soll die Gruppe anders sein, ändern Sie die Karte in Business Central. Die nächste Aktualisierung dieser Firma bringt sie herüber: einmal täglich von selbst, oder sofort mit **Alle aktualisieren** auf dem Tab Unterschiede.
 - **Nennen die Karten eines Partners Verschiedenes**, zum Beispiel BELFÖLD in einer Firma und IC in einer anderen, wählen wir nicht aus. Der Partner behält, was er hatte, und erscheint auf dem Tab Unterschiede. Korrigiert wird es in Business Central.
+- **Kreditoren- und Debitorenkarte können verschiedene Codes tragen und trotzdem übereinstimmen.** Auf einer Ausgangsrechnung spielt es keine Rolle, ob der Käufer die Ist-Versteuerung anwendet oder Kleinunternehmer ist: Er zählt als inländischer Partner. PÉNZFORG oder AAM auf der Kreditorenkarte neben BELFÖLD auf der Debitorenkarte ist deshalb kein Unterschied. Der Partner erhält die Gruppe der Kreditorenkarte, und seine Ausgangsrechnungen werden als inländisch berechnet.
 - **Ein Code ohne Zuordnung** schreibt nichts, und die Gruppe des Partners lässt sich weiter von Hand setzen.
 - **Ein Partner ohne Karte** behält die Gruppe, die Sie setzen.
 
 Unten auf **Stammdaten → Business Central → Unterschiede** erscheint der Abschnitt **Partner-USt-Gruppen** nur, wenn er etwas zu zeigen hat: Karten mit verschiedenen Gruppen (zwischen Firmen oder zwischen Kreditoren- und Debitorenkarte), Codes ohne Zuordnung und verknüpfte Karten ohne Gruppe.
 
-Auf einer Rechnung entscheidet sich die Partner-USt-Gruppe in dieser Reihenfolge: was jemand auf dieser Rechnung von Hand gewählt hat, dann die Gruppe des Partners, zuletzt das, was wir bei einer Rechnung aus NAV aus dem Land der Steuernummer ableiten. Eine Wahl auf einer Rechnung betrifft nur diese eine Rechnung, nie die Gruppe des Partners.
+Auf einer Rechnung entscheidet sich die Partner-USt-Gruppe in dieser Reihenfolge: was jemand auf dieser Rechnung von Hand gewählt hat, dann die Gruppe des Partners, zuletzt das, was wir bei einer Rechnung aus NAV aus dem Land der Steuernummer ableiten. Eine Wahl auf einer Rechnung betrifft nur diese eine Rechnung, nie die Gruppe des Partners. Auf einer Ausgangsrechnung zählt ein Partner mit Ist-Versteuerung oder ein Kleinunternehmer als inländisch, sofern niemand auf dieser Rechnung etwas anderes gewählt hat.
 
 ## Partner als Kreditoren übertragen
 

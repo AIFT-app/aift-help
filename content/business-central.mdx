@@ -166,12 +166,13 @@ From then on Business Central is the master:
 
 - **The VAT group of a partner that has a card cannot be changed in AI Finance Team.** It is read only on the **Rules** tab of the partner, with its cards and their codes under it. To change the group, change the card in Business Central. The next refresh of that company brings it over: once a day on its own, or at once with **Refresh all** on the Differences tab.
 - **When the cards of one partner disagree**, for example BELFÖLD in one company and IC in another, we do not pick one. The partner keeps what it had and is listed on the Differences tab. The place to correct it is Business Central.
+- **A vendor card and a customer card can carry different codes and still agree.** On an outgoing invoice it does not matter whether the buyer is a cash-method or a small-business-exempt taxpayer: it counts as a domestic partner. So PÉNZFORG or AAM on the vendor card beside BELFÖLD on the customer card is not a difference. The partner takes the group of the vendor card, and its outgoing invoices are computed as domestic.
 - **A code with no mapping** writes nothing, and the group of the partner can still be set by hand.
 - **A partner without a card** keeps the group you set.
 
 At the bottom of **Master data → Business Central → Differences**, the **Partner VAT groups** section appears only when it has something to show: cards with different groups (between companies, or between the vendor card and the customer card), codes without a mapping, and linked cards that carry no group.
 
-On an invoice the partner VAT group is decided in this order: what somebody chose by hand on that invoice, then the group of the partner, then what we infer from the country of the tax number on an invoice that came from NAV. A choice made on an invoice affects that one invoice only, never the group of the partner.
+On an invoice the partner VAT group is decided in this order: what somebody chose by hand on that invoice, then the group of the partner, then what we infer from the country of the tax number on an invoice that came from NAV. A choice made on an invoice affects that one invoice only, never the group of the partner. On an outgoing invoice a cash-method or small-business-exempt partner counts as domestic, unless somebody chose otherwise on that invoice.
 
 ## Pushing Partners as Vendors
 
