@@ -68,7 +68,7 @@ Ein Streifen unter der Tabelle zeigt, wie viel des Zeitraums auf dieser Liste ei
 
 Zwei Dinge sollten Sie wissen, solange eine Aufschlüsselung aktiv ist:
 
-- **Ein Klick auf eine Zeile öffnet das Detailfenster nicht.** Die Detailansicht funktioniert im einfachen Bericht; nehmen Sie die Aufschlüsselung heraus, um in eine Zahl hineinzuzoomen.
+- **Jede Zahl ist anklickbar.** Klicken Sie in die Spalte einer Kategorie, in **Nicht zugeordnet**, **Sonstige** oder **Gesamt**, und das Detailfenster zeigt genau die Posten, aus denen sich diese Zahl zusammensetzt; die Summe im Fenster entspricht der Zelle. Die Zelle **Nicht zugeordnet** ist damit eine Aufgabenliste: Diese Posten haben auf der Liste noch keinen Wert. Siehe [Ins Detail gehen](#ins-detail-gehen).
 - **Jede Spaltenüberschrift hat einen Link „nur diese“** (außer **Sonstige**). Er schränkt den ganzen Bericht auf diese eine Kategorie ein und nimmt die Aufschlüsselung heraus. Genau das brauchen Sie, wenn Sie eine einzelne Kostenstelle für sich betrachten.
 
 ## Filtern
@@ -90,9 +90,19 @@ Quotenzeilen und das Detailfenster bleiben in der Basiswährung, denn eine Quote
 Klicken Sie auf eine Zeile, um am rechten Rand über dem Bericht ein Detailfenster zu öffnen. Der Bericht darunter behält seine volle Breite:
 
 1. **Kategorien**: die Kategorien hinter der Zeile, mit ihren Summen und Postenzahlen. Klicken Sie auf eine, um sie aufzuklappen.
-2. **Posten**: die Rechnungspositionen oder Banktransaktionen in jeder Kategorie, die neuesten zuerst, mit Datum, Partner, Referenz oder Rechnungsnummer und Betrag. In einem Rechnungsbericht zeigt **PDF** den Originalbeleg, und **→** öffnet die Rechnung in einem neuen Tab.
+2. **Posten**: die Rechnungspositionen oder Banktransaktionen in jeder Kategorie, die neuesten zuerst, mit Datum, Partner, Referenz oder Rechnungsnummer und Betrag. In einem Rechnungsbericht zeigt **PDF** den Originalbeleg, und **→** öffnet die Rechnung in einem neuen Tab; in einem Cashflow-Bericht öffnet **→** die Banktransaktion.
+
+Jede Kategorie zeigt ihre neuesten 500 Posten. Gibt es mehr, nennt eine Zeile am Ende, wie viele angezeigt werden; Summe und Postenzahl der Kategorie umfassen trotzdem alle Posten.
 
 Bei einer berechneten Zeile zeigt das Fenster die Formel und die Zeilen, aus denen sie besteht. Klicken Sie erneut auf die Zeile, auf das × im Fenster oder drücken Sie Esc, um es zu schließen; auch ein Wechsel des Zeitraums schließt es. Aktive Filter gelten auch im Detailfenster.
+
+### Ins Detail gehen in einem aufgeschlüsselten Bericht
+
+Klicken Sie in einem aufgeschlüsselten Bericht auf eine Zelle. Der Titel des Fensters nennt Zeile und Spalte, zum Beispiel **Lebensmittel · Nicht zugeordnet**, und das Fenster zeigt nur die Posten dieser Zelle. Bei der Zelle einer berechneten Zeile zeigen die Zeilen, aus denen sie besteht, ihren Anteil an derselben Spalte, mit dem Rechenzeichen. Aus **Gesamt** oder **Sonstige** geöffnet, zeigt jeder Posten seinen Wert auf der Liste.
+
+Wenn Sie den Posten bearbeiten dürfen, können Sie ihm mit der Auswahl darunter einen Wert geben. In einem Rechnungsbericht legt **Wert setzen** oben im Fenster fest, ob eine Auswahl **nur für diese Zeile** oder **für alle Zeilen der Rechnung ohne Wert** gilt; Letzteres überschreibt nie einen vorhandenen Wert. Ein Posten, der dadurch die Zelle verlässt, verschwindet sofort aus der Liste, und der Bericht läuft neu, wenn Sie das Fenster schließen.
+
+Weicht die Summe im Fenster von der Zelle ab, weil inzwischen jemand oder die KI Posten einen Wert gegeben hat, meldet das Fenster **Die Zahlen haben sich inzwischen geändert.** **Bericht aktualisieren** führt den Bericht erneut aus und lädt das Fenster mit den neuen Zahlen.
 
 ## Suchen
 
