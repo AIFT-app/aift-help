@@ -100,6 +100,15 @@ For a calculated line, the panel shows the formula and the lines it is made of. 
 
 In a broken-down report, click a cell. The panel title names the line and the column, for example **Food and ingredients · Unassigned**, and the panel shows only that cell's items. For a calculated line's cell, the lines it is made of show their share of the same column, with the operator. Opened from **Total** or **Other**, every item shows the value it has on the list.
 
+<ReportDrillDownFigure>
+A report broken down by cost centre, with the panel opened from the **Unassigned** cell of Operating costs. The numbers match the list below. The names and amounts are examples.
+</ReportDrillDownFigure>
+
+1. A line's **Unassigned** cell: the items of this line that have no value on the list yet. Clicking it opens the panel over the right edge of the page.
+2. The panel title names the line and the column.
+3. **Set the value**, on an Invoice report only. It starts at **on every line of the invoice without a value**.
+4. The picker under an item: choose the item's value on the list here.
+
 If you may edit the item, you can give it a value with the picker under it. On an Invoice report, **Set the value** at the top of the panel decides whether a pick applies **on this line only** or **on every line of the invoice without a value**; the latter never replaces an existing value. An item that leaves the cell this way drops off the list at once, and the report runs again when you close the panel.
 
 If the panel's total differs from the cell, because someone or the AI gave items a value in the meantime, the panel says **The figures changed in the meantime.** **Refresh the report** runs it again and reloads the panel with the new figures.
