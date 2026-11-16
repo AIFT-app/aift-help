@@ -68,7 +68,7 @@ A strip under the table shows how much of the period carries a value on this lis
 
 Two things to know while a breakdown is on:
 
-- **Clicking a row does not open the detail panel.** Drill-down works on the plain report; remove the breakdown to drill into a number.
+- **Every figure is clickable.** Click a category's column, **Unassigned**, **Other** or **Total**, and the detail panel shows exactly the items that make up that number; the panel adds up to the cell. The **Unassigned** cell is therefore a to-do list: these items have no value on the list yet. See [Drilling down](#drilling-down).
 - **Each column header has an "only this" link** (except **Other**). It narrows the whole report to that single category and removes the breakdown, which is what you want when you look at one cost centre on its own.
 
 ## Filtering
@@ -90,9 +90,19 @@ Ratio lines and the drill-down panel stay in the base currency, because a ratio 
 Click a row to open a detail panel over the right edge of the page. The report underneath keeps its full width:
 
 1. **Categories**: the categories behind the line, with their totals and item counts. Click one to expand it.
-2. **Items**: the invoice lines or bank transactions inside each category, newest first, with the date, partner, reference or invoice number and amount. On an Invoice report, **PDF** shows the original document and **→** opens the invoice in a new tab.
+2. **Items**: the invoice lines or bank transactions inside each category, newest first, with the date, partner, reference or invoice number and amount. On an Invoice report, **PDF** shows the original document and **→** opens the invoice in a new tab; on a Cash flow report, **→** opens the bank transaction.
+
+Each category shows its newest 500 items. When there are more, a line at the end says how many are shown; the category's total and item count still cover every item.
 
 For a calculated line, the panel shows the formula and the lines it is made of. Click the row again, the × in the panel or press Esc to close it; changing the period also closes it. Active filters apply to the panel too.
+
+### Drilling down in a broken-down report
+
+In a broken-down report, click a cell. The panel title names the line and the column, for example **Food and ingredients · Unassigned**, and the panel shows only that cell's items. For a calculated line's cell, the lines it is made of show their share of the same column, with the operator. Opened from **Total** or **Other**, every item shows the value it has on the list.
+
+If you may edit the item, you can give it a value with the picker under it. On an Invoice report, **Set the value** at the top of the panel decides whether a pick applies **on this line only** or **on every line of the invoice without a value**; the latter never replaces an existing value. An item that leaves the cell this way drops off the list at once, and the report runs again when you close the panel.
+
+If the panel's total differs from the cell, because someone or the AI gave items a value in the meantime, the panel says **The figures changed in the meantime.** **Refresh the report** runs it again and reloads the panel with the new figures.
 
 ## Searching
 
