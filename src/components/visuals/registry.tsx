@@ -26,7 +26,7 @@ import { ApprovalRulesFigure, RoutingLadderFigure } from './approval-setup'
 import { InvoiceLifecycleFigure, InvoiceListFigure } from './invoices'
 import { CompanyMatchFigure, CompanyRecognitionFigure } from './companies'
 import { TransactionTypeEditorFigure, TransactionTypeFlowFigure } from './transaction-types'
-import { ReportPageFigure, ReportStructureFigure } from './reports'
+import { ReportDrillDownFigure, ReportPageFigure, ReportStructureFigure } from './reports'
 import { AccessDecisionFigure, RolesTabFigure } from './roles'
 import { PartnerRecognitionFigure, PartnerRecognitionFlowFigure } from './partners'
 import { UploadPanelFigure } from './uploads'
@@ -93,6 +93,7 @@ const FIGURES: Record<string, (props: WithLocale) => React.ReactNode> = {
   TransactionTypeEditorFigure,
   ReportStructureFigure,
   ReportPageFigure,
+  ReportDrillDownFigure,
   AccessDecisionFigure,
   RolesTabFigure,
   PartnerRecognitionFlowFigure,
