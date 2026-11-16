@@ -50,12 +50,26 @@ The labels you meet most often:
 | **Overdue** | Unpaid after its due date. An unpaid invoice that is not yet due is no to-do. Shown only in a workspace with a bank account (a bank connection or uploaded statements), because without one nothing marks an invoice paid |
 | **Match suggestion awaiting a decision** | AI Finance Team suggests a bank transaction for it; confirm or reject it |
 | **NAV** / **No document** | The invoice came from NAV Online Számla / there is no document file, and your workspace does not expect one (grey) |
-| **Document needed** | There is no document file, and your workspace settings or an open document request expect one (amber to-do). The **Document** filter's **None** value shows both labels, so it can count more invoices than this to-do |
+| **Document needed** | There is no document file, and the **We expect an invoice document** setting of your workspace expects one (amber to-do, see [below](#we-expect-an-invoice-document)). The **Document** filter's **None** value shows both labels, so it can count more invoices than this to-do |
 | **Duplicate**, **Cancelled** | A duplicate of another invoice / cancelled by a storno invoice |
 | **Awaiting payment approval**, **Approved**, **Declined** | The payment approval state, where approvals are switched on (see [Approving Invoices for Payment](/approving-invoices)) |
 | **To file**, **To book** | A checkpoint still waiting, where filing or bookkeeping approval is switched on (see [Filing and Bookkeeping Approval](/filing-and-bookkeeping-approval)) |
 | **Sent back to filing** | The bookkeeper sent the invoice back to filing; point at the label to read the note |
 | **To hand over to the accounting software** | Where the workspace names its accounting software: ready to go to it and not handed over yet, or changed since (see [Ledger](/ledger)) |
+
+### We expect an invoice document
+
+Under **Settings → Ledger defaults → We expect an invoice document**, say whether this workspace expects a document (a PDF or an image) behind its invoices:
+
+| Value | Meaning |
+|---|---|
+| **No** | The default. No document is expected for any invoice |
+| **For purchase invoices** | A document is expected behind purchase (supplier) invoices, not behind sales invoices |
+| **For every invoice** | Behind purchase and sales invoices alike |
+
+Where a document is expected, an invoice without one gets the **Document needed** to-do, and only there is the client asked for it on [Missing receipts](/documents-needed). Where none is expected, neither happens: the invoice keeps only the grey **No document** label.
+
+Before saving, the dialog states how many invoices will have the to-do and how many open document requests to the client will close. When you narrow the setting, the requests that are already open close. When you widen it again later, the same requests reopen, and the client gets no second message about them. Changing the setting takes the **"Edit master data"** permission.
 
 ### Finding invoices
 
