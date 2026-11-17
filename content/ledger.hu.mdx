@@ -138,6 +138,8 @@ Hogyan könyvelődnek a sorok:
 
 **Ugyanazt a fájlt kétszer kell beolvasni az RLB-be, egymás után.** Az első beolvasás lekönyveli a számlákat, a második a banki sorokat, amelyek ezeket a számlákat kiegyenlítik: az RLB csak már lekönyvelt számlához tud kiegyenlítést könyvelni. A második beolvasás a már lekönyvelt számlákat kihagyja. Ez az RLB rendes működése, az RLB ügyfélszolgálata is így javasolja.
 
+**A készpénzes számlák „készpénz” fizetési móddal kerülnek a fájlba**, a többi „átutalás” fizetési móddal. Ha beolvasáskor bejelöli a **Kp.-s számlák autom. kiegyenlítése** mezőt, és mellette megadja a pénztár főkönyvi számát (például 3811), az RLB a készpénzes számlákat rögtön ki is egyenlíti a pénztárral szemben. Erre van szükség például ahhoz, hogy a készpénzben kifizetett felvásárlási jegyek bekerüljenek az őstermelői 08-as bevallásba, mert az RLB oda csak a kifizetett jegyeket veszi fel.
+
 #### Őstermelők
 
 Ha a munkaterületen van felvásárlási jegy, az oldalon egy negyedik fül is van, **Őstermelők**. Azokat az őstermelőket mutatja, akiknek a jegyei a beállított szűrőkkel a könyvelési fájlba kerülnek, a személyes adataikkal együtt (lásd [Felvásárlási jegyek](/invoices)). Ezen a fülön az oldal címe melletti gomb **Partnertörzs exportálása** feliratra vált: egy CSV fájlt ad, amelyet az RLB **Alapadatok › Törzsadatok importálása csv-ből** menüpontjában lehet beolvasni, partnerként. A fájlban pontosan a táblázatban látható őstermelők vannak. Az AI Finance Team a fájlt nem tárolja, mert TAJ számokat tartalmaz; csak azt jegyzi fel, kit és mikor exportált.
