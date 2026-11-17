@@ -30,6 +30,7 @@ import { ReportDrillDownFigure, ReportPageFigure, ReportStructureFigure } from '
 import { AccessDecisionFigure, RolesTabFigure } from './roles'
 import { PartnerRecognitionFigure, PartnerRecognitionFlowFigure } from './partners'
 import { UploadPanelFigure } from './uploads'
+import { PdfSplitDialogFigure } from './uploads/split'
 import { BankConsentLifecycleFigure } from './bank'
 import { BusinessCentralApprovalsFigure } from './business-central'
 import { McpConsentFigure } from './mcp'
@@ -100,6 +101,7 @@ const FIGURES: Record<string, (props: WithLocale) => React.ReactNode> = {
   PartnerRecognitionFlowFigure,
   PartnerRecognitionFigure,
   UploadPanelFigure,
+  PdfSplitDialogFigure,
   BankConsentLifecycleFigure,
   BusinessCentralApprovalsFigure,
   McpConsentFigure,

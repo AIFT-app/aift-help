@@ -12,12 +12,12 @@ Inkább egyáltalán nem töltene fel? [E-mailben is továbbíthatja a dokumentu
 
 | Oldal | Elfogadott típusok | Korlát |
 |---|---|---|
-| **Számlák** | PDF, JPEG, PNG, WebP | fájlonként 50 MB, és legfeljebb 10 oldalas PDF |
+| **Számlák** | PDF, JPEG, PNG, WebP | fájlonként 50 MB; a 10 oldalnál hosszabb PDF-et szétbonthatja |
 | **Banki tranzakciók** | csak PDF | fájlonként 50 MB |
 
 Két korlát, amelyet érdemes ismerni egy nagy köteg előtt:
 
-- **A 10 oldalnál hosszabb számla-PDF-et a rendszer visszautasítja**, mert egy ilyen hosszú dokumentum általában kivonat vagy köteg. Töltse fel kivonatként, vagy bontsa szét.
+- **A 10 oldalnál hosszabb számla-PDF-et feltöltés előtt számlákra bonthatja**, mert egy ilyen hosszú dokumentum általában szkennelt köteg. Lásd: [Hosszú, szkennelt PDF szétbontása](#hosszú-szkennelt-pdf-szétbontása). Ha valójában bankkivonat, a Banki tranzakciók oldalon töltse fel.
 - **Az iPhone-nal készült fotókat (HEIC) a böngésző feltöltés előtt JPEG-be alakítja.** Önnek ehhez nem kell semmit tennie. Ha egy fotót nem sikerül átalakítani, a sora jelzi; ilyenkor exportálja JPEG vagy PDF formátumba (iPhone-on az is működik, ha „Most compatible” beállítással küldi el magának), és töltse fel újra.
 
 Minden más típusú fájl piros sorrá válik **Wrong file type** felirattal.
@@ -47,6 +47,7 @@ Amint egy feltöltés elindul, a **jobb alsó sarokban** megjelenik egy panel, f
 | Felirat | Jelentés |
 |---|---|
 | **Sorban** | Várakozik, amíg sorra kerül. |
+| **N oldalas PDF. Egy számla legfeljebb 10 oldal lehet.** | Hosszú PDF, amely szétbontásra vár. A **Szétbontás** gomb nyitja meg az ablakot. Lásd: [Hosszú, szkennelt PDF szétbontása](#hosszú-szkennelt-pdf-szétbontása). |
 | **Feltöltés…** | A fájl a tárhelyre másolódik. |
 | **Kinyerés…** | Az AI olvassa a dokumentumot. |
 | **X. / Y. Oldal kinyerése** | Egy kivonat oldalanként olvasódik be. |
@@ -67,7 +68,7 @@ Amíg bármi fut, a fejléc felkínálja a **Collapse** vezérlőt, amely pirul�
 ### Az oldal elhagyása
 
 - **A már feltöltött fájl biztonságban van.** A beolvasás a szervereinken történik, és attól függetlenül fut tovább, hogy Ön az oldalon marad-e.
-- **A böngészőjéből még küldés alatt álló fájl elveszik**, ha frissíti vagy bezárja a lapot. Töltse fel újra.
+- **A böngészőjéből még küldés alatt álló fájl elveszik**, ha frissíti vagy bezárja a lapot. Töltse fel újra. Egy szétbontott PDF részeinél a böngésző előbb rákérdez.
 - **Maga a panel nem előzmény.** Frissítés után csak azt mutatja, ami még fut, vagy az elmúlt percben fejeződött be. A duplikátumok és a böngésző által visszautasított fájlok sorai eltűnnek. Ami feltöltődött, az a Számlák vagy a Banki tranzakciók oldalon van, és az a valódi nyilvántartás.
 - Munkaterület váltásakor a panel kiürül, majd az adott munkaterület futó feltöltéseivel telik meg. Egy második lap ugyanazokat a futó sorokat látja.
 
@@ -142,6 +143,38 @@ Hogy mit tartalmazhat az archívum, az attól függ, melyik oldalra ejtette: a S
 | `__MACOSX`, `.DS_Store` és minden más, ponttal kezdődő név | Kihagyva, sor nélkül |
 
 Több archívumot is ejthet egyszerre; egymás után csomagolódnak ki. Egy nagyon nagy archívum 200 MB alatt is meghiúsulhat kicsomagolás közben, mert a böngészője memóriájában bomlik ki: ilyenkor bontsa szét.
+
+## Hosszú, szkennelt PDF szétbontása
+
+Ha egy 10 oldalnál hosszabb PDF-et húz a **Számlák** oldalra, a böngészője feltöltés előtt megszámolja az oldalait, és semmit nem küld el. Egy ilyen fájl általában szkennelt bizonylatok kötege, például felvásárlási jegyek, oldalanként egy. Megnyílik egy ablak, amelyben számlákra bonthatja.
+
+<PdfSplitDialogFigure>
+A szétbontó ablak két szkennelt PDF-fel. A fájlnevek és a jegyek kitaláltak.
+</PdfSplitDialogFigure>
+
+1. **A fájlok.** Egy ejtés összes hosszú PDF-je egy ablakba kerül. Kattintson egy fájlra az oldalai megtekintéséhez. A **×** kiveszi a fájlt ebből a feltöltésből, a sora a panelen marad.
+2. **A szétbontás módja.** **Minden oldal külön számla** (ez az alapértelmezés), **Számlánként N oldal** (2 és 10 között, kétoldalas szkenneléshez például 2), vagy **Saját oldaltartományok**, például `1-2, 3, 4-6`, vesszővel vagy pontosvesszővel elválasztva. A tartományokon kívüli oldalak kimaradnak. Az első fájlnál választott módot a többi fájl is megkapja, amikor először megnyitja őket.
+3. **A létrejövő számlák száma.** Ennyi számla jön létre, és a díjazásban mindegyik egy számlának számít.
+4. **Az üres oldalak.** A rendszer megkeresi az üres oldalakat (például egy kétoldalas szkenner üres hátoldalait), és alapból kihagyja őket, mert egy üres oldalból üres, de kiszámlázott számla lenne. Ezek halványan, **Üres** jelöléssel látszanak. Ha egy halvány másolatot tévesen üresnek ítélt, kattintson rá, és visszakerül.
+5. **Feltöltés.** A gomb mindig azt a számot mutatja, ami valóban feltöltődik. Nem kattintható, amíg az üres oldalak keresése tart, amíg egy tartomány hibás, vagy ha egyszerre 500-nál több számla jönne létre. Az üres oldalak keresése oldalanként nagyjából fél másodperc.
+
+Ha a **Mégse** gombot választja, semmi nem töltődik fel. A PDF a panelen marad egy **Szétbontás** gombbal, amellyel az ablakot újra megnyithatja.
+
+Feltöltés után:
+
+- **Csak a részek töltődnek fel**, az eredeti köteg nem. Minden rész saját PDF lesz, a nevében az oldalszámmal: `Jegyek_p05.pdf` vagy `Jegyek_p05-06.pdf`. Ha az iratmegőrzéshez az eredeti szkennelt kötegre van szüksége, azt őrizze meg a saját iratai között.
+- **A panel forrásfájlonként egy sort mutat**, a részek haladásával: **Sorban**, **Feltöltés · 12/41**, **Kinyerés · 30/41**, végül **41 számla kinyerve**. Egy sikertelen rész saját sort kap a csoportja alatt, **Újra** gombbal.
+- **A részek percenként legfeljebb 50-es ütemben töltődnek fel**, így 300 jegy nagyjából hat perc. Amíg rész vár a feltöltésre, a lap bezárásakor a böngésző rákérdez, munkaterület váltásakor pedig a **Még nincs minden rész feltöltve** ablak. Miután minden rész feltöltődött, a beolvasás a szervereinken folytatódik, a lapot bezárhatja.
+- **Ha ugyanazt a köteget kétszer bontja szét**, a részek bájtra azonosak, így a második feltöltés **Már létezik** sorokat ad. Egy jegy szkennelt másolatát (a kötegben lévő másolat lapot) a beolvasás után ismeri fel duplikátumként, ha a sorszám, a dátum és az összeg egyezik. A díjazás ezt nem számolja kétszer.
+
+| Korlát | Érték |
+|---|---|
+| Legnagyobb PDF | 200 MB |
+| Legtöbb oldal egy PDF-ben | 500 |
+| Legtöbb számla egy feltöltésben | 500 |
+| Legtöbb oldal egy részben | 10 |
+
+A szétbontás a **Számlák** oldalon, feltöltéskor működik. Az e-mailben továbbított hosszú PDF-et a rendszer továbbra is visszautasítja: töltse fel a Számlák oldalon.
 
 ## Alátámasztó dokumentumok a számlán
 
