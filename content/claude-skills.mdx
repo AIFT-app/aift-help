@@ -1,0 +1,64 @@
+# Custom Claude Skills for Your Bookkeeping
+
+A **custom Claude skill** is a set of instructions and a small program, built by AI Finance Team for one of your client companies, that runs in your own Claude. It takes over a recurring, rule-bound bookkeeping task for that company: it reads the month's documents, produces the rows you would otherwise type, checks them against each other, and names the exceptions you need to decide on.
+
+It does not book anything and does not change your client's data in AI Finance Team. You review the result and post it.
+
+## What It Is Good For
+
+Tasks that come back every month, follow fixed rules and take hours by hand. For example:
+
+- a hospitality client's sales side: till closings, card and voucher settlements and delivery-platform payouts turned into journal rows for your ledger software, with a daily balance per payment method;
+- payouts that arrive net of commission, matched to the platform's commission invoices;
+- a reconciliation against your own ledger export, cell by cell, with the differences explained.
+
+What you get back is an Excel workbook (summary, journal rows, daily balances, checks, exceptions), the journal rows as CSV in your ledger software's import layout, and a short report in the chat.
+
+## How to Ask for One
+
+Write to us at support with:
+
+1. the task, in a few sentences;
+2. one month of the documents you work from;
+3. how that month ended up in your ledger (an export of the accounts involved).
+
+We build the skill, tie it out against your ledger for that month, and walk through the differences with you. When it matches, we publish it to the client's workspace. The terms are agreed per skill.
+
+## Where You Find It
+
+Once a skill exists for a workspace, it appears at the top of **Settings → AI & data** in that workspace, as **Claude skill for this company**. Workspaces without a skill show nothing there.
+
+Only members on the accounting firm's side see it. Your client does not.
+
+## Installing It in Claude
+
+1. Download the skill with **Download**. Do not unpack the zip.
+2. In claude.ai, open **Settings → Capabilities** and turn on **Run code in the cloud**.
+3. Open **Plugins → Add → Upload plugin**, choose the zip and click **Upload**.
+4. Start a new chat, upload the month's files and ask for the task, for example: *"Prepare the sales side for October."* The skill loads by itself.
+
+claude.ai rearranges its menus from time to time. If you cannot find these items, look for an **Upload** button on the Plugins or Skills page.
+
+Do not use an incognito chat: code does not run there, so the skill cannot either. To keep the work separate from your other chats, use an empty project.
+
+## Versions
+
+The version of a skill is a **date**, for example `2026-11-17`. The page shows the current one, marks it **New version** when you have not downloaded it yet, and keeps the earlier versions under **Earlier versions**, in case you need to re-run a month with the version that booked it.
+
+The skill writes its version into everything it produces: the first line of the workbook's summary and the start of its report. If a result raises a question, tell us the version and we can see exactly which rules produced it.
+
+When we change a skill (a new rule, a fix, a new kind of document), a new version appears on the page. Download it and upload it to claude.ai the same way; it replaces the old one.
+
+## What It Sees and Writes
+
+- It runs in your Claude and reads only what you upload, or what the AI Finance Team connection shows if you use one (see [AI assistants (MCP)](/mcp)).
+- It writes nothing into AI Finance Team on its own. Where a step could be done in the app (for example closing commission invoices settled from a payout), it gives you a list to review.
+- Passwords of protected files are used for that run only and are never repeated or saved.
+
+## Frequently Asked Questions
+
+**Does my client see the skill?** No. Only the accounting firm's side of the workspace sees the section.
+
+**What if the rules change?** Tell us. We change the skill and publish a new version with a one-line note on what changed.
+
+**Can I use it with a different AI assistant?** The skills are built and tested for Claude.

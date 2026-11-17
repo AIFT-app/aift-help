@@ -321,6 +321,8 @@ export const navGroups: NavGroup[] = [
         },
       },
       { slug: 'mcp', title: { en: 'AI Assistants (MCP)', hu: 'AI-asszisztensek (MCP)', de: 'KI-Assistenten (MCP)' } },
+      // workspace-claude-skills: a custom Claude skill, downloaded from Settings > AI and data.
+      { slug: 'claude-skills', title: { en: 'Custom Claude Skills', hu: 'Egyedi Claude-skill', de: 'Individuelle Claude-Skills' } },
     ],
   },
   {
