@@ -1,0 +1,64 @@
+# Individuelle Claude-Skills für Ihre Buchhaltung
+
+Ein **individueller Claude-Skill** ist eine Arbeitsanweisung mit einem kleinen Programm, die AI Finance Team für eines Ihrer Mandantenunternehmen erstellt und die in Ihrem eigenen Claude läuft. Er übernimmt eine wiederkehrende, regelgebundene Buchhaltungsaufgabe dieses Unternehmens: Er liest die Unterlagen des Monats, erstellt die Zeilen, die Sie sonst von Hand erfassen würden, gleicht sie gegeneinander ab und benennt die Ausnahmen, über die Sie entscheiden müssen.
+
+Er bucht nichts und ändert die Daten Ihres Mandanten in AI Finance Team nicht. Sie prüfen das Ergebnis und buchen es.
+
+## Wofür er sich eignet
+
+Für Aufgaben, die jeden Monat wiederkehren, festen Regeln folgen und von Hand Stunden dauern. Zum Beispiel:
+
+- die Umsatzseite eines Gastronomie-Mandanten: Kassenabschlüsse, Karten- und Gutscheinabrechnungen sowie Auszahlungen von Lieferplattformen als Buchungszeilen für Ihre Buchhaltungssoftware, mit einem täglichen Abgleich je Zahlungsart;
+- Auszahlungen, die um die Provision gekürzt eingehen, zugeordnet zu den Provisionsrechnungen der Plattform;
+- ein Abgleich mit Ihrem eigenen Kontenexport, Zelle für Zelle, mit erklärten Abweichungen.
+
+Sie erhalten eine Excel-Arbeitsmappe (Übersicht, Buchungszeilen, Tagessalden, Prüfungen, Ausnahmen), die Buchungszeilen als CSV im Importformat Ihrer Buchhaltungssoftware und eine kurze Zusammenfassung im Chat.
+
+## So fordern Sie einen an
+
+Schreiben Sie an unseren Support mit:
+
+1. der Aufgabe in wenigen Sätzen;
+2. den Unterlagen eines Monats, mit denen Sie arbeiten;
+3. dem Stand, wie dieser Monat in Ihrer Buchhaltung gelandet ist (ein Export der betroffenen Konten).
+
+Wir erstellen den Skill, gleichen ihn für diesen Monat mit Ihrer Buchhaltung ab und gehen die Abweichungen mit Ihnen durch. Wenn alles übereinstimmt, veröffentlichen wir ihn im Arbeitsbereich des Mandanten. Die Konditionen vereinbaren wir je Skill.
+
+## Wo Sie ihn finden
+
+Sobald es für einen Arbeitsbereich einen Skill gibt, erscheint er oben auf der Seite **Einstellungen → KI & Daten** dieses Arbeitsbereichs als **Claude-Skill für dieses Unternehmen**. Arbeitsbereiche ohne Skill zeigen dort nichts an.
+
+Nur Mitglieder auf der Seite der Kanzlei sehen ihn. Ihr Mandant nicht.
+
+## Installation in Claude
+
+1. Laden Sie den Skill mit **Herunterladen** herunter. Entpacken Sie die ZIP-Datei nicht.
+2. Öffnen Sie in claude.ai **Settings → Capabilities** und aktivieren Sie **Run code in the cloud**.
+3. Öffnen Sie **Plugins → Add → Upload plugin**, wählen Sie die ZIP-Datei aus und klicken Sie auf **Upload**.
+4. Starten Sie einen neuen Chat, laden Sie die Dateien des Monats hoch und bitten Sie um die Aufgabe, zum Beispiel: *„Erstelle die Umsatzseite für Oktober.“* Der Skill wird automatisch geladen.
+
+claude.ai ordnet seine Menüs gelegentlich neu. Wenn Sie diese Punkte nicht finden, suchen Sie auf der Plugins- oder Skills-Seite nach einer **Upload**-Schaltfläche.
+
+Verwenden Sie keinen Inkognito-Chat: Dort läuft kein Code, also auch der Skill nicht. Um die Arbeit von Ihren anderen Chats zu trennen, verwenden Sie ein leeres Projekt.
+
+## Versionen
+
+Die Version eines Skills ist ein **Datum**, zum Beispiel `2026-11-17`. Die Seite zeigt die aktuelle Version, markiert sie als **Neue Version**, wenn Sie sie noch nicht heruntergeladen haben, und bewahrt die früheren unter **Frühere Versionen** auf, falls Sie einen Monat mit der Version erneut ausführen müssen, die ihn gebucht hat.
+
+Der Skill schreibt seine Version in alles, was er erstellt: in die erste Zeile der Übersicht der Arbeitsmappe und an den Anfang seiner Zusammenfassung. Wenn ein Ergebnis Fragen aufwirft, nennen Sie uns die Version, und wir sehen genau, nach welchen Regeln es entstanden ist.
+
+Wenn wir einen Skill ändern (eine neue Regel, eine Korrektur, eine neue Belegart), erscheint auf der Seite eine neue Version. Laden Sie sie herunter und laden Sie sie auf dieselbe Weise in claude.ai hoch; sie ersetzt die alte.
+
+## Was er sieht und schreibt
+
+- Er läuft in Ihrem Claude und liest nur, was Sie hochladen, oder was die Verbindung zu AI Finance Team zeigt, wenn Sie diese nutzen (siehe [KI-Assistenten (MCP)](/mcp)).
+- Er schreibt von sich aus nichts in AI Finance Team. Wo ein Schritt in der App zu erledigen wäre (zum Beispiel das Schließen von Provisionsrechnungen, die aus einer Auszahlung verrechnet wurden), gibt er Ihnen eine Liste zur Prüfung.
+- Passwörter geschützter Dateien werden nur für diesen Lauf verwendet und weder wiederholt noch gespeichert.
+
+## Häufige Fragen
+
+**Sieht mein Mandant den Skill?** Nein. Nur die Kanzleiseite des Arbeitsbereichs sieht diesen Abschnitt.
+
+**Was passiert, wenn sich die Regeln ändern?** Sagen Sie uns Bescheid. Wir ändern den Skill und veröffentlichen eine neue Version mit einer kurzen Notiz, was sich geändert hat.
+
+**Kann ich ihn mit einem anderen KI-Assistenten verwenden?** Die Skills werden für Claude erstellt und getestet.
