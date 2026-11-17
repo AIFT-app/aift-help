@@ -33,6 +33,7 @@ import { UploadPanelFigure } from './uploads'
 import { BankConsentLifecycleFigure } from './bank'
 import { BusinessCentralApprovalsFigure } from './business-central'
 import { McpConsentFigure } from './mcp'
+import { ClaudeSkillsSectionFigure } from './claude-skills'
 import { SettlementNettingFigure } from './settlement'
 import { CashPoolSectionFigure } from './cash-pool'
 import { CategorizationBandsFigure } from './categorization'
@@ -102,6 +103,7 @@ const FIGURES: Record<string, (props: WithLocale) => React.ReactNode> = {
   BankConsentLifecycleFigure,
   BusinessCentralApprovalsFigure,
   McpConsentFigure,
+  ClaudeSkillsSectionFigure,
   SettlementNettingFigure,
   CashPoolSectionFigure,
   CategorizationBandsFigure,
