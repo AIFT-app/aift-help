@@ -138,6 +138,8 @@ Wie die Zeilen gebucht werden:
 
 **Lesen Sie dieselbe Datei zweimal nacheinander in RLB ein.** Der erste Lauf bucht die Rechnungen, der zweite die Bankzeilen, die sie ausgleichen: RLB kann einen Ausgleich nur gegen eine bereits gebuchte Rechnung buchen. Der zweite Lauf überspringt die bereits gebuchten Rechnungen. So arbeitet RLB, und der RLB-Support empfiehlt es.
 
+**Barrechnungen kommen mit der Zahlungsart „készpénz” (bar) in die Datei**, alle anderen mit „átutalás” (Überweisung). Wenn Sie beim Einlesen **Kp.-s számlák autom. kiegyenlítése** ankreuzen und daneben das Hauptbuchkonto der Kasse angeben (zum Beispiel 3811), gleicht RLB die Barrechnungen sofort gegen die Kasse aus. Bar bezahlte Ankaufsbelege brauchen das, um in die 08-Erklärung der Erzeuger zu kommen, denn RLB nimmt dort nur bezahlte Belege auf.
+
 #### Erzeuger
 
 Hat der Arbeitsbereich Ankaufsbelege, gibt es auf der Seite einen vierten Reiter, **Urproduzenten**. Er listet die Erzeuger, deren Belege mit den eingestellten Filtern in die Buchungsdatei gehen, mit ihren persönlichen Daten (siehe [Ankaufsbelege](/invoices)). Auf diesem Reiter heißt die Schaltfläche neben dem Seitentitel **Partnerdatei exportieren**: Sie liefert eine CSV-Datei, die in RLB unter **Alapadatok › Törzsadatok importálása csv-ből** als Partner eingelesen wird. Die Datei enthält genau die Erzeuger, die die Tabelle zeigt. AI Finance Team speichert die Datei nicht, weil sie Sozialversicherungsnummern enthält; es hält nur fest, wer wann exportiert wurde.
