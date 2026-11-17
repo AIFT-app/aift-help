@@ -12,12 +12,12 @@ Prefer not to upload at all? You can [forward documents to your workspace by ema
 
 | Page | Accepted types | Limit |
 |---|---|---|
-| **Invoices** | PDF, JPEG, PNG, WebP | 50 MB per file, and a PDF of at most 10 pages |
+| **Invoices** | PDF, JPEG, PNG, WebP | 50 MB per file; a PDF of more than 10 pages can be split |
 | **Bank transactions** | PDF only | 50 MB per file |
 
 Two limits worth knowing before a big batch:
 
-- **An invoice PDF of more than 10 pages is refused**, because a document that long is usually a statement or a bundle. Upload it as a statement, or split it.
+- **An invoice PDF of more than 10 pages can be split into invoices before upload**, because a document that long is usually a scanned bundle. See [Splitting a long scanned PDF](#splitting-a-long-scanned-pdf). If it is really a bank statement, upload it on the Bank transactions page.
 - **Photos from an iPhone (HEIC) are converted to JPEG in your browser before they upload.** Nothing to do on your side. If a photo cannot be converted, its row says so; then export it as JPEG or PDF (on an iPhone, sending it to yourself as "Most compatible" works) and upload it again.
 
 Files of any other type become a red row saying **Wrong file type**.
@@ -47,6 +47,7 @@ A panel appears in the **bottom-right corner** as soon as an upload starts, with
 | Label | Meaning |
 |---|---|
 | **Queued** | Waiting for its turn. |
+| **N-page PDF. An invoice can have at most 10 pages.** | A long PDF waiting to be split. **Split** opens the dialog. See [Splitting a long scanned PDF](#splitting-a-long-scanned-pdf). |
 | **Uploading…** | The file is being copied to storage. |
 | **Extracting…** | The AI is reading the document. |
 | **Extracting page X / Y** | A statement is being read page by page. |
@@ -67,7 +68,7 @@ While anything is still running, the header offers **Collapse**, which shrinks t
 ### Leaving the page
 
 - **A file that has finished uploading is safe.** Reading it happens on our servers and carries on whether or not you stay.
-- **A file still being sent from your browser is lost** if you reload or close the tab. Upload it again.
+- **A file still being sent from your browser is lost** if you reload or close the tab. Upload it again. For the parts of a split PDF, your browser asks first.
 - **The panel itself is not a history.** After a reload it shows only what is still running, or finished in the last minute. Rows for duplicates and for files rejected by your browser are gone. What was uploaded is on the Invoices or Bank transactions page, which is the real record.
 - Switching workspace clears the panel, then fills it with that workspace's running uploads. A second tab sees the same running rows.
 
@@ -142,6 +143,38 @@ What the archive may hold follows the page you dropped it on: invoices on the In
 | `__MACOSX`, `.DS_Store` and any other name starting with a dot | Skipped without a row |
 
 Dropping several archives at once is fine; they are unpacked one after another. A very large archive can also fail while unpacking even under 200 MB, because it is unpacked in your browser's memory: split it in that case.
+
+## Splitting a Long Scanned PDF
+
+When you drop a PDF of more than 10 pages on the **Invoices** page, your browser counts its pages before uploading and sends nothing yet. A file that long is usually a bundle of scanned slips, such as purchase tickets, one per page. A dialog opens where you split it into invoices.
+
+<PdfSplitDialogFigure>
+The split dialog with two scanned PDFs. The file names and tickets are made up.
+</PdfSplitDialogFigure>
+
+1. **The files.** Every long PDF of one drop goes into one dialog. Click a file to see its pages. The **×** removes the file from this upload; its row stays in the panel.
+2. **How to split.** **Every page is a separate invoice** (the default), **Every N pages per invoice** (2 to 10; 2 for a double-sided scan, for example), or **Custom page ranges** such as `1-2, 3, 4-6`, separated by commas or semicolons. Pages outside the ranges are left out. The mode you pick for the first file carries to each other file the first time you open it.
+3. **How many invoices will be created.** That many invoices are created, and each counts as one invoice for billing.
+4. **Blank pages.** Blank pages (the empty backs of a double-sided scan, for example) are found and left out by default, because a blank page would become an empty invoice that is still billed. They show dimmed and marked **Blank**. If a faint copy was taken for blank, click it to put it back.
+5. **Upload.** The button always shows the number that will really be uploaded. It cannot be clicked while blank pages are still being looked for, while a range is invalid, or when more than 500 invoices would be created at once. Looking for blank pages takes about half a second per page.
+
+**Cancel** uploads nothing. The PDF stays in the panel with a **Split** button that opens the dialog again.
+
+After the upload:
+
+- **Only the parts are uploaded**, never the original bundle. Each part becomes its own PDF with the pages in its name: `Tickets_p05.pdf` or `Tickets_p05-06.pdf`. If your record keeping needs the original scanned bundle, keep it in your own files.
+- **The panel shows one row per source PDF** with the parts' progress: **Queued**, **Uploading · 12/41**, **Extracting · 30/41**, and at the end **41 invoices extracted**. A part that fails gets its own row under its group, with **Retry**.
+- **Parts are uploaded at most 50 a minute**, so 300 tickets take about six minutes. While parts are still waiting, closing the tab makes your browser ask first, and switching workspace opens **Not every part is uploaded yet**. Once every part is uploaded, reading continues on our servers and you can close the tab.
+- **Splitting the same bundle twice** gives byte-identical parts, so the second upload shows **Already exists** rows. A scanned copy of a ticket (a copy sheet in the bundle) is recognised as a duplicate after reading when its number, date and amount match. Billing does not count it twice.
+
+| Limit | Value |
+|---|---|
+| Largest PDF | 200 MB |
+| Most pages in one PDF | 500 |
+| Most invoices in one upload | 500 |
+| Most pages in one part | 10 |
+
+Splitting works on the **Invoices** page, when you upload. A long PDF forwarded by email is still refused: upload it on the Invoices page.
 
 ## Supporting Documents on an Invoice
 

@@ -12,12 +12,12 @@ Lieber gar nicht hochladen? Sie können [Dokumente per E-Mail an Ihren Arbeitsbe
 
 | Seite | Akzeptierte Typen | Grenze |
 |---|---|---|
-| **Rechnungen** | PDF, JPEG, PNG, WebP | 50 MB pro Datei, und ein PDF mit höchstens 10 Seiten |
+| **Rechnungen** | PDF, JPEG, PNG, WebP | 50 MB pro Datei; eine PDF mit mehr als 10 Seiten lässt sich aufteilen |
 | **Banktransaktionen** | nur PDF | 50 MB pro Datei |
 
 Zwei Grenzen, die Sie vor einem großen Stapel kennen sollten:
 
-- **Ein Rechnungs-PDF mit mehr als 10 Seiten wird abgelehnt**, denn ein so langes Dokument ist meist ein Kontoauszug oder ein Bündel. Laden Sie es als Kontoauszug hoch, oder teilen Sie es auf.
+- **Ein Rechnungs-PDF mit mehr als 10 Seiten können Sie vor dem Hochladen in Rechnungen aufteilen**, denn ein so langes Dokument ist meist ein gescannter Stapel. Siehe [Lange gescannte PDF aufteilen](#lange-gescannte-pdf-aufteilen). Ist es tatsächlich ein Kontoauszug, laden Sie es auf der Seite Banktransaktionen hoch.
 - **Fotos vom iPhone (HEIC) werden vor dem Hochladen in Ihrem Browser in JPEG umgewandelt.** Sie müssen nichts tun. Lässt sich ein Foto nicht umwandeln, zeigt seine Zeile das an; exportieren Sie es dann als JPEG oder PDF (auf dem iPhone funktioniert es, sich das Foto als „Most compatible“ selbst zu schicken) und laden Sie es erneut hoch.
 
 Dateien jedes anderen Typs werden zu einer roten Zeile mit **Wrong file type**.
@@ -47,6 +47,7 @@ Sobald ein Upload beginnt, erscheint in der **unteren rechten Ecke** ein Fenster
 | Bezeichnung | Bedeutung |
 |---|---|
 | **In Warteschlange** | Wartet, bis sie an der Reihe ist. |
+| **PDF mit N Seiten. Eine Rechnung hat höchstens 10 Seiten.** | Eine lange PDF, die auf das Aufteilen wartet. **Aufteilen** öffnet den Dialog. Siehe [Lange gescannte PDF aufteilen](#lange-gescannte-pdf-aufteilen). |
 | **Hochladen…** | Die Datei wird in den Speicher kopiert. |
 | **Extrahieren…** | Die KI liest das Dokument. |
 | **Seite X / Y extrahieren** | Ein Kontoauszug wird Seite für Seite gelesen. |
@@ -67,7 +68,7 @@ Solange noch etwas läuft, bietet die Kopfzeile **Collapse** an, wodurch das Fen
 ### Die Seite verlassen
 
 - **Eine fertig hochgeladene Datei ist sicher.** Das Lesen geschieht auf unseren Servern und läuft weiter, ob Sie bleiben oder nicht.
-- **Eine Datei, die Ihr Browser noch sendet, geht verloren**, wenn Sie neu laden oder den Tab schließen. Laden Sie sie erneut hoch.
+- **Eine Datei, die Ihr Browser noch sendet, geht verloren**, wenn Sie neu laden oder den Tab schließen. Laden Sie sie erneut hoch. Bei den Teilen einer aufgeteilten PDF fragt Ihr Browser vorher nach.
 - **Das Fenster selbst ist kein Verlauf.** Nach einem Neuladen zeigt es nur, was noch läuft oder in der letzten Minute fertig geworden ist. Zeilen für Duplikate und für Dateien, die Ihr Browser abgelehnt hat, sind weg. Was hochgeladen wurde, steht auf der Seite Rechnungen oder Banktransaktionen, und das ist der eigentliche Nachweis.
 - Ein Wechsel des Arbeitsbereichs leert das Fenster und füllt es dann mit den laufenden Uploads dieses Arbeitsbereichs. Ein zweiter Tab sieht dieselben laufenden Zeilen.
 
@@ -142,6 +143,38 @@ Was das Archiv enthalten darf, richtet sich nach der Seite, auf der Sie es abgel
 | `__MACOSX`, `.DS_Store` und jeder andere Name, der mit einem Punkt beginnt | Werden ohne Zeile übersprungen |
 
 Mehrere Archive auf einmal abzulegen ist in Ordnung; sie werden nacheinander entpackt. Ein sehr großes Archiv kann auch unter 200 MB beim Entpacken scheitern, weil es im Arbeitsspeicher Ihres Browsers entpackt wird: Teilen Sie es in diesem Fall auf.
+
+## Lange gescannte PDF aufteilen
+
+Wenn Sie eine PDF mit mehr als 10 Seiten auf die Seite **Rechnungen** ziehen, zählt Ihr Browser vor dem Hochladen ihre Seiten und sendet noch nichts. Eine so lange Datei ist meist ein Stapel gescannter Belege, etwa Ankaufsbelege, einer pro Seite. Ein Dialog öffnet sich, in dem Sie sie in Rechnungen aufteilen.
+
+<PdfSplitDialogFigure>
+Der Aufteilungsdialog mit zwei gescannten PDFs. Dateinamen und Belege sind erfunden.
+</PdfSplitDialogFigure>
+
+1. **Die Dateien.** Alle langen PDFs eines Ablegens kommen in einen Dialog. Klicken Sie auf eine Datei, um ihre Seiten zu sehen. Das **×** nimmt die Datei aus diesem Upload, ihre Zeile bleibt im Upload-Fenster.
+2. **Art der Aufteilung.** **Jede Seite ist eine eigene Rechnung** (die Voreinstellung), **Je Rechnung N Seiten** (2 bis 10, bei beidseitigem Scan etwa 2) oder **Eigene Seitenbereiche** wie `1-2, 3, 4-6`, getrennt durch Komma oder Semikolon. Seiten außerhalb der Bereiche entfallen. Die Art, die Sie für die erste Datei wählen, übernimmt jede weitere Datei, wenn Sie sie zum ersten Mal öffnen.
+3. **Wie viele Rechnungen angelegt werden.** So viele Rechnungen werden angelegt, und für die Abrechnung zählt jede als eine Rechnung.
+4. **Leere Seiten.** Leere Seiten (etwa die leeren Rückseiten eines beidseitigen Scans) werden gesucht und standardmäßig ausgelassen, denn aus einer leeren Seite würde eine leere, aber abgerechnete Rechnung. Sie erscheinen blass und als **Leer** markiert. Wurde eine blasse Kopie für leer gehalten, klicken Sie darauf, und sie ist wieder dabei.
+5. **Hochladen.** Die Schaltfläche zeigt immer die Zahl, die wirklich hochgeladen wird. Sie ist nicht anklickbar, solange leere Seiten noch gesucht werden, solange ein Bereich ungültig ist oder wenn mehr als 500 Rechnungen auf einmal entstünden. Die Suche nach leeren Seiten dauert etwa eine halbe Sekunde pro Seite.
+
+**Abbrechen** lädt nichts hoch. Die PDF bleibt im Upload-Fenster, mit der Schaltfläche **Aufteilen**, die den Dialog wieder öffnet.
+
+Nach dem Hochladen:
+
+- **Nur die Teile werden hochgeladen**, nie der ursprüngliche Stapel. Jeder Teil wird eine eigene PDF mit den Seiten im Namen: `Belege_p05.pdf` oder `Belege_p05-06.pdf`. Braucht Ihre Aufbewahrung den gescannten Originalstapel, bewahren Sie ihn in Ihren eigenen Unterlagen auf.
+- **Das Upload-Fenster zeigt eine Zeile pro Quell-PDF** mit dem Fortschritt der Teile: **In Warteschlange**, **Hochladen · 12/41**, **Extrahieren · 30/41** und am Ende **41 Rechnungen extrahiert**. Ein fehlgeschlagener Teil bekommt eine eigene Zeile unter seiner Gruppe, mit **Erneut versuchen**.
+- **Teile werden mit höchstens 50 pro Minute hochgeladen**, 300 Belege dauern also etwa sechs Minuten. Solange noch Teile warten, fragt Ihr Browser beim Schließen des Tabs nach, und ein Wechsel des Arbeitsbereichs öffnet **Noch nicht alle Teile hochgeladen**. Sobald alle Teile hochgeladen sind, geht das Lesen auf unseren Servern weiter, und Sie können den Tab schließen.
+- **Teilen Sie denselben Stapel zweimal auf**, sind die Teile byte-gleich, und der zweite Upload zeigt **Bereits vorhanden**. Eine gescannte Kopie eines Belegs (ein Kopieblatt im Stapel) wird nach dem Lesen als Duplikat erkannt, wenn Nummer, Datum und Betrag übereinstimmen. Die Abrechnung zählt sie nicht doppelt.
+
+| Grenze | Wert |
+|---|---|
+| Größte PDF | 200 MB |
+| Höchstens Seiten pro PDF | 500 |
+| Höchstens Rechnungen pro Upload | 500 |
+| Höchstens Seiten pro Teil | 10 |
+
+Das Aufteilen funktioniert auf der Seite **Rechnungen** beim Hochladen. Eine lange PDF, die per E-Mail weitergeleitet wird, wird weiterhin abgelehnt: Laden Sie sie auf der Seite Rechnungen hoch.
 
 ## Nachweisdokumente an einer Rechnung
 
