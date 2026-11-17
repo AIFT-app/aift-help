@@ -138,6 +138,8 @@ How the rows are booked:
 
 **Import the same file into RLB twice, one run after the other.** The first run books the invoices, the second books the bank lines that settle them: RLB can only book a settlement against an invoice that is already booked. The second run skips the invoices it already booked. This is how RLB works, and RLB's support recommends it.
 
+**Cash invoices go into the file with the payment method „készpénz” (cash)**, all others with „átutalás” (transfer). If you tick **Kp.-s számlák autom. kiegyenlítése** when importing and enter the cash desk GL account next to it (for example 3811), RLB settles the cash invoices against the cash desk straight away. Purchase tickets paid in cash need this to appear in the producers' 08 return, because RLB only takes paid tickets into it.
+
 #### Producers
 
 When the workspace has purchase tickets, the page has a fourth tab, **Producers**. It lists the producers whose tickets go into the posting file under the current filters, with their personal data (see [Purchase tickets](/invoices)). On this tab the button beside the page title becomes **Export partner file**: it gives a CSV file to import in RLB under **Alapadatok › Törzsadatok importálása csv-ből**, as partners. The file holds exactly the producers the table shows. AI Finance Team does not keep the file, because it contains social security numbers; it only records who was exported and when.
