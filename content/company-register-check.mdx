@@ -20,7 +20,7 @@ On a partner with no bank account on file, the section says **Found in the regis
 - **On a supplier invoice**, on its **Matching & payment** tab, under **Supplier's account (payee)** in the payment instructions.
 - **On the payment file page**, on each candidate line.
 - **On a verified partner**, in the **Company register** section: the decisions waiting for you, your data and the register's side by side under **Compared with the register**, what the register filled in, and a folded **Company details** block with the legal form, registration number, main activity, and the figures from the last filed report.
-- **In the verify dialog**, when you turn a counterparty into a partner: if the register knows the company, its legal name, tax number, registered address and main activity are offered, and **Use these details** fills them in.
+- **In the verify dialog**, when you turn a counterparty into a partner: if the register knows the company, its legal name, tax number, registered address and main activity are offered, and **Use these details** fills them in. If the invoice gave us only the first eight digits of the tax number and the register's full number starts with them, the tax number field is completed with the full domestic number on its own; a line under the field says so, and you can overwrite it.
 
 ## What Starts a Check
 
@@ -54,11 +54,14 @@ A partner whose seat and tax number both moved, and one account only the registe
 | --- | --- |
 | The tax number differs | **Take over** writes the register's tax number onto the partner. Only the last three digits can differ, because the check is made on the first eight. |
 | The seat differs (the postal code, since free-text addresses vary too much to compare honestly) | **Take over** writes the register's registered address onto the partner. |
+| You hold no seat, or only the community VAT number, and the register has the seat or the full domestic tax number | A gap, not a difference: the card is badged **Info**, the row is not amber, and **Take over** writes the register's value onto the partner. |
 | Both of the above, and the last two digits of the tax number changed | One card, **It looks like the company has moved**, with **Take over both**. When a company moves its seat to another county, the last two digits of its tax number (the tax office code) change with it. |
 | The register lists accounts you do not hold | One card for all of them, with **Add all**, or **Add** on a single row. |
 | The company is no longer active, for example under liquidation | A warning only. **Noted** hides the card. |
 | An account you hold is not listed for this company, or belongs to no known bank branch | **Go to bank accounts** to check it there. |
-| The name differs | Shown in the table only. The partner is never renamed from the register. |
+| The name differs | **Take over** writes the register's legal name as the partner's name. The name never changes on its own. |
+
+A row says **Matches** only when the check has run and both sides hold a value. Where the register knows something and your field is empty, the row says **Missing here**, or offers **Take over**.
 
 **An account you add stays unconfirmed.** It is marked "added from the company register" on the partner's bank accounts, and it can only go into a payment file after someone with "Manage approvals" confirms it, the same as any other account. See [Paying Approved Invoices](/paying-approved-invoices).
 
@@ -69,6 +72,8 @@ Every take over, add and leave as is appears on the partner's history.
 ## What the Register Fills In
 
 When the register knows something you do not, exactly four things are filled in, and only while they are empty: the **address**, the **country**, the full **tax number** where you already hold its first eight digits, and the **VAT group identifier**. The register never writes the name or the bank accounts on its own. An account it lists reaches the partner only when a person adds it, as described above. Nothing at all is filled in for a sole trader.
+
+Each field is filled once. If you empty it later, it is not written again on its own: the section shows it as a gap, and **Take over** brings it back whenever you want.
 
 ## Accounts Confirmed Automatically
 
