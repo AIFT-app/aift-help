@@ -20,7 +20,7 @@ Bei einem Partner, für den kein Bankkonto hinterlegt ist, zeigt der Abschnitt s
 - **Auf einer Lieferantenrechnung**, auf ihrem Reiter **Zuordnung & Zahlung**, in den Zahlungsangaben unter **Konto des Lieferanten (Empfänger)**.
 - **Auf der Seite der Zahlungsdatei**, auf jeder infrage kommenden Position.
 - **Bei einem verifizierten Partner**, im Abschnitt **Firmenregister**: die offenen Entscheidungen, Ihre Daten und die des Registers nebeneinander unter **Abgleich mit dem Register**, was das Register ausgefüllt hat, und ein eingeklappter Block **Unternehmensdaten** mit Rechtsform, Handelsregisternummer, Haupttätigkeit und den Zahlen aus dem letzten eingereichten Jahresabschluss.
-- **Im Verifizierungsdialog**, wenn Sie aus einer Gegenpartei einen Partner machen: Kennt das Register das Unternehmen, werden sein Firmenname, seine Steuernummer, sein Sitz und seine Haupttätigkeit angeboten, und **Diese Daten übernehmen** füllt sie aus.
+- **Im Verifizierungsdialog**, wenn Sie aus einer Gegenpartei einen Partner machen: Kennt das Register das Unternehmen, werden sein Firmenname, seine Steuernummer, sein Sitz und seine Haupttätigkeit angeboten, und **Diese Daten übernehmen** füllt sie aus. Kennen wir aus der Rechnung nur die ersten acht Ziffern der Steuernummer und beginnt die vollständige Nummer im Register damit, wird das Feld Steuernummer von selbst um die vollständige inländische Nummer ergänzt; eine Zeile unter dem Feld weist darauf hin, und Sie können sie überschreiben.
 
 ## Was eine Prüfung auslöst
 
@@ -54,11 +54,14 @@ Ein Partner, dessen Sitz und Steuernummer sich beide geändert haben, und ein Ko
 | --- | --- |
 | Die Steuernummer weicht ab | **Übernehmen** schreibt die Steuernummer aus dem Register in den Partner. Nur die letzten drei Ziffern können abweichen, weil über die ersten acht geprüft wird. |
 | Der Sitz weicht ab (die Postleitzahl, weil Freitextadressen zu unterschiedlich sind, um sie ehrlich zu vergleichen) | **Übernehmen** schreibt den Sitz aus dem Register in den Partner. |
+| Bei Ihnen fehlt der Sitz, oder Sie haben nur die USt-IdNr., und das Register führt den Sitz beziehungsweise die vollständige inländische Steuernummer | Eine Lücke, keine Abweichung: Die Karte ist mit **Info** gekennzeichnet, die Zeile ist nicht bernsteinfarben, und **Übernehmen** schreibt den Wert aus dem Register in den Partner. |
 | Beides, und die letzten beiden Ziffern der Steuernummer haben sich geändert | Eine Karte, **Das Unternehmen scheint umgezogen zu sein**, mit **Beides übernehmen**. Verlegt ein Unternehmen seinen Sitz in ein anderes Komitat, ändern sich auch die letzten beiden Ziffern seiner Steuernummer (der Code des Finanzamts). |
 | Das Register führt Konten, die Sie nicht haben | Eine Karte für alle, mit **Alle … hinzufügen**, oder **Hinzufügen** in einer einzelnen Zeile. |
 | Das Unternehmen ist nicht mehr aktiv, zum Beispiel in Liquidation | Nur ein Hinweis. **Zur Kenntnis genommen** blendet die Karte aus. |
 | Ein Konto, das Sie führen, ist für dieses Unternehmen nicht eingetragen oder gehört zu keiner bekannten Bankfiliale | Mit **Zu den Bankkonten** prüfen Sie es dort. |
-| Der Name weicht ab | Nur in der Tabelle. Der Partner wird nie aus dem Register umbenannt. |
+| Der Name weicht ab | **Übernehmen** schreibt den Firmennamen aus dem Register als Namen des Partners. Von selbst ändert sich der Name nie. |
+
+In einer Zeile steht nur dann **Stimmt überein**, wenn die Prüfung gelaufen ist und beide Seiten einen Wert haben. Wo das Register etwas weiß und Ihr Feld leer ist, steht **Fehlt bei uns**, oder die Zeile bietet **Übernehmen** an.
 
 **Ein hinzugefügtes Konto bleibt unbestätigt.** Es ist bei den Bankkonten des Partners als „aus dem Firmenregister übernommen“ gekennzeichnet und kann erst in eine Zahlungsdatei, wenn jemand mit „Freigaben verwalten“ es bestätigt hat, wie jedes andere Konto. Siehe [Freigegebene Rechnungen bezahlen](/paying-approved-invoices).
 
@@ -69,6 +72,8 @@ Jedes Übernehmen, Hinzufügen und So lassen erscheint im Verlauf des Partners.
 ## Was das Register ausfüllt
 
 Weiß das Register etwas, das Ihnen fehlt, werden genau vier Dinge ausgefüllt, und nur solange sie leer sind: die **Adresse**, das **Land**, die vollständige **Steuernummer**, wenn Sie deren erste acht Ziffern bereits haben, und die **Nummer der Organschaft**. Den Namen und die Bankkonten schreibt das Register nie von selbst. Ein Konto, das es führt, kommt nur zum Partner, wenn jemand es hinzufügt, wie oben beschrieben. Bei einem Einzelunternehmer wird überhaupt nichts ausgefüllt.
+
+Jedes Feld wird einmal ausgefüllt. Leeren Sie es später, wird es nicht von selbst erneut geschrieben: Der Abschnitt zeigt es als Lücke, und mit **Übernehmen** holen Sie es jederzeit zurück.
 
 ## Automatisch bestätigte Konten
 
