@@ -1,0 +1,101 @@
+# A Company That Deducts No VAT
+
+Some companies may not deduct the VAT on anything they buy. The usual case is a holding company that does holding activity only: it receives invoices with VAT like everyone else, and the VAT is part of its cost. AI Finance Team stores this as a setting of the **company**, never of the workspace. In a workspace with several companies, only the one you mark is affected.
+
+It is not the [small business VAT exemption](/small-business-exemption). An exempt company also issues its own invoices without VAT. A company that deducts no VAT invoices as usual, so the switch described here changes purchases only.
+
+## What the Switch Does
+
+While it is in force on an invoice's VAT date:
+
+- **Every purchase line of the company** gets the **Product / Service** VAT group **Company not entitled to deduct VAT**, whatever was bought. The group is 100% non-deductible, so the line is booked with its gross amount as the cost and with no VAT to reclaim.
+- **Sales are untouched.** So is every other company of the workspace, also when it buys the same thing from the same supplier.
+- **What a person set stays.** A line whose group or VAT code somebody chose by hand keeps it.
+
+The group is a system element. The app creates it the first time the switch is saved on, its code cannot be changed, its percentage is always 100%, and it is not offered when you pick a group on a line or on a partner. The AI never picks it either. It comes from the switch.
+
+## Switching It On
+
+1. Open **Master data → Companies**, pick the company and go to the **Tax & VAT** tab.
+2. Under VAT settings tick **Not entitled to deduct VAT**. Two date fields appear, **Start** and **End**. Both are optional: an empty start means "from the beginning". Whether an invoice falls under the setting is decided invoice by invoice, by its VAT date. If you change a VAT date by hand, the new date decides.
+3. Save.
+
+The switch and the small business exemption cannot hold on the same day, because an exempt company deducts no VAT as it is. One period after the other is fine.
+
+Changing the switch needs the permission "Edit master data". Applying it to existing invoices needs "Edit invoices", which is a different permission. See [Roles and Permissions](/roles-and-permissions).
+
+**Saving changes no invoice line.** From that moment new invoices follow the setting by themselves, and so does every line that is resolved again. Invoices already in the workspace change only when you apply the setting, after a preview.
+
+## The VAT Codes It Needs
+
+A VAT code is the match of five elements. The switch fixes one of them, the Product / Service group. The rate and the partner VAT group still come from the invoice. So the company needs one VAT code on the reserved group **for each rate and each domestic partner group its suppliers have**: Domestic, Cash-method partner and Small-business-exempt supplier. The direction is purchase, the calculation method is Normal.
+
+You do not have to work the list out. After you save, a panel under the form lists the combinations that lines need and no code carries, each with a **Create VAT code** button that opens the VAT code form already filled in. The preview described below shows the same list for the invoices it would change. Give each code the accounting-system code of your non-deductible treatment.
+
+Until a combination has its code, its lines stay without a VAT code and show on the **VAT codes incomplete** to-do. The moment you create the code they get it, with no re-run.
+
+A supplier that moves to cash accounting needs the code under that partner group. The code under Domestic is not used for it.
+
+## Invoices Already in the Workspace
+
+On the Tax & VAT tab press **Apply to existing invoices**.
+
+1. Pick the period. These dates choose the invoices by VAT date. They do not change the setting's period, even though they are pre-filled from it.
+2. Click **1. Preview**. Nothing changes yet. The preview says how many lines change, which combinations have no VAT code yet, how many foreign or reverse-charge purchase lines will wait for you, how many lines a person set by hand, how many changing lines are on invoices approved for bookkeeping, and which invoices are already in Business Central.
+3. Click **2. Apply**, which becomes available only after a preview.
+
+Two things to know before you apply:
+
+- **An approved invoice whose line changes waits for bookkeeping approval again**, as after any edit of an approved invoice. The preview says how many.
+- **AI Finance Team never edits what it has sent to Business Central.** The lines are re-coded here, and the document in Business Central keeps its posting until someone corrects it there. The preview's list is that work list.
+
+A single run covers at most **2000 invoices**. A longer history has to be done in several periods.
+
+The company's costs rise in the reports on the day you apply: the VAT that was shown as reclaimable is now part of the cost. That is the correct figure, and worth a sentence to your client.
+
+## Foreign and Reverse-Charge Purchases
+
+On a reverse-charge purchase (domestic reverse charge, goods or a service from another member state, a service from a third country) the supplier charges no VAT and the buyer owes it. A company that deducts has a payable half and a deductible half, and they cancel. This company has the payable half only, and it is a cost.
+
+AI Finance Team never codes such a line by itself. The line gets the reserved group and **no VAT code**, also when a code for its combination exists. It shows on the **VAT codes incomplete** to-do, and the line itself says why it waits: *The company has to pay the VAT on this purchase itself and cannot deduct it.* A line counts as such when the supplier's partner VAT group is not one of the three domestic ones, or when the line's calculation method is not Normal.
+
+To code it:
+
+1. On the **Lines & VAT** tab put the line on a Product / Service group of your own that stands for "reverse charge, not deductible": 100% non-deductible, with reverse-charge VAT codes whose accounting-system code is the payable-only treatment.
+2. The VAT code then resolves from the line's elements in the ordinary way. The line is marked **Manual** and keeps your choice through every re-run.
+
+Create that group and its codes before the first such invoice arrives, so the line has somewhere to go.
+
+## The To-Do That Guards the Setting
+
+**Not entitled to deduct: deductible line** appears on an invoice when a purchase line of such a company is still deductible: because the setting was saved and not applied yet, or because someone put the line on a deductible group or typed a percentage below 100. It blocks nothing and clears when the line is non-deductible again.
+
+## Business Central
+
+- **Ordinary purchases go up gross.** A line on the reserved group is sent with net plus VAT as its amount, on **one** Business Central VAT group that carries 0%. Business Central then posts the whole amount to the G/L account of the line. Map the group once, on the **Business Central** tab under **Master data → VAT codes**: its row reads **Every rate**. AI Finance Team cannot see the percentage of a Business Central group, so make sure the one you pick is 0%. Any other would add VAT on top of the gross. Check the first invoice in a sandbox.
+- **Quantity and unit are kept.** Three pieces at 1,000 at 27% go up as three pieces at 1,270. Where the recalculated unit cost would miss the gross by a cent, the line goes up as 1 × gross.
+- **An invoice is not sent** while a line on the reserved group has no mapping, or still waits for its VAT code. The readiness screen names both.
+- **Reverse-charge lines go up net**, on the mapping of the group you put them on by hand. Business Central computes the VAT it owes from its own posting setup, which has to be reverse charge with 100% non-deductible for that pair. Try one invoice in a sandbox before the first real one.
+
+Business Central therefore keeps no VAT record of the company's ordinary purchases, and the unit cost on their lines includes the VAT.
+
+## RLB, Hessyn and the Universal Export
+
+They treat a line on the reserved group as any 100% non-deductible line: the whole VAT is cost and none is reclaimable. How that is written into each file follows the workspace's VAT export setting. See [VAT in Exports](/vat-in-exports).
+
+One gap remains. For a **reverse-charge purchase line that is not deductible**, the RLB file does not carry the VAT the company owes, and AI Finance Team's own reports show the net as the cost. The RLB page's **Fix before export** panel lists such lines so none leaves unseen. The export is not blocked, and there is nothing to fix in AI Finance Team: check those entries in RLB.
+
+## Ending It
+
+Set **End** to the last day and save. Later invoices are treated as ordinary, earlier ones keep their treatment. Then run **Apply to existing invoices** for the period after it, if invoices from that period are already loaded. Their lines lose the reserved group and are classified again by **Re-run VAT coding**.
+
+Do not untick the switch instead, unless it should never have been on. Unticking clears both dates, so the company reads as if it had always deducted, and the next apply takes every line off the group.
+
+## Related Articles
+
+- [Small Business VAT Exemption](/small-business-exemption): the other company-level VAT setting, and how the two differ.
+- [Companies](/master-data-entities): the Tax & VAT tab.
+- [VAT Master Data](/vat-master-data): the five elements, system elements and the non-deductible percentage of a group.
+- [VAT Codes on Invoices](/vat-codes-on-invoices): correcting the elements on a line.
+- [VAT in Exports](/vat-in-exports): how the booking amounts reach the accounting software.
+- [Business Central](/business-central): the VAT mapping and the readiness screen.
