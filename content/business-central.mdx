@@ -196,6 +196,12 @@ Only expense invoices are considered, and never a duplicate or an archived one. 
 
 Every send is recorded on the invoice as a handover. Where the workspace's accounting software is Business Central (see [Ledger](/ledger)), a sent invoice reads **Handed over**, and one changed afterwards **Changed after the handover**. Business Central does not tell AI Finance Team when a draft is posted; when **Send again to Business Central** finds it posted, the invoice reads **Confirmed**, with Business Central's status on its **Approvals** card.
 
+### VAT Posting Setup in Business Central
+
+Check one setting in every paired Business Central company before the first send. When an invoice line arrives, Business Central first works out the VAT product posting group itself, from the default on the line's ledger account, and looks it up in its VAT Posting Setup together with the vendor's VAT business posting group. Only then does it take the tax group code AI Finance Team sends on the line (the one from your VAT Mapping). A ledger account with no default counts as an empty VAT product posting group. If the VAT Posting Setup has no row for the vendor's VAT business posting group with an empty product group, Business Central refuses the line, even though the line carries a tax group code. The header is already up by then, so a draft without its lines is left behind (see below).
+
+What prevents it: in the VAT Posting Setup, add a row for each VAT business posting group with the VAT product posting group left empty, and set the row to **Blocked**. Business Central accepts the line although the row is blocked, and the tax group code from AI Finance Team replaces the empty group on it. The block is there so that nothing is posted on the empty pair itself. The other way is to give every ledger account that invoices go to a default VAT product posting group whose pair exists in the setup. Which one suits your books is for your accountant or your Business Central partner to decide.
+
 ### What to know before you press Send
 
 - **At most 200 invoices go per press.**
@@ -212,6 +218,8 @@ Every send is recorded on the invoice as a handover. Where the workspace's accou
 Each invoice is checked again at the moment it is sent, with the permissions of the person who pressed **Send**. An invoice that became blocked while it waited is not sent, and its row names what blocks it.
 
 **"We do not know" is the one that matters.** It means the request went and the answer did not come back. Do not create the invoice again by hand: Business Central does **not** refuse a second purchase invoice carrying the same supplier invoice number, so a second one leaves two drafts for one invoice. AI Finance Team does not send it again either until it is resolved. Use **Resolve interrupted sends** under **Troubleshooting**, which asks Business Central what actually happened and sends nothing.
+
+**A draft that went up without its lines is not counted as sent.** Business Central takes an invoice in two steps, the header first and then each line. It can accept the header and refuse a line, for example when its VAT Posting Setup has no row for the line's VAT groups (see VAT Posting Setup in Business Central above). That leaves a draft carrying the supplier's invoice number with fewer lines than the invoice, often none. **Resolve interrupted sends** counts the lines of the unposted draft it finds. When lines are missing, the row is red: it names the draft's number, says how many of the invoice's lines are on it, and shows Business Central's own refusal. The invoice stays pending and nothing is deleted. To finish, correct in Business Central what it refused, delete the draft (by hand in Business Central, or with **Look for drafts left behind** and then **Delete from Business Central**), press **Resolve interrupted sends** again, and send the invoice again. A posted document always counts as sent, whatever its lines. A draft you completed by hand in Business Central with fewer lines than the invoice shows the same red row until you post it.
 
 An invoice already up there leaves the sendable count, and the screen says how many of your selection are already in Business Central.
 
@@ -238,7 +246,7 @@ Seven buttons sit under the list, in the **Troubleshooting** section, in two gro
 - **What BC holds about customers and outgoing invoices** reads the customer cards and where each outgoing invoice stands in Business Central, and writes nothing.
 - **Numbering trial (made-up invoice)** creates one made-up purchase invoice draft numbered AIFT-TESZT-…, clears its posting number series, adds a line and deletes it again. It shows whether this Business Central accepts our own number as the invoice number (see The AIFT Id as the Invoice Number below). It asks for confirmation first.
 - **Bank journal probe (made-up lines)** creates a journal batch named AIFTSZONDA and writes four made-up lines of 1 into it (two G/L lines, a supplier payment and a customer receipt applied to an open invoice), reads each one back, then deletes the lines and the batch. Nothing is posted. It asks for confirmation first.
-- **Resolve interrupted sends** asks what happened to a send whose answer was lost. It neither sends nor deletes.
+- **Resolve interrupted sends** asks what happened to a send whose answer was lost. It neither sends nor deletes. A draft it finds without all of its lines is shown in red and is not recorded as sent.
 - **Look for drafts left behind** finds drafts we recorded but never linked. Deleting them is a separate, red **Delete from Business Central** button: the check and the delete are two steps on purpose.
 
 ## Sending Bank Lines

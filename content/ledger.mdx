@@ -94,15 +94,16 @@ The file is named for the period you exported.
 
 ## Other exports
 
-**Exports** holds three more pages beside the Ledger. Each one is for a single accounting program:
+**Exports** holds four more pages beside the Ledger. Each one is for a single accounting program:
 
 | Page | What it sends | To |
 |---|---|---|
 | **RLB** | sales and purchase invoices and bank movements, in one CSV file | the office's RLB-60 |
 | **HessynKettős** | outgoing sales invoices only, in one CSV file | HessynKettős, through its Számlázz.hu import |
 | **Business Central** | expense invoices as drafts and bank lines as unposted journal lines, written straight in | the client's Business Central |
+| **Profit** | customer and supplier invoices and bank movements, as DBF files in one ZIP | the office's Eurosoft PROFIT, through EDI receive |
 
-All three need the same **"Run exports"** permission as the Ledger, and client-side users never see them. The two files are in Hungarian whatever your interface language, because the programs that read them expect it. Business Central appears only once it is connected, and has its own article: [Business Central](/business-central).
+All four need the same **"Run exports"** permission as the Ledger, and client-side users never see them. The files are in Hungarian whatever your interface language, because the programs that read them expect it. Business Central appears only once it is connected, and has its own article: [Business Central](/business-central).
 
 ### The accounting software and the handover
 
@@ -137,6 +138,8 @@ How the rows are booked:
 **Nothing is skipped because it was exported before.** Export the same period twice and the same rows come out twice, so keep track of what the office has already imported; **Recent exports** helps. Invoices RLB already receives straight from NAV can be left out: under **More filters**, set **NAV / OSA invoices** to **Exclude**. Bank lines that pay them still refer to them.
 
 **Import the same file into RLB twice, one run after the other.** The first run books the invoices, the second books the bank lines that settle them: RLB can only book a settlement against an invoice that is already booked. The second run skips the invoices it already booked. This is how RLB works, and RLB's support recommends it.
+
+**Cash invoices go into the file with the payment method „készpénz” (cash)**, all others with „átutalás” (transfer). If you tick **Kp.-s számlák autom. kiegyenlítése** when importing and enter the cash desk GL account next to it (for example 3811), RLB settles the cash invoices against the cash desk straight away. Purchase tickets paid in cash need this to appear in the producers' 08 return, because RLB only takes paid tickets into it.
 
 #### Producers
 
@@ -203,6 +206,38 @@ Some invoices are left out, and the page says how many after each export:
 - **corrective (helyesbítő) invoices**: book these by hand in HessynKettős.
 
 A line whose category has no **Code** still goes in, and HessynKettős books it to the journal's default account; the page counts those too. Duplicates and rejected invoices never go in. Every invoice in the file gets an entry in its **History**, but nothing stops you exporting it again. One export takes at most 50,000 invoices.
+
+### Eurosoft Profit
+
+The **Profit** page hands customer and supplier invoices and bank movements to Eurosoft PROFIT in its **EDI receive** format: three DBF files (four with invoice lines) in one ZIP, named `profit_<from>_<to>.zip`. Profit refuses the whole file when a single item is wrong, so the page checks first, and the **Generate file** button stays off while anything blocks.
+
+Three collapsed cards hold the settings:
+
+1. **Profit settings**: the customer invoice journal (starts with K, for example KB), the supplier invoice journal (starts with E, for example EB), the fiscal year, the own bank account, the card payment code and the invoice lines switch.
+2. **Set up GL accounts**: customer, supplier, output VAT and input VAT, by default 311, 4541, 467 and 466. These are Profit's own numbers and do not touch the RLB settings.
+3. **Bank accounts**: for each bank account, the Profit bank journal code (starts with B, for example BA) and the account's GL number, by default 3841. Every bank account needs its own journal, because Profit allows no currency change inside a journal. Without a journal the account's movements cannot be exported.
+
+On the **Generate export** card:
+
+- **Invoices / Bank / Both**: what goes in the file. Once a bank account has a journal, **Both** is the default.
+- **New / Exported / All**: the file carries exactly the items of the chosen state, with their count beside each button. **New**, what was never in Profit, is selected at first.
+- The **Items** table shows, row by row, what goes in the file: **New**, or **Exported** with its date. **Left out** and **Blocked** mark a row that cannot go in.
+- The **What blocks the rest** list names the problems; **Fix it here** opens the invoice, the bank movement or the setting where it is fixed.
+
+Hand an exported item over again only after deleting it in Profit. For an invoice, Profit refuses the whole file ("Saját szám már van a rendszerben"). For a bank movement it does not refuse it, it books it a second time, so the page warns about this separately.
+
+This is how bank movements reach Profit: each one is an item in its bank account's journal, its own number is the movement's short id (for example `T26-0154`), and the main row is the bank account's GL number. The contra account:
+
+| The bank movement | Contra account |
+|---|---|
+| Matched to an invoice | Customer or supplier, referencing the invoice's Profit own number, so Profit settles the invoice |
+| Matched to several invoices | One row per invoice, the remainder to the partner |
+| "No invoice needed" | The category's **Code** |
+| Unmatched | Customer or supplier by the money's direction, to the partner, without an invoice |
+
+Some invoices are left out and counted: EU purchases, reverse-charge invoices and services bought from outside the EU (Profit's description has no movement code for them), and corrective invoices, which you book by hand.
+
+In Profit: copy the package's files into the Profit program folder, open a customer invoice journal, and start **Eszközök / EDI fogadása**. Profit shows the items in a table before it books them.
 
 ## Tips
 

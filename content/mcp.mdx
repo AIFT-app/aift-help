@@ -49,6 +49,10 @@ The connection sits on the same data and the same permissions you already have. 
 
 > "Undo the categorisation on AH-TXN-2026-0042."
 
+> "Close the payment of AH-INV-2026-0451: the delivery platform deducted it from payout AH-TXN-2026-0933."
+
+> "Set the cost centre on line 2 of AH-INV-2026-0314 to Central."
+
 Categorising and editing invoices are **accountant-only**, whichever scope you granted.
 
 ## What It Cannot Do
@@ -125,7 +129,7 @@ The consent screen has two tick boxes.
 | Scope | What it allows |
 |---|---|
 | **Read your books** | Every read tool: your workspaces, the workspace search (the same as the app's ⌘K / Ctrl+K search), the ledger, invoices and transactions, master data, reports, missing invoices, the NAV list, problem invoices, comments, the workspace's and the firm's member list, and your own MCP activity. |
-| **Make changes** | Mark and unmark "no invoice needed", categorise invoices and transactions, confirm and undo matches, edit an invoice's direction, partner or company, and link or verify a partner. |
+| **Make changes** | Mark and unmark "no invoice needed", categorise invoices and transactions, confirm and undo matches, edit an invoice's direction, partner or company, link or verify a partner, close an invoice's payment with a reason or reopen it, and set custom category values. |
 
 **Always tick Read**, even when you want the assistant to make changes: a write-only connection is possible and useless, because every question fails.
 
@@ -175,6 +179,7 @@ You can ask the assistant what it has done: "What have I done through MCP in the
 - **Use the visible identifiers.** Invoice numbers like `AH-INV-2026-0042` and transaction numbers like `AH-TXN-2026-0157` are shown in the app and the assistant can resolve them directly.
 - **Follow the links it gives you.** Invoices and transactions come back with a link straight into the app. Other records do not; ask the assistant to fetch the invoice or the transaction, and you get one.
 - **One person, one connection.** A connector is tied to your account. Each colleague sets up their own, and every action is stamped with who performed it.
+- **A custom skill for one client.** For a recurring month-end task of one client, AI Finance Team can build a skill that runs in your Claude next to this connection. See [Custom Claude skills](/claude-skills).
 
 ## Common Questions
 

@@ -94,15 +94,16 @@ A fájl neve az exportált időszakra utal.
 
 ## További exportok
 
-Az **Exportok** menüben a Főkönyv mellett még három oldal van. Mindegyik egyetlen könyvelőprogramnak szól:
+Az **Exportok** menüben a Főkönyv mellett még négy oldal van. Mindegyik egyetlen könyvelőprogramnak szól:
 
 | Oldal | Mit küld | Hová |
 |---|---|---|
 | **RLB** | kimenő és bejövő számlákat és banki mozgásokat, egy CSV fájlban | az iroda RLB-60 programjába |
 | **HessynKettős** | csak a kimenő számlákat, egy CSV fájlban | a HessynKettősbe, a Számlázz.hu importján át |
 | **Business Central** | a bejövő számlákat piszkozatként, a banki tételeket könyveletlen naplósorként, közvetlenül beírva | az ügyfél Business Centraljába |
+| **Profit** | kimenő és bejövő számlákat és banki tételeket, DBF fájlokban egy ZIP csomagban | az iroda Eurosoft PROFIT programjába, az EDI fogadásán át |
 
-Mindháromhoz ugyanaz a **„Könyvelési exportok futtatása”** jogosultság kell, mint a Főkönyvhöz, és az ügyféloldali felhasználók nem látják őket. A két fájl a felület nyelvétől függetlenül magyar, mert az őket beolvasó programok ezt várják. A Business Central csak a csatlakoztatása után jelenik meg, és saját cikke van: [Business Central](/business-central).
+Mind a négyhez ugyanaz a **„Könyvelési exportok futtatása”** jogosultság kell, mint a Főkönyvhöz, és az ügyféloldali felhasználók nem látják őket. A fájlok a felület nyelvétől függetlenül magyar, mert az őket beolvasó programok ezt várják. A Business Central csak a csatlakoztatása után jelenik meg, és saját cikke van: [Business Central](/business-central).
 
 ### A könyvelőprogram és az átadás
 
@@ -137,6 +138,8 @@ Hogyan könyvelődnek a sorok:
 **Semmi sem marad ki azért, mert korábban már exportálták.** Ha ugyanazt az időszakot kétszer exportálja, ugyanazok a sorok kétszer jönnek ki, ezért tartsa számon, mit olvasott már be az iroda; ebben a **Legutóbbi exportok** segít. Azok a számlák, amelyeket az RLB közvetlenül a NAV-tól kap meg, kihagyhatók: a **További szűrők** alatt állítsa a **NAV / OSA számlák** szűrőt **Kihagyás** értékre. Az őket kiegyenlítő banki sorok továbbra is hivatkoznak rájuk.
 
 **Ugyanazt a fájlt kétszer kell beolvasni az RLB-be, egymás után.** Az első beolvasás lekönyveli a számlákat, a második a banki sorokat, amelyek ezeket a számlákat kiegyenlítik: az RLB csak már lekönyvelt számlához tud kiegyenlítést könyvelni. A második beolvasás a már lekönyvelt számlákat kihagyja. Ez az RLB rendes működése, az RLB ügyfélszolgálata is így javasolja.
+
+**A készpénzes számlák „készpénz” fizetési móddal kerülnek a fájlba**, a többi „átutalás” fizetési móddal. Ha beolvasáskor bejelöli a **Kp.-s számlák autom. kiegyenlítése** mezőt, és mellette megadja a pénztár főkönyvi számát (például 3811), az RLB a készpénzes számlákat rögtön ki is egyenlíti a pénztárral szemben. Erre van szükség például ahhoz, hogy a készpénzben kifizetett felvásárlási jegyek bekerüljenek az őstermelői 08-as bevallásba, mert az RLB oda csak a kifizetett jegyeket veszi fel.
 
 #### Őstermelők
 
@@ -203,6 +206,38 @@ Néhány számla kimarad, és az oldal minden export után megmondja, hány:
 - **a helyesbítő számlák**: ezeket kézzel könyvelje a HessynKettősben.
 
 Az a tételsor, amelynek kategóriájának nincs **Kódja**, bekerül, és a HessynKettős a napló alapértelmezett számlájára könyveli; ezeket is megszámolja az oldal. Duplikátum és elutasított számla soha nem kerül bele. A fájlba került minden számla előzményeiben megjelenik egy bejegyzés, de semmi nem akadályozza meg, hogy újra exportálja. Egy export legfeljebb 50 000 számlát vesz fel.
+
+### Eurosoft Profit
+
+A **Profit** oldal a kimenő és bejövő számlákat, valamint a banki tételeket az Eurosoft PROFIT **EDI fogadása** formájában adja át: három DBF fájl (a számlasorokkal négy) egy ZIP csomagban, `profit_<tól>_<ig>.zip` néven. A Profit az egész fájlt visszautasítja, ha egyetlen tétel hibás, ezért az oldal előbb ellenőriz, és amíg valami akadályoz, a **Fájl előállítása** gomb nem nyomható.
+
+Három csukott kártya tartja a beállításokat:
+
+1. **Profit beállítások**: a kimenő számlák naplója (K betűvel kezdődik, például KB), a bejövő számláké (E betűvel, például EB), a gazdasági év, a saját bankszámla, a kártyás fizetés kódja és a számlasorok kapcsolója.
+2. **Főkönyvi számok beállítása**: vevő, szállító, fizetendő áfa és előzetes áfa, kezdetben 311, 4541, 467 és 466. Ezek a Profit saját számai, az RLB beállításait nem érintik.
+3. **Bankszámlák**: bankszámlánként a Profit banknapló kódja (B betűvel kezdődik, például BA) és a bankszámla főkönyvi száma, kezdetben 3841. Minden bankszámlának saját napló kell, mert a Profit egy naplón belül nem enged devizaváltást. Napló nélkül a bankszámla tételei nem exportálhatók.
+
+Az **Export készítése** kártyán:
+
+- **Számlák / Bank / Mindkettő**: mi kerüljön a fájlba. Ha legalább egy bankszámlának van naplója, a **Mindkettő** az alapértelmezett.
+- **Új / Exportálva / Mind**: a fájlba pontosan a kiválasztott állapot tételei kerülnek, a gomb mellett a darabszámukkal. Kezdetben az **Új** van kiválasztva, vagyis ami még nem volt a Profitban.
+- A **Tételek** táblázat soronként mutatja, mi kerül a fájlba: **Új**, vagy **Exportálva** a dátummal. A **Kimarad** és az **Akadály** jelzi, ha egy sor mégsem kerülhet bele.
+- A **Mi akadályozza a többit** lista a hibákat sorolja fel, a **Javítás itt** megnyitja a számlát, a banki tételt vagy a beállítást, ahol javítható.
+
+Már exportált tételt csak akkor adjon át újra, ha előbb törölte a Profitban. Számlánál a Profit az egész fájlt visszautasítja („Saját szám már van a rendszerben”). Banki tételnél nem utasítja vissza, hanem másodszor is lekönyveli; ezért az oldal ilyenkor külön figyelmeztet.
+
+A banki tételek így kerülnek a Profitba: minden banki tétel egy tétel a bankszámla naplójában, saját száma a tétel rövid azonosítója (például `T26-0154`), a fősor a bankszámla főkönyvi száma. Az ellenszámla:
+
+| A banki tétel | Ellenszámla |
+|---|---|
+| Számlára párosítva | A vevő vagy a szállító, hivatkozással a számla Profit saját számára, így a Profit kiegyenlíti a számlát |
+| Több számlára párosítva | Számlánként egy sor, a maradék a partnerhez |
+| „Nem kell hozzá számla” | A kategória **Kódja** |
+| Párosítatlan | A vevő vagy a szállító a pénz iránya szerint, a partnerhez, számla nélkül |
+
+Néhány számla kimarad, és az oldal megszámolja: a közösségi beszerzés, a fordított adózású számla és a harmadik országból vett szolgáltatás (ezekre a Profit leírásában nincs mozgáskód), valamint a helyesbítő számla, amelyet kézzel könyveljen.
+
+A Profitban: másolja a csomag fájljait a Profit programmappájába, nyisson meg egy kimenő naplót, és indítsa az **Eszközök / EDI fogadása** menüpontot. A Profit fogadás előtt táblázatban mutatja a tételeket.
 
 ## Tippek
 

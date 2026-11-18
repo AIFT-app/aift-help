@@ -94,15 +94,16 @@ Die Datei ist nach dem exportierten Zeitraum benannt.
 
 ## Weitere Exporte
 
-Unter **Exporte** liegen neben dem Hauptbuch drei weitere Seiten. Jede ist für ein bestimmtes Buchhaltungsprogramm:
+Unter **Exporte** liegen neben dem Hauptbuch vier weitere Seiten. Jede ist für ein bestimmtes Buchhaltungsprogramm:
 
 | Seite | Was sie sendet | Wohin |
 |---|---|---|
 | **RLB** | Ausgangs- und Eingangsrechnungen und Bankbewegungen, in einer CSV-Datei | in das RLB-60 des Büros |
 | **HessynKettős** | nur ausgehende Rechnungen, in einer CSV-Datei | in HessynKettős, über dessen Számlázz.hu-Import |
 | **Business Central** | Eingangsrechnungen als Entwürfe und Bankzeilen als ungebuchte Erfassungszeilen, direkt geschrieben | in das Business Central des Mandanten |
+| **Profit** | Ausgangs- und Eingangsrechnungen sowie Bankbewegungen, als DBF-Dateien in einer ZIP-Datei | in das Eurosoft PROFIT der Kanzlei, über den EDI-Empfang |
 
-Alle drei brauchen dieselbe Berechtigung **„Buchhaltungsexporte ausführen“** wie das Hauptbuch, und Benutzer auf Mandantenseite sehen sie nicht. Die beiden Dateien sind unabhängig von Ihrer Oberflächensprache ungarisch, weil die Programme, die sie einlesen, das erwarten. Business Central erscheint erst, wenn es verbunden ist, und hat einen eigenen Artikel: [Business Central](/business-central).
+Alle vier brauchen dieselbe Berechtigung **„Buchhaltungsexporte ausführen“** wie das Hauptbuch, und Benutzer auf Mandantenseite sehen sie nicht. Die Dateien sind unabhängig von Ihrer Oberflächensprache ungarisch, weil die Programme, die sie einlesen, das erwarten. Business Central erscheint erst, wenn es verbunden ist, und hat einen eigenen Artikel: [Business Central](/business-central).
 
 ### Die Buchhaltungssoftware und die Übergabe
 
@@ -137,6 +138,8 @@ Wie die Zeilen gebucht werden:
 **Nichts wird ausgelassen, weil es schon einmal exportiert wurde.** Exportieren Sie denselben Zeitraum zweimal, kommen dieselben Zeilen zweimal heraus; halten Sie also fest, was das Büro bereits eingelesen hat, **Letzte Exporte** hilft dabei. Rechnungen, die RLB direkt von der NAV erhält, lassen sich weglassen: Stellen Sie unter **Weitere Filter** den Filter **NAV- / OSA-Rechnungen** auf **Ausschließen**. Bankzeilen, die sie bezahlen, verweisen weiterhin auf sie.
 
 **Lesen Sie dieselbe Datei zweimal nacheinander in RLB ein.** Der erste Lauf bucht die Rechnungen, der zweite die Bankzeilen, die sie ausgleichen: RLB kann einen Ausgleich nur gegen eine bereits gebuchte Rechnung buchen. Der zweite Lauf überspringt die bereits gebuchten Rechnungen. So arbeitet RLB, und der RLB-Support empfiehlt es.
+
+**Barrechnungen kommen mit der Zahlungsart „készpénz” (bar) in die Datei**, alle anderen mit „átutalás” (Überweisung). Wenn Sie beim Einlesen **Kp.-s számlák autom. kiegyenlítése** ankreuzen und daneben das Hauptbuchkonto der Kasse angeben (zum Beispiel 3811), gleicht RLB die Barrechnungen sofort gegen die Kasse aus. Bar bezahlte Ankaufsbelege brauchen das, um in die 08-Erklärung der Erzeuger zu kommen, denn RLB nimmt dort nur bezahlte Belege auf.
 
 #### Erzeuger
 
@@ -203,6 +206,38 @@ Einige Rechnungen bleiben draußen, und die Seite sagt nach jedem Export, wie vi
 - **Korrekturrechnungen (helyesbítő)**: Buchen Sie diese von Hand in HessynKettős.
 
 Eine Position, deren Kategorie keinen **Code** hat, kommt trotzdem hinein, und HessynKettős bucht sie auf das Standardkonto des Journals; auch diese zählt die Seite. Duplikate und abgelehnte Rechnungen kommen nie hinein. Jede Rechnung in der Datei erhält einen Eintrag in ihrem Verlauf, aber nichts hindert Sie, sie erneut zu exportieren. Ein Export nimmt höchstens 50.000 Rechnungen auf.
+
+### Eurosoft Profit
+
+Die Seite **Profit** übergibt Ausgangs- und Eingangsrechnungen sowie Bankbewegungen im Format **EDI-Empfang** an Eurosoft PROFIT: drei DBF-Dateien (mit Rechnungszeilen vier) in einer ZIP-Datei namens `profit_<von>_<bis>.zip`. Profit lehnt die ganze Datei ab, wenn eine einzige Position fehlerhaft ist. Deshalb prüft die Seite zuerst, und die Schaltfläche **Datei erstellen** bleibt gesperrt, solange etwas blockiert.
+
+Drei eingeklappte Karten halten die Einstellungen:
+
+1. **Profit-Einstellungen**: das Journal für Ausgangsrechnungen (beginnt mit K, zum Beispiel KB), das für Eingangsrechnungen (beginnt mit E, zum Beispiel EB), das Geschäftsjahr, das eigene Bankkonto, der Code für Kartenzahlung und der Schalter für Rechnungszeilen.
+2. **Sachkonten einrichten**: Kunde, Lieferant, Umsatzsteuer und Vorsteuer, anfangs 311, 4541, 467 und 466. Das sind die eigenen Nummern von Profit; die RLB-Einstellungen bleiben unberührt.
+3. **Bankkonten**: pro Bankkonto der Profit-Bankjournalcode (beginnt mit B, zum Beispiel BA) und die Sachkontonummer des Kontos, anfangs 3841. Jedes Bankkonto braucht ein eigenes Journal, weil Profit innerhalb eines Journals keinen Währungswechsel erlaubt. Ohne Journal können die Bewegungen des Kontos nicht exportiert werden.
+
+Auf der Karte **Export erstellen**:
+
+- **Rechnungen / Bank / Beides**: was in die Datei kommt. Sobald ein Bankkonto ein Journal hat, ist **Beides** voreingestellt.
+- **Neu / Exportiert / Alle**: die Datei enthält genau die Positionen des gewählten Status, mit ihrer Anzahl neben jeder Schaltfläche. Anfangs ist **Neu** gewählt, also was noch nie in Profit war.
+- Die Tabelle **Positionen** zeigt Zeile für Zeile, was in die Datei kommt: **Neu** oder **Exportiert** mit Datum. **Ausgelassen** und **Blockiert** markieren eine Zeile, die nicht hineinkann.
+- Die Liste **Was die übrigen aufhält** nennt die Probleme; **Hier beheben** öffnet die Rechnung, die Bankbewegung oder die Einstellung, wo es behoben wird.
+
+Übergeben Sie eine exportierte Position nur erneut, nachdem Sie sie in Profit gelöscht haben. Bei einer Rechnung lehnt Profit die ganze Datei ab („Saját szám már van a rendszerben“). Eine Bankbewegung lehnt Profit nicht ab, sondern bucht sie ein zweites Mal; die Seite warnt darum gesondert.
+
+So kommen Bankbewegungen in Profit: jede ist eine Position im Journal ihres Bankkontos, ihre eigene Nummer ist die Kurzkennung der Bewegung (zum Beispiel `T26-0154`), und die Hauptzeile ist die Sachkontonummer des Bankkontos. Das Gegenkonto:
+
+| Die Bankbewegung | Gegenkonto |
+|---|---|
+| Einer Rechnung zugeordnet | Kunde oder Lieferant, mit Verweis auf die eigene Profit-Nummer der Rechnung, damit Profit die Rechnung ausgleicht |
+| Mehreren Rechnungen zugeordnet | Eine Zeile pro Rechnung, der Rest auf den Partner |
+| „Keine Rechnung nötig“ | Der **Code** der Kategorie |
+| Nicht zugeordnet | Kunde oder Lieferant nach Zahlungsrichtung, auf den Partner, ohne Rechnung |
+
+Einige Rechnungen werden ausgelassen und gezählt: innergemeinschaftliche Erwerbe, Rechnungen mit Steuerschuldumkehr und Dienstleistungen aus Drittländern (die Profit-Beschreibung hat dafür keinen Bewegungscode) sowie Korrekturrechnungen, die Sie von Hand buchen.
+
+In Profit: kopieren Sie die Dateien des Pakets in den Profit-Programmordner, öffnen Sie ein Journal für Ausgangsrechnungen und starten Sie **Eszközök / EDI fogadása**. Profit zeigt die Positionen vor dem Buchen in einer Tabelle.
 
 ## Tipps
 

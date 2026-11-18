@@ -68,7 +68,7 @@ A táblázat alatti sáv mutatja, hogy az időszak mekkora része kapott érték
 
 Két dolgot érdemes tudni, amíg a bontás be van kapcsolva:
 
-- **A sorra kattintva nem nyílik meg a részletező panel.** A lefúrás a bontás nélküli jelentésen működik; ha egy szám mögé szeretne nézni, kapcsolja ki a bontást.
+- **Bármelyik számra kattinthat.** Egy kategória oszlopában, a **Nincs hozzárendelve** vagy az **Egyéb** oszlopban, illetve az **Összesen** oszlopban kattintva a részletező panel pontosan azokat a tételeket mutatja, amelyekből az a szám összeáll, és a panel összege megegyezik a cellával. A **Nincs hozzárendelve** cella így teendőlista: ezek a tételek még nem kaptak értéket erről a listáról. Lásd: [Lefúrás](#lefúrás).
 - **Minden oszlopfejlécen van egy „csak ez” hivatkozás** (az **Egyéb** kivételével). Ez a teljes jelentést arra az egy kategóriára szűkíti, és megszünteti a bontást; éppen erre van szüksége, ha egy költséghelyet önmagában szeretne megnézni.
 
 ## Szűrés
@@ -90,9 +90,28 @@ Az arányt számoló sorok és a részletező panel a bázis pénznemben maradna
 Kattintson egy sorra, és az oldal jobb szélén, a jelentés fölött megnyílik a részletező panel. Alatta a jelentés megtartja a teljes szélességét:
 
 1. **Kategóriák**: a sor mögötti kategóriák, összegükkel és tételszámukkal. Kattintson egyre a kibontásához.
-2. **Tételek**: az egyes kategóriákon belüli számlatételek vagy banki tranzakciók, a legújabbal kezdve, dátummal, partnerrel, hivatkozással vagy számlaszámmal és összeggel. Számla típusú jelentésben a **PDF** az eredeti dokumentumot mutatja, a **→** pedig új lapon megnyitja a számlát.
+2. **Tételek**: az egyes kategóriákon belüli számlatételek vagy banki tranzakciók, a legújabbal kezdve, dátummal, partnerrel, hivatkozással vagy számlaszámmal és összeggel. Számla típusú jelentésben a **PDF** az eredeti dokumentumot mutatja, a **→** pedig új lapon megnyitja a számlát; pénzforgalom típusú jelentésben a **→** a banki tranzakciót nyitja meg.
+
+Kategóriánként a legújabb 500 tétel jelenik meg. Ha ennél több van, a lista alján egy sor jelzi, hány látszik; a kategória összege és tételszáma ilyenkor is minden tételt tartalmaz.
 
 Számított sornál a panel a képletet és az azt alkotó sorokat mutatja. A panelt a sorra újra kattintva, a panel × jelével vagy az Esc billentyűvel zárhatja be; az időszak módosításakor is bezárul. Az aktív szűrők a panelre is vonatkoznak.
+
+### Lefúrás bontott jelentésben
+
+Bontott jelentésben egy cellára kattintson. A panel címe a sort és az oszlopot is megnevezi, például **Élelmiszer, alapanyag · Nincs hozzárendelve**, és csak az adott cella tételeit mutatja. Számított sor cellájánál az azt alkotó sorok ugyanennek az oszlopnak a részét mutatják, a műveleti jellel együtt. Az **Összesen** és az **Egyéb** oszlopból nyitva minden tétel mellett látszik, milyen értéket kapott a listán.
+
+<ReportDrillDownFigure>
+Költséghely szerint bontott jelentés, a panel a Működési költségek sor **Nincs hozzárendelve** cellájából nyitva. A számok az alábbi lista pontjainak felelnek meg. A nevek és az összegek csak példák.
+</ReportDrillDownFigure>
+
+1. Egy sor **Nincs hozzárendelve** cellája: a sor azon tételei, amelyek még nem kaptak értéket a listán. Rákattintva az oldal jobb szélén megnyílik a panel.
+2. A panel címe megnevezi a sort és az oszlopot.
+3. Az **Érték beállítása**, csak számla típusú jelentésben. Alapértéke **a számla minden érték nélküli sorára**.
+4. A tétel alatti választó: itt adhatja meg a tétel értékét a listán.
+
+Ha jogosult a tétel szerkesztésére, a tétel alatti választóval értéket is adhat neki. Számla típusú jelentésben a panel tetején az **Érték beállítása** dönti el, hogy a választás **csak erre a sorra** vagy **a számla minden érték nélküli sorára** vonatkozik; ez utóbbi meglévő értéket soha nem ír felül. Egy tétel, amely így kikerül a cellából, azonnal eltűnik a listáról, a jelentés pedig a panel bezárásakor újrafut.
+
+Ha a panel összege eltér a cellától, mert időközben valaki vagy az AI értéket adott tételeknek, a panel ezt jelzi: **Az adatok közben változtak.** A **Frissítsd a riportot** újrafuttatja a jelentést, és a panel az új számokkal töltődik be.
 
 ## Keresés
 

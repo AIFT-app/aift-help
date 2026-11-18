@@ -26,13 +26,15 @@ import { ApprovalRulesFigure, RoutingLadderFigure } from './approval-setup'
 import { InvoiceLifecycleFigure, InvoiceListFigure } from './invoices'
 import { CompanyMatchFigure, CompanyRecognitionFigure } from './companies'
 import { TransactionTypeEditorFigure, TransactionTypeFlowFigure } from './transaction-types'
-import { ReportPageFigure, ReportStructureFigure } from './reports'
+import { ReportDrillDownFigure, ReportPageFigure, ReportStructureFigure } from './reports'
 import { AccessDecisionFigure, RolesTabFigure } from './roles'
 import { PartnerRecognitionFigure, PartnerRecognitionFlowFigure } from './partners'
 import { UploadPanelFigure } from './uploads'
+import { PdfSplitDialogFigure } from './uploads/split'
 import { BankConsentLifecycleFigure } from './bank'
 import { BusinessCentralApprovalsFigure } from './business-central'
 import { McpConsentFigure } from './mcp'
+import { ClaudeSkillsSectionFigure } from './claude-skills'
 import { SettlementNettingFigure } from './settlement'
 import { CashPoolSectionFigure } from './cash-pool'
 import { CategorizationBandsFigure } from './categorization'
@@ -93,14 +95,17 @@ const FIGURES: Record<string, (props: WithLocale) => React.ReactNode> = {
   TransactionTypeEditorFigure,
   ReportStructureFigure,
   ReportPageFigure,
+  ReportDrillDownFigure,
   AccessDecisionFigure,
   RolesTabFigure,
   PartnerRecognitionFlowFigure,
   PartnerRecognitionFigure,
   UploadPanelFigure,
+  PdfSplitDialogFigure,
   BankConsentLifecycleFigure,
   BusinessCentralApprovalsFigure,
   McpConsentFigure,
+  ClaudeSkillsSectionFigure,
   SettlementNettingFigure,
   CashPoolSectionFigure,
   CategorizationBandsFigure,

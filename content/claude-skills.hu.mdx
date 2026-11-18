@@ -1,0 +1,68 @@
+# Egyedi Claude-skill a könyveléshez
+
+Az **egyedi Claude-skill** olyan munkautasítás és kis program, amelyet az AI Finance Team az Ön egyik ügyfélcégére készít, és amely az Ön saját Claude-jában fut. Átveszi az adott cég egy ismétlődő, szabálykövető könyvelési feladatát: beolvassa a hónap dokumentumait, elkészíti azokat a sorokat, amelyeket egyébként kézzel rögzítene, összeveti őket egymással, és megnevezi azokat a kivételeket, amelyekről Önnek kell döntenie.
+
+Nem könyvel le semmit, és nem módosítja az ügyfél adatait az AI Finance Teamben. Az eredményt Ön nézi át és könyveli le.
+
+## Mire jó
+
+Olyan feladatokra, amelyek minden hónapban visszatérnek, rögzített szabályokat követnek, és kézzel órákig tartanak. Például:
+
+- egy vendéglátós ügyfél értékesítési oldala: pénztárgép-zárások, kártyás és utalványos elszámolások, ételszállító platformok kifizetései naplósorokká alakítva a könyvelőprogramja számára, fizetési módonkénti napi egyeztetéssel;
+- jutalékkal csökkentett kifizetések párosítása a platform jutalékszámláival;
+- egyeztetés a saját főkönyvi kartonjával cellánként, az eltérések magyarázatával.
+
+Amit visszakap: egy Excel-munkafüzet (összesítő, naplósorok, napi egyenlegek, ellenőrzések, kivételek), a naplósorok CSV-ben a könyvelőprogram importformátumában, és egy rövid összefoglaló a beszélgetésben.
+
+## Hogyan kérhet ilyet
+
+Írjon nekünk az ügyfélszolgálatra, és küldje el:
+
+1. a feladatot néhány mondatban;
+2. egy hónap dokumentumait, amelyekből dolgozik;
+3. azt, ahogyan ez a hónap a főkönyvébe került (az érintett számlák kartonját).
+
+Elkészítjük a skillt, az adott hónapra egyeztetjük a főkönyvével, és az eltéréseket végigvesszük Önnel. Ha egyezik, közzétesszük az ügyfél munkaterületén. A feltételekben skillenként állapodunk meg.
+
+## Hol találja
+
+Ha egy munkaterülethez van skill, a munkaterület **Beállítások → AI és adatok** oldalának tetején jelenik meg, **Claude-skill ehhez a céghez** címmel. Ahol nincs skill, ott ez a rész nem látszik.
+
+Csak a könyvelőiroda oldalán álló tagok látják. Az ügyfele nem.
+
+<ClaudeSkillsSectionFigure>
+A rész egy skillel: a legfrissebb verzió **Új verzió** jelzéssel, mert még nem töltötte le, a **Letöltés** gomb, a claude.ai-os telepítés lépései és az összecsukott **Korábbi verziók** sor.
+</ClaudeSkillsSectionFigure>
+
+## Telepítés a Claude-ban
+
+1. Töltse le a skillt a **Letöltés** gombbal. A zipet ne csomagolja ki.
+2. A claude.ai-ban nyissa meg a **Settings → Capabilities** oldalt, és kapcsolja be a **Run code in the cloud** opciót.
+3. Nyissa meg a **Plugins → Add → Upload plugin** menüt, válassza ki a zipet, és kattintson az **Upload** gombra.
+4. Indítson új beszélgetést, töltse fel a hónap fájljait, és kérje a feladatot, például: *„Készítsd el az októberi értékesítési oldalt.”* A skill magától betöltődik.
+
+A claude.ai időnként átrendezi a menüit. Ha nem találja ezeket a pontokat, keressen **Upload** gombot a Plugins vagy a Skills oldalon.
+
+Ne használjon inkognitó beszélgetést: abban nem fut kód, így a skill sem. Ha el szeretné különíteni a munkát a többi beszélgetésétől, használjon egy üres projektet.
+
+## Verziók
+
+A skill verziója egy **dátum**, például `2026-11-17`. Az oldal a legfrissebbet mutatja, **Új verzió** jelzéssel, ha Ön még nem töltötte le, a korábbiakat pedig a **Korábbi verziók** alatt őrzi, arra az esetre, ha egy hónapot azzal a verzióval kellene újrafuttatni, amelyik lekönyvelte.
+
+A skill a verzióját mindenbe beleírja, amit készít: a munkafüzet összesítőjének első sorába és az összefoglaló elejére. Ha egy eredménnyel kapcsolatban kérdése van, mondja meg a verziót, és pontosan látjuk, mely szabályok szerint készült.
+
+Ha módosítunk egy skillt (új szabály, javítás, új dokumentumtípus), az oldalon új verzió jelenik meg. Töltse le, és ugyanúgy töltse fel a claude.ai-ba; a régit felváltja.
+
+## Mit lát és mit ír
+
+- Az Ön Claude-jában fut, és csak azt olvassa, amit Ön feltölt, illetve amit az AI Finance Team kapcsolat mutat, ha azt is használja (lásd: [AI-asszisztensek (MCP)](/mcp)).
+- Magától semmit nem ír az AI Finance Teambe. Ahol egy lépést az alkalmazásban kellene elvégezni (például a kifizetésből levont jutalékszámlák lezárását), arról átnézhető listát ad.
+- A jelszavas fájlok jelszavát csak az adott futáshoz használja, nem írja vissza és nem menti el.
+
+## Gyakori kérdések
+
+**Látja az ügyfelem a skillt?** Nem. A munkaterületen csak a könyvelőiroda oldala látja ezt a részt.
+
+**Mi történik, ha változnak a szabályok?** Szóljon nekünk. Módosítjuk a skillt, és új verziót teszünk közzé, egy soros megjegyzéssel arról, mi változott.
+
+**Használhatom más AI-asszisztenssel?** A skilleket a Claude-ra építjük és azon teszteljük.
