@@ -182,6 +182,8 @@ On an invoice the partner VAT group is decided in this order: what somebody chos
 - the permission "Push into the accounting system", which the accountant admin holds by default;
 - **posting groups for each paired company**, which the screen asks for first and pre-fills from your own vendor cards.
 
+The list opens once we know whether Business Central lets us create a vendor. **Test what we may write** asks: it creates one test vendor and deletes it straight away. Until it has run, the screen says it has not checked yet; that is not a refusal. If Business Central says no, its own message stays on the screen, after a reload too: send that to whoever administers your Business Central.
+
 You choose the partners, then the companies each one should be created in, and review the list before it runs. At most 200 partner and company pairs go in one run. Afterwards each row says what happened: **Created**; **Already there**, when a card with the same tax number and a matching name exists and is linked instead; **Refused**, when a card with the same tax number has a different name; **Unknown**, when Business Central's answer was lost (the next run looks the card up by tax number before creating anything); or **Failed**, with Business Central's own words.
 
 A vendor number that comes back is shown on the partner's page under its AI Finance Team code, one line per company. That number belongs to a company in Business Central, so do not type it into the partner's own code field.

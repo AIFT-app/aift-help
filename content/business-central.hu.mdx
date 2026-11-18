@@ -182,6 +182,8 @@ A **Törzsadatok → Business Central → Feladás** oldal a partnereiből szál
 - a „Feladás a könyvelőprogramba” jogosultság, ami alapból a Könyvelő adminé;
 - **könyvelési csoportok minden párosított céghez**, amelyeket a képernyő először bekér, és a saját szállítókartonjaiból előre kitölt.
 
+A lista akkor nyílik meg, amikor már tudjuk, hogy a Business Central enged-e szállítót létrehozni. Ezt a **Megnézem, mit írhatunk** gomb kérdezi meg: létrehoz egy próbaszállítót, és azonnal törli. Amíg ez nem futott le, a képernyő azt írja, hogy még nem néztük meg; ez nem elutasítás. Ha a Business Central nemet mond, a saját üzenete a képernyőn marad, újratöltés után is: ezt küldje el annak, aki a Business Centralt adminisztrálja.
+
 Kiválasztja a partnereket, majd azt, hogy melyik cégekben jöjjenek létre, és futtatás előtt átnézi a listát. Egy futásban legfeljebb 200 partner és cég pár megy fel. Utána minden sor megmondja, mi történt: **Létrejött**; **Már megvolt**, ha van azonos adószámú és egyező nevű karton, és ahhoz kötjük; **Elutasítva**, ha az azonos adószámú kartonnak más a neve; **Nem tudjuk**, ha a Business Central válasza elveszett (a következő futás előbb adószám alapján megkeresi a kartont, mielőtt bármit létrehozna); vagy **Nem sikerült**, a Business Central saját szavaival.
 
 A visszakapott szállítószám a partner oldalán, az AI Finance Team-beli azonosítója alatt jelenik meg, cégenként egy sorban. Ez a szám a Business Centralban egy céghez tartozik, ezért ne írja be a partner saját azonosítómezőjébe.
