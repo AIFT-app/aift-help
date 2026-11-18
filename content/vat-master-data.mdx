@@ -59,6 +59,8 @@ Hungarian workspaces have a third field, the **NAV mapping code**, which is the 
 
 **A few rows are system elements, and their code cannot be changed.** The processor looks them up by code: `DOMESTIC`, `EU`, `THIRD_COUNTRY`, `CASH_METHOD` and `SMALL_BUSINESS_EXEMPT` among the partner groups, `ZERO`, `EXEMPT`, `OUT_OF_SCOPE` and `SMALL_BUSINESS_EXEMPT` among the rates, `NORMAL`, `REVERSE_CHARGE` and `VAT_ONLY` among the calculation methods, `EXEMPT_ENTITY` among the product/service groups. Their names are yours to change. When no active code uses one of them while lines from NAV receive it, the page says so: those lines stay without a code.
 
+One more system element may appear among the product / service groups: **Entity not entitled to deduct VAT** (`NO_DEDUCTION_ENTITY`), marked **System element** in the list like the others. A group's non-deductible percentage says what the law attaches to a *kind of cost*, for a company that deducts. A company that deducts nothing at all is not expressed through such a percentage: it has its own switch, which puts every purchase line of that company on this group. Its percentage is always 100%, and it cannot be picked on a line or on a partner. See [A Company That Deducts No VAT](/entity-no-vat-deduction).
+
 That settings page has a second half the rest of this article does not cover: **VAT export settings**, which decides how non-deductible VAT is handled in the export files.
 
 ## Validity Periods
