@@ -78,7 +78,7 @@ export const accountCopy = {
             ],
             [
               "Missing receipts",
-              "When the books are missing a document from you: at most one email per day, with a Monday summary."
+              "When the books are missing a document from you: one email on Mondays around 09:00 with every open item."
             ]
           ]
         ]
@@ -179,7 +179,7 @@ export const accountCopy = {
             ],
             [
               "Hiányzó bizonylatok",
-              "Ha a könyveléshez dokumentum hiányzik tőled: naponta legfeljebb egy e-mail, hétfőn összefoglaló."
+              "Ha a könyveléshez dokumentum hiányzik tőled: hétfőnként 9:00 körül egy e-mail az összes nyitott tétellel."
             ]
           ]
         ]
@@ -280,7 +280,7 @@ export const accountCopy = {
             ],
             [
               "Fehlende Belege",
-              "Wenn der Buchhaltung ein Beleg von Ihnen fehlt: höchstens eine E-Mail pro Tag, montags eine Übersicht."
+              "Wenn der Buchhaltung ein Beleg von Ihnen fehlt: montags gegen 09:00 eine E-Mail mit allen offenen Positionen."
             ]
           ]
         ]
