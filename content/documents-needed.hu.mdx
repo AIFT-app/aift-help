@@ -10,6 +10,12 @@ Az oldal minden munkaterületen be van kapcsolva. Ha valahol nem szeretné, a k�
 
 A munkaterületen mindenki látja, azok a tagok is, akik a számlákat és a banki tranzakciókat nem láthatják. Amíg van nyitott tétel, az oldalsáv menüpontján a nyitott tételek száma is látszik, így az oldal megnyitása nélkül is kiderül, hogy vár-e valami.
 
+## Kitől kérünk
+
+Csak akkor kérünk, ha a munkaterületen van ügyféloldali tag, és csak azokról a tételekről, amelyek dátuma az első ilyen tag csatlakozásának napja vagy későbbi. Régebbi tételt soha nem kérünk be, így egy új ügyfél nem örököl hátralékot. Ügyféloldali tag nélküli munkaterületen egyáltalán nem kérünk semmit.
+
+Az ügyfél oldalán csak az látszik, amit bekértünk. A könyvelő minden hiányzó bizonylatot lát: a be nem kérteket egy külön **Nincs bekérve** listában, és ezeket közvetlenül fel is töltheti.
+
 ## Miért jelenik meg egy tétel
 
 Senkinek nem kell Önt keresnie: a rendszer magától kér. Egy tétel háromféleképpen kerülhet a **Rád vár** szakaszba.
@@ -71,7 +77,7 @@ Amit a könyvelő visszavont, ott nem jelenik meg. Az egyszerűen lekerül az ol
 
 ## Az e-mailek
 
-Ha Ön a munkaterület ügyféloldali tagja, hétfőnként reggel 9 óra körül (budapesti idő szerint) egy e-mailt kap. Ez munkaterületenként összefoglalja az összes még nyitott tételt: a 8 legrégebbit felsorolja, mindegyiknél azzal, hány napja várunk rá, a többit a számukkal jelzi. A **Dokumentumok feltöltése** gomb az adott munkaterület Hiányzó bizonylatok oldalára visz.
+Ha Ön a munkaterület ügyféloldali tagja, hétfőnként reggel 9 óra körül (budapesti idő szerint) egy e-mailt kap. Ez munkaterületenként összefoglalja az összes bekért, még nyitott tételt: a 8 legrégebbit felsorolja, mindegyiknél azzal, hány napja várunk rá, a többit a számukkal jelzi. A **Dokumentumok feltöltése** gomb az adott munkaterület Hiányzó bizonylatok oldalára visz.
 
 Ha semmi nem várakozik, azon a hétfőn nem megy e-mail. Hét közben sem kap ilyen e-mailt, akkor sem, ha új tétel jelenik meg: az a következő hétfői e-mailben lesz benne. A könyvelőiroda tagjai ezt az e-mailt nem kapják.
 
@@ -85,7 +91,7 @@ Minden kártyán egy további vezérlő jelenik meg annak, akinél a „Banki tr
 - A **Megjegyzés** rövid magyarázatot fűz a kártyához, amely az ügyfél kártyáján **A könyvelőd üzenete:** felirattal jelenik meg; hasznos, ha meg szeretné mondani az ügyfélnek, hol keresse. A saját kártyáján ugyanez **Megjegyzésed az ügyfélnek:** felirattal látszik.
 - A **Ne kérjük be ezt** visszavonja a kérést, egy megerősítő kérdés után: **Ne kérjük be ezt a bizonylatot?** A tétel lekerül az ügyfél oldaláról, e-mail sem kéri, az automatikus üzenet előzményként az üzenetszálon marad, a visszavonásról pedig rögzül, hogy ki és mikor tette. Az oldalon nincs vezérlő a visszatételére; ha a dokumentum mégis kell, a kérés később újra megnyitható.
 
-Könyvelőként az oldal az Ön nézőpontjából jelenik meg: a nyitott lista címe **Az ügyfélre vár**, hiszen nem Önre vár, az alcím pedig azt mondja, mit kérünk az ügyféltől.
+Könyvelőként az oldal az Ön nézőpontjából jelenik meg. A bekért tételek **Az ügyfélre vár** cím alatt vannak, hiszen nem Önre várnak. Azok, amelyeket senkitől nem kértünk be, a **Nincs bekérve** cím alatt vannak, fölöttük az okkal: a munkaterületen nincs ügyféloldali tag, vagy a tétel régebbi, mint az ügyfél csatlakozása. Ezeken a kártyákon a napszám azt mutatja, mióta hiányzik a bizonylat.
 
 A kérések maguktól nyílnak és záródnak. Innen semmi nem kerül be a zárási ellenőrzőlistába vagy a **Teendők** közé, tehát az üres oldal nem jele annak, hogy a hónap kész van.
 
