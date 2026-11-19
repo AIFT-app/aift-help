@@ -57,7 +57,7 @@ Az alkalmazás napján a cég költségei megnőnek a kimutatásokban: az addig 
 
 Fordított adózású beszerzésnél (belföldi fordított adózás, másik tagállamból beszerzett termék vagy szolgáltatás, harmadik országból igénybe vett szolgáltatás) a szállító nem számít fel áfát, azt a vevő fizeti meg. Annál a cégnél, amely levon, a fizetendő és a levonható fél kiegyenlíti egymást. Ennek a cégnek csak a fizetendő fele van, és az költség.
 
-Az AI Finance Team az ilyen sort soha nem kódolja magától. A sor megkapja a fenntartott csoportot, de **ÁFA-kódot nem**, akkor sem, ha a kombinációjához létezik kód. A **Hiányos ÁFA-kódok** teendőn jelenik meg, és maga a sor mondja meg, miért vár: *A beszerzés után a cégnek kell megfizetnie az áfát, és nem vonhatja le.* Egy sor akkor számít ilyennek, ha a szállító partner ÁFA-csoportja nem a három belföldi csoport egyike, vagy ha a sor számítási módja nem Normál.
+Az AI Finance Team az ilyen sort soha nem kódolja magától. A sor megkapja a fenntartott csoportot, de **ÁFA-kódot nem**, akkor sem, ha a kombinációjához létezik kód. A **Hiányos ÁFA-kódok** teendőn jelenik meg, és maga a sor mondja meg, miért vár: *A beszerzés után a cégnek kell megfizetnie az áfát, és nem vonhatja le.* Egy sor akkor számít ilyennek, ha a szállító partner ÁFA-csoportja a beépített külföldi csoportok egyike (EU, Harmadik ország), ha a sor számítási módja nem Normál, vagy ha maga a szállító külföldi: az adószámának országa, ennek hiányában az országa nem a munkaterület országa. Egy saját létrehozású partner ÁFA-csoport, például egy cégcsoporton belüli csoport, önmagában nem tesz külföldivé egy szállítót: a belföldi tagja ugyanúgy kap kódot, mint bármely belföldi szállító, a külföldi tagja pedig ellenőrzésre vár.
 
 A kódolása:
 
