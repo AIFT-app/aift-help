@@ -42,9 +42,15 @@ import {
 
 const SCREEN_MIN_WIDTH = 760
 
-/** The comparison table's row grid, verbatim. */
-const ROW =
-  'grid grid-cols-2 gap-x-3 gap-y-1 border-b border-zinc-950/5 py-2.5 sm:grid-cols-[7rem_minmax(0,1fr)_minmax(0,1fr)_minmax(8rem,auto)] dark:border-white/5'
+/**
+ * The comparison table's grid, verbatim (REGISTRY_TABLE and REGISTRY_SUBGRID_ROW
+ * in the app's PartnerRegistrySection): one grid on the table from `sm` up,
+ * every row a subgrid of it, so the columns line up row to row.
+ */
+const TABLE =
+  'mt-2 text-sm sm:grid sm:grid-cols-[7rem_minmax(0,1fr)_minmax(0,1fr)_minmax(8rem,auto)] sm:gap-x-3'
+const SUBGRID_ROW = 'sm:col-span-full sm:grid-cols-subgrid'
+const ROW = `grid grid-cols-2 gap-x-3 gap-y-1 border-b border-zinc-950/5 py-2.5 ${SUBGRID_ROW} dark:border-white/5`
 const ROW_HEADER =
   'col-span-2 font-medium text-zinc-950 sm:col-span-1 sm:font-normal sm:text-zinc-500 dark:text-white sm:dark:text-zinc-400'
 const CELL = 'min-w-0 break-words text-zinc-950 dark:text-white'
@@ -157,10 +163,10 @@ export function RegistryPanelFigure({ locale, children }: { locale: Locale; chil
                         to the row below's "Matches". */}
                     <Pin n={4} at="right" cancel="" />
                   </p>
-                  <div className="mt-2 text-sm" role="table" aria-label={k('table.heading')}>
+                  <div className={TABLE} role="table" aria-label={k('table.heading')}>
                     <div
                       role="row"
-                      className="hidden grid-cols-[7rem_minmax(0,1fr)_minmax(0,1fr)_minmax(8rem,auto)] gap-x-3 border-b border-zinc-950/10 pb-2 text-xs font-medium uppercase tracking-wide text-zinc-500 sm:grid dark:border-white/10"
+                      className={`hidden gap-x-3 border-b border-zinc-950/10 pb-2 text-xs font-medium uppercase tracking-wide text-zinc-500 sm:grid ${SUBGRID_ROW} dark:border-white/10`}
                     >
                       <span role="columnheader">{k('table.field')}</span>
                       <span role="columnheader">{k('table.ours')}</span>
