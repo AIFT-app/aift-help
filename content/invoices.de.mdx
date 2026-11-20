@@ -50,7 +50,8 @@ Die Labels, die Ihnen am häufigsten begegnen:
 | **Überfällig** | Nach dem Fälligkeitsdatum unbezahlt. Eine noch nicht fällige unbezahlte Rechnung ist keine Aufgabe. Erscheint nur in einem Arbeitsbereich mit Bankkonto (Bankverbindung oder hochgeladene Kontoauszüge), weil sonst nichts eine Rechnung als bezahlt markiert |
 | **Zuordnungsvorschlag wartet auf eine Entscheidung** | AI Finance Team schlägt eine Banktransaktion vor; bestätigen oder verwerfen Sie sie |
 | **NAV** / **Kein Dokument** | Die Rechnung kam aus NAV Online Számla / es gibt keine Dokumentdatei, und Ihr Arbeitsbereich erwartet keine (grau) |
-| **Dokument benötigt** | Es gibt keine Dokumentdatei, und die Einstellung **Wir erwarten ein Rechnungsdokument** Ihres Arbeitsbereichs erwartet eine (bernsteinfarbene Aufgabe, siehe [unten](#wir-erwarten-ein-rechnungsdokument)). Der Wert **Keines** im Filter **Dokument** zeigt beide Labels und kann daher mehr Rechnungen zählen als diese Aufgabe |
+| **Kein Dokument zu erwarten** | Es gibt keine Dokumentdatei, und bei dieser Rechnung wurde akzeptiert, dass keine mehr kommt (grau, siehe [unten](#wir-erwarten-ein-rechnungsdokument)) |
+| **Dokument benötigt** | Es gibt keine Dokumentdatei, und die Einstellung **Wir erwarten ein Rechnungsdokument** Ihres Arbeitsbereichs erwartet eine (bernsteinfarbene Aufgabe, siehe [unten](#wir-erwarten-ein-rechnungsdokument)). Der Wert **Keines** im Filter **Dokument** zeigt alle drei Labels einer Rechnung ohne Dokument und kann daher mehr Rechnungen zählen als diese Aufgabe |
 | **Duplikat**, **Storniert** | Ein Duplikat einer anderen Rechnung / durch eine Stornorechnung aufgehoben |
 | **Zahlungsfreigabe ausstehend**, **Freigegeben**, **Abgelehnt** | Der Stand der Zahlungsfreigabe, wo Freigaben eingeschaltet sind (siehe [Rechnungen zur Zahlung freigeben](/approving-invoices)) |
 | **Zu erfassen**, **Zu buchen** | Ein Prüfschritt wartet noch auf eine Entscheidung, wo die Erfassungs- oder Buchungsfreigabe eingeschaltet ist (siehe [Erfassungs- und Buchungsfreigabe](/filing-and-bookkeeping-approval)) |
@@ -69,7 +70,7 @@ Unter **Einstellungen → Buchungs-Standardwerte → Wir erwarten ein Rechnungsd
 
 Wo ein Dokument erwartet wird, erhält eine Rechnung ohne Dokument die Aufgabe **Dokument benötigt**, und nur dort wird es beim Mandanten unter [Fehlende Belege](/documents-needed) angefragt. Wo keines erwartet wird, geschieht beides nicht: An der Rechnung bleibt nur das graue Label **Kein Dokument**.
 
-Wenn Sie bei einer Rechnung akzeptieren, dass kein Dokument mehr kommt (**Kein Dokument zu erwarten**), verschwindet die Aufgabe von der Rechnung, und der Mandant wird nicht weiter danach gefragt: Die Anfrage verschwindet auch unter [Fehlende Belege](/documents-needed).
+Wenn Sie bei einer Rechnung akzeptieren, dass kein Dokument mehr kommt (**Kein Dokument zu erwarten**), verschwindet die Aufgabe von der Rechnung, und der Mandant wird nicht weiter danach gefragt: Die Anfrage verschwindet auch unter [Fehlende Belege](/documents-needed). An der Rechnung steht danach das graue Label **Kein Dokument zu erwarten**.
 
 Vor dem Speichern nennt der Dialog, wie viele Rechnungen die Aufgabe haben werden und wie viele offene Dokumentanfragen beim Mandanten geschlossen werden. Wenn Sie die Einstellung enger fassen, werden die bereits offenen Anfragen geschlossen. Wenn Sie sie später wieder erweitern, öffnen sich dieselben Anfragen erneut, und der Mandant erhält dazu keine zweite Nachricht. Für die Änderung ist die Berechtigung **„Stammdaten bearbeiten“** nötig.
 
