@@ -10,12 +10,18 @@ Az oldal minden munkaterületen be van kapcsolva. Ha valahol nem szeretné, a k�
 
 A munkaterületen mindenki látja, azok a tagok is, akik a számlákat és a banki tranzakciókat nem láthatják. Amíg van nyitott tétel, az oldalsáv menüpontján a nyitott tételek száma is látszik, így az oldal megnyitása nélkül is kiderül, hogy vár-e valami.
 
+## Kitől kérünk
+
+Csak akkor kérünk, ha a munkaterületen van ügyféloldali tag, és csak azokról a tételekről, amelyek dátuma az első ilyen tag csatlakozásának napja vagy későbbi. Régebbi tételt soha nem kérünk be, így egy új ügyfél nem örököl hátralékot. Ügyféloldali tag nélküli munkaterületen egyáltalán nem kérünk semmit.
+
+Az ügyfél oldalán csak az látszik, amit bekértünk. A könyvelő minden hiányzó bizonylatot lát: a be nem kérteket egy külön **Nincs bekérve** listában, és ezeket közvetlenül fel is töltheti.
+
 ## Miért jelenik meg egy tétel
 
 Senkinek nem kell Önt keresnie: a rendszer magától kér. Egy tétel háromféleképpen kerülhet a **Rád vár** szakaszba.
 
 1. **Egy kifizetéshez nincs számla.** Egy banki tranzakció feldolgozása lezárult, a rendszer kategorizálta és összevetette a munkaterület minden számlájával, és semmi nem illik rá.
-2. **A NAV tud egy számláról, de a dokumentum hiányzik** (magyar munkaterületeken). Az adat a NAV Online Számla rendszeréből érkezett, tehát a számla biztosan létezik, de a dokumentumot senki nem töltötte fel. Ezeken **NAV-ból** jelvény van. Csak ott kerül ide ilyen tétel, ahol a munkaterület vár dokumentumot a számlához: ezt a könyvelő a [Számladokumentumot várunk](/invoices#számladokumentumot-várunk) beállítással adja meg, amelynek az alapértéke **Nem**.
+2. **A NAV tud egy számláról, de a dokumentum hiányzik** (magyar munkaterületeken). Az adat a NAV Online Számla rendszeréből érkezett, tehát a számla biztosan létezik, de a dokumentumot senki nem töltötte fel. Ezeken **NAV-ból** jelvény van. Csak ott kerül ide ilyen tétel, ahol a munkaterület vár dokumentumot a számlához: ezt a könyvelő a [Számladokumentumot várunk](/invoices#számladokumentumot-várunk) beállítással adja meg, amelynek az alapértéke **Nem**. A tétel akkor is lekerül innen, ha a könyvelő az adott számlánál elfogadta, hogy nem lesz hozzá dokumentum.
 3. **Egy kifizetésről kiderült, hogy dokumentum nélküli NAV-számla.** Egy kártya, amely hiányzó kifizetési számlaként indult, helyben átalakulhat a második fajtává, és megtartja az addig várakozással töltött időt. Megkapja a **NAV-ból** jelvényt, és elveszíti a **Nincs hozzá számla** gombját. Ahol a munkaterület ehhez a számlához nem vár dokumentumot, a kártya ilyenkor lezárul, mert a kifizetés megtalálta a számláját.
 
 ### Miért nincs itt egy kifizetés, amelyet várt
@@ -71,9 +77,11 @@ Amit a könyvelő visszavont, ott nem jelenik meg. Az egyszerűen lekerül az ol
 
 ## Az e-mailek
 
-A **Fiók → Értesítések** alatt, az ügyfelekkel folytatott beszélgetésekről szóló szakaszban van egy **Hiányzó bizonylatok** sor, és magukhoz az e-mailekhez elő van készítve egy leiratkozó hivatkozás.
+Ha Ön a munkaterület ügyféloldali tagja, hétfőnként reggel 9 óra körül (budapesti idő szerint) egy e-mailt kap. Ez munkaterületenként összefoglalja az összes bekért, még nyitott tételt: a 8 legrégebbit felsorolja, mindegyiknél azzal, hány napja várunk rá, a többit a számukkal jelzi. A **Dokumentumok feltöltése** gomb az adott munkaterület Hiányzó bizonylatok oldalára visz.
 
-**Ezek az e-mailek még nincsenek bekapcsolva.** Egyetlen ilyen e-mail sem ment ki. Amikor elindulnak, naponta legfeljebb egy lesz, akárhány tétel jelent meg aznap, hétfőnként összefoglaló minden még nyitott tételről, és egyáltalán semmi olyan napon, amikor semmi nem várakozik. A kikapcsolásuk magát az oldalt soha nem rejti el.
+Ha semmi nem várakozik, azon a hétfőn nem megy e-mail. Hét közben sem kap ilyen e-mailt, akkor sem, ha új tétel jelenik meg: az a következő hétfői e-mailben lesz benne. A könyvelőiroda tagjai ezt az e-mailt nem kapják.
+
+Az e-mailt a **Fiók → Értesítések** alatt, az **Üzenetek** szakasz **Hiányzó bizonylatok** sorában kapcsolhatja ki, vagy az e-mail alján lévő hivatkozással. A kikapcsolás csak az e-mailt állítja le. Magát az oldalt soha nem rejti el, és a nyitott tételek ugyanúgy itt maradnak.
 
 ## Könyvelőknek
 
@@ -83,9 +91,9 @@ Minden kártyán egy további vezérlő jelenik meg annak, akinél a „Banki tr
 - A **Megjegyzés** rövid magyarázatot fűz a kártyához, amely az ügyfél kártyáján **A könyvelőd üzenete:** felirattal jelenik meg; hasznos, ha meg szeretné mondani az ügyfélnek, hol keresse. A saját kártyáján ugyanez **Megjegyzésed az ügyfélnek:** felirattal látszik.
 - A **Ne kérjük be ezt** visszavonja a kérést, egy megerősítő kérdés után: **Ne kérjük be ezt a bizonylatot?** A tétel lekerül az ügyfél oldaláról, e-mail sem kéri, az automatikus üzenet előzményként az üzenetszálon marad, a visszavonásról pedig rögzül, hogy ki és mikor tette. Az oldalon nincs vezérlő a visszatételére; ha a dokumentum mégis kell, a kérés később újra megnyitható.
 
-Könyvelőként az oldal az Ön nézőpontjából jelenik meg: a nyitott lista címe **Az ügyfélre vár**, hiszen nem Önre vár, az alcím pedig azt mondja, mit kérünk az ügyféltől.
+Könyvelőként az oldal az Ön nézőpontjából jelenik meg. A bekért tételek **Az ügyfélre vár** cím alatt vannak, hiszen nem Önre várnak. Azok, amelyeket senkitől nem kértünk be, a **Nincs bekérve** cím alatt vannak, fölöttük az okkal: a munkaterületen nincs ügyféloldali tag, vagy a tétel régebbi, mint az ügyfél csatlakozása. Ezeken a kártyákon a napszám azt mutatja, mióta hiányzik a bizonylat.
 
-A kérések maguktól nyílnak és záródnak. Innen semmi nem kerül be a zárási ellenőrzőlistába vagy a **Teendők** közé, tehát az üres oldal nem jele annak, hogy a hónap kész van.
+A kérések maguktól nyílnak és záródnak. Erről az oldalról semmi nem kerül be a zárási ellenőrzőlistába. A számlának viszont saját teendője van: ahol a munkaterület a [Számladokumentumot várunk](/invoices#számladokumentumot-várunk) beállítás szerint vár dokumentumot, ott a dokumentum nélküli számla **Dokumentum szükséges** teendőt kap, és ez a **Teendők** között is látszik. A teendő akkor tűnik el, amikor a dokumentum megérkezik, vagy amikor Ön a számlánál elfogadja, hogy nem lesz hozzá dokumentum. Az üres oldal tehát nem jele annak, hogy a hónap kész van.
 
 ## Kapcsolódó cikkek
 

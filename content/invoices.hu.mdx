@@ -69,6 +69,8 @@ A **Beállítások → Könyvelési alapértelmezések → Számladokumentumot v
 
 Ahol várunk dokumentumot, ott a dokumentum nélküli számla **Dokumentum szükséges** teendőt kap, és az ügyféltől is ott kérünk hozzá dokumentumot a [Hiányzó bizonylatok](/documents-needed) oldalon. Ahol nem várunk, ott egyik sem történik: a számlán csak a szürke **Nincs dokumentum** címke marad.
 
+Ha egy számlánál elfogadja, hogy nem lesz hozzá dokumentum (**Dokumentum nem várható**), a teendő lekerül a számláról, és az ügyféltől sem kérjük tovább: a kérés a [Hiányzó bizonylatok](/documents-needed) oldalról is eltűnik.
+
 Mentés előtt a párbeszédablak megmondja, hány számlán lesz teendő, és hány nyitott dokumentumkérés zárul le az ügyfélnél. Ha szűkíti a beállítást, a már nyitott kérések lezárulnak. Ha később újra bővíti, ugyanazok a kérések nyílnak meg újra, és az ügyfél nem kap róluk második üzenetet. A beállítást a **„Törzsadatok szerkesztése”** jogosultsággal lehet módosítani.
 
 ### Számlák keresése
@@ -139,7 +141,7 @@ Kattintson a számla oldalán a **Szerkesztés** gombra, vagy nyomja meg az `E` 
 - **Hozzárendelés**: hogy Ön az eladó vagy a vevő (**Mi vagyunk az eladó · bevétel** vagy **Mi vagyunk a vevő · kiadás**), melyik cégéről van szó, és a partner. A számlára nyomtatott neveket és adószámokat nem szerkeszti: azt választja ki, kihez tartozik a számla.
 - **Számla részletei**: a számlaszám, a pénznem, valamint a kiállítás, a fizetési határidő, a teljesítés, az ÁFA- és a könyvelési dátum.
 - A nettó, az ÁFA és a bruttó végösszeg.
-- **Számlatételek**: tételenként a leírás, a nettó, a bruttó és a kategória szerkeszthető; az ÁFA-kulcs látható, de nem szerkeszthető. A kategóriát kereshető listából választja ki: névre vagy kódra szűr, a kategóriák kód szerint növekvő sorrendben állnak, és ha az AI javasolt egyet, az áll a lista tetején. A **Sor hozzáadása** új tételt ad hozzá, a kuka ikon töröl egyet.
+- **Számlatételek**: tételenként a leírás, a nettó, a bruttó és a kategória szerkeszthető; az ÁFA-kulcs látható, de nem szerkeszthető. A kategóriát kereshető listából választja ki: névre vagy kódra szűr, a kategóriák kód szerint növekvő sorrendben állnak, és ha az AI javasolt egyet, az áll a lista tetején. Ha a tételnek már van kategóriája, akkor is elég a mezőbe kattintani és gépelni: amit beír, az a mezőben álló szöveg helyére kerül, a kategória pedig csak akkor változik, amikor a listából választ. Törölni a lista elején álló **- Nincs kategória -** sorral lehet. A **Sor hozzáadása** új tételt ad hozzá, a kuka ikon töröl egyet.
 
 Egy értékre kattintva szerkesztheti; Enter lenyomására vagy máshová kattintva mentődik. Mentés gomb nincs. Ha egy mező fölé viszi az egeret, az érték sárgán kiemelődik a PDF-ben, így összevetheti a forrással. Egy módosított mezőnél az egér fölé vitelekor visszaállító nyíl jelenik meg, amely visszaállítja az AI által kinyert értéket. A szerkesztőt az `Esc` billentyűvel vagy a **×** gombbal zárhatja be.
 

@@ -10,12 +10,18 @@ The page is on for every workspace. If it should not be on one of them, your acc
 
 Everyone in the workspace can see it, including members who cannot see invoices and bank transactions. While anything is open, the page's entry in the sidebar carries the number of open items, so a glance tells you whether something is waiting without opening the page.
 
+## Who Gets Asked
+
+We ask only where the workspace has a client-side member, and only about items dated on the day the first of them joined or later. Older items are never asked about, so a new client does not inherit a backlog. In a workspace with no client-side member nothing is asked at all.
+
+The client's page lists only what we asked. The accountant sees every missing receipt: the ones not asked appear in a separate **Not asked** list, and the accountant can upload them directly.
+
 ## Why An Item Appears
 
 Nobody has to chase you: the system asks on its own. An item lands in **Waiting for you** in one of three ways.
 
 1. **A payment has no invoice.** A bank transaction has been processed, categorised and checked against every invoice in the workspace, and nothing matches.
-2. **NAV knows about an invoice, but the document is missing** (Hungarian workspaces). The data arrived from NAV Online Számla, so the invoice certainly exists, but nobody uploaded the document. These carry a **From NAV** badge. Such an item appears only where the workspace expects a document behind the invoice: the accountant sets that with [We expect an invoice document](/invoices#we-expect-an-invoice-document), which is **No** by default.
+2. **NAV knows about an invoice, but the document is missing** (Hungarian workspaces). The data arrived from NAV Online Számla, so the invoice certainly exists, but nobody uploaded the document. These carry a **From NAV** badge. Such an item appears only where the workspace expects a document behind the invoice: the accountant sets that with [We expect an invoice document](/invoices#we-expect-an-invoice-document), which is **No** by default. The item also leaves this list once the accountant has accepted, on that invoice, that no document will come.
 3. **A payment turned out to be a NAV invoice with no document.** A card that started as a missing payment invoice can change into the second kind in place, keeping the time it has already been waiting. It gains the **From NAV** badge and loses its **No invoice exists** button. Where the workspace expects no document behind that invoice, the card closes at this point, because the payment has found its invoice.
 
 ### Why a payment you expected is not here
@@ -71,9 +77,11 @@ Items your accountant withdrew do not appear there. They simply leave the page.
 
 ## The Emails
 
-There is a **Missing receipts** row under **Account → Notifications**, in the section about conversations with your clients, and an unsubscribe link prepared for the emails themselves.
+If you are a client-side member of the workspace, you get one email on Monday morning, around 09:00 Budapest time. It sums up every item we asked you for that is still open, workspace by workspace: it lists the 8 oldest, each with how many days it has been waiting, and gives the number of the rest. The **Upload documents** button takes you to that workspace's Missing receipts page.
 
-**These emails are not switched on yet.** Nothing has been sent. When they start, it will be at most one a day however many items appeared, a Monday summary of everything still open, and nothing at all on a day with nothing waiting. Turning them off will never hide the page.
+When nothing is waiting, no email goes out that Monday. You get none during the week either, even when a new item appears: it will be in the next Monday email. Members of the accounting firm do not get this email.
+
+To switch the email off, use the **Missing receipts** row in the **Messages** section under **Account → Notifications**, or the link at the bottom of the email. Switching it off stops only the email. It never hides this page, and your open items stay here.
 
 ## For Accountants
 
@@ -83,9 +91,9 @@ One extra control appears on each card for anyone holding "Edit bank transaction
 - **Add note** attaches a short explanation that renders on the client's card under **Your accountant added:**, useful for telling the client where to look. On your own card the same text reads **Your note to the client:**.
 - **Don't ask for this** withdraws a request, after a confirmation step titled **Stop asking for this receipt?**. The item leaves the client's page, no email will ask for it, the automatic message stays in the thread as history, and the withdrawal records who did it and when. There is no control on this page to put it back; if the document turns out to be needed after all, the request can be reopened later.
 
-Accountants see the page from their own side: the open list is titled **Waiting for the client**, because it does not wait on you, and the page subtitle names what we ask the client for.
+Accountants see the page from their own side. The items we asked for are under **Waiting for the client**, because they do not wait on you. The items nobody was asked about are under **Not asked**, with the reason above them: the workspace has no client-side member, or the item is older than the day the client joined. On those cards the day count says how long the receipt has been missing.
 
-Requests open and close on their own. Nothing here feeds the period-closing checklist or Mission Control, so an empty page is not a sign that the month is finished.
+Requests open and close on their own. Nothing on this page feeds the period-closing checklist. The invoice has its own to-do, though: where the workspace expects a document under [We expect an invoice document](/invoices#we-expect-an-invoice-document), an invoice without one carries the **Document needed** to-do, and that to-do also shows in Mission Control. It goes away when the document arrives, or when you accept on the invoice that no document will come. So an empty page is not a sign that the month is finished.
 
 ## Related Articles
 
