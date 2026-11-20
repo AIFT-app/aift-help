@@ -57,7 +57,7 @@ The company's costs rise in the reports on the day you apply: the VAT that was s
 
 On a reverse-charge purchase (domestic reverse charge, goods or a service from another member state, a service from a third country) the supplier charges no VAT and the buyer owes it. A company that deducts has a payable half and a deductible half, and they cancel. This company has the payable half only, and it is a cost.
 
-AI Finance Team never codes such a line by itself. The line gets the reserved group and **no VAT code**, also when a code for its combination exists. It shows on the **VAT codes incomplete** to-do, and the line itself says why it waits: *The company has to pay the VAT on this purchase itself and cannot deduct it.* A line counts as such when the supplier's partner VAT group is not one of the three domestic ones, or when the line's calculation method is not Normal.
+AI Finance Team never codes such a line by itself. The line gets the reserved group and **no VAT code**, also when a code for its combination exists. It shows on the **VAT codes incomplete** to-do, and the line itself says why it waits: *The company has to pay the VAT on this purchase itself and cannot deduct it.* A line counts as such when the supplier's partner VAT group is one of the built-in foreign groups (EU, Third country), when the line's calculation method is not Normal, or when the supplier itself is foreign: the country of its tax number, or failing that its country, is not the workspace's country. A partner VAT group you created yourself, an intercompany group for example, does not make a supplier foreign: a domestic member of it is coded like any other domestic supplier, and a foreign member waits.
 
 To code it:
 
