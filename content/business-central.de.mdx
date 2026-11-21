@@ -182,6 +182,8 @@ Auf einer Rechnung entscheidet sich die Partner-USt-Gruppe in dieser Reihenfolge
 - die Berechtigung „In das Buchhaltungssystem übertragen“, die der Buchhalter-Admin standardmäßig hat;
 - **Buchungsgruppen für jede zugeordnete Firma**, die der Bildschirm zuerst abfragt und aus Ihren eigenen Kreditorenstammsätzen vorbelegt.
 
+Die Liste öffnet sich, sobald wir wissen, ob Business Central uns einen Kreditor anlegen lässt. Das fragt **Schreibrechte prüfen** ab: Es legt einen Testkreditor an und löscht ihn sofort wieder. Solange die Prüfung nicht gelaufen ist, steht auf dem Bildschirm, dass wir noch nicht geprüft haben; das ist keine Ablehnung. Sagt Business Central Nein, bleibt dessen eigene Meldung auf dem Bildschirm stehen, auch nach dem Neuladen: Senden Sie diese an die Administration Ihres Business Central.
+
 Sie wählen die Partner, dann die Firmen, in denen der jeweilige Partner angelegt werden soll, und prüfen die Liste vor dem Lauf. Pro Lauf gehen höchstens 200 Paare aus Partner und Firma. Danach sagt jede Zeile, was geschehen ist: **Angelegt**; **Bereits vorhanden**, wenn es einen Stammsatz mit derselben Steuernummer und passendem Namen gibt, der stattdessen verknüpft wird; **Abgelehnt**, wenn der Stammsatz mit derselben Steuernummer einen anderen Namen hat; **Unbekannt**, wenn die Antwort von Business Central verloren ging (der nächste Lauf sucht den Stammsatz zuerst über die Steuernummer, bevor er etwas anlegt); oder **Fehlgeschlagen**, mit den Worten von Business Central.
 
 Eine zurückgemeldete Kreditorennummer erscheint auf der Partnerseite unter dessen AI-Finance-Team-Code, eine Zeile je Firma. Diese Nummer gehört zu einer Firma in Business Central, tragen Sie sie also nicht in das eigene Codefeld des Partners ein.
