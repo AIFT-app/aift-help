@@ -55,6 +55,8 @@ Amint egy feltöltés elindul, a **jobb alsó sarokban** megjelenik egy panel, f
 | **Kinyerve** | Egy számla elkészült. Kattintson a sorra a megnyitásához. |
 | **További számlák keresése a fájlban…** | Az első számlát már kiolvastuk, és a fájl alapján több is lehet benne. A rendszer még egyszer elolvassa. Lásd: [Több számla egy fájlban](#több-számla-egy-fájlban). |
 | **Kinyerve, és még N számla ebből a fájlból** | A fájlban több számla volt, és mindegyik külön számla lett. A további számlák saját sorként is megjelennek. |
+| **Ez bankkivonatnak tűnik, nem számla.** | A fájl bankkivonat. Félretettük, és az **Importálás bankkivonatként** gombbal a Bankkivonatok közé teheti. Lásd: [Ha a fájl nem számla](#ha-a-fájl-nem-számla). |
+| **Feldolgozva; nem számla, hanem …** | A fájl nem számla (például szerződés vagy fizetési értesítő), de a szokásos módon feldolgoztuk. |
 | **Kész · N tranzakció (M egyesítve)** | Egy kivonat elkészült. Kattintson a sorra a megnyitásához. |
 | **Kész hibákkal · részletek megtekintése** | A kivonat elkészült, de néhány oldala nem. Nyissa meg, hogy lássa, melyek azok. |
 | **Már létezik** | Pontosan ez a fájl már a munkaterületen van. Kattintson a sorra az eredeti megnyitásához. |
@@ -122,6 +124,15 @@ Két esetben továbbra is Önre van szükség:
 - **Egy fájlban 10-nél több számla van, vagy egyiket sem tudja az AI biztosan kiolvasni.** A sor ezzel áll le: **Sikertelen: Ebben a fájlban több külön dokumentum van. Bontsd szét, és töltsd fel őket külön-külön.**
 
 Továbbra is az a leggyorsabb, ha egy fájlban egy számla van: nincs második kiolvasás, és nincs külön áttekintés.
+
+## Ha a fájl nem számla
+
+Az AI a kiolvasáskor azt is megmondja, ha a feltöltött fájl nem számla.
+
+- **Bankkivonat.** Nem lesz belőle számla: félretesszük (archiváljuk), így nem kerül a teendők, a könyvelés és az exportok közé, és megkérdezzük, mi legyen vele. A feltöltési sor és a számla oldala felkínálja az **Importálás bankkivonatként** gombot, amely a fájlt a [Bankkivonatok](/bank-statement-upload) közé teszi, ahol a szokásos módon importálódik. Ha a PDF több bankszámla kivonatát tartalmazza, vagy fotó, gomb nincs: ilyenkor a kivonatot számlánként, PDF-ként töltse fel a Bankkivonatok fülön.
+- **Minden más, ami nem számla** (szerződés, fizetési értesítő, díjfizetési felszólítás, egyenlegközlő, készpénzfelvételi bizonylat): a szokásos módon számlaként dolgozzuk fel, a számla oldalán pedig sárga jelzés áll: **Nem számla, hanem …**. Ha nem kell könyvelni, archiválja.
+
+Ha az AI tévedett, és a félretett fájl mégis számla, a számla oldalán a **Feldolgozás számlaként** gomb újra kiolvassa, ezúttal számlaként, és többé nem teszi félre.
 
 ## ZIP-archívumok
 

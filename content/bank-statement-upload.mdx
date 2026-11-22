@@ -48,7 +48,9 @@ Any row that is not Pending opens the statement when you click it. A Pending row
 
 ## When It Needs You
 
-**No bank account.** The row says so and offers **Complete import**. Add the account under the company in **Master data → Companies**, then press the button: the rows that were held are written and the statement completes. Nothing needs re-uploading.
+**No bank account.** The row says so, with the account number it read. Add the account under the company in **Master data → Companies**, or correct the number of an existing account: the moment you save it, the rows that were held are written, the statement completes, and a message tells you how many waiting statements were imported. Nothing needs re-uploading and no button needs pressing. If the statement still does not complete (for example because the account number on the first page could not be read), the row offers **Complete import**.
+
+**A statement uploaded as an invoice.** When you upload a bank statement on the **Invoices** page, the app recognises it and does not make it an invoice: it sets it aside (archives it) and asks. The upload row and the invoice page both offer **Import as bank statement**, which moves the file here to Bank statements, where it is imported as usual. When the PDF holds the statements of several bank accounts there is no button: one upload belongs to one bank account, so upload the statements one account at a time here. If the app got it wrong and the file is an invoice after all, **Process as invoice** processes it as one.
 
 **The statement is in another currency than the account.** The upload fails outright and says which two currencies clashed. Delete it and upload it again against the right account.
 
@@ -88,7 +90,7 @@ See [Roles and Permissions](/roles-and-permissions).
 
 ## Tips
 
-- **Add the account first.** Entering the bank account under the company before you upload saves the whole "no bank account" detour.
+- **Add the account first.** Entering the bank account under the company before you upload imports the statement straight away. If you add it later, the statement completes when you save the account.
 - **Each statement has its own message thread**, on the statement page. That is the place to ask your accountant about one specific upload.
 - **Find the imported rows later** with the **Statement** source pill on the [Bank transactions](/bank-transactions) list. A line folded into an existing transaction carries both **Bank feed** and **Statement**.
 - **Scans work** as long as the text is legible. A poor scan produces an incomplete statement rather than an obvious failure, so check the count.

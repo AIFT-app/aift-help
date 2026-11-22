@@ -48,7 +48,9 @@ Minden olyan sor, amely nem Függőben áll, kattintásra megnyitja a kivonatot.
 
 ## Amikor Önre van szükség
 
-**Nincs bankszámla.** A sor ezt ki is írja, és felkínálja az **Importálás befejezése** gombot. Vegye fel a számlát a cégnél a **Törzsadatok → Cégek** alatt, majd nyomja meg a gombot: a visszatartott sorok kiíródnak, a kivonat pedig befejeződik. Semmit nem kell újra feltölteni.
+**Nincs bankszámla.** A sor ezt ki is írja, a beolvasott számlaszámmal együtt. Vegye fel a számlát a cégnél a **Törzsadatok → Cégek** alatt, vagy javítsa a meglévő számla számát: a mentés pillanatában a visszatartott sorok kiíródnak, a kivonat befejeződik, és a mentés után egy üzenet jelzi, hány várakozó kivonat importja fejeződött be. Semmit nem kell újra feltölteni, és gombot sem kell nyomni. Ha a kivonat így sem fejeződik be (például mert az első oldalon nem volt olvasható a számlaszám), a sor felkínálja az **Importálás befejezése** gombot.
+
+**Számlaként feltöltött kivonat.** Ha egy bankkivonatot a **Számlák** oldalon tölt fel, a rendszer felismeri, és nem csinál belőle számlát: félreteszi (archiválja), és megkérdezi. A feltöltési sor és a számla oldala is felkínálja az **Importálás bankkivonatként** gombot; erre a fájl ide, a Bankkivonatok közé kerül, és a szokásos módon importálódik. Ha a PDF több bankszámla kivonatát tartalmazza, gomb nincs: egy feltöltés egy bankszámláé, ezért a kivonatokat számlánként töltse fel itt. Ha a rendszer tévedett, és a fájl mégis számla, a **Feldolgozás számlaként** gombbal dolgozhatja fel.
 
 **A kivonat más pénznemben van, mint a számla.** A feltöltés egyenesen meghiúsul, és megírja, melyik két pénznem ütközött. Törölje, és töltse fel újra a megfelelő számlához.
 
@@ -88,7 +90,7 @@ Lásd: [Szerepek és jogosultságok](/roles-and-permissions).
 
 ## Tippek
 
-- **Előbb vegye fel a számlát.** Ha a bankszámlát feltöltés előtt rögzíti a cégnél, megspórolja a teljes „nincs bankszámla” kerülőutat.
+- **Előbb vegye fel a számlát.** Ha a bankszámlát feltöltés előtt rögzíti a cégnél, a kivonat rögtön importálódik. Ha később veszi fel, a kivonat a számla mentésekor fejeződik be.
 - **Minden kivonatnak saját üzenetszála van**, a kivonat oldalán. Ez a megfelelő hely, ha egy konkrét feltöltésről szeretne kérdezni a könyvelőjétől.
 - **Az importált sorokat később** a [Banki tranzakciók](/bank-transactions) listán a **Bankkivonat** forrásjelölő alapján találja meg. A meglévő tranzakcióba összevont sor a **Banki forrás** és a **Bankkivonat** jelölőt is viseli.
 - **A szkennek működnek**, amíg a szöveg olvasható. A rossz minőségű szken nem látványos hibát, hanem hiányos kivonatot eredményez, ezért ellenőrizze a darabszámot.
