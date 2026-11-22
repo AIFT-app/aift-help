@@ -96,6 +96,8 @@ Bejelöletlen négyzetnél a típus nem állít be partnert, és a partner magá
 
 A **Bank** típus a másik felet a bankszámláról veszi. Ezt a **Törzsadatok → Bankszámlák** alatt adhatja meg: nyissa meg a számlát a **Szerkesztés** gombbal (vagy új számla hozzáadásakor), és töltse ki a **Bank** és a **Bank adószáma** mezőt, hogy a banki költségek mindig a másik féllel együtt kerüljenek az exportba.
 
+Sok bank a díjsorra is ráírja annak az utalásnak a kedvezményezettjét, amelyhez a díj tartozik (az MBH például a **Tranzakciós díjrész** sorra). Ez a név nem partner: amikor egy tétel **Bank** módú típust kap, a hozzá kapcsolt partner lekerül róla, a listán és a **Felek** kártyán a számlavezető bank áll, a bank által megadott név pedig alatta látszik. Amíg a számlánál nincs megadva bank, **Számlavezető bank** felirat jelenik meg.
+
 ### Konkrét partner: a szabály az azonosságra reagál
 
 A **Konkrét partner** típus akkor érvényesül, ha a tranzakció partnere az Ön által kiválasztott partner, soha nem pusztán azért, mert a szöveg hasonlónak tűnik, és a még párosítatlan tranzakciónak **Nem kell számla** jelölést ad. A mintáit nem használja. Például egy kártyaelfogadóhoz kötött típus besorolja az adott kártyaelfogadó kifizetéseit, de a szabály egy másik cég hasonló kinézetű tételét érintetlenül hagyja, mert az egy másik fél, amelyhez könnyen lehet, hogy kell számla. Partnerenként hozzon létre egy típust: egyet az adóhatóság ÁFA-számlájára, és egy külön típust a személyi jövedelemadóra, mert az adó-alszámlák nem ugyanaz a fél.
@@ -149,6 +151,8 @@ Ha egy **minta** tette a téves jelölést, a visszavonás nem elég: a minta a 
 | **Tranzakciótípus** | Az alkalmazandó típus; *Számla szükséges* példánál üres |
 | **Forrás** | **Automatikusan tanult** (az Ön jelöléséből) vagy **Kézi** (Ön vette fel) |
 | **Előfordulások** | Hány tranzakcióról döntött így; a kézzel felvett példa 3-ról indul |
+
+A **Bank** módú típusra tett jelölésből tanult példa a leírásról szól, nem a partnerről, mert a díjsoron szereplő név egy másik utalás kedvezményezettje.
 
 Az ugyanarra a partnerre vonatkozó ismételt döntések egyetlen példába olvadnak össze, egyre nagyobb **Előfordulások** értékkel. A **+ Példa hozzáadása** gombbal még azelőtt megtaníthat valamit, hogy az AI Finance Team találkozott volna vele; ez akkor hasznos, ha olyan ügyfelet vesz át, akinek a visszatérő tételeit már ismeri. Mindig a legutóbbi döntése érvényes, és az új vagy módosított példa attól kezdve hat a tranzakciókra; a már feldolgozott tranzakciókat nem vizsgálja újra.
 
