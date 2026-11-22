@@ -50,7 +50,8 @@ A leggyakoribb címkék:
 | **Lejárt** | A fizetési határidő után sincs kifizetve. A még nem esedékes, ki nem fizetett számla nem teendő. Csak olyan munkaterületen jelenik meg, ahol van bankszámla (bankkapcsolat vagy feltöltött kivonat), mert enélkül semmi nem jelöli fizetettnek a számlát |
 | **Párosítási javaslat vár döntésre** | Az AI Finance Team banki tételt javasol hozzá; erősítse meg vagy utasítsa el |
 | **NAV** / **Nincs dokumentum** | A számla a NAV Online Számlából jött / nincs dokumentumfájl, de a munkaterület nem vár hozzá dokumentumot (szürke) |
-| **Dokumentum szükséges** | Nincs dokumentumfájl, és a munkaterület **Számladokumentumot várunk** beállítása szerint kellene (borostyánsárga teendő, lásd [lent](#számladokumentumot-várunk)). A **Dokumentum** szűrő **Nincs** értéke mindkét címkét mutatja, ezért nagyobb számot adhat, mint ez a teendő |
+| **Dokumentum nem várható** | Nincs dokumentumfájl, és ennél a számlánál elfogadták, hogy nem is lesz hozzá (szürke, lásd [lent](#számladokumentumot-várunk)) |
+| **Dokumentum szükséges** | Nincs dokumentumfájl, és a munkaterület **Számladokumentumot várunk** beállítása szerint kellene (borostyánsárga teendő, lásd [lent](#számladokumentumot-várunk)). A **Dokumentum** szűrő **Nincs** értéke a dokumentum nélküli számlák mindhárom címkéjét mutatja, ezért nagyobb számot adhat, mint ez a teendő |
 | **Duplikáció**, **Sztornózva** | Egy másik számla duplikációja / sztornószámlával érvénytelenítve |
 | **Kifizetési jóváhagyásra vár**, **Jóváhagyva**, **Elutasítva** | A kifizetés jóváhagyásának állapota, ahol a jóváhagyás be van kapcsolva (lásd: [Számlák jóváhagyása kifizetésre](/approving-invoices)) |
 | **Iktatásra vár**, **Könyvelésre vár** | Egy jóváhagyási lépés még döntésre vár, ahol az iktatási vagy a könyvelési jóváhagyás be van kapcsolva (lásd: [Iktatási és könyvelési jóváhagyás](/filing-and-bookkeeping-approval)) |
@@ -69,7 +70,7 @@ A **Beállítások → Könyvelési alapértelmezések → Számladokumentumot v
 
 Ahol várunk dokumentumot, ott a dokumentum nélküli számla **Dokumentum szükséges** teendőt kap, és az ügyféltől is ott kérünk hozzá dokumentumot a [Hiányzó bizonylatok](/documents-needed) oldalon. Ahol nem várunk, ott egyik sem történik: a számlán csak a szürke **Nincs dokumentum** címke marad.
 
-Ha egy számlánál elfogadja, hogy nem lesz hozzá dokumentum (**Dokumentum nem várható**), a teendő lekerül a számláról, és az ügyféltől sem kérjük tovább: a kérés a [Hiányzó bizonylatok](/documents-needed) oldalról is eltűnik.
+Ha egy számlánál elfogadja, hogy nem lesz hozzá dokumentum (**Dokumentum nem várható**), a teendő lekerül a számláról, és az ügyféltől sem kérjük tovább: a kérés a [Hiányzó bizonylatok](/documents-needed) oldalról is eltűnik. A számlán ezután a szürke **Dokumentum nem várható** címke áll.
 
 Mentés előtt a párbeszédablak megmondja, hány számlán lesz teendő, és hány nyitott dokumentumkérés zárul le az ügyfélnél. Ha szűkíti a beállítást, a már nyitott kérések lezárulnak. Ha később újra bővíti, ugyanazok a kérések nyílnak meg újra, és az ügyfél nem kap róluk második üzenetet. A beállítást a **„Törzsadatok szerkesztése”** jogosultsággal lehet módosítani.
 
@@ -141,7 +142,7 @@ Kattintson a számla oldalán a **Szerkesztés** gombra, vagy nyomja meg az `E` 
 - **Hozzárendelés**: hogy Ön az eladó vagy a vevő (**Mi vagyunk az eladó · bevétel** vagy **Mi vagyunk a vevő · kiadás**), melyik cégéről van szó, és a partner. A számlára nyomtatott neveket és adószámokat nem szerkeszti: azt választja ki, kihez tartozik a számla.
 - **Számla részletei**: a számlaszám, a pénznem, valamint a kiállítás, a fizetési határidő, a teljesítés, az ÁFA- és a könyvelési dátum.
 - A nettó, az ÁFA és a bruttó végösszeg.
-- **Számlatételek**: tételenként a leírás, a nettó, a bruttó és a kategória szerkeszthető; az ÁFA-kulcs látható, de nem szerkeszthető. A kategóriát kereshető listából választja ki: névre vagy kódra szűr, a kategóriák kód szerint növekvő sorrendben állnak, és ha az AI javasolt egyet, az áll a lista tetején. Ha a tételnek már van kategóriája, akkor is elég a mezőbe kattintani és gépelni: amit beír, az a mezőben álló szöveg helyére kerül, a kategória pedig csak akkor változik, amikor a listából választ. Törölni a lista elején álló **- Nincs kategória -** sorral lehet. A **Sor hozzáadása** új tételt ad hozzá, a kuka ikon töröl egyet.
+- **Számlatételek**: tételenként a leírás, a nettó, a bruttó és a kategória szerkeszthető; az ÁFA-kulcs látható, de nem szerkeszthető. A kategóriát kereshető listából választja ki: névre vagy kódra szűr, a kategóriák kód szerint növekvő sorrendben állnak, és ha az AI javasolt egyet, az áll a lista tetején. Ha a tételnek már van kategóriája, a mezőbe kattintva a keresőmező üresen nyílik meg, a jelenlegi kategóriát pedig a listában pipa jelöli; kezdjen el gépelni a kereséshez. A kategória csak akkor változik, amikor a listából választ, a lista bezárásakor pedig a mezőben újra a kategória áll. Törölni a lista elején álló **- Nincs kategória -** sorral lehet. A **Sor hozzáadása** új tételt ad hozzá, a kuka ikon töröl egyet.
 
 Egy értékre kattintva szerkesztheti; Enter lenyomására vagy máshová kattintva mentődik. Mentés gomb nincs. Ha egy mező fölé viszi az egeret, az érték sárgán kiemelődik a PDF-ben, így összevetheti a forrással. Egy módosított mezőnél az egér fölé vitelekor visszaállító nyíl jelenik meg, amely visszaállítja az AI által kinyert értéket. A szerkesztőt az `Esc` billentyűvel vagy a **×** gombbal zárhatja be.
 

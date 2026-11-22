@@ -94,6 +94,20 @@ Schreiben Sie unter Freigeber ein bis zwei Sätze pro Person darüber, worüber 
 
 Die KI wählt die Person, deren Beschreibung die Rechnung abdeckt, oder niemanden, wenn keine Beschreibung passt. Sie handelt nur, wenn sie sich mindestens zu 70 % sicher ist; sonst wartet die Rechnung in der Übersicht unter **Braucht Sie** mit einem Hinweis wie „KI 0.58, unter der Schwelle“. Die KI hat einen Versuch pro Rechnung; fügen Sie eine Beschreibung hinzu, ändern oder leeren Sie sie, sieht sie sich alle noch nicht zugewiesenen Rechnungen erneut an. Beschreiben Sie, worüber die Person entscheidet, keine Anweisungen. Die KI läuft nur, wenn mindestens ein Freigeber eine Beschreibung hat, und nie für ein Unternehmen, bei dem die Freigabe ausgeschaltet ist.
 
+## Vertretungen und Nachfolge
+
+Unter **Vertretungen und Nachfolge** können Sie jeder freigebenden Person eine Vertretung geben: eine andere freigebende Person, die die Rechnungen sieht. Die Person kann dasselbe auf ihrer eigenen Seite **Freigaben** auf der Karte **Vertretung** einstellen. Die Rechnung behält ihre zuständige Person; die Vertretung ist eine zweite Hand.
+
+Die Vertretung darf die Rechnungen jederzeit freigeben oder ablehnen, wird aber nur dann darum gebeten (Zähler, **Wartet auf Sie** und die tägliche E-Mail), wenn die Rechnung **vertreten wird**:
+
+- die zuständige Person hat eine Abwesenheit eingetragen (Beginn und Ende, höchstens 92 Tage; dafür braucht es zuerst eine Vertretung) und ist jetzt abwesend; ihre eigenen Freigabe-E-Mails pausieren so lange,
+- die Rechnung ist morgen fällig oder überfällig,
+- oder sie hat kein Fälligkeitsdatum und wartet seit 5 Tagen oder länger.
+
+Es gibt nur eine Stufe: Ist die Vertretung ebenfalls abwesend, wird niemand gebeten, und die Rechnung bleibt bei der zuständigen Person. Eine Vertretung kann eine Rechnung nicht weiterleiten. Bei der Entscheidung steht „Freigegeben von X (in Vertretung für Y)“, und die Zuordnung lernt die zuständige Person, nie die Vertretung.
+
+Wenn jemand geht oder nicht mehr freigeben kann, aber noch Rechnungen, Regeln oder die Rolle als Standard-Freigeber hat, erscheint die Person unter **Kann nicht mehr freigeben**. **An Nachfolge übergeben** zeigt zuerst, was übertragen wird, und überträgt erst nach Ihrer Bestätigung in einem Schritt die wartenden Rechnungen, Regeln, die Rolle als Standard-Freigeber, gelernte Beispiele, offene Regelvorschläge, Vertretungen und die Beschreibung an die Nachfolge. Die Nachfolge erhält eine E-Mail zu den übergebenen Rechnungen, jeweils mit „Übergeben von …“.
+
 ## Die Übersicht
 
 Die Seite **Übersicht** ist für die Person, die Freigaben verwaltet: Ihr Link steht oben rechts unter **Freigaben**, und nur wer Freigaben verwalten darf, sieht ihn. Freigebende landen stattdessen auf ihrem eigenen Schreibtisch. Ihre Kopfzeile hat die Schaltfläche **Zuordnungsregeln**, die die Einstellungsseite öffnet, und, für alle mit „Zahlungsdatei exportieren“, die Schaltfläche **Zahlungsdatei**.

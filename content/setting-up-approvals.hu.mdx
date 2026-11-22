@@ -94,6 +94,20 @@ A Jóváhagyók alatt írjon egy-két mondatot minden személyről arról, mirő
 
 Az AI azt a személyt választja, akinek a leírása lefedi a számlát, vagy senkit, ha egyik leírás sem illik. Csak akkor lép, ha legalább 70%-ban biztos; különben a számla az Áttekintés **Rád vár** listájában vár egy ilyen megjegyzéssel: „AI 0.58, a küszöb alatt”. Az AI számlánként egyszer próbálkozik; ha hozzáad, módosít vagy töröl egy leírást, minden még kiosztatlan számlát újra megnéz. Azt írja le, miről dönt a személy, ne utasításokat. Az AI csak akkor fut, ha legalább egy jóváhagyónak van leírása, és soha nem olyan cégnél, ahol a jóváhagyás ki van kapcsolva.
 
+## Helyettesek és utódok
+
+A **Helyettesek és utódok** blokkban minden jóváhagyónak megadhat egy helyettest: egy másik jóváhagyót, aki látja a számlákat. Ugyanezt a jóváhagyó maga is beállíthatja a saját **Jóváhagyások** oldalán, a **Helyettesítés** kártyán. A számla gazdája ettől nem változik, a helyettes egy második kéz.
+
+A helyettes bármikor jóváhagyhatja vagy elutasíthatja a gazda számláit, de csak akkor kéri meg rá a rendszer (a számláló, a **Rád vár** lista és a napi e-mail), ha a számla **helyettesítésre vár**:
+
+- a gazda megadott egy távollétet (kezdő és záró nap, legfeljebb 92 nap; ehhez előbb helyettes kell), és most van távol; ilyenkor a gazda saját jóváhagyási e-mailjei szünetelnek,
+- a számla holnap esedékes vagy már lejárt,
+- vagy nincs fizetési határideje, és legalább 5 napja vár.
+
+Csak egy lépés van: ha a helyettes is távol van, senkit nem kér meg a rendszer, a számla a gazdánál marad. A helyettes nem oszthatja ki a számlát másnak. A döntésnél ez áll: „Jóváhagyta: X (Y helyetteseként)”, és az irányítás a gazdát tanulja meg, nem a helyettest.
+
+Ha valaki távozik, vagy már nem hagyhat jóvá, de még várnak rá számlák, szabályok szólnak rá vagy ő az alapértelmezett jóváhagyó, a blokk **Már nem hagyhat jóvá** listájában jelenik meg. Az **Átadás utódnak** gomb előbb megmutatja, mi kerül át, és csak a megerősítés után adja át egy lépésben a várakozó számláit, a szabályait, az alapértelmezett jóváhagyó szerepet, a tanult mintákat, a függő szabályjavaslatokat, a helyettesítéseit és a leírását az utódnak. Az utód az átadott számlákról e-mailt kap, mellettük „Átadva tőle: …” áll.
+
 ## Az Áttekintés
 
 Az **Áttekintés** oldal a jóváhagyások kezelőjének szól: a linkje a **Jóváhagyások** jobb felső sarkában van, és csak az látja, akinek joga van kezelni a jóváhagyásokat. A jóváhagyók a saját asztalukra érkeznek. A fejlécében a **Szabályok** gomb a beállítások oldalt nyitja meg, mellette pedig az „Utalási fájl exportálása” joggal rendelkezőknek az **Utalási fájl** gomb.
