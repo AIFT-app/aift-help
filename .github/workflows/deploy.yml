@@ -1,20 +1,66 @@
+# =============================================================================
+# Build the help centre and publish it to GitHub Pages (help.aifinance.team).
+#
+# TWO jobs, on purpose. PRD: help-deploy-race (aift-ops/specs/help-deploy-race.md)
+#
+#   build    checks out, builds the static export, uploads it as the
+#            `github-pages` artifact.
+#   deploy   needs build, and only hands that artifact to GitHub Pages.
+#
+# Until 2026-11-22 this was ONE job. `deploy-pages` started in the same second
+# the upload ended, asked GitHub once for the run's artifacts, and does not
+# retry. When that list lagged it found nothing and the check went red:
+#
+#   Error: No artifacts named "github-pages" were found for this workflow run.
+#
+# (merge e11ecd62 on 2026-11-20, not noticed for two days, and merge 05c06fa1
+# on 2026-11-22). A second job starts seconds after the upload, not in the same
+# second. This is the layout of GitHub's own Pages starter workflows.
+#
+# ── The publishing job is NAMED `deploy`. Keep the name. ─────────────────────
+# Promote chains wait for a check called exactly `deploy` on the merge commit.
+# A red `build` leaves `deploy` skipped, never green.
+#
+# ── When `deploy` is red ─────────────────────────────────────────────────────
+#   "Re-run failed jobs" runs `deploy` alone, against the artifact `build`
+#   already uploaded. That is the repair.
+#
+#   "Re-run all jobs" uploads a SECOND `github-pages` artifact into the same
+#   run, and `deploy-pages` then refuses with "Multiple artifacts named
+#   "github-pages" were unexpectedly found". For a clean start use a fresh run:
+#
+#     gh workflow run deploy.yml --repo AIFT-app/aift-help --ref main
+#
+#   Only `main` can publish: the `github-pages` environment refuses every
+#   other branch, so a run started from one stops at `deploy`.
+#
+# ── Permissions are per job ──────────────────────────────────────────────────
+# aift-help is PUBLIC. Only `deploy` may write to Pages and mint the OIDC
+# token; `build`, the job that runs npm, can only read the repository. Every
+# action is pinned to a full commit SHA, at the versions the one-job workflow
+# ran (aift-ops/tests/help-ci-trust-boundary.test.ts §2). The shape of this
+# file is guarded by aift-ops/tests/help-deploy-race.test.ts.
+# =============================================================================
+
 name: Deploy to GitHub Pages
+
 on:
   push:
     branches: [main]
+  workflow_dispatch:
+
 permissions:
   contents: read
-  pages: write
-  id-token: write
+
 concurrency:
   group: pages
   cancel-in-progress: false
+
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
@@ -27,5 +73,16 @@ jobs:
       - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
         with:
           path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write      # publish the deployment
+      id-token: write   # prove to Pages which workflow is deploying
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
         id: deployment
