@@ -55,6 +55,8 @@ A panel appears in the **bottom-right corner** as soon as an upload starts, with
 | **Extracted** | An invoice is done. Click the row to open it. |
 | **Checking the file for more invoices…** | The first invoice is read, and the file looks like it holds more. It is being read once more. See [Several invoices in one file](#several-invoices-in-one-file). |
 | **Extracted, plus N more invoices from this file** | The file held more than one invoice, and each one is now its own invoice. The extra invoices also show as rows of their own. |
+| **This looks like a bank statement, not an invoice.** | The file is a bank statement. It was set aside, and **Import as bank statement** moves it to Bank statements. See [When the file is not an invoice](#when-the-file-is-not-an-invoice). |
+| **Processed; not an invoice: …** | The file is not an invoice (a contract or a payment notice, for example), but it was processed as usual. |
 | **Done · N transactions (M merged)** | A statement is done. Click the row to open it. |
 | **Done with errors · see detail** | A statement finished, but some pages did not. Open it to see which. |
 | **Already exists** | This exact file is already in the workspace. Click the row to open the original. |
@@ -122,6 +124,15 @@ Two cases still need you:
 - **More than 10 invoices in one file, or none the AI can read with confidence.** The row fails with **Failed: This file contains several separate documents. Split it and upload each document on its own.**
 
 One invoice per file is still the quickest: it needs no second reading and no extra review.
+
+## When the file is not an invoice
+
+When the AI reads an uploaded file, it also says when the file is not an invoice.
+
+- **A bank statement.** It does not become an invoice: it is set aside (archived), so it is not in the to-dos, the bookkeeping or the exports, and you are asked what to do with it. The upload row and the invoice page offer **Import as bank statement**, which moves the file to [Bank statements](/bank-statement-upload), where it is imported as usual. When the PDF holds the statements of several bank accounts, or it is a photo, there is no button: upload the statement one account at a time, as a PDF, on the Bank statements tab.
+- **Anything else that is not an invoice** (a contract, a payment notice, a premium reminder, a balance statement, a cash withdrawal slip): it is processed as an invoice as usual, and the invoice page shows an amber notice: **Not an invoice: …**. If it does not need to be booked, archive it.
+
+If the AI got it wrong and a set-aside file is an invoice after all, **Process as invoice** on the invoice page reads it again, this time as an invoice, and never sets it aside again.
 
 ## ZIP Archives
 

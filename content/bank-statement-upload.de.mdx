@@ -48,7 +48,9 @@ Jede Zeile, die nicht Ausstehend ist, öffnet per Klick den Auszug. Eine Zeile i
 
 ## Wenn Ihr Eingreifen nötig ist
 
-**Kein Bankkonto.** Die Zeile sagt das und bietet **Import abschließen** an. Legen Sie das Konto unter dem Unternehmen in **Stammdaten → Unternehmen** an und drücken Sie dann die Schaltfläche: die zurückgehaltenen Zeilen werden geschrieben, und der Auszug wird abgeschlossen. Nichts muss erneut hochgeladen werden.
+**Kein Bankkonto.** Die Zeile sagt das, mit der gelesenen Kontonummer. Legen Sie das Konto unter dem Unternehmen in **Stammdaten → Unternehmen** an, oder korrigieren Sie die Nummer eines vorhandenen Kontos: beim Speichern werden die zurückgehaltenen Zeilen geschrieben, der Auszug wird abgeschlossen, und eine Meldung sagt, wie viele wartende Auszüge importiert wurden. Nichts muss erneut hochgeladen und keine Schaltfläche gedrückt werden. Wird der Auszug trotzdem nicht abgeschlossen (etwa weil die Kontonummer auf der ersten Seite nicht lesbar war), bietet die Zeile **Import abschließen** an.
+
+**Ein als Rechnung hochgeladener Auszug.** Wenn Sie einen Kontoauszug auf der Seite **Rechnungen** hochladen, erkennt die App ihn und macht keine Rechnung daraus: sie stellt ihn zurück (archiviert ihn) und fragt nach. Die Upload-Zeile und die Rechnungsseite bieten **Als Kontoauszug importieren** an; damit kommt die Datei hierher zu den Kontoauszügen und wird wie gewohnt importiert. Enthält das PDF die Auszüge mehrerer Bankkonten, gibt es keine Schaltfläche: ein Upload gehört zu einem Bankkonto, laden Sie die Auszüge deshalb hier kontoweise hoch. Hat sich die App geirrt und die Datei ist doch eine Rechnung, verarbeitet **Als Rechnung verarbeiten** sie als solche.
 
 **Der Auszug lautet auf eine andere Währung als das Konto.** Der Upload schlägt sofort fehl und nennt die beiden Währungen, die kollidieren. Löschen Sie ihn und laden Sie ihn erneut gegen das richtige Konto hoch.
 
@@ -88,7 +90,7 @@ Siehe [Rollen & Berechtigungen](/roles-and-permissions).
 
 ## Tipps
 
-- **Legen Sie das Konto zuerst an.** Das Bankkonto vor dem Hochladen unter dem Unternehmen zu hinterlegen, erspart Ihnen den ganzen Umweg über „kein Bankkonto“.
+- **Legen Sie das Konto zuerst an.** Ist das Bankkonto vor dem Hochladen unter dem Unternehmen hinterlegt, wird der Auszug sofort importiert. Legen Sie es später an, wird der Auszug beim Speichern des Kontos abgeschlossen.
 - **Jeder Auszug hat seinen eigenen Nachrichten-Thread**, auf der Auszugsseite. Dort fragen Sie Ihre Buchhaltung zu genau einem Upload.
 - **Die importierten Zeilen finden Sie später** über die Quellen-Markierung **Auszug** in der Liste [Banktransaktionen](/bank-transactions). Eine Zeile, die in eine vorhandene Transaktion zusammengeführt wurde, trägt **Bank-Feed** und **Auszug**.
 - **Scans funktionieren**, solange der Text lesbar ist. Ein schlechter Scan erzeugt einen unvollständigen Auszug statt eines offensichtlichen Fehlers, prüfen Sie also die Anzahl.

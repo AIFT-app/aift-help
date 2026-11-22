@@ -55,6 +55,8 @@ Sobald ein Upload beginnt, erscheint in der **unteren rechten Ecke** ein Fenster
 | **Extrahiert** | Eine Rechnung ist fertig. Klicken Sie auf die Zeile, um sie zu öffnen. |
 | **Datei wird auf weitere Rechnungen geprüft…** | Die erste Rechnung ist gelesen, und die Datei enthält offenbar weitere. Sie wird ein zweites Mal gelesen. Siehe [Mehrere Rechnungen in einer Datei](#mehrere-rechnungen-in-einer-datei). |
 | **Extrahiert, dazu N weitere Rechnungen aus dieser Datei** | Die Datei enthielt mehr als eine Rechnung, und jede ist jetzt eine eigene Rechnung. Die weiteren Rechnungen erscheinen auch als eigene Zeilen. |
+| **Das sieht nach einem Kontoauszug aus, nicht nach einer Rechnung.** | Die Datei ist ein Kontoauszug. Sie wurde zurückgestellt, und **Als Kontoauszug importieren** verschiebt sie zu den Kontoauszügen. Siehe [Wenn die Datei keine Rechnung ist](#wenn-die-datei-keine-rechnung-ist). |
+| **Verarbeitet; keine Rechnung, sondern: …** | Die Datei ist keine Rechnung (etwa ein Vertrag oder eine Zahlungsmitteilung), wurde aber wie gewohnt verarbeitet. |
 | **Fertig · N Transaktionen (M zusammengeführt)** | Ein Kontoauszug ist fertig. Klicken Sie auf die Zeile, um ihn zu öffnen. |
 | **Fertig mit Fehlern · Details prüfen** | Ein Kontoauszug ist fertig geworden, einzelne Seiten aber nicht. Öffnen Sie ihn, um zu sehen, welche. |
 | **Bereits vorhanden** | Genau diese Datei liegt bereits im Arbeitsbereich. Klicken Sie auf die Zeile, um das Original zu öffnen. |
@@ -122,6 +124,15 @@ Zwei Fälle brauchen weiterhin Sie:
 - **Mehr als 10 Rechnungen in einer Datei, oder keine, die die KI sicher lesen kann.** Die Zeile endet mit **Fehlgeschlagen: Diese Datei enthält mehrere separate Dokumente. Teilen Sie sie auf und laden Sie jedes Dokument einzeln hoch.**
 
 Eine Rechnung pro Datei bleibt am schnellsten: kein zweites Lesen und keine zusätzliche Prüfung.
+
+## Wenn die Datei keine Rechnung ist
+
+Beim Lesen einer hochgeladenen Datei sagt die KI auch, wenn die Datei keine Rechnung ist.
+
+- **Ein Kontoauszug.** Daraus wird keine Rechnung: er wird zurückgestellt (archiviert), steht also nicht in den Aufgaben, der Buchhaltung oder den Exporten, und Sie werden gefragt, was damit geschehen soll. Die Upload-Zeile und die Rechnungsseite bieten **Als Kontoauszug importieren** an; damit kommt die Datei zu den [Kontoauszügen](/bank-statement-upload) und wird dort wie gewohnt importiert. Enthält das PDF die Auszüge mehrerer Bankkonten oder ist es ein Foto, gibt es keine Schaltfläche: laden Sie den Auszug dann kontoweise als PDF im Tab Kontoauszüge hoch.
+- **Alles andere, was keine Rechnung ist** (ein Vertrag, eine Zahlungsmitteilung, eine Prämienmahnung, eine Saldenbestätigung, ein Barabhebungsbeleg): es wird wie gewohnt als Rechnung verarbeitet, und die Rechnungsseite zeigt einen gelben Hinweis: **Keine Rechnung, sondern: …**. Muss es nicht gebucht werden, archivieren Sie es.
+
+Hat sich die KI geirrt und ist eine zurückgestellte Datei doch eine Rechnung, liest **Als Rechnung verarbeiten** auf der Rechnungsseite sie erneut, diesmal als Rechnung, und stellt sie nie wieder zurück.
 
 ## ZIP-Archive
 
