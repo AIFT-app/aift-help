@@ -1,0 +1,103 @@
+# Áfalevonásra nem jogosult cég
+
+Vannak cégek, amelyek semmilyen beszerzésük után nem vonhatnak le áfát. A tipikus eset a csak vagyonkezelő (holding) tevékenységet végző cég: ugyanúgy áfás számlákat kap, mint bárki más, az áfa pedig a költsége része. Az AI Finance Team ezt a **cég** beállításaként tárolja, soha nem a munkaterületé. Több céget tartalmazó munkaterületen csak a megjelölt cégre hat.
+
+Ez nem az [alanyi adómentesség](/small-business-exemption). Az alanyi adómentes cég a saját számláit is áfa nélkül állítja ki. Az áfalevonásra nem jogosult cég a szokásos módon számláz, ezért az itt leírt kapcsoló csak a beszerzéseket érinti.
+
+## Mit tesz a kapcsoló
+
+Amíg egy számla ÁFA-dátumán érvényben van:
+
+- **A cég minden beszerzési sora** az **Áfalevonásra nem jogosult cég** nevű **Termék / Szolgáltatás** ÁFA-csoportot kapja, bármit is vásároltak. A csoport 100%-ban le nem vonható, így a sor bruttó összege költségként könyvelődik, visszaigényelhető áfa nélkül.
+- **Az értékesítések változatlanok.** Ugyanígy a munkaterület összes többi cége, akkor is, ha ugyanattól a szállítótól ugyanazt veszi.
+- **Amit valaki kézzel állított be, az marad.** Az a sor, amelynek csoportját vagy ÁFA-kódját kézzel választották, megtartja.
+
+A csoport rendszerelem. Az alkalmazás akkor hozza létre, amikor a kapcsolót először bekapcsolva mentik, a kódja nem módosítható, a százaléka mindig 100%, és nem választható, amikor egy soron vagy egy partneren csoportot állít be. Az AI sem választja soha. A kapcsolóból érkezik.
+
+## A bekapcsolás menete
+
+1. Nyissa meg a **Törzsadatok → Cégek** menüpontot, válassza ki a céget, és lépjen az **Adó és ÁFA** fülre.
+2. Az ÁFA-beállítások alatt jelölje be az **Áfalevonásra nem jogosult** lehetőséget. Két dátummező jelenik meg: **Kezdete** és **Vége**. Mindkettő elhagyható: üres kezdet esetén a beállítás a kezdetektől érvényes. Azt, hogy egy számlára vonatkozik-e, a rendszer számlánként, a számla ÁFA-dátuma alapján dönti el. Ha kézzel módosít egy ÁFA-dátumot, az új dátum dönt.
+3. Mentsen.
+
+A kapcsoló és az alanyi adómentesség nem lehet érvényben ugyanazon a napon, mert az alanyi adómentes cég eleve nem von le áfát. Egymást követő időszak megengedett.
+
+A kapcsoló átállításához a **Törzsadatok szerkesztése** jogosultság kell. A meglévő számlákra való alkalmazáshoz a **Számlák szerkesztése** jogosultság, ami ettől különbözik. Lásd: [Szerepek és jogosultságok](/roles-and-permissions).
+
+**A mentés egyetlen számlasort sem módosít.** Ettől a pillanattól az új számlák maguktól követik a beállítást, és minden olyan sor is, amelyet a rendszer újra felold. A munkaterületen már meglévő számlák csak akkor változnak, amikor Ön az előnézet után alkalmazza rájuk a beállítást.
+
+## A szükséges ÁFA-kódok
+
+Az ÁFA-kód öt elem találkozása. A kapcsoló ezek közül egyet rögzít, a Termék / Szolgáltatás csoportot. A kulcs és a partner ÁFA-csoportja továbbra is a számláról jön. A cégnek ezért a fenntartott csoporton **minden kulcshoz és minden olyan belföldi partnercsoporthoz, amelybe a szállítói tartoznak**, egy-egy ÁFA-kód kell: Belföldi, Pénzforgalmi partner és Alanyi adómentes szállító. Az irány beszerzés, a számítási mód Normál.
+
+A listát nem Önnek kell összeállítania. A mentés után az űrlap alatti panel felsorolja azokat a kombinációkat, amelyekre a soroknak szükségük van, de még nincs hozzájuk kód, mindegyik mellett egy **ÁFA-kód létrehozása** gombbal, amely az ÁFA-kód űrlapját előre kitöltve nyitja meg. A lent leírt előnézet ugyanezt a listát mutatja azokra a számlákra, amelyeket módosítana. Minden kódnak a le nem vonható kezelés könyvelőprogrambeli kódját adja meg.
+
+Amíg egy kombinációnak nincs kódja, a sorai ÁFA-kód nélkül maradnak, és a **Hiányos ÁFA-kódok** teendőn jelennek meg. Amint létrehozza a kódot, megkapják, újrafuttatás nélkül.
+
+Ha egy szállító áttér a pénzforgalmi elszámolásra, a hozzá tartozó partnercsoport alatti kód kell. A Belföldi alatti kódot a rendszer nem használja rá.
+
+## A munkaterületen már meglévő számlák
+
+Az Adó és ÁFA fülön kattintson az **Alkalmazás a meglévő számlákra** gombra.
+
+1. Válassza ki az időszakot. Ezek a dátumok az ÁFA-dátum alapján választják ki a számlákat. A beállítás időszakát nem változtatják meg, még ha abból is töltődnek ki előre.
+2. Kattintson az **1. Előnézet** gombra. Ekkor még semmi nem változik. Az előnézet megmutatja, hány sor változik, mely kombinációkhoz nincs még ÁFA-kód, hány külföldi vagy fordított adózású beszerzési sor vár majd Önre, hány sort állítottak be kézzel, hány változó sor van könyvelésre jóváhagyott számlán, és mely számlák vannak már a Business Centralban.
+3. Kattintson a **2. Alkalmazás** gombra, amely csak az előnézet után válik elérhetővé.
+
+Két dolgot érdemes tudni az alkalmazás előtt:
+
+- **Az a jóváhagyott számla, amelynek sora változik, újra könyvelési jóváhagyásra vár**, ahogyan egy jóváhagyott számla bármely módosítása után. Az előnézet megmondja, hány ilyen van.
+- **Az AI Finance Team soha nem módosítja, amit a Business Centralba elküldött.** A sorok itt kapnak új kódot, a Business Centralban lévő bizonylat pedig megtartja a könyvelését, amíg ott valaki ki nem javítja. Az előnézet listája ez a munkalista.
+
+Egy futtatás legfeljebb **2000 számlára** terjed ki. Hosszabb előzményt több időszakra bontva kell elvégezni.
+
+Az alkalmazás napján a cég költségei megnőnek a kimutatásokban: az addig visszaigényelhetőként mutatott áfa mostantól a költség része. Ez a helyes szám, és érdemes az ügyfélnek is elmondani.
+
+## Külföldi és fordított adózású beszerzések
+
+Fordított adózású beszerzésnél (belföldi fordított adózás, másik tagállamból beszerzett termék vagy szolgáltatás, harmadik országból igénybe vett szolgáltatás) a szállító nem számít fel áfát, azt a vevő fizeti meg. Annál a cégnél, amely levon, a fizetendő és a levonható fél kiegyenlíti egymást. Ennek a cégnek csak a fizetendő fele van, és az költség.
+
+Az AI Finance Team az ilyen sort soha nem kódolja magától. A sor megkapja a fenntartott csoportot, de **ÁFA-kódot nem**, akkor sem, ha a kombinációjához létezik kód. A **Hiányos ÁFA-kódok** teendőn jelenik meg, és maga a sor mondja meg, miért vár: *A beszerzés után a cégnek kell megfizetnie az áfát, és nem vonhatja le.* Egy sor akkor számít ilyennek, ha a szállító partner ÁFA-csoportja a beépített külföldi csoportok egyike (EU, Harmadik ország), ha a sor számítási módja nem Normál, vagy ha maga a szállító külföldi: az adószámának országa, ennek hiányában az országa nem a munkaterület országa. Egy saját létrehozású partner ÁFA-csoport, például egy cégcsoporton belüli csoport, önmagában nem tesz külföldivé egy szállítót: a belföldi tagja ugyanúgy kap kódot, mint bármely belföldi szállító, a külföldi tagja pedig ellenőrzésre vár.
+
+A kódolása:
+
+1. A **Tételek & ÁFA** fülön tegye a sort egy saját Termék / Szolgáltatás csoportra, amely azt jelenti: „fordított adózású, le nem vonható”. Ez a csoport 100%-ban le nem vonható, a fordított adózású ÁFA-kódjainak könyvelőprogrambeli kódja pedig a csak fizetendő kezelés.
+2. Az ÁFA-kód ezután a sor elemeiből a szokásos módon oldódik fel. A sor **Kézi** jelölést visel, és minden későbbi újrafuttatásnál megőrzi az Ön választását.
+
+Ezt a csoportot és a kódjait még az első ilyen számla érkezése előtt hozza létre, hogy legyen hová tenni a sort.
+
+## A beállítást őrző teendő
+
+A **Nem jogosult levonásra: levonható sor** teendő akkor jelenik meg egy számlán, ha egy ilyen cég beszerzési sora még levonható: mert a beállítást elmentették, de még nem alkalmazták, vagy mert valaki a sort levonható csoportra tette, illetve 100-nál kisebb százalékot írt be. Semmit nem akadályoz, és eltűnik, amint a sor ismét le nem vonható.
+
+## Business Central
+
+- **A szokásos beszerzések bruttó összeggel mennek fel.** A fenntartott csoporton lévő sor összege a nettó és az áfa együtt, **egyetlen**, 0%-os Business Central áfacsoporton. A Business Central így a teljes összeget a sor főkönyvi számlájára könyveli. A csoportot egyszer kell megfeleltetni, a **Törzsadatok → ÁFA-kódok** alatti **Business Central** fülön: a sorában **Minden kulcs** áll. Az AI Finance Team nem látja egy Business Central csoport százalékát, ezért győződjön meg róla, hogy a kiválasztott csoport 0%-os. Bármely más csoport a bruttóra még áfát számítana. Az első számlát próbakörnyezetben ellenőrizze.
+- **A mennyiség és a mértékegység megmarad.** Három darab 1 000 forintos tétel 27%-os kulccsal három darab 1 270 forintos tételként megy fel. Ha az újraszámolt egységár egy fillérrel elvétené a bruttót, a sor 1 × bruttó formában megy fel.
+- **A számla nem küldhető**, amíg a fenntartott csoporton lévő sorának nincs megfeleltetése, vagy a sor még az ÁFA-kódjára vár. A küldés előtti ellenőrző képernyő mindkettőt megnevezi.
+- **A fordított adózású sorok nettó összeggel mennek fel**, annak a csoportnak a megfeleltetésén, amelyre kézzel tette őket. A fizetendő áfát a Business Central számolja ki a saját könyvelési beállításából, amelynek ehhez a párhoz fordított adózásúnak és 100%-ban le nem vonhatónak kell lennie. Az első éles számla előtt próbáljon ki egyet próbakörnyezetben.
+
+A Business Central tehát a cég szokásos beszerzéseiről nem vezet áfanyilvántartást, és a soraik egységára tartalmazza az áfát.
+
+Az [alanyi adómentes](/small-business-exemption) cég beszerzései ugyanígy, bruttó összeggel mennek fel, a saját csoportjuk megfeleltetésén.
+
+## RLB, Hessyn és az univerzális export
+
+A fenntartott csoporton lévő sort úgy kezelik, mint bármely 100%-ban le nem vonható sort: a teljes áfa költség, visszaigényelhető rész nincs. Hogy ez az egyes fájlokba hogyan kerül, azt a munkaterület ÁFA export beállítása dönti el. Lásd: [ÁFA az exportokban](/vat-in-exports).
+
+Egy hiány marad. A **le nem vonható, fordított adózású beszerzési sornál** az RLB-fájl nem tartalmazza a cég által fizetendő áfát, az AI Finance Team saját kimutatásai pedig a nettót mutatják költségként. Az RLB-oldal **Javítás exportálás előtt** panelje felsorolja az ilyen sorokat, hogy egy se menjen ki észrevétlenül. Az export nem áll le, és az AI Finance Teamben nincs mit javítani: ezeket a tételeket az RLB-ben ellenőrizze.
+
+## A beállítás megszüntetése
+
+Állítsa a **Vége** mezőt az utolsó napra, és mentsen. A későbbi számlák közönséges számlaként kezelendők, a korábbiak megtartják a kezelésüket. Ezután futtassa az **Alkalmazás a meglévő számlákra** funkciót az azt követő időszakra, ha abból már vannak betöltött számlák. A soraik lekerülnek a fenntartott csoportról, és az **Áfakódolás újrafuttatása** sorolja be őket újra.
+
+Ne a kapcsolót kapcsolja ki helyette, hacsak nem tévedésből volt bekapcsolva. A kikapcsolás mindkét dátumot törli, így a cég úgy olvasható, mintha mindig is levont volna, és a következő alkalmazás minden sort levesz a csoportról.
+
+## Kapcsolódó cikkek
+
+- [Alanyi adómentesség](/small-business-exemption): a másik cégszintű ÁFA-beállítás, és miben tér el a kettő.
+- [Cégek](/master-data-entities): az Adó és ÁFA fül.
+- [ÁFA-törzsadatok](/vat-master-data): az öt elem, a rendszerelemek és egy csoport le nem vonható százaléka.
+- [ÁFA-kódok a számlákon](/vat-codes-on-invoices): az elemek javítása egy soron.
+- [ÁFA az exportokban](/vat-in-exports): hogyan jutnak el a könyvelendő összegek a könyvelőprogramba.
+- [Business Central](/business-central): az ÁFA-megfeleltetés és a küldés előtti ellenőrzés.

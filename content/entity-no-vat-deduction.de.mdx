@@ -1,0 +1,103 @@
+# Gesellschaft ohne Vorsteuerabzug
+
+Manche Gesellschaften dürfen auf keinen ihrer Einkäufe Vorsteuer abziehen. Der übliche Fall ist eine Holding, die nur als Holding tätig ist: Sie erhält Rechnungen mit USt wie alle anderen, und die USt ist Teil ihres Aufwands. AI Finance Team speichert das als Einstellung der **Gesellschaft**, nie des Arbeitsbereichs. In einem Arbeitsbereich mit mehreren Gesellschaften ist nur die markierte betroffen.
+
+Das ist nicht die [Kleinunternehmerbefreiung](/small-business-exemption). Ein Kleinunternehmer stellt auch seine eigenen Rechnungen ohne USt aus. Eine Gesellschaft ohne Vorsteuerabzug fakturiert wie üblich, daher ändert der hier beschriebene Schalter nur die Einkäufe.
+
+## Was der Schalter tut
+
+Solange er am USt-Datum einer Rechnung gilt:
+
+- **Jede Einkaufsposition der Gesellschaft** erhält die USt-Gruppe **Nicht vorsteuerabzugsberechtigte Firma** unter **Produkt / Leistung**, gleich was gekauft wurde. Die Gruppe ist zu 100 % nicht abziehbar, die Position wird also mit ihrem Bruttobetrag als Aufwand gebucht, ohne erstattungsfähige Vorsteuer.
+- **Verkäufe bleiben unberührt.** Ebenso jede andere Gesellschaft des Arbeitsbereichs, auch wenn sie dasselbe beim selben Lieferanten kauft.
+- **Was eine Person gesetzt hat, bleibt.** Eine Position, deren Gruppe oder USt-Code jemand von Hand gewählt hat, behält sie.
+
+Die Gruppe ist ein Systemelement. Die App legt sie an, wenn der Schalter zum ersten Mal eingeschaltet gespeichert wird, ihr Code kann nicht geändert werden, ihr Prozentsatz ist immer 100 %, und sie wird nicht angeboten, wenn Sie an einer Position oder einem Partner eine Gruppe wählen. Auch die KI wählt sie nie. Sie kommt vom Schalter.
+
+## Einschalten
+
+1. Öffnen Sie **Stammdaten → Unternehmen**, wählen Sie die Gesellschaft und gehen Sie auf den Tab **Steuern & USt.**
+2. Setzen Sie unter den USt-Einstellungen das Häkchen bei **Nicht vorsteuerabzugsberechtigt**. Zwei Datumsfelder erscheinen, **Beginn** und **Ende**. Beide sind optional: Ein leerer Beginn bedeutet „von Anfang an“. Ob eine Rechnung unter die Einstellung fällt, entscheidet sich je Rechnung anhand ihres USt-Datums. Ändern Sie ein USt-Datum von Hand, entscheidet das neue Datum.
+3. Speichern Sie.
+
+Der Schalter und die Kleinunternehmerbefreiung können nicht am selben Tag gelten, weil ein Kleinunternehmer ohnehin keine Vorsteuer abzieht. Ein Zeitraum nach dem anderen ist zulässig.
+
+Das Umstellen des Schalters braucht die Berechtigung **Stammdaten bearbeiten**. Die Anwendung auf bestehende Rechnungen braucht **Rechnungen bearbeiten**, eine andere Berechtigung. Siehe [Rollen & Berechtigungen](/roles-and-permissions).
+
+**Das Speichern ändert keine Rechnungsposition.** Ab diesem Moment folgen neue Rechnungen der Einstellung von selbst, ebenso jede Position, die neu aufgelöst wird. Bereits im Arbeitsbereich vorhandene Rechnungen ändern sich erst, wenn Sie die Einstellung nach einer Vorschau anwenden.
+
+## Die benötigten USt-Codes
+
+Ein USt-Code ist das Zusammentreffen von fünf Elementen. Der Schalter legt eines davon fest, die Gruppe Produkt / Leistung. Satz und Partner-USt-Gruppe kommen weiterhin von der Rechnung. Die Gesellschaft braucht daher auf der reservierten Gruppe einen USt-Code **für jeden Satz und jede inländische Partnergruppe ihrer Lieferanten**: Inländisch, Ist-Versteuerung Partner und Kleinunternehmer-Lieferant. Die Richtung ist Einkauf, die Berechnungsart Normal.
+
+Sie müssen die Liste nicht selbst ermitteln. Nach dem Speichern führt ein Panel unter dem Formular die Kombinationen auf, die Positionen brauchen und für die es noch keinen Code gibt, jeweils mit der Schaltfläche **USt-Code anlegen**, die das USt-Code-Formular vorausgefüllt öffnet. Die unten beschriebene Vorschau zeigt dieselbe Liste für die Rechnungen, die sie ändern würde. Geben Sie jedem Code den Code Ihrer nicht abziehbaren Behandlung im Buchhaltungsprogramm.
+
+Solange eine Kombination keinen Code hat, bleiben ihre Positionen ohne USt-Code und erscheinen in der Aufgabe **USt-Codes unvollständig**. Sobald Sie den Code anlegen, erhalten sie ihn, ohne erneuten Lauf.
+
+Ein Lieferant, der zur Ist-Versteuerung wechselt, braucht den Code unter dieser Partnergruppe. Der Code unter Inländisch wird für ihn nicht verwendet.
+
+## Bereits im Arbeitsbereich vorhandene Rechnungen
+
+Klicken Sie im Tab Steuern & USt. auf **Auf bestehende Rechnungen anwenden**.
+
+1. Wählen Sie den Zeitraum. Diese Daten wählen die Rechnungen anhand des USt-Datums aus. Den Zeitraum der Einstellung ändern sie nicht, auch wenn sie daraus vorbelegt sind.
+2. Klicken Sie auf **1. Vorschau**. Noch ändert sich nichts. Die Vorschau zeigt, wie viele Positionen sich ändern, für welche Kombinationen es noch keinen USt-Code gibt, wie viele Einkaufspositionen aus dem Ausland oder mit Reverse Charge auf Sie warten werden, wie viele Positionen von Hand gesetzt wurden, wie viele geänderte Positionen auf zur Buchung freigegebenen Rechnungen liegen und welche Rechnungen bereits in Business Central sind.
+3. Klicken Sie auf **2. Anwenden**, das erst nach einer Vorschau verfügbar wird.
+
+Zwei Dinge sollten Sie vor dem Anwenden wissen:
+
+- **Eine freigegebene Rechnung, deren Position sich ändert, wartet erneut auf die Buchungsfreigabe**, wie nach jeder Änderung einer freigegebenen Rechnung. Die Vorschau nennt die Anzahl.
+- **AI Finance Team ändert nie, was es an Business Central gesendet hat.** Die Positionen werden hier neu codiert, der Beleg in Business Central behält seine Buchung, bis ihn dort jemand korrigiert. Die Liste der Vorschau ist diese Arbeitsliste.
+
+Ein einzelner Lauf umfasst höchstens **2000 Rechnungen**. Eine längere Historie muss in mehreren Zeiträumen erledigt werden.
+
+Am Tag des Anwendens steigen die Aufwendungen der Gesellschaft in den Auswertungen: Die bisher als erstattungsfähig gezeigte Vorsteuer ist nun Teil des Aufwands. Das ist die richtige Zahl und einen Satz an Ihren Mandanten wert.
+
+## Einkäufe aus dem Ausland und mit Reverse Charge
+
+Bei einem Einkauf mit Reverse Charge (inländisches Reverse Charge, Waren oder Leistungen aus einem anderen Mitgliedstaat, Leistungen aus einem Drittland) berechnet der Lieferant keine USt, der Käufer schuldet sie. Bei einer Gesellschaft mit Vorsteuerabzug heben sich die geschuldete und die abziehbare Hälfte auf. Diese Gesellschaft hat nur die geschuldete Hälfte, und sie ist Aufwand.
+
+AI Finance Team codiert eine solche Position nie von selbst. Die Position erhält die reservierte Gruppe und **keinen USt-Code**, auch wenn es für ihre Kombination einen Code gibt. Sie erscheint in der Aufgabe **USt-Codes unvollständig**, und die Position selbst sagt, warum sie wartet: *Die Gesellschaft muss die USt auf diesen Einkauf selbst abführen und darf sie nicht abziehen.* Eine Position gilt als solche, wenn die Partner-USt-Gruppe des Lieferanten eine der eingebauten ausländischen Gruppen ist (EU, Drittland), wenn die Berechnungsart der Position nicht Normal ist oder wenn der Lieferant selbst ausländisch ist: Das Land seiner Steuernummer, ersatzweise sein Land, ist nicht das Land des Arbeitsbereichs. Eine selbst angelegte Partner-USt-Gruppe, zum Beispiel eine konzerninterne Gruppe, macht einen Lieferanten nicht ausländisch: Ihr inländisches Mitglied wird codiert wie jeder inländische Lieferant, ihr ausländisches Mitglied wartet.
+
+So codieren Sie sie:
+
+1. Legen Sie die Position im Tab **Positionen & USt.** auf eine eigene Gruppe Produkt / Leistung, die für „Reverse Charge, nicht abziehbar“ steht: zu 100 % nicht abziehbar, mit Reverse-Charge-USt-Codes, deren Code im Buchhaltungsprogramm die Behandlung „nur geschuldet“ ist.
+2. Der USt-Code löst sich dann auf dem üblichen Weg aus den Elementen der Position auf. Die Position trägt die Markierung **Manuell** und behält Ihre Wahl bei jedem späteren Lauf.
+
+Legen Sie diese Gruppe und ihre Codes an, bevor die erste solche Rechnung eintrifft, damit die Position einen Platz hat.
+
+## Die Aufgabe, die die Einstellung absichert
+
+**Kein Vorsteuerabzug: abziehbare Position** erscheint an einer Rechnung, wenn eine Einkaufsposition einer solchen Gesellschaft noch abziehbar ist: weil die Einstellung gespeichert, aber noch nicht angewendet wurde, oder weil jemand die Position auf eine abziehbare Gruppe gelegt oder einen Prozentsatz unter 100 eingegeben hat. Sie blockiert nichts und verschwindet, sobald die Position wieder nicht abziehbar ist.
+
+## Business Central
+
+- **Gewöhnliche Einkäufe werden brutto übertragen.** Eine Position auf der reservierten Gruppe wird mit Netto plus USt als Betrag gesendet, auf **einer** Business-Central-USt-Gruppe mit 0 %. Business Central bucht dann den ganzen Betrag auf das Sachkonto der Position. Ordnen Sie die Gruppe einmal zu, im Tab **Business Central** unter **Stammdaten → USt.-Codes**: In ihrer Zeile steht **Alle Sätze**. AI Finance Team sieht den Prozentsatz einer Business-Central-Gruppe nicht, stellen Sie also sicher, dass die gewählte Gruppe 0 % hat. Jede andere würde auf den Bruttobetrag noch USt aufschlagen. Prüfen Sie die erste Rechnung in einer Sandbox.
+- **Menge und Einheit bleiben erhalten.** Drei Stück zu 1.000 bei 27 % werden als drei Stück zu 1.270 übertragen. Wo der neu berechnete Stückpreis den Bruttobetrag um einen Cent verfehlen würde, wird die Position als 1 × brutto übertragen.
+- **Eine Rechnung wird nicht gesendet**, solange eine Position auf der reservierten Gruppe keine Zuordnung hat oder noch auf ihren USt-Code wartet. Der Bereitschaftsbildschirm nennt beides.
+- **Reverse-Charge-Positionen werden netto übertragen**, auf der Zuordnung der Gruppe, auf die Sie sie von Hand gelegt haben. Die geschuldete USt berechnet Business Central aus seiner eigenen Buchungseinrichtung, die für dieses Paar Reverse Charge mit 100 % nicht abziehbar sein muss. Probieren Sie vor der ersten echten Rechnung eine in einer Sandbox aus.
+
+Business Central führt daher keine USt-Aufzeichnung über die gewöhnlichen Einkäufe der Gesellschaft, und der Stückpreis ihrer Positionen enthält die USt.
+
+Die Einkäufe einer Gesellschaft mit [Kleinunternehmerbefreiung](/small-business-exemption) werden genauso brutto übertragen, auf der Zuordnung ihrer eigenen Gruppe.
+
+## RLB, Hessyn und der universelle Export
+
+Sie behandeln eine Position auf der reservierten Gruppe wie jede zu 100 % nicht abziehbare Position: Die gesamte USt ist Aufwand, nichts ist erstattungsfähig. Wie das in die einzelnen Dateien geschrieben wird, richtet sich nach der USt-Exporteinstellung des Arbeitsbereichs. Siehe [USt in Exporten](/vat-in-exports).
+
+Eine Lücke bleibt. Bei einer **nicht abziehbaren Einkaufsposition mit Reverse Charge** enthält die RLB-Datei die von der Gesellschaft geschuldete USt nicht, und die eigenen Auswertungen von AI Finance Team zeigen das Netto als Aufwand. Das Fenster **Vor dem Export beheben** der RLB-Seite listet solche Positionen auf, damit keine unbemerkt hinausgeht. Der Export wird nicht blockiert, und in AI Finance Team gibt es nichts zu korrigieren: Prüfen Sie diese Posten in RLB.
+
+## Beenden
+
+Setzen Sie **Ende** auf den letzten Tag und speichern Sie. Spätere Rechnungen werden als gewöhnliche behandelt, frühere behalten ihre Behandlung. Führen Sie danach **Auf bestehende Rechnungen anwenden** für den Zeitraum danach aus, falls daraus schon Rechnungen geladen sind. Ihre Positionen verlieren die reservierte Gruppe und werden von **USt-Codierung erneut ausführen** neu eingeordnet.
+
+Schalten Sie nicht stattdessen den Schalter aus, es sei denn, er war irrtümlich an. Das Ausschalten löscht beide Daten, die Gesellschaft liest sich dann, als hätte sie immer abgezogen, und das nächste Anwenden nimmt jede Position von der Gruppe.
+
+## Verwandte Artikel
+
+- [Kleinunternehmerbefreiung](/small-business-exemption): die andere USt-Einstellung auf Gesellschaftsebene, und worin sich beide unterscheiden.
+- [Unternehmen](/master-data-entities): der Tab Steuern & USt.
+- [USt-Stammdaten](/vat-master-data): die fünf Elemente, Systemelemente und der nicht abziehbare Prozentsatz einer Gruppe.
+- [USt-Codes auf Rechnungen](/vat-codes-on-invoices): die Elemente einer Position korrigieren.
+- [USt in Exporten](/vat-in-exports): wie die Buchungsbeträge ins Buchhaltungsprogramm gelangen.
+- [Business Central](/business-central): die USt-Zuordnung und der Bereitschaftsbildschirm.

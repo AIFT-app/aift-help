@@ -2,6 +2,8 @@
 
 A törvényi bevételi értékhatár alatt maradó vállalkozás választhatja, hogy nem számít fel ÁFA-t: ez a magyar *alanyi adómentesség*, az osztrák és a német *Kleinunternehmerregelung*. Az ilyen cég ÁFA nélkül állít ki számlát, előzetesen felszámított ÁFA-t nem von le, és rendszerint ÁFA-bevallást sem ad be. Az AI Finance Team ezt a **cég** beállításaként tárolja, és ha egyszer be van kapcsolva, az ÁFA-kódolás ebből következik.
 
+Más eset az a cég, amely a szokásos módon, áfával számláz, de a beszerzései után nem vonhat le áfát (például egy holding). Ennek ugyanazon a fülön saját kapcsolója van: lásd [Áfalevonásra nem jogosult cég](/entity-no-vat-deduction). Az a kapcsoló csak a beszerzéseket érinti, és a kettő nem lehet érvényben ugyanazon a napon.
+
 ## A beállítás menete
 
 A sorrend számít. Minden lépésnek csak akkor van értelme, ha az előzőt már elvégezte.
@@ -104,6 +106,16 @@ Egy futtatás legfeljebb **2000 számlára** terjed ki. Egy forgalmas évet töb
 Állítsa a **Mentesség vége** mezőt a mentesség utolsó napjára, és mentsen. A későbbi ÁFA-dátumú számlák adókötelesként kezelendők, a korábbiak megtartják a kezelésüket. Ezután futtassa az **Alkalmazás a meglévő számlákra** funkciót az azt követő időszakra, ha abból már be vannak töltve számlák.
 
 **Ne a kapcsolót kapcsolja ki helyette.** A kikapcsolás mindkét dátumot törli, így a cég úgy olvasható, mintha soha nem lett volna mentes, és a következő újrafeloldás a teljes előzményét adókötelesként kezeli.
+
+## Business Central
+
+Ha a munkaterület a Business Centralba adja fel a számlákat, a mentes cég beszerzései ugyanúgy mennek fel, mint az [áfalevonásra nem jogosult cégé](/entity-no-vat-deduction).
+
+- **A beszerzések bruttó összeggel mennek fel.** Az **Alanyi adómentesség (saját cég)** csoporton lévő sor összege a nettó és az áfa együtt, **egyetlen** Business Central áfacsoporton. A Business Central így a teljes összeget a sor főkönyvi számlájára könyveli.
+- **A csoportot egyszer kell megfeleltetni**, a **Törzsadatok → ÁFA-kódok** alatti **Business Central** fülön: a sorában **Minden kulcs** áll. Azt, hogy melyik Business Central áfacsoport legyen, Ön választja ki. Az AI Finance Team nem látja egy Business Central csoport százalékát, ezért győződjön meg róla, hogy a kiválasztott csoport 0%-os. Bármely más csoport a bruttóra még áfát számítana.
+- **A mennyiség és a mértékegység megmarad.** Három darab 1 000 forintos tétel 27%-os kulccsal három darab 1 270 forintos tételként megy fel.
+- **A számla nem küldhető**, amíg a csoportnak nincs megfeleltetése, vagy egy sora még az ÁFA-kódjára vár. A küldés előtti ellenőrző képernyő mindkettőt megnevezi.
+- **A kézzel más csoportra tett sor nettó összeggel megy fel**, annak a csoportnak a megfeleltetésén. Ilyen a fordított adózású beszerzés, amelyet Ön kódol.
 
 ## NAV-számlák
 

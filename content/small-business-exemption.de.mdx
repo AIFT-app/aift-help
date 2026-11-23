@@ -2,6 +2,8 @@
 
 Ein Unternehmen unterhalb der gesetzlichen Umsatzgrenze kann darauf verzichten, USt in Rechnung zu stellen: die österreichische und deutsche *Kleinunternehmerregelung*, in Ungarn die *alanyi adómentesség*. Es stellt Rechnungen ohne USt aus, zieht keine Vorsteuer ab und gibt in der Regel keine USt-Erklärung ab. AI Finance Team führt dies als Einstellung auf der **Gesellschaft**, und sobald sie eingeschaltet ist, folgt die USt-Codierung daraus.
 
+Ein anderer Fall ist eine Gesellschaft, die wie üblich mit USt fakturiert, aber auf ihre Einkäufe keine Vorsteuer abziehen darf (zum Beispiel eine Holding). Dafür gibt es im selben Tab einen eigenen Schalter: siehe [Gesellschaft ohne Vorsteuerabzug](/entity-no-vat-deduction). Dieser Schalter ändert nur die Einkäufe, und beide können nicht am selben Tag gelten.
+
 ## Die Einrichtung
 
 Die Reihenfolge ist wichtig. Jeder Schritt ergibt erst Sinn, wenn der vorige erledigt ist.
@@ -104,6 +106,16 @@ Ein einzelner Lauf umfasst höchstens **2000 Rechnungen**. Ein umsatzstarkes Jah
 Setzen Sie **Befreit bis** auf den letzten Tag der Befreiung und speichern Sie. Rechnungen mit späterem USt-Datum werden als steuerpflichtig behandelt, frühere behalten ihre Behandlung. Führen Sie danach **Auf bestehende Rechnungen anwenden** für den Zeitraum nach diesem Datum aus, falls daraus schon Rechnungen geladen sind.
 
 **Nehmen Sie nicht stattdessen das Häkchen aus dem Schalter.** Das Entfernen löscht beide Daten, sodass die Gesellschaft so gelesen wird, als wäre sie nie befreit gewesen, und die nächste Neuauflösung behandelt ihre gesamte Historie als steuerpflichtig.
+
+## Business Central
+
+Wenn der Arbeitsbereich seine Rechnungen an Business Central sendet, werden die Einkäufe einer befreiten Gesellschaft genauso übertragen wie die einer [nicht vorsteuerabzugsberechtigten Firma](/entity-no-vat-deduction).
+
+- **Einkäufe werden brutto übertragen.** Eine Position auf der Gruppe **Kleinunternehmerbefreiung (eigene Gesellschaft)** wird mit Netto plus USt als Betrag gesendet, auf **einer** Business-Central-USt-Gruppe. Business Central bucht dann den ganzen Betrag auf das Sachkonto der Position.
+- **Ordnen Sie die Gruppe einmal zu**, im Tab **Business Central** unter **Stammdaten → USt.-Codes**: In ihrer Zeile steht **Alle Sätze**. Welche Business-Central-USt-Gruppe es ist, wählen Sie. AI Finance Team sieht den Prozentsatz einer Business-Central-Gruppe nicht, stellen Sie also sicher, dass die gewählte Gruppe 0 % hat. Jede andere würde auf den Bruttobetrag noch USt aufschlagen.
+- **Menge und Einheit bleiben erhalten.** Drei Stück zu 1.000 bei 27 % werden als drei Stück zu 1.270 übertragen.
+- **Eine Rechnung wird nicht gesendet**, solange die Gruppe keine Zuordnung hat oder eine Position noch auf ihren USt-Code wartet. Der Bereitschaftsbildschirm nennt beides.
+- **Eine Position, die Sie von Hand auf eine andere Gruppe gelegt haben, wird netto übertragen**, auf der Zuordnung dieser Gruppe. Ein Einkauf mit Reverse Charge, den Sie selbst kodieren, ist so einer.
 
 ## NAV-Rechnungen
 
