@@ -130,7 +130,7 @@ Számlánál az előnézet az összegeket, a dátumokat, a feleket, a tételeket
 
 Ha az előnézet nélkül szeretné megnyitni, kattintás közben tartsa lenyomva a **Cmd** (Windowson a **Ctrl**) billentyűt, vagy kattintson a középső egérgombbal. A teljes oldal új lapon nyílik meg.
 
-Ugyanez az előnézet nyílik meg a javaslat és a párosítás oldalán a számlaszámra és a tranzakció hivatkozására kattintva, a **Partnerek** fülön egy partner folyószámlájának soraiból, egy [kiegyenlítés](/settlement) tételeiből, és egy tranzakció oldalán a **Párosítás & fizetés** kártya számlájából. Ezeken a helyeken az előnézet alján nincsenek gombok.
+Ugyanez az előnézet nyílik meg a javaslat és a párosítás oldalán a számlaszámra és a tranzakció hivatkozására kattintva, a **Partnerek** fülön egy partner folyószámlájának soraiból, egy [kiegyenlítés](/settlement) tételeiből, egy tranzakció oldalán a **Párosítás & fizetés** kártya számlájából, és egy számla **Párosítás & fizetés** fülén a tranzakció azonosítójából. Ezeken a helyeken az előnézet alján nincsenek gombok.
 
 ## Az Áttekintés fül
 
@@ -283,6 +283,22 @@ Egy nem párosított tranzakció **Párosítás & fizetés** kártyája egy AI-j
 4. **Megjelölés mint: nem kell számla…** olyan tranzakcióhoz, amelyhez nem tartozik számla, például egy banki díjhoz (lásd: [Tranzakciótípusok és „nem kell számla”](/transaction-types)).
 
 Párosított tranzakciónál a kártya a kapcsolt számlát mutatja: a számát egy nyíllal, a partnert és az összeget, a **(párosítva: …)** megjegyzést, ha a számlának csak egy része van kifizetve, és az **Eltávolítás** gombot. A számlaszámra vagy egy javasolt számlára kattintva a számla előnézetben nyílik meg, a tranzakció oldalának elhagyása nélkül. Ha semmi nincs kapcsolva vagy javasolva, ez áll: **Nem található párosítható számla.**
+
+## Párosítás a számla oldalán
+
+A számla **Párosítás & fizetés** fülén a **Párosított tranzakciók** alatt minden sor egy banki tranzakció:
+
+- a tranzakció azonosítója egy nyíllal, mellette a párosítás módja (**Automatikus**, **Manuális** vagy **Megerősítve**),
+- a könyvelés dátuma és az összeg, a kimenő fizetés mínusz előjellel,
+- **Partner**: a tranzakció partnerének neve,
+- **Bankszámla**: a saját bankszámla, amelyről a pénz kiment vagy amelyre beérkezett. Ha a számlának van beceneve, az áll elöl, utána a teljes számlaszám (a becenevet a [Bankszámlák](/bank-accounts) oldalon adhatja meg),
+- **Közlemény**: a tranzakció közleménye, ahogy a bank küldte. A tranzakció oldalán ugyanez **Hivatkozás** néven szerepel.
+
+Ahol egy adat hiányzik, az a sor elmarad.
+
+Az azonosítóra kattintva a tranzakció előnézetben nyílik meg a számla fölött, a számla elhagyása nélkül. A **Teljes tranzakció** új lapon nyitja meg a tranzakció oldalát. Ha az előnézet nélkül szeretné megnyitni, kattintás közben tartsa lenyomva a **Cmd** (Windowson a **Ctrl**) billentyűt, vagy kattintson a középső egérgombbal.
+
+A **Javasolt párosítások** kártyái ugyanígy épülnek fel: a pontszám az azonosító előtt áll, a kártya alján az indoklás. A fül a számla összes függő javaslatát mutatja.
 
 ## Kézi párosítás
 
