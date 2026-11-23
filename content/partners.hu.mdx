@@ -163,11 +163,11 @@ Amikor az A partnert a B partnerbe vonja össze:
 - az A rögzített egyéni kategóriái átkerülnek a B-hez; ha ugyanahhoz a listához mindkettőnek van, a B-é marad;
 - az A archiválódik, a B-re mutató hivatkozással, és az A-t érintő összes függőben lévő duplikációs javaslat elvetésre kerül.
 
-Különleges szerepű partner nem vonható össze. Az összevonás egyirányú, és nem vonható vissza.
+Különleges szerepű partner nem vonható össze. A saját cég partner mindig megmarad: az oldalán nincs **Összevonás másikkal…**, ezért nyissa meg a másik partnert, és azt vonja össze vele. Az összevonás egyirányú, és nem vonható vissza.
 
 ## Archiválás
 
-Hitelesített partnert a listában a sorából archiválhat. A hozzá kapcsolt nevek visszakerülnek a nem hitelesítettek közé. A partnert később visszaállíthatja (**Archiváltak megjelenítése**, majd **Visszaállítás**), de a kapcsolatok maguktól nem állnak helyre. Partnert törölni nem lehet.
+Hitelesített partnert a listában a sorából archiválhat. A hozzá kapcsolt nevek visszakerülnek a nem hitelesítettek közé. A partnert később visszaállíthatja (**Archiváltak megjelenítése**, majd **Visszaállítás**), de a kapcsolatok maguktól nem állnak helyre. Partnert törölni nem lehet. Saját cég partnernek nincs **Archiválás** gombja: ha meg akarja szüntetni, előbb állítsa a **Partner típusa** értékét **Hétköznapi partner** lehetőségre.
 
 ## Átvezetés a saját számlái között
 
@@ -175,9 +175,11 @@ Amikor két saját bankszámlája között mozog pénz, a másik fél az Ön saj
 
 - **A felismerés automatikus, és a számlaszámon alapul.** Ha a tranzakció másik bankszámlája az Ön egyik cégén van elmentve, a tranzakció ahhoz a céghez kapcsolódik. Ugyanazon cég két bankszámlája között ezenfelül az **Átvezetés** típust és a **Nincs számla szükséges** jelölést is megkapja. Tartsa naprakészen a cégek bankszámláit a **Törzsadatok → Cégek** alatt.
 - **A Saját cég jelzés.** Ahol a partner megjelenik, a hitelesített jelzés helyett kék **Saját cég** jelzést mutat.
-- **Nincsenek útban.** A saját cég partnerek nem jelennek meg a Partnerek között, és kimaradnak a folyószámlából. A partnerválasztóban a lista tetején, egy rögzített **Saját cégek** csoportban találhatók.
-- **Kézi megjelölés.** Ha egy tranzakció olyan hétköznapi partner alatt rögzült, amely valójában az Ön egyik cége, nyissa meg a partnert, állítsa a **Partner típusa** értékét **A saját egyik cégünk** lehetőségre, és válassza ki a céget. A partner ezután eltűnik a Partnerek listából, az adott bankszámlán érkező jövőbeli átutalásokat pedig a rendszer automatikusan felismeri.
-- **Egy cégnek egy partnere van.** Ha egy partneren már szerepel az Ön egyik cégének adószáma (például egy Business Centralból importált szállítón), az AI Finance Team ezt a partnert jelöli meg a cég saját partnereként, ahelyett hogy újat hozna létre, és a partner a többi saját cég partnerhez hasonlóan kikerül a Partnerek listából. Hogy ez mikor történt, a partner **Előzmények** lapján látható. Ha a **Partner típusa** értékét visszaállítja **Hétköznapi partner** lehetőségre, a rendszer nem jelöli meg újra automatikusan.
+- **A Partnerek között vannak, a folyószámlán nem.** A saját cég partnerek a jelzéssel együtt szerepelnek a Partnerek között, a folyószámlából viszont kimaradnak. A tranzakció partnerválasztójában a lista tetején, egy rögzített **Saját cégek** csoportban, a számla partnerválasztójában a listában, a jelzéssel találhatók.
+- **Kézi megjelölés.** Ha egy tranzakció olyan hétköznapi partner alatt rögzült, amely valójában az Ön egyik cége, nyissa meg a partnert, állítsa a **Partner típusa** értékét **A saját egyik cégünk** lehetőségre, és válassza ki a céget. A partner ezután a **Saját cég** jelzést kapja, az adott bankszámlán érkező jövőbeli átutalásokat pedig a rendszer automatikusan felismeri.
+- **Egy cégnek egy partnere van.** Ha egy partneren már szerepel az Ön egyik cégének adószáma (például egy Business Centralból importált szállítón), az AI Finance Team ezt a partnert jelöli meg a cég saját partnereként, ahelyett hogy újat hozna létre, és a partner a többi saját cég partnerhez hasonlóan megkapja a **Saját cég** jelzést. Hogy ez mikor történt, a partner **Előzmények** lapján látható. Ha a **Partner típusa** értékét visszaállítja **Hétköznapi partner** lehetőségre, a rendszer nem jelöli meg újra automatikusan.
+
+- **Business Central.** A saját cég partnerhez kapcsolt számla vagy banki tétel ugyanúgy küldhető, mint bármely más partneré. A partner a szállítókartonok feladásánál a többi cégéhez felajánlható, a saját cégének Business Centraljához soha: egy cég nem saját maga szállítója.
 
 > Ez a beállítástól kezdve érvényes. A meglévő tranzakciókat a rendszer nem dolgozza fel újra; szükség esetén rendelje hozzá őket a tranzakció partnerválasztójából.
 

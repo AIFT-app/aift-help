@@ -163,11 +163,11 @@ When partner A is merged into partner B:
 - A's fixed custom categories move to B; where both have one for the same list, B's stays;
 - A is archived with a reference to B, and all pending duplicate suggestions involving A are dismissed.
 
-A partner with a special role cannot be merged. The merge is one-way and cannot be undone.
+A partner with a special role cannot be merged. An own-company partner always stays: its page has no **Merge into…**, so open the other partner and merge that one into it. The merge is one-way and cannot be undone.
 
 ## Archiving
 
-Archive a verified partner from its row in the list. Its linked names go back to unverified. You can restore the partner later (**Show archived**, then **Restore**), but the links do not come back on their own. Partners cannot be deleted.
+Archive a verified partner from its row in the list. Its linked names go back to unverified. You can restore the partner later (**Show archived**, then **Restore**), but the links do not come back on their own. Partners cannot be deleted. An own-company partner has no **Archive** button: to retire one, set its **Partner kind** to **Ordinary partner** first.
 
 ## Internal transfers between your own accounts
 
@@ -175,9 +175,11 @@ When money moves between two of your own bank accounts, the other party is your 
 
 - **Detection is automatic and based on the account number.** When the other account on a transaction is saved on one of your companies, the transaction is linked to that company. Between two accounts of the same company, it also gets the **Internal transfer** type and is marked **No invoice needed**. Keep each company's bank accounts current under **Master data → Companies**.
 - **The Own company badge.** Wherever the partner appears, it shows a blue **Own company** badge instead of the verified pill.
-- **They stay out of the way.** Own-company partners are not listed under Partners and are left out of the Partner Ledger. In the partner picker they sit in a pinned **Own companies** group at the top.
-- **Marking one by hand.** If a transaction was recorded under an ordinary partner that is really one of your companies, open that partner, set **Partner kind** to **One of our own companies** and pick the company. The partner then disappears from the Partners list, and future transfers on that account are caught automatically.
-- **No second partner for the same company.** If a partner already carries one of your companies' tax numbers (for example a supplier imported from Business Central), AI Finance Team marks that partner as the company's own partner instead of creating a new one, and it leaves the Partners list like any own-company partner. The partner's **History** tab shows when this happened. If you set **Partner kind** back to **Ordinary partner**, it is not marked again automatically.
+- **On the Partners list, not in the Partner Ledger.** Own-company partners are listed under Partners with the badge and are left out of the Partner Ledger. In a transaction's partner picker they sit in a pinned **Own companies** group at the top; in an invoice's partner picker they are in the list, with the badge.
+- **Marking one by hand.** If a transaction was recorded under an ordinary partner that is really one of your companies, open that partner, set **Partner kind** to **One of our own companies** and pick the company. The partner then shows the **Own company** badge, and future transfers on that account are caught automatically.
+- **No second partner for the same company.** If a partner already carries one of your companies' tax numbers (for example a supplier imported from Business Central), AI Finance Team marks that partner as the company's own partner instead of creating a new one, and it gets the **Own company** badge like any own-company partner. The partner's **History** tab shows when this happened. If you set **Partner kind** back to **Ordinary partner**, it is not marked again automatically.
+
+- **Business Central.** An invoice or a bank line with an own-company partner is sent like any other. The partner is offered on the vendor push list for your other companies, never for its own company's Business Central: a company is not its own supplier.
 
 > This applies from then on. Existing transactions are not processed again; assign them from the transaction's partner picker if needed.
 

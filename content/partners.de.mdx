@@ -163,11 +163,11 @@ Wenn Partner A mit Partner B zusammengeführt wird und B bestehen bleibt:
 - die festen eigenen Kategorien von A gehen auf B über; haben beide eine für dieselbe Liste, bleibt die von B;
 - A wird mit einem Verweis auf B archiviert, und alle ausstehenden Duplikatvorschläge, die A betreffen, werden verworfen.
 
-Ein Partner mit einer Sonderrolle kann nicht zusammengeführt werden. Die Zusammenführung erfolgt in eine Richtung und kann nicht rückgängig gemacht werden.
+Ein Partner mit einer Sonderrolle kann nicht zusammengeführt werden. Der Partner eines eigenen Unternehmens bleibt immer bestehen: Auf seiner Seite gibt es kein **Zusammenführen mit…**; öffnen Sie den anderen Partner und führen Sie diesen mit ihm zusammen. Die Zusammenführung erfolgt in eine Richtung und kann nicht rückgängig gemacht werden.
 
 ## Archivieren
 
-Archivieren Sie einen verifizierten Partner über seine Zeile in der Liste. Seine verknüpften Namen werden wieder nicht verifiziert. Sie können den Partner später wiederherstellen (**Archivierte anzeigen**, dann **Wiederherstellen**), aber die Verknüpfungen kehren nicht von selbst zurück. Partner können nicht gelöscht werden.
+Archivieren Sie einen verifizierten Partner über seine Zeile in der Liste. Seine verknüpften Namen werden wieder nicht verifiziert. Sie können den Partner später wiederherstellen (**Archivierte anzeigen**, dann **Wiederherstellen**), aber die Verknüpfungen kehren nicht von selbst zurück. Partner können nicht gelöscht werden. Der Partner eines eigenen Unternehmens hat keine Schaltfläche **Archivieren**: Setzen Sie zuerst seine **Partnerart** auf **Gewöhnlicher Partner**.
 
 ## Umbuchungen zwischen Ihren eigenen Konten
 
@@ -175,9 +175,11 @@ Wenn Geld zwischen zwei Ihrer eigenen Bankkonten fließt, ist die Gegenpartei Ih
 
 - **Die Erkennung ist automatisch und beruht auf der Kontonummer.** Ist das Gegenkonto einer Transaktion bei einem Ihrer Unternehmen gespeichert, wird die Transaktion mit diesem Unternehmen verknüpft. Zwischen zwei Konten desselben Unternehmens erhält sie außerdem den Typ **Umbuchung** und wird als **Keine Rechnung nötig** markiert. Halten Sie die Bankkonten jedes Unternehmens unter **Stammdaten → Unternehmen** aktuell.
 - **Das Badge Eigenes Unternehmen.** Wo der Partner erscheint, zeigt er statt der Verifiziert-Pille ein blaues Badge **Eigenes Unternehmen**.
-- **Sie stören nicht.** Partner eigener Unternehmen werden nicht unter Partner aufgeführt und aus dem Kontokorrent ausgeschlossen. In der Partnerauswahl stehen sie oben in einer angehefteten Gruppe **Eigene Unternehmen**.
-- **Von Hand markieren.** Wurde eine Transaktion unter einem gewöhnlichen Partner erfasst, der in Wirklichkeit eines Ihrer Unternehmen ist, öffnen Sie diesen Partner, setzen Sie **Partnerart** auf **Eines unserer eigenen Unternehmen** und wählen Sie das Unternehmen. Der Partner verschwindet dann aus der Partnerliste, und künftige Überweisungen auf diesem Konto werden automatisch erkannt.
-- **Kein zweiter Partner für dasselbe Unternehmen.** Trägt ein Partner bereits die Steuernummer eines Ihrer Unternehmen (zum Beispiel ein aus Business Central importierter Lieferant), markiert AI Finance Team diesen Partner als Partner des Unternehmens, statt einen neuen anzulegen; er verschwindet dann wie jeder Partner eines eigenen Unternehmens aus der Partnerliste. Wann das geschah, sehen Sie im Tab **Verlauf** des Partners. Setzen Sie die **Partnerart** wieder auf **Gewöhnlicher Partner**, wird er nicht erneut automatisch markiert.
+- **In der Partnerliste, nicht im Kontokorrent.** Partner eigener Unternehmen stehen mit dem Badge in der Partnerliste und werden aus dem Kontokorrent ausgeschlossen. In der Partnerauswahl einer Transaktion stehen sie oben in einer angehefteten Gruppe **Eigene Unternehmen**, in der Partnerauswahl einer Rechnung mit dem Badge in der Liste.
+- **Von Hand markieren.** Wurde eine Transaktion unter einem gewöhnlichen Partner erfasst, der in Wirklichkeit eines Ihrer Unternehmen ist, öffnen Sie diesen Partner, setzen Sie **Partnerart** auf **Eines unserer eigenen Unternehmen** und wählen Sie das Unternehmen. Der Partner erhält dann das Badge **Eigenes Unternehmen**, und künftige Überweisungen auf diesem Konto werden automatisch erkannt.
+- **Kein zweiter Partner für dasselbe Unternehmen.** Trägt ein Partner bereits die Steuernummer eines Ihrer Unternehmen (zum Beispiel ein aus Business Central importierter Lieferant), markiert AI Finance Team diesen Partner als Partner des Unternehmens, statt einen neuen anzulegen; er erhält dann wie jeder Partner eines eigenen Unternehmens das Badge **Eigenes Unternehmen**. Wann das geschah, sehen Sie im Tab **Verlauf** des Partners. Setzen Sie die **Partnerart** wieder auf **Gewöhnlicher Partner**, wird er nicht erneut automatisch markiert.
+
+- **Business Central.** Eine Rechnung oder eine Bankzeile mit dem Partner eines eigenen Unternehmens wird wie jede andere gesendet. Bei der Übertragung als Kreditor wird der Partner für Ihre anderen Unternehmen angeboten, nie für das Business Central seines eigenen Unternehmens: Ein Unternehmen ist nicht sein eigener Lieferant.
 
 > Das gilt ab diesem Zeitpunkt. Bestehende Transaktionen werden nicht erneut verarbeitet; ordnen Sie sie bei Bedarf über die Partnerauswahl der Transaktion zu.
 
