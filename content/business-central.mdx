@@ -188,6 +188,8 @@ In a partner's row, the **No card in** cell names the company the card would go 
 
 Whether a partner already has a card in a company is decided by the tax number alone. If its card in Business Central has no tax number, the partner looks missing although its card is there, and pushing it would create a second card. So when that company holds a card whose name starts with the same two words as the partner's (Kft., Zrt., e.v., Dr. and the like do not count), the cell shows an amber warning mark, and the opened list shows the card's number, name and tax number under the company, for example "Card with a similar name: S0043 Dr. Minta Ödön, no tax number". After **Review** these partners are also listed above the table, in an amber box. If that card is the partner's, do not create another: untick that company and enter the tax number on the card in Business Central. After the next refresh of that company (once a day on its own, or at once with **Refresh all** on the Differences tab) the partner leaves the list. The warning holds nothing back: if the card with the similar name is not the partner's, for example a separate card per contract, creating the card works as before.
 
+Your own companies are on the list like any partner (they carry the **Own company** badge on the Partners page): a group company that supplies a sister company needs its card there too. A company is never offered for its own Business Central, because a company is not its own supplier.
+
 A vendor number that comes back is shown on the partner's page under its AI Finance Team code, one line per company. That number belongs to a company in Business Central, so do not type it into the partner's own code field.
 
 ## Sending Invoices
