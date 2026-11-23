@@ -77,7 +77,9 @@ Items your accountant withdrew do not appear there. They simply leave the page.
 
 ## The Emails
 
-If you are a client-side member of the workspace, you get one email on Monday morning, around 09:00 Budapest time. It sums up every item we asked you for that is still open, workspace by workspace: it lists the 8 oldest, each with how many days it has been waiting, and gives the number of the rest. The **Upload documents** button takes you to that workspace's Missing receipts page.
+If you are a client-side member of the workspace and your accounting firm has switched the weekly email on, you get one email on Monday morning, around 09:00 Budapest time. It sums up the items we asked you for that are still open, workspace by workspace: it lists the 8 oldest, each with how many days it has been waiting, and gives the number of the rest. The **Upload documents** button takes you to that workspace's Missing receipts page.
+
+The weekly email is set per workspace and starts switched off. The accounting firm switches it on, separately for payments without an invoice and for invoices without a document, and the email lists only the kind that is switched on. With the email off, every item we asked for still stays on this page.
 
 When nothing is waiting, no email goes out that Monday. You get none during the week either, even when a new item appears: it will be in the next Monday email. Members of the accounting firm do not get this email.
 
@@ -92,6 +94,8 @@ One extra control appears on each card for anyone holding "Edit bank transaction
 - **Don't ask for this** withdraws a request, after a confirmation step titled **Stop asking for this receipt?**. The item leaves the client's page, no email will ask for it, the automatic message stays in the thread as history, and the withdrawal records who did it and when. There is no control on this page to put it back; if the document turns out to be needed after all, the request can be reopened later.
 
 Accountants see the page from their own side. The items we asked for are under **Waiting for the client**, because they do not wait on you. The items nobody was asked about are under **Not asked**, with the reason above them: the workspace has no client-side member, or the item is older than the day the client joined. On those cards the day count says how long the receipt has been missing.
+
+You switch the weekly email on per workspace, with the two switches of **Weekly email to the client**: **Payments without an invoice** and **Invoices without a document**. They are in two places: on **Settings → Ledger defaults**, under the **Invoice documents** section, and on this page above the list, when the workspace has a client-side member. Both start switched off, and changing them needs the "Edit master data" permission. The line under the switches says how many client-side members receive the email and how many have unsubscribed. Switching off stops only the email: the requests stay open, and the client still sees them on this page. Where the workspace expects no invoice document, no invoice without a document is asked for, so no email goes out about one either.
 
 Requests open and close on their own. Nothing on this page feeds the period-closing checklist. The invoice has its own to-do, though: where the workspace expects a document under [We expect an invoice document](/invoices#we-expect-an-invoice-document), an invoice without one carries the **Document needed** to-do, and that to-do also shows in Mission Control. It goes away when the document arrives, or when you accept on the invoice that no document will come. So an empty page is not a sign that the month is finished.
 
