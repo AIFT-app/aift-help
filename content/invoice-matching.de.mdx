@@ -130,7 +130,7 @@ Bei einer Rechnung zeigt die Vorschau Beträge und Daten, die Parteien, die Posi
 
 Um die Vorschau zu überspringen, halten Sie beim Klicken **Cmd** (unter Windows **Strg**) gedrückt oder klicken Sie mit der mittleren Maustaste. Die vollständige Seite öffnet sich in einem neuen Tab.
 
-Dieselbe Vorschau öffnet sich über die Rechnungsnummer und den Verwendungszweck auf den Seiten eines Vorschlags und einer Zuordnung, über die Zeilen des Partnerkontos im Tab **Partner**, über die Belege in einem [Ausgleich](/settlement) und über die Rechnung in der Karte **Zuordnung & Zahlung** auf der Seite einer Transaktion. Dort hat sie unten keine Schaltflächen.
+Dieselbe Vorschau öffnet sich über die Rechnungsnummer und den Verwendungszweck auf den Seiten eines Vorschlags und einer Zuordnung, über die Zeilen des Partnerkontos im Tab **Partner**, über die Belege in einem [Ausgleich](/settlement) über die Rechnung in der Karte **Zuordnung & Zahlung** auf der Seite einer Transaktion und über die Transaktions-ID im Tab **Zuordnung & Zahlung** einer Rechnung. Dort hat sie unten keine Schaltflächen.
 
 ## Der Tab Übersicht
 
@@ -283,6 +283,22 @@ Die Karte **Zuordnung & Zahlung** einer nicht zugeordneten Transaktion, mit eine
 4. **Markieren als: keine Rechnung erforderlich…** für eine Transaktion ohne Rechnung, etwa eine Bankgebühr (siehe [Transaktionstypen & „Keine Rechnung nötig“](/transaction-types)).
 
 Ist die Transaktion zugeordnet, zeigt die Karte stattdessen die verknüpfte Rechnung: ihre Nummer mit einem Pfeil, Partner und Betrag, **(zugeordnet: …)**, wenn nur ein Teil der Rechnung bezahlt ist, und **Entfernen**. Ein Klick auf die Rechnungsnummer oder eine vorgeschlagene Rechnung zeigt sie in einer Vorschau, ohne die Transaktion zu verlassen. Ist nichts verknüpft oder vorgeschlagen, steht dort **Keine passende Rechnung gefunden.**
+
+## Abgleich auf der Rechnungsseite
+
+Im Tab **Zuordnung & Zahlung** einer Rechnung ist jede Zeile unter **Zugeordnete Transaktionen** eine Banktransaktion:
+
+- die ID der Transaktion mit einem Pfeil, daneben die Art der Zuordnung (**Automatisch**, **Manuell** oder **Bestätigt**),
+- das Buchungsdatum und der Betrag, eine ausgehende Zahlung mit Minuszeichen,
+- **Partner**: der Name des Partners der Transaktion,
+- **Bankkonto**: Ihr eigenes Konto, von dem das Geld abging oder auf dem es einging. Hat das Konto eine **Bezeichnung**, steht sie vorn und die vollständige Kontonummer dahinter (die Bezeichnung legen Sie auf der Seite [Bankkonten](/bank-accounts) fest),
+- **Verwendungszweck**: der Verwendungszweck der Transaktion, wie die Bank ihn gesendet hat.
+
+Eine Zeile ohne Wert entfällt.
+
+Ein Klick auf die ID zeigt die Transaktion in einer Vorschau über der Rechnung, ohne sie zu verlassen. **Ganze Transaktion** öffnet die Seite der Transaktion in einem neuen Tab. Um die Vorschau zu überspringen, halten Sie beim Klicken **Cmd** (unter Windows **Strg**) gedrückt oder klicken Sie mit der mittleren Maustaste.
+
+Die Karten unter **Vorgeschlagene Zuordnungen** sind genauso aufgebaut: die Punktzahl steht vor der ID, die Begründung unten auf der Karte. Der Tab listet alle offenen Vorschläge der Rechnung.
 
 ## Manueller Abgleich
 
