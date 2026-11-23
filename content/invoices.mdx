@@ -172,7 +172,9 @@ The files are named after the original file or, without one, the invoice number.
 
 ## Downloading several invoices at once
 
-You can download the documents of a period, or of the invoices you ticked, as one ZIP file, with a CSV file holding the invoices' data next to them. The ZIP is built in your browser: the files come straight from storage, nothing runs in the background, and the download changes no invoice and no setting.
+You can download the documents of the invoice list, or of the invoices you ticked, as one ZIP file, with a CSV file holding the invoices' data next to them. The ZIP is built in your browser: the files come straight from storage, nothing runs in the background, and the download changes no invoice and no setting.
+
+**Filter the list first; the download follows it.** The download holds exactly the invoices the list shows right now: with its period and date basis, company, direction, every other filter, the search and the to-dos you picked. For a month's expenses, for example, pick the month and the **Expense** direction on the list, then click **Download documents**.
 
 ### Where it starts
 
@@ -180,36 +182,36 @@ You can download the documents of a period, or of the invoices you ticked, as on
 The header of the Invoices page and the selection bar with three rows ticked. The numbers match the list below.
 </DocumentExportEntryFigure>
 
-1. **Download** in the page header, next to **Upload invoices**: downloads the invoices of a period. The dialog opens with the period and the date basis of the list's date filter; when the list has no period picked, it says **All time**, so pick a month or a quarter. Everyone who can see invoices has this button, and it downloads exactly the invoices your list shows: someone who sees only their own invoices gets their own.
-2. **Download** in the selection bar: downloads the ticked rows, whatever the period and the other filters. Rows can be ticked by people who can edit invoices. An archived invoice or one not to be booked stays out even when ticked; the dialog says how many.
+1. **Download documents** in the page header, before the blue **Upload invoices**: downloads the list as you filtered it. With no filter on the list, every invoice of the list is in it, so pick a month or a quarter first. Everyone who can see invoices has this button: someone who sees only their own invoices downloads their own.
+2. **Download documents** in the selection bar: downloads the ticked rows, whatever the filters. Rows can be ticked by people who can edit invoices. An archived invoice or one not to be booked stays out even when ticked; the dialog says how many.
 3. The ticked rows. One ZIP holds at most 2,000 invoices, a selection included.
 
-The download holds the same invoices as the [Ledger](/ledger) export for the same period and date basis: no duplicates, no rejected, archived or not-to-be-booked invoices.
+Duplicates and rejected, archived or not-to-be-booked invoices are never in the download, as they are never in the [Ledger](/ledger) export.
 
 ### The Download invoices dialog
 
 <DocumentExportDialogFigure>
-The Download invoices dialog before an October download, with the Advanced section open. The numbers match the list below.
+The Download invoices dialog from a list filtered to October 2026 and expenses, with **Custom** file names and the **Advanced** section open. The numbers match the list below.
 </DocumentExportDialogFigure>
 
-1. **Period** and its date basis: **Issue date**, **Fulfillment date**, **Due date**, **VAT date** or **Posting date**, the same choice as on the list and in the Ledger.
-2. **Direction**: **All**, **Incoming** or **Outgoing**. In a workspace with more than one company, **Company** beside it narrows the download to one company.
+1. **As the list shows:** the list's active filters, as grey chips. You cannot change them here; to download something else, close the dialog and change the filters on the list. Opened from the selection bar, it says **The N selected invoices** instead.
+2. Before any option, the summary shows what you will get: how many invoices, how many documents, how large, and how many invoices have no document (they are only in the CSV).
 3. **Format**: **ZIP (documents + CSV)** (the default), **CSV only** (only the invoices' data, no documents), and in a German or Austrian workspace **DATEV (Belegtransfer)**, see below.
-4. **File name pattern**: the buttons under the field (**Fields for the file name**) insert a field at the cursor, for example **Invoice number**, **Issue date** or **Partner**, and you can type free text between the fields. Under them, **Files will be named like this (first three):** shows the first three real file names, made by the same rule the download uses.
-5. **Folders in the ZIP**: **None** (the default), **By month** (the month of the chosen date basis, for example `2026-10/`), **By direction** (`Incoming/`, `Outgoing/`) or **By partner**.
-6. **Advanced**: **File names without accents** and **CSV format**, see below.
-7. The summary follows the filters: how many invoices, how many documents, how large, and how many invoices have no document (NAV data only).
-8. **Download**: starts the download, and the dialog closes.
+4. **File names**: three presets, **Date_Partner_Number** (the default), **Invoice number** and **AIFT ID**, and **Custom**. **Custom** opens your own pattern: you write the fields by name in square brackets, for example `[Issue date]_[Partner]_[Invoice number]`, the buttons under it (for example **+ Invoice number**) insert a field at the cursor, and you can type free text between the fields.
+5. **Files will be named like this (first three):** the first three real file names, made by the same rule the download uses.
+6. **Folders in the ZIP**: **None** (the default), **By month** (the month of the list's date basis, for example `2026-10/`), **By direction** (`Incoming/`, `Outgoing/`) or **By partner**.
+7. **Advanced**: **File names without accents** and **CSV format**, see below; with the DATEV format, the DATEV folders are here too.
+8. The button names the result: **Download 104 documents**, or with **CSV only** for example **Download the data of 112 invoices**. When the button is disabled, the reason stands next to it, for example **Narrow the list.** or **No document to download.**
 
-The dialog opens with the settings of your last download in this workspace: format, pattern, folders, accents, CSV format and the DATEV folder names, so a monthly routine is one click. The period comes from the list; direction and company always start at **All** and **All companies**.
+The dialog opens with the settings of your last download in this workspace: format, file names (a saved custom pattern opens as **Custom**), folders, accents, CSV format and the DATEV folder names, so a monthly routine is one click.
 
 ### File names
 
 <DocumentExportNamingFigure>
-The file name of one invoice under five different patterns. The highlighted part is what a rule changed.
+The file name of one invoice with the three presets and two custom patterns. The highlighted part is what a rule changed.
 </DocumentExportNamingFigure>
 
-The default pattern is `{issue_date}_{partner_name}_{invoice_number}`, for example `2026-10-03_Reamwell Office Supplies Ltd._RW-2026-00418.pdf`. These rules apply to the names a pattern makes:
+The default **Date_Partner_Number** is made of the issue date, the partner's name and the invoice number, for example `2026-10-03_Reamwell Office Supplies Ltd._RW-2026-00418.pdf`. These rules apply to every file name:
 
 - Characters a file name cannot hold (`/ \ : * ? " < > |`) become hyphens: the invoice number `SBR/2026/0342` becomes `SBR-2026-0342`.
 - An empty field is dropped together with one separator next to it. If nothing is left, the file is named by its AIFT ID.
@@ -224,7 +226,7 @@ The default pattern is `{issue_date}_{partner_name}_{invoice_number}`, for examp
 The same two-month download without folders and with a folder per month, and three rows of its CSV. The Slatebridge invoice failed to download and the Gearmont invoice is NAV data only, so neither is in the ZIP.
 </DocumentExportZipFigure>
 
-The downloaded file is named after the workspace and the period, for example `Pelda-Kft_2026-10-01_2026-10-31_invoices.zip` (for ticked invoices, their earliest and latest date). The ZIP always has `invoices.csv` at its root.
+The downloaded file is named after the workspace and the period, for example `Pelda-Kft_2026-10-01_2026-10-31_invoices.zip` (when the list has no period, or for ticked invoices, their earliest and latest date). The ZIP always has `invoices.csv` at its root.
 
 The CSV has **one row per invoice**, including the ones without a document. The column order is fixed and the headers are in the app's language. The first column is **File name in ZIP** (empty when the invoice is not in the ZIP), the second **Document**: **Included**, **No document** or **Download failed** (in a DATEV package also **DATEV: zero amount** or **DATEV: file too large**). Then the AIFT ID, the invoice number, the direction, the five dates, the partner and its tax ID, the company, net, VAT and gross in the invoice's currency and in the base currency, the payment and the matching status, the source (NAV, upload, email), the original file name and a link to the invoice's page. Dates are YYYY-MM-DD and the file is UTF-8.
 
@@ -234,7 +236,7 @@ The CSV has **one row per invoice**, including the ones without a document. The 
 
 ### Limits
 
-One download holds at most **2,000 invoices** and **500 MB** of documents. Above that, the dialog says so, **Download** stays disabled, and you pick a shorter period. A DATEV package is tighter: at most **4,999 documents** and **450 MB**, and a file over 20 MB is left out (**DATEV: file too large**).
+One download holds at most **2,000 invoices** and **500 MB** of documents. Above that, the dialog says so, the button stays disabled with **Narrow the list.** beside it, and you filter the list further. A DATEV package is tighter: at most **4,999 documents** and **450 MB**, and a file over 20 MB is left out (**DATEV: file too large**).
 
 ### While it runs
 
@@ -242,23 +244,24 @@ One download holds at most **2,000 invoices** and **500 MB** of documents. Above
 The download's notification while it runs, and at the end when two files failed.
 </DocumentExportToastsFigure>
 
-After **Download** the dialog closes and a notification in the bottom-right corner shows the progress: **Downloading invoices: 123 / 233**. You can keep working anywhere in the workspace; if you close or reload the browser tab, the browser asks first, because the ZIP is being built in that tab. **Cancel** stops the download and saves nothing. One download runs at a time.
+After you click the button the dialog closes and a notification in the bottom-right corner shows the progress: **Downloading invoices: 123 / 233**. You can keep working anywhere in the workspace; if you close or reload the browser tab, the browser asks first, because the ZIP is being built in that tab. **Cancel** stops the download and saves nothing. One download runs at a time.
 
 At the end the browser saves the ZIP and the notification says how many documents are in it. Each file is tried three times; if it still fails, the notification says how many failed and the CSV marks them **Download failed**. Download those again, for example by ticking them.
 
 ### DATEV (Germany, Austria)
 
 <DocumentExportDatevFigure>
-The dialog with the DATEV format, and what the DATEV package holds. The numbers match the list below. This format is offered only in German or Austrian workspaces.
+The dialog with the DATEV format and the **Advanced** section open, what the DATEV package holds, and the finish notification. The numbers match the list below. This format is offered only in German or Austrian workspaces.
 </DocumentExportDatevFigure>
 
 1. **DATEV (Belegtransfer)** is offered only in workspaces whose country is Germany or Austria. It builds a DATEV XML-Schnittstelle online package, which you upload to DATEV Unternehmen online with the DATEV Belegtransfer program: hand it the ZIP without unpacking it.
 2. The file names follow your pattern, but hold only unaccented letters, digits, dots, hyphens and underscores, with `_` for spaces. The package has no folders, so **Folders in the ZIP** is not shown.
-3. **DATEV folder: incoming invoices** and **DATEV folder: outgoing invoices**: the folder in DATEV the documents go to, `Eingangsrechnungen` and `Ausgangsrechnungen` by default. Change them if yours have other names in DATEV.
+3. **DATEV folder: incoming invoices** and **DATEV folder: outgoing invoices**, under **Advanced**: the folder in DATEV the documents go to, `Eingangsrechnungen` and `Ausgangsrechnungen` by default. Change them if yours have other names in DATEV.
+4. The finish notification: **Done: 104 documents in the DATEV package.** It stays until you close it, because its **Download CSV** button is the only way to the CSV.
 
 The package holds `document.xml` and, per invoice, a PDF and an XML file of the same name, from which DATEV makes the document's entry. No account numbers are sent: the account assignment happens in DATEV. **Downloading a month again never creates duplicates**: every invoice goes into the package under its own ID, and DATEV skips a document it already has, so a PDF that arrived late can be sent by downloading the month again. NAV-only invoices without a document stay out here too, and so does an invoice with a zero amount (**DATEV: zero amount**).
 
-The CSV is not in the DATEV package, because DATEV would not know what to do with it. At the end of the download, the notification's **Download CSV** button gives you the CSV of the same invoices as a separate file.
+The CSV is not in the DATEV package, because DATEV would not know what to do with it. At the end of the download, the notification's **Download CSV** button gives you the CSV of the same invoices as a separate file; the notification stays in the corner until you close it with the **×** at its top-left corner.
 
 ## Extraction and review
 
@@ -270,7 +273,7 @@ The **Review** label means the extraction scored below 80% for completeness: the
 
 Seeing the workspace's invoices needs the permission to view invoices and bank transactions. A member without it still sees the invoices they uploaded themselves, and any invoice routed to them for approval: six tabs instead of eight, no labels, no payment status and no to-dos, with a note on the list saying only their own invoices are shown.
 
-Editing, archiving and restoring, marking or unmarking a duplicate, and the bulk actions all need the permission to edit invoices, which accountants hold by default (archiving an invoice whose bookkeeping approval is already given also needs the permission to approve bookkeeping); client users can view invoices, open the document and upload. Everyone can download the invoices they see with **Download** in the page header; downloading ticked invoices, like any selection, needs the permission to edit invoices. See [Roles and Permissions](/roles-and-permissions).
+Editing, archiving and restoring, marking or unmarking a duplicate, and the bulk actions all need the permission to edit invoices, which accountants hold by default (archiving an invoice whose bookkeeping approval is already given also needs the permission to approve bookkeeping); client users can view invoices, open the document and upload. Everyone can download the invoices they see with **Download documents** in the page header; downloading ticked invoices, like any selection, needs the permission to edit invoices. See [Roles and Permissions](/roles-and-permissions).
 
 ## Tips
 

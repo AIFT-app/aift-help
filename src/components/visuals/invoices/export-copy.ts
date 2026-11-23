@@ -21,20 +21,15 @@ import type { ListRow } from './copy'
 export const EXPORT_UI_KEYS = [
   'document_export.button',
   'document_export.title',
-  'document_export.scope_period',
-  'document_export.period',
-  'document_export.direction',
-  'document_export.direction_all',
-  'document_export.direction_incoming',
-  'document_export.direction_outgoing',
-  'document_export.company',
-  'document_export.company_all',
+  'document_export.scope_list',
+  'document_export.scope_hint',
   'document_export.format',
   'document_export.format_documents_zip',
   'document_export.format_documents_csv',
   'document_export.format_documents_datev',
-  'document_export.format_documents_zip_help',
-  'document_export.format_documents_datev_help',
+  'document_export.file_names',
+  'document_export.preset_p1',
+  'document_export.preset_custom',
   'document_export.pattern',
   'document_export.pattern_tokens',
   'document_export.pattern_preview',
@@ -50,6 +45,7 @@ export const EXPORT_UI_KEYS = [
   'document_export.token_direction',
   'document_export.token_gross',
   'document_export.token_currency',
+  'document_export.token_insert',
   'document_export.folders',
   'document_export.folders_none',
   'document_export.folders_month',
@@ -63,27 +59,26 @@ export const EXPORT_UI_KEYS = [
   'document_export.csv_style_excel',
   'document_export.csv_style_standard',
   'document_export.cancel',
-  'document_export.start',
   'document_export.csv_file_name',
   'document_export.csv_document',
-  'document_export.csv_internal_id',
   'document_export.csv_invoice_number',
   'document_export.csv_partner_name',
   'document_export.csv_total_gross',
   'document_export.outcome_included',
   'document_export.outcome_no_document',
   'document_export.outcome_download_failed',
+  'document_export.toast_download_csv',
   'invoices.list.title',
   'invoices.list.upload_invoices',
+  'invoices.list.filter_direction',
+  'invoices.list.filter_expense',
+  'list_view_filter.summary.filter_label',
   'upload.button.hint_inline',
   'upload.button.hint_tooltip',
   'recategorize.selectedCount',
   'recategorize.clear',
   'recategorize.action',
-  'recategorize.selectRow',
-  'recategorize.selectAll',
   'vat_tools.approve_action',
-  'date_filter.basis_short_issue',
 ] as const
 
 export type ExportUiKey = (typeof EXPORT_UI_KEYS)[number]
@@ -130,17 +125,20 @@ type Copy = {
     summaryMissing: string
     toastProgress: string
     toastDoneFailed: string
+    toastDoneDatev: string
+    startDocuments: string
   }
-  /** formatMonthLong(2026, 10) for the locale (aift-web src/lib/format.ts). */
-  october: string
-  /** The workspace's two companies (the Company filter shows with more than one). */
-  companies: string[]
+  /** The list's active filters as useActiveFilterChips labels them (October, expenses). */
+  chips: string[]
+  /** The Egyéni pattern as the dialog shows it: field names in brackets. */
+  customPattern: string
   currency: string
   pickRows: PickRow[]
   /** previewNames() for the first three rows, keep mode and DATEV mode. */
   previewNames: string[]
   previewNamesDatev: string[]
-  patterns: { pattern: string; ascii: boolean; name: Marked; note: string }[]
+  /** `preset`: a preset's label; `pattern`: an Egyéni pattern as displayed. */
+  patterns: { preset?: string; pattern?: string; ascii: boolean; name: Marked; note: string }[]
   invoice: string
   treeFlat: TreeLine[]
   treeMonthly: TreeLine[]
@@ -156,30 +154,27 @@ type Copy = {
     csvMore: string
     progress: string
     finished: string
+    customHead: string
     datevDialog: string
     datevZip: string
+    datevToast: string
     alt: { entry: string; dialog: string; naming: string; zip: string; toasts: string; datev: string }
   }
 }
 
 const uiEn: Record<ExportUiKey, string> = {
-  'document_export.button': "Download",
+  'document_export.button': "Download documents",
   'document_export.title': "Download invoices",
-  'document_export.scope_period': "The documents of the period's invoices in one ZIP file, with the invoices' data in a CSV.",
-  'document_export.period': "Period",
-  'document_export.direction': "Direction",
-  'document_export.direction_all': "All",
-  'document_export.direction_incoming': "Incoming",
-  'document_export.direction_outgoing': "Outgoing",
-  'document_export.company': "Company",
-  'document_export.company_all': "All companies",
+  'document_export.scope_list': "As the list shows:",
+  'document_export.scope_hint': "Change the filters on the list.",
   'document_export.format': "Format",
   'document_export.format_documents_zip': "ZIP (documents + CSV)",
   'document_export.format_documents_csv': "CSV only",
   'document_export.format_documents_datev': "DATEV (Belegtransfer)",
-  'document_export.format_documents_zip_help': "The documents named by your pattern, with the invoices' data in a CSV next to them.",
-  'document_export.format_documents_datev_help': "A DATEV XML-Schnittstelle online package, to upload to DATEV Unternehmen online with DATEV Belegtransfer.",
-  'document_export.pattern': "File name pattern",
+  'document_export.file_names': "File names",
+  'document_export.preset_p1': "Date_Partner_Number",
+  'document_export.preset_custom': "Custom",
+  'document_export.pattern': "Custom file name pattern",
   'document_export.pattern_tokens': "Fields for the file name",
   'document_export.pattern_preview': "Files will be named like this (first three):",
   'document_export.token_internal_id': "AIFT ID",
@@ -194,6 +189,7 @@ const uiEn: Record<ExportUiKey, string> = {
   'document_export.token_direction': "Direction",
   'document_export.token_gross': "Gross",
   'document_export.token_currency': "Currency",
+  'document_export.token_insert': "+ {field}",
   'document_export.folders': "Folders in the ZIP",
   'document_export.folders_none': "None",
   'document_export.folders_month': "By month",
@@ -207,47 +203,41 @@ const uiEn: Record<ExportUiKey, string> = {
   'document_export.csv_style_excel': "Semicolon and decimal comma (for Hungarian and German spreadsheet settings)",
   'document_export.csv_style_standard': "Comma and decimal point (standard)",
   'document_export.cancel': "Cancel",
-  'document_export.start': "Download",
   'document_export.csv_file_name': "File name in ZIP",
   'document_export.csv_document': "Document",
-  'document_export.csv_internal_id': "AIFT ID",
   'document_export.csv_invoice_number': "Invoice number",
   'document_export.csv_partner_name': "Partner",
   'document_export.csv_total_gross': "Gross",
   'document_export.outcome_included': "Included",
   'document_export.outcome_no_document': "No document",
   'document_export.outcome_download_failed': "Download failed",
+  'document_export.toast_download_csv': "Download CSV",
   'invoices.list.title': "Invoices",
   'invoices.list.upload_invoices': "Upload invoices",
+  'invoices.list.filter_direction': "Direction",
+  'invoices.list.filter_expense': "Expense",
+  'list_view_filter.summary.filter_label': "{filter}: {value}",
   'upload.button.hint_inline': "or drop files anywhere on this page",
   'upload.button.hint_tooltip': "Drop multiple files anywhere on this page",
   'recategorize.selectedCount': "{count} selected",
   'recategorize.clear': "Clear",
   'recategorize.action': "Re-categorize",
-  'recategorize.selectRow': "Select row",
-  'recategorize.selectAll': "Select all",
   'vat_tools.approve_action': "Approve reviewed items",
-  'date_filter.basis_short_issue': "Issue",
 }
 
 const uiHu: Record<ExportUiKey, string> = {
-  'document_export.button': "Letöltés",
+  'document_export.button': "Dokumentumok letöltése",
   'document_export.title': "Számlák letöltése",
-  'document_export.scope_period': "A kiválasztott időszak számláinak dokumentumai egy ZIP-fájlban, a számlák adataival egy CSV-ben.",
-  'document_export.period': "Időszak",
-  'document_export.direction': "Irány",
-  'document_export.direction_all': "Mind",
-  'document_export.direction_incoming': "Bejövő",
-  'document_export.direction_outgoing': "Kimenő",
-  'document_export.company': "Cég",
-  'document_export.company_all': "Minden cég",
+  'document_export.scope_list': "A lista szerint:",
+  'document_export.scope_hint': "A szűrőket a listán módosíthatod.",
   'document_export.format': "Formátum",
   'document_export.format_documents_zip': "ZIP (dokumentumok + CSV)",
   'document_export.format_documents_csv': "Csak CSV",
   'document_export.format_documents_datev': "DATEV (Belegtransfer)",
-  'document_export.format_documents_zip_help': "A dokumentumok a mintád szerinti néven, mellettük a számlák adatai CSV-ben.",
-  'document_export.format_documents_datev_help': "DATEV XML-Schnittstelle online csomag: a DATEV Belegtransfer programmal tölthető fel a DATEV Unternehmen online-ba.",
-  'document_export.pattern': "Fájlnév minta",
+  'document_export.file_names': "Fájlnevek",
+  'document_export.preset_p1': "Dátum_Partner_Számlaszám",
+  'document_export.preset_custom': "Egyéni",
+  'document_export.pattern': "Egyéni fájlnév minta",
   'document_export.pattern_tokens': "Mezők a fájlnévhez",
   'document_export.pattern_preview': "Így lesznek elnevezve (az első három):",
   'document_export.token_internal_id': "AIFT azonosító",
@@ -262,6 +252,7 @@ const uiHu: Record<ExportUiKey, string> = {
   'document_export.token_direction': "Irány",
   'document_export.token_gross': "Bruttó",
   'document_export.token_currency': "Pénznem",
+  'document_export.token_insert': "+ {field}",
   'document_export.folders': "Mappák a ZIP-ben",
   'document_export.folders_none': "Nincs",
   'document_export.folders_month': "Havonta",
@@ -275,47 +266,41 @@ const uiHu: Record<ExportUiKey, string> = {
   'document_export.csv_style_excel': "Pontosvessző és tizedesvessző (magyar és német táblázatkezelőhöz)",
   'document_export.csv_style_standard': "Vessző és tizedespont (szabványos)",
   'document_export.cancel': "Mégse",
-  'document_export.start': "Letöltés",
   'document_export.csv_file_name': "Fájlnév a ZIP-ben",
   'document_export.csv_document': "Dokumentum",
-  'document_export.csv_internal_id': "AIFT azonosító",
   'document_export.csv_invoice_number': "Számlaszám",
   'document_export.csv_partner_name': "Partner",
   'document_export.csv_total_gross': "Bruttó",
   'document_export.outcome_included': "Benne van",
   'document_export.outcome_no_document': "Nincs dokumentum",
   'document_export.outcome_download_failed': "Letöltés sikertelen",
+  'document_export.toast_download_csv': "CSV letöltése",
   'invoices.list.title': "Számlák",
   'invoices.list.upload_invoices': "Számlák feltöltése",
+  'invoices.list.filter_direction': "Irány",
+  'invoices.list.filter_expense': "Kiadás",
+  'list_view_filter.summary.filter_label': "{filter}: {value}",
   'upload.button.hint_inline': "vagy húzd a fájlokat bárhová az oldalon",
   'upload.button.hint_tooltip': "Húzz több fájlt bárhová az oldalon",
   'recategorize.selectedCount': "{count} kijelölve",
   'recategorize.clear': "Kijelölés megszüntetése",
   'recategorize.action': "Újrakategorizálás",
-  'recategorize.selectRow': "Sor kijelölése",
-  'recategorize.selectAll': "Összes kijelölése",
   'vat_tools.approve_action': "Ellenőrzött tételek jóváhagyása",
-  'date_filter.basis_short_issue': "Számla kelte",
 }
 
 const uiDe: Record<ExportUiKey, string> = {
-  'document_export.button': "Herunterladen",
+  'document_export.button': "Belege herunterladen",
   'document_export.title': "Rechnungen herunterladen",
-  'document_export.scope_period': "Die Belege der Rechnungen des Zeitraums in einer ZIP-Datei, die Rechnungsdaten in einer CSV.",
-  'document_export.period': "Zeitraum",
-  'document_export.direction': "Richtung",
-  'document_export.direction_all': "Alle",
-  'document_export.direction_incoming': "Eingang",
-  'document_export.direction_outgoing': "Ausgang",
-  'document_export.company': "Unternehmen",
-  'document_export.company_all': "Alle Unternehmen",
+  'document_export.scope_list': "Wie die Liste zeigt:",
+  'document_export.scope_hint': "Die Filter ändern Sie in der Liste.",
   'document_export.format': "Format",
   'document_export.format_documents_zip': "ZIP (Belege + CSV)",
   'document_export.format_documents_csv': "Nur CSV",
   'document_export.format_documents_datev': "DATEV (Belegtransfer)",
-  'document_export.format_documents_zip_help': "Die Belege nach Ihrem Muster benannt, daneben die Rechnungsdaten als CSV.",
-  'document_export.format_documents_datev_help': "Ein Paket für die DATEV XML-Schnittstelle online, mit DATEV Belegtransfer nach DATEV Unternehmen online hochzuladen.",
-  'document_export.pattern': "Dateinamen-Muster",
+  'document_export.file_names': "Dateinamen",
+  'document_export.preset_p1': "Datum_Partner_Nummer",
+  'document_export.preset_custom': "Eigenes Muster",
+  'document_export.pattern': "Eigenes Dateinamen-Muster",
   'document_export.pattern_tokens': "Felder für den Dateinamen",
   'document_export.pattern_preview': "So werden die Dateien benannt (die ersten drei):",
   'document_export.token_internal_id': "AIFT-ID",
@@ -330,6 +315,7 @@ const uiDe: Record<ExportUiKey, string> = {
   'document_export.token_direction': "Richtung",
   'document_export.token_gross': "Brutto",
   'document_export.token_currency': "Währung",
+  'document_export.token_insert': "+ {field}",
   'document_export.folders': "Ordner in der ZIP",
   'document_export.folders_none': "Keine",
   'document_export.folders_month': "Nach Monat",
@@ -343,33 +329,31 @@ const uiDe: Record<ExportUiKey, string> = {
   'document_export.csv_style_excel': "Semikolon und Dezimalkomma (für deutsche und ungarische Tabellenkalkulation)",
   'document_export.csv_style_standard': "Komma und Dezimalpunkt (Standard)",
   'document_export.cancel': "Abbrechen",
-  'document_export.start': "Herunterladen",
   'document_export.csv_file_name': "Dateiname in der ZIP",
   'document_export.csv_document': "Beleg",
-  'document_export.csv_internal_id': "AIFT-ID",
   'document_export.csv_invoice_number': "Rechnungsnummer",
   'document_export.csv_partner_name': "Partner",
   'document_export.csv_total_gross': "Brutto",
   'document_export.outcome_included': "Enthalten",
   'document_export.outcome_no_document': "Kein Beleg",
   'document_export.outcome_download_failed': "Download fehlgeschlagen",
+  'document_export.toast_download_csv': "CSV herunterladen",
   'invoices.list.title': "Rechnungen",
   'invoices.list.upload_invoices': "Rechnungen hochladen",
+  'invoices.list.filter_direction': "Richtung",
+  'invoices.list.filter_expense': "Ausgabe",
+  'list_view_filter.summary.filter_label': "{filter}: {value}",
   'upload.button.hint_inline': "oder Dateien irgendwo auf dieser Seite ablegen",
   'upload.button.hint_tooltip': "Mehrere Dateien irgendwo auf dieser Seite ablegen",
   'recategorize.selectedCount': "{count} ausgewählt",
   'recategorize.clear': "Auswahl aufheben",
   'recategorize.action': "Neu kategorisieren",
-  'recategorize.selectRow': "Zeile auswählen",
-  'recategorize.selectAll': "Alle auswählen",
   'vat_tools.approve_action': "Geprüfte Einträge freigeben",
-  'date_filter.basis_short_issue': "Rechnung",
 }
-
 
 // ── Shared data ─────────────────────────────────────────────────────────────
 
-const ID = { gearmontNav: 'DEMO-INV-2026-0274', quillmoor: 'DEMO-INV-2026-0270', slatebridge: 'DEMO-INV-2026-0261', reamwell: 'DEMO-INV-2026-0255' }
+const ID = { gearmontNav: 'DEMO-INV-2026-0274', gearmont: 'DEMO-INV-2026-0272', quillmoor: 'DEMO-INV-2026-0270', slatebridge: 'DEMO-INV-2026-0261', reamwell: 'DEMO-INV-2026-0255' }
 
 // October 2026 on the invoice list, newest first. Gearmont's invoice came from
 // NAV without a document; the other three are ticked.
@@ -387,12 +371,15 @@ const NAME = {
   slatebridge: '2026-10-07_Slatebridge Roofing Ltd._SBR-2026-0342.pdf',
   quillmoor: '2026-10-12_Quillmoor Software Ltd._QS-2026-117.pdf',
   gearmont: '2026-09-24_Gearmont Fleet Services Ltd._GFS-26-00931.pdf',
+  gearmontOct: '2026-10-14_Gearmont Fleet Services Ltd._GFS-26-01019.pdf',
 }
-const PREVIEW = [NAME.reamwell, NAME.slatebridge, NAME.quillmoor]
+// The dialog's list: October 2026, expenses only, so its first three
+// documents are Reamwell, Slatebridge and a later Gearmont invoice.
+const PREVIEW = [NAME.reamwell, NAME.slatebridge, NAME.gearmontOct]
 const DATEV_BASES = [
   '2026-10-03_Reamwell_Office_Supplies_Ltd._RW-2026-00418',
   '2026-10-07_Slatebridge_Roofing_Ltd._SBR-2026-0342',
-  '2026-10-12_Quillmoor_Software_Ltd._QS-2026-117',
+  '2026-10-14_Gearmont_Fleet_Services_Ltd._GFS-26-01019',
 ]
 const PREVIEW_DATEV = DATEV_BASES.map((b) => `${b}.pdf`)
 
@@ -434,14 +421,19 @@ function csvRows(gross: [string, string, string]): CsvRow[] {
 }
 
 // naming.ts output for the Slatebridge invoice (SBR/2026/0342, 2026-10-07,
-// no due date) under each pattern.
-function patterns(word: string, wordAscii: string, notes: [string, string, string, string, string]) {
+// no due date): the three presets, then two Egyéni patterns as the dialog
+// displays them (field names in brackets).
+function patterns(
+  ui: Record<ExportUiKey, string>,
+  custom: { empty: string; text: string; word: string; wordAscii: string },
+  notes: [string, string, string, string, string],
+) {
   return [
-    { pattern: DEFAULT_PATTERN, ascii: false, name: '2026-10-07_Slatebridge Roofing Ltd._[[SBR-2026-0342]].pdf', note: notes[0] },
-    { pattern: '{internal_id}_{invoice_number}', ascii: false, name: 'DEMO-INV-2026-0261_[[SBR-2026-0342]].pdf', note: notes[1] },
-    { pattern: '{issue_date}_{due_date}_{invoice_number}', ascii: false, name: '2026-10-07_SBR-2026-0342.pdf', note: notes[2] },
-    { pattern: `{issue_date}_${word}_{invoice_number}`, ascii: false, name: `2026-10-07_${word}_SBR-2026-0342.pdf`, note: notes[3] },
-    { pattern: `{issue_date}_${word}_{invoice_number}`, ascii: true, name: `2026-10-07_[[${wordAscii}]]_SBR-2026-0342.pdf`, note: notes[4] },
+    { preset: ui['document_export.preset_p1'], ascii: false, name: '2026-10-07_Slatebridge Roofing Ltd._[[SBR-2026-0342]].pdf', note: notes[0] },
+    { preset: ui['document_export.token_invoice_number'], ascii: false, name: '[[SBR-2026-0342]].pdf', note: notes[1] },
+    { preset: ui['document_export.token_internal_id'], ascii: false, name: 'DEMO-INV-2026-0261.pdf', note: notes[2] },
+    { pattern: custom.empty, ascii: false, name: '2026-10-07_SBR-2026-0342.pdf', note: notes[3] },
+    { pattern: custom.text, ascii: true, name: `2026-10-07_[[${custom.wordAscii}]]_SBR-2026-0342.pdf`, note: notes[4] },
   ]
 }
 
@@ -451,31 +443,38 @@ const en: Copy = {
   ui: uiEn,
   rendered: {
     selectedCount: '3 selected',
-    summary: '245 invoices · 233 documents (55 MB)',
-    summaryMissing: '12 invoices have no document (NAV data only): they are in the CSV, not in the ZIP.',
+    summary: '112 invoices · 104 documents (24 MB)',
+    summaryMissing: '8 invoices have no document: in the CSV, not in the ZIP.',
     toastProgress: 'Downloading invoices: 123 / 233',
     toastDoneFailed: 'Done: 231 documents in the ZIP, 2 failed to download (the CSV marks them).',
+    toastDoneDatev: 'Done: 104 documents in the DATEV package.',
+    startDocuments: 'Download 104 documents',
   },
-  october: 'October 2026',
-  companies: ['Példa Kft.', 'Példa Szolgáltató Kft.'],
+  chips: ['October 2026', 'Direction: Expense'],
+  customPattern: '[Issue date]_[Partner]_[Invoice number]',
   currency: 'HUF',
   pickRows: pickRows([96520, 2450000, 1524000, 186690], 'HUF'),
   previewNames: PREVIEW,
   previewNamesDatev: PREVIEW_DATEV,
-  patterns: patterns('számla', 'szamla', [
-    'The default pattern. The slashes of the invoice number become hyphens.',
-    'The AIFT ID first, so the files sort in the order they arrived.',
-    'This invoice has no due date: the empty field is dropped with one separator.',
-    'Free text between the fields, here a Hungarian word.',
-    'The same pattern with File names without accents ticked.',
-  ]),
+  patterns: patterns(
+    uiEn,
+    { empty: '[Issue date]_[Due date]_[Invoice number]', text: '[Issue date]_számla_[Invoice number]', word: 'számla', wordAscii: 'szamla' },
+    [
+      'The default. The slashes of the invoice number become hyphens.',
+      'The invoice number alone.',
+      'The AIFT ID alone, so the files sort in the order they arrived.',
+      'Custom. This invoice has no due date: the empty field is dropped with one separator.',
+      'Custom, with free text between the fields (here a Hungarian word) and File names without accents ticked.',
+    ],
+  ),
   invoice: 'The same invoice in every row: Slatebridge Roofing Ltd., invoice number SBR/2026/0342, issued 2026-10-07, AIFT ID DEMO-INV-2026-0261, no due date.',
   ...trees('Pelda-Kft', 'invoices'),
   csvRows: csvRows(['186690.00', '96520.00', '1524000.00']),
   help: {
-    patternHead: 'Pattern',
+    patternHead: 'File names',
     fileNameHead: 'File name in the ZIP',
     asciiOn: 'without accents',
+    customHead: 'Custom',
     flat: 'Folders: None',
     monthly: 'Folders: By month',
     csvHead: 'invoices.csv, three of its rows (5 of the 26 columns)',
@@ -484,19 +483,20 @@ const en: Copy = {
     finished: 'At the end, with two files that failed',
     datevDialog: 'The dialog with the DATEV format',
     datevZip: 'The DATEV package',
+    datevToast: 'At the end: stays until you close it',
     alt: {
       entry:
-        'Two parts of the Invoices page. Top: the page header with the Download button next to Upload invoices. Bottom: the selection bar reading 3 selected, with Clear, Download, Approve reviewed items and Re-categorize, above the invoice list where three of four rows are ticked. Numbered markers point to the parts described in the list below.',
+        'Two parts of the Invoices page. Top: the page header with Download documents next to the blue Upload invoices, and the drag hint under both. Bottom: the selection bar reading 3 selected, with Clear, Download documents, Approve reviewed items and Re-categorize, above the invoice list where three of four rows are ticked. Numbered markers point to the parts described in the list below.',
       dialog:
-        'The Download invoices dialog: the period October 2026 on the issue date, direction All, company All companies, format ZIP (documents + CSV), the file name pattern with its field chips and the first three file names, folders None, the opened Advanced section with File names without accents and CSV format, and a blue summary: 245 invoices, 233 documents, 55 MB, 12 invoices with NAV data only. Numbered markers point to the parts described in the list below.',
+        'The Download invoices dialog opened from a list filtered to October 2026 and expenses: the two filters as grey chips after As the list shows, the hint to change them on the list, a blue summary of 112 invoices, 104 documents, 24 MB and 8 invoices without a document, the Format switch on ZIP (documents + CSV), the File names switch on Custom with the pattern in field names and a grid of field buttons, the first three file names, the Folders in the ZIP switch on None, the open Advanced section, and the button Download 104 documents. Numbered markers point to the parts described in the list below.',
       naming:
-        'Five file name patterns for the same invoice, each with the file name it gives. The changed parts are highlighted: the slashes of SBR/2026/0342 become hyphens, an empty due date disappears with its separator, and the accent-free option turns számla into szamla.',
+        'Five file name settings for the same invoice, each with the file name it gives: the three presets and two custom patterns. The changed parts are highlighted: the slashes of SBR/2026/0342 become hyphens, an empty due date disappears with its separator, and the accent-free option turns számla into szamla.',
       zip:
         'Two file trees of the same download, one without folders and one with a folder per month, each with the CSV at the root. Below, three rows of the CSV: one invoice with its file name and Included, a NAV-only invoice marked No document, and one marked Download failed, both without a file name.',
       toasts:
         'Two notifications in the bottom-right corner of the app: Downloading invoices: 123 / 233 with a spinner and a Cancel button, and the green Done: 231 documents in the ZIP, 2 failed to download (the CSV marks them).',
       datev:
-        'The Download invoices dialog with the DATEV (Belegtransfer) format selected, its explanation, the file name preview without spaces and accents, and the two fields DATEV folder: incoming invoices (Eingangsrechnungen) and DATEV folder: outgoing invoices (Ausgangsrechnungen). Beside it, the DATEV ZIP without folders: document.xml and, for each invoice, a PDF and an XML file of the same name.',
+        'The Download invoices dialog with the DATEV (Belegtransfer) format selected, the file name preview without spaces and accents, and the open Advanced section with the two fields DATEV folder: incoming invoices (Eingangsrechnungen) and DATEV folder: outgoing invoices (Ausgangsrechnungen). Below it, the DATEV ZIP without folders, document.xml and, per invoice, a PDF and an XML file of the same name, and the green finish notification Done: 104 documents in the DATEV package, with Download CSV and a close button.',
     },
   },
 }
@@ -507,31 +507,38 @@ const hu: Copy = {
   ui: uiHu,
   rendered: {
     selectedCount: '3 kijelölve',
-    summary: '245 számla · 233 dokumentum (55 MB)',
-    summaryMissing: '12 számlához nincs dokumentum (csak NAV-adat): ezek a CSV-ben szerepelnek, a ZIP-ben nem.',
+    summary: '112 számla · 104 dokumentum (24 MB)',
+    summaryMissing: '8 számlához nincs dokumentum: a CSV-ben szerepel, a ZIP-ben nem.',
     toastProgress: 'Számlák letöltése: 123 / 233',
     toastDoneFailed: 'Kész: 231 dokumentum a ZIP-ben, 2 letöltése sikertelen (a CSV jelzi).',
+    toastDoneDatev: 'Kész: 104 dokumentum a DATEV-csomagban.',
+    startDocuments: '104 dokumentum letöltése',
   },
-  october: '2026. október',
-  companies: ['Példa Kft.', 'Példa Szolgáltató Kft.'],
+  chips: ['2026. október', 'Irány: Kiadás'],
+  customPattern: '[Kiállítás]_[Partner]_[Számlaszám]',
   currency: 'HUF',
   pickRows: pickRows([96520, 2450000, 1524000, 186690], 'HUF'),
   previewNames: PREVIEW,
   previewNamesDatev: PREVIEW_DATEV,
-  patterns: patterns('számla', 'szamla', [
-    'Az alapértelmezett minta. A számlaszám perjelei kötőjelek lesznek.',
-    'Elöl az AIFT azonosító, így a fájlok érkezési sorrendben állnak.',
-    'Ennek a számlának nincs fizetési határideje: az üres mező egy elválasztójellel együtt kimarad.',
-    'Szabad szöveg a mezők között.',
-    'Ugyanez a minta bejelölt Ékezetek nélküli fájlnevek beállítással.',
-  ]),
+  patterns: patterns(
+    uiHu,
+    { empty: '[Kiállítás]_[Fizetési határidő]_[Számlaszám]', text: '[Kiállítás]_számla_[Számlaszám]', word: 'számla', wordAscii: 'szamla' },
+    [
+      'Az alapértelmezett. A számlaszám perjelei kötőjelek lesznek.',
+      'Csak a számlaszám.',
+      'Csak az AIFT azonosító, így a fájlok érkezési sorrendben állnak.',
+      'Egyéni. Ennek a számlának nincs fizetési határideje: az üres mező egy elválasztójellel együtt kimarad.',
+      'Egyéni, szabad szöveggel a mezők között és bejelölt Ékezetek nélküli fájlnevek beállítással.',
+    ],
+  ),
   invoice: 'Mind az öt sorban ugyanaz a számla: Slatebridge Roofing Ltd., számlaszám SBR/2026/0342, kiállítva 2026-10-07, AIFT azonosító DEMO-INV-2026-0261, fizetési határidő nélkül.',
   ...trees('Pelda-Kft', 'szamlak'),
   csvRows: csvRows(['186690,00', '96520,00', '1524000,00']),
   help: {
-    patternHead: 'Minta',
+    patternHead: 'Fájlnevek',
     fileNameHead: 'Fájlnév a ZIP-ben',
     asciiOn: 'ékezetek nélkül',
+    customHead: 'Egyéni',
     flat: 'Mappák: Nincs',
     monthly: 'Mappák: Havonta',
     csvHead: 'szamlak.csv, három sora (a 26 oszlopból 5)',
@@ -540,19 +547,20 @@ const hu: Copy = {
     finished: 'A végén, két sikertelen fájllal',
     datevDialog: 'Az ablak DATEV formátummal',
     datevZip: 'A DATEV-csomag',
+    datevToast: 'A végén: addig marad, amíg be nem zárja',
     alt: {
       entry:
-        'A Számlák oldal két része. Fent az oldal fejléce, a Letöltés gomb a Számlák feltöltése mellett. Lent a kijelölési sáv „3 kijelölve” felirattal, Kijelölés megszüntetése, Letöltés, Ellenőrzött tételek jóváhagyása és Újrakategorizálás gombbal, alatta a számlalista, ahol négy sorból három be van jelölve. A számozott jelölők az alábbi listában leírt részekre mutatnak.',
+        'A Számlák oldal két része. Fent az oldal fejléce: a Dokumentumok letöltése gomb a kék Számlák feltöltése előtt, alattuk a húzásról szóló tipp. Lent a kijelölési sáv „3 kijelölve” felirattal, Kijelölés megszüntetése, Dokumentumok letöltése, Ellenőrzött tételek jóváhagyása és Újrakategorizálás gombbal, alatta a számlalista, ahol négy sorból három be van jelölve. A számozott jelölők az alábbi listában leírt részekre mutatnak.',
       dialog:
-        'A Számlák letöltése ablak: időszak 2026. október számla kelte alapján, irány Mind, cég Minden cég, formátum ZIP (dokumentumok + CSV), a fájlnév minta a mezőgombokkal és az első három fájlnévvel, mappák Nincs, a kinyitott Speciális rész az Ékezetek nélküli fájlnevek és a CSV formátum beállítással, és egy kék összesítő: 245 számla, 233 dokumentum, 55 MB, 12 számla csak NAV-adattal. A számozott jelölők az alábbi listában leírt részekre mutatnak.',
+        'A Számlák letöltése ablak egy 2026. októberre és a kiadásokra szűrt listáról nyitva: a két szűrő szürke címkeként „A lista szerint:” után, a tipp, hogy a listán módosítható, egy kék összesítő 112 számláról, 104 dokumentumról, 24 MB-ról és 8 dokumentum nélküli számláról, a Formátum kapcsoló ZIP (dokumentumok + CSV) állásban, a Fájlnevek kapcsoló Egyéni állásban a mezőnevekkel írt mintával és a mezőgombok rácsával, az első három fájlnév, a Mappák a ZIP-ben kapcsoló Nincs állásban, a kinyitott Speciális rész és a „104 dokumentum letöltése” gomb. A számozott jelölők az alábbi listában leírt részekre mutatnak.',
       naming:
-        'Öt fájlnév minta ugyanarra a számlára, mindegyik mellett a fájlnév, amelyet ad. A változó részek ki vannak emelve: az SBR/2026/0342 perjelei kötőjelek lesznek, az üres fizetési határidő az elválasztójelével együtt eltűnik, az ékezet nélküli beállítás pedig a „számla” szóból „szamla” lesz.',
+        'Öt fájlnév-beállítás ugyanarra a számlára, mindegyik mellett a fájlnév, amelyet ad: a három előbeállítás és két egyéni minta. A változó részek ki vannak emelve: az SBR/2026/0342 perjelei kötőjelek lesznek, az üres fizetési határidő az elválasztójelével együtt eltűnik, az ékezet nélküli beállítás pedig a „számla” szóból „szamla” lesz.',
       zip:
         'Ugyanannak a letöltésnek két fájlfája, egy mappák nélkül és egy havi mappákkal, mindkettőben a gyökérben a CSV. Alatta a CSV három sora: egy számla a fájlnevével és a „Benne van” jelzéssel, egy csak NAV-adatos számla „Nincs dokumentum”, egy pedig „Letöltés sikertelen” jelzéssel, ez utóbbi kettő fájlnév nélkül.',
       toasts:
         'Két értesítés az alkalmazás jobb alsó sarkában: „Számlák letöltése: 123 / 233” forgó jellel és Mégse gombbal, és a zöld „Kész: 231 dokumentum a ZIP-ben, 2 letöltése sikertelen (a CSV jelzi).”',
       datev:
-        'A Számlák letöltése ablak kiválasztott DATEV (Belegtransfer) formátummal, a magyarázatával, a szóközök és ékezetek nélküli fájlnév előnézettel, és a két mezővel: DATEV mappa: bejövő számlák (Eingangsrechnungen) és DATEV mappa: kimenő számlák (Ausgangsrechnungen). Mellette a DATEV ZIP mappák nélkül: document.xml, és számlánként egy azonos nevű PDF és XML fájl.',
+        'A Számlák letöltése ablak kiválasztott DATEV (Belegtransfer) formátummal, a szóközök és ékezetek nélküli fájlnév előnézettel, és a kinyitott Speciális részben a két mezővel: DATEV mappa: bejövő számlák (Eingangsrechnungen) és DATEV mappa: kimenő számlák (Ausgangsrechnungen). Alatta a DATEV ZIP mappák nélkül, document.xml és számlánként egy azonos nevű PDF és XML fájl, végül a zöld befejező értesítés „Kész: 104 dokumentum a DATEV-csomagban.” CSV letöltése gombbal és bezáró gombbal.',
     },
   },
 }
@@ -563,31 +571,38 @@ const de: Copy = {
   ui: uiDe,
   rendered: {
     selectedCount: '3 ausgewählt',
-    summary: '245 Rechnungen · 233 Belege (55 MB)',
-    summaryMissing: '12 Rechnungen haben keinen Beleg (nur NAV-Daten): Sie stehen in der CSV, nicht in der ZIP.',
+    summary: '112 Rechnungen · 104 Belege (24 MB)',
+    summaryMissing: '8 Rechnungen haben keinen Beleg: in der CSV, nicht in der ZIP.',
     toastProgress: 'Rechnungen herunterladen: 123 / 233',
     toastDoneFailed: 'Fertig: 231 Belege in der ZIP, 2 konnten nicht heruntergeladen werden (die CSV markiert sie).',
+    toastDoneDatev: 'Fertig: 104 Belege im DATEV-Paket.',
+    startDocuments: '104 Belege herunterladen',
   },
-  october: 'Oktober 2026',
-  companies: ['Beispiel GmbH', 'Beispiel Service GmbH'],
+  chips: ['Oktober 2026', 'Richtung: Ausgabe'],
+  customPattern: '[Rechnungsdatum]_[Partner]_[Rechnungsnummer]',
   currency: 'EUR',
   pickRows: pickRows([240, 5400, 6480, 412.8], 'EUR'),
   previewNames: PREVIEW,
   previewNamesDatev: PREVIEW_DATEV,
-  patterns: patterns('Beleg_für', 'Beleg_fur', [
-    'Das Standardmuster. Die Schrägstriche der Rechnungsnummer werden zu Bindestrichen.',
-    'Die AIFT-ID vorne, so stehen die Dateien in der Reihenfolge ihres Eingangs.',
-    'Diese Rechnung hat keine Fälligkeit: Das leere Feld fällt mit einem Trennzeichen weg.',
-    'Freier Text zwischen den Feldern.',
-    'Dasselbe Muster mit Dateinamen ohne Umlaute und Akzente.',
-  ]),
+  patterns: patterns(
+    uiDe,
+    { empty: '[Rechnungsdatum]_[Fälligkeit]_[Rechnungsnummer]', text: '[Rechnungsdatum]_Beleg_für_[Rechnungsnummer]', word: 'Beleg_für', wordAscii: 'Beleg_fur' },
+    [
+      'Der Standard. Die Schrägstriche der Rechnungsnummer werden zu Bindestrichen.',
+      'Nur die Rechnungsnummer.',
+      'Nur die AIFT-ID, so stehen die Dateien in der Reihenfolge ihres Eingangs.',
+      'Eigenes Muster. Diese Rechnung hat keine Fälligkeit: Das leere Feld fällt mit einem Trennzeichen weg.',
+      'Eigenes Muster mit freiem Text zwischen den Feldern und Dateinamen ohne Umlaute und Akzente.',
+    ],
+  ),
   invoice: 'In allen fünf Zeilen dieselbe Rechnung: Slatebridge Roofing Ltd., Rechnungsnummer SBR/2026/0342, ausgestellt am 2026-10-07, AIFT-ID DEMO-INV-2026-0261, ohne Fälligkeit.',
   ...trees('Beispiel-GmbH', 'rechnungen'),
   csvRows: csvRows(['412,80', '240,00', '6480,00']),
   help: {
-    patternHead: 'Muster',
+    patternHead: 'Dateinamen',
     fileNameHead: 'Dateiname in der ZIP',
     asciiOn: 'ohne Umlaute und Akzente',
+    customHead: 'Eigenes Muster',
     flat: 'Ordner: Keine',
     monthly: 'Ordner: Nach Monat',
     csvHead: 'rechnungen.csv, drei ihrer Zeilen (5 der 26 Spalten)',
@@ -596,19 +611,20 @@ const de: Copy = {
     finished: 'Am Ende, mit zwei fehlgeschlagenen Dateien',
     datevDialog: 'Der Dialog mit dem DATEV-Format',
     datevZip: 'Das DATEV-Paket',
+    datevToast: 'Am Ende: bleibt, bis Sie es schließen',
     alt: {
       entry:
-        'Zwei Teile der Seite Rechnungen. Oben der Seitenkopf mit der Schaltfläche Herunterladen neben Rechnungen hochladen. Unten die Auswahlleiste mit „3 ausgewählt“, Auswahl aufheben, Herunterladen, Geprüfte Einträge freigeben und Neu kategorisieren, darunter die Rechnungsliste, in der drei von vier Zeilen angehakt sind. Nummerierte Markierungen zeigen auf die Teile, die in der Liste darunter beschrieben sind.',
+        'Zwei Teile der Seite Rechnungen. Oben der Seitenkopf: Belege herunterladen vor dem blauen Rechnungen hochladen, darunter der Hinweis zum Ablegen von Dateien. Unten die Auswahlleiste mit „3 ausgewählt“, Auswahl aufheben, Belege herunterladen, Geprüfte Einträge freigeben und Neu kategorisieren, darunter die Rechnungsliste, in der drei von vier Zeilen angehakt sind. Nummerierte Markierungen zeigen auf die Teile, die in der Liste darunter beschrieben sind.',
       dialog:
-        'Der Dialog Rechnungen herunterladen: Zeitraum Oktober 2026 nach Rechnungsdatum, Richtung Alle, Unternehmen Alle Unternehmen, Format ZIP (Belege + CSV), das Dateinamen-Muster mit seinen Feld-Schaltflächen und den ersten drei Dateinamen, Ordner Keine, der geöffnete Bereich Erweitert mit Dateinamen ohne Umlaute und Akzente und CSV-Format, und eine blaue Zusammenfassung: 245 Rechnungen, 233 Belege, 55 MB, 12 Rechnungen nur mit NAV-Daten. Nummerierte Markierungen zeigen auf die Teile, die in der Liste darunter beschrieben sind.',
+        'Der Dialog Rechnungen herunterladen, geöffnet aus einer auf Oktober 2026 und Ausgaben gefilterten Liste: die beiden Filter als graue Chips nach Wie die Liste zeigt, der Hinweis, sie in der Liste zu ändern, eine blaue Zusammenfassung mit 112 Rechnungen, 104 Belegen, 24 MB und 8 Rechnungen ohne Beleg, der Schalter Format auf ZIP (Belege + CSV), der Schalter Dateinamen auf Eigenes Muster mit dem Muster in Feldnamen und einem Raster von Feld-Schaltflächen, die ersten drei Dateinamen, der Schalter Ordner in der ZIP auf Keine, der geöffnete Bereich Erweitert und die Schaltfläche 104 Belege herunterladen. Nummerierte Markierungen zeigen auf die Teile, die in der Liste darunter beschrieben sind.',
       naming:
-        'Fünf Dateinamen-Muster für dieselbe Rechnung, jedes mit dem Dateinamen, den es ergibt. Die geänderten Teile sind hervorgehoben: Die Schrägstriche von SBR/2026/0342 werden zu Bindestrichen, eine leere Fälligkeit verschwindet mit ihrem Trennzeichen, und die Option ohne Umlaute macht aus „für“ „fur“.',
+        'Fünf Dateinamen-Einstellungen für dieselbe Rechnung, jede mit dem Dateinamen, den sie ergibt: die drei Vorgaben und zwei eigene Muster. Die geänderten Teile sind hervorgehoben: Die Schrägstriche von SBR/2026/0342 werden zu Bindestrichen, eine leere Fälligkeit verschwindet mit ihrem Trennzeichen, und die Option ohne Umlaute macht aus „für“ „fur“.',
       zip:
         'Zwei Dateibäume desselben Downloads, einer ohne Ordner und einer mit einem Ordner pro Monat, jeweils mit der CSV im Stammverzeichnis. Darunter drei Zeilen der CSV: eine Rechnung mit ihrem Dateinamen und Enthalten, eine Rechnung nur mit NAV-Daten mit Kein Beleg und eine mit Download fehlgeschlagen, beide ohne Dateinamen.',
       toasts:
         'Zwei Benachrichtigungen in der rechten unteren Ecke der App: „Rechnungen herunterladen: 123 / 233“ mit Ladesymbol und der Schaltfläche Abbrechen, und das grüne „Fertig: 231 Belege in der ZIP, 2 konnten nicht heruntergeladen werden (die CSV markiert sie).“',
       datev:
-        'Der Dialog Rechnungen herunterladen mit dem gewählten Format DATEV (Belegtransfer), seiner Erklärung, der Dateinamen-Vorschau ohne Leerzeichen und Umlaute und den beiden Feldern DATEV-Ordner: Eingangsrechnungen und DATEV-Ordner: Ausgangsrechnungen. Daneben die DATEV-ZIP ohne Ordner: document.xml und je Rechnung eine PDF- und eine XML-Datei mit gleichem Namen.',
+        'Der Dialog Rechnungen herunterladen mit dem gewählten Format DATEV (Belegtransfer), der Dateinamen-Vorschau ohne Leerzeichen und Umlaute und dem geöffneten Bereich Erweitert mit den Feldern DATEV-Ordner: Eingangsrechnungen und DATEV-Ordner: Ausgangsrechnungen. Darunter die DATEV-ZIP ohne Ordner, document.xml und je Rechnung eine PDF- und eine XML-Datei mit gleichem Namen, und die grüne Abschlussmeldung „Fertig: 104 Belege im DATEV-Paket.“ mit CSV herunterladen und einer Schließen-Schaltfläche.',
     },
   },
 }
