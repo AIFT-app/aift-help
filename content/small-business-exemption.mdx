@@ -107,6 +107,16 @@ Set **Exempt until** to the last day of the exemption and save. Invoices with a 
 
 **Do not untick the switch instead.** Unticking clears both dates, so the company reads as never having been exempt, and the next re-resolution treats its whole history as taxable.
 
+## Business Central
+
+Where the workspace sends its invoices to Business Central, the purchases of an exempt company go up the same way as those of a [company not entitled to deduct VAT](/entity-no-vat-deduction).
+
+- **Purchases go up gross.** A line on the **Small business exemption (own company)** group is sent with net plus VAT as its amount, on **one** Business Central VAT group. Business Central then posts the whole amount to the G/L account of the line.
+- **Map the group once**, on the **Business Central** tab under **Master data → VAT codes**: its row reads **Every rate**. Which Business Central VAT group it is, you choose. AI Finance Team cannot see the percentage of a Business Central group, so make sure the one you pick is 0%. Any other would add VAT on top of the gross.
+- **Quantity and unit are kept.** Three pieces at 1,000 at 27% go up as three pieces at 1,270.
+- **An invoice is not sent** while the group has no mapping, or a line still waits for its VAT code. The readiness screen names both.
+- **A line you put on another group by hand goes up net**, on the mapping of that group. A reverse-charge purchase, which you code yourself, is one.
+
 ## NAV Invoices
 
 For a Hungarian workspace with a [NAV Online Számla](/nav-online-szamla) connection, invoices arriving from NAV follow the same rules. Where NAV states the exemption, the line gets the AAM rate element rather than a generic exempt one. Where a rate cannot be established for an exempt company, the line is left without one instead of being booked at 0%, so that it reaches you rather than quietly posting.

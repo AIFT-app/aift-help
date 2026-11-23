@@ -107,6 +107,16 @@ Egy futtatás legfeljebb **2000 számlára** terjed ki. Egy forgalmas évet töb
 
 **Ne a kapcsolót kapcsolja ki helyette.** A kikapcsolás mindkét dátumot törli, így a cég úgy olvasható, mintha soha nem lett volna mentes, és a következő újrafeloldás a teljes előzményét adókötelesként kezeli.
 
+## Business Central
+
+Ha a munkaterület a Business Centralba adja fel a számlákat, a mentes cég beszerzései ugyanúgy mennek fel, mint az [áfalevonásra nem jogosult cégé](/entity-no-vat-deduction).
+
+- **A beszerzések bruttó összeggel mennek fel.** Az **Alanyi adómentesség (saját cég)** csoporton lévő sor összege a nettó és az áfa együtt, **egyetlen** Business Central áfacsoporton. A Business Central így a teljes összeget a sor főkönyvi számlájára könyveli.
+- **A csoportot egyszer kell megfeleltetni**, a **Törzsadatok → ÁFA-kódok** alatti **Business Central** fülön: a sorában **Minden kulcs** áll. Azt, hogy melyik Business Central áfacsoport legyen, Ön választja ki. Az AI Finance Team nem látja egy Business Central csoport százalékát, ezért győződjön meg róla, hogy a kiválasztott csoport 0%-os. Bármely más csoport a bruttóra még áfát számítana.
+- **A mennyiség és a mértékegység megmarad.** Három darab 1 000 forintos tétel 27%-os kulccsal három darab 1 270 forintos tételként megy fel.
+- **A számla nem küldhető**, amíg a csoportnak nincs megfeleltetése, vagy egy sora még az ÁFA-kódjára vár. A küldés előtti ellenőrző képernyő mindkettőt megnevezi.
+- **A kézzel más csoportra tett sor nettó összeggel megy fel**, annak a csoportnak a megfeleltetésén. Ilyen a fordított adózású beszerzés, amelyet Ön kódol.
+
 ## NAV-számlák
 
 [NAV Online Számla](/nav-online-szamla)-kapcsolattal rendelkező magyar munkaterületen a NAV-tól érkező számlákra ugyanezek a szabályok vonatkoznak. Ahol a NAV közli a mentességet, a sor az AAM kulcselemet kapja, nem egy általános mentes kulcsot. Ahol egy mentes cégnél nem állapítható meg kulcs, a sor kulcs nélkül marad, ahelyett hogy 0%-kal könyvelődne: így Önhöz kerül, és nem megy át csendben.
