@@ -31,7 +31,7 @@ import type { Locale } from '@/lib/i18n'
 import { Button } from '@/components/catalyst/button'
 import { Checkbox, CheckboxField } from '@/components/catalyst/checkbox'
 import { DialogActions, DialogBody } from '@/components/catalyst/dialog'
-import { Description, Field, FieldGroup, Label } from '@/components/catalyst/fieldset'
+import { Field, FieldGroup, Label } from '@/components/catalyst/fieldset'
 import { Heading } from '@/components/catalyst/heading'
 import { Input } from '@/components/catalyst/input'
 import { Select } from '@/components/catalyst/select'
@@ -46,12 +46,12 @@ const u = (locale: Locale, key: string) => exportCopy[locale].ui[`document_expor
 
 // ── F1: where it starts ─────────────────────────────────────────────────────
 
-/** The header's period button and the selection bar's plain one (DocumentExportButton). */
-function ExportButton({ locale, plain = false }: { locale: Locale; plain?: boolean }) {
-  return plain ? <Button plain>{u(locale, 'button')}</Button> : <Button outline>{u(locale, 'button')}</Button>
+/** DocumentExportButton's trigger: outline, one name in both places (D5, D6). */
+function ExportButton({ locale }: { locale: Locale }) {
+  return <Button outline>{u(locale, 'button')}</Button>
 }
 
-/** The invoices page header: PageTitleRow with the two actions. */
+/** The invoices page header: PageTitleRow with the button row and the drag hint under it. */
 export function HeaderScreen({ locale, pin }: { locale: Locale; pin?: number }) {
   const ui = exportCopy[locale].ui
   return (
@@ -63,17 +63,23 @@ export function HeaderScreen({ locale, pin }: { locale: Locale; pin?: number }) 
           </div>
         </div>
         <div className="flex max-w-full flex-wrap items-center gap-2">
-          <div className="flex flex-wrap items-center gap-2">
-            {pin ? <Pin n={pin} at="above" cancel="-mr-2" /> : null}
-            <ExportButton locale={locale} />
-            {/* UploadButton.tsx */}
-            <div className="flex flex-col items-start sm:items-end gap-1">
-              <Button color="blue" title={ui['upload.button.hint_tooltip']}>
-                {ui['invoices.list.upload_invoices']}
-              </Button>
-              <input type="file" multiple className="sr-only" />
-              <span className="text-xs text-zinc-400">{ui['upload.button.hint_inline']}</span>
+          <div className="flex flex-col items-start gap-1 sm:items-end">
+            <div className="flex flex-wrap items-start gap-2">
+              <div className="order-2 sm:order-1">
+                {pin ? <Pin n={pin} at="above" cancel="" /> : null}
+                <ExportButton locale={locale} />
+              </div>
+              <div className="order-1 sm:order-2">
+                {/* UploadButton.tsx with showHint={false} */}
+                <div className="flex flex-col items-start sm:items-end gap-1">
+                  <Button color="blue" title={ui['upload.button.hint_tooltip']}>
+                    {ui['invoices.list.upload_invoices']}
+                  </Button>
+                  <input type="file" multiple className="sr-only" />
+                </div>
+              </div>
             </div>
+            <span className="text-xs text-zinc-400">{ui['upload.button.hint_inline']}</span>
           </div>
         </div>
       </div>
@@ -91,7 +97,7 @@ export function SelectionBar({ locale, pin }: { locale: Locale; pin?: number }) 
       <div className="flex flex-wrap items-center justify-end gap-2">
         <Button plain>{ui['recategorize.clear']}</Button>
         {pin ? <Pin n={pin} at="above" cancel="-mr-2" /> : null}
-        <ExportButton locale={locale} plain />
+        <ExportButton locale={locale} />
         <Button outline>{ui['vat_tools.approve_action']}</Button>
         <Button color="blue">{ui['recategorize.action']}</Button>
       </div>
@@ -140,52 +146,63 @@ export function DocumentExportEntryFigure({ locale, children }: FigureProps) {
 
 // ── F2 / F6: the dialog ─────────────────────────────────────────────────────
 
-// date-range-filter.tsx CalendarGlyph and GLYPH.chevronDown, verbatim.
-function CalendarGlyph() {
+/** src/components/ui/segmented.tsx with `wrap`, not `inline`, class for class. */
+function Segmented({ label, value, options }: { label: string; value: string; options: Array<{ value: string; label: string }> }) {
   return (
-    <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" className="size-4 text-blue-600 dark:text-blue-400">
-      <path
-        fillRule="evenodd"
-        d="M5.75 2a.75.75 0 0 1 .75.75V4h7V2.75a.75.75 0 0 1 1.5 0V4h.25A2.75 2.75 0 0 1 18 6.75v8.5A2.75 2.75 0 0 1 15.25 18H4.75A2.75 2.75 0 0 1 2 15.25v-8.5A2.75 2.75 0 0 1 4.75 4H5V2.75A.75.75 0 0 1 5.75 2ZM4.75 5.5c-.69 0-1.25.56-1.25 1.25V8h13V6.75c0-.69-.56-1.25-1.25-1.25H4.75Zm11.75 4h-13v5.75c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25V9.5Z"
-        clipRule="evenodd"
-      />
-    </svg>
-  )
-}
-const CHEVRON_DOWN = '▾'
-
-/** DateRangeFilter, closed, with the basis shown (showBasis + onBasisChange). */
-function PeriodTrigger({ locale }: { locale: Locale }) {
-  const c = exportCopy[locale]
-  return (
-    <div className="relative inline-block">
-      <button
-        type="button"
-        aria-expanded={false}
-        aria-haspopup="dialog"
-        className="inline-flex h-8 items-center gap-2 rounded-lg border border-blue-200 bg-blue-50 px-3 text-sm font-medium text-zinc-800 hover:bg-blue-100 disabled:opacity-50 dark:border-blue-900 dark:bg-blue-950/40 dark:text-zinc-100 dark:hover:bg-blue-900/40"
-      >
-        <CalendarGlyph />
-        <span className="font-normal text-zinc-500 dark:text-zinc-400">{c.ui['date_filter.basis_short_issue']}</span>
-        <span aria-hidden="true" className="text-zinc-300 dark:text-zinc-600">
-          ·
-        </span>
-        <span className="tabular-nums">{c.october}</span>
-        <span aria-hidden="true" className="text-xs text-zinc-500">
-          {CHEVRON_DOWN}
-        </span>
-      </button>
+    <div
+      role="radiogroup"
+      aria-label={label}
+      className={clsx(
+        'inline-flex rounded-lg border p-0.5',
+        'max-w-full flex-wrap',
+        'w-full border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800/60',
+      )}
+    >
+      {options.map((opt) => {
+        const active = opt.value === value
+        return (
+          <button
+            key={opt.value}
+            type="button"
+            role="radio"
+            aria-checked={active}
+            className={clsx(
+              'flex-1 rounded-md px-2.5 py-1 text-xs font-medium transition-colors',
+              'focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500',
+              active
+                ? 'bg-white text-zinc-900 shadow-sm dark:bg-zinc-700 dark:text-white'
+                : 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100',
+            )}
+          >
+            {opt.label}
+          </button>
+        )
+      })}
     </div>
   )
 }
 
-type DialogPins = Partial<Record<'period' | 'direction' | 'format' | 'pattern' | 'preview' | 'folders' | 'datevFolders' | 'advanced' | 'summary' | 'start', number>>
+type DialogPins = Partial<Record<'scope' | 'summary' | 'format' | 'names' | 'preview' | 'folders' | 'datevFolders' | 'advanced' | 'start', number>>
 
 /**
- * The Dialog panel of DocumentExportButton, period scope, in a multi-company
- * workspace. `datev`: the DATEV format is selected (and offered).
+ * The Dialog panel of DocumentExportButton, list scope (the list filtered to
+ * October and expenses). `datev`: the DATEV format is selected (and offered).
+ * `custom`: Egyéni is picked, straight from the default preset, so the
+ * builder holds the default pattern.
  */
-export function ExportDialogPanel({ locale, datev = false, advancedOpen = false, pins = {} }: { locale: Locale; datev?: boolean; advancedOpen?: boolean; pins?: DialogPins }) {
+export function ExportDialogPanel({
+  locale,
+  datev = false,
+  custom = false,
+  advancedOpen = false,
+  pins = {},
+}: {
+  locale: Locale
+  datev?: boolean
+  custom?: boolean
+  advancedOpen?: boolean
+  pins?: DialogPins
+}) {
   const c = exportCopy[locale]
   const t = (k: string) => u(locale, k)
   const format = datev ? 'documents_datev' : 'documents_zip'
@@ -199,75 +216,81 @@ export function ExportDialogPanel({ locale, datev = false, advancedOpen = false,
     // for max-h-none, because 100vh here is the READER's window.
     <div className="flex max-h-none w-full flex-col rounded-2xl bg-white p-6 shadow-xl dark:bg-zinc-900 dark:ring-1 dark:ring-white/10 sm:max-w-2xl">
       <h2 className="shrink-0 text-base/6 font-semibold text-zinc-950 dark:text-white">{t('title')}</h2>
-      <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">{t('scope_period')}</p>
+      {/* ListScopeChips */}
+      <div className="mt-3">
+        <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1.5 text-sm text-zinc-600 dark:text-zinc-400">
+          <span>{t('scope_list')}</span>
+          {c.chips.map((l) => (
+            <span
+              key={l}
+              className="rounded-md bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
+            >
+              {l}
+            </span>
+          ))}
+        </div>
+        <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
+          {t('scope_hint')}
+          {pin('scope')}
+        </p>
+      </div>
       <DialogBody>
-        <FieldGroup>
-          <Field>
-            <Label>
-              {t('period')}
-              {pin('period')}
-            </Label>
-            <div className="mt-2">
-              <PeriodTrigger locale={locale} />
-            </div>
-          </Field>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <Field>
-              <Label>
-                {t('direction')}
-                {pin('direction')}
-              </Label>
-              <Select defaultValue="">
-                <option value="">{t('direction_all')}</option>
-                <option value="expense">{t('direction_incoming')}</option>
-                <option value="income">{t('direction_outgoing')}</option>
-              </Select>
-            </Field>
-            <Field>
-              <Label>{t('company')}</Label>
-              <Select defaultValue="">
-                <option value="">{t('company_all')}</option>
-                {c.companies.map((name) => (
-                  <option key={name} value={name}>
-                    {name}
-                  </option>
-                ))}
-              </Select>
-            </Field>
-          </div>
+        <div
+          className={'rounded-md px-3 py-2 text-sm ' + 'bg-blue-50 text-blue-800 dark:bg-blue-950/30 dark:text-blue-200'}
+          aria-live="polite"
+          data-testid="document-export-summary"
+        >
+          <p>
+            {c.rendered.summary}
+            {pin('summary')}
+          </p>
+          <p className="mt-1">{c.rendered.summaryMissing}</p>
+        </div>
 
+        <FieldGroup className="mt-6">
           <Field>
             <Label>
               {t('format')}
               {pin('format')}
             </Label>
-            <Select defaultValue={format}>
-              {formats.map((f) => (
-                <option key={f} value={f}>
-                  {t(`format_${f}`)}
-                </option>
-              ))}
-            </Select>
-            <Description>{t(`format_${format}_help`)}</Description>
+            <div className="mt-2">
+              <Segmented label={t('format')} value={format} options={formats.map((f) => ({ value: f, label: t(`format_${f}`) }))} />
+            </div>
           </Field>
 
           <Field>
             <Label>
-              {t('pattern')}
-              {pin('pattern')}
+              {t('file_names')}
+              {pin('names')}
             </Label>
-            <Input defaultValue={DEFAULT_PATTERN} />
-            <div className="mt-2 flex flex-wrap gap-1.5" role="group" aria-label={t('pattern_tokens')}>
-              {TOKENS.map((tok) => (
-                <button
-                  key={tok}
-                  type="button"
-                  className="rounded-md border border-zinc-200 px-2 py-0.5 text-xs text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-800"
-                >
-                  {t(`token_${tok}`)}
-                </button>
-              ))}
+            <div className="mt-2">
+              <Segmented
+                label={t('file_names')}
+                value={custom ? 'custom' : 'p1'}
+                options={[
+                  { value: 'p1', label: t('preset_p1') },
+                  { value: 'p2', label: t('token_invoice_number') },
+                  { value: 'p3', label: t('token_internal_id') },
+                  { value: 'custom', label: t('preset_custom') },
+                ]}
+              />
             </div>
+            {custom ? (
+              <div className="mt-3">
+                <Input aria-label={t('pattern')} defaultValue={c.customPattern} />
+                <div className="mt-2 grid grid-cols-2 gap-1.5 sm:grid-cols-4" role="group" aria-label={t('pattern_tokens')}>
+                  {TOKENS.map((tok) => (
+                    <button
+                      key={tok}
+                      type="button"
+                      className="truncate rounded-md border border-zinc-950/10 px-2 py-1 text-left text-xs text-zinc-700 hover:bg-zinc-50 dark:border-white/10 dark:text-zinc-200 dark:hover:bg-zinc-800"
+                    >
+                      {t('token_insert').replace('{field}', t(`token_${tok}`))}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ) : null}
             <div className="mt-3 rounded-md bg-zinc-50 px-3 py-2 dark:bg-zinc-800/50" data-testid="document-export-name-preview">
               <p className="text-xs font-medium text-zinc-600 dark:text-zinc-400">
                 {t('pattern_preview')}
@@ -289,31 +312,15 @@ export function ExportDialogPanel({ locale, datev = false, advancedOpen = false,
                 {t('folders')}
                 {pin('folders')}
               </Label>
-              <Select defaultValue="none">
-                {(['none', 'month', 'direction', 'partner'] as const).map((l) => (
-                  <option key={l} value={l}>
-                    {t(`folders_${l}`)}
-                  </option>
-                ))}
-              </Select>
+              <div className="mt-2">
+                <Segmented
+                  label={t('folders')}
+                  value="none"
+                  options={(['none', 'month', 'direction', 'partner'] as const).map((l) => ({ value: l, label: t(`folders_${l}`) }))}
+                />
+              </div>
             </Field>
           )}
-
-          {datev ? (
-            <div className="grid gap-4 sm:grid-cols-2">
-              <Field>
-                <Label>
-                  {t('datev_folder_incoming')}
-                  {pin('datevFolders')}
-                </Label>
-                <Input defaultValue={DATEV_FOLDERS.incoming} maxLength={40} />
-              </Field>
-              <Field>
-                <Label>{t('datev_folder_outgoing')}</Label>
-                <Input defaultValue={DATEV_FOLDERS.outgoing} maxLength={40} />
-              </Field>
-            </div>
-          ) : null}
 
           <details className="text-sm" open={advancedOpen}>
             <summary className="cursor-pointer text-zinc-600 dark:text-zinc-400">
@@ -334,22 +341,29 @@ export function ExportDialogPanel({ locale, datev = false, advancedOpen = false,
                   <option value="standard">{t('csv_style_standard')}</option>
                 </Select>
               </Field>
+              {datev ? (
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <Field>
+                    <Label>
+                      {t('datev_folder_incoming')}
+                      {pin('datevFolders')}
+                    </Label>
+                    <Input defaultValue={DATEV_FOLDERS.incoming} maxLength={40} />
+                  </Field>
+                  <Field>
+                    <Label>{t('datev_folder_outgoing')}</Label>
+                    <Input defaultValue={DATEV_FOLDERS.outgoing} maxLength={40} />
+                  </Field>
+                </div>
+              ) : null}
             </div>
           </details>
-
-          <div className="rounded-md bg-blue-50 px-3 py-2 text-sm text-blue-800 dark:bg-blue-950/30 dark:text-blue-200" aria-live="polite">
-            <p>
-              {c.rendered.summary}
-              {pin('summary')}
-            </p>
-            <p className="mt-1">{c.rendered.summaryMissing}</p>
-          </div>
         </FieldGroup>
       </DialogBody>
       <DialogActions>
         <Button plain>{t('cancel')}</Button>
         {pins.start ? <Pin n={pins.start} at="above" cancel="-mr-3" /> : null}
-        <Button>{t('start')}</Button>
+        <Button>{c.rendered.startDocuments}</Button>
       </DialogActions>
     </div>
   )
@@ -370,8 +384,9 @@ export function DocumentExportDialogFigure({ locale, children }: FigureProps) {
           <div className="flex items-center justify-center bg-white p-4">
             <ExportDialogPanel
               locale={locale}
+              custom
               advancedOpen
-              pins={{ period: 1, direction: 2, format: 3, pattern: 4, folders: 5, advanced: 6, summary: 7, start: 8 }}
+              pins={{ scope: 1, summary: 2, format: 3, names: 4, preview: 5, folders: 6, advanced: 7, start: 8 }}
             />
           </div>
         </AppScreen>
@@ -402,13 +417,13 @@ function MarkedName({ name }: { name: Marked }) {
   )
 }
 
-/** A pattern with its `{field}` parts tinted, as typed in the dialog. */
+/** An Egyéni pattern as the dialog shows it, with its `[field]` parts tinted. */
 function PatternText({ pattern }: { pattern: string }) {
-  const parts = pattern.split(/(\{[a-z_]+\})/g).filter(Boolean)
+  const parts = pattern.split(/(\[[^\]]+\])/g).filter(Boolean)
   return (
     <>
       {parts.map((p, i) =>
-        p.startsWith('{') ? (
+        p.startsWith('[') ? (
           <span key={i} className="text-blue-700">
             {p}
           </span>
@@ -417,6 +432,15 @@ function PatternText({ pattern }: { pattern: string }) {
         ),
       )}
     </>
+  )
+}
+
+/** A choice as the dialog's Segmented control draws its selected option. */
+function ChoiceChip({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="inline-block rounded-md bg-white px-2.5 py-1 text-xs font-medium text-zinc-900 shadow-sm ring-1 ring-zinc-200">
+      {children}
+    </span>
   )
 }
 
@@ -479,9 +503,16 @@ export function DocumentExportNamingFigure({ locale, children }: FigureProps) {
             {c.patterns.map((p, i) => (
               <li key={i} className="grid gap-x-4 gap-y-1 py-2.5 sm:grid-cols-2">
                 <div className="min-w-0">
-                  <p className="break-all font-mono text-xs text-zinc-800">
-                    <PatternText pattern={p.pattern} />
-                  </p>
+                  {p.preset ? (
+                    <ChoiceChip>{p.preset}</ChoiceChip>
+                  ) : (
+                    <>
+                      <ChoiceChip>{c.help.customHead}</ChoiceChip>
+                      <p className="mt-1.5 break-all font-mono text-xs text-zinc-800">
+                        <PatternText pattern={p.pattern ?? ''} />
+                      </p>
+                    </>
+                  )}
                   {p.ascii ? (
                     <span className="mt-1 inline-block">
                       <Pill tone="zinc">{c.help.asciiOn}</Pill>
@@ -630,6 +661,33 @@ export function DoneToast({ locale }: { locale: Locale }) {
   )
 }
 
+/** The DATEV finish toast: closeButton and the CSV letöltése action (runner.ts). */
+export function DatevDoneToast({ locale, pin }: { locale: Locale; pin?: number }) {
+  const c = exportCopy[locale]
+  return (
+    <li className={clsx(ts.toast, ts.success)} data-sonner-toast="" data-type="success">
+      <button type="button" aria-label="Close toast" className={ts.close} data-close-button="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+      <div className={ts.icon} data-icon="">
+        <SuccessIcon />
+      </div>
+      <div className={ts.content} data-content="">
+        <div className={ts.title} data-title="">
+          {c.rendered.toastDoneDatev}
+        </div>
+      </div>
+      <button type="button" className={ts.button} data-button="true" data-action="true">
+        {c.ui['document_export.toast_download_csv']}
+      </button>
+      {pin ? <Pin n={pin} at="right" cancel="-ml-1.5" /> : null}
+    </li>
+  )
+}
+
 // The toast's width and the toaster's 24px offset on both sides.
 const TOAST_MIN_WIDTH = 404
 
@@ -677,11 +735,21 @@ export function DocumentExportDatevFigure({ locale, children }: FigureProps) {
         <div className="flex flex-col gap-3">
           <AppScreen minWidth={DIALOG_MIN_WIDTH}>
             <div className="flex items-center justify-center bg-white p-4">
-              <ExportDialogPanel locale={locale} datev pins={{ format: 1, preview: 2, datevFolders: 3 }} />
+              <ExportDialogPanel locale={locale} datev advancedOpen pins={{ format: 1, preview: 2, datevFolders: 3 }} />
             </div>
           </AppScreen>
           <div inert>
             <FileTree title={c.help.datevZip} lines={c.treeDatev} />
+          </div>
+          <div className="min-w-0">
+            <p className="mb-2 text-xs font-semibold text-zinc-500">{c.help.datevToast}</p>
+            <AppScreen minWidth={TOAST_MIN_WIDTH}>
+              <div className="flex justify-end bg-white p-6">
+                <ol className={ts.toaster} dir="ltr" data-sonner-toaster="true" data-sonner-theme="light">
+                  <DatevDoneToast locale={locale} pin={4} />
+                </ol>
+              </div>
+            </AppScreen>
           </div>
         </div>
       }
