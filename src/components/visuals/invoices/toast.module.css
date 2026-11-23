@@ -1,0 +1,140 @@
+/*
+ * The app's notifications (sonner 2.0.7, <Toaster position="bottom-right"
+ * richColors /> in aift-web src/app/layout.tsx), copied from
+ * node_modules/sonner/dist/styles.css: the light theme, a styled toast, its
+ * icon, title, action button, the success colours and the loading spinner.
+ * Only the static parts. Deliberately different: the app's toaster is
+ * `position: fixed` in the window's corner and stacks its toasts absolutely
+ * with transforms; here each toast stands in normal flow, one under the
+ * other, so a figure can show two at once. The spinner does not turn.
+ */
+.toaster {
+  --toast-icon-margin-start: -3px;
+  --toast-icon-margin-end: 4px;
+  --toast-svg-margin-start: -1px;
+  --toast-svg-margin-end: 0px;
+  --toast-button-margin-start: auto;
+  --toast-button-margin-end: 0;
+  --width: 356px;
+  --gray4: hsl(0, 0%, 93%);
+  --gray11: hsl(0, 0%, 43.5%);
+  --gray12: hsl(0, 0%, 9%);
+  --border-radius: 8px;
+  --normal-bg: #fff;
+  --normal-border: var(--gray4);
+  --normal-text: var(--gray12);
+  --success-bg: hsl(143, 85%, 96%);
+  --success-border: hsl(145, 92%, 87%);
+  --success-text: hsl(140, 100%, 27%);
+  position: relative;
+  width: var(--width);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial,
+    Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  outline: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.toast {
+  position: relative;
+  box-sizing: border-box;
+  outline: none;
+  overflow-wrap: anywhere;
+  padding: 16px;
+  background: var(--normal-bg);
+  border: 1px solid var(--normal-border);
+  color: var(--normal-text);
+  border-radius: var(--border-radius);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  width: var(--width);
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.success {
+  background: var(--success-bg);
+  border-color: var(--success-border);
+  color: var(--success-text);
+}
+
+.icon {
+  display: flex;
+  height: 16px;
+  width: 16px;
+  position: relative;
+  justify-content: flex-start;
+  align-items: center;
+  flex-shrink: 0;
+  margin-left: var(--toast-icon-margin-start);
+  margin-right: var(--toast-icon-margin-end);
+}
+.icon > * {
+  flex-shrink: 0;
+}
+.icon svg {
+  margin-left: var(--toast-svg-margin-start);
+  margin-right: var(--toast-svg-margin-end);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.title {
+  font-weight: 500;
+  line-height: 1.5;
+  color: inherit;
+}
+
+.button {
+  border-radius: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  height: 24px;
+  font-size: 12px;
+  color: var(--normal-bg);
+  background: var(--normal-text);
+  margin-left: var(--toast-button-margin-start);
+  margin-right: var(--toast-button-margin-end);
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.loadingWrapper {
+  --size: 16px;
+  height: var(--size);
+  width: var(--size);
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+}
+.spinner {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  height: var(--size);
+  width: var(--size);
+}
+.bar {
+  background: var(--gray11);
+  border-radius: 6px;
+  height: 8%;
+  left: -10%;
+  position: absolute;
+  top: -3.9%;
+  width: 24%;
+}
