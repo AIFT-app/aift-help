@@ -92,6 +92,11 @@ export const navGroups: NavGroup[] = [
         slug: 'invoice-attachments',
         title: { en: 'Invoice Attachments', hu: 'Számlamellékletek', de: 'Rechnungsanhänge' },
       },
+      // Invoice notes (invoice-notes): private, internal or everyone's notes on an invoice.
+      {
+        slug: 'invoice-notes',
+        title: { en: 'Invoice Notes', hu: 'Megjegyzések a számlákon', de: 'Notizen zu Rechnungen' },
+      },
       // The sidebar entry lagged the article and the app: both already say Missing
       // receipts / Hiányzó bizonylatok (nav.workspace.documents_needed).
       {
