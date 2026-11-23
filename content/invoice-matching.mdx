@@ -130,7 +130,7 @@ For an invoice, the preview shows the amounts and dates, the parties, the lines 
 
 To skip the preview, hold **Cmd** (**Ctrl** on Windows) while you click, or click with the middle mouse button. The full page opens in a new tab.
 
-The same preview opens from the invoice number and the transaction reference on the suggestion and match pages, from the rows of a partner's ledger on the **Partners** tab, from the records in a [settlement](/settlement), and from the invoice in the **Matching & payment** card on a transaction's page. In those places it has no buttons at the bottom.
+The same preview opens from the invoice number and the transaction reference on the suggestion and match pages, from the rows of a partner's ledger on the **Partners** tab, from the records in a [settlement](/settlement), from the invoice in the **Matching & payment** card on a transaction's page, and from the transaction ID on an invoice's **Matching & payment** tab. In those places it has no buttons at the bottom.
 
 ## The Overview tab
 
@@ -283,6 +283,22 @@ The **Matching & payment** card of an unmatched transaction, with an AI suggesti
 4. **Mark as: no invoice needed…** for a transaction that needs no invoice, such as a bank fee (see [Transaction types and no invoice needed](/transaction-types)).
 
 When the transaction is matched, the card shows the linked invoice instead: its number with an arrow, the partner and amount, **(matched: …)** when only part of the invoice is paid, and **Remove**. Click the invoice number, or a suggested invoice, to see it in a preview without leaving the transaction. When nothing is linked or suggested, it says **No matching invoice found.**
+
+## Matching on the invoice's page
+
+On an invoice's **Matching & payment** tab, each row under **Matched transactions** is one bank transaction:
+
+- the transaction's ID with an arrow, and beside it how it was matched (**Auto**, **Manual** or **Confirmed**),
+- the booking date and the amount, an outgoing payment with a minus sign,
+- **Partner**: the name of the transaction's partner,
+- **Bank account**: your own account the money left or arrived on. When the account has a nickname, the nickname comes first and the full account number after it (set nicknames on the [Bank accounts](/bank-accounts) page),
+- **Payment reference**: the transaction's reference as the bank sent it. The transaction's page shows the same text as **Reference**.
+
+A line whose value is missing is left out.
+
+Click the ID to see the transaction in a preview over the invoice, without leaving it. **Full transaction** opens the transaction's page in a new tab. To skip the preview, hold **Cmd** (**Ctrl** on Windows) while you click, or click with the middle mouse button.
+
+The **Suggested matches** cards are built the same way: the score stands before the ID, the reasoning at the bottom of the card. The tab lists every pending suggestion of the invoice.
 
 ## Manual matching
 
