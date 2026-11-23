@@ -96,6 +96,8 @@ Ist das Kästchen leer, setzt der Typ keinen Partner, und der Partner kommt aus 
 
 Ein Typ **Bank** übernimmt seine Partei vom Bankkonto. Legen Sie sie unter **Stammdaten → Bankkonten** fest: Öffnen Sie das Konto mit **Bearbeiten** (oder beim Hinzufügen) und füllen Sie **Bank** und **Steuernummer der Bank** aus, damit Bankgebühren immer mit einer Partei exportiert werden.
 
+Viele Banken schreiben auch den Empfänger der Überweisung, zu der eine Gebühr gehört, auf die Gebührenzeile (MBH etwa auf die Zeile **Tranzakciós díjrész**). Dieser Name ist kein Partner: Erhält eine Transaktion einen Typ **Bank**, wird ein mit ihr verknüpfter Partner entfernt, die Liste und die Karte **Parteien** zeigen die kontoführende Bank, und der von der Bank angegebene Name steht darunter. Solange beim Konto keine Bank hinterlegt ist, steht dort **Kontoführende Bank**.
+
 ### Bestimmter Partner: die Regel greift bei Identität
 
 Ein Typ **Bestimmter Partner** greift, wenn der Partner der Transaktion der von Ihnen gewählte Partner ist, nie nur, weil der Text ähnlich aussieht, und er markiert eine noch nicht zugeordnete Transaktion als **Keine Rechnung erforderlich**. Seine Muster werden nicht verwendet. Ein an einen Kartenacquirer gebundener Typ klassifiziert zum Beispiel dessen Auszahlungen, die Regel lässt aber einen ähnlich aussehenden Posten eines anderen Unternehmens unberührt, denn das ist eine andere Partei, die durchaus eine Rechnung brauchen kann. Legen Sie einen Typ pro Partner an: einen für das USt-Konto der Steuerbehörde und einen separaten für die Einkommensteuer, denn Steuer-Unterkonten sind nicht dieselbe Partei.
@@ -149,6 +151,8 @@ Hat ein **Muster** die falsche Markierung gesetzt, reicht die Rücknahme nicht: 
 | **Transaktionstyp** | Der anzuwendende Typ; leer bei einem Beispiel *Rechnung erforderlich* |
 | **Quelle** | **Automatisch gelernt** (aus Ihrer Markierung) oder **Manuell** (von Ihnen angelegt) |
 | **Vorkommen** | Wie viele Transaktionen Sie so entschieden haben; ein manuell angelegtes Beispiel beginnt bei 3 |
+
+Ein Beispiel, das aus einem Typ **Bank** gelernt wird, gilt der Beschreibung, nicht dem Partner, weil der Name auf einer Gebührenzeile der Empfänger einer anderen Überweisung ist.
 
 Wiederholte Entscheidungen zum selben Partner fallen zu einem Beispiel mit steigendem **Vorkommen**-Zähler zusammen. Mit **+ Beispiel hinzufügen** bringen Sie etwas bei, bevor AI Finance Team es gesehen hat; das hilft, wenn Sie einen Mandanten übernehmen, dessen wiederkehrende Posten Sie schon kennen. Ihre jüngste Entscheidung gilt, und ein neues oder geändertes Beispiel wirkt sich ab dann auf Transaktionen aus; bereits verarbeitete Transaktionen werden nicht erneut geprüft.
 

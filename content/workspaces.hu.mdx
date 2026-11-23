@@ -30,17 +30,19 @@ Minden csempén egy színes pötty látható:
 | 🟡 Borostyánsárga | Érdemes ránézni: egy gyűjtő elérte az öt tételt, vagy van legalább egy nyitott probléma |
 | 🔴 Piros | Ma figyelmet igényel: egy gyűjtőben tizenöt vagy több tétel van, három vagy több a probléma, vagy van ellenőrizetlen munka, és öt napja nem töltöttek fel számlát |
 
+Az a darabszám, amelyik a színt adta, ugyanabban a színben jelenik meg. Ha egy csempe csak azért piros, mert öt napja nem érkezett számla, a csempén az utolsó aktivitás ideje helyett ez áll: **5 napja nincs új számla**.
+
 ### A három darabszám
 
 - **Áttekintendő**: banki tranzakciók, amelyeket az AI nem elég magabiztosan tudott kategorizálni.
-- **Nem párosított**: számlák, amelyekhez nem tartozik banki tranzakció.
+- **Párosítatlan**: fizetésre váró számlák, amelyekhez még nem tartozik banki tranzakció.
 - **Problémák**: nagyon alacsony megbízhatósággal kategorizált banki tranzakciók, valamint azok a számlák, amelyeknél a kinyerés meghiúsult.
 
 ### Szakaszok és keresés
 
 A csempék két szakaszba rendeződnek, **Figyelmet igényel** (borostyánsárga vagy piros) és **Minden rendben** (zöld), és az egyes címsorok utáni darabszám azt követi, amire éppen rákeres. A keresőmező munkaterületnév szerint szűr; ha semmi nem illeszkedik, az üres állapot a **Keresés törlése** lehetőséget kínálja.
 
-Az oldal fejléce alatt egyetlen sor foglalja össze a teljes ügyfélkörét: az áttekintendő dokumentumokat, a párosítatlan tranzakciókat, a nyitott problémákat, és azt, hány munkaterület van megjelölve.
+Az oldal fejléce alatt egyetlen sor foglalja össze a teljes ügyfélkörét: az áttekintendő banki tranzakciókat, a párosításra váró számlákat és a nyitott problémákat.
 
 ### Két dolog, ami megjelenik az áttekintőn
 

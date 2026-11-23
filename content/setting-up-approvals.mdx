@@ -94,6 +94,20 @@ Under Approvers, write one or two sentences per person about what they decide: "
 
 The AI picks the person whose description covers the invoice, or nobody when no description fits. It acts only when it is at least 70% sure; otherwise the invoice waits in **Needs you** on the Overview with a note like "AI 0.58, below the threshold". The AI gets one attempt per invoice; adding, editing or clearing a description makes it look again at everything still unrouted. Describe what the person decides, not instructions. The AI runs only when at least one approver has a description, and never for a company where approvals are switched off.
 
+## Deputies and successors
+
+In **Deputies and successors** you can give every approver one deputy: another approver who can see the invoices. The approver can set the same on their own **Approvals** page, on the **Cover** card. The invoice keeps its owner; the deputy is a second pair of hands.
+
+The deputy may approve or decline the owner's invoices at any time, but is only asked to (the badge, **Waiting for you** and the daily email) when the invoice is **covered**:
+
+- the owner set an away period (a start and an end date, at most 92 days; it needs a deputy first) and is away now; meanwhile the owner's own approval emails pause,
+- the invoice is due tomorrow or is overdue,
+- or it has no due date and has waited 5 days or more.
+
+There is one step only: when the deputy is away too, nobody is asked and the invoice stays with its owner. A deputy cannot reassign an invoice. The decision reads "Approved by X (on behalf of Y)", and the routing learns the owner, never the deputy.
+
+When someone leaves, or can no longer approve but still has invoices waiting, rules naming them or the fallback role, they appear under **Can no longer approve**. **Hand over to successor** first shows what moves, and only after you confirm moves their waiting invoices, rules, fallback role, learned examples, pending rule proposals, deputy links and description to the successor in one step. The successor gets an email about the handed-over invoices, each marked "Handed over from …".
+
 ## The Overview
 
 The **Overview** page is for whoever manages approvals: its link sits at the top right of **Approvals**, and only someone with the right to manage approvals sees it. Approvers land on their own desk instead. Its header has a **Routing rules** button, which opens the settings page, and, for anyone holding "Export payment file", a **Payment file** button.

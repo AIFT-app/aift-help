@@ -237,9 +237,9 @@ export const navGroups: NavGroup[] = [
     id: 'vat',
     title: { en: 'VAT', hu: 'ÁFA', de: 'Umsatzsteuer' },
     description: {
-      en: 'VAT tables, codes on invoices, VAT groups, the small business exemption and exports.',
-      hu: 'ÁFA-táblák, ÁFA-kódok a számlákon, áfacsoportok, alanyi adómentesség és exportok.',
-      de: 'USt-Tabellen, Codes auf Rechnungen, USt-Gruppen, Kleinunternehmerregelung und Exporte.',
+      en: 'VAT tables, codes on invoices, VAT groups, the small business exemption, a company that deducts no VAT, and exports.',
+      hu: 'ÁFA-táblák, ÁFA-kódok a számlákon, áfacsoportok, alanyi adómentesség, áfalevonásra nem jogosult cég és exportok.',
+      de: 'USt-Tabellen, Codes auf Rechnungen, USt-Gruppen, Kleinunternehmerregelung, Gesellschaft ohne Vorsteuerabzug und Exporte.',
     },
     items: [
       {
@@ -262,6 +262,15 @@ export const navGroups: NavGroup[] = [
           en: 'Small Business VAT Exemption',
           hu: 'Alanyi adómentesség',
           de: 'Kleinunternehmerbefreiung',
+        },
+      },
+      // entity-no-vat-deduction: the second company-level VAT setting, beside the exemption.
+      {
+        slug: 'entity-no-vat-deduction',
+        title: {
+          en: 'A Company That Deducts No VAT',
+          hu: 'Áfalevonásra nem jogosult cég',
+          de: 'Gesellschaft ohne Vorsteuerabzug',
         },
       },
       {
