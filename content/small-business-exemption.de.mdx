@@ -107,6 +107,16 @@ Setzen Sie **Befreit bis** auf den letzten Tag der Befreiung und speichern Sie. 
 
 **Nehmen Sie nicht stattdessen das Häkchen aus dem Schalter.** Das Entfernen löscht beide Daten, sodass die Gesellschaft so gelesen wird, als wäre sie nie befreit gewesen, und die nächste Neuauflösung behandelt ihre gesamte Historie als steuerpflichtig.
 
+## Business Central
+
+Wenn der Arbeitsbereich seine Rechnungen an Business Central sendet, werden die Einkäufe einer befreiten Gesellschaft genauso übertragen wie die einer [nicht vorsteuerabzugsberechtigten Firma](/entity-no-vat-deduction).
+
+- **Einkäufe werden brutto übertragen.** Eine Position auf der Gruppe **Kleinunternehmerbefreiung (eigene Gesellschaft)** wird mit Netto plus USt als Betrag gesendet, auf **einer** Business-Central-USt-Gruppe. Business Central bucht dann den ganzen Betrag auf das Sachkonto der Position.
+- **Ordnen Sie die Gruppe einmal zu**, im Tab **Business Central** unter **Stammdaten → USt.-Codes**: In ihrer Zeile steht **Alle Sätze**. Welche Business-Central-USt-Gruppe es ist, wählen Sie. AI Finance Team sieht den Prozentsatz einer Business-Central-Gruppe nicht, stellen Sie also sicher, dass die gewählte Gruppe 0 % hat. Jede andere würde auf den Bruttobetrag noch USt aufschlagen.
+- **Menge und Einheit bleiben erhalten.** Drei Stück zu 1.000 bei 27 % werden als drei Stück zu 1.270 übertragen.
+- **Eine Rechnung wird nicht gesendet**, solange die Gruppe keine Zuordnung hat oder eine Position noch auf ihren USt-Code wartet. Der Bereitschaftsbildschirm nennt beides.
+- **Eine Position, die Sie von Hand auf eine andere Gruppe gelegt haben, wird netto übertragen**, auf der Zuordnung dieser Gruppe. Ein Einkauf mit Reverse Charge, den Sie selbst kodieren, ist so einer.
+
 ## NAV-Rechnungen
 
 Für einen ungarischen Arbeitsbereich mit einer [NAV Online Számla](/nav-online-szamla)-Verbindung folgen Rechnungen, die von der NAV kommen, denselben Regeln. Wo die NAV die Befreiung nennt, erhält die Position das AAM-Satzelement statt eines allgemeinen befreiten. Wo sich für eine befreite Gesellschaft kein Satz feststellen lässt, bleibt die Position ohne Satz, statt mit 0% gebucht zu werden, damit sie zu Ihnen gelangt und nicht still gebucht wird.
