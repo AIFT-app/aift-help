@@ -37,6 +37,8 @@ export const UI_KEYS = [
   'invoices.list.status_rejected',
   'invoices.matching.status_paid',
   'document_kind.invoice',
+  'recategorize.selectRow',
+  'recategorize.selectAll',
 ] as const
 
 export type UiKey = (typeof UI_KEYS)[number]
@@ -185,6 +187,8 @@ const en: Copy = {
     'invoices.list.status_rejected': 'Rejected',
     'invoices.matching.status_paid': 'Paid',
     'document_kind.invoice': 'Invoice',
+    'recategorize.selectRow': 'Select row',
+    'recategorize.selectAll': 'Select all',
   },
   rows: rows([186690, 1524000, 2450000, 1240], 'HUF', 'EUR'),
   help: {
@@ -241,6 +245,8 @@ const hu: Copy = {
     'invoices.list.status_rejected': 'Elutasítva',
     'invoices.matching.status_paid': 'Fizetve',
     'document_kind.invoice': 'Számla',
+    'recategorize.selectRow': 'Sor kijelölése',
+    'recategorize.selectAll': 'Összes kijelölése',
   },
   rows: rows([186690, 1524000, 2450000, 1240], 'HUF', 'EUR'),
   help: {
@@ -297,6 +303,8 @@ const de: Copy = {
     'invoices.list.status_rejected': 'Abgelehnt',
     'invoices.matching.status_paid': 'Bezahlt',
     'document_kind.invoice': 'Rechnung',
+    'recategorize.selectRow': 'Zeile auswählen',
+    'recategorize.selectAll': 'Alle auswählen',
   },
   rows: rows([412.8, 6480, 5400, 94615], 'EUR', 'HUF'),
   help: {
