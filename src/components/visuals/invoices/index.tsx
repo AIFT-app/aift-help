@@ -1,8 +1,9 @@
 // An app screen and a diagram for the invoices article.
 //
 // The screen is rebuilt 1:1 from aift-web (origin/main, 2026-09-28,
-// list-table-layout), class for class, with the real Catalyst table from the
-// help mirror:
+// list-table-layout; header re-copied 2026-11-23, invoice-list-sort: the
+// chevron on the ID, Partner over the invoice number), class for class, with
+// the real Catalyst table from the help mirror:
 //   InvoiceTable     src/app/(app)/workspaces/[workspaceId]/invoices/_components/InvoiceListShell.tsx
 //                    (the columns and the amber rail) rendered by
 //                    src/components/list-view/sortable-table.tsx (tableLayout
@@ -86,8 +87,12 @@ function orderLabels(keys: LabelKey[], max = 3): { visible: LabelKey[]; hidden: 
   return { visible: ordered.slice(0, keep), hidden: ordered.slice(keep) }
 }
 
-/** sortable-header.tsx SortButton, for a descending or an inactive column. */
-function SortButton({ active, align = 'left', children }: { active: boolean; align?: 'left' | 'right'; children: React.ReactNode }) {
+/**
+ * sortable-header.tsx SortButton, for a descending or an inactive column.
+ * `pin` is a marker placed after the chevron slot, inside the button's own
+ * flex row (its gap-1 cancelled), so it stands beside a stacked header line.
+ */
+function SortButton({ active, align = 'left', pin, children }: { active: boolean; align?: 'left' | 'right'; pin?: React.ReactNode; children: React.ReactNode }) {
   return (
     <button
       type="button"
@@ -104,6 +109,7 @@ function SortButton({ active, align = 'left', children }: { active: boolean; ali
       ) : (
         <span className="inline-block h-3.5 w-3.5 opacity-0 group-hover:opacity-30" />
       )}
+      {pin}
     </button>
   )
 }
@@ -229,14 +235,20 @@ function InvoiceTable({ locale }: { locale: Locale }) {
           <TableHead className="bg-zinc-50 dark:bg-zinc-800/50">
             <tr>
               <th scope="col" style={{ width: dateIdWidth }} className={clsx(HEADER_BASE, 'text-left')}>
+                {/* invoice-list-sort: the list opens with the newest ID first. */}
                 <div className="flex flex-col items-start gap-0.5">
-                  <SortButton active>{ui['list_view.col_date']}</SortButton>
-                  <SortButton active={false}>{ui['list_view.col_id']}</SortButton>
+                  <SortButton active={false}>{ui['list_view.col_date']}</SortButton>
+                  <SortButton active>{ui['list_view.col_id']}</SortButton>
                 </div>
               </th>
               <th scope="col" className={clsx(HEADER_BASE, 'text-left')}>
-                {ui['list_view.col_counterparty']}
-                <Pin n={2} at="right" cancel="" />
+                {/* invoice-list-sort: Partner, with the invoice number on the second line. */}
+                <div className="flex flex-col items-start gap-0.5">
+                  <SortButton active={false} pin={<Pin n={2} at="right" cancel="-ml-1" />}>
+                    {ui['list_view.col_counterparty']}
+                  </SortButton>
+                  <SortButton active={false}>{ui['list_view.col_invoice_number']}</SortButton>
+                </div>
               </th>
               <th scope="col" style={{ width: STATUS_SHARE }} className={clsx(HEADER_BASE, 'text-left')}>
                 {ui['list_view.col_labels']}
