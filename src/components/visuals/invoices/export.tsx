@@ -11,7 +11,8 @@
 //   bar         src/components/recategorize/recategorize-ui.tsx
 //               RecategorizeBulkBar with the extraActions of
 //               invoices/_components/InvoiceListShell.tsx (the plain
-//               DocumentExportButton, vat-tools-ui.tsx ApproveReviewedButton)
+//               DocumentExportButton, BulkApprovalMenu's closed
+//               DropdownButton: outline, label, ChevronDownIcon 20/solid)
 //   list        ./index.tsx InvoiceTable with the selection column
 //               (recategorize-ui.tsx RowSelectCheckbox, SelectAllCheckbox)
 //   dialog      src/components/document-export/DocumentExportButton.tsx, the
@@ -27,6 +28,7 @@
 
 import clsx from 'clsx'
 import { ArchiveBoxIcon, CodeBracketIcon, DocumentIcon, FolderIcon, TableCellsIcon } from '@heroicons/react/16/solid'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import type { Locale } from '@/lib/i18n'
 import { Button } from '@/components/catalyst/button'
 import { Checkbox, CheckboxField } from '@/components/catalyst/checkbox'
@@ -98,7 +100,11 @@ export function SelectionBar({ locale, pin }: { locale: Locale; pin?: number }) 
         <Button plain>{ui['recategorize.clear']}</Button>
         {pin ? <Pin n={pin} at="above" cancel="-mr-2" /> : null}
         <ExportButton locale={locale} />
-        <Button outline>{ui['vat_tools.approve_action']}</Button>
+        {/* BulkApprovalMenu, closed (invoice-list-bulk-stage-approval) */}
+        <Button outline>
+          {ui['invoices.bulk_approval.button']}
+          <ChevronDownIcon />
+        </Button>
         <Button color="blue">{ui['recategorize.action']}</Button>
       </div>
     </div>

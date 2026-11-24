@@ -78,7 +78,7 @@ export const EXPORT_UI_KEYS = [
   'recategorize.selectedCount',
   'recategorize.clear',
   'recategorize.action',
-  'vat_tools.approve_action',
+  'invoices.bulk_approval.button',
 ] as const
 
 export type ExportUiKey = (typeof EXPORT_UI_KEYS)[number]
@@ -222,7 +222,7 @@ const uiEn: Record<ExportUiKey, string> = {
   'recategorize.selectedCount': "{count} selected",
   'recategorize.clear': "Clear",
   'recategorize.action': "Re-categorize",
-  'vat_tools.approve_action': "Approve reviewed items",
+  'invoices.bulk_approval.button': "Approve",
 }
 
 const uiHu: Record<ExportUiKey, string> = {
@@ -285,7 +285,7 @@ const uiHu: Record<ExportUiKey, string> = {
   'recategorize.selectedCount': "{count} kijelölve",
   'recategorize.clear': "Kijelölés megszüntetése",
   'recategorize.action': "Újrakategorizálás",
-  'vat_tools.approve_action': "Ellenőrzött tételek jóváhagyása",
+  'invoices.bulk_approval.button': "Jóváhagyás",
 }
 
 const uiDe: Record<ExportUiKey, string> = {
@@ -348,7 +348,7 @@ const uiDe: Record<ExportUiKey, string> = {
   'recategorize.selectedCount': "{count} ausgewählt",
   'recategorize.clear': "Auswahl aufheben",
   'recategorize.action': "Neu kategorisieren",
-  'vat_tools.approve_action': "Geprüfte Einträge freigeben",
+  'invoices.bulk_approval.button': "Freigeben",
 }
 
 // ── Shared data ─────────────────────────────────────────────────────────────
@@ -486,7 +486,7 @@ const en: Copy = {
     datevToast: 'At the end: stays until you close it',
     alt: {
       entry:
-        'Two parts of the Invoices page. Top: the page header with Download documents next to the blue Upload invoices, and the drag hint under both. Bottom: the selection bar reading 3 selected, with Clear, Download documents, Approve reviewed items and Re-categorize, above the invoice list where three of four rows are ticked. Numbered markers point to the parts described in the list below.',
+        'Two parts of the Invoices page. Top: the page header with Download documents next to the blue Upload invoices, and the drag hint under both. Bottom: the selection bar reading 3 selected, with Clear, Download documents, the Approve menu and Re-categorize, above the invoice list where three of four rows are ticked. Numbered markers point to the parts described in the list below.',
       dialog:
         'The Download invoices dialog opened from a list filtered to October 2026 and expenses: the two filters as grey chips after As the list shows, the hint to change them on the list, a blue summary of 112 invoices, 104 documents, 24 MB and 8 invoices without a document, the Format switch on ZIP (documents + CSV), the File names switch on Custom with the pattern in field names and a grid of field buttons, the first three file names, the Folders in the ZIP switch on None, the open Advanced section, and the button Download 104 documents. Numbered markers point to the parts described in the list below.',
       naming:
@@ -550,7 +550,7 @@ const hu: Copy = {
     datevToast: 'A végén: addig marad, amíg be nem zárja',
     alt: {
       entry:
-        'A Számlák oldal két része. Fent az oldal fejléce: a Dokumentumok letöltése gomb a kék Számlák feltöltése előtt, alattuk a húzásról szóló tipp. Lent a kijelölési sáv „3 kijelölve” felirattal, Kijelölés megszüntetése, Dokumentumok letöltése, Ellenőrzött tételek jóváhagyása és Újrakategorizálás gombbal, alatta a számlalista, ahol négy sorból három be van jelölve. A számozott jelölők az alábbi listában leírt részekre mutatnak.',
+        'A Számlák oldal két része. Fent az oldal fejléce: a Dokumentumok letöltése gomb a kék Számlák feltöltése előtt, alattuk a húzásról szóló tipp. Lent a kijelölési sáv „3 kijelölve” felirattal, Kijelölés megszüntetése, Dokumentumok letöltése, a Jóváhagyás menü és az Újrakategorizálás gombbal, alatta a számlalista, ahol négy sorból három be van jelölve. A számozott jelölők az alábbi listában leírt részekre mutatnak.',
       dialog:
         'A Számlák letöltése ablak egy 2026. októberre és a kiadásokra szűrt listáról nyitva: a két szűrő szürke címkeként „A lista szerint:” után, a tipp, hogy a listán módosítható, egy kék összesítő 112 számláról, 104 dokumentumról, 24 MB-ról és 8 dokumentum nélküli számláról, a Formátum kapcsoló ZIP (dokumentumok + CSV) állásban, a Fájlnevek kapcsoló Egyéni állásban a mezőnevekkel írt mintával és a mezőgombok rácsával, az első három fájlnév, a Mappák a ZIP-ben kapcsoló Nincs állásban, a kinyitott Speciális rész és a „104 dokumentum letöltése” gomb. A számozott jelölők az alábbi listában leírt részekre mutatnak.',
       naming:
@@ -614,7 +614,7 @@ const de: Copy = {
     datevToast: 'Am Ende: bleibt, bis Sie es schließen',
     alt: {
       entry:
-        'Zwei Teile der Seite Rechnungen. Oben der Seitenkopf: Belege herunterladen vor dem blauen Rechnungen hochladen, darunter der Hinweis zum Ablegen von Dateien. Unten die Auswahlleiste mit „3 ausgewählt“, Auswahl aufheben, Belege herunterladen, Geprüfte Einträge freigeben und Neu kategorisieren, darunter die Rechnungsliste, in der drei von vier Zeilen angehakt sind. Nummerierte Markierungen zeigen auf die Teile, die in der Liste darunter beschrieben sind.',
+        'Zwei Teile der Seite Rechnungen. Oben der Seitenkopf: Belege herunterladen vor dem blauen Rechnungen hochladen, darunter der Hinweis zum Ablegen von Dateien. Unten die Auswahlleiste mit „3 ausgewählt“, Auswahl aufheben, Belege herunterladen, dem Menü Freigeben und Neu kategorisieren, darunter die Rechnungsliste, in der drei von vier Zeilen angehakt sind. Nummerierte Markierungen zeigen auf die Teile, die in der Liste darunter beschrieben sind.',
       dialog:
         'Der Dialog Rechnungen herunterladen, geöffnet aus einer auf Oktober 2026 und Ausgaben gefilterten Liste: die beiden Filter als graue Chips nach Wie die Liste zeigt, der Hinweis, sie in der Liste zu ändern, eine blaue Zusammenfassung mit 112 Rechnungen, 104 Belegen, 24 MB und 8 Rechnungen ohne Beleg, der Schalter Format auf ZIP (Belege + CSV), der Schalter Dateinamen auf Eigenes Muster mit dem Muster in Feldnamen und einem Raster von Feld-Schaltflächen, die ersten drei Dateinamen, der Schalter Ordner in der ZIP auf Keine, der geöffnete Bereich Erweitert und die Schaltfläche 104 Belege herunterladen. Nummerierte Markierungen zeigen auf die Teile, die in der Liste darunter beschrieben sind.',
       naming:
