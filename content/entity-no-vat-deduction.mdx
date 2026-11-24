@@ -70,6 +70,8 @@ Create that group and its codes before the first such invoice arrives, so the li
 
 **Not entitled to deduct: deductible line** appears on an invoice when a purchase line of such a company is still deductible: because the setting was saved and not applied yet, or because someone put the line on a deductible group or typed a percentage below 100. It blocks nothing and clears when the line is non-deductible again.
 
+To hand a line that someone moved to another group back to the company's rule, choose the **Company not entitled to deduct VAT** group in the line's **Product / Service** field. The group is offered only on purchase invoices of such a company, and the line then behaves like one nobody touched.
+
 ## Business Central
 
 - **Ordinary purchases go up gross.** A line on the reserved group is sent with net plus VAT as its amount, on **one** Business Central VAT group that carries 0%. Business Central then posts the whole amount to the G/L account of the line. Map the group once, on the **Business Central** tab under **Master data → VAT codes**: its row reads **Every rate**. AI Finance Team cannot see the percentage of a Business Central group, so make sure the one you pick is 0%. Any other would add VAT on top of the gross. Check the first invoice in a sandbox.
