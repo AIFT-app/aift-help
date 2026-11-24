@@ -22,6 +22,14 @@ Ha egy olyan fájlt tölt fel, amely azonos egy, a munkaterületen már meglév�
 
 A duplikációk rejtve vannak a listában: az eredeti alatt lenyitható **kapcsolódó** sorként, és a **Rekord állapota: Duplikátum** szűrővel jelennek meg. Ha két számla valóban különböző (egy szállító két számlához ugyanazt a PDF-et használta), nyissa meg a duplikációt, és kattintson a sávján a **Nem duplikátum** gombra. Egy számla oldalán a **Duplikációk megtekintése** csak az adott számla duplikációit nyitja meg a listában; a **Szűrő törlése** után a munkaterület összes duplikációját látja.
 
+### Számla két saját cég között
+
+Ha egy feltöltött számlán az eladó és a vevő is a munkaterület egyik cége, az AI Finance Team az egyik cég oldalán rögzíti (rendszerint a vevő költségeként). A másik cég oldalát a NAV hozza: amikor megérkezik a másik cég NAV-adata, a számla az ő oldalán is létrejön, ugyanazzal a PDF-fel. Ha a számla a másik cég NAV-letöltésének kezdőnapja előtt kelt, vagy a másik cég nem kapcsolódik a NAV-hoz, ez nem történik meg. Ilyenkor a számla tetején egy tájékoztató sáv jelenik meg **A másik saját cég oldala nem érkezik a NAV-ból** címmel, és mellette egy gomb: **Bevételi számla létrehozása**, vagy ha a feltöltött számla a bevételi oldal, **Költségszámla létrehozása**, a másik cég nevével.
+
+A gomb egy ablakot nyit meg, amely felsorolja, mi jön létre: a cég és az irány, a partner (a feltöltött számla cége, **Saját cég** jelöléssel), a számlaszám, a kelte és a bruttó összeg, valamint hogy ugyanaz a PDF kerül rá. A **Létrehozás** után az új számla a másik cég rendes számlája: az ÁFA-kódokat, a kategóriákat és az összefoglalót a rendszer a saját szemszögéből állítja be. Az eredeti számla nem változik. Mindkét számla tetején egy sor mutatja a másikat, az **Előzmények** lapon pedig látszik, ki és mikor hozta létre. Ha a NAV-adat később mégis megérkezik, az a létrehozott számlához kapcsolódik, harmadik számla nem keletkezik.
+
+A sávot és a gombot az látja, aki szerkesztheti a számlákat. Ha a munkaterület csak a bejövő (szállítói) számlákat dolgozza fel, bevételi oldal nem hozható létre. Visszavonni az új számla **archiválásával** lehet: az eredeti számlán ekkor ez látszik, és a gomb nem jelenik meg újra, az archivált számlát a **Visszaállítás** hozza vissza.
+
 ## A számlalista
 
 <InvoiceListFigure>
