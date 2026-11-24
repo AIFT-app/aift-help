@@ -9,7 +9,7 @@ Every workspace keeps two separate sets:
 - **Invoice categories**, applied to each line of an invoice.
 - **Cash categories**, applied to a bank transaction.
 
-Both live under **Master data → Accounting categories**, on the **Invoice** and **Bank** tabs. Creating, editing and archiving a category needs "Edit master data", which accountants hold; the **Bank** and **Examples** tabs are accountant-only, and a client-side member sees the invoice list read-only.
+Both live under **Master data → Accounting categories**, on the **Invoice** and **Cash** tabs. Creating, editing and archiving a category needs "Edit master data", which accountants hold; the **Cash** and **Examples** tabs are accountant-only, and a client-side member sees the invoice list read-only.
 
 ### A new workspace starts with no categories
 
@@ -19,7 +19,7 @@ Four ways to fill the list:
 
 - **From a spreadsheet**: **Import** on either tab. See [Importing master data](/master-data-import).
 - **From Business Central**, on either tab, when the client's Business Central is connected. See [Business Central](/business-central).
-- **From the invoice list to the cash list**: **Copy from invoice categories** on the **Bank** tab.
+- **From the invoice list to the cash list**: **Copy from invoice categories** on the Cash tab.
 - **By hand**, one at a time.
 
 Once the list is in place, select records on the **Invoices** or **Bank transactions** page and use **Re-categorize** to let the AI book what arrived earlier.
@@ -35,7 +35,7 @@ Once the list is in place, select records on the **Invoices** or **Bank transact
 
 The drawer also shows where the category is used: the report lines that sum it and the partners whose fixed category it is.
 
-On the **Invoice** and the **Bank** tab a search box above the list filters by name or code, with or without accents. Sorted by code, the rows are grouped by account class (the first digit of the code, for example **Account class 5**). A code that does not start with a digit goes under **Other code**, a category without a code under **No code**, and inactive categories come at the end.
+On the **Invoice** and the **Cash** tab a search box above the list filters by name or code, with or without accents. Sorted by code, the rows are grouped by account class (the first digit of the code, for example **Account class 5**). A code that does not start with a digit goes under **Other code**, a category without a code under **No code**, and inactive categories come at the end.
 
 ## Archiving a Category
 
