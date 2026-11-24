@@ -204,7 +204,7 @@ function FilterBar({ locale }: { locale: Locale }) {
             <span>{f('status_filed')}</span>
           </button>
         </div>
-        <Pin n={2} at="right" cancel="-ml-2" />
+        <Pin n={2} at="right" cancel="-ml-2 mr-6" />
       </div>
     </div>
   )
