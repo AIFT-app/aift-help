@@ -22,6 +22,14 @@ When you upload a file identical to one already in the workspace, AI Finance Tea
 
 Duplicates are hidden from the list: they appear as a **related** row you can expand under the original, and under **Record state: Duplicate**. If two invoices really are different (a supplier reused a PDF for two bills), open the duplicate and click **Mark as not a duplicate** on its banner.
 
+### An invoice between two of your own companies
+
+When an uploaded invoice has a company of the workspace on both sides, AI Finance Team records it on one company's side (usually as the buyer's expense). NAV brings the other company's side: when the other company's NAV data arrives, the invoice appears on its side too, with the same PDF. If the invoice is dated before the other company's NAV download starts, or the other company is not connected to NAV, that does not happen. The invoice then shows an information bar at the top, **The other own company's side will not come from NAV**, with a button: **Create sales invoice**, or **Create purchase invoice** when the uploaded invoice is the sales side, followed by the other company's name.
+
+The button opens a window that lists what will be created: the company and the direction, the partner (the uploaded invoice's company, marked **Own company**), the invoice number, its date and gross amount, and that the same PDF is attached. After **Create**, the new invoice is an ordinary invoice of the other company: VAT codes, categories and the summary are set from its own point of view. The original invoice does not change. Each of the two invoices shows a line at the top that links to the other, and the **History** tab shows who created it and when. If the NAV data arrives later after all, it links to the created invoice; no third invoice appears.
+
+The bar and the button are shown to people who can edit invoices. In a workspace that processes purchase invoices only, no sales side can be created. To undo, **archive** the new invoice: the original then says so, the button does not come back, and **Restore** brings the archived invoice back.
+
 ## The invoice list
 
 <InvoiceListFigure>
