@@ -70,6 +70,8 @@ Ezt a csoportot és a kódjait még az első ilyen számla érkezése előtt hoz
 
 A **Nem jogosult levonásra: levonható sor** teendő akkor jelenik meg egy számlán, ha egy ilyen cég beszerzési sora még levonható: mert a beállítást elmentették, de még nem alkalmazták, vagy mert valaki a sort levonható csoportra tette, illetve 100-nál kisebb százalékot írt be. Semmit nem akadályoz, és eltűnik, amint a sor ismét le nem vonható.
 
+Ha egy kézzel másik csoportra tett sort vissza szeretne adni a cég szabályának, a sor **Termék / Szolgáltatás** mezőjében válassza az **Áfalevonásra nem jogosult cég** csoportot. Ez a csoport csak az ilyen cég beszerzési számláin választható, és a sor utána ugyanúgy viselkedik, mint amelyikhez senki nem nyúlt.
+
 ## Business Central
 
 - **A szokásos beszerzések bruttó összeggel mennek fel.** A fenntartott csoporton lévő sor összege a nettó és az áfa együtt, **egyetlen**, 0%-os Business Central áfacsoporton. A Business Central így a teljes összeget a sor főkönyvi számlájára könyveli. A csoportot egyszer kell megfeleltetni, a **Törzsadatok → ÁFA-kódok** alatti **Business Central** fülön: a sorában **Minden kulcs** áll. Az AI Finance Team nem látja egy Business Central csoport százalékát, ezért győződjön meg róla, hogy a kiválasztott csoport 0%-os. Bármely más csoport a bruttóra még áfát számítana. Az első számlát próbakörnyezetben ellenőrizze.

@@ -70,6 +70,8 @@ Legen Sie diese Gruppe und ihre Codes an, bevor die erste solche Rechnung eintri
 
 **Kein Vorsteuerabzug: abziehbare Position** erscheint an einer Rechnung, wenn eine Einkaufsposition einer solchen Gesellschaft noch abziehbar ist: weil die Einstellung gespeichert, aber noch nicht angewendet wurde, oder weil jemand die Position auf eine abziehbare Gruppe gelegt oder einen Prozentsatz unter 100 eingegeben hat. Sie blockiert nichts und verschwindet, sobald die Position wieder nicht abziehbar ist.
 
+Um eine Position, die jemand auf eine andere Gruppe gelegt hat, wieder der Regel der Gesellschaft zu übergeben, wählen Sie im Feld **Produkt / Leistung** der Position die Gruppe **Nicht vorsteuerabzugsberechtigte Firma**. Die Gruppe wird nur auf Einkaufsrechnungen einer solchen Gesellschaft angeboten, und die Position verhält sich danach wie eine, die niemand angefasst hat.
+
 ## Business Central
 
 - **Gewöhnliche Einkäufe werden brutto übertragen.** Eine Position auf der reservierten Gruppe wird mit Netto plus USt als Betrag gesendet, auf **einer** Business-Central-USt-Gruppe mit 0 %. Business Central bucht dann den ganzen Betrag auf das Sachkonto der Position. Ordnen Sie die Gruppe einmal zu, im Tab **Business Central** unter **Stammdaten → USt.-Codes**: In ihrer Zeile steht **Alle Sätze**. AI Finance Team sieht den Prozentsatz einer Business-Central-Gruppe nicht, stellen Sie also sicher, dass die gewählte Gruppe 0 % hat. Jede andere würde auf den Bruttobetrag noch USt aufschlagen. Prüfen Sie die erste Rechnung in einer Sandbox.
