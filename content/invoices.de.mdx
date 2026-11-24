@@ -22,6 +22,14 @@ Laden Sie eine Datei hoch, die mit einer bereits vorhandenen identisch ist, legt
 
 Duplikate sind in der Liste ausgeblendet: Sie erscheinen als **verknüpft**-Zeile, die Sie unter dem Original aufklappen können, und unter **Datensatzstatus: Duplikat**. Sind zwei Rechnungen wirklich verschieden (ein Lieferant hat ein PDF für zwei Rechnungen verwendet), öffnen Sie das Duplikat und klicken Sie in seinem Banner auf **Kein Duplikat**. Auf der Seite einer Rechnung öffnet **Duplikate anzeigen** die Liste nur mit den Duplikaten dieser Rechnung; nach **Filter entfernen** sehen Sie alle Duplikate des Arbeitsbereichs.
 
+### Eine Rechnung zwischen zwei eigenen Unternehmen
+
+Steht auf einer hochgeladenen Rechnung auf beiden Seiten ein Unternehmen des Arbeitsbereichs, erfasst AI Finance Team sie auf der Seite eines Unternehmens (meist als Ausgabe des Käufers). Die Seite des anderen Unternehmens bringt NAV: Sobald dessen NAV-Daten eintreffen, erscheint die Rechnung auch auf seiner Seite, mit demselben PDF. Ist die Rechnung vor dem Beginn des NAV-Downloads des anderen Unternehmens datiert, oder ist das andere Unternehmen nicht mit NAV verbunden, geschieht das nicht. Die Rechnung zeigt dann oben einen Hinweis, **Die Seite des anderen eigenen Unternehmens kommt nicht aus NAV**, mit einer Schaltfläche: **Ausgangsrechnung anlegen**, oder **Eingangsrechnung anlegen**, wenn die hochgeladene Rechnung die Ausgangsseite ist, gefolgt vom Namen des anderen Unternehmens.
+
+Die Schaltfläche öffnet ein Fenster, das auflistet, was angelegt wird: das Unternehmen und die Richtung, der Partner (das Unternehmen der hochgeladenen Rechnung, gekennzeichnet als **Eigenes Unternehmen**), die Rechnungsnummer, ihr Datum und der Bruttobetrag, und dass dasselbe PDF angehängt wird. Nach **Anlegen** ist die neue Rechnung eine gewöhnliche Rechnung des anderen Unternehmens: Umsatzsteuercodes, Kategorien und die Zusammenfassung werden aus dessen Sicht gesetzt. Die ursprüngliche Rechnung bleibt unverändert. Beide Rechnungen zeigen oben eine Zeile mit einem Link zur jeweils anderen, und der Reiter **Verlauf** zeigt, wer sie wann angelegt hat. Treffen die NAV-Daten später doch ein, werden sie mit der angelegten Rechnung verknüpft; eine dritte Rechnung entsteht nicht.
+
+Hinweis und Schaltfläche sehen Personen, die Rechnungen bearbeiten dürfen. In einem Arbeitsbereich, der nur Eingangsrechnungen verarbeitet, kann keine Ausgangsseite angelegt werden. Rückgängig machen Sie es, indem Sie die neue Rechnung **archivieren**: Die ursprüngliche Rechnung zeigt das dann an, die Schaltfläche erscheint nicht wieder, und **Wiederherstellen** holt die archivierte Rechnung zurück.
+
 ## Die Rechnungsliste
 
 <InvoiceListFigure>
