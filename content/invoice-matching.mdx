@@ -216,7 +216,7 @@ Click a pending row to open the suggestion. The page shows:
 
 - **Back to Matches**, which returns to the tab as you left it, the title **Pending suggestion** (or **Pending suggestion (2 pairs)** for a group), and the score of each transaction.
 - **Invoice**: number, partner, issue and due date, amount, payment status and direction (Income or Expense), with **Open invoice →**.
-- **Transactions**: each transaction with its score, reference, partner, booking date, **Credit** or **Debit**, amount, description, category and the **AI reasoning**, with **Open transaction →**. In a group they are labelled *Transaction 1 of 2*, and **Remove from match** releases one transaction for re-matching without touching the others.
+- **Transactions**: each transaction with its score, reference, partner, booking date, **Credit** or **Debit**, amount, description, category and why the pair is suggested, with **Open transaction →**. In a group they are labelled *Transaction 1 of 2*, and **Remove from match** releases one transaction for re-matching without touching the others.
 - For a combination, a box such as **Combination: 1 payment(s) → 3 invoices**.
 - **Approve** and **Reject**, which act on the whole suggestion.
 - **Related activity**, when other matches or suggestions involve the same invoice or transaction.
@@ -299,6 +299,8 @@ A line whose value is missing is left out.
 Click the ID to see the transaction in a preview over the invoice, without leaving it. **Full transaction** opens the transaction's page in a new tab. To skip the preview, hold **Cmd** (**Ctrl** on Windows) while you click, or click with the middle mouse button.
 
 The **Suggested matches** cards are built the same way: the score stands before the ID, the reasoning at the bottom of the card. The tab lists every pending suggestion of the invoice.
+
+The reasoning lists, in the app's language, what the suggestion rests on: whether the remittance names the invoice number, whether the partner is the same, how the amount paid compares with the invoice's open amount, and how many days before or after the due date the payment was made. When the pair was not matched automatically, a separate line says why.
 
 ## Manual matching
 

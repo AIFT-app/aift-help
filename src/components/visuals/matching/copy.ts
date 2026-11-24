@@ -5,9 +5,11 @@
 // `queue` / `tx`: fictional example data, the same international companies as
 // ../approvals/copy.ts (web-checked). The bank texts are deliberately not the
 // partner's name without its suffix: that would make both sides the same
-// partner, and the pair would be matched automatically, not suggested. The AI
-// reasoning is English in every locale because the app's matching prompt
-// writes it in English.
+// partner, and the pair would be matched automatically, not suggested. The
+// suggestion's explanation is the app's own matching.reason sentences for this
+// example's facts (a similar partner name, the exact open amount, paid 4 days
+// after the invoice date), per locale; {open} is filled with the formatted
+// amount (match-suggestion-plain-reason).
 // `help`: the help centre's own words (diagram, alt texts), formal register.
 
 import type { Locale } from '@/lib/i18n'
@@ -154,7 +156,7 @@ const HUF_TX: MatchingCopy['tx'] = {
     amount: 58420,
     currency: 'HUF',
     reason:
-      'Amount 58,420 HUF equals the invoice balance; 4 days after the invoice date; card text REAMWELL OFFICE 0231 resembles the partner name but is not linked to it',
+      "The partner's name is similar. The amount paid matches the invoice's open amount ({open}). The payment was made 4 days after the invoice date.",
   },
   openInvoices: [
     { number: 'HPK-INV-2026-0433', partner: 'Reamwell Office Supplies Ltd.', total: 58420, currency: 'HUF', issueDate: '2026-09-10' },
@@ -267,7 +269,15 @@ export const matchingCopy: Record<Locale, MatchingCopy> = {
       'labels.score_percent': '{score}%',
     },
     queue: { groups: HUF_QUEUE, approvedTotal: 128 },
-    tx: { ...HUF_TX, types: ['Banki díj', 'Bér'] },
+    tx: {
+      ...HUF_TX,
+      suggestion: {
+        ...HUF_TX.suggestion,
+        reason:
+          'A partner neve hasonló. Az utalt összeg megegyezik a számla nyitott összegével ({open}). Az utalás 4 nappal a számla kelte után történt.',
+      },
+      types: ['Banki díj', 'Bér'],
+    },
     help: {
       alt: {
         outcomes:
@@ -373,7 +383,7 @@ export const matchingCopy: Record<Locale, MatchingCopy> = {
         amount: 412.8,
         currency: 'EUR',
         reason:
-          'Amount 412.80 EUR equals the invoice balance; 4 days after the invoice date; card text REAMWELL OFFICE 0231 resembles the partner name but is not linked to it',
+          'Der Name des Partners ist ähnlich. Der gezahlte Betrag entspricht dem offenen Betrag der Rechnung ({open}). Die Zahlung erfolgte 4 Tage nach dem Rechnungsdatum.',
       },
       openInvoices: [
         { number: 'BWG-INV-2026-0433', partner: 'Reamwell Office Supplies Ltd.', total: 412.8, currency: 'EUR', issueDate: '2026-09-10' },
