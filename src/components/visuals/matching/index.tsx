@@ -371,7 +371,11 @@ function MatchPaymentCard({ locale }: { locale: Locale }) {
                       <span>{fill(ui['transactions.slide_over.counterparty_separator'], { name: s.partner })}</span>
                       {formatAmount(s.amount, s.currency, locale)}
                     </div>
-                    <p className="mt-1 text-xs italic text-zinc-500 dark:text-zinc-400">{s.reason}</p>
+                    <div className="mt-1.5 space-y-1">
+                      <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                        {fill(s.reason, { open: formatAmount(s.amount, s.currency, locale) })}
+                      </p>
+                    </div>
                   </div>
                 </div>
                 <div className="mt-2 flex gap-2">

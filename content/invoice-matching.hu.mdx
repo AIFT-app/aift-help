@@ -216,7 +216,7 @@ Kattintson egy függőben lévő sorra a javaslat megnyitásához. Az oldalon ez
 
 - a **Vissza a Párosításokhoz** hivatkozás, amely oda tér vissza, ahol a fület hagyta, a **Függőben lévő javaslat** cím (csoportnál **Függőben lévő javaslat (2 pár)**), és tranzakciónként a pontszám;
 - **Számla**: szám, partner, kiállítás és fizetési határidő, összeg, fizetési állapot és irány (**Bevétel** vagy **Kiadás**), a **Számla megnyitása →** hivatkozással;
-- **Tranzakciók**: minden tranzakció a pontszámával, hivatkozással, partnerrel, könyvelési dátummal, iránnyal, összeggel, leírással, kategóriával és az **AI indoklás** szövegével, a **Tranzakció megnyitása →** hivatkozással. Csoportnál a jelölésük *1. tranzakció / 2*, és az **Eltávolítás a párosításból** egyetlen tranzakciót szabadít fel újrapárosításra, a többit érintetlenül hagyva;
+- **Tranzakciók**: minden tranzakció a pontszámával, hivatkozással, partnerrel, könyvelési dátummal, iránnyal, összeggel, leírással, kategóriával és a javaslat indoklásával, a **Tranzakció megnyitása →** hivatkozással. Csoportnál a jelölésük *1. tranzakció / 2*, és az **Eltávolítás a párosításból** egyetlen tranzakciót szabadít fel újrapárosításra, a többit érintetlenül hagyva;
 - kombinációnál egy doboz, például **Kombináció: 1 fizetés → 3 számla**;
 - a **Megerősítés** és **Elutasítás** gomb, amely az egész javaslatra vonatkozik;
 - **Kapcsolódó tételek**, ha más párosítás vagy javaslat is érinti ugyanazt a számlát vagy tranzakciót.
@@ -299,6 +299,8 @@ Ahol egy adat hiányzik, az a sor elmarad.
 Az azonosítóra kattintva a tranzakció előnézetben nyílik meg a számla fölött, a számla elhagyása nélkül. A **Teljes tranzakció** új lapon nyitja meg a tranzakció oldalát. Ha az előnézet nélkül szeretné megnyitni, kattintás közben tartsa lenyomva a **Cmd** (Windowson a **Ctrl**) billentyűt, vagy kattintson a középső egérgombbal.
 
 A **Javasolt párosítások** kártyái ugyanígy épülnek fel: a pontszám az azonosító előtt áll, a kártya alján az indoklás. A fül a számla összes függő javaslatát mutatja.
+
+Az indoklás a felület nyelvén sorolja fel, mire épül a javaslat: szerepel-e a számlaszám a közleményben, egyezik-e a partner, hogyan aránylik az utalt összeg a számla nyitott összegéhez, és hány nappal a fizetési határidő előtt vagy után történt az utalás. Ha a rendszer nem párosította a tételt automatikusan, egy külön sor megmondja, miért.
 
 ## Kézi párosítás
 
