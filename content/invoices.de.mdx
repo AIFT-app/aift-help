@@ -171,6 +171,99 @@ Das Archivieren einer Rechnung, deren Buchhaltungsfreigabe schon erteilt ist, br
 
 Die Dateien tragen den Namen der Originaldatei oder, ohne diese, die Rechnungsnummer. XLSX, CSV und JSON werden aus den aktuellen Daten erstellt und enthalten daher Ihre Korrekturen; ihre Spaltenköpfe sind englisch. **PDF** steht nur im Menü, wenn die Rechnung eine Datei hat. XLSX, CSV und JSON sind auf jeder Rechnung verfügbar, auch auf solchen aus der NAV. Das PDF können Sie auch mit **Herunterladen** auf dem Reiter **Dokument** laden.
 
+## Mehrere Rechnungen auf einmal herunterladen
+
+Sie können die Belege der Rechnungsliste oder der angehakten Rechnungen als eine ZIP-Datei herunterladen, daneben eine CSV-Datei mit den Daten der Rechnungen. Die ZIP entsteht in Ihrem Browser: Die Dateien kommen direkt aus dem Speicher, im Hintergrund läuft nichts, und der Download ändert keine Rechnung und keine Einstellung.
+
+**Filtern Sie zuerst die Liste, der Download folgt ihr.** Der Download enthält genau die Rechnungen, die die Liste gerade zeigt: mit Zeitraum und Datumsbasis, Unternehmen, Richtung, allen weiteren Filtern, der Suche und den gewählten Aufgaben. Für die Ausgaben eines Monats etwa wählen Sie in der Liste den Monat und die Richtung **Ausgabe** und klicken dann auf **Belege herunterladen**.
+
+### Wo es beginnt
+
+<DocumentExportEntryFigure>
+Der Kopf der Seite Rechnungen und die Auswahlleiste mit drei angehakten Zeilen. Die Nummern entsprechen der Liste darunter.
+</DocumentExportEntryFigure>
+
+1. **Belege herunterladen** im Seitenkopf, vor dem blauen **Rechnungen hochladen**: lädt die Liste so herunter, wie Sie sie gefiltert haben. Ohne Filter steht jede Rechnung der Liste darin, wählen Sie also zuerst einen Monat oder ein Quartal. Diese Schaltfläche hat jeder, der Rechnungen sieht: Wer nur die eigenen Rechnungen sieht, lädt die eigenen herunter.
+2. **Belege herunterladen** in der Auswahlleiste: lädt die angehakten Zeilen herunter, unabhängig von den Filtern. Zeilen anhaken kann, wer Rechnungen bearbeiten darf. Eine archivierte oder nicht zu buchende Rechnung bleibt auch angehakt draußen; der Dialog sagt, wie viele.
+3. Die angehakten Zeilen. Eine ZIP enthält höchstens 2.000 Rechnungen, auch bei einer Auswahl.
+
+Duplikate sowie abgelehnte, archivierte und nicht zu buchende Rechnungen sind nie im Download, ebenso wenig wie im Export im [Hauptbuch](/ledger).
+
+### Der Dialog Rechnungen herunterladen
+
+<DocumentExportDialogFigure>
+Der Dialog Rechnungen herunterladen aus einer auf Oktober 2026 und Ausgaben gefilterten Liste, mit **Eigenes Muster** bei den Dateinamen und geöffnetem Bereich **Erweitert**. Die Nummern entsprechen der Liste darunter.
+</DocumentExportDialogFigure>
+
+1. **Wie die Liste zeigt:** die aktiven Filter der Liste als graue Chips. Hier lassen sie sich nicht ändern; um etwas anderes herunterzuladen, schließen Sie den Dialog und ändern die Filter in der Liste. Aus der Auswahlleiste geöffnet steht hier **Die N ausgewählten Rechnungen**.
+2. Vor jeder Option zeigt die Zusammenfassung, was Sie erhalten: wie viele Rechnungen, wie viele Belege, wie groß, und wie viele Rechnungen keinen Beleg haben (sie stehen nur in der CSV).
+3. **Format**: **ZIP (Belege + CSV)** (Standard), **Nur CSV** (nur die Rechnungsdaten, ohne Belege) und in einem deutschen oder österreichischen Arbeitsbereich **DATEV (Belegtransfer)**, siehe unten.
+4. **Dateinamen**: drei Vorgaben, **Datum_Partner_Nummer** (Standard), **Rechnungsnummer** und **AIFT-ID**, sowie **Eigenes Muster**. **Eigenes Muster** öffnet Ihr eigenes Muster: Sie schreiben die Felder mit ihrem Namen in eckigen Klammern, zum Beispiel `[Rechnungsdatum]_[Partner]_[Rechnungsnummer]`, die Schaltflächen darunter (zum Beispiel **+ Rechnungsnummer**) fügen ein Feld an der Cursorposition ein, und zwischen den Feldern können Sie freien Text schreiben.
+5. **So werden die Dateien benannt (die ersten drei):** die ersten drei echten Dateinamen, nach derselben Regel gebildet wie beim Download.
+6. **Ordner in der ZIP**: **Keine** (Standard), **Nach Monat** (der Monat der Datumsbasis der Liste, zum Beispiel `2026-10/`), **Nach Richtung** (`Eingang/`, `Ausgang/`) oder **Nach Partner**.
+7. **Erweitert**: **Dateinamen ohne Umlaute und Akzente** und **CSV-Format**, siehe unten; beim DATEV-Format stehen hier auch die DATEV-Ordner.
+8. Die Schaltfläche nennt das Ergebnis: **104 Belege herunterladen**, bei **Nur CSV** etwa **Daten von 112 Rechnungen herunterladen**. Ist sie gesperrt, steht der Grund daneben, zum Beispiel **Bitte grenzen Sie die Liste ein.** oder **Kein Beleg zum Herunterladen.**
+
+Der Dialog öffnet sich mit den Einstellungen Ihres letzten Downloads in diesem Arbeitsbereich: Format, Dateinamen (ein gespeichertes eigenes Muster öffnet sich als **Eigenes Muster**), Ordner, Umlaute, CSV-Format und die DATEV-Ordnernamen. So ist eine monatliche Routine ein Klick.
+
+### Dateinamen
+
+<DocumentExportNamingFigure>
+Der Dateiname einer Rechnung mit den drei Vorgaben und zwei eigenen Mustern. Hervorgehoben ist, was eine Regel geändert hat.
+</DocumentExportNamingFigure>
+
+Der Standard **Datum_Partner_Nummer** besteht aus dem Rechnungsdatum, dem Namen des Partners und der Rechnungsnummer, zum Beispiel `2026-10-03_Reamwell Office Supplies Ltd._RW-2026-00418.pdf`. Für jeden Dateinamen gelten diese Regeln:
+
+- Zeichen, die ein Dateiname nicht enthalten kann (`/ \ : * ? " < > |`), werden zu Bindestrichen: Aus der Rechnungsnummer `SBR/2026/0342` wird `SBR-2026-0342`.
+- Ein leeres Feld fällt mit einem benachbarten Trennzeichen weg. Bleibt nichts übrig, erhält die Datei die AIFT-ID als Namen.
+- Würden zwei Dateien gleich heißen (Groß- und Kleinschreibung gelten als gleich, wie unter Windows und macOS), erhält die spätere `_` und ihre AIFT-ID angehängt, zum Beispiel `2026-10-03_Reamwell Office Supplies Ltd._RW-2026-00418_DEMO-INV-2026-0256.pdf`.
+- **Dateinamen ohne Umlaute und Akzente** ersetzt Buchstaben mit Akzent oder Umlaut durch einfache (`ü` → `u`, `ß` → `ss`), für Programme, die damit schlecht umgehen.
+- Ein Name hat höchstens 120 Zeichen vor der Endung; wäre er länger, wird zuerst der Partnername gekürzt.
+- Eine PDF mit mehreren Rechnungen kommt einmal pro Rechnung in die ZIP, jeweils unter dem Namen dieser Rechnung.
+
+### Was in der ZIP steht
+
+<DocumentExportZipFigure>
+Derselbe Download über zwei Monate ohne Ordner und mit einem Ordner pro Monat, darunter drei Zeilen der CSV. Die Rechnung von Slatebridge konnte nicht heruntergeladen werden, die von Gearmont hat nur NAV-Daten, deshalb steht keine der beiden in der ZIP.
+</DocumentExportZipFigure>
+
+Die heruntergeladene Datei heißt nach dem Arbeitsbereich und dem Zeitraum, zum Beispiel `Beispiel-GmbH_2026-10-01_2026-10-31_rechnungen.zip` (hat die Liste keinen Zeitraum oder laden Sie angehakte Rechnungen herunter, deren frühestes und spätestes Datum). Im Stammverzeichnis der ZIP liegt immer `rechnungen.csv`.
+
+Die CSV hat **eine Zeile pro Rechnung**, auch für die ohne Beleg. Die Reihenfolge der Spalten ist fest, die Überschriften sind in der Sprache der App. Die erste Spalte ist **Dateiname in der ZIP** (leer, wenn die Rechnung nicht in der ZIP ist), die zweite **Beleg**: **Enthalten**, **Kein Beleg** oder **Download fehlgeschlagen** (in einem DATEV-Paket auch **DATEV: Betrag null** oder **DATEV: Datei zu groß**). Danach die AIFT-ID, die Rechnungsnummer, die Richtung, die fünf Daten, der Partner und seine Steuernummer, das Unternehmen, Netto, USt und Brutto in der Rechnungswährung und in der Basiswährung, Zahlungs- und Zuordnungsstatus, die Quelle (NAV, Upload, E-Mail), der ursprüngliche Dateiname und ein Link auf die Seite der Rechnung. Daten stehen als JJJJ-MM-TT, die Datei ist UTF-8.
+
+Das **CSV-Format** hat zwei Optionen: **Semikolon und Dezimalkomma (für deutsche und ungarische Tabellenkalkulation)**, Standard bei deutscher und ungarischer Oberfläche, und **Komma und Dezimalpunkt (Standard)**, Standard auf Englisch.
+
+**Warum steht eine Rechnung in der CSV, aber nicht in der ZIP?** Für Rechnungen aus NAV Online Számla (Ungarn) liefert NAV Daten, keine PDF. Es gibt also nichts für die ZIP, und ein Ersatzbeleg wird nicht erzeugt. Diese Rechnungen stehen in der CSV mit **Kein Beleg**, und die Zusammenfassung des Dialogs nennt vorher ihre Zahl. Laden Sie die PDF später hoch, laden Sie den Zeitraum erneut herunter.
+
+### Grenzen
+
+Ein Download enthält höchstens **2.000 Rechnungen** und **500 MB** Belege. Darüber sagt der Dialog es, die Schaltfläche bleibt gesperrt, daneben steht **Bitte grenzen Sie die Liste ein.**, und Sie filtern die Liste weiter. Ein DATEV-Paket ist enger: höchstens **4.999 Belege** und **450 MB**, und eine Datei über 20 MB bleibt draußen (**DATEV: Datei zu groß**).
+
+### Während des Downloads
+
+<DocumentExportToastsFigure>
+Die Benachrichtigung des Downloads während er läuft, und am Ende, wenn zwei Dateien fehlgeschlagen sind.
+</DocumentExportToastsFigure>
+
+Nach dem Klick auf die Schaltfläche schließt sich der Dialog, und eine Benachrichtigung rechts unten zeigt den Fortschritt: **Rechnungen herunterladen: 123 / 233**. Sie können überall im Arbeitsbereich weiterarbeiten; schließen oder laden Sie den Browser-Tab neu, fragt der Browser vorher nach, denn die ZIP entsteht in diesem Tab. **Abbrechen** beendet den Download und speichert nichts. Es läuft immer nur ein Download.
+
+Am Ende speichert der Browser die ZIP, und die Benachrichtigung sagt, wie viele Belege darin sind. Jede Datei wird dreimal versucht; schlägt sie weiter fehl, nennt die Benachrichtigung die Zahl, und die CSV markiert sie mit **Download fehlgeschlagen**. Laden Sie diese erneut herunter, zum Beispiel per Auswahl.
+
+### DATEV (Deutschland, Österreich)
+
+<DocumentExportDatevFigure>
+Der Dialog mit dem DATEV-Format und geöffnetem Bereich **Erweitert**, der Inhalt des DATEV-Pakets und die Abschlussmeldung. Die Nummern entsprechen der Liste darunter. Dieses Format gibt es nur in deutschen oder österreichischen Arbeitsbereichen.
+</DocumentExportDatevFigure>
+
+1. **DATEV (Belegtransfer)** gibt es nur in Arbeitsbereichen mit dem Land Deutschland oder Österreich. Es erzeugt ein Paket für die DATEV XML-Schnittstelle online, das Sie mit dem Programm DATEV Belegtransfer nach DATEV Unternehmen online hochladen: Übergeben Sie die ZIP ungeöffnet.
+2. Die Dateinamen folgen Ihrem Muster, enthalten aber nur Buchstaben ohne Akzent, Ziffern, Punkte, Bindestriche und Unterstriche, mit `_` statt Leerzeichen. Das Paket hat keine Ordner, daher fehlt **Ordner in der ZIP**.
+3. **DATEV-Ordner: Eingangsrechnungen** und **DATEV-Ordner: Ausgangsrechnungen**, unter **Erweitert**: der Ordner in DATEV, in den die Belege kommen, standardmäßig `Eingangsrechnungen` und `Ausgangsrechnungen`. Ändern Sie sie, wenn Ihre in DATEV anders heißen.
+4. Die Abschlussmeldung: **Fertig: 104 Belege im DATEV-Paket.** Sie bleibt, bis Sie sie schließen, denn ihre Schaltfläche **CSV herunterladen** ist der einzige Weg zur CSV.
+
+Das Paket enthält `document.xml` und je Rechnung eine PDF und eine gleichnamige XML-Datei, aus der DATEV die Belegposition erstellt. Kontonummern werden nicht übertragen: Die Kontierung erfolgt in DATEV. **Ein erneuter Download eines Monats erzeugt keine Duplikate**: Jede Rechnung kommt mit ihrer eigenen ID ins Paket, und DATEV überspringt einen Beleg, den es schon hat. Eine später eingetroffene PDF senden Sie also, indem Sie den Monat erneut herunterladen. Rechnungen nur mit NAV-Daten bleiben auch hier draußen, ebenso eine Rechnung mit Betrag null (**DATEV: Betrag null**).
+
+Die CSV steht nicht im DATEV-Paket, weil DATEV damit nichts anfangen könnte. Am Ende des Downloads erhalten Sie mit der Schaltfläche **CSV herunterladen** in der Benachrichtigung die CSV derselben Rechnungen als eigene Datei; die Meldung bleibt in der Ecke, bis Sie sie mit dem **×** oben links schließen.
+
 ## Extraktion und Prüfung
 
 Das Upload-Fenster zeigt jede Datei als **In Warteschlange**, **Hochladen…**, **Extrahieren…**, **Extrahiert** oder fehlgeschlagen, bei einer fehlgeschlagenen mit **Erneut versuchen**. Solange eine Rechnung noch gelesen wird, zeigt ihre Seite den Stand der Extraktion in der oberen Karte.
@@ -179,9 +272,9 @@ Das Label **Prüfen** bedeutet, dass die Extraktion bei der Vollständigkeit unt
 
 ## Wer was darf
 
-Um die Rechnungen des Arbeitsbereichs zu sehen, braucht man die Berechtigung, Rechnungen und Banktransaktionen anzusehen. Ein Mitglied ohne sie sieht weiterhin die Rechnungen, die es selbst hochgeladen hat, und jede Rechnung, die ihm zur Freigabe zugewiesen wurde: vier Reiter statt sechs, keine Labels, keinen Zahlungsstatus und keine Aufgaben, dazu einen Hinweis in der Liste, dass nur die eigenen Rechnungen gezeigt werden.
+Um die Rechnungen des Arbeitsbereichs zu sehen, braucht man die Berechtigung, Rechnungen und Banktransaktionen anzusehen. Ein Mitglied ohne sie sieht weiterhin die Rechnungen, die es selbst hochgeladen hat, und jede Rechnung, die ihm zur Freigabe zugewiesen wurde: sechs Reiter statt acht, keine Labels, keinen Zahlungsstatus und keine Aufgaben, dazu einen Hinweis in der Liste, dass nur die eigenen Rechnungen gezeigt werden.
 
-Bearbeiten, Archivieren und Wiederherstellen, das Markieren und das Aufheben der Markierung eines Duplikats sowie die Sammelaktionen brauchen alle die Berechtigung, Rechnungen zu bearbeiten, die standardmäßig die Buchhalter haben (das Archivieren einer Rechnung, deren Buchhaltungsfreigabe schon erteilt ist, braucht zusätzlich die Berechtigung zur Buchhaltungsfreigabe); Kundenbenutzer können Rechnungen ansehen, das Dokument öffnen und hochladen. Siehe [Rollen & Berechtigungen](/roles-and-permissions).
+Bearbeiten, Archivieren und Wiederherstellen, das Markieren und das Aufheben der Markierung eines Duplikats sowie die Sammelaktionen brauchen alle die Berechtigung, Rechnungen zu bearbeiten, die standardmäßig die Buchhalter haben (das Archivieren einer Rechnung, deren Buchhaltungsfreigabe schon erteilt ist, braucht zusätzlich die Berechtigung zur Buchhaltungsfreigabe); Kundenbenutzer können Rechnungen ansehen, das Dokument öffnen und hochladen. Mit **Belege herunterladen** im Seitenkopf kann jeder die Rechnungen herunterladen, die er sieht; angehakte Rechnungen herunterzuladen braucht, wie jede Auswahl, die Berechtigung, Rechnungen zu bearbeiten. Siehe [Rollen & Berechtigungen](/roles-and-permissions).
 
 ## Tipps
 

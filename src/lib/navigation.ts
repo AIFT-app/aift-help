@@ -132,6 +132,11 @@ export const navGroups: NavGroup[] = [
         slug: 'bank-transactions',
         title: { en: 'Bank Transactions', hu: 'Banki tranzakciók', de: 'Banktransaktionen' },
       },
+      // Transaction notes (transaction-notes): the invoice notes, on a bank transaction.
+      {
+        slug: 'transaction-notes',
+        title: { en: 'Transaction Notes', hu: 'Megjegyzések a banki tranzakciókon', de: 'Notizen zu Transaktionen' },
+      },
       {
         slug: 'transaction-types',
         title: { en: 'Transaction Types & No Invoice Needed', hu: 'Tranzakciótípusok és „nem kell számla”', de: 'Transaktionstypen & „Keine Rechnung nötig“' },

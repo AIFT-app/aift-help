@@ -24,6 +24,14 @@ import {
 import { CreateFileDialogFigure, PaymentFileDetailFigure, PaymentFileFigure, PaymentFlowFigure } from './payments'
 import { ApprovalRulesFigure, RoutingLadderFigure } from './approval-setup'
 import { InvoiceLifecycleFigure, InvoiceListFigure } from './invoices'
+import {
+  DocumentExportDatevFigure,
+  DocumentExportDialogFigure,
+  DocumentExportEntryFigure,
+  DocumentExportNamingFigure,
+  DocumentExportToastsFigure,
+  DocumentExportZipFigure,
+} from './invoices/export'
 import { CompanyMatchFigure, CompanyRecognitionFigure } from './companies'
 import { TransactionTypeEditorFigure, TransactionTypeFlowFigure } from './transaction-types'
 import { ReportDrillDownFigure, ReportPageFigure, ReportStructureFigure } from './reports'
@@ -89,6 +97,12 @@ const FIGURES: Record<string, (props: WithLocale) => React.ReactNode> = {
   RoutingLadderFigure,
   InvoiceLifecycleFigure,
   InvoiceListFigure,
+  DocumentExportEntryFigure,
+  DocumentExportDialogFigure,
+  DocumentExportNamingFigure,
+  DocumentExportZipFigure,
+  DocumentExportToastsFigure,
+  DocumentExportDatevFigure,
   CompanyMatchFigure,
   CompanyRecognitionFigure,
   TransactionTypeFlowFigure,

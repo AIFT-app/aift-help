@@ -171,6 +171,99 @@ A számla oldalán a felső kártya **⋯** menüjében, a **Letöltés** alatt 
 
 A fájlok neve az eredeti fájl neve, ennek hiányában a számlaszám. Az XLSX, a CSV és a JSON az aktuális adatokból készül, így tartalmazza a javításait; az oszlopfejlécek angolok. A **PDF** csak akkor szerepel a menüben, ha a számlának van fájlja. Az XLSX, a CSV és a JSON minden számlán elérhető, a NAV-ból érkezetteken is. A PDF a **Dokumentum** fül **Letöltés** gombjával is letölthető.
 
+## Több számla letöltése egyszerre
+
+A számlalista dokumentumait, vagy a kijelölt számlákéit, egyetlen ZIP-fájlban töltheti le, mellettük egy CSV-fájllal, amely a számlák adatait tartalmazza. A ZIP az Ön böngészőjében készül: a fájlok közvetlenül a tárhelyről érkeznek, a háttérben semmi sem fut, és a letöltés egyetlen számlán vagy beállításon sem változtat.
+
+**Először szűrje a listát, a letöltés azt követi.** A letöltés pontosan azokat a számlákat tartalmazza, amelyeket a lista éppen mutat: az időszakkal és a dátum alappal, a céggel, az iránnyal, minden további szűrővel, a kereséssel és a kiválasztott teendőkkel együtt. Ha például egy hónap kiadásait szeretné, a listán válassza ki a hónapot és a **Kiadás** irányt, majd kattintson a **Dokumentumok letöltése** gombra.
+
+### Honnan indíthatja
+
+<DocumentExportEntryFigure>
+A Számlák oldal fejléce és a kijelölési sáv három bejelölt sorral. A számok az alábbi listának felelnek meg.
+</DocumentExportEntryFigure>
+
+1. **Dokumentumok letöltése** az oldal fejlécében, a kék **Számlák feltöltése** gomb előtt: a listát tölti le úgy, ahogy szűrte. Ha a listán nincs szűrő, a lista minden számlája benne van, ezért előbb válasszon egy hónapot vagy negyedévet. Ezt a gombot mindenki látja, aki számlákat lát: akinek csak a saját számláihoz van hozzáférése, az a sajátjait tölti le.
+2. **Dokumentumok letöltése** a kijelölési sávban: a bejelölt sorokat tölti le, a szűrőktől függetlenül. Sorokat a számlák szerkesztésére jogosult felhasználók jelölhetnek ki. Archivált és nem könyvelendő számla bejelölve sem kerül bele; az ablak megírja, hány ilyen van.
+3. A bejelölt sorok. Egy ZIP legfeljebb 2000 számlát tartalmazhat, a kijelölésre is ez a korlát vonatkozik.
+
+Duplikáció, elutasított, archivált és nem könyvelendő számla sosem kerül a letöltésbe, ahogy a [Főkönyv](/ledger) exportjába sem.
+
+### A Számlák letöltése ablak
+
+<DocumentExportDialogFigure>
+A Számlák letöltése ablak egy 2026. októberre és a kiadásokra szűrt listáról, az **Egyéni** fájlnevekkel és kinyitott **Speciális** résszel. A számok az alábbi listának felelnek meg.
+</DocumentExportDialogFigure>
+
+1. **A lista szerint:** a lista aktív szűrői, szürke címkékként. Itt nem módosíthatók; ha mást szeretne letölteni, zárja be az ablakot, és módosítsa a szűrőket a listán. A kijelölési sávból nyitva itt **A kijelölt N számla** áll.
+2. Az összesítő minden beállítás előtt megmutatja, mit kap: hány számla, hány dokumentum, mekkora méretben, és hány számlához nincs dokumentum (ezek csak a CSV-ben szerepelnek).
+3. **Formátum**: **ZIP (dokumentumok + CSV)** (alapértelmezett), **Csak CSV** (csak a számlák adatai, dokumentumok nélkül), és német vagy osztrák munkaterületen **DATEV (Belegtransfer)**, lásd lent.
+4. **Fájlnevek**: három előbeállítás, **Dátum_Partner_Számlaszám** (alapértelmezett), **Számlaszám** és **AIFT azonosító**, valamint **Egyéni**. Az **Egyéni** saját mintát nyit meg: a mezőket szögletes zárójelben, a nevükkel írja, például `[Kiállítás]_[Partner]_[Számlaszám]`, az alatta lévő gombok (például **+ Számlaszám**) a kurzor helyére szúrnak be egy mezőt, és a mezők közé szabad szöveget is írhat.
+5. **Így lesznek elnevezve (az első három):** a valódi első három fájlnév, ugyanazzal a szabállyal, amellyel a letöltés elnevezi őket.
+6. **Mappák a ZIP-ben**: **Nincs** (alapértelmezett), **Havonta** (a lista dátum alapjának hónapja szerint, például `2026-10/`), **Irány szerint** (`Bejövő/`, `Kimenő/`) vagy **Partnerenként**.
+7. **Speciális**: **Ékezetek nélküli fájlnevek** és **CSV formátum**, lásd lent; DATEV formátumnál itt vannak a DATEV mappák is.
+8. A gomb megnevezi az eredményt: **104 dokumentum letöltése**, **Csak CSV** formátumnál például **112 számla adatainak letöltése**. Ha a gomb tiltva van, mellette olvasható az ok, például **Szűkítsd a listát.** vagy **Nincs letölthető dokumentum.**
+
+Az ablak a legutóbbi letöltésének beállításaival nyílik ebben a munkaterületben: formátum, fájlnevek (egy elmentett egyéni minta **Egyéni** állásban nyílik), mappák, az ékezetek, a CSV formátum és a DATEV mappanevek. Így egy havi rutin egy kattintás.
+
+### Fájlnevek
+
+<DocumentExportNamingFigure>
+Ugyanannak a számlának a fájlneve a három előbeállítással és két egyéni mintával. A kiemelt rész az, amit egy szabály megváltoztatott.
+</DocumentExportNamingFigure>
+
+Az alapértelmezett **Dátum_Partner_Számlaszám** a kiállítás dátumából, a partner nevéből és a számlaszámból áll, például `2026-10-03_Reamwell Office Supplies Ltd._RW-2026-00418.pdf`. Minden fájlnévre ezek a szabályok vonatkoznak:
+
+- A fájlnévben nem használható jelek (`/ \ : * ? " < > |`) kötőjelek lesznek: az `SBR/2026/0342` számlaszámból `SBR-2026-0342` lesz.
+- Az üres mező egy szomszédos elválasztójellel együtt kimarad. Ha a név végül teljesen üres, a fájl az AIFT azonosítót kapja.
+- Ha két fájl neve ugyanaz lenne (a kis- és nagybetűt nem különböztetjük meg, mert a Windows és a macOS sem), a későbbi neve végére `_` és az AIFT azonosító kerül, például `2026-10-03_Reamwell Office Supplies Ltd._RW-2026-00418_DEMO-INV-2026-0256.pdf`.
+- Az **Ékezetek nélküli fájlnevek** beállítás az ékezetes betűket ékezet nélkülire cseréli (`ő` → `o`, `ß` → `ss`), olyan programokhoz, amelyek rosszul kezelik őket.
+- A név legfeljebb 120 karakter a kiterjesztés előtt; ha hosszabb lenne, először a partner neve rövidül.
+- Ha egy PDF több számlát tartalmaz, minden számlához a saját nevén kerül be a ZIP-be.
+
+### Mi van a ZIP-ben
+
+<DocumentExportZipFigure>
+Ugyanaz a két hónapos letöltés mappák nélkül és havi mappákkal, alatta a CSV három sora. A Slatebridge-számla letöltése nem sikerült, a Gearmont-számla csak NAV-adat, ezért egyik sincs a ZIP-ben.
+</DocumentExportZipFigure>
+
+A letöltött fájl neve a munkaterület nevéből és az időszakból áll, például `Pelda-Kft_2026-10-01_2026-10-31_szamlak.zip` (ha a listán nincs időszak, vagy kijelölt számlákat tölt le, a legkorábbi és a legkésőbbi dátumuk). A ZIP gyökerében mindig ott van a `szamlak.csv`.
+
+A CSV-ben **minden számla egy sor**, azok is, amelyekhez nincs dokumentum. Az oszlopok sorrendje rögzített, a fejlécek az alkalmazás nyelvén vannak. Az első oszlop a **Fájlnév a ZIP-ben** (üres, ha a számla nincs a ZIP-ben), a második a **Dokumentum**: **Benne van**, **Nincs dokumentum** vagy **Letöltés sikertelen** (DATEV-csomagnál **DATEV: nulla összeg** vagy **DATEV: túl nagy fájl** is lehet). Utána az AIFT azonosító, a számlaszám, az irány, az öt dátum, a partner és adószáma, a cég, a nettó, ÁFA és bruttó összeg a számla pénznemében és az alap pénznemben, a fizetési és a párosítási állapot, a forrás (NAV, feltöltés, e-mail), az eredeti fájlnév, végül egy link a számla oldalára. A dátumok ÉÉÉÉ-HH-NN alakúak, a fájl UTF-8 kódolású.
+
+A **CSV formátum** kétféle lehet: **Pontosvessző és tizedesvessző (magyar és német táblázatkezelőhöz)**, ez az alapértelmezett magyar és német nyelvű felületen, vagy **Vessző és tizedespont (szabványos)**, ez az alapértelmezett angolul.
+
+**Miért van egy számla a CSV-ben, de nem a ZIP-ben?** A NAV Online Számlából érkezett számlákhoz a NAV adatokat ad, nem PDF-et, így ezekhez nincs mit a ZIP-be tenni, és helyette dokumentumot sem készítünk. Ezek a CSV-ben **Nincs dokumentum** jelzéssel szerepelnek, az ablak összesítője pedig előre megmondja, hány ilyen van. Ha később feltölti a PDF-et, töltse le újra az időszakot.
+
+### Korlátok
+
+Egy letöltés legfeljebb **2000 számlát** és **500 MB** dokumentumot tartalmazhat. Ha a lista ennél nagyobb, az ablak ezt kiírja, a gomb tiltva marad, mellette **Szűkítsd a listát.** áll, és a listát kell tovább szűrnie. A DATEV-csomag szűkebb: legfeljebb **4999 dokumentum** és **450 MB**, és a 20 MB-nál nagyobb fájl kimarad (**DATEV: túl nagy fájl**).
+
+### Letöltés közben
+
+<DocumentExportToastsFigure>
+A letöltés értesítése futás közben és a végén, ha két fájlt nem sikerült letölteni.
+</DocumentExportToastsFigure>
+
+A gombra kattintás után az ablak bezárul, és a jobb alsó sarokban egy értesítés mutatja, hol tart: **Számlák letöltése: 123 / 233**. Közben dolgozhat tovább bárhol a munkaterületen; ha bezárná vagy újratöltené a böngészőlapot, a böngésző előbb rákérdez, mert a ZIP ebben a lapban készül. A **Mégse** gomb leállítja a letöltést, és ilyenkor nem ment semmit. Egyszerre egy letöltés futhat.
+
+A végén a böngésző elmenti a ZIP-et, és az értesítés megmondja, hány dokumentum került bele. Egy fájlt háromszor próbálunk letölteni; ha egyszer sem sikerül, az értesítés megírja, hány ilyen volt, és a CSV **Letöltés sikertelen** jelzéssel mutatja őket. Ezeket töltse le újra, például kijelöléssel.
+
+### DATEV (Németország, Ausztria)
+
+<DocumentExportDatevFigure>
+Az ablak DATEV formátummal és kinyitott **Speciális** résszel, alatta a DATEV-csomag tartalma és a befejező értesítés. A számok az alábbi listának felelnek meg. Ez a formátum csak német vagy osztrák munkaterületen választható.
+</DocumentExportDatevFigure>
+
+1. A **DATEV (Belegtransfer)** formátum csak azokban a munkaterületekben választható, amelyek országa Németország vagy Ausztria. Egy DATEV XML-Schnittstelle online csomagot készít, amelyet a DATEV Belegtransfer programmal tölthet fel a DATEV Unternehmen online-ba: a ZIP-et kibontás nélkül adja át a programnak.
+2. A fájlnevek a mintát követik, de csak ékezet nélküli betűket, számokat, pontot, kötőjelet és aláhúzást tartalmaznak, a szóközök helyett `_` áll. A csomagban nincsenek mappák, a **Mappák a ZIP-ben** mező ezért nem látszik.
+3. **DATEV mappa: bejövő számlák** és **DATEV mappa: kimenő számlák**, a **Speciális** részben: az a mappa a DATEV-ben, ahová a dokumentumok kerülnek, alapértelmezésként `Eingangsrechnungen` és `Ausgangsrechnungen`. Írja át, ha a DATEV-ben más a nevük.
+4. A befejező értesítés: **Kész: 104 dokumentum a DATEV-csomagban.** Addig marad, amíg be nem zárja, mert a **CSV letöltése** gombja az egyetlen út a CSV-hez.
+
+A csomagban a `document.xml` és számlánként egy PDF és egy azonos nevű XML-fájl van, amelyből a DATEV a bizonylat tételét készíti. Főkönyvi számot nem küldünk: a kontírozás a DATEV-ben történik. **Egy hónap újbóli letöltése nem okoz duplikációt**: minden számla a saját azonosítójával kerül a csomagba, és a DATEV kihagyja azt a dokumentumot, amely már megvan nála. Egy később megérkezett PDF-et tehát úgy küldhet át, hogy a hónapot újra letölti. A NAV-adatos számlák dokumentum nélkül ide sem kerülnek be, és a 0 összegű számla is kimarad (**DATEV: nulla összeg**).
+
+A CSV nincs a DATEV-csomagban, mert a DATEV nem tudna mit kezdeni vele. A letöltés végén az értesítés **CSV letöltése** gombjával külön töltheti le ugyanezekről a számlákról; az értesítés addig a sarokban marad, amíg a bal felső sarkában lévő **×** gombbal be nem zárja.
+
 ## Kinyerés és ellenőrzés
 
 A feltöltési panel minden fájlt ezekkel az állapotokkal mutat: **Sorban**, **Feltöltés…**, **Kinyerés…**, **Kinyerve** vagy sikertelen, ez utóbbinál **Újra** gombbal. Amíg egy számla még olvasás alatt áll, az oldala a felső kártyában mutatja a kinyerés állapotát.
@@ -179,9 +272,9 @@ Az **Ellenőrzés** címke azt jelenti, hogy a kinyerés teljessége 80% alatt m
 
 ## Ki mit tehet
 
-A munkaterület számláinak megtekintéséhez a számlák és banki tranzakciók megtekintésére vonatkozó jogosultság kell. Az a tag, akinek ez nincs meg, továbbra is látja az általa feltöltött számlákat és minden olyan számlát, amelyet jóváhagyásra hozzá irányítottak: hat fül helyett négyet, címkék, fizetési állapot és teendők nélkül, a listán pedig egy megjegyzéssel, amely szerint csak a saját számlái látszanak.
+A munkaterület számláinak megtekintéséhez a számlák és banki tranzakciók megtekintésére vonatkozó jogosultság kell. Az a tag, akinek ez nincs meg, továbbra is látja az általa feltöltött számlákat és minden olyan számlát, amelyet jóváhagyásra hozzá irányítottak: nyolc fül helyett hatot, címkék, fizetési állapot és teendők nélkül, a listán pedig egy megjegyzéssel, amely szerint csak a saját számlái látszanak.
 
-A szerkesztéshez, az archiváláshoz és a visszaállításhoz, a duplikáció megjelöléséhez és a megjelölés visszavonásához, valamint a csoportos műveletekhez a számlák szerkesztésére vonatkozó jogosultság kell, amely alapértelmezés szerint a könyvelőknél van (egy már könyvelésre jóváhagyott számla archiválásához a könyvelési jóváhagyás joga is kell); az ügyfél felhasználói megtekinthetik a számlákat, megnyithatják a dokumentumot és feltölthetnek. Lásd: [Szerepek és jogosultságok](/roles-and-permissions).
+A szerkesztéshez, az archiváláshoz és a visszaállításhoz, a duplikáció megjelöléséhez és a megjelölés visszavonásához, valamint a csoportos műveletekhez a számlák szerkesztésére vonatkozó jogosultság kell, amely alapértelmezés szerint a könyvelőknél van (egy már könyvelésre jóváhagyott számla archiválásához a könyvelési jóváhagyás joga is kell); az ügyfél felhasználói megtekinthetik a számlákat, megnyithatják a dokumentumot és feltölthetnek. A fejléc **Dokumentumok letöltése** gombjával mindenki letöltheti azokat a számlákat, amelyeket lát; a kijelölt számlák letöltéséhez, mint minden kijelöléshez, a szerkesztési jogosultság kell. Lásd: [Szerepek és jogosultságok](/roles-and-permissions).
 
 ## Tippek
 

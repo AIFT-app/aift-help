@@ -13,7 +13,9 @@
 //                    amount-width.ts and column-sizes.ts
 // It is the list of someone who can view but not edit invoices, so it has no
 // selection column, in a single-company workspace (no Company column) that
-// shows internal IDs. Only the table is shown, cropped out of the invoices
+// shows internal IDs. ./export.tsx reuses InvoiceTable with the selection
+// column an editor sees (recategorize-ui.tsx RowSelectCheckbox,
+// SelectAllCheckbox; column-sizes.ts SELECT_COLUMN_REM). Only the table is shown, cropped out of the invoices
 // page. When one of those files changes, re-copy the markup here. Data comes
 // from ./copy.ts and is fictional.
 
@@ -21,6 +23,7 @@ import clsx from 'clsx'
 import { DocumentKindGlyph } from '../DocumentKindGlyph'
 import { ChevronDownIcon, ClipboardIcon } from '@heroicons/react/16/solid'
 import type { Locale } from '@/lib/i18n'
+import { Checkbox } from '@/components/catalyst/checkbox'
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@/components/catalyst/table'
 import { fill } from '../approvals/copy'
 import { formatAmount } from '../format'
@@ -165,13 +168,29 @@ function CopyableId({ value, locale }: { value: string; locale: Locale }) {
   )
 }
 
-function Row({ row, locale, marker }: { row: ListRow; locale: Locale; marker?: number }) {
+// recategorize-ui.tsx CELL_HIT, verbatim (the selection column).
+const CELL_HIT =
+  '-mx-4 -my-3 flex cursor-pointer items-center justify-center px-4 py-3 focus:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-blue-500'
+// column-sizes.ts SELECT_COLUMN_REM.
+const SELECT_COLUMN = '2.75rem'
+
+function Row({ row, locale, marker, selected }: { row: ListRow; locale: Locale; marker?: number; selected?: boolean }) {
   const ui = invoicesCopy[locale].ui
   const accent = row.labels.some((k) => LABEL_TONE[k] === 'amber')
   const flow = row.direction === 'income' ? 'in' : 'out'
+  const selectable = selected !== undefined
   return (
     <TableRow href="#" className="group/row">
-      <TableCell className={clsx(accent && ACCENT_AMBER)}>
+      {selectable ? (
+        // recategorize-ui.tsx RowSelectCheckbox. The amber rail sits on the
+        // first cell (sortable-table.tsx renderCells), here the checkbox.
+        <TableCell className={clsx(accent && ACCENT_AMBER)}>
+          <span role="checkbox" aria-checked={selected} aria-label={ui['recategorize.selectRow']} className={CELL_HIT}>
+            <Checkbox checked={selected} tabIndex={-1} aria-hidden className="pointer-events-none" />
+          </span>
+        </TableCell>
+      ) : null}
+      <TableCell className={clsx(!selectable && accent && ACCENT_AMBER)}>
         {/* text-cell.tsx DateIdCell */}
         <div className="min-w-0">
           <div className="whitespace-nowrap text-sm text-zinc-700 tabular-nums dark:text-zinc-300">
@@ -222,11 +241,30 @@ function Row({ row, locale, marker }: { row: ListRow; locale: Locale; marker?: n
   )
 }
 
-function InvoiceTable({ locale }: { locale: Locale }) {
+/**
+ * The list. Without `selected` it is the list of someone who can view but not
+ * edit invoices (no selection column) with the header markers 2-4; with it,
+ * an editor's list with those rows ticked and no header markers.
+ */
+export function InvoiceTable({
+  locale,
+  rows,
+  selected,
+  marker = { row: 0, n: 1 },
+}: {
+  locale: Locale
+  rows?: ListRow[]
+  selected?: boolean[]
+  marker?: { row: number; n: number }
+}) {
   const c = invoicesCopy[locale]
   const ui = c.ui
-  const amountWidth = amountColumnWidth(c.rows.map((r) => formatAmount(r.amount, r.currency, locale)))
-  const dateIdWidth = dateIdColumnWidth(c.rows.map((r) => r.internalId))
+  const list = rows ?? c.rows
+  const headerPins = !selected
+  const allOn = !!selected && selected.every(Boolean)
+  const someOn = !!selected && selected.some(Boolean)
+  const amountWidth = amountColumnWidth(list.map((r) => formatAmount(r.amount, r.currency, locale)))
+  const dateIdWidth = dateIdColumnWidth(list.map((r) => r.internalId))
   return (
     <>
       <style>{`.lv-table-fluid table { width: 100%; } .lv-table-fluid th, .lv-table-fluid td { vertical-align: top; } .lv-table-fluid.lv-overflowing .lv-sticky-end { box-shadow: -8px 0 8px -8px rgb(0 0 0 / 0.25); }`}</style>
@@ -234,6 +272,14 @@ function InvoiceTable({ locale }: { locale: Locale }) {
         <Table>
           <TableHead className="bg-zinc-50 dark:bg-zinc-800/50">
             <tr>
+              {selected ? (
+                // recategorize-ui.tsx SelectAllCheckbox, in a plain header cell.
+                <th scope="col" style={{ width: SELECT_COLUMN }} className={clsx(HEADER_BASE, 'text-left')}>
+                  <span role="checkbox" aria-checked={allOn ? true : someOn ? 'mixed' : false} aria-label={ui['recategorize.selectAll']} className={CELL_HIT}>
+                    <Checkbox checked={allOn} indeterminate={someOn && !allOn} tabIndex={-1} aria-hidden className="pointer-events-none" />
+                  </span>
+                </th>
+              ) : null}
               <th scope="col" style={{ width: dateIdWidth }} className={clsx(HEADER_BASE, 'text-left')}>
                 {/* invoice-list-sort: the list opens with the newest ID first. */}
                 <div className="flex flex-col items-start gap-0.5">
@@ -244,7 +290,7 @@ function InvoiceTable({ locale }: { locale: Locale }) {
               <th scope="col" className={clsx(HEADER_BASE, 'text-left')}>
                 {/* invoice-list-sort: Partner, with the invoice number on the second line. */}
                 <div className="flex flex-col items-start gap-0.5">
-                  <SortButton active={false} pin={<Pin n={2} at="right" cancel="-ml-1" />}>
+                  <SortButton active={false} pin={headerPins ? <Pin n={2} at="right" cancel="-ml-1" /> : undefined}>
                     {ui['list_view.col_counterparty']}
                   </SortButton>
                   <SortButton active={false}>{ui['list_view.col_invoice_number']}</SortButton>
@@ -252,10 +298,10 @@ function InvoiceTable({ locale }: { locale: Locale }) {
               </th>
               <th scope="col" style={{ width: STATUS_SHARE }} className={clsx(HEADER_BASE, 'text-left')}>
                 {ui['list_view.col_labels']}
-                <Pin n={3} at="right" cancel="" />
+                {headerPins ? <Pin n={3} at="right" cancel="" /> : null}
               </th>
               <th scope="col" style={{ width: amountWidth }} className={clsx(HEADER_BASE, 'text-right', STICKY_TH)}>
-                <Pin n={4} at="left" cancel="" />
+                {headerPins ? <Pin n={4} at="left" cancel="" /> : null}
                 <SortButton active={false} align="right">
                   {ui['list_view.col_amount']}
                 </SortButton>
@@ -263,8 +309,14 @@ function InvoiceTable({ locale }: { locale: Locale }) {
             </tr>
           </TableHead>
           <TableBody>
-            {c.rows.map((row, i) => (
-              <Row key={row.invoiceNumber} row={row} locale={locale} marker={i === 0 ? 1 : undefined} />
+            {list.map((row, i) => (
+              <Row
+                key={row.invoiceNumber}
+                row={row}
+                locale={locale}
+                marker={i === marker.row ? marker.n : undefined}
+                selected={selected ? selected[i] : undefined}
+              />
             ))}
           </TableBody>
         </Table>
