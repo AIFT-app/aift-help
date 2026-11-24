@@ -9,7 +9,7 @@ Minden munkaterület két külön készletet tart nyilván:
 - **Számlakategóriák**, amelyek a számla minden tételére rákerülnek.
 - **Pénzforgalmi kategóriák**, amelyek egy banki tranzakcióra kerülnek rá.
 
-Mindkettő a **Törzsadatok → Könyvelési kategóriák** oldalon él, a **Számla** és a **Pénzforgalmi** fülön. Egy kategória létrehozása, szerkesztése és archiválása a „Törzsadatok szerkesztése” jogosultsághoz kötött, amellyel a könyvelők rendelkeznek; a **Pénzforgalmi** és a **Példák** fül csak a könyvelőké, az ügyféloldali tag pedig a számlalistát csak olvasni tudja.
+Mindkettő a **Törzsadatok → Könyvelési kategóriák** oldalon él, a **Számla** és a **Bank** fülön. Egy kategória létrehozása, szerkesztése és archiválása a „Törzsadatok szerkesztése” jogosultsághoz kötött, amellyel a könyvelők rendelkeznek; a **Bank** és a **Példák** fül csak a könyvelőké, az ügyféloldali tag pedig a számlalistát csak olvasni tudja.
 
 ### Az új munkaterület kategóriák nélkül indul
 
@@ -19,7 +19,7 @@ Négyféleképpen töltheti fel a listát:
 
 - **Táblázatból**: **Importálás** bármelyik fülön. Lásd: [Törzsadatok importálása](/master-data-import).
 - **Business Centralból**, bármelyik fülön, ha az ügyfél Business Centralja össze van kötve. Lásd: [Business Central](/business-central).
-- **A számlalistából a pénzforgalmi listába**: **Másolás a számla kategóriákból** a Pénzforgalmi fülön.
+- **A számlalistából a pénzforgalmi listába**: **Másolás a számla kategóriákból** a **Bank** fülön.
 - **Kézzel**, egyesével.
 
 Ha a lista megvan, jelölje ki a tételeket a **Számlák** vagy a **Banki tranzakciók** oldalon, és az **Újrakategorizálás** művelettel az AI a korábban érkezetteket is besorolja.
@@ -35,7 +35,7 @@ Ha a lista megvan, jelölje ki a tételeket a **Számlák** vagy a **Banki tranz
 
 A panel azt is megmutatja, hol használják a kategóriát: mely jelentés-sorok összegzik, és mely partnereknek ez a rögzített kategóriája.
 
-A **Számla** fülön a lista fölötti kereső névre vagy kódra szűr, ékezettel vagy anélkül. Kód szerinti rendezésnél a sorok számlaosztályonként csoportosulnak (a kód első számjegye szerint, például **5. számlaosztály**), az inaktív kategóriák a lista végén állnak.
+A **Számla** és a **Bank** fülön a lista fölötti kereső névre vagy kódra szűr, ékezettel vagy anélkül. Kód szerinti rendezésnél a sorok számlaosztályonként csoportosulnak (a kód első számjegye szerint, például **5. számlaosztály**). A nem számjeggyel kezdődő kód az **Egyéb kód**, a kód nélküli kategória a **Kód nélkül** csoportba kerül, az inaktív kategóriák a lista végén állnak.
 
 ## Kategória archiválása
 
