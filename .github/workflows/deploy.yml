@@ -37,9 +37,28 @@
 # ── Permissions are per job ──────────────────────────────────────────────────
 # aift-help is PUBLIC. Only `deploy` may write to Pages and mint the OIDC
 # token; `build`, the job that runs npm, can only read the repository. Every
-# action is pinned to a full commit SHA, at the versions the one-job workflow
-# ran (aift-ops/tests/help-ci-trust-boundary.test.ts §2). The shape of this
+# action is pinned to a full commit SHA
+# (aift-ops/tests/help-ci-trust-boundary.test.ts §2). The shape of this
 # file is guarded by aift-ops/tests/help-deploy-race.test.ts.
+#
+# ── Action versions: the Node 24 releases ────────────────────────────────────
+# PRD: help-actions-node24 (aift-ops/specs/help-actions-node24.md). Until
+# 2026-11-24 these were the Node 20 builds, which the runner forced onto
+# Node 24 with a deprecation note on every run. Each pin carries its exact
+# version, and this repository has ONE pin per action across its workflows
+# (aift-ops/tests/help-actions-node24.test.ts).
+#
+#   upload-pages-artifact v4 and later leave every file and directory whose
+#   name starts with a dot OUT of the published site. `out/` has none today.
+#   The day one is needed on the live site (`public/.well-known/...`), add
+#   `include-hidden-files: true` to the upload step in the same PR; without
+#   it the file is dropped and nothing goes red.
+#
+#   That action also carries its own pin of `actions/upload-artifact` (by SHA
+#   since v4; v3 called it by a tag anybody upstream could move).
+#
+#   `node-version` is the Node that runs `npm ci` and `next build`, not the
+#   one the actions run on. Node 20 reached its end of life on 2026-04-30.
 # =============================================================================
 
 name: Deploy to GitHub Pages
@@ -62,15 +81,15 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: '20'
+          node-version: '24'
           cache: 'npm'
       - run: npm ci
       - run: npm run build
-      - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
-      - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
+      - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: out
 
@@ -84,5 +103,5 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
+      - uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
         id: deployment
