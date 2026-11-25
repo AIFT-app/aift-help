@@ -28,9 +28,11 @@ By default the accountant admin and the finance lead hold all three, and the **F
 
 ## The settings page
 
-Settings reads in the order the flow runs: switch it on, say who may approve, say what goes to whom, then say what their queue looks like.
+Settings reads in the order the flow runs: switch it on, say who may approve and who covers for them, say what goes to whom, then say what their queue looks like.
 
 **Payment approvals** is the switch above. **Approvers** lists everyone who holds "Approve invoices for payment", with a description of what each of them decides. Each approver takes one line: the name with the email address under it, the first line of the description and **Edit**. Someone with "Manage approvals" clicks **Edit** to write the description (up to 600 characters, saved when you leave the field). When nobody holds the permission, an amber warning says so.
+
+**Deputies and successors** comes next, and only while **Payment approvals** is on: a deputy for each approver, and the handover to a successor when someone leaves. See [Deputies and successors](#deputies-and-successors) below.
 
 **Routing** holds the rules, and directly beneath them, **When no rule matches**:
 
