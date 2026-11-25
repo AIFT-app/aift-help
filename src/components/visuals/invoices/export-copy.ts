@@ -359,10 +359,10 @@ const ID = { gearmontNav: 'DEMO-INV-2026-0274', gearmont: 'DEMO-INV-2026-0272', 
 // NAV without a document; the other three are ticked.
 function pickRows(amounts: [number, number, number, number], currency: string): PickRow[] {
   return [
-    { issueDate: '2026-10-15', internalId: ID.gearmontNav, partner: 'Gearmont Fleet Services Ltd.', invoiceNumber: 'GFS-26-01022', labels: ['no_document', 'nav'], direction: 'expense', amount: amounts[0], currency, selected: false },
-    { issueDate: '2026-10-12', internalId: ID.quillmoor, partner: 'Quillmoor Software Ltd.', invoiceNumber: 'QS-2026-117', labels: [], direction: 'income', amount: amounts[1], currency, selected: true },
-    { issueDate: '2026-10-07', internalId: ID.slatebridge, partner: 'Slatebridge Roofing Ltd.', invoiceNumber: 'SBR/2026/0342', labels: ['approved'], direction: 'expense', amount: amounts[2], currency, selected: true },
-    { issueDate: '2026-10-03', internalId: ID.reamwell, partner: 'Reamwell Office Supplies Ltd.', invoiceNumber: 'RW-2026-00418', labels: ['awaiting_approval'], direction: 'expense', amount: amounts[3], currency, selected: true },
+    { issueDate: '2026-10-15', internalId: ID.gearmontNav, partner: 'Gearmont Fleet Services Ltd.', invoiceNumber: 'GFS-26-01022', sources: { nav: true, document: false }, labels: [], direction: 'expense', amount: amounts[0], currency, selected: false },
+    { issueDate: '2026-10-12', internalId: ID.quillmoor, partner: 'Quillmoor Software Ltd.', invoiceNumber: 'QS-2026-117', sources: { nav: false, document: true }, labels: [], direction: 'income', amount: amounts[1], currency, selected: true },
+    { issueDate: '2026-10-07', internalId: ID.slatebridge, partner: 'Slatebridge Roofing Ltd.', invoiceNumber: 'SBR/2026/0342', sources: { nav: false, document: true }, labels: ['approved'], direction: 'expense', amount: amounts[2], currency, selected: true },
+    { issueDate: '2026-10-03', internalId: ID.reamwell, partner: 'Reamwell Office Supplies Ltd.', invoiceNumber: 'RW-2026-00418', sources: { nav: false, document: true }, labels: ['awaiting_approval'], direction: 'expense', amount: amounts[3], currency, selected: true },
   ]
 }
 
