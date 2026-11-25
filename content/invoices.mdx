@@ -38,7 +38,7 @@ The invoice list with four invoices. The numbers match the list below. The compa
 
 1. **Date**, with AI Finance Team's own ID underneath when your workspace shows IDs. Click the ID to copy it.
 2. **Partner**, with the invoice number underneath. A long name wraps onto a second line. A click anywhere on the row opens the invoice.
-3. **Labels**: what the invoice needs comes first, where it came from (**NAV**, **No document**) last. Up to three pills show, and **+N** stands for the rest: never a label that needs action, and pointing at it lists what it stands for.
+3. **Labels**: first the source mark, two fixed slots: **NAV** when the invoice has NAV data (also when NAV later confirmed an uploaded invoice) and **PDF** when a document file is attached. A missing source leaves its slot empty, so the two marks line up on every row. When there is no document and you may attach one, the empty slot is a dashed button: click it to attach the invoice's PDF. Then what the invoice needs. Up to three pills show, and **+N** stands for the rest: never a label that needs action, and pointing at it lists what it stands for.
 4. **Amount**: the gross total in the invoice currency, green with an up arrow for income, red with a down arrow for an expense.
 
 Click **Invoices** in the sidebar. The list has these columns: **Date** (the issue date) with the **ID** under it (AI Finance Team's own number, when your workspace shows it; click to copy), **Partner**, **Labels**, **Company** (only when your workspace has more than one company: which of your companies the invoice belongs to, or a dash if AI Finance Team has not assigned it yet) and **Amount**. It shows 50 invoices per page, sorted by ID, highest first, until you choose otherwise. Click any column header except **Labels** to sort by it: date, ID (the second line of the date header), partner, invoice number (the second line of the partner header), company or amount. The first click puts the date, ID and amount in descending order and the partner, invoice number and company in alphabetical order; the second click reverses it. Sorting by amount uses the amount converted into the base currency, so a foreign-currency invoice sits among invoices of the same value. An invoice that lacks the value you sort by (for example one with no company yet) comes last either way. An amber left edge marks an invoice that needs action. The list uses the full width of the window. In a narrow window it scrolls sideways, and the **Amount** column stays in view on the right.
@@ -57,9 +57,8 @@ The labels you meet most often:
 | **Line total differs from the header** | The line items do not add up to the invoice's totals |
 | **Overdue** | Unpaid after its due date. An unpaid invoice that is not yet due is no to-do. Shown only in a workspace with a bank account (a bank connection or uploaded statements), because without one nothing marks an invoice paid |
 | **Match suggestion awaiting a decision** | AI Finance Team suggests a bank transaction for it; confirm or reject it |
-| **NAV** / **No document** | The invoice came from NAV Online Számla / there is no document file, and your workspace does not expect one (grey) |
 | **No document expected** | There is no document file, and it was accepted on this invoice that none will come (grey, see [below](#we-expect-an-invoice-document)) |
-| **Document needed** | There is no document file, and the **We expect an invoice document** setting of your workspace expects one (amber to-do, see [below](#we-expect-an-invoice-document)). The **Document** filter's **None** value shows all three labels of an invoice without a document, so it can count more invoices than this to-do |
+| **Document needed** | There is no document file, and the **We expect an invoice document** setting of your workspace expects one (amber to-do, see [below](#we-expect-an-invoice-document)). The **Document** filter's **None** value shows every invoice without a document, also the ones with no to-do, so it can count more invoices than this to-do |
 | **Duplicate**, **Cancelled** | A duplicate of another invoice / cancelled by a storno invoice |
 | **Awaiting payment approval**, **Approved**, **Declined** | The payment approval state, where approvals are switched on (see [Approving Invoices for Payment](/approving-invoices)) |
 | **To file**, **To book** | A checkpoint still waiting, where filing or bookkeeping approval is switched on (see [Filing and Bookkeeping Approval](/filing-and-bookkeeping-approval)) |
@@ -76,7 +75,7 @@ Under **Settings → Ledger defaults → We expect an invoice document**, say wh
 | **For purchase invoices** | A document is expected behind purchase (supplier) invoices, not behind sales invoices |
 | **For every invoice** | Behind purchase and sales invoices alike |
 
-Where a document is expected, an invoice without one gets the **Document needed** to-do, and only there is the client asked for it on [Missing receipts](/documents-needed). Where none is expected, neither happens: the invoice keeps only the grey **No document** label.
+Where a document is expected, an invoice without one gets the **Document needed** to-do, and only there is the client asked for it on [Missing receipts](/documents-needed). Where none is expected, neither happens: only the empty **PDF** slot of the source mark shows that there is no document.
 
 When you accept on one invoice that no document will come (**No document expected**), the to-do leaves the invoice and the client is no longer asked for it: the request also disappears from [Missing receipts](/documents-needed). From then on the invoice carries the grey **No document expected** label.
 
