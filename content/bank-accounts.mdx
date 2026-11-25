@@ -59,7 +59,7 @@ The first import runs straight away and takes a few minutes, depending on how fa
 
 You can change which company an account belongs to later: the account's row carries a company list, and client-side members can change it there.
 
-Each connection lists its accounts as rows: the full account number with its status, the currency, the last sync, the company and the actions. A bank with more than seven accounts shows the first seven, and **+ N more accounts** opens the rest.
+Each connection lists its accounts as rows: the full account number with its status, the currency, the last sync, the company and the actions. Once the connection stops syncing, a row keeps a status only if it has one of its own, such as **Expired** or **Disconnected**; otherwise the card's status speaks for it. A bank with more than seven accounts shows the first seven, and **+ N more accounts** opens the rest.
 
 ### Sync now
 
@@ -73,7 +73,7 @@ How a bank connection lives and ends. The status names are the ones on the conne
 
 Open banking consent expires. **How long it lasts is your bank's decision**, commonly 90 days, and longer at some banks. The connection card shows the actual date.
 
-Seven days before that date the card turns amber and says **Expires in N days**. The connection keeps working in that week: transactions still arrive twice a day and **Sync now** still works. Use the week to renew. **On the expiry date syncing stops** and the card shows **Expired**.
+Seven days before that date the card turns amber and says **Expires in N days**. The connection keeps working in that week: transactions still arrive twice a day and **Sync now** still works. Use the week to renew. **On the expiry date syncing stops** and the card shows **Expired**. Accountants also see a red note on the card that names the expiry date and says no transactions have been imported since.
 
 A bank can also withdraw access before that date, for example when a newer approval for the same login replaces this one, or when you revoke it in your internet bank. The card then shows **Expired** at the next sync and syncing stops. Connect the bank again to continue.
 

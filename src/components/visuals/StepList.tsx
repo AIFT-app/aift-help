@@ -13,7 +13,7 @@ import { Pill, type Tone } from './kit'
 
 export type StepOutcome =
   | { kind: 'pill'; tone: Tone; label: string }
-  | { kind: 'badge'; color: 'yellow' | 'zinc'; label: string }
+  | { kind: 'badge'; color: 'yellow' | 'zinc' | 'green' | 'amber' | 'red'; label: string }
   | { kind: 'text'; label: string }
 
 export type Step = { title: string; detail?: string; outcomes?: StepOutcome[] }
