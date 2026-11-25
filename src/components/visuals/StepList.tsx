@@ -15,6 +15,8 @@ export type StepOutcome =
   | { kind: 'pill'; tone: Tone; label: string }
   | { kind: 'badge'; color: 'yellow' | 'zinc' | 'green' | 'amber' | 'red'; label: string }
   | { kind: 'text'; label: string }
+  /** One filled slot of the app's source mark (aift-web source-mark.tsx, md, as on the invoice header). */
+  | { kind: 'source'; label: string }
 
 export type Step = { title: string; detail?: string; outcomes?: StepOutcome[] }
 
@@ -27,6 +29,15 @@ function Outcome({ o }: { o: StepOutcome }) {
     )
   }
   // App elements use the app's fonts, like the app screens.
+  if (o.kind === 'source') {
+    return (
+      <span className="app-screen contents">
+        <span className="h-5 w-[2.125rem] rounded-md text-[11px] inline-flex items-center justify-center font-semibold tracking-[0.03em] text-zinc-600 ring-1 ring-zinc-300 ring-inset dark:text-zinc-300 dark:ring-zinc-600">
+          {o.label}
+        </span>
+      </span>
+    )
+  }
   return (
     <span className="app-screen contents">
       {o.kind === 'badge' ? (

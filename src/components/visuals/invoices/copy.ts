@@ -42,6 +42,10 @@ export const UI_KEYS = [
   'document_kind.invoice',
   'recategorize.selectRow',
   'recategorize.selectAll',
+  'invoices.list.row_actions',
+  'invoices.list.attach_pdf_title',
+  // The "other" branch of the plural message (the figure shows 2).
+  'invoices.list.attachment_count',
 ] as const
 
 export type UiKey = (typeof UI_KEYS)[number]
@@ -81,6 +85,8 @@ export type ListRow = {
   invoiceNumber: string
   /** invoice-source-mark: the source mark before the labels (is_nav, has_document). */
   sources: { nav: boolean; document: boolean }
+  /** invoice-attach-ux-review: the count at the end of the row (attachment_count). */
+  attachments?: number
   /** In resolveInvoiceLabels order. */
   labels: LabelKey[]
   direction: 'income' | 'expense'
@@ -146,6 +152,7 @@ function rows(amounts: [number, number, number, number], currency: string, forei
       partner: 'Quillmoor Software Ltd.',
       invoiceNumber: 'HT-2026-0217',
       sources: { nav: false, document: true },
+      attachments: 2,
       labels: [],
       direction: 'income',
       amount: amounts[2],
@@ -197,8 +204,11 @@ const en: Copy = {
     'document_kind.invoice': 'Invoice',
     'recategorize.selectRow': 'Select row',
     'recategorize.selectAll': 'Select all',
+    'invoices.list.row_actions': 'More actions: {invoice}',
+    'invoices.list.attach_pdf_title': 'Attach the invoice PDF to {invoice}',
+    'invoices.list.attachment_count': '{count} attachments',
   },
-  rows: rows([186690, 1524000, 2450000, 1240], 'HUF', 'EUR'),
+  rows: rows([186690, 152400, 245000, 1240], 'HUF', 'EUR'),
   help: {
     lifecycle: {
       arrives: 'Arrives',
@@ -221,7 +231,7 @@ const en: Copy = {
       lifecycle:
         'Diagram of an invoice in seven steps: it arrives by upload, email or from NAV; it is extracted; it is checked for duplicates; the company and the direction are found; the partner, categories and VAT codes are suggested; a supplier invoice goes through payment approval; the bank transaction is matched and the invoice is paid. Each step shows the labels the app gives an invoice there.',
       list:
-        'The invoice list with four invoices, newest first: the date with the AI Finance Team ID under it, the partner with the invoice number, label pills with the ones that need action first, and the amount, red with a down arrow for expenses and green with an up arrow for income. Three rows have an amber left edge. Numbered markers point to the parts described in the list below.',
+        'The invoice list with four invoices, newest first: the date with the AI Finance Team ID under it, the partner with the invoice number, the NAV and PDF source mark followed by label pills with the ones that need action first, and the amount, red with a down arrow for expenses and green with an up arrow for income, followed by the attachment count and a menu button. One row without a document has a dashed attach button in place of PDF. Three rows have an amber left edge. Numbered markers point to the parts described in the list below.',
     },
   },
 }
@@ -258,8 +268,11 @@ const hu: Copy = {
     'document_kind.invoice': 'Számla',
     'recategorize.selectRow': 'Sor kijelölése',
     'recategorize.selectAll': 'Összes kijelölése',
+    'invoices.list.row_actions': 'További műveletek: {invoice}',
+    'invoices.list.attach_pdf_title': 'Számla PDF csatolása: {invoice}',
+    'invoices.list.attachment_count': '{count} melléklet',
   },
-  rows: rows([186690, 1524000, 2450000, 1240], 'HUF', 'EUR'),
+  rows: rows([186690, 152400, 245000, 1240], 'HUF', 'EUR'),
   help: {
     lifecycle: {
       arrives: 'Beérkezés',
@@ -282,7 +295,7 @@ const hu: Copy = {
       lifecycle:
         'Ábra egy számla hét lépéséről: feltöltéssel, e-mailben vagy a NAV-ból érkezik; kinyerjük az adatait; ellenőrizzük, nem duplikáció-e; megállapítjuk a céget és az irányt; javasoljuk a partnert, a kategóriákat és az ÁFA-kódokat; a szállítói számla kifizetési jóváhagyáson megy át; a banki tranzakció párosításával a számla kifizetett lesz. Minden lépésnél látszanak a címkék, amelyeket az alkalmazás ott ad a számlának.',
       list:
-        'A számlalista négy számlával, a legújabb elöl: a dátum alatta az AI Finance Team azonosítóval, a partner a számlaszámmal, a címkék elöl a teendőt jelzőkkel, és az összeg, kiadásnál piros, lefelé mutató nyíllal, bevételnél zöld, felfelé mutató nyíllal. Három sor bal szélén borostyánsárga szegély van. A számozott jelölők az alábbi listában leírt részekre mutatnak.',
+        'A számlalista négy számlával, a legújabb elöl: a dátum alatta az AI Finance Team azonosítóval, a partner a számlaszámmal, a NAV és PDF forrásjelölés, utána a címkék elöl a teendőt jelzőkkel, és az összeg, kiadásnál piros, lefelé mutató nyíllal, bevételnél zöld, felfelé mutató nyíllal, mögötte a mellékletek száma és egy menügomb. Az egyik dokumentum nélküli sorban a PDF helyén szaggatott keretes csatolás gomb áll. Három sor bal szélén borostyánsárga szegély van. A számozott jelölők az alábbi listában leírt részekre mutatnak.',
     },
   },
 }
@@ -319,6 +332,9 @@ const de: Copy = {
     'document_kind.invoice': 'Rechnung',
     'recategorize.selectRow': 'Zeile auswählen',
     'recategorize.selectAll': 'Alle auswählen',
+    'invoices.list.row_actions': 'Weitere Aktionen: {invoice}',
+    'invoices.list.attach_pdf_title': 'Rechnungs-PDF an {invoice} anhängen',
+    'invoices.list.attachment_count': '{count} Anhänge',
   },
   rows: rows([412.8, 6480, 5400, 94615], 'EUR', 'HUF'),
   help: {
@@ -343,7 +359,7 @@ const de: Copy = {
       lifecycle:
         'Diagramm einer Rechnung in sieben Schritten: Sie trifft per Upload, E-Mail oder aus NAV ein; sie wird extrahiert; sie wird auf Duplikate geprüft; Unternehmen und Richtung werden ermittelt; Partner, Kategorien und USt-Codes werden vorgeschlagen; eine Lieferantenrechnung durchläuft die Zahlungsfreigabe; die Banktransaktion wird zugeordnet und die Rechnung ist bezahlt. Jeder Schritt zeigt die Labels, die die App einer Rechnung dort gibt.',
       list:
-        'Die Rechnungsliste mit vier Rechnungen, die neueste zuerst: das Datum mit der AI-Finance-Team-ID darunter, der Partner mit der Rechnungsnummer, Labels mit denen zuerst, die eine Aktion brauchen, und der Betrag, rot mit Pfeil nach unten für Ausgaben und grün mit Pfeil nach oben für Einnahmen. Drei Zeilen haben einen gelben linken Rand. Nummerierte Markierungen zeigen auf die Teile, die in der Liste darunter beschrieben sind.',
+        'Die Rechnungsliste mit vier Rechnungen, die neueste zuerst: das Datum mit der AI-Finance-Team-ID darunter, der Partner mit der Rechnungsnummer, die Quellenmarke NAV und PDF, danach Labels mit denen zuerst, die eine Aktion brauchen, und der Betrag, rot mit Pfeil nach unten für Ausgaben und grün mit Pfeil nach oben für Einnahmen, dahinter die Zahl der Anhänge und eine Menüschaltfläche. In einer Zeile ohne Dokument steht statt PDF eine gestrichelte Schaltfläche zum Anhängen. Drei Zeilen haben einen gelben linken Rand. Nummerierte Markierungen zeigen auf die Teile, die in der Liste darunter beschrieben sind.',
     },
   },
 }
