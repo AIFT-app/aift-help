@@ -1,6 +1,7 @@
 // Labels for the cash pool section screen, verbatim from aift-web
-// messages/<locale>.json (master_data.bank_accounts.cash_pool.*, origin/main
-// 2026-09-23), keyed by message key so aift-ops/scripts/help-figure-copy-drift.py catches a
+// messages/<locale>.json (master_data.bank_accounts.cash_pool.* origin/main
+// 2026-09-23; the drawer's own labels, numbers_section.* and
+// common.edit_drawer.close, origin/staging 2026-11-25), keyed by message key so aift-ops/scripts/help-figure-copy-drift.py catches a
 // change. `rendered` holds the holder line the app fills in. `help` is this
 // article's own text.
 import type { Locale } from '@/lib/i18n'
@@ -14,6 +15,12 @@ export const UI_KEYS = [
   'master_data.bank_accounts.cash_pool.change_holder_description',
   'master_data.bank_accounts.cash_pool.change_holder_placeholder',
   'master_data.bank_accounts.cash_pool.change_holder_button',
+  'master_data.bank_accounts.numbers_section.form_edit_heading',
+  'master_data.bank_accounts.numbers_section.bank_tax_id_label',
+  'master_data.bank_accounts.numbers_section.bank_tax_id_placeholder',
+  'master_data.bank_accounts.numbers_section.cancel',
+  'master_data.bank_accounts.numbers_section.save',
+  'common.edit_drawer.close',
 ] as const
 
 export type UiKey = (typeof UI_KEYS)[number]
@@ -42,9 +49,15 @@ const en: Copy = {
     'master_data.bank_accounts.cash_pool.change_holder_description': 'The new holder must be one of the companies using the account. The current holder stays on the list.',
     'master_data.bank_accounts.cash_pool.change_holder_placeholder': 'Choose a company',
     'master_data.bank_accounts.cash_pool.change_holder_button': 'Change holder',
+    'master_data.bank_accounts.numbers_section.form_edit_heading': 'Edit bank account',
+    'master_data.bank_accounts.numbers_section.bank_tax_id_label': 'Bank tax ID (optional)',
+    'master_data.bank_accounts.numbers_section.bank_tax_id_placeholder': 'e.g. 10537914-4-44',
+    'master_data.bank_accounts.numbers_section.cancel': 'Cancel',
+    'master_data.bank_accounts.numbers_section.save': 'Save',
+    'common.edit_drawer.close': '← Close',
   },
   rendered: { holder: `Account holder: ${HOLDER}` },
-  help: { alt: 'The cash pool section of a bank account form: the account holder, tick boxes for the other companies of the workspace with two ticked, the Save companies button, and the Change the account holder field.' },
+  help: { alt: 'The Edit bank account side panel scrolled to its end, where the cash pool section sits: the account holder, tick boxes for the other companies of the workspace with two ticked, the Save companies button, and the Change the account holder field.' },
 }
 
 const hu: Copy = {
@@ -57,9 +70,15 @@ const hu: Copy = {
     'master_data.bank_accounts.cash_pool.change_holder_description': 'Az új tulajdonos csak a számlát használó cégek egyike lehet. A jelenlegi tulajdonos a listán marad.',
     'master_data.bank_accounts.cash_pool.change_holder_placeholder': 'Válassz céget',
     'master_data.bank_accounts.cash_pool.change_holder_button': 'Tulajdonos módosítása',
+    'master_data.bank_accounts.numbers_section.form_edit_heading': 'Bankszámla szerkesztése',
+    'master_data.bank_accounts.numbers_section.bank_tax_id_label': 'Bank adószáma (választható)',
+    'master_data.bank_accounts.numbers_section.bank_tax_id_placeholder': 'pl. 10537914-4-44',
+    'master_data.bank_accounts.numbers_section.cancel': 'Mégse',
+    'master_data.bank_accounts.numbers_section.save': 'Mentés',
+    'common.edit_drawer.close': '← Bezárás',
   },
   rendered: { holder: `Számlatulajdonos: ${HOLDER}` },
-  help: { alt: 'Egy bankszámla űrlapjának cash pool szakasza: a számlatulajdonos, a munkaterület többi cégének jelölőnégyzetei közül kettő bejelölve, a Cégek mentése gomb és a Számlatulajdonos módosítása mező.' },
+  help: { alt: 'A Bankszámla szerkesztése oldalpanel a végére görgetve, ahol a cash pool szakasz van: a számlatulajdonos, a munkaterület többi cégének jelölőnégyzetei közül kettő bejelölve, a Cégek mentése gomb és a Számlatulajdonos módosítása mező.' },
 }
 
 const de: Copy = {
@@ -72,9 +91,15 @@ const de: Copy = {
     'master_data.bank_accounts.cash_pool.change_holder_description': 'Der neue Inhaber muss eines der Unternehmen sein, die das Konto nutzen. Der bisherige Inhaber bleibt auf der Liste.',
     'master_data.bank_accounts.cash_pool.change_holder_placeholder': 'Unternehmen wählen',
     'master_data.bank_accounts.cash_pool.change_holder_button': 'Inhaber ändern',
+    'master_data.bank_accounts.numbers_section.form_edit_heading': 'Bankkonto bearbeiten',
+    'master_data.bank_accounts.numbers_section.bank_tax_id_label': 'Steuernummer der Bank (optional)',
+    'master_data.bank_accounts.numbers_section.bank_tax_id_placeholder': 'z. B. 10537914-4-44',
+    'master_data.bank_accounts.numbers_section.cancel': 'Abbrechen',
+    'master_data.bank_accounts.numbers_section.save': 'Speichern',
+    'common.edit_drawer.close': '← Schließen',
   },
   rendered: { holder: `Kontoinhaber: ${HOLDER}` },
-  help: { alt: 'Der Cash-Pool-Abschnitt eines Bankkontoformulars: der Kontoinhaber, Kontrollkästchen für die übrigen Unternehmen des Arbeitsbereichs mit zwei markierten, die Schaltfläche Unternehmen speichern und das Feld Kontoinhaber ändern.' },
+  help: { alt: 'Das Seitenpanel Bankkonto bearbeiten, bis zum Ende gescrollt, wo der Cash-Pool-Abschnitt steht: der Kontoinhaber, Kontrollkästchen für die übrigen Unternehmen des Arbeitsbereichs mit zwei markierten, die Schaltfläche Unternehmen speichern und das Feld Kontoinhaber ändern.' },
 }
 
 export const cashPoolCopy: Record<Locale, Copy> = { en, hu, de }
