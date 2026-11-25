@@ -9,12 +9,12 @@ Account numbers matter even without a connection: incoming transactions are matc
 | Action | Who |
 |---|---|
 | Add or edit account numbers | Any member of the workspace |
-| Connect a bank | Anyone on the client side (finance lead, finance admin or team member) |
+| Connect a bank, renew a consent | The finance lead only |
 | **Sync now** | Any member, accountants included |
 | Disconnect an account, remove a connection | The finance lead only |
 | Declare a shared account (cash pool) | An accountant |
 
-Connecting and disconnecting a bank belong to the client side by rule, not by role: no custom role and no exception can grant them to an accountant, because bank credentials must stay with the client. See [Roles and Permissions](/roles-and-permissions).
+Connecting, renewing and disconnecting a bank belong to the finance lead by rule, not by permission: no custom role and no exception can grant them to an accountant, a finance admin or a team member, because bank credentials must stay with the client's finance lead. See [Roles and Permissions](/roles-and-permissions).
 
 ## Account Numbers
 
@@ -109,10 +109,10 @@ Your bank withdrew access early. Connect the bank again and tick every account y
 The connection was started but never approved at the bank. Remove it, or connect the bank again.
 
 **The card offers Re-authorize.**
-It only tells you to use **Connect a bank**, which is the real way to renew a consent.
+It takes the finance lead straight to the bank's approval page to renew the consent, with no bank and no history length to pick. Only the finance lead sees the button.
 
 **I cannot see Connect a bank.**
-It is shown to client-side members only. An accountant cannot connect a client's bank, by design.
+It is shown to the finance lead only. A finance admin, a team member and an accountant cannot connect a bank, by design. If the workspace has no finance lead yet, one has to be invited first (see [Roles and Permissions](/roles-and-permissions)).
 
 **The connection card shows Error.**
 Open the card: the status names the provider's reason. A connection in error can be disconnected and connected again by the finance lead.
