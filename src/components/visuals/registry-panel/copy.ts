@@ -7,23 +7,27 @@
 //
 // The partner is fictional (Quillmoor, the house set). The tax numbers and
 // accounts are invented and deliberately shaped like real Hungarian ones, so
-// the megye code and the account format read correctly.
+// the megye code and the account format read correctly: the register's seat is
+// in Győr, so its tax number ends in 08 (Győr-Moson-Sopron), ours in 41 (Budapest).
 
 import type { Locale } from '@/lib/i18n'
 
 export const PARTNER_NAME = 'Quillmoor Software Kft.'
 export const OUR_TAX_PREFIX = '12345678-2-'
 export const OUR_TAX_SUFFIX = '41'
-export const REG_TAX_SUFFIX = '13'
+export const REG_TAX_SUFFIX = '08'
 export const REG_ACCOUNT = '12011007-00000000'
 export const OUR_ACCOUNT = '10300002-20391548'
 export const BANK_NAME = 'Raiffeisen Bank'
+/** The account both sides hold: the register lists it too, so its row says Matches. */
+export const OUR_BANK_NAME = 'MBH Bank'
 
 type Copy = {
   ui: {
     'master_data.partners.registry.title': string
     'master_data.partners.registry.description': string
     'master_data.partners.registry.revalidate': string
+    'master_data.partners.registry.outcome_registered': string
     'master_data.partners.registry.field_legal_name': string
     'master_data.partners.registry.field_tax_number': string
     'master_data.partners.registry.field_address': string
@@ -46,6 +50,7 @@ type Copy = {
     'master_data.partners.registry.action.keep_as_is': string
     'master_data.partners.registry.action.not_now': string
     'master_data.partners.registry.action.go_to_bank_accounts': string
+    'master_data.partners.registry.details_heading': string
   }
   /** Strings the app builds from an ICU pattern, rendered out. */
   rendered: {
@@ -54,6 +59,7 @@ type Copy = {
     accountsTitle: string
     addIt: string
     accountSince: string
+    ourAccountSince: string
     ourAddress: string
     registerAddress: string
   }
@@ -66,6 +72,7 @@ const en: Copy = {
     'master_data.partners.registry.description':
       'What the Hungarian company register says about this partner. Nothing here is changed without you: empty fields are filled in, and anything that differs is listed for you to look at.',
     'master_data.partners.registry.revalidate': 'Revalidate',
+    'master_data.partners.registry.outcome_registered': 'Registered',
     'master_data.partners.registry.field_legal_name': 'Name',
     'master_data.partners.registry.field_tax_number': 'Tax number',
     'master_data.partners.registry.field_address': 'Registered address',
@@ -90,6 +97,7 @@ const en: Copy = {
     'master_data.partners.registry.action.keep_as_is': 'Leave as is',
     'master_data.partners.registry.action.not_now': 'Not now',
     'master_data.partners.registry.action.go_to_bank_accounts': 'Go to bank accounts',
+    'master_data.partners.registry.details_heading': 'Company details',
   },
   rendered: {
     checkedOn: 'Checked 2026-09-24 11:12',
@@ -97,6 +105,7 @@ const en: Copy = {
     accountsTitle: '1 bank account is only in the register',
     addIt: 'Add it',
     accountSince: 'since 2026-04-01',
+    ourAccountSince: 'since 2021-03-15',
     ourAddress: '1052 Budapest, Példa utca 4.',
     registerAddress: '9024 Győr, Mintakert utca 18.',
   },
@@ -111,6 +120,7 @@ const hu: Copy = {
     'master_data.partners.registry.description':
       'Amit a magyar cégjegyzék erről a partnerről mond. Nélküled semmi nem változik: az üres mezőket kitöltjük, az eltéréseket pedig listázzuk, hogy megnézhesd.',
     'master_data.partners.registry.revalidate': 'Újraellenőrzés',
+    'master_data.partners.registry.outcome_registered': 'Nyilvántartva',
     'master_data.partners.registry.field_legal_name': 'Név',
     'master_data.partners.registry.field_tax_number': 'Adószám',
     'master_data.partners.registry.field_address': 'Székhely',
@@ -135,6 +145,7 @@ const hu: Copy = {
     'master_data.partners.registry.action.keep_as_is': 'Így hagyom',
     'master_data.partners.registry.action.not_now': 'Most nem',
     'master_data.partners.registry.action.go_to_bank_accounts': 'Ugrás a bankszámlákhoz',
+    'master_data.partners.registry.details_heading': 'Cégadatok',
   },
   rendered: {
     checkedOn: 'Ellenőrizve: 2026-09-24 11:12',
@@ -142,6 +153,7 @@ const hu: Copy = {
     accountsTitle: '1 bankszámla csak a cégjegyzékben szerepel',
     addIt: 'Hozzáadom',
     accountSince: '2026-04-01 óta',
+    ourAccountSince: '2021-03-15 óta',
     ourAddress: '1052 Budapest, Példa utca 4.',
     registerAddress: '9024 Győr, Mintakert utca 18.',
   },
@@ -156,6 +168,7 @@ const de: Copy = {
     'master_data.partners.registry.description':
       'Was das ungarische Firmenregister über diesen Partner sagt. Ohne Sie wird nichts geändert: Leere Felder werden ausgefüllt, Abweichungen werden zur Prüfung aufgelistet.',
     'master_data.partners.registry.revalidate': 'Erneut prüfen',
+    'master_data.partners.registry.outcome_registered': 'Eingetragen',
     'master_data.partners.registry.field_legal_name': 'Name',
     'master_data.partners.registry.field_tax_number': 'Steuernummer',
     'master_data.partners.registry.field_address': 'Sitz',
@@ -180,6 +193,7 @@ const de: Copy = {
     'master_data.partners.registry.action.keep_as_is': 'So lassen',
     'master_data.partners.registry.action.not_now': 'Nicht jetzt',
     'master_data.partners.registry.action.go_to_bank_accounts': 'Zu den Bankkonten',
+    'master_data.partners.registry.details_heading': 'Unternehmensdaten',
   },
   rendered: {
     checkedOn: 'Geprüft am 2026-09-24 11:12',
@@ -187,6 +201,7 @@ const de: Copy = {
     accountsTitle: '1 Bankkonto steht nur im Register',
     addIt: 'Hinzufügen',
     accountSince: 'seit 2026-04-01',
+    ourAccountSince: 'seit 2021-03-15',
     ourAddress: '1052 Budapest, Példa utca 4.',
     registerAddress: '9024 Győr, Mintakert utca 18.',
   },
