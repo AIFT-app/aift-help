@@ -59,7 +59,7 @@ Az első importálás azonnal elindul, és néhány percig tart, attól függőe
 
 Azt, hogy egy számla melyik céghez tartozik, később is módosíthatja: a számla sorában egy céglista áll, és az ügyfél oldali tagok itt változtathatják meg.
 
-Minden kapcsolat soronként mutatja a számláit: a teljes számlaszámot az állapotával, a pénznemet, az utolsó szinkronizálást, a céget és a műveleteket. Ha egy banknál hétnél több számla van, az első hét látszik, a **+ további N számla** pedig kinyitja a többit.
+Minden kapcsolat soronként mutatja a számláit: a teljes számlaszámot az állapotával, a pénznemet, az utolsó szinkronizálást, a céget és a műveleteket. Ha a kapcsolat már nem szinkronizál, egy sor csak akkor mutat állapotot, ha saját állapota van, például **Lejárt** vagy **Lecsatlakoztatva**; egyébként a kártya állapota vonatkozik rá is. Ha egy banknál hétnél több számla van, az első hét látszik, a **+ további N számla** pedig kinyitja a többit.
 
 ### Szinkronizálás most
 
@@ -73,7 +73,7 @@ Hogyan él és ér véget egy bankkapcsolat. Az állapotnevek a kapcsolat kárty
 
 A nyílt bankolási hozzájárulás lejár. **Azt, hogy meddig tart, a bankja dönti el**, jellemzően 90 nap, néhány banknál hosszabb. A tényleges dátumot a kapcsolat kártyája mutatja.
 
-Ez előtt a dátum előtt hét nappal a kártya borostyánsárgára vált, és a **Lejár N nap múlva** felirat jelenik meg rajta. A kapcsolat ezen a héten még működik: a tranzakciók továbbra is naponta kétszer érkeznek, és a **Szinkronizálás most** is használható. Ezt a hetet használja a megújításra. **A lejárat napján a szinkronizálás leáll**, és a kártyán a **Lejárt** felirat jelenik meg.
+Ez előtt a dátum előtt hét nappal a kártya borostyánsárgára vált, és a **Lejár N nap múlva** felirat jelenik meg rajta. A kapcsolat ezen a héten még működik: a tranzakciók továbbra is naponta kétszer érkeznek, és a **Szinkronizálás most** is használható. Ezt a hetet használja a megújításra. **A lejárat napján a szinkronizálás leáll**, és a kártyán a **Lejárt** felirat jelenik meg. A könyvelők a kártyán egy piros megjegyzést is látnak, amely megnevezi a lejárat dátumát, és jelzi, hogy azóta nem érkeztek új tranzakciók.
 
 A bank ennél korábban is visszavonhatja a hozzáférést, például ha ugyanahhoz a belépéshez egy újabb engedély váltja fel ezt, vagy ha Ön az internetbankban visszavonja. Ilyenkor a kártyán a következő szinkronizáláskor a **Lejárt** felirat jelenik meg, és a szinkronizálás leáll. A folytatáshoz csatlakoztassa újra a bankot.
 
