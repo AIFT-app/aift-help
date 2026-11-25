@@ -1,6 +1,6 @@
 // The company-register panel, for the company-register-check article.
 //
-// Rebuilt 1:1 from aift-web (origin/main, 2026-09-28), class for class:
+// Rebuilt 1:1 from aift-web (origin/staging, 2026-11-25), class for class:
 //   src/app/(app)/workspaces/[workspaceId]/master-data/partners/[partnerId]/
 //     _components/PartnerRegistrySection.tsx — the checked line, the decision
 //     cards, the comparison table and its per-row actions.
@@ -19,12 +19,21 @@
 //   county — and a picture of the two highlighted digits says it faster than
 //   the paragraph can.
 //
+// THE STATE DRAWN is one the database can produce: the register is found and
+// lists both accounts, one we hold (Matches) and one we do not (Add), so the
+// outcome is Registered. An account WE hold that the register does not list
+// always comes with the high "Our account ... is not in the register" card and
+// the Not found outcome (_registry_discrepancies), so it is not drawn here.
+// "Matches" is said only when the check ran and both sides hold a value
+// (registryRowState, PRD partner-registry-gap-fill).
+//
 // A server component: the buttons carry no handlers and the screen is `inert`.
 // Labels come from ./copy.ts, keyed by aift-web message key; the partner is
 // fictional.
 
 import clsx from 'clsx'
 import type { Locale } from '@/lib/i18n'
+import { Badge } from '@/components/catalyst/badge'
 import { Button } from '@/components/catalyst/button'
 import { Subheading } from '@/components/catalyst/heading'
 import { Text } from '@/components/catalyst/text'
@@ -32,6 +41,7 @@ import { AppScreen, Figure, Pin } from '../kit'
 import {
   BANK_NAME,
   OUR_ACCOUNT,
+  OUR_BANK_NAME,
   OUR_TAX_PREFIX,
   OUR_TAX_SUFFIX,
   PARTNER_NAME,
@@ -86,8 +96,9 @@ export function RegistryPanelFigure({ locale, children }: { locale: Locale; chil
           {/* 32px above, 16px at the sides: the app's content panel pads 40px
               (SidebarLayout `lg:p-10`); this is the partners crop. */}
           <div className="bg-white px-4 pt-8 pb-4">
-            <section id="company-register" className="grid grid-cols-1 gap-x-8 gap-y-6 md:grid-cols-[1fr_2fr]">
-              <div>
+            {/* Heading above, content at the full width (page-layout-sweep). */}
+            <section id="company-register" className="space-y-6">
+              <div className="max-w-2xl">
                 <Subheading>{k('title')}</Subheading>
                 <Text className="mt-1">{k('description')}</Text>
               </div>
@@ -95,10 +106,11 @@ export function RegistryPanelFigure({ locale, children }: { locale: Locale; chil
               <div className="min-w-0 space-y-5">
                 <div
                   className="flex flex-wrap items-start justify-between gap-3 border-b border-zinc-950/5 pb-4 dark:border-white/10"
-                  data-registry-outcome="mismatch"
+                  data-registry-outcome="registered"
                 >
                   <div className="min-w-0 space-y-1">
                     <div className="flex flex-wrap items-center gap-2">
+                      <Badge color="emerald">{k('outcome_registered')}</Badge>
                       <span className="text-xs text-zinc-500">{c.rendered.checkedOn}</span>
                     </div>
                   </div>
@@ -112,17 +124,14 @@ export function RegistryPanelFigure({ locale, children }: { locale: Locale; chil
                 <div className="space-y-3" data-registry-decisions="2">
                   <p className="text-sm font-medium text-zinc-950 dark:text-white">
                     {c.rendered.decisionsHeading}
-                    {/* After the short heading, in its own empty line: `left`
-                        reached into the description column's text. */}
+                    {/* After the short heading, in its own empty line. */}
                     <Pin n={1} at="right" cancel="" />
                   </p>
 
                   <div className="rounded-lg border border-zinc-950/10 p-4 dark:border-white/10" data-decision="moved">
                     <div className="flex flex-wrap items-center gap-2">
                       <p className="text-sm font-semibold text-zinc-950 dark:text-white">{k('card.moved_title')}</p>
-                      <span className="inline-flex items-center gap-x-1.5 rounded-md px-1.5 py-0.5 text-sm/5 font-medium sm:text-xs/5 forced-colors:outline bg-amber-400/20 text-amber-700 dark:bg-amber-400/10 dark:text-amber-400">
-                        {k('severity.high')}
-                      </span>
+                      <Badge color="amber">{k('severity.high')}</Badge>
                       <Pin n={2} at="right" cancel="-ml-2" />
                     </div>
                     <Text className="mt-1 text-xs">{k('card.moved_why')}</Text>
@@ -142,9 +151,7 @@ export function RegistryPanelFigure({ locale, children }: { locale: Locale; chil
                   >
                     <div className="flex flex-wrap items-center gap-2">
                       <p className="text-sm font-semibold text-zinc-950 dark:text-white">{c.rendered.accountsTitle}</p>
-                      <span className="inline-flex items-center gap-x-1.5 rounded-md px-1.5 py-0.5 text-sm/5 font-medium sm:text-xs/5 forced-colors:outline bg-sky-500/15 text-sky-700 dark:bg-sky-500/10 dark:text-sky-300">
-                        {k('severity.info')}
-                      </span>
+                      <Badge color="sky">{k('severity.info')}</Badge>
                     </div>
                     <Text className="mt-1 text-xs">{k('card.accounts_why')}</Text>
                     <div className="mt-3 flex flex-wrap gap-2">
@@ -176,7 +183,7 @@ export function RegistryPanelFigure({ locale, children }: { locale: Locale; chil
                       </span>
                     </div>
 
-                    {/* Name: the one row that agrees. */}
+                    {/* Name: agrees. */}
                     <div role="row" data-registry-row="name" className={ROW}>
                       <span role="rowheader" className={ROW_HEADER}>
                         {k('field_legal_name')}
@@ -250,7 +257,7 @@ export function RegistryPanelFigure({ locale, children }: { locale: Locale; chil
                       </span>
                       <span role="cell" className={CELL}>
                         <span className={CELL_LABEL}>{k('table.ours')}</span>
-                        <span className="text-zinc-400 italic dark:text-zinc-500">{k('table.none')}</span>
+                        <span className="italic text-zinc-400">{k('table.none')}</span>
                       </span>
                       <span role="cell" className={CELL}>
                         <span className={CELL_LABEL}>{k('table.register')}</span>
@@ -273,8 +280,9 @@ export function RegistryPanelFigure({ locale, children }: { locale: Locale; chil
                       </span>
                     </div>
 
-                    {/* An account we hold that the register does not list. */}
-                    <div role="row" data-registry-row="our-account" className={ROW}>
+                    {/* An account both sides hold: the one row that says Matches,
+                        because the check ran and both sides hold a value. */}
+                    <div role="row" data-registry-row="held-account" className={ROW}>
                       <span role="rowheader" className={ROW_HEADER} />
                       <span role="cell" className={CELL}>
                         <span className={CELL_LABEL}>{k('table.ours')}</span>
@@ -282,7 +290,12 @@ export function RegistryPanelFigure({ locale, children }: { locale: Locale; chil
                       </span>
                       <span role="cell" className={CELL}>
                         <span className={CELL_LABEL}>{k('table.register')}</span>
-                        <span className="text-zinc-400 italic dark:text-zinc-500">{k('table.none')}</span>
+                        <span>
+                          <span className="font-mono text-xs">{OUR_ACCOUNT}</span>
+                          <span className="block text-xs text-zinc-500">
+                            {OUR_BANK_NAME} · {c.rendered.ourAccountSince}
+                          </span>
+                        </span>
                       </span>
                       <span role="cell" className={ACTION_CELL}>
                         <span className="text-xs text-emerald-700 dark:text-emerald-400">{k('table.matches')}</span>
@@ -294,6 +307,12 @@ export function RegistryPanelFigure({ locale, children }: { locale: Locale; chil
                       and not focusable, which the figure requires. */}
                   <a className="mt-2 inline-block text-xs text-zinc-500 underline">{k('action.go_to_bank_accounts')}</a>
                 </div>
+
+                {/* Company details, folded, as the app shows it for any company the
+                    register found. */}
+                <details className="border-t border-zinc-950/5 pt-3 text-sm dark:border-white/10">
+                  <summary className="cursor-pointer font-medium text-zinc-950 dark:text-white">{k('details_heading')}</summary>
+                </details>
               </div>
             </section>
           </div>
