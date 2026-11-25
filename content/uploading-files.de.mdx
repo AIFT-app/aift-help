@@ -59,7 +59,7 @@ Sobald ein Upload beginnt, erscheint in der **unteren rechten Ecke** ein Fenster
 | **Verarbeitet; keine Rechnung, sondern: …** | Die Datei ist keine Rechnung (etwa ein Vertrag oder eine Zahlungsmitteilung), wurde aber wie gewohnt verarbeitet. |
 | **Fertig · N Transaktionen (M zusammengeführt)** | Ein Kontoauszug ist fertig. Klicken Sie auf die Zeile, um ihn zu öffnen. |
 | **Fertig mit Fehlern · Details prüfen** | Ein Kontoauszug ist fertig geworden, einzelne Seiten aber nicht. Öffnen Sie ihn, um zu sehen, welche. |
-| **Bereits vorhanden** | Genau diese Datei liegt bereits im Arbeitsbereich. Klicken Sie auf die Zeile, um das Original zu öffnen. |
+| **Bereits hochgeladen: …** | Genau diese Datei liegt bereits im Arbeitsbereich. Die Zeile nennt das Original mit seiner Rechnungsnummer (oder seinem Dateinamen, solange es keine hat). Klicken Sie auf die Zeile, um es zu öffnen. |
 | **Abgebrochen** | Der Kontoauszug wurde während der Verarbeitung verworfen. |
 | Eine rote Zeile | Etwas ist schiefgelaufen. Siehe [Wenn ein Upload fehlschlägt](#wenn-ein-upload-fehlschlägt). |
 
@@ -90,13 +90,15 @@ Erneut versuchen hilft bei einem vorübergehenden Problem. Es hilft nicht, wenn 
 
 ## Duplikate
 
-Wenn Sie eine Rechnung hochladen, vergleicht AI Finance Team die Datei mit dem, was der Arbeitsbereich bereits enthält. **Eine identische Datei** ergibt eine Zeile **Bereits vorhanden**, die auf das Original verweist.
+Wenn Sie eine Rechnung hochladen, vergleicht AI Finance Team die Datei mit dem, was der Arbeitsbereich bereits enthält. **Eine identische Datei** ergibt eine Zeile **Bereits hochgeladen**, die das Original nennt und öffnet.
+
+Eine archivierte Rechnung zählt nicht. Laden Sie die Datei einer Rechnung, die Sie archiviert haben, erneut hoch, entsteht eine neue Rechnung, die erneut gelesen wird, als wäre sie nie hochgeladen worden. Die archivierte bleibt archiviert. Die Upload-Zeile zeigt dann **Extrahiert, aber zuvor archiviert**, und die neue Rechnung nennt, wann und warum die frühere archiviert wurde, mit einem Link darauf, sodass Sie auch die neue archivieren können, wenn der Grund weiterhin gilt.
 
 Verglichen wird die Datei selbst, nicht ihr Inhalt. Ein zweiter Scan oder ein erneuter Export derselben Rechnung wird hier also nicht erkannt. Solche Fälle werden später an der Rechnung als mögliche Duplikate gefunden. Kontoauszüge werden beim Upload überhaupt nicht geprüft.
 
 Liegt dieselbe Datei in einem Vorgang zweimal vor, wird die zweite Kopie stillschweigend verworfen.
 
-Eine Datei mit mehreren Rechnungen zählt hier als eine Datei: Laden Sie sie erneut hoch, erhalten Sie eine Zeile **Bereits vorhanden** und keinen zweiten Satz Rechnungen.
+Eine Datei mit mehreren Rechnungen zählt hier als eine Datei: Laden Sie sie erneut hoch, erhalten Sie eine Zeile **Bereits hochgeladen** und keinen zweiten Satz Rechnungen.
 
 ## Mehrere Rechnungen in einer Datei
 
@@ -176,7 +178,7 @@ Nach dem Hochladen:
 - **Nur die Teile werden hochgeladen**, nie der ursprüngliche Stapel. Jeder Teil wird eine eigene PDF mit den Seiten im Namen: `Belege_p05.pdf` oder `Belege_p05-06.pdf`. Braucht Ihre Aufbewahrung den gescannten Originalstapel, bewahren Sie ihn in Ihren eigenen Unterlagen auf.
 - **Das Upload-Fenster zeigt eine Zeile pro Quell-PDF** mit dem Fortschritt der Teile: **In Warteschlange**, **Hochladen · 12/41**, **Extrahieren · 30/41** und am Ende **41 Rechnungen extrahiert**. Ein fehlgeschlagener Teil bekommt eine eigene Zeile unter seiner Gruppe, mit **Erneut versuchen**.
 - **Teile werden mit höchstens 50 pro Minute hochgeladen**, 300 Belege dauern also etwa sechs Minuten. Solange noch Teile warten, fragt Ihr Browser beim Schließen des Tabs nach, und ein Wechsel des Arbeitsbereichs öffnet **Noch nicht alle Teile hochgeladen**. Sobald alle Teile hochgeladen sind, geht das Lesen auf unseren Servern weiter, und Sie können den Tab schließen.
-- **Teilen Sie denselben Stapel zweimal auf**, sind die Teile byte-gleich, und der zweite Upload zeigt **Bereits vorhanden**. Eine gescannte Kopie eines Belegs (ein Kopieblatt im Stapel) wird nach dem Lesen als Duplikat erkannt, wenn Nummer, Datum und Betrag übereinstimmen. Die Abrechnung zählt sie nicht doppelt.
+- **Teilen Sie denselben Stapel zweimal auf**, sind die Teile byte-gleich, und der zweite Upload zeigt **Bereits hochgeladen**. Eine gescannte Kopie eines Belegs (ein Kopieblatt im Stapel) wird nach dem Lesen als Duplikat erkannt, wenn Nummer, Datum und Betrag übereinstimmen. Die Abrechnung zählt sie nicht doppelt.
 
 | Grenze | Wert |
 |---|---|
