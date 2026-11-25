@@ -1,6 +1,7 @@
 // The partner's Rules tab, for the fixed-payment-method article.
 //
-// Rebuilt 1:1 from aift-web (origin/main, 2026-09-23), class for class:
+// Rebuilt 1:1 from aift-web (origin/main, 2026-09-23; the tab bar re-copied from
+// origin/staging 2026-11-25 for partner-bank-accounts-tab), class for class:
 //   the page chrome  src/app/(app)/workspaces/[workspaceId]/master-data/
 //                    partners/[partnerId]/layout.tsx (+ _components/
 //                    PartnerDetailTabs.tsx)
@@ -14,6 +15,7 @@ export const UI_KEYS = [
   'master_data.partners.tabs.partner',
   'master_data.partners.tabs.rules',
   'master_data.partners.tabs.recognition',
+  'master_data.partners.tabs.bank_accounts',
   'master_data.partners.tabs.history',
   'master_data.partners.tabs.messages',
   'master_data.partners.fixed_payment_method.heading',
@@ -28,6 +30,7 @@ export const UI_KEYS = [
   'master_data.partners.fixed_payment_method.forward_only_help',
   'master_data.partners.fixed_payment_method.save',
   'master_data.partners.detail.reset',
+  'master_data.partners.detail.merge_into',
   'master_data.partners.detail.chip_payment_method',
   'nav.master_data.partners',
 ] as const
@@ -38,7 +41,7 @@ type Copy = { ui: Record<UiKey, string>; rendered: { chip: string }; help: { alt
 
 /** Fictional partner, as the house rule requires. */
 export const PARTNER = 'Gearmont Fleet Services Ltd.'
-export const TABS = ['partner', 'rules', 'recognition', 'history', 'messages'] as const
+export const TABS = ['partner', 'rules', 'recognition', 'bank_accounts', 'history', 'messages'] as const
 export const METHODS = ['transfer', 'card', 'cash', 'voucher', 'other'] as const
 /** The rule the article's worked example sets. */
 export const SELECTED = 'card'
@@ -49,6 +52,7 @@ const en: Copy = {
     'master_data.partners.tabs.partner': "Partner",
     'master_data.partners.tabs.rules': "Rules",
     'master_data.partners.tabs.recognition': "Recognition",
+    'master_data.partners.tabs.bank_accounts': "Bank accounts",
     'master_data.partners.tabs.history': "History",
     'master_data.partners.tabs.messages': "Messages",
     'master_data.partners.fixed_payment_method.heading': "Fixed payment method",
@@ -63,6 +67,7 @@ const en: Copy = {
     'master_data.partners.fixed_payment_method.forward_only_help': "Some suppliers report a card payment as cash, which closes the invoice and keeps it out of matching. Only invoices that arrive after you save this will use it. Invoices already in the system stay as they are. Correct those one by one on the invoice itself.",
     'master_data.partners.fixed_payment_method.save': "Save",
     'master_data.partners.detail.reset': "Reset",
+    'master_data.partners.detail.merge_into': "Merge into…",
     'master_data.partners.detail.chip_payment_method': "Payment: {method}",
     'nav.master_data.partners': "Partners",
   },
@@ -75,6 +80,7 @@ const hu: Copy = {
     'master_data.partners.tabs.partner': "Partner",
     'master_data.partners.tabs.rules': "Szabályok",
     'master_data.partners.tabs.recognition': "Felismerés",
+    'master_data.partners.tabs.bank_accounts': "Bankszámlák",
     'master_data.partners.tabs.history': "Előzmények",
     'master_data.partners.tabs.messages': "Üzenetek",
     'master_data.partners.fixed_payment_method.heading': "Rögzített fizetési mód",
@@ -89,6 +95,7 @@ const hu: Copy = {
     'master_data.partners.fixed_payment_method.forward_only_help': "Egyes szállítók a bankkártyás fizetést készpénzként jelentik, ami lezárja a számlát és kihagyja a párosításból. Csak a mentés után beérkező számlákra érvényes. A rendszerben már meglévő számlák változatlanok maradnak. Azokat egyesével javítsd magán a számlán.",
     'master_data.partners.fixed_payment_method.save': "Mentés",
     'master_data.partners.detail.reset': "Visszaállítás",
+    'master_data.partners.detail.merge_into': "Összevonás másikkal…",
     'master_data.partners.detail.chip_payment_method': "Fizetés: {method}",
     'nav.master_data.partners': "Partnerek",
   },
@@ -101,6 +108,7 @@ const de: Copy = {
     'master_data.partners.tabs.partner': "Partner",
     'master_data.partners.tabs.rules': "Regeln",
     'master_data.partners.tabs.recognition': "Erkennung",
+    'master_data.partners.tabs.bank_accounts': "Bankkonten",
     'master_data.partners.tabs.history': "Verlauf",
     'master_data.partners.tabs.messages': "Nachrichten",
     'master_data.partners.fixed_payment_method.heading': "Feste Zahlungsart",
@@ -115,6 +123,7 @@ const de: Copy = {
     'master_data.partners.fixed_payment_method.forward_only_help': "Manche Lieferanten melden eine Kartenzahlung als Barzahlung, wodurch die Rechnung geschlossen und vom Abgleich ausgenommen wird. Gilt nur für Rechnungen, die nach dem Speichern eingehen. Bereits vorhandene Rechnungen bleiben unverändert. Korrigieren Sie diese einzeln auf der Rechnung selbst.",
     'master_data.partners.fixed_payment_method.save': "Speichern",
     'master_data.partners.detail.reset': "Zurücksetzen",
+    'master_data.partners.detail.merge_into': "Zusammenführen mit…",
     'master_data.partners.detail.chip_payment_method': "Zahlung: {method}",
     'nav.master_data.partners': "Partner",
   },

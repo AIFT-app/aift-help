@@ -52,15 +52,20 @@ Banki díjnak vagy kamatnak nincs partnere: válassza a választó tetején a **
 
 ## A partner oldala
 
-Kattintson egy partner nevére az oldala megnyitásához. A fejléc csipekkel mutatja a partnerre beállított szabályokat, például **Rögzített számlakategória** vagy **Mindig ezt értékesíti**, és itt található az **Összevonás másikkal…** gomb is. Az oldalnak öt füle van: **Partner**, **Szabályok**, **Felismerés**, **Előzmények** és **Üzenetek**.
+Kattintson egy partner nevére az oldala megnyitásához. A fejléc csipekkel mutatja a partnerre beállított szabályokat, például **Rögzített számlakategória** vagy **Mindig ezt értékesíti**, és itt található az **Összevonás másikkal…** gomb is. Az oldalnak hat füle van: **Partner**, **Szabályok**, **Felismerés**, **Bankszámlák**, **Előzmények** és **Üzenetek**.
 
 <PartnerRecognitionFigure>
-Egy partner **Felismerés** füle. A számok az alábbi listának felelnek meg. A partner, a nevei és a bankszámlái példák.
+Egy partner **Felismerés** füle. A számok az alábbi listának felelnek meg. A partner és a nevei példák.
 </PartnerRecognitionFigure>
 
 1. A fülek.
 2. Az **Alternatív nevek**, **auto** vagy **manuális** jelöléssel.
 3. A **Névminták**, és az **Illeszkedő partnerek összekapcsolása most** a már meglévő nevekhez.
+
+<PartnerBankAccountsFigure>
+Ugyanennek a partnernek a **Bankszámlák** füle. A számozás a fenti listát folytatja. A bankszámlák példák.
+</PartnerBankAccountsFigure>
+
 4. Egy **Nincs megerősítve** állapotú bankszámla a **Megerősítés** gombbal.
 5. Egy megerősített bankszámla.
 
@@ -77,7 +82,9 @@ Az **Alternatív nevek** felsorolja az összes többi nevet, amelyen a partnert 
 
 A **Névminták** az alkalomról alkalomra változó neveket kapják el, például a kártyakivonatokon, ahol a kereskedő neve hivatkozást is tartalmaz: a `LinkedIn*` a „LinkedIn*P3035867117” és a „LinkedInPreC *34952934” nevet is összekapcsolja. Egy mintában legalább négy betűnek kell állnia a `*` előtt. Gépelés közben az előnézet mutatja, hány nem hitelesített nevet kapcsolna össze, és hány tartozik más partnerekhez; az **Illeszkedő partnerek összekapcsolása most** a már meglévő neveket kapcsolja össze.
 
-A **Bankszámlák** azok a bankszámlák, amelyekre a partnernek utalnak. A számláról leolvasott, banki párosításból rögzített vagy a cégjegyzékből átvett bankszámla (ez utóbbi **a cégjegyzékből hozzáadva** jelölést kapja) csak javaslat, és **Nincs megerősítve** jelzéssel látszik, amíg egy „Jóváhagyások kezelése” jogosultsággal rendelkező személy a **Megerősítés** gombra nem kattint - vagy, egyetlen szűk esetben, amíg maga a cégjegyzék meg nem erősíti az első bankszámlát (lásd: [Szállítók ellenőrzése a cégjegyzékben](/company-register-check)). Utalási fájlba csak megerősített bankszámla kerülhet: ez a védelem a számlacsalás ellen (lásd: [Jóváhagyott számlák kifizetése](/paying-approved-invoices)). Minden bankszámla a partner banki tranzakcióinak felismerését is segíti.
+### Bankszámlák fül
+
+A **Bankszámlák** azok a bankszámlák, amelyekre a partnernek utalnak. A számláról leolvasott, banki párosításból rögzített vagy a cégjegyzékből átvett bankszámla (ez utóbbi **a cégjegyzékből hozzáadva** jelölést kapja) csak javaslat, és **Nincs megerősítve** jelzéssel látszik, amíg egy „Jóváhagyások kezelése” jogosultsággal rendelkező személy a **Megerősítés** gombra nem kattint. Egyetlen szűk esetben maga a cégjegyzék erősíti meg az első bankszámlát (lásd: [Szállítók ellenőrzése a cégjegyzékben](/company-register-check)). Utalási fájlba csak megerősített bankszámla kerülhet: ez a védelem a számlacsalás ellen (lásd: [Jóváhagyott számlák kifizetése](/paying-approved-invoices)). Minden bankszámla a partner banki tranzakcióinak felismerését is segíti.
 
 ### Szabályok fül
 
@@ -159,7 +166,7 @@ Amikor az A partnert a B partnerbe vonja össze:
 
 - az A-hoz kapcsolt minden név, alternatív név és névminta átkerül a B-hez, az A neve pedig a B alternatív neve lesz;
 - a B üres adószáma, országa és címe az A adataiból töltődik ki; ha a kettőnek eltérő az adószáma, a rendszer megkérdezi, melyiket tartsa meg;
-- az A bankszámlái **nem** másolódnak át: utána ellenőrizze a B **Felismerés** fülét;
+- az A bankszámlái **nem** másolódnak át: utána ellenőrizze a B **Bankszámlák** fülét;
 - az A rögzített egyéni kategóriái átkerülnek a B-hez; ha ugyanahhoz a listához mindkettőnek van, a B-é marad;
 - az A archiválódik, a B-re mutató hivatkozással, és az A-t érintő összes függőben lévő duplikációs javaslat elvetésre kerül.
 

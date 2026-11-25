@@ -1,9 +1,12 @@
 // The partner's Rules tab, for the fixed-payment-method article.
 //
-// Rebuilt 1:1 from aift-web (origin/main, 2026-09-23), class for class:
+// Rebuilt 1:1 from aift-web (origin/main, 2026-09-23; the page chrome re-copied
+// from origin/staging 2026-11-25 for partner-bank-accounts-tab, which added the
+// Bank accounts tab), class for class:
 //   the page chrome  src/app/(app)/workspaces/[workspaceId]/master-data/
 //                    partners/[partnerId]/layout.tsx (+ _components/
-//                    PartnerDetailTabs.tsx)
+//                    PartnerDetailTabs.tsx, _components/PartnerDetailActions.tsx,
+//                    src/components/layout/PageTitleRow.tsx)
 //   the section      [partnerId]/_components/PartnerFixedPaymentMethodSection.tsx
 // The article used to tell readers to scroll the partner page for a control
 // that has been on the Rules tab since the tabbed IA, so the tab bar is the
@@ -40,7 +43,7 @@ export function PartnerRulesFigure({ locale, children }: FigureProps) {
       'whitespace-nowrap border-b-2 px-1 pb-3 text-sm font-medium transition-colors',
       active
         ? 'border-blue-600 text-zinc-950 dark:border-blue-500 dark:text-white'
-        : 'border-transparent text-zinc-500 dark:text-zinc-400',
+        : 'border-transparent text-zinc-500 hover:border-zinc-300 hover:text-zinc-700 dark:text-zinc-400 dark:hover:border-zinc-600 dark:hover:text-zinc-200',
     )
 
   return (
@@ -71,6 +74,10 @@ export function PartnerRulesFigure({ locale, children }: FigureProps) {
                     <Badge color="zinc">{c.rendered.chip}</Badge>
                     <Pin n={3} at="right" cancel="" />
                   </div>
+                </div>
+                {/* PartnerDetailActions: an ordinary, active partner can be merged. */}
+                <div className="flex max-w-full flex-wrap items-center gap-2">
+                  <Button plain>{ui['master_data.partners.detail.merge_into']}</Button>
                 </div>
               </div>
 

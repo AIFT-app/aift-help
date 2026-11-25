@@ -52,15 +52,20 @@ Bankgebühren und Zinsen haben keinen Partner: Wählen Sie oben in der Auswahl *
 
 ## Die Partnerseite
 
-Klicken Sie auf den Namen eines Partners, um seine Seite zu öffnen. Die Kopfzeile zeigt Chips für die daran gesetzten Regeln, etwa **Feste Rechnungskategorie** oder **Verkauft immer**, sowie **Zusammenführen mit…**. Die Seite hat fünf Reiter: **Partner**, **Regeln**, **Erkennung**, **Verlauf** und **Nachrichten**.
+Klicken Sie auf den Namen eines Partners, um seine Seite zu öffnen. Die Kopfzeile zeigt Chips für die daran gesetzten Regeln, etwa **Feste Rechnungskategorie** oder **Verkauft immer**, sowie **Zusammenführen mit…**. Die Seite hat sechs Reiter: **Partner**, **Regeln**, **Erkennung**, **Bankkonten**, **Verlauf** und **Nachrichten**.
 
 <PartnerRecognitionFigure>
-Der Reiter **Erkennung** eines Partners. Die Nummern entsprechen der Liste darunter. Der Partner, seine Namen und Konten sind Beispiele.
+Der Reiter **Erkennung** eines Partners. Die Nummern entsprechen der Liste darunter. Der Partner und seine Namen sind Beispiele.
 </PartnerRecognitionFigure>
 
 1. Die Reiter.
 2. **Alternative Namen**, markiert mit **auto** oder **manuell**.
 3. **Namensmuster** und **Passende Gegenparteien jetzt verknüpfen** für die bereits vorhandenen Namen.
+
+<PartnerBankAccountsFigure>
+Der Reiter **Bankkonten** desselben Partners. Die Nummern setzen die Liste oben fort. Die Konten sind Beispiele.
+</PartnerBankAccountsFigure>
+
 4. Ein Bankkonto mit **Nicht bestätigt** und der Schaltfläche **Bestätigen**.
 5. Ein bestätigtes Bankkonto.
 
@@ -77,7 +82,9 @@ Der Reiter **Erkennung** eines Partners. Die Nummern entsprechen der Liste darun
 
 **Namensmuster** erfassen Namen, die sich jedes Mal ändern, etwa auf Kartenabrechnungen, bei denen der Händlername eine Referenz enthält: `LinkedIn*` verknüpft sowohl „LinkedIn*P3035867117“ als auch „LinkedInPreC *34952934“. Ein Muster braucht mindestens vier Buchstaben vor dem `*`. Während Sie tippen, zeigt die Vorschau, wie viele nicht verifizierte Namen es verknüpfen würde und wie viele zu anderen Partnern gehören; **Passende Gegenparteien jetzt verknüpfen** verknüpft die bereits vorhandenen.
 
-**Bankkonten** sind die Konten, auf die an den Partner gezahlt wird. Ein Konto, das von einer Rechnung gelesen, aus einer Bankzuordnung erfasst oder **aus dem Firmenregister übernommen** wurde, ist ein Vorschlag und wird als **Nicht bestätigt** angezeigt, bis eine Person mit der Berechtigung „Freigaben verwalten“ auf **Bestätigen** klickt - oder, in einem einzigen, engen Fall, das Register das erste Konto selbst bestätigt (siehe [Lieferanten im Firmenregister prüfen](/company-register-check)). Nur ein bestätigtes Konto kann in eine Zahlungsdatei aufgenommen werden: Das ist die Kontrolle gegen Rechnungsbetrug (siehe [Freigegebene Rechnungen bezahlen](/paying-approved-invoices)). Jedes Konto hilft außerdem, die Banktransaktionen des Partners zu erkennen.
+### Reiter Bankkonten
+
+**Bankkonten** sind die Konten, auf die an den Partner gezahlt wird. Ein Konto, das von einer Rechnung gelesen, aus einer Bankzuordnung erfasst oder **aus dem Firmenregister übernommen** wurde, ist ein Vorschlag und wird als **Nicht bestätigt** angezeigt, bis eine Person mit der Berechtigung „Freigaben verwalten“ auf **Bestätigen** klickt. In einem einzigen, engen Fall bestätigt das Register das erste Konto selbst (siehe [Lieferanten im Firmenregister prüfen](/company-register-check)). Nur ein bestätigtes Konto kann in eine Zahlungsdatei aufgenommen werden: Das ist die Kontrolle gegen Rechnungsbetrug (siehe [Freigegebene Rechnungen bezahlen](/paying-approved-invoices)). Jedes Konto hilft außerdem, die Banktransaktionen des Partners zu erkennen.
 
 ### Reiter Regeln
 
@@ -159,7 +166,7 @@ Wenn Partner A mit Partner B zusammengeführt wird und B bestehen bleibt:
 
 - jeder mit A verknüpfte Name, alternative Name und jedes Namensmuster geht auf B über, und der Name von A wird ein alternativer Name von B;
 - eine leere Steuernummer, ein leeres Land und eine leere Adresse von B werden aus A ergänzt; haben die beiden unterschiedliche Steuernummern, werden Sie gefragt, welche Sie behalten;
-- die Bankkonten von A werden **nicht** kopiert: Prüfen Sie danach den Reiter **Erkennung** von B;
+- die Bankkonten von A werden **nicht** kopiert: Prüfen Sie danach den Reiter **Bankkonten** von B;
 - die festen eigenen Kategorien von A gehen auf B über; haben beide eine für dieselbe Liste, bleibt die von B;
 - A wird mit einem Verweis auf B archiviert, und alle ausstehenden Duplikatvorschläge, die A betreffen, werden verworfen.
 
