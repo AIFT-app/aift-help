@@ -27,7 +27,7 @@ Vagyis ha a Főkönyv egy forgalmas hónapban szinte üresnek látszik, az álta
 
 Az érdemi munka az első három fülön folyik. A **Cégek** és a **Partnerek** nyilvántartási listák: nincs szűrősávjuk, nincs keresőmezőjük, és a soraik nem nyitnak meg semmit. Az első három fülön viszont a sor hivatkozás, a számlára vagy a tranzakcióra.
 
-Duplikátumok és elutasított számlák soha nem jelennek meg, egyetlen fülön és egyetlen exportban sem.
+Duplikátumok, archivált és **Nem könyvelendő** jelöléssel félretett számlák soha nem jelennek meg, egyetlen fülön és egyetlen exportban sem.
 
 ### Egy szűrő nem ugyanazt jelenti minden fülön
 
@@ -118,9 +118,9 @@ Beállított programnál a számla minden átadást megjegyez: minden RLB és Pr
 | **Átadás után módosult** | Az utolsó átadás után megváltozott az összeg, egy dátum, a partner vagy egy tételsor kategóriája vagy ÁFA-kódja, ezért újra át kell adni |
 | **Visszaigazolva** | A program visszajelezte a könyvelést: az RLB, amikor az OSA-nyilvántartása összeköti a számlát és naplósorszámot ad neki, a Business Central, amikor egy újraküldés lekönyvelve találja a bizonylatot. A HessynKettős és a Profit soha nem igazol vissza |
 
-Az AI Finance Team azt tudja, mit adott át, azt nem, mi van lekönyvelve, ezért egyetlen számla sem „Könyvelve”. A Business Central az AI Finance Teamtől csak bejövő számlát kap, a HessynKettős fájlba pedig csak kimenő kerül. A másik irányú számla ott is Átadandó, amíg kézzel átadottnak nem jelöli (lásd lent). A számla **Jóváhagyások** kártyája mutatja az utolsó átadást, azt, hogy módosult-e azóta, és a visszaigazolást a bizonyítékával.
+Az AI Finance Team azt tudja, mit adott át, azt nem, mi van lekönyvelve, ezért egyetlen számla sem „Könyvelve”. A Business Central az AI Finance Teamtől csak bejövő számlát kap, a HessynKettős fájlba pedig csak kimenő kerül. A másik irányú számla ott is Átadandó, amíg kézzel átadottnak nem jelöli, vagy Nem könyvelendőként félre nem teszi (lásd lent). A számla **Jóváhagyások** kártyája mutatja az utolsó átadást, azt, hogy módosult-e azóta, és a visszaigazolást a bizonyítékával.
 
-A más úton átadott számlát a saját oldalán veheti le a listáról: a **Teendők elfogadása** alatt jelölje be a **Kézzel átadva** sort, ha szeretné, írjon megjegyzést, és fogadja el; ehhez a **„Könyvelési exportok futtatása”** jogosultság kell. Az előzményekben megjelenik. Bekapcsolt könyvelési jóváhagyásnál a **Nem könyvelendő: Már könyvelve** ugyanezt teszi. A nyilvántartás indulása előtti átadásokat az exportok előzményeiből olvassuk ki, a HessynKettősnél azonban csak 2026. október 12-től; a korábbiakat ugyanígy veheti le.
+A más úton átadott számlát a saját oldalán veheti le a listáról: a **Teendők elfogadása** alatt jelölje be a **Kézzel átadva** sort, ha szeretné, írjon megjegyzést, és fogadja el; ehhez a **„Könyvelési exportok futtatása”** jogosultság kell. Az előzményekben megjelenik. Bekapcsolt könyvelési jóváhagyásnál a **Nem könyvelendő** döntés is leveszi a számlát a listáról, bármi az indoka: **Már könyvelve**, ha a számlát kézzel lekönyvelték a könyvelőprogramban, **Eladási számla**, ha kimenő számla, amelyet nem innen könyvelnek, például egy Business Central munkaterület kimenő számlája. Lásd: [Iktatási és könyvelési jóváhagyás](/filing-and-bookkeeping-approval#nem-könyvelendő-ellenőrizve-de-nem-könyvelve). A nyilvántartás indulása előtti átadásokat az exportok előzményeiből olvassuk ki, a HessynKettősnél azonban csak 2026. október 12-től; a korábbiakat ugyanígy veheti le.
 
 ### RLB
 
@@ -205,7 +205,7 @@ Néhány számla kimarad, és az oldal minden export után megmondja, hány:
 - **a készpénzes számlák**: ez a verzió csak az átutalásos számlákat exportálja;
 - **a helyesbítő számlák**: ezeket kézzel könyvelje a HessynKettősben.
 
-Az a tételsor, amelynek kategóriájának nincs **Kódja**, bekerül, és a HessynKettős a napló alapértelmezett számlájára könyveli; ezeket is megszámolja az oldal. Duplikátum és elutasított számla soha nem kerül bele. A fájlba került minden számla előzményeiben megjelenik egy bejegyzés, de semmi nem akadályozza meg, hogy újra exportálja. Egy export legfeljebb 50 000 számlát vesz fel.
+Az a tételsor, amelynek kategóriájának nincs **Kódja**, bekerül, és a HessynKettős a napló alapértelmezett számlájára könyveli; ezeket is megszámolja az oldal. Duplikátum, archivált és Nem könyvelendőként félretett számla soha nem kerül bele. A fájlba került minden számla előzményeiben megjelenik egy bejegyzés, de semmi nem akadályozza meg, hogy újra exportálja. Egy export legfeljebb 50 000 számlát vesz fel.
 
 ### Eurosoft Profit
 
