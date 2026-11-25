@@ -22,14 +22,17 @@ export const UI_KEYS = [
   'list_view.col_labels',
   'list_view.col_amount',
   'invoices.labels.overflow_more',
-  'invoices.labels.nav',
+  'invoices.labels.source_nav',
+  'invoices.labels.source_document',
+  'invoices.labels.source_both',
+  'invoices.labels.source_nav_only',
+  'invoices.labels.source_document_only',
   'invoices.labels.review',
   'invoices.labels.entity_needed',
   'invoices.labels.pick_direction',
   'invoices.labels.fx_pending',
   'invoices.labels.duplicate',
   'invoices.labels.unverified',
-  'invoices.labels.no_document',
   'invoices.labels.vat_incomplete',
   'invoices.labels.storno_cancelled',
   'invoices.labels.awaiting_approval',
@@ -44,14 +47,12 @@ export const UI_KEYS = [
 export type UiKey = (typeof UI_KEYS)[number]
 
 export type LabelKey =
-  | 'nav'
   | 'review'
   | 'entity_needed'
   | 'pick_direction'
   | 'fx_pending'
   | 'duplicate'
   | 'unverified'
-  | 'no_document'
   | 'vat_incomplete'
   | 'storno_cancelled'
   | 'awaiting_approval'
@@ -59,14 +60,12 @@ export type LabelKey =
 
 // aift-web invoices/_components/invoice-row.ts resolveInvoiceLabels tones.
 export const LABEL_TONE: Record<LabelKey, Tone> = {
-  nav: 'blue',
   review: 'amber',
   entity_needed: 'amber',
   pick_direction: 'blue',
   fx_pending: 'amber',
   duplicate: 'amber',
   unverified: 'zinc',
-  no_document: 'zinc',
   vat_incomplete: 'amber',
   storno_cancelled: 'zinc',
   awaiting_approval: 'amber',
@@ -80,6 +79,8 @@ export type ListRow = {
   internalId: string
   partner: string
   invoiceNumber: string
+  /** invoice-source-mark: the source mark before the labels (is_nav, has_document). */
+  sources: { nav: boolean; document: boolean }
   /** In resolveInvoiceLabels order. */
   labels: LabelKey[]
   direction: 'income' | 'expense'
@@ -122,6 +123,7 @@ function rows(amounts: [number, number, number, number], currency: string, forei
       internalId: 'DEMO-INV-2026-0214',
       partner: 'Reamwell Office Supplies Ltd.',
       invoiceNumber: 'RW-2026-1204',
+      sources: { nav: true, document: true },
       labels: ['awaiting_approval'],
       direction: 'expense',
       amount: amounts[0],
@@ -132,7 +134,8 @@ function rows(amounts: [number, number, number, number], currency: string, forei
       internalId: 'DEMO-INV-2026-0209',
       partner: 'Slatebridge Roofing Ltd.',
       invoiceNumber: 'SBR/2026/0342',
-      labels: ['unverified', 'vat_incomplete', 'no_document', 'approved', 'nav'],
+      sources: { nav: true, document: false },
+      labels: ['unverified', 'vat_incomplete', 'approved'],
       direction: 'expense',
       amount: amounts[1],
       currency,
@@ -142,6 +145,7 @@ function rows(amounts: [number, number, number, number], currency: string, forei
       internalId: 'DEMO-INV-2026-0203',
       partner: 'Quillmoor Software Ltd.',
       invoiceNumber: 'HT-2026-0217',
+      sources: { nav: false, document: true },
       labels: [],
       direction: 'income',
       amount: amounts[2],
@@ -152,6 +156,7 @@ function rows(amounts: [number, number, number, number], currency: string, forei
       internalId: 'DEMO-INV-2026-0198',
       partner: 'Gearmont Fleet Services Ltd.',
       invoiceNumber: 'GFS-26-00931',
+      sources: { nav: false, document: true },
       labels: ['review', 'fx_pending'],
       direction: 'expense',
       amount: amounts[3],
@@ -172,14 +177,17 @@ const en: Copy = {
     'list_view.col_labels': 'Labels',
     'list_view.col_amount': 'Amount',
     'invoices.labels.overflow_more': '+{count}',
-    'invoices.labels.nav': 'NAV',
+    'invoices.labels.source_nav': 'NAV',
+    'invoices.labels.source_document': 'PDF',
+    'invoices.labels.source_both': 'NAV data and PDF',
+    'invoices.labels.source_nav_only': 'NAV data only',
+    'invoices.labels.source_document_only': 'PDF only',
     'invoices.labels.review': 'Review',
     'invoices.labels.entity_needed': 'Company needed',
     'invoices.labels.pick_direction': 'Pick direction',
     'invoices.labels.fx_pending': 'FX pending',
     'invoices.labels.duplicate': 'Duplicate',
     'invoices.labels.unverified': 'Unverified',
-    'invoices.labels.no_document': 'No PDF',
     'invoices.labels.vat_incomplete': 'VAT codes incomplete',
     'invoices.labels.storno_cancelled': 'Cancelled',
     'invoices.labels.awaiting_approval': 'Awaiting approval',
@@ -230,14 +238,17 @@ const hu: Copy = {
     'list_view.col_labels': 'Címkék',
     'list_view.col_amount': 'Összeg',
     'invoices.labels.overflow_more': '+{count}',
-    'invoices.labels.nav': 'NAV',
+    'invoices.labels.source_nav': 'NAV',
+    'invoices.labels.source_document': 'PDF',
+    'invoices.labels.source_both': 'NAV adat és PDF',
+    'invoices.labels.source_nav_only': 'Csak NAV adat',
+    'invoices.labels.source_document_only': 'Csak PDF',
     'invoices.labels.review': 'Ellenőrzés',
     'invoices.labels.entity_needed': 'Cég szükséges',
     'invoices.labels.pick_direction': 'Válassz irányt',
     'invoices.labels.fx_pending': 'Árfolyam függő',
     'invoices.labels.duplicate': 'Duplikáció',
     'invoices.labels.unverified': 'Nem ellenőrzött',
-    'invoices.labels.no_document': 'Nincs PDF',
     'invoices.labels.vat_incomplete': 'Hiányos ÁFA-kódok',
     'invoices.labels.storno_cancelled': 'Sztornózva',
     'invoices.labels.awaiting_approval': 'Jóváhagyásra vár',
@@ -288,14 +299,17 @@ const de: Copy = {
     'list_view.col_labels': 'Labels',
     'list_view.col_amount': 'Betrag',
     'invoices.labels.overflow_more': '+{count}',
-    'invoices.labels.nav': 'NAV',
+    'invoices.labels.source_nav': 'NAV',
+    'invoices.labels.source_document': 'PDF',
+    'invoices.labels.source_both': 'NAV-Daten und PDF',
+    'invoices.labels.source_nav_only': 'Nur NAV-Daten',
+    'invoices.labels.source_document_only': 'Nur PDF',
     'invoices.labels.review': 'Prüfen',
     'invoices.labels.entity_needed': 'Unternehmen benötigt',
     'invoices.labels.pick_direction': 'Richtung wählen',
     'invoices.labels.fx_pending': 'FX ausstehend',
     'invoices.labels.duplicate': 'Duplikat',
     'invoices.labels.unverified': 'Nicht verifiziert',
-    'invoices.labels.no_document': 'Kein PDF',
     'invoices.labels.vat_incomplete': 'USt-Codes unvollständig',
     'invoices.labels.storno_cancelled': 'Storniert',
     'invoices.labels.awaiting_approval': 'Freigabe ausstehend',

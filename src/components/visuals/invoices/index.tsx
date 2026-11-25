@@ -21,7 +21,7 @@
 
 import clsx from 'clsx'
 import { DocumentKindGlyph } from '../DocumentKindGlyph'
-import { ChevronDownIcon, ClipboardIcon } from '@heroicons/react/16/solid'
+import { ArrowUpTrayIcon, ChevronDownIcon, ClipboardIcon } from '@heroicons/react/16/solid'
 import type { Locale } from '@/lib/i18n'
 import { Checkbox } from '@/components/catalyst/checkbox'
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@/components/catalyst/table'
@@ -117,14 +117,46 @@ function SortButton({ active, align = 'left', pin, children }: { active: boolean
   )
 }
 
-/** label-pills.tsx LabelPills. */
-function Labels({ labels, locale }: { labels: LabelKey[]; locale: Locale }) {
+/** source-mark.tsx SourceMark (sm), with AttachPdfRowAction in the empty PDF slot. */
+function SourceMark({ nav, document, locale }: { nav: boolean; document: boolean; locale: Locale }) {
   const ui = invoicesCopy[locale].ui
-  if (labels.length === 0) return <span className="text-zinc-300 dark:text-zinc-600">{EMPTY}</span>
+  const title = nav && document
+    ? ui['invoices.labels.source_both']
+    : nav ? ui['invoices.labels.source_nav_only'] : document ? ui['invoices.labels.source_document_only'] : undefined
+  const tag = (text: string) => (
+    <span className="h-4 w-7 rounded text-[9.5px] inline-flex items-center justify-center font-semibold tracking-[0.03em] text-zinc-600 ring-1 ring-zinc-300 ring-inset dark:text-zinc-300 dark:ring-zinc-600">
+      {text}
+    </span>
+  )
+  const empty = <span className="h-4 w-7 rounded text-[9.5px]" aria-hidden="true" />
+  return (
+    <span className="inline-grid shrink-0 items-center grid-cols-[1.75rem_1.75rem] gap-[3px]" title={title}>
+      {title && <span className="sr-only">{title}</span>}
+      <span aria-hidden="true" className="inline-flex">{nav ? tag(ui['invoices.labels.source_nav']) : empty}</span>
+      {document ? (
+        <span aria-hidden="true" className="inline-flex">{tag(ui['invoices.labels.source_document'])}</span>
+      ) : (
+        <span className="inline-flex">
+          <span className="relative inline-flex h-4 w-7 items-center justify-center rounded border border-dashed border-zinc-400 text-zinc-500 dark:border-zinc-500 dark:text-zinc-400">
+            <ArrowUpTrayIcon className="size-3" aria-hidden="true" />
+          </span>
+        </span>
+      )}
+    </span>
+  )
+}
+
+/** label-pills.tsx LabelPills, with the source mark as its `leading`. */
+function Labels({ labels, sources, locale }: { labels: LabelKey[]; sources: ListRow['sources']; locale: Locale }) {
+  const ui = invoicesCopy[locale].ui
+  const leading = <SourceMark nav={sources.nav} document={sources.document} locale={locale} />
+  if (labels.length === 0) return <div className="flex items-center">{leading}</div>
   const { visible, hidden } = orderLabels(labels)
   const hiddenNames = hidden.map((k) => ui[`invoices.labels.${k}`]).join(', ')
   return (
-    <div className="flex flex-wrap items-center gap-1">
+    <div className="flex items-start gap-2">
+      <span className="flex min-h-6 shrink-0 items-center">{leading}</span>
+      <div className="flex flex-wrap items-center gap-1">
       {visible.map((k) => (
         <span
           key={k}
@@ -145,6 +177,7 @@ function Labels({ labels, locale }: { labels: LabelKey[]; locale: Locale }) {
           {fill(ui['invoices.labels.overflow_more'], { count: hidden.length })}
         </span>
       )}
+      </div>
     </div>
   )
 }
@@ -223,7 +256,7 @@ function Row({ row, locale, marker, selected }: { row: ListRow; locale: Locale; 
       </TableCell>
       <TableCell>
         <div style={{ minWidth: STATUS_FLOOR }}>
-          <Labels labels={row.labels} locale={locale} />
+          <Labels labels={row.labels} sources={row.sources} locale={locale} />
         </div>
       </TableCell>
       <TableCell className={clsx('text-right', STICKY_TD)}>
@@ -366,7 +399,10 @@ export function InvoiceLifecycleFigure({ locale, children }: FigureProps) {
       art={
         <StepList
           steps={[
-            { title: l.arrives, detail: l.arrivesDetail, outcomes: [label('nav'), label('no_document')] },
+            { title: l.arrives, detail: l.arrivesDetail, outcomes: [
+              { kind: 'pill', tone: 'zinc', label: ui['invoices.labels.source_nav'] },
+              { kind: 'pill', tone: 'zinc', label: ui['invoices.labels.source_document'] },
+            ] },
             { title: l.extraction, detail: l.extractionDetail, outcomes: [label('review')] },
             { title: l.duplicates, detail: l.duplicatesDetail, outcomes: [label('duplicate')] },
             { title: l.company, detail: l.companyDetail, outcomes: [label('entity_needed'), label('pick_direction')] },
