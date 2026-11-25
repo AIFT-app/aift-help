@@ -59,7 +59,7 @@ A panel appears in the **bottom-right corner** as soon as an upload starts, with
 | **Processed; not an invoice: …** | The file is not an invoice (a contract or a payment notice, for example), but it was processed as usual. |
 | **Done · N transactions (M merged)** | A statement is done. Click the row to open it. |
 | **Done with errors · see detail** | A statement finished, but some pages did not. Open it to see which. |
-| **Already exists** | This exact file is already in the workspace. Click the row to open the original. |
+| **Already uploaded: …** | This exact file is already in the workspace. The row names the original by its invoice number (or its file name, while it has none). Click the row to open it. |
 | **Cancelled** | The statement was dismissed while it was processing. |
 | A red row | Something went wrong. See [When an upload fails](#when-an-upload-fails). |
 
@@ -90,13 +90,15 @@ Retry helps with a temporary problem. It cannot help when the reason is the docu
 
 ## Duplicates
 
-When you upload an invoice, AI Finance Team compares the file with what the workspace already holds. **An identical file** gives you an **Already exists** row pointing at the original.
+When you upload an invoice, AI Finance Team compares the file with what the workspace already holds. **An identical file** gives you an **Already uploaded** row that names the original and opens it.
+
+An archived invoice does not count. If you upload the file of an invoice you archived earlier, it becomes a new invoice and is read again, as if it had never been uploaded. The archived one stays archived.
 
 It compares the file itself, not its content, so a second scan or a re-export of the same invoice is not caught here. Those are found later, on the invoice, as possible duplicates. Bank statements are not checked on upload at all.
 
 If the same file is in one drop twice, the second copy is dropped silently.
 
-A file that held several invoices counts as one file here: uploading it again gives one **Already exists** row, and no second set of invoices.
+A file that held several invoices counts as one file here: uploading it again gives one **Already uploaded** row, and no second set of invoices.
 
 ## Several Invoices in One File
 
@@ -176,7 +178,7 @@ After the upload:
 - **Only the parts are uploaded**, never the original bundle. Each part becomes its own PDF with the pages in its name: `Tickets_p05.pdf` or `Tickets_p05-06.pdf`. If your record keeping needs the original scanned bundle, keep it in your own files.
 - **The panel shows one row per source PDF** with the parts' progress: **Queued**, **Uploading · 12/41**, **Extracting · 30/41**, and at the end **41 invoices extracted**. A part that fails gets its own row under its group, with **Retry**.
 - **Parts are uploaded at most 50 a minute**, so 300 tickets take about six minutes. While parts are still waiting, closing the tab makes your browser ask first, and switching workspace opens **Not every part is uploaded yet**. Once every part is uploaded, reading continues on our servers and you can close the tab.
-- **Splitting the same bundle twice** gives byte-identical parts, so the second upload shows **Already exists** rows. A scanned copy of a ticket (a copy sheet in the bundle) is recognised as a duplicate after reading when its number, date and amount match. Billing does not count it twice.
+- **Splitting the same bundle twice** gives byte-identical parts, so the second upload shows **Already uploaded** rows. A scanned copy of a ticket (a copy sheet in the bundle) is recognised as a duplicate after reading when its number, date and amount match. Billing does not count it twice.
 
 | Limit | Value |
 |---|---|

@@ -59,7 +59,7 @@ Amint egy feltöltés elindul, a **jobb alsó sarokban** megjelenik egy panel, f
 | **Feldolgozva; nem számla, hanem …** | A fájl nem számla (például szerződés vagy fizetési értesítő), de a szokásos módon feldolgoztuk. |
 | **Kész · N tranzakció (M egyesítve)** | Egy kivonat elkészült. Kattintson a sorra a megnyitásához. |
 | **Kész hibákkal · részletek megtekintése** | A kivonat elkészült, de néhány oldala nem. Nyissa meg, hogy lássa, melyek azok. |
-| **Már létezik** | Pontosan ez a fájl már a munkaterületen van. Kattintson a sorra az eredeti megnyitásához. |
+| **Már fent van: …** | Pontosan ez a fájl már a munkaterületen van. A sor megnevezi az eredetit a számlaszámával (vagy a fájlnevével, amíg nincs számlaszáma). Kattintson a sorra a megnyitásához. |
 | **Megszakítva** | A kivonatot a feldolgozás közben elvetették. |
 | Egy piros sor | Valami hiba történt. Lásd: [Ha egy feltöltés sikertelen](#ha-egy-feltöltés-sikertelen). |
 
@@ -90,13 +90,15 @@ Az Újra átmeneti hiba esetén segít. Nem segít, ha az ok maga a dokumentum: 
 
 ## Duplikátumok
 
-Amikor feltölt egy számlát, az AI Finance Team összeveti a fájlt azzal, ami már a munkaterületen van. **Azonos fájl** esetén **Már létezik** sort kap, amely az eredetire mutat.
+Amikor feltölt egy számlát, az AI Finance Team összeveti a fájlt azzal, ami már a munkaterületen van. **Azonos fájl** esetén **Már fent van** sort kap, amely megnevezi az eredetit, és megnyitja.
+
+Az archivált számla nem számít. Ha egy korábban archivált számla fájlját tölti fel újra, új számla lesz belőle, és a rendszer újra beolvassa, mintha még sosem töltötte volna fel. Az archivált példány archiválva marad.
 
 Magát a fájlt hasonlítja össze, nem a tartalmát, így ugyanannak a számlának egy újabb szkennelését vagy újraexportálását itt nem fogja meg. Azokat később, a számlán találja meg lehetséges duplikátumként. A bankszámlakivonatokat feltöltéskor egyáltalán nem ellenőrzi.
 
 Ha ugyanaz a fájl kétszer szerepel egy ejtésben, a második példány csendben kimarad.
 
-A több számlát tartalmazó fájl itt egy fájlnak számít: ha újra feltölti, egyetlen **Már létezik** sort kap, és nem jön létre második számlasor.
+A több számlát tartalmazó fájl itt egy fájlnak számít: ha újra feltölti, egyetlen **Már fent van** sort kap, és nem jön létre második számlasor.
 
 ## Több számla egy fájlban
 
@@ -176,7 +178,7 @@ Feltöltés után:
 - **Csak a részek töltődnek fel**, az eredeti köteg nem. Minden rész saját PDF lesz, a nevében az oldalszámmal: `Jegyek_p05.pdf` vagy `Jegyek_p05-06.pdf`. Ha az iratmegőrzéshez az eredeti szkennelt kötegre van szüksége, azt őrizze meg a saját iratai között.
 - **A panel forrásfájlonként egy sort mutat**, a részek haladásával: **Sorban**, **Feltöltés · 12/41**, **Kinyerés · 30/41**, végül **41 számla kinyerve**. Egy sikertelen rész saját sort kap a csoportja alatt, **Újra** gombbal.
 - **A részek percenként legfeljebb 50-es ütemben töltődnek fel**, így 300 jegy nagyjából hat perc. Amíg rész vár a feltöltésre, a lap bezárásakor a böngésző rákérdez, munkaterület váltásakor pedig a **Még nincs minden rész feltöltve** ablak. Miután minden rész feltöltődött, a beolvasás a szervereinken folytatódik, a lapot bezárhatja.
-- **Ha ugyanazt a köteget kétszer bontja szét**, a részek bájtra azonosak, így a második feltöltés **Már létezik** sorokat ad. Egy jegy szkennelt másolatát (a kötegben lévő másolat lapot) a beolvasás után ismeri fel duplikátumként, ha a sorszám, a dátum és az összeg egyezik. A díjazás ezt nem számolja kétszer.
+- **Ha ugyanazt a köteget kétszer bontja szét**, a részek bájtra azonosak, így a második feltöltés **Már fent van** sorokat ad. Egy jegy szkennelt másolatát (a kötegben lévő másolat lapot) a beolvasás után ismeri fel duplikátumként, ha a sorszám, a dátum és az összeg egyezik. A díjazás ezt nem számolja kétszer.
 
 | Korlát | Érték |
 |---|---|
