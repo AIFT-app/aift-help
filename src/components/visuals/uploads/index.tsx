@@ -1,13 +1,14 @@
 // The upload panel, for the uploading-files article.
 //
-// Rebuilt 1:1 from aift-web (origin/main, 2026-09-22), class for class:
+// Rebuilt 1:1 from aift-web (origin/main, 2026-09-22; the duplicate row, the
+// refused and failed rows and the header re-checked against origin/staging,
+// 2026-11-25, PRD reupload-of-archived-invoice), class for class:
 //   UploadQueuePanel   src/components/upload-queue/UploadQueuePanel.tsx
 //   UploadQueueRow     src/components/upload-queue/UploadQueueRow.tsx
 // The panel is `fixed bottom-4 right-4` in the app, so the stage below is a
 // transformed box: a transform makes it the containing block of its fixed
 // descendants, which keeps the panel's own computed styles identical to the
-// app's while placing it inside the figure. Labels come from ./copy.ts; the
-// header text ("2 uploading") is built in code by the app, not translated.
+// app's while placing it inside the figure. Labels come from ./copy.ts.
 
 import clsx from 'clsx'
 import {
@@ -20,7 +21,7 @@ import {
 import { DocumentKindGlyph } from '../DocumentKindGlyph'
 import type { Locale } from '@/lib/i18n'
 import { AppScreen, Figure } from '../kit'
-import { UPLOAD_ROWS, uploadsCopy, type UploadRow } from './copy'
+import { IN_PROGRESS_COUNT, STAGE_HEIGHT, STATEMENT_PAGE, UPLOAD_ROWS, fill, uploadsCopy, type UploadRow } from './copy'
 
 type FigureProps = { locale: Locale; children?: React.ReactNode }
 
@@ -35,18 +36,24 @@ function Row({ row, locale }: { row: UploadRow; locale: Locale }) {
   const showSpinner = row.state === 'extracting' || row.state === 'page'
   const showRetry = row.state === 'failed'
 
+  // The same branches as UploadQueueRow's useRowLabel: a duplicate names the
+  // original (`already_exists_as`), a browser refusal is an error code, and
+  // extract-invoice's English failure sentence is translated
+  // (serverErrorFromMessage) inside `failed_prefix`.
   const label =
     row.state === 'extracting'
       ? ui['upload.queue_row.extracting']
       : row.state === 'page'
-        ? c.rendered.page
+        ? fill(ui['upload.queue_row.extracting_page'], STATEMENT_PAGE)
         : row.state === 'extracted'
           ? ui['upload.queue_row.extracted']
           : row.state === 'duplicate'
-            ? ui['upload.queue_row.already_exists']
+            ? fill(ui['upload.queue_row.already_exists_as'], { invoice: row.duplicateLabel })
             : row.state === 'wrong_type'
-              ? 'Wrong file type'
-              : c.rendered.failed
+              ? ui['upload.queue_row.errors.wrong_file_type']
+              : fill(ui['upload.queue_row.failed_prefix'], {
+                  message: ui['upload.queue_row.server_errors.pdf_encrypted'],
+                })
 
   // document-kind-icons: UploadQueueRow draws the kind glyph for a document row.
   const documentKind = row.kind === 'invoice' ? 'invoice' : 'bank_statement'
@@ -114,12 +121,14 @@ function Row({ row, locale }: { row: UploadRow; locale: Locale }) {
 
 function Panel({ locale }: { locale: Locale }) {
   const c = uploadsCopy[locale]
-  const header = c.ui['upload_queue.header_with_label'].replace('{label}', c.rendered.header.split('· ')[1])
+  const header = fill(c.ui['upload_queue.header_with_label'], {
+    label: fill(c.ui['upload_queue.summary_uploading'], { count: IN_PROGRESS_COUNT }),
+  })
   return (
     <div
       className="fixed bottom-4 right-4 z-40 w-96 max-w-[calc(100vw-2rem)] overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-2xl dark:border-zinc-700 dark:bg-zinc-900"
       role="region"
-      aria-label="Upload queue"
+      aria-label={c.ui['upload_queue.region']}
     >
       <div className="flex items-center justify-between border-b border-zinc-100 bg-zinc-50 px-4 py-3 dark:border-zinc-800 dark:bg-zinc-800/60">
         <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">{header}</p>
@@ -151,7 +160,7 @@ export function UploadPanelFigure({ locale, children }: FigureProps) {
           {/* A transform makes this box the containing block of the panel,
               which is `fixed` in the app, so the panel keeps the app's own
               computed styles while sitting inside the figure. */}
-          <div className="relative h-[336px] w-full translate-x-0 bg-zinc-50">
+          <div className="relative w-full translate-x-0 bg-zinc-50" style={{ height: STAGE_HEIGHT[locale] }}>
             <Panel locale={locale} />
           </div>
         </AppScreen>
