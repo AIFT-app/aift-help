@@ -12,7 +12,7 @@ While it is in force on an invoice's VAT date:
 - **Sales are untouched.** So is every other company of the workspace, also when it buys the same thing from the same supplier.
 - **What a person set stays.** A line whose group or VAT code somebody chose by hand keeps it.
 
-The group is a system element. The app creates it the first time the switch is saved on, its code cannot be changed, its percentage is always 100%, and it is not offered when you pick a group on a line or on a partner. The AI never picks it either. It comes from the switch.
+The group is a system element. The app creates it the first time the switch is saved on, its code cannot be changed, and its percentage is always 100%. It is never offered on a partner. On a line it is offered only on a purchase invoice of this company that the setting covers, as the way back for a line someone moved to another group (see [below](#the-to-do-that-guards-the-setting)). The AI never picks it. It comes from the switch.
 
 ## Switching It On
 
@@ -28,7 +28,7 @@ Changing the switch needs the permission "Edit master data". Applying it to exis
 
 ## The VAT Codes It Needs
 
-A VAT code is the match of five elements. The switch fixes one of them, the Product / Service group. The rate and the partner VAT group still come from the invoice. So the company needs one VAT code on the reserved group **for each rate and each domestic partner group its suppliers have**: Domestic, Cash-method partner and Small-business-exempt supplier. The direction is purchase, the calculation method is Normal.
+A VAT code is the match of five elements. The switch fixes one of them, the Product / Service group. The rate and the partner VAT group still come from the invoice. So the company needs one VAT code on the reserved group **for each rate and each partner VAT group its domestic suppliers have**: Domestic, Cash-method partner, Small-business-exempt supplier, and any partner group you created yourself, an intercompany group for example. The direction is purchase, the calculation method is Normal. A code under EU or Third country, or with another calculation method, is never used: such lines wait for you, see [below](#foreign-and-reverse-charge-purchases).
 
 You do not have to work the list out. After you save, a panel under the form lists the combinations that lines need and no code carries, each with a **Create VAT code** button that opens the VAT code form already filled in. The preview described below shows the same list for the invoices it would change. Give each code the accounting-system code of your non-deductible treatment.
 
@@ -49,7 +49,7 @@ Two things to know before you apply:
 - **An approved invoice whose line changes waits for bookkeeping approval again**, as after any edit of an approved invoice. The preview says how many.
 - **AI Finance Team never edits what it has sent to Business Central.** The lines are re-coded here, and the document in Business Central keeps its posting until someone corrects it there. The preview's list is that work list.
 
-A single run covers at most **2000 invoices**. A longer history has to be done in several periods.
+A single run covers at most **2000 invoices**. A longer history has to be done in several periods. A run that takes too long is stopped and changes nothing. The dialog then says so: narrow the VAT dates, month by month for example, and run it in several parts.
 
 The company's costs rise in the reports on the day you apply: the VAT that was shown as reclaimable is now part of the cost. That is the correct figure, and worth a sentence to your client.
 
