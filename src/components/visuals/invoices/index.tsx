@@ -11,19 +11,30 @@
 //                    copyable-id.tsx, party-cell.tsx, label-pills.tsx and
 //                    label-tones.ts (orderLabelsForDisplay), amount-cell.tsx,
 //                    amount-width.ts and column-sizes.ts
-// It is the list of someone who can view but not edit invoices, so it has no
-// selection column, in a single-company workspace (no Company column) that
-// shows internal IDs. ./export.tsx reuses InvoiceTable with the selection
-// column an editor sees (recategorize-ui.tsx RowSelectCheckbox,
-// SelectAllCheckbox; column-sizes.ts SELECT_COLUMN_REM). Only the table is shown, cropped out of the invoices
-// page. When one of those files changes, re-copy the markup here. Data comes
-// from ./copy.ts and is fictional.
+//   SourceMark       src/components/list-view/source-mark.tsx (sm), with
+//                    invoices/_components/AttachPdfRowAction.tsx in the empty
+//                    PDF slot (re-copied 2026-11-25, invoice-source-mark)
+//   RowControls      invoices/_components/RowAttachControls.tsx (canAttach) and
+//                    AttachmentCount.tsx, at the end of the Amount cell, whose
+//                    column is the amount width + 5rem (InvoiceListShell.tsx)
+// It is the list of someone who can view and upload but not edit invoices
+// (upload_documents without edit_invoices, a client member's default role), so
+// it has no selection column but has the attach button in an empty PDF slot
+// and the ⋯ menu on every row; in a single-company workspace (no Company
+// column) that shows internal IDs. ./export.tsx reuses InvoiceTable with the
+// selection column an editor sees (recategorize-ui.tsx RowSelectCheckbox,
+// SelectAllCheckbox; column-sizes.ts SELECT_COLUMN_REM); an editor can upload
+// too, so the row controls are the same. Only the table is shown, cropped out
+// of the invoices page. When one of those files changes, re-copy the markup
+// here. Data comes from ./copy.ts and is fictional.
 
 import clsx from 'clsx'
 import { DocumentKindGlyph } from '../DocumentKindGlyph'
-import { ArrowUpTrayIcon, ChevronDownIcon, ClipboardIcon } from '@heroicons/react/16/solid'
+import { ArrowUpTrayIcon, ChevronDownIcon, ClipboardIcon, PaperClipIcon } from '@heroicons/react/16/solid'
+import { EllipsisHorizontalIcon } from '@heroicons/react/20/solid'
 import type { Locale } from '@/lib/i18n'
 import { Checkbox } from '@/components/catalyst/checkbox'
+import { Dropdown, DropdownButton } from '@/components/catalyst/dropdown'
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@/components/catalyst/table'
 import { fill } from '../approvals/copy'
 import { formatAmount } from '../format'
@@ -54,7 +65,7 @@ const AMOUNT_FLOW = { in: 'text-emerald-700 dark:text-emerald-400', out: 'text-r
 const TONE_PRIORITY: readonly Tone[] = ['amber', 'emerald', 'blue', 'zinc']
 
 // column-sizes.ts: the Party and invoice Status floors, the Status share.
-const PARTY_FLOOR = '11.5rem'
+const PARTY_FLOOR = '10.5rem'
 const STATUS_FLOOR = '9rem'
 const STATUS_SHARE = '20%'
 
@@ -118,7 +129,7 @@ function SortButton({ active, align = 'left', pin, children }: { active: boolean
 }
 
 /** source-mark.tsx SourceMark (sm), with AttachPdfRowAction in the empty PDF slot. */
-function SourceMark({ nav, document, locale }: { nav: boolean; document: boolean; locale: Locale }) {
+function SourceMark({ nav, document, invoiceLabel, locale }: { nav: boolean; document: boolean; invoiceLabel: string; locale: Locale }) {
   const ui = invoicesCopy[locale].ui
   const title = nav && document
     ? ui['invoices.labels.source_both']
@@ -137,8 +148,17 @@ function SourceMark({ nav, document, locale }: { nav: boolean; document: boolean
         <span aria-hidden="true" className="inline-flex">{tag(ui['invoices.labels.source_document'])}</span>
       ) : (
         <span className="inline-flex">
-          <span className="relative inline-flex h-4 w-7 items-center justify-center rounded border border-dashed border-zinc-400 text-zinc-500 dark:border-zinc-500 dark:text-zinc-400">
-            <ArrowUpTrayIcon className="size-3" aria-hidden="true" />
+          {/* AttachPdfRowAction.tsx */}
+          <span className="inline-flex shrink-0">
+            <button
+              type="button"
+              title={fill(ui['invoices.list.attach_pdf_title'], { invoice: invoiceLabel })}
+              aria-label={fill(ui['invoices.list.attach_pdf_title'], { invoice: invoiceLabel })}
+              className="relative inline-flex h-4 w-7 items-center justify-center rounded border border-dashed border-zinc-400 text-zinc-500 before:absolute before:-inset-x-2 before:-inset-y-3.5 before:content-[''] hover:border-solid hover:border-blue-500 hover:bg-blue-50 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:border-zinc-500 dark:text-zinc-400 dark:hover:border-blue-400 dark:hover:bg-blue-500/15 dark:hover:text-blue-200"
+            >
+              <ArrowUpTrayIcon className="size-3" aria-hidden="true" />
+            </button>
+            <input type="file" className="sr-only" tabIndex={-1} />
           </span>
         </span>
       )}
@@ -147,9 +167,9 @@ function SourceMark({ nav, document, locale }: { nav: boolean; document: boolean
 }
 
 /** label-pills.tsx LabelPills, with the source mark as its `leading`. */
-function Labels({ labels, sources, locale }: { labels: LabelKey[]; sources: ListRow['sources']; locale: Locale }) {
+function Labels({ labels, sources, invoiceLabel, locale }: { labels: LabelKey[]; sources: ListRow['sources']; invoiceLabel: string; locale: Locale }) {
   const ui = invoicesCopy[locale].ui
-  const leading = <SourceMark nav={sources.nav} document={sources.document} locale={locale} />
+  const leading = <SourceMark nav={sources.nav} document={sources.document} invoiceLabel={invoiceLabel} locale={locale} />
   if (labels.length === 0) return <div className="flex items-center">{leading}</div>
   const { visible, hidden } = orderLabels(labels)
   const hiddenNames = hidden.map((k) => ui[`invoices.labels.${k}`]).join(', ')
@@ -160,7 +180,7 @@ function Labels({ labels, sources, locale }: { labels: LabelKey[]; sources: List
         <span
           key={k}
           className={clsx(
-            'inline-flex items-center rounded-full px-2 py-0.5 text-[11px]/4 font-medium whitespace-nowrap',
+            'inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px]/4 font-medium whitespace-nowrap',
             LABEL_TONE_CLASSES[LABEL_TONE[k]],
           )}
         >
@@ -199,13 +219,54 @@ function CopyableId({ value, locale }: { value: string; locale: Locale }) {
   )
 }
 
+/**
+ * RowAttachControls.tsx for a viewer who may attach (canAttach): the
+ * attachment count in its two-digit slot (AttachmentCount.tsx), then the ⋯
+ * menu, closed (the figure is inert, so it never opens).
+ */
+function RowControls({ invoiceLabel, count, locale }: { invoiceLabel: string; count: number; locale: Locale }) {
+  const ui = invoicesCopy[locale].ui
+  const countLabel = fill(ui['invoices.list.attachment_count'], { count })
+  return (
+    <span className="inline-flex w-[4.75rem] shrink-0 items-center justify-end gap-1">
+      <span hidden data-row-drop="" />
+      {count > 0 ? (
+        <button
+          type="button"
+          aria-label={countLabel}
+          title={countLabel}
+          className="inline-flex w-10 h-8 shrink-0 cursor-pointer items-center justify-end gap-0.5 rounded-md pr-1 text-xs text-zinc-500 tabular-nums hover:bg-zinc-200/70 hover:text-zinc-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:text-zinc-400 dark:hover:bg-zinc-700 dark:hover:text-zinc-100"
+        >
+          <PaperClipIcon className="size-3.5 shrink-0" aria-hidden="true" />
+          <span className="text-zinc-700 dark:text-zinc-200">{count > 99 ? '99+' : count}</span>
+        </button>
+      ) : (
+        <span className="inline-block w-10 shrink-0" aria-hidden="true" />
+      )}
+      <span className="inline-flex w-8 shrink-0 justify-center">
+        <Dropdown>
+          <DropdownButton
+            as="button"
+            aria-label={fill(ui['invoices.list.row_actions'], { invoice: invoiceLabel })}
+            className="inline-flex size-8 items-center justify-center rounded-md text-zinc-500 hover:bg-zinc-200/70 hover:text-zinc-900 focus:outline-none data-focus:outline-2 data-focus:outline-blue-500 max-sm:-mx-1.5 max-sm:size-11 dark:text-zinc-400 dark:hover:bg-zinc-700 dark:hover:text-zinc-100"
+          >
+            <EllipsisHorizontalIcon className="size-5" />
+          </DropdownButton>
+        </Dropdown>
+      </span>
+      <input type="file" className="sr-only" tabIndex={-1} />
+      <input type="file" multiple className="sr-only" tabIndex={-1} />
+    </span>
+  )
+}
+
 // recategorize-ui.tsx CELL_HIT, verbatim (the selection column).
 const CELL_HIT =
   '-mx-4 -my-3 flex cursor-pointer items-center justify-center px-4 py-3 focus:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-blue-500'
 // column-sizes.ts SELECT_COLUMN_REM.
 const SELECT_COLUMN = '2.75rem'
 
-function Row({ row, locale, marker, selected }: { row: ListRow; locale: Locale; marker?: number; selected?: boolean }) {
+function Row({ row, locale, marker, selected, showIds }: { row: ListRow; locale: Locale; marker?: number; selected?: boolean; showIds: boolean }) {
   const ui = invoicesCopy[locale].ui
   const accent = row.labels.some((k) => LABEL_TONE[k] === 'amber')
   const flow = row.direction === 'income' ? 'in' : 'out'
@@ -228,9 +289,11 @@ function Row({ row, locale, marker, selected }: { row: ListRow; locale: Locale; 
             {row.issueDate}
             {marker ? <Pin n={marker} at="right" cancel="" /> : null}
           </div>
-          <div className="mt-0.5">
-            <CopyableId value={row.internalId} locale={locale} />
-          </div>
+          {showIds && (
+            <div className="mt-0.5">
+              <CopyableId value={row.internalId} locale={locale} />
+            </div>
+          )}
         </div>
       </TableCell>
       <TableCell>
@@ -254,19 +317,23 @@ function Row({ row, locale, marker, selected }: { row: ListRow; locale: Locale; 
       </TableCell>
       <TableCell>
         <div style={{ minWidth: STATUS_FLOOR }}>
-          <Labels labels={row.labels} sources={row.sources} locale={locale} />
+          <Labels labels={row.labels} sources={row.sources} invoiceLabel={row.invoiceNumber} locale={locale} />
         </div>
       </TableCell>
       <TableCell className={clsx('text-right', STICKY_TD)}>
-        {/* amount-cell.tsx AmountCell */}
-        <span className="block">
-          <span className={clsx('block whitespace-nowrap font-mono text-sm font-medium tabular-nums', AMOUNT_FLOW[flow])}>
-            <span aria-hidden="true">
-              {flow === 'in' ? '↑' : '↓'}{' '}
+        {/* InvoiceListShell.tsx amount column: AmountCell, then RowAttachControls */}
+        <div className="flex items-center justify-end gap-1">
+          {/* amount-cell.tsx AmountCell */}
+          <span className="block">
+            <span className={clsx('block whitespace-nowrap font-mono text-sm font-medium tabular-nums', AMOUNT_FLOW[flow])}>
+              <span aria-hidden="true">
+                {flow === 'in' ? '↑' : '↓'}{' '}
+              </span>
+              {formatAmount(row.amount, row.currency, locale)}
             </span>
-            {formatAmount(row.amount, row.currency, locale)}
           </span>
-        </span>
+          <RowControls invoiceLabel={row.invoiceNumber} count={row.attachments ?? 0} locale={locale} />
+        </div>
       </TableCell>
     </TableRow>
   )
@@ -275,18 +342,23 @@ function Row({ row, locale, marker, selected }: { row: ListRow; locale: Locale; 
 /**
  * The list. Without `selected` it is the list of someone who can view but not
  * edit invoices (no selection column) with the header markers 2-4; with it,
- * an editor's list with those rows ticked and no header markers.
+ * an editor's list with those rows ticked and no header markers. `showIds`
+ * false is a workspace that does not show internal IDs: no ID line under the
+ * date, the date column at its 7rem floor, and the list sorted by date
+ * (invoices/page.tsx DEFAULTS), so the date header is a plain SortableHeader.
  */
 export function InvoiceTable({
   locale,
   rows,
   selected,
   marker = { row: 0, n: 1 },
+  showIds = true,
 }: {
   locale: Locale
   rows?: ListRow[]
   selected?: boolean[]
   marker?: { row: number; n: number }
+  showIds?: boolean
 }) {
   const c = invoicesCopy[locale]
   const ui = c.ui
@@ -294,8 +366,9 @@ export function InvoiceTable({
   const headerPins = !selected
   const allOn = !!selected && selected.every(Boolean)
   const someOn = !!selected && selected.some(Boolean)
-  const amountWidth = amountColumnWidth(list.map((r) => formatAmount(r.amount, r.currency, locale)))
-  const dateIdWidth = dateIdColumnWidth(list.map((r) => r.internalId))
+  // InvoiceListShell.tsx: the longest amount plus the row controls (4.75rem) and their gap.
+  const amountWidth = `calc(${amountColumnWidth(list.map((r) => formatAmount(r.amount, r.currency, locale)))} + 5rem)`
+  const dateIdWidth = dateIdColumnWidth(showIds ? list.map((r) => r.internalId) : [])
   return (
     <>
       <style>{`.lv-table-fluid table { width: 100%; } .lv-table-fluid th, .lv-table-fluid td { vertical-align: top; } .lv-table-fluid.lv-overflowing .lv-sticky-end { box-shadow: -8px 0 8px -8px rgb(0 0 0 / 0.25); }`}</style>
@@ -312,11 +385,16 @@ export function InvoiceTable({
                 </th>
               ) : null}
               <th scope="col" style={{ width: dateIdWidth }} className={clsx(HEADER_BASE, 'text-left')}>
-                {/* invoice-list-sort: the list opens with the newest ID first. */}
-                <div className="flex flex-col items-start gap-0.5">
-                  <SortButton active={false}>{ui['list_view.col_date']}</SortButton>
-                  <SortButton active>{ui['list_view.col_id']}</SortButton>
-                </div>
+                {showIds ? (
+                  // invoice-list-sort: the list opens with the newest ID first.
+                  <div className="flex flex-col items-start gap-0.5">
+                    <SortButton active={false}>{ui['list_view.col_date']}</SortButton>
+                    <SortButton active>{ui['list_view.col_id']}</SortButton>
+                  </div>
+                ) : (
+                  // Without IDs it opens with the newest date first.
+                  <SortButton active>{ui['list_view.col_date']}</SortButton>
+                )}
               </th>
               <th scope="col" className={clsx(HEADER_BASE, 'text-left')}>
                 {/* invoice-list-sort: Partner, with the invoice number on the second line. */}
@@ -334,7 +412,8 @@ export function InvoiceTable({
               <th scope="col" style={{ width: amountWidth }} className={clsx(HEADER_BASE, 'text-right', STICKY_TH)}>
                 {headerPins ? <Pin n={4} at="left" cancel="" /> : null}
                 <SortButton active={false} align="right">
-                  {ui['list_view.col_amount']}
+                  {/* The header stands above the amount, not above the controls beside it. */}
+                  <span className="pr-20">{ui['list_view.col_amount']}</span>
                 </SortButton>
               </th>
             </tr>
@@ -347,6 +426,7 @@ export function InvoiceTable({
                 locale={locale}
                 marker={i === marker.row ? marker.n : undefined}
                 selected={selected ? selected[i] : undefined}
+                showIds={showIds}
               />
             ))}
           </TableBody>
@@ -356,10 +436,12 @@ export function InvoiceTable({
   )
 }
 
-// The table's floor (column-sizes.ts) with these IDs and amounts is about
-// 47.5rem, plus the page's 2rem padding. Below that the app scrolls the table
-// sideways; the figure is laid out at this width instead and zoomed on phones.
-const LIST_MIN_WIDTH = 800
+// The table's floor (column-sizes.ts) with these IDs and amounts and the row
+// controls is 800.02px (en; hu and de 792, measured on the real table), plus the
+// page's 2rem padding. Below that the app scrolls the table sideways; the
+// figure is laid out at this width instead and zoomed where the article column
+// is narrower (816px at a 1280px window, 98%; 848px from 1366px, 100%).
+const LIST_MIN_WIDTH = 834
 
 export function InvoiceListFigure({ locale, children }: FigureProps) {
   return (
@@ -398,8 +480,9 @@ export function InvoiceLifecycleFigure({ locale, children }: FigureProps) {
         <StepList
           steps={[
             { title: l.arrives, detail: l.arrivesDetail, outcomes: [
-              { kind: 'pill', tone: 'zinc', label: ui['invoices.labels.source_nav'] },
-              { kind: 'pill', tone: 'zinc', label: ui['invoices.labels.source_document'] },
+              // invoice-source-mark: square ring tags, not label pills.
+              { kind: 'source', label: ui['invoices.labels.source_nav'] },
+              { kind: 'source', label: ui['invoices.labels.source_document'] },
             ] },
             { title: l.extraction, detail: l.extractionDetail, outcomes: [label('review')] },
             { title: l.duplicates, detail: l.duplicatesDetail, outcomes: [label('duplicate')] },

@@ -17,9 +17,11 @@
    1024px wide; e.g. the matching page's `lg:px-8`); everywhere else they are
    Tailwind's usual media queries. The redefined variants keep their place in
    Tailwind's order (checked against the built-in output: identical apart from
-   the extra scoped rules). `max-*:` and `xl:` are not scoped: no screen uses
-   them. `pointer-fine:` likewise, so a phone does not switch on Catalyst's
-   invisible touch-target spans inside the buttons. */
+   the extra scoped rules). `max-sm:` is the mirror image: it never applies
+   inside .app-screen (the invoice list's row ⋯ button grows to a 44px tap
+   target with it on a phone). The other `max-*:` and `xl:` are not scoped: no
+   screen uses them. `pointer-fine:` always applies, so a phone does not switch
+   on Catalyst's invisible touch-target spans inside the buttons. */
 @custom-variant sm {
   @media (width >= 40rem) {
     @slot;
@@ -42,6 +44,13 @@
   }
   &:where(.app-screen, .app-screen *) {
     @slot;
+  }
+}
+@custom-variant max-sm {
+  @media (width < 40rem) {
+    &:not(:where(.app-screen, .app-screen *)) {
+      @slot;
+    }
   }
 }
 @custom-variant pointer-fine {
