@@ -12,7 +12,7 @@ Solange er am USt-Datum einer Rechnung gilt:
 - **Verkäufe bleiben unberührt.** Ebenso jede andere Gesellschaft des Arbeitsbereichs, auch wenn sie dasselbe beim selben Lieferanten kauft.
 - **Was eine Person gesetzt hat, bleibt.** Eine Position, deren Gruppe oder USt-Code jemand von Hand gewählt hat, behält sie.
 
-Die Gruppe ist ein Systemelement. Die App legt sie an, wenn der Schalter zum ersten Mal eingeschaltet gespeichert wird, ihr Code kann nicht geändert werden, ihr Prozentsatz ist immer 100 %, und sie wird nicht angeboten, wenn Sie an einer Position oder einem Partner eine Gruppe wählen. Auch die KI wählt sie nie. Sie kommt vom Schalter.
+Die Gruppe ist ein Systemelement. Die App legt sie an, wenn der Schalter zum ersten Mal eingeschaltet gespeichert wird, ihr Code kann nicht geändert werden, und ihr Prozentsatz ist immer 100 %. An einem Partner wird sie nie angeboten. An einer Position wird sie nur auf einer Einkaufsrechnung dieser Gesellschaft angeboten, für die die Einstellung gilt, als Weg zurück für eine Position, die jemand auf eine andere Gruppe gelegt hat (siehe [unten](#die-aufgabe-die-die-einstellung-absichert)). Die KI wählt sie nie. Sie kommt vom Schalter.
 
 ## Einschalten
 
@@ -28,7 +28,7 @@ Das Umstellen des Schalters braucht die Berechtigung **Stammdaten bearbeiten**. 
 
 ## Die benötigten USt-Codes
 
-Ein USt-Code ist das Zusammentreffen von fünf Elementen. Der Schalter legt eines davon fest, die Gruppe Produkt / Leistung. Satz und Partner-USt-Gruppe kommen weiterhin von der Rechnung. Die Gesellschaft braucht daher auf der reservierten Gruppe einen USt-Code **für jeden Satz und jede inländische Partnergruppe ihrer Lieferanten**: Inländisch, Ist-Versteuerung Partner und Kleinunternehmer-Lieferant. Die Richtung ist Einkauf, die Berechnungsart Normal.
+Ein USt-Code ist das Zusammentreffen von fünf Elementen. Der Schalter legt eines davon fest, die Gruppe Produkt / Leistung. Satz und Partner-USt-Gruppe kommen weiterhin von der Rechnung. Die Gesellschaft braucht daher auf der reservierten Gruppe einen USt-Code **für jeden Satz und jede Partner-USt-Gruppe ihrer inländischen Lieferanten**: Inländisch, Ist-Versteuerung Partner, Kleinunternehmer-Lieferant und jede Partnergruppe, die Sie selbst angelegt haben, zum Beispiel eine konzerninterne Gruppe. Die Richtung ist Einkauf, die Berechnungsart Normal. Ein Code unter EU oder Drittland oder mit einer anderen Berechnungsart wird nie verwendet: Solche Positionen warten auf Sie, siehe [unten](#einkäufe-aus-dem-ausland-und-mit-reverse-charge).
 
 Sie müssen die Liste nicht selbst ermitteln. Nach dem Speichern führt ein Panel unter dem Formular die Kombinationen auf, die Positionen brauchen und für die es noch keinen Code gibt, jeweils mit der Schaltfläche **USt-Code anlegen**, die das USt-Code-Formular vorausgefüllt öffnet. Die unten beschriebene Vorschau zeigt dieselbe Liste für die Rechnungen, die sie ändern würde. Geben Sie jedem Code den Code Ihrer nicht abziehbaren Behandlung im Buchhaltungsprogramm.
 
@@ -49,7 +49,7 @@ Zwei Dinge sollten Sie vor dem Anwenden wissen:
 - **Eine freigegebene Rechnung, deren Position sich ändert, wartet erneut auf die Buchungsfreigabe**, wie nach jeder Änderung einer freigegebenen Rechnung. Die Vorschau nennt die Anzahl.
 - **AI Finance Team ändert nie, was es an Business Central gesendet hat.** Die Positionen werden hier neu codiert, der Beleg in Business Central behält seine Buchung, bis ihn dort jemand korrigiert. Die Liste der Vorschau ist diese Arbeitsliste.
 
-Ein einzelner Lauf umfasst höchstens **2000 Rechnungen**. Eine längere Historie muss in mehreren Zeiträumen erledigt werden.
+Ein einzelner Lauf umfasst höchstens **2000 Rechnungen**. Eine längere Historie muss in mehreren Zeiträumen erledigt werden. Ein Lauf, der zu lange dauert, wird abgebrochen und ändert nichts. Der Dialog sagt das dann: Grenzen Sie die USt-Daten ein, zum Beispiel monatsweise, und führen Sie den Lauf in mehreren Teilen aus.
 
 Am Tag des Anwendens steigen die Aufwendungen der Gesellschaft in den Auswertungen: Die bisher als erstattungsfähig gezeigte Vorsteuer ist nun Teil des Aufwands. Das ist die richtige Zahl und einen Satz an Ihren Mandanten wert.
 

@@ -12,7 +12,7 @@ Amíg egy számla ÁFA-dátumán érvényben van:
 - **Az értékesítések változatlanok.** Ugyanígy a munkaterület összes többi cége, akkor is, ha ugyanattól a szállítótól ugyanazt veszi.
 - **Amit valaki kézzel állított be, az marad.** Az a sor, amelynek csoportját vagy ÁFA-kódját kézzel választották, megtartja.
 
-A csoport rendszerelem. Az alkalmazás akkor hozza létre, amikor a kapcsolót először bekapcsolva mentik, a kódja nem módosítható, a százaléka mindig 100%, és nem választható, amikor egy soron vagy egy partneren csoportot állít be. Az AI sem választja soha. A kapcsolóból érkezik.
+A csoport rendszerelem. Az alkalmazás akkor hozza létre, amikor a kapcsolót először bekapcsolva mentik, a kódja nem módosítható, és a százaléka mindig 100%. Partneren soha nem választható. Soron csak a cég olyan beszerzési számláján választható, amelyre a beállítás vonatkozik: így adható vissza egy sor, amelyet valaki másik csoportra tett (lásd [lent](#a-beállítást-őrző-teendő)). Az AI soha nem választja. A kapcsolóból érkezik.
 
 ## A bekapcsolás menete
 
@@ -28,7 +28,7 @@ A kapcsoló átállításához a **Törzsadatok szerkesztése** jogosultság kel
 
 ## A szükséges ÁFA-kódok
 
-Az ÁFA-kód öt elem találkozása. A kapcsoló ezek közül egyet rögzít, a Termék / Szolgáltatás csoportot. A kulcs és a partner ÁFA-csoportja továbbra is a számláról jön. A cégnek ezért a fenntartott csoporton **minden kulcshoz és minden olyan belföldi partnercsoporthoz, amelybe a szállítói tartoznak**, egy-egy ÁFA-kód kell: Belföldi, Pénzforgalmi partner és Alanyi adómentes szállító. Az irány beszerzés, a számítási mód Normál.
+Az ÁFA-kód öt elem találkozása. A kapcsoló ezek közül egyet rögzít, a Termék / Szolgáltatás csoportot. A kulcs és a partner ÁFA-csoportja továbbra is a számláról jön. A cégnek ezért a fenntartott csoporton **minden kulcshoz és minden olyan partner ÁFA-csoporthoz, amelybe a belföldi szállítói tartoznak**, egy-egy ÁFA-kód kell: Belföldi, Pénzforgalmi partner, Alanyi adómentes szállító, és minden saját létrehozású partnercsoport, például egy cégcsoporton belüli csoport. Az irány beszerzés, a számítási mód Normál. Az EU vagy Harmadik ország partnercsoporttal, illetve más számítási móddal létrehozott kódot az AI Finance Team soha nem használja: az ilyen sorok Önre várnak, lásd [lent](#külföldi-és-fordított-adózású-beszerzések).
 
 A listát nem Önnek kell összeállítania. A mentés után az űrlap alatti panel felsorolja azokat a kombinációkat, amelyekre a soroknak szükségük van, de még nincs hozzájuk kód, mindegyik mellett egy **ÁFA-kód létrehozása** gombbal, amely az ÁFA-kód űrlapját előre kitöltve nyitja meg. A lent leírt előnézet ugyanezt a listát mutatja azokra a számlákra, amelyeket módosítana. Minden kódnak a le nem vonható kezelés könyvelőprogrambeli kódját adja meg.
 
@@ -49,7 +49,7 @@ Két dolgot érdemes tudni az alkalmazás előtt:
 - **Az a jóváhagyott számla, amelynek sora változik, újra könyvelési jóváhagyásra vár**, ahogyan egy jóváhagyott számla bármely módosítása után. Az előnézet megmondja, hány ilyen van.
 - **Az AI Finance Team soha nem módosítja, amit a Business Centralba elküldött.** A sorok itt kapnak új kódot, a Business Centralban lévő bizonylat pedig megtartja a könyvelését, amíg ott valaki ki nem javítja. Az előnézet listája ez a munkalista.
 
-Egy futtatás legfeljebb **2000 számlára** terjed ki. Hosszabb előzményt több időszakra bontva kell elvégezni.
+Egy futtatás legfeljebb **2000 számlára** terjed ki. Hosszabb előzményt több időszakra bontva kell elvégezni. A túl sokáig tartó futtatás megszakad, és semmit nem változtat. Ezt az ablak jelzi is: szűkítse az ÁFA-dátumokat, például hónaponként, és futtassa több részletben.
 
 Az alkalmazás napján a cég költségei megnőnek a kimutatásokban: az addig visszaigényelhetőként mutatott áfa mostantól a költség része. Ez a helyes szám, és érdemes az ügyfélnek is elmondani.
 
