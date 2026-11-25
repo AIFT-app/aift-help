@@ -13,8 +13,11 @@
 //               invoices/_components/InvoiceListShell.tsx (the plain
 //               DocumentExportButton, BulkApprovalMenu's closed
 //               DropdownButton: outline, label, ChevronDownIcon 20/solid)
-//   list        ./index.tsx InvoiceTable with the selection column
-//               (recategorize-ui.tsx RowSelectCheckbox, SelectAllCheckbox)
+//   list        ./index.tsx InvoiceTable with the selection column, in a
+//               workspace that hides internal IDs (showIds false)
+//               (recategorize-ui.tsx RowSelectCheckbox, SelectAllCheckbox);
+//               an editor may also upload, so its rows carry the attach
+//               button and the ⋯ menu (RowAttachControls) like the list's
 //   dialog      src/components/document-export/DocumentExportButton.tsx, the
 //               Dialog panel (catalyst/dialog.tsx, size 2xl) without the
 //               backdrop; the period trigger is
@@ -111,8 +114,11 @@ export function SelectionBar({ locale, pin }: { locale: Locale; pin?: number }) 
   )
 }
 
-// The list's floor with a selection column (./index.tsx LIST_MIN_WIDTH + 2.75rem).
-const ENTRY_MIN_WIDTH = 844
+// The list's floor with a selection column, row controls and these amounts,
+// in a workspace that hides internal IDs (the ID line would push the table
+// past the article column): 798.15px (en; hu 790, de 748, measured on the real
+// table), plus the page's 2rem padding.
+const ENTRY_MIN_WIDTH = 832
 
 export function DocumentExportEntryFigure({ locale, children }: FigureProps) {
   const c = exportCopy[locale]
@@ -139,6 +145,7 @@ export function DocumentExportEntryFigure({ locale, children }: FigureProps) {
                 rows={c.pickRows}
                 selected={c.pickRows.map((r) => r.selected)}
                 marker={{ row: 1, n: 3 }}
+                showIds={false}
               />
             </div>
           </AppScreen>
