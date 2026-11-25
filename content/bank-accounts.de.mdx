@@ -9,12 +9,12 @@ Kontonummern zählen auch ohne Verbindung: Eingehende Transaktionen werden gegen
 | Aktion | Wer |
 |---|---|
 | Kontonummern hinzufügen oder bearbeiten | Jedes Mitglied des Arbeitsbereichs |
-| Eine Bank verbinden | Alle auf der Mandantenseite (Finanzleitung, Finanzadmin oder Teammitglied) |
+| Eine Bank verbinden, eine Zustimmung erneuern | Nur die Finanzleitung |
 | **Jetzt synchronisieren** | Jedes Mitglied, auch Buchhalter |
 | Ein Konto trennen, eine Verbindung entfernen | Nur die Finanzleitung |
 | Ein geteiltes Konto angeben (Cash-Pool) | Ein Buchhalter |
 
-Bank verbinden und trennen gehört per Regel zur Mandantenseite, nicht per Rolle: Keine eigene Rolle und keine Ausnahme kann das einem Buchhalter geben, denn Bankzugangsdaten müssen beim Mandanten bleiben. Siehe [Rollen & Berechtigungen](/roles-and-permissions).
+Bank verbinden, erneuern und trennen gehört per Regel zur Finanzleitung, nicht per Berechtigung: Keine eigene Rolle und keine Ausnahme kann das einem Buchhalter, einem Finanzadmin oder einem Teammitglied geben, denn Bankzugangsdaten müssen bei der Finanzleitung des Mandanten bleiben. Siehe [Rollen & Berechtigungen](/roles-and-permissions).
 
 ## Kontonummern
 
@@ -109,10 +109,10 @@ Ihre Bank hat den Zugriff vorzeitig entzogen. Verbinden Sie die Bank erneut und 
 Die Verbindung wurde begonnen, aber bei der Bank nie freigegeben. Entfernen Sie sie oder verbinden Sie die Bank erneut.
 
 **Die Karte bietet Erneut autorisieren an.**
-Sie sagt Ihnen nur, dass Sie **Bank verbinden** benutzen sollen, was der echte Weg ist, eine Zustimmung zu erneuern.
+Sie führt die Finanzleitung direkt zur Freigabeseite der Bank, um die Zustimmung zu erneuern, ohne Auswahl der Bank oder des Verlaufszeitraums. Nur die Finanzleitung sieht die Schaltfläche.
 
 **Ich sehe Bank verbinden nicht.**
-Es wird nur mandantenseitigen Mitgliedern angezeigt. Ein Buchhalter kann die Bank eines Mandanten nicht verbinden, das ist so gewollt.
+Es wird nur der Finanzleitung angezeigt. Finanzadmin, Teammitglied und Buchhalter können keine Bank verbinden, das ist so gewollt. Hat der Arbeitsbereich noch keine Finanzleitung, muss sie zuerst eingeladen werden (siehe [Rollen & Berechtigungen](/roles-and-permissions)).
 
 **Die Verbindungskarte zeigt Fehler.**
 Öffnen Sie die Karte: Der Status benennt den Grund des Anbieters. Eine Verbindung im Fehlerzustand kann die Finanzleitung trennen und erneut verbinden.
