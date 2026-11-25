@@ -57,10 +57,13 @@ function EditorDrawer({ locale }: { locale: Locale }) {
   const form = (k: string) => ui[`master_data.transaction_types.form.${k}` as keyof typeof ui]
   const pat = (k: string) => ui[`master_data.transaction_types.patterns.${k}` as keyof typeof ui]
   return (
-    // edit-drawer.tsx: `fixed inset-y-0 right-0 flex` > DialogPanel
+    // edit-drawer.tsx (origin/staging 2026-11-25): `fixed inset-y-0 right-0 flex`
+    // > DialogPanel. The panel's `w-screen max-w-lg` is 512 px in the app
+    // (edit-drawer-fixed-width); here the stage is the drawer's width, so
+    // `w-full` gives the same 512 px.
     <div className="flex" style={{ height: DRAWER_HEIGHT }}>
       <div className="flex w-full max-w-lg flex-col overflow-y-auto bg-white shadow-xl dark:bg-zinc-900">
-        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-zinc-100 bg-white px-5 py-4 dark:border-zinc-800 dark:bg-zinc-900">
+        <div className="sticky top-0 z-10 flex items-center justify-between gap-4 border-b border-zinc-100 bg-white px-5 py-4 dark:border-zinc-800 dark:bg-zinc-900">
           <button type="button" className="text-sm text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200">
             {ui['common.edit_drawer.close']}
           </button>
