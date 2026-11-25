@@ -27,7 +27,7 @@ So a Ledger that looks nearly empty on a busy month usually is not: widen the ra
 
 The first three are the working tabs. **Companies** and **Partners** are registry lists: no filter strip, no search bar, and their rows do not open anything. On the three working tabs a row is a link, to the invoice or to the transaction.
 
-Duplicates and rejected invoices never appear, on any tab or in any export.
+Duplicates, archived invoices and invoices set aside as **Not to be booked** never appear, on any tab or in any export.
 
 ### A filter does not mean the same thing on every tab
 
@@ -118,9 +118,9 @@ With a program set, every handover is recorded on the invoice: each RLB and Prof
 | **Changed after the handover** | The amounts, the dates, the partner or a line's category or VAT code changed after the last handover, so it is due again |
 | **Confirmed** | The program reported the booking back: RLB when its OSA register links the invoice and gives it a journal number, Business Central when a resend finds the document posted. HessynKettős and Profit never confirm |
 
-AI Finance Team knows what it handed over, never what is booked, so no invoice reads "booked". Business Central receives only expense invoices from AI Finance Team and the HessynKettős file carries only sales invoices. An invoice going the other way is still To hand over there, until you mark it handed over manually (see below). The invoice's **Approvals** card shows the last handover, whether the invoice changed since, and the confirmation with its evidence.
+AI Finance Team knows what it handed over, never what is booked, so no invoice reads "booked". Business Central receives only expense invoices from AI Finance Team and the HessynKettős file carries only sales invoices. An invoice going the other way is still To hand over there, until you mark it handed over manually or set it aside as Not to be booked (see below). The invoice's **Approvals** card shows the last handover, whether the invoice changed since, and the confirmation with its evidence.
 
-An invoice handed over some other way is taken off the list on its page: under **Accept to-dos**, tick **Handed over manually**, add a note if you like, and accept; this needs the **"Run exports"** permission. Its history shows it. With bookkeeping approval on, **Not to be booked: Already booked** does the same. Handovers made before the record began are read from the export history, but only from 12 October 2026 for HessynKettős; older ones can be cleared the same way.
+An invoice handed over some other way is taken off the list on its page: under **Accept to-dos**, tick **Handed over manually**, add a note if you like, and accept; this needs the **"Run exports"** permission. Its history shows it. With bookkeeping approval on, a **Not to be booked** decision takes the invoice off the list too, whatever its reason: **Already booked** for an invoice booked by hand in the accounting program, **Sales invoice** for an outgoing invoice that is not booked from here, such as a sales invoice in a Business Central workspace. See [Filing and Bookkeeping Approval](/filing-and-bookkeeping-approval#not-to-be-booked-checked-but-not-booked). Handovers made before the record began are read from the export history, but only from 12 October 2026 for HessynKettős; older ones can be cleared the same way.
 
 ### RLB
 
@@ -205,7 +205,7 @@ Some invoices are left out, and the page says how many after each export:
 - **cash invoices**: this version exports transfer invoices only;
 - **corrective (helyesbítő) invoices**: book these by hand in HessynKettős.
 
-A line whose category has no **Code** still goes in, and HessynKettős books it to the journal's default account; the page counts those too. Duplicates and rejected invoices never go in. Every invoice in the file gets an entry in its **History**, but nothing stops you exporting it again. One export takes at most 50,000 invoices.
+A line whose category has no **Code** still goes in, and HessynKettős books it to the journal's default account; the page counts those too. Duplicates, archived invoices and invoices set aside as Not to be booked never go in. Every invoice in the file gets an entry in its **History**, but nothing stops you exporting it again. One export takes at most 50,000 invoices.
 
 ### Eurosoft Profit
 
