@@ -36,7 +36,7 @@ import { CompanyMatchFigure, CompanyRecognitionFigure } from './companies'
 import { TransactionTypeEditorFigure, TransactionTypeFlowFigure } from './transaction-types'
 import { ReportDrillDownFigure, ReportPageFigure, ReportStructureFigure } from './reports'
 import { AccessDecisionFigure, RolesTabFigure } from './roles'
-import { PartnerRecognitionFigure, PartnerRecognitionFlowFigure } from './partners'
+import { PartnerBankAccountsFigure, PartnerRecognitionFigure, PartnerRecognitionFlowFigure } from './partners'
 import { UploadPanelFigure } from './uploads'
 import { PdfSplitDialogFigure } from './uploads/split'
 import { BankConsentLifecycleFigure } from './bank'
@@ -114,6 +114,7 @@ const FIGURES: Record<string, (props: WithLocale) => React.ReactNode> = {
   RolesTabFigure,
   PartnerRecognitionFlowFigure,
   PartnerRecognitionFigure,
+  PartnerBankAccountsFigure,
   UploadPanelFigure,
   PdfSplitDialogFigure,
   BankConsentLifecycleFigure,

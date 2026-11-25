@@ -21,6 +21,7 @@ export const UI_KEYS = [
   'master_data.partners.tabs.partner',
   'master_data.partners.tabs.rules',
   'master_data.partners.tabs.recognition',
+  'master_data.partners.tabs.bank_accounts',
   'master_data.partners.tabs.history',
   'master_data.partners.tabs.messages',
   'master_data.partners.alternative_names.title',
@@ -105,7 +106,7 @@ type Copy = {
       matchesDetail: string
       footnote: string
     }
-    alt: { flow: string; recognition: string }
+    alt: { flow: string; recognition: string; bankAccounts: string }
   }
 }
 
@@ -119,6 +120,7 @@ const en: Copy = {
     'master_data.partners.tabs.partner': 'Partner',
     'master_data.partners.tabs.rules': 'Rules',
     'master_data.partners.tabs.recognition': 'Recognition',
+    'master_data.partners.tabs.bank_accounts': 'Bank accounts',
     'master_data.partners.tabs.history': 'History',
     'master_data.partners.tabs.messages': 'Messages',
     'master_data.partners.alternative_names.title': 'Alternative names',
@@ -149,7 +151,7 @@ const en: Copy = {
     'master_data.partners.bank_accounts.account_placeholder': 'e.g. 11705008-22555890 or HU58 1170 5008 …',
     'master_data.partners.bank_accounts.currency_label': 'Currency (optional)',
     'master_data.partners.bank_accounts.currency_placeholder': 'e.g. HUF',
-    'master_data.partners.bank_accounts.four_eyes_note': 'A typed account is added unconfirmed. Someone else holding Manage approvals confirms it.',
+    'master_data.partners.bank_accounts.four_eyes_note': 'A typed account can be confirmed by anyone who holds Manage approvals, including the person who typed it. Payment files list such accounts for a check.',
     'master_data.partners.bank_accounts.add': 'Add',
     'invoices.labels.unverified': 'Unverified',
     'transactions.detail.chip_own_entity': 'Own company',
@@ -173,7 +175,9 @@ const en: Copy = {
       flow:
         "Diagram of how a new name on an invoice or a bank transaction finds its verified partner: by tax number, by name or alternative name, by name pattern, by bank account (a partner's or one of your own companies'), and through confirmed matches. A name nothing recognises stays unverified.",
       recognition:
-        'The Recognition tab of the partner Quillmoor Software Ltd.: the header with a Fixed invoice category chip and Merge into…, the five tabs, three alternative names marked auto or manual, the name pattern QUILLMOOR*, and two bank accounts, one Not confirmed with a Confirm button and one confirmed. Numbered markers point to the parts described in the list below.',
+        'The Recognition tab of the partner Quillmoor Software Ltd.: the header with a Fixed invoice category chip and Merge into…, the six tabs, three alternative names marked auto or manual, and the name pattern QUILLMOOR* with Link matching partners now. Numbered markers point to the parts described in the list below.',
+      bankAccounts:
+        'The Bank accounts tab of the same partner: the rule that only a confirmed account can enter a payment file, two bank accounts, one Not confirmed with a Confirm button and one confirmed, and the Add bank account form. Numbered markers point to the parts described in the list below.',
     },
   },
 }
@@ -188,6 +192,7 @@ const hu: Copy = {
     'master_data.partners.tabs.partner': 'Partner',
     'master_data.partners.tabs.rules': 'Szabályok',
     'master_data.partners.tabs.recognition': 'Felismerés',
+    'master_data.partners.tabs.bank_accounts': 'Bankszámlák',
     'master_data.partners.tabs.history': 'Előzmények',
     'master_data.partners.tabs.messages': 'Üzenetek',
     'master_data.partners.alternative_names.title': 'Alternatív nevek',
@@ -218,7 +223,7 @@ const hu: Copy = {
     'master_data.partners.bank_accounts.account_placeholder': 'pl. 11705008-22555890 vagy HU58 1170 5008 …',
     'master_data.partners.bank_accounts.currency_label': 'Pénznem (választható)',
     'master_data.partners.bank_accounts.currency_placeholder': 'pl. HUF',
-    'master_data.partners.bank_accounts.four_eyes_note': 'A kézzel megadott számlaszám megerősítetlenül kerül fel. Egy másik, Jóváhagyások kezelése joggal rendelkező kolléga erősíti meg.',
+    'master_data.partners.bank_accounts.four_eyes_note': 'A kézzel megadott számlaszámot bármelyik, Jóváhagyások kezelése joggal rendelkező kolléga megerősítheti, akár az is, aki megadta. Az utalási fájl készítésekor ezek külön ellenőrzést kérnek.',
     'master_data.partners.bank_accounts.add': 'Hozzáadás',
     'invoices.labels.unverified': 'Nem ellenőrzött',
     'transactions.detail.chip_own_entity': 'Saját cég',
@@ -242,7 +247,9 @@ const hu: Copy = {
       flow:
         'Ábra arról, hogyan találja meg egy számlán vagy banki tranzakción megjelenő új név az ellenőrzött partnerét: adószám, név vagy alternatív név, névminta, bankszámla (egy partneré vagy az Ön egyik saját cégéé) és jóváhagyott párosítások alapján. Az a név, amelyet semmi sem ismer fel, nem ellenőrzött marad.',
       recognition:
-        'A Quillmoor Software Ltd. partner Felismerés füle: a fejléc a Rögzített számlakategória jelzéssel és az Összevonás másikkal… gombbal, az öt fül, három auto vagy manuális jelölésű alternatív név, a QUILLMOOR* névminta, és két bankszámla, egy Nincs megerősítve állapotú a Megerősítés gombbal és egy megerősített. A számozott jelölők az alábbi listában leírt részekre mutatnak.',
+        'A Quillmoor Software Ltd. partner Felismerés füle: a fejléc a Rögzített számlakategória jelzéssel és az Összevonás másikkal… gombbal, a hat fül, három auto vagy manuális jelölésű alternatív név, és a QUILLMOOR* névminta az Illeszkedő partnerek összekapcsolása most gombbal. A számozott jelölők az alábbi listában leírt részekre mutatnak.',
+      bankAccounts:
+        'Ugyanennek a partnernek a Bankszámlák füle: a szabály, hogy utalási fájlba csak megerősített számlaszám kerülhet, két bankszámla, egy Nincs megerősítve állapotú a Megerősítés gombbal és egy megerősített, alattuk a Bankszámla hozzáadása űrlap. A számozott jelölők az alábbi listában leírt részekre mutatnak.',
     },
   },
 }
@@ -257,6 +264,7 @@ const de: Copy = {
     'master_data.partners.tabs.partner': 'Partner',
     'master_data.partners.tabs.rules': 'Regeln',
     'master_data.partners.tabs.recognition': 'Erkennung',
+    'master_data.partners.tabs.bank_accounts': 'Bankkonten',
     'master_data.partners.tabs.history': 'Verlauf',
     'master_data.partners.tabs.messages': 'Nachrichten',
     'master_data.partners.alternative_names.title': 'Alternative Namen',
@@ -287,7 +295,7 @@ const de: Copy = {
     'master_data.partners.bank_accounts.account_placeholder': 'z. B. 11705008-22555890 oder HU58 1170 5008 …',
     'master_data.partners.bank_accounts.currency_label': 'Währung (optional)',
     'master_data.partners.bank_accounts.currency_placeholder': 'z. B. HUF',
-    'master_data.partners.bank_accounts.four_eyes_note': 'Ein eingegebenes Konto wird unbestätigt hinterlegt. Eine andere Person mit Freigaben verwalten bestätigt es.',
+    'master_data.partners.bank_accounts.four_eyes_note': 'Ein eingegebenes Konto kann jede Person mit Freigaben verwalten bestätigen, auch wer es eingegeben hat. Zahlungsdateien führen solche Konten zur Prüfung auf.',
     'master_data.partners.bank_accounts.add': 'Hinzufügen',
     'invoices.labels.unverified': 'Nicht verifiziert',
     'transactions.detail.chip_own_entity': 'Eigenes Unternehmen',
@@ -311,7 +319,9 @@ const de: Copy = {
       flow:
         'Diagramm, wie ein neuer Name auf einer Rechnung oder Banktransaktion seinen verifizierten Partner findet: über die Steuernummer, den Namen oder einen alternativen Namen, ein Namensmuster, ein Bankkonto (eines Partners oder eines Ihrer eigenen Unternehmen) und bestätigte Zuordnungen. Ein Name, den nichts erkennt, bleibt nicht verifiziert.',
       recognition:
-        'Der Tab Erkennung des Partners Quillmoor Software Ltd.: die Kopfzeile mit dem Hinweis Feste Rechnungskategorie und Zusammenführen mit…, die fünf Tabs, drei alternative Namen, markiert als auto oder manuell, das Namensmuster QUILLMOOR* und zwei Bankkonten, eines Nicht bestätigt mit der Schaltfläche Bestätigen und eines bestätigt. Nummerierte Markierungen zeigen auf die Teile, die in der Liste darunter beschrieben sind.',
+        'Der Tab Erkennung des Partners Quillmoor Software Ltd.: die Kopfzeile mit dem Hinweis Feste Rechnungskategorie und Zusammenführen mit…, die sechs Tabs, drei alternative Namen, markiert als auto oder manuell, und das Namensmuster QUILLMOOR* mit Passende Gegenparteien jetzt verknüpfen. Nummerierte Markierungen zeigen auf die Teile, die in der Liste darunter beschrieben sind.',
+      bankAccounts:
+        'Der Tab Bankkonten desselben Partners: die Regel, dass nur ein bestätigtes Konto in eine Zahlungsdatei kommt, zwei Bankkonten, eines Nicht bestätigt mit der Schaltfläche Bestätigen und eines bestätigt, darunter das Formular Bankkonto hinzufügen. Nummerierte Markierungen zeigen auf die Teile, die in der Liste darunter beschrieben sind.',
     },
   },
 }
