@@ -154,9 +154,8 @@ function Labels({ labels, sources, locale }: { labels: LabelKey[]; sources: List
   const { visible, hidden } = orderLabels(labels)
   const hiddenNames = hidden.map((k) => ui[`invoices.labels.${k}`]).join(', ')
   return (
-    <div className="flex items-start gap-2">
-      <span className="flex min-h-6 shrink-0 items-center">{leading}</span>
-      <div className="flex flex-wrap items-center gap-1">
+    <div className="flex flex-wrap items-center gap-1">
+      <span className="inline-flex min-h-6 shrink-0 items-center">{leading}</span>
       {visible.map((k) => (
         <span
           key={k}
@@ -177,7 +176,6 @@ function Labels({ labels, sources, locale }: { labels: LabelKey[]; sources: List
           {fill(ui['invoices.labels.overflow_more'], { count: hidden.length })}
         </span>
       )}
-      </div>
     </div>
   )
 }
