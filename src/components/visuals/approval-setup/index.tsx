@@ -11,6 +11,17 @@
 //                        ApplyRulesButton.tsx
 // When one of those files changes, re-copy the markup here. Data comes from
 // ./copy.ts and is fictional.
+//
+// The aift-web files this figure copies, one `mirrors:` line each. aift-web
+// scripts/help-impact.mjs reads them to flag this figure when one changes;
+// keep them current when the figure is redrawn (aift-ops/docs/help-drift-guards.md).
+// mirrors: src/app/(app)/workspaces/[workspaceId]/settings/approvals/_components/ApplyRulesButton.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/settings/approvals/_components/NoRuleMatches.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/settings/approvals/_components/RoutingRulesEditor.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/settings/approvals/_components/SettingRow.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/settings/layout.tsx
+// mirrors: src/components/settings/SettingsPanel.tsx
+// mirrors: src/components/settings/SettingsSection.tsx
 
 import { Bars3Icon } from '@heroicons/react/16/solid'
 import type { Locale } from '@/lib/i18n'

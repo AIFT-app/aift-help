@@ -11,6 +11,12 @@
 // the header, the pickers collapsed (the hidden edit region is kept, empty, so
 // the element tree matches the app's). When one of those files changes,
 // re-copy the markup here. Data comes from ./copy.ts and is fictional.
+//
+// The aift-web files this figure copies, one `mirrors:` line each. aift-web
+// scripts/help-impact.mjs reads them to flag this figure when one changes;
+// keep them current when the figure is redrawn (aift-ops/docs/help-drift-guards.md).
+// mirrors: src/components/detail/PartyTile.tsx
+// mirrors: src/components/transaction/TransactionFelekCard.tsx
 
 import { ArrowDownIcon, ChevronRightIcon, PencilSquareIcon } from '@heroicons/react/16/solid'
 import type { Locale } from '@/lib/i18n'

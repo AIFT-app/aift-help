@@ -23,6 +23,11 @@
 // non-deductible one is not; `pre_roll_always` folds both; `native_full` folds
 // neither. Picking the partial case on the default keeps the figure true for
 // the setting almost every workspace is on.
+//
+// The aift-web files this figure copies, one `mirrors:` line each. aift-web
+// scripts/help-impact.mjs reads them to flag this figure when one changes;
+// keep them current when the figure is redrawn (aift-ops/docs/help-drift-guards.md).
+// mirrors: none (a diagram, not an app screen; its labels are keyed in ./copy.ts)
 
 import type { Locale } from '@/lib/i18n'
 import { Figure } from '../kit'

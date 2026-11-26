@@ -10,6 +10,11 @@
 //
 // Buttons and links are rendered as spans: nothing inside a figure may be
 // focusable.
+//
+// The aift-web files this figure copies, one `mirrors:` line each. aift-web
+// scripts/help-impact.mjs reads them to flag this figure when one changes;
+// keep them current when the figure is redrawn (aift-ops/docs/help-drift-guards.md).
+// mirrors: src/app/(app)/workspaces/[workspaceId]/transactions/_components/StatementsTab.tsx
 
 import type { Locale } from '@/lib/i18n'
 import { Badge } from '@/components/catalyst/badge'

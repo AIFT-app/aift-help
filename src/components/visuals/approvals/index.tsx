@@ -15,6 +15,17 @@
 //                     picker) + src/components/settings/SettingsPanel.tsx
 // When one of those files changes, re-copy the markup here. Data comes from
 // ./copy.ts and is fictional.
+//
+// The aift-web files this figure copies, one `mirrors:` line each. aift-web
+// scripts/help-impact.mjs reads them to flag this figure when one changes;
+// keep them current when the figure is redrawn (aift-ops/docs/help-drift-guards.md).
+// mirrors: src/app/(app)/account/notifications/NotificationsForm.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/approvals/_components/ApprovalQueue.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/approvals/_components/ApprovalTabs.tsx
+// mirrors: src/components/approvals/RouteReason.tsx
+// mirrors: src/components/recategorize/recategorize-ui.tsx
+// mirrors: src/components/settings/SettingsPanel.tsx
+// mirrors: src/lib/approvals.ts
 
 import clsx from 'clsx'
 import type { Locale } from '@/lib/i18n'

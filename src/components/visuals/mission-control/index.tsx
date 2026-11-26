@@ -26,6 +26,11 @@
 // right of a tile's number, 4 and 5 above the filter tray. The tiles' label
 // lines wrap differently per language, so check them with help-marker-audit
 // in all three locales.
+//
+// The aift-web files this figure copies, one `mirrors:` line each. aift-web
+// scripts/help-impact.mjs reads them to flag this figure when one changes;
+// keep them current when the figure is redrawn (aift-ops/docs/help-drift-guards.md).
+// mirrors: src/app/(app)/mission-control/_components/MissionControlClient.tsx
 
 import clsx from 'clsx'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'

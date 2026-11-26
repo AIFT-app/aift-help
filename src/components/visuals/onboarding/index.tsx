@@ -7,6 +7,12 @@
 // only place in the app where the whole route is visible at once, and the only
 // place that says per screen whether it is required, which is exactly what the
 // article needs to replace a page of prose. Labels come from ./copy.ts.
+//
+// The aift-web files this figure copies, one `mirrors:` line each. aift-web
+// scripts/help-impact.mjs reads them to flag this figure when one changes;
+// keep them current when the figure is redrawn (aift-ops/docs/help-drift-guards.md).
+// mirrors: src/components/onboarding/guided/StepMap.tsx
+// mirrors: src/lib/guided-onboarding.ts
 
 import type { Locale } from '@/lib/i18n'
 import { AppScreen, Figure } from '../kit'

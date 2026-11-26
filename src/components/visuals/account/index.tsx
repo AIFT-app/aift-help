@@ -31,6 +31,20 @@
 // support card and session rows are `justify-between`, where a pin would move
 // the button, so those two markers stand on the row's heading or badges and
 // the legend names the button.
+//
+// The aift-web files this figure copies, one `mirrors:` line each. aift-web
+// scripts/help-impact.mjs reads them to flag this figure when one changes;
+// keep them current when the figure is redrawn (aift-ops/docs/help-drift-guards.md).
+// mirrors: src/app/(app)/account/AccountSectionNav.tsx
+// mirrors: src/app/(app)/account/layout.tsx
+// mirrors: src/app/(app)/account/notifications/NotificationsForm.tsx
+// mirrors: src/app/(app)/account/profile/AvatarForm.tsx
+// mirrors: src/app/(app)/account/profile/JobTitleForm.tsx
+// mirrors: src/app/(app)/account/profile/NameForm.tsx
+// mirrors: src/app/(app)/organization-settings/_components/OrgPageHeader.tsx
+// mirrors: src/app/(app)/organization-settings/support-access/_components/SupportAccessCard.tsx
+// mirrors: src/app/(app)/organization-settings/support-access/_components/SupportSessionLog.tsx
+// mirrors: src/components/settings/SettingsPanel.tsx
 
 import type { Locale } from '@/lib/i18n'
 import { Avatar } from '@/components/catalyst/avatar'

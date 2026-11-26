@@ -12,6 +12,18 @@
 //                    (ScorePill, AI suggestions, Find invoice) + NoInvoiceNeededControl.tsx
 // When one of those files changes, re-copy the markup here. Data comes from
 // ./copy.ts and is fictional.
+//
+// The aift-web files this figure copies, one `mirrors:` line each. aift-web
+// scripts/help-impact.mjs reads them to flag this figure when one changes;
+// keep them current when the figure is redrawn (aift-ops/docs/help-drift-guards.md).
+// mirrors: src/app/(app)/workspaces/[workspaceId]/matching/_components/MatchingHistoryPanel.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/matching/_components/RunMatchingButton.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/matching/_components/UnifiedMatchList.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/matching/page.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/transactions/[transactionId]/_components/TransactionDetailV2Client.tsx
+// mirrors: src/components/transaction/MatchPanel.tsx
+// mirrors: src/components/transaction/NoInvoiceNeededControl.tsx
+// mirrors: src/lib/confidence-tier.ts
 
 import { CheckCircleIcon, ChevronDownIcon, MagnifyingGlassIcon, XCircleIcon } from '@heroicons/react/20/solid'
 import { ClockIcon } from '@heroicons/react/24/outline'

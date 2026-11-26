@@ -4,6 +4,11 @@
 // Not an app screen: the two rates never appear side by side in the product,
 // which is exactly why readers confuse them. Everything here is this article's
 // own text (./copy.ts), checked against the app's behaviour on origin/main.
+//
+// The aift-web files this figure copies, one `mirrors:` line each. aift-web
+// scripts/help-impact.mjs reads them to flag this figure when one changes;
+// keep them current when the figure is redrawn (aift-ops/docs/help-drift-guards.md).
+// mirrors: none (a diagram, not an app screen; its labels are keyed in ./copy.ts)
 
 import type { Locale } from '@/lib/i18n'
 import { Figure } from '../kit'

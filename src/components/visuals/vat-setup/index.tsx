@@ -24,6 +24,15 @@
 // tab bar's real component reads usePathname, which a static screen cannot,
 // so the active tab is the ACTIVE_TAB constant. Labels come from ./copy.ts,
 // keyed by aift-web message key; the counts and the workspace are fictional.
+//
+// The aift-web files this figure copies, one `mirrors:` line each. aift-web
+// scripts/help-impact.mjs reads them to flag this figure when one changes;
+// keep them current when the figure is redrawn (aift-ops/docs/help-drift-guards.md).
+// mirrors: src/app/(app)/workspaces/[workspaceId]/master-data/_vat/VatSetupActions.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/master-data/_vat/VatSetupImportDialog.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/master-data/_vat/VatSetupPreview.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/master-data/vat/_components/VatTabs.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/master-data/vat/layout.tsx
 
 import clsx from 'clsx'
 import type { Locale } from '@/lib/i18n'
