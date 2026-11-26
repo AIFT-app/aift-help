@@ -9,6 +9,15 @@
 // transformed box: a transform makes it the containing block of its fixed
 // descendants, which keeps the panel's own computed styles identical to the
 // app's while placing it inside the figure. Labels come from ./copy.ts.
+//
+// The aift-web files this figure copies, one `mirrors:` line each. aift-web
+// scripts/help-impact.mjs reads them to flag this figure when one changes;
+// keep them current when the figure is redrawn (aift-ops/docs/help-drift-guards.md).
+// mirrors: src/components/business-central/WideImportDialog.tsx
+// mirrors: src/components/upload-queue/PdfSplitDialog.tsx
+// mirrors: src/components/upload-queue/UploadQueuePanel.tsx
+// mirrors: src/components/upload-queue/UploadQueueRow.tsx
+// mirrors: src/lib/upload-queue/pdf-pages.ts
 
 import clsx from 'clsx'
 import {

@@ -26,6 +26,13 @@
 // marker 2 and 3 sit in the page margin left of the card, and marker 4 under
 // the Open link, where the row is empty. Check them with help-marker-audit in
 // all three locales: the row heights change with the language.
+//
+// The aift-web files this figure copies, one `mirrors:` line each. aift-web
+// scripts/help-impact.mjs reads them to flag this figure when one changes;
+// keep them current when the figure is redrawn (aift-ops/docs/help-drift-guards.md).
+// mirrors: src/app/(app)/workspaces/[workspaceId]/closing/[period]/page.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/closing/_components/ChecksSection.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/closing/_components/SignOffRail.tsx
 
 import type { Locale } from '@/lib/i18n'
 import { Badge } from '@/components/catalyst/badge'

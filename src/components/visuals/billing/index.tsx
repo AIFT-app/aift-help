@@ -19,6 +19,14 @@
 // When one of those files changes, re-copy the markup here. Data comes from
 // ./copy.ts. Verified against the real components rendered with the same data
 // (aift-ops/scripts/help-screen-css-diff.mjs).
+//
+// The aift-web files this figure copies, one `mirrors:` line each. aift-web
+// scripts/help-impact.mjs reads them to flag this figure when one changes;
+// keep them current when the figure is redrawn (aift-ops/docs/help-drift-guards.md).
+// mirrors: src/app/(app)/organization-settings/_components/BillingSection.tsx
+// mirrors: src/app/(app)/organization-settings/_components/CheckoutBillingDialog.tsx
+// mirrors: src/app/(app)/organization-settings/_components/OrgPageHeader.tsx
+// mirrors: src/app/(app)/organization-settings/layout.tsx
 
 import clsx from 'clsx'
 import { Fragment } from 'react'

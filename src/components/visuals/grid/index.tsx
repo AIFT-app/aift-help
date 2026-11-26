@@ -38,6 +38,12 @@
 // so its markup is rendered directly, class for class, the way DialogTitle is
 // handled in vat-setup/. Labels come from ./copy.ts, keyed by message key; the
 // categories are fictional.
+//
+// The aift-web files this figure copies, one `mirrors:` line each. aift-web
+// scripts/help-impact.mjs reads them to flag this figure when one changes;
+// keep them current when the figure is redrawn (aift-ops/docs/help-drift-guards.md).
+// mirrors: src/components/master-data-import/import-grid/ImportGrid.tsx
+// mirrors: src/components/selection-grid/SelectionGrid.tsx
 
 import { Fragment } from 'react'
 import clsx from 'clsx'

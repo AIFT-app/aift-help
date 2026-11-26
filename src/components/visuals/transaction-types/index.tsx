@@ -10,6 +10,13 @@
 //                _components/TransactionTypeForm.tsx + PatternEditor.tsx
 // When one of those files changes, re-copy the markup here. Data comes from
 // ./copy.ts and is fictional.
+//
+// The aift-web files this figure copies, one `mirrors:` line each. aift-web
+// scripts/help-impact.mjs reads them to flag this figure when one changes;
+// keep them current when the figure is redrawn (aift-ops/docs/help-drift-guards.md).
+// mirrors: src/app/(app)/workspaces/[workspaceId]/master-data/transaction-types/_components/PatternEditor.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/master-data/transaction-types/_components/TransactionTypeForm.tsx
+// mirrors: src/components/catalyst/edit-drawer.tsx
 
 import type { Locale } from '@/lib/i18n'
 import { Button } from '@/components/catalyst/button'

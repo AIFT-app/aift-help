@@ -63,6 +63,12 @@
 // CategoryCombobox (which only mounts while editing) is deliberately not
 // reproduced. Labels come from ./copy.ts, keyed by aift-web message key; the
 // invoice is fictional.
+//
+// The aift-web files this figure copies, one `mirrors:` line each. aift-web
+// scripts/help-impact.mjs reads them to flag this figure when one changes;
+// keep them current when the figure is redrawn (aift-ops/docs/help-drift-guards.md).
+// mirrors: src/app/(app)/workspaces/[workspaceId]/invoices/[invoiceId]/(tabs)/_components/MergedLinesVatGrid.tsx
+// mirrors: src/components/category/CategoryCombobox.tsx
 
 import { ChevronRightIcon, ExclamationTriangleIcon } from '@heroicons/react/20/solid'
 import type { Locale } from '@/lib/i18n'

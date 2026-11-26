@@ -5,6 +5,11 @@
 // different people act, in order, and that the connection sits in a named
 // state between them. The state pills are the app's own labels
 // (aift-web settings.business_central.state_*, origin/main 2026-09-22).
+//
+// The aift-web files this figure copies, one `mirrors:` line each. aift-web
+// scripts/help-impact.mjs reads them to flag this figure when one changes;
+// keep them current when the figure is redrawn (aift-ops/docs/help-drift-guards.md).
+// mirrors: src/app/(app)/workspaces/[workspaceId]/settings/business-central/BusinessCentralPanel.tsx
 
 import type { Locale } from '@/lib/i18n'
 import { Figure } from '../kit'

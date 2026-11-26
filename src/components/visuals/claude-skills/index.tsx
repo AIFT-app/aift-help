@@ -10,6 +10,12 @@
 // downloaded (so "New version" shows), one earlier version under the
 // collapsed "Earlier versions" line. Labels come from ./copy.ts; the skill is
 // fictional.
+//
+// The aift-web files this figure copies, one `mirrors:` line each. aift-web
+// scripts/help-impact.mjs reads them to flag this figure when one changes;
+// keep them current when the figure is redrawn (aift-ops/docs/help-drift-guards.md).
+// mirrors: src/components/settings/SettingsSection.tsx
+// mirrors: src/components/workspace/WorkspaceSkillsSection.tsx
 
 import type { Locale } from '@/lib/i18n'
 import { Badge } from '@/components/catalyst/badge'

@@ -17,6 +17,13 @@
 // It is the one screen a reader cannot find on their own: it exists only in
 // an account's edit drawer, and only in a workspace that has more than one
 // company. Labels come from ./copy.ts; the data is a fictional group.
+//
+// The aift-web files this figure copies, one `mirrors:` line each. aift-web
+// scripts/help-impact.mjs reads them to flag this figure when one changes;
+// keep them current when the figure is redrawn (aift-ops/docs/help-drift-guards.md).
+// mirrors: src/app/(app)/workspaces/[workspaceId]/master-data/bank-accounts/_components/BankAccountNumbersSection.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/master-data/bank-accounts/_components/CashPoolSection.tsx
+// mirrors: src/components/catalyst/edit-drawer.tsx
 
 import type { Locale } from '@/lib/i18n'
 import { Button } from '@/components/catalyst/button'
