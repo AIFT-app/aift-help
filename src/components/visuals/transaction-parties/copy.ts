@@ -36,7 +36,7 @@ type Copy = {
 export const OUR_COMPANY = 'Halvorn Trading Ltd.'
 export const OUR_ACCOUNT = '11600006-20384419'
 export const PARTNER = 'Quillmoor Software Ltd.'
-export const PARTNER_IBAN = 'HU58117050082255589000000000'
+export const PARTNER_IBAN = 'HU24120103746158204600000000'
 
 export const transactionPartiesCopy: Record<Locale, Copy> = {
   en: {
