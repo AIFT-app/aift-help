@@ -10,6 +10,11 @@
 //   order in one section, the browser-beats-your-account rule in another — and
 //   a reader hitting "the app is not in the language I saved" has to join them
 //   up. The ladder is the join: the browser's copy is simply the first rung.
+//
+// The aift-web files this figure copies, one `mirrors:` line each. aift-web
+// scripts/help-impact.mjs reads them to flag this figure when one changes;
+// keep them current when the figure is redrawn (aift-ops/docs/help-drift-guards.md).
+// mirrors: src/i18n/pre-auth-locale.ts
 
 import type { Locale } from '@/lib/i18n'
 import { Figure } from '../kit'

@@ -30,6 +30,16 @@
 // ⚠️ MARKERS: RLB 1 inside the progress label, 2 to 5 right of each section's
 // count badge, 6 above Export now. HessynKettős 1 inside the GL accounts
 // heading, 2 right of Export CSV, 3 at the end of the result line.
+//
+// The aift-web files this figure copies, one `mirrors:` line each. aift-web
+// scripts/help-impact.mjs reads them to flag this figure when one changes;
+// keep them current when the figure is redrawn (aift-ops/docs/help-drift-guards.md).
+// mirrors: src/app/(app)/workspaces/[workspaceId]/exports/hessyn-kettos/_components/HessynExportControls.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/exports/hessyn-kettos/_components/HessynGlAccountsCard.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/exports/hessyn-kettos/page.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/exports/rlb/_components/RlbFixBeforeExportPanel.tsx
+// mirrors: src/components/category/CategoryCombobox.tsx
+// mirrors: src/components/date-range/date-range-filter.tsx
 
 import type { Locale } from '@/lib/i18n'
 import { Button } from '@/components/catalyst/button'

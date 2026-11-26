@@ -17,6 +17,14 @@
 // are not in the DOM, exactly as in the app before a click). In the app a click
 // on a row opens the read-only View drawer, so its TableRow has an onClick and
 // renders `cursor-pointer`; ./ClickableRow.tsx gives the figure the same row.
+//
+// The aift-web files this figure copies, one `mirrors:` line each. aift-web
+// scripts/help-impact.mjs reads them to flag this figure when one changes;
+// keep them current when the figure is redrawn (aift-ops/docs/help-drift-guards.md).
+// mirrors: src/app/(app)/workspaces/[workspaceId]/settings/layout.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/settings/team/_components/WorkspaceTeamTabs.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/settings/team/roles/_components/RolesTable.tsx
+// mirrors: src/components/settings/SettingsPageHeader.tsx
 
 import clsx from 'clsx'
 import { EllipsisHorizontalIcon } from '@heroicons/react/20/solid'

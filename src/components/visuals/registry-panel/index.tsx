@@ -30,6 +30,12 @@
 // A server component: the buttons carry no handlers and the screen is `inert`.
 // Labels come from ./copy.ts, keyed by aift-web message key; the partner is
 // fictional.
+//
+// The aift-web files this figure copies, one `mirrors:` line each. aift-web
+// scripts/help-impact.mjs reads them to flag this figure when one changes;
+// keep them current when the figure is redrawn (aift-ops/docs/help-drift-guards.md).
+// mirrors: src/app/(app)/workspaces/[workspaceId]/master-data/partners/[partnerId]/_components/PartnerRegistrySection.tsx
+// mirrors: src/lib/registry-review.ts
 
 import clsx from 'clsx'
 import type { Locale } from '@/lib/i18n'

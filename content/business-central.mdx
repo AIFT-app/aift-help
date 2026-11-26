@@ -389,3 +389,14 @@ Sending anything into Business Central needs **two** permissions: "Run accountin
 **Disconnect** on **Settings → Business Central Connection**. The confirmation says what goes: the pairings, the copied master data and the VAT mappings are deleted. The **payment method mapping goes too**, which the dialog does not mention. Your companies, categories, partners, the links to vendor cards, the bank account settings (Business Central bank account, start date, journal) and the record of which invoices and bank lines were sent are all kept.
 
 Reconnecting afterwards needs **both approvals again**, and every company paired again. Your Microsoft administrator can also revoke the approval in your own Microsoft 365 without telling us.
+
+{/*
+  The aift-web files this article describes beyond its figures, one `mirrors:` line each.
+  aift-web scripts/help-impact.mjs reads them (aift-ops/docs/help-drift-guards.md).
+  mirrors: src/app/(app)/workspaces/[workspaceId]/exports/business-central/_components/SendPanel.tsx
+  mirrors: src/app/(app)/workspaces/[workspaceId]/exports/business-central/_components/ReadinessShell.tsx
+  mirrors: src/app/(app)/workspaces/[workspaceId]/exports/business-central/_components/BcFixDrawer.tsx
+  mirrors: src/app/(app)/workspaces/[workspaceId]/exports/business-central/blockers.ts
+  mirrors: src/app/(app)/workspaces/[workspaceId]/invoices/[invoiceId]/(tabs)/_components/BcResendButton.tsx
+  mirrors: src/app/(app)/workspaces/[workspaceId]/master-data/vat/business-central/BcVatMappingTable.tsx
+*/}

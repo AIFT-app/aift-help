@@ -22,6 +22,17 @@
 //
 // A server component: every control is in its resting state, the popovers
 // never open, and the screen is `inert`.
+//
+// The aift-web files this figure copies, one `mirrors:` line each. aift-web
+// scripts/help-impact.mjs reads them to flag this figure when one changes;
+// keep them current when the figure is redrawn (aift-ops/docs/help-drift-guards.md).
+// mirrors: src/components/date-range/date-range-filter.tsx
+// mirrors: src/components/ledger-filter/NLFilterInput.tsx
+// mirrors: src/components/ledger-filter/SearchEngineSelect.tsx
+// mirrors: src/components/ledger-filter/ledger-active-chips.tsx
+// mirrors: src/components/ledger-filter/ledger-strip.tsx
+// mirrors: src/components/list-view/multi-select-chip-dropdown.tsx
+// mirrors: src/components/list-view/tabbed-list-view.tsx
 
 import clsx from 'clsx'
 import type { Locale } from '@/lib/i18n'

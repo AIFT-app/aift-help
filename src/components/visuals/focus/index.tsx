@@ -31,6 +31,11 @@
 // basis label. The computed-CSS diff cannot catch either fault: it skips
 // `aria-hidden` + `w-0` pins on both sides by design, so it only ever proves
 // the app markup matches. Marker placement has to be looked at.
+//
+// The aift-web files this figure copies, one `mirrors:` line each. aift-web
+// scripts/help-impact.mjs reads them to flag this figure when one changes;
+// keep them current when the figure is redrawn (aift-ops/docs/help-drift-guards.md).
+// mirrors: src/components/focus/FocusScopeChip.tsx
 
 import clsx from 'clsx'
 import type { Locale } from '@/lib/i18n'

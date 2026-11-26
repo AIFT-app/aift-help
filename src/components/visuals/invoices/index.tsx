@@ -27,6 +27,26 @@
 // too, so the row controls are the same. Only the table is shown, cropped out
 // of the invoices page. When one of those files changes, re-copy the markup
 // here. Data comes from ./copy.ts and is fictional.
+//
+// The aift-web files this figure copies, one `mirrors:` line each. aift-web
+// scripts/help-impact.mjs reads them to flag this figure when one changes;
+// keep them current when the figure is redrawn (aift-ops/docs/help-drift-guards.md).
+// mirrors: src/app/(app)/workspaces/[workspaceId]/invoices/_components/AttachPdfRowAction.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/invoices/_components/AttachmentCount.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/invoices/_components/InvoiceListShell.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/invoices/_components/RowAttachControls.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/invoices/page.tsx
+// mirrors: src/components/date-range/date-range-filter.tsx
+// mirrors: src/components/document-export/DocumentExportButton.tsx
+// mirrors: src/components/document-export/runner.ts
+// mirrors: src/components/layout/PageTitleRow.tsx
+// mirrors: src/components/list-view/sortable-table.tsx
+// mirrors: src/components/list-view/source-mark.tsx
+// mirrors: src/components/recategorize/recategorize-ui.tsx
+// mirrors: src/components/ui/segmented.tsx
+// mirrors: src/components/upload-queue/UploadButton.tsx
+// mirrors: src/lib/document-export/naming.ts
+// mirrors: src/lib/document-export/types.ts
 
 import clsx from 'clsx'
 import { DocumentKindGlyph } from '../DocumentKindGlyph'
