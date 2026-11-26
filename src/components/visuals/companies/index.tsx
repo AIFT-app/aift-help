@@ -10,6 +10,19 @@
 //                       MatchingContextEditor.tsx (+ src/components/ui/textarea.tsx)
 // When one of those files changes, re-copy the markup here. Data comes from
 // ./copy.ts and is fictional.
+//
+// The aift-web files this figure copies, one `mirrors:` line each. aift-web
+// scripts/help-impact.mjs reads them to flag this figure when one changes;
+// keep them current when the figure is redrawn (aift-ops/docs/help-drift-guards.md).
+// mirrors: src/app/(app)/workspaces/[workspaceId]/master-data/entities/[entityId]/_components/EntityDetailTabs.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/master-data/entities/[entityId]/layout.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/master-data/entities/_components/EntityAlternativeNamesSection.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/master-data/entities/_components/EntityBankAccountsSection.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/master-data/entities/_components/MatchingContextEditor.tsx
+// mirrors: src/components/return-context/back-link.tsx
+// mirrors: src/components/ui/textarea.tsx
+// mirrors: src/lib/countries.ts
+// mirrors: src/lib/entity-validation.ts
 
 import clsx from 'clsx'
 import { ArrowLeftIcon, PencilSquareIcon, XMarkIcon } from '@heroicons/react/20/solid'

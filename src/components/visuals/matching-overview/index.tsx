@@ -25,6 +25,16 @@
 // ⚠️ MARKERS: 1 right of the date trigger, 2 and 3 right of a tile's count, 4
 // right of the chart heading, 5 above the backlog legend entry. The legend
 // wraps differently per language; check with help-marker-audit in all three.
+//
+// The aift-web files this figure copies, one `mirrors:` line each. aift-web
+// scripts/help-impact.mjs reads them to flag this figure when one changes;
+// keep them current when the figure is redrawn (aift-ops/docs/help-drift-guards.md).
+// mirrors: src/app/(app)/workspaces/[workspaceId]/matching/_components/ExportButton.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/matching/_components/MatchingOverview.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/matching/_components/OverviewTrendChart.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/matching/partners/[partnerId]/page.tsx
+// mirrors: src/components/date-range/date-range-filter.tsx
+// mirrors: src/components/layout/PageTitleRow.tsx
 
 import { ArrowDownTrayIcon } from '@heroicons/react/20/solid'
 import type { Locale } from '@/lib/i18n'

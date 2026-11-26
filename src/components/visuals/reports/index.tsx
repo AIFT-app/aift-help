@@ -25,6 +25,16 @@
 //
 // When one of those files changes, re-copy the markup here. Data comes from
 // ./copy.ts and is fictional.
+//
+// The aift-web files this figure copies, one `mirrors:` line each. aift-web
+// scripts/help-impact.mjs reads them to flag this figure when one changes;
+// keep them current when the figure is redrawn (aift-ops/docs/help-drift-guards.md).
+// mirrors: src/app/(app)/workspaces/[workspaceId]/reports/[reportId]/_components/DrillDownPanel.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/reports/[reportId]/_components/ReportPage.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/reports/[reportId]/_components/ReportTable.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/reports/[reportId]/_components/ReportToolbar.tsx
+// mirrors: src/components/category/CategoryCombobox.tsx
+// mirrors: src/components/date-range/date-range-filter.tsx
 
 import { ChevronDownIcon, ChevronRightIcon, FunnelIcon, PencilSquareIcon, XMarkIcon } from '@heroicons/react/20/solid'
 import clsx from 'clsx'

@@ -31,6 +31,11 @@
 // A server component, so the rows are anchors without href and the Upload
 // button carries no handler; the screen is `inert` regardless. Labels come from
 // ./copy.ts, keyed by aift-web message key; every document is fictional.
+//
+// The aift-web files this figure copies, one `mirrors:` line each. aift-web
+// scripts/help-impact.mjs reads them to flag this figure when one changes;
+// keep them current when the figure is redrawn (aift-ops/docs/help-drift-guards.md).
+// mirrors: src/app/(app)/workspaces/[workspaceId]/documents/_components/DocumentsList.tsx
 
 import type { Locale } from '@/lib/i18n'
 import { Badge } from '@/components/catalyst/badge'

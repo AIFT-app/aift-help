@@ -4,6 +4,11 @@
 // together, and four numbers in prose do not survive a reading. The bands are
 // the real ones (aift-api _shared/categorization-threshold.ts and
 // _shared/categorize-line-items.ts, origin/main 2026-09-23).
+//
+// The aift-web files this figure copies, one `mirrors:` line each. aift-web
+// scripts/help-impact.mjs reads them to flag this figure when one changes;
+// keep them current when the figure is redrawn (aift-ops/docs/help-drift-guards.md).
+// mirrors: none (a diagram, not an app screen; its labels are keyed in ./copy.ts)
 
 import clsx from 'clsx'
 import type { Locale } from '@/lib/i18n'

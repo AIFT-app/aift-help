@@ -15,6 +15,19 @@
 //                        partner-bank-accounts-tab (aift-web 4046f206).
 // When one of those files changes, re-copy the markup here. Data comes from
 // ./copy.ts and is fictional.
+//
+// The aift-web files this figure copies, one `mirrors:` line each. aift-web
+// scripts/help-impact.mjs reads them to flag this figure when one changes;
+// keep them current when the figure is redrawn (aift-ops/docs/help-drift-guards.md).
+// mirrors: src/app/(app)/workspaces/[workspaceId]/master-data/partners/[partnerId]/_components/AlternativeNamesSection.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/master-data/partners/[partnerId]/_components/PartnerBankAccountsSection.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/master-data/partners/[partnerId]/_components/PartnerDetailActions.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/master-data/partners/[partnerId]/_components/PartnerDetailTabs.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/master-data/partners/[partnerId]/_components/PartnerNamePatternsSection.tsx
+// mirrors: src/app/(app)/workspaces/[workspaceId]/master-data/partners/[partnerId]/layout.tsx
+// mirrors: src/components/layout/PageTitleRow.tsx
+// mirrors: src/components/return-context/back-link.tsx
+// mirrors: src/lib/hu-bank-account.ts
 
 import clsx from 'clsx'
 import { ArrowLeftIcon, CheckIcon, XMarkIcon } from '@heroicons/react/20/solid'

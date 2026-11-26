@@ -9,6 +9,11 @@
 //
 // The page centres the card in the viewport (`min-h-screen`); the figure
 // shows the card alone, which is what the reader has to recognise.
+//
+// The aift-web files this figure copies, one `mirrors:` line each. aift-web
+// scripts/help-impact.mjs reads them to flag this figure when one changes;
+// keep them current when the figure is redrawn (aift-ops/docs/help-drift-guards.md).
+// mirrors: src/app/mcp/consent/page.tsx
 
 import type { Locale } from '@/lib/i18n'
 import { AppScreen, Figure, Pin } from '../kit'
