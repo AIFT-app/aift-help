@@ -9,12 +9,12 @@ A számlaszámok csatlakoztatás nélkül is számítanak: a beérkező tranzakc
 | Művelet | Ki |
 |---|---|
 | Számlaszám felvétele vagy szerkesztése | A munkaterület bármely tagja |
-| Bank csatlakoztatása | Bárki az ügyféloldalon (pénzügyi vezető, pénzügyi adminisztrátor vagy munkatárs) |
+| Bank csatlakoztatása, hozzájárulás megújítása | Csak a pénzügyi vezető |
 | **Szinkronizálás most** | Bármely tag, a könyvelők is |
 | Számla lecsatlakoztatása, kapcsolat eltávolítása | Csak a pénzügyi vezető |
 | Megosztott számla (cash pool) megadása | Könyvelő |
 
-A bank csatlakoztatása és lecsatlakoztatása szabály szerint tartozik az ügyféloldalhoz, nem szerepkör szerint: egyetlen egyedi szerepkör és egyetlen kivétel sem adhatja meg ezeket könyvelőnek, mert a banki belépési adatoknak az ügyfélnél kell maradniuk. Lásd: [Szerepek és jogosultságok](/roles-and-permissions).
+A bank csatlakoztatása, megújítása és lecsatlakoztatása szabály szerint a pénzügyi vezetőé, nem jogosultság szerint: egyetlen egyedi szerepkör és egyetlen kivétel sem adhatja meg ezeket könyvelőnek, pénzügyi adminisztrátornak vagy munkatársnak, mert a banki belépési adatoknak az ügyfél pénzügyi vezetőjénél kell maradniuk. Lásd: [Szerepek és jogosultságok](/roles-and-permissions).
 
 ## Számlaszámok
 
@@ -77,7 +77,7 @@ Ez előtt a dátum előtt hét nappal a kártya borostyánsárgára vált, és a
 
 A bank ennél korábban is visszavonhatja a hozzáférést, például ha ugyanahhoz a belépéshez egy újabb engedély váltja fel ezt, vagy ha Ön az internetbankban visszavonja. Ilyenkor a kártyán a következő szinkronizáláskor a **Lejárt** felirat jelenik meg, és a szinkronizálás leáll. A folytatáshoz csatlakoztassa újra a bankot.
 
-**E-mailben is szólunk.** A cég pénzügyi vezetője e-mailt kap azon a reggelen, amikor a kártya borostyánsárgára vált, és egy másodikat, amikor a kapcsolat lejárt, vagy a bank visszavonta a hozzáférést. Mindkettő megnevezi a bankot és a dátumot, és erre az oldalra mutat. Ha a munkaterületen nincs pénzügyi vezető, az ügyféloldal minden tagja megkapja. Ha ügyféloldali tag sincs, a munkaterület tagjait kezelő könyvelők kapják meg.
+**E-mailben is szólunk.** A cég pénzügyi vezetője e-mailt kap azon a reggelen, amikor a kártya borostyánsárgára vált, és egy másodikat, amikor a kapcsolat lejárt, vagy a bank visszavonta a hozzáférést. Mindkettő megnevezi a bankot és a dátumot, és erre az oldalra mutat. Ha a munkaterületen nincs pénzügyi vezető, a munkaterület tagjait kezelő könyvelők kapják meg, mert ők tudják meghívni a pénzügyi vezetőt, vagy feltölteni a bankkivonatokat.
 
 A folytatáshoz csatlakoztassa újra ugyanazt a bankot. Az AI Finance Team megújításként ismeri fel, ezért nem kérdez rá újra az előzményekre, és a banktól a lehető leghosszabb időszakot kéri. A meglévő tranzakciói és minden, amit velük tett, megmarad.
 
@@ -109,10 +109,10 @@ A bank korábban visszavonta a hozzáférést. Csatlakoztassa újra a bankot, é
 A csatlakoztatás elindult, de a banknál nem hagyták jóvá. Távolítsa el, vagy csatlakoztassa újra a bankot.
 
 **A kártyán megjelenik az Újra engedélyezés.**
-Csak annyit mond, hogy használja a **Bank összekapcsolása** funkciót, ami a hozzájárulás megújításának valódi módja.
+A pénzügyi vezetőt egyenesen a bank jóváhagyó oldalára viszi, ahol megújíthatja a hozzájárulást: sem bankot, sem előzményhosszt nem kell választania. A gombot csak a pénzügyi vezető látja.
 
 **Nem látom a Bank összekapcsolása gombot.**
-Csak az ügyféloldali tagoknak jelenik meg. Könyvelő nem csatlakoztathatja az ügyfél bankját, ez szándékos.
+Csak a pénzügyi vezetőnek jelenik meg. Pénzügyi adminisztrátor, munkatárs és könyvelő nem csatlakoztathat bankot, ez szándékos. Ha a munkaterületen még nincs pénzügyi vezető, előbb őt kell meghívni (lásd: [Szerepek és jogosultságok](/roles-and-permissions)).
 
 **A kapcsolat kártyáján Hiba látszik.**
 Nyissa meg a kártyát: az állapot megnevezi a szolgáltató által megadott okot. A hibás állapotú kapcsolatot a pénzügyi vezető lecsatlakoztathatja és újra csatlakoztathatja.

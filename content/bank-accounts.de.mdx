@@ -9,12 +9,12 @@ Kontonummern zählen auch ohne Verbindung: Eingehende Transaktionen werden gegen
 | Aktion | Wer |
 |---|---|
 | Kontonummern hinzufügen oder bearbeiten | Jedes Mitglied des Arbeitsbereichs |
-| Eine Bank verbinden | Alle auf der Mandantenseite (Finanzleitung, Finanzadmin oder Teammitglied) |
+| Eine Bank verbinden, eine Zustimmung erneuern | Nur die Finanzleitung |
 | **Jetzt synchronisieren** | Jedes Mitglied, auch Buchhalter |
 | Ein Konto trennen, eine Verbindung entfernen | Nur die Finanzleitung |
 | Ein geteiltes Konto angeben (Cash-Pool) | Ein Buchhalter |
 
-Bank verbinden und trennen gehört per Regel zur Mandantenseite, nicht per Rolle: Keine eigene Rolle und keine Ausnahme kann das einem Buchhalter geben, denn Bankzugangsdaten müssen beim Mandanten bleiben. Siehe [Rollen & Berechtigungen](/roles-and-permissions).
+Bank verbinden, erneuern und trennen gehört per Regel zur Finanzleitung, nicht per Berechtigung: Keine eigene Rolle und keine Ausnahme kann das einem Buchhalter, einem Finanzadmin oder einem Teammitglied geben, denn Bankzugangsdaten müssen bei der Finanzleitung des Mandanten bleiben. Siehe [Rollen & Berechtigungen](/roles-and-permissions).
 
 ## Kontonummern
 
@@ -77,7 +77,7 @@ Sieben Tage vor diesem Datum wird die Karte bernsteinfarben und zeigt **Läuft i
 
 Eine Bank kann den Zugriff auch vor diesem Datum entziehen, etwa wenn eine neuere Freigabe für denselben Zugang diese ersetzt oder wenn Sie sie im Onlinebanking widerrufen. Die Karte zeigt dann bei der nächsten Synchronisierung **Abgelaufen**, und die Synchronisierung stoppt. Verbinden Sie die Bank erneut, um weiterzumachen.
 
-**Sie werden auch per E-Mail informiert.** Die Finanzleitung des Unternehmens erhält eine E-Mail an dem Morgen, an dem die Karte bernsteinfarben wird, und eine zweite, sobald die Verbindung abgelaufen ist oder die Bank den Zugriff entzogen hat. Beide nennen die Bank und das Datum und verlinken auf diese Seite. Hat der Arbeitsbereich keine Finanzleitung, erhalten alle Mitglieder der Mandantenseite die E-Mail. Gibt es auch kein Mitglied der Mandantenseite, erhalten sie die Buchhalter, die die Mitglieder des Arbeitsbereichs verwalten.
+**Sie werden auch per E-Mail informiert.** Die Finanzleitung des Unternehmens erhält eine E-Mail an dem Morgen, an dem die Karte bernsteinfarben wird, und eine zweite, sobald die Verbindung abgelaufen ist oder die Bank den Zugriff entzogen hat. Beide nennen die Bank und das Datum und verlinken auf diese Seite. Hat der Arbeitsbereich keine Finanzleitung, erhalten die Buchhalter, die die Mitglieder des Arbeitsbereichs verwalten, die E-Mail, denn sie können die Finanzleitung einladen oder die Kontoauszüge hochladen.
 
 Um weiterzumachen, verbinden Sie dieselbe Bank erneut. AI Finance Team erkennt das als Erneuerung, fragt deshalb nicht noch einmal nach der Historie und fordert bei der Bank den längsten Zeitraum an, den sie erlaubt. Ihre bestehenden Transaktionen und alles, was damit geschehen ist, bleiben erhalten.
 
@@ -109,10 +109,10 @@ Ihre Bank hat den Zugriff vorzeitig entzogen. Verbinden Sie die Bank erneut und 
 Die Verbindung wurde begonnen, aber bei der Bank nie freigegeben. Entfernen Sie sie oder verbinden Sie die Bank erneut.
 
 **Die Karte bietet Erneut autorisieren an.**
-Sie sagt Ihnen nur, dass Sie **Bank verbinden** benutzen sollen, was der echte Weg ist, eine Zustimmung zu erneuern.
+Sie führt die Finanzleitung direkt zur Freigabeseite der Bank, um die Zustimmung zu erneuern, ohne Auswahl der Bank oder des Verlaufszeitraums. Nur die Finanzleitung sieht die Schaltfläche.
 
 **Ich sehe Bank verbinden nicht.**
-Es wird nur mandantenseitigen Mitgliedern angezeigt. Ein Buchhalter kann die Bank eines Mandanten nicht verbinden, das ist so gewollt.
+Es wird nur der Finanzleitung angezeigt. Finanzadmin, Teammitglied und Buchhalter können keine Bank verbinden, das ist so gewollt. Hat der Arbeitsbereich noch keine Finanzleitung, muss sie zuerst eingeladen werden (siehe [Rollen & Berechtigungen](/roles-and-permissions)).
 
 **Die Verbindungskarte zeigt Fehler.**
 Öffnen Sie die Karte: Der Status benennt den Grund des Anbieters. Eine Verbindung im Fehlerzustand kann die Finanzleitung trennen und erneut verbinden.

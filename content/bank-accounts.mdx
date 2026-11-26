@@ -9,12 +9,12 @@ Account numbers matter even without a connection: incoming transactions are matc
 | Action | Who |
 |---|---|
 | Add or edit account numbers | Any member of the workspace |
-| Connect a bank | Anyone on the client side (finance lead, finance admin or team member) |
+| Connect a bank, renew a consent | The finance lead only |
 | **Sync now** | Any member, accountants included |
 | Disconnect an account, remove a connection | The finance lead only |
 | Declare a shared account (cash pool) | An accountant |
 
-Connecting and disconnecting a bank belong to the client side by rule, not by role: no custom role and no exception can grant them to an accountant, because bank credentials must stay with the client. See [Roles and Permissions](/roles-and-permissions).
+Connecting, renewing and disconnecting a bank belong to the finance lead by rule, not by permission: no custom role and no exception can grant them to an accountant, a finance admin or a team member, because bank credentials must stay with the client's finance lead. See [Roles and Permissions](/roles-and-permissions).
 
 ## Account Numbers
 
@@ -77,7 +77,7 @@ Seven days before that date the card turns amber and says **Expires in N days**.
 
 A bank can also withdraw access before that date, for example when a newer approval for the same login replaces this one, or when you revoke it in your internet bank. The card then shows **Expired** at the next sync and syncing stops. Connect the bank again to continue.
 
-**You are told by email too.** The company's finance lead gets an email on the morning the card turns amber, and a second one once the connection has expired or the bank has withdrawn access. Each names the bank and the date and links to this page. If the workspace has no finance lead, every client-side member gets the email. If it has no client-side member at all, the accountants who manage the workspace's members get it.
+**You are told by email too.** The company's finance lead gets an email on the morning the card turns amber, and a second one once the connection has expired or the bank has withdrawn access. Each names the bank and the date and links to this page. If the workspace has no finance lead, the accountants who manage the workspace's members get the email, because they can invite the finance lead or upload the bank statements.
 
 To carry on, connect the same bank again. AI Finance Team recognises it as a renewal, so it does not ask about history again and asks the bank for the longest period it allows. Your existing transactions and everything done with them are kept.
 
@@ -109,10 +109,10 @@ Your bank withdrew access early. Connect the bank again and tick every account y
 The connection was started but never approved at the bank. Remove it, or connect the bank again.
 
 **The card offers Re-authorize.**
-It only tells you to use **Connect a bank**, which is the real way to renew a consent.
+It takes the finance lead straight to the bank's approval page to renew the consent, with no bank and no history length to pick. Only the finance lead sees the button.
 
 **I cannot see Connect a bank.**
-It is shown to client-side members only. An accountant cannot connect a client's bank, by design.
+It is shown to the finance lead only. A finance admin, a team member and an accountant cannot connect a bank, by design. If the workspace has no finance lead yet, one has to be invited first (see [Roles and Permissions](/roles-and-permissions)).
 
 **The connection card shows Error.**
 Open the card: the status names the provider's reason. A connection in error can be disconnected and connected again by the finance lead.
